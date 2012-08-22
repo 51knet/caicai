@@ -2,11 +2,8 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-DROP SCHEMA IF EXISTS `mydb` ;
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 DROP SCHEMA IF EXISTS `caicaidb` ;
 CREATE SCHEMA IF NOT EXISTS `caicaidb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
 USE `caicaidb` ;
 
 -- -----------------------------------------------------
@@ -107,6 +104,36 @@ CREATE  TABLE IF NOT EXISTS `caicaidb`.`friends_related` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COMMENT = 'relationship of friends.';
+
+
+-- -----------------------------------------------------
+-- Table `caicaidb`.`message`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `caicaidb`.`message` ;
+
+CREATE  TABLE IF NOT EXISTS `caicaidb`.`message` (
+  `index` INT(11) NOT NULL AUTO_INCREMENT ,
+  `from_id` VARCHAR(45) NOT NULL ,
+  `to_id` VARCHAR(45) NOT NULL ,
+  `time` DATETIME NOT NULL ,
+  `context` VARCHAR(280) NOT NULL ,
+  `is_new` INT(11) NOT NULL DEFAULT '0' ,
+  PRIMARY KEY (`index`) ,
+  INDEX `from_id_m_fk_idx` (`from_id` ASC) ,
+  INDEX `to_id_m_fk_idx` (`to_id` ASC) ,
+  CONSTRAINT `from_id_m_fk`
+    FOREIGN KEY (`from_id` )
+    REFERENCES `caicaidb`.`usr` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `to_id_m_fk`
+    FOREIGN KEY (`to_id` )
+    REFERENCES `caicaidb`.`usr` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COMMENT = 'internal messages.';
 
 
 -- -----------------------------------------------------
@@ -274,6 +301,48 @@ COMMENT = 'the relationship of teachers and teach group.';
 
 
 -- -----------------------------------------------------
+-- Table `caicaidb`.`topic`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `caicaidb`.`topic` ;
+
+CREATE  TABLE IF NOT EXISTS `caicaidb`.`topic` (
+  `index` INT(11) NOT NULL AUTO_INCREMENT ,
+  `id` VARCHAR(45) NOT NULL ,
+  `title` VARCHAR(45) NOT NULL ,
+  `owner_id` VARCHAR(45) NOT NULL ,
+  `post_time` DATETIME NOT NULL ,
+  `visit_number` INT(11) NOT NULL DEFAULT '0' ,
+  `context` LONGTEXT NOT NULL ,
+  PRIMARY KEY (`index`, `id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COMMENT = 'topic in each home page.';
+
+
+-- -----------------------------------------------------
+-- Table `caicaidb`.`topic_follow`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `caicaidb`.`topic_follow` ;
+
+CREATE  TABLE IF NOT EXISTS `caicaidb`.`topic_follow` (
+  `index` INT(11) NOT NULL AUTO_INCREMENT ,
+  `topic_index` INT(11) NOT NULL ,
+  `owner_id` VARCHAR(45) NOT NULL ,
+  `post_time` DATETIME NOT NULL ,
+  `context` LONGTEXT NOT NULL ,
+  PRIMARY KEY (`index`) ,
+  INDEX `topic_index_ft_fk_idx` (`topic_index` ASC) ,
+  CONSTRAINT `topic_index_tf_fk`
+    FOREIGN KEY (`topic_index` )
+    REFERENCES `caicaidb`.`topic` (`index` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COMMENT = 'topics follows';
+
+
+-- -----------------------------------------------------
 -- Table `caicaidb`.`usr_customgroup_related`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `caicaidb`.`usr_customgroup_related` ;
@@ -285,14 +354,14 @@ CREATE  TABLE IF NOT EXISTS `caicaidb`.`usr_customgroup_related` (
   PRIMARY KEY (`index`) ,
   INDEX `usr_id_uc_fk_idx` (`usr_id` ASC) ,
   INDEX `custom_group_name_uc_fk_idx` (`group_name` ASC) ,
-  CONSTRAINT `usr_id_uc_fk`
-    FOREIGN KEY (`usr_id` )
-    REFERENCES `caicaidb`.`usr` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `custom_group_name_uc_fk`
     FOREIGN KEY (`group_name` )
     REFERENCES `caicaidb`.`custom_group` (`name` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `usr_id_uc_fk`
+    FOREIGN KEY (`usr_id` )
+    REFERENCES `caicaidb`.`usr` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
