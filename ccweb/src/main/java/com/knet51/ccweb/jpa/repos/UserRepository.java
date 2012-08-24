@@ -1,6 +1,9 @@
-package com.knet51.ccweb.jpa.core;
+package com.knet51.ccweb.jpa.repos;
 
 import org.springframework.data.repository.Repository;
+
+import com.knet51.ccweb.jpa.entities.EmailAddress;
+import com.knet51.ccweb.jpa.entities.User;
 
 
 

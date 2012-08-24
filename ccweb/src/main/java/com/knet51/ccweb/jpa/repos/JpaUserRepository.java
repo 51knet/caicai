@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.core;
+package com.knet51.ccweb.jpa.repos;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -6,6 +6,9 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
+
+import com.knet51.ccweb.jpa.entities.EmailAddress;
+import com.knet51.ccweb.jpa.entities.User;
 
 
 
@@ -16,7 +19,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @Profile("jpa")
-class JpaUserRepository implements UserRepository {
+public class JpaUserRepository implements UserRepository {
 
 	@PersistenceContext
 	private EntityManager em;

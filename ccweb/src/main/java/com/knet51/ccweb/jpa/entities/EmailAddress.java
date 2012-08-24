@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.core;
+package com.knet51.ccweb.jpa.entities;
 
 import java.util.regex.Pattern;
 

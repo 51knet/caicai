@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.core;
+package com.knet51.ccweb.jpa.entities;
 
 import java.util.Collections;
 import java.util.Date;
@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.springframework.util.Assert;
 
@@ -20,14 +21,15 @@ import org.springframework.util.Assert;
  * @author 
  */
 @Entity
+@Table(name="Usr")
 public class User extends AbstractEntity {
 
 	@Column(unique = true)
 	private EmailAddress emailAddress;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "customer_id")
-	private Set<Address> addresses = new HashSet<Address>();
+	//@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	//@JoinColumn(name = "customer_id")
+	//private Set<Address> addresses = new HashSet<Address>();
 	
 	private String name;
 	private String password;
@@ -58,16 +60,16 @@ public class User extends AbstractEntity {
 
 	}
 
-	/**
-	 * Adds the given {@link Address} to the {@link User}.
-	 * 
-	 * @param address must not be {@literal null}.
-	 */
-	public void add(Address address) {
-
-		Assert.notNull(address);
-		this.addresses.add(address);
-	}
+//	/**
+//	 * Adds the given {@link Address} to the {@link User}.
+//	 * 
+//	 * @param address must not be {@literal null}.
+//	 */
+//	public void add(Address address) {
+//
+//		Assert.notNull(address);
+//		this.addresses.add(address);
+//	}
 
 	public String getName() {
 		return name;
@@ -140,10 +142,10 @@ public class User extends AbstractEntity {
 	public void setFix_phone(String fix_phone) {
 		this.fix_phone = fix_phone;
 	}
-
-	public void setAddresses(Set<Address> addresses) {
-		this.addresses = addresses;
-	}
+//
+//	public void setAddresses(Set<Address> addresses) {
+//		this.addresses = addresses;
+//	}
 
 	/**
 	 * Returns the {@link EmailAddress} of the {@link User}.
@@ -163,12 +165,12 @@ public class User extends AbstractEntity {
 		this.emailAddress = emailAddress;
 	}
 
-	/**
-	 * Return the {@link User}'s addresses.
-	 * 
-	 * @return
-	 */
-	public Set<Address> getAddresses() {
-		return Collections.unmodifiableSet(addresses);
-	}
+//	/**
+//	 * Return the {@link User}'s addresses.
+//	 * 
+//	 * @return
+//	 */
+//	public Set<Address> getAddresses() {
+//		return Collections.unmodifiableSet(addresses);
+//	}
 }

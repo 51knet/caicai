@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.core;
+package com.knet51.ccweb.jpa.entities;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

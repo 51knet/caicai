@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.knet51.ccweb.jpa.core.EmailAddress;
-import com.knet51.ccweb.jpa.core.JpaUserRepository;
-import com.knet51.ccweb.jpa.core.User;
-import com.knet51.ccweb.jpa.core.UserRepository;
+import com.knet51.ccweb.jpa.entities.EmailAddress;
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.repos.JpaUserRepository;
+import com.knet51.ccweb.jpa.repos.UserRepository;
 
 
 

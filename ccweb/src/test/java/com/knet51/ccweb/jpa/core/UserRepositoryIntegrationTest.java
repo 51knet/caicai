@@ -22,10 +22,10 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.knet51.ccweb.jpa.core.Address;
-import com.knet51.ccweb.jpa.core.EmailAddress;
-import com.knet51.ccweb.jpa.core.User;
-import com.knet51.ccweb.jpa.core.UserRepository;
+import com.knet51.ccweb.jpa.entities.Address;
+import com.knet51.ccweb.jpa.entities.EmailAddress;
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.repos.UserRepository;
 
 
 
@@ -46,7 +46,7 @@ public class UserRepositoryIntegrationTest extends AbstractIntegrationTest {
 
 		User dave = new User("Alicia", "Keys");
 		dave.setEmailAddress(email);
-		dave.add(new Address("27 Broadway", "New York", "United States"));
+		//dave.add(new Address("27 Broadway", "New York", "United States"));
 
 		User result = repository.save(dave);
 		assertThat(result.getId(), is(notNullValue()));
