@@ -2,8 +2,11 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
+DROP SCHEMA IF EXISTS `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 DROP SCHEMA IF EXISTS `caicaidb` ;
 CREATE SCHEMA IF NOT EXISTS `caicaidb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
 USE `caicaidb` ;
 
 -- -----------------------------------------------------
@@ -29,6 +32,7 @@ DROP TABLE IF EXISTS `caicaidb`.`usr` ;
 CREATE  TABLE IF NOT EXISTS `caicaidb`.`usr` (
   `id` VARCHAR(45) NOT NULL ,
   `name` VARCHAR(45) NOT NULL ,
+  `nick_name` VARCHAR(45) NULL DEFAULT NULL ,
   `password` VARCHAR(45) NOT NULL ,
   `gender` INT(11) NULL DEFAULT NULL ,
   `role` INT(11) NOT NULL DEFAULT '0' ,
@@ -38,6 +42,11 @@ CREATE  TABLE IF NOT EXISTS `caicaidb`.`usr` (
   `level` INT(11) NOT NULL DEFAULT '0' ,
   `cell_phone` VARCHAR(45) NULL DEFAULT NULL ,
   `fix_phone` VARCHAR(45) NULL DEFAULT NULL ,
+  `signature` VARCHAR(45) NULL DEFAULT NULL ,
+  `birthday` VARCHAR(45) NULL DEFAULT NULL ,
+  `location` VARCHAR(45) NULL DEFAULT NULL ,
+  `address` VARCHAR(45) NULL DEFAULT NULL ,
+  `announcement` VARCHAR(280) NULL DEFAULT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `id_idx` (`id` ASC) ,
   INDEX `teacher_id_idx` (`id` ASC) ,
@@ -211,9 +220,12 @@ DROP TABLE IF EXISTS `caicaidb`.`teacher` ;
 
 CREATE  TABLE IF NOT EXISTS `caicaidb`.`teacher` (
   `id` VARCHAR(45) NOT NULL ,
-  `title` VARCHAR(45) NOT NULL ,
+  `role` INT(11) NOT NULL DEFAULT '0' ,
+  `title` VARCHAR(45) NULL DEFAULT NULL ,
   `college` VARCHAR(45) NULL DEFAULT NULL ,
   `school` VARCHAR(45) NULL DEFAULT NULL ,
+  `teaching_subject` VARCHAR(45) NULL DEFAULT NULL ,
+  `major` VARCHAR(45) NULL DEFAULT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `id_idx` (`id` ASC) ,
   INDEX `teacher_id_idx` (`id` ASC) ,
