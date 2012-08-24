@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 			
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		<jpa:repositories base-package="com.knet51.ccweb.jpa" />
+	<jpa:repositories base-package="com.knet51.ccweb.jpa" />
 
 	<bean class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
@@ -18,7 +18,7 @@
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="com.oreilly.springdata.jpa" />
+		<property name="packagesToScan" value="com.knet51.ccweb.jpa" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="database" value="HSQL" />
