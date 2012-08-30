@@ -1,15 +1,9 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <h1>
-	Hello world!  
+	Welcome!  
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+<c:if test="${user!=null}">
 <P>  User is ${user} ${user["name"]}. </P>
-</body>
-</html>
+</c:if>
