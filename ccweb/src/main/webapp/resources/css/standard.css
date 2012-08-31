@@ -1,0 +1,22 @@
+/*banner*/
+.banner {
+	background-color: #ECECF0;
+	height: 80px;
+}
+.content-panel {
+	min-height: 400px;
+	height: 400px;
+}
+.login-panel {
+	border: 1px solid #DDD;
+	height: 400px;
+	
+}
+.right-panel .ad {
+	border: 1px solid #DDD;
+	text-align: center;
+}
+/*footer*/
+.footer-text {
+	text-align: center;
+}
