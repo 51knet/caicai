@@ -11,7 +11,9 @@
 
 	<jpa:repositories base-package="com.knet51.ccweb.jpa.repos" />
 
-	<bean class="org.springframework.orm.jpa.JpaTransactionManager">
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
@@ -19,9 +21,8 @@
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="persistenceUnitName" value="caicaiweb-persistence-unit" />
-		<!--  
-		<property name="packagesToScan" value="com.oreilly.springdata.jpa" />
-		-->
+		<!-- <property name="packagesToScan" value="com.oreilly.springdata.jpa" 
+			/> -->
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<!-- <property name="database" value="HSQL" /> -->
