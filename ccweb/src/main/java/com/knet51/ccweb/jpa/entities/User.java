@@ -1,36 +1,21 @@
 package com.knet51.ccweb.jpa.entities;
 
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.springframework.util.Assert;
-
 
 /**
  * A User.
  * 
- * @author 
+ * @author
  */
 @Entity
-@Table(name="Usr")
+@Table(name = "Usr")
 public class User extends AbstractEntity {
 
-	@Column(unique = true)
-	private EmailAddress emailAddress;
-
-	//@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	//@JoinColumn(name = "customer_id")
-	//private Set<Address> addresses = new HashSet<Address>();
-	
+	private String email;
+	private String randomUrl;
 	private String name;
 	private String password;
 	private Boolean gender;
@@ -40,19 +25,18 @@ public class User extends AbstractEntity {
 	private Integer level;
 	private String cell_phone;
 	private String fix_phone;
-	  
+
 	/**
 	 * Creates a new {@link User} from the given name and password.
 	 * 
-	 * @param name must not be {@literal null} or empty.
-	 * @param password must not be {@literal null} or empty.
+	 * @param mail
+	 *            must not be {@literal null} or empty.
+	 * @param password
+	 *            must not be {@literal null} or empty.
 	 */
-	public User(String name, String password) {
+	public User(String mail, String password) {
 
-		Assert.hasText(name);
-		Assert.hasText(password);
-
-		this.name = name;
+		this.email = mail;
 		this.password = password;
 	}
 
@@ -60,16 +44,23 @@ public class User extends AbstractEntity {
 
 	}
 
-//	/**
-//	 * Adds the given {@link Address} to the {@link User}.
-//	 * 
-//	 * @param address must not be {@literal null}.
-//	 */
-//	public void add(Address address) {
-//
-//		Assert.notNull(address);
-//		this.addresses.add(address);
-//	}
+	// /**
+	// * Adds the given {@link Address} to the {@link User}.
+	// *
+	// * @param address must not be {@literal null}.
+	// */
+	// public void add(Address address) {
+	//
+	// Assert.notNull(address);
+	// this.addresses.add(address);
+	// }
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getName() {
 		return name;
@@ -142,35 +133,12 @@ public class User extends AbstractEntity {
 	public void setFix_phone(String fix_phone) {
 		this.fix_phone = fix_phone;
 	}
-//
-//	public void setAddresses(Set<Address> addresses) {
-//		this.addresses = addresses;
-//	}
 
-	/**
-	 * Returns the {@link EmailAddress} of the {@link User}.
-	 * 
-	 * @return
-	 */
-	public EmailAddress getEmailAddress() {
-		return emailAddress;
+	public String getRandomUrl() {
+		return randomUrl;
 	}
 
-	/**
-	 * Sets the {@link User}'s {@link EmailAddress}.
-	 * 
-	 * @param emailAddress must not be {@literal null}.
-	 */
-	public void setEmailAddress(EmailAddress emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setRandomUrl(String randomUrl) {
+		this.randomUrl = randomUrl;
 	}
-
-//	/**
-//	 * Return the {@link User}'s addresses.
-//	 * 
-//	 * @return
-//	 */
-//	public Set<Address> getAddresses() {
-//		return Collections.unmodifiableSet(addresses);
-//	}
 }

@@ -5,14 +5,25 @@
 	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-	
-	
+
+
 	<definition name="home" extends="index-layout">
 		<put-attribute name="title" value="Home" />
-		
+
 	</definition>
 	<definition name="db" extends="standard-layout">
 		<put-attribute name="title" value="Home - DB" />
 		<put-attribute name="body" value="/WEB-INF/views/home.jsp"></put-attribute>
 	</definition>
+
+	<definition name="ok" extends="standard-layout">
+		<put-attribute name="title" value="OK" />
+		<put-attribute name="body" value="/WEB-INF/views/ok.jsp"></put-attribute>
+	</definition>
+	<definition name="bye" extends="standard-layout">
+		<put-attribute name="title" value="Bye" />
+		<put-attribute name="body" value="/WEB-INF/views/bye.jsp"></put-attribute>
+	</definition>
+
+
 </tiles-definitions>
