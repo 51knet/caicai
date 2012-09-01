@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.User;
 
@@ -15,7 +14,6 @@ public class UserDaoImpl implements UserDao {
 	private EntityManager em;
 
 	@Override
-	@Transactional
 	public User save(User user) {
 		em.persist(user);
 		return user;

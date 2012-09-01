@@ -24,6 +24,16 @@ import org.springframework.util.Assert;
 @Table(name="Usr")
 public class User extends AbstractEntity {
 
+	@Override
+	public String toString() {
+		return "User [emailAddress=" + emailAddress + ", name=" + name
+				+ ", password=" + password + ", gender=" + gender + ", role="
+				+ role + ", register_date=" + register_date
+				+ ", last_login_date=" + last_login_date + ", level=" + level
+				+ ", cell_phone=" + cell_phone + ", fix_phone=" + fix_phone
+				+ ", getId()=" + getId() + "]";
+	}
+
 	@Column(unique = true)
 	private EmailAddress emailAddress;
 
@@ -39,22 +49,18 @@ public class User extends AbstractEntity {
 	private Date last_login_date;
 	private Integer level;
 	private String cell_phone;
-	private String fix_phone;
-	  
-	/**
-	 * Creates a new {@link User} from the given name and password.
-	 * 
-	 * @param name must not be {@literal null} or empty.
-	 * @param password must not be {@literal null} or empty.
-	 */
-	public User(String name, String password) {
+	private String fix_phone;	
 
-		Assert.hasText(name);
-		Assert.hasText(password);
-
+	public User(EmailAddress emailAddress, String name, String password,
+			Integer role, Integer level) {
+		super();
+		this.emailAddress = emailAddress;
 		this.name = name;
 		this.password = password;
+		this.role = role;
+		this.level = level;
 	}
+
 
 	protected User() {
 

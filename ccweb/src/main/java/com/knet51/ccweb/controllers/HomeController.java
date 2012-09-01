@@ -8,10 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.knet51.ccweb.jpa.entities.EmailAddress;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
 /**
@@ -40,6 +42,8 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+	@Transactional
 	@RequestMapping(value = "/db", method = RequestMethod.GET)
 	public String db(Locale locale, Model model) {
 		logger.info("Welcome home! the client locale is "+ locale.toString());
@@ -50,6 +54,8 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		User test = service.createUser(new User(new EmailAddress("test@test.com"),"testuser","testuser",1,10));
+		logger.info(test.toString());
 		
 		User u = service.findOne(Long.valueOf("1"));
 		model.addAttribute("user", u);
