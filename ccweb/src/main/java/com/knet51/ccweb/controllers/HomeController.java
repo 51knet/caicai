@@ -53,6 +53,6 @@ public class HomeController {
 		
 		User u = service.findOne(Long.valueOf("1"));
 		model.addAttribute("user", u);
-		return "home";
+		return "db";
 	}
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE tiles-definitions PUBLIC
 	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
@@ -7,9 +7,9 @@
 <tiles-definitions>
 	
 	
-	<definition name="home" extends="standard-layout">
+	<definition name="home" extends="index-layout">
 		<put-attribute name="title" value="Home" />
-		<put-attribute name="body" value="/WEB-INF/views/home.jsp"></put-attribute>
+		
 	</definition>
 	<definition name="db" extends="standard-layout">
 		<put-attribute name="title" value="Home - DB" />
