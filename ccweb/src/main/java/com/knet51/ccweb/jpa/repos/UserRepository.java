@@ -12,6 +12,7 @@ import com.knet51.ccweb.jpa.entities.User;
  * 
  * @author
  */
+@Deprecated
 public interface UserRepository extends Repository<User, Long> {
 
 	/**

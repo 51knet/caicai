@@ -17,6 +17,7 @@ import com.knet51.ccweb.jpa.entities.User;
  * 
  * @author
  */
+@Deprecated
 @Repository
 @Profile("jpa")
 public class JpaUserRepository implements UserRepository {
