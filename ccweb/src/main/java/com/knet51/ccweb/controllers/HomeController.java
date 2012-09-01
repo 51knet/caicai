@@ -54,7 +54,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		User test = service.createUser(new User(new EmailAddress("test@test.com"),"testuser","testuser",1,10));
+		User test = service.createUser(new User("test@test.com","testuser",1,10));
 		logger.info(test.toString());
 		
 		User u = service.findOne(Long.valueOf("1"));

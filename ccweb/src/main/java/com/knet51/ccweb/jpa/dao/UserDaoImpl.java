@@ -1,7 +1,9 @@
 package com.knet51.ccweb.jpa.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -41,5 +43,29 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public User queryStringBySql(String col, String value) {
+		User usr;
+		TypedQuery<User> query = em.createQuery("select c from User c where c."
+				+ col + " = :" + col, User.class);
+		query.setParameter(col, value);
+		try {
+			usr = query.getSingleResult();
+		} catch (NoResultException e) {
+			usr = null;
+		}
+		return usr;
+	}
+
+	// public User findByEmailAddress(EmailAddress emailAddress) {
+	//
+	// TypedQuery<User> query =
+	// em.createQuery("select c from User c where c.emailAddress = :email",
+	// User.class);
+	// query.setParameter("email", emailAddress);
+	//
+	// return query.getSingleResult();
+	// }
 
 }

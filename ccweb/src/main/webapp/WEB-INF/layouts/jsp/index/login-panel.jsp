@@ -4,9 +4,9 @@
 
 <div style="text-align: center;">
     
-<form>
-  <input type="text" placeholder="邮箱地址">
-  <input type="text" placeholder="密码">
+<form action="" method="post">
+  <input type="text" name="email" placeholder="邮箱地址">
+  <input type="text" name="psw" placeholder="密码">
   <span class="help-block"></span>
   <label class="checkbox inline">
 	  <input type="checkbox" id="inlineCheckbox1" value="1"> 记住密码  &nbsp;&nbsp;<a href="#">忘记密码？</a>
@@ -16,6 +16,6 @@
   <a href="#" class="btn">随便看看</a>
 </form>
 <hr/>
-<a href="#" class="btn">注册</a>
+<a href="CommonRegister" class="btn">注册</a>
 
 </div>

@@ -10,19 +10,6 @@ import com.knet51.ccweb.jpa.entities.User;
 @Transactional
 @Service("userService")
 public class UserServiceImpl implements UserService {
-	// @Autowired
-	// private UserRepository repo;
-	//
-	// @Override
-	// public boolean login(String email, String password) {
-	// // TODO Auto-generated method stub
-	// return false;
-	// }
-	//
-	// @Override
-	// public User findOne(Long id) {
-	// return repo.findOne(id);
-	// }
 
 	@Autowired
 	private UserDao userDao;
@@ -41,4 +28,15 @@ public class UserServiceImpl implements UserService {
 	public User createUser(User user) {
 		return userDao.save(user);
 	}
+
+	public User findByRandomUrl(String randomUrl) {
+		User usr = userDao.queryStringBySql("randomUrl", randomUrl);
+		return usr;
 	}
+
+	@Override
+	public User findByEmailAddress(String emailAddress) {
+		User usr = userDao.queryStringBySql("email", emailAddress);
+		return usr;
+	}
+}
