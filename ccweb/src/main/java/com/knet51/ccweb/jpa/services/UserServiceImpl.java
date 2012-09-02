@@ -1,5 +1,7 @@
 package com.knet51.ccweb.jpa.services;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +18,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean login(String email, String password) {
-		return false;
+		HashMap<String, String> paramsMap = new HashMap<String, String>();
+		paramsMap.put("email", email);
+		paramsMap.put("password", password);
+
+		User user = userDao.getSingleResultByParamsMap(paramsMap);
+
+		return (user != null);
 	}
 
 	@Override

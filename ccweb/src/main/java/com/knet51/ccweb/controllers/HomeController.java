@@ -16,47 +16,49 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.knet51.ccweb.jpa.entities.EmailAddress;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
+
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(HomeController.class);
 	@Autowired
-	private UserService service;  
-	
+	private UserService service;
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! the client locale is "+ locale.toString());
-		
+		logger.info("Welcome home! the client locale is " + locale.toString());
+
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
+
 		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+
+		model.addAttribute("serverTime", formattedDate);
+
 		return "home";
 	}
-	
+
 	@Transactional
 	@RequestMapping(value = "/db", method = RequestMethod.GET)
 	public String db(Locale locale, Model model) {
-		logger.info("Welcome home! the client locale is "+ locale.toString());
-		
+		logger.info("Welcome home! the client locale is " + locale.toString());
+
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
+
 		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		User test = service.createUser(new User("test@test.com","testuser",1,10));
+
+		model.addAttribute("serverTime", formattedDate);
+		User test = service.createUser(new User("test@test.com", "testuser", 1, 10));
 		logger.info(test.toString());
-		
+
 		User u = service.findOne(Long.valueOf("1"));
 		model.addAttribute("user", u);
 		return "db";

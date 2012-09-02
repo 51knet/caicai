@@ -1,5 +1,7 @@
 package com.knet51.ccweb.jpa.dao;
 
+import java.util.Map;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -47,6 +49,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User queryStringBySql(String col, String value) {
 		User usr;
+		
 		TypedQuery<User> query = em.createQuery("select c from User c where c."
 				+ col + " = :" + col, User.class);
 		query.setParameter(col, value);
@@ -56,6 +59,30 @@ public class UserDaoImpl implements UserDao {
 			usr = null;
 		}
 		return usr;
+	}
+
+	@Override
+	public User getSingleResultByQuery(String query) {
+		return em.createQuery(query, User.class).getSingleResult();
+	}
+
+	@Override
+	public User getSingleResultByParamsMap(Map<String, String> paramsMap) {
+		StringBuilder queryString = new StringBuilder("select c from User c where ");
+		for (String key : paramsMap.keySet()) {
+			queryString.append("c.");
+			queryString.append(key);
+			queryString.append(" = :");
+			queryString.append(key);
+			queryString.append(" and ");
+		}
+		queryString.delete(queryString.length()-5, queryString.length());
+		
+		TypedQuery<User> query = em.createQuery(queryString.toString(), User.class);
+		for (String key : paramsMap.keySet()) {
+			query.setParameter(key, paramsMap.get(key));
+		}
+		return query.getSingleResult();
 	}
 
 	// public User findByEmailAddress(EmailAddress emailAddress) {

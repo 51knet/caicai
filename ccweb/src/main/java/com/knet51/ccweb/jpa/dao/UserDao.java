@@ -1,5 +1,7 @@
 package com.knet51.ccweb.jpa.dao;
 
+import java.util.Map;
+
 import com.knet51.ccweb.jpa.entities.User;
 
 public interface UserDao {
@@ -14,4 +16,8 @@ public interface UserDao {
 	boolean deleteById(Long id);
 
 	User queryStringBySql(String col, String value);
+	
+	User getSingleResultByQuery(String query);
+	
+	User getSingleResultByParamsMap(Map<String,String> paramsMap);
 }
