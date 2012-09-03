@@ -8,4 +8,5 @@ public interface UserService {
 	User findByRandomUrl(String randomUrl);
 	User findByEmailAddress(String emailAddress);
 	User createUser(User usr);
+	User updateUser(User usr);
 }
