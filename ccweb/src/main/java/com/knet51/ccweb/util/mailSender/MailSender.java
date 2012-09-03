@@ -1,8 +1,16 @@
-package com.knet51.ccweb.util;
+package com.knet51.ccweb.util.mailSender;
 
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.services.UserService;
+
 public class MailSender {
+
+	@Autowired
+	private UserService userService;
 
 	private static MailSender instance = null;
 
@@ -43,6 +51,21 @@ public class MailSender {
 			generateRandStr.append(radStr.substring(randNum, randNum + 1));
 		}
 		return generateRandStr.toString();
+	}
+
+	public boolean SendConfirmMail(String mail) {
+		String randomUrl = produceRandomString();
+		User user = userService.findByEmailAddress(mail);
+		if (user != null) {
+			user.setRandomUrl(randomUrl);
+			user = userService.updateUser(user);
+			randomUrl += "/";
+			randomUrl += user.getId();
+			SendMail(mail, "http://localhost:8080/ccweb/mail/" + randomUrl);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

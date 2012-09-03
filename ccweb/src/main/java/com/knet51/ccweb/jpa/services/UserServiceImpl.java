@@ -47,4 +47,9 @@ public class UserServiceImpl implements UserService {
 		User usr = userDao.queryStringBySql("email", emailAddress);
 		return usr;
 	}
+
+	@Override
+	public User updateUser(User usr) {
+		return userDao.update(usr);
+	}
 }

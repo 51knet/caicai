@@ -1,4 +1,4 @@
-package com.knet51.ccweb.util;
+package com.knet51.ccweb.util.mailSender;
 
 import java.util.Properties;
 

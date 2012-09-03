@@ -25,5 +25,19 @@
 		<put-attribute name="body" value="/WEB-INF/views/bye.jsp"></put-attribute>
 	</definition>
 
+	<definition name="registerPage" extends="registerStandard-layout">
+		<put-attribute name="title" value="Welcom to register" />
+		<put-attribute name="body" value="/WEB-INF/views/registerPage.jsp"></put-attribute>
+	</definition>
+
+	<definition name="registerSuccessful" extends="registerStandard-layout">
+		<put-attribute name="title" value="Register Successful" />
+		<put-attribute name="body" value="/WEB-INF/views/registerSuccessful.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="detailRegisterUserInfoPage" extends="registerStandard-layout">
+		<put-attribute name="title" value="Register Detail" />
+		<put-attribute name="body" value="/WEB-INF/views/detailRegisterUserInfoPage.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

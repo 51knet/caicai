@@ -35,15 +35,9 @@
 		<!--/row-->
 
 		<div class="row-fluid content-panel">
-			<div class="span3">
-				<div class="login-panel">
-					<tiles:insertAttribute name="left" />
-				</div>
-			</div>
-			<!--/span-->
 			<div class="span9">
 				<div class="right-panel">
-					<tiles:insertAttribute name="right" />
+					<tiles:insertAttribute name="body" />
 				</div>
 			</div>
 			<!--/span-->
