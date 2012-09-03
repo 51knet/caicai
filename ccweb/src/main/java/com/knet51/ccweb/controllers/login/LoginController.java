@@ -18,7 +18,7 @@ import com.knet51.ccweb.jpa.services.UserService;
  * Handles requests for the application home page.
  */
 @Controller
-public class LoginController {
+public class LoginController {   
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
@@ -39,7 +39,7 @@ public class LoginController {
 			boolean succeed = service.login(loginForm.getEmail(), loginForm.getPassword());
 			logger.info("Login result " + succeed);
 			
-			return "redirect:home";
+			return "redirect:home"; 
 		}
 	}
 
