@@ -28,6 +28,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public boolean activate(String email) {
+		User user = findByEmailAddress(email);
+		boolean isActivate;
+		if (user != null) {
+			isActivate = "pass".equals(user.getRandomUrl());
+		} else {
+			isActivate = false;
+		}
+		return isActivate;
+	}
+
+	@Override
 	public User findOne(Long id) {
 		return userDao.findById(id);
 	}

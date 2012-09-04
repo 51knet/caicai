@@ -13,14 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.mailSender.MailSender;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-public class LoginController {   
+public class LoginController {
 
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(LoginController.class);
 	@Autowired
 	private UserService service;
 
@@ -28,18 +30,31 @@ public class LoginController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
-	public String signin(Locale locale, Model model, @ModelAttribute LoginForm loginForm, BindingResult result) {
+	public String signin(Locale locale, Model model,
+			@ModelAttribute LoginForm loginForm, BindingResult result) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
 
 		new LoginFormValidator().validate(loginForm, result);
 		if (result.hasErrors()) {
-			logger.info("LoginForm Validation Failed "+result);
+			logger.info("LoginForm Validation Failed " + result);
 			return "home";
 		} else {
-			boolean succeed = service.login(loginForm.getEmail(), loginForm.getPassword());
+			String email = loginForm.getEmail();
+			String psw = loginForm.getPassword();
+			boolean succeed = service.login(email, psw);
 			logger.info("Login result " + succeed);
-			
-			return "redirect:home"; 
+			if (succeed) {
+				boolean activate;
+				activate = service.activate(email);
+				if (activate) {
+					return "redirect:home";
+				} else {
+					MailSender.getInstance().SendConfirmMail(email, service);
+					return "registerSuccessful";
+				}
+			} else {
+				return "redirect:home";
+			}
 		}
 	}
 

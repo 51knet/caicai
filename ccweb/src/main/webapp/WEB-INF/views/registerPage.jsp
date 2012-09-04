@@ -11,9 +11,9 @@
 
 		<input type="text" name="email" placeholder="邮箱地址">
 		<span class="help-block"><form:errors path="email"></form:errors></span>
-		<input type="text" name="psw" placeholder="密码">
+		<input type="password" name="psw" placeholder="密码">
 		<span class="help-block"><form:errors path="psw"></form:errors></span>
-		<input type="text" name="confirmpsw" placeholder="密码确认">
+		<input type="password" name="confirmpsw" placeholder="密码确认">
 		<span class="help-block"><form:errors path="confirmpsw"></form:errors></span>
 		<label style="clear: right;"></label>
 		<button type="submit" class="btn">注册</button>

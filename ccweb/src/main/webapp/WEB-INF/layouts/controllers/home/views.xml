@@ -32,12 +32,19 @@
 
 	<definition name="registerSuccessful" extends="registerStandard-layout">
 		<put-attribute name="title" value="Register Successful" />
-		<put-attribute name="body" value="/WEB-INF/views/registerSuccessful.jsp"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/registerSuccessful.jsp"></put-attribute>
 	</definition>
-	
+
 	<definition name="detailRegisterUserInfoPage" extends="registerStandard-layout">
 		<put-attribute name="title" value="Register Detail" />
-		<put-attribute name="body" value="/WEB-INF/views/detailRegisterUserInfoPage.jsp"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/detailRegisterUserInfoPage.jsp"></put-attribute>
+	</definition>
+
+	<definition name="teacherRegisterPage" extends="registerStandard-layout">
+		<put-attribute name="title" value="Welcom to teacher register" />
+		<put-attribute name="body" value="/WEB-INF/views/teacherRegisterPage.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>
