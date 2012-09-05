@@ -36,7 +36,7 @@ public class ConfirmUserRegisterController {
 			//TODO: get the login session;
 			boolean succeed = userService.login(result.getEmail(), result.getPassword());
 			logger.info("Confirm user email " + succeed);
-			return "detailRegisterUserInfoPage";
+			return "userTypePage";
 		} else {
 			
 			logger.info("#### user confirm failed ####");

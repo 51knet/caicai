@@ -23,4 +23,12 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
+	<definition name="homePage-layout" template="/WEB-INF/layouts/jsp/userHomePage.jsp">
+		<put-attribute name="left"
+			value="/WEB-INF/layouts/jsp/userHomePage/item-panel.jsp"></put-attribute>
+		<put-attribute name="right"
+			value="/WEB-INF/layouts/jsp/userHomePage/right-panel.jsp"></put-attribute>
+		<put-attribute name="footer"
+			value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
 </tiles-definitions>

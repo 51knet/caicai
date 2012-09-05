@@ -25,6 +25,8 @@ public class UserTypeController {
 		logger.info("### user type is " + userType + " ###");
 		
 		// TODO: return to the homepage of user's type;
-		return "teacherRegisterPage";
+		// if teacher return teacherpage;
+		// if student return studentpage;
+		return "teacherInfoPage";
 	}
 }

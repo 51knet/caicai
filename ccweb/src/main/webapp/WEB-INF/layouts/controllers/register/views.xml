@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="registerPage" extends="registerStandard-layout">
+		<put-attribute name="title" value="Welcom to register" />
+		<put-attribute name="body" value="/WEB-INF/views/registerPage.jsp"></put-attribute>
+	</definition>
+
+	<definition name="registerSuccessful" extends="registerStandard-layout">
+		<put-attribute name="title" value="Register Successful" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/registerSuccessful.jsp"></put-attribute>
+	</definition>
+
+	<definition name="userTypePage" extends="registerStandard-layout">
+		<put-attribute name="title" value="Register Detail" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/userTypePage.jsp"></put-attribute>
+	</definition>
+
+</tiles-definitions>

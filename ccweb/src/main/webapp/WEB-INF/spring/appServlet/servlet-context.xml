@@ -35,6 +35,8 @@
 			<beans:list>
 				<beans:value>/WEB-INF/layouts/layouts.xml</beans:value>
 				<beans:value>/WEB-INF/layouts/controllers/home/views.xml</beans:value>
+				<beans:value>/WEB-INF/layouts/controllers/register/views.xml</beans:value>
+				<beans:value>/WEB-INF/layouts/controllers/homepage/views.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
