@@ -10,6 +10,12 @@ import org.springframework.validation.Validator;
 
 import com.knet51.ccweb.jpa.services.UserService;
 
+/**
+ * use jsr-303 bean validation since it's the common approach 
+ * @author ehaojii
+ *
+ */
+@Deprecated
 @Component
 public class LoginFormValidator implements Validator {
 	private static final Logger logger = LoggerFactory.getLogger(LoginFormValidator.class);

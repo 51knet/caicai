@@ -2,6 +2,8 @@ package com.knet51.ccweb.controllers.login;
 
 import java.util.Locale;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +28,40 @@ public class LoginController {
 	@Autowired
 	private UserService service;
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/signin", method = RequestMethod.GET)
-	public String signin(Locale locale, Model model,
-			@ModelAttribute LoginForm loginForm, BindingResult result) {
-		logger.info("Welcome home! the client locale is " + locale.toString());
-
-		new LoginFormValidator().validate(loginForm, result);
+//	/**
+//	 * Simply selects the home view to render by returning its name.
+//	 */
+//	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+//	public String signin(Locale locale, Model model,
+//			@ModelAttribute LoginForm loginForm, BindingResult result) {
+//		logger.info("Welcome home! the client locale is " + locale.toString());
+//
+//		new LoginFormValidator().validate(loginForm, result);
+//		if (result.hasErrors()) {
+//			logger.info("LoginForm Validation Failed " + result);
+//			return "home";
+//		} else {
+//			String email = loginForm.getEmail();
+//			String psw = loginForm.getPassword();
+//			boolean succeed = service.login(email, psw);
+//			logger.info("Login result " + succeed);
+//			if (succeed) {
+//				boolean activate;
+//				activate = service.activate(email);
+//				if (activate) {
+//					return "redirect:home";
+//				} else {
+//					MailSender.getInstance().SendConfirmMail(email, service);
+//					return "registerSuccessful";
+//				}
+//			} else {
+//				return "redirect:home";
+//			}
+//		}
+//	}
+	
+	@RequestMapping(value = "/signin", method = RequestMethod.POST)
+	public String signin(@Valid LoginForm loginForm, BindingResult result) {
 		if (result.hasErrors()) {
 			logger.info("LoginForm Validation Failed " + result);
 			return "home";

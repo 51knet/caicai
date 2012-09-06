@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div style="text-align: center;">
-    <form:form action="signin" modelAttribute="loginForm" method="get">
+    <form:form action="signin" modelAttribute="loginForm" method="post">
 
   <input type="text" name="email" placeholder="邮箱地址">
   <span class="help-block"><form:errors path="email"></form:errors></span>

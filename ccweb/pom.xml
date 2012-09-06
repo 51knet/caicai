@@ -17,6 +17,7 @@
 		<hamcrest.version>1.3</hamcrest.version>
 		<javamail.version>1.4.5</javamail.version>
 		<org.apache.tiles-version>2.2.2</org.apache.tiles-version>
+		<hibernate.validator.version>4.3.0.Final</hibernate.validator.version>
 	</properties>
 	<dependencies>
 		<!-- tiles -->
@@ -186,7 +187,13 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-	
+		<!-- JSR 303 - Bean Validation -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate.validator.version}</version>
+		</dependency>
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>org.hamcrest</groupId>
