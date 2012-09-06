@@ -1,14 +1,13 @@
 package com.knet51.ccweb.controllers.register;
 
-import java.util.Locale;
+
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -32,20 +31,16 @@ public class CommonRegisterController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/commonregister", method = RequestMethod.POST)
-	public String commonRegister(Locale locale, Model model,
-			@ModelAttribute CommonRegisterForm commonRegisterForm,
+	public String commonRegister(@Valid CommonRegisterForm commonRegisterForm,
 			BindingResult validResult) {
 		logger.info("#### commonRegisterController ####");
 
-		String email = commonRegisterForm.getEmail();
-		String psw = commonRegisterForm.getPsw();
-
-		new CommonRegisterFormValidator().validate(commonRegisterForm,
-				validResult);
 		if (validResult.hasErrors()) {
 			logger.info("commonRegisterForm Validation Failed " + validResult);
 			return "registerPage";
 		} else {
+			String email = commonRegisterForm.getEmail();
+			String psw = commonRegisterForm.getPsw();
 			User findUser = userService.findByEmailAddress(email);
 			if (findUser == null) {
 				User user = new User(email, psw);

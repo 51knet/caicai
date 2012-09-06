@@ -13,12 +13,15 @@ public class MailSenderInfo {
 	private String subject;
 	private String content;
 	private String[] attachFileNames;
+	private String timeout;
 
 	public Properties getProperties() {
 		Properties p = new Properties();
 		p.put("mail.smtp.host", this.mailServerHost);
 		p.put("mail.smtp.port", this.mailServerPort);
 		p.put("mail.smtp.auth", validate ? "true" : "false");
+		p.put("mail.smtp.timeout", this.timeout);
+		p.put("mail.smtp.connectiontimeout", this.timeout);
 		return p;
 	}
 
@@ -100,5 +103,13 @@ public class MailSenderInfo {
 
 	public void setContent(String textContent) {
 		this.content = textContent;
+	}
+	
+	public String getTimeout() {
+		return timeout;
+	}
+
+	public void setTimeout(String timeout) {
+		this.timeout = timeout;
 	}
 }

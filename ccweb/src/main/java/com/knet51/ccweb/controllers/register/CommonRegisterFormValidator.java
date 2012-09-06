@@ -8,6 +8,7 @@ import org.springframework.validation.Validator;
 
 import com.knet51.ccweb.jpa.services.UserService;
 
+@Deprecated
 @Component
 public class CommonRegisterFormValidator implements Validator {
 

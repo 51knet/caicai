@@ -32,6 +32,7 @@ public class MailSender {
 		mailInfo.setSubject("Thanks for register to caicai web!");
 		mailInfo.setContent("Thanks for your registering, please click the url for complete your information:\n"
 				+ url);
+		mailInfo.setTimeout("10000");
 		SimpleMailSender sms = new SimpleMailSender();
 		sms.sendTextMail(mailInfo);
 	}
