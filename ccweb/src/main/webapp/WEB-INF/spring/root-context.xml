@@ -43,4 +43,16 @@
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<beans:property name="url" value="jdbc:mysql://localhost/caicaidb" />
 	</beans:bean>
+	
+	
+	<!-- i18n configuration -->
+	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	  <beans:property name="basenames">
+	    <beans:list>
+			<beans:value>ValidationMessages</beans:value> <!-- default from hibernate -->	      
+	      	<beans:value>validation</beans:value> <!-- customized override default -->
+	      	<beans:value>message</beans:value>
+	    </beans:list>
+	  </beans:property>
+	</beans:bean>
 </beans>
