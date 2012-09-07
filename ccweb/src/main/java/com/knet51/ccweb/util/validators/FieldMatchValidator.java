@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.register;
+package com.knet51.ccweb.util.validators;
 
 import org.apache.commons.beanutils.BeanUtils;
 

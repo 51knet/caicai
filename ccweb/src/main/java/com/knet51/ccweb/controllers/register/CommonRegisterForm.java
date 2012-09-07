@@ -5,6 +5,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.knet51.ccweb.util.validators.FieldMatch;
+
 @FieldMatch.List({
     @FieldMatch(first = "psw", second = "confirmpsw", message = "The password fields must match"),
 })

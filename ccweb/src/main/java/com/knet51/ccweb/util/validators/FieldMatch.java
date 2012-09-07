@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.register;
+package com.knet51.ccweb.util.validators;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
