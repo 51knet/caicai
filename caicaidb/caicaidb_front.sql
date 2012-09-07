@@ -311,6 +311,7 @@ CREATE TABLE `usr` (
   `location` varchar(45) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
   `announcement` varchar(255) DEFAULT NULL,
+  `randomUrl` VARCHAR(255) NULL DEFAULT NULL ,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='common user';
 

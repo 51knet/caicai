@@ -58,6 +58,8 @@ public class User extends AbstractEntity {
 
 		this.email = mail;
 		this.password = password;
+		this.role = 0;
+		this.level = 0;
 	}
 
 
