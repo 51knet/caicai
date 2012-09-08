@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 			isActivate = "pass".equals(user.getRandomUrl());
 		} else {
 			isActivate = false;
-		}
+		} 
 		return isActivate;
 	}
 
