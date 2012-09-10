@@ -4,6 +4,9 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.knet51.ccweb.jpa.entities.EmailAddress;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
 
@@ -32,9 +34,24 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, HttpServletRequest request) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
-
+		Cookie[] cookies = request.getCookies();     // request is an instance of type 
+        //HttpServletRequest
+	boolean foundCookie = false;
+	
+	for(int i = 0; i < cookies.length; i++)
+	{ 
+		Cookie c = cookies[i];
+		logger.info(c.toString());
+		if (c.getName().equals("userInfo"))
+		{
+			String userId= c.getValue();
+			logger.info("userId found in cookie"+userId);
+			foundCookie = true;
+		}
+	}  
+	
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
@@ -49,7 +66,8 @@ public class HomeController {
 	@RequestMapping(value = "/db", method = RequestMethod.GET)
 	public String db(Locale locale, Model model) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
-
+		
+		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 

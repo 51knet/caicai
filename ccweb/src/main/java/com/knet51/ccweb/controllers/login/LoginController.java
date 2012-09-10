@@ -2,6 +2,9 @@ package com.knet51.ccweb.controllers.login;
 
 import java.util.Locale;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -13,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.util.CookieGenerator;
 
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.mailSender.MailSender;
@@ -61,24 +65,35 @@ public class LoginController {
 //	}
 	
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
-	public String signin(@Valid LoginForm loginForm, BindingResult result) {
+	public String signin(@Valid LoginForm loginForm, BindingResult result, HttpServletRequest request, HttpServletResponse response) {
 		if (result.hasErrors()) {
 			logger.info("LoginForm Validation Failed " + result);
 			return "home";
 		} else {
 			String email = loginForm.getEmail();
 			String psw = loginForm.getPassword();
+			boolean rememberMe = loginForm.getRemeberMe();
+			
 			boolean succeed = service.login(email, psw);
 			logger.info("Login result " + succeed);
 			if (succeed) {
-				boolean activate;
-				activate = service.activate(email);
-				if (activate) {
-					return "redirect:home";
-				} else {
-					MailSender.getInstance().SendConfirmMail(email, service);
-					return "registerSuccessful";
+				if(rememberMe) {
+					CookieGenerator cg = new CookieGenerator();
+					cg.setCookieName("userInfo");
+					cg.setCookieMaxAge(14*24*3600);
+					cg.setCookiePath(request.getContextPath());
+					cg.addCookie(response, email+"#"+psw);
 				}
+				return "redirect:";
+				// not sure what the following logic for?
+//				boolean activate;
+//				activate = service.activate(email);
+//				if (activate) {
+//					return "redirect:home";
+//				} else {
+//					MailSender.getInstance().SendConfirmMail(email, service);
+//					return "registerSuccessful";
+//				}
 			} else {
 				return "redirect:home";
 			}
