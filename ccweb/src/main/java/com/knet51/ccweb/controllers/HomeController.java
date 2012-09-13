@@ -16,7 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.services.StudentService;
 import com.knet51.ccweb.jpa.services.UserService;
 
 /**
@@ -28,8 +30,10 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
 	@Autowired
-	private UserService service;
+	private UserService userService;
 
+	@Autowired
+	private StudentService studentService;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -74,11 +78,43 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 
 		model.addAttribute("serverTime", formattedDate);
-		User test = service.createUser(new User("test@test.com", "testuser", 1, 10));
+		User test = userService.createUser(new User("test@test.com", "testuser", 1, 10));
 		logger.info(test.toString());
 
-		User u = service.findOne(Long.valueOf("1"));
+		User u = userService.findOne(Long.valueOf("1"));
 		model.addAttribute("user", u);
+		return "db";
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/one2one", method = RequestMethod.GET)
+	public String one2one(Locale locale, Model model) {
+		logger.info("Welcome home! the client locale is " + locale.toString());
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+		model.addAttribute("serverTime", formattedDate);
+		User user = userService.findOne(1l);
+		Student student = new Student();
+		student.setUser(user);
+		student.setCollege("college");
+		student.setEmail("student@test.com");
+		student.setRole(1);
+		studentService.createStudent(student);
+		
+		logger.info(user.toString());
+		logger.info(student.toString());
+
+		User u = userService.findOne(Long.valueOf("1"));
+		model.addAttribute("user", u);
+		
+		Student st = studentService.findOne(1l);
+		logger.info(st.toString());
+
+		
 		return "db";
 	}
 }
