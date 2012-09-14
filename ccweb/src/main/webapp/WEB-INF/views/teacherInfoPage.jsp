@@ -7,6 +7,20 @@
 <h1>Welcome to teacher info page.</h1>
 <div style="text-align: center;">
 
-	Welcome to teacher detail info page.
+	<form:form action="teacherDetailInfo" method="post">
+
+		<input type="text" name="role" placeholder="Role">
+		<span class="help-block"><form:errors path="role"></form:errors></span>
+		
+		<input type="text" name="college" placeholder="College">
+		<span class="help-block"><form:errors path="college"></form:errors></span>
+		
+		<input type="text" name="major" placeholder="Major">
+		<span class="help-block"><form:errors path="major"></form:errors></span>
+		
+		<label style="clear: right;"></label>
+		<button type="submit" class="btn">OK</button>
+
+	</form:form>
 
 </div>
