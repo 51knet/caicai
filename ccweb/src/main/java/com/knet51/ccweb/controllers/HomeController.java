@@ -84,37 +84,7 @@ public class HomeController {
 		
 		return "debug";
 	}
-	@Transactional
-	@RequestMapping(value = "/one2one", method = RequestMethod.GET)
-	public String one2one(Locale locale, Model model) {
-		logger.info("Welcome home! the client locale is " + locale.toString());
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
-		User user = userService.findOne(1l);
-		Student student = new Student();
-		student.setUser(user);
-		student.setCollege("college");
-		student.setEmail("student@test.com");
-		student.setRole(1);
-		studentService.createStudent(student);
-		
-		logger.info(user.toString());
-		logger.info(student.toString());
-
-		User u = userService.findOne(Long.valueOf("1"));
-		model.addAttribute("user", u);
-		
-		Student st = studentService.findOne(1l);
-		logger.info(st.toString());
-
-		
-		return "db";
-	}
+	
 	
 	@Transactional
 	@RequestMapping(value = "/one2one/{user_id}/{student_collage}", method = RequestMethod.GET)
@@ -132,7 +102,6 @@ public class HomeController {
 		student.setId(user.getId());
 		student.setUser(user);
 		student.setCollege(student_collage);
-		student.setEmail("student@"+student_collage+".edu");
 		student.setRole(1);
 		studentService.createStudent(student);
 		
