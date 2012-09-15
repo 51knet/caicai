@@ -20,4 +20,6 @@ public interface StudentDao {
 	Student getSingleResultByQuery(String query);
 	
 	Student getSingleResultByParamsMap(Map<String,String> paramsMap);
+	
+	Student getSingleResultByJoinQuery(Long user_id);
 }

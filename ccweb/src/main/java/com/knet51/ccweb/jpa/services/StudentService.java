@@ -6,4 +6,5 @@ public interface StudentService {
 	Student findOne(Long id);
 	Student createStudent(Student usr);
 	Student updateStudent(Student usr);
+	Student findStudentByUserId(Long user_id);
 }

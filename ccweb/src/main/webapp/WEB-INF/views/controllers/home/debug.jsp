@@ -9,3 +9,6 @@
 </c:if>
 
 <a href="<c:url value="/mail/randomUrl/id"></c:url>"  >/mail/randomUrl/id</a>
+
+<br/>
+<a href="<c:url value="/student/1"></c:url>" >select student according to user_id(1)</a>

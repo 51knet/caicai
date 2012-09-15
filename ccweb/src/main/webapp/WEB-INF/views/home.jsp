@@ -7,3 +7,6 @@
 <c:if test="${user!=null}">
 <P>  User is ${user} ${user["name"]}. </P>
 </c:if>
+<c:if test="${student!=null}">
+<P>  Student is ${student} ${student["id"]}. </P>
+</c:if>

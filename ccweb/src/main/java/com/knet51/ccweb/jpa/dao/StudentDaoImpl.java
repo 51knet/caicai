@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -82,6 +83,13 @@ public class StudentDaoImpl implements StudentDao {
 		for (String key : paramsMap.keySet()) {
 			query.setParameter(key, paramsMap.get(key));
 		}
+		return query.getSingleResult();
+	}
+
+	@Override
+	public Student getSingleResultByJoinQuery(Long user_id) {
+		TypedQuery<Student> query = em.createQuery("SELECT DISTINCT s FROM User u, Student s WHERE u = s.user and u.id=:user_id", Student.class);
+		query.setParameter("user_id", user_id);
 		return query.getSingleResult();
 	}
 

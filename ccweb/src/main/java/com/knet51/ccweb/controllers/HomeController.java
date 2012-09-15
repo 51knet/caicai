@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -111,6 +112,29 @@ public class HomeController {
 		Student st = studentService.findOne(1l);
 		logger.info(st.toString());
 
+		
+		return "db";
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/student/{user_id}", method = RequestMethod.GET)
+	public String getStudentByUserId(Locale locale, Model model, @PathVariable Long user_id) {
+		logger.info("Welcome home! the client locale is " + locale.toString());
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+		model.addAttribute("serverTime", formattedDate);
+
+		User user = userService.findOne(user_id);
+		model.addAttribute("user", user);
+		logger.info(user.toString());
+		Student student = studentService.findStudentByUserId(user_id);
+		logger.info(student.toString());
+		
+		model.addAttribute("student", student);
 		
 		return "db";
 	}
