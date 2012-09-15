@@ -2,6 +2,8 @@ package com.knet51.ccweb.jpa.services;
 
 import java.util.HashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +14,8 @@ import com.knet51.ccweb.jpa.entities.User;
 @Transactional
 @Service("userService")
 public class UserServiceImpl implements UserService {
-
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+	
 	@Autowired
 	private UserDao userDao;
 
@@ -21,9 +24,13 @@ public class UserServiceImpl implements UserService {
 		HashMap<String, String> paramsMap = new HashMap<String, String>();
 		paramsMap.put("email", email);
 		paramsMap.put("password", password);
-
-		User user = userDao.getSingleResultByParamsMap(paramsMap);
-
+		
+		User user = null;
+		try {
+			user = userDao.getSingleResultByParamsMap(paramsMap);
+		} catch(Exception e) {
+			logger.warn("login failed", e);
+		}
 		return (user != null);
 	}
 

@@ -4,7 +4,6 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -25,7 +24,7 @@ import com.knet51.ccweb.jpa.services.UserService;
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController {
+public class HomeController { 
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
@@ -70,7 +69,20 @@ public class HomeController {
 		model.addAttribute("user", u);
 		return "db";
 	}
-	
+	@Transactional
+	@RequestMapping(value = "/debug", method = RequestMethod.GET)
+	public String debug(Locale locale, Model model) {
+		logger.info("Welcome home! the client locale is " + locale.toString());
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+		model.addAttribute("serverTime", formattedDate);
+		
+		return "debug";
+	}
 	@Transactional
 	@RequestMapping(value = "/one2one", method = RequestMethod.GET)
 	public String one2one(Locale locale, Model model) {

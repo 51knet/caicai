@@ -15,6 +15,10 @@
 		<put-attribute name="title" value="Home - DB" />
 		<put-attribute name="body" value="/WEB-INF/views/home.jsp"></put-attribute>
 	</definition>
+	<definition name="debug" extends="standard-layout">
+		<put-attribute name="title" value="Home - DB" />
+		<put-attribute name="body" value="/WEB-INF/views/controllers/home/debug.jsp"></put-attribute>
+	</definition>
 
 	<definition name="ok" extends="standard-layout">
 		<put-attribute name="title" value="OK" />
