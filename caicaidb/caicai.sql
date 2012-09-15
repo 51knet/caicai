@@ -206,7 +206,6 @@ DROP TABLE IF EXISTS `caicaidb`.`student` ;
 
 CREATE  TABLE IF NOT EXISTS `caicaidb`.`student` (
   `id` INT(11) NOT NULL ,
-  `email` VARCHAR(255) NOT NULL ,
   `role` INT(11) NOT NULL DEFAULT '0' ,
   `college` VARCHAR(45) NULL DEFAULT NULL ,
   `junior_high_school` VARCHAR(45) NULL DEFAULT NULL ,
