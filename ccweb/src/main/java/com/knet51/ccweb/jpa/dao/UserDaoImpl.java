@@ -1,5 +1,6 @@
 package com.knet51.ccweb.jpa.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
@@ -83,6 +84,11 @@ public class UserDaoImpl implements UserDao {
 			query.setParameter(key, paramsMap.get(key));
 		}
 		return query.getSingleResult();
+	}
+
+	@Override
+	public List<User> list() {
+		return em.createQuery("select c from User c", User.class).getResultList();
 	}
 
 	// public User findByEmailAddress(EmailAddress emailAddress) {

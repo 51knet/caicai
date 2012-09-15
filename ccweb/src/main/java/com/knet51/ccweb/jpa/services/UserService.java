@@ -1,5 +1,7 @@
 package com.knet51.ccweb.jpa.services;
 
+import java.util.List;
+
 import com.knet51.ccweb.jpa.entities.User;
 
 public interface UserService {
@@ -10,4 +12,5 @@ public interface UserService {
 	User findByEmailAddress(String emailAddress);
 	User createUser(User usr);
 	User updateUser(User usr);
+	List<User> findAllUsers();
 }

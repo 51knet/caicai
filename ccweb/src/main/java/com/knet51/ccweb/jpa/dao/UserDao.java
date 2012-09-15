@@ -1,5 +1,6 @@
 package com.knet51.ccweb.jpa.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.knet51.ccweb.jpa.entities.User;
@@ -20,4 +21,6 @@ public interface UserDao {
 	User getSingleResultByQuery(String query);
 	
 	User getSingleResultByParamsMap(Map<String,String> paramsMap);
+
+	List<User> list();
 }
