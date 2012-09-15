@@ -13,13 +13,13 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class Student {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+//	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 //	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="user_id")
-	private User user; // identify the basic user information
-	//Student FOREIGN KEY (`user_id`) REFERENCES `usr` (`id`)
+//	@OneToOne(cascade=CascadeType.ALL)
+//	@JoinColumn(name="user_id")
+//	private User user; // identify the basic user information
+//	//Student FOREIGN KEY (`user_id`) REFERENCES `usr` (`id`)
 
 
 	public Long getId() {
@@ -37,8 +37,9 @@ public class Student {
 	public void setId(Long id) {
 		this.id = id;
 	}
-//	@PrimaryKeyJoinColumn(name="id") 
-//	private User user;
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn(name="id") 
+	private User user;
 	
 	private String email;
 	private Integer role;

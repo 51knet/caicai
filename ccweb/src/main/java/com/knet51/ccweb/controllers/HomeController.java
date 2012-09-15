@@ -117,6 +117,37 @@ public class HomeController {
 	}
 	
 	@Transactional
+	@RequestMapping(value = "/one2one/{user_id}/{student_collage}", method = RequestMethod.GET)
+	public String one2one_ext(Locale locale, Model model, @PathVariable Long user_id, @PathVariable String student_collage) {
+		logger.info("Welcome home! the client locale is " + locale.toString());
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+		model.addAttribute("serverTime", formattedDate);
+		User user = userService.findOne(user_id);
+		Student student = new Student();
+		student.setId(user.getId());
+		student.setUser(user);
+		student.setCollege(student_collage);
+		student.setEmail("student@"+student_collage+".edu");
+		student.setRole(1);
+		studentService.createStudent(student);
+		
+		logger.info(user.toString());
+		logger.info(student.toString());
+
+		Student st = studentService.findOne(user_id);
+		logger.info(st.toString());
+		model.addAttribute("user", user);
+		model.addAttribute("student", st);
+		
+		return "db";
+	}
+	
+	@Transactional
 	@RequestMapping(value = "/student/{user_id}", method = RequestMethod.GET)
 	public String getStudentByUserId(Locale locale, Model model, @PathVariable Long user_id) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
