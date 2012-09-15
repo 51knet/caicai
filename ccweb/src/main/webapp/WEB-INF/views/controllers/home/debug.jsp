@@ -17,11 +17,17 @@
 
 <table class="table table-bordered">
 	<thead>
-		<tr><th>User Id</th><th>User Email</th></tr>
+		<tr><th>User Id</th><th>User Email</th><th colspan="3">Actions</th></tr>
 	</thead>
 	<tbody>
 		<c:forEach items="${userList}" var="user" varStatus="status">
-		<tr><th>${user.id}</th><th> ${user.email}</th></tr>
+		<tr>
+			<td>${user.id}</td><td> ${user.email}</td>
+			<td><a href="<c:url value="/one2one/${user.id}/${user.email}"></c:url>" title=" (colleague ${user.email}) based with user_id( ${user.id} ) ">create student</a>
+</td>
+<td><a href="<c:url value="/mail/${user.randomUrl}/${user.id}"></c:url>">Activate</a>
+</td>
+</tr>
 		</c:forEach>
 	</tbody>
 </table>
