@@ -40,21 +40,6 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest request) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
-		Cookie[] cookies = request.getCookies();     // request is an instance of type 
-        //HttpServletRequest
-	boolean foundCookie = false;
-	
-	for(int i = 0; i < cookies.length; i++)
-	{ 
-		Cookie c = cookies[i];
-		logger.info(c.toString());
-		if (c.getName().equals("userInfo"))
-		{
-			String userId= c.getValue();
-			logger.info("userId found in cookie"+userId);
-			foundCookie = true;
-		}
-	}  
 	
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);

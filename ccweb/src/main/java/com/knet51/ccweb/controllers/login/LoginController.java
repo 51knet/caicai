@@ -77,13 +77,13 @@ public class LoginController {
 			boolean succeed = service.login(email, psw);
 			logger.info("Login result " + succeed);
 			if (succeed) {
-				if(rememberMe) {
-					CookieGenerator cg = new CookieGenerator();
-					cg.setCookieName("userInfo");
-					cg.setCookieMaxAge(14*24*3600);
-					cg.setCookiePath(request.getContextPath());
-					cg.addCookie(response, email+"#"+psw);
-				}
+//				if(rememberMe) {
+//					CookieGenerator cg = new CookieGenerator();
+//					cg.setCookieName("userInfo");
+//					cg.setCookieMaxAge(14*24*3600);
+//					cg.setCookiePath(request.getContextPath());
+//					cg.addCookie(response, email+"#"+psw);
+//				}
 				return "redirect:";
 				// not sure what the following logic for?
 //				boolean activate;
