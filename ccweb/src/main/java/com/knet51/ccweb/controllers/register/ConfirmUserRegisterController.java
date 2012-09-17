@@ -1,5 +1,7 @@
 package com.knet51.ccweb.controllers.register;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +24,17 @@ public class ConfirmUserRegisterController {
 
 	@RequestMapping(value = "/mail/{randomUrl}/{idString}", method = RequestMethod.GET)
 	public String commonRegister(@PathVariable String randomUrl,
-			@PathVariable String idString) {
+			@PathVariable String idString, HttpSession session) {
 		logger.info("#### into ConfirmUserRegisterController ####");
 		Integer id = Integer.parseInt(idString);
 		User result = userService.findOne(id.longValue());
 		boolean userConfirmed = (result != null) && randomUrl.equals(result.getRandomUrl());
 		if (userConfirmed) {
 			logger.info("#### into result not null #### " + result.getName());
-			// update the randomUrl to pass user confirm;
 			result.setRandomUrl("pass");
 			userService.updateUser(result);
-			// return successfully login and give the detail register page;
-			//TODO: get the login session;
-			boolean succeed = userService.login(result.getEmail(), result.getPassword());
-			logger.info("Confirm user email " + succeed);
+			session.setAttribute("user", result);
+			logger.info("Confirm user email successful.");
 			return "userTypePage";
 		} else {
 			

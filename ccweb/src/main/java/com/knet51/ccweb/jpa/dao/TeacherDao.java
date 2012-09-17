@@ -20,4 +20,7 @@ public interface TeacherDao {
 	Teacher getSingleResultByQuery(String query);
 	
 	Teacher getSingleResultByParamsMap(Map<String,String> paramsMap);
+	
+//	int queryCountBySql(String col, String value);
+	
 }

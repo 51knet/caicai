@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="studentInfoPage" extends="homePage-layout">
+		<put-attribute name="title" value="Detail Info" />
+		<put-attribute name="left" value="/WEB-INF/views/student_home/student_item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/student_home/studentInfoPage.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="studentHomePage" extends="homePage-layout">
+		<put-attribute name="title" value="Welcom to teacher register" />
+		<put-attribute name="right" value="/WEB-INF/views/student_home/studentHomePage.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/student_home/student_item_panel.jsp"></put-attribute>
+	</definition>
+
+
+</tiles-definitions>

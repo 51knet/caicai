@@ -28,4 +28,31 @@ public class TeacherServiceImpl implements TeacherService {
 	public Teacher updateTeacher(Teacher usr) {
 		return teacherDao.update(usr);
 	}
+
+//	@Override
+//	public Teacher saveInfo(Teacher usr) {
+//		Long userId = usr.getUser().getId();
+//
+//		if (hasRecord(userId.toString())) {
+//			System.out.println("### update ###");
+//			return updateTeacher(usr);
+//		} else {
+//			System.out.println("### insert ###");
+//			return createTeacher(usr);
+//		}
+//	}
+
+//	private boolean hasRecord(String userId) {
+//		int count = teacherDao.queryCountBySql("user_id", userId);
+//		System.out.println("### " + count + " ###");
+//
+//		return count == 0 ? false : true;
+//	}
+
+//	@Override
+//	public Teacher findByUserId(Long userId) {
+//		Teacher usr = teacherDao.queryStringBySql("user_id", userId.toString());
+//		return usr;
+//	}
+
 }

@@ -9,5 +9,5 @@
 	<a href="#" class="btn">bbbbb</a><hr />
 	<a href="#" class="btn">ccccc</a><hr />
 	<a href="#" class="btn">ddddd</a><hr />
-	<a href="#" class="btn">详细资料</a><hr />
+	<a href="studentInfoPage" class="btn">详细资料</a><hr />
 </div>

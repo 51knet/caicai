@@ -1,15 +1,13 @@
-package com.knet51.ccweb.controllers.teacher;
+package com.knet51.ccweb.controllers.student;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class DetailInfoForm {
+public class StudentDetailInfoForm {
 
 	@NotEmpty
 	private String role;
 	@NotEmpty
 	private String college;
-	@NotEmpty
-	private String major;
 
 	public String getRole() {
 		return role;
@@ -25,14 +23,6 @@ public class DetailInfoForm {
 
 	public void setCollege(String college) {
 		this.college = college;
-	}
-
-	public String getMajor() {
-		return major;
-	}
-
-	public void setMajor(String major) {
-		this.major = major;
 	}
 
 }

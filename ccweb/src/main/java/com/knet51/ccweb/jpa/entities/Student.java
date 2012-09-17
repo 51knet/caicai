@@ -22,6 +22,10 @@ public class Student {
 	private String senior_high_school;
 	private String primary_school;
 
+	public Student(User user){
+		this.user = user;
+	}
+	
 	public Long getId() {
 		return id;
 	}

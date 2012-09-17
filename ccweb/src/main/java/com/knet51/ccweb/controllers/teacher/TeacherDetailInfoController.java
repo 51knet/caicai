@@ -1,34 +1,40 @@
 package com.knet51.ccweb.controllers.teacher;
 
-
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.TeacherService;
+import com.knet51.ccweb.jpa.services.UserService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-public class DetailInfoController {
+public class TeacherDetailInfoController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(DetailInfoController.class);
+			.getLogger(TeacherDetailInfoController.class);
 
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private UserService userService;
 
+	@Transactional
 	@RequestMapping(value = "/teacherDetailInfo", method = RequestMethod.POST)
-	public String commonRegister(@Valid DetailInfoForm detailInfoForm,
-			BindingResult validResult) {
+	public String detailInfo(@Valid TeacherDetailInfoForm detailInfoForm,
+			BindingResult validResult, HttpSession session) {
 		logger.info("#### DetailInfoController ####");
 
 		if (validResult.hasErrors()) {
@@ -40,13 +46,17 @@ public class DetailInfoController {
 			String college = detailInfoForm.getCollege();
 			String major = detailInfoForm.getMajor();
 			
-			Teacher teacher = new Teacher();
+			User user = (User) session.getAttribute("user");
+			user = userService.findOne(user.getId());
+			Teacher teacher = new Teacher(user);
+			teacher.setId(user.getId());
 			teacher.setRole(Integer.valueOf(role));
 			teacher.setCollege(college);
 			teacher.setMajor(major);
 			
-			teacherService.createTeacher(teacher);
-			
+			teacher = teacherService.updateTeacher(teacher);
+			session.setAttribute("user", teacher);
+
 			return "teacherInfoPage";
 		}
 	}

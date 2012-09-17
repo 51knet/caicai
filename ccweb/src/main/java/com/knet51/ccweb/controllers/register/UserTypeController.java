@@ -1,5 +1,6 @@
 package com.knet51.ccweb.controllers.register;
 
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,12 +22,21 @@ public class UserTypeController {
 	private UserService userService;
 
 	@RequestMapping(value = "/usertype", method = RequestMethod.POST)
-	public String userType(@RequestParam String userType) {
+	public String userType(@RequestParam("userType") String userType,
+			@RequestParam("skip") String skip, HttpSession session) {
 		logger.info("### user type is " + userType + " ###");
-		
-		// TODO: return to the homepage of user's type;
-		// if teacher return teacherpage;
-		// if student return studentpage;
-		return "teacherInfoPage";
+		if (skip != null && skip.equals("skip")) {
+			return "useInfoPage";
+		} else {
+			if (userType.equals("teacher")) {
+				return "teacherInfoPage";
+			} else if (userType.equals("student")) {
+				return "studentInfoPage";
+			} else if (userType.equals("enterprise")) {
+				return "home";
+			} else {
+				return "home";
+			}
+		}
 	}
 }

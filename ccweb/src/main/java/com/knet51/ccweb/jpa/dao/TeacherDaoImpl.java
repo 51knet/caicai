@@ -25,8 +25,8 @@ public class TeacherDaoImpl implements TeacherDao {
 
 	@Override
 	public Teacher update(Teacher teacher) {
-		em.merge(teacher);
-		return null;
+		teacher = em.merge(teacher);
+		return teacher;
 	}
 
 	@Override
@@ -49,9 +49,10 @@ public class TeacherDaoImpl implements TeacherDao {
 	@Override
 	public Teacher queryStringBySql(String col, String value) {
 		Teacher usr;
-		
-		TypedQuery<Teacher> query = em.createQuery("select c from Teacher c where c."
-				+ col + " = :" + col, Teacher.class);
+
+		TypedQuery<Teacher> query = em.createQuery(
+				"select c from teacher c join c.user where c." + col + " = :" + col,
+				Teacher.class);
 		query.setParameter(col, value);
 		try {
 			usr = query.getSingleResult();
@@ -68,7 +69,8 @@ public class TeacherDaoImpl implements TeacherDao {
 
 	@Override
 	public Teacher getSingleResultByParamsMap(Map<String, String> paramsMap) {
-		StringBuilder queryString = new StringBuilder("select c from Teacher c where ");
+		StringBuilder queryString = new StringBuilder(
+				"select c from Teacher c where ");
 		for (String key : paramsMap.keySet()) {
 			queryString.append("c.");
 			queryString.append(key);
@@ -76,23 +78,29 @@ public class TeacherDaoImpl implements TeacherDao {
 			queryString.append(key);
 			queryString.append(" and ");
 		}
-		queryString.delete(queryString.length()-5, queryString.length());
-		
-		TypedQuery<Teacher> query = em.createQuery(queryString.toString(), Teacher.class);
+		queryString.delete(queryString.length() - 5, queryString.length());
+
+		TypedQuery<Teacher> query = em.createQuery(queryString.toString(),
+				Teacher.class);
 		for (String key : paramsMap.keySet()) {
 			query.setParameter(key, paramsMap.get(key));
 		}
 		return query.getSingleResult();
 	}
 
-	// public Teacher findByEmailAddress(EmailAddress emailAddress) {
-	//
-	// TypedQuery<Teacher> query =
-	// em.createQuery("select c from Teacher c where c.emailAddress = :email",
-	// Teacher.class);
-	// query.setParameter("email", emailAddress);
-	//
-	// return query.getSingleResult();
-	// }
+//	@Override
+//	public int queryCountBySql(String col, String value) {
+//
+//		Query query = em.createNativeQuery("select "+col+" from Teacher where "
+//				+ col + " = :" + col);
+//		query.setParameter(col, value);
+//
+//		List objList = query.getResultList();
+//		if (objList != null) {
+//			return objList.size();
+//		} else {
+//			return 0;
+//		}
+//	}
 
 }

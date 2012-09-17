@@ -4,10 +4,9 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<h1>Welcome to teacher home page.</h1>
 <div style="text-align: center;">
-	<a href="#" class="btn">aaaaa</a><hr />
-	<a href="#" class="btn">bbbbb</a><hr />
-	<a href="#" class="btn">ccccc</a><hr />
-	<a href="#" class="btn">ddddd</a><hr />
-	<a href="#" class="btn">详细资料</a><hr />
+
+	Welcome to teacher home page.
+
 </div>

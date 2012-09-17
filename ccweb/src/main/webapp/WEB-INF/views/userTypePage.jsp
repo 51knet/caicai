@@ -7,10 +7,11 @@
 <h1>Select your type</h1>
 <div style="text-align: center;">
 	<form:form action="/ccweb/usertype" method="POST">
-		<input type="radio" name="userType" value="Teacher">教师<br>
-		<input type="radio" name="userType" value="Student">学生<br>
-		<input type="radio" name="userType" value="Enterprise">企业<br>
+		<input type="radio" name="userType" value="teacher">教师<br>
+		<input type="radio" name="userType" value="student">学生<br>
+		<input type="radio" name="userType" value="enterprise">企业<br>
 		<button type="submit" class="btn">确定</button>
+		<button type="submit" name="skip" value="skip" class="btn">跳过</button>
 	</form:form>
 
 </div>
