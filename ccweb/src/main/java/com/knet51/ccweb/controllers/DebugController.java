@@ -64,7 +64,7 @@ public class DebugController {
 
 		model.addAttribute("serverTime", formattedDate);
 		User user = userService.findOne(user_id);
-		Student student = new Student();
+		Student student = new Student(user);
 		student.setId(user.getId());
 		student.setUser(user);
 		student.setCollege(student_collage);

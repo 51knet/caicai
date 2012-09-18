@@ -20,9 +20,7 @@
 
 		<label style="clear: right;"></label>
 		<button type="submit" class="btn">OK</button>
-		<button type="submit" name="promtote" value="promtote" class="btn">Promote</button>
-		
-		<button type="button" class="btn" onClick="window.location.reload('usertype');">Promote1</button>
+		<button type="submit" name="promote" value="promote" class="btn">Promote</button>
 
 	</form:form>
 

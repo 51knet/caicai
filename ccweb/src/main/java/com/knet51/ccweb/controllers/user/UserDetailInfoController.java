@@ -33,15 +33,24 @@ public class UserDetailInfoController {
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### DetailInfoController ####");
 
+		logger.info("#### "
+				+ (detailInfoForm.getPromote() != null && detailInfoForm
+						.getPromote().equals("promote")) + " ####");
+		if (detailInfoForm.getPromote() != null
+				&& detailInfoForm.getPromote().equals("promote")) {
+			return "userTypePage";
+		}
+
 		if (validResult.hasErrors()) {
-			logger.info("detailInfoForm Validation Failed " + validResult);
+			logger.info("== detailInfoForm Validation Failed " + validResult
+					+ " ==");
 			return "userInfoPage";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
-			
+
 			User user = (User) session.getAttribute("user");
 			user = userService.findOne(user.getId());
-			
+
 			user.setName(detailInfoForm.getName());
 			user.setName(detailInfoForm.getNickName());
 			user.setName(detailInfoForm.getGender());

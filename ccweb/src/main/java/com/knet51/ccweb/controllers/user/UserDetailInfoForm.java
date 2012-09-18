@@ -11,6 +11,8 @@ public class UserDetailInfoForm {
 	@NotEmpty
 	private String gender;
 
+	private String promote;
+
 	public String getName() {
 		return name;
 	}
@@ -33,6 +35,14 @@ public class UserDetailInfoForm {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public String getPromote() {
+		return promote;
+	}
+
+	public void setPromote(String promote) {
+		this.promote = promote;
 	}
 
 }

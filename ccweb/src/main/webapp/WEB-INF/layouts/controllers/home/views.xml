@@ -20,12 +20,4 @@
 		<put-attribute name="body" value="/WEB-INF/views/controllers/home/debug.jsp"></put-attribute>
 	</definition>
 
-	<definition name="ok" extends="standard-layout">
-		<put-attribute name="title" value="OK" />
-		<put-attribute name="body" value="/WEB-INF/views/ok.jsp"></put-attribute>
-	</definition>
-	<definition name="bye" extends="standard-layout">
-		<put-attribute name="title" value="Bye" />
-		<put-attribute name="body" value="/WEB-INF/views/bye.jsp"></put-attribute>
-	</definition>
 </tiles-definitions>
