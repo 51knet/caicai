@@ -30,7 +30,7 @@ public class User extends AbstractEntity {
 	private String name;
 	private String password;
 	private Boolean gender;
-	private Integer role;
+	private String role;
 	private Date register_date;
 	private Date last_login_date;
 	private Integer level;
@@ -38,7 +38,7 @@ public class User extends AbstractEntity {
 	private String fix_phone;	
 
 	public User(String email, String password,
-			Integer role, Integer level) {
+			String role, Integer level) {
 		this.email = email;
 		this.password = password;
 		this.role = role;
@@ -58,7 +58,7 @@ public class User extends AbstractEntity {
 
 		this.email = mail;
 		this.password = password;
-		this.role = 0;
+		this.role = "user";
 		this.level = 0;
 	}
 
@@ -109,11 +109,11 @@ public class User extends AbstractEntity {
 		this.gender = gender;
 	}
 
-	public Integer getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(Integer role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 

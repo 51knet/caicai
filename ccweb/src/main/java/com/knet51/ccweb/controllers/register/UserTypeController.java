@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
 
@@ -33,15 +34,17 @@ public class UserTypeController {
 			return "userInfoPage";
 		} else {
 
-			User user = (User) session.getAttribute("user");
-			user = userService.findOne(user.getId());
+			UserInfo userInfo = (UserInfo) session.getAttribute("user");
 			
+			User user = userInfo.getUser();
+			user = userService.findOne(user.getId());
+
 			if (userType.equals("teacher")) {
-				user.setRole(1);
+				user.setRole("teacher");
 				userService.updateUser(user);
 				return "teacherInfoPage";
 			} else if (userType.equals("student")) {
-				user.setRole(2);
+				user.setRole("student");
 				userService.updateUser(user);
 				return "studentInfoPage";
 			} else if (userType.equals("enterprise")) {

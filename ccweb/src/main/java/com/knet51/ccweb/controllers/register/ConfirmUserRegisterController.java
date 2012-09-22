@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
 
@@ -30,10 +31,14 @@ public class ConfirmUserRegisterController {
 		User result = userService.findOne(id.longValue());
 		boolean userConfirmed = (result != null) && randomUrl.equals(result.getRandomUrl());
 		if (userConfirmed) {
+			
 			logger.info("#### into result not null #### " + result.getName());
 			result.setRandomUrl("pass");
 			userService.updateUser(result);
-			session.setAttribute("user", result);
+			
+			UserInfo userInfo = new UserInfo(result);
+			
+			session.setAttribute("user", userInfo);
 			logger.info("Confirm user email successful.");
 			return "userTypePage";
 		} else {

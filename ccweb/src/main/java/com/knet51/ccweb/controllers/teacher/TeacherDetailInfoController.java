@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.TeacherService;
@@ -46,16 +47,18 @@ public class TeacherDetailInfoController {
 			String college = detailInfoForm.getCollege();
 			String major = detailInfoForm.getMajor();
 			
-			User user = (User) session.getAttribute("user");
+			UserInfo userInfo = (UserInfo) session.getAttribute("user");
+			User user = userInfo.getUser();
 			user = userService.findOne(user.getId());
 			Teacher teacher = new Teacher(user);
 			teacher.setId(user.getId());
 			teacher.setRole(Integer.valueOf(role));
 			teacher.setCollege(college);
 			teacher.setMajor(major);
-			
 			teacher = teacherService.updateTeacher(teacher);
-			session.setAttribute("user", teacher);
+			userInfo.setTeacher(teacher);
+			
+			session.setAttribute("user", userInfo);
 
 			return "teacherInfoPage";
 		}

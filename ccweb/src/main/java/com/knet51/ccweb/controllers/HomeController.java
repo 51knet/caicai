@@ -11,9 +11,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.jpa.entities.Student;
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.StudentService;
 import com.knet51.ccweb.jpa.services.UserService;
@@ -22,7 +26,7 @@ import com.knet51.ccweb.jpa.services.UserService;
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController { 
+public class HomeController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
@@ -31,34 +35,68 @@ public class HomeController {
 
 	@Autowired
 	private StudentService studentService;
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
-	
-		User user = (User) session.getAttribute("user");
-		if(user != null && !(user.getEmail().equals(""))){
-			user = userService.findOne(user.getId());
-			int role = user.getRole();
-			if (role == 0) {
-				return "userHomePage";
-			} else if (role == 1) {
+
+		UserInfo userInfo = (UserInfo) session.getAttribute("user");
+
+		if (userInfo != null && !(userInfo.getUser().getEmail().equals(""))) {
+			// user = userService.findOne(user.getId());
+			// String role = user.getRole();
+			// if (role.equals("user")) {
+			// return "userHomePage";
+			// } else if (role.equals("teacher")) {
+			// return "teacherHomePage";
+			// } else if (role.equals("student")) {
+			// return "studentHomePage";
+			// }
+			Teacher teacher = userInfo.getTeacher();
+			Student student = userInfo.getStudent();
+			if (teacher != null) {
 				return "teacherHomePage";
-			} else if (role == 2) {
+			} else if (student != null) {
 				return "studentHomePage";
+			} else {
+				return "userHomePage";
 			}
+
 		}
-		
+
 		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+				DateFormat.LONG, locale);
 
 		String formattedDate = dateFormat.format(date);
 
 		model.addAttribute("serverTime", formattedDate);
 
 		return "home";
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public String userHome(@PathVariable String id, HttpSession session) {
+		User user;
+		try {
+			user = userService.findOne(Long.parseLong(id));
+			String role = user.getRole();
+			if (role.equals("user")) {
+				return "userHomePage";
+			} else if (role.equals("teacher")) {
+				return "teacherHomePage";
+			} else if (role.equals("student")) {
+				return "studentHomePage";
+			} else {
+				return "home";
+			}
+		} catch (Exception e) {
+			return "home";
+		}
+
 	}
 
 }

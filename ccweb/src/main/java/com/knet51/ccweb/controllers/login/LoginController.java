@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
 
@@ -78,16 +79,16 @@ public class LoginController {
 				// cg.setCookiePath(request.getContextPath());
 				// cg.addCookie(response, email+"#"+psw);
 				// }
-
+				
 				User user = service.findByEmailAddress(email);
-				session.setAttribute("user", user);
-				int role = user.getRole();
-				// login as user, teacher, student, enterprise;
-				if (role == 0) {
+				UserInfo userInfo = new UserInfo(user);
+				session.setAttribute("user", userInfo);
+				String role = user.getRole();
+				if (role.equals("user")) {
 					return "userHomePage";
-				} else if (role == 1) {
+				} else if (role.equals("teacher")) {
 					return "teacherHomePage";
-				} else if (role == 2) {
+				} else if (role.equals("student")) {
 					return "studentHomePage";
 				} else {
 					return "redirect:home";
