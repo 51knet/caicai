@@ -2,9 +2,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-DROP SCHEMA IF EXISTS `mydb` ;
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-DROP SCHEMA IF EXISTS `caicaidb` ;
 CREATE SCHEMA IF NOT EXISTS `caicaidb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
 USE `caicaidb` ;
@@ -19,6 +17,7 @@ CREATE  TABLE IF NOT EXISTS `caicaidb`.`address` (
   `city` VARCHAR(255) NULL DEFAULT NULL ,
   `country` VARCHAR(255) NULL DEFAULT NULL ,
   `address_context` VARCHAR(255) NULL DEFAULT NULL ,
+  `street` VARCHAR(255) NULL DEFAULT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -47,11 +46,12 @@ DROP TABLE IF EXISTS `caicaidb`.`usr` ;
 CREATE  TABLE IF NOT EXISTS `caicaidb`.`usr` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `email` VARCHAR(255) NOT NULL ,
+  `randomUrl` VARCHAR(255) NULL DEFAULT NULL ,
   `name` VARCHAR(45) NULL DEFAULT NULL ,
   `nick_name` VARCHAR(45) NULL DEFAULT NULL ,
   `password` VARCHAR(45) NOT NULL ,
   `gender` INT(11) NULL DEFAULT NULL ,
-  `role` INT(11) NOT NULL DEFAULT '0' ,
+  `role` VARCHAR(45) NULL DEFAULT 'user' ,
   `register_date` VARCHAR(45) NULL DEFAULT NULL ,
   `last_login_date` VARCHAR(45) NULL DEFAULT NULL ,
   `level` INT(11) NOT NULL DEFAULT '0' ,
@@ -62,10 +62,9 @@ CREATE  TABLE IF NOT EXISTS `caicaidb`.`usr` (
   `location` VARCHAR(45) NULL DEFAULT NULL ,
   `address` VARCHAR(45) NULL DEFAULT NULL ,
   `announcement` VARCHAR(255) NULL DEFAULT NULL ,
-  `randomUrl` VARCHAR(255) NULL DEFAULT NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8
 COMMENT = 'common user';
 
@@ -206,7 +205,7 @@ DROP TABLE IF EXISTS `caicaidb`.`student` ;
 
 CREATE  TABLE IF NOT EXISTS `caicaidb`.`student` (
   `id` INT(11) NOT NULL ,
-  `role` INT(11) NOT NULL DEFAULT '0' ,
+  `role` VARCHAR(45) NULL DEFAULT NULL ,
   `college` VARCHAR(45) NULL DEFAULT NULL ,
   `junior_high_school` VARCHAR(45) NULL DEFAULT NULL ,
   `senior_high_school` VARCHAR(45) NULL DEFAULT NULL ,
@@ -230,7 +229,7 @@ DROP TABLE IF EXISTS `caicaidb`.`teacher` ;
 
 CREATE  TABLE IF NOT EXISTS `caicaidb`.`teacher` (
   `id` INT(11) NOT NULL ,
-  `role` INT(11) NOT NULL DEFAULT '0' ,
+  `role` VARCHAR(45) NULL DEFAULT NULL ,
   `title` VARCHAR(45) NULL DEFAULT NULL ,
   `college` VARCHAR(45) NULL DEFAULT NULL ,
   `school` VARCHAR(45) NULL DEFAULT NULL ,
@@ -350,9 +349,9 @@ CREATE  TABLE IF NOT EXISTS `caicaidb`.`usr_customgroup_related` (
   INDEX `usr_id_ucgr_fk_idx` (`usr_id` ASC) ,
   INDEX `customgroup_owner_id_ucgr_fk_idx` (`group_owner_id` ASC) ,
   INDEX `customgroup_name_ucgr_fk_idx` (`group_name` ASC) ,
-  CONSTRAINT `usr_id_ucgr_fk`
-    FOREIGN KEY (`usr_id` )
-    REFERENCES `caicaidb`.`usr` (`id` )
+  CONSTRAINT `customgroup_name_ucgr_fk`
+    FOREIGN KEY (`group_name` )
+    REFERENCES `caicaidb`.`custom_group` (`name` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `customgroup_owner_id_ucgr_fk`
@@ -360,9 +359,9 @@ CREATE  TABLE IF NOT EXISTS `caicaidb`.`usr_customgroup_related` (
     REFERENCES `caicaidb`.`custom_group` (`owner_id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `customgroup_name_ucgr_fk`
-    FOREIGN KEY (`group_name` )
-    REFERENCES `caicaidb`.`custom_group` (`name` )
+  CONSTRAINT `usr_id_ucgr_fk`
+    FOREIGN KEY (`usr_id` )
+    REFERENCES `caicaidb`.`usr` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -386,11 +385,6 @@ CREATE  TABLE IF NOT EXISTS `caicaidb`.`usr_teachgroup_related` (
   INDEX `usr_id_utr_fk_idx` (`usr_id` ASC) ,
   INDEX `teacher_id_utgr_fk_idx` (`teach_group_owner_id` ASC) ,
   INDEX `teachgroup_name_utgr_fk_idx` (`teach_group_name` ASC) ,
-  CONSTRAINT `usr_id_utgr_fk`
-    FOREIGN KEY (`usr_id` )
-    REFERENCES `caicaidb`.`usr` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `teacher_id_utgr_fk`
     FOREIGN KEY (`teach_group_owner_id` )
     REFERENCES `caicaidb`.`teach_group` (`owner_id` )
@@ -399,6 +393,11 @@ CREATE  TABLE IF NOT EXISTS `caicaidb`.`usr_teachgroup_related` (
   CONSTRAINT `teachgroup_name_utgr_fk`
     FOREIGN KEY (`teach_group_name` )
     REFERENCES `caicaidb`.`teach_group` (`name` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `usr_id_utgr_fk`
+    FOREIGN KEY (`usr_id` )
+    REFERENCES `caicaidb`.`usr` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
