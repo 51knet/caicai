@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.jpa.entities.Student;
-import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.StudentService;
 import com.knet51.ccweb.jpa.services.UserService;
@@ -46,25 +44,8 @@ public class HomeController {
 		UserInfo userInfo = (UserInfo) session.getAttribute("user");
 
 		if (userInfo != null && !(userInfo.getUser().getEmail().equals(""))) {
-			// user = userService.findOne(user.getId());
-			// String role = user.getRole();
-			// if (role.equals("user")) {
-			// return "userHomePage";
-			// } else if (role.equals("teacher")) {
-			// return "teacherHomePage";
-			// } else if (role.equals("student")) {
-			// return "studentHomePage";
-			// }
-			Teacher teacher = userInfo.getTeacher();
-			Student student = userInfo.getStudent();
-			if (teacher != null) {
-				return "teacherHomePage";
-			} else if (student != null) {
-				return "studentHomePage";
-			} else {
-				return "userHomePage";
-			}
-
+			String id = userInfo.getUser().getId().toString();
+			return "redirect:/"+id;
 		}
 
 		Date date = new Date();
@@ -94,6 +75,8 @@ public class HomeController {
 				return "home";
 			}
 		} catch (Exception e) {
+			// TODO: refining exception later;
+
 			return "home";
 		}
 

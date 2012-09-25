@@ -79,29 +79,13 @@ public class LoginController {
 				// cg.setCookiePath(request.getContextPath());
 				// cg.addCookie(response, email+"#"+psw);
 				// }
-				
+
 				User user = service.findByEmailAddress(email);
 				UserInfo userInfo = new UserInfo(user);
 				session.setAttribute("user", userInfo);
-				String role = user.getRole();
-				if (role.equals("user")) {
-					return "userHomePage";
-				} else if (role.equals("teacher")) {
-					return "teacherHomePage";
-				} else if (role.equals("student")) {
-					return "studentHomePage";
-				} else {
-					return "redirect:home";
-				}
-				// not sure what the following logic for?
-				// boolean activate;
-				// activate = service.activate(email);
-				// if (activate) {
-				// return "redirect:home";
-				// } else {
-				// MailSender.getInstance().SendConfirmMail(email, service);
-				// return "registerSuccessful";
-				// }
+
+				String id = userInfo.getUser().getId().toString();
+				return "redirect:/" + id;
 			} else {
 				return "redirect:home";
 			}
