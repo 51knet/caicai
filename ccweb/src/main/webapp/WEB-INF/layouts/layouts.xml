@@ -31,4 +31,22 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
+	<definition name="frontPage-layout" template="/WEB-INF/layouts/jsp/userFrontPage.jsp">
+		<put-attribute name="left1"
+			value="/WEB-INF/layouts/jsp/userFrontPage/photo.jsp"></put-attribute>
+		<put-attribute name="left2"
+			value="/WEB-INF/layouts/jsp/userFrontPage/info.jsp"></put-attribute>
+		<put-attribute name="left3"
+			value="/WEB-INF/layouts/jsp/userFrontPage/announcement.jsp"></put-attribute>
+		<put-attribute name="context1"
+			value="/WEB-INF/layouts/jsp/userFrontPage/right-panel.jsp"></put-attribute>
+		<put-attribute name="context2"
+			value="/WEB-INF/layouts/jsp/userFrontPage/right-panel.jsp"></put-attribute>
+		<put-attribute name="context3"
+			value="/WEB-INF/layouts/jsp/userFrontPage/right-panel.jsp"></put-attribute>
+		<put-attribute name="context4"
+			value="/WEB-INF/layouts/jsp/userFrontPage/right-panel.jsp"></put-attribute>
+		<put-attribute name="footer"
+			value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
 </tiles-definitions>

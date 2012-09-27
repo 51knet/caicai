@@ -68,7 +68,7 @@ public class HomeController {
 			if (role.equals("user")) {
 				return "userHomePage";
 			} else if (role.equals("teacher")) {
-				return "teacherHomePage";
+				return "teacherFrontPage";
 			} else if (role.equals("student")) {
 				return "studentHomePage";
 			} else {
