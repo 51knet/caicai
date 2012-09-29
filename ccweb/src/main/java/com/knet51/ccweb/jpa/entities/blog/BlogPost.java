@@ -29,6 +29,59 @@ public class BlogPost extends AbstractEntity {
 	private String content;
 	private Date date_created;
 	private Date date_updated;
+	
+	public BlogPost(Teacher author, BlogCategory blogCategory, String title,
+			String content) {
+		super();
+		this.author = author;
+		this.blogCategory = blogCategory;
+		this.title = title;
+		this.content = content;
+		this.date_created  = new Date();
+		this.date_updated  = new Date();
+	}
+	public Teacher getAuthor() {
+		return author;
+	}
+	public void setAuthor(Teacher author) {
+		this.author = author;
+	}
+	public BlogCategory getBlogCategory() {
+		return blogCategory;
+	}
+	public void setBlogCategory(BlogCategory blogCategory) {
+		this.blogCategory = blogCategory;
+	}
+	public Collection<BlogComment> getBlogComments() {
+		return blogComments;
+	}
+	public void setBlogComments(Collection<BlogComment> blogComments) {
+		this.blogComments = blogComments;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public Date getDate_created() {
+		return date_created;
+	}
+	public void setDate_created(Date date_created) {
+		this.date_created = date_created;
+	}
+	public Date getDate_updated() {
+		return date_updated;
+	}
+	public void setDate_updated(Date date_updated) {
+		this.date_updated = date_updated;
+	}
 
 
 

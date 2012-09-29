@@ -16,6 +16,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.User;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/META-INF/spring/application-context.xml"})
@@ -47,9 +50,19 @@ public class TestEntityMapping {
 
 	@Test
 	public void test() {
-		BlogCategory c = new BlogCategory("category1");
-		em.persist(c);
-		Assert.assertTrue( c.getId()!=null );
+		BlogCategory category = new BlogCategory("category1");
+		em.persist(category);
+		User user = new User("test@test.com", "password");
+		em.persist(user);
+		Teacher teacher = new Teacher(user);
+		teacher.setId(user.getId());
+		em.persist(teacher);
+		BlogPost post = new BlogPost(teacher, category, "title", "content");
+		em.persist(post);
+		
+		Assert.assertTrue( category.getId()!=null );
+		Assert.assertTrue( post.getId()!=null );
+		
 	}
 
 }
