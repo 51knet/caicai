@@ -41,11 +41,11 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
 
-		UserInfo userInfo = (UserInfo) session.getAttribute("user");
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 
 		if (userInfo != null && !(userInfo.getUser().getEmail().equals(""))) {
 			String id = userInfo.getUser().getId().toString();
-			return "redirect:/"+id;
+			return "redirect:/user/"+id;
 		}
 
 		Date date = new Date();
@@ -59,7 +59,7 @@ public class HomeController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
 	public String userHome(@PathVariable String id, HttpSession session) {
 		User user;
 		try {

@@ -34,7 +34,7 @@ public class UserTypeController {
 			return "userInfoPage";
 		} else {
 
-			UserInfo userInfo = (UserInfo) session.getAttribute("user");
+			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 			
 			User user = userInfo.getUser();
 			user = userService.findOne(user.getId());
