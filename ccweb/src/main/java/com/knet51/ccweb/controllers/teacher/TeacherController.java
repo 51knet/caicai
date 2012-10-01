@@ -22,10 +22,10 @@ import com.knet51.ccweb.jpa.services.UserService;
  * Handles requests for the application home page.
  */
 @Controller
-public class TeacherDetailInfoController {
+public class TeacherController {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(TeacherDetailInfoController.class);
+			.getLogger(TeacherController.class);
 
 	@Autowired
 	private TeacherService teacherService;
@@ -62,5 +62,12 @@ public class TeacherDetailInfoController {
 
 			return "teacherInfoPage";
 		}
+	}
+	
+	@RequestMapping(value = "/teacherInfoPage")
+	public String RegisterPage() {
+		logger.info("#### into TeacherInfoController ####");
+
+			return "teacherInfoPage";
 	}
 }

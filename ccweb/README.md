@@ -16,22 +16,35 @@
 | url         
 |
 | /student/{user_id}
-| /studentDetailInfo -> /student/admin/details
-| /studentInfoPage   -> /student/admin/basic
+| /studentDetailInfo -> /admin/student/details
+| /studentInfoPage   -> /admin/student/basic
 
 ## 普通用户
 | url         
 |
 | /user/{id}
 | /usertype       -> /user/dispatcher
-| /userDetailInfo -> /user/admin/details
-| /userInfoPage   -> /user/admin/basic
+| /userDetailInfo -> /admin/user/details
+| /userInfoPage   -> /admin/user/basic
 
 ## 教师用户
 | url         
 |
-| /teacherDetailInfo -> /teacher/admin/details
-| /teacherInfoPage   -> /teacher/admin/basic
+| /teacherDetailInfo -> /admin/teacher/details
+| /teacherInfoPage   -> /admin/teacher/basic
+
+## 教师博客
+| url         
+|
+| /admin/blog/list
+| /admin/blog/new
+| /admin/blog/edit/{blog_post_id}
+| /admin/blog/view/{blog_post_id}
+| /admin/blog/destroy
+| /admin/blog/category/list
+| /admin/blog/category/new
+| /admin/blog/category/edit
+| /admin/blog/category/destroy
 
 ## 其他
 | url         
