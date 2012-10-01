@@ -23,7 +23,7 @@ public class UserTypeController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/usertype", method = RequestMethod.POST)
+	@RequestMapping(value = "/usertype", method = {RequestMethod.POST, RequestMethod.GET})
 	// public String userType(@RequestParam("userType") String userType,
 	// @RequestParam("skip") String skip, HttpSession session) {
 	public String userType(HttpServletRequest request, HttpSession session) {

@@ -14,7 +14,8 @@
 <a href="<c:url value="/student/1"></c:url>" >select student according to user_id(1)</a>
 <br/>
 <a href="<c:url value="/one2one/2/tongji"></c:url>" >create student (colleague tongji) based on user_id(2) </a>
-
+<br/>
+<a href="<c:url value="/usertype?userType=teacher"></c:url>">teacher admin page</a>
 <table class="table table-bordered">
 	<thead>
 		<tr><th>User Id</th><th>User Email</th><th colspan="3">Actions</th></tr>

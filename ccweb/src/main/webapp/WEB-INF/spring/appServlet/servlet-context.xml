@@ -33,13 +33,13 @@
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<beans:property name="definitions">
 			<beans:list>
-				<beans:value>/WEB-INF/layouts/layouts.xml</beans:value>
-				<beans:value>/WEB-INF/layouts/controllers/home/views.xml</beans:value>
-				<beans:value>/WEB-INF/layouts/controllers/register/views.xml</beans:value>
-				<beans:value>/WEB-INF/layouts/controllers/homepage/views.xml</beans:value>
-				<beans:value>/WEB-INF/layouts/controllers/homepage/enterprise/views.xml</beans:value>
-				<beans:value>/WEB-INF/layouts/controllers/homepage/student/views.xml</beans:value>
-				<beans:value>/WEB-INF/layouts/controllers/homepage/teacher/views.xml</beans:value>
+				<beans:value>WEB-INF/layouts/tiles-layouts.xml</beans:value>
+				<beans:value>WEB-INF/layouts/tiles-views-admin.xml</beans:value>
+				<beans:value>WEB-INF/layouts/tiles-views-enterprise.xml</beans:value>
+				<beans:value>WEB-INF/layouts/tiles-views-register.xml</beans:value>
+				<beans:value>WEB-INF/layouts/tiles-views-root.xml</beans:value>
+				<beans:value>WEB-INF/layouts/tiles-views-student.xml</beans:value>
+				<beans:value>WEB-INF/layouts/tiles-views-teacher.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
