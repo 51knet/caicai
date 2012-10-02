@@ -61,12 +61,6 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			/*button apply: show input fields when click apply*/
-			$('#button_apply').bind('click', function() {
-				$(this).css('display', 'none');
-				$('#payment_details').css('display', 'block');
-			});
-
 		});
 	</script>
 </body>

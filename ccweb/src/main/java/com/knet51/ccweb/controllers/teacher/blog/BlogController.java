@@ -24,8 +24,7 @@ import com.knet51.ccweb.jpa.services.UserService;
 @Controller
 public class BlogController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(BlogController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
 	@Autowired
 	private TeacherService teacherService;
@@ -33,10 +32,42 @@ public class BlogController {
 	private UserService userService;
 
 	@Transactional
-	@RequestMapping(value = "/admin/blog/list", method = RequestMethod.GET)
-	public String RegisterPage() {
-		logger.info("#### into TeacherInfoController ####");
-
-		return "teacherInfoPage";
+	@RequestMapping(value= "/admin/blog/list", method=RequestMethod.GET)
+	public String list() {
+		
+		return "admin.blog.list";
 	}
+	@RequestMapping(value= "/admin/blog/new", method=RequestMethod.GET)
+	public String create() {
+		return "/admin/blog/create";
+	}
+	@RequestMapping(value= "/admin/blog/edit/{blog_post_id}", method=RequestMethod.GET)
+	public String edit() {
+		return "/admin/blog/edit";
+	}
+	@RequestMapping(value= "/admin/blog/view/{blog_post_id}", method=RequestMethod.GET)
+	public String view() {
+		return "/admin/blog/create";
+	}
+	@RequestMapping(value= "/admin/blog/destroy", method=RequestMethod.GET)
+	public String destroy() {
+		return "/admin/blog/create";
+	}
+	@RequestMapping(value= "/admin/blog/category/list", method=RequestMethod.GET)
+	public String list_category() {
+		return "/admin/blog/create";
+	}
+	@RequestMapping(value= "/admin/blog/category/new", method=RequestMethod.GET)
+	public String create_category() {
+		return "/admin/blog/create";
+	}
+	@RequestMapping(value= "/admin/blog/category/edit", method=RequestMethod.GET)
+	public String edit_category() {
+		return "/admin/blog/create";
+	}
+	@RequestMapping(value= "/admin/blog/category/destroy", method=RequestMethod.GET)
+	public String desctroy_category() {
+		return "/admin/blog/create";
+	}
+	
 }
