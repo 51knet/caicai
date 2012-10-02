@@ -34,12 +34,11 @@ public class BlogController {
 	@Transactional
 	@RequestMapping(value= "/admin/blog/list", method=RequestMethod.GET)
 	public String list() {
-		
 		return "admin.blog.list";
 	}
 	@RequestMapping(value= "/admin/blog/new", method=RequestMethod.GET)
 	public String create() {
-		return "/admin/blog/create";
+		return "/admin/blog/new";
 	}
 	@RequestMapping(value= "/admin/blog/edit/{blog_post_id}", method=RequestMethod.GET)
 	public String edit() {

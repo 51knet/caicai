@@ -6,10 +6,8 @@
 
 <tiles-definitions>
 
-	<definition name="admin.blog.list" extends="homePage-layout">
+	<definition name="admin.blog.list" extends="admin-layout">
 		<put-attribute name="title" value="My Blog" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher_home/teacherInfoPage.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/teacher_home/teacher_item_panel.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>
