@@ -71,5 +71,9 @@
 			value="/WEB-INF/views/user_home/userInfoPage.jsp"></put-attribute>
 >	  </definition>
 
-我们遵循统一的约定，这样查找对应关系就会变得相对清晰很多了
+我们遵循统一的约定，这样查找对应关系就会变得相对清晰很多了，也就是url和view的映射就明确对应，controller 的代码：
+>     @RequestMapping(value= "/admin/user/basic", method=RequestMethod.GET)    
+>	  public String basic() {    
+>          return "admin.user.basic";    
+>	  }    
 
