@@ -16,8 +16,8 @@
 	</definition>
 	<!-- admin-layout was 2 columns layout structure -->
 	<definition name="admin-layout" template="/WEB-INF/layouts/jsp/index.jsp">
-		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/left-panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/layouts/jsp/admin-layout/right-panel.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/admin-layout/right.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
 	<definition name="registerStandard-layout" template="/WEB-INF/layouts/jsp/registerStandard.jsp">

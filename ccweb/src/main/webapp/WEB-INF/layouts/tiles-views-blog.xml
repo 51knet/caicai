@@ -9,5 +9,8 @@
 	<definition name="admin.blog.list" extends="admin-layout">
 		<put-attribute name="title" value="My Blog" />
 	</definition>
-
+	<definition name="admin.blog.new" extends="admin-layout">
+		<put-attribute name="title" value="My Blog" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/blog/new/right.jsp" />
+	</definition>
 </tiles-definitions>

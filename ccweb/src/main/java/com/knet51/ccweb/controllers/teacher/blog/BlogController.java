@@ -38,15 +38,15 @@ public class BlogController {
 	}
 	@RequestMapping(value= "/admin/blog/new", method=RequestMethod.GET)
 	public String create() {
-		return "/admin/blog/new";
+		return "admin.blog.new";
 	}
 	@RequestMapping(value= "/admin/blog/edit/{blog_post_id}", method=RequestMethod.GET)
 	public String edit() {
-		return "/admin/blog/edit";
+		return "admin.blog.edit";
 	}
 	@RequestMapping(value= "/admin/blog/view/{blog_post_id}", method=RequestMethod.GET)
 	public String view() {
-		return "/admin/blog/create";
+		return "admin.blog.create";
 	}
 	@RequestMapping(value= "/admin/blog/destroy", method=RequestMethod.GET)
 	public String destroy() {
