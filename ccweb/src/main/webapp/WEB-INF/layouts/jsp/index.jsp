@@ -19,11 +19,11 @@
 	@import url("<c:url value="/resources/css/standard.css"/>");
 	@import url("<c:url value="/resources/colorbox/colorbox.css"/>");
 	</style>
-	<!-- Add jQuery library -->
 	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.8.0.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/colorbox/jquery.colorbox.js" />"></script>
-	
+	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.2/kindeditor.js" />"></script>
+	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.2/lang/zh_CN.js" />"></script>
 </head>
 <body style="min-width: 1024px;max-width: 1024px;width: 1024px;margin: 0 auto;">
 	<div class="container-fluid">

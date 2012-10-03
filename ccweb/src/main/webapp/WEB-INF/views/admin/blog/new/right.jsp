@@ -28,7 +28,7 @@
 
 <script type="text/javascript">
 		$(document).ready(function() {
-			$("#category_management").colorbox({inline:true, width:"50%", href:"#category_management_form"});
-		});
+			var editor = KindEditor.create('textarea[name="content"]');
+	    });
 </script>
 	
