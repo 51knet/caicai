@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.blog.BlogPost;
+import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.StudentService;
 import com.knet51.ccweb.jpa.services.UserService;
 
@@ -33,6 +35,9 @@ public class DebugController {
 
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private BlogService blogService;
 
 	@Transactional
 	@RequestMapping(value = "/debug", method = RequestMethod.GET)
@@ -47,6 +52,9 @@ public class DebugController {
 		List<User> userList = userService.findAllUsers();
 		model.addAttribute("userList", userList);
 		logger.info(userList.toString());
+		
+		BlogPost blog = blogService.findOne(1l);
+		logger.info(blog.toString());
 		
 		return "debug";
 	}

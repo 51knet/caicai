@@ -8,7 +8,10 @@ import com.knet51.ccweb.jpa.entities.AbstractEntity;
 public class BlogCategory extends AbstractEntity {
 
 	private String name;
-
+	
+	public BlogCategory() {
+	}
+	
 	public BlogCategory(String name) {
 		super();
 		this.name = name;

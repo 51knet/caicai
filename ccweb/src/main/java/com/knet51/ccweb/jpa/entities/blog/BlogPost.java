@@ -30,6 +30,10 @@ public class BlogPost extends AbstractEntity {
 	private Date date_created;
 	private Date date_updated;
 	
+	public BlogPost() {
+		
+	}
+	
 	public BlogPost(Teacher author, BlogCategory blogCategory, String title,
 			String content) {
 		super();
@@ -81,6 +85,13 @@ public class BlogPost extends AbstractEntity {
 	}
 	public void setDate_updated(Date date_updated) {
 		this.date_updated = date_updated;
+	}
+	@Override
+	public String toString() {
+		return "BlogPost [author=" + author + ", blogCategory=" + blogCategory
+				+ ", blogComments=" + blogComments + ", title=" + title
+				+ ", content=" + content + ", date_created=" + date_created
+				+ ", date_updated=" + date_updated + "]";
 	}
 
 

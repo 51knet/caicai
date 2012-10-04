@@ -18,6 +18,10 @@ public class BlogComment extends AbstractEntity {
 	private Date date_created;
 	private Date date_updated;
 	
+	public BlogComment() {
+		
+	}
+	
 	public BlogComment(BlogPost blog_post, String content) {
 		super();
 		this.blog_post = blog_post;
