@@ -3,7 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <div class="">
-	<form >
+	<form method="post">
 	  <legend>写博文</legend>
 	  <div class="control-group" >
 		  <label class="control-label" style="display:inline-block;width: 40px;">标题:</label>
@@ -11,10 +11,11 @@
 	  </div>
       <div class="control-group" >
 		  <label class="control-label" style="display:inline-block; width: 40px;">分类:</label>
-		  <select name="category">
+		  <select name="blogcategory_id">
 		  	<c:forEach var="blogCategory" items="${blogCategories}">
 		  		<option value="${blogCategory.id}">${blogCategory.name}</option>
 		  	</c:forEach>
+
 		  </select>
 	  </div>
 	  <div class="clearfix"></div>

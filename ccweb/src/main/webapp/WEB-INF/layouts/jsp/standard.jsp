@@ -8,6 +8,7 @@
 	<head>
 	<meta name="description" content=""/>
 	<meta name="author" content=""/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="icon" type="image/png" href="<c:url value="/resources/img/icon.png" />" />
       
 	<!--[if lt IE 9]>

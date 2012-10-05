@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Teacher;
@@ -57,12 +58,13 @@ public class BlogController {
 		return "admin.blog.new";
 	}
 	@RequestMapping(value= "/admin/blog/new", method=RequestMethod.POST)
-	public String create(@Valid BlogPost blogPost, BindingResult result, HttpSession session) {
+	public String create(@Valid BlogPost blogPost, BindingResult result, @RequestParam("blogcategory_id") String blogcategory_id, HttpSession session) {
 		if (result.hasErrors()) {
 			logger.info("Validation Failed " + result);
-			return null;
+			return "admin.blog.new";
 		}
-		
+		logger.info(blogcategory_id);
+		logger.info(blogPost.toString());
 		
 		return "admin.blog.new";
 	}
