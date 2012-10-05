@@ -15,7 +15,11 @@ public class UserInfo {
 		this.teacher = null;
 		this.student = null;
 	}
-
+	
+	public Long getId() {
+		return this.user.getId();
+	}
+	
 	public User getUser() {
 		return user;
 	}
