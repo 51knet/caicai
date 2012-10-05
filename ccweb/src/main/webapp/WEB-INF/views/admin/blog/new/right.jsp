@@ -12,10 +12,9 @@
       <div class="control-group" >
 		  <label class="control-label" style="display:inline-block; width: 40px;">分类:</label>
 		  <select name="category">
-		  	<option value="1">category 1</option>
-		  	<option value="2">category 2</option>
-		  	<option value="3">category 3</option>
-		  	<option value="4">category 4</option>
+		  	<c:forEach var="blogCategory" items="${blogCategories}">
+		  		<option value="${blogCategory.id}">${blogCategory.name}</option>
+		  	</c:forEach>
 		  </select>
 	  </div>
 	  <div class="clearfix"></div>
