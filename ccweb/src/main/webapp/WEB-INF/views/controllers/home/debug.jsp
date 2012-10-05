@@ -4,8 +4,8 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<c:if test="${user!=null}">
-<P>  User is ${user} ${user["name"]}. </P>
+<c:if test="${userInfo!=null}">
+<P>  User is ${userInfo} ${userInfo.user["name"]}. </P>
 </c:if>
 
 <a href="<c:url value="/mail/randomUrl/id"></c:url>"  >/mail/randomUrl/id</a>
