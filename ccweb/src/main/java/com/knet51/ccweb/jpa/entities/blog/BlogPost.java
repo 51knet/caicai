@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
 import com.knet51.ccweb.jpa.entities.Teacher;
 
@@ -25,7 +27,9 @@ public class BlogPost extends AbstractEntity {
 	@OneToMany(mappedBy="blog_post")
 	private Collection<BlogComment> blogComments;
 	
+	@NotEmpty
 	private String title;
+	@NotEmpty
 	private String content;
 	private Date date_created;
 	private Date date_updated;

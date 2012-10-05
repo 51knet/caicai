@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.knet51.ccweb.jpa.dao.BlogCategoryDao;
 import com.knet51.ccweb.jpa.dao.BlogDao;
+import com.knet51.ccweb.jpa.entities.blog.BlogCategory;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 
 @Service
@@ -17,6 +19,8 @@ public class BlogServiceImpl implements BlogService {
 
 	@Autowired
 	private BlogDao blogDao;
+	@Autowired
+	private BlogCategoryDao blogCategoryDao;
 	
 	@Override
 	public BlogPost findOne(Long id) {
@@ -25,17 +29,30 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public List<BlogPost> findAllBlogs() {
-		// TODO Auto-generated method stub
+		@SuppressWarnings("unchecked")
 		ArrayList<BlogPost> list = convertToList(blogDao.findAll());
 		return list;
 	}
 
-	private ArrayList<BlogPost> convertToList(Iterable<BlogPost> iterable) {
-		ArrayList<BlogPost> list = new ArrayList<BlogPost>();
-		Iterator<BlogPost> itr = iterable.iterator();
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private ArrayList convertToList(Iterable iterable) {
+		ArrayList list = new ArrayList();
+		Iterator itr = iterable.iterator();
 		while(itr.hasNext()) {
 			list.add(itr.next());
 		}
+		return list;
+	}
+
+	@Override
+	public BlogPost createBlogPost(BlogPost blogPost) {
+		return blogDao.save(blogPost);
+	}
+
+	@Override
+	public List<BlogCategory> findBlogCategories(Long teacher_id) {
+		@SuppressWarnings("unchecked")
+		ArrayList<BlogCategory> list = convertToList(blogCategoryDao.findAll());
 		return list;
 	}
 
