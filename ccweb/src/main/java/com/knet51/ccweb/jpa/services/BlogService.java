@@ -10,4 +10,7 @@ public interface BlogService {
 	BlogPost createBlogPost(BlogPost blogPost);
 	List<BlogPost> findAllBlogs();
 	List<BlogCategory> findBlogCategories(Long teacher_id);
+	BlogCategory findBlogCategory(Long category_id);
+	List<BlogPost> findBlogPosts(Long teacher_id);
+	BlogPost updateBlogPost(BlogPost blogPost);
 }

@@ -11,6 +11,14 @@
 	</definition>
 	<definition name="admin.blog.new" extends="admin-layout">
 		<put-attribute name="title" value="My Blog" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/blog/new/right.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/blog/new/create.jsp" />
+	</definition>
+	<definition name="admin.blog.edit" extends="admin-layout">
+		<put-attribute name="title" value="My Blog" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/blog/edit/edit.jsp" />
+	</definition>
+	<definition name="admin.blog.view" extends="admin-layout">
+		<put-attribute name="title" value="My Blog" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/blog/view/view.jsp" />
 	</definition>
 </tiles-definitions>

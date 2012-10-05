@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -24,7 +25,7 @@ public class BlogPost extends AbstractEntity {
 	@JoinColumn(name="blogcategory_id")
 	private BlogCategory blogCategory;
 
-	@OneToMany(mappedBy="blog_post")
+	@OneToMany(mappedBy="blog_post", fetch=FetchType.EAGER)
 	private Collection<BlogComment> blogComments;
 	
 	@NotEmpty
@@ -35,7 +36,8 @@ public class BlogPost extends AbstractEntity {
 	private Date date_updated;
 	
 	public BlogPost() {
-		
+		this.date_created  = new Date();
+		this.date_updated  = new Date();
 	}
 	
 	public BlogPost(Teacher author, BlogCategory blogCategory, String title,

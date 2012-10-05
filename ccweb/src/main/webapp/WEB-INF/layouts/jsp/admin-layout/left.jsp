@@ -12,10 +12,10 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><a href="#">全部博文(1)</a></td>
+				<td><a href="<c:url value="/admin/blog/list"></c:url>">全部博文(1)</a></td>
 			</tr>
 			<tr>
-				<td><a href="#">私密博文(1)</a></td>
+				<td><a href="<c:url value="/admin/blog/list"></c:url>">私密博文(1)</a></td>
 			</tr>
 			<tr>
 				<td><a href="#">草稿箱(1)</a></td>

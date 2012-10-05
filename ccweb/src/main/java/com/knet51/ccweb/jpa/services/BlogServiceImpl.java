@@ -56,4 +56,21 @@ public class BlogServiceImpl implements BlogService {
 		return list;
 	}
 
+	@Override
+	public BlogCategory findBlogCategory(Long category_id) {
+		return blogCategoryDao.findOne(category_id);
+	}
+
+	@Override
+	public List<BlogPost> findBlogPosts(Long teacher_id) {
+		@SuppressWarnings("unchecked")
+		ArrayList<BlogPost> list = convertToList(blogDao.findAll());
+		return list;
+	}
+
+	@Override
+	public BlogPost updateBlogPost(BlogPost blogPost) {
+		return blogDao.save(blogPost);
+	}
+
 }

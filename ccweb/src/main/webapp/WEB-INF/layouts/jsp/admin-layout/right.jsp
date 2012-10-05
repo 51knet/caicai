@@ -14,11 +14,12 @@
 				<td colspan="5"><a href="<c:url value="/admin/blog/new"></c:url>" class="btn">写博文</a>
 					<a id="category_management" href='#' class="btn">管理分类</a></td>
 			</tr>
+			<c:forEach var="blogPost" items="${blogPosts}">
 			<tr>
-				<td><li>博文标题</li></td>
-				<td>created_at</td>
-				<td>3/24</td>
-				<td><a href="#">编辑</a></td>
+				<td><a href="<c:url value="/admin/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
+				<td>${blogPost.date_created}</td>
+				<td>${blogPost.date_updated}</td>
+				<td><a href="<c:url value="/admin/blog/edit/${blogPost.id}"></c:url>">编辑</a></td>
 				<td>
 					<div class="btn-group">
 					  <button class="btn">更多</button>
@@ -34,7 +35,7 @@
 					</div>
 				</td>
 			</tr>
-			
+			</c:forEach>
 		</tbody>
 	</table>
 </div>
