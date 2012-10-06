@@ -116,9 +116,12 @@ public class BlogController {
 		model.addAttribute("blogPost", blogPost);
 		return "admin.blog.view";
 	}
-	@RequestMapping(value= "/admin/blog/destroy", method=RequestMethod.GET)
-	public String destroy() {
-		return "/admin/blog/create";
+	@RequestMapping(value= "/admin/blog/destroy", method=RequestMethod.POST)
+	public String destroy(@RequestParam("blog_post_id") Long blog_post_id) {
+		//TODO: add logic to judge if there are comments attached
+		blogService.deleteBlogPost(blog_post_id);
+		//TODO: flash
+		return "redirect:/admin/blog/list";
 	}
 	@RequestMapping(value= "/admin/blog/category/list", method=RequestMethod.GET)
 	public String list_category() {

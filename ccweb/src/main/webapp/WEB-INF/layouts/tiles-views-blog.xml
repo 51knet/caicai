@@ -8,6 +8,7 @@
 
 	<definition name="admin.blog.list" extends="admin-layout">
 		<put-attribute name="title" value="My Blog" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/blog/list/list.jsp" />
 	</definition>
 	<definition name="admin.blog.new" extends="admin-layout">
 		<put-attribute name="title" value="My Blog" />

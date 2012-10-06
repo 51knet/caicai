@@ -73,4 +73,9 @@ public class BlogServiceImpl implements BlogService {
 		return blogDao.save(blogPost);
 	}
 
+	@Override
+	public void deleteBlogPost(Long blog_post_id) {
+		blogDao.delete(blog_post_id);
+	}
+
 }

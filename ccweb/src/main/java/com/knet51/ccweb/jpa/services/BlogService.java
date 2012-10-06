@@ -13,4 +13,5 @@ public interface BlogService {
 	BlogCategory findBlogCategory(Long category_id);
 	List<BlogPost> findBlogPosts(Long teacher_id);
 	BlogPost updateBlogPost(BlogPost blogPost);
+	void deleteBlogPost(Long blog_post_id);
 }
