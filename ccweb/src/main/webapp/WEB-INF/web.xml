@@ -46,7 +46,10 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
+	<!-- The TheServletContextListener should be declared after ContextLoaderListener since we need DI for this listener -->
+	<listener>
+		<listener-class>com.knet51.ccweb.util.TheServletContextListener</listener-class>
+	</listener>
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
