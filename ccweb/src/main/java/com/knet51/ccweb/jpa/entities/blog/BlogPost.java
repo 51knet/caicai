@@ -3,6 +3,7 @@ package com.knet51.ccweb.jpa.entities.blog;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -31,6 +32,7 @@ public class BlogPost extends AbstractEntity {
 	@NotEmpty
 	private String title;
 	@NotEmpty
+	@Column(length=5000)
 	private String content;
 	private Date date_created;
 	private Date date_updated;
