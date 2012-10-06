@@ -19,7 +19,9 @@ public class UserInfo {
 	public Long getId() {
 		return this.user.getId();
 	}
-	
+	public String getEmail() {
+		return this.user.getEmail();
+	}
 	public User getUser() {
 		return user;
 	}

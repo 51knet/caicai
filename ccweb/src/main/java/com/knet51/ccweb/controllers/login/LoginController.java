@@ -85,7 +85,7 @@ public class LoginController {
 				session.setAttribute("user", user);
 				session.setAttribute("userInfo", userInfo);
 
-				String id = userInfo.getUser().getId().toString();
+				Long id = userInfo.getId();
 				return "redirect:/user/" + id;
 			} else {
 				return "redirect:home";

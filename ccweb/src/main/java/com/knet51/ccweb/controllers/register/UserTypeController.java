@@ -36,8 +36,7 @@ public class UserTypeController {
 
 			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 			
-			User user = userInfo.getUser();
-			user = userService.findOne(user.getId());
+			User user = userService.findOne(userInfo.getId());
 
 			if (userType.equals("teacher")) {
 				user.setRole("teacher");

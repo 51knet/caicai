@@ -43,8 +43,8 @@ public class HomeController {
 
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 
-		if (userInfo != null && !(userInfo.getUser().getEmail().equals(""))) {
-			String id = userInfo.getUser().getId().toString();
+		if (userInfo != null && !(userInfo.getEmail().equals(""))) {
+			Long id = userInfo.getId();
 			return "redirect:/user/"+id;
 		}
 

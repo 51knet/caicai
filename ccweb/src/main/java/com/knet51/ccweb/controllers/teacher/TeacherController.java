@@ -47,9 +47,8 @@ public class TeacherController {
 			String college = detailInfoForm.getCollege();
 			String major = detailInfoForm.getMajor();
 			
-			UserInfo userInfo = (UserInfo) session.getAttribute("user");
-			User user = userInfo.getUser();
-			user = userService.findOne(user.getId());
+			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+			User user = userService.findOne(userInfo.getId());
 			Teacher teacher = new Teacher(user);
 			teacher.setId(user.getId());
 			teacher.setRole(Integer.valueOf(role));
