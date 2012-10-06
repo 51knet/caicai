@@ -42,7 +42,7 @@
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-    <form action='<c:url value="/admin/blog/destroy"></c:url>' me style="display: inline-block;">
+    <form action='<c:url value="/admin/blog/destroy"></c:url>' method="post" style="display: inline-block;">
     	<input id="blog_post_id" type="hidden" name="blog_post_id" />
     	<button class="btn btn-primary">确定</button>
     </form>
