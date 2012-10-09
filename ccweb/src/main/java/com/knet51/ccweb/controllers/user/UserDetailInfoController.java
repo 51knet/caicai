@@ -49,10 +49,8 @@ public class UserDetailInfoController {
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
 
-			UserInfo userInfo = (UserInfo) session.getAttribute("user");
-			
-			User user = userInfo.getUser();
-			user = userService.findOne(user.getId());
+			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+			User user = userService.findOne(userInfo.getId());
 
 			user.setName(detailInfoForm.getName());
 			user.setName(detailInfoForm.getNickName());

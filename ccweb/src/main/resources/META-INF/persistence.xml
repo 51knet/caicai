@@ -10,6 +10,9 @@
 		<class>com.knet51.ccweb.jpa.entities.User</class>
 		<class>com.knet51.ccweb.jpa.entities.Student</class>
 		<class>com.knet51.ccweb.jpa.entities.Teacher</class>
+		<class>com.knet51.ccweb.jpa.entities.blog.BlogCategory</class>
+		<class>com.knet51.ccweb.jpa.entities.blog.BlogComment</class>
+		<class>com.knet51.ccweb.jpa.entities.blog.BlogPost</class>
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/caicaidb" />

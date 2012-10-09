@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.blog.BlogPost;
+import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.StudentService;
 import com.knet51.ccweb.jpa.services.UserService;
 
@@ -33,10 +38,13 @@ public class DebugController {
 
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private BlogService blogService;
 
 	@Transactional
 	@RequestMapping(value = "/debug", method = RequestMethod.GET)
-	public String debug(Locale locale, Model model) {
+	public String debug(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
 		
 		Date date = new Date();
@@ -47,6 +55,13 @@ public class DebugController {
 		List<User> userList = userService.findAllUsers();
 		model.addAttribute("userList", userList);
 		logger.info(userList.toString());
+		
+		BlogPost blog = blogService.findOne(1l);
+		logger.info(blog.toString());
+		
+		User user = userService.findByEmailAddress("test1@test.com");
+		UserInfo userInfo = new UserInfo(user);
+		session.setAttribute("userInfo", userInfo);
 		
 		return "debug";
 	}

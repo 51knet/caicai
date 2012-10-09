@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="standard-layout" template="/WEB-INF/layouts/jsp/standard.jsp">
+
+	</definition>
+	<definition name="index-layout" template="/WEB-INF/layouts/jsp/index.jsp">
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/index/login-panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/index/right-panel.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	<!-- admin-layout was 2 columns layout structure -->
+	<definition name="admin-layout" template="/WEB-INF/layouts/jsp/index.jsp">
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/admin-layout/right.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	<definition name="registerStandard-layout" template="/WEB-INF/layouts/jsp/registerStandard.jsp">
+		<put-attribute name="body" value="/WEB-INF/layouts/jsp/register/_body.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	<definition name="homePage-layout" template="/WEB-INF/layouts/jsp/userHomePage.jsp">
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/userHomePage/item-panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/userHomePage/right-panel.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	<definition name="frontPage-layout" template="/WEB-INF/layouts/jsp/userFrontPage.jsp">
+		<put-attribute name="left1" value="/WEB-INF/layouts/jsp/userFrontPage/photo.jsp" />
+		<put-attribute name="left2" value="/WEB-INF/layouts/jsp/userFrontPage/info.jsp" />
+		<put-attribute name="left3" value="/WEB-INF/layouts/jsp/userFrontPage/announcement.jsp" />
+		<put-attribute name="context1" value="/WEB-INF/layouts/jsp/userFrontPage/right-panel.jsp" />
+		<put-attribute name="context2" value="/WEB-INF/layouts/jsp/userFrontPage/right-panel.jsp" />
+		<put-attribute name="context3" value="/WEB-INF/layouts/jsp/userFrontPage/right-panel.jsp" />
+		<put-attribute name="context4" value="/WEB-INF/layouts/jsp/userFrontPage/right-panel.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+</tiles-definitions>

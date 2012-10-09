@@ -82,10 +82,11 @@ public class LoginController {
 
 				User user = service.findByEmailAddress(email);
 				UserInfo userInfo = new UserInfo(user);
-				session.setAttribute("user", userInfo);
+				session.setAttribute("user", user);
+				session.setAttribute("userInfo", userInfo);
 
-				String id = userInfo.getUser().getId().toString();
-				return "redirect:/" + id;
+				Long id = userInfo.getId();
+				return "redirect:/user/" + id;
 			} else {
 				return "redirect:home";
 			}
