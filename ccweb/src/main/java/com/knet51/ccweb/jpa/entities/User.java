@@ -35,7 +35,8 @@ public class User extends AbstractEntity {
 	private Date last_login_date;
 	private Integer level;
 	private String cell_phone;
-	private String fix_phone;	
+	private String fix_phone;
+	private String photo_url;
 
 	public User(String email, String password,
 			String role, Integer level) {
@@ -163,5 +164,11 @@ public class User extends AbstractEntity {
 
 	public void setRandomUrl(String randomUrl) {
 		this.randomUrl = randomUrl;
+	}
+	public String getPhoto_url() {
+		return photo_url;
+	}
+	public void setPhoto_url(String photo_url) {
+		this.photo_url = photo_url;
 	}
 }

@@ -24,6 +24,14 @@
 
 	<definition name="teacherFrontPage" extends="frontPage-layout">
 		<put-attribute name="title" value="Welcom to teacher register" />
+		
+		<put-attribute name="left1"
+			value="/WEB-INF/views/teacher_front/photo.jsp"></put-attribute>
+		<put-attribute name="left2"
+			value="/WEB-INF/views/teacher_front/info.jsp"></put-attribute>
+		<put-attribute name="left3"
+			value="/WEB-INF/views/teacher_front/announcement.jsp"></put-attribute>
+		
 		<put-attribute name="context1"
 			value="/WEB-INF/views/teacher_front/teacherFrontContext.jsp"></put-attribute>
 		<put-attribute name="context2"

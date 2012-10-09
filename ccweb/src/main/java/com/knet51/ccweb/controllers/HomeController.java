@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -45,7 +46,7 @@ public class HomeController {
 
 		if (userInfo != null && !(userInfo.getUser().getEmail().equals(""))) {
 			String id = userInfo.getUser().getId().toString();
-			return "redirect:/"+id;
+			return "forward:/" + id;
 		}
 
 		Date date = new Date();
@@ -62,22 +63,29 @@ public class HomeController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String userHome(@PathVariable String id, HttpSession session) {
 		User user;
+//		boolean isHomePage = false;
 		try {
 			user = userService.findOne(Long.parseLong(id));
+//			UserInfo userInfo = (UserInfo) session.getAttribute("user");
+//			if (userInfo != null
+//					&& userInfo.getUser().getId() == Long.parseLong(id)) {
+//				isHomePage = true;
+//			}
 			String role = user.getRole();
 			if (role.equals("user")) {
+				// TODO: change to user front page;
 				return "userHomePage";
 			} else if (role.equals("teacher")) {
 				return "teacherFrontPage";
 			} else if (role.equals("student")) {
+				// TODO: change to student front page;
 				return "studentHomePage";
 			} else {
 				return "home";
 			}
 		} catch (Exception e) {
 			// TODO: refining exception later;
-
-			return "home";
+			return "404";
 		}
 
 	}
