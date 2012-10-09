@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -31,8 +32,10 @@ public class BlogPost extends AbstractEntity {
 	
 	@NotEmpty
 	private String title;
+	
+	@Lob
 	@NotEmpty
-	@Column(length=5000)
+	@Column(length=10000)
 	private String content;
 	private Date date_created;
 	private Date date_updated;
