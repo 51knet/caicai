@@ -128,6 +128,10 @@ public class BlogController {
 		return "/admin/blog/create";
 	}
 	@RequestMapping(value= "/admin/blog/category/new", method=RequestMethod.GET)
+	public String show_create_category_form() {
+		return "/admin/blog/create";
+	}
+	@RequestMapping(value= "/admin/blog/category/new", method=RequestMethod.POST)
 	public String create_category() {
 		return "/admin/blog/create";
 	}
