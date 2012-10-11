@@ -6,38 +6,31 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th colspan="5">全部博文</th>
+				<th colspan="5">全部分类</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td colspan="5"><a href="<c:url value="/admin/blog/new"></c:url>" class="btn">写博文</a>
-					<a id="category_management" href='#' class="btn">管理分类</a></td>
+				<td colspan="5">
+					<form action="<c:url value="/admin/blog/category/new"></c:url>" class="form-inline pull-right">
+						<input type="text" name="name" placeholder="输入你要新建的分类的名字">
+						<a href="<c:url value="/admin/blog/new"></c:url>" class="btn">新建分类</a>
+					</form>
+				</td>
 			</tr>
-			<c:forEach var="blogPost" items="${blogPosts}">
-			<tr>
-				<td><a href="<c:url value="/admin/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
-				<td>${blogPost.date_created}</td>
-				<td>${blogPost.date_updated}</td>
-				<td><a href="<c:url value="/admin/blog/edit/${blogPost.id}"></c:url>">编辑</a></td>
+			<c:forEach var="blogCategory" items="${blogCategories}">
+			<tr> <!-- TODO: vertical-align:text-top; -->
+				<td>${blogCategory.id}</td>
+				<td><a href="<c:url value="/admin/blog/category/view/${blogCategory.id}"></c:url>"> ${blogCategory.name} </a></td>
 				<td>
-					<div class="btn-group">
-					  <button class="btn">更多</button>
-					  <button class="btn dropdown-toggle" data-toggle="dropdown">
-					    <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu">
-		                  <li><a href="#">置顶</a></li>
-		                  <li><a href="#">修改分类</a></li>
-		                  <li class="divider"></li>
-		                  <li>
-		                  <!-- Button to trigger modal -->
-<a class="deletePostBtn" href="#deletePostModal" role="button" data-toggle="modal" data-target="#deletePostModal">删除</a>
-<input type="hidden" value="${blogPost.id}" />
-<input type="hidden" value="${blogPost.title}" />
-</li>
-		              </ul>
-					</div>
+					<form action="<c:url value="/admin/blog/category/rename"></c:url>" class="form-inline">
+						<input type="text" name="name" placeholder="" value="${blogCategory.name}">
+						<a href="#" class="btn">确定</a>
+					</form>
+				</td>
+				<td><a href="<c:url value="/admin/blog/category/view/${blogCategory.id}"></c:url>"> 重命名 </a></td>
+				<td>
+					<a class="btn" href="#"><i class="icon-remove"></i></a>
 				</td>
 			</tr>
 			</c:forEach>
