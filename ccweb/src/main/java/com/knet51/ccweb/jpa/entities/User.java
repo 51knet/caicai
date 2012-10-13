@@ -42,7 +42,8 @@ public class User extends AbstractEntity {
 	private String fix_phone;
 	
 	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
-	private Set<Announcement> annotation = new HashSet<Announcement>();
+	private Set<Announcement> announcement = new HashSet<Announcement>();
+	
 	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
 	private Set<Resource> resources = new HashSet<Resource>();
 	
@@ -176,14 +177,13 @@ public class User extends AbstractEntity {
 		this.randomUrl = randomUrl;
 	}
 
-
-	public Set<Announcement> getAnnotation() {
-		return annotation;
+	public Set<Announcement> getAnnouncement() {
+		return announcement;
 	}
 
 
-	public void setAnnotation(Set<Announcement> annotation) {
-		this.annotation = annotation;
+	public void setAnnouncement(Set<Announcement> announcement) {
+		this.announcement = announcement;
 	}
 
 

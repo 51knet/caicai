@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.teacher;
+package com.knet51.ccweb.controllers.teacher.resource;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

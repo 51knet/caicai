@@ -8,9 +8,9 @@
 <div style="text-align: center;">
 
 	Welcome to teacher home page.<br>
-	${user.user.email }<br>
-	${user.user.id }<br>
-	${user.user.name}<br>
+	${userInfo.user.email }<br>
+	${userInfo.user.id }<br>
+	${userInfo.user.name}<br>
 	<a href="teacherAnnoAdd">添加公告</a><br>
 	<table width="500" border="1" cellspacing="0" cellpadding="5">
 		<tr><td>公告标题</td><td>发布时间<td>详细操作</td></tr>

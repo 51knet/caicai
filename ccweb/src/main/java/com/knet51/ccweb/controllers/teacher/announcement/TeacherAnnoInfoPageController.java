@@ -1,26 +1,16 @@
-package com.knet51.ccweb.controllers.teacher;
-
-
-
+package com.knet51.ccweb.controllers.teacher.announcement;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
-
-
-
 
 @Controller
 public class TeacherAnnoInfoPageController {

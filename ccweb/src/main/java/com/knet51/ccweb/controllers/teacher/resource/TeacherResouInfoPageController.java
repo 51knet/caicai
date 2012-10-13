@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.teacher;
+package com.knet51.ccweb.controllers.teacher.resource;
 
 import java.util.List;
 import javax.servlet.http.HttpSession;
