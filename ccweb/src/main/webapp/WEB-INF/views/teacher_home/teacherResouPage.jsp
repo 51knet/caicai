@@ -11,11 +11,11 @@
 	${user.user.email }<br>
 	${user.user.id }<br>
 	${user.user.name}<br>
-	<a href="teacherAnnoAdd">添加公告</a><br>
+	<a href="teacherResouAdd">添加资源</a><br>
 	<table width="500" border="1" cellspacing="0" cellpadding="5">
-		<tr><td>公告标题</td><td>发布时间<td>详细操作</td></tr>
+		<tr><td>文件名称</td><td>发布时间</td><td>文件描述</td><td>详细操作</td></tr>
 		<c:forEach items="${list}" var="l">
-			<tr><td align="left">${l.title}</td><td align="center">${l.date}</td><td><a href="teacherAnnoDetail?id=${l.id}">修改</a> | <a href="teacherAnnoDele?id=${l.id}"> 删除</a></td></tr>
+			<tr><td align="left">${l.name}</td><td align="center">${l.date}</td><td>${l.description}</td><td><a href="teacherResouDele?id=${l.id}"> 删除</a> | <a href="${l.savePath}">下载</a></td></tr>
 		</c:forEach>
 	</table>
 	<br/>

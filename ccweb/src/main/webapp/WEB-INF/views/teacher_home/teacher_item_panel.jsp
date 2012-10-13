@@ -5,9 +5,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div style="text-align: center;">
-	<a href="#" class="btn">发布公告</a>
+	<a href="teacherAnno" class="btn">发布公告</a>
 	<hr />
-	<a href="#" class="btn">资源管理</a>
+	<a href="teacherResou" class="btn">资源管理</a>
 	<hr />
 	<a href="#" class="btn">我的博文</a>
 	<hr />
