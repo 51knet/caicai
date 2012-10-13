@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.knet51.ccweb.beans.UserInfo;
@@ -85,9 +86,12 @@ public class BlogCategoryController {
 	public String edit_category() {
 		return "/admin/blog/create";
 	}
-	@RequestMapping(value= "/admin/blog/category/destroy", method=RequestMethod.GET)
-	public String desctroy_category() {
-		return "/admin/blog/create";
+	@RequestMapping(value= "/admin/blog/category/destroy", method=RequestMethod.POST)
+	public String desctroy_category(@RequestParam Long blog_category_id) {
+		//TODO: add logic to judge if there are posts attached
+		blogService.deleteBlogCategory(blog_category_id);
+		//TODO: flash
+		return "redirect:/admin/blog/category/list";
 	}
 	
 }

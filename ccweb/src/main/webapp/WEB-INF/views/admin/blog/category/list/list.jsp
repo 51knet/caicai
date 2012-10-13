@@ -22,15 +22,18 @@
 			<tr> <!-- TODO: vertical-align:text-top; -->
 				<td>${blogCategory.id}</td>
 				<td><a href="<c:url value="/admin/blog/category/view/${blogCategory.id}"></c:url>"> ${blogCategory.name} </a></td>
-				<td>
+				<td width="200px" style="display: none;">
 					<form action="<c:url value="/admin/blog/category/rename"></c:url>" class="form-inline">
 						<input type="text" name="name" placeholder="" value="${blogCategory.name}">
-						<a href="#" class="btn">确定</a>
+						<button type="submit" class="btn" value="确定">确定</button>
+						<a href="#" class="btn link-rename-cancel">取消</a>
 					</form>
 				</td>
-				<td><a href="<c:url value="/admin/blog/category/view/${blogCategory.id}"></c:url>"> 重命名 </a></td>
-				<td>
-					<a class="btn" href="#"><i class="icon-remove"></i></a>
+				<td width="348px"><a href="#" class="link-rename pull-right"> 重命名 </a></td>
+				<td width="50px">
+					<a class="link-delete-category btn" href="#delete_category_modal" role="button" data-toggle="modal" data-target="#delete_category_modal"><i class="icon-remove"></i></a>
+					<input type="hidden" value="${blogCategory.id}">
+					<input type="hidden" value="${blogCategory.name}">
 				</td>
 			</tr>
 			</c:forEach>
@@ -39,18 +42,18 @@
 </div>
 
 <!-- Modal -->
-<div class="modal hide fade" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal hide fade" id="delete_category_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">请注意</h3>
   </div>
   <div class="modal-body">
-    <p>你确定删除(<span id="blog_post_title"></span>)这篇博客文章吗？</p>
+    <p>你确定删除(<span id="blog_category_name"></span>)这个博客分类吗？</p>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-    <form action='<c:url value="/admin/blog/destroy"></c:url>' method="post" style="display: inline-block;">
-    	<input id="blog_post_id" type="hidden" name="blog_post_id" />
+    <form action='<c:url value="/admin/blog/category/destroy"></c:url>' method="post" style="display: inline-block;">
+    	<input id="blog_category_id" type="hidden" name="blog_category_id" />
     	<button class="btn btn-primary">确定</button>
     </form>
   </div>
@@ -101,14 +104,24 @@
 				});
 				return false;
 			});
+			$('.link-rename').on('click', function(event) {
+				event.preventDefault();
+				$(this).parent().hide(); // rename link table cell
+				$(this).parent().prev().show();  // rename form table cell 
+			});
+			$('.link-rename-cancel').on('click', function(event){
+				event.preventDefault();
+				$(this).parent().parent().hide(); // rename form table cell
+				$(this).parent().parent().next().show(); // rename link table cell
+			});
 			$("#category_management").colorbox({inline:true, width:"50%", href:"#category_management_form"});
 			
 			// 表格里的删除按钮按下的时候，需要为对话框动态修改一些属性的值
-			$('.deletePostBtn').on('click', function() {
-				var blog_post_id = $(this).next().val();
-				var blog_post_title = $(this).next().next().val();
-				$('#deletePostModal #blog_post_id').val(blog_post_id);
-				$('#deletePostModal #blog_post_title').html(blog_post_title);				
+			$('.link-delete-category').on('click', function() {
+				var blog_category_id = $(this).next().val();
+				var blog_category_name = $(this).next().next().val();
+				$('#delete_category_modal #blog_category_id').val(blog_category_id);
+				$('#delete_category_modal #blog_category_name').html(blog_category_name);				
 			});
 		});
 </script>
