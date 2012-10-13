@@ -33,12 +33,12 @@ public class TeacherResouDetailInfoController {
 	public String teacherResouInfo(HttpSession session,Model m,@RequestParam("desc") String desc, MultipartHttpServletRequest request) throws Exception{
 		logger.info("#####Into TeacherResouInfoPageController#####");
 		List<MultipartFile> files = request.getFiles("file");
-		UserInfo userInfo = (UserInfo) session.getAttribute("user");
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		User user = userInfo.getUser();
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				Resource resource = new Resource();
-				logger.info("上传文件："+files.get(i).getOriginalFilename()); 
+				logger.info("锟较达拷锟侥硷拷锟斤拷"+files.get(i).getOriginalFilename()); 
 				String fileName = files.get(i).getOriginalFilename();
 				String realPath = session.getServletContext().getRealPath("/WEB-INF/temp/");
 				resource.setDescription(desc);

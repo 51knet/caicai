@@ -47,7 +47,7 @@ public class TeacherAnnoDetailInfoController {
 			return "teacherAnnoPage";
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
-			UserInfo userInfo = (UserInfo) session.getAttribute("user");
+			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 			User user = userInfo.getUser();
 			//System.out.println("++++++++++++++++"+user.getId()+"+++++++++++++++");
 			String title = annoDetailInfoForm.getTitle();
@@ -80,7 +80,7 @@ public class TeacherAnnoDetailInfoController {
 	@RequestMapping(value="/teacherAnnoDele")
 	public String teacherAnnoDele(@RequestParam("id") Long id,HttpSession session, Model m){
 		annoService.deleAnnouncementById(id);
-		UserInfo userInfo = (UserInfo) session.getAttribute("user");
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		User user = userInfo.getUser();
 		List<Announcement> list = annoService.findAllByUid(user.getId());
 		m.addAttribute("list", list);
@@ -96,7 +96,7 @@ public class TeacherAnnoDetailInfoController {
 			m.addAttribute("ann", ann);
 			return "detailAnnInfo";
 		}else{	
-			UserInfo userInfo = (UserInfo) session.getAttribute("user");
+			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 			User user = userInfo.getUser();
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();

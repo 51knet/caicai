@@ -32,7 +32,7 @@ public class TeacherAnnoInfoPageController {
 	@RequestMapping(value="/teacherAnno")
 	public String teacherAnno(HttpSession session,Model m){
 		logger.info("#### into TeacherAnno ####");
-			UserInfo userInfo = (UserInfo) session.getAttribute("user");
+			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 			User user = userInfo.getUser();
 			List<Announcement> list = annoService.findAllByUid(user.getId());
 			m.addAttribute("list", list);

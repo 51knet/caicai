@@ -112,7 +112,7 @@ public class TheServletContextListener implements ServletContextListener {
 	}
 	
 	private void createTeacherAndBlogPosts(String email, String password) {
-		User user = new User(email,password,"user",1);
+		User user = new User(email,password,"teacher",1);
 		user.setRandomUrl("pass");
 		em.persist(user);
 		

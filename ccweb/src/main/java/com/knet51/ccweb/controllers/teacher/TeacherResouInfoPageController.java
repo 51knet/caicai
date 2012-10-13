@@ -23,7 +23,7 @@ public class TeacherResouInfoPageController {
 	@RequestMapping(value="/teacherResou")
 	public String teacherResouInfo(HttpSession session,Model m ){
 		logger.info("#####Into TeacherResouInfoPageController#####");
-		UserInfo userInfo = (UserInfo) session.getAttribute("user");
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		User user = userInfo.getUser();
 		List<Resource> list = service.listAllByUid(user.getId());
 		m.addAttribute("list", list);
@@ -34,12 +34,12 @@ public class TeacherResouInfoPageController {
 		logger.info("#####Into TeacherResouInfoAdd#####");
 		return "teacherResouAddPage";
 	}
-	//²¶»ñ³¬³öÒì³£Ö®ºóÌø×ªµÄview
+	//ï¿½ï¿½ï¿½ñ³¬³ï¿½ï¿½ì³£Ö®ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½view
 	/*@ExceptionHandler(Exception.class)
 	public String handleException(Exception e,HttpServletRequest request ){
 		logger.info("#### Into MaxUploadExceptionHandler ####");
 		if(e instanceof org.springframework.web.multipart.MaxUploadSizeExceededException){
-			request.setAttribute("error", "ÎÄ¼þ³¬³ö³¤¶È");
+			request.setAttribute("error", "ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}
 		return "teacherResouAddPage";
 	}*/

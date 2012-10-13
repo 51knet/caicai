@@ -90,7 +90,7 @@ public class LoginController {
 
 				User user = service.findByEmailAddress(email);
 				UserInfo userInfo = new UserInfo(user);
-				session.setAttribute("user", userInfo);
+				session.setAttribute("userInfo", userInfo);
 				String role = user.getRole();
 				if (role.equals("user")) {
 					return "userHomePage";
