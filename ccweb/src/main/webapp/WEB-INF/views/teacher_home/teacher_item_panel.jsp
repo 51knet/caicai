@@ -9,7 +9,7 @@
 	<hr />
 	<a href="teacherResou" class="btn">资源管理</a>
 	<hr />
-	<a href="#" class="btn">我的博文</a>
+	<a href='<c:url value="/admin/blog/list"></c:url>' class="btn">我的博文</a>
 	<hr />
 	<a href="#" class="btn">个人主页</a>
 	<hr />

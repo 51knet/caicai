@@ -12,7 +12,7 @@
 		<tbody>
 			<tr>
 				<td colspan="5"><a href="<c:url value="/admin/blog/new"></c:url>" class="btn">写博文</a>
-					<a id="category_management" href='#' class="btn">管理分类</a></td>
+					<a id="category_management"  href="<c:url value="/admin/blog/category/list"></c:url>" class="btn">管理分类</a></td>
 			</tr>
 			<c:forEach var="blogPost" items="${blogPosts}">
 			<tr>
@@ -70,7 +70,7 @@
 </div>
 <script type="text/javascript">
 		$(document).ready(function() {
-			$("#category_management").colorbox({inline:true, width:"50%", href:"#category_management_form"});
+			//$("#category_management").colorbox({inline:true, width:"50%", href:"#category_management_form"});
 			
 			// 表格里的删除按钮按下的时候，需要为对话框动态修改一些属性的值
 			$('.deletePostBtn').on('click', function() {
