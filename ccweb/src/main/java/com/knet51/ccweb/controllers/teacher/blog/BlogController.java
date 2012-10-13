@@ -15,9 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Teacher;
@@ -123,25 +125,4 @@ public class BlogController {
 		//TODO: flash
 		return "redirect:/admin/blog/list";
 	}
-	@RequestMapping(value= "/admin/blog/category/list", method=RequestMethod.GET)
-	public String list_category() {
-		return "admin.blog.category.list";
-	}
-	@RequestMapping(value= "/admin/blog/category/new", method=RequestMethod.GET)
-	public String show_create_category_form() {
-		return "/admin/blog/create";
-	}
-	@RequestMapping(value= "/admin/blog/category/new", method=RequestMethod.POST)
-	public String create_category() {
-		return "/admin/blog/create";
-	}
-	@RequestMapping(value= "/admin/blog/category/edit", method=RequestMethod.GET)
-	public String edit_category() {
-		return "/admin/blog/create";
-	}
-	@RequestMapping(value= "/admin/blog/category/destroy", method=RequestMethod.GET)
-	public String desctroy_category() {
-		return "/admin/blog/create";
-	}
-	
 }

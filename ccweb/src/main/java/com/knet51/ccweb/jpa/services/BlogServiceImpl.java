@@ -78,4 +78,19 @@ public class BlogServiceImpl implements BlogService {
 		blogDao.delete(blog_post_id);
 	}
 
+	@Override
+	public BlogCategory createBlogCategory(BlogCategory blogCategory) {
+		return blogCategoryDao.save(blogCategory);
+	}
+
+	@Override
+	public boolean isBlogCategoryExist(String name, Long teacher_id) {
+		return (blogCategoryDao.findByNameAndTeacherId(name, teacher_id) != null );
+	}
+
+	@Override
+	public void deleteBlogCategory(Long blog_category_id) {
+		blogCategoryDao.delete(blog_category_id);
+	}
+
 }

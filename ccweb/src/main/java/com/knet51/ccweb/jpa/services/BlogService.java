@@ -14,4 +14,7 @@ public interface BlogService {
 	List<BlogPost> findBlogPosts(Long teacher_id);
 	BlogPost updateBlogPost(BlogPost blogPost);
 	void deleteBlogPost(Long blog_post_id);
+	BlogCategory createBlogCategory(BlogCategory blogCategory);
+	boolean isBlogCategoryExist(String name, Long teacher_id);
+	void deleteBlogCategory(Long blog_category_id);
 }
