@@ -9,6 +9,8 @@
 	<definition name="standard-layout" template="/WEB-INF/layouts/jsp/standard.jsp">
 
 	</definition>
+	
+	
 	<definition name="index-layout" template="/WEB-INF/layouts/jsp/index.jsp">
 		<put-attribute name="left"
 			value="/WEB-INF/layouts/jsp/index/login-panel.jsp"></put-attribute>
@@ -17,12 +19,16 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
+	
+	
 	<definition name="registerStandard-layout" template="/WEB-INF/layouts/jsp/registerStandard.jsp">
 		<put-attribute name="body"
 			value="/WEB-INF/layouts/jsp/register/_body.jsp"></put-attribute>
 		<put-attribute name="footer"
 			value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
+	
+	
 	<definition name="homePage-layout" template="/WEB-INF/layouts/jsp/userHomePage.jsp">
 		<put-attribute name="left"
 			value="/WEB-INF/layouts/jsp/userHomePage/item-panel.jsp"></put-attribute>

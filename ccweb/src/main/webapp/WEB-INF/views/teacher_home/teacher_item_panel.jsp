@@ -7,7 +7,7 @@
 <div style="text-align: center;">
 	<a href="#" class="btn">aaaaa</a><hr />
 	<a href="#" class="btn">bbbbb</a><hr />
-	<a href="#" class="btn">ccccc</a><hr />
-	<a href="#" class="btn">ddddd</a><hr />
+	<a href="teacherResou" class="btn">资料上传</a><hr />
+	<a href="teacherAnno" class="btn">发布公告</a><hr />
 	<a href="teacherInfoPage" class="btn">详细资料</a><hr />
 </div>
