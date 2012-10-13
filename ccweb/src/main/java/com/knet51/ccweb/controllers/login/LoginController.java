@@ -88,7 +88,7 @@ public class LoginController {
 				Long id = userInfo.getId();
 				return "redirect:/user/" + id;
 			} else {
-				return "redirect:home";
+				return "home";
 			}
 		}
 	}
