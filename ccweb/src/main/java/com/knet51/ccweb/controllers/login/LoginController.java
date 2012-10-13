@@ -103,20 +103,6 @@ public class LoginController {
 				} else {
 					return "redirect:home";
 				}
-				// not sure what the following logic for?
-				// boolean activate;
-				// activate = service.activate(email);
-				// if (activate) {
-				// return "redirect:home";
-				// } else {
-				// MailSender.getInstance().SendConfirmMail(email, service);
-				// return "registerSuccessful";
-				// }
-				session.setAttribute("user", user);
-				session.setAttribute("userInfo", userInfo);
-
-				Long id = userInfo.getId();
-				return "redirect:/user/" + id;
 			} else {
 				return "home";
 			}
