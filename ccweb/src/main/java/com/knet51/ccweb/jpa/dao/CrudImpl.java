@@ -43,7 +43,7 @@ import org.springframework.util.Assert;
 public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 
 	@PersistenceContext
-	private EntityManager em;
+	private EntityManager entityManager;
 	
 	private JpaEntityInformation<T, ?> entityInformation;
 	
@@ -66,7 +66,7 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 	 * Creates a new {@link SimpleJpaRepository} to manage objects of the given domain type.
 	 * 
 	 * @param domainClass must not be {@literal null}.
-	 * @param em must not be {@literal null}.
+	 * @param entityManager must not be {@literal null}.
 	 */
 	public CrudImpl(Class<T> domainClass) {
 		this.domainClass = domainClass;
@@ -76,8 +76,8 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 	@PostConstruct
 	public void init(){
 	    // do stuff with entitymanager here
-		this.provider = PersistenceProvider.fromEntityManager(em);
-		this.entityInformation = JpaEntityInformationSupport.getMetadata(domainClass, em);
+		this.provider = PersistenceProvider.fromEntityManager(entityManager);
+		this.entityInformation = JpaEntityInformationSupport.getMetadata(domainClass, entityManager);
 	}
 	/**
 	 * Configures a custom {@link LockMetadataProvider} to be used to detect {@link LockModeType}s to be applied to
@@ -132,7 +132,7 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 	public void delete(T entity) {
 
 		Assert.notNull(entity, "The entity must not be null!");
-		em.remove(em.contains(entity) ? entity : em.merge(entity));
+		entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
 	}
 
 	/*
@@ -162,7 +162,7 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 			return;
 		}
 
-		applyAndBind(getQueryString(DELETE_ALL_QUERY_STRING, entityInformation.getEntityName()), entities, em)
+		applyAndBind(getQueryString(DELETE_ALL_QUERY_STRING, entityInformation.getEntityName()), entities, entityManager)
 				.executeUpdate();
 	}
 
@@ -184,7 +184,7 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 	 */
 	@Transactional
 	public void deleteAllInBatch() {
-		em.createQuery(getDeleteAllQueryString()).executeUpdate();
+		entityManager.createQuery(getDeleteAllQueryString()).executeUpdate();
 	}
 
 	/*
@@ -197,7 +197,7 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 	public T findOne(ID id) {
 
 		Assert.notNull(id, "The given id must not be null!");
-		return em.find(getDomainClass(), id);
+		return entityManager.find(getDomainClass(), id);
 	}
 
 	/*
@@ -215,7 +215,7 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 			String idAttributeName = entityInformation.getIdAttribute().getName();
 			String existsQuery = String.format(EXISTS_QUERY_STRING, placeholder, entityName, idAttributeName);
 
-			TypedQuery<Long> query = em.createQuery(existsQuery, Long.class);
+			TypedQuery<Long> query = entityManager.createQuery(existsQuery, Long.class);
 			query.setParameter("id", id);
 
 			return query.getSingleResult() == 1;
@@ -312,7 +312,7 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 	 * @see org.springframework.data.repository.CrudRepository#count()
 	 */
 	public long count() {
-		return em.createQuery(getCountQueryString(), Long.class).getSingleResult();
+		return entityManager.createQuery(getCountQueryString(), Long.class).getSingleResult();
 	}
 
 	/*
@@ -332,10 +332,10 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 	public <S extends T> S save(S entity) {
 
 		if (entityInformation.isNew(entity)) {
-			em.persist(entity);
+			entityManager.persist(entity);
 			return entity;
 		} else {
-			return em.merge(entity);
+			return entityManager.merge(entity);
 		}
 	}
 
@@ -379,7 +379,7 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 	@Transactional
 	public void flush() {
 
-		em.flush();
+		entityManager.flush();
 	}
 
 	/**
@@ -424,7 +424,7 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 	 */
 	private TypedQuery<T> getQuery(Specification<T> spec, Sort sort) {
 
-		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<T> query = builder.createQuery(getDomainClass());
 
 		Root<T> root = applySpecificationToCriteria(spec, query);
@@ -434,7 +434,7 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 			query.orderBy(toOrders(sort, root, builder));
 		}
 
-		return applyLockMode(em.createQuery(query));
+		return applyLockMode(entityManager.createQuery(query));
 	}
 
 	/**
@@ -445,13 +445,13 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 	 */
 	private TypedQuery<Long> getCountQuery(Specification<T> spec) {
 
-		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Long> query = builder.createQuery(Long.class);
 
 		Root<T> root = applySpecificationToCriteria(spec, query);
 		query.select(builder.count(root));
 
-		return em.createQuery(query);
+		return entityManager.createQuery(query);
 	}
 
 	/**
@@ -470,7 +470,7 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 			return root;
 		}
 
-		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		Predicate predicate = spec.toPredicate(root, query, builder);
 
 		if (predicate != null) {
@@ -484,6 +484,10 @@ public class CrudImpl<T, ID extends Serializable> implements Crud<T, ID> {
 
 		LockModeType type = lockMetadataProvider == null ? null : lockMetadataProvider.getLockModeType();
 		return type == null ? query : query.setLockMode(type);
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
 }

@@ -2,11 +2,14 @@ package com.knet51.ccweb.jpa.entities.blog;
 
 import javax.persistence.Entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
 
 @Entity
 public class BlogCategory extends AbstractEntity {
 
+	@NotEmpty
 	private String name;
 	
 	public BlogCategory() {
