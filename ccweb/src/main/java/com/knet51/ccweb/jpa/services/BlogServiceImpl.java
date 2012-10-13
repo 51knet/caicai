@@ -93,4 +93,9 @@ public class BlogServiceImpl implements BlogService {
 		blogCategoryDao.delete(blog_category_id);
 	}
 
+	@Override
+	public BlogCategory renameBlogCategory(BlogCategory blogCategory) {
+		return blogCategoryDao.save(blogCategory);
+	}
+
 }

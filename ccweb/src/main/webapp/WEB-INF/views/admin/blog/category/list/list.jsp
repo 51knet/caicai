@@ -23,7 +23,8 @@
 				<td>${blogCategory.id}</td>
 				<td><a href="<c:url value="/admin/blog/category/view/${blogCategory.id}"></c:url>"> ${blogCategory.name} </a></td>
 				<td width="200px" style="display: none;">
-					<form action="<c:url value="/admin/blog/category/rename"></c:url>" class="form-inline">
+					<form class="form_rename_category" method="post" action="<c:url value="/admin/blog/category/rename"></c:url>" class="form-inline">
+						<input type="hidden" name="id" value="${blogCategory.id}">
 						<input type="text" name="name" placeholder="" value="${blogCategory.name}">
 						<button type="submit" class="btn" value="确定">确定</button>
 						<a href="#" class="btn link-rename-cancel">取消</a>
@@ -104,6 +105,18 @@
 				});
 				return false;
 			});
+			$('.form_rename_category').on('submit', function(event){
+				event.preventDefault();
+				var category = $(this).closest('.form_rename_category').serializeObject();
+				console.log(category);
+				$.postJSON('<c:url value="/admin/blog/category/rename"/>', category, function(data) {
+					console.log(data);	
+					//TODO: I have a better solution later of course
+					window.location.href = window.location.href;
+				});
+				return false;
+			});
+			
 			$('.link-rename').on('click', function(event) {
 				event.preventDefault();
 				$(this).parent().hide(); // rename link table cell

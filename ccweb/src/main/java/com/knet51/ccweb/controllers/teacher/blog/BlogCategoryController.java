@@ -78,6 +78,18 @@ public class BlogCategoryController {
 		mv.addObject("category", blogCategory);
 		return mv;
 	}
+	
+	@RequestMapping(value= "/admin/blog/category/rename", method=RequestMethod.POST)
+	public ModelAndView rename_category(@RequestBody BlogCategoryRenameFrom form) {
+		//TDDO: check category exist or not		
+		ModelAndView mv = new ModelAndView("admin.blog.category.rename");
+		BlogCategory blogCategory = blogService.findBlogCategory(form.getId());
+		blogCategory.setName(form.getName());
+		blogCategory = blogService.renameBlogCategory(blogCategory);
+		mv.addObject("category", blogCategory);
+		return mv;
+	}
+	
 	@RequestMapping(value= "/admin/blog/category/new", method=RequestMethod.GET)
 	public String create_category() {
 		return "/admin/blog/create";

@@ -17,4 +17,5 @@ public interface BlogService {
 	BlogCategory createBlogCategory(BlogCategory blogCategory);
 	boolean isBlogCategoryExist(String name, Long teacher_id);
 	void deleteBlogCategory(Long blog_category_id);
+	BlogCategory renameBlogCategory(BlogCategory blogCategory);
 }
