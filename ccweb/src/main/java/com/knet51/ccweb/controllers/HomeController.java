@@ -4,7 +4,6 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -63,14 +62,8 @@ public class HomeController {
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
 	public String userHome(@PathVariable String id, HttpSession session) {
 		User user;
-//		boolean isHomePage = false;
 		try {
 			user = userService.findOne(Long.parseLong(id));
-//			UserInfo userInfo = (UserInfo) session.getAttribute("user");
-//			if (userInfo != null
-//					&& userInfo.getUser().getId() == Long.parseLong(id)) {
-//				isHomePage = true;
-//			}
 			String role = user.getRole();
 			if (role.equals("user")) {
 				// TODO: change to user front page;

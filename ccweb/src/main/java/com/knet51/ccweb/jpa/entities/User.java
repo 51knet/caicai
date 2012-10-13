@@ -1,8 +1,12 @@
 package com.knet51.ccweb.jpa.entities;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -36,6 +40,12 @@ public class User extends AbstractEntity {
 	private Integer level;
 	private String cell_phone;
 	private String fix_phone;
+	
+	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
+	private Set<Announcement> annotation = new HashSet<Announcement>();
+	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
+	private Set<Resource> resources = new HashSet<Resource>();
+	
 	private String photo_url;
 
 	public User(String email, String password,
@@ -165,6 +175,28 @@ public class User extends AbstractEntity {
 	public void setRandomUrl(String randomUrl) {
 		this.randomUrl = randomUrl;
 	}
+
+
+	public Set<Announcement> getAnnotation() {
+		return annotation;
+	}
+
+
+	public void setAnnotation(Set<Announcement> annotation) {
+		this.annotation = annotation;
+	}
+
+
+	public Set<Resource> getResources() {
+		return resources;
+	}
+
+
+	public void setResources(Set<Resource> resources) {
+		this.resources = resources;
+	}
+	
+	
 	public String getPhoto_url() {
 		return photo_url;
 	}
