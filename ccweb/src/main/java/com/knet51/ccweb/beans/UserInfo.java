@@ -15,7 +15,13 @@ public class UserInfo {
 		this.teacher = null;
 		this.student = null;
 	}
-
+	
+	public Long getId() {
+		return this.user.getId();
+	}
+	public String getEmail() {
+		return this.user.getEmail();
+	}
 	public User getUser() {
 		return user;
 	}

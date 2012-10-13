@@ -12,6 +12,17 @@
 	height: 400px;
 	
 }
+.item-panel {
+	border: 1px solid #DDD;
+	height: 120px;
+	
+}
+.subcontext{
+	border: 1px solid #DDD;
+	height: 100px;
+	text-align: center;
+	
+}
 .right-panel .ad {
 	border: 1px solid #DDD;
 	text-align: center;

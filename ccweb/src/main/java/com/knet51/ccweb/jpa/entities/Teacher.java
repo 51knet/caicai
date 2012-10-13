@@ -12,7 +12,8 @@ public class Teacher {
 	@Id
 	private Long id;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	//@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@PrimaryKeyJoinColumn(name = "id")
 	private User user;
 	

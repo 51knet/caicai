@@ -19,6 +19,8 @@
 		<javamail.version>1.4.5</javamail.version>
 		<org.apache.tiles-version>2.2.2</org.apache.tiles-version>
 		<hibernate.validator.version>4.3.0.Final</hibernate.validator.version>
+		<jackson-mapper-asl.version>1.8.1</jackson-mapper-asl.version>
+		<rome.version>1.0.0</rome.version>
 	</properties>
 	<dependencies>
 		<!-- tiles -->
@@ -212,7 +214,21 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate.validator.version}</version>
 		</dependency>
+		
+		<!-- Jackson JSON Processor -for REST-->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson-mapper-asl.version}</version>
+		</dependency>
 
+		<!-- Rome Atom+RSS -for REST-->
+		<dependency>
+			<groupId>net.java.dev.rome</groupId>
+			<artifactId>rome</artifactId>
+			<version>${rome.version}</version>
+		</dependency>
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>org.hamcrest</groupId>

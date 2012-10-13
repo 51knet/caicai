@@ -87,7 +87,7 @@ public class LoginController {
 				// cg.setCookiePath(request.getContextPath());
 				// cg.addCookie(response, email+"#"+psw);
 				// }
-				
+
 				User user = service.findByEmailAddress(email);
 				UserInfo userInfo = new UserInfo(user);
 				session.setAttribute("user", userInfo);
@@ -112,6 +112,11 @@ public class LoginController {
 				// MailSender.getInstance().SendConfirmMail(email, service);
 				// return "registerSuccessful";
 				// }
+				session.setAttribute("user", user);
+				session.setAttribute("userInfo", userInfo);
+
+				Long id = userInfo.getId();
+				return "redirect:/user/" + id;
 			} else {
 				return "redirect:home";
 			}

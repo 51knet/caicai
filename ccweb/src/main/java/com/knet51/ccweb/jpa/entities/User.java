@@ -46,6 +46,8 @@ public class User extends AbstractEntity {
 	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
 	private Set<Resource> resources = new HashSet<Resource>();
 	
+	private String photo_url;
+
 	public User(String email, String password,
 			String role, Integer level) {
 		this.email = email;
@@ -195,4 +197,10 @@ public class User extends AbstractEntity {
 	}
 	
 	
+	public String getPhoto_url() {
+		return photo_url;
+	}
+	public void setPhoto_url(String photo_url) {
+		this.photo_url = photo_url;
+	}
 }

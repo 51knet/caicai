@@ -8,6 +8,7 @@
 	<head>
 	<meta name="description" content=""/>
 	<meta name="author" content=""/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="icon" type="image/png" href="<c:url value="/resources/img/icon.png" />" />
       
 	<!--[if lt IE 9]>
@@ -55,12 +56,6 @@
 	<script type="text/javascript">
 	
 		$(document).ready(function() {
-			/*button apply: show input fields when click apply*/
-			$('#button_apply').bind('click',function(){
-				$(this).css('display','none');
-				$('#payment_details').css('display','block');
-			});
-			
 		});
 	</script>
 	</body>

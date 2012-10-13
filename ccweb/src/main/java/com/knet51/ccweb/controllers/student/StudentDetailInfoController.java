@@ -46,9 +46,8 @@ public class StudentDetailInfoController {
 			String role = detailInfoForm.getRole();
 			String college = detailInfoForm.getCollege();
 			
-			UserInfo userInfo = (UserInfo) session.getAttribute("user");
-			User user = userInfo.getUser();
-			user = userService.findOne(user.getId());
+			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+			User user = userService.findOne(userInfo.getId());
 			Student student = new Student(user);
 			student.setId(user.getId());
 			student.setRole(Integer.valueOf(role));
