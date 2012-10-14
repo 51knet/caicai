@@ -10,6 +10,7 @@
 
 	</definition>
 	<definition name="index-layout" template="/WEB-INF/layouts/jsp/index.jsp">
+		<put-attribute name="navbar" value="" />
 		<put-attribute name="left" value="/WEB-INF/layouts/jsp/index/login-panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/layouts/jsp/index/right-panel.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
@@ -17,6 +18,7 @@
 	<!-- admin-layout was 2 columns layout structure -->
 	<definition name="admin-layout" template="/WEB-INF/layouts/jsp/index.jsp">
 		<put-attribute name="title" value="My Blog" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/admin-layout/navbar.jsp" />
 		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/left.jsp" />
 		<put-attribute name="right" value="/WEB-INF/layouts/jsp/admin-layout/right.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />

@@ -38,7 +38,9 @@
 			<!--/span-->
 		</div>
 		<!--/row-->
-
+		<div class="row-fluid">
+			<tiles:insertAttribute name="navbar" />
+		</div>
 		<div class="row-fluid content-panel">
 			<div class="span3">
 				<div class="login-panel">
