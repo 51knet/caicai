@@ -6,7 +6,7 @@
 
 <h1>Select your type</h1>
 <div style="text-align: center;">
-	<form:form action="/ccweb/usertype" method="POST">
+	<form:form action="/ccweb/user/dispatcher" method="POST">
 		<input type="radio" name="userType" value="teacher">教师<br>
 		<input type="radio" name="userType" value="student">学生<br>
 		<!-- <input type="radio" name="userType" value="enterprise">企业<br> -->

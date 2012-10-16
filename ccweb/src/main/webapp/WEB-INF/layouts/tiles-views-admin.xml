@@ -6,20 +6,28 @@
 
 <tiles-definitions>
 
-	<definition name="userInfoPage" extends="homePage-layout">
+	<definition name="admin.user.basic" extends="homePage-layout">
+		<put-attribute name="title" value="Home Page" />
+		<put-attribute name="left"
+			value="/WEB-INF/views/user/home/user_item_panel.jsp"></put-attribute>
+		<put-attribute name="right"
+			value="/WEB-INF/views/user/home/userHomePage.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.details" extends="homePage-layout">
 		<put-attribute name="title" value="Detail Info" />
 		<put-attribute name="left"
-			value="/WEB-INF/views/user_home/user_item_panel.jsp"></put-attribute>
+			value="/WEB-INF/views/user/home/user_item_panel.jsp"></put-attribute>
 		<put-attribute name="right"
-			value="/WEB-INF/views/user_home/userInfoPage.jsp"></put-attribute>
+			value="/WEB-INF/views/user/home/userInfoPage.jsp"></put-attribute>
 	</definition>
 
-	<definition name="userHomePage" extends="homePage-layout">
+	<definition name="user.basic" extends="homePage-layout">
 		<put-attribute name="title" value="Welcom to user register" />
 		<put-attribute name="right"
-			value="/WEB-INF/views/user_home/userHomePage.jsp"></put-attribute>
+			value="/WEB-INF/views/user/home/userHomePage.jsp"></put-attribute>
 		<put-attribute name="left"
-			value="/WEB-INF/views/user_home/user_item_panel.jsp"></put-attribute>
+			value="/WEB-INF/views/user/home/user_item_panel.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>

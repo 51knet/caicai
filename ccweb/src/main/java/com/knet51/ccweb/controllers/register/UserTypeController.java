@@ -23,7 +23,7 @@ public class UserTypeController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/usertype", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/user/dispatcher", method = {RequestMethod.POST, RequestMethod.GET})
 	// public String userType(@RequestParam("userType") String userType,
 	// @RequestParam("skip") String skip, HttpSession session) {
 	public String userType(HttpServletRequest request, HttpSession session) {
@@ -31,7 +31,7 @@ public class UserTypeController {
 		String skip = request.getParameter("skip");
 		logger.info("### user type is " + userType + " ###");
 		if (skip != null && skip.equals("skip")) {
-			return "userInfoPage";
+			return "admin.user.basic";
 		} else {
 
 			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
@@ -41,15 +41,15 @@ public class UserTypeController {
 			if (userType.equals("teacher")) {
 				user.setRole("teacher");
 				userService.updateUser(user);
-				return "teacherInfoPage";
+				return "admin.teacher.basic";
 			} else if (userType.equals("student")) {
 				user.setRole("student");
 				userService.updateUser(user);
-				return "studentInfoPage";
+				return "home";
 			} else if (userType.equals("enterprise")) {
 				return "home";
 			} else {
-				return "userInfoPage";
+				return "admin.user.basic";
 			}
 		}
 	}

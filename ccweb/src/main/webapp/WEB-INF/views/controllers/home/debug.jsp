@@ -16,7 +16,7 @@
 <br/>
 <a href="<c:url value="/one2one/2/tongji"></c:url>" >create student (colleague tongji) based on user_id(2) </a>
 <br/>
-<a href="<c:url value="/usertype?userType=teacher"></c:url>">teacher admin page</a>
+<a href="<c:url value="/user/dispatcher?userType=teacher"></c:url>">teacher admin page</a>
 <br />
 <a href="<c:url value="/admin/blog/list" /> ">博客列表</a>
 <br />

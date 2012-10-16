@@ -7,7 +7,7 @@
 <h1>Welcome to user info page.</h1>
 <div style="text-align: center;">
 
-	<form:form action="userDetailInfo" method="post">
+	<form:form action="admin/user/details" method="post">
 	
 		<input type="text" name="name" placeholder="name">
 		<span class="help-block"><form:errors path="name"></form:errors></span>

@@ -40,7 +40,7 @@ public class ConfirmUserRegisterController {
 			
 			session.setAttribute("user", userInfo);
 			logger.info("Confirm user email successful.");
-			return "userTypePage";
+			return "user.dispatcher";
 		} else {
 			
 			logger.info("#### user confirm failed ####");

@@ -30,14 +30,14 @@ public class CommonRegisterController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/commonregister", method = RequestMethod.POST)
+	@RequestMapping(value = "/register/common", method = RequestMethod.POST)
 	public String commonRegister(@Valid CommonRegisterForm commonRegisterForm,
 			BindingResult validResult) {
 		logger.info("#### commonRegisterController ####");
 
 		if (validResult.hasErrors()) {
 			logger.info("commonRegisterForm Validation Failed " + validResult);
-			return "registerPage";
+			return "register";
 		} else {
 			String email = commonRegisterForm.getEmail();
 			String psw = commonRegisterForm.getPsw();
@@ -52,9 +52,9 @@ public class CommonRegisterController {
 				randomUrl += findUser.getId();
 				MailSender.getInstance().SendMail(email,
 						"http://localhost:8080/ccweb/mail/" + randomUrl);
-				return "registerSuccessful";
+				return "register.successful";
 			} else {
-				return "registerPage";
+				return "register";
 			}
 		}
 	}

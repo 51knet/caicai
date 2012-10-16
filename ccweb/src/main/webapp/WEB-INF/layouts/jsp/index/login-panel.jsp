@@ -20,6 +20,6 @@
 
 </form:form>
 <hr/>
-<a href="/ccweb/registerpage" class="btn">注册</a>
+<a href="/ccweb/register" class="btn">注册</a>
 
 </div>
