@@ -37,9 +37,15 @@
 	<form:form action="teacherResouAddDetail" method="post" enctype="multipart/form-data">  
 		
 		资源描述：<input type="text" name="desc" placeholder="Desc" />&nbsp;<span style="color:red; font-size:14px;">多文件上传添加统一描述</span>
-		<span class="help-block"><form:errors path="name"></form:errors></span>	
+		<span class="help-block"><form:errors path="name"></form:errors></span>	<br>
+		资源类型：<select name="type">
+			<c:forEach items="${type}" var="l">
+				<option  value="${l.id}">${l.typeName}</option>
+			</c:forEach>
+		</select>
+		<br>
 		上传资源：<input type="file" name="file" />&nbsp;&nbsp;<input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span>
-		${error}
+		
 		<br>
 		<div id="container" style="margin-left:70px;"></div>
 		<br>

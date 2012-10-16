@@ -9,39 +9,53 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.jpa.entities.Resource;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.resource.Resource;
+import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 import com.knet51.ccweb.jpa.services.ResourceService;
+import com.knet51.ccweb.jpa.services.ResourceTypeService;
 
 @Controller
 public class TeacherResouInfoPageController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TeacherResouInfoPageController.class);
 	@Autowired
-	private ResourceService service;
+	private ResourceService resourceService;
+	
+	@Autowired
+	private ResourceTypeService resourceTypeService;
 	
 	@RequestMapping(value="/teacherResou")
-	public String teacherResouInfo(HttpSession session,Model m ){
+	public String teacherResouInfo(HttpSession session,Model model ){
 		logger.info("#####Into TeacherResouInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		User user = userInfo.getUser();
-		List<Resource> list = service.listAllByUid(user.getId());
-		m.addAttribute("list", list);
+		List<Resource> list = resourceService.listAllByUid(user.getId());
+		model.addAttribute("list", list);
 		return "teacherResouPage";
 	}
 	@RequestMapping(value="/teacherResouAdd")
-	public String teacherResouAdd(HttpSession session,Model m ){
+	public String teacherResouAdd(HttpSession session,Model model ){
 		logger.info("#####Into TeacherResouInfoAdd#####");
+		List<ResourceType> listType = resourceTypeService.getAllType();
+		model.addAttribute("type", listType);
 		return "teacherResouAddPage";
 	}
-	//���񳬳��쳣֮����ת��view
-	/*@ExceptionHandler(Exception.class)
-	public String handleException(Exception e,HttpServletRequest request ){
-		logger.info("#### Into MaxUploadExceptionHandler ####");
-		if(e instanceof org.springframework.web.multipart.MaxUploadSizeExceededException){
-			request.setAttribute("error", "�ļ���������");
-		}
-		return "teacherResouAddPage";
-	}*/
+	
+	@RequestMapping(value="/teacherResouType")
+	public String teacherResouType(Model model){
+		logger.info("#### Into TeacherResouType ####");
+		List<ResourceType> list = resourceTypeService.getAllType();
+		model.addAttribute("list", list);
+		return "teacherResouTypePage";
+	}
+	
+	
+	@RequestMapping(value="/teacherResouTypeAdd")
+	public String teacherResouTypeAdd(){
+		
+		return "teacherResouTypeAddPage";
+	}
+
 
 }

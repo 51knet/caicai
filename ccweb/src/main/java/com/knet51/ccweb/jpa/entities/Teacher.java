@@ -1,9 +1,19 @@
 package com.knet51.ccweb.jpa.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+
+import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
 
 @Entity
 public class Teacher {
@@ -15,6 +25,18 @@ public class Teacher {
 	@OneToOne
 	@PrimaryKeyJoinColumn(name = "id")
 	private User user;
+	
+	@OneToMany(mappedBy="teacher",fetch=FetchType.LAZY)
+	private Set<TeacherProject> project = new HashSet<TeacherProject>();
+	
+	@OneToMany(mappedBy="teacher",fetch=FetchType.LAZY)
+	private Set<TeacherThesis> thesis = new HashSet<TeacherThesis>();
+	
+	@OneToMany(mappedBy="teacher",fetch=FetchType.LAZY)
+	private Set<TeacherPatent> patent = new HashSet<TeacherPatent>();
+	
+	@OneToMany(mappedBy="teacher",fetch=FetchType.LAZY)
+	private Set<TeacherHonor> Honor = new HashSet<TeacherHonor>();
 	
 	private Integer role;
 	private String title;

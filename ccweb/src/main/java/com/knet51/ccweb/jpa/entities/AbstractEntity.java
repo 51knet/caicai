@@ -22,10 +22,7 @@ public class AbstractEntity {
 	 * 
 	 * @return the id
 	 */
-	public Long getId() {
-		return id;
-	}
-
+	
 	/* 
 	 * (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -44,6 +41,14 @@ public class AbstractEntity {
 		AbstractEntity that = (AbstractEntity) obj;
 
 		return this.id.equals(that.getId());
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	/* 

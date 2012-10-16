@@ -3,11 +3,8 @@ package com.knet51.ccweb.controllers.teacher.announcement;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
@@ -44,7 +40,7 @@ public class TeacherAnnoDetailInfoController {
 		
 		if(validResult.hasErrors()){
 			logger.info("annoDetailInfoForm Validation Failed " + validResult);
-			return "teacherAnnoPage";
+			return "redirect:teacherAnnoPage";
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
 			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
@@ -61,9 +57,8 @@ public class TeacherAnnoDetailInfoController {
 			announcement.setDate(date);  
 			annoService.createAnnouncement(announcement, user);
 			//System.out.println(announcement.getDate());
-			List<Announcement> list = annoService.findAllByUid(user.getId());
-			m.addAttribute("list", list);
-			return "teacherHomePage";
+			
+			return "redirect:/teacherAnno";
 		}
 	}
 	
@@ -80,11 +75,7 @@ public class TeacherAnnoDetailInfoController {
 	@RequestMapping(value="/teacherAnnoDele")
 	public String teacherAnnoDele(@RequestParam("id") Long id,HttpSession session, Model m){
 		annoService.deleAnnouncementById(id);
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-		User user = userInfo.getUser();
-		List<Announcement> list = annoService.findAllByUid(user.getId());
-		m.addAttribute("list", list);
-		return "teacherHomePage";
+		return "redirect:/teacherAnno";
 	}
 	
 	@Transactional
@@ -96,8 +87,6 @@ public class TeacherAnnoDetailInfoController {
 			m.addAttribute("ann", ann);
 			return "detailAnnInfo";
 		}else{	
-			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-			User user = userInfo.getUser();
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();
 			//System.out.println("------"+title+"-----"+content+"------");
@@ -108,9 +97,7 @@ public class TeacherAnnoDetailInfoController {
 			String date = format.format(new Date());
 			announcement.setDate(date);  
 			annoService.updateAnnouncement(announcement);
-			List<Announcement> list = annoService.findAllByUid(user.getId());
-			m.addAttribute("list", list);
-			return "teacherHomePage";
+			return "redirect:/teacherAnno";
 		}
 	}
 }

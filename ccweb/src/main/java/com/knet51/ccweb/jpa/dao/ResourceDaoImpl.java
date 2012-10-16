@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import com.knet51.ccweb.jpa.entities.Resource;
+import com.knet51.ccweb.jpa.entities.resource.Resource;
 
 @Repository("resourceDao")
 public class ResourceDaoImpl implements ResourceDao {
@@ -21,15 +21,20 @@ public class ResourceDaoImpl implements ResourceDao {
 	}
 
 	@Override
-	public void deleteById(Long id) {
-		Resource resource = em.find(Resource.class, id);
-		em.remove(resource);
+	public List<Resource> listAllByUid(Long uId) {
+		List<Resource> list = em.createQuery("from Resource where status=1 and user_id="+uId, Resource.class).getResultList();
+		return list;
 	}
 
 	@Override
-	public List<Resource> listAllByUid(Long uId) {
-		List<Resource> list = em.createQuery("from Resource where user_id="+uId, Resource.class).getResultList();
-		return list;
+	public void delete(Resource resource) {
+		em.merge(resource);
+	}
+
+	@Override
+	public Resource getOneById(Long Id) {
+		Resource resource = em.find(Resource.class, Id);
+		return resource;
 	}
 
 }

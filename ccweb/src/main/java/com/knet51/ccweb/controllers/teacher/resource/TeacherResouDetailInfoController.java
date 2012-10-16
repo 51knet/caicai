@@ -4,21 +4,27 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.jpa.entities.Resource;
+import com.knet51.ccweb.controllers.student.StudentDetailInfoForm;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.resource.Resource;
+import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 import com.knet51.ccweb.jpa.services.ResourceService;
+import com.knet51.ccweb.jpa.services.ResourceTypeService;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 
 @Controller
@@ -26,34 +32,39 @@ public class TeacherResouDetailInfoController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TeacherResouInfoPageController.class);
 	@Autowired
-	private ResourceService service;
+	private ResourceService resourceService;
+	@Autowired
+	private ResourceTypeService resourceTypeService;
 	
 	@Transactional
 	@RequestMapping(value="/teacherResouAddDetail",method=RequestMethod.POST)
-	public String teacherResouInfo(HttpSession session,Model m,@RequestParam("desc") String desc, MultipartHttpServletRequest request) throws Exception{
-		logger.info("#####Into TeacherResouInfoPageController#####");
+	public String teacherResouInfo(HttpSession session,Model model,@RequestParam("desc") String desc,
+			@RequestParam("type") Long value, MultipartHttpServletRequest request) throws Exception{
+		logger.info("#####Into TeacherResouInfoAddPageController#####");
 		List<MultipartFile> files = request.getFiles("file");
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		User user = userInfo.getUser();
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				Resource resource = new Resource();
-				logger.info("�ϴ��ļ���"+files.get(i).getOriginalFilename()); 
+				//ResourceType resourceType = new ResourceType();
+				logger.info("上传文件名称"+files.get(i).getOriginalFilename()); 
 				String fileName = files.get(i).getOriginalFilename();
 				String realPath = session.getServletContext().getRealPath("/WEB-INF/temp/");
 				resource.setDescription(desc);
 				resource.setName(fileName);
+				ResourceType resourceType = resourceTypeService.findOneById(value); 
+				resource.setResourceType(resourceType);
+				resource.setStatus(1);
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String date = format.format(new Date());
 				resource.setDate(date);
 				String savePath = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
 				resource.setSavePath(savePath);
-				service.create(resource, user);
+				resourceService.create(resource, user);
 			}
 		}
-		List<Resource> list = service.listAllByUid(user.getId());
-		m.addAttribute("list", list);
-		return "teacherResouPage";
+		return "redirect:/teacherResou";
 	}
 
 //	@Override
@@ -70,6 +81,44 @@ public class TeacherResouDetailInfoController {
 //		return new ModelAndView("teacherResouAddDetail", (Map) model); 
 //		
 //	}
+	
+	@Transactional
+	@RequestMapping(value="/teacherResouDele")
+	public String teacherResouDele(HttpSession session,Model model,@RequestParam("id") Long id) throws Exception{
+		logger.info("#####Into TeacherResouInfoDelePageController#####");
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		User user = userInfo.getUser();
+		Resource resource = resourceService.findOneById(id);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String date = format.format(new Date());
+		resource.setDate(date);
+		resourceService.delete(resource, 2);
+		return "redirect:/teacherResou";
+	}
+	
+	@Transactional
+	@RequestMapping(value="/teacherResouTypeAddDetail",  method = RequestMethod.POST)
+	public String teacherResouTypeAdd(@Valid TeacherResouTypeInfoForm teacherResouTypeInfo,
+			BindingResult validResult, HttpSession session,Model model){
+		if (validResult.hasErrors()) {
+			logger.info("detailInfoForm Validation Failed " + validResult);
+			return "teacherResouTypeAddPage";
+		} else {
+			String typeName = teacherResouTypeInfo.getTypeName();
+			ResourceType resourceType = new ResourceType();
+			resourceType.setTypeName(typeName);
+			resourceTypeService.save(resourceType);
+			return "redirect:/teacherResouType";
+		}
+	}
+	
+	@Transactional
+	@RequestMapping(value="/teacherResouTypeDele")
+	public String teacherResouTypeDele(HttpSession session,Model model,@RequestParam("id") Long id) throws Exception{
+		logger.info("#####Into TeacherResouTypeDelePageController#####");
+		resourceTypeService.deleteById(id);
+		return "redirect:/teacherResouType";
+	}
 	
 
 }

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.dao.ResourceDao;
-import com.knet51.ccweb.jpa.entities.Resource;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.resource.Resource;
 
 @Transactional
 @Service("resourceService")
@@ -24,13 +24,21 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
-	public void deleteById(Long id) {
-		resourceDao.deleteById(id);
+	public List<Resource> listAllByUid(Long uId) {
+		return resourceDao.listAllByUid(uId);
 	}
 
 	@Override
-	public List<Resource> listAllByUid(Long uId) {
-		return resourceDao.listAllByUid(uId);
+	public void delete(Resource resource, Integer status) {
+		resource.setStatus(status);
+		resourceDao.delete(resource);
+		
+	}
+
+	@Override
+	public Resource findOneById(Long Id) {
+		// TODO Auto-generated method stub
+		return resourceDao.getOneById(Id);
 	}
 
 }

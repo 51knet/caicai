@@ -1,7 +1,10 @@
-package com.knet51.ccweb.jpa.entities;
+package com.knet51.ccweb.jpa.entities.resource;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+
+import com.knet51.ccweb.jpa.entities.AbstractEntity;
+import com.knet51.ccweb.jpa.entities.User;
 
 @Entity
 public class Resource  extends AbstractEntity{
@@ -10,8 +13,12 @@ public class Resource  extends AbstractEntity{
 	private String savePath;
 	private String description;
 	private String date;
+	private Integer status;//1 表示未删除；2表示已删除
 	@ManyToOne
 	private User user;
+	
+	@ManyToOne
+	private ResourceType resourceType;
 
 	public String getName() {
 		return name;
@@ -46,12 +53,29 @@ public class Resource  extends AbstractEntity{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	
+	
+	public ResourceType getResourceType() {
+		return resourceType;
+	}
+	public void setResourceType(ResourceType resourceType) {
+		this.resourceType = resourceType;
+	}
 	public Resource(String name, String savePath, String description,
-			String date) {
+			String date, Integer status) {
 		super();
 		this.name = name;
 		this.savePath = savePath;
 		this.description = description;
 		this.date = date;
+		this.status = status;
+		
 	}
+
 }

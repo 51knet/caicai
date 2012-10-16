@@ -3,11 +3,12 @@ package com.knet51.ccweb.jpa.entities;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.knet51.ccweb.jpa.entities.resource.Resource;
 
 /**
  * A User.
@@ -48,7 +49,6 @@ public class User extends AbstractEntity {
 	private Set<Resource> resources = new HashSet<Resource>();
 	
 	private String photo_url;
-
 	public User(String email, String password,
 			String role, Integer level) {
 		this.email = email;

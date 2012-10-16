@@ -15,4 +15,6 @@
 	<hr />
 	<a href="teacherInfoPage" class="btn">账号信息</a>
 	<hr />
+	<a href="teacherAchievement" class="btn">科研成果</a>
+	<hr />
 </div>
