@@ -22,6 +22,11 @@ public class UserInfo {
 	public String getEmail() {
 		return this.user.getEmail();
 	}
+	
+	public String getRole() {
+		return this.user.getRole();
+	}
+	
 	public User getUser() {
 		return user;
 	}
@@ -45,7 +50,5 @@ public class UserInfo {
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-	
-	
 
 }

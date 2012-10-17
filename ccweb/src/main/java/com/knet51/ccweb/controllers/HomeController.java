@@ -43,9 +43,15 @@ public class HomeController {
 
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 
-		if (userInfo != null && !(userInfo.getUser().getEmail().equals(""))) {
-			String id = userInfo.getUser().getId().toString();
+		if (userInfo != null && userInfo.getRole().equals("user")) {
+			String id = userInfo.getId().toString();
 			return "redirect:/user/" + id;
+		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
+			String id = userInfo.getId().toString();
+			return "redirect:/teacher/" + id;
+		} else if (userInfo != null && userInfo.getRole().equals("student")) {
+			String id = userInfo.getId().toString();
+			return "redirect:/student/" + id;
 		}
 
 		Date date = new Date();
@@ -59,28 +65,44 @@ public class HomeController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-	public String userHome(@PathVariable String id, HttpSession session) {
+	@RequestMapping(value = "/user/{id}")
+	public String userFront(@PathVariable String id, HttpSession session, Model model) {
 		User user;
 		try {
 			user = userService.findOne(Long.parseLong(id));
+			model.addAttribute("user", user);
 			String role = user.getRole();
 			if (role.equals("user")) {
-				// TODO: change to user front page;
 				return "user.basic";
 			} else if (role.equals("teacher")) {
-				return "teacher.basic";
-			} else if (role.equals("student")) {
-				// TODO: change to student front page;
-				return "home";
+				return "redirect:/teacher/" + id;
 			} else {
-				return "home";
+				return "404";
+			}
+		} catch (Exception e) {
+			return "404";
+		}
+
+	}
+
+	@RequestMapping(value = "/teacher/{id}")
+	public String teacherFront(@PathVariable String id, HttpSession session, Model model) {
+		User user;
+		try {
+			user = userService.findOne(Long.parseLong(id));
+			model.addAttribute("user", user);
+			String role = user.getRole();
+			if (role.equals("teacher")) {
+				return "teacher.basic";
+			} else if (role.equals("user")) {
+				return "redirect:/user/" + id;
+			} else {
+				return "404";
 			}
 		} catch (Exception e) {
 			// TODO: refining exception later;
 			return "404";
 		}
-
 	}
 
 }

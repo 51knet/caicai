@@ -5,12 +5,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div style="text-align: center;">
-	this is teacher photo page.
-	<%
-	
-	
-	
-	
-	
-	%>
+	${user.photo_url}<br>
 </div>

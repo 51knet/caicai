@@ -45,7 +45,7 @@ public class UserDetailInfoController {
 		if (validResult.hasErrors()) {
 			logger.info("== detailInfoForm Validation Failed " + validResult
 					+ " ==");
-			return "admin.user.basic";
+			return "admin.user.details";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
 
@@ -61,7 +61,7 @@ public class UserDetailInfoController {
 			
 			session.setAttribute("user", userInfo);
 			
-			return "admin.user.basic";
+			return "admin.user.details";
 		}
 	}
 }
