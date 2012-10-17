@@ -45,7 +45,7 @@ public class HomeController {
 
 		if (userInfo != null && !(userInfo.getUser().getEmail().equals(""))) {
 			String id = userInfo.getUser().getId().toString();
-			return "forward:/" + id;
+			return "redirect:/user/" + id;
 		}
 
 		Date date = new Date();
@@ -67,12 +67,12 @@ public class HomeController {
 			String role = user.getRole();
 			if (role.equals("user")) {
 				// TODO: change to user front page;
-				return "userHomePage";
+				return "user.basic";
 			} else if (role.equals("teacher")) {
-				return "teacherFrontPage";
+				return "teacher.basic";
 			} else if (role.equals("student")) {
 				// TODO: change to student front page;
-				return "studentHomePage";
+				return "home";
 			} else {
 				return "home";
 			}

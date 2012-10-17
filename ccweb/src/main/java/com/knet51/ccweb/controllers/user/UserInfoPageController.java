@@ -15,10 +15,10 @@ public class UserInfoPageController {
 			.getLogger(UserInfoPageController.class);
 
 
-	@RequestMapping(value = "/userInfoPage")
+	@RequestMapping(value = "/admin/user/basic")
 	public String RegisterPage() {
 		logger.info("#### into UserInfoController ####");
 
-			return "userInfoPage";
+			return "admin.user.basic";
 	}
 }

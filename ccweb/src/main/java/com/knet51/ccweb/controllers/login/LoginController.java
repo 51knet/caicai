@@ -34,38 +34,6 @@ public class LoginController {
 	@Autowired
 	private AnnouncementService annoService;
 
-	// /**
-	// * Simply selects the home view to render by returning its name.
-	// */
-	// @RequestMapping(value = "/signin", method = RequestMethod.GET)
-	// public String signin(Locale locale, Model model,
-	// @ModelAttribute LoginForm loginForm, BindingResult result) {
-	// logger.info("Welcome home! the client locale is " + locale.toString());
-	//
-	// new LoginFormValidator().validate(loginForm, result);
-	// if (result.hasErrors()) {
-	// logger.info("LoginForm Validation Failed " + result);
-	// return "home";
-	// } else {
-	// String email = loginForm.getEmail();
-	// String psw = loginForm.getPassword();
-	// boolean succeed = service.login(email, psw);
-	// logger.info("Login result " + succeed);
-	// if (succeed) {
-	// boolean activate;
-	// activate = service.activate(email);
-	// if (activate) {
-	// return "redirect:home";
-	// } else {
-	// MailSender.getInstance().SendConfirmMail(email, service);
-	// return "registerSuccessful";
-	// }
-	// } else {
-	// return "redirect:home";
-	// }
-	// }
-	// }
-
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public String signin(@Valid LoginForm loginForm, BindingResult result,
 			HttpSession session,HttpServletRequest request) {
@@ -75,33 +43,25 @@ public class LoginController {
 		} else {
 			String email = loginForm.getEmail();
 			String psw = loginForm.getPassword();
-			// boolean rememberMe = loginForm.getRemeberMe();
 
 			boolean succeed = service.login(email, psw);
 			logger.info("Login result " + succeed);
 			if (succeed) {
-				// if(rememberMe) {
-				// CookieGenerator cg = new CookieGenerator();
-				// cg.setCookieName("userInfo");
-				// cg.setCookieMaxAge(14*24*3600);
-				// cg.setCookiePath(request.getContextPath());
-				// cg.addCookie(response, email+"#"+psw);
-				// }
 
 				User user = service.findByEmailAddress(email);
 				UserInfo userInfo = new UserInfo(user);
 				session.setAttribute("userInfo", userInfo);
 				String role = user.getRole();
 				if (role.equals("user")) {
-					return "userHomePage";
+					return "admin.user.basic";
 				} else if (role.equals("teacher")) {
 					List<Announcement> list = annoService.findAllByUid(user.getId());
 					request.setAttribute("list", list);
-					return "teacherHomePage";
+					return "admin.teacher.basic";
 				} else if (role.equals("student")) {
-					return "studentHomePage";
+					return "home";
 				} else {
-					return "redirect:home";
+					return "home";
 				}
 			} else {
 				return "home";

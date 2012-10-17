@@ -15,10 +15,10 @@ public class RegisterPageController {
 			.getLogger(RegisterPageController.class);
 
 
-	@RequestMapping(value = "/registerpage")
+	@RequestMapping(value = "/register")
 	public String RegisterPage() {
 		logger.info("#### into RegisterPageController ####");
 
-			return "registerPage";
+			return "register";
 	}
 }

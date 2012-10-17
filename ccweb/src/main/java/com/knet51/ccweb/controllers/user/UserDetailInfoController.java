@@ -29,7 +29,7 @@ public class UserDetailInfoController {
 	private UserService userService;
 
 	@Transactional
-	@RequestMapping(value = "/userDetailInfo", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/user/details", method = RequestMethod.POST)
 	public String detailInfo(@Valid UserDetailInfoForm detailInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### DetailInfoController ####");
@@ -39,13 +39,13 @@ public class UserDetailInfoController {
 						.getPromote().equals("promote")) + " ####");
 		if (detailInfoForm.getPromote() != null
 				&& detailInfoForm.getPromote().equals("promote")) {
-			return "userTypePage";
+			return "user.dispatcher";
 		}
 
 		if (validResult.hasErrors()) {
 			logger.info("== detailInfoForm Validation Failed " + validResult
 					+ " ==");
-			return "userInfoPage";
+			return "admin.user.basic";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
 
@@ -61,7 +61,7 @@ public class UserDetailInfoController {
 			
 			session.setAttribute("user", userInfo);
 			
-			return "userInfoPage";
+			return "admin.user.basic";
 		}
 	}
 }

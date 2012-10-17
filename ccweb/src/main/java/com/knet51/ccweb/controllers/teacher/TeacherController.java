@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Teacher;
@@ -33,14 +32,14 @@ public class TeacherController {
 	private UserService userService;
 
 	@Transactional
-	@RequestMapping(value = "/teacherDetailInfo", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/teacher/details")
 	public String detailInfo(@Valid TeacherDetailInfoForm detailInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### DetailInfoController ####");
 
 		if (validResult.hasErrors()) {
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "teacherInfoPage";
+			return "admin.teacher.details";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
 			String role = detailInfoForm.getRole();
@@ -59,14 +58,7 @@ public class TeacherController {
 			
 			session.setAttribute("user", userInfo);
 
-			return "teacherInfoPage";
+			return "admin.teacher.details";
 		}
-	}
-	
-	@RequestMapping(value = "/teacherInfoPage")
-	public String RegisterPage() {
-		logger.info("#### into TeacherInfoController ####");
-
-			return "teacherInfoPage";
 	}
 }

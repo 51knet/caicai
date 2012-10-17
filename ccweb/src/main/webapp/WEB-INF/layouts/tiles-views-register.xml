@@ -6,18 +6,18 @@
 
 <tiles-definitions>
 
-	<definition name="registerPage" extends="registerStandard-layout">
+	<definition name="register" extends="registerStandard-layout">
 		<put-attribute name="title" value="Welcom to register" />
-		<put-attribute name="body" value="/WEB-INF/views/registerPage.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/register/register.jsp"></put-attribute>
 	</definition>
 
-	<definition name="registerSuccessful" extends="registerStandard-layout">
+	<definition name="register.successful" extends="registerStandard-layout">
 		<put-attribute name="title" value="Register Successful" />
 		<put-attribute name="body"
-			value="/WEB-INF/views/registerSuccessful.jsp"></put-attribute>
+			value="/WEB-INF/views/register/registerSuccessful.jsp"></put-attribute>
 	</definition>
 
-	<definition name="userTypePage" extends="registerStandard-layout">
+	<definition name="user.dispatcher" extends="registerStandard-layout">
 		<put-attribute name="title" value="Register Detail" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/userTypePage.jsp"></put-attribute>

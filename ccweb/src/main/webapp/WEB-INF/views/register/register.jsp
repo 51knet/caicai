@@ -7,7 +7,7 @@
 <h1>Welcome to register page.</h1>
 <div style="text-align: center;">
 
-	<form:form action="commonregister" modelAttribute="commonRegisterForm" method="post">
+	<form:form action="register/common" modelAttribute="commonRegisterForm" method="post">
 
 		<input type="text" name="email" placeholder="邮箱地址">
 		<span class="help-block"><form:errors path="email"></form:errors></span>
