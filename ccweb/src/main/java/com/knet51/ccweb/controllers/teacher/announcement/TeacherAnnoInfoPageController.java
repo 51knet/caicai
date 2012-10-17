@@ -19,7 +19,7 @@ public class TeacherAnnoInfoPageController {
 	@Autowired
 	private AnnouncementService annoService;
 	
-	@RequestMapping(value="/teacherAnno")
+	@RequestMapping(value="/admin/teacher/announcement/detail")
 	public String teacherAnno(HttpSession session,Model m){
 		logger.info("#### into TeacherAnno ####");
 			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
@@ -29,9 +29,10 @@ public class TeacherAnnoInfoPageController {
 			return "admin.teacher.basic";
 			//return "teacherAnnoPage";
 	}
-	@RequestMapping(value="/teacherAnnoAdd")
+	@RequestMapping(value="/admin/teacher/announcement/add")
 	public String teacherAnnoAdd(){
 		logger.info("#### into TeacherAnnoAddPage ####");
-		return "teacherAnnoPage";
+		//return "teacherAnnoPage";
+		return "admin.teacher.annoAddPage";
 	}
 }

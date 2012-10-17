@@ -9,7 +9,7 @@
 	${user.user["email"] }<br>
 <div style="text-align:center;">
 <div style="width:560px; text-align:left;">
-	<form:form action="teacherResouTypeAddDetail" method="post">  
+	<form:form action="addInfo" method="post">  
 		类别名称：<input type="text" name="typeName" placeholder="TypeName" />&nbsp;<span style="color:red; font-size:14px;">类别名称不能为空！</span>
 		<span class="help-block"><form:errors path="typeName"></form:errors></span>	<br>
 		<label style="clear: right;"></label>

@@ -9,7 +9,7 @@
 	${user.user["email"] }<br>
 <div style="text-align: center;">
 
-	<form:form action="teacherDetailAnno" method="post">
+	<form:form action='addAnnoInfo' method="post">
 		
 		公告标题：<input type="text" name="title" placeholder="Title">
 		<span class="help-block"><form:errors path="title"></form:errors></span>

@@ -9,7 +9,7 @@
 	${sessionScope.userInfo.user["email"] }<br>
 <div style="text-align: center;">
 
-	<form:form action="teacherAnnoUpdate" method="post">
+	<form:form action='updateAnno'  method="post">
 		<input type="hidden" name="id" value="${ann.id }" />
 		公告标题：<input type="text" name="title" value="${ann.title }" placeholder="Title">
 		<span class="help-block"><form:errors path="title"></form:errors></span>

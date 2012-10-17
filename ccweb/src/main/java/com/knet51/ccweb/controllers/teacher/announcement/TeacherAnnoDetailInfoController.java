@@ -33,14 +33,14 @@ public class TeacherAnnoDetailInfoController {
 	private UserService userService;
 	
 	@Transactional
-	@RequestMapping(value="/teacherDetailAnno", method = RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/announcement/addAnnoInfo", method = RequestMethod.POST)
 	public String allAnnoInfo(@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm,
 			BindingResult validResult, HttpSession session,Model m){
 		logger.info("####  TeacherAnnoDetailController  ####");
 		
 		if(validResult.hasErrors()){
 			logger.info("annoDetailInfoForm Validation Failed " + validResult);
-			return "redirect:teacherAnnoPage";
+			return "redirect:/admin/teacher/announcement/add";
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
 			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
@@ -58,34 +58,32 @@ public class TeacherAnnoDetailInfoController {
 			annoService.createAnnouncement(announcement, user);
 			//System.out.println(announcement.getDate());
 			
-			return "redirect:/teacherAnno";
+			return "redirect:/admin/teacher/announcement/detail";
 		}
 	}
 	
 	
-	@RequestMapping(value="/teacherAnnoDetail")
+	@RequestMapping(value="/admin/teacher/announcement/detailOne")
 	public String detailAnnoInfo(@RequestParam("id") Long id, Model m){
 		//System.out.println(id);
 		Announcement ann = annoService.findOneById(id);
 		m.addAttribute("ann", ann);
-		return "detailAnnInfo";
+		return "admin.teacher.detailAnnInfo";
 	}
 	
 	
-	@RequestMapping(value="/teacherAnnoDele")
+	@RequestMapping(value="/admin/teacher/announcement/deleAnno")
 	public String teacherAnnoDele(@RequestParam("id") Long id,HttpSession session, Model m){
 		annoService.deleAnnouncementById(id);
-		return "redirect:/teacherAnno";
+		return "redirect:/admin/teacher/announcement/detail";
 	}
 	
 	@Transactional
-	@RequestMapping(value="/teacherAnnoUpdate" , method = RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/announcement/updateAnno" , method = RequestMethod.POST)
 	public String teacherAnnoUpdate(@RequestParam("id") Long id,@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm,
 			BindingResult validResult, HttpSession session,Model m){
 		if(validResult.hasErrors()){
-			Announcement ann = annoService.findOneById(id);
-			m.addAttribute("ann", ann);
-			return "detailAnnInfo";
+			return "/admin/teacher/announcement/detailOne";
 		}else{	
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();
@@ -97,7 +95,7 @@ public class TeacherAnnoDetailInfoController {
 			String date = format.format(new Date());
 			announcement.setDate(date);  
 			annoService.updateAnnouncement(announcement);
-			return "redirect:/teacherAnno";
+			return "redirect:/admin/teacher/announcement/detail";
 		}
 	}
 }

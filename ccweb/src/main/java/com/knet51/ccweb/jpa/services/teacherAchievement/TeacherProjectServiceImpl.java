@@ -1,12 +1,11 @@
 package com.knet51.ccweb.jpa.services.teacherAchievement;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.knet51.ccweb.jpa.dao.teacherAchievement.TeacherProjectDao;
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
 @Transactional
 @Service("teacherProjectService")
@@ -16,7 +15,8 @@ public class TeacherProjectServiceImpl implements TeacherProjectService {
 	private TeacherProjectDao projectDao; 
 	
 	@Override
-	public TeacherProject save(TeacherProject teacherProject) {
+	public TeacherProject save(TeacherProject teacherProject, Teacher teacher) {
+		teacherProject.setTeacher(teacher);
 		return projectDao.save(teacherProject);
 	}
 

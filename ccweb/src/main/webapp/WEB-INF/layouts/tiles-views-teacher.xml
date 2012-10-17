@@ -42,7 +42,7 @@
 			value="/WEB-INF/views/teacher/front/teacherFrontContext.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="teacherAnnoPage" extends="homePage-layout">
+	<definition name="admin.teacher.annoAddPage" extends="homePage-layout">
 		<put-attribute name="title" value="Welcom to teacher register" />
 		<put-attribute name="right"
 			value="/WEB-INF/views/teacher/home/teacherAnnoAddPage.jsp"></put-attribute>
@@ -50,19 +50,19 @@
 			value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="detailAnnInfo" extends="homePage-layout">
+	<definition name="admin.teacher.detailAnnInfo" extends="homePage-layout">
 		<put-attribute name="title" value="Welcom to teacher Annocement" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherAnnoDetailPage.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
 	</definition>
 	
-		<definition name="teacherResouPage" extends="homePage-layout">
+	<definition name="admin.teacher.resource.list" extends="homePage-layout">
 		<put-attribute name="title" value="Welcom to teacher Resource" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherResouPage.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="teacherResouAddPage" extends="homePage-layout">
+	<definition name="admin.teacher.resource.add" extends="homePage-layout">
 		<put-attribute name="title" value="Welcom to teacher Resource" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherResouAddPage.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
@@ -74,19 +74,19 @@
 		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="teacherResouTypePage" extends="homePage-layout">
+	<definition name="admin.teacher.resource.type" extends="homePage-layout">
 		<put-attribute name="title" value="Welcom to teacher Resource" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherResouTypePage.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="teacherResouTypeAddPage" extends="homePage-layout">
+	<definition name="admin.teacher.resource.type.add" extends="homePage-layout">
 		<put-attribute name="title" value="Welcom to teacher Resource" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherResouTypeAddPage.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="teacherAchievementInfoPage" extends="homePage-layout">
+	<definition name="admin.teacher.achievement.detail" extends="homePage-layout">
 		<put-attribute name="title" value="Welcom to teacher Resource" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherAchievementInfoPage.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>

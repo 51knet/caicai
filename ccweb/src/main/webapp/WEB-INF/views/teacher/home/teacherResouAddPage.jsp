@@ -34,7 +34,7 @@
 	${user.user["email"] }<br>
 <div style="text-align:center;">
 <div style="width:560px; text-align:left;">
-	<form:form action="teacherResouAddDetail" method="post" enctype="multipart/form-data">  
+	<form:form action="addInfo" method="post" enctype="multipart/form-data">  
 		
 		资源描述：<input type="text" name="desc" placeholder="Desc" />&nbsp;<span style="color:red; font-size:14px;">多文件上传添加统一描述</span>
 		<span class="help-block"><form:errors path="name"></form:errors></span>	<br>

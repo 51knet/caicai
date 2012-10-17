@@ -2,11 +2,12 @@ package com.knet51.ccweb.jpa.services.teacherAchievement;
 
 import java.util.List;
 
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
 
 public interface TeacherProjectService {
 	
-	TeacherProject save(TeacherProject teacherProject);
+	TeacherProject save(TeacherProject teacherProject,Teacher teacher);
 
 	TeacherProject update(TeacherProject teacherProject);
 

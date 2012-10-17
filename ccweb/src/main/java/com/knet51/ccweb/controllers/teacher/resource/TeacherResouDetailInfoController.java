@@ -37,7 +37,7 @@ public class TeacherResouDetailInfoController {
 	private ResourceTypeService resourceTypeService;
 	
 	@Transactional
-	@RequestMapping(value="/teacherResouAddDetail",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/resource/addInfo",method=RequestMethod.POST)
 	public String teacherResouInfo(HttpSession session,Model model,@RequestParam("desc") String desc,
 			@RequestParam("type") Long value, MultipartHttpServletRequest request) throws Exception{
 		logger.info("#####Into TeacherResouInfoAddPageController#####");
@@ -64,7 +64,7 @@ public class TeacherResouDetailInfoController {
 				resourceService.create(resource, user);
 			}
 		}
-		return "redirect:/teacherResou";
+		return "redirect:/admin/teacher/resource/list";
 	}
 
 //	@Override
@@ -83,7 +83,7 @@ public class TeacherResouDetailInfoController {
 //	}
 	
 	@Transactional
-	@RequestMapping(value="/teacherResouDele")
+	@RequestMapping(value="/admin/teacher/resource/dele")
 	public String teacherResouDele(HttpSession session,Model model,@RequestParam("id") Long id) throws Exception{
 		logger.info("#####Into TeacherResouInfoDelePageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
@@ -93,31 +93,31 @@ public class TeacherResouDetailInfoController {
 		String date = format.format(new Date());
 		resource.setDate(date);
 		resourceService.delete(resource, 2);
-		return "redirect:/teacherResou";
+		return "redirect:/admin/teacher/resource/list";
 	}
 	
 	@Transactional
-	@RequestMapping(value="/teacherResouTypeAddDetail",  method = RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/resource/type/addInfo",  method = RequestMethod.POST)
 	public String teacherResouTypeAdd(@Valid TeacherResouTypeInfoForm teacherResouTypeInfo,
 			BindingResult validResult, HttpSession session,Model model){
-		if (validResult.hasErrors()) {
-			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "teacherResouTypeAddPage";
+		String typeName = teacherResouTypeInfo.getTypeName();
+		if (validResult.hasErrors()|| "".equals(typeName)) {
+			 logger.info("detailInfoForm Validation Failed " + validResult);
+			 return "/admin/teacher/resource/type/add";
 		} else {
-			String typeName = teacherResouTypeInfo.getTypeName();
 			ResourceType resourceType = new ResourceType();
 			resourceType.setTypeName(typeName);
 			resourceTypeService.save(resourceType);
-			return "redirect:/teacherResouType";
+			return "redirect:/admin/teacher/resource/type";
 		}
 	}
 	
 	@Transactional
-	@RequestMapping(value="/teacherResouTypeDele")
+	@RequestMapping(value="/admin/teacher/resource/type/dele")
 	public String teacherResouTypeDele(HttpSession session,Model model,@RequestParam("id") Long id) throws Exception{
 		logger.info("#####Into TeacherResouTypeDelePageController#####");
 		resourceTypeService.deleteById(id);
-		return "redirect:/teacherResouType";
+		return "redirect:/admin/teacher/resource/type";
 	}
 	
 

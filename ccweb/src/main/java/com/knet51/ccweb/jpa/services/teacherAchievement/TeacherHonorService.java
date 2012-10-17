@@ -2,11 +2,12 @@ package com.knet51.ccweb.jpa.services.teacherAchievement;
 
 import java.util.List;
 
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 
 public interface TeacherHonorService {
 	
-	TeacherHonor save(TeacherHonor teacherHonor);
+	TeacherHonor save(TeacherHonor teacherHonor,Teacher teacher);
 
 	TeacherHonor update(TeacherHonor teacherHonor);
 

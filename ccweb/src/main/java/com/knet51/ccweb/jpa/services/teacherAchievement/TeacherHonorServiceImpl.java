@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.dao.teacherAchievement.TeacherHonorDao;
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 @Transactional
 @Service("teacherHonorService")
@@ -16,7 +17,8 @@ public class TeacherHonorServiceImpl implements TeacherHonorService {
 	private TeacherHonorDao honorDao; 
 	
 	@Override
-	public TeacherHonor save(TeacherHonor teacherHonor) {
+	public TeacherHonor save(TeacherHonor teacherHonor,Teacher teacher) {
+		teacherHonor.setTeacher(teacher);
 		return honorDao.save(teacherHonor);
 	}
 

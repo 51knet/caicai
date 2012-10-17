@@ -25,36 +25,36 @@ public class TeacherResouInfoPageController {
 	@Autowired
 	private ResourceTypeService resourceTypeService;
 	
-	@RequestMapping(value="/teacherResou")
+	@RequestMapping(value="/admin/teacher/resource/list")
 	public String teacherResouInfo(HttpSession session,Model model ){
 		logger.info("#####Into TeacherResouInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		User user = userInfo.getUser();
 		List<Resource> list = resourceService.listAllByUid(user.getId());
 		model.addAttribute("list", list);
-		return "teacherResouPage";
+		return "admin.teacher.resource.list";
 	}
-	@RequestMapping(value="/teacherResouAdd")
+	@RequestMapping(value="/admin/teacher/resource/add")
 	public String teacherResouAdd(HttpSession session,Model model ){
 		logger.info("#####Into TeacherResouInfoAdd#####");
 		List<ResourceType> listType = resourceTypeService.getAllType();
 		model.addAttribute("type", listType);
-		return "teacherResouAddPage";
+		return "admin.teacher.resource.add";
 	}
 	
-	@RequestMapping(value="/teacherResouType")
+	@RequestMapping(value="/admin/teacher/resource/type")
 	public String teacherResouType(Model model){
 		logger.info("#### Into TeacherResouType ####");
 		List<ResourceType> list = resourceTypeService.getAllType();
 		model.addAttribute("list", list);
-		return "teacherResouTypePage";
+		return "admin.teacher.resource.type";
 	}
 	
 	
-	@RequestMapping(value="/teacherResouTypeAdd")
+	@RequestMapping(value="/admin/teacher/resource/type/add")
 	public String teacherResouTypeAdd(){
 		
-		return "teacherResouTypeAddPage";
+		return "admin.teacher.resource.type.add";
 	}
 
 

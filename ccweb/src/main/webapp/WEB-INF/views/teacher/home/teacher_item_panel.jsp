@@ -5,9 +5,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div style="text-align: center;">
-	<a href='<c:url value="/teacherAnno"></c:url>' class="btn">发布公告</a>
+	<a href='<c:url value="/admin/teacher/announcement/detail"></c:url>' class="btn">发布公告</a>
 	<hr />
-	<a href='<c:url value="/teacherResou"></c:url>' class="btn">资源管理</a>
+	<a href='<c:url value="/admin/teacher/resource/list"></c:url>' class="btn">资源管理</a>
 	<hr />
 	<a href='<c:url value="/admin/blog/list"></c:url>' class="btn">我的博文</a>
 	<hr />
@@ -15,6 +15,6 @@
 	<hr />
 	<a href='<c:url value="/admin/teacher/details"></c:url>' class="btn">账号信息</a>
 	<hr />
-	<a href='<c:url value="/teacherAchievement"></c:url>' class="btn">科研成果</a>
+	<a href='<c:url value="/admin/teacher/achievement/detail"></c:url>' class="btn">科研成果</a>
 	<hr />
 </div>

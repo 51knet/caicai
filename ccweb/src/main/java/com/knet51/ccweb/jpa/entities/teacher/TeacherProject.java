@@ -10,7 +10,7 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 public class TeacherProject extends AbstractEntity {
 	
 	private String title;
-	private String content;
+	private String source;
 	private String date;
 	
 	@ManyToOne
@@ -22,12 +22,7 @@ public class TeacherProject extends AbstractEntity {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
+
 	public String getDate() {
 		return date;
 	}
@@ -41,11 +36,11 @@ public class TeacherProject extends AbstractEntity {
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
 	}
-	public TeacherProject(String title, String content, String date) {
-		super();
-		this.title = title;
-		this.content = content;
-		this.date = date;
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
 	}
 	public TeacherProject() {
 		super();
