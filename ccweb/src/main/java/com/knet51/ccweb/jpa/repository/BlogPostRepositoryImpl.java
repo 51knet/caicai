@@ -5,7 +5,6 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-@Repository
 public class BlogPostRepositoryImpl implements BlogPostRepositoryCustom {
 	
 	@PersistenceContext
