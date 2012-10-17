@@ -9,5 +9,5 @@
 	<a href="#" class="btn">bbbbb</a><hr />
 	<a href="#" class="btn">ccccc</a><hr />
 	<a href="#" class="btn">ddddd</a><hr />
-	<a href='<c:url value="/admin/user/basic"></c:url>' class="btn">详细资料</a>
+	<a href='<c:url value="/admin/user/details"></c:url>' class="btn">详细资料</a>
 </div>
