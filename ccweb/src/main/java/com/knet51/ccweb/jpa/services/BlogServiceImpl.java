@@ -1,7 +1,5 @@
 package com.knet51.ccweb.jpa.services;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,7 @@ public class BlogServiceImpl implements BlogService {
 	@Autowired
 	private BlogPostRepository blogPostRepository;
 	@Autowired
-	private BlogCategoryRepository blogCategoryDao;
+	private BlogCategoryRepository blogCategoryRepository;
 	
 	@Override
 	public BlogPost findOne(Long id) {
@@ -30,19 +28,7 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public List<BlogPost> findAllBlogs() {
-		@SuppressWarnings("unchecked")
-		ArrayList<BlogPost> list = convertToList(blogPostRepository.findAll());
-		return list;
-	}
-
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private ArrayList convertToList(Iterable iterable) {
-		ArrayList list = new ArrayList();
-		Iterator itr = iterable.iterator();
-		while(itr.hasNext()) {
-			list.add(itr.next());
-		}
-		return list;
+		return blogPostRepository.findAll();
 	}
 
 	@Override
@@ -52,21 +38,17 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public List<BlogCategory> findBlogCategories(Teacher teacher) {
-		@SuppressWarnings("unchecked")
-		ArrayList<BlogCategory> list = convertToList(blogCategoryDao.findAll());
-		return list;
+		return blogCategoryRepository.findAll();
 	}
 
 	@Override
 	public BlogCategory findBlogCategory(Long category_id) {
-		return blogCategoryDao.findOne(category_id);
+		return blogCategoryRepository.findOne(category_id);
 	}
 
 	@Override
 	public List<BlogPost> findBlogPosts(Long teacher_id) {
-		@SuppressWarnings("unchecked")
-		ArrayList<BlogPost> list = convertToList(blogPostRepository.findAll());
-		return list;
+		return  blogPostRepository.findAll();
 	}
 
 	@Override
@@ -76,27 +58,26 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public void deleteBlogPost(Long blog_post_id) {
-		blogPostRepository.delete(blog_post_id);
 	}
 
 	@Override
 	public BlogCategory createBlogCategory(BlogCategory blogCategory) {
-		return blogCategoryDao.save(blogCategory);
+		return blogCategoryRepository.save(blogCategory);
 	}
 
 	@Override
 	public boolean isBlogCategoryExist(String name, Teacher teacher) {
-		return (blogCategoryDao.findByNameAndTeacher(name, teacher) != null );
+		return (blogCategoryRepository.findByNameAndTeacher(name, teacher) != null );
 	}
 
 	@Override
 	public void deleteBlogCategory(Long blog_category_id) {
-		blogCategoryDao.delete(blog_category_id);
+		blogCategoryRepository.delete(blog_category_id);
 	}
 
 	@Override
 	public BlogCategory renameBlogCategory(BlogCategory blogCategory) {
-		return blogCategoryDao.save(blogCategory);
+		return blogCategoryRepository.save(blogCategory);
 	}
 
 }

@@ -43,7 +43,6 @@ public class BlogController {
 	@Autowired
 	private UserService userService;
 	@Autowired
-	@Qualifier("repoBlogService") 
 	private BlogService blogService;
 
 	@Transactional
