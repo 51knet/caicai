@@ -61,7 +61,7 @@ public class BlogController {
 	@ModelAttribute("blogCategories")
 	public List<BlogCategory> populateBlogCategoryList(HttpSession session) {
 		Long id = getUserId(session);
-		List<BlogCategory> blogCategories = blogService.findBlogCategories(id);
+		List<BlogCategory> blogCategories = blogService.findBlogCategories(null);
 		logger.debug(blogCategories.toString());
 		return blogCategories;
 	}

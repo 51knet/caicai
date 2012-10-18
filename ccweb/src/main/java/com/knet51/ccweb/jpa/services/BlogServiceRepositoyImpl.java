@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.knet51.ccweb.jpa.dao.BlogCategoryDao;
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.blog.BlogCategory;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
+import com.knet51.ccweb.jpa.repository.BlogCategoryRepository;
 import com.knet51.ccweb.jpa.repository.BlogPostRepository;
 
 @Service("repoBlogService")
@@ -20,7 +21,7 @@ public class BlogServiceRepositoyImpl implements BlogService {
 	@Autowired
 	private BlogPostRepository blogPostRepository;
 	@Autowired
-	private BlogCategoryDao blogCategoryDao;
+	private BlogCategoryRepository blogCategoryDao;
 	
 	@Override
 	public BlogPost findOne(Long id) {
@@ -50,7 +51,7 @@ public class BlogServiceRepositoyImpl implements BlogService {
 	}
 
 	@Override
-	public List<BlogCategory> findBlogCategories(Long teacher_id) {
+	public List<BlogCategory> findBlogCategories(Teacher teacher) {
 		@SuppressWarnings("unchecked")
 		ArrayList<BlogCategory> list = convertToList(blogCategoryDao.findAll());
 		return list;
@@ -83,8 +84,8 @@ public class BlogServiceRepositoyImpl implements BlogService {
 	}
 
 	@Override
-	public boolean isBlogCategoryExist(String name, Long teacher_id) {
-		return (blogCategoryDao.findByNameAndTeacherId(name, teacher_id) != null );
+	public boolean isBlogCategoryExist(String name, Teacher teacher) {
+		return (blogCategoryDao.findByNameAndTeacher(name, teacher) != null );
 	}
 
 	@Override
