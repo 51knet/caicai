@@ -14,7 +14,10 @@
 				<td colspan="5"><a href="<c:url value="/admin/blog/new"></c:url>" class="btn">写博文</a>
 					<a id="category_management"  href="<c:url value="/admin/blog/category/list"></c:url>" class="btn">管理分类</a></td>
 			</tr>
-			<c:forEach var="blogPost" items="${blogPosts}">
+			<tr style="display: none;">
+				<td colspan="5">${page}</td>
+			</tr>
+			<c:forEach var="blogPost" items="${page.content}">
 			<tr>
 				<td><a href="<c:url value="/admin/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
 				<td>${blogPost.date_created}</td>

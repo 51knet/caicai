@@ -9,18 +9,16 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Teacher;
@@ -47,7 +45,9 @@ public class BlogController {
 
 	@Transactional
 	@RequestMapping(value= "/admin/blog/list", method=RequestMethod.GET)
-	public String list() {
+	public String list(@RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize, Model model ) {
+		Page<BlogPost> page = blogService.findAllBlogs(pageNumber, pageSize);
+		model.addAttribute("page", page);
 		return "admin.blog.list";
 	}
 	@ModelAttribute("blogPosts")
