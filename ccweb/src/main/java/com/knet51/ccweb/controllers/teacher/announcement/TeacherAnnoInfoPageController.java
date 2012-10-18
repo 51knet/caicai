@@ -11,6 +11,7 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
+import com.knet51.ccweb.jpa.services.UserService;
 
 @Controller
 public class TeacherAnnoInfoPageController {
@@ -18,7 +19,6 @@ public class TeacherAnnoInfoPageController {
 	private static final Logger logger = LoggerFactory.getLogger(TeacherAnnoInfoPageController.class); 
 	@Autowired
 	private AnnouncementService annoService;
-	
 	@RequestMapping(value="/admin/teacher/announcement/detail")
 	public String teacherAnno(HttpSession session,Model m){
 		logger.info("#### into TeacherAnno ####");

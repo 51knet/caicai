@@ -92,4 +92,16 @@
 		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
 	</definition>
 
+	<definition name="admin.teacher.friendRelated.detail" extends="homePage-layout">
+		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherFriendsRelatedInfoPage.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
+	</definition>
+	
+		<definition name="admin.teacher.friendRelated.addPage" extends="homePage-layout">
+		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherFriendsRelatedAddPage.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>
