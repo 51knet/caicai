@@ -98,7 +98,7 @@ public class TheServletContextListener implements ServletContextListener {
 	private void setupTestData() {
 		create5BlogCategory();
 		createTeacherAndBlogPosts("steve@apple.com","steve");
-		createTeacherAndBlogPosts("jim@apple.com", "jim");
+		createTeacherAndBlogPosts("tim@apple.com", "tim");
 		createTeacherAndBlogPosts("bill@microsoft.com", "bill");
 		createTeacherAndBlogPosts("mark@facebook.com", "mark");
 		createTeacherAndBlogPosts("reggie@nintendo.com", "reggie");
