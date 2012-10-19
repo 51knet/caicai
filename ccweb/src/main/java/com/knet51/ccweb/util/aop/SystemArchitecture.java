@@ -4,11 +4,14 @@ package com.knet51.ccweb.util.aop;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Component;
 
+@Component
 @Aspect
 public class SystemArchitecture {
 	private static final Logger logger = LoggerFactory
@@ -62,6 +65,10 @@ public class SystemArchitecture {
 	  @Pointcut("execution(* com.knet51.ccweb.jpa.dao.*.*(..))")
 	  public void dataAccessOperation() {
 		  logger.info("ARRIVED HERE");
+	  }
+	  @Before("dataAccessOperation()") 
+	  public void beforeDataAccessOperation() {
+		  logger.info("beforeDataAccessOperation");
 	  }
 	  
 	  @AfterThrowing(pointcut="com.knet51.ccweb.util.aop.SystemArchitecture.dataAccessOperation()",
