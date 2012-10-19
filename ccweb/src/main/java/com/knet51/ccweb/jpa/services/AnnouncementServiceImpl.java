@@ -44,4 +44,12 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		annDao.deleteById(id);
 	}
 
+	@Override
+	public Announcement findLatestByUid(Long uId) {
+		List<Announcement> annList = findAllByUid(uId);
+		int size = annList.size();
+		System.out.println(size);
+		return size == 0 ? null : annDao.listAllByUid(uId).get(0);
+	}
+
 }

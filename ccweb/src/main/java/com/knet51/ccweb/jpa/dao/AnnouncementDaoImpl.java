@@ -63,7 +63,7 @@ public class AnnouncementDaoImpl implements AnnouncementDao {
 	@Override
 	public List<Announcement>  listAllByUid(Long uId) {
 		
-		List<Announcement> list =  em.createQuery("from Announcement where user_id="+uId, Announcement.class).getResultList();
+		List<Announcement> list =  em.createQuery("from Announcement where user_id="+uId+" order by id desc", Announcement.class).getResultList();
 		return list;
 	}
 

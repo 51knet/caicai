@@ -19,6 +19,6 @@ public class UserInfoPageController {
 	public String RegisterPage() {
 		logger.info("#### into UserInfoController ####");
 
-			return "admin.user.basic";
+			return "admin.user";
 	}
 }

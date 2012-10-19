@@ -5,5 +5,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div style="text-align: center;">
-	${user.photo_url}<br>
+	<img src='${photoUrl}' height='120px' width='80px'
+		align="middle">
 </div>

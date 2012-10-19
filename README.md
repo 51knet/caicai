@@ -57,6 +57,8 @@ version 1.0
 |         
 | /debug         
 | /one2one/{user_id}/{student_collage}         
+| /admin -> /admin/teacher | /admin/user       
+| / -> /user/{id} | /teacher/{id}         
 
 ## URLs和Tiles视图的命名如何对应以方便查找？
 **重构前:** URL:userInfoPage, Tiles视图定义如下

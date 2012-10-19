@@ -8,7 +8,7 @@
 
   <input type="text" name="email" placeholder="邮箱地址">
   <span class="help-block"><form:errors path="email"></form:errors></span>
-  <input type="text" name="password" placeholder="密码">
+  <input type="password" name="password" placeholder="密码">
   
   <span class="help-block"><form:errors path="password"></form:errors></span>
   <label class="checkbox inline">

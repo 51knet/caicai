@@ -5,5 +5,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div style="text-align: center;">
-	${user.id}<br>
+	${annContext}<br>
 </div>
