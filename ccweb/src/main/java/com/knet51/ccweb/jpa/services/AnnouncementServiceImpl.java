@@ -8,14 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.knet51.ccweb.jpa.dao.AnnouncementDao;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
-
-
+import com.knet51.ccweb.jpa.repository.AnnouncementRepository;
 
 @Transactional
 @Service("announcementService")
 public class AnnouncementServiceImpl implements AnnouncementService {
 	@Autowired
 	private AnnouncementDao annDao;
+
+	@Autowired
+	private AnnouncementRepository repository;
 
 	@Override
 	public List<Announcement> findAllByUid(Long uId) {
@@ -29,7 +31,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
 	@Override
 	public Announcement createAnnouncement(Announcement ann, User user) {
-		
+
 		ann.setUser(user);
 		return annDao.save(ann);
 	}
@@ -42,6 +44,14 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	@Override
 	public void deleAnnouncementById(Long id) {
 		annDao.deleteById(id);
+	}
+
+	@Override
+	public Announcement findLatestByUid(Long uId) {
+		List<Announcement> annList = findAllByUid(uId);
+		int size = annList.size();
+		System.out.println(size);
+		return size == 0 ? null : annDao.listAllByUid(uId).get(0);
 	}
 
 }

@@ -1,8 +1,5 @@
 package com.knet51.ccweb.controllers.login;
 
-
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.UserService;
@@ -36,7 +32,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public String signin(@Valid LoginForm loginForm, BindingResult result,
-			HttpSession session,HttpServletRequest request) {
+			HttpSession session, HttpServletRequest request) {
 		if (result.hasErrors()) {
 			logger.info("LoginForm Validation Failed " + result);
 			return "home";
@@ -47,22 +43,11 @@ public class LoginController {
 			boolean succeed = service.login(email, psw);
 			logger.info("Login result " + succeed);
 			if (succeed) {
-
 				User user = service.findByEmailAddress(email);
 				UserInfo userInfo = new UserInfo(user);
 				session.setAttribute("userInfo", userInfo);
-				String role = user.getRole();
-				if (role.equals("user")) {
-					return "admin.user.basic";
-				} else if (role.equals("teacher")) {
-					List<Announcement> list = annoService.findAllByUid(user.getId());
-					request.setAttribute("list", list);
-					return "admin.teacher.basic";
-				} else if (role.equals("student")) {
-					return "home";
-				} else {
-					return "home";
-				}
+
+				return "redirect:/admin";
 			} else {
 				return "home";
 			}

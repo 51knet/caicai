@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.services.StudentService;
+import com.knet51.ccweb.jpa.services.AnnouncementService;
+import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 
 /**
@@ -32,7 +34,10 @@ public class HomeController {
 	private UserService userService;
 
 	@Autowired
-	private StudentService studentService;
+	private TeacherService teacherService;
+
+	@Autowired
+	private AnnouncementService announcementService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -66,43 +71,106 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/user/{id}")
-	public String userFront(@PathVariable String id, HttpSession session, Model model) {
+	public String userFront(@PathVariable String id, HttpSession session,
+			Model model) {
 		User user;
+		UserInfo userInfo;
 		try {
 			user = userService.findOne(Long.parseLong(id));
-			model.addAttribute("user", user);
+			userInfo = new UserInfo(user);
+			model.addAttribute("userInfoModel", userInfo);
+
 			String role = user.getRole();
 			if (role.equals("user")) {
 				return "user.basic";
 			} else if (role.equals("teacher")) {
 				return "redirect:/teacher/" + id;
 			} else {
+				// TODO: student and other role;
 				return "404";
 			}
 		} catch (Exception e) {
+			// TODO: refining exception;
 			return "404";
 		}
 
 	}
 
 	@RequestMapping(value = "/teacher/{id}")
-	public String teacherFront(@PathVariable String id, HttpSession session, Model model) {
+	public String teacherFront(@PathVariable String id, Model model) {
 		User user;
+		UserInfo userInfo;
+		Announcement announcement;
 		try {
 			user = userService.findOne(Long.parseLong(id));
-			model.addAttribute("user", user);
+			announcement = announcementService.findLatestByUid(Long
+					.parseLong(id));
+			userInfo = new UserInfo(user);
+			userInfo.setAnnouncement(announcement);
+			model.addAttribute("userInfoModel", userInfo);
+			model.addAttribute("annContext", userInfo.getAnnouncementContext());
+			model.addAttribute("photoUrl", userInfo.getPhotoUrl());
+
 			String role = user.getRole();
 			if (role.equals("teacher")) {
 				return "teacher.basic";
 			} else if (role.equals("user")) {
 				return "redirect:/user/" + id;
 			} else {
+				// TODO: student and other role;
 				return "404";
 			}
 		} catch (Exception e) {
-			// TODO: refining exception later;
+			// TODO: refining exception;
 			return "404";
 		}
 	}
 
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String admin(Locale locale, Model model, HttpSession session) {
+		logger.info("Welcome home! the client locale is " + locale.toString());
+
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+
+		if (userInfo != null && userInfo.getRole().equals("user")) {
+			return "redirect:/admin/user";
+		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
+			return "redirect:/admin/teacher";
+		} else {
+			return "home";
+		}
+
+	}
+	
+	@RequestMapping(value = "/admin/user", method = RequestMethod.GET)
+	public String adminUser(Locale locale, Model model, HttpSession session) {
+		logger.info("Welcome home! the client locale is " + locale.toString());
+
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+
+		if (userInfo != null && userInfo.getRole().equals("user")) {
+			return "admin.user";
+		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
+			return "redirect:/admin/teacher";
+		} else {
+			return "home";
+		}
+
+	}
+	
+	@RequestMapping(value = "/admin/teacher", method = RequestMethod.GET)
+	public String adminTeacher(Locale locale, Model model, HttpSession session) {
+		logger.info("Welcome home! the client locale is " + locale.toString());
+
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+
+		if (userInfo != null && userInfo.getRole().equals("user")) {
+			return "redirect:/admin/user";
+		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
+			return "admin.teacher";
+		} else {
+			return "home";
+		}
+
+	}
 }

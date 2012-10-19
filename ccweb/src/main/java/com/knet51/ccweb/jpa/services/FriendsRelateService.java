@@ -13,5 +13,7 @@ public interface FriendsRelateService {
 
 	void deleteById(Long id);
 	
-	List<Friends_Related> getAllFollow(Long id); 
+	List<Friends_Related> getAllFollow(Long hostId); 
+	
+	List<Friends_Related> getAllHost(Long followId);
 }

@@ -14,7 +14,7 @@
 			value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.basic" extends="homePage-layout">
+	<definition name="admin.teacher" extends="homePage-layout">
 		<put-attribute name="title" value="Welcom to teacher register" />
 		<put-attribute name="right"
 			value="/WEB-INF/views/teacher/home/teacherHomePage.jsp"></put-attribute>
@@ -33,13 +33,13 @@
 			value="/WEB-INF/views/teacher/front/announcement.jsp"></put-attribute>
 		
 		<put-attribute name="context1"
-			value="/WEB-INF/views/teacher/front/teacherFrontContext.jsp"></put-attribute>
+			value="/WEB-INF/views/teacher/front/announcement.jsp"></put-attribute>
 		<put-attribute name="context2"
-			value="/WEB-INF/views/teacher/front/teacherFrontContext.jsp"></put-attribute>
+			value="/WEB-INF/views/teacher/front/announcement.jsp"></put-attribute>
 		<put-attribute name="context3"
-			value="/WEB-INF/views/teacher/front/teacherFrontContext.jsp"></put-attribute>
+			value="/WEB-INF/views/teacher/front/announcement.jsp"></put-attribute>
 		<put-attribute name="context4"
-			value="/WEB-INF/views/teacher/front/teacherFrontContext.jsp"></put-attribute>
+			value="/WEB-INF/views/teacher/front/announcement.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.teacher.annoAddPage" extends="homePage-layout">

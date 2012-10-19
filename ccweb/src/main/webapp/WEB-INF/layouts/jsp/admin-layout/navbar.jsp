@@ -6,9 +6,9 @@
 <div class="navbar">
 	<div class="navbar-inner">
 		<ul class="nav">
-			<li class="active"><a href="#">个人中心</a></li>
-			<li><a href="#">主页</a></li>
-			<li><a href="#">科研成果</a></li>
+			<li><a href='<c:url value="/admin"></c:url>'>个人中心</a></li>
+			<li><a href='<c:url value="/"></c:url>'>个人主页</a></li>
+			<li><a href='<c:url value="#"></c:url>'>科研成果</a></li>
 			<li><a href="#">个人资料</a></li>
 			<li><a href="#">科研成果</a></li>
 			<li><a href="#">课程资料</a></li>

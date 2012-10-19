@@ -26,7 +26,7 @@ public class TeacherAnnoInfoPageController {
 			User user = userInfo.getUser();
 			List<Announcement> list = annoService.findAllByUid(user.getId());
 			m.addAttribute("list", list);
-			return "admin.teacher.basic";
+			return "redirect:/admin";
 			//return "teacherAnnoPage";
 	}
 	@RequestMapping(value="/admin/teacher/announcement/add")

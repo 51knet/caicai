@@ -23,34 +23,17 @@ public class UserTypeController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/user/dispatcher", method = {RequestMethod.POST, RequestMethod.GET})
-	// public String userType(@RequestParam("userType") String userType,
-	// @RequestParam("skip") String skip, HttpSession session) {
+	@RequestMapping(value = "/user/dispatcher", method = { RequestMethod.POST,
+			RequestMethod.GET })
 	public String userType(HttpServletRequest request, HttpSession session) {
 		String userType = request.getParameter("userType");
-		String skip = request.getParameter("skip");
 		logger.info("### user type is " + userType + " ###");
-		if (skip != null && skip.equals("skip")) {
-			return "admin.user.basic";
-		} else {
-
-			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-			
-			User user = userService.findOne(userInfo.getId());
-
-			if (userType.equals("teacher")) {
-				user.setRole("teacher");
-				userService.updateUser(user);
-				return "admin.teacher.basic";
-			} else if (userType.equals("student")) {
-				user.setRole("student");
-				userService.updateUser(user);
-				return "home";
-			} else if (userType.equals("enterprise")) {
-				return "home";
-			} else {
-				return "admin.user.basic";
-			}
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		User user = userService.findOne(userInfo.getId());
+		if (userType.equals("teacher")) {
+			user.setRole("teacher");
+			userService.updateUser(user);
 		}
+		return "redirect:/admin";
 	}
 }

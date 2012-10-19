@@ -47,7 +47,7 @@ public class TeacherAchieveDetailInfoController {
 		String content = thesisDetailInfoForm.getContent();
 		logger.info("#### Into teacherThesisAddController ####");
 		if(validResult.hasErrors()||"".equals(content)){
-			return "/admin/teacher/achievement/detail";
+			return "";
 		}
 		else{
 			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
@@ -71,7 +71,7 @@ public class TeacherAchieveDetailInfoController {
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherProjectAddController ####");
 		if(validResult.hasErrors()){
-			return "admin/teacher/achievement/detail";
+			return "";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 			Long id = userInfo.getUser().getId();

@@ -3,7 +3,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script type="text/javascript" src="/js/myutil.js"></script>
 <script type="text/javascript">
+
+	 function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
+		//alert("test");
+		msgObj.innerHTML = "";
+		var v = fieldObj.value.replace(/(^\s+)|(\s+$)/g, "");
+		var flag = true;
+		if (v.length == 0) {
+			msgObj.innerHTML = nullMsg;
+			flag = false;
+		} else {
+			if (!(re.test(v))) {
+				msgObj.innerHTML = errorMsg;
+				flag = false;
+			}
+		}
+		return flag;
+	 }
+
 	 function hiddenThesis(){
 	 	var thesis = document.getElementById("thesis");
 	 	thesis.style.display="none";
@@ -53,7 +72,6 @@
 	 	projectButton.style.display="block";
 	 }
 	 
- 
  	 function hiddenPatent(){
 	 	var patent = document.getElementById("patent");
 	 	patent.style.display="none";
@@ -102,7 +120,61 @@
 		 honorButton.style.display="block";
 	 }
  
- 
+ 	function checkThesisForm(obj){
+ 		var content = obj.content;
+ 		var thesisContentMsg = document.getElementById("thesisContentMsg");
+ 		//alert(content.innerHTML);
+ 		var thesisContentFlag = checkField(content,thesisContentMsg,/^([\u4e00-\u9fa5]+)|(\w+)$/,"内容不能为空！","只能是字母数字或汉字");
+ 		return thesisContentFlag;
+ 	}
+ 	
+ 	function checkProjectForm(obj){
+ 		var title = obj.title;
+ 		var titleMsg = document.getElementById("titleMsg");
+ 		var source = obj.source;
+ 		var sourceMsg = document.getElementById("sourceMsg");
+ 		var date = obj.date;
+ 		var dateMsg = document.getElementById("dateMsg");
+ 		
+ 		var titleFlag = checkField(title,titleMsg,/^([\u4e00-\u9fa5]+)|(\w+)$/,"内容不能为空！","只能是字母数字或汉字");
+ 		var sourceFlag = checkField(source,sourceMsg,/^([\u4e00-\u9fa5]+)|(\w+)$/,"内容不能为空！","只能是字母数字或汉字");
+ 		var dateFlag = checkField(date,dateMsg,/(\d+\.\-)/,"不能为空！","只能是数字！");
+ 		return titleFlag && sourceFlag && dateFlag;
+ 	}
+ 	
+ 	function checkPatentForm(obj){
+ 		var inventer = obj.inventer;
+ 		var inventerMsg = document.getElementById("inventerMsg");
+ 		
+ 		var name = obj.name;
+ 		var nameMsg = document.getElementById("nameMsg");
+ 		
+ 		var type = obj.type
+ 		var typeMsg = document.getElementById("typeMsg");
+ 		
+ 		var number = obj.number;
+ 		var numberMsg = document.getElementById("numberMsg");
+ 		
+ 		var inventerFlag = checkField(inventer,inventerMsg,/^([\u4e00-\u9fa5]+)|(\w+)$/,"内容不能为空！","只能是字母数字或汉字");
+ 		var nameFlag = checkField(name,nameMsg,/^([\u4e00-\u9fa5]+)|(\w+)$/,"内容不能为空！","只能是字母数字或汉字");
+ 		var typeFlag = checkField(type,typeMsg,/^([\u4e00-\u9fa5]+)|(\w+)$/,"内容不能为空！","只能是字母数字或汉字");
+ 		var numberFlag = checkField(number,numberMsg,/^([\u4e00-\u9fa5]+)|(\w+)$/,"内容不能为空！","只能是字母数字或汉字");
+ 		//alert(inventerFlag+"---"+nameFlag+"---"+typeFlag+"---"+numberFlag);
+ 		return inventerFlag && nameFlag && typeFlag && numberFlag;
+ 	}
+ 	
+ 	function checkHonorForm(obj){
+ 		var name = obj.name;
+ 		var nameMsg = document.getElementById("honorNameMsg");
+ 		
+ 		var reason = obj.reason;
+ 		var reasonMsg = document.getElementById("reasonMsg");
+ 		
+ 		var nameFlag = checkField(name,nameMsg,/^([\u4e00-\u9fa5]+)|(\w+)$/,"内容不能为空！","只能是字母数字或汉字");
+ 		var reasonFlag = checkField(reason,reasonMsg,/^([\u4e00-\u9fa5]+)|(\w+)$/,"内容不能为空！","只能是字母数字或汉字");
+ 		return nameFlag && reasonFlag;
+ 	}
+ 	
 </script>
 <div style="text-align: center;">
  <div style="width:500px; text-align:left;">	
@@ -116,12 +188,12 @@
 			</c:forEach>
 		</table>
 		<div id="thesisForm" style="display:none;">
-			<form:form action="thesis/addThesis" method="post">  
-				内容：<textarea style="width:450px;" name="content" placeholder="Content" cols="40" rows="3"></textarea>
-				<span class="help-block"><form:errors path="Content"></form:errors></span>
-				<button type="submit" class="btn" onclick="hiddenThesisAddForm()">OK</button>
+			<form action="thesis/addThesis" method="post" onSubmit="return checkThesisForm(this)" >  
+				内容：<textarea style="width:450px;" name="content"  cols="40" rows="3" id="thesisContent"></textarea>
+				<span class="help-block" style="color:red;font-size:13px;" id="thesisContentMsg"></span>
+				<button type="submit" class="btn" >OK</button>
 				<button class="btn" type="reset" onclick="hiddenThesisAddForm()">CANCEL</button>
-			</form:form>
+			</form>
 		</div>
 		<div id="thesisButton" style="display:block"><button  onclick="showThesisAddForm()">添加</button></div>
 	</div>
@@ -132,18 +204,22 @@
 		<hr>
 		<div id="project" style="display:block">
 			<div id="projectForm" style="display:none;">
-				<form:form action="project/addProject" method="post">  
+				<form action="project/addProject" method="post" onSubmit="return checkProjectForm(this)">  
 					<table width="500" border="0" cellspacing="0" cellpadding="5">
 						<tr><td align="center">项目名称</td><td align="center">项目来源</td><td align="center">项目起止时间</td></tr>
 					<tr>
-						<td  align="center"><input type="text" name="title"/></td>
-						<td  align="center"><input type="text" name="source"/></td>
-						<td  align="center"><input type="text" name="date"/><span style="color:red; font-size:13px;">2000.01.01-2001.01.01</span></td>
+						<td  align="center"><input type="text" name="title"/>
+						<span class="help-block" style="color:red;font-size:13px;" id="titleMsg"></span>
+						</td>
+						<td  align="center"><input type="text" name="source"/>
+						<span class="help-block" style="color:red;font-size:13px;" id="sourceMsg"></span>
+						</td>
+						<td  align="center"><input type="text" name="date"/><span id="dateMsg" style="color:red; font-size:13px;">2000.01.01-2001.01.01</span></td>
 					</tr>
 					</table>
-					<button type="submit" class="btn" onclick="hiddenProjectAddForm()">OK</button>
+					<button type="submit" class="btn" >OK</button>
 					<button class="btn" type="reset" onclick="hiddenProjectAddForm()">CANCEL</button>
-				</form:form>
+				</form>
 			</div>
 			<div id="projectButton" style="display:block">
 				<table width="500" border="0" cellspacing="0" cellpadding="5">
@@ -167,22 +243,30 @@
 		<hr>
 		<div id="patent" style="display:block">
 			<div id="patentForm" style="display:none;">
-				<form:form action="patent/addPatent" method="post">  
+				<form action="patent/addPatent" method="post" onSubmit="return checkPatentForm(this)">  
 					<table  border="0" cellspacing="0" cellpadding="5">
 						<tr>
 							<td align="center">发明人</td><td align="center">专利名称</td>
 							<td align="center">专利类型</td><td align="center">专利申请号</td>
 						</tr>
 						<tr>
-							<td  align="center"><input type="text" name="inventer"/></td>
-							<td  align="center"><input type="text" name="name"/></td>
-							<td  align="center"><input type="text" name="type"/></td>
-							<td  align="center"><input type="text" name="number"/></td>
+							<td  align="center"><input type="text" name="inventer"/>
+							<span class="help-block" style="color:red;font-size:13px;" id="inventerMsg"></span>
+							</td>
+							<td  align="center"><input type="text" name="name"/>
+							<span class="help-block" style="color:red;font-size:13px;" id="nameMsg"></span>
+							</td>
+							<td  align="center"><input type="text" name="type"/>
+							<span class="help-block" style="color:red;font-size:13px;" id="typeMsg"></span>
+							</td>
+							<td  align="center"><input type="text" name="number"/>
+							<span class="help-block" style="color:red;font-size:13px;" id="numberMsg"></span>
+							</td>
 						</tr>
 					</table>
-					<button type="submit" class="btn" onclick="hiddenPatentAddForm()">OK</button>
+					<button type="submit" class="btn">OK</button>
 					<button class="btn" type="reset" onclick="hiddenPatentAddForm()">CANCEL</button>
-				</form:form>
+				</form>
 			</div>
 			<div id="patentButton" style="display:block">
 				<table width="500" border="0" cellspacing="0" cellpadding="5">
@@ -207,20 +291,24 @@
 		<hr>
 		<div id="honor" style="display:block">
 			<div id="honorForm" style="display:none;">
-				<form:form action="honor/addHonor" method="post">  
+				<form action="honor/addHonor" method="post" onSubmit="return checkHonorForm(this)">  
 					<table  border="0" cellspacing="0" cellpadding="5">
 						<tr>
 							<td align="center">奖励或荣誉</td><td align="center">获奖原因</td>
 						
 						</tr>
 						<tr>
-							<td  align="center"><input type="text" name="name"/></td>
-							<td  align="center"><input type="text" name="reason"/></td>
+							<td  align="center"><input type="text" name="name"/>
+							<span class="help-block" style="color:red;font-size:13px;" id="honorNameMsg"></span>
+							</td>
+							<td  align="center"><input type="text" name="reason"/>
+							<span class="help-block" style="color:red;font-size:13px;" id="reasonMsg"></span>
+							</td>
 						</tr>
 					</table>
-					<button type="submit" class="btn" onclick="hiddenHonorAddForm()">OK</button>
+					<button type="submit" class="btn">OK</button>
 					<button class="btn" type="reset" onclick="hiddenHonorAddForm()">CANCEL</button>
-				</form:form>
+				</form>
 			</div>
 			<div id="honorButton" style="display:block">
 				<table width="500" border="0" cellspacing="0" cellpadding="5">

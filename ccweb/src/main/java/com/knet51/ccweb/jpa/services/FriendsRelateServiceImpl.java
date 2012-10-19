@@ -40,4 +40,9 @@ public class FriendsRelateServiceImpl implements FriendsRelateService {
 		return friendsRelatedDao.getAllFollow(id);
 	}
 
+	@Override
+	public List<Friends_Related> getAllHost(Long followId) {
+		return friendsRelatedDao.getAllHost(followId);
+	}
+
 }

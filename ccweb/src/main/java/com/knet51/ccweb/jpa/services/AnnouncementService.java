@@ -11,6 +11,8 @@ public interface AnnouncementService {
 	
 	List<Announcement> findAllByUid(Long uId);
 	
+	Announcement findLatestByUid(Long uId);
+	
 	Announcement findOneById(Long id);
 	
 	Announcement createAnnouncement(Announcement ann,User user);
