@@ -24,8 +24,8 @@
 		</table>
 	 -->
 	<br/>
-	<a href="">发送好友请求人数：<span style="color:red;"><b>${count}人</b></span>&nbsp;&nbsp;点击查看详细</a>
+	<a href="">发送好友互动人数：<span style="color:red;"><b>${count}人</b></span>&nbsp;&nbsp;点击查看详细</a>
 	<br><hr>
-	<a href='<c:url value="/admin/teacher/friendsRelated/add"></c:url>' >发送好友添加请求</a>
+	<a href='<c:url value="/admin/teacher/friendsRelated/add"></c:url>' >发送好友互动</a>
 
 </div>
