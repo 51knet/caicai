@@ -16,6 +16,6 @@
 	<hr />
 	<a href='<c:url value="/admin/teacher/achievement/detail"></c:url>' class="btn">科研成果</a>
 	<hr />
-	<a href='<c:url value="/admin/teacher/friendsRelated/detail"></c:url>' class="btn">好友请求</a>
+	<a href='<c:url value="/admin/teacher/friendsRelated/detail"></c:url>' class="btn">好友互动</a>
 	<hr />
 </div>

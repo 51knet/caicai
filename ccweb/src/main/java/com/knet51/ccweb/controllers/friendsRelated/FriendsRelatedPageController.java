@@ -1,5 +1,6 @@
 package com.knet51.ccweb.controllers.friendsRelated;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.jpa.entities.Friends_Related;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.UserService;
@@ -28,19 +30,32 @@ public class FriendsRelatedPageController {
 	@RequestMapping(value="/admin/teacher/friendsRelated/detail")
 	public String friendsRelatedDetail(HttpSession session, Model model){
 		logger.info("#### Into FriendsRelatedPageController ####");
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-		Long id = userInfo.getId();
+		Long id = getId(session);
 		//System.out.println(id);
 		int count = relateService.getAllFollow(id).size();
 		model.addAttribute("count", count);
 		return "admin.teacher.friendRelated.detail";
 	}
 	@RequestMapping(value="/admin/teacher/friendsRelated/add")
-	public String friendsRelatedAddPage(Model model,HttpServletRequest request){
+	public String friendsRelatedAddPage(Model model,HttpServletRequest request,HttpSession session){
 		logger.info("#### Into FriendsRelatedAdd ####");
+		//Long id = getId(session);
+		//List<Friends_Related> friendsReList =relateService.getAllHost(id);
 		List<User> allUser = userService.findAllUsers();
+		
+//		List<User> allUser = new ArrayList<User>();
+//		for(int i=0;i<friendsReList.size();i++){
+//			User user = userService.findOne(friendsReList.get(i).getHost_id());
+//			allUser
+//		}
 		request.setAttribute("allUser", allUser);
 		return "admin.teacher.friendRelated.addPage";
+	}
+	
+	public Long getId(HttpSession session){
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		Long id = userInfo.getId();
+		return id;
 	}
 
 }

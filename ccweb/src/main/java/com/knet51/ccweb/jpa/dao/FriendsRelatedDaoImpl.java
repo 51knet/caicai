@@ -44,4 +44,13 @@ public class FriendsRelatedDaoImpl implements FriendsRelatedDao {
 		return follow;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Friends_Related> getAllHost(Long followId) {
+		List<Friends_Related> host = em.createQuery("from Friends_Related where type=1 and follow_id="+followId).getResultList();
+		return host;
+	}
+	
+	
+
 }
