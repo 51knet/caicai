@@ -9,7 +9,7 @@
 	  <b>阅读博文</b>
 	  <div class="span12" >
 		  <label>${blogPost.title}</label>
-		  <span>发表于: ${blogPost.date_created} | 分类: ${blogPost.blogCategory.name}
+		  <span>发表于: ${blogPost.dateCreated} | 分类: ${blogPost.blogCategory.name}
 		  | <a href="<c:url value="/admin/blog/edit/${blogPost.id}"></c:url>">编辑</a>
 		  | 
 <!-- Button to trigger modal -->

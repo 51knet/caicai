@@ -13,29 +13,28 @@ public class BlogComment extends AbstractEntity {
 
 	@ManyToOne
 	@JoinColumn(name="blogpost_id")
-	private BlogPost blog_post;
+	private BlogPost blogPost;
 	private String content;
-	private Date date_created;
-	private Date date_updated;
+	private Date dateCreated;
+	private Date dateUpdated;
 	
 	public BlogComment() {
-		
 	}
 	
-	public BlogComment(BlogPost blog_post, String content) {
+	public BlogComment(BlogPost blogPost, String content) {
 		super();
-		this.blog_post = blog_post;
+		this.blogPost = blogPost;
 		this.content = content;
-		this.date_created  = new Date();
-		this.date_updated  = new Date();
+		this.dateCreated  = new Date();
+		this.dateUpdated  = new Date();
 	}
 
-	public BlogPost getBlog_post() {
-		return blog_post;
+	public BlogPost getBlogPost() {
+		return blogPost;
 	}
 
-	public void setBlog_post(BlogPost blog_post) {
-		this.blog_post = blog_post;
+	public void setBlogPost(BlogPost blogPost) {
+		this.blogPost = blogPost;
 	}
 
 	public String getContent() {
@@ -46,19 +45,21 @@ public class BlogComment extends AbstractEntity {
 		this.content = content;
 	}
 
-	public Date getDate_created() {
-		return date_created;
+	public Date getDateCreated() {
+		return dateCreated;
 	}
 
-	public void setDate_created(Date date_created) {
-		this.date_created = date_created;
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 
-	public Date getDate_updated() {
-		return date_updated;
+	public Date getDateUpdated() {
+		return dateUpdated;
 	}
 
-	public void setDate_updated(Date date_updated) {
-		this.date_updated = date_updated;
+	public void setDateUpdated(Date dateUpdated) {
+		this.dateUpdated = dateUpdated;
 	}
+
+	
 }

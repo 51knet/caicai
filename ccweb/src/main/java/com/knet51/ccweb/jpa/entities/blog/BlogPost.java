@@ -27,7 +27,7 @@ public class BlogPost extends AbstractEntity {
 	@JoinColumn(name="blogcategory_id")
 	private BlogCategory blogCategory;
 
-	@OneToMany(mappedBy="blog_post", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="blogPost", fetch=FetchType.EAGER)
 	private Collection<BlogComment> blogComments;
 	
 	@NotEmpty
@@ -37,12 +37,12 @@ public class BlogPost extends AbstractEntity {
 	@NotEmpty
 	@Column(length=10000)
 	private String content;
-	private Date date_created;
-	private Date date_updated;
+	private Date dateCreated;
+	private Date dateUpdated;
 	
 	public BlogPost() {
-		this.date_created  = new Date();
-		this.date_updated  = new Date();
+		this.dateCreated  = new Date();
+		this.dateUpdated  = new Date();
 	}
 	
 	public BlogPost(Teacher author, BlogCategory blogCategory, String title,
@@ -52,8 +52,8 @@ public class BlogPost extends AbstractEntity {
 		this.blogCategory = blogCategory;
 		this.title = title;
 		this.content = content;
-		this.date_created  = new Date();
-		this.date_updated  = new Date();
+		this.dateCreated  = new Date();
+		this.dateUpdated  = new Date();
 	}
 	public Teacher getAuthor() {
 		return author;
@@ -85,24 +85,24 @@ public class BlogPost extends AbstractEntity {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getDate_created() {
-		return date_created;
+	public Date getDateCreated() {
+		return dateCreated;
 	}
-	public void setDate_created(Date date_created) {
-		this.date_created = date_created;
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
-	public Date getDate_updated() {
-		return date_updated;
+	public Date getDateUpdated() {
+		return dateUpdated;
 	}
-	public void setDate_updated(Date date_updated) {
-		this.date_updated = date_updated;
+	public void setDateUpdated(Date dateUpdated) {
+		this.dateUpdated = dateUpdated;
 	}
 	@Override
 	public String toString() {
 		return "BlogPost [author=" + author + ", blogCategory=" + blogCategory
 				+ ", blogComments=" + blogComments + ", title=" + title
-				+ ", content=" + content + ", date_created=" + date_created
-				+ ", date_updated=" + date_updated + "]";
+				+ ", content=" + content + ", dateCreated=" + dateCreated
+				+ ", dateUpdated=" + dateUpdated + "]";
 	}
 
 

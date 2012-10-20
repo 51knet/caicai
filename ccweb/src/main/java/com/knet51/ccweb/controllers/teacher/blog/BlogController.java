@@ -110,7 +110,7 @@ public class BlogController {
 		}
 		blogPost.setTitle(blogPostForm.getTitle());
 		blogPost.setContent(blogPostForm.getContent());
-		blogPost.setDate_updated(new Date());
+		blogPost.setDateUpdated(new Date());
 		
 		blogService.updateBlogPost(blogPost);
 		

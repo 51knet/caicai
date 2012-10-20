@@ -20,8 +20,8 @@
 			<c:forEach var="blogPost" items="${page.content}">
 			<tr>
 				<td><a href="<c:url value="/admin/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
-				<td>${blogPost.date_created}</td>
-				<td>${blogPost.date_updated}</td>
+				<td>${blogPost.dateCreated}</td>
+				<td>${blogPost.dateUpdated}</td>
 				<td><a href="<c:url value="/admin/blog/edit/${blogPost.id}"></c:url>">编辑</a></td>
 				<td>
 					<div class="btn-group">
