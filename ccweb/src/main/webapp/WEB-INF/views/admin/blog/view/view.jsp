@@ -3,9 +3,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <div class="">
-	<form method="post">
-	<input type="hidden" name="id" value="${blogPost.id}">
-	</form>
 	  <b>阅读博文</b>
 	  <div class="span12" >
 		  <label>${blogPost.title}</label>
@@ -28,7 +25,24 @@
 	   <div class="clearfix"></div>
 	  <hr/>
 	  <div class="clearfix"></div>
-	  <b>评论</b>
+	  <div class="span12">
+	  	<ul>
+	  		<c:forEach var="comment" items="${blogPost.blogComments}">
+	  			<li>${comment.content} - ${comment.dateCreated}</li>
+	  		</c:forEach>
+	  	</ul>
+	  </div>
+	  <hr/>
+	  <div class="clearfix"></div>
+	  <div class="span12">
+		  <b>发表评论</b>
+		  
+		  <form action='<c:url value="/admin/blog/comment/new" />' method="post">
+			<input type="hidden" name="blogpost_id" value="${blogPost.id}">
+			<textarea name="content" rows="4" cols="120" style="width:98%"></textarea>
+			<button class="btn btn-primary" type="submit">提交</button>
+		  </form>
+	  </div>
 </div>
 
 <!-- Modal -->

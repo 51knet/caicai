@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
+import com.knet51.ccweb.jpa.entities.Teacher;
 
 @Entity
 public class BlogComment extends AbstractEntity {
@@ -14,11 +15,16 @@ public class BlogComment extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name="blogpost_id")
 	private BlogPost blogPost;
+	@ManyToOne
+	@JoinColumn(name="teacher_id")
+	private Teacher author;
 	private String content;
 	private Date dateCreated;
 	private Date dateUpdated;
 	
 	public BlogComment() {
+		this.dateCreated  = new Date();
+		this.dateUpdated  = new Date();
 	}
 	
 	public BlogComment(BlogPost blogPost, String content) {
@@ -59,6 +65,14 @@ public class BlogComment extends AbstractEntity {
 
 	public void setDateUpdated(Date dateUpdated) {
 		this.dateUpdated = dateUpdated;
+	}
+
+	public Teacher getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Teacher author) {
+		this.author = author;
 	}
 
 	

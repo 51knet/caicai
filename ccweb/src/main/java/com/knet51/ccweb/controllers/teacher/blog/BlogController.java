@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.blog.BlogCategory;
+import com.knet51.ccweb.jpa.entities.blog.BlogComment;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.TeacherService;
@@ -91,6 +92,23 @@ public class BlogController {
 		blogService.createBlogPost(blogPost);
 		
 		return "redirect:/admin/blog/list";
+	}
+	
+	@RequestMapping(value= "/admin/blog/comment/new", method=RequestMethod.POST)
+	public String create(@Valid BlogComment blogComment, BindingResult result, @RequestParam("blogpost_id") Long blogpost_id, Model model, HttpSession session) {
+		BlogPost blogPost = blogService.findOne(blogpost_id);
+		if (result.hasErrors()) {
+			logger.info("Validation Failed " + result);
+			//model.addAttribute("blogPost", blogPost);
+			return "admin.blog.view";
+		}
+		
+		Teacher teacher = teacherService.findOne(getUserId(session));
+		blogComment.setAuthor(teacher);
+		blogComment.setBlogPost(blogPost);
+		blogService.createBlogComment(blogComment);
+		
+		return "redirect:/admin/blog/view/"+blogpost_id;
 	}
 	
 	@RequestMapping(value= "/admin/blog/edit/{blog_post_id}", method=RequestMethod.GET)

@@ -12,8 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.blog.BlogCategory;
+import com.knet51.ccweb.jpa.entities.blog.BlogComment;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.repository.BlogCategoryRepository;
+import com.knet51.ccweb.jpa.repository.BlogCommentRepository;
 import com.knet51.ccweb.jpa.repository.BlogPostRepository;
 
 @Service
@@ -24,6 +26,9 @@ public class BlogServiceImpl implements BlogService {
 	private BlogPostRepository blogPostRepository;
 	@Autowired
 	private BlogCategoryRepository blogCategoryRepository;
+	@Autowired
+	private BlogCommentRepository blogCommentRepository;
+	
 	
 	@Override
 	public BlogPost findOne(Long id) {
@@ -81,6 +86,11 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public BlogCategory createBlogCategory(BlogCategory blogCategory) {
 		return blogCategoryRepository.save(blogCategory);
+	}
+
+	@Override
+	public BlogComment createBlogComment(BlogComment blogComment) {
+		return blogCommentRepository.save(blogComment);
 	}
 
 	@Override
