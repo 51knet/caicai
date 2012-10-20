@@ -56,7 +56,7 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public List<BlogCategory> findBlogCategories(Teacher teacher) {
-		return blogCategoryRepository.findAll();
+		return blogCategoryRepository.findByAuthor(teacher);
 	}
 
 	@Override

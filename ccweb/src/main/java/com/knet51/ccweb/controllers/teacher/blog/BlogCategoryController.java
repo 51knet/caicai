@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.blog.BlogCategory;
 import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.TeacherService;
@@ -42,7 +43,8 @@ public class BlogCategoryController {
 	// @ModelAttribute("blogCategories")
 	public List<BlogCategory> populateBlogCategoryList(HttpSession session) {
 		Long id = getUserId(session);
-		List<BlogCategory> blogCategories = blogService.findBlogCategories(null);
+		Teacher teacher = teacherService.findOne(id);
+		List<BlogCategory> blogCategories = blogService.findBlogCategories(teacher);
 		logger.debug(blogCategories.toString());
 		return blogCategories;
 	}
