@@ -5,6 +5,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div style="text-align: center;">
-	<img src='${photoUrl}' height='120px' width='80px'
+	<img src='${photoUrl}' height='80px' width='60px'
 		align="middle">
+</div>
+
+<div style="text-align: center;">
+	<a href='<c:url value='/addrelation?uid=${uid}'></c:url>' class="btn">关注ta</a>
+	<hr />
 </div>

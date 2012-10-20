@@ -59,7 +59,7 @@ public class UserDetailInfoController {
 			
 			userInfo.setUser(user);
 			
-			session.setAttribute("user", userInfo);
+			session.setAttribute("userInfo", userInfo);
 			
 			return "admin.user.details";
 		}
