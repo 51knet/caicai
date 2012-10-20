@@ -56,7 +56,7 @@ public class TeacherController {
 			teacher = teacherService.updateTeacher(teacher);
 			userInfo.setTeacher(teacher);
 			
-			session.setAttribute("user", userInfo);
+			session.setAttribute("userInfo", userInfo);
 
 			return "admin.teacher.details";
 		}

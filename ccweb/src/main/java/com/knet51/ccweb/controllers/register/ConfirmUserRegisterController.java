@@ -38,7 +38,7 @@ public class ConfirmUserRegisterController {
 			
 			UserInfo userInfo = new UserInfo(result);
 			
-			session.setAttribute("user", userInfo);
+			session.setAttribute("userInfo", userInfo);
 			logger.info("Confirm user email successful.");
 			return "user.dispatcher";
 		} else {

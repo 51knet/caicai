@@ -110,6 +110,7 @@ public class HomeController {
 			model.addAttribute("userInfoModel", userInfo);
 			model.addAttribute("annContext", userInfo.getAnnouncementContext());
 			model.addAttribute("photoUrl", userInfo.getPhotoUrl());
+			model.addAttribute("uid", userInfo.getId());
 
 			String role = user.getRole();
 			if (role.equals("teacher")) {

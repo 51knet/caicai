@@ -56,7 +56,7 @@ public class StudentDetailInfoController {
 			
 			userInfo.setStudent(student);
 			
-			session.setAttribute("user", userInfo);
+			session.setAttribute("userInfo", userInfo);
 
 			return "studentInfoPage";
 		}
