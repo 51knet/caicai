@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -96,19 +97,11 @@ public class TheServletContextListener implements ServletContextListener {
 	}
 
 	private void setupTestData() {
-		create5BlogCategory();
 		createTeacherAndBlogPosts("steve@apple.com","steve");
 		createTeacherAndBlogPosts("tim@apple.com", "tim");
 		createTeacherAndBlogPosts("bill@microsoft.com", "bill");
 		createTeacherAndBlogPosts("mark@facebook.com", "mark");
 		createTeacherAndBlogPosts("reggie@nintendo.com", "reggie");
-	}
-
-	private void create5BlogCategory() {
-		for (int i = 1; i < 6; i++) {
-			BlogCategory category = new BlogCategory("category"+(i+1));
-			em.persist(category);
-		}
 	}
 	
 	private void createTeacherAndBlogPosts(String email, String password) {
@@ -122,7 +115,15 @@ public class TheServletContextListener implements ServletContextListener {
 		teacher.setRole(0);
 		em.persist(teacher);
 		
-		List<BlogCategory> blogCategories = em.createQuery("select c from BlogCategory c", BlogCategory.class).getResultList();
+		for (int i = 1; i < 6; i++) {
+			BlogCategory category = new BlogCategory("category"+(i+1)+"_teacher"+teacher.getId());
+			category.setAuthor(teacher);
+			em.persist(category);
+		}
+		
+		TypedQuery<BlogCategory> query = em.createQuery("select c from BlogCategory c where c.author = :author", BlogCategory.class);
+		query.setParameter("author", teacher);
+		List<BlogCategory> blogCategories = query.getResultList();
 		BlogCategory blogCategory = blogCategories.get(new Random().nextInt(blogCategories.size()));
 		for (int i = 1; i < 6; i++) {
 			BlogPost post = new BlogPost(teacher, blogCategory, "title"+i, teacher.toString()+i);

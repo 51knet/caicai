@@ -43,6 +43,13 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
+	public Page<BlogPost> findAllBlogs(int pageNumber, int pageSize, Teacher teacher) {
+		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
+		Page<BlogPost> onePage = blogPostRepository.findByAuthor(teacher, dateDesc);
+		return onePage;
+	}
+
+	@Override
 	public BlogPost createBlogPost(BlogPost blogPost) {
 		return blogPostRepository.save(blogPost);
 	}

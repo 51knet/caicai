@@ -1,14 +1,21 @@
 package com.knet51.ccweb.jpa.entities.blog;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
+import com.knet51.ccweb.jpa.entities.Teacher;
 
 @Entity
 public class BlogCategory extends AbstractEntity {
 
+	@ManyToOne
+	@JoinColumn(name="teacher_id")
+	private Teacher author;
+	
 	@NotEmpty
 	private String name;
 	
@@ -26,5 +33,13 @@ public class BlogCategory extends AbstractEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Teacher getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Teacher author) {
+		this.author = author;
 	}
 }

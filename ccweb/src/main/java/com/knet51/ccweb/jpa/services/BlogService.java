@@ -13,6 +13,7 @@ public interface BlogService {
 	BlogPost createBlogPost(BlogPost blogPost);
 	List<BlogPost> findAllBlogs();
 	Page<BlogPost> findAllBlogs(int pageNumber, int pageSize);
+	Page<BlogPost> findAllBlogs(int pageNumber, int pageSize, Teacher teacher);
 	List<BlogCategory> findBlogCategories(Teacher teacher);
 	BlogCategory findBlogCategory(Long category_id);
 	List<BlogPost> findBlogPosts(Long teacher_id);
