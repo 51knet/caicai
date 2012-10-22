@@ -11,5 +11,6 @@
 
 <div style="text-align: center;">
 	<a href='<c:url value='/addrelation?uid=${uid}'></c:url>' class="btn">关注ta</a>
+	<a href='<c:url value='/sendmessage?uid=${uid}'></c:url>' class="btn">发私信</a>
 	<hr />
 </div>
