@@ -7,7 +7,7 @@ public class UserDetailInfoForm {
 	@NotEmpty
 	private String name;
 	@NotEmpty
-	private String nickName;
+	private String cellPhone;
 	@NotEmpty
 	private String gender;
 
@@ -21,12 +21,12 @@ public class UserDetailInfoForm {
 		this.name = name;
 	}
 
-	public String getNickName() {
-		return nickName;
+	public String getCellPhone() {
+		return cellPhone;
 	}
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setCellPhone(String cellPhone) {
+		this.cellPhone = cellPhone;
 	}
 
 	public String getGender() {

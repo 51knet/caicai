@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Announcement;
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.TeacherService;
@@ -111,6 +112,9 @@ public class HomeController {
 			model.addAttribute("annContext", userInfo.getAnnouncementContext());
 			model.addAttribute("photoUrl", userInfo.getPhotoUrl());
 			model.addAttribute("uid", userInfo.getId());
+			model.addAttribute("name", userInfo.getName());
+			model.addAttribute("gender", userInfo.getName());
+			model.addAttribute("role", userInfo.getTeacher().getRole());
 
 			String role = user.getRole();
 			if (role.equals("teacher")) {
@@ -168,6 +172,9 @@ public class HomeController {
 		if (userInfo != null && userInfo.getRole().equals("user")) {
 			return "redirect:/admin/user";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
+			Teacher teacher = teacherService.findOne(userInfo.getId());
+			userInfo.setTeacher(teacher);
+			session.setAttribute("userInfo", userInfo);
 			return "admin.teacher";
 		} else {
 			return "home";

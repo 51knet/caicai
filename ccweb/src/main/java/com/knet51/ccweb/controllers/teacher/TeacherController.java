@@ -49,7 +49,6 @@ public class TeacherController {
 			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 			User user = userService.findOne(userInfo.getId());
 			Teacher teacher = new Teacher(user);
-			teacher.setId(user.getId());
 			teacher.setRole(Integer.valueOf(role));
 			teacher.setCollege(college);
 			teacher.setMajor(major);

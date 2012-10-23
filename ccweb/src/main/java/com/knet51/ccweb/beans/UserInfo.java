@@ -71,6 +71,14 @@ public class UserInfo {
 	public void setAnnouncement(Announcement announcement) {
 		this.announcement = announcement;
 	}
+	
+	public String getName(){
+		return this.user.getName();
+	}
+	
+	public String getGender(){
+		return this.user.getGender();
+	}
 
 //	private void initAnnouncement() {
 //		Long uid = this.user.getId();

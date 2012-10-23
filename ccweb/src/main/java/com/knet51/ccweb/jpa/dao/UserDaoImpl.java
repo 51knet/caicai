@@ -26,8 +26,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User update(User user) {
-		em.merge(user);
-		return null;
+		return em.merge(user);
 	}
 
 	@Override

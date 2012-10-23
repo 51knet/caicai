@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.User;
@@ -29,7 +28,7 @@ public class UserDetailInfoController {
 	private UserService userService;
 
 	@Transactional
-	@RequestMapping(value = "/admin/user/details", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/user/details")
 	public String detailInfo(@Valid UserDetailInfoForm detailInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### DetailInfoController ####");
@@ -53,8 +52,8 @@ public class UserDetailInfoController {
 			User user = userService.findOne(userInfo.getId());
 
 			user.setName(detailInfoForm.getName());
-			user.setName(detailInfoForm.getNickName());
-			user.setName(detailInfoForm.getGender());
+			user.setCell_phone(detailInfoForm.getCellPhone());
+			user.setGender(detailInfoForm.getGender());
 			user = userService.updateUser(user);
 			
 			userInfo.setUser(user);

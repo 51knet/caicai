@@ -34,7 +34,7 @@ public class User extends AbstractEntity {
 	private String randomUrl;
 	private String name;
 	private String password;
-	private Boolean gender;
+	private String gender;
 	private String role;
 	private Date register_date;
 	private Date last_login_date;
@@ -113,11 +113,11 @@ public class User extends AbstractEntity {
 		this.password = password;
 	}
 
-	public Boolean getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(Boolean gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 

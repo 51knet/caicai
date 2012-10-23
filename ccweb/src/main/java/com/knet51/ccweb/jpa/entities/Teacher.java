@@ -21,24 +21,24 @@ public class Teacher {
 	@Id
 	private Long id;
 
-	//@OneToOne(cascade = CascadeType.ALL)
+	// @OneToOne(cascade = CascadeType.ALL)
 	@OneToOne
 	@PrimaryKeyJoinColumn(name = "id")
 	private User user;
-	
-	@OneToMany(mappedBy="teacher",fetch=FetchType.LAZY)
+
+	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
 	private Set<TeacherProject> project = new HashSet<TeacherProject>();
-	
-	@OneToMany(mappedBy="teacher",fetch=FetchType.LAZY)
+
+	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
 	private Set<TeacherThesis> thesis = new HashSet<TeacherThesis>();
-	
-	@OneToMany(mappedBy="teacher",fetch=FetchType.LAZY)
+
+	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
 	private Set<TeacherPatent> patent = new HashSet<TeacherPatent>();
-	
-	@OneToMany(mappedBy="teacher",fetch=FetchType.LAZY)
+
+	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
 	private Set<TeacherHonor> Honor = new HashSet<TeacherHonor>();
-	
-	private Integer role;
+
+	private Integer role = 0;
 	private String title;
 	private String college;
 	private String school;
@@ -59,6 +59,7 @@ public class Teacher {
 
 	public Teacher(User user) {
 		this.user = user;
+		setId(user.getId());
 	}
 
 	public User getUser() {

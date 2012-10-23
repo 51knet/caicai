@@ -5,6 +5,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div style="text-align: center;">
+	<a href='<c:url value='/teacher/${uid}'></c:url>' class="btn">${name }</a>
+</div>
+
+<div style="text-align: center;">
 	<img src='${photoUrl}' height='80px' width='60px'
 		align="middle">
 </div>

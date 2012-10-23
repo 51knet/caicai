@@ -7,16 +7,20 @@
 <h1>Welcome to user info page.</h1>
 <div style="text-align: center;">
 
-	<form:form action="admin/user/details" method="post">
-	
-		<input type="text" name="name" placeholder="name">
+	<form:form method="post">
+
+		<input type="text" name="name"
+			value="${sessionScope.userInfo.user.name }" placeholder="name">
 		<span class="help-block"><form:errors path="name"></form:errors></span>
-		
-		<input type="text" name="nickName" placeholder="nickName">
-		<span class="help-block"><form:errors path="nickName"></form:errors></span>
-		
-		<input type="text" name="gender" placeholder="gender">
+
+		<input type="text" name="gender"
+			value="${sessionScope.userInfo.user.gender }" placeholder="gender">
 		<span class="help-block"><form:errors path="gender"></form:errors></span>
+
+		<input type="text" name="cellPhone"
+			value="${sessionScope.userInfo.user.cell_phone }"
+			placeholder="cellPhone">
+		<span class="help-block"><form:errors path="cellPhone"></form:errors></span>
 
 		<label style="clear: right;"></label>
 		<button type="submit" class="btn">OK</button>

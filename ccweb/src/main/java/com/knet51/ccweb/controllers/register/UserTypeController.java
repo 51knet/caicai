@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 
 @Controller
@@ -22,6 +24,8 @@ public class UserTypeController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private TeacherService teacherService;
 
 	@RequestMapping(value = "/user/dispatcher", method = { RequestMethod.POST,
 			RequestMethod.GET })
@@ -31,8 +35,13 @@ public class UserTypeController {
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		User user = userService.findOne(userInfo.getId());
 		if (userType.equals("teacher")) {
+			Teacher teacher = new Teacher(user);
 			user.setRole("teacher");
-			userService.updateUser(user);
+			user = userService.updateUser(user);
+			teacher = teacherService.createTeacher(teacher);
+			userInfo.setUser(user);
+			userInfo.setTeacher(teacher);
+			session.setAttribute("userInfo", userInfo);
 		}
 		return "redirect:/admin";
 	}

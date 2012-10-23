@@ -4,6 +4,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<div style="text-align: center;">
-	TODO: teacher info<br>
-</div>
+<div style="text-align: center;">${name }</div>
+<div style="text-align: center;">${gender }</div>
+<div style="text-align: center;">${role }</div>
