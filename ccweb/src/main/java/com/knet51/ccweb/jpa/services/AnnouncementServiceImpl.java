@@ -3,6 +3,10 @@ package com.knet51.ccweb.jpa.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.knet51.ccweb.jpa.dao.AnnouncementDao;
@@ -17,8 +21,8 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	private AnnouncementDao annDao;
 
 	@Autowired
-	private AnnouncementRepository repository;
-
+	private AnnouncementRepository annoRepository;
+	
 	@Override
 	public List<Announcement> findAllByUid(Long uId) {
 		return annDao.listAllByUid(uId);
@@ -50,8 +54,15 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	public Announcement findLatestByUid(Long uId) {
 		List<Announcement> annList = findAllByUid(uId);
 		int size = annList.size();
-		System.out.println(size);
 		return size == 0 ? null : annDao.listAllByUid(uId).get(0);
+	}
+
+	@Override
+	public Page<Announcement> findAllAnnoById(int pageNumber, int pageSize,
+			User user) {
+		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
+		Page<Announcement> onePage = annoRepository.findAnnoByUser(user, dateDesc);
+		return onePage;
 	}
 
 }

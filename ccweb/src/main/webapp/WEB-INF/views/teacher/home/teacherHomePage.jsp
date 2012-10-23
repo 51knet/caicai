@@ -11,7 +11,7 @@
 	${userInfo.user.email }<br>
 	${userInfo.user.id }<br>
 	${userInfo.user.name}<br>
-	<a href='<c:url value="/admin/teacher/announcement/add"></c:url>'>添加公告</a><br>
+	<!--<a href='<c:url value="/admin/teacher/announcement/add"></c:url>'>添加公告</a><br>
 	<table width="500" border="1" cellspacing="0" cellpadding="5">
 		<tr><td>公告标题</td><td>发布时间<td>详细操作</td></tr>
 		<c:forEach items="${list}" var="l">
@@ -19,5 +19,6 @@
 		</c:forEach>
 	</table>
 	<br/>
+	-->
 
 </div>

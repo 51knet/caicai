@@ -28,6 +28,11 @@
  		cont.removeChild(br);
  	}
  }
+ 
+ function showResourceTypeAdd(){
+	 var resourceType = document.getElementById("addResourType");
+	 resourceType.style.display="block";
+ }
 </script>
 <h1>Welcome to teacher resource add page.</h1>
 <div style="text-align: center;">
@@ -54,6 +59,16 @@
 
 	</form:form>
 </div>
+ <a href="javascript:void(0)"  onclick="showResourceTypeAdd()">添加新类别</a>&nbsp;&nbsp;&nbsp;&nbsp;<br>
+ 
+ <div id="addResourType" style="display:none;">
+ 	<form action="addtype" method="post">  
+		类别名称：<input type="text" name="typeName" placeholder="TypeName" />&nbsp;<span style="color:red; font-size:14px;">类别名称不能为空！</span>
+		<span class="help-block"><form:errors path="typeName"></form:errors></span>	<br>
+		<button type="submit" class="btn">OK</button>
+	</form>
+ </div> 
+
 </div>
 
 </div>

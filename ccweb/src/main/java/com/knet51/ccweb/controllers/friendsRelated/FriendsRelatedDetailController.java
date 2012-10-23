@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,18 +26,16 @@ public class FriendsRelatedDetailController {
 	@Autowired
 	private FriendsRelateService friendsRelateService; 
 	
-	@RequestMapping(value="/admin/teacher/friendsRelated/addFriendsRelated")
-	public String askFriendsRelated(@RequestParam("ids") Integer[] ids,HttpSession session){
+	@RequestMapping(value="/addrelation")
+	public String askFriendsRelated(@RequestParam("uid") Long id,HttpSession session){
 		logger.info("#### Into FriendsRelated addDetailPage ####");
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		User user = userInfo.getUser();
-		for(int i=0;i<ids.length;i++){
-			Friends_Related friendsReiated = new Friends_Related();
-			friendsReiated.setHost_id(ids[i].longValue());
-			friendsReiated.setFollow_id(user.getId());
-			friendsReiated.setType(1);
-			friendsRelateService.save(friendsReiated);
-		}
-		return "redirect:/admin/teacher/friendsRelated/detail";
+		Friends_Related friendsReiated = new Friends_Related();
+		friendsReiated.setHost_id(id);
+		friendsReiated.setFollow_id(user.getId());
+		friendsReiated.setType(1);
+		friendsRelateService.save(friendsReiated);
+		return "redirect:/teacher/" + id;
 	}
 }

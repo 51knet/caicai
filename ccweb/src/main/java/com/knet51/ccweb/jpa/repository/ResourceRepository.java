@@ -5,10 +5,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.resource.Resource;
 @Transactional
-public interface AnnouncementRepository  extends JpaRepository<Announcement, Long>, JpaSpecificationExecutor<Announcement>{
-	Page<Announcement> findAnnoByUser(User user, Pageable pageable);
+public interface ResourceRepository  extends JpaRepository<Resource, Long>, JpaSpecificationExecutor<Resource>{
+	Page<Resource> findResourceByUser(User user, Pageable pageable);
 }

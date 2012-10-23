@@ -5,9 +5,12 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
@@ -26,12 +29,13 @@ public class TeacherResouInfoPageController {
 	private ResourceTypeService resourceTypeService;
 	
 	@RequestMapping(value="/admin/teacher/resource/list")
-	public String teacherResouInfo(HttpSession session,Model model ){
+	public String teacherResouInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
 		logger.info("#####Into TeacherResouInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		User user = userInfo.getUser();
-		List<Resource> list = resourceService.listAllByUid(user.getId());
-		model.addAttribute("list", list);
+		Page<Resource> onePage = resourceService.findAllResouById(pageNumber, pageSize, user);
+		model.addAttribute("page", onePage);
 		return "admin.teacher.resource.list";
 	}
 	@RequestMapping(value="/admin/teacher/resource/add")

@@ -96,7 +96,7 @@ public class TeacherResouDetailInfoController {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/resource/type/addInfo",  method = RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/resource/addtype",  method = RequestMethod.POST)
 	public String teacherResouTypeAdd(@Valid TeacherResouTypeInfoForm teacherResouTypeInfo,
 			BindingResult validResult, HttpSession session,Model model){
 		String typeName = teacherResouTypeInfo.getTypeName();
@@ -107,7 +107,7 @@ public class TeacherResouDetailInfoController {
 			ResourceType resourceType = new ResourceType();
 			resourceType.setTypeName(typeName);
 			resourceTypeService.save(resourceType);
-			return "redirect:/admin/teacher/resource/type";
+			return "redirect:/admin/teacher/resource/add";
 		}
 	}
 	
