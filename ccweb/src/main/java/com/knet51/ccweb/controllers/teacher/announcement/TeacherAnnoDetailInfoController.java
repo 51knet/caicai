@@ -48,7 +48,6 @@ public class TeacherAnnoDetailInfoController {
 			//System.out.println("++++++++++++++++"+user.getId()+"+++++++++++++++");
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();
-			//System.out.println("------"+title+"-----"+content+"------");
 			Announcement announcement = new Announcement();
 			announcement.setTitle(title);
 			announcement.setContent(content);
@@ -61,17 +60,7 @@ public class TeacherAnnoDetailInfoController {
 			return "redirect:/admin/teacher/announcement/detail";
 		}
 	}
-	
-	
-	@RequestMapping(value="/admin/teacher/announcement/detailOne")
-	public String detailAnnoInfo(@RequestParam("id") Long id, Model m){
-		//System.out.println(id);
-		Announcement ann = annoService.findOneById(id);
-		m.addAttribute("ann", ann);
-		return "admin.teacher.detailAnnInfo";
-	}
-	
-	
+		
 	@RequestMapping(value="/admin/teacher/announcement/deleAnno")
 	public String teacherAnnoDele(@RequestParam("id") Long id,HttpSession session, Model m){
 		annoService.deleAnnouncementById(id);

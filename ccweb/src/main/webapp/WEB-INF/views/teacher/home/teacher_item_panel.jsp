@@ -18,4 +18,6 @@
 	<hr />
 	<a href='<c:url value="/admin/teacher/friendsRelated/detail"></c:url>' class="btn">好友互动</a>
 	<hr />
+	<a href='<c:url value="/admin/teacher/teacherCourse/detail"></c:url>' class="btn">课程管理</a>
+	<hr />
 </div>

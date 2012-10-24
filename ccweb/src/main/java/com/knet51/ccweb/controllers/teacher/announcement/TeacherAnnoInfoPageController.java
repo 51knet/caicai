@@ -44,6 +44,14 @@ public class TeacherAnnoInfoPageController {
 		return "admin.teacher.annoAddPage";
 	}
 	
+	@RequestMapping(value="/admin/teacher/announcement/detailOne")
+	public String detailAnnoInfo(@RequestParam("id") Long id, Model m){
+		//System.out.println(id);
+		Announcement ann = annoService.findOneById(id);
+		m.addAttribute("ann", ann);
+		return "admin.teacher.detailAnnInfo";
+	}
+	
 	public Long getId(HttpSession session){
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		Long id = userInfo.getUser().getId();

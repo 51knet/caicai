@@ -6,7 +6,7 @@
 
 <h1>Welcome to teacher Anno page.</h1>
 <div style="text-align: center;">
-	${user.user["email"] }<br>
+	
 <div style="text-align: center;">
 
 	<form:form action='addAnnoInfo' method="post">

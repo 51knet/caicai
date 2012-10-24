@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
@@ -37,6 +38,9 @@ public class Teacher {
 
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
 	private Set<TeacherHonor> Honor = new HashSet<TeacherHonor>();
+	
+	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
+	private Set<TeacherCourse> course = new HashSet<TeacherCourse>();
 
 	private Integer role = 0;
 	private String title;
@@ -116,6 +120,46 @@ public class Teacher {
 
 	public void setMajor(String major) {
 		this.major = major;
+	}
+	
+	public Set<TeacherProject> getProject() {
+		return project;
+	}
+
+	public void setProject(Set<TeacherProject> project) {
+		this.project = project;
+	}
+
+	public Set<TeacherThesis> getThesis() {
+		return thesis;
+	}
+
+	public void setThesis(Set<TeacherThesis> thesis) {
+		this.thesis = thesis;
+	}
+
+	public Set<TeacherPatent> getPatent() {
+		return patent;
+	}
+
+	public void setPatent(Set<TeacherPatent> patent) {
+		this.patent = patent;
+	}
+
+	public Set<TeacherHonor> getHonor() {
+		return Honor;
+	}
+
+	public void setHonor(Set<TeacherHonor> honor) {
+		Honor = honor;
+	}
+
+	public Set<TeacherCourse> getCourse() {
+		return course;
+	}
+
+	public void setCourse(Set<TeacherCourse> course) {
+		this.course = course;
 	}
 
 	@Override
