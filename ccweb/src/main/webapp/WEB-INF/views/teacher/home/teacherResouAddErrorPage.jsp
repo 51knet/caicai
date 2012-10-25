@@ -9,7 +9,7 @@
 	${user.user["email"] }<br>
 <div style="text-align:center;">
 <div style="width:560px; text-align:left;">
-	<a href='<c:url value="/admin/teacher/resource/add"></c:url>'>单个文件出现大于200M的数据，请点击返回从新添加</a>
+	<a href="javascript:history.go(-1);">单个文件出现大于200M的数据，请点击返回从新添加</a> 
 </div>
 </div>
 

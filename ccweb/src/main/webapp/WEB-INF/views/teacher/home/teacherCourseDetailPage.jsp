@@ -15,14 +15,12 @@
 			<td>课程标题</td>
 			<td>课程简述</td>
 			<td>发布时间</td>
-			<td>课程附件</td>
 			<td>课程操作</td>
 		</tr>
 		<c:forEach items="${page.content}" var="page">
-			<tr><td align="left">${page.courseName}</td>
+			<tr><td align="left"><a href='<c:url value="/admin/teacher/teacherCourse/detailCourse?id=${page.id}"></c:url>'>${page.courseName}</a></td>
 			<td align="center">${page.courseDesc}</td>
 			<td align="center">${page.courseDate}</td>
-			<td align="center"><a href="#">添加附件</a></td>
 			<td align="center"><a href='<c:url value="/admin/teacher/teacherCourse/detailOne?id=${page.id}"></c:url>'>修改</a> | <a href='<c:url value="/admin/teacher/teacherCourse/deleCourse?id=${page.id}"></c:url>'> 删除</a></td></tr>
 		</c:forEach>
 	</table>

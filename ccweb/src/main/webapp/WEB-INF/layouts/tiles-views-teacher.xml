@@ -124,9 +124,21 @@
 		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.teacher.detailCourseInfo" extends="homePage-layout">
+	<definition name="admin.teacher.teacherCourse.detailCourseInfo" extends="homePage-layout">
 		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherCourseUpdatePage.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.teacher.teacherCourse.detailCourse" extends="homePage-layout">
+		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherCourseResourceDetailPage.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.teacher.teacherCourse.addCourseResource" extends="homePage-layout">
+		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherCourseResourceAddPage.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
 	</definition>
 	

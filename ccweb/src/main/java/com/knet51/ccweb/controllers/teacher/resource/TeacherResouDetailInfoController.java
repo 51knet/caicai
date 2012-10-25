@@ -85,8 +85,6 @@ public class TeacherResouDetailInfoController {
 	@RequestMapping(value="/admin/teacher/resource/dele")
 	public String teacherResouDele(HttpSession session,Model model,@RequestParam("id") Long id) throws Exception{
 		logger.info("#####Into TeacherResouInfoDelePageController#####");
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-		User user = userInfo.getUser();
 		Resource resource = resourceService.findOneById(id);
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date = format.format(new Date());

@@ -3,29 +3,46 @@ package com.knet51.ccweb.jpa.entities.teacher;
 import javax.persistence.Entity;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
+
 @Entity
 public class CourseResource extends AbstractEntity {
 	
 	private String fileName;
 	private String savePath;
-	private Long techer_id;
+	private String date;
+	private Long course_id;
+	
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
 	public String getFileName() {
 		return fileName;
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+	
 	public String getSavePath() {
 		return savePath;
 	}
 	public void setSavePath(String savePath) {
 		this.savePath = savePath;
 	}
-	public Long getTecher_id() {
-		return techer_id;
+	
+	public Long getCourse_id() {
+		return course_id;
 	}
-	public void setTecher_id(Long techer_id) {
-		this.techer_id = techer_id;
+	public void setCourse_id(Long course_id) {
+		this.course_id = course_id;
 	}
+	public CourseResource() {
+		super();
+	}
+	
+	
 	
 }

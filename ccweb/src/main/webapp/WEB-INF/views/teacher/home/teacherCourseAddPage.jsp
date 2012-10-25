@@ -4,7 +4,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Welcome to teacher Anno page.</h1>
+<h1>Welcome to teacher course page.</h1>
 <div style="text-align: center;">
 	
 	<div style="text-align: center;">
