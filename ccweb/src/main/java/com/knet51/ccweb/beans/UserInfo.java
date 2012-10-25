@@ -79,6 +79,10 @@ public class UserInfo {
 	public String getGender(){
 		return this.user.getGender();
 	}
+	
+	public int getTeacherRole(){
+		return this.teacher.getRole();
+	}
 
 //	private void initAnnouncement() {
 //		Long uid = this.user.getId();

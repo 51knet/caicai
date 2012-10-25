@@ -13,4 +13,5 @@ public interface UserService {
 	User createUser(User usr);
 	User updateUser(User usr);
 	List<User> findAllUsers();
+	boolean usableUrl(String url);
 }

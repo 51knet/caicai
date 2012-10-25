@@ -113,11 +113,13 @@ public class HomeController {
 			model.addAttribute("photoUrl", userInfo.getPhotoUrl());
 			model.addAttribute("uid", userInfo.getId());
 			model.addAttribute("name", userInfo.getName());
-			model.addAttribute("gender", userInfo.getName());
-			model.addAttribute("role", userInfo.getTeacher().getRole());
+			model.addAttribute("gender", userInfo.getGender());
 
 			String role = user.getRole();
 			if (role.equals("teacher")) {
+				Teacher teacher = teacherService.findOne(Long.parseLong(id));
+				userInfo.setTeacher(teacher);
+				model.addAttribute("role", userInfo.getTeacherRole());
 				return "teacher.basic";
 			} else if (role.equals("user")) {
 				return "redirect:/user/" + id;

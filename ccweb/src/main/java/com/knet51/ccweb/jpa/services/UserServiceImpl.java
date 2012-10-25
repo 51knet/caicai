@@ -15,8 +15,9 @@ import com.knet51.ccweb.jpa.entities.User;
 @Transactional
 @Service("userService")
 public class UserServiceImpl implements UserService {
-	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
-	
+	private static final Logger logger = LoggerFactory
+			.getLogger(UserServiceImpl.class);
+
 	@Autowired
 	private UserDao userDao;
 
@@ -25,11 +26,11 @@ public class UserServiceImpl implements UserService {
 		HashMap<String, String> paramsMap = new HashMap<String, String>();
 		paramsMap.put("email", email);
 		paramsMap.put("password", password);
-		
+
 		User user = null;
 		try {
 			user = userDao.getSingleResultByParamsMap(paramsMap);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			logger.warn("login failed", e);
 		}
 		return (user != null);
@@ -43,7 +44,7 @@ public class UserServiceImpl implements UserService {
 			isActivate = "pass".equals(user.getRandomUrl());
 		} else {
 			isActivate = false;
-		} 
+		}
 		return isActivate;
 	}
 
@@ -77,5 +78,11 @@ public class UserServiceImpl implements UserService {
 	public List<User> findAllUsers() {
 		List<User> userList = userDao.list();
 		return userList;
+	}
+
+	@Override
+	public boolean usableUrl(String url) {
+		User usr = userDao.queryStringBySql("self_url", url);
+		return usr == null ? true : false;
 	}
 }

@@ -23,6 +23,8 @@
 
 		<label style="clear: right;"></label>
 		<button type="submit" class="btn">OK</button>
+		<label style="clear: right;"></label>
+		<a href='<c:url value="/admin/teacher/selfurl"></c:url>' class="btn">个性域名</a>
 
 	</form:form>
 
