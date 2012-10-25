@@ -90,3 +90,44 @@ version 1.0
 
 * 在此目录下的文件推荐使用这样的目录命 *teacher-info* 或 *teacher_info* 而不是 *teacherInfo*
 * 添加某route对应的jsp页面时，使用 *teacher/front*  *teacher/home* 而不是使用这样两个目录 *teacher_front*  *teacher_home*
+
+# 统一的分页的解决方案
+## Controller 层
+
+要点是声明此方法接受pageNumber和pageSize这两个参数，有默认值，所以第一次访问可以不指定，例子
+
+    @Transactional
+	@RequestMapping(value= "/admin/blog/list", method=RequestMethod.GET)
+	public String list(@RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize, Model model, HttpSession session) {
+		Long id = getUserId(session);
+		Teacher teacher = teacherService.findOne(id);
+		Page<BlogPost> page = blogService.findAllBlogs(pageNumber, pageSize, teacher);
+		model.addAttribute("page", page);
+		return "admin.blog.list";
+	}
+	
+##Service 层
+
+要点是构造一个Pageable对象用来做分页查找，例子
+
+    @Override
+    public Page<BlogPost> findAllBlogs(int pageNumber, int pageSize, Teacher teacher) {
+    	Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
+    	Page<BlogPost> onePage = blogPostRepository.findByAuthor(teacher, dateDesc);
+    	return onePage;
+    }
+    
+##View 层
+
+要点是**include这个通用的分页实现**，可以参考/views/admin/blog/list/list.jsp的例子，例子
+
+    <tfoot>
+    	<tr><td colspan="5">
+    		<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+    	</td></tr>
+    </tfoot>
+    
+如果有兴趣看看这个源文件，就知道通用性是怎么实现的了。
+
+### 所以如果你有拷贝分页的实现，是时候修改一下list页面了，include上面这一行就行了！
+

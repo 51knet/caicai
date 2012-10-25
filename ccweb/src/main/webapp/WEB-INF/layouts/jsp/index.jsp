@@ -29,13 +29,7 @@
 <body style="min-width: 1024px;max-width: 1024px;width: 1024px;margin: 0 auto;">
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="span12">
-				<div class="banner">
-					Banner
-				</div>
-				<!--/.banner -->
-			</div>
-			<!--/span-->
+			<tiles:insertAttribute name="banner" />
 		</div>
 		<!--/row-->
 		<div class="row-fluid">

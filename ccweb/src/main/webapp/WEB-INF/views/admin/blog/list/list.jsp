@@ -47,30 +47,8 @@
 		</tbody>
 		<tfoot>
 			<tr><td colspan="5">
-				<div class="pagination">
-				<c:if test="${page.totalPages > 0}">
-					<c:set var="prev" value="${page.number-1}" scope="page"></c:set>
-					<c:set var="next" value="${page.number+1}" scope="page"></c:set>
-					<ul>
-						<c:choose>
-							<c:when test="${page.hasPreviousPage()}">
-								<li><a href='<c:url value="/admin/blog/list?pageNumber=${prev}" />'>Prev</a></li></c:when>
-							<c:otherwise>
-								<li><a href="#" class="disabled">Prev</a></li></c:otherwise>
-						</c:choose>
-					    <li><a href="#" class="active">${page.number+1}/${page.totalPages}</a></li>
-					    <c:choose>
-							<c:when test="${page.hasNextPage()}">
-								<li><a href='<c:url value="/admin/blog/list?pageNumber=${next}" />'>Next</a></li></c:when>
-							<c:otherwise>
-								<li><a href="#" class="disabled">Next</a></li></c:otherwise>
-						</c:choose>
-					    
-					  </ul>
-				</c:if> 
-				</div>
-				</td>
-			</tr>
+				<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+			</td></tr>
 		</tfoot>
 		
 	</table>

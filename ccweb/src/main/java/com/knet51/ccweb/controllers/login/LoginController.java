@@ -23,8 +23,7 @@ import com.knet51.ccweb.jpa.services.UserService;
 @Controller
 public class LoginController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	private UserService service;
 	@Autowired
@@ -54,4 +53,9 @@ public class LoginController {
 		}
 	}
 
+	@RequestMapping(value = "/signout", method = { RequestMethod.POST, RequestMethod.GET })
+	public String signout(HttpSession session, HttpServletRequest request) {
+		session.removeAttribute("userInfo");
+		return "redirect:/";
+	}
 }
