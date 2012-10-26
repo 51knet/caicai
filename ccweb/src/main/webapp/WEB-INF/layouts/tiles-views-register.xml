@@ -13,14 +13,12 @@
 
 	<definition name="register.successful" extends="registerStandard-layout">
 		<put-attribute name="title" value="Register Successful" />
-		<put-attribute name="body"
-			value="/WEB-INF/views/register/registerSuccessful.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/register/registerSuccessful.jsp"></put-attribute>
 	</definition>
 
 	<definition name="user.dispatcher" extends="registerStandard-layout">
 		<put-attribute name="title" value="Register Detail" />
-		<put-attribute name="body"
-			value="/WEB-INF/views/userTypePage.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/userTypePage.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>

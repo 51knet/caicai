@@ -17,13 +17,11 @@
 	</definition>
 	<definition name="debug" extends="standard-layout">
 		<put-attribute name="title" value="Home - DB" />
-		<put-attribute name="body"
-			value="/WEB-INF/views/controllers/home/debug.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/controllers/home/debug.jsp"></put-attribute>
 	</definition>
 	<definition name="404" extends="standard-layout">
 		<put-attribute name="title" value="404 Error" />
-		<put-attribute name="body"
-			value="/WEB-INF/views/controllers/home/404.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/controllers/home/404.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>
