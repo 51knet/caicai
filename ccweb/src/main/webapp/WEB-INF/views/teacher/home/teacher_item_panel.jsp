@@ -20,4 +20,5 @@
 	<hr />
 	<a href='<c:url value="/admin/teacher/teacherCourse/detail"></c:url>' class="btn">课程管理</a>
 	<hr />
+	<a href='<c:url value="/admin/teacher/message/list"></c:url>' class="btn">课程管理</a>
 </div>

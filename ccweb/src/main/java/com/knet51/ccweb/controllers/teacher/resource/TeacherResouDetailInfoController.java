@@ -40,7 +40,7 @@ public class TeacherResouDetailInfoController {
 	public String teacherResouInfo(HttpSession session,Model model,@RequestParam("desc") String desc,
 			@RequestParam("type") Long value, MultipartHttpServletRequest request) throws Exception{
 		logger.info("#####Into TeacherResouInfoAddPageController#####");
-		List<MultipartFile> files = request.getFiles("file");
+		List<MultipartFile> files = request.getFiles("myFiles");
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		User user = userInfo.getUser();
 		for(int i=0;i<files.size();i++){
@@ -85,11 +85,12 @@ public class TeacherResouDetailInfoController {
 	@RequestMapping(value="/admin/teacher/resource/dele")
 	public String teacherResouDele(HttpSession session,Model model,@RequestParam("id") Long id) throws Exception{
 		logger.info("#####Into TeacherResouInfoDelePageController#####");
-		Resource resource = resourceService.findOneById(id);
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String date = format.format(new Date());
-		resource.setDate(date);
-		resourceService.delete(resource, 2);
+//		Resource resource = resourceService.findOneById(id);
+//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		String date = format.format(new Date());
+//		resource.setDate(date);
+//		resourceService.delete(resource, 2);
+		resourceService.deleteResource(id);
 		return "redirect:/admin/teacher/resource/list";
 	}
 	
@@ -98,7 +99,7 @@ public class TeacherResouDetailInfoController {
 	public String teacherResouTypeAdd(@Valid TeacherResouTypeInfoForm teacherResouTypeInfo,
 			BindingResult validResult, HttpSession session,Model model){
 		String typeName = teacherResouTypeInfo.getTypeName();
-		if (validResult.hasErrors()|| "".equals(typeName)) {
+		if (validResult.hasErrors()) {
 			 logger.info("detailInfoForm Validation Failed " + validResult);
 			 return "/admin/teacher/resource/type/add";
 		} else {

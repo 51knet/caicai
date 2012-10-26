@@ -18,4 +18,6 @@ public interface ResourceService {
 	Resource findOneById(Long Id);
 	
 	Page<Resource> findAllResouById(int pageNum, int pageSize, User user);
+	
+	void deleteResource(Long resource_id);
 }

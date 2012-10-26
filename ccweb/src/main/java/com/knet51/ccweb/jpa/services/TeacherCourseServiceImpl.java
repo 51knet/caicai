@@ -31,7 +31,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 
 	@Override
 	public TeacherCourse updateTeacherCourse(TeacherCourse teacherCourse) {
-		return teacherCourseRepository.save(teacherCourse);
+		return teacherCourseRepository.updateTeacherCourseDetail(teacherCourse);
 	}
 
 	@Override
