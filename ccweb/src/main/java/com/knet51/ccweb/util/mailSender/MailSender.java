@@ -29,9 +29,7 @@ public class MailSender {
 		mailInfo.setSubject("Thanks for register to caicai web!");
 		// mailInfo.setContent("Thanks for your registering, please click the url for complete your information:\n"
 		// + url);
-		mailInfo.setContent("<font style='BACKGROUND-COLOR: #666699' color='#ff0000' size='5'>邮箱验证<a href='"
-				+ url
-				+ "'>点击验证邮箱</a></font><img src='http://www.google.cn/intl/zh-CN/images/logo_cn.gif'></img>");
+		mailInfo.setContent("<a href='" + url + "'>点击验证邮箱</a>");
 		mailInfo.setTimeout("10000");
 		SimpleMailSender sms = new SimpleMailSender();
 		return sms.sendHtmlMail(mailInfo);
