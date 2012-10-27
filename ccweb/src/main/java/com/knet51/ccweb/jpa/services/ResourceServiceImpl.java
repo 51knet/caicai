@@ -55,4 +55,9 @@ public class ResourceServiceImpl implements ResourceService {
 		return onePage;
 	}
 
+	@Override
+	public void deleteResource(Long resource_id) {
+		resourceDao.deleteResource(resource_id);
+	}
+
 }

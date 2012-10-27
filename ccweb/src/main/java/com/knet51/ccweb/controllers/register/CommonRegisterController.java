@@ -44,15 +44,20 @@ public class CommonRegisterController {
 			User findUser = userService.findByEmailAddress(email);
 			if (findUser == null) {
 				User user = new User(email, psw);
+				boolean mailSuccess = false;
 				String randomUrl = MailSender.getInstance()
 						.produceRandomString();
 				user.setRandomUrl(randomUrl);
 				findUser = userService.createUser(user);
 				randomUrl += "/";
 				randomUrl += findUser.getId();
-				MailSender.getInstance().SendMail(email,
+				mailSuccess = MailSender.getInstance().SendMail(email,
 						"http://localhost:8080/ccweb/mail/" + randomUrl);
-				return "register.successful";
+				if(mailSuccess){
+					return "register.successful";
+				}else{
+					return "404";
+				}
 			} else {
 				return "register";
 			}

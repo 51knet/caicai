@@ -49,7 +49,7 @@
 			</c:forEach>
 		</select>
 		<br>
-		上传资源：<input type="file" name="file" />&nbsp;&nbsp;<input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span>
+		上传资源：<input type="file" name="myFiles" />&nbsp;&nbsp;<input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span>
 		
 		<br>
 		<div id="container" style="margin-left:70px;"></div>

@@ -42,9 +42,7 @@ public class ConfirmUserRegisterController {
 			logger.info("Confirm user email successful.");
 			return "user.dispatcher";
 		} else {
-			
 			logger.info("#### user confirm failed ####");
-			
 			return "home";
 		}
 	}

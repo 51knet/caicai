@@ -84,6 +84,10 @@ public class UserInfo {
 		return this.teacher.getRole();
 	}
 
+	public UserInfo() {
+		super();
+	}
+
 //	private void initAnnouncement() {
 //		Long uid = this.user.getId();
 //		Announcement announcement;
@@ -95,5 +99,5 @@ public class UserInfo {
 //		}
 //
 //	}
-
+	
 }

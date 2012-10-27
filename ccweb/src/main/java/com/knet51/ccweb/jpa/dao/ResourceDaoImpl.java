@@ -37,4 +37,10 @@ public class ResourceDaoImpl implements ResourceDao {
 		return resource;
 	}
 
+	@Override
+	public void deleteResource(Long resource_id) {
+		Resource resource = em.find(Resource.class, resource_id);
+		em.remove(resource);
+	}
+
 }
