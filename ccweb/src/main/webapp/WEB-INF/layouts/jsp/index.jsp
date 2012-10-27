@@ -26,7 +26,9 @@
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/kindeditor.js" />"></script>
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/lang/zh_CN.js" />"></script>
 </head>
-<body style="min-width: 1024px;max-width: 1024px;width: 1024px;margin: 0 auto;">
+<body>
+	<tiles:insertAttribute name="top-navbar" />
+	
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<tiles:insertAttribute name="banner" />

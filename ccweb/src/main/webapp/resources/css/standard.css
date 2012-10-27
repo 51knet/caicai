@@ -1,4 +1,9 @@
 /*banner*/
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+	min-width: 1024px;max-width: 1024px;width: 1024px;margin: 0 auto;
+}
 .banner {
 	background-color: #ECECF0;
 	height: 80px;
