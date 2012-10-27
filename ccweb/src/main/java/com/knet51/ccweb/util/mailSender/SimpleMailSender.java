@@ -42,7 +42,7 @@ public class SimpleMailSender {
 		return false;
 	}
 
-	public static boolean sendHtmlMail(MailSenderInfo mailInfo) {
+	public boolean sendHtmlMail(MailSenderInfo mailInfo) {
 		MyAuthenticator authenticator = null;
 		Properties pro = mailInfo.getProperties();
 		if (mailInfo.isValidate()) {

@@ -2,9 +2,6 @@ package com.knet51.ccweb.util.mailSender;
 
 import java.util.Random;
 
-import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.services.UserService;
-
 public class MailSender {
 
 	private static MailSender instance = null;
@@ -20,7 +17,7 @@ public class MailSender {
 		return instance;
 	}
 
-	public void SendMail(String sendToAddress, String url) {
+	public boolean SendMail(String sendToAddress, String url) {
 		MailSenderInfo mailInfo = new MailSenderInfo();
 		mailInfo.setMailServerHost("smtp.163.com");
 		mailInfo.setMailServerPort("25");
@@ -30,11 +27,14 @@ public class MailSender {
 		mailInfo.setFromAddress("caicaiadmin@163.com");
 		mailInfo.setToAddress(sendToAddress);
 		mailInfo.setSubject("Thanks for register to caicai web!");
-		mailInfo.setContent("Thanks for your registering, please click the url for complete your information:\n"
-				+ url);
+		// mailInfo.setContent("Thanks for your registering, please click the url for complete your information:\n"
+		// + url);
+		mailInfo.setContent("<font style='BACKGROUND-COLOR: #666699' color='#ff0000' size='5'>邮箱验证<a href='"
+				+ url
+				+ "'>点击验证邮箱</a></font><img src='http://www.google.cn/intl/zh-CN/images/logo_cn.gif'></img>");
 		mailInfo.setTimeout("10000");
 		SimpleMailSender sms = new SimpleMailSender();
-		sms.sendTextMail(mailInfo);
+		return sms.sendHtmlMail(mailInfo);
 	}
 
 	public String produceRandomString() {
@@ -47,21 +47,6 @@ public class MailSender {
 			generateRandStr.append(radStr.substring(randNum, randNum + 1));
 		}
 		return generateRandStr.toString();
-	}
-
-	public boolean SendConfirmMail(String mail, UserService userService) {
-		String randomUrl = produceRandomString();
-		User user = userService.findByEmailAddress(mail);
-		if (user != null) {
-			user.setRandomUrl(randomUrl);
-			userService.updateUser(user);
-			randomUrl += "/";
-			randomUrl += user.getId();
-			SendMail(mail, "http://localhost:8080/ccweb/mail/" + randomUrl);
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 }

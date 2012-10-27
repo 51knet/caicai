@@ -82,7 +82,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean usableUrl(String url) {
-		User usr = userDao.queryStringBySql("self_url", url);
+		User usr = findBySelfUrl(url);
 		return usr == null ? true : false;
+	}
+
+	@Override
+	public User findBySelfUrl(String url) {
+		User usr = userDao.queryStringBySql("self_url", url);
+		return usr;
 	}
 }

@@ -146,9 +146,8 @@ public class HomeController {
 		} else {
 			return "home";
 		}
-
 	}
-	
+
 	@RequestMapping(value = "/admin/user", method = RequestMethod.GET)
 	public String adminUser(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
@@ -164,7 +163,7 @@ public class HomeController {
 		}
 
 	}
-	
+
 	@RequestMapping(value = "/admin/teacher", method = RequestMethod.GET)
 	public String adminTeacher(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
@@ -182,5 +181,17 @@ public class HomeController {
 			return "home";
 		}
 
+	}
+
+	@RequestMapping(value = "/{selfUrl}")
+	public String commonRegister(@PathVariable String selfUrl,
+			HttpSession session) {
+		User user = userService.findBySelfUrl(selfUrl);
+		if (user != null) {
+			Long id = user.getId();
+			return "redirect:/user/"+id.toString();
+		} else {
+			return "404";
+		}
 	}
 }
