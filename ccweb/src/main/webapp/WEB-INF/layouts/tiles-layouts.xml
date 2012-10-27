@@ -10,12 +10,24 @@
 
 	</definition>
 	<definition name="index-layout" template="/WEB-INF/layouts/jsp/index.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="navbar" value="" />
+		<put-attribute name="left" value="" />
+		<put-attribute name="right" value="" />
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<!-- for index login home page -->
+	<definition name="login-layout" template="/WEB-INF/layouts/jsp/index.jsp">
+		<put-attribute name="title" value="Home" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
 		<put-attribute name="navbar" value="" />
 		<put-attribute name="left" value="/WEB-INF/layouts/jsp/index/login-panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/layouts/jsp/index/right-panel.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
+	
 	<!-- admin-layout was 2 columns layout structure -->
 	<definition name="admin-layout" template="/WEB-INF/layouts/jsp/index.jsp">
 		<put-attribute name="title" value="My Blog" />

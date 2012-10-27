@@ -7,10 +7,9 @@
 <tiles-definitions>
 
 
-	<definition name="home" extends="index-layout">
-		<put-attribute name="title" value="Home" />
-
+	<definition name="home" extends="login-layout">
 	</definition>
+	
 	<definition name="db" extends="standard-layout">
 		<put-attribute name="title" value="Home - DB" />
 		<put-attribute name="body" value="/WEB-INF/views/home.jsp"></put-attribute>
