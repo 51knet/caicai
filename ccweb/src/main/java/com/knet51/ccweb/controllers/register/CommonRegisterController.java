@@ -1,6 +1,5 @@
 package com.knet51.ccweb.controllers.register;
 
-
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -53,9 +52,9 @@ public class CommonRegisterController {
 				randomUrl += findUser.getId();
 				mailSuccess = MailSender.getInstance().SendMail(email,
 						"http://localhost:8080/ccweb/mail/" + randomUrl);
-				if(mailSuccess){
+				if (mailSuccess) {
 					return "register.successful";
-				}else{
+				} else {
 					return "404";
 				}
 			} else {

@@ -1,5 +1,6 @@
 package com.knet51.ccweb.controllers.register;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.mailSender.MailSender;
 
 @Controller
 public class ConfirmUserRegisterController {
@@ -29,15 +31,16 @@ public class ConfirmUserRegisterController {
 		logger.info("#### into ConfirmUserRegisterController ####");
 		Integer id = Integer.parseInt(idString);
 		User result = userService.findOne(id.longValue());
-		boolean userConfirmed = (result != null) && randomUrl.equals(result.getRandomUrl());
+		boolean userConfirmed = (result != null)
+				&& randomUrl.equals(result.getRandomUrl());
 		if (userConfirmed) {
-			
+
 			logger.info("#### into result not null #### " + result.getName());
 			result.setRandomUrl("pass");
 			userService.updateUser(result);
-			
+
 			UserInfo userInfo = new UserInfo(result);
-			
+
 			session.setAttribute("userInfo", userInfo);
 			logger.info("Confirm user email successful.");
 			return "user.dispatcher";
@@ -45,5 +48,29 @@ public class ConfirmUserRegisterController {
 			logger.info("#### user confirm failed ####");
 			return "home";
 		}
+	}
+
+	@RequestMapping(value = "/sendMail", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String sendConfirmMail(HttpSession session,
+			HttpServletRequest request) {
+		User user = (User) session.getAttribute("nonValidatedUser");
+		if (user != null) {
+			boolean mailSuccess = false;
+			String email = user.getEmail();
+			String randomUrl = user.getRandomUrl();
+			randomUrl += "/";
+			randomUrl += user.getId();
+			mailSuccess = MailSender.getInstance().SendMail(email,
+					"http://localhost:8080/ccweb/mail/" + randomUrl);
+			if (mailSuccess) {
+				return "register.successful";
+			} else {
+				return "404";
+			}
+		} else {
+			return "404";
+		}
+
 	}
 }

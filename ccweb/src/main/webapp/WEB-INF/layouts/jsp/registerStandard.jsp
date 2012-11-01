@@ -18,29 +18,23 @@
 	<style type="text/css" media="screen">
 	@import url("<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>");
 	@import url("<c:url value="/resources/css/standard.css"/>");
+	@import url("<c:url value="/resources/colorbox/colorbox.css"/>");
 	</style>
-	<!-- Add jQuery library -->
 	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.8.0.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/colorbox/jquery.colorbox.js" />"></script>
+	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/kindeditor.js" />"></script>
+	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/lang/zh_CN.js" />"></script>
 </head>
-<body style="min-width: 1024px;max-width: 1024px;width: 1024px;margin: 0 auto;">
+<body>
+	<tiles:insertAttribute name="top-navbar" />
+	
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="span12">
-				<div class="banner">
-					Banner
-					<div class="pull-right">
-					 	<c:if test="${userInfo != null}">
-					 		<a href='<c:url value="/signout"></c:url>'>退出登陆</a>
-					 	</c:if>
-					 </div>
-				</div>
-				<!--/.banner -->
-			</div>
-			<!--/span-->
+			<tiles:insertAttribute name="banner" />
 		</div>
-		<!--/row-->
-
 		<div class="row-fluid content-panel">
+			<!--/span-->
 			<div class="span9">
 				<div class="right-panel">
 					<tiles:insertAttribute name="body" />
@@ -61,12 +55,6 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			/*button apply: show input fields when click apply*/
-			$('#button_apply').bind('click', function() {
-				$(this).css('display', 'none');
-				$('#payment_details').css('display', 'block');
-			});
-
 		});
 	</script>
 </body>

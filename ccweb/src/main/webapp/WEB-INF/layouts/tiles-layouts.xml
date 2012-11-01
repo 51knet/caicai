@@ -41,6 +41,9 @@
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
 	<definition name="registerStandard-layout" template="/WEB-INF/layouts/jsp/registerStandard.jsp">
+		<put-attribute name="title" value="Register" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/index/top-navbar.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
 		<put-attribute name="body" value="/WEB-INF/layouts/jsp/register/_body.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
