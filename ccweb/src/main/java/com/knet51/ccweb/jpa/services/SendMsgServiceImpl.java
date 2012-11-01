@@ -21,8 +21,10 @@ public class SendMsgServiceImpl implements SendMsgService {
 	private SendMsgDao sendMsgDao;
 	
 	@Autowired
-	
 	private ReceiveMsgDao receiveMsgDao;
+	
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public void add(SendMsg sendMsg, Long userId) {
@@ -30,9 +32,9 @@ public class SendMsgServiceImpl implements SendMsgService {
 		ReceiveMsg receiveMsg = new ReceiveMsg();
 		receiveMsg.setIsDele(1);
 		receiveMsg.setIsRead(1);
-		UserInfo userInfo = new UserInfo();
-		User user = userInfo.getUser();
-		user.setId(userId);
+		//UserInfo userInfo = new UserInfo();
+		User user = userService.findOne(userId);
+		//user.setId(userId);
 		receiveMsg.setUser(user);
 		receiveMsg.setSendMsg(sendMsg);
 		receiveMsgDao.add(receiveMsg);

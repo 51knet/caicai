@@ -132,5 +132,14 @@
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherSelfUrlPage.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
 	</definition>
+	
+		<definition name="admin.sendmessage" extends="frontPage-layout">
+		<put-attribute name="title" value="Welcom to teacher register" />
+
+		<put-attribute name="left1" value="/WEB-INF/views/teacher/front/photo.jsp"></put-attribute>
+		<put-attribute name="left2" value="/WEB-INF/views/teacher/front/info.jsp"></put-attribute>
+		<put-attribute name="left3" value="/WEB-INF/views/teacher/front/announcement.jsp"></put-attribute>
+		<put-attribute name="context1" value="/WEB-INF/views/teacher/home/sendmessageform.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

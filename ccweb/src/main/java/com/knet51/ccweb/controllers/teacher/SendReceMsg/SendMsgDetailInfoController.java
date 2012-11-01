@@ -28,13 +28,15 @@ public class SendMsgDetailInfoController {
 	@Autowired
 	private SendMsgService sendMsgService;
 	
-	@RequestMapping(value="/admin/teacher/message/sendMsgPage",method = RequestMethod.POST)
-	public String messageList(@RequestParam("id") Long userId,@Valid SendMsgInfoForm sendMsgInfoForm,
+	@RequestMapping(value="/admin/message/sendMsgInfo",method = RequestMethod.POST)
+	public String messageList(@RequestParam("uid") Long userId,@Valid SendMsgInfoForm sendMsgInfoForm,
 			BindingResult validResult, HttpSession session,Model model){
+		
 		logger.info("#### Into SendMsgInfoPageControllerPage ####");
 		if(validResult.hasErrors()){
 			return "";
 		}else{
+			System.out.println(userId);
 			SendMsg sendMsg = new SendMsg();
 			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 			User user = userInfo.getUser();
@@ -43,6 +45,7 @@ public class SendMsgDetailInfoController {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String date = format.format(new Date());
 			sendMsg.setTitle(title);
+			sendMsg.setIsDelete(1);
 			sendMsg.setContent(content);
 			sendMsg.setDate(date);
 			sendMsg.setUser(user);
