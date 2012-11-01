@@ -4,16 +4,16 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Welcome to teacher Anno page.</h1>
+<h1>Welcome to teacher Course Update page.</h1>
 <div style="text-align: center;">
 	${sessionScope.userInfo.user["email"] }<br>
 <div style="text-align: center;">
 
 	<form:form action='updateCourseInfo'  method="post">
 		<input type="hidden" name="id" value="${course.id }" />
-		公告标题：<input type="text" name="courseName" value="${course.courseName}" placeholder="Title">
+		课程标题：<input type="text" name="courseName" value="${course.courseName}" placeholder="Title">
 		<span class="help-block"><form:errors path="courseName"></form:errors></span>
-		公告内容：<textarea name="courseDesc"   placeholder="CourseDesc" cols="5" rows="8">${course.courseDesc}</textarea>
+		课程内容：<textarea name="courseDesc"   placeholder="CourseDesc" cols="5" rows="8">${course.courseDesc}</textarea>
 		<span class="help-block"><form:errors path="courseDesc"></form:errors></span>
 		
 	
