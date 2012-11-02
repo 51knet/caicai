@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -14,7 +15,7 @@ public class SendMsg extends AbstractEntity {
 	private String date;
 	private Integer isDelete;  //  1: 没有删除   2：已经删除
 	
-	@OneToMany(mappedBy="sendMsg")
+	@OneToMany(mappedBy="sendMsg",fetch=FetchType.EAGER)
 	private Set<ReceiveMsg>  receiveMsg = new HashSet<ReceiveMsg>();
 	
 	@ManyToOne

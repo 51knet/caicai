@@ -49,10 +49,10 @@ public class User extends AbstractEntity {
 	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
 	private Set<Resource> resources = new HashSet<Resource>();
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
 	private Set<ReceiveMsg>  receiveMsg= new HashSet<ReceiveMsg>();
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
 	private  Set<SendMsg>  sendMsg= new HashSet<SendMsg>();
 	
 	private String photo_url;
