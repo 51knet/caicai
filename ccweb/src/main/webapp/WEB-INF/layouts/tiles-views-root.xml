@@ -7,7 +7,7 @@
 <tiles-definitions>
 
 
-	<definition name="home" extends="login-layout">
+	<definition name="home" extends="homepage-layout">
 	</definition>
 	
 	<definition name="db" extends="standard-layout">
