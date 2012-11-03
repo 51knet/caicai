@@ -21,7 +21,7 @@
 	
 	<definition name="homepage-layout" template="/WEB-INF/layouts/jsp/index.jsp">
 		<put-attribute name="title" value="知识网" />
-		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/index/top-navbar.jsp" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
 		<put-attribute name="body" value="/WEB-INF/layouts/jsp/index/_body.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_indexfooter.jsp" />
 	</definition>
@@ -29,7 +29,7 @@
 	<!-- for index login home page -->
 	<definition name="login-layout" template="/WEB-INF/layouts/jsp/admin.jsp">
 		<put-attribute name="title" value="Home" />
-		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/index/top-navbar.jsp" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
 		<put-attribute name="navbar" value="" />
 		<put-attribute name="left" value="/WEB-INF/layouts/jsp/index/login-panel.jsp" />
@@ -40,7 +40,7 @@
 	<!-- admin-layout was 2 columns layout structure -->
 	<definition name="admin-layout" template="/WEB-INF/layouts/jsp/admin.jsp">
 		<put-attribute name="title" value="My Blog" />
-		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/index/top-navbar.jsp" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
 		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/admin-layout/navbar.jsp" />
 		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/left.jsp" />
@@ -49,13 +49,15 @@
 	</definition>
 	<definition name="registerStandard-layout" template="/WEB-INF/layouts/jsp/registerStandard.jsp">
 		<put-attribute name="title" value="Register" />
-		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/index/top-navbar.jsp" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
 		<put-attribute name="body" value="/WEB-INF/layouts/jsp/register/_body.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
 	<definition name="frontPage-layout" template="/WEB-INF/layouts/jsp/teacher-front.jsp">
 		<put-attribute name="title" value="My Front Page" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
 		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/admin-layout/navbar.jsp" />
 		<put-attribute name="left1" value="/WEB-INF/layouts/jsp/teacher-front/photo.jsp" />
 		<put-attribute name="left2" value="/WEB-INF/layouts/jsp/teacher-front/info.jsp" />
@@ -67,9 +69,6 @@
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
 	
-<<<<<<< HEAD
-
-=======
 	<definition name="zm-layout" template="/WEB-INF/layouts/jsp/teacher-front.jsp">
 		<put-attribute name="title" value="My Front Page" />
 		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/admin-layout/navbar.jsp" />
@@ -79,5 +78,5 @@
 		<put-attribute name="right" value="/WEB-INF/layouts/jsp/teacher-front/right-panel.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
->>>>>>> 11eb20fb16d3c051d9682727190036df92b53a1d
+
 </tiles-definitions>

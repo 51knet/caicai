@@ -27,17 +27,11 @@
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/lang/zh_CN.js" />"></script>
 </head>
 <body style="min-width: 1024px;max-width: 1024px;width: 1024px;margin: 0 auto;">
+	<tiles:insertAttribute name="top-navbar" />
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="span12">
-				<div class="banner">
-					Banner
-				</div>
-				<!--/.banner -->
-			</div>
-			<!--/span-->
+			<tiles:insertAttribute name="banner" />
 		</div>
-		<!--/row-->
 		<div class="row-fluid">
 			<tiles:insertAttribute name="navbar" />
 		</div>
