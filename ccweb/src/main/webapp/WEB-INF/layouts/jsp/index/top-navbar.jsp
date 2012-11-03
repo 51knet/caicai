@@ -22,7 +22,7 @@ body {
 			
 			<a class="brand" href="#"><img src="<c:url value="/resources/img/logo.png"></c:url>" alt=""></a>
 			
-			<div class="nav-collapse collapse">
+			<div class="nav-collapse collapse" style="visibility: hidden;">
 				<p class="navbar-text pull-right custom">
 					Logged in as <a href="#" class="navbar-link">Username</a>
 				</p>

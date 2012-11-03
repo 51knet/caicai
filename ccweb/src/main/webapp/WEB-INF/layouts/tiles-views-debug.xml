@@ -6,19 +6,15 @@
 
 <tiles-definitions>
 
-
-	<definition name="home" extends="homepage-layout">
-	</definition>
-	
-	<definition name="db" extends="standard-layout">
+	<definition name="db" extends="debug-layout">
 		<put-attribute name="title" value="Home - DB" />
 		<put-attribute name="body" value="/WEB-INF/views/home.jsp"></put-attribute>
 	</definition>
-	<definition name="debug" extends="standard-layout">
+	<definition name="debug" extends="debug-layout">
 		<put-attribute name="title" value="Home - DB" />
 		<put-attribute name="body" value="/WEB-INF/views/controllers/home/debug.jsp"></put-attribute>
 	</definition>
-	<definition name="404" extends="standard-layout">
+	<definition name="404" extends="debug-layout">
 		<put-attribute name="title" value="404 Error" />
 		<put-attribute name="body" value="/WEB-INF/views/controllers/home/404.jsp"></put-attribute>
 	</definition>
