@@ -1,0 +1,58 @@
+body{
+	margin: 0px;
+	width:100%;
+	background:url(../img/Top_bg1.jpg) repeat;
+}
+
+.divmenubg{
+	height:50px;
+	width:100%;
+	background:url(../img/Menu_bg02.jpg) repeat-x;
+	z-index:-1;
+}
+.divtopbg{
+	background:url(../img/Top_bg1.jpg) repeat;
+	height:640px;
+	width:100%;
+	margin:0px auto;
+}
+
+.footerStyle{
+	background:url(../img/Footer_bg.jpg) repeat;
+	height:180px;
+	width:100%;
+}
+.footerTopStyle{
+	background:url(../img/Footer_Topbg.jpg) no-repeat;
+	height:30px;
+	line-height:30px;
+	margin:0px auto;
+	font-family:"Microsoft YaHei";
+	font-size:14px;
+	width:935px;
+}
+.footerinformation{
+	color:#cccccc;
+	font-family:"Microsoft YaHei";
+	font-size:12px;
+	margin-top:30px;
+}
+.footerTop{
+	color:#cccccc;
+	font-family:"Microsoft YaHei";
+	font-size:12px;
+	margin-top:5px;
+}
+
+/* HTML5 tags */
+header, section, footer,
+aside, nav, article, figure {
+	display: block;
+}
+
+/*====================*/
+/*=== Other Styles ===*/
+/*====================*/
+.clear {
+	clear:both;
+}
