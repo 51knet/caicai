@@ -28,17 +28,39 @@
 </head>
 <body>
 	<tiles:insertAttribute name="top-navbar" />
-
-	<div class="container">
-		<div class="row-fluid content-panel">
-			<div class="container">
-				<tiles:insertAttribute name="body" />
-			</div>
+	
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<tiles:insertAttribute name="banner" />
 		</div>
+		<!--/row-->
+		<div class="row-fluid">
+			<tiles:insertAttribute name="navbar" />
+		</div>
+		<div class="row-fluid content-panel">
+			<div class="span3">
+				<div class="login-panel">
+					<tiles:insertAttribute name="left" />
+				</div>
+			</div>
+			<!--/span-->
+			<div class="span9">
+				<div class="right-panel">
+					<tiles:insertAttribute name="right" />
+				</div>
+			</div>
+			<!--/span-->
+		</div>
+		<!--/row-->
+
+		<hr>
+
 		<footer>
 			<tiles:insertAttribute name="footer" />
 		</footer>
+
 	</div>
+	<!--/.fluid-container-->
 
 	<script type="text/javascript">
 		$(document).ready(function() {
