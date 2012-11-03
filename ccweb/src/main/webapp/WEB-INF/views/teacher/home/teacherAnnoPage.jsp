@@ -12,12 +12,12 @@
 	${userInfo.user.id }<br>
 	${userInfo.user.name}<br>
 	<a href='<c:url value="/admin/teacher/announcement/add"></c:url>'>添加公告</a><br>
-	<table class="table">
+	<table class="table table-bordered">
 	<thead><tr><th>公告标题</th><th>发布时间<th>详细操作</th></tr></thead>
 	<tbody>
 		
 		<c:forEach items="${page.content}" var="page">
-			<tr><td align="left">${page.title}</td><td align="center">${page.date}</td><td><a href='<c:url value="/admin/teacher/announcement/detailOne?id=${page.id}"></c:url>'>修改</a> | <a href='<c:url value="/admin/teacher/announcement/deleAnno?id=${l.id}"></c:url>'> 删除</a></td></tr>
+			<tr><td align="left">${page.title}</td><td align="center">${page.date}</td><td><a href='<c:url value="/admin/teacher/announcement/detailOne?id=${page.id}"></c:url>'>修改</a> | <a href='<c:url value="/admin/teacher/announcement/deleAnno?id=${page.id}"></c:url>'> 删除</a></td></tr>
 		</c:forEach>
 	</tbody>
 		<!--  <div class="pagination">
