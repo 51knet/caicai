@@ -59,13 +59,8 @@
 		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
 		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/admin-layout/navbar.jsp" />
-		<put-attribute name="left1" value="/WEB-INF/layouts/jsp/teacher-front/photo.jsp" />
-		<put-attribute name="left2" value="/WEB-INF/layouts/jsp/teacher-front/info.jsp" />
-		<put-attribute name="left3" value="/WEB-INF/layouts/jsp/teacher-front/announcement.jsp" />
-		<put-attribute name="context1" value="/WEB-INF/layouts/jsp/teacher-front/right-panel.jsp" />
-		<put-attribute name="context2" value="/WEB-INF/layouts/jsp/teacher-front/right-panel.jsp" />
-		<put-attribute name="context3" value="/WEB-INF/layouts/jsp/teacher-front/right-panel.jsp" />
-		<put-attribute name="context4" value="/WEB-INF/layouts/jsp/teacher-front/right-panel.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/teacher-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/teacher-front/right.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
 	

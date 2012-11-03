@@ -1,7 +1,7 @@
 body{
 	margin: 0px;
 	width:100%;
-	background:url(../img/Top_bg1.jpg) repeat;
+	background:url(../img/top_bg1.jpg) repeat;
 }
 
 .divmenubg{
@@ -11,7 +11,7 @@ body{
 	z-index:-1;
 }
 .divtopbg{
-	background:url(../img/Top_bg1.jpg) repeat;
+	background:url(../img/top_bg1.jpg) repeat;
 	height:640px;
 	width:100%;
 	margin:0px auto;

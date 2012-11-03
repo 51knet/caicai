@@ -20,15 +20,6 @@
 
 	<definition name="teacher.basic" extends="frontPage-layout">
 		<put-attribute name="title" value="Welcom to teacher register" />
-
-		<put-attribute name="left1" value="/WEB-INF/views/teacher/front/photo.jsp"></put-attribute>
-		<put-attribute name="left2" value="/WEB-INF/views/teacher/front/info.jsp"></put-attribute>
-		<put-attribute name="left3" value="/WEB-INF/views/teacher/front/announcement.jsp"></put-attribute>
-
-		<put-attribute name="context1" value="/WEB-INF/views/teacher/front/announcement.jsp"></put-attribute>
-		<put-attribute name="context2" value="/WEB-INF/views/teacher/front/announcement.jsp"></put-attribute>
-		<put-attribute name="context3" value="/WEB-INF/views/teacher/front/announcement.jsp"></put-attribute>
-		<put-attribute name="context4" value="/WEB-INF/views/teacher/front/announcement.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.tacher.annoDetail" extends="admin-layout">
@@ -135,11 +126,7 @@
 	
 	<definition name="admin.sendmessage" extends="frontPage-layout">
 		<put-attribute name="title" value="Welcom to teacher register" />
-
-		<put-attribute name="left1" value="/WEB-INF/views/teacher/front/photo.jsp"></put-attribute>
-		<put-attribute name="left2" value="/WEB-INF/views/teacher/front/info.jsp"></put-attribute>
-		<put-attribute name="left3" value="/WEB-INF/views/teacher/front/announcement.jsp"></put-attribute>
-		<put-attribute name="context1" value="/WEB-INF/views/teacher/home/sendmessageform.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/teacher/home/sendmessageform.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.teacher.message.detail" extends="admin-layout">
