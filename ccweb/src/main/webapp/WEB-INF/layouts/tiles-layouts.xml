@@ -6,7 +6,7 @@
 
 <tiles-definitions>
 
-	<definition name="standard-layout" template="/WEB-INF/layouts/jsp/standard.jsp">
+	<definition name="debug-layout" template="/WEB-INF/layouts/jsp/debug.jsp">
 
 	</definition>
 	<definition name="index-layout" template="/WEB-INF/layouts/jsp/admin.jsp">
