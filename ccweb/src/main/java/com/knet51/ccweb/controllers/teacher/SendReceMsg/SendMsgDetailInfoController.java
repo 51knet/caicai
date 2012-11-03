@@ -35,7 +35,7 @@ public class SendMsgDetailInfoController {
 	
 	@Transactional
 	@RequestMapping(value="/admin/message/sendMsgInfo",method = RequestMethod.POST)
-	public String messageList(@RequestParam("uid") Long userId,@Valid SendMsgInfoForm sendMsgInfoForm,
+	public String messageList(@RequestParam("uid") Long receiverId,@Valid SendMsgInfoForm sendMsgInfoForm,
 			BindingResult validResult, HttpSession session,Model model){
 		
 		logger.info("#### Into SendMsgInfoPageControllerPage ####");
@@ -55,14 +55,14 @@ public class SendMsgDetailInfoController {
 			sendMsg.setContent(content);
 			sendMsg.setDate(date);
 			sendMsg.setUser(user);
-			sendMsgService.add(sendMsg, userId);
-			return "redirect:/teacher/" + userId;
+			sendMsgService.add(sendMsg, receiverId);
+			return "redirect:/teacher/" + receiverId;
 		}	
 	}
 	
 	@Transactional	
 	@RequestMapping(value="/admin/teacher/message/sendMsg",method = RequestMethod.POST)
-	public String sendMsg(@RequestParam("senderId") Long senderId, @RequestParam("sendMsgId") Long sendMsgId , @RequestParam("urmId") Long urmId ,
+	public String sendMsg(@RequestParam("receiveId") Long receiveId, @RequestParam("sendMsgId") Long sendMsgId , @RequestParam("urmId") Long urmId ,
 			@Valid SendMsgInfoForm sendMsgInfoForm,
 			BindingResult validResult, HttpSession session,Model model){
 		
@@ -84,7 +84,7 @@ public class SendMsgDetailInfoController {
 			sendMsg.setContent(content);
 			sendMsg.setDate(date);
 			sendMsg.setUser(sender);
-			sendMsgService.add(sendMsg, senderId);
+			sendMsgService.add(sendMsg, receiveId);
 			return "redirect:/admin/teacher/message/detailOne?mid=" + sendMsgId+"&urmid="+urmId;
 		}	
 	}

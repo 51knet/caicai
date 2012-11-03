@@ -41,7 +41,7 @@
 	<a href="javascript:void(0)" onclick="sendMsgForm()">点击回复</a><br>
 	<div id="sendMsgForm" style="display:none; width:450px; height:300px;">
 		<form:form action="sendMsg" method="post">
-		
+		<input type="hidden" value="${sendMsg.user.id }" name="receiveId">
 		<input type="hidden" value="${sendMsg.id }" name="sendMsgId" >
 		<input type="hidden" value="${urmId }" name="urmId" >
 		信件标题：<input type="text" name="title" placeholder="Title">

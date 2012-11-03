@@ -25,6 +25,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/colorbox/jquery.colorbox.js" />"></script>
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/kindeditor.js" />"></script>
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/lang/zh_CN.js" />"></script>
+	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/myutil.js" />"></script>
 </head>
 <body>
 	<tiles:insertAttribute name="top-navbar" />
