@@ -29,11 +29,9 @@
 <body>
 	<tiles:insertAttribute name="top-navbar" />
 
-	<div class="container">
-		<div class="row-fluid content-panel">
-			<div class="container">
-				<tiles:insertAttribute name="body" />
-			</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<tiles:insertAttribute name="body" />
 		</div>
 		<footer>
 			<tiles:insertAttribute name="footer" />
