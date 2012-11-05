@@ -12,13 +12,15 @@
 	${userInfo.user.id }<br>
 	${userInfo.user.name}<br>
 	<a href='<c:url value="/admin/teacher/announcement/add"></c:url>'>添加公告</a><br>
-	<table width="500" border="1" cellspacing="0" cellpadding="5">
-		<tr><td>公告标题</td><td>发布时间<td>详细操作</td></tr>
+	<table class="table table-bordered">
+	<thead><tr><th>公告标题</th><th>发布时间<th>详细操作</th></tr></thead>
+	<tbody>
+		
 		<c:forEach items="${page.content}" var="page">
-			<tr><td align="left">${page.title}</td><td align="center">${page.date}</td><td><a href='<c:url value="/admin/teacher/announcement/detailOne?id=${page.id}"></c:url>'>修改</a> | <a href='<c:url value="/admin/teacher/announcement/deleAnno?id=${l.id}"></c:url>'> 删除</a></td></tr>
+			<tr><td align="left">${page.title}</td><td align="center">${page.date}</td><td><a href='<c:url value="/admin/teacher/announcement/detailOne?id=${page.id}"></c:url>'>修改</a> | <a href='<c:url value="/admin/teacher/announcement/deleAnno?id=${page.id}"></c:url>'> 删除</a></td></tr>
 		</c:forEach>
-	</table>
-		 <div class="pagination">
+	</tbody>
+		<!--  <div class="pagination">
 				<c:if test="${page.totalPages > 0}">
 					<c:set var="prev" value="${page.number-1}" scope="page"></c:set>
 					<c:set var="next" value="${page.number+1}" scope="page"></c:set>
@@ -40,6 +42,23 @@
 					  </ul>
 				</c:if> 
 			</div>
+			 -->
+			 
+			 <tfoot>
+    <tr><td colspan="5">
+        <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+   		 </td></tr>
+	</tfoot>
+		</table>	 
 	<br/>
 
+</div>
+<div class="btn-group"> 
+		<button class="btn">Action</button>  
+		<button class="btn dropdown-toggle" data-toggle="dropdown">   
+		<span class="caret"></span> </button>
+		<ul class="dropdown-menu">
+			<li>eeee</li>
+			<li>ddddd</li>
+		</ul>
 </div>

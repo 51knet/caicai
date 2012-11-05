@@ -1,4 +1,4 @@
-/*banner*/
+/*style for all pages with top level navbar*/
 body {
 	padding-top: 40px;
 	padding-bottom: 40px;
@@ -8,36 +8,12 @@ body {
 	margin: 0 auto;
 }
 
+/*banner*/
 .banner {
 	background-color: #ECECF0;
 	height: 80px;
 }
 
-.content-panel {
-	min-height: 400px;
-	height: 400px;
-}
-
-.login-panel {
-	border: 1px solid #DDD;
-	height: 400px;
-}
-
-.item-panel {
-	border: 1px solid #DDD;
-	height: 120px;
-}
-
-.subcontext {
-	border: 1px solid #DDD;
-	height: 100px;
-	text-align: center;
-}
-
-.right-panel .ad {
-	border: 1px solid #DDD;
-	text-align: center;
-}
 /*footer*/
 .footer-text {
 	text-align: center;

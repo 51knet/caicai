@@ -4,10 +4,10 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Welcome to teacher home page.</h1>
+
 <div style="text-align: center;">
 
-	Welcome to teacher home page.<br>
+	
 	
 	<a href='<c:url value="/admin/teacher/resource/add"></c:url>'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<a href='<c:url value="/admin/teacher/resource/type"></c:url>'></a><br>

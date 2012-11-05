@@ -3,28 +3,10 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-	<head>
-	<meta name="description" content=""/>
-	<meta name="author" content=""/>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="icon" type="image/png" href="<c:url value="/resources/img/icon.png" />" />
-      
-	<!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-		<title>
-			<tiles:getAsString name="title" />
-		</title>
-		<style type="text/css" media="screen">
-			@import url("<c:url value="/resources/bootstrap/css/bootstrap.min.css" />");
-			@import url("<c:url value="/resources/css/standard.css" />");
-		</style>
-		<!-- Add jQuery library -->
-		<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.8.0.js" />"></script>
-		
-	</head>
+<html>
+<head>
+	<jsp:include page="/WEB-INF/layouts/jsp/common/_html_head.jsp"></jsp:include>
+</head>
 	<body>
 	    <div class="container-fluid">
       <div class="row-fluid">
