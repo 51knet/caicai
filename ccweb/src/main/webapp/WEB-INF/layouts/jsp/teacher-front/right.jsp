@@ -17,7 +17,7 @@
 	<div class="round header"><h5>公告</h5></div>
 	<hr/>
 	<div class="row-fluid">
-		${annContext}
+		${user.announcementContext}
 	</div>
 </div>
 

@@ -45,28 +45,28 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpSession session) {
-		logger.info("Welcome home! the client locale is " + locale.toString());
-
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-
-		if (userInfo != null && userInfo.getRole().equals("user")) {
-			String id = userInfo.getId().toString();
-			return "redirect:/user/" + id;
-		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
-			String id = userInfo.getId().toString();
-			return "redirect:/teacher/" + id;
-		} else if (userInfo != null && userInfo.getRole().equals("student")) {
-			String id = userInfo.getId().toString();
-			return "redirect:/student/" + id;
-		}
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-				DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
+//		logger.info("Welcome home! the client locale is " + locale.toString());
+//
+//		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+//
+//		if (userInfo != null && userInfo.getRole().equals("user")) {
+//			String id = userInfo.getId().toString();
+//			return "redirect:/user/" + id;
+//		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
+//			String id = userInfo.getId().toString();
+//			return "redirect:/teacher/" + id;
+//		} else if (userInfo != null && userInfo.getRole().equals("student")) {
+//			String id = userInfo.getId().toString();
+//			return "redirect:/student/" + id;
+//		}
+//
+//		Date date = new Date();
+//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+//				DateFormat.LONG, locale);
+//
+//		String formattedDate = dateFormat.format(date);
+//
+//		model.addAttribute("serverTime", formattedDate);
 
 		return "home";
 	}
@@ -108,12 +108,12 @@ public class HomeController {
 					.parseLong(id));
 			userInfo = new UserInfo(user);
 			userInfo.setAnnouncement(announcement);
-			model.addAttribute("userInfoModel", userInfo);
-			model.addAttribute("annContext", userInfo.getAnnouncementContext());
-			model.addAttribute("photoUrl", userInfo.getPhotoUrl());
-			model.addAttribute("uid", userInfo.getId());
-			model.addAttribute("name", userInfo.getName());
-			model.addAttribute("gender", userInfo.getGender());
+			model.addAttribute("user", userInfo);
+//			model.addAttribute("annContext", userInfo.getAnnouncementContext());
+//			model.addAttribute("photoUrl", userInfo.getPhotoUrl());
+//			model.addAttribute("uid", userInfo.getId());
+//			model.addAttribute("name", userInfo.getName());
+//			model.addAttribute("gender", userInfo.getGender());
 
 			String role = user.getRole();
 			if (role.equals("teacher")) {
@@ -129,6 +129,7 @@ public class HomeController {
 			}
 		} catch (Exception e) {
 			// TODO: refining exception;
+			e.printStackTrace();
 			return "404";
 		}
 	}
