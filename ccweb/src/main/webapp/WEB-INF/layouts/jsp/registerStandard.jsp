@@ -6,6 +6,27 @@
 <html>
 <head>
 	<jsp:include page="/WEB-INF/layouts/jsp/common/_html_head.jsp"></jsp:include>
+	<style>
+	body {
+		max-width: 1600px;
+		width: 100%;
+	}
+	
+	.container-fluid {
+		padding-right: 0px;
+		padding-left: 0px;
+	}
+	
+	.container-fluid.wrapper {
+		background: url(/ccweb/resources/img/teacher_front_bg.jpg) repeat;
+	}
+	.container-fluid.custom {
+		min-width: 1024px;
+		max-width: 1024px;
+		width: 1024px;
+		margin: 0 auto;
+	}
+	</style>
 </head>
 <body>
 	<tiles:insertAttribute name="top-navbar" />

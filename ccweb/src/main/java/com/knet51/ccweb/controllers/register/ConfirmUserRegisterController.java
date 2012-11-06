@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,7 +44,9 @@ public class ConfirmUserRegisterController {
 
 			session.setAttribute("userInfo", userInfo);
 			logger.info("Confirm user email successful.");
-			return "user.dispatcher";
+			return "redirect:/teacher/dispatcher";
+			// TODO: user type select
+			// return "user.dispatcher";
 		} else {
 			logger.info("#### user confirm failed ####");
 			return "home";
@@ -53,7 +56,7 @@ public class ConfirmUserRegisterController {
 	@RequestMapping(value = "/sendMail", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public String sendConfirmMail(HttpSession session,
-			HttpServletRequest request) {
+			HttpServletRequest request, Model model) {
 		User user = (User) session.getAttribute("nonValidatedUser");
 		if (user != null) {
 			boolean mailSuccess = false;
@@ -64,6 +67,9 @@ public class ConfirmUserRegisterController {
 			mailSuccess = MailSender.getInstance().SendMail(email,
 					"http://localhost:8080/ccweb/mail/" + randomUrl);
 			if (mailSuccess) {
+				String hrefString = email;
+				hrefString = hrefString.substring(hrefString.indexOf("@") + 1);
+				model.addAttribute("hrefString", hrefString);
 				return "register.successful";
 			} else {
 				return "404";

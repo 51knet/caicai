@@ -4,7 +4,11 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Register Successful!</h1>
-<div style="text-align: center;">
-	Register successful, confirm e-mail already send to your register mail.
+<div class="hero-unit">
+	<h1>注册成功！</h1>
+	<hr />
+	<p>感谢您注册成为知识网会员，我们已向您的注册邮箱发送一封确认电子邮件，请点击确认邮件中的链接激活您的账号。</p>
+	<p>
+		<a class="btn btn-primary btn-large" href="http://mail.${hrefString}">进入邮箱 »</a>
+	</p>
 </div>

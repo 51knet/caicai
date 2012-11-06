@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,7 +32,7 @@ public class CommonRegisterController {
 	 */
 	@RequestMapping(value = "/register/common", method = RequestMethod.POST)
 	public String commonRegister(@Valid CommonRegisterForm commonRegisterForm,
-			BindingResult validResult) {
+			BindingResult validResult, Model model) {
 		logger.info("#### commonRegisterController ####");
 
 		if (validResult.hasErrors()) {
@@ -53,6 +54,10 @@ public class CommonRegisterController {
 				mailSuccess = MailSender.getInstance().SendMail(email,
 						"http://localhost:8080/ccweb/mail/" + randomUrl);
 				if (mailSuccess) {
+					String hrefString = email;
+					hrefString = hrefString
+							.substring(hrefString.indexOf("@") + 1);
+					model.addAttribute("hrefString", hrefString);
 					return "register.successful";
 				} else {
 					return "404";

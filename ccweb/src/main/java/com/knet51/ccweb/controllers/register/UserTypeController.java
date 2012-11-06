@@ -45,4 +45,23 @@ public class UserTypeController {
 		}
 		return "redirect:/admin";
 	}
+	
+	@RequestMapping(value = "/teacher/dispatcher", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String teacher(HttpServletRequest request, HttpSession session) {
+		String userType = "teacher";
+		logger.info("### user type is " + userType + " ###");
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		User user = userService.findOne(userInfo.getId());
+		if (userType.equals("teacher")) {
+			Teacher teacher = new Teacher(user);
+			user.setRole("teacher");
+			user = userService.updateUser(user);
+			teacher = teacherService.createTeacher(teacher);
+			userInfo.setUser(user);
+			userInfo.setTeacher(teacher);
+			session.setAttribute("userInfo", userInfo);
+		}
+		return "redirect:/admin";
+	}
 }
