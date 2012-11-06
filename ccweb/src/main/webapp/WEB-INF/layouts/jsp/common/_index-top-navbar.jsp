@@ -15,17 +15,6 @@
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.45);
 }
 
-.navbar.custom #logo {
-	width: 100px;
-	height: 32px;
-	position: absolute;
-	text-indent: -999em;
-	background: url(<c:url value="/resources/img/logo_bak.png"></c:url>);
-	left: 50%;
-	top: 5px;
-	margin-left: -50px;
-	box-shadow: none;
-}
 </style>
 <div class="navbar custom navbar-fixed-top">
 	<a id="logo" href="#">Knet</a>
