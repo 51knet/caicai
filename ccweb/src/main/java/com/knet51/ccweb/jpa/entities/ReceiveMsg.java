@@ -6,26 +6,27 @@ import javax.persistence.ManyToOne;
 @Entity
 public class ReceiveMsg extends AbstractEntity {
 	
-	private Integer isRead;
-	private Integer isDele;
+	private Integer readed;
+	private Integer deled;
 	@ManyToOne
 	private User user;
 	@ManyToOne
 	private SendMsg sendMsg;
-	public Integer getIsRead() {
-		return isRead;
-	}
-	public void setIsRead(Integer isRead) {
-		this.isRead = isRead;
-	}
-	public Integer getIsDele() {
-		return isDele;
-	}
-	public void setIsDele(Integer isDele) {
-		this.isDele = isDele;
-	}
+
 	public User getUser() {
 		return user;
+	}
+	public Integer getReaded() {
+		return readed;
+	}
+	public void setReaded(Integer readed) {
+		this.readed = readed;
+	}
+	public Integer getDeled() {
+		return deled;
+	}
+	public void setDeled(Integer deled) {
+		this.deled = deled;
 	}
 	public void setUser(User user) {
 		this.user = user;

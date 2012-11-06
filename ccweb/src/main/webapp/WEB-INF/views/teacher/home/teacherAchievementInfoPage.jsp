@@ -151,44 +151,38 @@
 		<table width="500" border="0">
 			<tr>
 				<td align="left">荣誉和奖项</td>
-				<td align="right"><a href="javascript:void(0)" onclick="hiddenPatent()">收起</a> | <a href="javascript:void(0)" onclick="showPatent()">展开</a></td>
+				<td align="right"><a href="javascript:void(0)" onclick="hiddenHonor()">收起</a> | <a href="javascript:void(0)" onclick="showHonor()">展开</a></td>
 			</tr>
 		</table>
 		<hr>
 		<div id="honor" style="display: block">
 			<div id="honorForm" style="display: none;">
 				<form action="honor/addHonor" method="post" onSubmit="return checkHonorForm(this)">
-					<table border="0" cellspacing="0" cellpadding="5">
-						<tr>
-							<td align="center">奖励或荣誉</td>
-							<td align="center">获奖原因</td>
-
-						</tr>
+					<table class="table ">
+					<thead><tr><th align="center">奖励或荣誉</th><th align="center">获奖原因</th></tr></thead>
+					<tbody>
 						<tr>
 							<td align="center"><input type="text" name="name" /> <span class="help-block" style="color: red; font-size: 13px;" id="honorNameMsg"></span></td>
 							<td align="center"><input type="text" name="reason" /> <span class="help-block" style="color: red; font-size: 13px;" id="reasonMsg"></span></td>
 						</tr>
 					</table>
+					</tbody>
 					<button type="submit" class="btn">OK</button>
 					<button class="btn" type="reset" onclick="hiddenHonorAddForm()">CANCEL</button>
 				</form>
 			</div>
 			<div id="honorButton" style="display: block">
-				<table width="500" border="0" cellspacing="0" cellpadding="5">
-					<tr>
-						<td align="center">奖励或荣誉</td>
-						<td align="center">获奖原因</td>
-					</tr>
+				<table class="table ">
+					<thead><tr><th align="center">奖励或荣誉</th><th align="center">获奖原因</th><th>操作</th></tr></thead>
+					<tbody>
 					<c:forEach items="${honor}" var="honor">
 						<tr>
 							<td align="center">${honor.name}</td>
 							<td align="center">${honor.reason}</td>
-
-						</tr>
-						<tr>
 							<td colspan="4" align="right">修改 | <a href='<c:url value="/admin/teacher/achievement/honor/deleHonor?id=${honor.id}"></c:url>'>删除</a></td>
 						</tr>
 					</c:forEach>
+					</tbody>
 				</table>
 				<button onclick="showHonorAddForm()">添加</button>
 			</div>

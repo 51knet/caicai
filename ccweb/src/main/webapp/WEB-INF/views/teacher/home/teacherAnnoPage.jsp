@@ -8,9 +8,7 @@
 <div style="text-align: center;">
 
 	Welcome to teacher announcement page.<br>
-	${userInfo.user.email }<br>
-	${userInfo.user.id }<br>
-	${userInfo.user.name}<br>
+
 	<a href='<c:url value="/admin/teacher/announcement/add"></c:url>'>添加公告</a><br>
 	<table class="table table-bordered">
 	<thead><tr><th>公告标题</th><th>发布时间<th>详细操作</th></tr></thead>
@@ -44,12 +42,12 @@
 			</div>
 			 -->
 			 
-			 <tfoot>
-    <tr><td colspan="5">
-        <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
-   		 </td></tr>
-	</tfoot>
-		</table>	 
+		<tfoot>
+	    	<tr><td colspan="3" align="right">
+	        	<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+	   		 </td></tr>
+		</tfoot>
+	</table>	 
 	<br/>
 
 </div>
