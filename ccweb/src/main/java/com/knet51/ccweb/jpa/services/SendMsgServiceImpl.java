@@ -30,8 +30,8 @@ public class SendMsgServiceImpl implements SendMsgService {
 	public void add(SendMsg sendMsg, Long userId) {
 		sendMsgDao.add(sendMsg);
 		ReceiveMsg receiveMsg = new ReceiveMsg();
-		receiveMsg.setIsDele(1);
-		receiveMsg.setIsRead(1);
+		receiveMsg.setDeled(1);
+		receiveMsg.setReaded(1);
 		//UserInfo userInfo = new UserInfo();
 		User user = userService.findOne(userId);
 		//user.setId(userId);

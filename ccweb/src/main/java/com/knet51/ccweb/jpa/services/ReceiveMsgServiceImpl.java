@@ -3,11 +3,17 @@ package com.knet51.ccweb.jpa.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.dao.ReceiveMsgDao;
 import com.knet51.ccweb.jpa.entities.ReceiveMsg;
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.repository.ReceiveMsgRepository;
 
 @Transactional
 @Service("receiveMsgService")
@@ -15,6 +21,10 @@ public class ReceiveMsgServiceImpl implements ReceiveMsgService {
 
 	@Autowired
 	private ReceiveMsgDao receiveMsgDao;
+	
+	@Autowired
+	private ReceiveMsgRepository receiveMsgRepository;
+	
 	@Override
 	public void add(ReceiveMsg receiveMsg) {
 		receiveMsgDao.add(receiveMsg);
@@ -58,6 +68,14 @@ public class ReceiveMsgServiceImpl implements ReceiveMsgService {
 	@Override
 	public List<ReceiveMsg> isDele(Long userId) {
 		return receiveMsgDao.isDele(userId);
+	}
+
+	@Override
+	public Page<ReceiveMsg> findIsReadMsgByUser(int pageNum, int pageSize,
+			User user, Integer isRead) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
+		Page<ReceiveMsg> onePage = receiveMsgRepository.findReceiveMsgByUserAndReaded(user, isRead, dateDesc);
+		return onePage;
 	}
 
 }

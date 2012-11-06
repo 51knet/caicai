@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.ReceiveMsg;
 import com.knet51.ccweb.jpa.entities.SendMsg;
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.ReceiveMsgService;
 import com.knet51.ccweb.jpa.services.SendMsgService;
 
@@ -30,10 +32,13 @@ public class ReceiveMsgInfoPageController {
 	private SendMsgService sendMsgService;
 	
 	@RequestMapping(value="/admin/teacher/message/list")
-	public String receiveMsgList(Model model,HttpSession session){
+	public String receiveMsgList(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
 		logger.info("####  Into ReceiveMsgList page  ####");
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		Long userId = userInfo.getId();
+		User user = userInfo.getUser();
+		Page<ReceiveMsg> page = receiveMsgService.findIsReadMsgByUser(pageNumber, pageSize, user, 1);
 		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userId);
 		List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(userId);
 		List<ReceiveMsg> isDele = receiveMsgService.isDele(userId);
@@ -46,7 +51,8 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("isReadCount", isReadCount);
 		model.addAttribute("msgCount", msgCount);
 		model.addAttribute("isDeleCount",isDeleCount);
-		model.addAttribute("unReadMsgList", unReadMsgList);
+		//model.addAttribute("unReadMsgList", unReadMsgList);
+		model.addAttribute("page", page);
 		return "admin.teacher.message.detail";
 	}
 	
@@ -64,9 +70,12 @@ public class ReceiveMsgInfoPageController {
 	}
 	
 	@RequestMapping(value="/admin/teacher/message/isRead")
-	public String isReadMsg(Model model,HttpSession session){
+	public String isReadMsg(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		Long userId = userInfo.getId();
+		User user = userInfo.getUser();
+		Page<ReceiveMsg> page = receiveMsgService.findIsReadMsgByUser(pageNumber, pageSize, user, 2);
 		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userId);
 		List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(userId);
 		List<ReceiveMsg> isDele = receiveMsgService.isDele(userId);
@@ -79,7 +88,8 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("isReadCount", isReadCount);
 		model.addAttribute("msgCount", msgCount);
 		model.addAttribute("isDeleCount",isDeleCount);
-		model.addAttribute("isReadMsgList", isReadMsgList);
+		//model.addAttribute("isReadMsgList", isReadMsgList);
+		model.addAttribute("page", page);
 		return "admin.teacher.message.isReadDetail";
 	}
 }

@@ -17,31 +17,29 @@
  -->
  收到的站内信数量：${msgCount}件 &nbsp;&nbsp;&nbsp;：<a href='<c:url value="/admin/teacher/message/list"></c:url>'>未读信件数量${unReadCount}件</a>&nbsp;&nbsp;&nbsp;<a href='<c:url value="/admin/teacher/message/isRead"></c:url>'>已读信件数量：${isReadCount}件</a><br/><br/>
  
- <table  border="1" cellspacing="0" cellpadding="5">
-			<tr>
-			<td>ID</td>
-  			<td>标题</td>
-  			<td>是否已读</td>
-  			<td>时间</td>
-  			<td>发件人</td>
-  			<td>基本操作</td>
-  		</tr>
-  	
-  		
-  		<c:forEach items="${isReadMsgList}" var = "irm" >
+ <table class="table table-bordered">
+ <thead><tr><th>标题</th><th>是否已读</th><th>时间</th><th>发件人</th><th>操作</th></tr></thead>
+	<tbody>
+  		<c:forEach items="${page.content}" var = "page" >
   			<tr>
-  				<td>${irm.sendMsg.id}</td>
-  				<td>${irm.sendMsg.title}</td>
+  				
+  				<td>${page.sendMsg.title}</td>
   				<td>
-  					<c:if test="${irm.isRead==2 }">
+  					<c:if test="${page.readed==2 }">
   						已读
   					</c:if>
   				</td>
-  				<td>${irm.sendMsg.date}</td>
-  				<td>${irm.sendMsg.user.name}</td>
-  				<td><a href='<c:url value="/admin/teacher/message/detailOne?mid=${irm.sendMsg.id}&urmid=${irm.id}"></c:url>'>详细</a> |<a href="#">删除</a></td>
+  				<td>${page.sendMsg.date}</td>
+  				<td>${page.sendMsg.user.name}</td>
+  				<td><a href='<c:url value="/admin/teacher/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>详细</a> |<a href="#">删除</a></td>
   			</tr>
   		</c:forEach>
+  	</tbody>
+  		<tfoot>
+    	<tr><td colspan="5">
+        	<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+   		 </td></tr>
+	</tfoot>
 	</table>
 
 </div>

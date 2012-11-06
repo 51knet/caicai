@@ -6,7 +6,7 @@
 
 <h1>Welcome to teacher resource type add page.</h1>
 <div style="text-align: center;">
-	${user.user["email"] }<br>
+
 <div style="text-align:center;">
 <div style="width:560px; text-align:left;">
 	<form:form action="addInfo" method="post">  
