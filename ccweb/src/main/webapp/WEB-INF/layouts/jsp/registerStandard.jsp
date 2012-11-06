@@ -32,9 +32,6 @@
 	<tiles:insertAttribute name="top-navbar" />
 	
 	<div class="container-fluid">
-		<div class="row-fluid">
-			<tiles:insertAttribute name="banner" />
-		</div>
 		<div class="row-fluid content-panel">
 			<!--/span-->
 			<div class="span9">
