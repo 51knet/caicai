@@ -31,14 +31,10 @@ body {
 	});
 </script>
 
-<div style="margin:0px auto; height:640px; background:url(<c:url value='/resources/img/home_bg.png'></c:url>) center -25px no-repeat;"></div>
-
-<div class="container"
-	style="width: 340px; height: 356px; left: 50%; position: absolute; top: 50%; -moz-border-radius: 5px;  margin: -300px 0 0 105px; text-align: center;">
-</div>
+<div style="margin:0px auto; height:640px; background:url(<c:url value='/resources/img/home_bg.png'></c:url>) center -10px no-repeat;"></div>
 
 <div id="logindiv" class="container"
-	style="width: 340px; height: 356px; left: 50%; position: absolute; top: 50%; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; background: #F8F8FA; margin: -300px 0 0 105px; text-align: center;">
+	style="width: 340px; height: 356px; left: 50%; position: absolute; top: 50%; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; background: #F8F8FA; margin: -285px 0 0 105px; text-align: center;">
 	<br/>
 	<form:form class="form-signin" action="/ccweb/signin" modelAttribute="loginForm" method="post">
 		<h3 class="form-signin-heading" style="font-family:'Microsoft YaHei'">用户登录</h3>
@@ -56,7 +52,7 @@ body {
 </div>
 
 <div id="registerdiv" class="container"
-	style="width: 340px; height: 356px; left: 50%; position: absolute; top: 50%; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; background: #F8F8FA; margin: -300px 0 0 105px; text-align: center; display: none;">
+	style="width: 340px; height: 356px; left: 50%; position: absolute; top: 50%; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; background: #F8F8FA; margin: -285px 0 0 105px; text-align: center; display: none;">
 	<br/>
 	<form:form action="register/common" modelAttribute="commonRegisterForm" method="post">
 		<h3 class="form-signin-heading" style="font-family:'Microsoft YaHei'">快速注册</h3>
