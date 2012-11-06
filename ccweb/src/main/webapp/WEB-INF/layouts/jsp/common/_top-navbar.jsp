@@ -7,7 +7,7 @@
 		<div class="container-fluid" style="text-align: center">
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 			</a> 
-			<a id="logo" class="brand" href="#">Knet</a>
+			<a id="logo" class="brand" href='<c:url value="/admin"></c:url>'>Knet</a>
 			<c:if test="${userInfo != null}">
 				<ul class="nav pull-right">
 					<li><a href='<c:url value="/"></c:url>' class="navbar-link">${userInfo.user.email }</a></li>

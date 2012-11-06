@@ -17,5 +17,5 @@
 
 </style>
 <div class="navbar custom navbar-fixed-top">
-	<a id="logo" href="#">Knet</a>
+	<a id="logo" href='<c:url value="/"></c:url>'>Knet</a>
 </div>
