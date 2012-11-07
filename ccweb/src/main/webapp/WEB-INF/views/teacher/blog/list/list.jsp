@@ -18,29 +18,6 @@
 }
 </style>
 <div class="row-fluid custom round">
-	<div class="row"><h5>公告</h5></div>
-	<hr/>
-	<div class="row">
-		${user.announcementContext}
-	</div>
-</div>
-
-<div class="row-fluid custom round">
-	<div class="row">
-		<h5>科研成果</h5>
-	</div>
-	<hr/>
-		...
-</div>
-
-<div class="row-fluid custom round">
-	<div class="row">
-		<h5>课程资料</h5>
-	</div>
-	<hr/>
-	...
-</div>
-<div class="row-fluid custom round">
 	<div class="row">
 		<h5>博客</h5>
 	</div>
@@ -50,9 +27,9 @@
 			<tr><th width="80%">标题</th><th>发表日期</th></tr>
 		</thead>
 		<tbody>
-			<c:forEach var="blogPost" items="${blogPosts}">
+			<c:forEach var="blogPost" items="${page.content}">
 			<tr>
-				<td><a href="<c:url value="/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
+				<td><a href="<c:url value="/teacher/${userInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
 				<td>
 				<fmt:formatDate value="${blogPost.dateCreated}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>
@@ -60,6 +37,11 @@
 			</tr>
 			</c:forEach>
 		</tbody>
+		<tfoot>
+			<tr><td colspan="2">
+				<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+			</td></tr>
+		</tfoot>
 </table>
 </div>
 </div>

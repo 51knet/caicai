@@ -1,7 +1,6 @@
 package com.knet51.ccweb.controllers;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +19,9 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
+import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 
@@ -36,6 +38,9 @@ public class HomeController {
 
 	@Autowired
 	private TeacherService teacherService;
+	
+	@Autowired
+	private BlogService blogService;
 
 	@Autowired
 	private AnnouncementService announcementService;
@@ -45,28 +50,32 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpSession session) {
-//		logger.info("Welcome home! the client locale is " + locale.toString());
-//
-//		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-//
-//		if (userInfo != null && userInfo.getRole().equals("user")) {
-//			String id = userInfo.getId().toString();
-//			return "redirect:/user/" + id;
-//		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
-//			String id = userInfo.getId().toString();
-//			return "redirect:/teacher/" + id;
-//		} else if (userInfo != null && userInfo.getRole().equals("student")) {
-//			String id = userInfo.getId().toString();
-//			return "redirect:/student/" + id;
-//		}
-//
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-//				DateFormat.LONG, locale);
-//
-//		String formattedDate = dateFormat.format(date);
-//
-//		model.addAttribute("serverTime", formattedDate);
+		// logger.info("Welcome home! the client locale is " +
+		// locale.toString());
+		//
+		// UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		//
+		// if (userInfo != null && userInfo.getRole().equals("user")) {
+		// String id = userInfo.getId().toString();
+		// return "redirect:/user/" + id;
+		// } else if (userInfo != null && userInfo.getRole().equals("teacher"))
+		// {
+		// String id = userInfo.getId().toString();
+		// return "redirect:/teacher/" + id;
+		// } else if (userInfo != null && userInfo.getRole().equals("student"))
+		// {
+		// String id = userInfo.getId().toString();
+		// return "redirect:/student/" + id;
+		// }
+		//
+		// Date date = new Date();
+		// DateFormat dateFormat =
+		// DateFormat.getDateTimeInstance(DateFormat.LONG,
+		// DateFormat.LONG, locale);
+		//
+		// String formattedDate = dateFormat.format(date);
+		//
+		// model.addAttribute("serverTime", formattedDate);
 
 		return "home";
 	}
@@ -98,40 +107,22 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/teacher/{id}")
-	public String teacherFront(@PathVariable String id, Model model) {
-		User user;
-		UserInfo userInfo;
-		Announcement announcement;
-		try {
-			user = userService.findOne(Long.parseLong(id));
-			announcement = announcementService.findLatestByUid(Long
-					.parseLong(id));
-			userInfo = new UserInfo(user);
-			userInfo.setAnnouncement(announcement);
-			model.addAttribute("user", userInfo);
-//			model.addAttribute("annContext", userInfo.getAnnouncementContext());
-//			model.addAttribute("photoUrl", userInfo.getPhotoUrl());
-//			model.addAttribute("uid", userInfo.getId());
-//			model.addAttribute("name", userInfo.getName());
-//			model.addAttribute("gender", userInfo.getGender());
+	public String teacherFront(@PathVariable Long id, Model model) {
+		User user = userService.findOne(id);
+		Announcement announcement = announcementService.findLatestByUid(id);
 
-			String role = user.getRole();
-			if (role.equals("teacher")) {
-				Teacher teacher = teacherService.findOne(Long.parseLong(id));
-				userInfo.setTeacher(teacher);
-				model.addAttribute("role", userInfo.getTeacherRole());
-				return "teacher.basic";
-			} else if (role.equals("user")) {
-				return "redirect:/user/" + id;
-			} else {
-				// TODO: student and other role;
-				return "404";
-			}
-		} catch (Exception e) {
-			// TODO: refining exception;
-			e.printStackTrace();
-			return "404";
-		}
+		Teacher teacher = teacherService.findOne(id);
+		Page<BlogPost> page = blogService.findAllBlogs(0, 5, teacher);
+		List<BlogPost> blogPosts = page.getContent();
+		model.addAttribute("blogPosts", blogPosts);
+
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setAnnouncement(announcement);
+		userInfo.setTeacher(teacher);
+		
+		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("role", userInfo.getTeacherRole());
+		return "teacher.basic";
 	}
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -190,7 +181,7 @@ public class HomeController {
 		User user = userService.findBySelfUrl(selfUrl);
 		if (user != null) {
 			Long id = user.getId();
-			return "redirect:/user/"+id.toString();
+			return "redirect:/user/" + id.toString();
 		} else {
 			return "404";
 		}

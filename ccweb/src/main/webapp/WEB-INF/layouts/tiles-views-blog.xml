@@ -32,4 +32,14 @@
 	<definition name="admin.blog.category.view" extends="admin-layout">
 		<put-attribute name="right" value="/WEB-INF/views/admin/blog/category/view/view.jsp" />
 	</definition>
+	
+	<!-- BlogPost Front Pages-->
+	<definition name="teacher.blog.list" extends="frontPage-layout">
+		<put-attribute name="title" value="教师博文" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/blog/list/list.jsp"></put-attribute>
+	</definition>
+	<definition name="teacher.blog.view" extends="frontPage-layout">
+		<put-attribute name="title" value="教师博文" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/blog/view/view.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

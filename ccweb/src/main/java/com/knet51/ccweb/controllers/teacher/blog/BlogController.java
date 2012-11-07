@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogCategory;
 import com.knet51.ccweb.jpa.entities.blog.BlogComment;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
@@ -52,6 +54,32 @@ public class BlogController {
 		Page<BlogPost> page = blogService.findAllBlogs(pageNumber, pageSize, teacher);
 		model.addAttribute("page", page);
 		return "admin.blog.list";
+	}
+	@RequestMapping(value= "/teacher/{teacher_id}/blog/list", method=RequestMethod.GET)
+	public String list(@PathVariable Long teacher_id, @RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize, Model model) {
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("userInfo", userInfo);
+		
+		Page<BlogPost> page = blogService.findAllBlogs(pageNumber, pageSize, teacher);
+		model.addAttribute("page", page);
+		return "teacher.blog.list";
+	}
+	@RequestMapping(value= "/teacher/{teacher_id}/blog/view/{blog_post_id}", method=RequestMethod.GET)
+	public String view(@PathVariable Long teacher_id, @PathVariable Long blog_post_id, Model model) {
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("userInfo", userInfo);
+		
+		BlogPost blogPost = blogService.findOne(blog_post_id);
+		model.addAttribute("blogPost", blogPost);
+		return "teacher.blog.view";
 	}
 	@ModelAttribute("blogPosts")
 	public List<BlogPost> populateBlogPostList(HttpSession session) {

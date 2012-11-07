@@ -17,12 +17,12 @@
 <div class="row-fluid centralize round">
 	<div class="round header"><h5> </h5></div>
 	<div class="row-fluid">
-		<a href='<c:url value='/teacher/${user.id}'></c:url>'>${user.name }</a>
-		<img src='${user.photoUrl}' height='80px' width='60px' align="middle">
+		<a href='<c:url value='/teacher/${userInfo.id}'></c:url>'>${userInfo.name }</a>
+		<img src='${userInfo.photoUrl}' height='80px' width='60px' align="middle">
 	</div>
 	<div class="row-fluid">
-		<a href='<c:url value='/addrelation?uid=${user.id}'></c:url>' class="btn">关注</a> 
-		<a href='<c:url value='/sendmessage?uid=${user.id}'></c:url>' class="btn">发私信</a>
+		<a href='<c:url value='/addrelation?uid=${userInfo.id}'></c:url>' class="btn">关注</a> 
+		<a href='<c:url value='/sendmessage?uid=${userInfo.id}'></c:url>' class="btn">发私信</a>
 	</div>
 </div>
 
@@ -39,5 +39,5 @@
 		<h5>联系方式</h5>
 	</div>
 	<hr/>
-	${user.announcementContext}
+	${userInfo.announcementContext}
 </div>
