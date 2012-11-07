@@ -2,36 +2,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<style type="text/css" media="screen">
-.footerStyle{
-	background:url(<c:url value="/resources/img/Footer_bg.jpg" />) repeat;
-	height:180px;
-	width:100%;
-}
-.footerTopStyle{
-	background:url(<c:url value="/resources/img/Footer_Topbg.jpg" />) no-repeat;
-	height:30px;
-	line-height:30px;
-	margin:0px auto;
-	font-family:"Microsoft YaHei";
-	font-size:14px;
-	width:935px;
-}
-.footerinformation{
-	color:#cccccc;
-	font-family:"Microsoft YaHei";
-	font-size:12px;
-	margin-top:30px;
-}
-.footerTop{
-	color:#cccccc;
-	font-family:"Microsoft YaHei";
-	font-size:12px;
-	margin-top:5px;
-}
-
-</style>
-
 <div class="row" style="text-align: center;">
 		<div class="span12">
 			<p>
