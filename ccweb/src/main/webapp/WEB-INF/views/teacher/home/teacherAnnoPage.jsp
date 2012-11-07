@@ -15,7 +15,20 @@
 	<tbody>
 		
 		<c:forEach items="${page.content}" var="page">
-			<tr><td align="left">${page.title}</td><td align="center">${page.date}</td><td><a href='<c:url value="/admin/teacher/announcement/detailOne?id=${page.id}"></c:url>'>修改</a> | <a href='<c:url value="/admin/teacher/announcement/deleAnno?id=${page.id}"></c:url>'> 删除</a></td></tr>
+			<tr><td align="left">${page.title}</td><td align="center">${page.date}</td>
+			<td>
+				<!-- 
+				 | -->
+				 <div class="btn-group"> 
+					<button class="btn">更多</button>  
+					<button class="btn dropdown-toggle" data-toggle="dropdown">   
+					<span class="caret"></span> </button>
+					<ul class="dropdown-menu">
+						<li><a href='<c:url value="/admin/teacher/announcement/detailOne?id=${page.id}"></c:url>'>修改</a></li>
+						<li> <a href='<c:url value="/admin/teacher/announcement/deleAnno?id=${page.id}"></c:url>'> 删除</a></li>
+					</ul>
+				</div>
+			</td></tr>
 		</c:forEach>
 	</tbody>
 		<!--  <div class="pagination">
@@ -50,13 +63,4 @@
 	</table>	 
 	<br/>
 
-</div>
-<div class="btn-group"> 
-		<button class="btn">Action</button>  
-		<button class="btn dropdown-toggle" data-toggle="dropdown">   
-		<span class="caret"></span> </button>
-		<ul class="dropdown-menu">
-			<li>eeee</li>
-			<li>ddddd</li>
-		</ul>
 </div>

@@ -132,7 +132,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 				/^([\u4e00-\u9fa5]+)|(\w+)$/, "内容不能为空！", "只能是字母数字或汉字");
 		var sourceFlag = checkField(source, sourceMsg,
 				/^([\u4e00-\u9fa5]+)|(\w+)$/, "内容不能为空！", "只能是字母数字或汉字");
-		var dateFlag = checkField(date, dateMsg, /(\d+\.\-)/, "不能为空！", "只能是数字！");
+		var dateFlag = checkField(date, dateMsg,"", "不能为空！", "只能是数字！");
 		return titleFlag && sourceFlag && dateFlag;
 	}
 
