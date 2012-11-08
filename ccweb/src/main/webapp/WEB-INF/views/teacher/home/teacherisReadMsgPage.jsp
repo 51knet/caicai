@@ -15,11 +15,16 @@
 <!-- 
 	
  -->
- 收到的站内信数量：${msgCount}件 &nbsp;&nbsp;&nbsp;：<a href='<c:url value="/admin/teacher/message/list"></c:url>'>未读信件数量${unReadCount}件</a>&nbsp;&nbsp;&nbsp;<a href='<c:url value="/admin/teacher/message/isRead"></c:url>'>已读信件数量：${isReadCount}件</a><br/><br/>
+ <br/><br/>
  
  <table class="table table-bordered">
- <thead><tr><th>标题</th><th>是否已读</th><th>时间</th><th>发件人</th><th>操作</th></tr></thead>
+ <thead><tr><th colspan="5">
+ 	收到的站内信数量：${msgCount}件 &nbsp;&nbsp;&nbsp;：
+ 	<a href='<c:url value="/admin/teacher/message/list"></c:url>'>未读信件数量${unReadCount}件</a>&nbsp;&nbsp;&nbsp;
+ 	<a href='<c:url value="/admin/teacher/message/isRead"></c:url>'>已读信件数量：${isReadCount}件</a>
+ </th></tr></thead>
 	<tbody>
+	<tr><td>标题</td><td>是否已读</td><td>时间</td><td>发件人</td><td>操作</td></tr>
   		<c:forEach items="${page.content}" var = "page" >
   			<tr>
   				
@@ -31,7 +36,17 @@
   				</td>
   				<td>${page.sendMsg.date}</td>
   				<td>${page.sendMsg.user.name}</td>
-  				<td><a href='<c:url value="/admin/teacher/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>详细</a> |<a href="#">删除</a></td>
+  				<td>
+  					 <div class="btn-group"> 
+						<button class="btn">更多</button>  
+						<button class="btn dropdown-toggle" data-toggle="dropdown">   
+						<span class="caret"></span> </button>
+						<ul class="dropdown-menu">
+							<li><a href='<c:url value="/admin/teacher/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>详细</a> </li>
+							<li><a href='<c:url value="/admin/teacher/message/deleOneReaded?mid=${page.sendMsg.id}"></c:url>'>删除</a> </li>
+						</ul>
+					 </div>
+  				</td>
   			</tr>
   		</c:forEach>
   	</tbody>

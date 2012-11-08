@@ -101,7 +101,7 @@ public class TeacherResouDetailInfoController {
 		String typeName = teacherResouTypeInfo.getTypeName();
 		if (validResult.hasErrors()) {
 			 logger.info("detailInfoForm Validation Failed " + validResult);
-			 return "/admin/teacher/resource/type/add";
+			 return "/admin/teacher/resource/add";
 		} else {
 			ResourceType resourceType = new ResourceType();
 			resourceType.setTypeName(typeName);
@@ -116,6 +116,22 @@ public class TeacherResouDetailInfoController {
 		logger.info("#####Into TeacherResouTypeDelePageController#####");
 		resourceTypeService.deleteById(id);
 		return "redirect:/admin/teacher/resource/type";
+	}
+	
+	@Transactional
+	@RequestMapping(value="/admin/teacher/resource/type/addInfo",  method = RequestMethod.POST)
+	public String teacherResouTypeAddInfo(@Valid TeacherResouTypeInfoForm teacherResouTypeInfo,
+			BindingResult validResult, HttpSession session,Model model){
+		String typeName = teacherResouTypeInfo.getTypeName();
+		if (validResult.hasErrors()) {
+			 logger.info("detailInfoForm Validation Failed " + validResult);
+			 return "/admin/teacher/resource/type/add";
+		} else {
+			ResourceType resourceType = new ResourceType();
+			resourceType.setTypeName(typeName);
+			resourceTypeService.save(resourceType);
+			return "redirect:/admin/teacher/resource/type";
+		}
 	}
 	
 

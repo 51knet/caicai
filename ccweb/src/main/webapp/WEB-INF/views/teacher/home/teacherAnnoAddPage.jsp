@@ -4,9 +4,9 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Welcome to teacher Anno page.</h1>
+
 <div style="text-align: center;">
-	
+	Welcome to teacher Announcement add page.<br><br>
 <div style="text-align: center;">
 
 	<form:form action='addAnnoInfo' method="post">
@@ -21,8 +21,8 @@
 	
 		
 		<label style="clear: right;"></label>
-		<button type="submit" class="btn">OK</button>
-
+		<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
+		<button type="reset" class="btn">Cancel</button>
 	</form:form>
 
 </div>

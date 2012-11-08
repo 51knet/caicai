@@ -43,7 +43,7 @@
 					内容：
 					<textarea style="width: 450px;" name="content" cols="40" rows="3" id="thesisContent"></textarea>
 					<span class="help-block" style="color: red; font-size: 13px;" id="thesisContentMsg"></span>
-					<button type="submit" class="btn">OK</button>
+					<button type="submit" class="btn btn-primary">OK</button>
 					<button class="btn" type="reset" onclick="hiddenThesisAddForm()">CANCEL</button>
 				</form>
 			</div>
@@ -72,10 +72,12 @@
 							<td align="center"><input type="text" name="source" /> <span class="help-block" style="color: red; font-size: 13px;" id="sourceMsg"></span></td>
 							<td align="center"><input type="text" name="date" /><span id="dateMsg" style="color: red; font-size: 13px;">2000.01.01-2001.01.01</span></td>
 						</tr>
+						<tr><td align="right" colspan="3"><button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
+						<button class="btn" type="reset" onclick="hiddenProjectAddForm()">CANCEL</button></td></tr>
 					</tbody>
+					
 				</table>
-					<button type="submit" class="btn">OK</button>
-					<button class="btn" type="reset" onclick="hiddenProjectAddForm()">CANCEL</button>
+					
 				</form>
 			</div>
 			<div id="projectButton" style="display: block">
@@ -130,10 +132,13 @@
 							<td align="center"><input type="text" style="width:150px;" name="type" /> <span class="help-block" style="color: red; font-size: 13px;" id="typeMsg"></span></td>
 							<td align="center"><input type="text" style="width:150px;" name="number" /> <span class="help-block" style="color: red; font-size: 13px;" id="numberMsg"></span></td>
 						</tr>
+						<tr><td align="right" colspan="4">
+							<button type="submit" class="btn btn-primary">OK</button>
+							<button class="btn" type="reset" onclick="hiddenPatentAddForm()">CANCEL</button>
+						</td></tr>
 					</tbody>
 					</table>
-					<button type="submit" class="btn">OK</button>
-					<button class="btn" type="reset" onclick="hiddenPatentAddForm()">CANCEL</button>
+					
 				</form>
 			</div>
 			<div id="patentButton" style="display: block">
@@ -187,10 +192,14 @@
 							<td align="center"><input type="text" name="name" /> <span class="help-block" style="color: red; font-size: 13px;" id="honorNameMsg"></span></td>
 							<td align="center"><input type="text" name="reason" /> <span class="help-block" style="color: red; font-size: 13px;" id="reasonMsg"></span></td>
 						</tr>
+						<tr><td align="right" colspan="2">
+							<button type="submit" class="btn btn-primary">OK</button>
+							<button class="btn" type="reset" onclick="hiddenHonorAddForm()">CANCEL</button>
+						</td></tr>
+						</tbody>
 					</table>
-					</tbody>
-					<button type="submit" class="btn">OK</button>
-					<button class="btn" type="reset" onclick="hiddenHonorAddForm()">CANCEL</button>
+					
+					
 				</form>
 			</div>
 			<div id="honorButton" style="display: block">

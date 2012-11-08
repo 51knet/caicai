@@ -4,31 +4,27 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-
+<h1>Welcome to teacher announcement page.</h1>
 <div style="text-align: center;">
-
-	Welcome to teacher announcement page.<br>
-
-	<a href='<c:url value="/admin/teacher/announcement/add"></c:url>'>添加公告</a><br>
 	<table class="table table-bordered">
-	<thead><tr><th>公告标题</th><th>发布时间<th>详细操作</th></tr></thead>
+	<thead><tr><th colspan="3">全部公告</th></tr></thead>
 	<tbody>
-		
+		<tr><td colspan="3"><a href='<c:url value="/admin/teacher/announcement/add"></c:url>' class="btn">添加公告</a><br></td></tr>
+		<tr><td>公告标题</td><td>发布时间</td><td>详细操作</td></tr>
 		<c:forEach items="${page.content}" var="page">
 			<tr><td align="left">${page.title}</td><td align="center">${page.date}</td>
-			<td>
-				<!-- 
-				 | -->
-				 <div class="btn-group"> 
-					<button class="btn">更多</button>  
-					<button class="btn dropdown-toggle" data-toggle="dropdown">   
-					<span class="caret"></span> </button>
-					<ul class="dropdown-menu">
-						<li><a href='<c:url value="/admin/teacher/announcement/detailOne?id=${page.id}"></c:url>'>修改</a></li>
-						<li> <a href='<c:url value="/admin/teacher/announcement/deleAnno?id=${page.id}"></c:url>'> 删除</a></li>
-					</ul>
-				</div>
-			</td></tr>
+				<td>
+					 <div class="btn-group"> 
+						<button class="btn">更多</button>  
+						<button class="btn dropdown-toggle" data-toggle="dropdown">   
+						<span class="caret"></span> </button>
+						<ul class="dropdown-menu">
+							<li><a href='<c:url value="/admin/teacher/announcement/detailOne?id=${page.id}"></c:url>'>修改</a></li>
+							<li> <a href='<c:url value="/admin/teacher/announcement/deleAnno?id=${page.id}"></c:url>'> 删除</a></li>
+						</ul>
+					 </div>
+				 </td>
+			</tr>
 		</c:forEach>
 	</tbody>
 		<!--  <div class="pagination">

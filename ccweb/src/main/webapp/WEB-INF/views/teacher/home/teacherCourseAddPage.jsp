@@ -15,8 +15,8 @@
 			课程描述：<textarea name="courseDesc" placeholder="CourseDesc" cols="5" rows="8"></textarea>
 			<span class="help-block"><form:errors path="CourseDesc"></form:errors></span>
 			<label style="clear: right;"></label>
-			<button type="submit" class="btn">OK</button>
-	
+			<button type="submit" class="btn btn-primary">OK</button>
+			<button type="reset" class="btn">Cancel</button>
 		</form:form>
 	
 	</div>

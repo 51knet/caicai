@@ -22,7 +22,7 @@ public class ReceiveMsgDaoImpl implements ReceiveMsgDao {
 	@Override
 	public void del(Long userId) {
 		ReceiveMsg receiveMsg = em.find(ReceiveMsg.class, userId);
-		receiveMsg.setDeled(2);
+		receiveMsg.setReaded(3);
 		em.merge(receiveMsg);
 	}
 

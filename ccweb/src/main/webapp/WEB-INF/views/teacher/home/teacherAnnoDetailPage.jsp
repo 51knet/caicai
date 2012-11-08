@@ -21,8 +21,8 @@
 	
 		
 		<label style="clear: right;"></label>
-		<button type="submit" class="btn">OK</button>
-
+		<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
+		<button type="reset" class="btn">Cancel</button>
 	</form:form>
 
 </div>

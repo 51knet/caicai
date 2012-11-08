@@ -6,6 +6,7 @@
 
 <div style="text-align: center;">
 	<a href='<c:url value='/teacher/${uid}'></c:url>' class="btn">${name }</a>
+	${sessionScope.userInfo.user.id }
 </div>
 
 <div style="text-align: center;">
@@ -14,7 +15,9 @@
 </div>
 
 <div style="text-align: center;">
-	<a href='<c:url value='/addrelation?uid=${uid}'></c:url>' class="btn">关注ta</a>
-	<a href='<c:url value='/sendmessage?uid=${uid}'></c:url>' class="btn">发私信</a>
+	<c:if test="${sessionScope.userInfo.user.id!= uid }">
+		<a href='<c:url value='/addrelation?uid=${uid}'></c:url>' class="btn">关注ta</a>
+		<a href='<c:url value='/sendmessage?uid=${uid}'></c:url>' class="btn">发私信</a>
+	</c:if>
 	<hr />
 </div>

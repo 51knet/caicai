@@ -35,6 +35,8 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	function hiddenThesisAddForm() {
 		var thesisForm = document.getElementById("thesisForm");
 		var thesisButton = document.getElementById("thesisButton");
+		var thesisContentMsg = document.getElementById("thesisContentMsg");
+		thesisContentMsg.innerHTML="";
 		thesisForm.style.display = "none";
 		thesisButton.style.display = "block";
 	}
@@ -59,6 +61,12 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	function hiddenProjectAddForm() {
 		var projectForm = document.getElementById("projectForm");
 		var projectButton = document.getElementById("projectButton");
+		var titleMsg = document.getElementById("titleMsg");
+		var sourceMsg = document.getElementById("sourceMsg");
+		var dateMsg = document.getElementById("dateMsg");
+		titleMsg.innerHTML="";
+		sourceMsg.innerHTML="";
+		dateMsg.innerHTML="2000.01.01-2001.01.01";
 		projectForm.style.display = "none";
 		projectButton.style.display = "block";
 	}
@@ -83,8 +91,16 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	function hiddenPatentAddForm() {
 		var patentForm = document.getElementById("patentForm");
 		var patentButton = document.getElementById("patentButton");
+		var inventerMsg = document.getElementById("inventerMsg");
+		var nameMsg = document.getElementById("nameMsg");
+		var typeMsg = document.getElementById("typeMsg");
+		var numberMsg = document.getElementById("numberMsg");
 		patentForm.style.display = "none";
 		patentButton.style.display = "block";
+		inventerMsg.innerHTML="";
+		nameMsg.innerHTML="";
+		typeMsg.innerHTML="";
+		numberMsg.innerHTML="";
 	}
 
 	function hiddenHonor() {
@@ -143,7 +159,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 		var name = obj.name;
 		var nameMsg = document.getElementById("nameMsg");
 
-		var type = obj.type
+		var type = obj.type;
 		var typeMsg = document.getElementById("typeMsg");
 
 		var number = obj.number;

@@ -5,19 +5,27 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div style="text-align: center;">
-	Your E-mail: ${userInfo.user.email }<br>
-	Your ID: ${userInfo.user.id }<br>
-	Your Name: ${userInfo.user.name}<br>
 	<br>
-	<a href='<c:url value="/admin/teacher/teacherCourse/add"></c:url>' >添加新课程</a><br>
+	
 	<table class="table table-bordered">
-		<thead><tr><th>课程标题</th><th>课程简述</th><th>发布时间</th><th>课程操作</th></tr></thead>
+		<thead><tr><th colspan="4">全部课程</th></tr></thead>
 		<tbody>
+			<tr><td colspan="4"><a href='<c:url value="/admin/teacher/teacherCourse/add"></c:url>' class="btn" >添加新课程</a><br></td></tr>
+			<tr><td>课程标题</td><td>课程简述</td><td>发布时间</td><td>课程操作</td></tr>
 			<c:forEach items="${page.content}" var="page">
 				<tr><td align="left"><a href='<c:url value="/admin/teacher/teacherCourse/detailCourse?id=${page.id}"></c:url>'>${page.courseName}</a></td>
 				<td align="center">${page.courseDesc}</td>
 				<td align="center">${page.courseDate}</td>
-				<td align="center"><a href='<c:url value="/admin/teacher/teacherCourse/detailOne?id=${page.id}"></c:url>'>修改</a> | <a href='<c:url value="/admin/teacher/teacherCourse/deleCourse?id=${page.id}"></c:url>'> 删除</a></td></tr>
+				<td align="center">
+				 <div class="btn-group"> 
+						<button class="btn">更多</button>  
+						<button class="btn dropdown-toggle" data-toggle="dropdown">   
+						<span class="caret"></span> </button>
+						<ul class="dropdown-menu">
+							<li><a href='<c:url value="/admin/teacher/teacherCourse/detailOne?id=${page.id}"></c:url>'>修改</a></li>
+							<li> <a href='<c:url value="/admin/teacher/teacherCourse/deleCourse?id=${page.id}"></c:url>'> 删除</a></li>
+						</ul>
+					 </div>
 			</c:forEach>
 		</tbody>
 		<tfoot>

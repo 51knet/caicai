@@ -8,11 +8,13 @@
 <div style="text-align: center;">
 
 
-	<a href='<c:url value="/admin/teacher/resource/add"></c:url>'>添加资源</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href='<c:url value="/admin/teacher/resource/type"></c:url>'>类别管理</a><br>
+	
 	<table class="table table-bordered">
-	<thead><tr><th>文件名称</th><th>发布时间<th>文件描述</th><th>文件类型</th><th>详细操作</th></tr></thead>
+	<thead><tr><th colspan="5">全部资源</th></tr></thead>
 		<tbody>
+		<tr><td colspan="5"> <a href='<c:url value="/admin/teacher/resource/add"></c:url>' class="btn">添加资源</a>&nbsp;&nbsp;
+	<a href='<c:url value="/admin/teacher/resource/type"></c:url>'  class="btn">类别管理</a><br></td></tr>
+		<tr><td>文件名称</td><td>发布时间</td><td>文件描述</td><td>文件类型</td><td>详细操作</td></tr>
 		<c:forEach items="${page.content}" var="page">
 			<tr><td align="left">${page.name}</td>
 			<td align="center">${page.date}</td>

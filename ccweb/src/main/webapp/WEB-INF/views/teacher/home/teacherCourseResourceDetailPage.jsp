@@ -6,7 +6,7 @@
 
 <h1>Welcome to teacher Course page.</h1>
 <div style="text-align: center;">
-	${sessionScope.userInfo.user["email"] }<br>
+
 <div style="text-align: center;">
 	
 	<table class="table table-bordered">
@@ -19,10 +19,12 @@
 	</table>
 	<br>
 	课程资源<hr>
-	<a href='<c:url value="/admin/teacher/teacherCourse/addResourcePage?id=${course.id}"></c:url>'>添加附件</a>
+	
 	<table class="table table-bordered">
-		<thead><tr><th>资源名称</th><th>上传时间</th><th>下载</th></tr></thead>
+		<thead><tr><th colspan="3">全部资源</th></tr></thead>
 		<tbody>
+			<tr><td colspan="3"><a href='<c:url value="/admin/teacher/teacherCourse/addResourcePage?id=${course.id}"></c:url>' class="btn">添加附件</a></td></tr>
+			<tr><td>资源名称</td><td>上传时间</td><td>下载</td></tr>
 			<c:forEach items="${resourceList}" var="resource">
 				<tr>
 					<td align="left">${resource.fileName}</td>

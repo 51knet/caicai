@@ -74,7 +74,7 @@ public class ReceiveMsgServiceImpl implements ReceiveMsgService {
 	public Page<ReceiveMsg> findIsReadMsgByUser(int pageNum, int pageSize,
 			User user, Integer isRead) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
-		Page<ReceiveMsg> onePage = receiveMsgRepository.findReceiveMsgByUserAndReaded(user, isRead, dateDesc);
+		Page<ReceiveMsg> onePage = receiveMsgRepository.findReceiveMsgByUserAndReaded(user, isRead,  dateDesc);
 		return onePage;
 	}
 

@@ -33,12 +33,12 @@ public class ReceiveMsgInfoPageController {
 	
 	@RequestMapping(value="/admin/teacher/message/list")
 	public String receiveMsgList(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		logger.info("####  Into ReceiveMsgList page  ####");
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		Long userId = userInfo.getId();
 		User user = userInfo.getUser();
-		Page<ReceiveMsg> page = receiveMsgService.findIsReadMsgByUser(pageNumber, pageSize, user, 1);
+		Page<ReceiveMsg> page = receiveMsgService.findIsReadMsgByUser(pageNumber, pageSize, user, 1 );
 		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userId);
 		List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(userId);
 		List<ReceiveMsg> isDele = receiveMsgService.isDele(userId);
@@ -69,9 +69,10 @@ public class ReceiveMsgInfoPageController {
 		return "admin.teacher.message.send";
 	}
 	
+	@Transactional
 	@RequestMapping(value="/admin/teacher/message/isRead")
 	public String isReadMsg(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 		Long userId = userInfo.getId();
 		User user = userInfo.getUser();
@@ -91,5 +92,19 @@ public class ReceiveMsgInfoPageController {
 		//model.addAttribute("isReadMsgList", isReadMsgList);
 		model.addAttribute("page", page);
 		return "admin.teacher.message.isReadDetail";
+	}
+	
+	@Transactional
+	@RequestMapping(value="/admin/teacher/message/deleOneReaded")
+	public String deleMsg(@RequestParam("mid") Long mid,Model model){
+		sendMsgService.del(mid);
+		return "redirect:/admin/teacher/message/isRead";
+	}
+	
+	@Transactional
+	@RequestMapping(value="/admin/teacher/message/deleOne")
+	public String deleMsg2(@RequestParam("mid") Long mid,Model model){
+		sendMsgService.del(mid);
+		return "redirect:/admin/teacher/message/list";
 	}
 }

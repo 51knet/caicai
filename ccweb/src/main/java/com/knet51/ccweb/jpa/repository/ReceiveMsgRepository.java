@@ -11,6 +11,6 @@ import com.knet51.ccweb.jpa.entities.User;
 
 @Transactional
 public interface ReceiveMsgRepository extends JpaRepository<ReceiveMsg, Long>, JpaSpecificationExecutor<ReceiveMsg>  {
-	Page<ReceiveMsg> findReceiveMsgByUserAndReaded(User user,Integer isRead,Pageable pageable);
+	Page<ReceiveMsg> findReceiveMsgByUserAndReaded(User user,Integer isRead ,Pageable pageable);
 
 }

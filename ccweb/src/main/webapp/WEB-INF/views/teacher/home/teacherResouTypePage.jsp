@@ -7,12 +7,16 @@
 <h1>Welcome to teacher resource type  page.</h1>
 <div style="text-align: center;">
 	<a href='<c:url value="/admin/teacher/resource/type/add"></c:url>'>添加新类别</a>&nbsp;&nbsp;&nbsp;&nbsp;<br>
-	<table width="500" border="1" cellspacing="0" cellpadding="5">
-		<tr><td>类型名称</td><td>详细操作</td></tr>
+	<table class="table table-bordered" style="width:500px;">
+	<thead><tr><th colspan="2">全部类别</th></tr></thead>
+	
+	<tbody>
+		<tr><td>类别名称</td><td>详细操作</td></tr>
 		<c:forEach items="${list}" var="l">
 			<tr><td align="left">${l.typeName}</td>
 			<td><a href='<c:url value="/admin/teacher/resource/type/dele?id=${l.id}"></c:url>'> 删除</a></td></tr>
 		</c:forEach>
+	</tbody>
 	</table>
 	<br/>
 
