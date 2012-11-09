@@ -6,7 +6,6 @@
 
 <h1>Welcome to teacher resource type page.</h1>
 <div style="text-align: center;">
-
 	<div style="text-align:center;">
 		<div style="width:560px; text-align:left;">
 			<form:form action="addInfo" method="post">  
@@ -17,5 +16,4 @@
 			</form:form>
 		</div>
 	</div>
-
 </div>

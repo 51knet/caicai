@@ -2,7 +2,6 @@ package com.knet51.ccweb.jpa.dao;
 import java.util.List;
 
 import com.knet51.ccweb.jpa.entities.Friends_Related;
-import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 
 public interface FriendsRelatedDao {
 	Friends_Related save(Friends_Related friendsRelated);

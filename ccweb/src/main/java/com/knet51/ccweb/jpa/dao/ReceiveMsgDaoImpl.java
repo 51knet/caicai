@@ -18,19 +18,21 @@ public class ReceiveMsgDaoImpl implements ReceiveMsgDao {
 	public void add(ReceiveMsg receiveMsg) {
 		em.persist(receiveMsg);
 	}
-
+	
+	//回收站
 	@Override
-	public void del(Long userId) {
-		ReceiveMsg receiveMsg = em.find(ReceiveMsg.class, userId);
+	public void del(Long mId) {
+		ReceiveMsg receiveMsg = em.find(ReceiveMsg.class, mId);
+		//System.out.println("##############"+receiveMsg.getUser()+"################");
+		//System.out.println("###############"+mId+"################");
 		receiveMsg.setReaded(3);
 		em.merge(receiveMsg);
 	}
-
+	//彻底删除
 	@Override
-	public void del2(Long userId) {
-		ReceiveMsg receiveMsg = em.find(ReceiveMsg.class, userId);
-		receiveMsg.setDeled(3);
-		em.merge(receiveMsg);
+	public void destory(Long mId) {
+		ReceiveMsg receiveMsg = em.find(ReceiveMsg.class, mId);
+		em.remove(receiveMsg);
 	}
 
 	@Override
@@ -66,7 +68,7 @@ public class ReceiveMsgDaoImpl implements ReceiveMsgDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ReceiveMsg> isDele(Long userId) {
-		return em.createQuery("from ReceiveMsg where deled=2 and user_id="+userId).getResultList();
+		return em.createQuery("from ReceiveMsg where readed=3 and user_id="+userId).getResultList();
 	}
 
 }

@@ -98,14 +98,10 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/teacherCourse/addInfo",method=RequestMethod.POST)
 	public String TeacherCourseResourceAdd(HttpSession session,Model model,@RequestParam("id") Long course_id,
 			MultipartHttpServletRequest request) throws  Exception{
-		//System.out.println(course_id);
 		List<MultipartFile> files = request.getFiles("file");
-//		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-//		User user = userInfo.getUser();
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				CourseResource resource = new CourseResource();
-				//ResourceType resourceType = new ResourceType();
 				logger.info("上传文件名称"+files.get(i).getOriginalFilename()); 
 				String fileName = files.get(i).getOriginalFilename();
 				String realPath = session.getServletContext().getRealPath("/WEB-INF/courseResources/");

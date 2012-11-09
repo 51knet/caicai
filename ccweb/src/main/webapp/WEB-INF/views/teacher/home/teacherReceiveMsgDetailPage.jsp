@@ -35,7 +35,7 @@
     </td>
   </tr>
   <tr>
-    <td >${sendMsg.content }</td>
+    <td align="left" >${sendMsg.content }</td>
   </tr>
 </table><br> 
 	<a href="javascript:void(0)" onclick="sendMsgForm()">点击回复</a><br>

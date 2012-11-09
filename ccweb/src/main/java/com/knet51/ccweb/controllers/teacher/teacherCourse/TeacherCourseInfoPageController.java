@@ -48,8 +48,6 @@ public class TeacherCourseInfoPageController {
 	
 	@RequestMapping(value="/admin/teacher/teacherCourse/detailOne")
 	public String detailCourseInfo(@RequestParam("id") Long id, Model m){
-		//System.out.println(id);
-		//Announcement ann = annoService.findOneById(id);
 		TeacherCourse course = teacherCourseService.findOneById(id);
 		m.addAttribute("course", course);
 		return "admin.teacher.teacherCourse.detailCourseInfo";
@@ -63,8 +61,6 @@ public class TeacherCourseInfoPageController {
 	
 	@RequestMapping(value="/admin/teacher/teacherCourse/detailCourse")
 	public String detailCourse(@RequestParam("id") Long id, Model m){
-		//System.out.println(id);
-		//Announcement ann = annoService.findOneById(id);
 		TeacherCourse course = teacherCourseService.findOneById(id);
 		List<CourseResource> resourceList = courseResourceService.getAllCourseResourceById(id);
 		m.addAttribute("course", course);

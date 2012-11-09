@@ -6,8 +6,8 @@ import com.knet51.ccweb.jpa.entities.ReceiveMsg;
 
 public interface ReceiveMsgDao {
 	void  add(ReceiveMsg  receiveMsg);
-	void del(Long  id);  // 1--2 放入回收站 未放入时数值为1，放入为2
-	void del2(Long id);  // 2--3 删除，在页面不显示，但是数据库仍然存在
+	void del(Long  id);  // readed变为3，放入回收站
+	void destory(Long id);  // 彻底删除
 	void isRead(Long id); //初始值1 表示未读，2表示已读
 	ReceiveMsg  detail(Long id);
 	List<ReceiveMsg>  list(Long userId);//指定user的所有收件

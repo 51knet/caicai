@@ -40,7 +40,7 @@ public class TeacherAnnoDetailInfoController {
 		
 		if(validResult.hasErrors()){
 			logger.info("annoDetailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/announcement/add";
+			return "redirect:/admin/teacher/announcement/detail";
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
 			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
@@ -60,7 +60,8 @@ public class TeacherAnnoDetailInfoController {
 			return "redirect:/admin/teacher/announcement/detail";
 		}
 	}
-		
+	
+	@Transactional
 	@RequestMapping(value="/admin/teacher/announcement/deleAnno")
 	public String teacherAnnoDele(@RequestParam("id") Long id,HttpSession session, Model m){
 		annoService.deleAnnouncementById(id);

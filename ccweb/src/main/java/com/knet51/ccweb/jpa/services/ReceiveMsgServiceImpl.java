@@ -36,8 +36,8 @@ public class ReceiveMsgServiceImpl implements ReceiveMsgService {
 	}
 
 	@Override
-	public void del2(Long id) {
-		receiveMsgDao.del2(id);
+	public void destory(Long id) {
+		receiveMsgDao.destory(id);
 	}
 
 	@Override

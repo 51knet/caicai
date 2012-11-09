@@ -6,8 +6,7 @@
 
 <h1>Welcome to teacher message page.</h1>
 <div style="text-align: center;">
-
- <br/>
+<br/>
  
  <table class="table table-bordered">
  <thead><tr><th colspan="5">
@@ -23,20 +22,19 @@
   				
   				<td>${page.sendMsg.title}</td>
   				<td>
-  					<c:if test="${page.readed==1 }">
-  						未读
+  					<c:if test="${page.readed==2 }">
+  						已读
   					</c:if>
   				</td>
   				<td>${page.sendMsg.date}</td>
   				<td>${page.sendMsg.user.name}</td>
   				<td>
-  					<div class="btn-group"> 
+  					 <div class="btn-group"> 
 						<button class="btn">更多</button>  
 						<button class="btn dropdown-toggle" data-toggle="dropdown">   
 						<span class="caret"></span> </button>
 						<ul class="dropdown-menu">
-							<li><a href='<c:url value="/admin/teacher/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>详细</a> </li>
-							<li><a href='<c:url value="/admin/teacher/message/deleOne?mid=${page.sendMsg.id}"></c:url>'>删除</a> </li>
+							<li><a href='<c:url value="/admin/teacher/message/destory?mid=${page.sendMsg.id}"></c:url>'>彻底删除</a> </li>
 						</ul>
 					 </div>
   				</td>

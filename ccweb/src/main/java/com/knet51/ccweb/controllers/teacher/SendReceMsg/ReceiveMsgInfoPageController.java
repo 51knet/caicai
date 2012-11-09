@@ -97,14 +97,49 @@ public class ReceiveMsgInfoPageController {
 	@Transactional
 	@RequestMapping(value="/admin/teacher/message/deleOneReaded")
 	public String deleMsg(@RequestParam("mid") Long mid,Model model){
-		sendMsgService.del(mid);
+		//System.out.println("+++++++++++++++++++++"+mid);
+		receiveMsgService.del(mid);
 		return "redirect:/admin/teacher/message/isRead";
 	}
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/message/deleOne")
 	public String deleMsg2(@RequestParam("mid") Long mid,Model model){
-		sendMsgService.del(mid);
+		//System.out.println("+++++++++++++++++++++"+mid);
+		receiveMsgService.del(mid);
 		return "redirect:/admin/teacher/message/list";
+	}
+	
+	@Transactional
+	@RequestMapping(value="/admin/teacher/message/destory")
+	public String destory(@RequestParam("mid") Long mid,Model model){
+		//System.out.println("+++++++++++++++++++++"+mid);
+		receiveMsgService.destory(mid);
+		return "redirect:/admin/teacher/message/isDele";
+	}
+	
+	@Transactional
+	@RequestMapping(value="/admin/teacher/message/isDele")
+	public String isDeleMsg(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		Long userId = userInfo.getId();
+		User user = userInfo.getUser();
+		Page<ReceiveMsg> page = receiveMsgService.findIsReadMsgByUser(pageNumber, pageSize, user, 3);
+		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userId);
+		List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(userId);
+		List<ReceiveMsg> isDele = receiveMsgService.isDele(userId);
+		List<ReceiveMsg> msgList = receiveMsgService.list(userId);
+		Integer unReadCount = unReadMsgList.size();
+		Integer isReadCount = isReadMsgList.size();
+		Integer msgCount = msgList.size();
+		Integer isDeleCount = isDele.size();
+		model.addAttribute("unReadCount", unReadCount);
+		model.addAttribute("isReadCount", isReadCount);
+		model.addAttribute("msgCount", msgCount);
+		model.addAttribute("isDeleCount",isDeleCount);
+		//model.addAttribute("isReadMsgList", isReadMsgList);
+		model.addAttribute("page", page);
+		return "admin.teacher.message.isDeleDetail";
 	}
 }

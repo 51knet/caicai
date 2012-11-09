@@ -146,5 +146,11 @@
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherIsReadMsgPage.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
 	</definition>
+	
+		<definition name="admin.teacher.message.isDeleDetail" extends="admin-layout">
+		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherIsDeleMsgPage.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/home/teacher_item_panel.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>
