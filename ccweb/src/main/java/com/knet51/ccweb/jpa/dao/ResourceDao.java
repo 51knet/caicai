@@ -9,11 +9,11 @@ public interface ResourceDao {
 	
 	Resource save(Resource resource);
 	
-	void delete(Resource resource);//改变status的值
+	void delete(Resource resource);
 	
 	List<Resource> listAllByUid(Long uId);
 	
 	Resource getOneById(Long Id);
 	
-	void deleteResource(Long resource_id);//从数据库中删除
+	void deleteResource(Long resource_id);
 }

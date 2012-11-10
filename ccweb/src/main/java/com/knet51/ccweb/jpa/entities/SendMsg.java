@@ -13,7 +13,7 @@ public class SendMsg extends AbstractEntity {
 	private String title;
 	private String content;
 	private String date;
-	private Integer isDelete;  //  1: 没有删除   2：已经删除
+	private Integer isDelete;  
 	
 	@OneToMany(mappedBy="sendMsg",fetch=FetchType.EAGER)
 	private Set<ReceiveMsg>  receiveMsg = new HashSet<ReceiveMsg>();

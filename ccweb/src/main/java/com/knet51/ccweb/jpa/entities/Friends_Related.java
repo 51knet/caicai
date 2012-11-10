@@ -4,9 +4,9 @@ import javax.persistence.Entity;
 
 @Entity
 public class Friends_Related extends AbstractEntity {
-	private Long host_id; //被响应者
-	private Long follow_id; //发起响应者
-	private int type;// 发送请求为1，同意为2，0为不同意或者忽视
+	private Long host_id; 
+	private Long follow_id; 
+	private int type;
 	public Long getHost_id() {
 		return host_id;
 	}
