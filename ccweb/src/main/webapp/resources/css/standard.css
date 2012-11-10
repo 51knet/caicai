@@ -32,3 +32,25 @@ body {
 	margin-left: -50px;
 	box-shadow: none;
 }
+
+
+/*fonts*/
+body {
+	color:#555;
+	font-family:Arial,/*'Microsoft YaHei',*/Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
+	font-size:14px;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight:bold;
+	letter-spacing:-0.05em;
+	font-family:'Microsoft YaHei',Arial;
+}
+.navbar .nav a {
+	font-family:'Microsoft YaHei',Arial;
+}
+textarea {
+	border:1px solid #A6A6A6;
+	padding:2px 1px;
+	font-size:12px;
+	font-family:'Microsoft YaHei',Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
+}
