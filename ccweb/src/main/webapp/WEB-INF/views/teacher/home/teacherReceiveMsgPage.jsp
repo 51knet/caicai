@@ -20,7 +20,6 @@
 	<tr><td>标题</td><td>是否已读</td><td>时间</td><td>发件人</td><td>操作</td></tr>
   		<c:forEach items="${page.content}" var = "page" >
   			<tr>
-  				
   				<td>${page.sendMsg.title}</td>
   				<td>
   					<c:if test="${page.readed==1 }">

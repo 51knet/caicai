@@ -38,8 +38,14 @@
 	 var resourceType = document.getElementById("addResourType");
 	 resourceType.style.display="none";
  }
+ 
+ function returnList(){
+	//alert("return list");
+	window.location.href='<c:url value="/admin/teacher/resource/list"></c:url>';
+ }
 </script>
 <h1>Welcome to teacher resource add page.</h1>
+<a href='<c:url value="/admin/teacher/resource/list"></c:url>'>资源管理</a>>>资源添加<hr>
 <div style="text-align: center;">
 	${user.user["email"] }<br>
 	<div style="text-align:center;">
