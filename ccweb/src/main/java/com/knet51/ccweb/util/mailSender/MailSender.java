@@ -27,8 +27,6 @@ public class MailSender {
 		mailInfo.setFromAddress("caicaiadmin@163.com");
 		mailInfo.setToAddress(sendToAddress);
 		mailInfo.setSubject("Thanks for register to caicai web!");
-		// mailInfo.setContent("Thanks for your registering, please click the url for complete your information:\n"
-		// + url);
 		mailInfo.setContent("<a href='" + url + "'>点击验证邮箱</a>");
 		mailInfo.setTimeout("10000");
 		SimpleMailSender sms = new SimpleMailSender();
