@@ -37,7 +37,7 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="username" value="root" />
-		<property name="password" value="root000" />
+		<property name="password" value="coe283yrd" />
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost/caicaidb" />
 	</bean>
