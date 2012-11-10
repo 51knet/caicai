@@ -13,7 +13,7 @@ public class Resource  extends AbstractEntity{
 	private String savePath;
 	private String description;
 	private String date;
-	private Integer status;//1 表示未删除；2表示已删除
+	private Integer status;
 	@ManyToOne
 	private User user;
 	

@@ -19,7 +19,7 @@ public class ReceiveMsgDaoImpl implements ReceiveMsgDao {
 		em.persist(receiveMsg);
 	}
 	
-	//回收站
+	
 	@Override
 	public void del(Long mId) {
 		ReceiveMsg receiveMsg = em.find(ReceiveMsg.class, mId);
@@ -28,7 +28,7 @@ public class ReceiveMsgDaoImpl implements ReceiveMsgDao {
 		receiveMsg.setReaded(3);
 		em.merge(receiveMsg);
 	}
-	//彻底删除
+	
 	@Override
 	public void destory(Long mId) {
 		ReceiveMsg receiveMsg = em.find(ReceiveMsg.class, mId);
