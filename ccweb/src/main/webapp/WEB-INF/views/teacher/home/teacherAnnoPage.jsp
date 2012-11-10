@@ -24,9 +24,10 @@
 	<thead><tr><th colspan="3">全部公告</th></tr></thead>
 	<tbody>
 		<tr><td colspan="3" align="right"><!-- <a href='<c:url value="/admin/teacher/announcement/add"></c:url>' class="btn">添加公告</a><br> -->
-			<button class="btn " onclick="showAnnoForm()" >添加公告</button>
-			<br>
-			<div id="annoForm" style="display:none">
+			<!-- <button class="btn " onclick="showAnnoForm()" >添加公告</button> -->
+			<a href="#myModal" role="button" class="btn" data-toggle="modal">添加公告</a>
+			
+			<!--  <div id="annoForm" style="display:none">
 				<form:form action='addAnnoInfo' method="post">
 					公告标题：<input type="text" name="title" placeholder="Title">
 					<span class="help-block"><form:errors path="title"></form:errors></span>
@@ -36,7 +37,7 @@
 					<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
 					<button type="reset" class="btn" onclick="hidAnnoForm()">Cancel</button>
 				</form:form>
-			</div>
+			</div>-->
 		</td></tr>
 		<tr><td>公告标题</td><td>公告内容</td><td>发布时间</td><td>详细操作</td></tr>
 		<c:forEach items="${page.content}" var="page">
@@ -62,5 +63,29 @@
 		</tfoot>
 	</table>	 
 	<br/>
-
+	
+	
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">公告添加</h3>
+		</div>
+		<form:form action='addAnnoInfo' method="post">
+			<div class="modal-body">
+						公告标题：<input type="text" name="title" placeholder="Title">
+						<span class="help-block"><form:errors path="title"></form:errors></span>
+						公告内容：<textarea name="content" placeholder="Content" cols="5" rows="8"></textarea>
+						<span class="help-block"><form:errors path="content"></form:errors></span>
+						<!-- 
+						<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
+						<button type="reset" class="btn" onclick="hidAnnoForm()">Cancel</button> -->
+					
+			</div>
+			<div class="modal-footer">
+				<button class="btn" type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
+				<button class="btn btn-primary" type="submit">保存</button>
+			</div>
+		</form:form>
+	</div>
+	
 </div>
