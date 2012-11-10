@@ -81,14 +81,14 @@ public class BlogController {
 		model.addAttribute("blogPost", blogPost);
 		return "teacher.blog.view";
 	}
-	@ModelAttribute("blogPosts")
+	//@ModelAttribute("blogPosts")
 	public List<BlogPost> populateBlogPostList(HttpSession session) {
 		Long id = getUserId(session);
 		List<BlogPost> blogPosts = blogService.findBlogPosts(id);
 		logger.debug(blogPosts.toString());
 		return blogPosts;
 	}
-	@ModelAttribute("blogCategories")
+	//@ModelAttribute("blogCategories")
 	public List<BlogCategory> populateBlogCategoryList(HttpSession session) {
 		Long id = getUserId(session);
 		Teacher teacher = teacherService.findOne(id);
@@ -102,7 +102,9 @@ public class BlogController {
 		return id;
 	}
 	@RequestMapping(value= "/admin/blog/new", method=RequestMethod.GET)
-	public String show_create_form() {
+	public String show_create_form(Model model, HttpSession session) {
+		List<BlogCategory> blogCategories = populateBlogCategoryList(session);
+		model.addAttribute("blogCategories", blogCategories);
 		return "admin.blog.new";
 	}
 	@RequestMapping(value= "/admin/blog/new", method=RequestMethod.POST)
@@ -140,7 +142,10 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value= "/admin/blog/edit/{blog_post_id}", method=RequestMethod.GET)
-	public String edit(@PathVariable Long blog_post_id, Model model) {
+	public String edit(@PathVariable Long blog_post_id, Model model, HttpSession session) {
+		List<BlogCategory> blogCategories = populateBlogCategoryList(session);
+		model.addAttribute("blogCategories", blogCategories);
+		
 		BlogPost blogPost = blogService.findOne(blog_post_id);
 		logger.info(blogPost.toString());
 		model.addAttribute("blogPost", blogPost);

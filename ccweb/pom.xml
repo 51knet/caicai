@@ -299,6 +299,15 @@
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
+					<encoding>UTF-8</encoding> 
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.4.3</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -315,6 +324,7 @@
 				<version>1.0.2</version>
 				<configuration>
 					<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+					<encoding>UTF-8</encoding> 
 				</configuration>
 				<dependencies>
 					<dependency>

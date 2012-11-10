@@ -46,7 +46,7 @@ public class TeacherResouDetailInfoController {
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				Resource resource = new Resource();
-				logger.info("上传文件名称"+files.get(i).getOriginalFilename()); 
+				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
 				String fileName = files.get(i).getOriginalFilename();
 				String realPath = session.getServletContext().getRealPath("/WEB-INF/temp/");
 				resource.setDescription(desc);
