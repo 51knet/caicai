@@ -5,31 +5,37 @@
 	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
+	<!-- admin-layout was 2 columns layout structure -->
+	<definition name="admin-blog-layout" extends="admin-layout" >
+		<put-attribute name="title" value="我的博文" />
+		<put-attribute name="left" value="/WEB-INF/views/admin/blog/_shared/_left.jsp" />
+	</definition>
+	
 	<!-- BlogPost -->
-	<definition name="admin.blog.list" extends="admin-layout">
+	<definition name="admin.blog.list" extends="admin-blog-layout">
 		<put-attribute name="right" value="/WEB-INF/views/admin/blog/list/list.jsp" />
 	</definition>
-	<definition name="admin.blog.new" extends="admin-layout">
+	<definition name="admin.blog.new" extends="admin-blog-layout">
 		<put-attribute name="right" value="/WEB-INF/views/admin/blog/new/create.jsp" />
 	</definition>
-	<definition name="admin.blog.edit" extends="admin-layout">
+	<definition name="admin.blog.edit" extends="admin-blog-layout">
 		<put-attribute name="right" value="/WEB-INF/views/admin/blog/edit/edit.jsp" />
 	</definition>
-	<definition name="admin.blog.view" extends="admin-layout">
+	<definition name="admin.blog.view" extends="admin-blog-layout">
 		<put-attribute name="right" value="/WEB-INF/views/admin/blog/view/view.jsp" />
 	</definition>
 
 	<!-- BlogCategory -->
-	<definition name="admin.blog.category.list" extends="admin-layout">
+	<definition name="admin.blog.category.list" extends="admin-blog-layout">
 		<put-attribute name="right" value="/WEB-INF/views/admin/blog/category/list/list.jsp" />
 	</definition>
-	<definition name="admin.blog.category.new" extends="admin-layout">
+	<definition name="admin.blog.category.new" extends="admin-blog-layout">
 		<put-attribute name="right" value="/WEB-INF/views/admin/blog/category/new/create.jsp" />
 	</definition>
-	<definition name="admin.blog.category.edit" extends="admin-layout">
+	<definition name="admin.blog.category.edit" extends="admin-blog-layout">
 		<put-attribute name="right" value="/WEB-INF/views/admin/blog/category/edit/edit.jsp" />
 	</definition>
-	<definition name="admin.blog.category.view" extends="admin-layout">
+	<definition name="admin.blog.category.view" extends="admin-blog-layout">
 		<put-attribute name="right" value="/WEB-INF/views/admin/blog/category/view/view.jsp" />
 	</definition>
 	

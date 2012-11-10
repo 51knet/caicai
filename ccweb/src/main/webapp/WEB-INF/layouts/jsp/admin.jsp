@@ -25,6 +25,13 @@
 		max-width: 1024px;
 		width: 1024px;
 		margin: 0 auto;
+		background-color: white;
+	}
+	.left-panel {
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		background-color: #FAFAFB;
 	}
 	</style>
 </head>
@@ -38,11 +45,11 @@
 			</div>
 			<!--/row-->
 			<div class="row-fluid">
-				<tiles:insertAttribute name="navbar" />
+				<div class="span12"></div>
 			</div>
 			<div class="row-fluid content-panel">
 				<div class="span3">
-					<div class="login-panel">
+					<div class="left-panel">
 						<tiles:insertAttribute name="left" />
 					</div>
 				</div>
