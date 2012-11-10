@@ -1,7 +1,7 @@
 /*style for all pages with top level navbar*/
 body {
 	padding-top: 40px;
-	padding-bottom: 40px;
+	/*padding-bottom: 40px;*/ /*since by default we use white background, but now we use images*/
 	min-width: 1024px;
 	max-width: 1024px;
 	width: 1024px;

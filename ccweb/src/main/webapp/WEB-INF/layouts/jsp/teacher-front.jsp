@@ -49,10 +49,10 @@
 				<!--/span-->
 			</div>
 			<hr>
+			<footer>
+				<tiles:insertAttribute name="footer" />
+			</footer>
 		</div>
-		<footer>
-			<tiles:insertAttribute name="footer" />
-		</footer>
 
 	</div>
 	<!--/.fluid-container-->
