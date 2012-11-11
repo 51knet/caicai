@@ -75,9 +75,11 @@ public class BlogCategoryController {
 	 */
 	// AJAX
 	@RequestMapping(value= "/admin/blog/category/new", method=RequestMethod.POST)
-	public ModelAndView show_create_category_form(@RequestBody BlogCategory blogCategory) {
+	public ModelAndView show_create_category_form(@RequestBody BlogCategory blogCategory, HttpSession session) {
 		//TDDO: check category exist or not		
 		ModelAndView mv = new ModelAndView("admin.blog.category.new");
+		Teacher teacher = teacherService.findOne(getUserId(session));
+		blogCategory.setAuthor(teacher);
 		blogCategory = blogService.createBlogCategory(blogCategory);
 		mv.addObject("category", blogCategory);
 		return mv;
