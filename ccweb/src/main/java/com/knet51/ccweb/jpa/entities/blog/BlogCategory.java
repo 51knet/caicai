@@ -4,12 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
 import com.knet51.ccweb.jpa.entities.Teacher;
 
 @Entity
+@JsonIgnoreProperties(value={"author"})
 public class BlogCategory extends AbstractEntity {
 
 	@ManyToOne
