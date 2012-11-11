@@ -3,6 +3,7 @@ package com.knet51.ccweb.jpa.entities;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -219,6 +220,26 @@ public class User extends AbstractEntity {
 
 	public void setSelf_url(String self_url) {
 		this.self_url = self_url;
+	}
+
+
+	public Set<ReceiveMsg> getReceiveMsg() {
+		return receiveMsg;
+	}
+
+
+	public void setReceiveMsg(Set<ReceiveMsg> receiveMsg) {
+		this.receiveMsg = receiveMsg;
+	}
+
+
+	public Set<SendMsg> getSendMsg() {
+		return sendMsg;
+	}
+
+
+	public void setSendMsg(Set<SendMsg> sendMsg) {
+		this.sendMsg = sendMsg;
 	}
 	
 }
