@@ -36,3 +36,6 @@ local.properties
 
 # Maven
 target/
+
+# Maven plugin generate files
+.apt_generated/
