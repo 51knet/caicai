@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.knet51.ccweb">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
