@@ -21,7 +21,7 @@
 	<div class="row"><h5>公告</h5></div>
 	<hr/>
 	<div class="row">
-		${user.announcementContext}
+		${teacherInfo.announcementContext}
 	</div>
 </div>
 

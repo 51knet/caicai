@@ -62,7 +62,8 @@ public class BlogController {
 		UserInfo userInfo = new UserInfo(user);
 		userInfo.setTeacher(teacher);
 		logger.debug(userInfo.toString());
-		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
 		
 		Page<BlogPost> page = blogService.findAllBlogs(pageNumber, pageSize, teacher);
 		model.addAttribute("page", page);
