@@ -17,13 +17,19 @@
 <div class="row-fluid centralize round">
 	<div class="round header"><h5> </h5></div>
 	<div class="row-fluid">
-		<a href='<c:url value='/teacher/${userInfo.id}'></c:url>'>${userInfo.name }</a>
-		<img src='${userInfo.photoUrl}' height='80px' width='60px' align="middle">
+		<img src='${teacherInfo.photoUrl}' height='80px' width='60px' align="middle">
+		<a href='<c:url value='/teacher/${teacherInfo.id}'></c:url>'>${teacherInfo.name }</a>
 	</div>
 	<div class="row-fluid">
-		<a href='<c:url value='/addrelation?uid=${userInfo.id}'></c:url>' class="btn">关注</a> 
-		<a href='<c:url value='/sendmessage?uid=${userInfo.id}'></c:url>' class="btn">发私信</a>
+		<a href='#' >2 粉丝</a> | 
+		<a href='#' >2 关注</a>
 	</div>
+	<c:if test="${(userInfo!=null) && (userInfo.id != teacher_id) }">
+	<div class="row-fluid">
+		<a href='<c:url value='/addrelation?uid=${teacherInfo.id}'></c:url>' class="btn btn-success btn-small">+关注</a> 
+		<a href='<c:url value='/sendmessage?uid=${teacherInfo.id}'></c:url>' class="btn btn-small">发私信</a>
+	</div>
+	</c:if>
 </div>
 
 <div class="row-fluid centralize round">
@@ -39,5 +45,5 @@
 		<h5>联系方式</h5>
 	</div>
 	<hr/>
-	${userInfo.announcementContext}
+	${teacherInfo.announcementContext}
 </div>

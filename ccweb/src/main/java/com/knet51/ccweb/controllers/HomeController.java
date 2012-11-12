@@ -120,7 +120,8 @@ public class HomeController {
 		userInfo.setAnnouncement(announcement);
 		userInfo.setTeacher(teacher);
 		
-		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("teacher_id", id);
+		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("role", userInfo.getTeacherRole());
 		return "teacher.basic";
 	}
