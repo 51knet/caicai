@@ -4,9 +4,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Welcome to teacher home page.</h1>
 <div style="text-align: center;">
-
 	Welcome to teacher home page.<br>
 	${sessionUserInfo.user.email }<br>
 	${sessionUserInfo.user.id }<br>
@@ -21,4 +19,5 @@
 	<br/>
 	-->
 
+	<img src="<c:url value='/resources/img/teacher_home.jpg' ></c:url>" />
 </div>
