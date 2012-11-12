@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
@@ -53,7 +54,7 @@ public class HomeController {
 		// logger.info("Welcome home! the client locale is " +
 		// locale.toString());
 		//
-		// UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		// UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefines.SESSION_USER_INFO);
 		//
 		// if (userInfo != null && userInfo.getRole().equals("user")) {
 		// String id = userInfo.getId().toString();
@@ -130,7 +131,7 @@ public class HomeController {
 	public String admin(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
 
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 
 		if (userInfo != null && userInfo.getRole().equals("user")) {
 			return "redirect:/admin/user";
@@ -145,7 +146,7 @@ public class HomeController {
 	public String adminUser(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
 
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 
 		if (userInfo != null && userInfo.getRole().equals("user")) {
 			return "admin.user";
@@ -161,14 +162,14 @@ public class HomeController {
 	public String adminTeacher(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
 
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 
 		if (userInfo != null && userInfo.getRole().equals("user")) {
 			return "redirect:/admin/user";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
 			Teacher teacher = teacherService.findOne(userInfo.getId());
 			userInfo.setTeacher(teacher);
-			session.setAttribute("userInfo", userInfo);
+			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			return "admin.teacher";
 		} else {
 			return "home";

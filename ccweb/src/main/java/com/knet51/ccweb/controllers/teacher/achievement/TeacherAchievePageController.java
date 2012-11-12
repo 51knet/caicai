@@ -3,6 +3,7 @@ package com.knet51.ccweb.controllers.teacher.achievement;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
@@ -39,7 +41,7 @@ public class TeacherAchievePageController {
 	@RequestMapping(value="/admin/teacher/achievement/detail")
 	public String teacherAchievement(HttpSession session,Model model){
 		logger.info("#### Into teacher achievement page ####");
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
 		List<TeacherThesis> thesis = thesisService.getAllThesisById(user.getId());
 		List<TeacherProject> project = projectService.getAllProjectById(user.getId());

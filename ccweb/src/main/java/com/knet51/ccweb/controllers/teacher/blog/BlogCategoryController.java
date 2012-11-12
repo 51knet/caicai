@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.blog.BlogCategory;
 import com.knet51.ccweb.jpa.services.BlogService;
@@ -49,7 +50,7 @@ public class BlogCategoryController {
 		return blogCategories;
 	}
 	private Long getUserId(HttpSession session) {
-		UserInfo userInfo = (UserInfo)session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo)session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long id = userInfo.getId();
 		return id;
 	}

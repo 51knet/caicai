@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.TeacherService;
@@ -46,7 +47,7 @@ public class TeacherController {
 			String college = detailInfoForm.getCollege();
 			String major = detailInfoForm.getMajor();
 
-			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User user = userService.findOne(userInfo.getId());
 			Teacher teacher = new Teacher(user);
 			teacher.setRole(Integer.valueOf(role));
@@ -55,7 +56,7 @@ public class TeacherController {
 			teacher = teacherService.updateTeacher(teacher);
 			userInfo.setTeacher(teacher);
 
-			session.setAttribute("userInfo", userInfo);
+			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 
 			return "admin.teacher.details";
 		}
@@ -81,12 +82,12 @@ public class TeacherController {
 				usableUrl = false;
 			}
 			if (usableUrl) {
-				UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+				UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 				User user = userService.findOne(userInfo.getId());
 				user.setSelf_url(url);
 				user = userService.updateUser(user);
 				userInfo.setUser(user);
-				session.setAttribute("userInfo", userInfo);
+				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			}
 			return "admin.teacher.selfurl";
 		}

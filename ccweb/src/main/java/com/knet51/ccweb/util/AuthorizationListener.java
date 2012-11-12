@@ -1,6 +1,7 @@
 package com.knet51.ccweb.util;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 
 /**
  * Servlet Filter implementation class AuthorizationListener
@@ -54,7 +57,7 @@ public class AuthorizationListener implements Filter {
 	}
 
 	private boolean isLoggin(HttpServletRequest req) {
-		return req.getSession().getAttribute("userInfo") != null;
+		return req.getSession().getAttribute(GlobalDefs.SESSION_USER_INFO) != null;
 	}
 
 	/**

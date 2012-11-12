@@ -22,9 +22,9 @@
 <div style="text-align: center;">
 
 	Welcome to teacher announcement page.<br>
-	${userInfo.user.email }<br>
-	${userInfo.user.id }<br>
-	${userInfo.user.name}<br>
+	${sessionUserInfo.user.email }<br>
+	${sessionUserInfo.user.id }<br>
+	${sessionUserInfo.user.name}<br>
 
 
 

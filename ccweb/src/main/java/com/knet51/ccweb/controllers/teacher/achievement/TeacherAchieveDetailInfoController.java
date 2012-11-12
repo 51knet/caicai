@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
@@ -50,7 +50,7 @@ public class TeacherAchieveDetailInfoController {
 			return "admin/teacher/achievement/detail";
 		}
 		else{
-			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long id = userInfo.getUser().getId();
 			Teacher teacher= teacherService.findOne(id);
 			TeacherThesis thesis = new TeacherThesis();
@@ -73,7 +73,7 @@ public class TeacherAchieveDetailInfoController {
 		if(validResult.hasErrors()){
 			return "admin/teacher/achievement/detail";
 		}else{
-			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long id = userInfo.getUser().getId();
 			Teacher teacher= teacherService.findOne(id);
 			TeacherProject project = new TeacherProject();
@@ -98,7 +98,7 @@ public class TeacherAchieveDetailInfoController {
 		if(validResult.hasErrors()){
 			return "admin/teacher/achievement/detail";
 		}else{
-			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long id = userInfo.getUser().getId();
 			Teacher teacher= teacherService.findOne(id);
 			TeacherPatent patent = new TeacherPatent();
@@ -124,7 +124,7 @@ public class TeacherAchieveDetailInfoController {
 		if(validResult.hasErrors()){
 			return "admin/teacher/achievement/detail";
 		}else{
-			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long id = userInfo.getUser().getId();
 			Teacher teacher= teacherService.findOne(id);
 			TeacherHonor honor = new TeacherHonor();

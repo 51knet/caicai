@@ -9,7 +9,7 @@
 <div>
 	<ul class="nav nav-tabs nav-stacked">
 		<li class="active"><a href='<c:url value="/admin"></c:url>' >个人中心</a></li>
-		<li><a href='<c:url value="/teacher/${userInfo.id}"></c:url>' >个人主页</a></li>
+		<li><a href='<c:url value="/teacher/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>
 		<li><a href='<c:url value="/admin/teacher/announcement/detail"></c:url>' >发布公告</a></li>
 		<li><a href='<c:url value="/admin/teacher/resource/list"></c:url>' >资源管理</a></li>
 		<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>

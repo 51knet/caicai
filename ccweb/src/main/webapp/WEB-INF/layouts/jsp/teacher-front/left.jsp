@@ -24,7 +24,7 @@
 		<a href='#' >2 粉丝</a> | 
 		<a href='#' >2 关注</a>
 	</div>
-	<c:if test="${(userInfo!=null) && (userInfo.id != teacher_id) }">
+	<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.id != teacher_id) }">
 	<div class="row-fluid">
 		<a href='<c:url value='/addrelation?uid=${teacherInfo.id}'></c:url>' class="btn btn-success btn-small">+关注</a> 
 		<a href='<c:url value='/sendmessage?uid=${teacherInfo.id}'></c:url>' class="btn btn-small">发私信</a>

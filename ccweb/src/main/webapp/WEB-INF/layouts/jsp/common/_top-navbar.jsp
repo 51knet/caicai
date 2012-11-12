@@ -8,9 +8,9 @@
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 			</a> 
 			<a id="logo" class="brand" href='<c:url value="/admin"></c:url>'>Knet</a>
-			<c:if test="${userInfo != null}">
+			<c:if test="${sessionUserInfo != null}">
 				<ul class="nav pull-right">
-					<li><a href='<c:url value="/"></c:url>' class="navbar-link">${userInfo.user.email }</a></li>
+					<li><a href='<c:url value="/admin"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
 					<li id="fat-menu" class="dropdown"><a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-white"></i></a>
 						<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
 							<li><a tabindex="-1" href='<c:url value="/admin"></c:url>'>后台管理</a></li>

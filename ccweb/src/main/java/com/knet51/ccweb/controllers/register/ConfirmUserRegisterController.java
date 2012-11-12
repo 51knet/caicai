@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.mailSender.MailSender;
@@ -42,7 +43,7 @@ public class ConfirmUserRegisterController {
 
 			UserInfo userInfo = new UserInfo(result);
 
-			session.setAttribute("userInfo", userInfo);
+			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			logger.info("Confirm user email successful.");
 			return "redirect:/teacher/dispatcher";
 			// TODO: user type select

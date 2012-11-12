@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
 
@@ -48,7 +49,7 @@ public class UserDetailInfoController {
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
 
-			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User user = userService.findOne(userInfo.getId());
 
 			user.setName(detailInfoForm.getName());
@@ -58,7 +59,7 @@ public class UserDetailInfoController {
 			
 			userInfo.setUser(user);
 			
-			session.setAttribute("userInfo", userInfo);
+			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			
 			return "admin.user.details";
 		}

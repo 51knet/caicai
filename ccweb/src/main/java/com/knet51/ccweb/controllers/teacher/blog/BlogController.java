@@ -14,14 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.jpa.entities.Announcement;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogCategory;
@@ -76,7 +75,8 @@ public class BlogController {
 		UserInfo userInfo = new UserInfo(user);
 		userInfo.setTeacher(teacher);
 		logger.debug(userInfo.toString());
-		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
 		
 		BlogPost blogPost = blogService.findOne(blog_post_id);
 		model.addAttribute("blogPost", blogPost);
@@ -98,7 +98,7 @@ public class BlogController {
 		return blogCategories;
 	}
 	private Long getUserId(HttpSession session) {
-		UserInfo userInfo = (UserInfo)session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo)session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long id = userInfo.getId();
 		return id;
 	}

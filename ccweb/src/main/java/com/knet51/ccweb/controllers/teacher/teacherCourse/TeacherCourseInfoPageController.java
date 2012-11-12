@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
@@ -34,7 +35,7 @@ public class TeacherCourseInfoPageController {
 	public String teacherCourseInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
 		logger.info("#####Into TeacherCourseInfoPageController#####");
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Teacher teacher = userInfo.getTeacher();
 		Page<TeacherCourse> onePage =teacherCourseService.findAllCourseByTeacher(pageNumber, pageSize, teacher);
 		model.addAttribute("page", onePage);

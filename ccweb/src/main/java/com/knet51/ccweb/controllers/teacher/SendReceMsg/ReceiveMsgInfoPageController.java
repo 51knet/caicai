@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.ReceiveMsg;
 import com.knet51.ccweb.jpa.entities.SendMsg;
 import com.knet51.ccweb.jpa.entities.User;
@@ -35,7 +36,7 @@ public class ReceiveMsgInfoPageController {
 	public String receiveMsgList(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		logger.info("####  Into ReceiveMsgList page  ####");
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long userId = userInfo.getId();
 		User user = userInfo.getUser();
 		Page<ReceiveMsg> page = receiveMsgService.findIsReadMsgByUser(pageNumber, pageSize, user, 1 );
@@ -73,7 +74,7 @@ public class ReceiveMsgInfoPageController {
 	@RequestMapping(value="/admin/teacher/message/isRead")
 	public String isReadMsg(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long userId = userInfo.getId();
 		User user = userInfo.getUser();
 		Page<ReceiveMsg> page = receiveMsgService.findIsReadMsgByUser(pageNumber, pageSize, user, 2);
@@ -122,7 +123,7 @@ public class ReceiveMsgInfoPageController {
 	@RequestMapping(value="/admin/teacher/message/isDele")
 	public String isDeleMsg(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long userId = userInfo.getId();
 		User user = userInfo.getUser();
 		Page<ReceiveMsg> page = receiveMsgService.findIsReadMsgByUser(pageNumber, pageSize, user, 3);

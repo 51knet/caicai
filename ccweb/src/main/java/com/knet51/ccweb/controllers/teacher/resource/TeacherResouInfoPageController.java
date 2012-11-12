@@ -1,7 +1,9 @@
 package com.knet51.ccweb.controllers.teacher.resource;
 
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
@@ -32,7 +35,7 @@ public class TeacherResouInfoPageController {
 	public String teacherResouInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
 		logger.info("#####Into TeacherResouInfoPageController#####");
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
 		Page<Resource> onePage = resourceService.findAllResouById(pageNumber, pageSize, user);
 		model.addAttribute("page", onePage);

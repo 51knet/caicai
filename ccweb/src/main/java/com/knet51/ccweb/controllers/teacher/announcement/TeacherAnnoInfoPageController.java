@@ -1,6 +1,8 @@
 package com.knet51.ccweb.controllers.teacher.announcement;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
@@ -53,7 +56,7 @@ public class TeacherAnnoInfoPageController {
 	}
 	
 	public Long getId(HttpSession session){
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long id = userInfo.getUser().getId();
 		return id;
 	}

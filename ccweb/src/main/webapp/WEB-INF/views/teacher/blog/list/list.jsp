@@ -29,7 +29,7 @@
 		<tbody>
 			<c:forEach var="blogPost" items="${page.content}">
 			<tr>
-				<td><a href="<c:url value="/teacher/${userInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
+				<td><a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
 				<td>
 				<fmt:formatDate value="${blogPost.dateCreated}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>

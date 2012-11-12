@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Friends_Related;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
@@ -28,7 +29,7 @@ public class FriendsRelatedDetailController {
 	@RequestMapping(value="/addrelation")
 	public String askFriendsRelated(@RequestParam("uid") Long id,HttpSession session){
 		logger.info("#### Into FriendsRelated addDetailPage ####");
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
 		Friends_Related friendsReiated = new Friends_Related();
 		friendsReiated.setHost_id(id);

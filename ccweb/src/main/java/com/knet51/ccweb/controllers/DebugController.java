@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 //import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
@@ -63,7 +64,7 @@ public class DebugController {
 		
 		User user = userService.findByEmailAddress("test1@test.com");
 		UserInfo userInfo = new UserInfo(user);
-		session.setAttribute("userInfo", userInfo);
+		session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 		
 		return "debug";
 	}

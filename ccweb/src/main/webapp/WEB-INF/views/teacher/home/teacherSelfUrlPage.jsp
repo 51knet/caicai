@@ -10,7 +10,7 @@
 	<form:form method="post">
 
 		<input type="text" name="url"
-			value="${sessionScope.userInfo.user.self_url }" placeholder="url">
+			value="${sessionScope.sessionUserInfo.user.self_url }" placeholder="url">
 		<span class="help-block"><form:errors path="url"></form:errors></span>
 
 		<label style="clear: right;"></label>

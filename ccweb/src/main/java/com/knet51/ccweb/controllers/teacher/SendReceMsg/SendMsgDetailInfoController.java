@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.SendMsg;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.SendMsgService;
@@ -44,7 +45,7 @@ public class SendMsgDetailInfoController {
 		}else{
 			//System.out.println(userId);
 			SendMsg sendMsg = new SendMsg();
-			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User user = userInfo.getUser();
 			String title = sendMsgInfoForm.getTitle();
 			String content = sendMsgInfoForm.getContent();
@@ -73,7 +74,7 @@ public class SendMsgDetailInfoController {
 			//System.out.println(userId);
 			SendMsg sendMsg = new SendMsg();
 			//User sender = userService.findOne(senderId);
-			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User sender = userInfo.getUser();
 			String title = sendMsgInfoForm.getTitle();
 			String content = sendMsgInfoForm.getContent();

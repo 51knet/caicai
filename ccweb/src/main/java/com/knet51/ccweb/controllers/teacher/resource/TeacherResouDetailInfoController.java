@@ -3,6 +3,7 @@ package com.knet51.ccweb.controllers.teacher.resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
@@ -41,7 +44,7 @@ public class TeacherResouDetailInfoController {
 			@RequestParam("type") Long value, MultipartHttpServletRequest request) throws Exception{
 		logger.info("#####Into TeacherResouInfoAddPageController#####");
 		List<MultipartFile> files = request.getFiles("myFiles");
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){

@@ -1,10 +1,11 @@
 package com.knet51.ccweb.controllers.teacher.announcement;
 
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
@@ -43,7 +46,7 @@ public class TeacherAnnoDetailInfoController {
 			return "redirect:/admin/teacher/announcement/detail";
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
-			UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User user = userInfo.getUser();
 			//System.out.println("++++++++++++++++"+user.getId()+"+++++++++++++++");
 			String title = annoDetailInfoForm.getTitle();

@@ -10,15 +10,15 @@
 	<form:form method="post">
 
 		<input type="text" name="name"
-			value="${sessionScope.userInfo.user.name }" placeholder="name">
+			value="${sessionScope.sessionUserInfo.user.name }" placeholder="name">
 		<span class="help-block"><form:errors path="name"></form:errors></span>
 
 		<input type="text" name="gender"
-			value="${sessionScope.userInfo.user.gender }" placeholder="gender">
+			value="${sessionScope.sessionUserInfo.user.gender }" placeholder="gender">
 		<span class="help-block"><form:errors path="gender"></form:errors></span>
 
 		<input type="text" name="cellPhone"
-			value="${sessionScope.userInfo.user.cell_phone }"
+			value="${sessionScope.sessionUserInfo.user.cell_phone }"
 			placeholder="cellPhone">
 		<span class="help-block"><form:errors path="cellPhone"></form:errors></span>
 
