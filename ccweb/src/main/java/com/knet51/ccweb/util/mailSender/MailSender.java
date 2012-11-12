@@ -19,6 +19,10 @@ public class MailSender {
 
 	public boolean SendMail(String sendToAddress, String url) {
 		MailSenderInfo mailInfo = new MailSenderInfo();
+		
+		String context = "<div>亲爱的知识网注册用户，您好：</div><div>欢迎您注册知识网，请您点击下面链接来激活您的知识网的保密邮箱:</div>";
+		context += "<div><a href='" + url + "'>点击验证邮箱</a></div>";
+		context += "<div>本邮件为自动发送，请勿回复。</div>";
 		mailInfo.setMailServerHost("smtp.163.com");
 		mailInfo.setMailServerPort("25");
 		mailInfo.setValidate(true);
@@ -26,8 +30,8 @@ public class MailSender {
 		mailInfo.setPassword("123qweasd");
 		mailInfo.setFromAddress("caicaiadmin@163.com");
 		mailInfo.setToAddress(sendToAddress);
-		mailInfo.setSubject("Thanks for register to caicai web!");
-		mailInfo.setContent("<a href='" + url + "'>点击验证邮箱</a>");
+		mailInfo.setSubject("感谢您注册知识网。");
+		mailInfo.setContent(context);
 		mailInfo.setTimeout("10000");
 		SimpleMailSender sms = new SimpleMailSender();
 		return sms.sendHtmlMail(mailInfo);
