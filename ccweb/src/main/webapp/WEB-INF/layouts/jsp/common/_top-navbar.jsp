@@ -9,7 +9,7 @@
 </c:if>
 <c:if test="${ sessionUserInfo != null}">
 <style>
-.navbar.custom {
+.navbar-inner.custom {
 	height: 45px;
 	z-index: 2;
 	background: #4E4E4E url(<c:url value="/resources/img/noise.png"></c:url>);
@@ -23,7 +23,7 @@
 </style>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="navbar-inner">
+	<div class="navbar-inner custom">
 		<div class="container-fluid" style="text-align: center">
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 			</a> 
@@ -31,7 +31,7 @@
 			<c:if test="${sessionUserInfo != null}">
 				<ul class="nav pull-right">
 					<li><a href='<c:url value="/admin"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
-					<li id="fat-menu" class="dropdown"><a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-white"></i></a>
+					<li id="fat-menu" class="dropdown"><a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog icon-white" style="margin-top: 30%"></i></a>
 						<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
 							<li><a tabindex="-1" href='<c:url value="/admin"></c:url>'>后台管理</a></li>
 							<li><a tabindex="-1" href='<c:url value="/admin/teacher/details"></c:url>'>账号设置</a></li>

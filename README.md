@@ -130,6 +130,3 @@ version 1.0
 如果有兴趣看看这个源文件，就知道通用性是怎么实现的了。
 
 ### 所以如果你有拷贝分页的实现，是时候修改一下list页面了，include上面这一行就行了！
-
-== tmp ==
-liubaixin join the project
