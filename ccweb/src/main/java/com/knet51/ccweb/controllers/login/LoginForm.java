@@ -10,7 +10,7 @@ public class LoginForm {
 	private String email;
 	@NotEmpty 
 	private String password;
-	private Boolean remeberMe = Boolean.FALSE;
+	private int remeberMe = 0;
 	
 	public String getEmail() {
 		return email;
@@ -24,10 +24,17 @@ public class LoginForm {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Boolean getRemeberMe() {
+	
+	@Override
+	public String toString() {
+		return "LoginForm [email=" + email + ", password=" + password
+				+ ", remeberMe=" + remeberMe + "]";
+	}
+	public int getRemeberMe() {
 		return remeberMe;
 	}
-	public void setRemeberMe(Boolean remeberMe) {
+	public void setRemeberMe(int remeberMe) {
 		this.remeberMe = remeberMe;
 	}
+	
 }
