@@ -16,4 +16,6 @@ public interface FriendsRelateService {
 	List<Friends_Related> getAllFollow(Long hostId); 
 	
 	List<Friends_Related> getAllHost(Long followId);
+	public int getFollowById(Long followId,Long hostId);
+	
 }

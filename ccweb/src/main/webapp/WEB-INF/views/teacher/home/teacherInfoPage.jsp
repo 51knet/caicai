@@ -17,7 +17,7 @@
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane active" id="personal_info_tab">
-			<form action="signin" class="form-horizontal">
+			<form class="form-horizontal">
 				<div class="control-group">
 					<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 					<div class="controls">

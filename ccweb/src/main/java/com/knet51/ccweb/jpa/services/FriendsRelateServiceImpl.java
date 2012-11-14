@@ -44,5 +44,14 @@ public class FriendsRelateServiceImpl implements FriendsRelateService {
 	public List<Friends_Related> getAllHost(Long followId) {
 		return friendsRelatedDao.getAllHost(followId);
 	}
+	
+	/**
+	 * 判断followId是否存在以此来验证是否对其关注
+	 */
+	@Override
+	public int getFollowById(Long followId,Long hostId) {
+		int followValue=friendsRelatedDao.getFollowById(hostId,followId);
+		return followValue;
+	}
 
 }
