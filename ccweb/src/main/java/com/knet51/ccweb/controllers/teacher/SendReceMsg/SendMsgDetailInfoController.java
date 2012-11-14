@@ -33,7 +33,7 @@ public class SendMsgDetailInfoController {
 	
 	@Autowired
 	private UserService userService;
-	
+	/*
 	@Transactional
 	@RequestMapping(value="/admin/message/sendMsgInfo",method = RequestMethod.POST)
 	public String messageList(@RequestParam("uid") Long receiverId,@Valid SendMsgInfoForm sendMsgInfoForm,
@@ -60,6 +60,7 @@ public class SendMsgDetailInfoController {
 			return "redirect:/teacher/" + receiverId;
 		}	
 	}
+	 */
 	
 	@Transactional	
 	@RequestMapping(value="/admin/teacher/message/sendMsg",method = RequestMethod.POST)
@@ -87,6 +88,33 @@ public class SendMsgDetailInfoController {
 			sendMsg.setUser(sender);
 			sendMsgService.add(sendMsg, receiveId);
 			return "redirect:/admin/teacher/message/detailOne?mid=" + sendMsgId+"&urmid="+urmId;
+		}	
+	}
+	
+	@Transactional
+	@RequestMapping(value="/teacher/message/sendMsgInfo",method = RequestMethod.POST)
+	public String frontMessageList(@RequestParam("uid") Long receiverId,@Valid SendMsgInfoForm sendMsgInfoForm,
+			BindingResult validResult, HttpSession session,Model model){
+		
+		logger.info("#### Into SendMsgInfoPageControllerPage ####");
+		if(validResult.hasErrors()){
+			return "redirect:/teacher/" + receiverId;
+		}else{
+			//System.out.println(userId);
+			SendMsg sendMsg = new SendMsg();
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			User user = userInfo.getUser();
+			String title = sendMsgInfoForm.getTitle();
+			String content = sendMsgInfoForm.getContent();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String date = format.format(new Date());
+			sendMsg.setTitle(title);
+			sendMsg.setIsDelete(1);
+			sendMsg.setContent(content);
+			sendMsg.setDate(date);
+			sendMsg.setUser(user);
+			sendMsgService.add(sendMsg, receiverId);
+			return "redirect:/teacher/" + receiverId;
 		}	
 	}
 }

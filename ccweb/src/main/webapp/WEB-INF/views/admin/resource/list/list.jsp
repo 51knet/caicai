@@ -16,28 +16,9 @@
 		<c:forEach items="${page.content}" var="page">
 			<tr><td align="left">${page.name}</td>
 			<td align="center">${page.date}</td>
-			<td>
-				<c:choose>
-					<c:when test="${page.description==null || page.description=='' }">
-						无
-					</c:when>
-					<c:otherwise>
-						${page.description }
-					</c:otherwise>
-				</c:choose>
-			</td>
+			<td>${page.description}</td>
 			<td>${page.resourceType.typeName}</td>
-			<td>
-				 <div class="btn-group"> 
-						<button class="btn">更多</button>  
-						<button class="btn dropdown-toggle" data-toggle="dropdown">   
-						<span class="caret"></span> </button>
-						<ul class="dropdown-menu">
-							<li><a href='<c:url value="/admin/teacher/resource/dele?id=${page.id }"></c:url>'> 删除</a></li>
-							<li><a href="${page.savePath}">下载</a></li>
-						</ul>
-					 </div>
-			</td></tr>
+			<td><a href='<c:url value="/admin/teacher/resource/dele?id=${page.id }"></c:url>'> 删除</a> | <a href="${page.savePath}">下载</a></td></tr>
 		</c:forEach>
 		</tbody>
 		<tfoot>

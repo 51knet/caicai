@@ -1,9 +1,13 @@
 package com.knet51.ccweb.util.fileUpLoad;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.Date;
 
 public class FileUtil {
-	public static String saveFile(InputStream inputStream,String fileName,String realPath) throws Exception{
+	public static String saveFile(InputStream inputStream,String fileOriginalName,String realPath) throws Exception{
+		
+		String fileName = new Date().getTime()+fileOriginalName;
+		//System.out.println(fileName);
 		String savePath = realPath+"\\"+fileName;
 		FileOutputStream outputStream = new FileOutputStream(realPath+"\\"+fileName);
 		int count = 0;

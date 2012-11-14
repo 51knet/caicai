@@ -21,10 +21,17 @@ import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
+import com.knet51.ccweb.jpa.entities.resource.Resource;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.BlogService;
+import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherHonorService;
+import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherPatentService;
+import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherProjectService;
+import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherThesisService;
 
 /**
  * Handles requests for the application home page.
@@ -39,6 +46,22 @@ public class HomeController {
 
 	@Autowired
 	private TeacherService teacherService;
+	
+	@Autowired
+	private ResourceService resourceService;
+	
+	@Autowired
+	private TeacherHonorService honorService;
+	
+	@Autowired
+	private TeacherProjectService projectService;
+	
+	@Autowired
+	private TeacherPatentService patentService;
+	
+	@Autowired
+	private TeacherThesisService teacherThesisService;
+	
 	
 	@Autowired
 	private BlogService blogService;
@@ -116,7 +139,17 @@ public class HomeController {
 		Page<BlogPost> page = blogService.findAllBlogs(0, 5, teacher);
 		List<BlogPost> blogPosts = page.getContent();
 		model.addAttribute("blogPosts", blogPosts);
-
+		
+		Page<Resource> pageResource = resourceService.findAllResouById(0, 5, user);
+		List<Resource> resourceList = pageResource.getContent();
+		model.addAttribute("resourceList", resourceList);
+		model.addAttribute("resourceCount", resourceList.size());
+		
+		Page<TeacherHonor> pageHonor = honorService.findAllResouById(0, 2, teacher);
+		List<TeacherHonor> honorList = pageHonor.getContent();
+		model.addAttribute("honorList", honorList);
+		model.addAttribute("honorCount", honorList.size());
+		
 		UserInfo userInfo = new UserInfo(user);
 		userInfo.setAnnouncement(announcement);
 		userInfo.setTeacher(teacher);
