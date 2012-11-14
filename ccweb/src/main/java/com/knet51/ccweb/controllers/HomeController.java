@@ -1,10 +1,14 @@
 package com.knet51.ccweb.controllers;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.JsonGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
+import com.knet51.ccweb.jpa.entities.Friends_Related;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
@@ -28,6 +33,7 @@ import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.BlogService;
+import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
@@ -65,7 +71,8 @@ public class HomeController {
 	@Autowired
 	private TeacherThesisService thesisService;
 	
-	
+	@Autowired
+	private FriendsRelateService friendsRelateService;
 	@Autowired
 	private BlogService blogService;
 
@@ -134,10 +141,16 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/teacher/{id}")
-	public String teacherFront(@PathVariable Long id, Model model) {
+	@SuppressWarnings("unused")
+	public String teacherFront(@PathVariable Long id, Model model,HttpSession session,HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
 		User user = userService.findOne(id);
+		UserInfo userInf = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		User users = userInf.getUser();
 		Announcement announcement = announcementService.findLatestByUid(id);
-
+		int followValue=friendsRelateService.getFollowById(id,users.getId());
 		Teacher teacher = teacherService.findOne(id);
 		Page<BlogPost> page = blogService.findAllBlogs(0, 5, teacher);
 		List<BlogPost> blogPosts = page.getContent();
@@ -175,6 +188,7 @@ public class HomeController {
 		model.addAttribute("teacher_id", id);
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("role", userInfo.getTeacherRole());
+		model.addAttribute("followValue",followValue);
 		return "teacher.basic";
 	}
 

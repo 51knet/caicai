@@ -14,6 +14,7 @@
 	-moz-border-radius: 5px;
 }
 </style>
+
 <div class="row-fluid centralize round">
 	<div class="round header"><h5> </h5></div>
 	<div class="row-fluid">
@@ -26,7 +27,9 @@
 	</div>
 	<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.id != teacher_id) }">
 	<div class="row-fluid">
-		<a href='<c:url value='/addrelation?uid=${teacherInfo.id}'></c:url>' class="btn btn-success btn-small">+关注</a> 
+	<c:if test="${followValue!=1}">
+		<a href='<c:url value='/addrelation?uid=${teacherInfo.id}'></c:url>'  id="attention" class="btn btn-success btn-small">+关注</a> 
+	</c:if>
 	<!-- <a href='<c:url value='/sendmessage?uid=${teacherInfo.id}'></c:url>' class="btn btn-small">发私信</a>  -->	
 		<a href="#myModal" role="button" class="btn btn-small" data-toggle="modal">发私信</a>
 	</div>

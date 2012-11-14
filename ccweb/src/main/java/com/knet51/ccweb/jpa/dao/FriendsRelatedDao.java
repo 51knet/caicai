@@ -15,4 +15,5 @@ public interface FriendsRelatedDao {
 	List<Friends_Related> getAllFollow(Long hostId); 
 	
 	List<Friends_Related> getAllHost(Long followId);
+	public int getFollowById(Long hostId,Long followId);
 }
