@@ -64,7 +64,6 @@
 				$(this).css('display', 'none');
 				$('#payment_details').css('display', 'block');
 			});
-
 		});
 	</script>
 </body>
