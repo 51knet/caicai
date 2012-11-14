@@ -2,17 +2,25 @@ package com.knet51.ccweb.jpa.services.teacherAchievement;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.knet51.ccweb.jpa.dao.teacherAchievement.TeacherThesisDao;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
+import com.knet51.ccweb.jpa.repository.teacherAchievement.ThesisRepository;
 @Transactional
 @Service("teacherThesisService")
 
 public class TeacherThesisServiceImpl implements TeacherThesisService {
 	@Autowired
 	private TeacherThesisDao thesisDao; 
+	
+	@Autowired
+	private ThesisRepository thesisRepository;
 	
 	@Override
 	public TeacherThesis save(TeacherThesis teacherThesis, Teacher  teacher) {
@@ -38,6 +46,14 @@ public class TeacherThesisServiceImpl implements TeacherThesisService {
 	@Override
 	public List<TeacherThesis> getAllThesisById(Long Id) {
 		return thesisDao.getAllThesisById(Id);
+	}
+
+	@Override
+	public Page<TeacherThesis> findAllThesisByTeacher(int pageNum,
+			int pageSize, Teacher teacher) {
+		Pageable dateDesc =  new PageRequest(pageNum, pageSize, Direction.DESC, "id");
+		Page<TeacherThesis> onePage = thesisRepository.findThesisByTeacher(teacher, dateDesc);
+		return onePage;
 	}
 
 }

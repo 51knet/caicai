@@ -37,7 +37,7 @@ public class TeacherResouInfoPageController {
 		logger.info("#####Into TeacherResouInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
-		Page<Resource> onePage = resourceService.findAllResouById(pageNumber, pageSize, user);
+		Page<Resource> onePage = resourceService.findAllResouByUser(pageNumber, pageSize, user);
 		model.addAttribute("page", onePage);
 		return "admin.teacher.resource.list";
 	}

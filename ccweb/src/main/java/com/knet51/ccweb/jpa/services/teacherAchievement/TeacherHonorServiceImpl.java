@@ -51,7 +51,7 @@ public class TeacherHonorServiceImpl implements TeacherHonorService {
 	}
 
 	@Override
-	public Page<TeacherHonor> findAllResouById(int pageNum, int pageSize,
+	public Page<TeacherHonor> findAllHonorByTeacher(int pageNum, int pageSize,
 			Teacher teacher) {
 		Pageable dateDesc =  new PageRequest(pageNum, pageSize, Direction.DESC, "id");
 		Page<TeacherHonor> onePage = honorRepository.findHonorByTeacher(teacher, dateDesc);

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.dao.ResourceDao;
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.repository.ResourceRepository;
@@ -49,7 +50,7 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
-	public Page<Resource> findAllResouById(int pageNumber, int pageSize, User user) {
+	public Page<Resource> findAllResouByUser(int pageNumber, int pageSize, User user) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
 		Page<Resource> onePage = resourceRepository.findResourceByUser(user, dateDesc);
 		return onePage;

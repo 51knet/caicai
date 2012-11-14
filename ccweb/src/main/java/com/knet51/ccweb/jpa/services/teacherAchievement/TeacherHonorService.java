@@ -17,6 +17,6 @@ public interface TeacherHonorService {
 	
 	List<TeacherHonor> getAllHonorById(Long Id); 
 	
-	Page<TeacherHonor> findAllResouById(int pageNum, int pageSize, Teacher teacher);
+	Page<TeacherHonor> findAllHonorByTeacher(int pageNum, int pageSize, Teacher teacher);
 
 }

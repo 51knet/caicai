@@ -23,6 +23,9 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.ResourceService;
@@ -60,7 +63,7 @@ public class HomeController {
 	private TeacherPatentService patentService;
 	
 	@Autowired
-	private TeacherThesisService teacherThesisService;
+	private TeacherThesisService thesisService;
 	
 	
 	@Autowired
@@ -140,15 +143,30 @@ public class HomeController {
 		List<BlogPost> blogPosts = page.getContent();
 		model.addAttribute("blogPosts", blogPosts);
 		
-		Page<Resource> pageResource = resourceService.findAllResouById(0, 5, user);
+		Page<Resource> pageResource = resourceService.findAllResouByUser(0, 5, user);
 		List<Resource> resourceList = pageResource.getContent();
 		model.addAttribute("resourceList", resourceList);
 		model.addAttribute("resourceCount", resourceList.size());
 		
-		Page<TeacherHonor> pageHonor = honorService.findAllResouById(0, 2, teacher);
+		Page<TeacherHonor> pageHonor = honorService.findAllHonorByTeacher(0, 2, teacher);
 		List<TeacherHonor> honorList = pageHonor.getContent();
 		model.addAttribute("honorList", honorList);
 		model.addAttribute("honorCount", honorList.size());
+		
+		Page<TeacherPatent> pagePatent = patentService.findAllPatentByTeacher(0, 2, teacher);
+		List<TeacherPatent> patentList = pagePatent.getContent();
+		model.addAttribute("patentList", patentList);
+		model.addAttribute("patentCount", patentList.size());
+		
+		Page<TeacherThesis> pageThesis = thesisService.findAllThesisByTeacher(0, 2, teacher);
+		List<TeacherThesis> thesisList = pageThesis.getContent();
+		model.addAttribute("thesisList", thesisList);
+		model.addAttribute("thesisCount", thesisList.size());
+		
+		Page<TeacherProject> pageProject = projectService.findAllProjectByTeacher(0, 2, teacher);
+		List<TeacherProject> projectList = pageProject.getContent();
+		model.addAttribute("projectList",projectList);
+		model.addAttribute("projectCount", projectList.size());
 		
 		UserInfo userInfo = new UserInfo(user);
 		userInfo.setAnnouncement(announcement);

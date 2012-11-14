@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
 
@@ -17,7 +18,7 @@ public interface ResourceService {
 	
 	Resource findOneById(Long Id);
 	
-	Page<Resource> findAllResouById(int pageNum, int pageSize, User user);
+	Page<Resource> findAllResouByUser(int pageNum, int pageSize, User user);
 	
 	void deleteResource(Long resource_id);
 }
