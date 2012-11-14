@@ -1,12 +1,17 @@
 package com.knet51.ccweb.controllers.login;
 
+import java.nio.charset.Charset;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,17 +38,26 @@ public class LoginController {
 
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public String signin(@Valid LoginForm loginForm, BindingResult result,
-			HttpSession session, HttpServletRequest request) {
+			HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		if (result.hasErrors()) {
 			logger.info("LoginForm Validation Failed " + result);
 			return "home";
 		} else {
+			logger.debug("loginForm :" + loginForm.toString());
 			String email = loginForm.getEmail();
 			String psw = loginForm.getPassword();
 
 			boolean succeed = service.login(email, psw);
 			logger.info("Login result " + succeed);
 			if (succeed) {
+				if (loginForm.getRemeberMe() == 1) {
+					String encodedEmail = new String(Base64.encode(email.getBytes()), Charset.forName("US-ASCII"));
+					logger.debug(encodedEmail);
+					Cookie cookie = new Cookie(GlobalDefs.COOKIE_IDENTITY, encodedEmail);
+					cookie.setMaxAge(60*60*24*14);//remeber me for 2 weeks by default
+					response.addCookie(cookie);
+				}
+				
 				User user = service.findByEmailAddress(email);
 				String randomUrl = user.getRandomUrl();
 				// send confirm mail to user who do not confirm the email;
