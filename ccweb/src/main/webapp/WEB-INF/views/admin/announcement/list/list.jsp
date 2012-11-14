@@ -44,7 +44,7 @@
 		</c:forEach>
 	</tbody>		 
 		<tfoot>
-	    	<tr><td colspan="3" align="right">
+	    	<tr><td colspan="4" align="right">
 	        	<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
 	   		 </td></tr>
 		</tfoot>
