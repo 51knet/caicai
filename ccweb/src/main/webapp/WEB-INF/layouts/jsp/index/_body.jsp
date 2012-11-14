@@ -86,7 +86,7 @@ body {
 			<div class="control-group">
 				<label class="control-label" for="password">登录密码</label>
 				<div class="controls">
-					<input type="text" id="password" name="password" placeholder="请输入您的密码">
+					<input type="password" id="password" name="password" placeholder="请输入您的密码">
 					<span class="help-block"><form:errors path="password"></form:errors></span>
 				</div>
 			</div>
@@ -112,14 +112,14 @@ body {
 			<div class="control-group">
 				<label class="control-label" for="psw">密码</label>
 				<div class="controls">
-					<input type="text" id="psw" name="psw" placeholder="请设置您的密码">
+					<input type="password" id="psw" name="psw" placeholder="请设置您的密码">
 					<span class="help-block"><form:errors path="psw"></form:errors></span>
 				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label" for="confirmpsw">密码确认</label>
 				<div class="controls">
-					<input type="text" id="confirmpsw" name="confirmpsw" placeholder="请再次输入您的密码">
+					<input type="password" id="confirmpsw" name="confirmpsw" placeholder="请再次输入您的密码">
 					<span class="help-block"><form:errors path="confirmpsw"></form:errors></span>
 				</div>
 			</div>

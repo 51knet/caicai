@@ -43,16 +43,12 @@ public class TeacherController {
 			return "admin.teacher.details";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
-			String role = detailInfoForm.getRole();
-			String college = detailInfoForm.getCollege();
-			String major = detailInfoForm.getMajor();
+			String name = detailInfoForm.getName();
 
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User user = userService.findOne(userInfo.getId());
 			Teacher teacher = new Teacher(user);
-			teacher.setRole(Integer.valueOf(role));
-			teacher.setCollege(college);
-			teacher.setMajor(major);
+			teacher.setRole(Integer.valueOf(name));
 			teacher = teacherService.updateTeacher(teacher);
 			userInfo.setTeacher(teacher);
 
