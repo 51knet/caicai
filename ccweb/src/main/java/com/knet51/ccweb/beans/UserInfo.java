@@ -80,7 +80,7 @@ public class UserInfo {
 		return this.user.getGender();
 	}
 	
-	public int getTeacherRole(){
+	public String getTeacherRole(){
 		return this.teacher.getRole();
 	}
 

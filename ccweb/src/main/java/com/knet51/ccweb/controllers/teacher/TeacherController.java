@@ -1,5 +1,7 @@
 package com.knet51.ccweb.controllers.teacher;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -31,30 +33,43 @@ public class TeacherController {
 	private TeacherService teacherService;
 	@Autowired
 	private UserService userService;
-
+	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/details")
-	public String detailInfo(@Valid TeacherDetailInfoForm detailInfoForm,
+	public String detailInfoPage(@Valid TeacherPersonalInfoForm personalInfoForm,
 			BindingResult validResult, HttpSession session) {
-		logger.info("#### DetailInfoController ####");
+		logger.info("#### detailInfoPage InfoController ####");
+		return "admin.teacher.details";
+	}
 
+	@Transactional
+	@RequestMapping(value = "/admin/teacher/personalInfo")
+	public String personalInfo(@Valid TeacherPersonalInfoForm personalInfoForm,
+			BindingResult validResult, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		logger.info("#### Personal InfoController ####");
+		
 		if (validResult.hasErrors()) {
 			logger.info("detailInfoForm Validation Failed " + validResult);
 			return "admin.teacher.details";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
-			String name = detailInfoForm.getName();
-
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User user = userService.findOne(userInfo.getId());
+			user.setName(personalInfoForm.getName());
+			user.setGender(personalInfoForm.getGender());
+			user = userService.updateUser(user);
 			Teacher teacher = new Teacher(user);
-			teacher.setRole(Integer.valueOf(name));
+			teacher.setCollege(personalInfoForm.getCollege());
+			teacher.setSchool(personalInfoForm.getSchool());
+			teacher.setTitle(personalInfoForm.getTitle());
+			teacher.setMajor(personalInfoForm.getMajor());
+			teacher.setRole(personalInfoForm.getRole());
 			teacher = teacherService.updateTeacher(teacher);
+			userInfo.setUser(user);
 			userInfo.setTeacher(teacher);
-
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 
-			return "admin.teacher.details";
+			return "redirect:/admin/teacher/details";
 		}
 	}
 

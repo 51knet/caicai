@@ -122,7 +122,7 @@ public class TheServletContextListener implements ServletContextListener {
 		
 		Teacher teacher = new Teacher(user);
 		teacher.setId(user.getId());
-		teacher.setRole(0);
+//		teacher.setRole(0);
 		em.persist(teacher);
 		
 		for (int i = 1; i < 6; i++) {

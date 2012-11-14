@@ -42,7 +42,7 @@ public class Teacher {
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
 	private Set<TeacherCourse> course = new HashSet<TeacherCourse>();
 
-	private Integer role = 0;
+	private String role;
 	private String title;
 	private String college;
 	private String school;
@@ -74,11 +74,11 @@ public class Teacher {
 		this.user = user;
 	}
 
-	public Integer getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(Integer role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 

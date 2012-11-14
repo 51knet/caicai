@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -17,11 +16,12 @@
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane active" id="personal_info_tab">
-			<form class="form-horizontal">
+			<form action="personalInfo" class="form-horizontal" method="post">
 				<div class="control-group">
 					<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 					<div class="controls">
-						<input type="text" id="name" placeholder="姓名">
+						<input type="text" id="name" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.user.name}" >
+						<span class="help-block"><form:errors path="name"></form:errors></span>
 					</div>
 				</div>
 				<div class="control-group">
@@ -32,7 +32,11 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label"><i class="icon-star"></i> 所属高校</label>
+					<label class="control-label" for="college"><i class="icon-star"></i> 所属高校</label>
+					<div class="controls">
+						<input type="text" id="college" name="college" placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["复旦大学","同济大学","上海交通大学","上海财金大学","上海外国语大学","上海大学"]'>
+					</div>
+					<!--  
 					<div class="controls">
 						<select class="span3" name="university_province">
 							<option>上海</option>
@@ -46,9 +50,14 @@
 							<option>交通大学</option>
 						</select>
 					</div>
+					-->
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="college"><i class="icon-star"></i> 所属学院</label>
+					<label class="control-label" for="school"><i class="icon-star"></i> 所属院系</label>
+					<div class="controls">
+						<input type="text" id="school" name="school" placeholder="所属院系" value="${sessionScope.sessionUserInfo.teacher.school}" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["计算机学院","财金学院","女子学院"]'>
+					</div>
+					<!--  
 					<div class="controls">
 						<select class="span3" name="college">
 							<option>计算机学院</option>
@@ -56,23 +65,24 @@
 							<option>女子学院</option>
 						</select>
 					</div>
+					-->
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="course">教授课程</label>
+					<label class="control-label" for="major">教授课程</label>
 					<div class="controls">
-						<input type="text" id="course" placeholder="教授课程">
+						<input type="text" id="major" name="major" value="${sessionScope.sessionUserInfo.teacher.major}" placeholder="教授课程">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="title">职称</label>
 					<div class="controls">
-						<input type="text" id="title" placeholder="职称">
+						<input type="text" id="title" name="title" value="${sessionScope.sessionUserInfo.teacher.title}" placeholder="职称">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="coachType">导师类别</label>
+					<label class="control-label" for="role">导师类别</label>
 					<div class="controls">
-						<input type="text" id="coachType" placeholder="导师类别">
+						<input type="text" id="role" name="role" value="${sessionScope.sessionUserInfo.teacher.role}" placeholder="导师类别">
 					</div>
 				</div>
 				<div class="control-group">
