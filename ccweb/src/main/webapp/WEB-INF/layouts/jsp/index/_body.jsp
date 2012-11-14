@@ -46,6 +46,16 @@ body {
 	text-align: center;
 	display: none;
 }
+
+.form-horizontal .control-label {
+	float: left;
+	width: 75px;
+	padding-top: 5px;
+	text-align: right;
+}
+.form-horizontal .controls {
+	margin-left: 0px;
+}
 </style>
 
 <script type="text/javascript">
@@ -64,12 +74,22 @@ body {
 <div class="row mac">
 	<div class="span7"></div>
 	<div class="span4 login-panel">
-		<form:form class="form-signin" action="/ccweb/signin" modelAttribute="loginForm" method="post">
+		<form:form class="form-horizontal" action="signin" modelAttribute="loginForm" method="post">
 			<h3 class="form-signin-heading" style="font-family:'Microsoft YaHei'">用户登录</h3>
-			<input type="text" name="email" placeholder="邮箱地址">
-			<span class="help-block"><form:errors path="email"></form:errors></span>
-			<input type="password" name="password" placeholder="密码">
-			<span class="help-block"><form:errors path="password"></form:errors></span>
+			<div class="control-group">
+				<label class="control-label" for="email">邮箱地址</label>
+				<div class="controls">
+					<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址">
+					<span class="help-block"><form:errors path="email"></form:errors></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="password">登录密码</label>
+				<div class="controls">
+					<input type="text" id="password" name="password" placeholder="请输入您的密码">
+					<span class="help-block"><form:errors path="password"></form:errors></span>
+				</div>
+			</div>
 			<label class="checkbox inline"> <input type="checkbox" name="rememberMe" id="inlineCheckbox1" value="1"> 记住密码 &nbsp;&nbsp;<a href="#">忘记密码？</a>
 			</label>
 			<label style="clear: right;"></label>
@@ -80,14 +100,29 @@ body {
 		
 	</div>
 	<div class="span4 register-panel" style="display: none;">
-		<form:form action="register/common" modelAttribute="commonRegisterForm" method="post">
+		<form:form class="form-horizontal" action="register/common" modelAttribute="commonRegisterForm" method="post">
 			<h3 class="form-signin-heading" style="font-family:'Microsoft YaHei'">快速注册</h3>
-			<input type="text" name="email" placeholder="邮箱地址">
-			<span class="help-block"><form:errors path="email"></form:errors></span>
-			<input type="password" name="psw" placeholder="密码">
-			<span class="help-block"><form:errors path="psw"></form:errors></span>
-			<input type="password" name="confirmpsw" placeholder="密码确认">
-			<span class="help-block"><form:errors path="confirmpsw"></form:errors></span>
+			<div class="control-group">
+				<label class="control-label" for="email">邮箱地址</label>
+				<div class="controls">
+					<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址">
+					<span class="help-block"><form:errors path="email"></form:errors></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="psw">密码</label>
+				<div class="controls">
+					<input type="text" id="psw" name="psw" placeholder="请设置您的密码">
+					<span class="help-block"><form:errors path="psw"></form:errors></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="confirmpsw">密码确认</label>
+				<div class="controls">
+					<input type="text" id="confirmpsw" name="confirmpsw" placeholder="请再次输入您的密码">
+					<span class="help-block"><form:errors path="confirmpsw"></form:errors></span>
+				</div>
+			</div>
 			<label style="clear: right;"></label>
 			<button type="submit" class="btn btn-large btn-primary">确认注册</button>
 		</form:form>
