@@ -3,7 +3,7 @@ package com.knet51.ccweb.jpa.entities;
 import javax.persistence.Entity;
 
 @Entity
-public class Friends_Related extends AbstractEntity {
+public class FriendsRelated extends AbstractEntity {
 	private Long host_id; 
 	private Long follow_id; 
 	private int type;
@@ -25,7 +25,7 @@ public class Friends_Related extends AbstractEntity {
 	public void setType(int type) {
 		this.type = type;
 	}
-	public Friends_Related() {
+	public FriendsRelated() {
 		super();
 	}
 	

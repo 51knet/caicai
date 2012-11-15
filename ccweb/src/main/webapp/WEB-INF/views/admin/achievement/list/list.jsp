@@ -29,17 +29,16 @@
 								<span class="caret"></span> </button>
 								<ul class="dropdown-menu">
 									<li><a href='#'>修改</a></li>
-									<li><a href='<c:url value="/admin/teacher/achievement/thesis/deleThesis?id=${thesis.id}"></c:url>'>删除</a></li>
+									<li><a href='<c:url value="/admin/teacher/achievement/thesis/destory/${thesis.id}"></c:url>'>删除</a></li>
 								</ul>
 							</div>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
-				
 			</table>
 		<div id="thesisForm" style="display: none;">
-				<form action="thesis/addThesis" method="post" onSubmit="return checkThesisForm(this)">
+				<form action="thesis/new" method="post" onSubmit="return checkThesisForm(this)">
 					内容：
 					<textarea style="width: 450px;" name="content" cols="40" rows="3" id="thesisContent"></textarea>
 					<span class="help-block" style="color: red; font-size: 13px;" id="thesisContentMsg"></span>
@@ -63,7 +62,7 @@
 		<hr>
 		<div id="project" style="display: block">
 			<div id="projectForm" style="display: none;">
-				<form action="project/addProject" method="post" onSubmit="return checkProjectForm(this)">
+				<form action="project/new" method="post" onSubmit="return checkProjectForm(this)">
 				<table  class="table">
 					<thead><tr><th>项目名称</th><th>项目来源</th><th>项目起止时间</th></tr></thead>
 					<tbody>
@@ -96,7 +95,7 @@
 									<span class="caret"></span> </button>
 									<ul class="dropdown-menu">
 										<li><a href='#'>修改</a></li>
-										<li><a href='<c:url value="/admin/teacher/achievement/project/deleProject?id=${project.id}"></c:url>'>删除</a></li>
+										<li><a href='<c:url value="/admin/teacher/achievement/project/destory/${project.id}"></c:url>'>删除</a></li>
 									</ul>
 								</div>
 							</td>
@@ -120,7 +119,7 @@
 		<hr>
 		<div id="patent" style="display: block">
 			<div id="patentForm" style="display: none;">
-				<form action="patent/addPatent" method="post" onSubmit="return checkPatentForm(this)">
+				<form action="patent/new" method="post" onSubmit="return checkPatentForm(this)">
 					<table class="table">
 					<thead>
 						<tr><th>发明人</th><th>专利名称</th><th>专利类型</th><th>专利申请号</th></tr>
@@ -160,7 +159,7 @@
 									<span class="caret"></span> </button>
 									<ul class="dropdown-menu">
 										<li><a href='#'>修改</a></li>
-										<li><a href='<c:url value="/admin/teacher/achievement/patent/delePatent?id=${patent.id}"></c:url>'>删除</a></li>
+										<li><a href='<c:url value="/admin/teacher/achievement/patent/destory/${patent.id}"></c:url>'>删除</a></li>
 									</ul>
 								</div>
 							</td>
@@ -184,7 +183,7 @@
 		<hr>
 		<div id="honor" style="display: block">
 			<div id="honorForm" style="display: none;">
-				<form action="honor/addHonor" method="post" onSubmit="return checkHonorForm(this)">
+				<form action="honor/new" method="post" onSubmit="return checkHonorForm(this)">
 					<table class="table ">
 					<thead><tr><th align="center">奖励或荣誉</th><th align="center">获奖原因</th></tr></thead>
 					<tbody>
@@ -217,7 +216,7 @@
 									<span class="caret"></span> </button>
 									<ul class="dropdown-menu">
 										<li><a href='#'>修改</a></li>
-										<li><a href='<c:url value="/admin/teacher/achievement/honor/deleHonor?id=${honor.id}"></c:url>'>删除</a></li>
+										<li><a href='<c:url value="/admin/teacher/achievement/honor/destory/${honor.id}"></c:url>'>删除</a></li>
 									</ul>
 								</div>
 							</td>

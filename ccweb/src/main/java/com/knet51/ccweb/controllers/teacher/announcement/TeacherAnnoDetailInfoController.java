@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,14 +37,14 @@ public class TeacherAnnoDetailInfoController {
 	private UserService userService;
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/announcement/addAnnoInfo", method = RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/announcement/new", method = RequestMethod.POST)
 	public String allAnnoInfo(@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm,
 			BindingResult validResult, HttpSession session,Model m){
 		logger.info("####  TeacherAnnoDetailController  ####");
 		
 		if(validResult.hasErrors()){
 			logger.info("annoDetailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/announcement/detail";
+			return "redirect:/admin/teacher/announcement/list";
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -60,23 +61,23 @@ public class TeacherAnnoDetailInfoController {
 			annoService.createAnnouncement(announcement, user);
 			//System.out.println(announcement.getDate());
 			
-			return "redirect:/admin/teacher/announcement/detail";
+			return "redirect:/admin/teacher/announcement/list";
 		}
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/announcement/deleAnno")
-	public String teacherAnnoDele(@RequestParam("id") Long id,HttpSession session, Model m){
-		annoService.deleAnnouncementById(id);
-		return "redirect:/admin/teacher/announcement/detail";
+	@RequestMapping(value="/admin/teacher/announcement/destory/{announcement_id}")
+	public String teacherAnnoDele( @PathVariable Long announcement_id,HttpSession session, Model m){
+		annoService.deleAnnouncementById(announcement_id);
+		return "redirect:/admin/teacher/announcement/list";
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/announcement/updateAnno" , method = RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/announcement/edit/edit" , method = RequestMethod.POST)
 	public String teacherAnnoUpdate(@RequestParam("id") Long id,@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm,
 			BindingResult validResult, HttpSession session,Model m){
 		if(validResult.hasErrors()){
-			return "/admin/teacher/announcement/detailOne";
+			return "/admin/teacher/announcement/view/"+id;
 		}else{	
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();
@@ -88,7 +89,7 @@ public class TeacherAnnoDetailInfoController {
 			String date = format.format(new Date());
 			announcement.setDate(date);  
 			annoService.updateAnnouncement(announcement);
-			return "redirect:/admin/teacher/announcement/detail";
+			return "redirect:/admin/teacher/announcement/list";
 		}
 	}
 }

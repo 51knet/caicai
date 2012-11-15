@@ -18,7 +18,7 @@
 	}
 </script>
 
-<a href='<c:url value="/admin/teacher/announcement/detail"></c:url>' ><b>教师公告</b></a><hr>
+<a href='<c:url value="/admin/teacher/announcement/list"></c:url>' ><b>教师公告</b></a><hr>
 <div style="text-align: center;">
 	<table class="table table-bordered">
 	<thead><tr><th colspan="4">全部公告</th></tr></thead>
@@ -35,8 +35,8 @@
 						<button class="btn dropdown-toggle" data-toggle="dropdown">   
 						<span class="caret"></span> </button>
 						<ul class="dropdown-menu">
-							<li><a href='<c:url value="/admin/teacher/announcement/detailOne?id=${page.id}"></c:url>'>修改</a></li>
-							<li> <a href='<c:url value="/admin/teacher/announcement/deleAnno?id=${page.id}"></c:url>'> 删除</a></li>
+							<li><a href='<c:url value="/admin/teacher/announcement/edit/${page.id}"></c:url>'>修改</a></li>
+							<li> <a href='<c:url value="/admin/teacher/announcement/destory/${page.id}"></c:url>'> 删除</a></li>
 						</ul>
 					 </div>
 				 </td>
@@ -57,7 +57,7 @@
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="myModalLabel">公告添加</h3>
 		</div>
-		<form:form action='addAnnoInfo' method="post">
+		<form:form action='new' method="post">
 			<div class="modal-body">
 						公告标题：<input type="text" name="title" placeholder="Title">
 						<span class="help-block"><form:errors path="title"></form:errors></span>

@@ -10,19 +10,19 @@
 		<ul>
 			<c:choose>
 				<c:when test="${page.hasPreviousPage()}">
-					<li><a href='${current_url}?pageNumber=${prev}'>Prev</a></li>
+					<li><a href='${current_url}?pageNumber=${prev}'>上一页</a></li>
 				</c:when>
 				<c:otherwise>
-					<li><a href="#" class="disabled">Prev</a></li>
+					<li><a href="#" class="disabled">上一页</a></li>
 				</c:otherwise>
 			</c:choose>
 			<li><a href="#" class="active">${page.number+1}/${page.totalPages}</a></li>
 			<c:choose>
 				<c:when test="${page.hasNextPage()}">
-					<li><a href='${current_url}?pageNumber=${next}'>Next</a></li>
+					<li><a href='${current_url}?pageNumber=${next}'>下一页</a></li>
 				</c:when>
 				<c:otherwise>
-					<li><a href="#" class="disabled">Next</a></li>
+					<li><a href="#" class="disabled">下一页</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>

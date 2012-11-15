@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,7 +29,7 @@ public class TeacherAnnoInfoPageController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/admin/teacher/announcement/detail")
+	@RequestMapping(value="/admin/teacher/announcement/list")
 	public String teacherAnno(HttpSession session,Model m ,@RequestParam(value="pageNumber",defaultValue="0") 
 								int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
 		logger.info("#### into TeacherAnno ####");
@@ -38,21 +39,16 @@ public class TeacherAnnoInfoPageController {
 			List<Announcement> list = annoService.findAllByUid(id);
 			m.addAttribute("page", page);
 			m.addAttribute("list",list);
-			return "admin.tacher.annoDetail";
+			return "admin.tacher.announcement.list";
 	}
 	
-	@RequestMapping(value="/admin/teacher/announcement/add")
-	public String teacherAnnoAdd(){
-		logger.info("#### into TeacherAnnoAddPage ####");
-		return "admin.teacher.annoAddPage";
-	}
 	
-	@RequestMapping(value="/admin/teacher/announcement/detailOne")
-	public String detailAnnoInfo(@RequestParam("id") Long id, Model m){
+	@RequestMapping(value="/admin/teacher/announcement/edit/{announcement_id}")
+	public String detailAnnoInfo( @PathVariable Long announcement_id, Model m){
 		//System.out.println(id);
-		Announcement ann = annoService.findOneById(id);
+		Announcement ann = annoService.findOneById(announcement_id);
 		m.addAttribute("ann", ann);
-		return "admin.teacher.detailAnnInfo";
+		return "admin.teacher.announcement.edit";
 	}
 	
 	public Long getId(HttpSession session){

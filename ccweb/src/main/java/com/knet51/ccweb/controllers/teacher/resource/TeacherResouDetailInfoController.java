@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,7 +40,7 @@ public class TeacherResouDetailInfoController {
 	private ResourceTypeService resourceTypeService;
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/resource/addInfo",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/resource/new/create",method=RequestMethod.POST)
 	public String teacherResouInfo(HttpSession session,Model model,@RequestParam("desc") String desc,
 			@RequestParam("type") Long value, MultipartHttpServletRequest request) throws Exception{
 		logger.info("#####Into TeacherResouInfoAddPageController#####");
@@ -84,55 +85,55 @@ public class TeacherResouDetailInfoController {
 //	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/resource/dele")
-	public String teacherResouDele(HttpSession session,Model model,@RequestParam("id") Long id) throws Exception{
+	@RequestMapping(value="/admin/teacher/resource/destory/{resource_id}")
+	public String teacherResouDele(HttpSession session,Model model, @PathVariable Long resource_id) throws Exception{
 		logger.info("#####Into TeacherResouInfoDelePageController#####");
 //		Resource resource = resourceService.findOneById(id);
 //		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //		String date = format.format(new Date());
 //		resource.setDate(date);
 //		resourceService.delete(resource, 2);
-		resourceService.deleteResource(id);
+		resourceService.deleteResource(resource_id);
 		return "redirect:/admin/teacher/resource/list";
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/resource/addtype",  method = RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/resource/type/new",  method = RequestMethod.POST)
 	public String teacherResouTypeAdd(@Valid TeacherResouTypeInfoForm teacherResouTypeInfo,
 			BindingResult validResult, HttpSession session,Model model){
 		String typeName = teacherResouTypeInfo.getTypeName();
 		if (validResult.hasErrors()) {
 			 logger.info("detailInfoForm Validation Failed " + validResult);
-			 return "/admin/teacher/resource/add";
+			 return "/admin/teacher/resource/new";
 		} else {
 			ResourceType resourceType = new ResourceType();
 			resourceType.setTypeName(typeName);
 			resourceTypeService.save(resourceType);
-			return "redirect:/admin/teacher/resource/add";
+			return "redirect:/admin/teacher/resource/new";
 		}
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/resource/type/dele")
-	public String teacherResouTypeDele(HttpSession session,Model model,@RequestParam("id") Long id) throws Exception{
+	@RequestMapping(value="/admin/teacher/resource/type/destory/{resourceType_id}")
+	public String teacherResouTypeDele(HttpSession session,Model model,@PathVariable Long resourceType_id) throws Exception{
 		logger.info("#####Into TeacherResouTypeDelePageController#####");
-		resourceTypeService.deleteById(id);
-		return "redirect:/admin/teacher/resource/type";
+		resourceTypeService.deleteById(resourceType_id);
+		return "redirect:/admin/teacher/resource/type/list";
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/resource/type/addInfo",  method = RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/resource/type/new/create",  method = RequestMethod.POST)
 	public String teacherResouTypeAddInfo(@Valid TeacherResouTypeInfoForm teacherResouTypeInfo,
 			BindingResult validResult, HttpSession session,Model model){
 		String typeName = teacherResouTypeInfo.getTypeName();
 		if (validResult.hasErrors()) {
 			 logger.info("detailInfoForm Validation Failed " + validResult);
-			 return "/admin/teacher/resource/type/add";
+			 return "/admin/teacher/resource/type/new";
 		} else {
 			ResourceType resourceType = new ResourceType();
 			resourceType.setTypeName(typeName);
 			resourceTypeService.save(resourceType);
-			return "redirect:/admin/teacher/resource/type";
+			return "redirect:/admin/teacher/resource/type/list";
 		}
 	}
 	

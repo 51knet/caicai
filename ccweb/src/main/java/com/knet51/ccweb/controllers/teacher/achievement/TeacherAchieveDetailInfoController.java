@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -41,13 +42,13 @@ public class TeacherAchieveDetailInfoController {
 	@Autowired
 	private TeacherService teacherService;
 	
-	@RequestMapping(value="/admin/teacher/achievement/thesis/addThesis")
+	@RequestMapping(value="/admin/teacher/achievement/thesis/new")
 	public String addThesis(@Valid TeacherThesisDetailInfoForm thesisDetailInfoForm, HttpSession session,
 			Model model, BindingResult validResult){
 		String content = thesisDetailInfoForm.getContent();
 		logger.info("#### Into teacherThesisAddController ####");
 		if(validResult.hasErrors()){
-			return "admin/teacher/achievement/detail";
+			return "admin/teacher/achievement/list";
 		}
 		else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -56,22 +57,22 @@ public class TeacherAchieveDetailInfoController {
 			TeacherThesis thesis = new TeacherThesis();
 			thesis.setContent(content);
 			thesisService.save(thesis, teacher);
-			return "redirect:/admin/teacher/achievement/detail";
+			return "redirect:/admin/teacher/achievement/list";
 		}
 	}
 	
-	@RequestMapping(value="/admin/teacher/achievement/thesis/deleThesis")
-	public String deleThesis(@RequestParam("id") Long id){
-		thesisService.deleteById(id);
-		return "redirect:/admin/teacher/achievement/detail";
+	@RequestMapping(value="/admin/teacher/achievement/thesis/destory/{thesis_id}")
+	public String deleThesis(@PathVariable Long thesis_id){
+		thesisService.deleteById(thesis_id);
+		return "redirect:/admin/teacher/achievement/list";
 	}
 	
-	@RequestMapping(value="/admin/teacher/achievement/project/addProject")
+	@RequestMapping(value="/admin/teacher/achievement/project/new")
 	public String addProject(@Valid TeacherProjectDetailInfoForm projectDetailForm, HttpSession session,
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherProjectAddController ####");
 		if(validResult.hasErrors()){
-			return "admin/teacher/achievement/detail";
+			return "admin/teacher/achievement/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long id = userInfo.getUser().getId();
@@ -81,22 +82,22 @@ public class TeacherAchieveDetailInfoController {
 			project.setSource(projectDetailForm.getSource());
 			project.setDate(projectDetailForm.getDate());
 			projectService.save(project, teacher);
-			return "redirect:/admin/teacher/achievement/detail";
+			return "redirect:/admin/teacher/achievement/list";
 		}
 	}
 	
-	@RequestMapping(value="/admin/teacher/achievement/project/deleProject")
-	public String deleProject(@RequestParam("id") Long id){
-		projectService.deleteById(id);
-		return "redirect:/admin/teacher/achievement/detail";
+	@RequestMapping(value="/admin/teacher/achievement/project/destory/{project_id}")
+	public String deleProject(@PathVariable Long project_id){
+		projectService.deleteById(project_id);
+		return "redirect:/admin/teacher/achievement/list";
 	}
 	
-	@RequestMapping(value="/admin/teacher/achievement/patent/addPatent")
+	@RequestMapping(value="/admin/teacher/achievement/patent/new")
 	public String addPatent(@Valid TeacherPatentDetailInfoForm patentDetailForm, HttpSession session,
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherPatentAddController ####");
 		if(validResult.hasErrors()){
-			return "admin/teacher/achievement/detail";
+			return "admin/teacher/achievement/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long id = userInfo.getUser().getId();
@@ -107,22 +108,22 @@ public class TeacherAchieveDetailInfoController {
 			patent.setNumber(patentDetailForm.getNumber());
 			patent.setType(patentDetailForm.getType());
 			patentService.save(patent, teacher);
-			return "redirect:/admin/teacher/achievement/detail";
+			return "redirect:/admin/teacher/achievement/list";
 		}
 	}
 	
-	@RequestMapping(value="/admin/teacher/achievement/patent/delePatent")
-	public String delePatent(@RequestParam("id") Long id){
-		patentService.deleteById(id);
-		return "redirect:/admin/teacher/achievement/detail";
+	@RequestMapping(value="/admin/teacher/achievement/patent/destory/{patent_id}")
+	public String delePatent(@PathVariable Long patent_id){
+		patentService.deleteById(patent_id);
+		return "redirect:/admin/teacher/achievement/list";
 	}
 	
-	@RequestMapping(value="/admin/teacher/achievement/honor/addHonor")
+	@RequestMapping(value="/admin/teacher/achievement/honor/new")
 	public String addHonor(@Valid TeacherHonorDetailInfoForm honorDetailForm, HttpSession session,
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherProjectAddController ####");
 		if(validResult.hasErrors()){
-			return "admin/teacher/achievement/detail";
+			return "admin/teacher/achievement/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long id = userInfo.getUser().getId();
@@ -131,13 +132,13 @@ public class TeacherAchieveDetailInfoController {
 			honor.setName(honorDetailForm.getName());
 			honor.setReason(honorDetailForm.getReason());
 			honorService.save(honor, teacher);
-			return "redirect:/admin/teacher/achievement/detail";
+			return "redirect:/admin/teacher/achievement/list";
 		}
 	}
 	
-	@RequestMapping(value="/admin/teacher/achievement/honor/deleHonor")
-	public String deleHonor(@RequestParam("id") Long id){
-		honorService.deleteById(id);
-		return "redirect:/admin/teacher/achievement/detail";
+	@RequestMapping(value="/admin/teacher/achievement/honor/destory/{honor_id}")
+	public String deleHonor(@PathVariable Long honor_id){
+		honorService.deleteById(honor_id);
+		return "redirect:/admin/teacher/achievement/list";
 	}
 }

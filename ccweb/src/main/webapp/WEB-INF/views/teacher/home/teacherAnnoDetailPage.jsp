@@ -14,11 +14,8 @@
 		公告标题：<input type="text" name="title" value="${ann.title }" placeholder="Title">
 		<span class="help-block"><form:errors path="title"></form:errors></span>
 		
-		
-		公告内容：<textarea name="content"   placeholder="Content" cols="5" rows="8">${ann.content}</textarea>
+		公告内容：<textarea name="content"  placeholder="Content" cols="5" rows="8">${ann.content}</textarea>
 		<span class="help-block"><form:errors path="content"></form:errors></span>
-		
-	
 		
 		<label style="clear: right;"></label>
 		<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;

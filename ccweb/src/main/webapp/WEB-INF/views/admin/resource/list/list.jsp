@@ -10,15 +10,20 @@
 	<thead><tr><th colspan="5">全部资源</th></tr></thead>
 		<tbody>
 		<tr><td colspan="5">
-			<a href='<c:url value="/admin/teacher/resource/add"></c:url>' class="btn">添加资源</a>&nbsp;&nbsp;
-			<a href='<c:url value="/admin/teacher/resource/type"></c:url>'  class="btn">类别管理</a><br></td></tr>
+			<a href='<c:url value="/admin/teacher/resource/new"></c:url>' class="btn">添加资源</a>&nbsp;&nbsp;
+			<a href='<c:url value="/admin/teacher/resource/type/list"></c:url>'  class="btn">类别管理</a><br></td></tr>
 		<tr><td>文件名称</td><td>发布时间</td><td>文件描述</td><td>文件类型</td><td>详细操作</td></tr>
 		<c:forEach items="${page.content}" var="page">
 			<tr><td align="left">${page.name}</td>
 			<td align="center">${page.date}</td>
-			<td>${page.description}</td>
+			<td>
+				<c:choose>
+					<c:when test="${(page.description!=null) || (page.description != '')}">${page.description}</c:when>
+					<c:otherwise>无描述</c:otherwise>
+				</c:choose>
+			</td>
 			<td>${page.resourceType.typeName}</td>
-			<td><a href='<c:url value="/admin/teacher/resource/dele?id=${page.id }"></c:url>'> 删除</a> | <a href="${page.savePath}">下载</a></td></tr>
+			<td><a href='<c:url value="/admin/teacher/resource/destory/${page.id }"></c:url>'> 删除</a> | <a href="${page.savePath}">下载</a></td></tr>
 		</c:forEach>
 		</tbody>
 		<tfoot>
