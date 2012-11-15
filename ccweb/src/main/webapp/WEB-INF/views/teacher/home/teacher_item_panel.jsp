@@ -64,7 +64,7 @@ li {
 	<div style="width: 180px; height: 460px;" id="Idpersonalcentermenu">
 		<ul>
 			<li><a href='<c:url value="/"></c:url>' >个人主页</a></li>
-			<li><a href='<c:url value="/admin/teacher/announcement/detail"></c:url>' >发布公告</a></li>
+			<li><a href='<c:url value="/admin/teacher/announcement/list"></c:url>' >发布公告</a></li>
 			<li><a href='<c:url value="/admin/teacher/resource/list"></c:url>' >资源管理</a></li>
 			<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
 			<li><a href='<c:url value="/admin/teacher/details"></c:url>' >账号信息</a></li>

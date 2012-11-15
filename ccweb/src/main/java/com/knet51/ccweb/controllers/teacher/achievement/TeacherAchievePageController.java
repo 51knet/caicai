@@ -38,7 +38,7 @@ public class TeacherAchievePageController {
 	@Autowired
 	private TeacherHonorService honorService;
 	
-	@RequestMapping(value="/admin/teacher/achievement/detail")
+	@RequestMapping(value="/admin/teacher/achievement/list")
 	public String teacherAchievement(HttpSession session,Model model){
 		logger.info("#### Into teacher achievement page ####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -51,7 +51,7 @@ public class TeacherAchievePageController {
 		model.addAttribute("thesis", thesis);
 		model.addAttribute("patent", patent);
 		model.addAttribute("honor", honor);
-		return "admin.teacher.achievement.detail";
+		return "admin.teacher.achievement.list";
 	}
 	
 	

@@ -14,7 +14,7 @@
 				</td></tr>
 			<tr><td>课程标题</td><td>课程简述</td><td>发布时间</td><td>课程操作</td></tr>
 			<c:forEach items="${page.content}" var="page">
-				<tr><td align="left"><a href='<c:url value="/admin/teacher/teacherCourse/detailCourse?id=${page.id}"></c:url>'>${page.courseName}</a></td>
+				<tr><td align="left"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></td>
 				<td align="center">${page.courseDesc}</td>
 				<td align="center">${page.courseDate}</td>
 				<td align="center">
@@ -23,8 +23,8 @@
 						<button class="btn dropdown-toggle" data-toggle="dropdown">   
 						<span class="caret"></span> </button>
 						<ul class="dropdown-menu">
-							<li><a href='<c:url value="/admin/teacher/teacherCourse/detailOne?id=${page.id}"></c:url>'>修改</a></li>
-							<li><a href='<c:url value="/admin/teacher/teacherCourse/deleCourse?id=${page.id}"></c:url>'>删除</a></li>
+							<li><a href='<c:url value="/admin/teacher/course/edit/${page.id}"></c:url>'>修改</a></li>
+							<li><a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a></li>
 						</ul>
 					</div>
 			</c:forEach>
@@ -65,7 +65,7 @@
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="myModalLabel">新课程添加</h3>
 		</div>
-		<form:form  action='addCourseInfo' method="post">
+		<form:form  action='new' method="post">
 			<div class="modal-body">
 				课程标题：<input type="text" name="courseName" placeholder="CourseName">
 				<span class="help-block"><form:errors path="courseName"></form:errors></span>

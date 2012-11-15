@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
-import com.knet51.ccweb.jpa.entities.Friends_Related;
+import com.knet51.ccweb.jpa.entities.FriendsRelated;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.UserService;
@@ -31,7 +31,7 @@ public class FriendsRelatedDetailController {
 		logger.info("#### Into FriendsRelated addDetailPage ####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
-		Friends_Related friendsReiated = new Friends_Related();
+		FriendsRelated friendsReiated = new FriendsRelated();
 		friendsReiated.setHost_id(id);
 		friendsReiated.setFollow_id(user.getId());
 		friendsReiated.setType(1);

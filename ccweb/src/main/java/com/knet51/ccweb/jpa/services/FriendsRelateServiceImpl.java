@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.dao.FriendsRelatedDao;
-import com.knet51.ccweb.jpa.entities.Friends_Related;
+import com.knet51.ccweb.jpa.entities.FriendsRelated;
 
 @Transactional
 @Service("friendsRelateService")
@@ -16,17 +16,17 @@ public class FriendsRelateServiceImpl implements FriendsRelateService {
 	private FriendsRelatedDao friendsRelatedDao;
 
 	@Override
-	public Friends_Related save(Friends_Related friendsRelated) {
+	public FriendsRelated save(FriendsRelated friendsRelated) {
 		return friendsRelatedDao.save(friendsRelated);
 	}
 
 	@Override
-	public Friends_Related update(Friends_Related friendsRelated) {
+	public FriendsRelated update(FriendsRelated friendsRelated) {
 		return friendsRelatedDao.update(friendsRelated);
 	}
 
 	@Override
-	public Friends_Related findOneById(Long id) {
+	public FriendsRelated findOneById(Long id) {
 		return null;
 	}
 
@@ -36,12 +36,12 @@ public class FriendsRelateServiceImpl implements FriendsRelateService {
 	}
 
 	@Override
-	public List<Friends_Related> getAllFollow(Long id) {
+	public List<FriendsRelated> getAllFollow(Long id) {
 		return friendsRelatedDao.getAllFollow(id);
 	}
 
 	@Override
-	public List<Friends_Related> getAllHost(Long followId) {
+	public List<FriendsRelated> getAllHost(Long followId) {
 		return friendsRelatedDao.getAllHost(followId);
 	}
 	

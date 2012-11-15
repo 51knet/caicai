@@ -20,49 +20,39 @@
 		<put-attribute name="title" value="Welcom to teacher register" />
 	</definition>
 
-	<definition name="admin.tacher.annoDetail" extends="admin-layout">
+	<definition name="admin.tacher.announcement.list" extends="admin-layout">
 		<put-attribute name="title" value="Welcom to teacher register" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherAnnoPage.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/list/list.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.annoAddPage" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher register" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherAnnoAddPage.jsp"></put-attribute>
-	</definition>
-
-	<definition name="admin.teacher.detailAnnInfo" extends="admin-layout">
+	<definition name="admin.teacher.announcement.edit" extends="admin-layout">
 		<put-attribute name="title" value="Welcom to teacher Annocement" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherAnnoDetailPage.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/edit/edit.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.resource.list" extends="admin-layout">
 		<put-attribute name="title" value="Welcom to teacher Resource" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherResouPage.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/resource/list/list.jsp"></put-attribute>
 	</definition>
-
-	<definition name="admin.teacher.resource.add" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher Resource" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherResouAddPage.jsp"></put-attribute>
-	</definition>
-
+	
 	<definition name="teacherResouAddErrorPage" extends="admin-layout">
 		<put-attribute name="title" value="Welcom to teacher Resource" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherResouAddErrorPage.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.resource.type" extends="admin-layout">
+	<definition name="admin.teacher.resource.type.list" extends="admin-layout">
 		<put-attribute name="title" value="Welcom to teacher Resource" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherResouTypePage.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/resource/type/list/list.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.resource.type.add" extends="admin-layout">
+	<definition name="admin.teacher.resource.new" extends="admin-layout">
 		<put-attribute name="title" value="Welcom to teacher Resource" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherResouTypeAddPage.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/resource/new/create.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.achievement.detail" extends="admin-layout">
+	<definition name="admin.teacher.achievement.list" extends="admin-layout">
 		<put-attribute name="title" value="Welcom to teacher Resource" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherAchievementInfoPage.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/achievement/list/list.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.friendRelated.detail" extends="admin-layout">
@@ -75,9 +65,9 @@
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherFriendsRelatedAddPage.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.teacherCourse.detail" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherCourseDetailPage.jsp"></put-attribute>
+	<definition name="admin.teacher.course.list" extends="admin-layout">
+		<put-attribute name="title" value="Welcom to teacher course page" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/list/list.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.teacherCourse.add" extends="admin-layout">

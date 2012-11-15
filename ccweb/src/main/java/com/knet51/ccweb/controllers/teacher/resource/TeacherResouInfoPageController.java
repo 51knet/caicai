@@ -41,20 +41,20 @@ public class TeacherResouInfoPageController {
 		model.addAttribute("page", onePage);
 		return "admin.teacher.resource.list";
 	}
-	@RequestMapping(value="/admin/teacher/resource/add")
+	@RequestMapping(value="/admin/teacher/resource/new")
 	public String teacherResouAdd(HttpSession session,Model model ){
 		logger.info("#####Into TeacherResouInfoAdd#####");
 		List<ResourceType> listType = resourceTypeService.getAllType();
 		model.addAttribute("type", listType);
-		return "admin.teacher.resource.add";
+		return "admin.teacher.resource.new";
 	}
 	
-	@RequestMapping(value="/admin/teacher/resource/type")
+	@RequestMapping(value="/admin/teacher/resource/type/list")
 	public String teacherResouType(Model model){
 		logger.info("#### Into TeacherResouType ####");
 		List<ResourceType> list = resourceTypeService.getAllType();
 		model.addAttribute("list", list);
-		return "admin.teacher.resource.type";
+		return "admin.teacher.resource.type.list";
 	}
 	
 	

@@ -23,7 +23,7 @@
 	<table class="table table-bordered">
 		<thead><tr><th colspan="3">全部资源</th></tr></thead>
 		<tbody>
-			<tr><td colspan="3"><a href='<c:url value="/admin/teacher/teacherCourse/addResourcePage?id=${course.id}"></c:url>' class="btn">添加附件</a></td></tr>
+			<tr><td colspan="3"><a href='<c:url value="/admin/teacher/${course.id}/resource/new"></c:url>' class="btn">添加附件</a></td></tr>
 			<tr><td>资源名称</td><td>上传时间</td><td>下载</td></tr>
 			<c:forEach items="${resourceList}" var="resource">
 				<tr>

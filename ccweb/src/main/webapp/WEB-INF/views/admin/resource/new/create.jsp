@@ -13,7 +13,7 @@
  	var cont = document.getElementById("container");
  	var file = document.createElement("input");
  	file.type="file";
- 	file.name="file";
+ 	file.name="myFiles";
  	var btn = document.createElement("input");
  	btn.type="button";
  	btn.value="删除";
@@ -50,7 +50,7 @@
 	${user.user["email"] }<br>
 	<div style="text-align:center;">
 		<div style="width:560px; text-align:left;">
-			<form:form action="addInfo" method="post" enctype="multipart/form-data">  
+			<form:form action="new/create" method="post" enctype="multipart/form-data">  
 				
 				资源描述：<input type="text" name="desc" placeholder="Desc" />&nbsp;<span style="color:red; font-size:14px;">多文件上传添加统一描述</span>
 				<!-- <span class="help-block"><form:errors path="desc"></form:errors></span>	 --><br>
@@ -71,7 +71,7 @@
 		 </div>
 		 <br>
 		 <div id="addResourType" style="display:none; float: left; border: solid,1px;">
-			 	<form action="addtype" method="post">  
+			 	<form action="type/new" method="post">  
 					类别名称：<input type="text" name="typeName" placeholder="TypeName" />&nbsp;<span style="color:red; font-size:14px;">类别名称不能为空！</span><br>
 						<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
 						<button type="reset" class="btn" onclick="closeResourceTypeAdd()">Cancel</button>

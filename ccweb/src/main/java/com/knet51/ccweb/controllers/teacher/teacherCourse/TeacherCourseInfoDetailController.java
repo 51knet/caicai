@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,13 +41,13 @@ public class TeacherCourseInfoDetailController {
 	private CourseResourceService courseResourceService;
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/teacherCourse/addCourseInfo",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/course/new",method=RequestMethod.POST)
 	public String TeacherCourseAddInfo(@Valid TeacherCourseInfoForm courseInfoForm,
 			BindingResult validResult, HttpSession session){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "admin.teacher.teacherCourse.add";
+			return "/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Teacher teacher = userInfo.getTeacher();
@@ -60,7 +61,7 @@ public class TeacherCourseInfoDetailController {
 			course.setCourseDate(date);
 			course.setTeacher(teacher);
 			courseService.createTeacherCourse(course);
-			return "redirect:/admin/teacher/teacherCourse/detail";
+			return "redirect:/admin/teacher/course/list";
 		}
 	
 	}
@@ -90,11 +91,11 @@ public class TeacherCourseInfoDetailController {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/teacherCourse/deleCourse")
-	public String TeacherCourseDele( HttpSession session,@RequestParam("id") Long id){
+	@RequestMapping(value="/admin/teacher/course/destory/{course_id}")
+	public String TeacherCourseDele( HttpSession session,@PathVariable Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
-			courseService.deleTeacherCourse(id);
-			return "redirect:/admin/teacher/teacherCourse/detail";
+			courseService.deleTeacherCourse(course_id);
+			return "redirect:/admin/teacher/course/list";
 	}
 	
 	@Transactional

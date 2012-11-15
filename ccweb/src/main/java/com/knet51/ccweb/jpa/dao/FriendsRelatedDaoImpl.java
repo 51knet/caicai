@@ -8,7 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.knet51.ccweb.jpa.entities.Friends_Related;
+import com.knet51.ccweb.jpa.entities.FriendsRelated;
 
 @Repository("friendsRelateDao")
 public class FriendsRelatedDaoImpl implements FriendsRelatedDao {
@@ -16,39 +16,39 @@ public class FriendsRelatedDaoImpl implements FriendsRelatedDao {
 	private EntityManager em;
 	
 	@Override
-	public Friends_Related save(Friends_Related friendsRelated) {
+	public FriendsRelated save(FriendsRelated friendsRelated) {
 		em.persist(friendsRelated);
 		return friendsRelated;
 	}
 
 	@Override
-	public Friends_Related update(Friends_Related friendsRelated) {
+	public FriendsRelated update(FriendsRelated friendsRelated) {
 		em.merge(friendsRelated);
 		return friendsRelated;
 	}
 
 	@Override
-	public Friends_Related findOneById(Long id) {
+	public FriendsRelated findOneById(Long id) {
 		return null;
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		Friends_Related friendsRelated = em.find(Friends_Related.class, id);
+		FriendsRelated friendsRelated = em.find(FriendsRelated.class, id);
 		em.remove(friendsRelated);
 	}
 
 	@Override
-	public List<Friends_Related> getAllFollow(Long hostId) {
+	public List<FriendsRelated> getAllFollow(Long hostId) {
 		@SuppressWarnings("unchecked")
-		List<Friends_Related> follow = em.createQuery("from Friends_Related where type=1 and  host_id="+hostId).getResultList();
+		List<FriendsRelated> follow = em.createQuery("from Friends_Related where type=1 and  host_id="+hostId).getResultList();
 		return follow;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Friends_Related> getAllHost(Long followId) {
-		List<Friends_Related> host = em.createQuery("from Friends_Related where type=1 and follow_id="+followId).getResultList();
+	public List<FriendsRelated> getAllHost(Long followId) {
+		List<FriendsRelated> host = em.createQuery("from Friends_Related where type=1 and follow_id="+followId).getResultList();
 		return host;
 	}
 	/**
@@ -59,7 +59,7 @@ public class FriendsRelatedDaoImpl implements FriendsRelatedDao {
 	public int getFollowById(Long followId,Long hostId) {
 		int followValue=0;
 		if(!followId.equals("")&&!hostId.equals("")){
-			List<Friends_Related> list=em.createQuery("from Friends_Related where follow_id="+followId+"and host_id ="+hostId).getResultList();
+			List<FriendsRelated> list=em.createQuery("from FriendsRelated where follow_id="+followId+" and host_id ="+hostId).getResultList();
 			if(list.size()>0){
 				 followValue=1;
 			}

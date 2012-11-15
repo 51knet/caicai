@@ -31,7 +31,7 @@ public class TeacherCourseInfoPageController {
 	@Autowired
 	private CourseResourceService courseResourceService;
 	
-	@RequestMapping(value="/admin/teacher/teacherCourse/detail")
+	@RequestMapping(value="/admin/teacher/course/list")
 	public String teacherCourseInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
 		logger.info("#####Into TeacherCourseInfoPageController#####");
@@ -39,7 +39,7 @@ public class TeacherCourseInfoPageController {
 		Teacher teacher = userInfo.getTeacher();
 		Page<TeacherCourse> onePage =teacherCourseService.findAllCourseByTeacher(pageNumber, pageSize, teacher);
 		model.addAttribute("page", onePage);
-		return "admin.teacher.teacherCourse.detail";
+		return "admin.teacher.course.list";
 	}
 	
 	@RequestMapping(value="/admin/teacher/teacherCourse/add")
