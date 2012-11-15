@@ -43,6 +43,10 @@ public class User extends AbstractEntity {
 	private String cell_phone;
 	private String fix_phone;
 	private String self_url;
+	private String address;
+	private String fax;
+	private String qq;
+	private String msn;
 	
 	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
 	private Set<Announcement> announcement = new HashSet<Announcement>();
@@ -240,6 +244,46 @@ public class User extends AbstractEntity {
 
 	public void setSendMsg(Set<SendMsg> sendMsg) {
 		this.sendMsg = sendMsg;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public String getFax() {
+		return fax;
+	}
+
+
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
+
+
+	public String getQq() {
+		return qq;
+	}
+
+
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+
+
+	public String getMsn() {
+		return msn;
+	}
+
+
+	public void setMsn(String msn) {
+		this.msn = msn;
 	}
 	
 }

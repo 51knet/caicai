@@ -93,41 +93,41 @@
 			</form>
 		</div>
 		<div class="tab-pane" id="contact_info_tab">
-			<form class="form-horizontal">
+			<form class="form-horizontal" action="contactInfo" method="post">
 				<div class="control-group">
 					<label class="control-label" for="address">地址</label>
 					<div class="controls">
-						<input type="text" id="address" placeholder="地址">
+						<input type="text" id="address" name="address" placeholder="地址" value="${sessionScope.sessionUserInfo.user.address}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="cellphone">手机</label>
 					<div class="controls">
-						<input type="text" id="cellphone" placeholder="手机号码">
+						<input type="text" id="cellphone" name="cellphone" placeholder="手机号码" value="${sessionScope.sessionUserInfo.user.cell_phone}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="phone">固话</label>
 					<div class="controls">
-						<input type="text" id="phone" placeholder="固定电话">
+						<input type="text" id="phone" name="phone" placeholder="固定电话" value="${sessionScope.sessionUserInfo.user.fix_phone}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="fax">传真</label>
 					<div class="controls">
-						<input type="text" id="fax" placeholder="传真号码">
+						<input type="text" id="fax" name="fax" placeholder="传真号码" value="${sessionScope.sessionUserInfo.user.fax}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="qq">QQ</label>
 					<div class="controls">
-						<input type="text" id="qq" placeholder="QQ">
+						<input type="text" id="qq" name="qq" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="msn">MSN</label>
 					<div class="controls">
-						<input type="text" id="msn" placeholder="MSN">
+						<input type="text" id="msn" name="msn" placeholder="MSN" value="${sessionScope.sessionUserInfo.user.msn}">
 					</div>
 				</div>
 				<div class="control-group">
@@ -144,7 +144,7 @@
 			<p>工作经历页面</p>
 		</div>
 		<div class="tab-pane" id="security_tab">
-			<form class="form-horizontal">
+			<form class="form-horizontal" action="changePsw" method="post">
 				<div class="control-group">
 					<label class="control-label" for="ori_psw">当前密码</label>
 					<div class="controls">

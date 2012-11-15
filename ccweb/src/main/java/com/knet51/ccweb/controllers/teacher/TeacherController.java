@@ -36,9 +36,7 @@ public class TeacherController {
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/details")
-	public String detailInfoPage(@Valid TeacherPersonalInfoForm personalInfoForm,
-			BindingResult validResult, HttpSession session) {
-		logger.info("#### detailInfoPage InfoController ####");
+	public String detailInfoPage() {
 		return "admin.teacher.details";
 	}
 
@@ -69,6 +67,69 @@ public class TeacherController {
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 
+			return "redirect:/admin/teacher/details";
+		}
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/teacher/contactInfo")
+	public String contactInfo(@Valid TeacherContactInfoForm contactInfoForm,
+			BindingResult validResult, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		logger.info("#### contactInfo InfoController ####");
+		
+		if (validResult.hasErrors()) {
+			logger.info("contactInfo Validation Failed " + validResult);
+			return "admin.teacher.details";
+		} else {
+			logger.info("### contactInfo Validation passed. ###");
+
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			
+			User user = userService.findOne(userInfo.getId());
+			user.setAddress(contactInfoForm.getAddress());
+			user.setCell_phone(contactInfoForm.getCellphone());
+			user.setFix_phone(contactInfoForm.getPhone());
+			user.setFax(contactInfoForm.getFax());
+			user.setQq(contactInfoForm.getQq());
+			user.setMsn(contactInfoForm.getMsn());
+			user = userService.updateUser(user);
+			
+			Teacher teacher = teacherService.findOne(userInfo.getId());
+			userInfo.setUser(user);
+			userInfo.setTeacher(teacher);
+			
+			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+
+			return "redirect:/admin/teacher/details";
+		}
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/teacher/changePsw")
+	public String changePsw(@Valid TeacherPswForm pswForm,
+			BindingResult validResult, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		logger.info("#### changePsw InfoController ####");
+		
+		if (validResult.hasErrors()) {
+			logger.info("changePsw Validation Failed " + validResult);
+			return "admin.teacher.details";
+		} else {
+			logger.info("### changePsw Validation passed. ###");
+
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			
+			User user = userService.findOne(userInfo.getId());
+			String password = user.getPassword();
+			if(password.equals(pswForm.getOri_psw())){
+				user.setPassword(pswForm.getNew_psw());
+				user = userService.updateUser(user);
+				Teacher teacher = teacherService.findOne(userInfo.getId());
+				userInfo.setUser(user);
+				userInfo.setTeacher(teacher);
+				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+			}else{
+				logger.info("original password is not correct. Nothing update.");
+			}
 			return "redirect:/admin/teacher/details";
 		}
 	}
