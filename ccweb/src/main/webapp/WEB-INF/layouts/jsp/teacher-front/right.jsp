@@ -17,12 +17,15 @@
 	margin: 0px 5px;
 }
 </style>
+<!-- ${teacherInfo.id} -->
 <div class="row-fluid custom round">
-	<div class="row"><h5>公告</h5></div>
+	<div class="row"><h5>公告 </h5></div>
 	<hr/>
 	<div class="row">
 		${teacherInfo.announcementContext}
 	</div>
+	<hr>
+	<div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/list"></c:url>"> 查看所有>></a>&nbsp;&nbsp;</div>
 </div>
 
 <div class="row-fluid custom round">
@@ -130,6 +133,7 @@
 	<div class="row">
 		<h5>资源资料</h5>
 	</div>
+	
 	<div class="row ">
 	<table class="table">
 		<c:choose>
@@ -166,6 +170,8 @@
 			</c:otherwise>
 		</c:choose>
 	</table>
+	<hr>
+	<div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a>&nbsp;&nbsp;</div>
 	</div>
 	
 </div>

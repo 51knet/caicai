@@ -10,16 +10,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.ResourceTypeService;
+import com.knet51.ccweb.jpa.services.TeacherService;
+import com.knet51.ccweb.jpa.services.UserService;
 
 @Controller
 public class TeacherResouInfoPageController {
@@ -31,9 +35,15 @@ public class TeacherResouInfoPageController {
 	@Autowired
 	private ResourceTypeService resourceTypeService;
 	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private TeacherService teacherService;
+	
 	@RequestMapping(value="/admin/teacher/resource/list")
 	public String teacherResouInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		logger.info("#####Into TeacherResouInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
@@ -63,6 +73,25 @@ public class TeacherResouInfoPageController {
 		
 		return "admin.teacher.resource.type.add";
 	}
-
+	
+	/* teacher front page controller */
+	
+	@RequestMapping(value="/teacher/{teacher_id}/resource/list")
+	public String teacherResourceList(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
+		Page<Resource> onePage = resourceService.findAllResouByUser(pageNumber, pageSize, user);
+		model.addAttribute("page", onePage);
+		return "teacher.resource.list";
+	}
+	
+	
+	
 
 }

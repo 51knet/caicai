@@ -4,7 +4,8 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Welcome to teacher Course page.</h1>
+<a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>资源管理</b></a>>>
+<a href='<c:url value="/admin/teacher/course/view/${course.id}"></c:url>'><b>课程详细</b></a><hr>
 <div style="text-align: center;">
 
 <div style="text-align: center;">

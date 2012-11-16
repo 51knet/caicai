@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<h1>Welcome to teacher course page.</h1>
+<a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>资源管理</b></a><hr>
 <div style="text-align: center;">
-	<br>
+
 	<table class="table table-bordered">
 		<thead><tr><th colspan="4">全部课程</th></tr></thead>
 		<tbody>
@@ -67,10 +67,10 @@
 		</div>
 		<form:form  action='new' method="post">
 			<div class="modal-body">
-				课程标题：<input type="text" name="courseName" placeholder="CourseName">
+				课程标题：<input type="text" name="courseName" placeholder="courseName">
 				<span class="help-block"><form:errors path="courseName"></form:errors></span>
-				课程描述：<textarea name="courseDesc" placeholder="CourseDesc" cols="5" rows="8"></textarea>
-				<span class="help-block"><form:errors path="CourseDesc"></form:errors></span>
+				课程描述：<textarea name="courseDesc" placeholder="courseDesc" cols="5" rows="8"></textarea>
+				<span class="help-block"><form:errors path="courseDesc"></form:errors></span>
 				<!-- 
 					<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
 					<button type="reset" class="btn" onclick="hidAnnoForm()">Cancel</button> -->
