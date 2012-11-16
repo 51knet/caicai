@@ -148,19 +148,19 @@
 				<div class="control-group">
 					<label class="control-label" for="ori_psw">当前密码</label>
 					<div class="controls">
-						<input type="text" id="ori_psw" placeholder="请输入您的当前密码">
+						<input type="password" id="ori_psw" name="ori_psw" placeholder="请输入您的当前密码">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="new_psw">新密码</label>
 					<div class="controls">
-						<input type="text" id="new_psw" placeholder="请输入您的新密码">
+						<input type="password" id="new_psw" name="new_psw" placeholder="请输入您的新密码">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="confirm_new_psw">确认密码</label>
 					<div class="controls">
-						<input type="text" id="confirm_new_psw" placeholder="再次输入一遍您的新密码">
+						<input type="password" id="confirm_new_psw" name="confirm_new_psw" placeholder="再次输入一遍您的新密码">
 					</div>
 				</div>
 				<div class="control-group">
@@ -171,7 +171,7 @@
 			</form>
 		</div>
 		<div class="tab-pane" id="p_url_tab">
-			<form class="form-horizontal">
+			<form class="form-horizontal" action="selfurl" method="post">
 				<div class="control-group">
 					<label class="control-label" for="p_url">个性域名</label>
 					<div class="controls">
