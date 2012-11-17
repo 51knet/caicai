@@ -138,7 +138,36 @@
 			</form>
 		</div>
 		<div class="tab-pane" id="edu_bg_tab">
-			<p>教育背景页面</p>
+			
+			<form class="form-horizontal" action="eduInfo" method="post">
+				<div class="control-group">
+					<label class="control-label" for="address">项目名称</label>
+					<div class="controls">
+						<input type="text" id="address" name="address" placeholder="名称" value="${sessionScope.sessionUserInfo.user.address}">
+					</div>
+				</div>
+			
+				<div class="control-group">
+					<label class="control-label" for="fax">项目来源</label>
+					<div class="controls">
+						<input type="text" id="fax" name="fax" placeholder="来源" value="${sessionScope.sessionUserInfo.user.fax}">
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="msn">项目起止时间</label>
+					<div class="controls">
+						<input type="text" id="msn" name="msn" placeholder="时间" value="${sessionScope.sessionUserInfo.user.msn}">
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn btn-large btn-success">保 存</button>
+					</div>
+				</div>
+			</form>
+			
 		</div>
 		<div class="tab-pane" id="work_exp_tab">
 			<p>工作经历页面</p>

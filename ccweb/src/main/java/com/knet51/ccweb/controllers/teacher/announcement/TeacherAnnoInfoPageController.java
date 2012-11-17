@@ -47,7 +47,6 @@ public class TeacherAnnoInfoPageController {
 			return "admin.tacher.announcement.list";
 	}
 	
-	
 	@RequestMapping(value="/admin/teacher/announcement/edit/{announcement_id}")
 	public String detailAnnoInfo( @PathVariable Long announcement_id, Model model){
 		//System.out.println(id);

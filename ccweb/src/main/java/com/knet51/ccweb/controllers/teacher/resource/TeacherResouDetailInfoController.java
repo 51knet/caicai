@@ -52,7 +52,7 @@ public class TeacherResouDetailInfoController {
 				Resource resource = new Resource();
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
 				String fileName = files.get(i).getOriginalFilename();
-				String realPath = session.getServletContext().getRealPath("/WEB-INF/temp/");
+				String realPath = session.getServletContext().getRealPath("/temp/");
 				resource.setDescription(desc);
 				resource.setName(fileName);
 				ResourceType resourceType = resourceTypeService.findOneById(value); 

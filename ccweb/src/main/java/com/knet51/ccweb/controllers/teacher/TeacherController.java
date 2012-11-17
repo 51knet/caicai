@@ -54,7 +54,7 @@ public class TeacherController {
 		
 		if (validResult.hasErrors()) {
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "admin.teacher.details";
+			return "redirect:/admin/teacher/details?active=personal";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
