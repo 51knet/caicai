@@ -27,14 +27,14 @@ public class FriendsRelatedPageController {
 	@Autowired
 	private FriendsRelateService relateService;
 	
-	@RequestMapping(value="/admin/teacher/friendsRelated/detail")
+	@RequestMapping(value="/admin/teacher/friendsRelated/list")
 	public String friendsRelatedDetail(HttpSession session, Model model){
 		logger.info("#### Into FriendsRelatedPageController ####");
 		Long id = getId(session);
 		//System.out.println(id);
 		int count = relateService.getAllFollow(id).size();
 		model.addAttribute("count", count);
-		return "admin.teacher.friendRelated.detail";
+		return "admin.teacher.friendsRelated.list";
 	}
 	@RequestMapping(value="/admin/teacher/friendsRelated/add")
 	public String friendsRelatedAddPage(Model model,HttpServletRequest request,HttpSession session){

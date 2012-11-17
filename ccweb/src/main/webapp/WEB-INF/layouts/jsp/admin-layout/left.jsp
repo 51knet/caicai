@@ -13,9 +13,9 @@
 		<li><a href='<c:url value="/admin/teacher/announcement/list"></c:url>' >发布公告</a></li>
 		<li><a href='<c:url value="/admin/teacher/resource/list"></c:url>' >资源管理</a></li>
 		<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
-		<li><a href='<c:url value="/admin/teacher/details"></c:url>' >账号信息</a></li>
+		<li><a href='<c:url value="/admin/teacher/details"><c:param name="active" value="personal" /></c:url>' >账号信息</a></li>
 		<li><a href='<c:url value="/admin/teacher/achievement/list"></c:url>' >科研成果</a></li>
-		<li><a href='<c:url value="/admin/teacher/friendsRelated/detail"></c:url>' >好友互动</a></li>
+		<li><a href='<c:url value="/admin/teacher/friendsRelated/list"></c:url>' >好友互动</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/list"></c:url>' >课程管理</a></li>
 		<li><a href='<c:url value="/admin/teacher/message/list"></c:url>' >站内信</a></li>
 		<li></li>

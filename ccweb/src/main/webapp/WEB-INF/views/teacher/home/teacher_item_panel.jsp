@@ -67,7 +67,7 @@ li {
 			<li><a href='<c:url value="/admin/teacher/announcement/list"></c:url>' >发布公告</a></li>
 			<li><a href='<c:url value="/admin/teacher/resource/list"></c:url>' >资源管理</a></li>
 			<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
-			<li><a href='<c:url value="/admin/teacher/details"></c:url>' >账号信息</a></li>
+			<li><a href='<c:url value="/admin/teacher/details"><c:param name="active" value="personal" /></c:url>' >账号信息</a></li>
 			<li><a href='<c:url value="/admin/teacher/achievement/detail"></c:url>' >科研成果</a></li>
 			<li><a href='<c:url value="/admin/teacher/friendsRelated/detail"></c:url>' >好友互动</a></li>
 			<li><a href='<c:url value="/admin/teacher/teacherCourse/detail"></c:url>' >课程管理</a></li>

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -42,30 +43,36 @@ public class TeacherCourseInfoPageController {
 		return "admin.teacher.course.list";
 	}
 	
-	@RequestMapping(value="/admin/teacher/teacherCourse/add")
-	public String teacherCourseAdd(){
-		return "admin.teacher.teacherCourse.add";
-	}
+
 	
-	@RequestMapping(value="/admin/teacher/teacherCourse/detailOne")
-	public String detailCourseInfo(@RequestParam("id") Long id, Model m){
-		TeacherCourse course = teacherCourseService.findOneById(id);
+	@RequestMapping(value="/admin/teacher/course/view/{course_id}")
+	public String detailCourseInfo(@PathVariable Long course_id,Model m){
+		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		List<CourseResource> resourceList = courseResourceService.getAllCourseResourceById(course_id);
 		m.addAttribute("course", course);
-		return "admin.teacher.teacherCourse.detailCourseInfo";
+		m.addAttribute("resourceList",resourceList);
+		return "admin.teacher.course.view";
 	}
 	
-	@RequestMapping(value="/admin/teacher/teacherCourse/addResourcePage")
-	public String addTeacherCourseResource(@RequestParam("id") Long id, Model m){
-		m.addAttribute("id",id);
-		return "admin.teacher.teacherCourse.addCourseResource";
+	@RequestMapping(value="/admin/teacher/course/edit/{course_id}")
+	public String updateCourseInfo(@PathVariable Long course_id,Model m){
+		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		m.addAttribute("course", course);
+		return "admin.teacher.course.edit";
 	}
 	
-	@RequestMapping(value="/admin/teacher/teacherCourse/detailCourse")
+	@RequestMapping(value="/admin/teacher/{course_id}/resource/new")
+	public String addTeacherCourseResource(Model model,@PathVariable Long course_id){
+		model.addAttribute("id",course_id);
+		return "admin.teacher.course.resource.new";
+	}
+	
+	/*@RequestMapping(value="/admin/teacher/teacherCourse/detailCourse")
 	public String detailCourse(@RequestParam("id") Long id, Model m){
 		TeacherCourse course = teacherCourseService.findOneById(id);
 		List<CourseResource> resourceList = courseResourceService.getAllCourseResourceById(id);
 		m.addAttribute("course", course);
 		m.addAttribute("resourceList",resourceList);
 		return "admin.teacher.teacherCourse.detailCourse";
-	}
+	}*/
 }

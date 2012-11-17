@@ -44,7 +44,7 @@ public class TeacherAnnoDetailInfoController {
 		
 		if(validResult.hasErrors()){
 			logger.info("annoDetailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/announcement/list";
+			return "/admin/teacher/announcement/list";
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);

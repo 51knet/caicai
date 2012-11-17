@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
+import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 
 @Controller
@@ -29,25 +31,28 @@ public class TeacherAnnoInfoPageController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private TeacherService teacherService;
+	
 	@RequestMapping(value="/admin/teacher/announcement/list")
-	public String teacherAnno(HttpSession session,Model m ,@RequestParam(value="pageNumber",defaultValue="0") 
-								int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
+	public String teacherAnno(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
+								int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		logger.info("#### into TeacherAnno ####");
 			Long id = getId(session);
 			User user = userService.findOne(id);
 			Page<Announcement> page = annoService.findAllAnnoById(pageNumber, pageSize, user);
 			List<Announcement> list = annoService.findAllByUid(id);
-			m.addAttribute("page", page);
-			m.addAttribute("list",list);
+			model.addAttribute("page", page);
+			model.addAttribute("list",list);
 			return "admin.tacher.announcement.list";
 	}
 	
 	
 	@RequestMapping(value="/admin/teacher/announcement/edit/{announcement_id}")
-	public String detailAnnoInfo( @PathVariable Long announcement_id, Model m){
+	public String detailAnnoInfo( @PathVariable Long announcement_id, Model model){
 		//System.out.println(id);
 		Announcement ann = annoService.findOneById(announcement_id);
-		m.addAttribute("ann", ann);
+		model.addAttribute("ann", ann);
 		return "admin.teacher.announcement.edit";
 	}
 	
@@ -55,5 +60,22 @@ public class TeacherAnnoInfoPageController {
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long id = userInfo.getUser().getId();
 		return id;
+	}
+	
+	/* teacher front page */
+	@RequestMapping(value="/teacher/{teacher_id}/announcement/list")
+	public String detainAnno(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+		
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
+		Page<Announcement> page = annoService.findAllAnnoById(pageNumber, pageSize, user);
+		model.addAttribute("page", page);
+		return "teacher.announcement.list";
 	}
 }

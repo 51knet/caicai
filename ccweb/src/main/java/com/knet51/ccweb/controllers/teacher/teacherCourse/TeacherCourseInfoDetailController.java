@@ -47,7 +47,7 @@ public class TeacherCourseInfoDetailController {
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "/admin/teacher/course/list";
+			return "admin.teacher.course.list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Teacher teacher = userInfo.getTeacher();
@@ -67,16 +67,16 @@ public class TeacherCourseInfoDetailController {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/teacherCourse/updateCourseInfo",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/course/edit/edit",method=RequestMethod.POST)
 	public String TeacherCourseUpdateInfo(@Valid TeacherCourseInfoForm courseInfoForm,
-			BindingResult validResult, HttpSession session,@RequestParam("id") Long id){
+			BindingResult validResult, HttpSession session,@RequestParam("id") Long course_id){
+		
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
-			System.out.println(id);
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "/admin/teacher/teacherCourse/detailOne?id="+id;
+			return "/admin/teacher/course/edit/"+course_id;
 		}else{
-			TeacherCourse course = new TeacherCourse();
+			TeacherCourse course = courseService.findOneById(course_id);
 			String courseName = courseInfoForm.getCourseName();
 			String courseDesc = courseInfoForm.getCourseDesc();
 			course.setCourseName(courseName);
@@ -85,7 +85,7 @@ public class TeacherCourseInfoDetailController {
 			String date = format.format(new Date());
 			course.setCourseDate(date);
 			courseService.updateTeacherCourse(course);
-			return "redirect:/admin/teacher/teacherCourse/detail";
+			return "redirect:/admin/teacher/course/list";
 		}
 	
 	}
@@ -99,9 +99,10 @@ public class TeacherCourseInfoDetailController {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/teacherCourse/addInfo",method=RequestMethod.POST)
-	public String TeacherCourseResourceAdd(HttpSession session,Model model,@RequestParam("id") Long course_id,
-			MultipartHttpServletRequest request) throws  Exception{
+	@RequestMapping(value="/admin/teacher/{course_id}/resource/create",method=RequestMethod.POST)
+	public String TeacherCourseResourceAdd(HttpSession session,Model model,
+			MultipartHttpServletRequest request,@PathVariable Long course_id) throws  Exception{
+		//System.out.println("###################"+course_id);
 		List<MultipartFile> files = request.getFiles("file");
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
@@ -119,7 +120,7 @@ public class TeacherCourseInfoDetailController {
 				courseResourceService.createCourseResource(resource);
 			}
 		}
-		return "redirect:/admin/teacher/teacherCourse/detailCourse?id="+course_id;
+		return "redirect:/admin/teacher/course/view/"+course_id;
 	}
 	
 }

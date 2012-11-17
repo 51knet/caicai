@@ -10,8 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
@@ -36,10 +38,14 @@ public class TeacherController {
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/details")
-	public String detailInfoPage() {
+	public String detailInfoPage(@RequestParam("active") String active,Model model) {
+		if(active == null || active.equals("")){
+			active = "personal";
+		}
+		model.addAttribute("active", active);
 		return "admin.teacher.details";
 	}
-
+	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/personalInfo")
 	public String personalInfo(@Valid TeacherPersonalInfoForm personalInfoForm,
@@ -67,14 +73,14 @@ public class TeacherController {
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 
-			return "redirect:/admin/teacher/details";
+			return "redirect:/admin/teacher/details?active=personal";
 		}
 	}
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/contactInfo")
 	public String contactInfo(@Valid TeacherContactInfoForm contactInfoForm,
-			BindingResult validResult, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+			BindingResult validResult, HttpSession session) {
 		logger.info("#### contactInfo InfoController ####");
 		
 		if (validResult.hasErrors()) {
@@ -99,8 +105,8 @@ public class TeacherController {
 			userInfo.setTeacher(teacher);
 			
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-
-			return "redirect:/admin/teacher/details";
+			
+			return "redirect:/admin/teacher/details?active=contact";
 		}
 	}
 	
@@ -130,7 +136,7 @@ public class TeacherController {
 			}else{
 				logger.info("original password is not correct. Nothing update.");
 			}
-			return "redirect:/admin/teacher/details";
+			return "redirect:/admin/teacher/details?active=psw";
 		}
 	}
 
@@ -161,7 +167,7 @@ public class TeacherController {
 				userInfo.setUser(user);
 				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			}
-			return "admin.teacher.selfurl";
+			return "redirect:/admin/teacher/details?active=url";
 		}
 	}
 }
