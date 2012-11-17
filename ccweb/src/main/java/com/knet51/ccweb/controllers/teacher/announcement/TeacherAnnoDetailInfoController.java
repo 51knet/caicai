@@ -54,6 +54,7 @@ public class TeacherAnnoDetailInfoController {
 			String content = annoDetailInfoForm.getContent();
 			Announcement announcement = new Announcement();
 			announcement.setTitle(title);
+			System.out.println(title);
 			announcement.setContent(content);
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String date = format.format(new Date());

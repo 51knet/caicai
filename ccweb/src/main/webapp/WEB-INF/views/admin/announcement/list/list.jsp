@@ -66,7 +66,6 @@
 						<!-- 
 						<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
 						<button type="reset" class="btn" onclick="hidAnnoForm()">Cancel</button> -->
-					
 			</div>
 			<div class="modal-footer">
 				<button class="btn" type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
