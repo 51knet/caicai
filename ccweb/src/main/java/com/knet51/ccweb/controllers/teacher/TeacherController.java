@@ -85,7 +85,7 @@ public class TeacherController {
 		
 		if (validResult.hasErrors()) {
 			logger.info("contactInfo Validation Failed " + validResult);
-			return "admin.teacher.details";
+			return "redirect:/admin/teacher/details?active=contact";
 		} else {
 			logger.info("### contactInfo Validation passed. ###");
 
@@ -118,7 +118,7 @@ public class TeacherController {
 		
 		if (validResult.hasErrors()) {
 			logger.info("changePsw Validation Failed " + validResult);
-			return "admin.teacher.details";
+			return "redirect:/admin/teacher/details?active=psw";
 		} else {
 			logger.info("### changePsw Validation passed. ###");
 
@@ -149,7 +149,7 @@ public class TeacherController {
 
 		if (validResult.hasErrors()) {
 			logger.info("selfUrlForm Validation Failed " + validResult);
-			return "admin.teacher.selfurl";
+			return "redirect:/admin/teacher/details?active=url";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
 			String url = selfUrlForm.getUrl();

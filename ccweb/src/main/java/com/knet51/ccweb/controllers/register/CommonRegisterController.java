@@ -52,7 +52,7 @@ public class CommonRegisterController {
 				randomUrl += "/";
 				randomUrl += findUser.getId();
 				mailSuccess = MailSender.getInstance().SendMail(email,
-						"http://98.126.226.10/ccweb/mail/" + randomUrl);
+						"http://http://www.51knet.com/ccweb/mail/" + randomUrl);
 				if (mailSuccess) {
 					String hrefString = email;
 					hrefString = hrefString
