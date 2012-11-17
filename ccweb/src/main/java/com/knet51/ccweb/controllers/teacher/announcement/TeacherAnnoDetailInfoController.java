@@ -48,13 +48,14 @@ public class TeacherAnnoDetailInfoController {
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			User user = userInfo.getUser();
+			Long user_id = userInfo.getId();
+			User user = userService.findOne(user_id);
 			//System.out.println("++++++++++++++++"+user.getId()+"+++++++++++++++");
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();
 			Announcement announcement = new Announcement();
 			announcement.setTitle(title);
-			System.out.println(title);
+			//System.out.println(title);
 			announcement.setContent(content);
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String date = format.format(new Date());

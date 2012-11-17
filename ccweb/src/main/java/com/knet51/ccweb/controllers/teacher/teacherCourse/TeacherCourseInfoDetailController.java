@@ -27,6 +27,7 @@ import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
+import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 
 
@@ -40,6 +41,9 @@ public class TeacherCourseInfoDetailController {
 	@Autowired
 	private CourseResourceService courseResourceService;
 	
+	@Autowired
+	private TeacherService teacherService;
+	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/new",method=RequestMethod.POST)
 	public String TeacherCourseAddInfo(@Valid TeacherCourseInfoForm courseInfoForm,
@@ -50,7 +54,7 @@ public class TeacherCourseInfoDetailController {
 			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Teacher teacher = userInfo.getTeacher();
+			Teacher teacher = teacherService.findOne(userInfo.getId());
 			TeacherCourse course = new TeacherCourse();
 			String courseName = courseInfoForm.getCourseName();
 			String courseDesc = courseInfoForm.getCourseDesc();

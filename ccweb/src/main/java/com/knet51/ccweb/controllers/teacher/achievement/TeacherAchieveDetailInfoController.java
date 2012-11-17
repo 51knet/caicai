@@ -48,7 +48,7 @@ public class TeacherAchieveDetailInfoController {
 		String content = thesisDetailInfoForm.getContent();
 		logger.info("#### Into teacherThesisAddController ####");
 		if(validResult.hasErrors()){
-			return "admin/teacher/achievement/list";
+			return "redirect:/admin/teacher/achievement/list";
 		}
 		else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -72,7 +72,7 @@ public class TeacherAchieveDetailInfoController {
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherProjectAddController ####");
 		if(validResult.hasErrors()){
-			return "admin/teacher/achievement/list";
+			return "redirect:/admin/teacher/achievement/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long id = userInfo.getUser().getId();
@@ -97,7 +97,7 @@ public class TeacherAchieveDetailInfoController {
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherPatentAddController ####");
 		if(validResult.hasErrors()){
-			return "admin/teacher/achievement/list";
+			return "redirect:/admin/teacher/achievement/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long id = userInfo.getUser().getId();
@@ -123,7 +123,7 @@ public class TeacherAchieveDetailInfoController {
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherProjectAddController ####");
 		if(validResult.hasErrors()){
-			return "admin/teacher/achievement/list";
+			return "redirect:/admin/teacher/achievement/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long id = userInfo.getUser().getId();

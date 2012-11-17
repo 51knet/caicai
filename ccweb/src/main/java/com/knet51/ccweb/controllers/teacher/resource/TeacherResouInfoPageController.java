@@ -46,7 +46,8 @@ public class TeacherResouInfoPageController {
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		logger.info("#####Into TeacherResouInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		User user = userInfo.getUser();
+		Long user_id = userInfo.getId();
+		User user = userService.findOne(user_id);
 		Page<Resource> onePage = resourceService.findAllResouByUser(pageNumber, pageSize, user);
 		model.addAttribute("page", onePage);
 		return "admin.teacher.resource.list";

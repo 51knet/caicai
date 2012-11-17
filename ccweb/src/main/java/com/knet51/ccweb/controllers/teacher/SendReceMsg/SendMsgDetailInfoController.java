@@ -76,7 +76,7 @@ public class SendMsgDetailInfoController {
 			SendMsg sendMsg = new SendMsg();
 			//User sender = userService.findOne(senderId);
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			User sender = userInfo.getUser();
+			User sender = userService.findOne(userInfo.getId());
 			String title = sendMsgInfoForm.getTitle();
 			String content = sendMsgInfoForm.getContent();
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -103,7 +103,7 @@ public class SendMsgDetailInfoController {
 			//System.out.println(userId);
 			SendMsg sendMsg = new SendMsg();
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			User user = userInfo.getUser();
+			User user = userService.findOne(userInfo.getId());
 			String title = sendMsgInfoForm.getTitle();
 			String content = sendMsgInfoForm.getContent();
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

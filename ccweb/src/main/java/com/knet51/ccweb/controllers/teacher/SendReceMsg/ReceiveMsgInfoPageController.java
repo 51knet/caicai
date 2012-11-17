@@ -21,6 +21,7 @@ import com.knet51.ccweb.jpa.entities.SendMsg;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.ReceiveMsgService;
 import com.knet51.ccweb.jpa.services.SendMsgService;
+import com.knet51.ccweb.jpa.services.UserService;
 
 @Controller
 public class ReceiveMsgInfoPageController {
@@ -32,18 +33,21 @@ public class ReceiveMsgInfoPageController {
 	@Autowired
 	private SendMsgService sendMsgService;
 	
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping(value="/admin/teacher/message/list")
 	public String receiveMsgList(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		logger.info("####  Into ReceiveMsgList page  ####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long userId = userInfo.getId();
-		User user = userInfo.getUser();
+		Long user_id = userInfo.getId();
+		User user = userService.findOne(user_id);
 		Page<ReceiveMsg> page = receiveMsgService.findIsReadMsgByUser(pageNumber, pageSize, user, 1 );
-		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userId);
-		List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(userId);
-		List<ReceiveMsg> isDele = receiveMsgService.isDele(userId);
-		List<ReceiveMsg> msgList = receiveMsgService.list(userId);
+		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(user_id);
+		List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(user_id);
+		List<ReceiveMsg> isDele = receiveMsgService.isDele(user_id);
+		List<ReceiveMsg> msgList = receiveMsgService.list(user_id);
 		Integer unReadCount = unReadMsgList.size();
 		Integer isReadCount = isReadMsgList.size();
 		Integer msgCount = msgList.size();
@@ -75,13 +79,13 @@ public class ReceiveMsgInfoPageController {
 	public String isReadMsg(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long userId = userInfo.getId();
-		User user = userInfo.getUser();
+		Long user_id = userInfo.getId();
+		User user = userService.findOne(user_id);
 		Page<ReceiveMsg> page = receiveMsgService.findIsReadMsgByUser(pageNumber, pageSize, user, 2);
-		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userId);
-		List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(userId);
-		List<ReceiveMsg> isDele = receiveMsgService.isDele(userId);
-		List<ReceiveMsg> msgList = receiveMsgService.list(userId);
+		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(user_id);
+		List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(user_id);
+		List<ReceiveMsg> isDele = receiveMsgService.isDele(user_id);
+		List<ReceiveMsg> msgList = receiveMsgService.list(user_id);
 		Integer unReadCount = unReadMsgList.size();
 		Integer isReadCount = isReadMsgList.size();
 		Integer msgCount = msgList.size();
@@ -124,13 +128,13 @@ public class ReceiveMsgInfoPageController {
 	public String isDeleMsg(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long userId = userInfo.getId();
-		User user = userInfo.getUser();
+		Long user_id = userInfo.getId();
+		User user = userService.findOne(user_id);
 		Page<ReceiveMsg> page = receiveMsgService.findIsReadMsgByUser(pageNumber, pageSize, user, 3);
-		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userId);
-		List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(userId);
-		List<ReceiveMsg> isDele = receiveMsgService.isDele(userId);
-		List<ReceiveMsg> msgList = receiveMsgService.list(userId);
+		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(user_id);
+		List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(user_id);
+		List<ReceiveMsg> isDele = receiveMsgService.isDele(user_id);
+		List<ReceiveMsg> msgList = receiveMsgService.list(user_id);
 		Integer unReadCount = unReadMsgList.size();
 		Integer isReadCount = isReadMsgList.size();
 		Integer msgCount = msgList.size();

@@ -37,7 +37,7 @@
 <a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>资源管理</b></a>>>
 <a href='<c:url value="/admin/teacher/course/view/${id}"></c:url>'><b>课程详细</b></a>>><a href='<c:url value="/admin/teacher/${id}/resource/new"></c:url>' ><b>添加附件</b></a><hr>
 <div style="text-align: center;">
-	${user.user["email"] }<br>
+	
 <div style="text-align:center;">
 <div style="width:560px; text-align:left;">
 	<form:form action="create" method="post" enctype="multipart/form-data">  

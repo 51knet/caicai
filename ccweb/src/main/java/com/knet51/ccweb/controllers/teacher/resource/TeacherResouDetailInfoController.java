@@ -96,7 +96,7 @@ public class TeacherResouDetailInfoController {
 		resourceService.deleteResource(resource_id);
 		return "redirect:/admin/teacher/resource/list";
 	}
-	/*
+	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/resource/type/new",  method = RequestMethod.POST)
 	public String teacherResouTypeAdd(@Valid TeacherResouTypeInfoForm teacherResouTypeInfo,
@@ -104,7 +104,7 @@ public class TeacherResouDetailInfoController {
 		String typeName = teacherResouTypeInfo.getTypeName();
 		if (validResult.hasErrors()) {
 			 logger.info("detailInfoForm Validation Failed " + validResult);
-			 return "/admin/teacher/resource/new";
+			 return "redirect:/admin/teacher/resource/new";
 		} else {
 			ResourceType resourceType = new ResourceType();
 			resourceType.setTypeName(typeName);
@@ -112,7 +112,7 @@ public class TeacherResouDetailInfoController {
 			return "redirect:/admin/teacher/resource/new";
 		}
 	}
-	*/
+	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/resource/type/destory/{resourceType_id}")
 	public String teacherResouTypeDele(HttpSession session,Model model,@PathVariable Long resourceType_id) throws Exception{

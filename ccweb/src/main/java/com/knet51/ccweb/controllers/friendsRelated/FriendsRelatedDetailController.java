@@ -30,7 +30,8 @@ public class FriendsRelatedDetailController {
 	public String askFriendsRelated(@RequestParam("uid") Long id,HttpSession session){
 		logger.info("#### Into FriendsRelated addDetailPage ####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		User user = userInfo.getUser();
+		Long user_id = userInfo.getId();
+		User user = userService.findOne(user_id);
 		FriendsRelated friendsReiated = new FriendsRelated();
 		friendsReiated.setHost_id(id);
 		friendsReiated.setFollow_id(user.getId());
