@@ -22,7 +22,7 @@
 	
 	<!-- teacher announcement admin layout-->
 
-	<definition name="admin.tacher.announcement.list" extends="admin-layout">
+	<definition name="admin.teacher.announcement.list" extends="admin-layout">
 		<put-attribute name="title" value="Welcom to teacher register" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/list/list.jsp"></put-attribute>
 	</definition>

@@ -47,7 +47,7 @@ public class TeacherCourseInfoDetailController {
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "admin.teacher.course.list";
+			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Teacher teacher = userInfo.getTeacher();
@@ -74,7 +74,7 @@ public class TeacherCourseInfoDetailController {
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "/admin/teacher/course/edit/"+course_id;
+			return "redirect:/admin/teacher/course/edit/"+course_id;
 		}else{
 			TeacherCourse course = courseService.findOneById(course_id);
 			String courseName = courseInfoForm.getCourseName();

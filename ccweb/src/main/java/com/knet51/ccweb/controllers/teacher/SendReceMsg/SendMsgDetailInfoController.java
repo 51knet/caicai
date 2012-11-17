@@ -70,7 +70,7 @@ public class SendMsgDetailInfoController {
 		
 		logger.info("#### Into SendMsgInfoPageControllerPage ####");
 		if(validResult.hasErrors()){
-			return "";
+			return "redirect:/admin/teacher/message/detailOne?mid=" + sendMsgId+"&urmid="+urmId;
 		}else{
 			//System.out.println(userId);
 			SendMsg sendMsg = new SendMsg();

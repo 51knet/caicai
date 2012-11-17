@@ -44,7 +44,7 @@ public class TeacherAnnoInfoPageController {
 			List<Announcement> list = annoService.findAllByUid(id);
 			model.addAttribute("page", page);
 			model.addAttribute("list",list);
-			return "admin.tacher.announcement.list";
+			return "admin.teacher.announcement.list";
 	}
 	
 	@RequestMapping(value="/admin/teacher/announcement/edit/{announcement_id}")
