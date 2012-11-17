@@ -87,7 +87,7 @@ body {
 				<label class="control-label" for="password">登录密码</label>
 				<div class="controls">
 					<input type="password" id="password" name="password" placeholder="请输入您的密码">
-					<span class="help-block"><form:errors path="password"></form:errors></span>
+					<span class="help-block"><form:errors path="password" ></form:errors></span>
 				</div>
 			</div>
 			<label class="checkbox inline"> <input type="checkbox" name="remeberMe" id="inlineCheckbox1" value="1"> 记住密码 &nbsp;&nbsp;<a href="#">忘记密码？</a>
