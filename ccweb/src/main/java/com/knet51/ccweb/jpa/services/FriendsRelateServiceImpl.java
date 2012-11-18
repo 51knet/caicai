@@ -81,7 +81,7 @@ public class FriendsRelateServiceImpl implements FriendsRelateService {
 		List<UserInfo> hostInfoList = new ArrayList<UserInfo>();
 		for(int i=0;i<hostList.size();i++){
 			UserInfo userInfo = new UserInfo();
-			User user = userDao.findById(hostList.get(i).getFollow_id());
+			User user = userDao.findById(hostList.get(i).getHost_id());
 			userInfo.setUser(user);
 			hostInfoList.add(userInfo);
 		}
