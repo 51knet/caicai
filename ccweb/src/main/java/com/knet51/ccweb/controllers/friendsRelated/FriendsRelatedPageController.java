@@ -115,7 +115,7 @@ public class FriendsRelatedPageController {
 		Integer hostCount =  relateService.getAllHost(teacher_id).size();
 		
 		model.addAttribute("teacher_id", teacher_id);
-		model.addAttribute("teacherInfo", teacher);
+		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("role", userInfo.getTeacherRole());
 		model.addAttribute("followValue",followValue);
 		model.addAttribute("fansCount", fansCount);

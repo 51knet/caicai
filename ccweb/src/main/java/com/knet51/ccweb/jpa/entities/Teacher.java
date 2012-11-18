@@ -10,6 +10,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
@@ -17,6 +19,7 @@ import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
 
 @Entity
+@JsonIgnoreProperties(value={"project","thesis","patent","honor","course"})
 public class Teacher {
 
 	@Id
@@ -37,7 +40,7 @@ public class Teacher {
 	private Set<TeacherPatent> patent = new HashSet<TeacherPatent>();
 
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
-	private Set<TeacherHonor> Honor = new HashSet<TeacherHonor>();
+	private Set<TeacherHonor> honor = new HashSet<TeacherHonor>();
 	
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
 	private Set<TeacherCourse> course = new HashSet<TeacherCourse>();
@@ -147,11 +150,11 @@ public class Teacher {
 	}
 
 	public Set<TeacherHonor> getHonor() {
-		return Honor;
+		return honor;
 	}
 
 	public void setHonor(Set<TeacherHonor> honor) {
-		Honor = honor;
+		this.honor = honor;
 	}
 
 	public Set<TeacherCourse> getCourse() {

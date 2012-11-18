@@ -1,10 +1,13 @@
 package com.knet51.ccweb.beans;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 
+@JsonIgnoreProperties(value={"teacherRole"})
 public class UserInfo {
 
 	private User user;
