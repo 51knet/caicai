@@ -10,12 +10,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
+import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 
 @Controller
@@ -26,13 +29,15 @@ public class FriendsRelatedPageController {
 	private UserService userService;
 	@Autowired
 	private FriendsRelateService relateService;
+	@Autowired
+	private TeacherService teacherService;
 	
 	@RequestMapping(value="/admin/teacher/friendsRelated/list")
 	public String friendsRelatedDetail(HttpSession session, Model model){
 		logger.info("#### Into FriendsRelatedPageController ####");
 		Long id = getId(session);
 		//System.out.println(id);
-		int count = relateService.getAllFollow(id).size();
+		int count = relateService.getAllFans(id).size();
 		model.addAttribute("count", count);
 		return "admin.teacher.friendsRelated.list";
 	}
@@ -57,5 +62,66 @@ public class FriendsRelatedPageController {
 		Long id = userInfo.getId();
 		return id;
 	}
-
+	
+	/* teacher front page */
+	
+	// find the fans
+	@RequestMapping(value="/teacher/{teacher_id}/fans/list")
+	public String findFans(@PathVariable Long teacher_id, Model model,HttpSession  session){
+		User user = userService.findOne(teacher_id);
+	
+		Teacher teacher = teacherService.findOne(teacher_id);
+		
+		UserInfo userInf = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		
+		List<UserInfo> fansInfoList = relateService.getAllFansInfo(teacher_id);
+		
+		int followValue=relateService.getFollowById(teacher_id,userInf.getId());
+		
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		
+		Integer fansCount = relateService.getAllFans(teacher_id).size();
+		Integer hostCount =  relateService.getAllHost(teacher_id).size();
+		
+		model.addAttribute("teacher_id", teacher_id);
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("role", userInfo.getTeacherRole());
+		model.addAttribute("followValue",followValue);
+		model.addAttribute("fansCount", fansCount);
+		model.addAttribute("hostCount", hostCount);
+		model.addAttribute("fansList", fansInfoList);
+		return "teacher.fans.list";
+	}
+	
+	// find the host
+	
+	@RequestMapping(value="/teacher/{teacher_id}/host/list")
+	public String findHost(@PathVariable Long teacher_id, Model model,HttpSession  session){
+		User user = userService.findOne(teacher_id);
+		logger.info("###### into teacher find host controller ###########");
+		Teacher teacher = teacherService.findOne(teacher_id);
+		
+		UserInfo userInf = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		
+		List<UserInfo> hostInfoList = relateService.getAllHostInfo(teacher_id);
+		
+		int followValue = relateService.getFollowById(teacher_id,userInf.getId());
+		
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		
+		Integer fansCount = relateService.getAllFans(teacher_id).size();
+		Integer hostCount =  relateService.getAllHost(teacher_id).size();
+		
+		model.addAttribute("teacher_id", teacher_id);
+		model.addAttribute("teacherInfo", teacher);
+		model.addAttribute("role", userInfo.getTeacherRole());
+		model.addAttribute("followValue",followValue);
+		model.addAttribute("fansCount", fansCount);
+		model.addAttribute("hostCount", hostCount);
+		model.addAttribute("hostList", hostInfoList);
+		session.setAttribute("hostList", hostInfoList);
+		return "teacher.host.list";
+	}
 }

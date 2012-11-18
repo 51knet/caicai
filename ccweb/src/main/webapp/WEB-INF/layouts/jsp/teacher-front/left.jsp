@@ -23,8 +23,8 @@
 		<a href='<c:url value='/teacher/${teacherInfo.id}'></c:url>'>${teacherInfo.name }</a>
 	</div>
 	<div class="row-fluid">
-		<a href='#' >2 粉丝</a> | 
-		<a href='#' >2 关注</a>
+		<a href='<c:url value='/teacher/${teacherInfo.id}/fans/list'></c:url>'<c:url value='/teacher/${teacherInfo.id}'></c:url>'' >${fansCount } 粉丝</a> | 
+		<a href='<c:url value='/teacher/${teacherInfo.id}/host/list'></c:url>' >${hostCount } 关注</a>
 	</div>
 	<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.id != teacher_id) }">
 	<div class="row-fluid">

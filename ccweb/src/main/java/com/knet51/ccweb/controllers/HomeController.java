@@ -150,6 +150,7 @@ public class HomeController {
 		User users = userInf.getUser();
 		Announcement announcement = announcementService.findLatestByUid(id);
 		int followValue=friendsRelateService.getFollowById(id,users.getId());
+		
 		Teacher teacher = teacherService.findOne(id);
 		Page<BlogPost> page = blogService.findAllBlogs(0, 5, teacher);
 		List<BlogPost> blogPosts = page.getContent();
@@ -184,10 +185,15 @@ public class HomeController {
 		userInfo.setAnnouncement(announcement);
 		userInfo.setTeacher(teacher);
 		
+		Integer fansCount = friendsRelateService.getAllFans(id).size();
+		Integer hostCount =  friendsRelateService.getAllHost(id).size();
+		
 		model.addAttribute("teacher_id", id);
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("role", userInfo.getTeacherRole());
 		model.addAttribute("followValue",followValue);
+		model.addAttribute("fansCount", fansCount);
+		model.addAttribute("hostCount", hostCount);
 		return "teacher.basic";
 	}
 

@@ -39,4 +39,5 @@ public class FriendsRelatedDetailController {
 		friendsRelateService.save(friendsReiated);
 		return "redirect:/teacher/" + id;
 	}
+	
 }

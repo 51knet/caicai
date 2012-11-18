@@ -171,7 +171,8 @@
 		</c:choose>
 	</table>
 	<hr>
-	<div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a>&nbsp;&nbsp;</div>
+	<div style="text-align: right;">
+	<c:if test="${resourceCount>5}"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 	</div>
 	
 </div>
