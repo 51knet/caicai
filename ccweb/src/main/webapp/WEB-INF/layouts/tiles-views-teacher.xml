@@ -149,5 +149,9 @@
 		<put-attribute name="right" value="/WEB-INF/views/teacher/fans/list/list.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="teacher.host.list" extends="frontPage-layout">
+		<put-attribute name="title" value="关注列表" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/host/list/list.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

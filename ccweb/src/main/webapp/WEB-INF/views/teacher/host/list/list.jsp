@@ -31,8 +31,8 @@
 	<thead><tr><th colspan="4">关注人名称</th></tr></thead>
 	<tbody>
 		<tr>
-			<td>	<c:forEach items="${sessionScope.hostList}" var="host">
-			<div style="float: left; padding-right: 10px;"><a href='<c:url value="/teacher/${sessionScope.host.id}"></c:url>'> ${sessionScope.host.name}</a></div>
+			<td>	<c:forEach items="${hostList}" var="host">
+			<div style="float: left; padding-right: 10px;"><a href='<c:url value="/teacher/${host.id}"></c:url>'> ${host.name}</a></div>
 		</c:forEach></td>
 		</tr>
 	
