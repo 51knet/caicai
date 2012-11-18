@@ -9,7 +9,7 @@
 	<ul class="nav nav-tabs">
 		<li <c:if test='${active.equals("personal")}'>class="active"</c:if>><a href="#personal_info_tab" data-toggle="tab">个人信息</a></li>
 		<li <c:if test='${active.equals("contact")}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>
-		<li <c:if test='${active.equals("")}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
+		<li <c:if test='${active.equals("edu")}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
 		<li <c:if test='${active.equals("")}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
 		<li <c:if test='${active.equals("psw")}'>class="active"</c:if>><a href="#security_tab" data-toggle="tab">账号安全</a></li>
 		<li <c:if test='${active.equals("url")}'>class="active"</c:if>><a href="#p_url_tab" data-toggle="tab">个性域名</a></li>
@@ -137,27 +137,41 @@
 				</div>
 			</form>
 		</div>
-		<div class="tab-pane" id="edu_bg_tab">
+		<div class="tab-pane  <c:if test='${active.equals("edu")}'>active</c:if>" id="edu_bg_tab">
 			
 			<form class="form-horizontal" action="eduInfo" method="post">
 				<div class="control-group">
-					<label class="control-label" for="address">项目名称</label>
+					<label class="control-label" for="school">学校</label>
 					<div class="controls">
-						<input type="text" id="address" name="address" placeholder="名称" value="${sessionScope.sessionUserInfo.user.address}">
+						<input type="text" id="school" name="school" placeholder="学校名称" value="${eduInfo.school }">
 					</div>
 				</div>
 			
 				<div class="control-group">
-					<label class="control-label" for="fax">项目来源</label>
+					<label class="control-label" for="college">学院</label>
 					<div class="controls">
-						<input type="text" id="fax" name="fax" placeholder="来源" value="${sessionScope.sessionUserInfo.user.fax}">
+						<input type="text" id="college" name="college" placeholder="学院名称"  value="${eduInfo.college}">
 					</div>
 				</div>
 				
 				<div class="control-group">
-					<label class="control-label" for="msn">项目起止时间</label>
+					<label class="control-label" for="degree">学历</label>
 					<div class="controls">
-						<input type="text" id="msn" name="msn" placeholder="时间" value="${sessionScope.sessionUserInfo.user.msn}">
+						<input type="text" id="degree" name="degree" placeholder="学历" value="${eduInfo.degree }" >
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="startTime">开始时间</label>
+					<div class="controls">
+						<input type="text" id="startTime" name="startTime" placeholder="开始时间"  value="${eduInfo.startTime }">
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="endTime">结束时间</label>
+					<div class="controls">
+						<input type="text" id="endTime" name="endTime" placeholder="结束时间"  value="${eduInfo.endTime }">
 					</div>
 				</div>
 				

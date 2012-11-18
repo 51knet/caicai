@@ -6,10 +6,12 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import com.knet51.ccweb.beans.UserBeans;
 import com.knet51.ccweb.jpa.entities.User;
 
 @Repository("userDao")
@@ -88,6 +90,19 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<User> list() {
 		return em.createQuery("select c from User c", User.class).getResultList();
+	}
+
+	@Override
+	public UserBeans getUserName(Long id) {
+		UserBeans userBean = new UserBeans();
+		Query q = em.createQuery("select u.name from User u where u.id=:id");
+		q.setParameter("id", id);
+		List list = q.getResultList();
+		Object o =  list.get(0);
+		String userName = o.toString();
+		userBean.setId(id);
+		userBean.setName(userName);
+		return userBean;
 	}
 
 	// public User findByEmailAddress(EmailAddress emailAddress) {

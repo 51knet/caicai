@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.services.EduBackgroundService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 
@@ -35,12 +37,19 @@ public class TeacherController {
 	private TeacherService teacherService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private EduBackgroundService eduBackgroundService;
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/details")
-	public String detailInfoPage(@RequestParam("active") String active,Model model) {
+	public String detailInfoPage(@RequestParam("active") String active,Model model,HttpSession session) {
 		if(active == null || active.equals("")){
 			active = "personal";
+		}
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
+		if(eduInfo !=null){
+			model.addAttribute("eduInfo", eduInfo);
 		}
 		model.addAttribute("active", active);
 		return "admin.teacher.details";
@@ -107,6 +116,42 @@ public class TeacherController {
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			
 			return "redirect:/admin/teacher/details?active=contact";
+		}
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/teacher/eduInfo")
+	public String eduInfo(@Valid TeacherEduInfoForm eduInfoForm,
+			BindingResult validResult, HttpSession session) {
+		logger.info("#### contactInfo InfoController ####");
+		
+		if (validResult.hasErrors()) {
+			logger.info("eduInfo Validation Failed " + validResult);
+			return "redirect:/admin/teacher/details?active=edu";
+		} else {
+			logger.info("### contactInfo Validation passed. ###");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
+			if(eduInfo == null){
+				EduBackground edu = new EduBackground();
+				edu.setCollege(eduInfoForm.getCollege());
+				edu.setSchool(eduInfoForm.getSchool());
+				edu.setDegree(eduInfoForm.getDegree());
+				edu.setStartTime(eduInfoForm.getStartTime());
+				edu.setEndTime(eduInfoForm.getEndTime());
+				edu.setTeacherId(userInfo.getId());
+				eduBackgroundService.createEduBackground(edu);
+			}else{
+				eduInfo.setCollege(eduInfoForm.getCollege());
+				eduInfo.setSchool(eduInfoForm.getSchool());
+				eduInfo.setDegree(eduInfoForm.getDegree());
+				eduInfo.setStartTime(eduInfoForm.getStartTime());
+				eduInfo.setEndTime(eduInfoForm.getEndTime());
+				eduInfo.setTeacherId(userInfo.getId());
+				eduBackgroundService.updateEduBackground(eduInfo);
+			}
+			
+			return "redirect:/admin/teacher/details?active=edu";
 		}
 	}
 	

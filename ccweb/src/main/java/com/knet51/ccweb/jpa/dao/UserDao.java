@@ -3,6 +3,7 @@ package com.knet51.ccweb.jpa.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.knet51.ccweb.beans.UserBeans;
 import com.knet51.ccweb.jpa.entities.User;
 
 public interface UserDao {
@@ -23,4 +24,6 @@ public interface UserDao {
 	User getSingleResultByParamsMap(Map<String,String> paramsMap);
 
 	List<User> list();
+	
+	UserBeans getUserName(Long id);
 }

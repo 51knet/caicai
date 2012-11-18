@@ -106,7 +106,7 @@ public class FriendsRelatedPageController {
 		
 		List<UserInfo> hostInfoList = relateService.getAllHostInfo(teacher_id);
 		
-		int followValue = relateService.getFollowById(teacher_id,userInf.getId());
+		int followValue=relateService.getFollowById(teacher_id,userInf.getId());
 		
 		UserInfo userInfo = new UserInfo(user);
 		userInfo.setTeacher(teacher);
@@ -121,7 +121,6 @@ public class FriendsRelatedPageController {
 		model.addAttribute("fansCount", fansCount);
 		model.addAttribute("hostCount", hostCount);
 		model.addAttribute("hostList", hostInfoList);
-		session.setAttribute("hostList", hostInfoList);
 		return "teacher.host.list";
 	}
 }
