@@ -91,16 +91,23 @@ public class UserInfo {
 		super();
 	}
 
-//	private void initAnnouncement() {
-//		Long uid = this.user.getId();
-//		Announcement announcement;
-//		try {
-//			announcement = annoService.findLatestByUid(uid);
-//			this.announcement = announcement;
-//		} catch (Exception e) {
-//			this.announcement = null;
-//		}
-//
-//	}
+	public String getFax(){
+		return this.user.getFax();
+	}
 	
+	public String getAddress(){
+		return this.user.getAddress();
+	}
+	
+	public String getPhone(){
+		return this.user.getFix_phone();
+	}
+	
+	public String getCollege(){
+		return this.teacher.getCollege();
+	}
+	
+	public String getSchool(){
+		return this.teacher.getSchool();
+	}
 }

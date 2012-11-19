@@ -20,15 +20,15 @@
 				<div class="control-group" id="name">
 					<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 					<div class="controls">
-						<input type="text" id="name" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.user.name}" >
+						<input type="text" id="name" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.name}" >
 						<span class="help-block"><form:errors path="name"></form:errors></span>
 					</div>
 				</div>
 				<div class="control-group" id="gender">
 					<label class="control-label" for="gender"><i class="icon-star"></i> 性别</label>
 					<div class="controls">
-						<label class="radio"> <input type="radio" name="gender" id="genderMale" value="male" checked>男</label>
-						<label class="radio"> <input type="radio" name="gender" id="genderFemale" value="female">女</label>
+						<label class="radio"> <input type="radio" name="gender" id="genderMale" value="男" checked>男</label>
+						<label class="radio"> <input type="radio" name="gender" id="genderFemale" value="女">女</label>
 					</div>
 				</div>
 				<div class="control-group" id="college">
