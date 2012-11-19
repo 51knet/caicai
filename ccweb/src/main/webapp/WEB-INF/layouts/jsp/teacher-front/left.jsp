@@ -41,7 +41,15 @@
 	<div class="row-fluid">
 		<div class="round header"><h5>个人信息</h5></div>
 		<hr/>
-		...
+		<address>
+		  	<abbr>姓名:</abbr> ${teacherInfo.name}
+		  	<br>
+		  	<abbr>性别:</abbr> ${teacherInfo.gender}
+		  	<br>
+		  	<abbr>院校:</abbr> ${teacherInfo.college}
+		  	<br>
+		  	<abbr>院系:</abbr> ${teacherInfo.school}
+		</address>
 	</div>
 </div>
 
@@ -50,7 +58,15 @@
 		<h5>联系方式</h5>
 	</div>
 	<hr/>
-	${teacherInfo.announcementContext}
+	<address style="text-align: left; margin-left: 40px; margin-right: 40px;">
+	  	<abbr title="地址"><i class="icon-home"></i>:</abbr> ${teacherInfo.address}
+	  	<br>
+	  	<abbr title="传真"><i class="icon-print"></i>:</abbr> ${teacherInfo.fax}
+	  	<br>
+	  	<abbr title="电话"><i class="icon-headphones"></i>:</abbr> ${teacherInfo.phone}
+	  	<br>
+	  	<abbr title="电邮"><i class="icon-envelope"></i>:</abbr> <a href="mailto:#">${teacherInfo.email}</a>
+	</address>
 </div>
 
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
