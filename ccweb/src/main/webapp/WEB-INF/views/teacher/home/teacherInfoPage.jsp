@@ -16,25 +16,26 @@
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane <c:if test='${active.equals("personal")}'>active</c:if>" id="personal_info_tab">
-			<form action="personalInfo" class="form-horizontal" method="post">
-				<div class="control-group">
+			<form id="personal_info_form" action="personalInfo" class="form-horizontal" method="post">
+				<div class="control-group" id="name">
 					<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 					<div class="controls">
 						<input type="text" id="name" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.user.name}" >
 						<span class="help-block"><form:errors path="name"></form:errors></span>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="gender">
 					<label class="control-label" for="gender"><i class="icon-star"></i> 性别</label>
 					<div class="controls">
 						<label class="radio"> <input type="radio" name="gender" id="genderMale" value="male" checked>男</label>
 						<label class="radio"> <input type="radio" name="gender" id="genderFemale" value="female">女</label>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="college">
 					<label class="control-label" for="college"><i class="icon-star"></i> 所属高校</label>
 					<div class="controls">
 						<input type="text" id="college" name="college" placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["复旦大学","同济大学","上海交通大学","上海财金大学","上海外国语大学","上海大学"]'>
+						<span class="help-inline"><form:errors path="college" /></span>
 					</div>
 					<!--  
 					<div class="controls">
@@ -52,10 +53,11 @@
 					</div>
 					-->
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="school">
 					<label class="control-label" for="school"><i class="icon-star"></i> 所属院系</label>
 					<div class="controls">
 						<input type="text" id="school" name="school" placeholder="所属院系" value="${sessionScope.sessionUserInfo.teacher.school}" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["计算机学院","财金学院","女子学院"]'>
+						<span class="help-inline"><form:errors path="school" /></span>
 					</div>
 					<!--  
 					<div class="controls">
@@ -67,19 +69,19 @@
 					</div>
 					-->
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="major">
 					<label class="control-label" for="major">教授课程</label>
 					<div class="controls">
 						<input type="text" id="major" name="major" value="${sessionScope.sessionUserInfo.teacher.major}" placeholder="教授课程">
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="title">
 					<label class="control-label" for="title">职称</label>
 					<div class="controls">
 						<input type="text" id="title" name="title" value="${sessionScope.sessionUserInfo.teacher.title}" placeholder="职称">
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="role">
 					<label class="control-label" for="role">导师类别</label>
 					<div class="controls">
 						<input type="text" id="role" name="role" value="${sessionScope.sessionUserInfo.teacher.role}" placeholder="导师类别">
@@ -230,3 +232,44 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+function collectFormData(fields) {
+	var data = {};
+	for (var i = 0; i < fields.length; i++) {
+		var $item = $(fields[i]);
+		data[$item.attr('name')] = $item.val();
+	}
+	return data;
+}
+
+$(document).ready(function() {
+	var $form = $('#personal_info_form');
+	$form.bind('submit', function(e) {
+		// Ajax validation
+		var $inputs = $form.find('input');
+		var data = collectFormData($inputs);
+
+		$.post('personalInfoAJAX', data, function(response) {
+			$form.find('.control-group').removeClass('error');
+			$form.find('.help-inline').empty();
+			$form.find('.alert').remove();
+
+			if (response.status == 'FAIL') {
+				for (var i = 0; i < response.errorMessageList.length; i++) {
+					var item = response.errorMessageList[i];
+					var $controlGroup = $('#' + item.fieldName);
+					$controlGroup.addClass('error');
+					$controlGroup.find('.help-inline').html(item.message);
+				}
+			} else {
+				$form.unbind('submit');
+				$form.submit();
+			}
+		}, 'json');
+
+		e.preventDefault();
+		return false;
+	});
+});
+</script>
+		
