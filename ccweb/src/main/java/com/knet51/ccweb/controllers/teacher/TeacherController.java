@@ -1,5 +1,7 @@
 package com.knet51.ccweb.controllers.teacher;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,9 +25,11 @@ import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.WorkExp;
 import com.knet51.ccweb.jpa.services.EduBackgroundService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.WorkExpService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 
@@ -43,6 +48,8 @@ public class TeacherController {
 	private UserService userService;
 	@Autowired
 	private EduBackgroundService eduBackgroundService;
+	@Autowired
+	private WorkExpService workExpService;
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/details")
@@ -51,9 +58,16 @@ public class TeacherController {
 			active = "personal";
 		}
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
+//		EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
+		List<EduBackground> eduInfo = eduBackgroundService.findEduInfoList(userInfo.getId());
 		if(eduInfo !=null){
 			model.addAttribute("eduInfo", eduInfo);
+			model.addAttribute("eduCount", eduInfo.size());
+		}
+		List<WorkExp> workInfo = workExpService.findWorkList(userInfo.getId());
+		if(workInfo !=null){
+			model.addAttribute("workInfo", workInfo);
+			model.addAttribute("workCount", workInfo.size());
 		}
 		model.addAttribute("active", active);
 		return "admin.teacher.details";
@@ -132,36 +146,66 @@ public class TeacherController {
 	@RequestMapping(value = "/admin/teacher/eduInfo")
 	public String eduInfo(@Valid TeacherEduInfoForm eduInfoForm,
 			BindingResult validResult, HttpSession session) {
-		logger.info("#### contactInfo InfoController ####");
+		logger.info("#### eduInfo InfoController ####");
 		
 		if (validResult.hasErrors()) {
 			logger.info("eduInfo Validation Failed " + validResult);
 			return "redirect:/admin/teacher/details?active=edu";
 		} else {
-			logger.info("### contactInfo Validation passed. ###");
+			logger.info("### eduInfo Validation passed. ###");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
-			if(eduInfo == null){
-				EduBackground edu = new EduBackground();
-				edu.setCollege(eduInfoForm.getCollege());
-				edu.setSchool(eduInfoForm.getSchool());
-				edu.setDegree(eduInfoForm.getDegree());
-				edu.setStartTime(eduInfoForm.getStartTime());
-				edu.setEndTime(eduInfoForm.getEndTime());
-				edu.setTeacherId(userInfo.getId());
-				eduBackgroundService.createEduBackground(edu);
-			}else{
-				eduInfo.setCollege(eduInfoForm.getCollege());
-				eduInfo.setSchool(eduInfoForm.getSchool());
-				eduInfo.setDegree(eduInfoForm.getDegree());
-				eduInfo.setStartTime(eduInfoForm.getStartTime());
-				eduInfo.setEndTime(eduInfoForm.getEndTime());
-				eduInfo.setTeacherId(userInfo.getId());
-				eduBackgroundService.updateEduBackground(eduInfo);
-			}
-			
+			//EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
+			EduBackground edu = new EduBackground();
+			edu.setCollege(eduInfoForm.getCollege());
+			edu.setSchool(eduInfoForm.getSchool());
+			edu.setDegree(eduInfoForm.getDegree());
+			edu.setStartTime(eduInfoForm.getStartTime());
+			edu.setEndTime(eduInfoForm.getEndTime());
+			edu.setTeacherid(userInfo.getId());
+			eduBackgroundService.createEduBackground(edu);
 			return "redirect:/admin/teacher/details?active=edu";
 		}
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/teacher/eduInfo/destory/{edu_id}")
+	public String destoryEduInfo(@PathVariable Long edu_id, HttpSession session) {
+		logger.info("#### eduInfo InfoController ####");
+		eduBackgroundService.destory(edu_id);
+		return "redirect:/admin/teacher/details?active=edu";
+		
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/teacher/workInfo")
+	public String workInfo(@Valid TeacherWorkExpInfoForm workInfoForm,
+			BindingResult validResult, HttpSession session) {
+		logger.info("#### workInfo Controller ####");
+		if (validResult.hasErrors()) {
+			logger.info("eduInfo Validation Failed " + validResult);
+			return "redirect:/admin/teacher/details?active=work";
+		} else {
+			logger.info("### workInfo Validation passed. ###");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			WorkExp work = new WorkExp();
+			work.setCompany(workInfoForm.getCompany());
+			work.setDepartment(workInfoForm.getDepartment());
+			work.setPosition(workInfoForm.getPosition());
+			work.setStartTime(workInfoForm.getStartTime());
+			work.setEndTime(workInfoForm.getEndTime());
+			work.setTeacherid(userInfo.getId());
+			workExpService.createWorkExp(work);
+			return "redirect:/admin/teacher/details?active=work";
+		}
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/teacher/workInfo/destory/{work_id}")
+	public String destoryWorkInfo(@PathVariable Long work_id, HttpSession session) {
+		logger.info("#### eduInfo InfoController ####");
+		workExpService.destory(work_id);
+		return "redirect:/admin/teacher/details?active=work";
+		
 	}
 	
 	@Transactional

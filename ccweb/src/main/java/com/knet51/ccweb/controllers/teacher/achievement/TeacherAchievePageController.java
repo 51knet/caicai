@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.knet51.ccweb.beans.UserInfo;
@@ -48,11 +49,20 @@ public class TeacherAchievePageController {
 		List<TeacherPatent> patent = patentService.getAllPatentById(user.getId());
 		List<TeacherHonor> honor = honorService.getAllHonorById(user.getId());
 		model.addAttribute("project", project);
+		model.addAttribute("projectCount", project.size());
 		model.addAttribute("thesis", thesis);
+		model.addAttribute("thesisCount", thesis.size());
 		model.addAttribute("patent", patent);
+		model.addAttribute("patentCount", patent.size());
 		model.addAttribute("honor", honor);
+		model.addAttribute("honorCount", honor.size());
 		return "admin.teacher.achievement.list";
 	}
 	
+	/* teacher front page */
 	
+	@RequestMapping(value="/teacher/{teacher_id}/thesis/list")
+	public String showAllthesis(@PathVariable Long teacher_id,HttpSession session){
+		return "";
+	}
 }

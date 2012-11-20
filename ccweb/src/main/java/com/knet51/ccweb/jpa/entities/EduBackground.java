@@ -12,12 +12,14 @@ public class EduBackground extends AbstractEntity {
 	private String degree;
 	private String startTime;
 	private String endTime;
-	private Long teacherId;
-	public Long getTeacherId() {
-		return teacherId;
+	private Long teacherid;
+
+
+	public Long getTeacherid() {
+		return teacherid;
 	}
-	public void setTeacherId(Long teacherId) {
-		this.teacherId = teacherId;
+	public void setTeacherid(Long teacherid) {
+		this.teacherid = teacherid;
 	}
 	public String getSchool() {
 		return school;

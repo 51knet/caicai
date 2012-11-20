@@ -10,7 +10,7 @@
 		<li <c:if test='${active.equals("personal")}'>class="active"</c:if>><a href="#personal_info_tab" data-toggle="tab">个人信息</a></li>
 		<li <c:if test='${active.equals("contact")}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>
 		<li <c:if test='${active.equals("edu")}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
-		<li <c:if test='${active.equals("")}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
+		<li <c:if test='${active.equals("work")}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
 		<li <c:if test='${active.equals("psw")}'>class="active"</c:if>><a href="#security_tab" data-toggle="tab">账号安全</a></li>
 		<li <c:if test='${active.equals("url")}'>class="active"</c:if>><a href="#p_url_tab" data-toggle="tab">个性域名</a></li>
 	</ul>
@@ -139,55 +139,169 @@
 				</div>
 			</form>
 		</div>
+		
+		<!-- Edu Info -->
 		<div class="tab-pane  <c:if test='${active.equals("edu")}'>active</c:if>" id="edu_bg_tab">
+			<div id="eduForm" style="display: none;">
+				<form class="form-horizontal" action="eduInfo" method="post">
+					<div class="control-group">
+						<label class="control-label" for="school">学校</label>
+						<div class="controls">
+							<input type="text" id="school" name="school" placeholder="学校名称" >
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="college">学院</label>
+						<div class="controls">
+							<input type="text" id="college" name="college" placeholder="学院名称"  >
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="degree">学历</label>
+						<div class="controls">
+							<input type="text" id="degree" name="degree" placeholder="学历"  >
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="startTime">开始时间</label>
+						<div class="controls">
+							<input type="text" id="startTime" name="startTime" placeholder="开始时间" >
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="endTime">结束时间</label>
+						<div class="controls">
+							<input type="text" id="endTime" name="endTime" placeholder="结束时间" >
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit" onclick="closeEduAddForm()" class="btn btn-large btn-success">保 存</button>
+							<button type="reset" onclick="closeEduAddForm()" class="btn btn-large">取消</button>
+						</div>
+					</div>
+				</form>
+			</div>	
 			
-			<form class="form-horizontal" action="eduInfo" method="post">
-				<div class="control-group">
-					<label class="control-label" for="school">学校</label>
-					<div class="controls">
-						<input type="text" id="school" name="school" placeholder="学校名称" value="${eduInfo.school }">
-					</div>
-				</div>
+			<div id="eduList" style="display: block">
 			
-				<div class="control-group">
-					<label class="control-label" for="college">学院</label>
-					<div class="controls">
-						<input type="text" id="college" name="college" placeholder="学院名称"  value="${eduInfo.college}">
-					</div>
-				</div>
+			<c:choose>
+				<c:when test="${eduCount>0 }">
+					<table  class="table">
+						<thead><tr><th>学校名称</th><th>学院名称</th><th>学历</th><th>起止时间</th><th>更多操作</th></tr></thead>
+						<tbody>
+							<c:forEach items="${eduInfo}" var="eduInfo">
+								<tr>
+									<td  align="center">${eduInfo.school}</td>
+									<td  align="center">${eduInfo.college}</td>
+									<td  align="center">${eduInfo.degree}</td>
+									<td  align="center">${eduInfo.startTime}—${eduInfo.endTime}</td>
+									<td>
+										 <div class="btn-group"> 
+											<button class="btn">操作</button>  
+											<button class="btn dropdown-toggle" data-toggle="dropdown">   
+											<span class="caret"></span> </button>
+											<ul class="dropdown-menu">
+												<li><a href='#'>修改</a></li>
+												<li><a href='<c:url value="/admin/teacher/eduInfo/destory/${eduInfo.id}"></c:url>'>删除</a></li>
+											</ul> 
+										</div>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:when>
+				<c:otherwise>
+					<b>尚未添加内容！！</b><br><br>
+				</c:otherwise>
+			</c:choose>
 				
-				<div class="control-group">
-					<label class="control-label" for="degree">学历</label>
-					<div class="controls">
-						<input type="text" id="degree" name="degree" placeholder="学历" value="${eduInfo.degree }" >
+				<button onclick="showEduAddForm()">添加</button>
+			</div>
+		</div>
+		
+		<!-- work exp  -->
+		<div class="tab-pane <c:if test='${active.equals("work")}'>active</c:if>" id="work_exp_tab">
+			
+			<div id="workForm" style="display: none;">
+				<form class="form-horizontal" action="workInfo" method="post">
+					<div class="control-group">
+						<label class="control-label" for="company">公司名称</label>
+						<div class="controls">
+							<input type="text" id="company" name="company" placeholder="公司名称" >
+						</div>
 					</div>
-				</div>
+					<div class="control-group">
+						<label class="control-label" for="department">部门名称</label>
+						<div class="controls">
+							<input type="text" id="college" name="department" placeholder="部门名称"  >
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="position">职位</label>
+						<div class="controls">
+							<input type="text" id="position" name="position" placeholder="职位"  >
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="startTime">开始时间</label>
+						<div class="controls">
+							<input type="text" id="startTime" name="startTime" placeholder="开始时间" >
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="endTime">结束时间</label>
+						<div class="controls">
+							<input type="text" id="endTime" name="endTime" placeholder="结束时间" >
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit" onclick="closeWorkAddForm()" class="btn btn-large btn-success">保 存</button>
+							<button type="reset" onclick="closeWorkAddForm()" class="btn btn-large">取消</button>
+						</div>
+					</div>
+				</form>
+			</div>	
+			
+			<div id="workList" style="display: block">
+		
+				<c:choose>
+					<c:when test="${(workCount >0)}">
+						<table  class="table">
+							<thead><tr><th>公司名称</th><th>部门名称</th><th>职位</th><th>起止时间</th><th>更多操作</th></tr></thead>
+							<tbody>
+								<c:forEach items="${workInfo}" var="workInfo">
+									<tr>
+										<td  align="center">${workInfo.company}</td>
+										<td  align="center">${workInfo.department}</td>
+										<td  align="center">${workInfo.position}</td>
+										<td  align="center">${workInfo.startTime}—${workInfo.endTime}</td>
+										<td>
+											 <div class="btn-group"> 
+												<button class="btn">操作</button>  
+												<button class="btn dropdown-toggle" data-toggle="dropdown">   
+												<span class="caret"></span> </button>
+												<ul class="dropdown-menu">
+													<li><a href='#'>修改</a></li>
+													<li><a href='<c:url value="/admin/teacher/workInfo/destory/${workInfo.id}"></c:url>'>删除</a></li>
+												</ul> 
+											</div>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</c:when>
+					<c:otherwise><b>尚未添加内容！！</b><br><br></c:otherwise>
+				</c:choose>
 				
-				<div class="control-group">
-					<label class="control-label" for="startTime">开始时间</label>
-					<div class="controls">
-						<input type="text" id="startTime" name="startTime" placeholder="开始时间"  value="${eduInfo.startTime }">
-					</div>
-				</div>
-				
-				<div class="control-group">
-					<label class="control-label" for="endTime">结束时间</label>
-					<div class="controls">
-						<input type="text" id="endTime" name="endTime" placeholder="结束时间"  value="${eduInfo.endTime }">
-					</div>
-				</div>
-				
-				<div class="control-group">
-					<div class="controls">
-						<button type="submit" class="btn btn-large btn-success">保 存</button>
-					</div>
-				</div>
-			</form>
+				<button onclick="showWorkAddForm()">添加</button>
+			</div>
 			
 		</div>
-		<div class="tab-pane" id="work_exp_tab">
-			<p>工作经历页面</p>
-		</div>
+		
 		<div class="tab-pane <c:if test='${active.equals("psw")}'>active</c:if>" id="security_tab">
 			<form class="form-horizontal" action="changePsw" method="post">
 				<div class="control-group">
@@ -271,5 +385,35 @@ $(document).ready(function() {
 		return false;
 	});
 });
+
+function showEduAddForm(){
+	//alert("111");
+	var eduList = document.getElementById("eduList");
+	eduList.style.display="none";
+	var eduForm = document.getElementById("eduForm");
+	eduForm.style.display="block";
+}
+
+function closeEduAddForm(){
+	var eduList = document.getElementById("eduList");
+	eduList.style.display="block";
+	var eduForm = document.getElementById("eduForm");
+	eduForm.style.display="none";
+}
+
+function showWorkAddForm(){
+	//alert("111");
+	var workList = document.getElementById("workList");
+	workList.style.display="none";
+	var workForm = document.getElementById("workForm");
+	workForm.style.display="block";
+}
+
+function closeWorkAddForm(){
+	var workList = document.getElementById("workList");
+	workList.style.display="block";
+	var workForm = document.getElementById("workForm");
+	workForm.style.display="none";
+}
 </script>
 		
