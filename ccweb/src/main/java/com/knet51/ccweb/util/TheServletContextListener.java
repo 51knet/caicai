@@ -45,20 +45,20 @@ public class TheServletContextListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		
 				
-		WebApplicationContext springContext = WebApplicationContextUtils
-				.getRequiredWebApplicationContext(sce.getServletContext());
-		springContext.getAutowireCapableBeanFactory().autowireBean(this);
-		
-		EntityManagerFactory factory = (EntityManagerFactory)springContext.getBean("entityManagerFactory");
-		logger.info(factory.toString());
-		this.em = factory.createEntityManager();
-		logger.info(em.toString());
-				
-		logger.info("userService==null "+(userService==null));
-		em.getTransaction().begin();
-		clearTestDataInDB();
-		setupTestData();		
-		em.getTransaction().commit();
+//		WebApplicationContext springContext = WebApplicationContextUtils
+//				.getRequiredWebApplicationContext(sce.getServletContext());
+//		springContext.getAutowireCapableBeanFactory().autowireBean(this);
+//		
+//		EntityManagerFactory factory = (EntityManagerFactory)springContext.getBean("entityManagerFactory");
+//		logger.info(factory.toString());
+//		this.em = factory.createEntityManager();
+//		logger.info(em.toString());
+//				
+//		logger.info("userService==null "+(userService==null));
+//		em.getTransaction().begin();
+//		clearTestDataInDB();
+//		setupTestData();		
+//		em.getTransaction().commit();
 	}
 
 	private void clearTestDataInDB() {
