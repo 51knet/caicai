@@ -29,14 +29,18 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
+import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.BlogService;
+import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.ResourceService;
+import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherHonorService;
@@ -74,7 +78,11 @@ public class HomeController {
 	private TeacherThesisService thesisService;
 	
 	@Autowired
+	private TeacherCourseService courseService;
+	
+	@Autowired
 	private FriendsRelateService friendsRelateService;
+	
 	@Autowired
 	private BlogService blogService;
 
@@ -158,28 +166,39 @@ public class HomeController {
 		
 		Page<Resource> pageResource = resourceService.findAllResouByUser(0, 5, user);
 		List<Resource> resourceList = pageResource.getContent();
+		Integer resourceCount = resourceService.listAllByUid(id).size();
 		model.addAttribute("resourceList", resourceList);
-		model.addAttribute("resourceCount", resourceList.size());
+		model.addAttribute("resourceCount", resourceCount);
 		
 		Page<TeacherHonor> pageHonor = honorService.findAllHonorByTeacher(0, 2, teacher);
 		List<TeacherHonor> honorList = pageHonor.getContent();
+		Integer honorCount = honorService.getAllHonorById(id).size();
 		model.addAttribute("honorList", honorList);
-		model.addAttribute("honorCount", honorList.size());
+		model.addAttribute("honorCount", honorCount);
 		
 		Page<TeacherPatent> pagePatent = patentService.findAllPatentByTeacher(0, 2, teacher);
 		List<TeacherPatent> patentList = pagePatent.getContent();
+		Integer patentCount = patentService.getAllPatentById(id).size();
 		model.addAttribute("patentList", patentList);
-		model.addAttribute("patentCount", patentList.size());
+		model.addAttribute("patentCount", patentCount);
 		
 		Page<TeacherThesis> pageThesis = thesisService.findAllThesisByTeacher(0, 2, teacher);
 		List<TeacherThesis> thesisList = pageThesis.getContent();
+		Integer thesisCount = thesisService.getAllThesisById(id).size();
 		model.addAttribute("thesisList", thesisList);
-		model.addAttribute("thesisCount", thesisList.size());
+		model.addAttribute("thesisCount", thesisCount);
 		
 		Page<TeacherProject> pageProject = projectService.findAllProjectByTeacher(0, 2, teacher);
 		List<TeacherProject> projectList = pageProject.getContent();
+		Integer projectCount = projectService.getAllProjectById(id).size();
 		model.addAttribute("projectList",projectList);
-		model.addAttribute("projectCount", projectList.size());
+		model.addAttribute("projectCount", projectCount);
+		
+		Page<TeacherCourse> pageCourse = courseService.findAllCourseByTeacher(0, 5, teacher);
+		List<TeacherCourse> courseList = pageCourse.getContent();
+		Integer courseCount = courseService.getAllTeacherCourseById(id).size();
+		model.addAttribute("courseList", courseList);
+		model.addAttribute("courseCount", courseCount);
 		
 		UserInfo userInfo = new UserInfo(user);
 		userInfo.setAnnouncement(announcement);
@@ -191,9 +210,12 @@ public class HomeController {
 		model.addAttribute("teacher_id", id);
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("role", userInfo.getTeacherRole());
-		model.addAttribute("followValue",followValue);
-		model.addAttribute("fansCount", fansCount);
-		model.addAttribute("hostCount", hostCount);
+		//model.addAttribute("followValue",followValue);
+		session.setAttribute("followValue", followValue);
+		//model.addAttribute("fansCount", fansCount);
+		session.setAttribute("fansCount",fansCount);
+		//model.addAttribute("hostCount", hostCount);
+		session.setAttribute("hostCount",hostCount);
 		return "teacher.basic";
 	}
 

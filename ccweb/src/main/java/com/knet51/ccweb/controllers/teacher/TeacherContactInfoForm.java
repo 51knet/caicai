@@ -1,12 +1,17 @@
 package com.knet51.ccweb.controllers.teacher;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 public class TeacherContactInfoForm {
-	
+	@NotEmpty
 	private String address;
+	@NotEmpty
 	private String cellphone;
 	private String phone;
+	@NotEmpty
 	private String fax;
+	@NotEmpty
 	private String qq;
 	private String msn;
 	

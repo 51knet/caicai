@@ -24,4 +24,12 @@ public class EduBackgroundRepositoryImpl implements EduBackgroundRepositoryCusto
 		
 	}
 
+
+
+	@Override
+	public List<EduBackground> findEduList(Long teacher_id) {
+		List<EduBackground> eduList = em.createQuery("from EduBackground where teacherid="+teacher_id).getResultList();
+		return eduList;
+	}
+
 }

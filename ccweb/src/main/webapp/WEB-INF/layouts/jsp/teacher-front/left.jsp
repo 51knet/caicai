@@ -23,12 +23,12 @@
 		<a href='<c:url value='/teacher/${teacherInfo.id}'></c:url>'>${teacherInfo.name }</a>
 	</div>
 	<div class="row-fluid">
-		<a href='<c:url value='/teacher/${teacherInfo.id}/fans/list'></c:url>'<c:url value='/teacher/${teacherInfo.id}'></c:url>'' >${fansCount } 粉丝</a> | 
-		<a href='<c:url value='/teacher/${teacherInfo.id}/host/list'></c:url>' >${hostCount } 关注</a>
+		<a href='<c:url value='/teacher/${teacherInfo.id}/fans/list'></c:url>'<c:url value='/teacher/${teacherInfo.id}'></c:url>'' >${sessionScope.fansCount } 粉丝</a> | 
+		<a href='<c:url value='/teacher/${teacherInfo.id}/host/list'></c:url>' >${sessionScope.hostCount } 关注</a>
 	</div>
 	<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.id != teacher_id) }">
 	<div class="row-fluid">
-	<c:if test="${followValue!=1}">
+	<c:if test="${sessionScope.followValue!=1}">
 		<a href='<c:url value='/addrelation?uid=${teacherInfo.id}'></c:url>'  id="attention" class="btn btn-success btn-small">+关注</a> 
 	</c:if>
 	<!-- <a href='<c:url value='/sendmessage?uid=${teacherInfo.id}'></c:url>' class="btn btn-small">发私信</a>  -->	

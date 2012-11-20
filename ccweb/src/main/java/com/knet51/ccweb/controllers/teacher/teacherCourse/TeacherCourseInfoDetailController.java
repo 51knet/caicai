@@ -39,7 +39,7 @@ public class TeacherCourseInfoDetailController {
 	@Autowired
 	private TeacherCourseService courseService;
 	@Autowired
-	private CourseResourceService courseResourceService;
+	private CourseResourceService courseResourceService; 
 	
 	@Autowired
 	private TeacherService teacherService;
@@ -106,7 +106,6 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/{course_id}/resource/create",method=RequestMethod.POST)
 	public String TeacherCourseResourceAdd(HttpSession session,Model model,
 			MultipartHttpServletRequest request,@PathVariable Long course_id) throws  Exception{
-		//System.out.println("###################"+course_id);
 		List<MultipartFile> files = request.getFiles("file");
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){

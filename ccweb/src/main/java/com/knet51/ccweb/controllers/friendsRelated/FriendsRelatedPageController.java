@@ -76,20 +76,20 @@ public class FriendsRelatedPageController {
 		
 		List<UserInfo> fansInfoList = relateService.getAllFansInfo(teacher_id);
 		
-		int followValue=relateService.getFollowById(teacher_id,userInf.getId());
+//		int followValue=relateService.getFollowById(teacher_id,userInf.getId());
 		
 		UserInfo userInfo = new UserInfo(user);
 		userInfo.setTeacher(teacher);
 		
-		Integer fansCount = relateService.getAllFans(teacher_id).size();
-		Integer hostCount =  relateService.getAllHost(teacher_id).size();
+//		Integer fansCount = relateService.getAllFans(teacher_id).size();
+//		Integer hostCount =  relateService.getAllHost(teacher_id).size();
 		
 		model.addAttribute("teacher_id", teacher_id);
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("role", userInfo.getTeacherRole());
-		model.addAttribute("followValue",followValue);
-		model.addAttribute("fansCount", fansCount);
-		model.addAttribute("hostCount", hostCount);
+//		model.addAttribute("followValue",followValue);
+//		model.addAttribute("fansCount", fansCount);
+//		model.addAttribute("hostCount", hostCount);
 		model.addAttribute("fansList", fansInfoList);
 		return "teacher.fans.list";
 	}
@@ -106,20 +106,20 @@ public class FriendsRelatedPageController {
 		
 		List<UserInfo> hostInfoList = relateService.getAllHostInfo(teacher_id);
 		
-		int followValue=relateService.getFollowById(teacher_id,userInf.getId());
+//		int followValue=relateService.getFollowById(teacher_id,userInf.getId());
 		
 		UserInfo userInfo = new UserInfo(user);
 		userInfo.setTeacher(teacher);
 		
-		Integer fansCount = relateService.getAllFans(teacher_id).size();
-		Integer hostCount =  relateService.getAllHost(teacher_id).size();
+//		Integer fansCount = relateService.getAllFans(teacher_id).size();
+//		Integer hostCount =  relateService.getAllHost(teacher_id).size();
 		
 		model.addAttribute("teacher_id", teacher_id);
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("role", userInfo.getTeacherRole());
-		model.addAttribute("followValue",followValue);
-		model.addAttribute("fansCount", fansCount);
-		model.addAttribute("hostCount", hostCount);
+//		model.addAttribute("followValue",followValue);
+//		model.addAttribute("fansCount", fansCount);
+//		model.addAttribute("hostCount", hostCount);
 		model.addAttribute("hostList", hostInfoList);
 		return "teacher.host.list";
 	}

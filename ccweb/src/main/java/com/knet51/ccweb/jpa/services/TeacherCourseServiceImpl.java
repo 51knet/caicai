@@ -36,7 +36,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 
 	@Override
 	public List<TeacherCourse> getAllTeacherCourseById(Long teacher_id) {
-		return null;
+		return teacherCourseRepository.getAllCourseById(teacher_id);
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package com.knet51.ccweb.jpa.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,5 +17,12 @@ public class TeacherCourseRepositoryImpl implements
 		em.merge(teacherCourse);
 		return teacherCourse;
 	}
+
+	@Override
+	public List<TeacherCourse> getAllCourseById(Long id) {
+		List<TeacherCourse> courseList = em.createQuery("from TeacherCourse where teacher_id="+id).getResultList();
+		return courseList;
+	}
+	
 
 }
