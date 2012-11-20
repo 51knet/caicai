@@ -15,4 +15,5 @@ public interface UserService {
 	List<User> findAllUsers();
 	boolean usableUrl(String url);
 	User findBySelfUrl(String url);
+	int getCountByEmail(String email);
 }

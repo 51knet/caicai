@@ -8,8 +8,8 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>com.knet51.ccweb.jpa.entities.Address</class>
 		<class>com.knet51.ccweb.jpa.entities.User</class>
-		<class>com.knet51.ccweb.jpa.entities.Student</class>
 		<class>com.knet51.ccweb.jpa.entities.Teacher</class>
+		<class>com.knet51.ccweb.jpa.entities.Student</class>
 		<class>com.knet51.ccweb.jpa.entities.Announcement</class>
 		<class>com.knet51.ccweb.jpa.entities.blog.BlogCategory</class>
 		<class>com.knet51.ccweb.jpa.entities.blog.BlogComment</class>

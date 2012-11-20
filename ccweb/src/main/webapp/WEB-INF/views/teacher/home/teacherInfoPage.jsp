@@ -21,7 +21,7 @@
 					<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 					<div class="controls">
 						<input type="text" id="name" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.name}" >
-						<span class="help-block"><form:errors path="name"></form:errors></span>
+						<span class="help-inline"><form:errors path="name"></form:errors></span>
 					</div>
 				</div>
 				<div class="control-group" id="gender">
@@ -95,17 +95,19 @@
 			</form>
 		</div>
 		<div class="tab-pane <c:if test='${active.equals("contact")}'>active</c:if>" id="contact_info_tab">
-			<form class="form-horizontal" action="contactInfo" method="post">
-				<div class="control-group">
+			<form class="form-horizontal" id="relation_info_form" action="contactInfo" method="post">
+				<div class="control-group" id="address">
 					<label class="control-label" for="address">地址</label>
 					<div class="controls">
 						<input type="text" id="address" name="address" placeholder="地址" value="${sessionScope.sessionUserInfo.user.address}">
+					    <span class="help-inline"></span>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="cellphone">
 					<label class="control-label" for="cellphone">手机</label>
 					<div class="controls">
 						<input type="text" id="cellphone" name="cellphone" placeholder="手机号码" value="${sessionScope.sessionUserInfo.user.cell_phone}">
+						<span class="help-inline"></span>
 					</div>
 				</div>
 				<div class="control-group">
@@ -120,10 +122,11 @@
 						<input type="text" id="fax" name="fax" placeholder="传真号码" value="${sessionScope.sessionUserInfo.user.fax}">
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="qq">
 					<label class="control-label" for="qq">QQ</label>
 					<div class="controls">
 						<input type="text" id="qq" name="qq" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
+						<span class="help-inline"></span>
 					</div>
 				</div>
 				<div class="control-group">
@@ -362,7 +365,6 @@ $(document).ready(function() {
 		// Ajax validation
 		var $inputs = $form.find('input');
 		var data = collectFormData($inputs);
-
 		$.post('personalInfoAJAX', data, function(response) {
 			$form.find('.control-group').removeClass('error');
 			$form.find('.help-inline').empty();
@@ -378,6 +380,42 @@ $(document).ready(function() {
 			} else {
 				$form.unbind('submit');
 				$form.submit();
+			}
+		}, 'json');
+
+		e.preventDefault();
+		return false;
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	var $relation_form = $('#relation_info_form');
+	$relation_form.bind('submit', function(e) {
+		// Ajax validation
+		var $inputs = $relation_form.find('input');
+		var data = collectFormData($inputs);
+		$.post('contactInfoAJAX', data, function(response) {
+			$relation_form.find('.control-group').removeClass('error');
+			$relation_form.find('.help-inline').empty();
+			$relation_form.find('.alert').remove();
+
+			if (response.status == 'FAIL') {
+				for (var i = 0; i < response.errorMessageList.length; i++) {
+					var item = response.errorMessageList[i];
+					var $controlGroup = $('#' + item.fieldName);
+					$controlGroup.addClass('error');
+					$controlGroup.find('.help-inline').html(item.message);
+				}
+			} else {
+				$relation_form.unbind('submit');
+				$relation_form.submit();
 			}
 		}, 'json');
 

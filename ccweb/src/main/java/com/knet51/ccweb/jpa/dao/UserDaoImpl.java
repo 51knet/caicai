@@ -105,6 +105,16 @@ public class UserDaoImpl implements UserDao {
 		return userBean;
 	}
 
+	@Override
+	@SuppressWarnings("unchecked")
+	public int getcountByEmail(String email) {
+		List<User> list= em.createQuery("select email from User u where u.email='"+email+"'").getResultList();
+		if(list.size()>0){
+			return 1;
+		}
+		return 0;
+	}
+
 	// public User findByEmailAddress(EmailAddress emailAddress) {
 	//
 	// TypedQuery<User> query =
@@ -114,5 +124,6 @@ public class UserDaoImpl implements UserDao {
 	//
 	// return query.getSingleResult();
 	// }
+	
 
 }

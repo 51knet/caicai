@@ -1,5 +1,9 @@
 package com.knet51.ccweb.controllers.register;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -8,9 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.google.gson.Gson;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.mailSender.MailSender;
@@ -30,7 +38,7 @@ public class CommonRegisterController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/register/common", method = RequestMethod.POST)
+	@RequestMapping(value = "register/common", method = RequestMethod.POST)
 	public String commonRegister(@Valid CommonRegisterForm commonRegisterForm,
 			BindingResult validResult, Model model) {
 		logger.info("#### commonRegisterController ####");
@@ -67,4 +75,15 @@ public class CommonRegisterController {
 			}
 		}
 	}
+	@RequestMapping(value="/register/email", method = RequestMethod.POST)
+	public void checkEmail(@RequestParam("email") String email,HttpServletResponse response) throws Exception{
+		PrintWriter out=response.getWriter();
+		int count=userService.getCountByEmail(email);
+		out.write(count);
+		out.flush();
+		out.close();
+	}
+	
+	
+	
 }
