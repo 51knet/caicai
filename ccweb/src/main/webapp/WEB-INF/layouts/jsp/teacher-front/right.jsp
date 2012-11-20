@@ -83,6 +83,7 @@
 				<tr><td colspan="3">无内容</td></tr>
 			</c:otherwise>
 		</c:choose>
+		<c:if test="${projectCount > 2}"><tr><td align="right" colspan="3"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/project/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
 	</table><br>
 				&nbsp;&nbsp;<b>专利</b>
 	<table class="table">
@@ -106,7 +107,7 @@
 				<tr><td colspan="4">无内容</td></tr>
 			</c:otherwise>
 		</c:choose>
-				<c:if test="${patentCount > 2}"><tr><td align="right"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/patent/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
+			<c:if test="${patentCount > 2}"><tr><td align="right" colspan="4"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/patent/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
 	</table><br>
 		&nbsp;&nbsp;<b>荣誉</b>
 	<table class="table">
@@ -132,7 +133,7 @@
 				<tr><td colspan="2">无内容</td></tr>
 			</c:otherwise>
 		</c:choose>
-				<c:if test="${honorCount > 2}"><tr><td align="right"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/honor/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
+				<c:if test="${honorCount > 2}"><tr><td align="right" colspan="2"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/honor/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
 	</table>
 </div>
 <!-- teacher resource -->
