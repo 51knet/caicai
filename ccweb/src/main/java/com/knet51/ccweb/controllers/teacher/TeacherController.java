@@ -1,5 +1,13 @@
 package com.knet51.ccweb.controllers.teacher;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -43,6 +51,24 @@ public class TeacherController {
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/details")
 	public String detailInfoPage(@RequestParam("active") String active,Model model,HttpSession session) {
+		String universityFilePath = "";
+		List<String> universityList = new ArrayList<String>();
+		BufferedReader br;
+		universityFilePath = session.getServletContext().getRealPath("/");
+		universityFilePath += "resources\\university\\university.property";
+		try {
+			br = new BufferedReader(new InputStreamReader(
+					new FileInputStream(universityFilePath)));
+			String data = "";
+			while ((data = br.readLine()) != null) {
+				universityList.add(data);
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			universityList.add(" ");
+		} catch (IOException e) {
+			universityList.add(" ");
+		}
 		if(active == null || active.equals("")){
 			active = "personal";
 		}
@@ -52,6 +78,7 @@ public class TeacherController {
 			model.addAttribute("eduInfo", eduInfo);
 		}
 		model.addAttribute("active", active);
+		model.addAttribute("universityList", universityList);
 		return "admin.teacher.details";
 	}
 	

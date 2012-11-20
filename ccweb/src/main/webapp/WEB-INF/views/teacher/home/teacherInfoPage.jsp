@@ -34,23 +34,9 @@
 				<div class="control-group">
 					<label class="control-label" for="college"><i class="icon-star"></i> 所属高校</label>
 					<div class="controls">
-						<input type="text" id="college" name="college" placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["复旦大学","同济大学","上海交通大学","上海财金大学","上海外国语大学","上海大学"]'>
+						<input type="text" id="college" name="college" placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="4"
+							data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'>
 					</div>
-					<!--  
-					<div class="controls">
-						<select class="span3" name="university_province">
-							<option>上海</option>
-						</select>
-						<select class="span3" name="university_city">
-							<option>上海</option>
-						</select>
-						<select class="span3" name="university">
-							<option>复旦大学</option>
-							<option>同济大学</option>
-							<option>交通大学</option>
-						</select>
-					</div>
-					-->
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="school"><i class="icon-star"></i> 所属院系</label>
