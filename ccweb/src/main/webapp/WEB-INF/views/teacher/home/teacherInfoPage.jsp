@@ -7,15 +7,15 @@
 <hr />
 <div class="tabbable">
 	<ul class="nav nav-tabs">
-		<li <c:if test='${active.equals("personal")}'>class="active"</c:if>><a href="#personal_info_tab" data-toggle="tab">个人信息</a></li>
-		<li <c:if test='${active.equals("contact")}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>
-		<li <c:if test='${active.equals("edu")}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
-		<li <c:if test='${active.equals("work")}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
-		<li <c:if test='${active.equals("psw")}'>class="active"</c:if>><a href="#security_tab" data-toggle="tab">账号安全</a></li>
-		<li <c:if test='${active.equals("url")}'>class="active"</c:if>><a href="#p_url_tab" data-toggle="tab">个性域名</a></li>
+		<li <c:if test='${active == "personal"}'>class="active"</c:if>><a href="#personal_info_tab" data-toggle="tab">个人信息</a></li>
+		<li <c:if test='${active == "contact"}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>
+		<li <c:if test='${active == "edu"}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
+		<li <c:if test='${active == "work"}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
+		<li <c:if test='${active == "psw"}'>class="active"</c:if>><a href="#security_tab" data-toggle="tab">账号安全</a></li>
+		<li <c:if test='${active == "url"}'>class="active"</c:if>><a href="#p_url_tab" data-toggle="tab">个性域名</a></li>
 	</ul>
 	<div class="tab-content">
-		<div class="tab-pane <c:if test='${active.equals("personal")}'>active</c:if>" id="personal_info_tab">
+		<div class="tab-pane <c:if test='${active == "personal"}'>active</c:if>" id="personal_info_tab">
 			<form id="personal_info_form" action="personalInfo" class="form-horizontal" method="post">
 				<div class="control-group" id="name">
 					<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
@@ -79,7 +79,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="tab-pane <c:if test='${active.equals("contact")}'>active</c:if>" id="contact_info_tab">
+		<div class="tab-pane <c:if test='${active == "contact"}'>active</c:if>" id="contact_info_tab">
 			<form class="form-horizontal" id="relation_info_form" action="contactInfo" method="post">
 				<div class="control-group" id="address">
 					<label class="control-label" for="address">地址</label>
@@ -129,7 +129,7 @@
 		</div>
 		
 		<!-- Edu Info -->
-		<div class="tab-pane  <c:if test='${active.equals("edu")}'>active</c:if>" id="edu_bg_tab">
+		<div class="tab-pane  <c:if test='${active == "edu"}'>active</c:if>" id="edu_bg_tab">
 			<div id="eduForm" style="display: none;">
 				<form class="form-horizontal" action="eduInfo" method="post">
 					<div class="control-group">
@@ -210,7 +210,7 @@
 		</div>
 		
 		<!-- work exp  -->
-		<div class="tab-pane <c:if test='${active.equals("work")}'>active</c:if>" id="work_exp_tab">
+		<div class="tab-pane <c:if test='${active == "work"}'>active</c:if>" id="work_exp_tab">
 			
 			<div id="workForm" style="display: none;">
 				<form class="form-horizontal" action="workInfo" method="post">
@@ -290,7 +290,7 @@
 			
 		</div>
 		
-		<div class="tab-pane <c:if test='${active.equals("psw")}'>active</c:if>" id="security_tab">
+		<div class="tab-pane <c:if test='${active == "psw"}'>active</c:if>" id="security_tab">
 			<form class="form-horizontal" action="changePsw" method="post">
 				<div class="control-group">
 					<label class="control-label" for="ori_psw">当前密码</label>
@@ -317,7 +317,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="tab-pane <c:if test='${active.equals("url")}'>active</c:if>" id="p_url_tab">
+		<div class="tab-pane <c:if test='${active == "url"}'>active</c:if>" id="p_url_tab">
 			<form class="form-horizontal" action="selfurl" method="post">
 				<div class="control-group">
 					<label class="control-label" for="p_url">个性域名</label>
