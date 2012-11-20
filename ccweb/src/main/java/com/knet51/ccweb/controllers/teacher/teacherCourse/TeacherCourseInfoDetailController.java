@@ -27,6 +27,7 @@ import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
+import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 
 
@@ -40,6 +41,9 @@ public class TeacherCourseInfoDetailController {
 	@Autowired
 	private CourseResourceService courseResourceService; 
 	
+	@Autowired
+	private TeacherService teacherService;
+	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/new",method=RequestMethod.POST)
 	public String TeacherCourseAddInfo(@Valid TeacherCourseInfoForm courseInfoForm,
@@ -47,10 +51,10 @@ public class TeacherCourseInfoDetailController {
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "admin.teacher.course.list";
+			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Teacher teacher = userInfo.getTeacher();
+			Teacher teacher = teacherService.findOne(userInfo.getId());
 			TeacherCourse course = new TeacherCourse();
 			String courseName = courseInfoForm.getCourseName();
 			String courseDesc = courseInfoForm.getCourseDesc();
@@ -74,7 +78,7 @@ public class TeacherCourseInfoDetailController {
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "/admin/teacher/course/edit/"+course_id;
+			return "redirect:/admin/teacher/course/edit/"+course_id;
 		}else{
 			TeacherCourse course = courseService.findOneById(course_id);
 			String courseName = courseInfoForm.getCourseName();

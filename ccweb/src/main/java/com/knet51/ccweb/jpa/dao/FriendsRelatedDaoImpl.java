@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -37,18 +36,22 @@ public class FriendsRelatedDaoImpl implements FriendsRelatedDao {
 		FriendsRelated friendsRelated = em.find(FriendsRelated.class, id);
 		em.remove(friendsRelated);
 	}
-
+	/* get the fans'list */
 	@Override
 	public List<FriendsRelated> getAllFollow(Long hostId) {
 		@SuppressWarnings("unchecked")
-		List<FriendsRelated> follow = em.createQuery("from Friends_Related where type=1 and  host_id="+hostId).getResultList();
+		List<FriendsRelated> follow = em.createQuery("from FriendsRelated where type=1 and  host_id="+hostId).getResultList();
 		return follow;
 	}
-
+	
+	/* get the hosts'list*/
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<FriendsRelated> getAllHost(Long followId) {
-		List<FriendsRelated> host = em.createQuery("from Friends_Related where type=1 and follow_id="+followId).getResultList();
+		List<FriendsRelated> host = em.createQuery("from FriendsRelated where type=1 and follow_id="+followId).getResultList();
+		for (int i = 0; i < host.size(); i++) {
+			//System.out.println("++++++++++"+host.get(i).getHost_id()+"++++++++++++++++");
+		}
 		return host;
 	}
 	/**

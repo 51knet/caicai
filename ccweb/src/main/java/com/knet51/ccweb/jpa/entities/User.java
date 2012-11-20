@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.knet51.ccweb.jpa.entities.resource.Resource;
 
 /**
@@ -18,6 +20,7 @@ import com.knet51.ccweb.jpa.entities.resource.Resource;
  */
 @Entity
 @Table(name = "Usr")
+@JsonIgnoreProperties(value={"announcement","resources","receiveMsg","sendMsg"})
 public class User extends AbstractEntity {
 
 	@Override

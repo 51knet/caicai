@@ -1,10 +1,13 @@
 package com.knet51.ccweb.beans;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 
+@JsonIgnoreProperties(value={"teacherRole"})
 public class UserInfo {
 
 	private User user;
@@ -88,16 +91,23 @@ public class UserInfo {
 		super();
 	}
 
-//	private void initAnnouncement() {
-//		Long uid = this.user.getId();
-//		Announcement announcement;
-//		try {
-//			announcement = annoService.findLatestByUid(uid);
-//			this.announcement = announcement;
-//		} catch (Exception e) {
-//			this.announcement = null;
-//		}
-//
-//	}
+	public String getFax(){
+		return this.user.getFax();
+	}
 	
+	public String getAddress(){
+		return this.user.getAddress();
+	}
+	
+	public String getPhone(){
+		return this.user.getFix_phone();
+	}
+	
+	public String getCollege(){
+		return this.teacher.getCollege();
+	}
+	
+	public String getSchool(){
+		return this.teacher.getSchool();
+	}
 }

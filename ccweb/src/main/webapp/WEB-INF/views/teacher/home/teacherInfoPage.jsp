@@ -7,34 +7,35 @@
 <hr />
 <div class="tabbable">
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="#personal_info_tab" data-toggle="tab">个人信息</a></li>
-		<li><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>
-		<li><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
-		<li><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
-		<li><a href="#security_tab" data-toggle="tab">账号安全</a></li>
-		<li><a href="#p_url_tab" data-toggle="tab">个性域名</a></li>
+		<li <c:if test='${active.equals("personal")}'>class="active"</c:if>><a href="#personal_info_tab" data-toggle="tab">个人信息</a></li>
+		<li <c:if test='${active.equals("contact")}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>
+		<li <c:if test='${active.equals("edu")}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
+		<li <c:if test='${active.equals("")}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
+		<li <c:if test='${active.equals("psw")}'>class="active"</c:if>><a href="#security_tab" data-toggle="tab">账号安全</a></li>
+		<li <c:if test='${active.equals("url")}'>class="active"</c:if>><a href="#p_url_tab" data-toggle="tab">个性域名</a></li>
 	</ul>
 	<div class="tab-content">
-		<div class="tab-pane active" id="personal_info_tab">
-			<form action="personalInfo" class="form-horizontal" method="post">
-				<div class="control-group">
+		<div class="tab-pane <c:if test='${active.equals("personal")}'>active</c:if>" id="personal_info_tab">
+			<form id="personal_info_form" action="personalInfo" class="form-horizontal" method="post">
+				<div class="control-group" id="name">
 					<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 					<div class="controls">
-						<input type="text" id="name" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.user.name}" >
+						<input type="text" id="name" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.name}" >
 						<span class="help-block"><form:errors path="name"></form:errors></span>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="gender">
 					<label class="control-label" for="gender"><i class="icon-star"></i> 性别</label>
 					<div class="controls">
-						<label class="radio"> <input type="radio" name="gender" id="genderMale" value="male" checked>男</label>
-						<label class="radio"> <input type="radio" name="gender" id="genderFemale" value="female">女</label>
+						<label class="radio"> <input type="radio" name="gender" id="genderMale" value="男" checked>男</label>
+						<label class="radio"> <input type="radio" name="gender" id="genderFemale" value="女">女</label>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="college">
 					<label class="control-label" for="college"><i class="icon-star"></i> 所属高校</label>
 					<div class="controls">
 						<input type="text" id="college" name="college" placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["复旦大学","同济大学","上海交通大学","上海财金大学","上海外国语大学","上海大学"]'>
+						<span class="help-inline"><form:errors path="college" /></span>
 					</div>
 					<!--  
 					<div class="controls">
@@ -52,10 +53,11 @@
 					</div>
 					-->
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="school">
 					<label class="control-label" for="school"><i class="icon-star"></i> 所属院系</label>
 					<div class="controls">
 						<input type="text" id="school" name="school" placeholder="所属院系" value="${sessionScope.sessionUserInfo.teacher.school}" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["计算机学院","财金学院","女子学院"]'>
+						<span class="help-inline"><form:errors path="school" /></span>
 					</div>
 					<!--  
 					<div class="controls">
@@ -67,19 +69,19 @@
 					</div>
 					-->
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="major">
 					<label class="control-label" for="major">教授课程</label>
 					<div class="controls">
 						<input type="text" id="major" name="major" value="${sessionScope.sessionUserInfo.teacher.major}" placeholder="教授课程">
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="title">
 					<label class="control-label" for="title">职称</label>
 					<div class="controls">
 						<input type="text" id="title" name="title" value="${sessionScope.sessionUserInfo.teacher.title}" placeholder="职称">
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="role">
 					<label class="control-label" for="role">导师类别</label>
 					<div class="controls">
 						<input type="text" id="role" name="role" value="${sessionScope.sessionUserInfo.teacher.role}" placeholder="导师类别">
@@ -92,7 +94,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="tab-pane" id="contact_info_tab">
+		<div class="tab-pane <c:if test='${active.equals("contact")}'>active</c:if>" id="contact_info_tab">
 			<form class="form-horizontal" action="contactInfo" method="post">
 				<div class="control-group">
 					<label class="control-label" for="address">地址</label>
@@ -137,13 +139,56 @@
 				</div>
 			</form>
 		</div>
-		<div class="tab-pane" id="edu_bg_tab">
-			<p>教育背景页面</p>
+		<div class="tab-pane  <c:if test='${active.equals("edu")}'>active</c:if>" id="edu_bg_tab">
+			
+			<form class="form-horizontal" action="eduInfo" method="post">
+				<div class="control-group">
+					<label class="control-label" for="school">学校</label>
+					<div class="controls">
+						<input type="text" id="school" name="school" placeholder="学校名称" value="${eduInfo.school }">
+					</div>
+				</div>
+			
+				<div class="control-group">
+					<label class="control-label" for="college">学院</label>
+					<div class="controls">
+						<input type="text" id="college" name="college" placeholder="学院名称"  value="${eduInfo.college}">
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="degree">学历</label>
+					<div class="controls">
+						<input type="text" id="degree" name="degree" placeholder="学历" value="${eduInfo.degree }" >
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="startTime">开始时间</label>
+					<div class="controls">
+						<input type="text" id="startTime" name="startTime" placeholder="开始时间"  value="${eduInfo.startTime }">
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label" for="endTime">结束时间</label>
+					<div class="controls">
+						<input type="text" id="endTime" name="endTime" placeholder="结束时间"  value="${eduInfo.endTime }">
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn btn-large btn-success">保 存</button>
+					</div>
+				</div>
+			</form>
+			
 		</div>
 		<div class="tab-pane" id="work_exp_tab">
 			<p>工作经历页面</p>
 		</div>
-		<div class="tab-pane" id="security_tab">
+		<div class="tab-pane <c:if test='${active.equals("psw")}'>active</c:if>" id="security_tab">
 			<form class="form-horizontal" action="changePsw" method="post">
 				<div class="control-group">
 					<label class="control-label" for="ori_psw">当前密码</label>
@@ -170,7 +215,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="tab-pane" id="p_url_tab">
+		<div class="tab-pane <c:if test='${active.equals("url")}'>active</c:if>" id="p_url_tab">
 			<form class="form-horizontal" action="selfurl" method="post">
 				<div class="control-group">
 					<label class="control-label" for="p_url">个性域名</label>
@@ -187,3 +232,44 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+function collectFormData(fields) {
+	var data = {};
+	for (var i = 0; i < fields.length; i++) {
+		var $item = $(fields[i]);
+		data[$item.attr('name')] = $item.val();
+	}
+	return data;
+}
+
+$(document).ready(function() {
+	var $form = $('#personal_info_form');
+	$form.bind('submit', function(e) {
+		// Ajax validation
+		var $inputs = $form.find('input');
+		var data = collectFormData($inputs);
+
+		$.post('personalInfoAJAX', data, function(response) {
+			$form.find('.control-group').removeClass('error');
+			$form.find('.help-inline').empty();
+			$form.find('.alert').remove();
+
+			if (response.status == 'FAIL') {
+				for (var i = 0; i < response.errorMessageList.length; i++) {
+					var item = response.errorMessageList[i];
+					var $controlGroup = $('#' + item.fieldName);
+					$controlGroup.addClass('error');
+					$controlGroup.find('.help-inline').html(item.message);
+				}
+			} else {
+				$form.unbind('submit');
+				$form.submit();
+			}
+		}, 'json');
+
+		e.preventDefault();
+		return false;
+	});
+});
+</script>
+		

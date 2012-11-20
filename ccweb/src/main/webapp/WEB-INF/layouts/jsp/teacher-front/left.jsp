@@ -18,12 +18,13 @@
 <div class="row-fluid centralize round">
 	<div class="round header"><h5> </h5></div>
 	<div class="row-fluid">
-		<img src='${teacherInfo.photoUrl}' height='80px' width='60px' align="middle">
+		<!-- <img src='${teacherInfo.photoUrl}' height='80px' width='60px' align="middle"> -->
+		<img width="90px" height="90px" src="http://dummyimage.com/90x90" style="margin: 15px 0px;">
 		<a href='<c:url value='/teacher/${teacherInfo.id}'></c:url>'>${teacherInfo.name }</a>
 	</div>
 	<div class="row-fluid">
-		<a href='#' >2 粉丝</a> | 
-		<a href='#' >2 关注</a>
+		<a href='<c:url value='/teacher/${teacherInfo.id}/fans/list'></c:url>'<c:url value='/teacher/${teacherInfo.id}'></c:url>'' >${fansCount } 粉丝</a> | 
+		<a href='<c:url value='/teacher/${teacherInfo.id}/host/list'></c:url>' >${hostCount } 关注</a>
 	</div>
 	<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.id != teacher_id) }">
 	<div class="row-fluid">
@@ -40,7 +41,15 @@
 	<div class="row-fluid">
 		<div class="round header"><h5>个人信息</h5></div>
 		<hr/>
-		...
+		<address>
+		  	<abbr>姓名:</abbr> ${teacherInfo.name}
+		  	<br>
+		  	<abbr>性别:</abbr> ${teacherInfo.gender}
+		  	<br>
+		  	<abbr>院校:</abbr> ${teacherInfo.college}
+		  	<br>
+		  	<abbr>院系:</abbr> ${teacherInfo.school}
+		</address>
 	</div>
 </div>
 
@@ -49,7 +58,15 @@
 		<h5>联系方式</h5>
 	</div>
 	<hr/>
-	${teacherInfo.announcementContext}
+	<address style="text-align: left; margin-left: 40px; margin-right: 40px;">
+	  	<abbr title="地址"><i class="icon-home"></i>:</abbr> ${teacherInfo.address}
+	  	<br>
+	  	<abbr title="传真"><i class="icon-print"></i>:</abbr> ${teacherInfo.fax}
+	  	<br>
+	  	<abbr title="电话"><i class="icon-headphones"></i>:</abbr> ${teacherInfo.phone}
+	  	<br>
+	  	<abbr title="电邮"><i class="icon-envelope"></i>:</abbr> <a href="mailto:#">${teacherInfo.email}</a>
+	</address>
 </div>
 
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -44,17 +44,18 @@ public class TeacherAnnoDetailInfoController {
 		
 		if(validResult.hasErrors()){
 			logger.info("annoDetailInfoForm Validation Failed " + validResult);
-			return "/admin/teacher/announcement/list";
+			return "redirect:/admin/teacher/announcement/list";
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			User user = userInfo.getUser();
+			Long user_id = userInfo.getId();
+			User user = userService.findOne(user_id);
 			//System.out.println("++++++++++++++++"+user.getId()+"+++++++++++++++");
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();
 			Announcement announcement = new Announcement();
 			announcement.setTitle(title);
-			System.out.println(title);
+			//System.out.println(title);
 			announcement.setContent(content);
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String date = format.format(new Date());
@@ -78,7 +79,7 @@ public class TeacherAnnoDetailInfoController {
 	public String teacherAnnoUpdate(@RequestParam("id") Long id,@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm,
 			BindingResult validResult, HttpSession session,Model m){
 		if(validResult.hasErrors()){
-			return "/admin/teacher/announcement/view/"+id;
+			return "redirect:/admin/teacher/announcement/view/"+id;
 		}else{	
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();

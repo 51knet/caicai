@@ -52,7 +52,7 @@ public class TeacherResouDetailInfoController {
 				Resource resource = new Resource();
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
 				String fileName = files.get(i).getOriginalFilename();
-				String realPath = session.getServletContext().getRealPath("/WEB-INF/temp/");
+				String realPath = session.getServletContext().getRealPath("/temp/");
 				resource.setDescription(desc);
 				resource.setName(fileName);
 				ResourceType resourceType = resourceTypeService.findOneById(value); 
@@ -104,7 +104,7 @@ public class TeacherResouDetailInfoController {
 		String typeName = teacherResouTypeInfo.getTypeName();
 		if (validResult.hasErrors()) {
 			 logger.info("detailInfoForm Validation Failed " + validResult);
-			 return "/admin/teacher/resource/new";
+			 return "redirect:/admin/teacher/resource/new";
 		} else {
 			ResourceType resourceType = new ResourceType();
 			resourceType.setTypeName(typeName);
@@ -128,7 +128,7 @@ public class TeacherResouDetailInfoController {
 		String typeName = teacherResouTypeInfo.getTypeName();
 		if (validResult.hasErrors()) {
 			 logger.info("detailInfoForm Validation Failed " + validResult);
-			 return "/admin/teacher/resource/type/new";
+			 return "redirect:/admin/teacher/resource/type/list";
 		} else {
 			ResourceType resourceType = new ResourceType();
 			resourceType.setTypeName(typeName);

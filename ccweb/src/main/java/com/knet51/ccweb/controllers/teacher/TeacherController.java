@@ -13,14 +13,20 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.services.EduBackgroundService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
+import com.knet51.ccweb.util.ajax.ValidationResponse;
 
 /**
  * Handles requests for the application home page.
@@ -35,15 +41,27 @@ public class TeacherController {
 	private TeacherService teacherService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private EduBackgroundService eduBackgroundService;
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/details")
-	public String detailInfoPage(@RequestParam("active") String active,Model model) {
+	public String detailInfoPage(@RequestParam("active") String active,Model model,HttpSession session) {
 		if(active == null || active.equals("")){
 			active = "personal";
 		}
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
+		if(eduInfo !=null){
+			model.addAttribute("eduInfo", eduInfo);
+		}
 		model.addAttribute("active", active);
 		return "admin.teacher.details";
+	}
+	
+	@RequestMapping(value = "/admin/teacher/personalInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse processFormAjaxJson(@Valid TeacherPersonalInfoForm personalInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
 	}
 	
 	@Transactional
@@ -54,7 +72,7 @@ public class TeacherController {
 		
 		if (validResult.hasErrors()) {
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "admin.teacher.details";
+			return "redirect:/admin/teacher/details?active=personal";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -85,7 +103,7 @@ public class TeacherController {
 		
 		if (validResult.hasErrors()) {
 			logger.info("contactInfo Validation Failed " + validResult);
-			return "admin.teacher.details";
+			return "redirect:/admin/teacher/details?active=contact";
 		} else {
 			logger.info("### contactInfo Validation passed. ###");
 
@@ -111,6 +129,42 @@ public class TeacherController {
 	}
 	
 	@Transactional
+	@RequestMapping(value = "/admin/teacher/eduInfo")
+	public String eduInfo(@Valid TeacherEduInfoForm eduInfoForm,
+			BindingResult validResult, HttpSession session) {
+		logger.info("#### contactInfo InfoController ####");
+		
+		if (validResult.hasErrors()) {
+			logger.info("eduInfo Validation Failed " + validResult);
+			return "redirect:/admin/teacher/details?active=edu";
+		} else {
+			logger.info("### contactInfo Validation passed. ###");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
+			if(eduInfo == null){
+				EduBackground edu = new EduBackground();
+				edu.setCollege(eduInfoForm.getCollege());
+				edu.setSchool(eduInfoForm.getSchool());
+				edu.setDegree(eduInfoForm.getDegree());
+				edu.setStartTime(eduInfoForm.getStartTime());
+				edu.setEndTime(eduInfoForm.getEndTime());
+				edu.setTeacherId(userInfo.getId());
+				eduBackgroundService.createEduBackground(edu);
+			}else{
+				eduInfo.setCollege(eduInfoForm.getCollege());
+				eduInfo.setSchool(eduInfoForm.getSchool());
+				eduInfo.setDegree(eduInfoForm.getDegree());
+				eduInfo.setStartTime(eduInfoForm.getStartTime());
+				eduInfo.setEndTime(eduInfoForm.getEndTime());
+				eduInfo.setTeacherId(userInfo.getId());
+				eduBackgroundService.updateEduBackground(eduInfo);
+			}
+			
+			return "redirect:/admin/teacher/details?active=edu";
+		}
+	}
+	
+	@Transactional
 	@RequestMapping(value = "/admin/teacher/changePsw")
 	public String changePsw(@Valid TeacherPswForm pswForm,
 			BindingResult validResult, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
@@ -118,7 +172,7 @@ public class TeacherController {
 		
 		if (validResult.hasErrors()) {
 			logger.info("changePsw Validation Failed " + validResult);
-			return "admin.teacher.details";
+			return "redirect:/admin/teacher/details?active=psw";
 		} else {
 			logger.info("### changePsw Validation passed. ###");
 
@@ -149,7 +203,7 @@ public class TeacherController {
 
 		if (validResult.hasErrors()) {
 			logger.info("selfUrlForm Validation Failed " + validResult);
-			return "admin.teacher.selfurl";
+			return "redirect:/admin/teacher/details?active=url";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
 			String url = selfUrlForm.getUrl();

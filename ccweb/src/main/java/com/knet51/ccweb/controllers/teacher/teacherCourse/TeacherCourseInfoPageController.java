@@ -21,6 +21,7 @@ import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
+import com.knet51.ccweb.jpa.services.TeacherService;
 
 @Controller
 public class TeacherCourseInfoPageController {
@@ -30,6 +31,9 @@ public class TeacherCourseInfoPageController {
 	private TeacherCourseService teacherCourseService;
 	
 	@Autowired
+	private TeacherService teacherService;
+	
+	@Autowired
 	private CourseResourceService courseResourceService;
 	
 	@RequestMapping(value="/admin/teacher/course/list")
@@ -37,7 +41,7 @@ public class TeacherCourseInfoPageController {
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
 		logger.info("#####Into TeacherCourseInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Teacher teacher = userInfo.getTeacher();
+		Teacher teacher = teacherService.findOne(userInfo.getId());
 		Page<TeacherCourse> onePage =teacherCourseService.findAllCourseByTeacher(pageNumber, pageSize, teacher);
 		model.addAttribute("page", onePage);
 		return "admin.teacher.course.list";
