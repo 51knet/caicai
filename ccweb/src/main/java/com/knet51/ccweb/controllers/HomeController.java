@@ -1,12 +1,9 @@
 package com.knet51.ccweb.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Locale;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +25,6 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
-import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
@@ -37,7 +32,6 @@ import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.BlogService;
-import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
@@ -61,28 +55,28 @@ public class HomeController {
 
 	@Autowired
 	private TeacherService teacherService;
-	
+
 	@Autowired
 	private ResourceService resourceService;
-	
+
 	@Autowired
 	private TeacherHonorService honorService;
-	
+
 	@Autowired
 	private TeacherProjectService projectService;
-	
+
 	@Autowired
 	private TeacherPatentService patentService;
-	
+
 	@Autowired
 	private TeacherThesisService thesisService;
-	
+
 	@Autowired
 	private TeacherCourseService courseService;
-	
+
 	@Autowired
 	private FriendsRelateService friendsRelateService;
-	
+
 	@Autowired
 	private BlogService blogService;
 
@@ -93,31 +87,25 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model, HttpSession session, HttpServletRequest request) {
+	public String home(Locale locale, Model model, HttpSession session,
+			HttpServletRequest request) {
 		/*
-		Cookie[] cookies = request.getCookies();
-		String email = null;
-		if (cookies != null) {
-			for (Cookie cookie : cookies) {
-				if(cookie.getName().equals(GlobalDefs.COOKIE_IDENTITY)) {
-					String val = cookie.getValue(); // the value in cookie was encoded
-					email = new String(Base64.decode(val.getBytes()), Charset.forName("US-ASCII"));
-					logger.debug("cookie encodedEmail:"+val+";decodedEmail:"+email);
-					break;
-				}
-			}
-			if (email !=  null) {
-				User user = userService.findByEmailAddress(email);
-				// confirmed users;
-				UserInfo userInfo = new UserInfo(user);
-				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-	
-				return "redirect:/admin";
-			}
-		}
-		*/ 
-		// we can achieve auto login through above code, 
-		// comment it out for now since I am not quite clear how we should control the auto login
+		 * Cookie[] cookies = request.getCookies(); String email = null; if
+		 * (cookies != null) { for (Cookie cookie : cookies) {
+		 * if(cookie.getName().equals(GlobalDefs.COOKIE_IDENTITY)) { String val
+		 * = cookie.getValue(); // the value in cookie was encoded email = new
+		 * String(Base64.decode(val.getBytes()), Charset.forName("US-ASCII"));
+		 * logger.debug("cookie encodedEmail:"+val+";decodedEmail:"+email);
+		 * break; } } if (email != null) { User user =
+		 * userService.findByEmailAddress(email); // confirmed users; UserInfo
+		 * userInfo = new UserInfo(user);
+		 * session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+		 * 
+		 * return "redirect:/admin"; } }
+		 */
+		// we can achieve auto login through above code,
+		// comment it out for now since I am not quite clear how we should
+		// control the auto login
 		return "home";
 	}
 
@@ -148,82 +136,96 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/teacher/{id}")
-	@SuppressWarnings("unused")
-	public String teacherFront(@PathVariable Long id, Model model,HttpSession session,HttpServletResponse response) throws IOException {
+	public String teacherFront(@PathVariable Long id, Model model,
+			HttpSession session, HttpServletResponse response)
+			throws IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out=response.getWriter();
-		
-		User user = userService.findOne(id);
-		UserInfo userInf = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		User users = userInf.getUser();
-		Announcement announcement = announcementService.findLatestByUid(id);
-		int followValue=friendsRelateService.getFollowById(id,users.getId());
-		
-		Teacher teacher = teacherService.findOne(id);
-		Page<BlogPost> page = blogService.findAllBlogs(0, 5, teacher);
-		List<BlogPost> blogPosts = page.getContent();
-		model.addAttribute("blogPosts", blogPosts);
-		
-		Page<Resource> pageResource = resourceService.findAllResouByUser(0, 5, user);
-		List<Resource> resourceList = pageResource.getContent();
-		Integer resourceCount = resourceService.listAllByUid(id).size();
-		model.addAttribute("resourceList", resourceList);
-		model.addAttribute("resourceCount", resourceCount);
-		
-		Page<TeacherHonor> pageHonor = honorService.findAllHonorByTeacher(0, 2, teacher);
-		List<TeacherHonor> honorList = pageHonor.getContent();
-		Integer honorCount = honorService.getAllHonorById(id).size();
-		model.addAttribute("honorList", honorList);
-		model.addAttribute("honorCount", honorCount);
-		
-		Page<TeacherPatent> pagePatent = patentService.findAllPatentByTeacher(0, 2, teacher);
-		List<TeacherPatent> patentList = pagePatent.getContent();
-		Integer patentCount = patentService.getAllPatentById(id).size();
-		model.addAttribute("patentList", patentList);
-		model.addAttribute("patentCount", patentCount);
-		
-		Page<TeacherThesis> pageThesis = thesisService.findAllThesisByTeacher(0, 2, teacher);
-		List<TeacherThesis> thesisList = pageThesis.getContent();
-		Integer thesisCount = thesisService.getAllThesisById(id).size();
-		model.addAttribute("thesisList", thesisList);
-		model.addAttribute("thesisCount", thesisCount);
-		
-		Page<TeacherProject> pageProject = projectService.findAllProjectByTeacher(0, 2, teacher);
-		List<TeacherProject> projectList = pageProject.getContent();
-		Integer projectCount = projectService.getAllProjectById(id).size();
-		model.addAttribute("projectList",projectList);
-		model.addAttribute("projectCount", projectCount);
-		
-		Page<TeacherCourse> pageCourse = courseService.findAllCourseByTeacher(0, 5, teacher);
-		List<TeacherCourse> courseList = pageCourse.getContent();
-		Integer courseCount = courseService.getAllTeacherCourseById(id).size();
-		model.addAttribute("courseList", courseList);
-		model.addAttribute("courseCount", courseCount);
-		
-		UserInfo userInfo = new UserInfo(user);
-		userInfo.setAnnouncement(announcement);
-		userInfo.setTeacher(teacher);
-		
-		Integer fansCount = friendsRelateService.getAllFans(id).size();
-		Integer hostCount =  friendsRelateService.getAllHost(id).size();
-		
-		model.addAttribute("teacher_id", id);
-		model.addAttribute("teacherInfo", userInfo);
-		model.addAttribute("role", userInfo.getTeacherRole());
-		//model.addAttribute("followValue",followValue);
-		session.setAttribute("followValue", followValue);
-		//model.addAttribute("fansCount", fansCount);
-		session.setAttribute("fansCount",fansCount);
-		//model.addAttribute("hostCount", hostCount);
-		session.setAttribute("hostCount",hostCount);
-		return "teacher.basic";
+
+		try {
+			User user = userService.findOne(id);
+			UserInfo userInf = (UserInfo) session
+					.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			User users = userInf.getUser();
+			Announcement announcement = announcementService.findLatestByUid(id);
+			int followValue = friendsRelateService.getFollowById(id,
+					users.getId());
+
+			Teacher teacher = teacherService.findOne(id);
+			Page<BlogPost> page = blogService.findAllBlogs(0, 5, teacher);
+			List<BlogPost> blogPosts = page.getContent();
+			model.addAttribute("blogPosts", blogPosts);
+
+			Page<Resource> pageResource = resourceService.findAllResouByUser(0,
+					5, user);
+			List<Resource> resourceList = pageResource.getContent();
+			Integer resourceCount = resourceService.listAllByUid(id).size();
+			model.addAttribute("resourceList", resourceList);
+			model.addAttribute("resourceCount", resourceCount);
+
+			Page<TeacherHonor> pageHonor = honorService.findAllHonorByTeacher(
+					0, 2, teacher);
+			List<TeacherHonor> honorList = pageHonor.getContent();
+			Integer honorCount = honorService.getAllHonorById(id).size();
+			model.addAttribute("honorList", honorList);
+			model.addAttribute("honorCount", honorCount);
+
+			Page<TeacherPatent> pagePatent = patentService
+					.findAllPatentByTeacher(0, 2, teacher);
+			List<TeacherPatent> patentList = pagePatent.getContent();
+			Integer patentCount = patentService.getAllPatentById(id).size();
+			model.addAttribute("patentList", patentList);
+			model.addAttribute("patentCount", patentCount);
+
+			Page<TeacherThesis> pageThesis = thesisService
+					.findAllThesisByTeacher(0, 2, teacher);
+			List<TeacherThesis> thesisList = pageThesis.getContent();
+			Integer thesisCount = thesisService.getAllThesisById(id).size();
+			model.addAttribute("thesisList", thesisList);
+			model.addAttribute("thesisCount", thesisCount);
+
+			Page<TeacherProject> pageProject = projectService
+					.findAllProjectByTeacher(0, 2, teacher);
+			List<TeacherProject> projectList = pageProject.getContent();
+			Integer projectCount = projectService.getAllProjectById(id).size();
+			model.addAttribute("projectList", projectList);
+			model.addAttribute("projectCount", projectCount);
+
+			Page<TeacherCourse> pageCourse = courseService
+					.findAllCourseByTeacher(0, 5, teacher);
+			List<TeacherCourse> courseList = pageCourse.getContent();
+			Integer courseCount = courseService.getAllTeacherCourseById(id)
+					.size();
+			model.addAttribute("courseList", courseList);
+			model.addAttribute("courseCount", courseCount);
+
+			UserInfo userInfo = new UserInfo(user);
+			userInfo.setAnnouncement(announcement);
+			userInfo.setTeacher(teacher);
+
+			Integer fansCount = friendsRelateService.getAllFans(id).size();
+			Integer hostCount = friendsRelateService.getAllHost(id).size();
+
+			model.addAttribute("teacher_id", id);
+			model.addAttribute("teacherInfo", userInfo);
+			model.addAttribute("role", userInfo.getTeacherRole());
+			// model.addAttribute("followValue",followValue);
+			session.setAttribute("followValue", followValue);
+			// model.addAttribute("fansCount", fansCount);
+			session.setAttribute("fansCount", fansCount);
+			// model.addAttribute("hostCount", hostCount);
+			session.setAttribute("hostCount", hostCount);
+			return "teacher.basic";
+		} catch (Exception e) {
+			return "404";
+		}
 	}
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
 
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 
 		if (userInfo != null && userInfo.getRole().equals("user")) {
 			return "redirect:/admin/user";
@@ -238,7 +240,8 @@ public class HomeController {
 	public String adminUser(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
 
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 
 		if (userInfo != null && userInfo.getRole().equals("user")) {
 			return "admin.user";
@@ -254,7 +257,8 @@ public class HomeController {
 	public String adminTeacher(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
 
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 
 		if (userInfo != null && userInfo.getRole().equals("user")) {
 			return "redirect:/admin/user";

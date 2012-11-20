@@ -115,7 +115,7 @@ public class TheServletContextListener implements ServletContextListener {
 	private void createTeacherAndBlogPosts(String email, String password) {
 		User user = new User(email,password,"teacher",1);
 		user.setName(user.getPassword());
-		user.setGender("male");
+		user.setGender("男");
 		user.setRandomUrl("pass");
 		user.setPhoto_url("http://www.fdsm.fudan.edu.cn/UserPhotos/eb58f880-a258-48a4-aa9c-b0e7700c2abd_thumbnail.jpg");
 		em.persist(user);
