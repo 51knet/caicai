@@ -153,5 +153,10 @@
 		<put-attribute name="title" value="关注列表" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/host/list/list.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="teacher.resume" extends="frontPage-layout">
+		<put-attribute name="title" value="简历" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/front/resume.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>
