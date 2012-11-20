@@ -77,7 +77,6 @@ public class CommonRegisterController {
 	}
 	@RequestMapping(value="/register/email", method = RequestMethod.POST)
 	public void checkEmail(@RequestParam("email") String email,HttpServletResponse response) throws Exception{
-		System.out.println("1213");
 		PrintWriter out=response.getWriter();
 		int count=userService.getCountByEmail(email);
 		out.write(count);

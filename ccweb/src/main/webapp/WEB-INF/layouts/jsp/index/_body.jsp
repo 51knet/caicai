@@ -77,13 +77,16 @@ body {
 		});
 		$("#emails").blur(function(){
 			var email=$("#emails").val();
-			alert(email);
+			var reg = /^[_a-zA-Z\d\-\.]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+$/;//邮箱验证正则表达式。 
+			if(!reg.test(email)){                             //验证邮箱格式是否正确
+				$("#checkEmails").html("输入的邮箱格式不正确!");
+				return false;
+			}
 			$.ajax({
 			  type: "post",
 			  url: "<c:url value='/register/email'/>",
 			  data: "email="+email,
 			  success:function(num){
-				  alert("1111");
 					if(num==1){
 					$("#checkEmails").html("此邮箱地址已存在!");
 					}else if(num==0){
