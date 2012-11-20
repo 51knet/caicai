@@ -91,4 +91,10 @@ public class UserServiceImpl implements UserService {
 		User usr = userDao.queryStringBySql("self_url", url);
 		return usr;
 	}
+
+	@Override
+	public int getCountByEmail(String email) {
+		int count =userDao.getcountByEmail(email);
+		return count;
+	}
 }

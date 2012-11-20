@@ -68,7 +68,33 @@ body {
 			$(".login-panel").show(500);
 			$(".register-panel").hide(500);
 		});
+		$("#confirmpsw").blur(function(){
+			var psw=$("#psw").val();
+			var confirmpsw=$("#confirmpsw").val();
+			if(psw!=confirmpsw){
+				$("#passwordError").html("两次输入的密码不一致,请重新输入!");
+			}
+		});
+		$("#emails").blur(function(){
+			var email=$("#emails").val();
+			alert(email);
+			$.ajax({
+			  type: "post",
+			  url: "<c:url value='/register/email'/>",
+			  data: "email="+email,
+			  success:function(num){
+				  alert("1111");
+					if(num==1){
+					$("#checkEmails").html("此邮箱地址已存在!");
+					}else if(num==0){
+					$("#checkEmails").html("此邮箱地址可用!");
+					}
+				}
+			});
+		});
+		
 	});
+	
 </script>
 
 <div class="row mac">
@@ -105,8 +131,9 @@ body {
 			<div class="control-group">
 				<label class="control-label" for="email">邮箱地址</label>
 				<div class="controls">
-					<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址">
+					<input type="text" id="emails" name="email" placeholder="请输入您的邮箱地址">
 					<span class="help-block"><form:errors path="email"></form:errors></span>
+					<div id="checkEmails"></div>
 				</div>
 			</div>
 			<div class="control-group">
@@ -121,6 +148,7 @@ body {
 				<div class="controls">
 					<input type="password" id="confirmpsw" name="confirmpsw" placeholder="请再次输入您的密码">
 					<span class="help-block"><form:errors path="confirmpsw"></form:errors></span>
+					<div id="passwordError"></div>
 				</div>
 			</div>
 			<label style="clear: right;"></label>
