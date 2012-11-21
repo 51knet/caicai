@@ -158,5 +158,40 @@
 		<put-attribute name="title" value="简历" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/front/resume.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="teacher.achievement.thesis.list" extends="frontPage-layout">
+		<put-attribute name="title" value="教师论文" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/thesis/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.achievement.project.list" extends="frontPage-layout">
+		<put-attribute name="title" value="教师项目" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/project/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.achievement.patent.list" extends="frontPage-layout">
+		<put-attribute name="title" value="教师专利" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/patent/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.achievement.honor.list" extends="frontPage-layout">
+		<put-attribute name="title" value="荣誉奖项" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/honor/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.achievement.list" extends="frontPage-layout">
+		<put-attribute name="title" value="科研成果" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.course.list" extends="frontPage-layout">
+		<put-attribute name="title" value="教师课程" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/course/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.course.view" extends="frontPage-layout">
+		<put-attribute name="title" value="教师课程" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/course/view/view.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

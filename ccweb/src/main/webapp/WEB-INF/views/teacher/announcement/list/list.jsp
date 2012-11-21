@@ -34,19 +34,23 @@
 </style>
 
 <div class="row-fluid custom round">
-	<table class="table table-bordered">
-	<thead><tr><th colspan="4">全部公告</th></tr></thead>
-	<tbody>
-		<tr><td>公告标题</td><td>公告内容</td><td>发布时间</td></tr>
-		<c:forEach items="${page.content}" var="page">
-			<tr><td align="left">${page.title}</td><td align="center">${page.content}</td><td align="center">${page.date}</td>
-			</tr>
-		</c:forEach>
-	</tbody>		 
-		<tfoot>
-	    	<tr><td colspan="4" align="right">
-	        	<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
-	   		 </td></tr>
-		</tfoot>
-	</table>	 
+	<div class="row">
+		<h5>教师公告</h5>
+	</div>
+	<div class="row">
+		<table class="table">
+			<thead><tr><th >标题</th><th >内容</th><th >发布时间</th></tr></thead>
+			<tbody>
+				<c:forEach items="${page.content}" var="page">
+					<tr><td align="left">${page.title}</td><td align="center">${page.content}</td><td align="center">${page.date}</td>
+					</tr>
+				</c:forEach>
+			</tbody>		 
+			<tfoot>
+		    	<tr><td colspan="3" align="right">
+		        	<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+		   		 </td></tr>
+			</tfoot>
+		</table>
+	</div>	 
 </div>
