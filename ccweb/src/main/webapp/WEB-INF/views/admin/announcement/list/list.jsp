@@ -16,6 +16,45 @@
 		var annoForm = document.getElementById("annoForm");
 		annoForm.style.display="none";
 	}
+	
+	function collectFormData(fields) {
+		var data = {};
+		for (var i = 0; i < fields.length; i++) {
+			var $item = $(fields[i]);
+			data[$item.attr('name')] = $item.val();
+		}
+		return data;
+	}
+
+	$(document).ready(function() {
+		var $form = $('#anno_information');
+		$form.bind('submit', function(e) {
+			// Ajax validation
+			var $inputs = $form.find('input');
+			//var $textarea=$form.find('textarea');
+			var data = collectFormData($inputs);
+			//var textdata = collectFormData($textarea);
+			$.post('annoInfoAJAX',data, function(response) {
+				$form.find('.modal-body').removeClass('error');
+				$form.find('.help-inline').empty();
+				$form.find('.alert').remove();
+				if (response.status == 'FAIL') {
+					for (var i = 0; i < response.errorMessageList.length; i++) {
+						var item = response.errorMessageList[i];
+						var $controlGroup = $('#' + item.fieldName);
+						$controlGroup.addClass('error');
+						$controlGroup.find('.help-inline').html(item.message);
+					}
+				} else {
+					$form.unbind('submit');
+					$form.submit();
+				}
+			}, 'json');
+
+			e.preventDefault();
+			return false;
+		});
+	});
 </script>
 
 <a href='<c:url value="/admin/teacher/announcement/list"></c:url>' ><b>教师公告</b></a><hr>
@@ -57,15 +96,15 @@
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="myModalLabel">公告添加</h3>
 		</div>
-		<form:form action='new' method="post">
-			<div class="modal-body">
-						公告标题：<input type="text" name="title" placeholder="Title">
-						<span class="help-block"><form:errors path="title"></form:errors></span>
-						公告内容：<textarea name="content" placeholder="Content" cols="5" rows="8"></textarea>
-						<span class="help-block"><form:errors path="content"></form:errors></span>
-						<!-- 
-						<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
-						<button type="reset" class="btn" onclick="hidAnnoForm()">Cancel</button> -->
+		<form:form action='new' method="post" id="anno_information">
+			<div class="modal-body" id="title">
+			
+						公告标题：<input type="text" name="title"  placeholder="Title">
+						<span class="help-inline"><form:errors path="title"></form:errors></span>
+			</div>
+			<div class="modal-body" id="content">
+						公告内容：<textarea name="content" placeholder="Content"  cols="5" rows="8"></textarea>
+						<span class="help-inline"><form:errors path="content"></form:errors></span>
 			</div>
 			<div class="modal-footer">
 				<button class="btn" type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
