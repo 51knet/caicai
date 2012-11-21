@@ -34,7 +34,7 @@
 				<div class="control-group" id="college">
 					<label class="control-label" for="college"><i class="icon-star"></i> 所属高校</label>
 					<div class="controls">
-						<input type="text" id="college" name="college" placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="8" data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'>
+						<input type="text" id="college" name="college" placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="10" data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'>
 						<span class="help-inline"><form:errors path="college" /></span>
 					</div>
 				</div>

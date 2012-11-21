@@ -64,10 +64,10 @@ public class TeacherController {
 		List<String> universityList = new ArrayList<String>();
 		BufferedReader br;
 		universityFilePath = session.getServletContext().getRealPath("/");
-		universityFilePath += "resources\\university\\university.property";
+		universityFilePath += "resources\\university\\universities.property";
 		try {
 			br = new BufferedReader(new InputStreamReader(
-					new FileInputStream(universityFilePath)));
+					new FileInputStream(universityFilePath),"utf-8"));
 			String data = "";
 			while ((data = br.readLine()) != null) {
 				universityList.add(data);
