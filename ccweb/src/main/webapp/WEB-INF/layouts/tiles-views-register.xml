@@ -7,22 +7,22 @@
 <tiles-definitions>
 
 	<definition name="register" extends="registerStandard-layout">
-		<put-attribute name="title" value="Welcom to register" />
+		<put-attribute name="title" value="欢迎注册" />
 		<put-attribute name="body" value="/WEB-INF/views/register/register.jsp"></put-attribute>
 	</definition>
 
 	<definition name="register.successful" extends="registerStandard-layout">
-		<put-attribute name="title" value="Register Successful" />
+		<put-attribute name="title" value="欢迎注册" />
 		<put-attribute name="body" value="/WEB-INF/views/register/registerSuccessful.jsp"></put-attribute>
 	</definition>
 
 	<definition name="user.dispatcher" extends="registerStandard-layout">
-		<put-attribute name="title" value="Register Detail" />
+		<put-attribute name="title" value="欢迎注册" />
 		<put-attribute name="body" value="/WEB-INF/views/userTypePage.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="mail.send" extends="registerStandard-layout">
-		<put-attribute name="title" value="Send Mail" />
+		<put-attribute name="title" value="欢迎注册" />
 		<put-attribute name="body" value="/WEB-INF/views/register/sendMail.jsp"></put-attribute>
 	</definition>
 

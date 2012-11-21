@@ -45,20 +45,20 @@ public class TheServletContextListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		
 				
-		WebApplicationContext springContext = WebApplicationContextUtils
-				.getRequiredWebApplicationContext(sce.getServletContext());
-		springContext.getAutowireCapableBeanFactory().autowireBean(this);
-		
-		EntityManagerFactory factory = (EntityManagerFactory)springContext.getBean("entityManagerFactory");
-		logger.info(factory.toString());
-		this.em = factory.createEntityManager();
-		logger.info(em.toString());
-				
-		logger.info("userService==null "+(userService==null));
-		em.getTransaction().begin();
-		clearTestDataInDB();
-		setupTestData();		
-		em.getTransaction().commit();
+//		WebApplicationContext springContext = WebApplicationContextUtils
+//				.getRequiredWebApplicationContext(sce.getServletContext());
+//		springContext.getAutowireCapableBeanFactory().autowireBean(this);
+//		
+//		EntityManagerFactory factory = (EntityManagerFactory)springContext.getBean("entityManagerFactory");
+//		logger.info(factory.toString());
+//		this.em = factory.createEntityManager();
+//		logger.info(em.toString());
+//				
+//		logger.info("userService==null "+(userService==null));
+//		em.getTransaction().begin();
+//		clearTestDataInDB();
+//		setupTestData();		
+//		em.getTransaction().commit();
 	}
 
 	private void clearTestDataInDB() {
@@ -115,7 +115,7 @@ public class TheServletContextListener implements ServletContextListener {
 	private void createTeacherAndBlogPosts(String email, String password) {
 		User user = new User(email,password,"teacher",1);
 		user.setName(user.getPassword());
-		user.setGender("male");
+		user.setGender("男");
 		user.setRandomUrl("pass");
 		user.setPhoto_url("http://www.fdsm.fudan.edu.cn/UserPhotos/eb58f880-a258-48a4-aa9c-b0e7700c2abd_thumbnail.jpg");
 		em.persist(user);

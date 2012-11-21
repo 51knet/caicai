@@ -7,76 +7,76 @@
 <tiles-definitions>
 
 	<definition name="admin.teacher.details" extends="admin-layout">
-		<put-attribute name="title" value="Detail Info" />
+		<put-attribute name="title" value="账号信息" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherInfoPage.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher register" />
+		<put-attribute name="title" value="教师中心" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherHomePage.jsp"></put-attribute>
 	</definition>
 
 	<definition name="teacher.basic" extends="frontPage-layout">
-		<put-attribute name="title" value="Welcom to teacher register" />
+		<put-attribute name="title" value="教师主页" />
 	</definition>
 	
 	<!-- teacher announcement admin layout-->
 
 	<definition name="admin.teacher.announcement.list" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher register" />
+		<put-attribute name="title" value="公告" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/list/list.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.announcement.edit" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher Annocement" />
+		<put-attribute name="title" value="公告" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/edit/edit.jsp"></put-attribute>
 	</definition>
 	
 	<!-- teacher resource admin layout-->
 
 	<definition name="admin.teacher.resource.list" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher Resource" />
+		<put-attribute name="title" value="资源" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/resource/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacherResouAddErrorPage" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher Resource" />
+		<put-attribute name="title" value="资源" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherResouAddErrorPage.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.resource.type.list" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher Resource" />
+		<put-attribute name="title" value="资源" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/resource/type/list/list.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.resource.new" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher Resource" />
+		<put-attribute name="title" value="资源" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/resource/new/create.jsp"></put-attribute>
 	</definition>
 	
 	<!-- teacher achievement admin layout-->
 
 	<definition name="admin.teacher.achievement.list" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher Resource" />
+		<put-attribute name="title" value="个人成果" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/achievement/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<!-- teacher friendsRelated admin layout-->
 
 	<definition name="admin.teacher.friendsRelated.list" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="title" value="好友" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/friendsRelated/list.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.friendRelated.addPage" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="title" value="好友" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherFriendsRelatedAddPage.jsp"></put-attribute>
 	</definition>
 	
 	<!-- teacher course admin layout-->
 
 	<definition name="admin.teacher.course.list" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher course page" />
+		<put-attribute name="title" value="课程" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/course/list/list.jsp"></put-attribute>
 	</definition>
 
@@ -86,72 +86,77 @@
 	</definition> -->
 
 	<definition name="admin.teacher.course.view" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="title" value="课程" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/view.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.course.edit" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="title" value="课程" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/edit.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.course.resource.new" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="title" value="课程" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/course/resource/new/create.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.selfurl" extends="admin-layout">
-		<put-attribute name="title" value="Self URL" />
+		<put-attribute name="title" value="账号信息" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherSelfUrlPage.jsp"></put-attribute>
 	</definition>
 	
 	<!-- teacher message -->
 	
 	<definition name="admin.sendmessage" extends="frontPage-layout">
-		<put-attribute name="title" value="Welcom to teacher register" />
+		<put-attribute name="title" value="个人主页" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/sendmessageform.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.message.detail" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="title" value="私信" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherReceiveMsgPage.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.message.send" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="title" value="私信" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherReceiveMsgDetailPage.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.message.isReadDetail" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="title" value="私信" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherIsReadMsgPage.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.message.isDeleDetail" extends="admin-layout">
-		<put-attribute name="title" value="Welcom to teacher FriendsRelated page" />
+		<put-attribute name="title" value="私信" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/teacherIsDeleMsgPage.jsp"></put-attribute>
 	</definition>
 	
 	<!-- teacher front page -->
 	
 	<definition name="teacher.resource.list" extends="frontPage-layout">
-		<put-attribute name="title" value="Welcom to teacher resource page" />
+		<put-attribute name="title" value="资源" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/resource/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.announcement.list" extends="frontPage-layout">
-		<put-attribute name="title" value="Welcom to teacher resource page" />
+		<put-attribute name="title" value="公告" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/announcement/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.fans.list" extends="frontPage-layout">
-		<put-attribute name="title" value="Welcom to teacher resource page" />
+		<put-attribute name="title" value="好友" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/fans/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.host.list" extends="frontPage-layout">
 		<put-attribute name="title" value="关注列表" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/host/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.resume" extends="frontPage-layout">
+		<put-attribute name="title" value="简历" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/front/resume.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>

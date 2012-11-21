@@ -33,27 +33,4 @@
 	</tfoot>
 	</table>
 	<br/>
-		<!-- 	 <div class="pagination">
-				<c:if test="${page.totalPages > 0}">
-					<c:set var="prev" value="${page.number-1}" scope="page"></c:set>
-					<c:set var="next" value="${page.number+1}" scope="page"></c:set>
-					<ul>
-						<c:choose>
-							<c:when test="${page.hasPreviousPage()}">
-								<li><a href='<c:url value="/admin/teacher/resource/list?pageNumber=${prev}" />'>Prev</a></li></c:when>
-							<c:otherwise>
-								<li><a href="#" class="disabled">Prev</a></li></c:otherwise>
-						</c:choose>
-					    <li><a href="#" class="active">${page.number+1}/${page.totalPages}</a></li>
-					    <c:choose>
-							<c:when test="${page.hasNextPage()}">
-								<li><a href='<c:url value="/admin/teacher/resource/list?pageNumber=${next}" />'>Next</a></li></c:when>
-							<c:otherwise>
-								<li><a href="#" class="disabled">Next</a></li></c:otherwise>
-						</c:choose>
-					    
-					  </ul>
-				</c:if> 
-			</div>
-		-->
 </div>
