@@ -19,22 +19,25 @@
 </style>
 <!-- ${teacherInfo.id} -->
 <div class="row-fluid custom round">
-	<div class="row"><h5>公告 </h5></div>
-	<hr/>
+	<div class="row"><h5>公告 </h5><hr/></div>
+	
 	<div class="row">
 		${teacherInfo.announcementContext}
 	</div>
 	<hr>
 	<div style="text-align: right;">
-	<c:if test="${teacherInfo.announcementContext != null || teacherInfo.announcementContext != ''}">
+	<c:if test="${annoCount >1}">
 		<a href="<c:url value="/teacher/${teacherInfo.id}/announcement/list"></c:url>"> 查看所有>></a>&nbsp;&nbsp;</c:if>
 	</div>
 </div>
-
+<!-- teacherAchievement  -->
 <div class="row-fluid custom round">
 	<div class="row">
 		<h5>科研成果</h5>
+		<hr>
 	</div>
+	
+	<div class="row">
 		&nbsp;&nbsp;<b>论文</b>
 	<table class="table">
 		<c:choose>
@@ -57,7 +60,7 @@
 				<tr><td >无内容</td></tr>
 			</c:otherwise>
 		</c:choose>
-		<c:if test="${thesisCount > 2}"><tr><td align="right"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/thesis/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
+		<c:if test="${thesisCount > 2}"><tr><td align="right"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/achievement/thesis/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
 	</table><br>
 	
 			&nbsp;&nbsp;<b>项目</b>
@@ -83,7 +86,7 @@
 				<tr><td colspan="3">无内容</td></tr>
 			</c:otherwise>
 		</c:choose>
-		<c:if test="${projectCount > 2}"><tr><td align="right" colspan="3"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/project/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
+		<c:if test="${projectCount > 2}"><tr><td align="right" colspan="3"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/achievement/project/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
 	</table><br>
 				&nbsp;&nbsp;<b>专利</b>
 	<table class="table">
@@ -107,7 +110,7 @@
 				<tr><td colspan="4">无内容</td></tr>
 			</c:otherwise>
 		</c:choose>
-			<c:if test="${patentCount > 2}"><tr><td align="right" colspan="4"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/patent/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
+			<c:if test="${patentCount > 2}"><tr><td align="right" colspan="4"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/achievement/patent/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
 	</table><br>
 		&nbsp;&nbsp;<b>荣誉</b>
 	<table class="table">
@@ -133,13 +136,15 @@
 				<tr><td colspan="2">无内容</td></tr>
 			</c:otherwise>
 		</c:choose>
-				<c:if test="${honorCount > 2}"><tr><td align="right" colspan="2"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/honor/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
+				<c:if test="${honorCount > 2}"><tr><td align="right" colspan="2"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/achievement/honor/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
 	</table>
+	</div>
 </div>
 <!-- teacher resource -->
 <div class="row-fluid custom round">
 		<div class="row">
 			<h5>资源资料</h5>
+			<hr>
 		</div>
 		
 		<div class="row ">
@@ -152,8 +157,7 @@
 					<tbody>
 						<c:forEach var="resource" items="${resourceList}">
 							<tr>
-								<td><!-- <a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a> --> 
-									${resource.name }
+								<td><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${resource.id}"></c:url>"> </a> ${resource.name }
 								</td>
 								<td>
 									<c:choose>
@@ -180,7 +184,7 @@
 		</table>
 		<hr>
 		<div style="text-align: right;">
-		<c:if test="${resourceCount>5}"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
+		<c:if test="${resourceCount>2}"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 		</div>
 </div>
 
@@ -189,7 +193,7 @@
 		<div class="row">
 			<h5>教师课程</h5>
 		</div>
-		
+		<hr>
 		<div class="row ">
 		<table class="table">
 			<c:choose>
@@ -226,7 +230,7 @@
 		</table>
 		<hr>
 		<div style="text-align: right;">
-		<c:if test="${courseCount>5}"><a href="<c:url value="/teacher/${teacherInfo.id}/course/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
+		<c:if test="${courseCount>2}"><a href="<c:url value="/teacher/${teacherInfo.id}/course/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 		</div>
 </div>
 
@@ -234,7 +238,9 @@
 <div class="row-fluid custom round">
 	<div class="row">
 		<h5>博客</h5>
+		<hr>
 	</div>
+	
 	<div class="row ">
 	<table class="table">
 		<thead>

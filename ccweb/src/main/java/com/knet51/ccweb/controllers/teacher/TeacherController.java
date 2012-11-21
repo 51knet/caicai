@@ -157,7 +157,7 @@ public class TeacherController {
 			user.setCell_phone(contactInfoForm.getCellphone());
 			user.setFix_phone(contactInfoForm.getPhone());
 			user.setFax(contactInfoForm.getFax());
-			user.setQq(contactInfoForm.getQq());
+			user.setQq(contactInfoForm.getQQ());
 			user.setMsn(contactInfoForm.getMsn());
 			user = userService.updateUser(user);
 			

@@ -7,7 +7,6 @@ public class TeacherAnnoDetailInfoForm {
 	private String title;
 	@NotEmpty
 	private String content;
-	
 	public String getTitle() {
 		return title;
 	}
@@ -20,6 +19,4 @@ public class TeacherAnnoDetailInfoForm {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
 }

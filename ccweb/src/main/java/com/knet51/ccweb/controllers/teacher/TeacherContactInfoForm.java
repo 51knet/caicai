@@ -12,7 +12,7 @@ public class TeacherContactInfoForm {
 	@NotEmpty
 	private String fax;
 	@NotEmpty
-	private String qq;
+	private String QQ;
 	private String msn;
 	
 	
@@ -40,11 +40,15 @@ public class TeacherContactInfoForm {
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
-	public String getQq() {
-		return qq;
+
+
+
+	
+	public String getQQ() {
+		return QQ;
 	}
-	public void setQq(String qq) {
-		this.qq = qq;
+	public void setQQ(String qQ) {
+		QQ = qQ;
 	}
 	public String getMsn() {
 		return msn;

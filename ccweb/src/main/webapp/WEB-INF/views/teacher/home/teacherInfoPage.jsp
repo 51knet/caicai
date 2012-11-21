@@ -107,10 +107,10 @@
 						<input type="text" id="fax" name="fax" placeholder="传真号码" value="${sessionScope.sessionUserInfo.user.fax}">
 					</div>
 				</div>
-				<div class="control-group" id="qq">
+				<div class="control-group" id="QQ">
 					<label class="control-label" for="qq">QQ</label>
 					<div class="controls">
-						<input type="text" id="qq" name="qq" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
+						<input type="text"  name="QQ" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
 						<span class="help-inline"></span>
 					</div>
 				</div>
