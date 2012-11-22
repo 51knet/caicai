@@ -1,6 +1,5 @@
 package com.knet51.ccweb.controllers.register;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
@@ -12,13 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.google.gson.Gson;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.mailSender.MailSender;
@@ -60,7 +56,7 @@ public class CommonRegisterController {
 				randomUrl += "/";
 				randomUrl += findUser.getId();
 				mailSuccess = MailSender.getInstance().SendMail(email,
-						"http://http://www.51knet.com/ccweb/mail/" + randomUrl);
+						"http://www.51knet.com/ccweb/mail/" + randomUrl);
 				if (mailSuccess) {
 					String hrefString = email;
 					hrefString = hrefString
