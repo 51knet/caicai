@@ -34,20 +34,18 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	}
 
 	@Override
-	public Announcement createAnnouncement(Announcement ann, User user) {
-
-		ann.setUser(user);
-		return annDao.save(ann);
+	public Announcement createAnnouncement(Announcement ann) {
+		return annoRepository.save(ann);
 	}
 
 	@Override
 	public Announcement updateAnnouncement(Announcement ann) {
-		return annDao.update(ann);
+		return annoRepository.save(ann);
 	}
 
 	@Override
 	public void deleAnnouncementById(Long id) {
-		annDao.deleteById(id);
+		annoRepository.delete(id);
 	}
 
 	@Override

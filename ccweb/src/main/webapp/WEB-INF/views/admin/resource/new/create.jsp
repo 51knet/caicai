@@ -41,6 +41,7 @@
 	//alert("return list");
 	window.location.href='<c:url value="/admin/teacher/resource/list"></c:url>';
  }
+ /*
  function collectFormData(fields) {
 		var data = {};
 		for (var i = 0; i < fields.length; i++) {
@@ -76,6 +77,7 @@
 			return false;
 		});
 	});
+	
 	$(document).ready(function() {
 		var $formResorce = $('#resource_form');
 		$formResorce.bind('submit', function(e) {
@@ -104,7 +106,7 @@
 	});
  
  
- 
+ */
  
  
 </script>

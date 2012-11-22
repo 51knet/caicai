@@ -10,6 +10,7 @@ import com.knet51.ccweb.jpa.entities.User;
 public class Resource  extends AbstractEntity{
 	
 	private String name;
+	private String saveName;
 	private String savePath;
 	private String description;
 	private String date;
@@ -61,6 +62,14 @@ public class Resource  extends AbstractEntity{
 	}
 	
 	
+	
+	
+	public String getSaveName() {
+		return saveName;
+	}
+	public void setSaveName(String saveName) {
+		this.saveName = saveName;
+	}
 	public ResourceType getResourceType() {
 		return resourceType;
 	}

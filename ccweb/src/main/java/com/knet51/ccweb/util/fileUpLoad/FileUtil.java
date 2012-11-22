@@ -8,7 +8,7 @@ public class FileUtil {
 		
 		String fileName = new Date().getTime()+fileOriginalName;
 		//System.out.println(fileName);
-		String savePath = realPath+"\\"+fileName;
+		//String savePath = realPath+"\\"+fileName;
 		FileOutputStream outputStream = new FileOutputStream(realPath+"\\"+fileName);
 		int count = 0;
 		byte[] b = new byte[1024*8];
@@ -18,6 +18,6 @@ public class FileUtil {
 		}
 		inputStream.close();
 		outputStream.close();
-		return savePath;
+		return fileName;
 	}
 }

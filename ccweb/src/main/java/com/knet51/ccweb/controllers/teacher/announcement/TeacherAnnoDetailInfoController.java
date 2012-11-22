@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
@@ -24,6 +25,8 @@ import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
+import com.knet51.ccweb.util.ajax.ValidationResponse;
 
 @Controller
 public class TeacherAnnoDetailInfoController {
@@ -47,20 +50,7 @@ public class TeacherAnnoDetailInfoController {
 			return "redirect:/admin/teacher/announcement/list";
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long user_id = userInfo.getId();
-			User user = userService.findOne(user_id);
-			//System.out.println("++++++++++++++++"+user.getId()+"+++++++++++++++");
-			String title = annoDetailInfoForm.getTitle();
-			String content = annoDetailInfoForm.getContent();
-			Announcement announcement = new Announcement();
-			announcement.setTitle(title);
-			//System.out.println(title);
-			announcement.setContent(content);
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String date = format.format(new Date());
-			announcement.setDate(date);  
-			annoService.createAnnouncement(announcement, user);
+			
 			//System.out.println(announcement.getDate());
 			
 			return "redirect:/admin/teacher/announcement/list";
@@ -95,11 +85,28 @@ public class TeacherAnnoDetailInfoController {
 		}
 	}
 	
-	@RequestMapping(value="/admin/teacher/announcement/newAnnoInfoAJAX")
-	public String addAnno(@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm){
-		logger.info("------- into new AnnoInfo Ajax page------");
-		System.out.println(annoDetailInfoForm.getTitle());
-		System.out.println(annoDetailInfoForm.getContent());
-		return null;
+	@RequestMapping(value = "/admin/teacher/announcement/annoInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse noticeInfoFormAjaxJson(@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm, 
+									BindingResult result,HttpSession session) {
+		logger.info("######  Into announcement ajax validation page controller  #####");
+		Integer errorCount = result.getErrorCount();
+		if(errorCount ==0){
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long user_id = userInfo.getId();
+			User user = userService.findOne(user_id);
+			//System.out.println("++++++++++++++++"+user.getId()+"+++++++++++++++");
+			String title = annoDetailInfoForm.getTitle();
+			String content = annoDetailInfoForm.getContent();
+			Announcement announcement = new Announcement();
+			announcement.setTitle(title);
+			//System.out.println(title);
+			announcement.setContent(content);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String date = format.format(new Date());
+			announcement.setDate(date); 
+			announcement.setUser(user);
+			annoService.createAnnouncement(announcement);
+		}
+		return AjaxValidationEngine.process(result);
 	}
 }

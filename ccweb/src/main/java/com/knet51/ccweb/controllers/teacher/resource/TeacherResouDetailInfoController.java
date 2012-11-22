@@ -33,6 +33,7 @@ import com.knet51.ccweb.jpa.services.ResourceTypeService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
+import com.knet51.ccweb.util.fileUpLoad.SavePathUtil;
 
 @Controller
 public class TeacherResouDetailInfoController {
@@ -56,16 +57,19 @@ public class TeacherResouDetailInfoController {
 				Resource resource = new Resource();
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
 				String fileName = files.get(i).getOriginalFilename();
-				String realPath = session.getServletContext().getRealPath("/temp/");
+				
 				resource.setDescription(desc);
 				resource.setName(fileName);
 				ResourceType resourceType = resourceTypeService.findOneById(value); 
+				String realPath = SavePathUtil.getPath("upload", user.getId(), resourceType.getTypeName());
 				resource.setResourceType(resourceType);
 				resource.setStatus(1);
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String date = format.format(new Date());
 				resource.setDate(date);
-				String savePath = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
+				String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
+				resource.setSaveName(saveName);
+				String savePath = realPath+"\\"+fileName;
 				resource.setSavePath(savePath);
 				resourceService.create(resource, user);
 			}

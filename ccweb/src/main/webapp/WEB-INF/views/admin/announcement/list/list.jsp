@@ -16,6 +16,8 @@
 		return data;
 	}
 	
+	
+	
 	$(document).ready(function() {
 		var $form = $('#anno_information');
 		$form.bind('submit', function(e) {

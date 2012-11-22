@@ -19,7 +19,7 @@ public interface AnnouncementService {
 	
 	Announcement findOneById(Long id);
 	
-	Announcement createAnnouncement(Announcement ann,User user);
+	Announcement createAnnouncement(Announcement ann);
 	
 	Announcement updateAnnouncement(Announcement ann);
 	
