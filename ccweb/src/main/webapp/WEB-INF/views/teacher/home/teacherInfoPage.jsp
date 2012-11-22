@@ -110,11 +110,8 @@
 				<div class="control-group" id="QQ">
 					<label class="control-label" for="qq">QQ</label>
 					<div class="controls">
-<<<<<<< HEAD
 						<input type="text"  name="qq" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
-=======
 						<input type="text"  name="QQ" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
->>>>>>> 2514d34825ddac4b53adbbb84f2082efa23d13f1
 						<span class="help-inline"></span>
 					</div>
 				</div>
@@ -136,7 +133,6 @@
 		<div class="tab-pane  <c:if test='${active == "edu"}'>active</c:if>" id="edu_bg_tab">
 			<div id="eduForm" style="display: none;">
 				<form class="form-horizontal" action="eduInfo" method="post" id="edu_info_form">
-<<<<<<< HEAD
 					<div class="control-group" id="schoolName">
 						<label class="control-label" for="schoolName">学校</label>
 						<div class="controls">
@@ -148,7 +144,8 @@
 						<label class="control-label" for="collegeName">学院</label>
 						<div class="controls">
 							<input type="text"   name="collegeName" placeholder="学院名称"  >
-=======
+						</div>
+					</div>
 					<div class="control-group" id="school">
 						<label class="control-label" for="school">学校</label>
 						<div class="controls">
@@ -160,7 +157,6 @@
 						<label class="control-label" for="college">学院</label>
 						<div class="controls">
 							<input type="text"   name="college" placeholder="学院名称"  >
->>>>>>> 2514d34825ddac4b53adbbb84f2082efa23d13f1
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -507,21 +503,21 @@
 			e.preventDefault();
 			return false;
 		});
-		
+	});
 
 function showEduAddForm(){
 	var eduList = document.getElementById("eduList");
 	eduList.style.display="none";
 	var eduForm = document.getElementById("eduForm");
 	eduForm.style.display="block";
-}
+};
 
 function closeEduAddForm(){
 	var eduList = document.getElementById("eduList");
 	eduList.style.display="block";
 	var eduForm = document.getElementById("eduForm");
 	eduForm.style.display="none";
-}
+};
 
 function showWorkAddForm(){
 	//alert("111");
@@ -529,13 +525,14 @@ function showWorkAddForm(){
 	workList.style.display="none";
 	var workForm = document.getElementById("workForm");
 	workForm.style.display="block";
-}
+};
 
 function closeWorkAddForm(){
 	var workList = document.getElementById("workList");
 	workList.style.display="block";
 	var workForm = document.getElementById("workForm");
 	workForm.style.display="none";
-}
+};
+
 </script>
 		
