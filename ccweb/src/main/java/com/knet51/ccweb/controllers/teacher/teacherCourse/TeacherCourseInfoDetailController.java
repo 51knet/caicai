@@ -17,17 +17,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.teacher.TeacherWorkExpInfoForm;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
+import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
+import com.knet51.ccweb.util.ajax.ValidationResponse;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 
 
@@ -68,6 +72,14 @@ public class TeacherCourseInfoDetailController {
 			return "redirect:/admin/teacher/course/list";
 		}
 	
+	}
+	
+	
+	
+	@RequestMapping(value = "/admin/teacher/course/courserInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse courseInfoFormAjaxJson(@Valid TeacherCourseInfoForm teacherCourseInfoForm, BindingResult result) {
+		logger.info("------into courserInfo ajax");
+		return AjaxValidationEngine.process(result);
 	}
 	
 	@Transactional
