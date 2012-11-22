@@ -79,7 +79,6 @@
 				</div>
 			</form>
 		</div>
-		
 		<div class="tab-pane <c:if test='${active == "contact"}'>active</c:if>" id="contact_info_tab">
 			<form class="form-horizontal" id="relation_info_form" action="contactInfo" method="post">
 				<div class="control-group" id="address">
@@ -115,7 +114,7 @@
 						<span class="help-inline"></span>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="msn">
 					<label class="control-label" for="msn">MSN</label>
 					<div class="controls">
 						<input type="text" id="msn" name="msn" placeholder="MSN" value="${sessionScope.sessionUserInfo.user.msn}">
@@ -132,40 +131,45 @@
 		<!-- Edu Info -->
 		<div class="tab-pane  <c:if test='${active == "edu"}'>active</c:if>" id="edu_bg_tab">
 			<div id="eduForm" style="display: none;">
-				<form class="form-horizontal" action="eduInfo" method="post">
-					<div class="control-group">
+				<form class="form-horizontal" action="eduInfo" method="post" id="edu_info_form">
+					<div class="control-group" id="school">
 						<label class="control-label" for="school">学校</label>
 						<div class="controls">
-							<input type="text" id="school" name="school" placeholder="学校名称" >
+							<input type="text"   name="school" placeholder="学校名称" >
+							<span class="help-inline"></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group" id="college">
 						<label class="control-label" for="college">学院</label>
 						<div class="controls">
-							<input type="text" id="college" name="college" placeholder="学院名称"  >
+							<input type="text"   name="college" placeholder="学院名称"  >
+							<span class="help-inline"></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group" id="degree">
 						<label class="control-label" for="degree">学历</label>
 						<div class="controls">
-							<input type="text" id="degree" name="degree" placeholder="学历"  >
+							<input type="text"   name="degree" placeholder="学历"  >
+							<span class="help-inline"></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group" id="startTime">
 						<label class="control-label" for="startTime">开始时间</label>
 						<div class="controls">
-							<input type="text" id="startTime" name="startTime" placeholder="开始时间" >
+							<input type="text"   name="startTime" placeholder="开始时间" >
+							<span class="help-inline"></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group" id="endTime">
 						<label class="control-label" for="endTime">结束时间</label>
 						<div class="controls">
-							<input type="text" id="endTime" name="endTime" placeholder="结束时间" >
+							<input type="text"  name="endTime" placeholder="结束时间" >
+							<span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="closeEduAddForm()" class="btn btn-large btn-success">保 存</button>
+							<button type="submit"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeEduAddForm()" class="btn btn-large">取消</button>
 						</div>
 					</div>
@@ -336,82 +340,73 @@
 	</div>
 </div>
 <script type="text/javascript">
-function collectFormData(fields) {
-	var data = {};
-	for (var i = 0; i < fields.length; i++) {
-		var $item = $(fields[i]);
-		data[$item.attr('name')] = $item.val();
+	function collectFormData(fields) {
+		var data = {};
+		for (var i = 0; i < fields.length; i++) {
+			var $item = $(fields[i]);
+			data[$item.attr('name')] = $item.val();
+		}
+		return data;
 	}
-	return data;
-}
 
-$(document).ready(function() {
-	var $form = $('#personal_info_form');
-	$form.bind('submit', function(e) {
-		// Ajax validation
-		var $inputs = $form.find('input');
-		var data = collectFormData($inputs);
-		$.post('personalInfoAJAX', data, function(response) {
-			$form.find('.control-group').removeClass('error');
-			$form.find('.help-inline').empty();
-			$form.find('.alert').remove();
-
-			if (response.status == 'FAIL') {
-				for (var i = 0; i < response.errorMessageList.length; i++) {
-					var item = response.errorMessageList[i];
-					var $controlGroup = $('#' + item.fieldName);
-					$controlGroup.addClass('error');
-					$controlGroup.find('.help-inline').html(item.message);
+	$(document).ready(function() {
+		var $form = $('#personal_info_form');
+		$form.bind('submit', function(e) {
+			// Ajax validation
+			var $inputs = $form.find('input');
+			var data = collectFormData($inputs);
+			$.post('personalInfoAJAX', data, function(response) {
+				$form.find('.control-group').removeClass('error');
+				$form.find('.help-inline').empty();
+				$form.find('.alert').remove();
+				if (response.status == 'FAIL') {
+					for (var i = 0; i < response.errorMessageList.length; i++) {
+						var item = response.errorMessageList[i];
+						var $controlGroup = $('#' + item.fieldName);
+						$controlGroup.addClass('error');
+						$controlGroup.find('.help-inline').html(item.message);
+					}
+				} else {
+					$form.unbind('submit');
+					$form.submit();
 				}
-			} else {
-				$form.unbind('submit');
-				$form.submit();
-			}
-		}, 'json');
-
-		e.preventDefault();
-		return false;
-	});
+			}, 'json');
+	
+			e.preventDefault();
+			return false;
+		});
 	
 	
+		var $relation_form = $('#relation_info_form');
+		$relation_form.bind('submit', function(e) {
+			// Ajax validation
+			var $inputs = $relation_form.find('input');
+			var data = collectFormData($inputs);
+			$.post('contactInfoAJAX', data, function(response) {
+				$relation_form.find('.control-group').removeClass('error');
+				$relation_form.find('.help-inline').empty();
+				$relation_form.find('.alert').remove();
 	
-	
-	
-	
-	
-	
-	
-	
-	var $relation_form = $('#relation_info_form');
-	$relation_form.bind('submit', function(e) {
-		// Ajax validation
-		var $inputs = $relation_form.find('input');
-		var data = collectFormData($inputs);
-		$.post('contactInfoAJAX', data, function(response) {
-			$relation_form.find('.control-group').removeClass('error');
-			$relation_form.find('.help-inline').empty();
-			$relation_form.find('.alert').remove();
-
-			if (response.status == 'FAIL') {
-				for (var i = 0; i < response.errorMessageList.length; i++) {
-					var item = response.errorMessageList[i];
-					var $controlGroup = $('#' + item.fieldName);
-					$controlGroup.addClass('error');
-					$controlGroup.find('.help-inline').html(item.message);
+				if (response.status == 'FAIL') {
+					for (var i = 0; i < response.errorMessageList.length; i++) {
+						var item = response.errorMessageList[i];
+						var $controlGroup = $('#' + item.fieldName);
+						$controlGroup.addClass('error');
+						$controlGroup.find('.help-inline').html(item.message);
+					}
+				} else {
+					$relation_form.unbind('submit');
+					$relation_form.submit();
 				}
-			} else {
-				$relation_form.unbind('submit');
-				$relation_form.submit();
-			}
-		}, 'json');
-
-		e.preventDefault();
-		return false;
-	});
+			}, 'json');
+	
+			e.preventDefault();
+			return false;
+		});
+		
 });
 
 function showEduAddForm(){
-	//alert("111");
 	var eduList = document.getElementById("eduList");
 	eduList.style.display="none";
 	var eduForm = document.getElementById("eduForm");
