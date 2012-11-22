@@ -107,6 +107,12 @@ public class TeacherController {
 		return AjaxValidationEngine.process(result);
 	}
 	
+	@RequestMapping(value = "/admin/teacher/workExpInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse workExpInfoFormAjaxJson(@Valid TeacherWorkExpInfoForm workInfoForm, BindingResult result) {
+		logger.info("------into workExp ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/personalInfo")
 	public String personalInfo(@Valid TeacherPersonalInfoForm personalInfoForm,

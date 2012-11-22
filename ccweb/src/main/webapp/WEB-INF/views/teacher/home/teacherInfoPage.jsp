@@ -218,40 +218,45 @@
 		<div class="tab-pane <c:if test='${active == "work"}'>active</c:if>" id="work_exp_tab">
 			
 			<div id="workForm" style="display: none;">
-				<form class="form-horizontal" action="workInfo" method="post">
-					<div class="control-group">
+				<form class="form-horizontal" action="workInfo" method="post" id="workExpForm">
+					<div class="control-group" id="company">
 						<label class="control-label" for="company">公司名称</label>
 						<div class="controls">
 							<input type="text" id="company" name="company" placeholder="公司名称" >
+							<span class="help-inline"><form:errors path="company" /></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group" id="department">
 						<label class="control-label" for="department">部门名称</label>
 						<div class="controls">
-							<input type="text" id="college" name="department" placeholder="部门名称"  >
+							<input type="text" id="department" name="department" placeholder="部门名称"  >
+							<span class="help-inline"><form:errors path="department" /></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group" id="position">
 						<label class="control-label" for="position">职位</label>
 						<div class="controls">
 							<input type="text" id="position" name="position" placeholder="职位"  >
+							<span class="help-inline"><form:errors path="position" /></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group" id="startTime">
 						<label class="control-label" for="startTime">开始时间</label>
 						<div class="controls">
 							<input type="text" id="startTime" name="startTime" placeholder="开始时间" >
+							<span class="help-inline"><form:errors path="startTime" /></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group" id="endTime">
 						<label class="control-label" for="endTime">结束时间</label>
 						<div class="controls">
 							<input type="text" id="endTime" name="endTime" placeholder="结束时间" >
+							<span class="help-inline"><form:errors path="endTime" /></span>
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="closeWorkAddForm()" class="btn btn-large btn-success">保 存</button>
+							<button type="submit"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeWorkAddForm()" class="btn btn-large">取消</button>
 						</div>
 					</div>
@@ -383,6 +388,33 @@
 			var $inputs = $relation_form.find('input');
 			var data = collectFormData($inputs);
 			$.post('contactInfoAJAX', data, function(response) {
+				$relation_form.find('.control-group').removeClass('error');
+				$relation_form.find('.help-inline').empty();
+				$relation_form.find('.alert').remove();
+	
+				if (response.status == 'FAIL') {
+					for (var i = 0; i < response.errorMessageList.length; i++) {
+						var item = response.errorMessageList[i];
+						var $controlGroup = $('#' + item.fieldName);
+						$controlGroup.addClass('error');
+						$controlGroup.find('.help-inline').html(item.message);
+					}
+				} else {
+					$relation_form.unbind('submit');
+					$relation_form.submit();
+				}
+			}, 'json');
+	
+			e.preventDefault();
+			return false;
+		});
+		
+		var $relation_form = $('#workExpForm');
+		$relation_form.bind('submit', function(e) {
+			// Ajax validation
+			var $inputs = $relation_form.find('input');
+			var data = collectFormData($inputs);
+			$.post('workExpInfoAJAX', data, function(response) {
 				$relation_form.find('.control-group').removeClass('error');
 				$relation_form.find('.help-inline').empty();
 				$relation_form.find('.alert').remove();
