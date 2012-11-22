@@ -7,16 +7,6 @@
 <!--
 
 //-->
-
-	function showAnnoForm(){
-		var annoForm = document.getElementById("annoForm");
-		annoForm.style.display="block";
-	}
-	function hidAnnoForm(){
-		var annoForm = document.getElementById("annoForm");
-		annoForm.style.display="none";
-	}
-	
 	function collectFormData(fields) {
 		var data = {};
 		for (var i = 0; i < fields.length; i++) {

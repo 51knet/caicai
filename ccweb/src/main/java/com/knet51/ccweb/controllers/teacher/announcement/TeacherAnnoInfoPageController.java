@@ -87,7 +87,8 @@ public class TeacherAnnoInfoPageController {
 	
 
 	@RequestMapping(value = "/admin/teacher/announcement/annoInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse noticeInfoFormAjaxJson(@Valid Announcement announcement, BindingResult result) {
+	public @ResponseBody ValidationResponse noticeInfoFormAjaxJson(@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm, BindingResult result) {
+		System.out.println("######  Into announcement ajax validation page controller  #####");
 		return AjaxValidationEngine.process(result);
 	}
 

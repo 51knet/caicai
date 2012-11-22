@@ -103,7 +103,7 @@ public class TeacherController {
 		return AjaxValidationEngine.process(result);
 	}
 	@RequestMapping(value = "/admin/teacher/contactInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse contactInfoFormAjaxJson(@Valid TeacherContactInfoForm TeacherContactInfoForm, BindingResult result) {
+	public @ResponseBody ValidationResponse contactInfoFormAjaxJson(@Valid TeacherContactInfoForm teacherContactInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
 	
