@@ -25,10 +25,12 @@
 			var data = collectFormData($inputs);
 			var textdata = collectFormData($textarea);
 			var dataInfo = data['title'];
+			//alert(data['title']);
 			var textInfo = textdata['content'];
 			//var dataJson = JSON.stringify(data);
 			//var json = JSON.stringify(textdata);
 			var annoInfo = '{"title":"'+dataInfo+'","content": "'+textInfo+'"}';
+			//alert(annoInfo);
 			var annoData = eval("("+annoInfo+")");
 			//alert(typeof annoData);
 			//alert(annoInfo);

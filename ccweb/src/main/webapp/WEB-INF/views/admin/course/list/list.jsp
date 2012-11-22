@@ -17,10 +17,14 @@ $(document).ready(function() {
 	$form.bind('submit', function(e) {
 		// Ajax validation
 		var $inputs = $form.find('input');
-		//var $textarea=$form.find('textarea');
+		var $textarea=$form.find('textarea');
 		var data = collectFormData($inputs);
-		//var textdata = collectFormData($textarea);
-		$.post('courserInfoAJAX',data, function(response) {
+		var textdata = collectFormData($textarea);
+		var dataInfo=data['courseName'];
+		var textInfo=textdata['courseDesc'];
+		var course_data='{"courseName":"'+dataInfo+'","courseDesc": "'+textInfo+'"}';
+		var courseData = eval("("+course_data+")");
+		$.post('courserInfoAJAX',courseData, function(response) {
 			//$form.find('.modal-body').removeClass('error');
 			//$form.find('.help-block').empty();
 			//$form.find('.alert').remove();
