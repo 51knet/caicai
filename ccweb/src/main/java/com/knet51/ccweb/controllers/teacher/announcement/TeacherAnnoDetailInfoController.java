@@ -94,4 +94,12 @@ public class TeacherAnnoDetailInfoController {
 			return "redirect:/admin/teacher/announcement/list";
 		}
 	}
+	
+	@RequestMapping(value="/admin/teacher/announcement/newAnnoInfoAJAX")
+	public String addAnno(@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm){
+		logger.info("------- into new AnnoInfo Ajax page------");
+		System.out.println(annoDetailInfoForm.getTitle());
+		System.out.println(annoDetailInfoForm.getContent());
+		return null;
+	}
 }

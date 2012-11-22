@@ -99,7 +99,27 @@ public class TeacherController {
 	}
 	
 	@RequestMapping(value = "/admin/teacher/personalInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse processFormAjaxJson(@Valid TeacherPersonalInfoForm personalInfoForm, BindingResult result) {
+	public @ResponseBody ValidationResponse processFormAjaxJson(@Valid TeacherPersonalInfoForm personalInfoForm, BindingResult result,HttpSession session) {
+		//System.out.println(result.getErrorCount());
+		Integer errorCount = result.getErrorCount();
+		if(errorCount==0){
+			logger.info("### detailInfoForm Validation passed. ###");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			User user = userService.findOne(userInfo.getId());
+			user.setName(personalInfoForm.getName());
+			user.setGender(personalInfoForm.getGender());
+			user = userService.updateUser(user);
+			Teacher teacher = new Teacher(user);
+			teacher.setCollege(personalInfoForm.getCollege());
+			teacher.setSchool(personalInfoForm.getSchool());
+			teacher.setTitle(personalInfoForm.getTitle());
+			teacher.setMajor(personalInfoForm.getMajor());
+			teacher.setRole(personalInfoForm.getRole());
+			teacher = teacherService.updateTeacher(teacher);
+			userInfo.setUser(user);
+			userInfo.setTeacher(teacher);
+			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+		}
 		return AjaxValidationEngine.process(result);
 	}
 	@RequestMapping(value = "/admin/teacher/contactInfoAJAX", method = RequestMethod.POST)
@@ -124,7 +144,7 @@ public class TeacherController {
 			return "redirect:/admin/teacher/details?active=personal";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			/*UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User user = userService.findOne(userInfo.getId());
 			user.setName(personalInfoForm.getName());
 			user.setGender(personalInfoForm.getGender());
@@ -138,7 +158,7 @@ public class TeacherController {
 			teacher = teacherService.updateTeacher(teacher);
 			userInfo.setUser(user);
 			userInfo.setTeacher(teacher);
-			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);*/
 
 			return "redirect:/admin/teacher/details?active=personal";
 		}
