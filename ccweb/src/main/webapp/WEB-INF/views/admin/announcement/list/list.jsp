@@ -15,16 +15,24 @@
 		}
 		return data;
 	}
-
+	
 	$(document).ready(function() {
 		var $form = $('#anno_information');
 		$form.bind('submit', function(e) {
 			// Ajax validation
 			var $inputs = $form.find('input');
-			//var $textarea=$form.find('textarea');
+			var $textarea=$form.find('textarea');
 			var data = collectFormData($inputs);
-			//var textdata = collectFormData($textarea);
-			$.post('annoInfoAJAX',data, function(response) {
+			var textdata = collectFormData($textarea);
+			var dataInfo = data['title'];
+			var textInfo = textdata['content'];
+			//var dataJson = JSON.stringify(data);
+			//var json = JSON.stringify(textdata);
+			var annoInfo = '{"title":"'+dataInfo+'","content": "'+textInfo+'"}';
+			var annoData = eval("("+annoInfo+")");
+			//alert(typeof annoData);
+			//alert(annoInfo);
+			$.post('annoInfoAJAX',annoData, function(response) {
 				$form.find('.modal-body').removeClass('error');
 				$form.find('.help-inline').empty();
 				$form.find('.alert').remove();
@@ -89,7 +97,7 @@
 		<form:form action='new' method="post" id="anno_information">
 			<div class="modal-body" id="title">
 			
-						公告标题：<input type="text" name="title"  placeholder="Title">
+						公告标题：<input type="text" name="title"   placeholder="Title">
 						<span class="help-inline"><form:errors path="title"></form:errors></span>
 			</div>
 			<div class="modal-body" id="content">
