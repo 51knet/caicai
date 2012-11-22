@@ -129,7 +129,7 @@ public class TeacherAchieveDetailInfoController {
 			Long id = userInfo.getUser().getId();
 			Teacher teacher= teacherService.findOne(id);
 			TeacherHonor honor = new TeacherHonor();
-			honor.setName(honorDetailForm.getName());
+			honor.setName(honorDetailForm.getHonorName());
 			honor.setReason(honorDetailForm.getReason());
 			honorService.save(honor, teacher);
 			return "redirect:/admin/teacher/achievement/list";

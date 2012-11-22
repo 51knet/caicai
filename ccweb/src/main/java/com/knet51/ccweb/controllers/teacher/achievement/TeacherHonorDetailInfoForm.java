@@ -4,14 +4,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class TeacherHonorDetailInfoForm {
 	@NotEmpty
-	private String name;
+	private String honorName;
 	@NotEmpty
 	private String reason;
-	public String getName() {
-		return name;
+	
+	public String getHonorName() {
+		return honorName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setHonorName(String honorName) {
+		this.honorName = honorName;
 	}
 	public String getReason() {
 		return reason;

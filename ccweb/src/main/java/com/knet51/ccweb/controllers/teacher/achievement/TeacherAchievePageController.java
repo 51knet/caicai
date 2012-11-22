@@ -3,6 +3,7 @@ package com.knet51.ccweb.controllers.teacher.achievement;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,12 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.teacher.teacherCourse.TeacherCourseInfoForm;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
@@ -30,6 +35,8 @@ import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherHonorService;
 import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherPatentService;
 import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherProjectService;
 import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherThesisService;
+import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
+import com.knet51.ccweb.util.ajax.ValidationResponse;
 
 @Controller
 public class TeacherAchievePageController {
@@ -70,6 +77,26 @@ public class TeacherAchievePageController {
 		model.addAttribute("honor", honor);
 		model.addAttribute("honorCount", honor.size());
 		return "admin.teacher.achievement.list";
+	}
+	@RequestMapping(value = "/admin/teacher/achievement/thesisInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse thesisInfoFormAjaxJson(@Valid TeacherThesisDetailInfoForm teacherThesisDetailInfoForm, BindingResult result) {
+		logger.info("------into thesisInfo ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/achievement/projectInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse projectInfoFormAjaxJson(@Valid TeacherProjectDetailInfoForm teacherProjectDetailInfoForm, BindingResult result) {
+		logger.info("------into projectInfo ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/achievement/patentInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse patentInfoFormAjaxJson(@Valid TeacherPatentDetailInfoForm teacherPatentDetailInfoForm, BindingResult result) {
+		logger.info("------into patentInfo ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/achievement/honorInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse honorInfoFormAjaxJson(@Valid TeacherHonorDetailInfoForm teacherHonorDetailInfoForm, BindingResult result) {
+		logger.info("------into honorInfo ajax");
+		return AjaxValidationEngine.process(result);
 	}
 	
 	/* teacher front page */
