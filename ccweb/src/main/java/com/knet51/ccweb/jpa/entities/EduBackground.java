@@ -3,14 +3,20 @@ package com.knet51.ccweb.jpa.entities;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name = "educational_background")
 public class EduBackground extends AbstractEntity {
 	
 	private String school;
+	
 	private String college;
+	
 	private String degree;
+	
 	private String startTime;
+	
 	private String endTime;
 	private Long teacherid;
 

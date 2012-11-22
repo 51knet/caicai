@@ -7,9 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Announcement extends AbstractEntity {
-	@NotEmpty
 	private String title;
-	@NotEmpty
 	private String content;
 	private Integer code;
 	private String date;

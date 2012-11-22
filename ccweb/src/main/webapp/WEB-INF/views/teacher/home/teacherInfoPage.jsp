@@ -110,7 +110,7 @@
 				<div class="control-group" id="qq">
 					<label class="control-label" for="qq">QQ</label>
 					<div class="controls">
-						<input type="text" id="qq" name="qq" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
+						<input type="text"  name="qq" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
 						<span class="help-inline"></span>
 					</div>
 				</div>
@@ -131,40 +131,45 @@
 		<!-- Edu Info -->
 		<div class="tab-pane  <c:if test='${active == "edu"}'>active</c:if>" id="edu_bg_tab">
 			<div id="eduForm" style="display: none;">
-				<form class="form-horizontal" action="eduInfo" method="post">
-					<div class="control-group">
-						<label class="control-label" for="school">学校</label>
+				<form class="form-horizontal" action="eduInfo" method="post" id="edu_info_form">
+					<div class="control-group" id="schoolName">
+						<label class="control-label" for="schoolName">学校</label>
 						<div class="controls">
-							<input type="text" id="school" name="school" placeholder="学校名称" >
+							<input type="text"  name="schoolName" placeholder="学校名称" >
+							<span class="help-inline"></span>
 						</div>
 					</div>
-					<div class="control-group">
-						<label class="control-label" for="college">学院</label>
+					<div class="control-group" id="collegeName">
+						<label class="control-label" for="collegeName">学院</label>
 						<div class="controls">
-							<input type="text" id="college" name="college" placeholder="学院名称"  >
+							<input type="text"   name="collegeName" placeholder="学院名称"  >
+							<span class="help-inline"></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group" id="degree">
 						<label class="control-label" for="degree">学历</label>
 						<div class="controls">
-							<input type="text" id="degree" name="degree" placeholder="学历"  >
+							<input type="text"   name="degree" placeholder="学历"  >
+							<span class="help-inline"></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group" id="startTime">
 						<label class="control-label" for="startTime">开始时间</label>
 						<div class="controls">
-							<input type="text" id="startTime" name="startTime" placeholder="开始时间" >
+							<input type="text"   name="startTime" placeholder="开始时间" >
+							<span class="help-inline"></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group" id="endTime">
 						<label class="control-label" for="endTime">结束时间</label>
 						<div class="controls">
-							<input type="text" id="endTime" name="endTime" placeholder="结束时间" >
+							<input type="text"  name="endTime" placeholder="结束时间" >
+							<span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="closeEduAddForm()" class="btn btn-large btn-success">保 存</button>
+							<button type="submit"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeEduAddForm()" class="btn btn-large">取消</button>
 						</div>
 					</div>
@@ -374,13 +379,6 @@ $(document).ready(function() {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
 	var $relation_form = $('#relation_info_form');
 	$relation_form.bind('submit', function(e) {
 		// Ajax validation
@@ -407,10 +405,38 @@ $(document).ready(function() {
 		e.preventDefault();
 		return false;
 	});
+	
+	
+	
+	
+	var $edu_form=$('#edu_info_form');
+	    $edu_form.bind('submit',function(e){
+		var $inputs=$edu_form.find('input');
+		var data=collectFormData($inputs);
+		$.post('eduInfoAJAX',data,function(response){
+			$edu_form.find('.control-group').removeClass('error');
+			$edu_form.find('.help_inline').empty();
+			//$edu_form.find('.alert').remove();
+			
+			if(response.status == 'FAIL'){
+				for(var i = 0; i < response.errorMessageList.length; i++){
+					var item = response.errorMessageList[i];
+					var $controlGroup = $('#' + item.fieldName);
+					$controlGroup.addClass('error');
+					$controlGroup.find('.help-inline').html(item.message);
+					alert(item.message);
+				}
+			}else{
+				$edu_form.unbind('submit');
+				$edu_form.submit();
+			}
+		},'json');
+		e.preventDefault();
+		return false;
+	});
 });
 
 function showEduAddForm(){
-	//alert("111");
 	var eduList = document.getElementById("eduList");
 	eduList.style.display="none";
 	var eduForm = document.getElementById("eduForm");

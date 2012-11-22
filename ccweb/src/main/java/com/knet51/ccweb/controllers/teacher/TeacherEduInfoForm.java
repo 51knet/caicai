@@ -5,26 +5,28 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class TeacherEduInfoForm {
 	@NotEmpty
-	private String school;
+	private String schoolName;
 	@NotEmpty
-	private String college;
+	private String collegeName;
 	@NotEmpty
 	private String degree;
 	@NotEmpty
 	private String startTime;
 	@NotEmpty
 	private String endTime;
-	public String getSchool() {
-		return school;
+
+	
+	public String getSchoolName() {
+		return schoolName;
 	}
-	public void setSchool(String school) {
-		this.school = school;
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
 	}
-	public String getCollege() {
-		return college;
+	public String getCollegeName() {
+		return collegeName;
 	}
-	public void setCollege(String college) {
-		this.college = college;
+	public void setCollegeName(String collegeName) {
+		this.collegeName = collegeName;
 	}
 	public String getDegree() {
 		return degree;
