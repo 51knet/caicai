@@ -1,33 +1,16 @@
 package com.knet51.ccweb.controllers.teacher.resume;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
@@ -36,8 +19,6 @@ import com.knet51.ccweb.jpa.services.EduBackgroundService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.WorkExpService;
-import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
-import com.knet51.ccweb.util.ajax.ValidationResponse;
 
 /**
  * Handles requests for the application home page.
@@ -62,6 +43,16 @@ public class TeacherResumeController {
 		userInfo.setTeacher(teacher);
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", teacher_id);
+		List<EduBackground> eduInfo = eduBackgroundService.findEduInfoList(teacher_id);
+		if(eduInfo !=null){
+			model.addAttribute("eduInfo", eduInfo);
+			model.addAttribute("eduCount", eduInfo.size());
+		}
+		List<WorkExp> workInfo = workExpService.findWorkList(teacher_id);
+		if(workInfo !=null){
+			model.addAttribute("workInfo", workInfo);
+			model.addAttribute("workCount", workInfo.size());
+		}
 		return "teacher.resume";
 	}
 }

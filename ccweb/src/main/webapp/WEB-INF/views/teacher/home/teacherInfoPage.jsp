@@ -202,7 +202,7 @@
 									<td  align="center">${eduInfo.school}</td>
 									<td  align="center">${eduInfo.college}</td>
 									<td  align="center">${eduInfo.degree}</td>
-									<td  align="center">${eduInfo.startTime}—${eduInfo.endTime}</td>
+									<td  align="center">${eduInfo.startTime} - ${eduInfo.endTime}</td>
 									<td>
 										 <div class="btn-group"> 
 											<button class="btn">操作</button>  
@@ -289,7 +289,7 @@
 										<td  align="center">${workInfo.company}</td>
 										<td  align="center">${workInfo.department}</td>
 										<td  align="center">${workInfo.position}</td>
-										<td  align="center">${workInfo.startTime}—${workInfo.endTime}</td>
+										<td  align="center">${workInfo.startTime} - ${workInfo.endTime}</td>
 										<td>
 											 <div class="btn-group"> 
 												<button class="btn">操作</button>  
