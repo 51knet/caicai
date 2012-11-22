@@ -400,7 +400,6 @@
 		});
 	
 	
-<<<<<<< HEAD
 	var $relation_form = $('#relation_info_form');
 	$relation_form.bind('submit', function(e) {
 		// Ajax validation
@@ -446,7 +445,6 @@
 					var $controlGroup = $('#' + item.fieldName);
 					$controlGroup.addClass('error');
 					$controlGroup.find('.help-inline').html(item.message);
-					alert(item.message);
 				}
 			}else{
 				$edu_form.unbind('submit');
@@ -456,7 +454,6 @@
 		e.preventDefault();
 		return false;
 	});
-=======
 		var $relation_form = $('#relation_info_form');
 		$relation_form.bind('submit', function(e) {
 			// Ajax validation
@@ -484,9 +481,6 @@
 			return false;
 		});
 		
-<<<<<<< HEAD
->>>>>>> 2514d34825ddac4b53adbbb84f2082efa23d13f1
-=======
 		var $relation_form = $('#workExpForm');
 		$relation_form.bind('submit', function(e) {
 			// Ajax validation
@@ -514,8 +508,6 @@
 			return false;
 		});
 		
->>>>>>> e48aab6835246af4acb188f9cbcc44378c7e378f
-});
 
 function showEduAddForm(){
 	var eduList = document.getElementById("eduList");
