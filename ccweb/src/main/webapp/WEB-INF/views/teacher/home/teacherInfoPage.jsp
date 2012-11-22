@@ -110,6 +110,7 @@
 				<div class="control-group" id="QQ">
 					<label class="control-label" for="qq">QQ</label>
 					<div class="controls">
+						<input type="text"  name="qq" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
 						<input type="text"  name="QQ" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
 						<span class="help-inline"></span>
 					</div>
@@ -132,6 +133,19 @@
 		<div class="tab-pane  <c:if test='${active == "edu"}'>active</c:if>" id="edu_bg_tab">
 			<div id="eduForm" style="display: none;">
 				<form class="form-horizontal" action="eduInfo" method="post" id="edu_info_form">
+					<div class="control-group" id="schoolName">
+						<label class="control-label" for="schoolName">学校</label>
+						<div class="controls">
+							<input type="text"  name="schoolName" placeholder="学校名称" >
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="control-group" id="collegeName">
+						<label class="control-label" for="collegeName">学院</label>
+						<div class="controls">
+							<input type="text"   name="collegeName" placeholder="学院名称"  >
+						</div>
+					</div>
 					<div class="control-group" id="school">
 						<label class="control-label" for="school">学校</label>
 						<div class="controls">
@@ -382,6 +396,60 @@
 		});
 	
 	
+	var $relation_form = $('#relation_info_form');
+	$relation_form.bind('submit', function(e) {
+		// Ajax validation
+		var $inputs = $relation_form.find('input');
+		var data = collectFormData($inputs);
+		$.post('contactInfoAJAX', data, function(response) {
+			$relation_form.find('.control-group').removeClass('error');
+			$relation_form.find('.help-inline').empty();
+			$relation_form.find('.alert').remove();
+
+			if (response.status == 'FAIL') {
+				for (var i = 0; i < response.errorMessageList.length; i++) {
+					var item = response.errorMessageList[i];
+					var $controlGroup = $('#' + item.fieldName);
+					$controlGroup.addClass('error');
+					$controlGroup.find('.help-inline').html(item.message);
+				}
+			} else {
+				$relation_form.unbind('submit');
+				$relation_form.submit();
+			}
+		}, 'json');
+
+		e.preventDefault();
+		return false;
+	});
+	
+	
+	
+	
+	var $edu_form=$('#edu_info_form');
+	    $edu_form.bind('submit',function(e){
+		var $inputs=$edu_form.find('input');
+		var data=collectFormData($inputs);
+		$.post('eduInfoAJAX',data,function(response){
+			$edu_form.find('.control-group').removeClass('error');
+			$edu_form.find('.help_inline').empty();
+			//$edu_form.find('.alert').remove();
+			
+			if(response.status == 'FAIL'){
+				for(var i = 0; i < response.errorMessageList.length; i++){
+					var item = response.errorMessageList[i];
+					var $controlGroup = $('#' + item.fieldName);
+					$controlGroup.addClass('error');
+					$controlGroup.find('.help-inline').html(item.message);
+				}
+			}else{
+				$edu_form.unbind('submit');
+				$edu_form.submit();
+			}
+		},'json');
+		e.preventDefault();
+		return false;
+	});
 		var $relation_form = $('#relation_info_form');
 		$relation_form.bind('submit', function(e) {
 			// Ajax validation
@@ -435,22 +503,21 @@
 			e.preventDefault();
 			return false;
 		});
-		
-});
+	});
 
 function showEduAddForm(){
 	var eduList = document.getElementById("eduList");
 	eduList.style.display="none";
 	var eduForm = document.getElementById("eduForm");
 	eduForm.style.display="block";
-}
+};
 
 function closeEduAddForm(){
 	var eduList = document.getElementById("eduList");
 	eduList.style.display="block";
 	var eduForm = document.getElementById("eduForm");
 	eduForm.style.display="none";
-}
+};
 
 function showWorkAddForm(){
 	//alert("111");
@@ -458,13 +525,14 @@ function showWorkAddForm(){
 	workList.style.display="none";
 	var workForm = document.getElementById("workForm");
 	workForm.style.display="block";
-}
+};
 
 function closeWorkAddForm(){
 	var workList = document.getElementById("workList");
 	workList.style.display="block";
 	var workForm = document.getElementById("workForm");
 	workForm.style.display="none";
-}
+};
+
 </script>
 		

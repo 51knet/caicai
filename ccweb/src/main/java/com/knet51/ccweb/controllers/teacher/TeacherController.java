@@ -126,6 +126,10 @@ public class TeacherController {
 	public @ResponseBody ValidationResponse contactInfoFormAjaxJson(@Valid TeacherContactInfoForm teacherContactInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
+	@RequestMapping(value = "/admin/teacher/eduInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse eduInfoFormAjaxJson(@Valid TeacherEduInfoForm teacherEduInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
 	
 	@RequestMapping(value = "/admin/teacher/workExpInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse workExpInfoFormAjaxJson(@Valid TeacherWorkExpInfoForm workInfoForm, BindingResult result) {
@@ -211,8 +215,8 @@ public class TeacherController {
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			//EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
 			EduBackground edu = new EduBackground();
-			edu.setCollege(eduInfoForm.getCollege());
-			edu.setSchool(eduInfoForm.getSchool());
+			edu.setCollege(eduInfoForm.getCollegeName());
+			edu.setSchool(eduInfoForm.getSchoolName());
 			edu.setDegree(eduInfoForm.getDegree());
 			edu.setStartTime(eduInfoForm.getStartTime());
 			edu.setEndTime(eduInfoForm.getEndTime());
