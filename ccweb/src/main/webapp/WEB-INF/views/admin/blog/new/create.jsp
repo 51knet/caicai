@@ -3,7 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <div class="">
-	<form method="post">
+	<form name="blog_post" method="post">
 	  <legend>写博文</legend>
 	  <div class="control-group" >
 		  <label class="control-label" style="display:inline-block;width: 40px;">标题:</label>
@@ -26,9 +26,29 @@
 	</form>
 </div>
 
+<link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/themes/default/default.css"/>" />
+<link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>" />
+<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.js"/>"></script>
 <script type="text/javascript">
 		$(document).ready(function() {
-			var editor = KindEditor.create('textarea[name="content"]');
+			var editor = KindEditor.create('textarea[name="content"]',{
+				cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+				uploadJson : '<c:url value="/file_upload" />',
+				fileManagerJson : '<c:url value="/file_manager" />',
+				allowFileManager : true,
+				afterCreate : function() {
+					var self = this;
+					K.ctrl(document, 13, function() {
+						self.sync();
+						document.forms['blog_post'].submit();
+					});
+					K.ctrl(self.edit.doc, 13, function() {
+						self.sync();
+						document.forms['blog_post'].submit();
+					});
+				}
+			});
+			prettyPrint();
 	    });
 </script>
 	

@@ -55,7 +55,7 @@ public class HomeController {
 
 	@Autowired
 	private TeacherService teacherService;
-
+	
 	@Autowired
 	private ResourceService resourceService;
 
@@ -140,7 +140,7 @@ public class HomeController {
 			HttpSession session, HttpServletResponse response)
 			throws IOException {
 		response.setContentType("text/html;charset=UTF-8");
-
+		logger.info("#### Into teacher front page ####");
 		try {
 			User user = userService.findOne(id);
 			UserInfo userInf = (UserInfo) session
@@ -197,6 +197,9 @@ public class HomeController {
 					.size();
 			model.addAttribute("courseList", courseList);
 			model.addAttribute("courseCount", courseCount);
+			
+			List<Announcement> annoList = announcementService.findAllByUid(id);
+			model.addAttribute("annoCount", annoList.size());
 
 			UserInfo userInfo = new UserInfo(user);
 			userInfo.setAnnouncement(announcement);

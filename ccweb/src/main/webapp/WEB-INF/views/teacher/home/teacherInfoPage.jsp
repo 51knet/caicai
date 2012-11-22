@@ -107,14 +107,18 @@
 						<input type="text" id="fax" name="fax" placeholder="传真号码" value="${sessionScope.sessionUserInfo.user.fax}">
 					</div>
 				</div>
-				<div class="control-group" id="qq">
+				<div class="control-group" id="QQ">
 					<label class="control-label" for="qq">QQ</label>
 					<div class="controls">
+<<<<<<< HEAD
 						<input type="text"  name="qq" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
+=======
+						<input type="text"  name="QQ" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
+>>>>>>> 2514d34825ddac4b53adbbb84f2082efa23d13f1
 						<span class="help-inline"></span>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="msn">
 					<label class="control-label" for="msn">MSN</label>
 					<div class="controls">
 						<input type="text" id="msn" name="msn" placeholder="MSN" value="${sessionScope.sessionUserInfo.user.msn}">
@@ -132,6 +136,7 @@
 		<div class="tab-pane  <c:if test='${active == "edu"}'>active</c:if>" id="edu_bg_tab">
 			<div id="eduForm" style="display: none;">
 				<form class="form-horizontal" action="eduInfo" method="post" id="edu_info_form">
+<<<<<<< HEAD
 					<div class="control-group" id="schoolName">
 						<label class="control-label" for="schoolName">学校</label>
 						<div class="controls">
@@ -143,6 +148,19 @@
 						<label class="control-label" for="collegeName">学院</label>
 						<div class="controls">
 							<input type="text"   name="collegeName" placeholder="学院名称"  >
+=======
+					<div class="control-group" id="school">
+						<label class="control-label" for="school">学校</label>
+						<div class="controls">
+							<input type="text"   name="school" placeholder="学校名称" >
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="control-group" id="college">
+						<label class="control-label" for="college">学院</label>
+						<div class="controls">
+							<input type="text"   name="college" placeholder="学院名称"  >
+>>>>>>> 2514d34825ddac4b53adbbb84f2082efa23d13f1
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -340,45 +358,44 @@
 	</div>
 </div>
 <script type="text/javascript">
-function collectFormData(fields) {
-	var data = {};
-	for (var i = 0; i < fields.length; i++) {
-		var $item = $(fields[i]);
-		data[$item.attr('name')] = $item.val();
+	function collectFormData(fields) {
+		var data = {};
+		for (var i = 0; i < fields.length; i++) {
+			var $item = $(fields[i]);
+			data[$item.attr('name')] = $item.val();
+		}
+		return data;
 	}
-	return data;
-}
 
-$(document).ready(function() {
-	var $form = $('#personal_info_form');
-	$form.bind('submit', function(e) {
-		// Ajax validation
-		var $inputs = $form.find('input');
-		var data = collectFormData($inputs);
-		$.post('personalInfoAJAX', data, function(response) {
-			$form.find('.control-group').removeClass('error');
-			$form.find('.help-inline').empty();
-			$form.find('.alert').remove();
-
-			if (response.status == 'FAIL') {
-				for (var i = 0; i < response.errorMessageList.length; i++) {
-					var item = response.errorMessageList[i];
-					var $controlGroup = $('#' + item.fieldName);
-					$controlGroup.addClass('error');
-					$controlGroup.find('.help-inline').html(item.message);
+	$(document).ready(function() {
+		var $form = $('#personal_info_form');
+		$form.bind('submit', function(e) {
+			// Ajax validation
+			var $inputs = $form.find('input');
+			var data = collectFormData($inputs);
+			$.post('personalInfoAJAX', data, function(response) {
+				$form.find('.control-group').removeClass('error');
+				$form.find('.help-inline').empty();
+				$form.find('.alert').remove();
+				if (response.status == 'FAIL') {
+					for (var i = 0; i < response.errorMessageList.length; i++) {
+						var item = response.errorMessageList[i];
+						var $controlGroup = $('#' + item.fieldName);
+						$controlGroup.addClass('error');
+						$controlGroup.find('.help-inline').html(item.message);
+					}
+				} else {
+					$form.unbind('submit');
+					$form.submit();
 				}
-			} else {
-				$form.unbind('submit');
-				$form.submit();
-			}
-		}, 'json');
-
-		e.preventDefault();
-		return false;
-	});
+			}, 'json');
+	
+			e.preventDefault();
+			return false;
+		});
 	
 	
-	
+<<<<<<< HEAD
 	var $relation_form = $('#relation_info_form');
 	$relation_form.bind('submit', function(e) {
 		// Ajax validation
@@ -434,6 +451,35 @@ $(document).ready(function() {
 		e.preventDefault();
 		return false;
 	});
+=======
+		var $relation_form = $('#relation_info_form');
+		$relation_form.bind('submit', function(e) {
+			// Ajax validation
+			var $inputs = $relation_form.find('input');
+			var data = collectFormData($inputs);
+			$.post('contactInfoAJAX', data, function(response) {
+				$relation_form.find('.control-group').removeClass('error');
+				$relation_form.find('.help-inline').empty();
+				$relation_form.find('.alert').remove();
+	
+				if (response.status == 'FAIL') {
+					for (var i = 0; i < response.errorMessageList.length; i++) {
+						var item = response.errorMessageList[i];
+						var $controlGroup = $('#' + item.fieldName);
+						$controlGroup.addClass('error');
+						$controlGroup.find('.help-inline').html(item.message);
+					}
+				} else {
+					$relation_form.unbind('submit');
+					$relation_form.submit();
+				}
+			}, 'json');
+	
+			e.preventDefault();
+			return false;
+		});
+		
+>>>>>>> 2514d34825ddac4b53adbbb84f2082efa23d13f1
 });
 
 function showEduAddForm(){

@@ -17,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
+import com.knet51.ccweb.jpa.services.UserService;
 
 @Controller
 public class TeacherCourseInfoPageController {
@@ -35,6 +38,9 @@ public class TeacherCourseInfoPageController {
 	
 	@Autowired
 	private CourseResourceService courseResourceService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value="/admin/teacher/course/list")
 	public String teacherCourseInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
@@ -50,18 +56,18 @@ public class TeacherCourseInfoPageController {
 
 	
 	@RequestMapping(value="/admin/teacher/course/view/{course_id}")
-	public String detailCourseInfo(@PathVariable Long course_id,Model m){
+	public String detailCourseInfo(@PathVariable Long course_id,Model model){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
 		List<CourseResource> resourceList = courseResourceService.getAllCourseResourceById(course_id);
-		m.addAttribute("course", course);
-		m.addAttribute("resourceList",resourceList);
+		model.addAttribute("course", course);
+		model.addAttribute("resourceList",resourceList);
 		return "admin.teacher.course.view";
 	}
 	
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}")
-	public String updateCourseInfo(@PathVariable Long course_id,Model m){
+	public String updateCourseInfo(@PathVariable Long course_id,Model model){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
-		m.addAttribute("course", course);
+		model.addAttribute("course", course);
 		return "admin.teacher.course.edit";
 	}
 	
@@ -79,4 +85,37 @@ public class TeacherCourseInfoPageController {
 		m.addAttribute("resourceList",resourceList);
 		return "admin.teacher.teacherCourse.detailCourse";
 	}*/
+	
+	@RequestMapping(value="/teacher/{teacher_id}/course/list")
+	public String getAllTeacherCourse(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
+		Page<TeacherCourse> onePage = teacherCourseService.findAllCourseByTeacher(pageNumber, pageSize, teacher);
+		model.addAttribute("page", onePage);
+		return "teacher.course.list";
+	}
+	
+	@RequestMapping(value="/teacher/{teacher_id}/course/view/{course_id}")
+	public String detailCourse(@PathVariable Long teacher_id, @PathVariable Long course_id,Model model){
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
+		
+		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		List<CourseResource> resourceList = courseResourceService.getAllCourseResourceById(course_id);
+		model.addAttribute("course", course);
+		model.addAttribute("resourceList",resourceList);
+		model.addAttribute("resourceCount", resourceList.size());
+		return "teacher.course.view";
+	}
 }

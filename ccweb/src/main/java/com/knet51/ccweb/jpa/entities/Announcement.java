@@ -3,8 +3,6 @@ package com.knet51.ccweb.jpa.entities;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 @Entity
 public class Announcement extends AbstractEntity {
 	private String title;

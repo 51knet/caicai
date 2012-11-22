@@ -10,6 +10,7 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 public class TeacherThesis extends AbstractEntity {
 	
 	private String content;
+	private String date;
 	
 	@ManyToOne
 	private Teacher teacher;
@@ -30,5 +31,12 @@ public class TeacherThesis extends AbstractEntity {
 	public TeacherThesis() {
 		super();
 	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
 	
 }

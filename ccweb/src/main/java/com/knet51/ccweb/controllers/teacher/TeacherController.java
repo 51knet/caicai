@@ -64,10 +64,10 @@ public class TeacherController {
 		List<String> universityList = new ArrayList<String>();
 		BufferedReader br;
 		universityFilePath = session.getServletContext().getRealPath("/");
-		universityFilePath += "resources\\university\\university.property";
+		universityFilePath += "resources\\university\\universities.property";
 		try {
 			br = new BufferedReader(new InputStreamReader(
-					new FileInputStream(universityFilePath)));
+					new FileInputStream(universityFilePath),"utf-8"));
 			String data = "";
 			while ((data = br.readLine()) != null) {
 				universityList.add(data);
@@ -104,10 +104,13 @@ public class TeacherController {
 	}
 	@RequestMapping(value = "/admin/teacher/contactInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse contactInfoFormAjaxJson(@Valid TeacherContactInfoForm teacherContactInfoForm, BindingResult result) {
+<<<<<<< HEAD
 		return AjaxValidationEngine.process(result);
 	}
 	@RequestMapping(value = "/admin/teacher/eduInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse eduInfoFormAjaxJson(@Valid TeacherEduInfoForm teacherEduInfoForm, BindingResult result) {
+=======
+>>>>>>> 2514d34825ddac4b53adbbb84f2082efa23d13f1
 		return AjaxValidationEngine.process(result);
 	}
 	
@@ -161,7 +164,7 @@ public class TeacherController {
 			user.setCell_phone(contactInfoForm.getCellphone());
 			user.setFix_phone(contactInfoForm.getPhone());
 			user.setFax(contactInfoForm.getFax());
-			user.setQq(contactInfoForm.getQq());
+			user.setQq(contactInfoForm.getQQ());
 			user.setMsn(contactInfoForm.getMsn());
 			user = userService.updateUser(user);
 			

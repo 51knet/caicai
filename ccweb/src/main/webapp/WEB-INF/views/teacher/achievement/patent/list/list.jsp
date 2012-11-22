@@ -20,29 +20,26 @@
 </style>
 
 <div class="row-fluid custom round">
-	
 	<div class="row">
-		<h5>教师资源</h5>
+		<h5>个人专利</h5>
 	</div>
 	<div class="row">
 		<table class="table">
-		<thead><tr><th >文件名称</th><th >发布时间</th><th >文件描述</th><th >文件类型</th><th >下载</th></tr></thead>
+			<thead>
+				<tr><th width="15%">发明人</th><th>专利名称</th><th>专利类型</th><th>专利申请号</th></tr>
+			</thead>
 			<tbody>
-			<c:forEach items="${page.content}" var="page">
-				<tr><td align="left">${page.name}</td>
-				<td align="center">${page.date}</td>
-				<td>
-					<c:choose>
-						<c:when test="${page.description != null && page.description !=''}">${page.description}</c:when>
-						<c:otherwise>无描述</c:otherwise>
-					</c:choose>
-				</td>
-				<td>${page.resourceType.typeName}</td>
-				<td><a href="${page.savePath}">下载</a></td></tr>
-			</c:forEach>
+				<c:forEach var="patent" items="${page.content}">
+					<tr>
+						<td >${patent.inventer}</td>
+						<td >${patent.name}</td>
+						<td >${patent.type}</td>
+						<td >${patent.number}</td>
+					</tr>
+				</c:forEach>
 			</tbody>
-			<tfoot>
-	    <tr><td colspan="5">
+		<tfoot>
+	    <tr><td colspan="4">
 	        <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
 	   		 </td></tr>
 		</tfoot>

@@ -85,8 +85,15 @@ public class TeacherAnnoInfoPageController {
 		return "teacher.announcement.list";
 	}
 	
+
 	@RequestMapping(value = "/admin/teacher/announcement/annoInfoAJAX", method = RequestMethod.POST)
+<<<<<<< HEAD
 	public @ResponseBody ValidationResponse noticeInfoFormAjaxJson(@Valid TeacherAnnoDetailInfoForm teacherAnnoDetailInfoForm, BindingResult result) {
+=======
+	public @ResponseBody ValidationResponse noticeInfoFormAjaxJson(@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm, BindingResult result) {
+		System.out.println("######  Into announcement ajax validation page controller  #####");
+>>>>>>> 2514d34825ddac4b53adbbb84f2082efa23d13f1
 		return AjaxValidationEngine.process(result);
 	}
+
 }

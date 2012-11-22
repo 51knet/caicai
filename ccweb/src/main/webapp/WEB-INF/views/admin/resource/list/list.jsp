@@ -18,7 +18,7 @@
 			<td align="center">${page.date}</td>
 			<td>
 				<c:choose>
-					<c:when test="${(page.description!=null) || (page.description != '')}">${page.description}</c:when>
+					<c:when test="${(page.description!=null) && (page.description != '')}">${page.description}</c:when>
 					<c:otherwise>无描述</c:otherwise>
 				</c:choose>
 			</td>
