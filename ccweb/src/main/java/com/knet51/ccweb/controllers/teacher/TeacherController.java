@@ -136,6 +136,16 @@ public class TeacherController {
 		logger.info("------into workExp ajax");
 		return AjaxValidationEngine.process(result);
 	}
+	@RequestMapping(value = "/admin/teacher/selfurlInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse selfurInfoFormAjaxJson(@Valid TeacherSelfUrlForm teacherSelfUrlForm, BindingResult result) {
+		logger.info("------into selfur ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/pswInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse pswfurInfoFormAjaxJson(@Valid TeacherPswForm teacherPswForm, BindingResult result) {
+		logger.info("------into psw ajax");
+		return AjaxValidationEngine.process(result);
+	}
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/personalInfo")

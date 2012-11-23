@@ -14,7 +14,51 @@
 	-moz-border-radius: 5px;
 }
 </style>
+<script type="text/javascript">
 
+function collectFormData(fields) {
+		var data = {};
+		for (var i = 0; i < fields.length; i++) {
+			var $item = $(fields[i]);
+			data[$item.attr('name')] = $item.val();
+		}
+		return data;
+	}
+
+	$(document).ready(function() {
+		var $form = $('#sendMsg_info_form');
+		$form.bind('submit', function(e) {
+			// Ajax validation
+			var $inputs = $form.find('input');
+			var $textareas = $form.find('textarea');
+			var dataInput = collectFormData($inputs);
+			var dataTextArea=collectFormData($textareas);
+			var inputinfo=dataInput['title'];
+			var textareainfo=dataTextArea['content'];
+			var datainfo='{"title":"'+inputinfo+'","content": "'+textareainfo+'"}';
+			var data=eval('('+datainfo+')');
+			$.post('sendMsgInfoAJAX', data, function(response) {
+				/* $form.find('.control-group').removeClass('error');
+				$form.find('.help-inline').empty();
+				$form.find('.alert').remove(); */
+				if (response.status == 'FAIL') {
+					for (var i = 0; i < response.errorMessageList.length; i++) {
+						var item = response.errorMessageList[i];
+						var $controlGroup = $('#' + item.fieldName);
+						$controlGroup.addClass('error');
+						$controlGroup.find('.help-inline').html(item.message);
+					}
+				} else {
+					$form.unbind('submit');
+					$form.submit();
+				}
+			}, 'json');
+	
+			e.preventDefault();
+			return false;
+		});
+		});
+	</script>
 <div class="row-fluid centralize round">
 	<div class="round header">
 		<h5></h5>
@@ -66,10 +110,18 @@
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		<h3 id="myModalLabel">发送信件</h3>
 	</div>
-	<form action='<c:url value='/teacher/message/sendMsgInfo'></c:url>' method="post">
-		<div class="modal-body">
-			<input type="hidden" value="${teacherInfo.id}" name="uid"> 信件标题：<input type="text" name="title" placeholder="Title"><br> 信件内容：
+	<form action='<c:url value='/teacher/message/sendMsgInfo'></c:url>' method="post" id="sendMsg_info_form">
+		<div class="modal-body" >
+			<input type="hidden" value="${teacherInfo.id}" name="uid"> 
+		</div>
+		<div class="modal-body" id="title">
+			信件标题：<input type="text" name="title" placeholder="Title"><br> 
+			<span class="help-inline"></span>
+		</div>
+		<div class="modal-body" id="content">
+			信件内容：
 			<textarea name="content" placeholder="Content" cols="5" rows="8"></textarea>
+			<span class="help-inline"></span>
 		</div>
 		<div class="modal-footer">
 			<button class="btn" type="reset" data-dismiss="modal" aria-hidden="true">取消</button>

@@ -144,19 +144,6 @@
 						<label class="control-label" for="collegeName">学院</label>
 						<div class="controls">
 							<input type="text"   name="collegeName" placeholder="学院名称"  >
-						</div>
-					</div>
-					<div class="control-group" id="school">
-						<label class="control-label" for="school">学校</label>
-						<div class="controls">
-							<input type="text"   name="school" placeholder="学校名称" >
-							<span class="help-inline"></span>
-						</div>
-					</div>
-					<div class="control-group" id="college">
-						<label class="control-label" for="college">学院</label>
-						<div class="controls">
-							<input type="text"   name="college" placeholder="学院名称"  >
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -315,23 +302,26 @@
 		</div>
 		
 		<div class="tab-pane <c:if test='${active == "psw"}'>active</c:if>" id="security_tab">
-			<form class="form-horizontal" action="changePsw" method="post">
+			<form class="form-horizontal" action="changePsw" method="post" id="chanePsw_info_form">
 				<div class="control-group">
 					<label class="control-label" for="ori_psw">当前密码</label>
 					<div class="controls">
-						<input type="password" id="ori_psw" name="ori_psw" placeholder="请输入您的当前密码">
+						<input type="password" id="ori_psw" name="ori_psw" placeholder="请输入您的当前密码" value="${sessionScope.sessionUserInfo.user.password}">
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="new_psw">
 					<label class="control-label" for="new_psw">新密码</label>
 					<div class="controls">
-						<input type="password" id="new_psw" name="new_psw" placeholder="请输入您的新密码">
+						<input type="password" id="alter_new_psw" name="new_psw" placeholder="请输入您的新密码">
+					    <span class="help-inline"></span>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="confirm_new_psw">
 					<label class="control-label" for="confirm_new_psw">确认密码</label>
 					<div class="controls">
-						<input type="password" id="confirm_new_psw" name="confirm_new_psw" placeholder="再次输入一遍您的新密码">
+						<input type="password" id="alter_confirm_new_psw" name="confirm_new_psw" placeholder="再次输入一遍您的新密码">
+						<span class="help-inline"></span>
+						<div id="errorPsw"></div>
 					</div>
 				</div>
 				<div class="control-group">
@@ -342,11 +332,12 @@
 			</form>
 		</div>
 		<div class="tab-pane <c:if test='${active == "url"}'>active</c:if>" id="p_url_tab">
-			<form class="form-horizontal" action="selfurl" method="post">
-				<div class="control-group">
+			<form class="form-horizontal" action="selfurl" method="post" id="selfurl_info_form">
+				<div class="control-group" id="url">
 					<label class="control-label" for="p_url">个性域名</label>
 					<div class="controls">
-						<input type="text" id="p_url" value="${sessionScope.userInfo.user.self_url }" placeholder="请输入您的个性域名">
+						<input type="text" name="url" id="p_url" value="${sessionScope.userInfo.user.self_url }" placeholder="请输入您的个性域名">
+					    <span class="help-inline"></span>
 					</div>
 				</div>
 				<div class="control-group">
@@ -497,6 +488,65 @@
 				} else {
 					$relation_form.unbind('submit');
 					$relation_form.submit();
+				}
+			}, 'json');
+	
+			e.preventDefault();
+			return false;
+		});
+		
+		var $selfurl_info_form = $('#selfurl_info_form');
+		   $selfurl_info_form.bind('submit', function(e) {
+			// Ajax validation
+			var $inputs = $selfurl_info_form.find('input');
+			var data = collectFormData($inputs);
+			$.post('selfurlInfoAJAX', data, function(response) {
+				$selfurl_info_form.find('.control-group').removeClass('error');
+				$selfurl_info_form.find('.help-inline').empty();
+				$selfurl_info_form.find('.alert').remove();
+	
+				if (response.status == 'FAIL') {
+					for (var i = 0; i < response.errorMessageList.length; i++) {
+						var item = response.errorMessageList[i];
+						var $controlGroup = $('#' + item.fieldName);
+						$controlGroup.addClass('error');
+						$controlGroup.find('.help-inline').html(item.message);
+					}
+				} else {
+					$selfurl_info_form.unbind('submit');
+					$selfurl_info_form.submit();
+				}
+			}, 'json');
+	
+			e.preventDefault();
+			return false;
+		});
+		var $chanePsw_info_form = $('#chanePsw_info_form');
+		   $chanePsw_info_form.bind('submit', function(e) {
+			// Ajax validation
+			   var newPsw=$("#alter_new_psw").val().trim();
+				var confirmNewPsw=$("#alter_confirm_new_psw").val().trim();
+				if(newPsw!=confirmNewPsw){
+					$("#errorPsw").html("两次输入的密码不一致,请重新输入!");
+					return false;
+				}
+			var $inputs = $chanePsw_info_form.find('input');
+			var data = collectFormData($inputs);
+			$.post('pswInfoAJAX', data, function(response) {
+				$chanePsw_info_form.find('.control-group').removeClass('error');
+				//$chanePsw_info_form.find('.help-inline').empty();
+				//$chanePsw_info_form.find('.alert').remove();
+	
+				if (response.status == 'FAIL') {
+					for (var i = 0; i < response.errorMessageList.length; i++) {
+						var item = response.errorMessageList[i];
+						var $controlGroup = $('#' + item.fieldName);
+						$controlGroup.addClass('error');
+						$controlGroup.find('.help-inline').html(item.message);
+					}
+				} else {
+					$chanePsw_info_form.unbind('submit');
+					$chanePsw_info_form.submit();
 				}
 			}, 'json');
 	

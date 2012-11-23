@@ -16,13 +16,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.teacher.TeacherPswForm;
 import com.knet51.ccweb.jpa.entities.SendMsg;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.SendMsgService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
+import com.knet51.ccweb.util.ajax.ValidationResponse;
 
 @Controller
 public class SendMsgDetailInfoController {
@@ -117,4 +121,10 @@ public class SendMsgDetailInfoController {
 			return "redirect:/teacher/" + receiverId;
 		}	
 	}
+	@RequestMapping(value = "/teacher/sendMsgInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse sendMsgInfoFormAjaxJson(@Valid SendMsgInfoForm sendMsgInfoForm, BindingResult result) {
+		logger.info("------into sendMsg ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	
 }
