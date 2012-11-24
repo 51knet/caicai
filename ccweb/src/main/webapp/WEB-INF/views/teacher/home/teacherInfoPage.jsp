@@ -132,7 +132,7 @@
 					<div class="control-group" id="schoolName">
 						<label class="control-label" for="schoolName">学校</label>
 						<div class="controls">
-							<input type="text"  name="schoolName" placeholder="学校名称" >
+							<input type="text"  name="schoolName" placeholder="学校名称" data-provide="typeahead" data-items="8" data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'>
 							<span class="help-inline"></span>
 						</div>
 					</div>
