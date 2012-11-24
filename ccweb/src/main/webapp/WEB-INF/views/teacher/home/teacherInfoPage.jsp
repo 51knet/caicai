@@ -395,8 +395,6 @@
 				for(var i = 0; i < response.errorMessageList.length; i++){
 					var item = response.errorMessageList[i];
 					var $controlGroup = $('#' + item.fieldName);
-					alert(item.fieldName);
-					alert($controlGroup);
 					$controlGroup.addClass('error');
 					$controlGroup.find('.help-inline').html(item.message);
 				}
