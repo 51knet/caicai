@@ -31,9 +31,31 @@
 	</form>
 </div>
 
+<c:url var="uploadJson" value="/file_upload/${sessionUserInfo.id}"></c:url>
+<c:url var="fileManagerJson" value="/file_manager/${sessionUserInfo.id}"></c:url>
+<link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/themes/default/default.css"/>" />
+<link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>" />
+<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.js"/>"></script>
 <script type="text/javascript">
 		$(document).ready(function() {
-			var editor = KindEditor.create('textarea[name="content"]');
+			var editor = KindEditor.create('textarea[name="content"]',{
+				cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+				uploadJson : '${uploadJson}',
+				fileManagerJson : '${fileManagerJson}',
+				allowFileManager : true,
+				afterCreate : function() {
+					var self = this;
+					K.ctrl(document, 13, function() {
+						self.sync();
+						document.forms['blog_post'].submit();
+					});
+					K.ctrl(self.edit.doc, 13, function() {
+						self.sync();
+						document.forms['blog_post'].submit();
+					});
+				}
+			});
+			prettyPrint();
 	    });
 </script>
 	
