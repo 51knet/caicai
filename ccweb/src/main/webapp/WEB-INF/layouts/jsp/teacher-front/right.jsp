@@ -26,9 +26,7 @@
 	</div>
 	<hr>
 	<div style="text-align: right;">
-	<c:if test="${annoCount >1}">
-		<a href="<c:url value="/teacher/${teacherInfo.id}/announcement/list"></c:url>"> 查看所有>></a>&nbsp;&nbsp;</c:if>
-	</div>
+
 </div>
 <!-- teacherAchievement  -->
 <div class="row-fluid custom round">
