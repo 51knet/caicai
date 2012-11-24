@@ -80,19 +80,17 @@
 			</form>
 		</div>
 		<div class="tab-pane <c:if test='${active == "contact"}'>active</c:if>" id="contact_info_tab">
-			<form class="form-horizontal" id="relation_info_form" action="contactInfo" method="post">
+			<form class="form-horizontal"  action="contactInfo" method="post">
 				<div class="control-group" id="address">
 					<label class="control-label" for="address">地址</label>
 					<div class="controls">
 						<input type="text" id="address" name="address" placeholder="地址" value="${sessionScope.sessionUserInfo.user.address}">
-					    <span class="help-inline"></span>
 					</div>
 				</div>
 				<div class="control-group" id="cellphone">
 					<label class="control-label" for="cellphone">手机</label>
 					<div class="controls">
 						<input type="text" id="cellphone" name="cellphone" placeholder="手机号码" value="${sessionScope.sessionUserInfo.user.cell_phone}">
-						<span class="help-inline"></span>
 					</div>
 				</div>
 				<div class="control-group">
@@ -111,8 +109,6 @@
 					<label class="control-label" for="qq">QQ</label>
 					<div class="controls">
 						<input type="text"  name="qq" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
-						<input type="text"  name="QQ" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
-						<span class="help-inline"></span>
 					</div>
 				</div>
 				<div class="control-group" id="msn">
@@ -143,7 +139,7 @@
 					<div class="control-group" id="collegeName">
 						<label class="control-label" for="collegeName">学院</label>
 						<div class="controls">
-							<input type="text"   name="collegeName" placeholder="学院名称"  >
+							<input type="text"      placeholder="学院名称"  >
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -303,10 +299,11 @@
 		
 		<div class="tab-pane <c:if test='${active == "psw"}'>active</c:if>" id="security_tab">
 			<form class="form-horizontal" action="changePsw" method="post" id="chanePsw_info_form">
-				<div class="control-group">
+				<div class="control-group" id="ori_psw">
 					<label class="control-label" for="ori_psw">当前密码</label>
 					<div class="controls">
-						<input type="password" id="ori_psw" name="ori_psw" placeholder="请输入您的当前密码" value="${sessionScope.sessionUserInfo.user.password}">
+						<input type="password"  name="ori_psw" placeholder="请输入您的当前密码" >
+						<span class="help-inline"></span>
 					</div>
 				</div>
 				<div class="control-group" id="new_psw">
@@ -385,38 +382,6 @@
 			e.preventDefault();
 			return false;
 		});
-	
-	
-	var $relation_form = $('#relation_info_form');
-	$relation_form.bind('submit', function(e) {
-		// Ajax validation
-		var $inputs = $relation_form.find('input');
-		var data = collectFormData($inputs);
-		$.post('contactInfoAJAX', data, function(response) {
-			$relation_form.find('.control-group').removeClass('error');
-			$relation_form.find('.help-inline').empty();
-			$relation_form.find('.alert').remove();
-
-			if (response.status == 'FAIL') {
-				for (var i = 0; i < response.errorMessageList.length; i++) {
-					var item = response.errorMessageList[i];
-					var $controlGroup = $('#' + item.fieldName);
-					$controlGroup.addClass('error');
-					$controlGroup.find('.help-inline').html(item.message);
-				}
-			} else {
-				$relation_form.unbind('submit');
-				$relation_form.submit();
-			}
-		}, 'json');
-
-		e.preventDefault();
-		return false;
-	});
-	
-	
-	
-	
 	var $edu_form=$('#edu_info_form');
 	    $edu_form.bind('submit',function(e){
 		var $inputs=$edu_form.find('input');
@@ -430,6 +395,8 @@
 				for(var i = 0; i < response.errorMessageList.length; i++){
 					var item = response.errorMessageList[i];
 					var $controlGroup = $('#' + item.fieldName);
+					alert(item.fieldName);
+					alert($controlGroup);
 					$controlGroup.addClass('error');
 					$controlGroup.find('.help-inline').html(item.message);
 				}
