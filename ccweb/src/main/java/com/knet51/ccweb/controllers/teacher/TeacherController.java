@@ -138,6 +138,7 @@ public class TeacherController {
 			return "redirect:/admin/teacher/details?active=personal";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
+			logger.info("### "+ personalInfoForm.getGender() +" ###");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User user = userService.findOne(userInfo.getId());
 			user.setName(personalInfoForm.getName());

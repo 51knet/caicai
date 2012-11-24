@@ -27,8 +27,8 @@
 				<div class="control-group" id="gender">
 					<label class="control-label" for="gender"><i class="icon-star"></i> 性别</label>
 					<div class="controls">
-						<label class="radio"> <input type="radio" name="gender" id="genderMale" value="男" checked>男</label>
-						<label class="radio"> <input type="radio" name="gender" id="genderFemale" value="女">女</label>
+						<label class="radio"> <input type="radio" name="gender" id="genderMale" value="男" <c:if test='${sessionScope.sessionUserInfo.gender != "女"}'>checked</c:if>>男</label>
+						<label class="radio"> <input type="radio" name="gender" id="genderFemale" value="女" <c:if test='${sessionScope.sessionUserInfo.gender == "女"}'>checked</c:if>>女</label>
 					</div>
 				</div>
 				<div class="control-group" id="college">
