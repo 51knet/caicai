@@ -50,8 +50,19 @@ public class TeacherAnnoDetailInfoController {
 			return "redirect:/admin/teacher/announcement/list";
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
-			
-			//System.out.println(announcement.getDate());
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long user_id = userInfo.getId();
+			User user = userService.findOne(user_id);
+			String title = annoDetailInfoForm.getTitle();
+			String content = annoDetailInfoForm.getContent();
+			Announcement announcement = new Announcement();
+			announcement.setTitle(title);
+			announcement.setContent(content);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String date = format.format(new Date());
+			announcement.setDate(date); 
+			announcement.setUser(user);
+			annoService.createAnnouncement(announcement);
 			
 			return "redirect:/admin/teacher/announcement/list";
 		}
@@ -73,7 +84,6 @@ public class TeacherAnnoDetailInfoController {
 		}else{	
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();
-			//System.out.println("------"+title+"-----"+content+"------");
 			Announcement announcement = annoService.findOneById(id);
 			announcement.setTitle(title);
 			announcement.setContent(content);
@@ -87,26 +97,8 @@ public class TeacherAnnoDetailInfoController {
 	
 	@RequestMapping(value = "/admin/teacher/announcement/annoInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse noticeInfoFormAjaxJson(@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm, 
-									BindingResult result,HttpSession session) {
+									BindingResult result) {
 		logger.info("######  Into announcement ajax validation page controller  #####");
-		Integer errorCount = result.getErrorCount();
-		if(errorCount ==0){
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long user_id = userInfo.getId();
-			User user = userService.findOne(user_id);
-			//System.out.println("++++++++++++++++"+user.getId()+"+++++++++++++++");
-			String title = annoDetailInfoForm.getTitle();
-			String content = annoDetailInfoForm.getContent();
-			Announcement announcement = new Announcement();
-			announcement.setTitle(title);
-			//System.out.println(title);
-			announcement.setContent(content);
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String date = format.format(new Date());
-			announcement.setDate(date); 
-			announcement.setUser(user);
-			annoService.createAnnouncement(announcement);
-		}
 		return AjaxValidationEngine.process(result);
 	}
 }
