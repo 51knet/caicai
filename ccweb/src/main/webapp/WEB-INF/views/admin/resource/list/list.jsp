@@ -23,7 +23,8 @@
 				</c:choose>
 			</td>
 			<td>${page.resourceType.typeName}</td>
-			<td><a href='<c:url value="/admin/teacher/resource/destory/${page.id }"></c:url>'> 删除</a> | <a href="${page.savePath}">下载</a></td></tr>
+			<td><a href='<c:url value="/admin/teacher/resource/destory/${page.id }"></c:url>'> 删除</a> 
+				| <a href='<c:url value="/resource/download/${page.id }"></c:url>'>下载</a></td></tr>
 		</c:forEach>
 		</tbody>
 		<tfoot>

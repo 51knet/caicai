@@ -38,7 +38,7 @@
 					</c:choose>
 				</td>
 				<td>${page.resourceType.typeName}</td>
-				<td><a href="${page.savePath}">下载</a></td></tr>
+				<td> <a href='<c:url value="/resource/download/${page.id }"></c:url>'>下载</a></td></tr>
 			</c:forEach>
 			</tbody>
 			<tfoot>

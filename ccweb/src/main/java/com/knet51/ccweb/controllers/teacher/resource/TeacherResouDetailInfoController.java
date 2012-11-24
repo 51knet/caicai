@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -57,11 +59,10 @@ public class TeacherResouDetailInfoController {
 				Resource resource = new Resource();
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
 				String fileName = files.get(i).getOriginalFilename();
-				
 				resource.setDescription(desc);
 				resource.setName(fileName);
 				ResourceType resourceType = resourceTypeService.findOneById(value); 
-				String realPath = SavePathUtil.getPath("upload", user.getId(), resourceType.getTypeName());
+				String realPath = FileUtil.getPath("upload", userInfo.getId(), resourceType.getTypeName(), session);
 				resource.setResourceType(resourceType);
 				resource.setStatus(1);
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -69,7 +70,7 @@ public class TeacherResouDetailInfoController {
 				resource.setDate(date);
 				String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
 				resource.setSaveName(saveName);
-				String savePath = realPath+"\\"+fileName;
+				String savePath = realPath+"\\"+saveName;
 				resource.setSavePath(savePath);
 				resourceService.create(resource, user);
 			}
@@ -146,6 +147,16 @@ public class TeacherResouDetailInfoController {
 			resourceTypeService.save(resourceType);
 			return "redirect:/admin/teacher/resource/type/list";
 		}
+	}
+	
+	@RequestMapping(value="/resource/download/{resource_id}")
+	public String resourceDownLoad(@PathVariable Long resource_id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		logger.info("-------Into resource DownLoad controller------");
+		Resource resource = resourceService.findOneById(resource_id);
+		String savePath = resource.getSavePath();
+		String fileName = resource.getSaveName();
+		FileUtil.downLoad(request, response, savePath, fileName);
+		return null;
 	}
 	
 
