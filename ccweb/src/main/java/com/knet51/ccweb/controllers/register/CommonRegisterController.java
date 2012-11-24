@@ -41,7 +41,7 @@ public class CommonRegisterController {
 
 		if (validResult.hasErrors()) {
 			logger.info("commonRegisterForm Validation Failed " + validResult);
-			return "register";
+			return "redirect:/";
 		} else {
 			String email = commonRegisterForm.getEmail();
 			String psw = commonRegisterForm.getPsw();
