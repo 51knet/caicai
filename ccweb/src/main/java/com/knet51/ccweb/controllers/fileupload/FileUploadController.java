@@ -2,7 +2,6 @@ package com.knet51.ccweb.controllers.fileupload;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,15 +12,13 @@ import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,19 +32,19 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public class FileUploadController {
 
 	private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+	public static final long MAX_FILE_SIZE_5M = 5*1024*1024;
 	
 	/**
-	 * TODO: each user can only see his upload folder, they have their own root path
+	 *
 	 */
-	@RequestMapping(value = "/file_upload", method = RequestMethod.POST)
-	public @ResponseBody FileUploadInfo uploadFile(Locale locale, Model model, HttpSession session, MultipartHttpServletRequest request) {
+	@RequestMapping(value = "/file_upload/{user_id}", method = RequestMethod.POST)
+	public @ResponseBody FileUploadInfo uploadFile(@PathVariable Long user_id, Locale locale, Model model, HttpSession session, MultipartHttpServletRequest request) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
-		
 		//文件保存目录路径
-		String savePath = session.getServletContext().getRealPath("/") + "/resources/attached/";
+		String savePath = session.getServletContext().getRealPath("/") + "/resources/attached/" + user_id +"/";
 		logger.info("savePath " + savePath);
 		//文件保存目录URL
-		String saveUrl  = request.getContextPath() + "/resources/attached/";
+		String saveUrl  = request.getContextPath() + "/resources/attached/" + user_id +"/";
 
 		//定义允许上传的文件扩展名
 		HashMap<String, String> extMap = new HashMap<String, String>();
@@ -56,15 +53,13 @@ public class FileUploadController {
 		extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
 		extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
 
-		//最大文件大小
-		long maxSize = 1000000;
 		if(!ServletFileUpload.isMultipartContent(request)){
 //			out.println(getError("请选择文件。"));
 			return FileUploadInfo.createFailedFileUploadInfo("请选择文件。");
 		}
 		//检查目录
 		File uploadDir = new File(savePath);
-		if(!uploadDir.isDirectory()){
+		if(uploadDir.mkdirs() && (!uploadDir.isDirectory())){
 //			out.println(getError("上传目录不存在。"));
 			return FileUploadInfo.createFailedFileUploadInfo("上传目录不存在。");
 		}
@@ -111,9 +106,9 @@ public class FileUploadController {
 				
 				logger.debug(fileName+":"+fileSize);
 				//检查文件大小
-				if(fileSize > maxSize){
+				if(fileSize > MAX_FILE_SIZE_5M){
 					//out.println(getError("上传文件大小超过限制。"));
-					return FileUploadInfo.createFailedFileUploadInfo("上传文件大小超过限制。");
+					return FileUploadInfo.createFailedFileUploadInfo("上传文件大小超过5M限制。");
 				}
 				//检查扩展名
 				String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();

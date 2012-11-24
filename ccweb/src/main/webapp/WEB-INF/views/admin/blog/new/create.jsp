@@ -25,7 +25,8 @@
 	  <button type="submit" class="btn">Submit</button>
 	</form>
 </div>
-
+<c:url var="uploadJson" value="/file_upload/${sessionUserInfo.id}"></c:url>
+<c:url var="fileManagerJson" value="/file_manager/${sessionUserInfo.id}"></c:url>
 <link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/themes/default/default.css"/>" />
 <link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>" />
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.js"/>"></script>
@@ -33,8 +34,8 @@
 		$(document).ready(function() {
 			var editor = KindEditor.create('textarea[name="content"]',{
 				cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
-				uploadJson : '<c:url value="/file_upload" />',
-				fileManagerJson : '<c:url value="/file_manager" />',
+				uploadJson : '${uploadJson}',
+				fileManagerJson : '${fileManagerJson}',
 				allowFileManager : true,
 				afterCreate : function() {
 					var self = this;
