@@ -100,9 +100,43 @@ public class TeacherController {
 	
 	@RequestMapping(value = "/admin/teacher/personalInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse processFormAjaxJson(@Valid TeacherPersonalInfoForm personalInfoForm, BindingResult result,HttpSession session) {
-		//System.out.println(result.getErrorCount());
-		Integer errorCount = result.getErrorCount();
-		if(errorCount==0){
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/contactInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse contactInfoFormAjaxJson(@Valid TeacherContactInfoForm teacherContactInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/eduInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse eduInfoFormAjaxJson(@Valid TeacherEduInfoForm teacherEduInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	
+	@RequestMapping(value = "/admin/teacher/workExpInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse workExpInfoFormAjaxJson(@Valid TeacherWorkExpInfoForm workInfoForm, BindingResult result) {
+		//logger.info("------into workExp ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/selfurlInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse selfurInfoFormAjaxJson(@Valid TeacherSelfUrlForm teacherSelfUrlForm, BindingResult result) {
+		//logger.info("------into selfur ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/pswInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse pswfurInfoFormAjaxJson(@Valid TeacherPswForm teacherPswForm, BindingResult result) {
+		//logger.info("------into psw ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/teacher/personalInfo")
+	public String personalInfo(@Valid TeacherPersonalInfoForm personalInfoForm,
+			BindingResult validResult, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		logger.info("#### Personal InfoController ####");
+		
+		if (validResult.hasErrors()) {
+			logger.info("detailInfoForm Validation Failed " + validResult);
+			return "redirect:/admin/teacher/details?active=personal";
+		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User user = userService.findOne(userInfo.getId());
@@ -119,60 +153,6 @@ public class TeacherController {
 			userInfo.setUser(user);
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-		}
-		return AjaxValidationEngine.process(result);
-	}
-	@RequestMapping(value = "/admin/teacher/contactInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse contactInfoFormAjaxJson(@Valid TeacherContactInfoForm teacherContactInfoForm, BindingResult result) {
-		return AjaxValidationEngine.process(result);
-	}
-	@RequestMapping(value = "/admin/teacher/eduInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse eduInfoFormAjaxJson(@Valid TeacherEduInfoForm teacherEduInfoForm, BindingResult result) {
-		return AjaxValidationEngine.process(result);
-	}
-	
-	@RequestMapping(value = "/admin/teacher/workExpInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse workExpInfoFormAjaxJson(@Valid TeacherWorkExpInfoForm workInfoForm, BindingResult result) {
-		logger.info("------into workExp ajax");
-		return AjaxValidationEngine.process(result);
-	}
-	@RequestMapping(value = "/admin/teacher/selfurlInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse selfurInfoFormAjaxJson(@Valid TeacherSelfUrlForm teacherSelfUrlForm, BindingResult result) {
-		logger.info("------into selfur ajax");
-		return AjaxValidationEngine.process(result);
-	}
-	@RequestMapping(value = "/admin/teacher/pswInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse pswfurInfoFormAjaxJson(@Valid TeacherPswForm teacherPswForm, BindingResult result) {
-		logger.info("------into psw ajax");
-		return AjaxValidationEngine.process(result);
-	}
-	
-	@Transactional
-	@RequestMapping(value = "/admin/teacher/personalInfo")
-	public String personalInfo(@Valid TeacherPersonalInfoForm personalInfoForm,
-			BindingResult validResult, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-		logger.info("#### Personal InfoController ####");
-		
-		if (validResult.hasErrors()) {
-			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/details?active=personal";
-		} else {
-			logger.info("### detailInfoForm Validation passed. ###");
-			/*UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			User user = userService.findOne(userInfo.getId());
-			user.setName(personalInfoForm.getName());
-			user.setGender(personalInfoForm.getGender());
-			user = userService.updateUser(user);
-			Teacher teacher = new Teacher(user);
-			teacher.setCollege(personalInfoForm.getCollege());
-			teacher.setSchool(personalInfoForm.getSchool());
-			teacher.setTitle(personalInfoForm.getTitle());
-			teacher.setMajor(personalInfoForm.getMajor());
-			teacher.setRole(personalInfoForm.getRole());
-			teacher = teacherService.updateTeacher(teacher);
-			userInfo.setUser(user);
-			userInfo.setTeacher(teacher);
-			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);*/
 
 			return "redirect:/admin/teacher/details?active=personal";
 		}
