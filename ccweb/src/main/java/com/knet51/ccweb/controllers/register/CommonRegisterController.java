@@ -74,8 +74,10 @@ public class CommonRegisterController {
 	@RequestMapping(value="/register/email", method = RequestMethod.POST)
 	public void checkEmail(@RequestParam("email") String email,HttpServletResponse response) throws Exception{
 		PrintWriter out=response.getWriter();
-		int count=userService.getCountByEmail(email);
-		out.write(count);
+		Integer count=userService.getCountByEmail(email);
+		String countString  = count.toString();
+		System.out.println(countString);
+		out.write(countString);
 		out.flush();
 		out.close();
 	}

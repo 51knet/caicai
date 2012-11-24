@@ -86,11 +86,12 @@ body {
 			  type: "post",
 			  url: "<c:url value='/register/email'/>",
 			  data: "email="+email,
+			  dataType:"text",
 			  success:function(num){
-					if(num==1){
-					$("#checkEmails").html("此邮箱地址已存在!");
-					}else if(num==0){
-					$("#checkEmails").html("此邮箱地址可用!");
+					if(num=='1'){
+					$("#checkEmails").html("此邮箱地址已存在");
+					}else{
+						$("#checkEmails").html("");
 					}
 				}
 			});
