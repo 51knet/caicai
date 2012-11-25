@@ -1,5 +1,6 @@
 package com.knet51.ccweb.controllers.login;
 
+import java.io.PrintWriter;
 import java.nio.charset.Charset;
 
 import javax.servlet.http.Cookie;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
@@ -48,6 +50,7 @@ public class LoginController {
 			String psw = loginForm.getPassword();
 
 			boolean succeed = service.login(email, psw);
+			System.out.println("11111111111111111111111");
 			logger.info("Login result " + succeed);
 			if (succeed) {
 				if (loginForm.getRemeberMe() == 1) {
@@ -81,5 +84,20 @@ public class LoginController {
 	public String signout(HttpSession session, HttpServletRequest request) {
 		session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
 		return "redirect:/";
+	}
+	@RequestMapping(value="/checkEmailAndPassword", method = RequestMethod.POST)
+	public void checkEmailAndPsw(@RequestParam("email") String email, @RequestParam("password") String password,HttpServletResponse response) throws Exception{
+		PrintWriter out=response.getWriter();
+		boolean value=service.login(email, password);
+		System.out.println("222222222222222222222222222222");
+		Integer num=1;
+		if(value==false){
+			num=0;
+		}
+		String number=num.toString();
+		System.out.println(number);
+		out.write(number);
+		out.flush();
+		out.close();
 	}
 }
