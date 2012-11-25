@@ -1448,6 +1448,7 @@ select:focus:required:invalid:focus {
   *display: inline;
   padding-left: 5px;
   vertical-align: middle;
+  
   *zoom: 1;
 }
 

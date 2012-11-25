@@ -50,7 +50,6 @@ public class LoginController {
 			String psw = loginForm.getPassword();
 
 			boolean succeed = service.login(email, psw);
-			System.out.println("11111111111111111111111");
 			logger.info("Login result " + succeed);
 			if (succeed) {
 				if (loginForm.getRemeberMe() == 1) {
@@ -89,13 +88,11 @@ public class LoginController {
 	public void checkEmailAndPsw(@RequestParam("email") String email, @RequestParam("password") String password,HttpServletResponse response) throws Exception{
 		PrintWriter out=response.getWriter();
 		boolean value=service.login(email, password);
-		System.out.println("222222222222222222222222222222");
 		Integer num=1;
 		if(value==false){
 			num=0;
 		}
 		String number=num.toString();
-		System.out.println(number);
 		out.write(number);
 		out.flush();
 		out.close();

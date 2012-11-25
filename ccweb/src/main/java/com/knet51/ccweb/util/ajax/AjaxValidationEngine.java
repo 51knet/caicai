@@ -35,7 +35,7 @@ public class AjaxValidationEngine {
 			List<FieldError> allErrors = result.getFieldErrors();
 			List<ErrorMessage> errorMesages = new ArrayList<ErrorMessage>();
 			for (FieldError objectError : allErrors) {
-				errorMesages.add(new ErrorMessage(objectError.getField(), objectError.getField() + "  "	+ objectError.getDefaultMessage()));
+				errorMesages.add(new ErrorMessage(objectError.getField(), objectError.getDefaultMessage()));
 			}
 			res.setErrorMessageList(errorMesages);
 		}

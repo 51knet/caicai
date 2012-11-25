@@ -87,8 +87,14 @@ body {
 				$("#passwordError").html("两次输入的密码不一致,请重新输入");
 			}
 		});
+		$("#psw").focus(function(){
+			$("#emptyPwd").html("");
+		});
 		$("#confirmpsw").focus(function(){
 			$("#passwordError").html("");
+		});
+		$("#emails").focus(function(){
+			$("#checkEmails").html("");
 		});
 		$("#emails").blur(function(){
 			var email=$("#emails").val();
