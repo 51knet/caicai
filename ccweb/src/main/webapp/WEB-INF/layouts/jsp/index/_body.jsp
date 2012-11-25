@@ -121,6 +121,14 @@ body {
 				}
 			});
 		});
+		$("#email").focus(function(){
+			$("#emailError").html("");
+			$("#em").html("");
+		});
+		$("#password").focus(function(){
+			$("#passwordErr").html("");
+			$("#pass").html("");
+		});
 		$("#password").blur(function(){
 			var email=$("#email").val();
 			var password=$("#password").val();
@@ -160,7 +168,7 @@ body {
 				<label class="control-label" for="email">邮箱地址</label>
 				<div class="controls">
 					<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址">
-					<span class="help-block"><form:errors path="email"></form:errors></span>
+					<span class="help-block" id="em"><form:errors path="email"></form:errors></span>
 					<div id="emailError"></div>
 				</div>
 			</div>
@@ -168,7 +176,7 @@ body {
 				<label class="control-label" for="password">登录密码</label>
 				<div class="controls">
 					<input type="password" id="password" name="password" placeholder="请输入您的密码">
-					<span class="help-block"><form:errors path="password" ></form:errors></span>
+					<span class="help-block" id="pass"><form:errors path="password" ></form:errors></span>
 					<div id="passwordErr" ></div>
 				</div>
 			</div>

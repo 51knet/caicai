@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <h3>账号信息</h3><i class="icon-star"></i><i>必须填写项</i>
 <hr />
 <div class="tabbable">
@@ -20,7 +20,7 @@
 				<div class="control-group" id="name">
 					<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 					<div class="controls">
-						<input type="text" id="name" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.name}" >
+						<input type="text"  name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.name}" >
 						<span class="help-inline"><form:errors path="name"></form:errors></span>
 					</div>
 				</div>
@@ -34,14 +34,14 @@
 				<div class="control-group" id="college">
 					<label class="control-label" for="college"><i class="icon-star"></i> 所属高校</label>
 					<div class="controls">
-						<input type="text" id="college" name="college" placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="8" data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'>
+						<input type="text"  name="college" placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="8" data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'>
 						<span class="help-inline"><form:errors path="college" /></span>
 					</div>
 				</div>
 				<div class="control-group" id="school">
 					<label class="control-label" for="school"><i class="icon-star"></i> 所属院系</label>
 					<div class="controls">
-						<input type="text" id="school" name="school" placeholder="所属院系" value="${sessionScope.sessionUserInfo.teacher.school}" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["计算机学院","财金学院","女子学院"]'>
+						<input type="text"  name="school" placeholder="所属院系" value="${sessionScope.sessionUserInfo.teacher.school}" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["计算机学院","财金学院","女子学院"]'>
 						<span class="help-inline"><form:errors path="school" /></span>
 					</div>
 					<!--  
@@ -57,24 +57,24 @@
 				<div class="control-group" id="major">
 					<label class="control-label" for="major">教授课程</label>
 					<div class="controls">
-						<input type="text" id="major" name="major" value="${sessionScope.sessionUserInfo.teacher.major}" placeholder="教授课程">
+						<input type="text"  name="major" value="${sessionScope.sessionUserInfo.teacher.major}" placeholder="教授课程">
 					</div>
 				</div>
 				<div class="control-group" id="title">
 					<label class="control-label" for="title">职称</label>
 					<div class="controls">
-						<input type="text" id="title" name="title" value="${sessionScope.sessionUserInfo.teacher.title}" placeholder="职称">
+						<input type="text"  name="title" value="${sessionScope.sessionUserInfo.teacher.title}" placeholder="职称">
 					</div>
 				</div>
 				<div class="control-group" id="role">
 					<label class="control-label" for="role">导师类别</label>
 					<div class="controls">
-						<input type="text" id="role" name="role" value="${sessionScope.sessionUserInfo.teacher.role}" placeholder="导师类别">
+						<input type="text"  name="role" value="${sessionScope.sessionUserInfo.teacher.role}" placeholder="导师类别">
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit" class="btn btn-large btn-success">保 存</button>
+						<button type="submit" onclick="personalOnclick();"    class="btn btn-large btn-success">保 存</button>
 					</div>
 				</div>
 			</form>
@@ -139,7 +139,7 @@
 					<div class="control-group" id="collegeName">
 						<label class="control-label" for="collegeName">学院</label>
 						<div class="controls">
-							<input type="text"      placeholder="学院名称"  >
+							<input type="text" name="collegeName" placeholder="学院名称"  >
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -166,7 +166,7 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit"  class="btn btn-large btn-success">保 存</button>
+							<button type="submit" onclick="eduOnclick();"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeEduAddForm()" class="btn btn-large">取消</button>
 						</div>
 					</div>
@@ -253,7 +253,7 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit"  class="btn btn-large btn-success">保 存</button>
+							<button type="submit" onclick="workOnclick();"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeWorkAddForm()" class="btn btn-large">取消</button>
 						</div>
 					</div>
@@ -302,28 +302,28 @@
 				<div class="control-group" id="ori_psw">
 					<label class="control-label" for="ori_psw">当前密码</label>
 					<div class="controls">
-						<input type="password"  name="ori_psw" placeholder="请输入您的当前密码" >
-						<span class="help-inline"></span>
+						<input type="password"  id="oriPsw" name="ori_psw" placeholder="请输入您的当前密码" >
+						<span class="help-inline" id="oriError"></span>
 					</div>
 				</div>
 				<div class="control-group" id="new_psw">
 					<label class="control-label" for="new_psw">新密码</label>
 					<div class="controls">
 						<input type="password" id="alter_new_psw" name="new_psw" placeholder="请输入您的新密码">
-					    <span class="help-inline"></span>
+					    <span class="help-inline" id="newPsw"></span>
 					</div>
 				</div>
 				<div class="control-group" id="confirm_new_psw">
 					<label class="control-label" for="confirm_new_psw">确认密码</label>
 					<div class="controls">
 						<input type="password" id="alter_confirm_new_psw" name="confirm_new_psw" placeholder="再次输入一遍您的新密码">
-						<span class="help-inline"></span>
+						<span class="help-inline" id="errorPs"></span>
 						<div id="errorPsw"></div>
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit" class="btn btn-large btn-success">修改密码</button>
+						<button type="submit" onclick="changPwdOnclick();"  class="btn btn-large btn-success">修改密码</button>
 					</div>
 				</div>
 			</form>
@@ -339,7 +339,7 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit" class="btn btn-large btn-success">保存</button>
+						<button type="submit" onclick="selfurlOnclick();" class="btn btn-large btn-success">保存</button>
 					</div>
 				</div>
 			</form>
@@ -347,178 +347,67 @@
 	</div>
 </div>
 <script type="text/javascript">
-	function collectFormData(fields) {
-		var data = {};
-		for (var i = 0; i < fields.length; i++) {
-			var $item = $(fields[i]);
-			data[$item.attr('name')] = $item.val();
-		}
-		return data;
-	}
-
-	$(document).ready(function() {
-		var $form = $('#personal_info_form');
-		$form.bind('submit', function(e) {
-			// Ajax validation
-			var $inputs = $form.find('input');
-			var data = collectFormData($inputs);
-			$.post('personalInfoAJAX', data, function(response) {
-				$form.find('.control-group').removeClass('error');
-				$form.find('.help-inline').empty();
-				$form.find('.alert').remove();
-				if (response.status == 'FAIL') {
-					for (var i = 0; i < response.errorMessageList.length; i++) {
-						var item = response.errorMessageList[i];
-						var $controlGroup = $('#' + item.fieldName);
-						$controlGroup.addClass('error');
-						$controlGroup.find('.help-inline').html(item.message);
-					}
-				} else {
-					$form.unbind('submit');
-					$form.submit();
-				}
-			}, 'json');
-	
-			e.preventDefault();
-			return false;
-		});
-	var $edu_form=$('#edu_info_form');
-	    $edu_form.bind('submit',function(e){
-		var $inputs=$edu_form.find('input');
-		var data=collectFormData($inputs);
-		$.post('eduInfoAJAX',data,function(response){
-			$edu_form.find('.control-group').removeClass('error');
-			$edu_form.find('.help_inline').empty();
-			//$edu_form.find('.alert').remove();
-			
-			if(response.status == 'FAIL'){
-				for(var i = 0; i < response.errorMessageList.length; i++){
-					var item = response.errorMessageList[i];
-					var $controlGroup = $('#' + item.fieldName);
-					$controlGroup.addClass('error');
-					$controlGroup.find('.help-inline').html(item.message);
-				}
-			}else{
-				$edu_form.unbind('submit');
-				$edu_form.submit();
-			}
-		},'json');
-		e.preventDefault();
-		return false;
+function personalOnclick(){
+	checkEmptyAjax("personal_info_form","personalInfoAJAX");
+	return false;
+};
+function eduOnclick(){
+	checkEmptyAjax("edu_info_form","eduInfoAJAX");
+	return false;
+};
+function workOnclick(){
+	checkEmptyAjax("workExpForm","workExpInfoAJAX");
+	return false;
+};
+function selfurlOnclick(){
+	checkEmptyAjax("selfurl_info_form","selfurlInfoAJAX");
+	return false;
+};
+function changPwdOnclick(){
+	checkEmptyAjax("chanePsw_info_form","pswInfoAJAX");
+	return false;
+};
+$(document).ready(function(){
+	$("#alter_confirm_new_psw").focus(function(){
+		$("#errorPs").html("");
+		$("#errorPsw").html("");
 	});
-		var $relation_form = $('#relation_info_form');
-		$relation_form.bind('submit', function(e) {
-			// Ajax validation
-			var $inputs = $relation_form.find('input');
-			var data = collectFormData($inputs);
-			$.post('contactInfoAJAX', data, function(response) {
-				$relation_form.find('.control-group').removeClass('error');
-				$relation_form.find('.help-inline').empty();
-				$relation_form.find('.alert').remove();
-	
-				if (response.status == 'FAIL') {
-					for (var i = 0; i < response.errorMessageList.length; i++) {
-						var item = response.errorMessageList[i];
-						var $controlGroup = $('#' + item.fieldName);
-						$controlGroup.addClass('error');
-						$controlGroup.find('.help-inline').html(item.message);
-					}
-				} else {
-					$relation_form.unbind('submit');
-					$relation_form.submit();
-				}
-			}, 'json');
-	
-			e.preventDefault();
-			return false;
-		});
-		
-		var $relation_form = $('#workExpForm');
-		$relation_form.bind('submit', function(e) {
-			// Ajax validation
-			var $inputs = $relation_form.find('input');
-			var data = collectFormData($inputs);
-			$.post('workExpInfoAJAX', data, function(response) {
-				$relation_form.find('.control-group').removeClass('error');
-				$relation_form.find('.help-inline').empty();
-				$relation_form.find('.alert').remove();
-	
-				if (response.status == 'FAIL') {
-					for (var i = 0; i < response.errorMessageList.length; i++) {
-						var item = response.errorMessageList[i];
-						var $controlGroup = $('#' + item.fieldName);
-						$controlGroup.addClass('error');
-						$controlGroup.find('.help-inline').html(item.message);
-					}
-				} else {
-					$relation_form.unbind('submit');
-					$relation_form.submit();
-				}
-			}, 'json');
-	
-			e.preventDefault();
-			return false;
-		});
-		
-		var $selfurl_info_form = $('#selfurl_info_form');
-		   $selfurl_info_form.bind('submit', function(e) {
-			// Ajax validation
-			var $inputs = $selfurl_info_form.find('input');
-			var data = collectFormData($inputs);
-			$.post('selfurlInfoAJAX', data, function(response) {
-				$selfurl_info_form.find('.control-group').removeClass('error');
-				$selfurl_info_form.find('.help-inline').empty();
-				$selfurl_info_form.find('.alert').remove();
-	
-				if (response.status == 'FAIL') {
-					for (var i = 0; i < response.errorMessageList.length; i++) {
-						var item = response.errorMessageList[i];
-						var $controlGroup = $('#' + item.fieldName);
-						$controlGroup.addClass('error');
-						$controlGroup.find('.help-inline').html(item.message);
-					}
-				} else {
-					$selfurl_info_form.unbind('submit');
-					$selfurl_info_form.submit();
-				}
-			}, 'json');
-	
-			e.preventDefault();
-			return false;
-		});
-		var $chanePsw_info_form = $('#chanePsw_info_form');
-		   $chanePsw_info_form.bind('submit', function(e) {
-			// Ajax validation
-			   var newPsw=$("#alter_new_psw").val().trim();
-				var confirmNewPsw=$("#alter_confirm_new_psw").val().trim();
-				if(newPsw!=confirmNewPsw){
-					$("#errorPsw").html("两次输入的密码不一致,请重新输入!");
+	$("#alter_new_psw").focus(function(){
+		$("#newPsw").html();
+	});
+	$("#oriPsw").focus(function(){
+		$("#oriError").html("");
+	});
+	$("#oriPsw").blur(function(){
+		var password=$("#oriPsw").val();
+		$.ajax({
+			type:"post",
+			url:"<c:url value='/admin/teacher/pswInfoCheck'/>",
+			data:"oriPsw="+password,
+			dataType:"text",
+			success:function(num){
+				alert(num);
+				if(num=='0'){
+					$("#oriError").html("输入的密码不正确");
 					return false;
 				}
-			var $inputs = $chanePsw_info_form.find('input');
-			var data = collectFormData($inputs);
-			$.post('pswInfoAJAX', data, function(response) {
-				$chanePsw_info_form.find('.control-group').removeClass('error');
-				//$chanePsw_info_form.find('.help-inline').empty();
-				//$chanePsw_info_form.find('.alert').remove();
-	
-				if (response.status == 'FAIL') {
-					for (var i = 0; i < response.errorMessageList.length; i++) {
-						var item = response.errorMessageList[i];
-						var $controlGroup = $('#' + item.fieldName);
-						$controlGroup.addClass('error');
-						$controlGroup.find('.help-inline').html(item.message);
-					}
-				} else {
-					$chanePsw_info_form.unbind('submit');
-					$chanePsw_info_form.submit();
-				}
-			}, 'json');
-	
-			e.preventDefault();
-			return false;
+			}
 		});
+		
 	});
+	$("#alter_confirm_new_psw").blur(function(){
+		var newPsw=$("#alter_new_psw").val().trim();
+		var confirmNewPsw=$("#alter_confirm_new_psw").val().trim();
+		if(newPsw!=confirmNewPsw){
+			$("#errorPsw").html("两次输入的密码不一致,请重新输入!");
+			return false;
+		}
+		
+	});
+	
+});
+
+
 
 function showEduAddForm(){
 	var eduList = document.getElementById("eduList");

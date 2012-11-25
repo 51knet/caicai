@@ -27,4 +27,5 @@ public interface UserDao {
 	
 	UserBeans getUserName(Long id);
 	int getcountByEmail(String email);
+	public int getcountBypassword(String password);
 }

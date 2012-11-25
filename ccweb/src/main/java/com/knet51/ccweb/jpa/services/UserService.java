@@ -16,4 +16,5 @@ public interface UserService {
 	boolean usableUrl(String url);
 	User findBySelfUrl(String url);
 	int getCountByEmail(String email);
+	public int getcountBypassword(String password);
 }

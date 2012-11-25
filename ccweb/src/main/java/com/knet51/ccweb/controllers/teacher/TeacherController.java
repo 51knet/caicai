@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -313,5 +314,15 @@ public class TeacherController {
 			}
 			return "redirect:/admin/teacher/details?active=url";
 		}
+	}
+	
+	@RequestMapping(value="/admin/teacher/pswInfoCheck", method = RequestMethod.POST)
+	public void checkEmail(@RequestParam("oriPsw") String oriPsw,HttpServletResponse response) throws Exception{
+		PrintWriter out=response.getWriter();
+		Integer count=userService.getcountBypassword(oriPsw);
+		String countString  = count.toString();
+		out.write(countString);
+		out.flush();
+		out.close();
 	}
 }
