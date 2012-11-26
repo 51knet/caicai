@@ -41,11 +41,14 @@
  function returnList(){
 	window.location.href='<c:url value="/admin/teacher/resource/list"></c:url>';
  }
+ function resourceOnclick(){
+	 return checkEmptyAjax("resource_type_form","resourceTypeAJAX");
+ }
 	$(document).ready(function() {
-		$("#typeNames").focus(function (){
+		$("#typeNames").focus(function(){
 			$("#typeError").html("");
 		});
-			checkEmptyAjax("resource_type_form","resourceTypeAJAX");
+		
 	});
 </script>
 
@@ -89,7 +92,7 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
+							<button type="submit" onclick="return resourceOnclick();" class="btn btn-primary">OK</button>&nbsp;&nbsp;
 						<button type="reset" class="btn" onclick="closeResourceTypeAdd()">Cancel</button>
 						</div>
 					</div>

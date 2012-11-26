@@ -24,8 +24,6 @@
 			$(".help-inline").html("");
 		});
 		checkAjax("receiveMsg_info_form","receiveMsgInfoAJAX");
-		alert(1);
-		
 		});
 		</script>
 

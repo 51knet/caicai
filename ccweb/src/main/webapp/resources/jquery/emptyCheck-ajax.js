@@ -30,7 +30,6 @@ function checkAjax(formID, actionName) {
 			$form.find('.modal-body').removeClass('error');
 			$form.find('.help-inline').empty();
 			$form.find('.alert').remove();
-			alert(3);
 			if (response.status == 'FAIL') {
 				for ( var i = 0; i < response.errorMessageList.length; i++) {
 					var item = response.errorMessageList[i];
@@ -51,7 +50,7 @@ function checkAjax(formID, actionName) {
 		return false;
 
 	});
-};
+}
 function checkAjaxs(formID, actionName) {
 	$form = $('#' + formID);
 	var action = actionName;
@@ -62,8 +61,8 @@ function checkAjaxs(formID, actionName) {
 		var textdata = collectFormData($textarea);
 		var dataInfo = data['courseName'];
 		var textInfo = textdata['courseDesc'];
-		var annoInfo = '{"courseName":"' + dataInfo + '","courseDesc": "' + textInfo
-		+ '"}';
+		var annoInfo = '{"courseName":"' + dataInfo + '","courseDesc": "'
+				+ textInfo + '"}';
 		var annoData = eval("(" + annoInfo + ")");
 		$.post(action, annoData, function(response) {
 			$form.find('.modal-body').removeClass('error');
@@ -75,21 +74,21 @@ function checkAjaxs(formID, actionName) {
 					var $controlGroup = $('#' + item.fieldName);
 					$controlGroup.addClass('error');
 					$controlGroup.find('.help-inline')
-					.html(
-							"<font color='#ff0000'>" + item.message
-							+ "</font>");
+							.html(
+									"<font color='#ff0000'>" + item.message
+											+ "</font>");
 				}
 			} else {
 				$form.unbind('submit');
 				$form.submit();
 			}
 		}, 'json');
-		
+
 		e.preventDefault();
 		return false;
-		
+
 	});
-};
+}
 /**
  * 对input是否为空进行验证
  * 
@@ -97,7 +96,7 @@ function checkAjaxs(formID, actionName) {
  * @param e
  * @returns {Boolean}
  */
-function checkEmptyAjax(formID, actionName) {
+/*function checkEmptyAjax(formID, actionName) {
 	$form = $('#' + formID);
 	var action = actionName;
 	$form.bind('submit', function(e) {
@@ -112,30 +111,32 @@ function checkEmptyAjax(formID, actionName) {
 					var item = response.errorMessageList[i];
 					var $controlGroup = $('#' + item.fieldName);
 					$controlGroup.addClass('error');
-					$controlGroup.find('.help-inline')
-					.html(item.message);
+					$controlGroup.find('.help-inline').html(item.message);
 				}
 			} else {
 				$form.unbind('submit');
 				$form.submit();
 			}
 		}, 'json');
-		
+
 		e.preventDefault();
 		return false;
-		
+
 	});
-};
+}*/
 
-
-
-function checkTextAjax(formID, actionName) {
-	$form = $('#' + formID);
+function checkEmptyAjax(formID, actionName) {
+	var flag = false;
+	var $form = $('#' + formID);
 	var action = actionName;
-	$form.bind('submit', function(e) {
-		var $textarea = $form.find('textarea');
-		var textdata = collectFormData($textarea);
-		$.post(action, textdata, function(response) {
+	var $inputs = $form.find('input');
+	var data = collectFormData($inputs);
+	$.ajax({
+		type:"post",
+		url : action,
+		data : data,
+		async:false,
+		success : function(response) {
 			$form.find('.modal-body').removeClass('error');
 			$form.find('.help-inline').empty();
 			$form.find('.alert').remove();
@@ -144,17 +145,54 @@ function checkTextAjax(formID, actionName) {
 					var item = response.errorMessageList[i];
 					var $controlGroup = $('#' + item.fieldName);
 					$controlGroup.addClass('error');
-					$controlGroup.find('.help-inline')
-							.html(item.message);
+					$controlGroup.find('.help-inline').html(item.message);
 				}
+				flag = false;
 			} else {
-				$form.unbind('submit');
-				$form.submit();
+				flag = true;
 			}
-		}, 'json');
-
-		e.preventDefault();
-		return false;
-
+		}
 	});
-};
+	// e.preventDefault();
+	return flag;
+	// });
+}
+
+
+
+
+
+
+
+function checkTextAjax(formID, actionName) {
+	var flag = false;
+	var $form = $('#' + formID);
+	var action = actionName;
+	var $textarea = $form.find('textarea');
+	var textdata = collectFormData($textarea);
+	$.ajax({
+		type:"post",
+		url : action,
+		data : textdata,
+		async:false,
+		success : function(response) {
+			$form.find('.modal-body').removeClass('error');
+			$form.find('.help-inline').empty();
+			$form.find('.alert').remove();
+			if (response.status == 'FAIL') {
+				for ( var i = 0; i < response.errorMessageList.length; i++) {
+					var item = response.errorMessageList[i];
+					var $controlGroup = $('#' + item.fieldName);
+					$controlGroup.addClass('error');
+					$controlGroup.find('.help-inline').html(item.message);
+				}
+				flag = false;
+			} else {
+				flag = true;
+			}
+		}
+	});
+	// e.preventDefault();
+	return flag;
+	// });
+}

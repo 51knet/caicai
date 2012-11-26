@@ -5,17 +5,18 @@
 <script type="text/javascript" src="/js/myutil.js"></script>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
+
 function thesisOnclick(){
-  checkTextAjax("thesis_info_form","thesisInfoAJAX");
+	return checkTextAjax("thesis_info_form","thesisInfoAJAX");
 };
-function projectOnclick (){
-	checkEmptyAjax("project_info_form","projectInfoAJAX");
+ function projectOnclick (){
+	return checkEmptyAjax("project_info_form","projectInfoAJAX");
 };
 function patentOnclick (){
-	checkEmptyAjax("patent_info_form","patentInfoAJAX");
+	return checkEmptyAjax("patent_info_form","patentInfoAJAX");
 };
 function honorOnclick(){
-	checkEmptyAjax("honor_info_Form","honorInfoAJAX");
+	return checkEmptyAjax("honor_info_Form","honorInfoAJAX");
 };
 $(document).ready(function(){
 	$("#context").focus(function(){
@@ -73,7 +74,7 @@ $(document).ready(function(){
 			        </div>
 					<div class="control-group">
 					<div class="controls">
-						<button type="submit" onclick="thesisOnclick();"    class="btn btn-large btn-success">保 存</button>
+						<button type="submit"  onclick="return thesisOnclick();" class="btn btn-large btn-success">保 存</button>
 					    <button class="btn" type="reset" onclick="hiddenThesisAddForm()">取消</button>
 					</div>
 				     </div>
@@ -105,7 +106,7 @@ $(document).ready(function(){
 							<td align="center" class="modal-body" id="date"><input type="text" name="date" /><span id="dateMsg" class="help-inline" style="color: red; font-size: 13px;">2000.01.01-2001.01.01</span></td>
 						</tr>
 						<tr class="controls"><td align="right" colspan="3">
-						<button type="submit" onclick ="projectOnclick();" class="btn btn-large btn-success">保存</button>&nbsp;&nbsp;
+						<button type="submit" onclick ="return projectOnclick();" class="btn btn-large btn-success">保存</button>&nbsp;&nbsp;
 						<button class="btn" type="reset" onclick="hiddenProjectAddForm()">取消</button></td></tr>
 					</tbody>
 					
@@ -171,9 +172,11 @@ $(document).ready(function(){
 							<td align="center" class="modal-body" id="number"><input type="text" style="width:150px;" name="number" /> <span class="help-inline" style="color: red; font-size: 13px;" id="numberMsg"></span></td>
 						</tr>
 						<tr><td align="right" colspan="4">
+						<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="patentOnclick();" class="btn btn-large btn-success">保存</button>
+							<button type="submit" onclick="return patentOnclick();" class="btn btn-large btn-success">保存</button>
 							<button class="btn" type="reset" onclick="hiddenPatentAddForm()">取消</button>
+						</div>
 						</div>
 						</td></tr>
 					</tbody>
@@ -238,7 +241,7 @@ $(document).ready(function(){
 							<td align="center" class="modal-body" id="reason"><input type="text" name="reason" /> <span class="help-inline" style="color: red; font-size: 13px;" id="reasonMsg"></span></td>
 						</tr>
 						<tr><td align="right" colspan="2">
-							<button type="submit" onclick="honorOnclick();"class="btn btn-large btn-success">保存</button>
+							<button type="submit" onclick="return honorOnclick();"class="btn btn-large btn-success">保存</button>
 							<button class="btn" type="reset" onclick="hiddenHonorAddForm()">取消</button>
 						</td></tr>
 						</tbody>

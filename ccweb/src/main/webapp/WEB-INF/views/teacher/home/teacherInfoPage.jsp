@@ -74,7 +74,7 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit" onclick="personalOnclick();"    class="btn btn-large btn-success">保 存</button>
+						<button type="submit" onclick="return personalOnclick();"    class="btn btn-large btn-success">保 存</button>
 					</div>
 				</div>
 			</form>
@@ -166,7 +166,7 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="eduOnclick();"  class="btn btn-large btn-success">保 存</button>
+							<button type="submit" onclick="return eduOnclick();"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeEduAddForm()" class="btn btn-large">取消</button>
 						</div>
 					</div>
@@ -253,7 +253,7 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="workOnclick();"  class="btn btn-large btn-success">保 存</button>
+							<button type="submit" onclick="return workOnclick();"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeWorkAddForm()" class="btn btn-large">取消</button>
 						</div>
 					</div>
@@ -318,12 +318,11 @@
 					<div class="controls">
 						<input type="password" id="alter_confirm_new_psw" name="confirm_new_psw" placeholder="再次输入一遍您的新密码">
 						<span class="help-inline" id="errorPs"></span>
-						<div id="errorPsw"></div>
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit" onclick="changPwdOnclick();"  class="btn btn-large btn-success">修改密码</button>
+						<button type="submit" onclick="return changPwdOnclick();"  class="btn btn-large btn-success">修改密码</button>
 					</div>
 				</div>
 			</form>
@@ -339,7 +338,7 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit" onclick="selfurlOnclick();" class="btn btn-large btn-success">保存</button>
+						<button type="submit" onclick="return selfurlOnclick();" class="btn btn-large btn-success">保存</button>
 					</div>
 				</div>
 			</form>
@@ -348,29 +347,23 @@
 </div>
 <script type="text/javascript">
 function personalOnclick(){
-	checkEmptyAjax("personal_info_form","personalInfoAJAX");
-	return false;
+	return checkEmptyAjax("personal_info_form","personalInfoAJAX");
 };
 function eduOnclick(){
-	checkEmptyAjax("edu_info_form","eduInfoAJAX");
-	return false;
+	return checkEmptyAjax("edu_info_form","eduInfoAJAX");
 };
 function workOnclick(){
-	checkEmptyAjax("workExpForm","workExpInfoAJAX");
-	return false;
+	return checkEmptyAjax("workExpForm","workExpInfoAJAX");
 };
 function selfurlOnclick(){
-	checkEmptyAjax("selfurl_info_form","selfurlInfoAJAX");
-	return false;
+	return checkEmptyAjax("selfurl_info_form","selfurlInfoAJAX");
 };
 function changPwdOnclick(){
-	checkEmptyAjax("chanePsw_info_form","pswInfoAJAX");
-	return false;
+	return checkEmptyAjax("chanePsw_info_form","pswInfoAJAX");
 };
 $(document).ready(function(){
 	$("#alter_confirm_new_psw").focus(function(){
 		$("#errorPs").html("");
-		$("#errorPsw").html("");
 	});
 	$("#alter_new_psw").focus(function(){
 		$("#newPsw").html();
@@ -386,9 +379,9 @@ $(document).ready(function(){
 			data:"oriPsw="+password,
 			dataType:"text",
 			success:function(num){
-				alert(num);
 				if(num=='0'){
-					$("#oriError").html("输入的密码不正确");
+					$("#oriError").html("<font color='#ff0000'>" + "输入的密码不正确"
+							+ "</font>");
 					return false;
 				}
 			}
@@ -399,7 +392,7 @@ $(document).ready(function(){
 		var newPsw=$("#alter_new_psw").val().trim();
 		var confirmNewPsw=$("#alter_confirm_new_psw").val().trim();
 		if(newPsw!=confirmNewPsw){
-			$("#errorPsw").html("两次输入的密码不一致,请重新输入!");
+			$("#errorPs").html("<font color='#ff0000'>"+"两次输入的密码不一致,请重新输入!"+"</font>");
 			return false;
 		}
 		
