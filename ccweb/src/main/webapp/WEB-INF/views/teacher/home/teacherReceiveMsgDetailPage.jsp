@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
 	function sendMsgForm(){
 		var sendForm = document.getElementById("sendMsgForm");
@@ -16,49 +16,17 @@
 		sendMsgForm.style.display = "none";
 		
 	}
-	function collectFormData(fields) {
-			var data = {};
-			for (var i = 0; i < fields.length; i++) {
-				var $item = $(fields[i]);
-				data[$item.attr('name')] = $item.val();
-			}
-			return data;
-		}
-
-		$(document).ready(function() {
-			var $form = $('#receiveMsg_info_form');
-			$form.bind('submit', function(e) {
-				// Ajax validation
-				var $inputs = $form.find('input');
-				var $textareas = $form.find('textarea');
-				var dataInput = collectFormData($inputs);
-				var dataTextArea=collectFormData($textareas);
-				var inputinfo=dataInput['title'];
-				var textareainfo=dataTextArea['content'];
-				var datainfo='{"title":"'+inputinfo+'","content": "'+textareainfo+'"}';
-				var data=eval('('+datainfo+')');
-				$.post('sendMsgInfoAJAX', data, function(response) {
-					alert(3);
-					/* $form.find('.control-group').removeClass('error');
-					$form.find('.help-inline').empty();
-					$form.find('.alert').remove(); */
-					if (response.status == 'FAIL') {
-						for (var i = 0; i < response.errorMessageList.length; i++) {
-							var item = response.errorMessageList[i];
-							var $controlGroup = $('#' + item.fieldName);
-							$controlGroup.addClass('error');
-							$controlGroup.find('.help-inline').html(item.message);
-						}
-					} else {
-						$form.unbind('submit');
-						$form.submit();
-					}
-				}, 'json');
+	$(document).ready(function() {
+		$("#t").focus(function() {
+			$(".help-inline").html("");
+		});
+		$("#c").focus(function() {
+			$(".help-inline").html("");
+		});
+		checkAjax("receiveMsg_info_form","receiveMsgInfoAJAX");
+		alert(1);
 		
-				e.preventDefault();
-				return false;
-			});
-			});
+		});
 		</script>
 
 <h1>Welcome to teacher message page.</h1>
@@ -88,15 +56,15 @@
 			<input type="hidden" value="${sendMsg.id }" name="sendMsgId" >
 			<input type="hidden" value="${urmId }" name="urmId" >
 			<div class="modal-body" id="title">
-			信件标题：<input type="text" name="title" placeholder="Title">
-			<span class="help-block"></span>
+			信件标题：<input type="text" name="title" id="t" placeholder="Title">
+			<span class="help-inline"></span>
 			</div >
 			<div class="modal-body" id="content">
-			信件内容：<textarea name="content" placeholder="content" cols="5" rows="8"></textarea>
-			<span class="help-block"></span>
+			信件内容：<textarea name="content" id="c" placeholder="content" cols="5" rows="8"></textarea>
+			<span class="help-inline"></span>
 			</div>
-			<button type="submit" class="btn btn-primary">OK</button>
-			<button class="btn" type="reset" onclick="hiddenAddForm()">CANCEL</button>
+			<button type="submit" class="btn btn-primary">保存</button>
+			<button class="btn" type="reset" onclick="hiddenAddForm()">取消</button>
 		</form:form>
 	</div>
 

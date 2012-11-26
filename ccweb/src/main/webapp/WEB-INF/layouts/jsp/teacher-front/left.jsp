@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <style>
 .row-fluid.centralize {
 	text-align: center;
@@ -16,48 +17,16 @@
 </style>
 <script type="text/javascript">
 
-function collectFormData(fields) {
-		var data = {};
-		for (var i = 0; i < fields.length; i++) {
-			var $item = $(fields[i]);
-			data[$item.attr('name')] = $item.val();
-		}
-		return data;
-	}
 
 	$(document).ready(function() {
-		var $form = $('#sendMsg_info_form');
-		$form.bind('submit', function(e) {
-			// Ajax validation
-			var $inputs = $form.find('input');
-			var $textareas = $form.find('textarea');
-			var dataInput = collectFormData($inputs);
-			var dataTextArea=collectFormData($textareas);
-			var inputinfo=dataInput['title'];
-			var textareainfo=dataTextArea['content'];
-			var datainfo='{"title":"'+inputinfo+'","content": "'+textareainfo+'"}';
-			var data=eval('('+datainfo+')');
-			$.post('sendMsgInfoAJAX', data, function(response) {
-				/* $form.find('.control-group').removeClass('error');
-				$form.find('.help-inline').empty();
-				$form.find('.alert').remove(); */
-				if (response.status == 'FAIL') {
-					for (var i = 0; i < response.errorMessageList.length; i++) {
-						var item = response.errorMessageList[i];
-						var $controlGroup = $('#' + item.fieldName);
-						$controlGroup.addClass('error');
-						$controlGroup.find('.help-inline').html(item.message);
-					}
-				} else {
-					$form.unbind('submit');
-					$form.submit();
-				}
-			}, 'json');
-	
-			e.preventDefault();
-			return false;
+		$("#t").focus(function() {
+			$(".help-inline").html("");
 		});
+		$("#c").focus(function() {
+			$(".help-inline").html("");
 		});
+		checkAjax('sendMsg_info_form','sendMsgInfoAJAX');
+	});
 	</script>
 <div class="row-fluid centralize round">
 	<div class="round header">
@@ -115,12 +84,12 @@ function collectFormData(fields) {
 			<input type="hidden" value="${teacherInfo.id}" name="uid"> 
 		</div>
 		<div class="modal-body" id="title">
-			信件标题：<input type="text" name="title" placeholder="Title"><br> 
+			信件标题：<input type="text" name="title" id="t" placeholder="Title"> 
 			<span class="help-inline"></span>
 		</div>
 		<div class="modal-body" id="content">
 			信件内容：
-			<textarea name="content" placeholder="Content" cols="5" rows="8"></textarea>
+			<textarea name="content" placeholder="content" id="c" cols="5" rows="8"></textarea>
 			<span class="help-inline"></span>
 		</div>
 		<div class="modal-footer">

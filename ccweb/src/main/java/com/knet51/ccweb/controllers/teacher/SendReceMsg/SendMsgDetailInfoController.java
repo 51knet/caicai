@@ -123,7 +123,6 @@ public class SendMsgDetailInfoController {
 	}
 	@RequestMapping(value = "/teacher/sendMsgInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse sendMsgInfoFormAjaxJson(@Valid SendMsgInfoForm sendMsgInfoForm, BindingResult result) {
-		logger.info("------into sendMsg ajax");
 		return AjaxValidationEngine.process(result);
 	}
 	

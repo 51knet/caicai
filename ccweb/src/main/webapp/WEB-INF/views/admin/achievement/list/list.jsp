@@ -3,127 +3,29 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="/js/myutil.js"></script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
-function collectFormData(fields) {
-	var data = {};
-	for (var i = 0; i < fields.length; i++) {
-		var $item = $(fields[i]);
-		data[$item.attr('name')] = $item.val();
-	}
-	return data;
-}
-$(document).ready(function() {
-	var $form = $('#thesis_info_form');
-	$form.bind('submit', function(e) {
-		// Ajax validation
-		var $textareas = $form.find('textarea');
-		var data = collectFormData($textareas);
-		$.post('thesisInfoAJAX',data, function(response) {
-			//$form.find('.modal-body').removeClass('error');
-			//$form.find('.help-block').empty();
-			//$form.find('.alert').remove();
-			if (response.status == 'FAIL') {
-				for (var i = 0; i < response.errorMessageList.length; i++) {
-					var item = response.errorMessageList[i];
-					var $controlGroup = $('#' + item.fieldName);
-					$controlGroup.addClass('error');
-					$controlGroup.find('.help-block').html(item.message);
-				}
-			} else {
-				$form.unbind('submit');
-				$form.submit();
-			}
-		}, 'json');
-
-		e.preventDefault();
-		return false;
+function thesisOnclick(){
+  checkTextAjax("thesis_info_form","thesisInfoAJAX");
+};
+function projectOnclick (){
+	checkEmptyAjax("project_info_form","projectInfoAJAX");
+};
+function patentOnclick (){
+	checkEmptyAjax("patent_info_form","patentInfoAJAX");
+};
+function honorOnclick(){
+	checkEmptyAjax("honor_info_Form","honorInfoAJAX");
+};
+$(document).ready(function(){
+	$("#context").focus(function(){
+		$("#thesisContentMsg").html("");
+	});
+	$("input").focus(function(){
+		$(".help-inline").html("");
 	});
 });
 
-
-$(document).ready(function() {
-	var $form = $('#project_info_form');
-	$form.bind('submit', function(e) {
-		// Ajax validation
-		var $inputs = $form.find('input');
-		var data = collectFormData($inputs);
-		$.post('projectInfoAJAX',data, function(response) {
-			//$form.find('.modal-body').removeClass('error');
-			//$form.find('.help-block').empty();
-			//$form.find('.alert').remove();
-			if (response.status == 'FAIL') {
-				for (var i = 0; i < response.errorMessageList.length; i++) {
-					var item = response.errorMessageList[i];
-					var $controlGroup = $('#' + item.fieldName);
-					$controlGroup.addClass('error');
-					$controlGroup.find('.help-block').html(item.message);
-				}
-			} else {
-				$form.unbind('submit');
-				$form.submit();
-			}
-		}, 'json');
-
-		e.preventDefault();
-		return false;
-	});
-});
-
-
-$(document).ready(function() {
-	var $form = $('#patent_info_form');
-	$form.bind('submit', function(e) {
-		// Ajax validation
-		var $inputs = $form.find('input');
-		var data = collectFormData($inputs);
-		$.post('patentInfoAJAX',data, function(response) {
-			//$form.find('.modal-body').removeClass('error');
-			//$form.find('.help-block').empty();
-			//$form.find('.alert').remove();
-			if (response.status == 'FAIL') {
-				for (var i = 0; i < response.errorMessageList.length; i++) {
-					var item = response.errorMessageList[i];
-					var $controlGroup = $('#' + item.fieldName);
-					$controlGroup.addClass('error');
-					$controlGroup.find('.help-block').html(item.message);
-				}
-			} else {
-				$form.unbind('submit');
-				$form.submit();
-			}
-		}, 'json');
-
-		e.preventDefault();
-		return false;
-	});
-});
-$(document).ready(function() {
-	var $form = $('#honor_info_Form');
-	$form.bind('submit', function(e) {
-		// Ajax validation
-		var $inputs = $form.find('input');
-		var data = collectFormData($inputs);
-		$.post('honorInfoAJAX',data, function(response) {
-			//$form.find('.modal-body').removeClass('error');
-			//$form.find('.help-block').empty();
-			//$form.find('.alert').remove();
-			if (response.status == 'FAIL') {
-				for (var i = 0; i < response.errorMessageList.length; i++) {
-					var item = response.errorMessageList[i];
-					var $controlGroup = $('#' + item.fieldName);
-					$controlGroup.addClass('error');
-					$controlGroup.find('.help-block').html(item.message);
-				}
-			} else {
-				$form.unbind('submit');
-				$form.submit();
-			}
-		}, 'json');
-
-		e.preventDefault();
-		return false;
-	});
-});
 	
 </script>
 <div style="text-align: center;">
@@ -166,13 +68,15 @@ $(document).ready(function() {
 				<form action="thesis/new" method="post"  id="thesis_info_form">
 					内容：
 					<div class="modal-body" id="content">
-						<textarea style="width: 450px;" name="content" cols="40" rows="3" ></textarea>
-					    <span class="help-block" style="color: red; font-size: 13px;" id="thesisContentMsg"></span>
+						<textarea style="width: 450px;" id="context" name="content" cols="40" rows="3" ></textarea>
+					    <span class="help-inline" style="color: red; font-size: 13px;" id="thesisContentMsg"></span>
 			        </div>
-			        <div class="modal-footer">
-					<button type="submit" class="btn btn-primary">保存</button>
-					<button class="btn" type="reset" onclick="hiddenThesisAddForm()">取消</button>
+					<div class="control-group">
+					<div class="controls">
+						<button type="submit" onclick="thesisOnclick();"    class="btn btn-large btn-success">保 存</button>
+					    <button class="btn" type="reset" onclick="hiddenThesisAddForm()">取消</button>
 					</div>
+				     </div>
 				</form>
 			</div>
 			<div id="thesisButton" style="display: block">
@@ -191,16 +95,17 @@ $(document).ready(function() {
 		<hr>
 		<div id="project" style="display: block">
 			<div id="projectForm" style="display: none;">
-				<form action="project/new" method="post" onSubmit="return checkProjectForm(this)" id="project_info_form">
+				<form action="project/new" method="post"  id="project_info_form">
 				<table  class="table">
 					<thead><tr><th>项目名称</th><th>项目来源</th><th>项目起止时间</th></tr></thead>
 					<tbody>
 						<tr>
-							<td align="center" class="modal-body" id="title"><input type="text" name="title" /> <span class="help-block" style="color: red; font-size: 13px;" id="titleMsg"></span></td>
-							<td align="center" class="modal-body" id="source"><input type="text" name="source" /> <span class="help-block" style="color: red; font-size: 13px;" id="sourceMsg"></span></td>
-							<td align="center" class="modal-body" id="date"><input type="text" name="date" /><span id="dateMsg" class="help-block" style="color: red; font-size: 13px;">2000.01.01-2001.01.01</span></td>
+							<td align="center" class="modal-body" id="title"><input type="text" name="title" /> <span class="help-inline" style="color: red; font-size: 13px;" id="titleMsg"></span></td>
+							<td align="center" class="modal-body" id="source"><input type="text" name="source" /> <span class="help-inline" style="color: red; font-size: 13px;" id="sourceMsg"></span></td>
+							<td align="center" class="modal-body" id="date"><input type="text" name="date" /><span id="dateMsg" class="help-inline" style="color: red; font-size: 13px;">2000.01.01-2001.01.01</span></td>
 						</tr>
-						<tr><td align="right" colspan="3"><button type="submit" class="btn btn-primary">保存</button>&nbsp;&nbsp;
+						<tr class="controls"><td align="right" colspan="3">
+						<button type="submit" onclick ="projectOnclick();" class="btn btn-large btn-success">保存</button>&nbsp;&nbsp;
 						<button class="btn" type="reset" onclick="hiddenProjectAddForm()">取消</button></td></tr>
 					</tbody>
 					
@@ -260,14 +165,14 @@ $(document).ready(function() {
 					</thead>
 					<tbody>
 						<tr>
-							<td align="center"  class="modal-body" id="inventer"><input type="text" style="width:150px;" name="inventer" /> <span class="help-block" style="color: red; font-size: 13px;" id="inventerMsg"></span></td>
-							<td align="center" class="modal-body" id="name"><input type="text" style="width:150px;" name="name" /> <span class="help-block" style="color: red; font-size: 13px;" id="nameMsg"></span></td>
-							<td align="center" class="modal-body" id="type"><input type="text" style="width:150px;" name="type" /> <span class="help-block" style="color: red; font-size: 13px;" id="typeMsg"></span></td>
-							<td align="center" class="modal-body" id="number"><input type="text" style="width:150px;" name="number" /> <span class="help-block" style="color: red; font-size: 13px;" id="numberMsg"></span></td>
+							<td align="center"  class="modal-body" id="inventer"><input type="text" style="width:150px;" name="inventer" /> <span class="help-inline" style="color: red; font-size: 13px;" id="inventerMsg"></span></td>
+							<td align="center" class="modal-body" id="name"><input type="text" style="width:150px;" name="name" /> <span class="help-inline" style="color: red; font-size: 13px;" id="nameMsg"></span></td>
+							<td align="center" class="modal-body" id="type"><input type="text" style="width:150px;" name="type" /> <span class="help-inline" style="color: red; font-size: 13px;" id="typeMsg"></span></td>
+							<td align="center" class="modal-body" id="number"><input type="text" style="width:150px;" name="number" /> <span class="help-inline" style="color: red; font-size: 13px;" id="numberMsg"></span></td>
 						</tr>
 						<tr><td align="right" colspan="4">
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-primary">保存</button>
+						<div class="controls">
+							<button type="submit" onclick="patentOnclick();" class="btn btn-large btn-success">保存</button>
 							<button class="btn" type="reset" onclick="hiddenPatentAddForm()">取消</button>
 						</div>
 						</td></tr>
@@ -329,11 +234,11 @@ $(document).ready(function() {
 					<thead><tr><th align="center">奖励或荣誉</th><th align="center">获奖原因</th></tr></thead>
 					<tbody>
 						<tr>
-							<td align="center" class="modal-body" id="honorName"><input type="text" name="honorName" /> <span class="help-block" style="color: red; font-size: 13px;" id="honorNameMsg"></span></td>
-							<td align="center" class="modal-body" id="reason"><input type="text" name="reason" /> <span class="help-block" style="color: red; font-size: 13px;" id="reasonMsg"></span></td>
+							<td align="center" class="modal-body" id="honorName"><input type="text" name="honorName" /> <span class="help-inline" style="color: red; font-size: 13px;" id="honorNameMsg"></span></td>
+							<td align="center" class="modal-body" id="reason"><input type="text" name="reason" /> <span class="help-inline" style="color: red; font-size: 13px;" id="reasonMsg"></span></td>
 						</tr>
 						<tr><td align="right" colspan="2">
-							<button type="submit" class="btn btn-primary">保存</button>
+							<button type="submit" onclick="honorOnclick();"class="btn btn-large btn-success">保存</button>
 							<button class="btn" type="reset" onclick="hiddenHonorAddForm()">取消</button>
 						</td></tr>
 						</tbody>

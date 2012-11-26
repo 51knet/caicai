@@ -3,47 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
-function collectFormData(fields) {
-	var data = {};
-	for (var i = 0; i < fields.length; i++) {
-		var $item = $(fields[i]);
-		data[$item.attr('name')] = $item.val();
-	}
-	return data;
-}
 $(document).ready(function() {
-	var $form = $('#course_info_form');
-	$form.bind('submit', function(e) {
-		// Ajax validation
-		var $inputs = $form.find('input');
-		var $textarea=$form.find('textarea');
-		var data = collectFormData($inputs);
-		var textdata = collectFormData($textarea);
-		var dataInfo=data['courseName'];
-		var textInfo=textdata['courseDesc'];
-		var course_data='{"courseName":"'+dataInfo+'","courseDesc": "'+textInfo+'"}';
-		var courseData = eval("("+course_data+")");
-		$.post('courserInfoAJAX',courseData, function(response) {
-			//$form.find('.modal-body').removeClass('error');
-			//$form.find('.help-block').empty();
-			//$form.find('.alert').remove();
-			if (response.status == 'FAIL') {
-				for (var i = 0; i < response.errorMessageList.length; i++) {
-					var item = response.errorMessageList[i];
-					var $controlGroup = $('#' + item.fieldName);
-					//$controlGroup.addClass('error');
-					$controlGroup.find('.help-block').html(item.message);
-				}
-			} else {
-				$form.unbind('submit');
-				$form.submit();
-			}
-		}, 'json');
-
-		e.preventDefault();
-		return false;
+	$("#names").focus(function() {
+		$(".help-inline").html("");
 	});
+	$("#descs").focus(function() {
+		$(".help-inline").html("");
+	});
+	checkAjaxs("course_info_form","courserInfoAJAX");
 });
 </script>
 <a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>资源管理</b></a><hr>
@@ -88,12 +57,12 @@ $(document).ready(function() {
 		</div>
 		<form:form  action='new' method="post" id="course_info_form">
 			<div class="modal-body" id="courseName">
-				课程标题：<input type="text" name="courseName" placeholder="courseName">
-				<span class="help-block"><form:errors path="courseName"></form:errors></span>
+				课程标题：<input type="text" id="names" name="courseName" placeholder="courseName">
+				<span class="help-inline"><form:errors path="courseName"></form:errors></span>
 			</div>
 			<div  class="modal-body" id="courseDesc">
-				课程描述：<textarea name="courseDesc" placeholder="courseDesc" cols="5" rows="8"></textarea>
-				<span class="help-block"><form:errors path="courseDesc"></form:errors></span>
+				课程描述：<textarea name="courseDesc" id="descs" placeholder="courseDesc" cols="5" rows="8"></textarea>
+				<span class="help-inline"><form:errors path="courseDesc"></form:errors></span>
 				<!-- 
 					<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
 					<button type="reset" class="btn" onclick="hidAnnoForm()">Cancel</button> -->

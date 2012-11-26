@@ -3,6 +3,7 @@ package com.knet51.ccweb.controllers.teacher.SendReceMsg;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +12,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
@@ -22,6 +26,8 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.ReceiveMsgService;
 import com.knet51.ccweb.jpa.services.SendMsgService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
+import com.knet51.ccweb.util.ajax.ValidationResponse;
 
 @Controller
 public class ReceiveMsgInfoPageController {
@@ -146,5 +152,9 @@ public class ReceiveMsgInfoPageController {
 		//model.addAttribute("isReadMsgList", isReadMsgList);
 		model.addAttribute("page", page);
 		return "admin.teacher.message.isDeleDetail";
+	}
+	@RequestMapping(value = "/admin/teacher/message/receiveMsgInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse receiveMsgInfoFormAjaxJson(@Valid SendMsgInfoForm sendMsgInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
 	}
 }

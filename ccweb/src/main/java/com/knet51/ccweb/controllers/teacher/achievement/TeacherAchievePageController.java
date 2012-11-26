@@ -80,22 +80,18 @@ public class TeacherAchievePageController {
 	}
 	@RequestMapping(value = "/admin/teacher/achievement/thesisInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse thesisInfoFormAjaxJson(@Valid TeacherThesisDetailInfoForm teacherThesisDetailInfoForm, BindingResult result) {
-		logger.info("------into thesisInfo ajax");
 		return AjaxValidationEngine.process(result);
 	}
 	@RequestMapping(value = "/admin/teacher/achievement/projectInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse projectInfoFormAjaxJson(@Valid TeacherProjectDetailInfoForm teacherProjectDetailInfoForm, BindingResult result) {
-		logger.info("------into projectInfo ajax");
 		return AjaxValidationEngine.process(result);
 	}
 	@RequestMapping(value = "/admin/teacher/achievement/patentInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse patentInfoFormAjaxJson(@Valid TeacherPatentDetailInfoForm teacherPatentDetailInfoForm, BindingResult result) {
-		logger.info("------into patentInfo ajax");
 		return AjaxValidationEngine.process(result);
 	}
 	@RequestMapping(value = "/admin/teacher/achievement/honorInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse honorInfoFormAjaxJson(@Valid TeacherHonorDetailInfoForm teacherHonorDetailInfoForm, BindingResult result) {
-		logger.info("------into honorInfo ajax");
 		return AjaxValidationEngine.process(result);
 	}
 	
