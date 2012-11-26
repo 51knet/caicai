@@ -1,13 +1,6 @@
 package com.knet51.ccweb.controllers.teacher;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,41 +54,10 @@ public class TeacherController {
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/details")
 	public String detailInfoPage(@RequestParam("active") String active,Model model,HttpSession session) {
-		String universityFilePath = "";
-		List<String> universityList = new ArrayList<String>();
-		BufferedReader br;
-		universityFilePath = session.getServletContext().getRealPath("/");
-		universityFilePath += "resources\\university\\universities.property";
-		try {
-			br = new BufferedReader(new InputStreamReader(
-					new FileInputStream(universityFilePath),"utf-8"));
-			String data = "";
-			while ((data = br.readLine()) != null) {
-				universityList.add(data);
-			}
-			br.close();
-		} catch (FileNotFoundException e) {
-			universityList.add(" ");
-		} catch (IOException e) {
-			universityList.add(" ");
-		}
 		if(active == null || active.equals("")){
-			active = "personal";
-		}
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-//		EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
-		List<EduBackground> eduInfo = eduBackgroundService.findEduInfoList(userInfo.getId());
-		if(eduInfo !=null){
-			model.addAttribute("eduInfo", eduInfo);
-			model.addAttribute("eduCount", eduInfo.size());
-		}
-		List<WorkExp> workInfo = workExpService.findWorkList(userInfo.getId());
-		if(workInfo !=null){
-			model.addAttribute("workInfo", workInfo);
-			model.addAttribute("workCount", workInfo.size());
+			active = "psw";
 		}
 		model.addAttribute("active", active);
-		model.addAttribute("universityList", universityList);
 		return "admin.teacher.details";
 	}
 	
@@ -132,7 +94,7 @@ public class TeacherController {
 		
 		if (validResult.hasErrors()) {
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/details?active=personal";
+			return "redirect:/admin/teacher/resume?active=personal";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
 			logger.info("### "+ personalInfoForm.getGender() +" ###");
@@ -152,7 +114,7 @@ public class TeacherController {
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 
-			return "redirect:/admin/teacher/details?active=personal";
+			return "redirect:/admin/teacher/resume?active=personal";
 		}
 	}
 	
@@ -164,7 +126,7 @@ public class TeacherController {
 		
 		if (validResult.hasErrors()) {
 			logger.info("contactInfo Validation Failed " + validResult);
-			return "redirect:/admin/teacher/details?active=contact";
+			return "redirect:/admin/teacher/resume?active=contact";
 		} else {
 			logger.info("### contactInfo Validation passed. ###");
 
@@ -175,7 +137,7 @@ public class TeacherController {
 			user.setCell_phone(contactInfoForm.getCellphone());
 			user.setFix_phone(contactInfoForm.getPhone());
 			user.setFax(contactInfoForm.getFax());
-			user.setQq(contactInfoForm.getQQ());
+			user.setQq(contactInfoForm.getQq());
 			user.setMsn(contactInfoForm.getMsn());
 			user = userService.updateUser(user);
 			
@@ -185,7 +147,7 @@ public class TeacherController {
 			
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			
-			return "redirect:/admin/teacher/details?active=contact";
+			return "redirect:/admin/teacher/resume?active=contact";
 		}
 	}
 	
@@ -197,7 +159,7 @@ public class TeacherController {
 		
 		if (validResult.hasErrors()) {
 			logger.info("eduInfo Validation Failed " + validResult);
-			return "redirect:/admin/teacher/details?active=edu";
+			return "redirect:/admin/teacher/resume?active=edu";
 		} else {
 			logger.info("### eduInfo Validation passed. ###");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -210,7 +172,7 @@ public class TeacherController {
 			edu.setEndTime(eduInfoForm.getEndTime());
 			edu.setTeacherid(userInfo.getId());
 			eduBackgroundService.createEduBackground(edu);
-			return "redirect:/admin/teacher/details?active=edu";
+			return "redirect:/admin/teacher/resume?active=edu";
 		}
 	}
 	
@@ -219,7 +181,7 @@ public class TeacherController {
 	public String destoryEduInfo(@PathVariable Long edu_id, HttpSession session) {
 		logger.info("#### eduInfo InfoController ####");
 		eduBackgroundService.destory(edu_id);
-		return "redirect:/admin/teacher/details?active=edu";
+		return "redirect:/admin/teacher/resume?active=edu";
 		
 	}
 	
@@ -230,7 +192,7 @@ public class TeacherController {
 		logger.info("#### workInfo Controller ####");
 		if (validResult.hasErrors()) {
 			logger.info("eduInfo Validation Failed " + validResult);
-			return "redirect:/admin/teacher/details?active=work";
+			return "redirect:/admin/teacher/resume?active=work";
 		} else {
 			logger.info("### workInfo Validation passed. ###");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -242,7 +204,7 @@ public class TeacherController {
 			work.setEndTime(workInfoForm.getEndTime());
 			work.setTeacherid(userInfo.getId());
 			workExpService.createWorkExp(work);
-			return "redirect:/admin/teacher/details?active=work";
+			return "redirect:/admin/teacher/resume?active=work";
 		}
 	}
 	
@@ -251,7 +213,7 @@ public class TeacherController {
 	public String destoryWorkInfo(@PathVariable Long work_id, HttpSession session) {
 		logger.info("#### eduInfo InfoController ####");
 		workExpService.destory(work_id);
-		return "redirect:/admin/teacher/details?active=work";
+		return "redirect:/admin/teacher/resume?active=work";
 		
 	}
 	
