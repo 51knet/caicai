@@ -138,7 +138,7 @@ body {
 			}
 			if(password==""){
 				$("#passwordErr").html("密码不能为空");
-				return fasle;
+				return false;
 			}
 			$.ajax({
 				  type: "post",
