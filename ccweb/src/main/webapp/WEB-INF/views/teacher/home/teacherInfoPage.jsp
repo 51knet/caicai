@@ -3,15 +3,19 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
-<h3>账号信息</h3>
+<h3>账号信息</h3><i class="icon-star"></i><i>必须填写项</i>
 <hr />
+
 <div class="tabbable">
 	<ul class="nav nav-tabs">
-		<li <c:if test='${active == "psw"}'>class="active"</c:if>><a href="#security_tab" data-toggle="tab">账号安全</a></li>
-		<li <c:if test='${active == "url"}'>class="active"</c:if>><a href="#p_url_tab" data-toggle="tab">个性域名</a></li>
+		<li <c:if test='${active == "personal"}'>class="active"</c:if>><a href="#personal_info_tab" data-toggle="tab">个人信息</a></li> 
+    	<li <c:if test='${active == "contact"}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li> 
+  		<li <c:if test='${active == "edu"}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li> 
+ 		<li <c:if test='${active == "work"}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li> 
+    	<li <c:if test='${active == "psw"}'>class="active"</c:if>><a href="#security_tab" data-toggle="tab">账号安全</a></li> 
+    	<li <c:if test='${active == "url"}'>class="active"</c:if>><a href="#p_url_tab" data-toggle="tab">个性域名</a></li> 
 	</ul>
 	<div class="tab-content">
-<<<<<<< HEAD
 		<div class="tab-pane <c:if test='${active == "personal"}'>active</c:if>" id="personal_info_tab">
 			<form id="personal_info_form" action="personalInfo" class="form-horizontal" method="post">
 				<div class="control-group" id="name">
@@ -293,9 +297,7 @@
 			</div>
 			
 		</div>
-		
-=======
->>>>>>> f0cd1b214d5c1c2fcd6ccf7864774cd7b5a7d599
+  </div> 
 		<div class="tab-pane <c:if test='${active == "psw"}'>active</c:if>" id="security_tab">
 			<form class="form-horizontal" action="changePsw" method="post" id="chanePsw_info_form">
 				<div class="control-group" id="ori_psw">
@@ -342,10 +344,7 @@
 				</div>
 			</form>
 		</div>
-	</div>
-</div>
 <script type="text/javascript">
-<<<<<<< HEAD
 function personalOnclick(){
 	return checkEmptyAjax("personal_info_form","personalInfoAJAX");
 };
@@ -355,8 +354,6 @@ function eduOnclick(){
 function workOnclick(){
 	return checkEmptyAjax("workExpForm","workExpInfoAJAX");
 };
-=======
->>>>>>> f0cd1b214d5c1c2fcd6ccf7864774cd7b5a7d599
 function selfurlOnclick(){
 	return checkEmptyAjax("selfurl_info_form","selfurlInfoAJAX");
 };
