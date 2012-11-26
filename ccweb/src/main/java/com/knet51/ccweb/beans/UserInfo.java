@@ -39,7 +39,7 @@ public class UserInfo {
 	}
 
 	public String getAnnouncementContext() {
-		return this.announcement == null ? "No Announcement." : this.announcement
+		return this.announcement == null ? "暂无公告" : this.announcement
 				.getContent();
 	}
 
