@@ -26,7 +26,7 @@
 	</div>
 	<hr>
 	<div style="text-align: right;">
-
+	</div>
 </div>
 <!-- teacherAchievement  -->
 <div class="row-fluid custom round">

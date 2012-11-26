@@ -1,18 +1,12 @@
 package com.knet51.ccweb.controllers.teacher;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 
 public class TeacherContactInfoForm {
-	@NotEmpty
 	private String address;
-	@NotEmpty
 	private String cellphone;
 	private String phone;
-	@NotEmpty
 	private String fax;
-	@NotEmpty
-	private String QQ;
+	private String qq;
 	private String msn;
 	
 	
@@ -40,15 +34,11 @@ public class TeacherContactInfoForm {
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
-
-
-
-	
-	public String getQQ() {
-		return QQ;
+	public String getQq() {
+		return qq;
 	}
-	public void setQQ(String qQ) {
-		QQ = qQ;
+	public void setQq(String qq) {
+		this.qq = qq;
 	}
 	public String getMsn() {
 		return msn;

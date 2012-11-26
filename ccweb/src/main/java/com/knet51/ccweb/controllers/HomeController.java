@@ -269,7 +269,8 @@ public class HomeController {
 			Teacher teacher = teacherService.findOne(userInfo.getId());
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-			return "admin.teacher";
+			// set default home page to set resume page;
+			return "redirect:/admin/teacher/resume?active=personal";
 		} else {
 			return "home";
 		}

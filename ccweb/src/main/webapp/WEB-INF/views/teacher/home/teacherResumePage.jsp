@@ -3,15 +3,16 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
-<h3>账号信息</h3>
+<h3>完善简历</h3><i class="icon-star"></i><i>必须填写项</i>
 <hr />
 <div class="tabbable">
 	<ul class="nav nav-tabs">
-		<li <c:if test='${active == "psw"}'>class="active"</c:if>><a href="#security_tab" data-toggle="tab">账号安全</a></li>
-		<li <c:if test='${active == "url"}'>class="active"</c:if>><a href="#p_url_tab" data-toggle="tab">个性域名</a></li>
+		<li <c:if test='${active == "personal"}'>class="active"</c:if>><a href="#personal_info_tab" data-toggle="tab">个人信息</a></li>
+		<li <c:if test='${active == "contact"}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>
+		<li <c:if test='${active == "edu"}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
+		<li <c:if test='${active == "work"}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
 	</ul>
 	<div class="tab-content">
-<<<<<<< HEAD
 		<div class="tab-pane <c:if test='${active == "personal"}'>active</c:if>" id="personal_info_tab">
 			<form id="personal_info_form" action="personalInfo" class="form-horizontal" method="post">
 				<div class="control-group" id="name">
@@ -71,7 +72,7 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit" onclick="return personalOnclick();"    class="btn btn-large btn-success">保 存</button>
+						<button type="submit" onclick="personalOnclick();"    class="btn btn-large btn-success">保 存</button>
 					</div>
 				</div>
 			</form>
@@ -163,7 +164,7 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="return eduOnclick();"  class="btn btn-large btn-success">保 存</button>
+							<button type="submit" onclick="eduOnclick();"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeEduAddForm()" class="btn btn-large">取消</button>
 						</div>
 					</div>
@@ -250,7 +251,7 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="return workOnclick();"  class="btn btn-large btn-success">保 存</button>
+							<button type="submit" onclick="workOnclick();"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeWorkAddForm()" class="btn btn-large">取消</button>
 						</div>
 					</div>
@@ -291,115 +292,50 @@
 				
 				<button onclick="showWorkAddForm()">添加</button>
 			</div>
-			
-		</div>
-		
-=======
->>>>>>> f0cd1b214d5c1c2fcd6ccf7864774cd7b5a7d599
-		<div class="tab-pane <c:if test='${active == "psw"}'>active</c:if>" id="security_tab">
-			<form class="form-horizontal" action="changePsw" method="post" id="chanePsw_info_form">
-				<div class="control-group" id="ori_psw">
-					<label class="control-label" for="ori_psw">当前密码</label>
-					<div class="controls">
-						<input type="password"  id="oriPsw" name="ori_psw" placeholder="请输入您的当前密码" >
-						<span class="help-inline" id="oriError"></span>
-					</div>
-				</div>
-				<div class="control-group" id="new_psw">
-					<label class="control-label" for="new_psw">新密码</label>
-					<div class="controls">
-						<input type="password" id="alter_new_psw" name="new_psw" placeholder="请输入您的新密码">
-					    <span class="help-inline" id="newPsw"></span>
-					</div>
-				</div>
-				<div class="control-group" id="confirm_new_psw">
-					<label class="control-label" for="confirm_new_psw">确认密码</label>
-					<div class="controls">
-						<input type="password" id="alter_confirm_new_psw" name="confirm_new_psw" placeholder="再次输入一遍您的新密码">
-						<span class="help-inline" id="errorPs"></span>
-					</div>
-				</div>
-				<div class="control-group">
-					<div class="controls">
-						<button type="submit" onclick="return changPwdOnclick();"  class="btn btn-large btn-success">修改密码</button>
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="tab-pane <c:if test='${active == "url"}'>active</c:if>" id="p_url_tab">
-			<form class="form-horizontal" action="selfurl" method="post" id="selfurl_info_form">
-				<div class="control-group" id="url">
-					<label class="control-label" for="p_url">个性域名</label>
-					<div class="controls">
-						<input type="text" name="url" id="p_url" value="${sessionScope.userInfo.user.self_url }" placeholder="请输入您的个性域名">
-					    <span class="help-inline"></span>
-					</div>
-				</div>
-				<div class="control-group">
-					<div class="controls">
-						<button type="submit" onclick="return selfurlOnclick();" class="btn btn-large btn-success">保存</button>
-					</div>
-				</div>
-			</form>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
-<<<<<<< HEAD
 function personalOnclick(){
-	return checkEmptyAjax("personal_info_form","personalInfoAJAX");
+	checkEmptyAjax("personal_info_form","personalInfoAJAX");
+	return false;
 };
 function eduOnclick(){
-	return checkEmptyAjax("edu_info_form","eduInfoAJAX");
+	checkEmptyAjax("edu_info_form","eduInfoAJAX");
+	return false;
 };
 function workOnclick(){
-	return checkEmptyAjax("workExpForm","workExpInfoAJAX");
+	checkEmptyAjax("workExpForm","workExpInfoAJAX");
+	return false;
 };
-=======
->>>>>>> f0cd1b214d5c1c2fcd6ccf7864774cd7b5a7d599
-function selfurlOnclick(){
-	return checkEmptyAjax("selfurl_info_form","selfurlInfoAJAX");
+
+function showEduAddForm(){
+	var eduList = document.getElementById("eduList");
+	eduList.style.display="none";
+	var eduForm = document.getElementById("eduForm");
+	eduForm.style.display="block";
 };
-function changPwdOnclick(){
-	return checkEmptyAjax("chanePsw_info_form","pswInfoAJAX");
+
+function closeEduAddForm(){
+	var eduList = document.getElementById("eduList");
+	eduList.style.display="block";
+	var eduForm = document.getElementById("eduForm");
+	eduForm.style.display="none";
 };
-$(document).ready(function(){
-	$("#alter_confirm_new_psw").focus(function(){
-		$("#errorPs").html("");
-	});
-	$("#alter_new_psw").focus(function(){
-		$("#newPsw").html();
-	});
-	$("#oriPsw").focus(function(){
-		$("#oriError").html("");
-	});
-	$("#oriPsw").blur(function(){
-		var password=$("#oriPsw").val();
-		$.ajax({
-			type:"post",
-			url:"<c:url value='/admin/teacher/pswInfoCheck'/>",
-			data:"oriPsw="+password,
-			dataType:"text",
-			success:function(num){
-				if(num=='0'){
-					$("#oriError").html("<font color='#ff0000'>" + "输入的密码不正确"
-							+ "</font>");
-					return false;
-				}
-			}
-		});
-		
-	});
-	$("#alter_confirm_new_psw").blur(function(){
-		var newPsw=$("#alter_new_psw").val().trim();
-		var confirmNewPsw=$("#alter_confirm_new_psw").val().trim();
-		if(newPsw!=confirmNewPsw){
-			$("#errorPs").html("<font color='#ff0000'>"+"两次输入的密码不一致,请重新输入!"+"</font>");
-			return false;
-		}
-		
-	});
-	
-});
+
+function showWorkAddForm(){
+	//alert("111");
+	var workList = document.getElementById("workList");
+	workList.style.display="none";
+	var workForm = document.getElementById("workForm");
+	workForm.style.display="block";
+};
+
+function closeWorkAddForm(){
+	var workList = document.getElementById("workList");
+	workList.style.display="block";
+	var workForm = document.getElementById("workForm");
+	workForm.style.display="none";
+};
+
 </script>
-		
