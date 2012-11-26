@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
 
 
@@ -38,77 +39,14 @@
 	 resourceType.style.display="none";
  } 
  function returnList(){
-	//alert("return list");
 	window.location.href='<c:url value="/admin/teacher/resource/list"></c:url>';
  }
- /*
- function collectFormData(fields) {
-		var data = {};
-		for (var i = 0; i < fields.length; i++) {
-			var $item = $(fields[i]);
-			data[$item.attr('name')] = $item.val();
-		}
-		return data;
-	}
-
 	$(document).ready(function() {
-		var $form = $('#resource_type_form');
-		$form.bind('submit', function(e) {
-			var $inputs = $form.find('input');
-			var data = collectFormData($inputs);
-			$.post('resourceTypeAJAX', data, function(response) {
-				//$form.find('.control-group').removeClass('error');
-				//$form.find('.help-inline').empty();
-				//$form.find('.alert').remove();
-				if (response.status == 'FAIL') {
-					for (var i = 0; i < response.errorMessageList.length; i++) {
-						var item = response.errorMessageList[i];
-						var $controlGroup = $('#' + item.fieldName);
-						$controlGroup.addClass('error');
-						$controlGroup.find('.help-inline').html(item.message);
-					}
-				} else {
-					$form.unbind('submit');
-					$form.submit();
-				}
-			}, 'json');
-	
-			e.preventDefault();
-			return false;
+		$("#typeNames").focus(function (){
+			$("#typeError").html("");
 		});
+			checkEmptyAjax("resource_type_form","resourceTypeAJAX");
 	});
-	
-	$(document).ready(function() {
-		var $formResorce = $('#resource_form');
-		$formResorce.bind('submit', function(e) {
-			var $inputs = $formResorce.find('select');
-			var data = collectFormData($inputs);
-			$.post('resourceTypeAJAX', data, function(response) {
-				//$form.find('.control-group').removeClass('error');
-				//$form.find('.help-inline').empty();
-				//$form.find('.alert').remove();
-				if (response.status == 'FAIL') {
-					for (var i = 0; i < response.errorMessageList.length; i++) {
-						var item = response.errorMessageList[i];
-						var $controlGroup = $('#' + item.fieldName);
-						$controlGroup.addClass('error');
-						$controlGroup.find('.help-inline').html(item.message);
-					}
-				} else {
-					$formResorce.unbind('submit');
-					$formResorce.submit();
-				}
-			}, 'json');
-	
-			e.preventDefault();
-			return false;
-		});
-	});
- 
- 
- */
- 
- 
 </script>
 
 <a href='<c:url value="/admin/teacher/resource/list"></c:url>'><b>资源管理</b></a>>>资源添加<hr>
@@ -121,7 +59,7 @@
 				资源描述：<input type="text" name="desc" placeholder="Desc" />&nbsp;<span style="color:red; font-size:14px;">多文件上传添加统一描述</span>
 				<!-- <span class="help-block"><form:errors path="desc"></form:errors></span>	 --><br>
 				
-				<div class="control-group" id="typeName" >
+				<div class="control-group"  >
 						资源类型：<select name="type"  >
 						<c:forEach items="${type}" var="l">
 							<option  value="${l.id}">${l.typeName}</option>
@@ -145,8 +83,8 @@
 			 	<form action="type/new" method="post"  id="resource_type_form">  
 			 	<div class="control-group" id="typeName">
 						<div class="controls">
-							类别名称:<input type="text"  name="typeName" placeholder="类别名称" >
-							<span class="help-inline"></span>
+							类别名称:<input type="text"  id="typeNames" name="typeName" placeholder="类别名称" >
+							<span class="help-inline" id="typeError"></span>
 						</div>
 					</div>
 					<div class="control-group">
