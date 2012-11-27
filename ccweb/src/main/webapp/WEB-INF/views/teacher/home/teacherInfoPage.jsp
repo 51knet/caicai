@@ -8,10 +8,26 @@
 
 <div class="tabbable">
 	<ul class="nav nav-tabs">
+    	<li <c:if test='${active == "avatar"}'>class="active"</c:if>><a href="#avatar_tab" data-toggle="tab">修改头像</a></li> 
     	<li <c:if test='${active == "psw"}'>class="active"</c:if>><a href="#security_tab" data-toggle="tab">账号安全</a></li> 
     	<li <c:if test='${active == "url"}'>class="active"</c:if>><a href="#p_url_tab" data-toggle="tab">个性域名</a></li> 
 	</ul>
 	<div class="tab-content">
+		<div class="tab-pane <c:if test='${active == "avatar"}'>active</c:if>" id="avatar_tab">
+<%
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
+request.setAttribute("basePath", basePath);
+%>
+	<script src="<c:url value="/resources/avatar/common.js?B6k" />" type="text/javascript"></script>	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var uc_api = encodeURIComponent("${basePath}avatar/${sessionUserInfo.id}");
+		var urlCameraFlash = "<c:url value="/resources/avatar/camera.swf" />"+"?nt=1&inajax=1&appid=1&input=1&uploadSize=1024&ucapi=" + uc_api;
+		$('#flash_container').html(AC_FL_RunContent("width","450","height","253","scale","exactfit","src",""+urlCameraFlash+"","id","mycamera","name","mycamera","quality","high","bgcolor","#ffffff","wmode","transparent","menu","false","swLiveConnect","true","allowScriptAccess","always"));
+	});
+	</script>
+		<div id="flash_container"></div>
+		</div>
 		<div class="tab-pane <c:if test='${active == "psw"}'>active</c:if>" id="security_tab">
 			<form class="form-horizontal" action="changePsw" method="post" id="chanePsw_info_form">
 				<div class="control-group" id="ori_psw">
