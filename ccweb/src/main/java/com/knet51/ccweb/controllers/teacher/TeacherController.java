@@ -200,8 +200,8 @@ public class TeacherController {
 			work.setCompany(workInfoForm.getCompany());
 			work.setDepartment(workInfoForm.getDepartment());
 			work.setPosition(workInfoForm.getPosition());
-			work.setStartTime(workInfoForm.getStartTime());
-			work.setEndTime(workInfoForm.getEndTime());
+			work.setStartTime(workInfoForm.getStartTimeName());
+			work.setEndTime(workInfoForm.getEndTimeName());
 			work.setTeacherid(userInfo.getId());
 			workExpService.createWorkExp(work);
 			return "redirect:/admin/teacher/resume?active=work";

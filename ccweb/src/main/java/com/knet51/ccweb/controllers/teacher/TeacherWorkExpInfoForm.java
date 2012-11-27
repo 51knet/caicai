@@ -11,9 +11,9 @@ public class TeacherWorkExpInfoForm {
 	@NotEmpty
 	private String position;
 	@NotEmpty
-	private String startTime;
+	private String startTimeName;
 	@NotEmpty
-	private String endTime;
+	private String endTimeName;
 	public String getCompany() {
 		return company;
 	}
@@ -32,20 +32,21 @@ public class TeacherWorkExpInfoForm {
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	public String getStartTime() {
-		return startTime;
-	}
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-	public String getEndTime() {
-		return endTime;
-	}
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
-	}
+	
 	public TeacherWorkExpInfoForm() {
 		super();
+	}
+	public String getStartTimeName() {
+		return startTimeName;
+	}
+	public void setStartTimeName(String startTimeName) {
+		this.startTimeName = startTimeName;
+	}
+	public String getEndTimeName() {
+		return endTimeName;
+	}
+	public void setEndTimeName(String endTimeName) {
+		this.endTimeName = endTimeName;
 	}
 	
 	
