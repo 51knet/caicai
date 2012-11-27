@@ -108,16 +108,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	@SuppressWarnings("unchecked")
 	public int getcountByEmail(String email) {
-		List<User> list= em.createQuery("select email from User u where u.email='"+email+"'").getResultList();
-		if(list.size()>0){
-			return 1;
-		}
-		return 0;
-	}
-	@Override
-	@SuppressWarnings("unchecked")
-	public int getcountBypassword(String password) {
-		List<User> list= em.createQuery("select password from User u where u.password='"+password+"'").getResultList();
+		List<User> list= em.createQuery("select u.email from User u where u.email='"+email+"'").getResultList();
 		if(list.size()>0){
 			return 1;
 		}
