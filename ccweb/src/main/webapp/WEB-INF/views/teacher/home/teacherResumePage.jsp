@@ -72,7 +72,7 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit" onclick="personalOnclick();"    class="btn btn-large btn-success">保 存</button>
+						<button type="submit" onclick="return personalOnclick();"    class="btn btn-large btn-success">保 存</button>
 					</div>
 				</div>
 			</form>
@@ -164,7 +164,7 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="eduOnclick();"  class="btn btn-large btn-success">保 存</button>
+							<button type="submit" onclick="return eduOnclick();"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeEduAddForm()" class="btn btn-large">取消</button>
 						</div>
 					</div>
@@ -251,7 +251,7 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="workOnclick();"  class="btn btn-large btn-success">保 存</button>
+							<button type="submit" onclick="return workOnclick();"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeWorkAddForm()" class="btn btn-large">取消</button>
 						</div>
 					</div>
@@ -297,45 +297,12 @@
 </div>
 <script type="text/javascript">
 function personalOnclick(){
-	checkEmptyAjax("personal_info_form","personalInfoAJAX");
-	return false;
+	return checkEmptyAjax("personal_info_form","personalInfoAJAX");
 };
 function eduOnclick(){
-	checkEmptyAjax("edu_info_form","eduInfoAJAX");
-	return false;
+	return checkEmptyAjax("edu_info_form","eduInfoAJAX");
 };
 function workOnclick(){
-	checkEmptyAjax("workExpForm","workExpInfoAJAX");
-	return false;
+	return checkEmptyAjax("workExpForm","workExpInfoAJAX");
 };
-
-function showEduAddForm(){
-	var eduList = document.getElementById("eduList");
-	eduList.style.display="none";
-	var eduForm = document.getElementById("eduForm");
-	eduForm.style.display="block";
-};
-
-function closeEduAddForm(){
-	var eduList = document.getElementById("eduList");
-	eduList.style.display="block";
-	var eduForm = document.getElementById("eduForm");
-	eduForm.style.display="none";
-};
-
-function showWorkAddForm(){
-	//alert("111");
-	var workList = document.getElementById("workList");
-	workList.style.display="none";
-	var workForm = document.getElementById("workForm");
-	workForm.style.display="block";
-};
-
-function closeWorkAddForm(){
-	var workList = document.getElementById("workList");
-	workList.style.display="block";
-	var workForm = document.getElementById("workForm");
-	workForm.style.display="none";
-};
-
 </script>
