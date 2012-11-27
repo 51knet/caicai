@@ -279,9 +279,16 @@ public class TeacherController {
 	}
 	
 	@RequestMapping(value="/admin/teacher/pswInfoCheck", method = RequestMethod.POST)
-	public void checkEmail(@RequestParam("oriPsw") String oriPsw,HttpServletResponse response) throws Exception{
+	public void checkEmail(@RequestParam("oriPsw") String oriPsw,HttpServletResponse response,HttpSession session) throws Exception{
 		PrintWriter out=response.getWriter();
-		Integer count=userService.getcountBypassword(oriPsw);
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		String password=userInfo.getUser().getPassword();
+		Integer count=0;
+		if(password.equals(oriPsw)){
+			count=1;
+		}else{
+			count=0;
+		}
 		String countString  = count.toString();
 		out.write(countString);
 		out.flush();
