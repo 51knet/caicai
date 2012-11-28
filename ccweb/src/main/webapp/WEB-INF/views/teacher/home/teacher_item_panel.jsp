@@ -4,8 +4,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div style="vertical-align: middle;text-align: center;">
-	<img width="90px" height="90px" src="http://dummyimage.com/90x90" style="margin: 15px 0px;">
-</div>
+	<c:url var="avatar_url" value="/resources/attached/${sessionUserInfo.id}/avatar_large.jpg"></c:url>
+	<img width="90px" height="90px" src="${avatar_url}" style="margin: 15px 0px;"></div>
 <div>
 	<ul class="nav nav-tabs nav-stacked">
 		<li class="active"><a href='<c:url value="/admin"></c:url>' >个人中心</a></li>

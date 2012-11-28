@@ -12,7 +12,6 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -47,6 +46,17 @@ public class AvatarController {
 		
 		return builder.toString();
 	}
+	/**
+	 * 此方法用来切图
+	 * 
+	 * @param user_id
+	 * @param action
+	 * @param locale
+	 * @param model
+	 * @param session
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="/avatar/{user_id}", params="a=rectavatar", method= RequestMethod.POST) 
 	public @ResponseBody String rectAvatar(@PathVariable Long user_id,@RequestParam("a") String action,  Locale locale, Model model, HttpSession session, HttpServletRequest request) {
 		logger.info("处理缩略图...");
@@ -54,102 +64,95 @@ public class AvatarController {
 		String avatar2 = request.getParameter("avatar2");//中
 		String avatar3 = request.getParameter("avatar3");//小
 		String savePath = session.getServletContext().getRealPath("/") + "/resources/attached/" + user_id +"/";
-		
-		if(saveFile(savePath + "big.jpg", getFlashDataDecode(avatar1))){
+		boolean b1 = saveFile(savePath + "avatar_large.jpg", getFlashDataDecode(avatar1));
+		boolean b2 = saveFile(savePath + "avatar_middle.jpg", getFlashDataDecode(avatar2));
+		boolean b3 = saveFile(savePath + "avatar_small.jpg", getFlashDataDecode(avatar3));
+		// <img src="/resources/attached/${user_id}/avatar_large.jpg">
+		if(b1 && b2 && b3){
 			return "<?xml version=\"1.0\" ?><root><face success=\"0\"/></root>";
 		}else{
 			return "<?xml version=\"1.0\" ?><root><face success=\"1\"/></root>";
 		}
 	}
 	/**
-	 *
+	 * 此方法用来处理falsh上传的源文件
+	 * 
+	 * @param user_id
+	 * @param locale
+	 * @param model
+	 * @param session
+	 * @param request
+	 * @return
 	 */
 	@RequestMapping(value = "/avatar/{user_id}", params="a=uploadavatar", method = RequestMethod.POST)
 	public @ResponseBody String uploadFile(@PathVariable Long user_id,  Locale locale, Model model, HttpSession session, MultipartHttpServletRequest request) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
 		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
-		//文件保存目录路径
 		String savePath = session.getServletContext().getRealPath("/") + "/resources/attached/" + user_id +"/";
-		logger.info("savePath " + savePath);
-		//文件保存目录URL
-		String saveUrl  = request.getContextPath() + "/resources/attached/" + user_id +"/";
+		String saveUrl = request.getContextPath() + "/resources/attached/" + user_id +"/";
+		AvatarUploadDirInfo avatarUploadDirInfo = new AvatarUploadDirInfo(savePath, saveUrl);
+		createAvatarUploadDirHierarchy(request, avatarUploadDirInfo);
 
-		if(!ServletFileUpload.isMultipartContent(request)){
-//			out.println(getError("请选择文件。"));
-			return "请选择文件。";
+		MultiValueMap<String, MultipartFile> map = request.getMultiFileMap();
+		logger.debug("map.size = "+map.size());
+		Iterator<String> keyitr = map.keySet().iterator();
+		while(keyitr.hasNext()) {
+			String key = keyitr.next();
+			logger.debug("key = " + key);
+			List<MultipartFile> list = map.get(key);
+			for (MultipartFile multipartFile : list) {
+				String fileName = multipartFile.getOriginalFilename();
+				long fileSize = multipartFile.getSize();
+				
+				logger.debug(fileName+":"+fileSize);
+				//检查文件大小
+				if(fileSize > MAX_FILE_SIZE_1M){
+					return "上传文件大小超过1M限制。";
+				}
+			
+				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+				String newFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + getFileExt(fileName);
+				try{
+					File uploadedFile = new File(avatarUploadDirInfo.getSavePath(), newFileName);
+					multipartFile.transferTo(uploadedFile);
+				}catch(Exception e){
+					return "上传文件失败。";
+				}
+				String fullUrlPath = basePath + avatarUploadDirInfo.getSaveUrl() + newFileName;
+				logger.info("fullUrlPath=" + fullUrlPath);
+				return fullUrlPath;
+			}
 		}
-		//检查目录
-		File uploadDir = new File(savePath);
-		if(uploadDir.mkdirs() && (!uploadDir.isDirectory())){
-//			out.println(getError("上传目录不存在。"));
-			return "上传目录不存在。";
-		}
-		
-		String dirName = request.getParameter("dir");
-		if (dirName == null) {
-			dirName = "image";
-		}
-		
+		return "上传文件失败。没有上传内容。";
+	}
+	
+	private AvatarUploadDirInfo createAvatarUploadDirHierarchy(HttpServletRequest request, AvatarUploadDirInfo avatarUploadDirInfo) {
+		//检查并创建目录
+		mkdirIfNotExist(avatarUploadDirInfo.savePath);
+		String dirTmp = request.getParameter("dir");
+		String dirName = (dirTmp==null) ? "image" : dirTmp;
 		//创建文件夹
-		savePath += dirName + "/";
-		saveUrl += dirName + "/";
+		avatarUploadDirInfo.savePath += dirName + "/";
+		avatarUploadDirInfo.saveUrl += dirName + "/";
+		mkdirIfNotExist(avatarUploadDirInfo.savePath);
+		//创建日期文件夹
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String ymd = sdf.format(new Date());
+		avatarUploadDirInfo.savePath += ymd + "/";
+		avatarUploadDirInfo.saveUrl += ymd + "/";
+		mkdirIfNotExist(avatarUploadDirInfo.savePath);
+		
+		return avatarUploadDirInfo;
+	}
+	
+	private void mkdirIfNotExist(String savePath) {
 		File saveDirFile = new File(savePath);
 		if (!saveDirFile.exists()) {
 			saveDirFile.mkdirs();
 		}
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		String ymd = sdf.format(new Date());
-		savePath += ymd + "/";
-		saveUrl += ymd + "/";
-		File dirFile = new File(savePath);
-		if (!dirFile.exists()) {
-			dirFile.mkdirs();
-		}
-		
-		//if("uploadavatar".equals(action)){//上传图片,可以自己实现
-			MultiValueMap<String, MultipartFile> map = request.getMultiFileMap();
-			logger.debug("map.size = "+map.size());
-			Iterator<String> keyitr = map.keySet().iterator();
-			while(keyitr.hasNext()) {
-				String key = keyitr.next();
-				logger.debug("key = " + key);
-				List<MultipartFile> list = map.get(key);
-				for (MultipartFile multipartFile : list) {
-					String fileName = multipartFile.getOriginalFilename();
-					long fileSize = multipartFile.getSize();
-					
-					logger.debug(fileName+":"+fileSize);
-					//检查文件大小
-					if(fileSize > MAX_FILE_SIZE_1M){
-						//out.println(getError("上传文件大小超过限制。"));
-						return "上传文件大小超过1M限制。";
-					}
-				
-					SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-					String newFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + "png";
-					try{
-						File uploadedFile = new File(savePath, newFileName);
-						multipartFile.transferTo(uploadedFile);
-					}catch(Exception e){
-						//out.println(getError("上传文件失败。"));
-						return "上传文件失败。";
-					}
-					logger.info(saveUrl + newFileName);
-					return  basePath + saveUrl + newFileName;
-				}
-			}
-			
-			
-			
-	
-		return "上传文件失败。没有上传内容。";
-		
-		
 	}
 	
 	private String getFileExt(String fileName) {
-	    // 下面取到的扩展名错误，只有三位，而如html的文件则有四位
-	    // extName = fileName.substring(fileName.length() - 3, fileName.length()); //扩展名
 	    int dotindex = fileName.lastIndexOf(".");
 	    String extName = fileName.substring(dotindex, fileName.length());
 	    extName = extName.toLowerCase(); //置为小写
@@ -180,4 +183,42 @@ public class AvatarController {
 		    return true;
 		}
 	}
+
+	class AvatarUploadDirInfo {
+		private String savePath;
+		private String saveUrl;
+		
+		/**
+		 * 
+		 * @param savePath 文件保存目录路径
+		 * @param saveUrl 文件保存目录URL
+		 */
+		public AvatarUploadDirInfo(String savePath, String saveUrl) {
+			super();
+			this.savePath = savePath;
+			this.saveUrl = saveUrl;
+		}
+		
+		public String getSaveUrl() {
+			return saveUrl;
+		}
+		public void setSaveUrl(String saveUrl) {
+			this.saveUrl = saveUrl;
+		}
+		public String getSavePath() {
+			return savePath;
+		}
+		public void setSavePath(String savePath) {
+			this.savePath = savePath;
+		}
+		@Override
+		public String toString() {
+			return "AvatarUploadDirInfo [savePath=" + savePath + ", saveUrl="
+					+ saveUrl + "]";
+		}
+	
+	}
+	
+
+	
 }
