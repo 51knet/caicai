@@ -97,8 +97,4 @@ public class UserServiceImpl implements UserService {
 		int count =userDao.getcountByEmail(email);
 		return count;
 	}
-	public int getcountBypassword(String password){
-		int count=userDao.getcountBypassword(password);
-		return count;
-	}
 }
