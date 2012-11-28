@@ -180,8 +180,6 @@ body {
 					<div id="passwordErr" ></div>
 				</div>
 			</div>
-			<label class="checkbox inline"> <input type="checkbox" name="remeberMe" id="inlineCheckbox1" value="1"> 记住密码 &nbsp;&nbsp;<a href="#">忘记密码？</a>
-			</label>
 			<label style="clear: right;"></label>
 			<button class="btn btn-large btn-primary" type="submit" style="margin-top: 10px">登录</button>
 		</form:form>
