@@ -27,7 +27,6 @@
 		});
 		</script>
 
-<h1>Welcome to teacher message page.</h1>
 <div style="text-align: center;">
 
 	Welcome to teacher announcement page.<br>

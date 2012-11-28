@@ -130,14 +130,14 @@
 					<div class="control-group" id="schoolName">
 						<label class="control-label" for="schoolName">学校</label>
 						<div class="controls">
-							<input type="text"  name="schoolName" placeholder="学校名称" data-provide="typeahead" data-items="8" data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'>
+							<input type="text"  name="schoolName" placeholder="学校" data-provide="typeahead" data-items="8" data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'>
 							<span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group" id="collegeName">
 						<label class="control-label" for="collegeName">学院</label>
 						<div class="controls">
-							<input type="text" name="collegeName" placeholder="学院名称"  >
+							<input type="text" name="collegeName" placeholder="学院"  >
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -176,7 +176,7 @@
 			<c:choose>
 				<c:when test="${eduCount>0 }">
 					<table  class="table">
-						<thead><tr><th>学校名称</th><th>学院名称</th><th>学历</th><th>起止时间</th><th>更多操作</th></tr></thead>
+						<thead><tr><th>学校</th><th>学院</th><th>学历</th><th>起止时间</th><th>更多操作</th></tr></thead>
 						<tbody>
 							<c:forEach items="${eduInfo}" var="eduInfo">
 								<tr>
@@ -215,16 +215,16 @@
 			<div id="workForm" style="display: none;">
 				<form class="form-horizontal" action="workInfo" method="post" id="workExpForm">
 					<div class="control-group" id="company">
-						<label class="control-label" for="company">公司名称</label>
+						<label class="control-label" for="company">单位</label>
 						<div class="controls">
-							<input type="text" id="company" name="company" placeholder="公司名称" >
+							<input type="text" id="company" name="company" placeholder="单位" >
 							<span class="help-inline"><form:errors path="company" /></span>
 						</div>
 					</div>
 					<div class="control-group" id="department">
-						<label class="control-label" for="department">部门名称</label>
+						<label class="control-label" for="department">部门</label>
 						<div class="controls">
-							<input type="text" id="department" name="department" placeholder="部门名称"  >
+							<input type="text" id="department" name="department" placeholder="部门"  >
 							<span class="help-inline"><form:errors path="department" /></span>
 						</div>
 					</div>
@@ -263,7 +263,7 @@
 				<c:choose>
 					<c:when test="${(workCount >0)}">
 						<table  class="table">
-							<thead><tr><th>公司名称</th><th>部门名称</th><th>职位</th><th>起止时间</th><th>更多操作</th></tr></thead>
+							<thead><tr><th>单位</th><th>部门</th><th>职位</th><th>起止时间</th><th>更多操作</th></tr></thead>
 							<tbody>
 								<c:forEach items="${workInfo}" var="workInfo">
 									<tr>
