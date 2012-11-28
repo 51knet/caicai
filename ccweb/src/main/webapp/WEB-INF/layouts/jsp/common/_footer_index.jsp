@@ -36,7 +36,6 @@
 	<div class="footerStyle" align="center">
 		<div class="footerTopStyle" align="center">
 			<a href="#" class="ds-component">平台简介</a> | 
-			<a href="#" class="ds-component" >新手上路</a> |  
 			<a href="#" class="ds-component" >联系我们</a> | 
 			<a href="#" class="ds-component" >友情链接</a> | 
 			<a href="#" class="ds-component" >法律声明</a>
