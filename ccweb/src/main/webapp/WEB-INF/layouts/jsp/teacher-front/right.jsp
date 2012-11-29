@@ -22,7 +22,10 @@
 	<div class="row"><h5>公告 </h5><hr/></div>
 	
 	<div class="row">
-		${teacherInfo.announcementContext}
+		 <div id="content" style="width:750px;">
+			${teacherInfo.announcementContext}
+		</div> 
+		
 	</div>
 	<hr>
 	<div style="text-align: right;">
@@ -73,7 +76,7 @@
 		</table>
 		<hr>
 		<div style="text-align: right;">
-		<c:if test="${resourceCount>2}"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
+		<c:if test="${resourceCount>3}"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 		</div>
 </div>
 

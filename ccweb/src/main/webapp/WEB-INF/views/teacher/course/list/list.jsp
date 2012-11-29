@@ -26,7 +26,7 @@
 	<div class="row">
 		<table class="table">
 			<thead>
-					<tr><th >课程名称</th><th >课程描述</th><th >创建时间</th></tr>
+					<tr><th width=20%>课程名称</th><th  width=60%>课程描述</th><th width=20%>创建时间</th></tr>
 			</thead>
 			<tbody>
 				<c:forEach var="course" items="${page.content}">

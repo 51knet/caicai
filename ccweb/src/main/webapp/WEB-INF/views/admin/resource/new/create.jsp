@@ -59,7 +59,7 @@
 		<div style="width:560px; text-align:left;">
 			<form:form action="new/create" method="post" enctype="multipart/form-data" id="resource_form">  
 				
-				资源描述：<input type="text" name="desc" placeholder="Desc" />&nbsp;<span style="color:red; font-size:14px;">多文件上传添加统一描述</span>
+				资源描述：<input type="text" name="desc" placeholder="资源描述" />&nbsp;<span style="color:red; font-size:14px;">多文件上传添加统一描述</span>
 				<!-- <span class="help-block"><form:errors path="desc"></form:errors></span>	 --><br>
 				
 				<div class="control-group"  >
@@ -77,8 +77,8 @@
 				<div id="container" style="margin-left:70px;"></div>
 				<br>
 				<label style="clear: right;"></label>
-				<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
-				<button type="reset" class="btn" >Cancel</button>
+				<button type="submit" class="btn btn-primary">添加</button>&nbsp;&nbsp;
+				<button type="reset" class="btn" >取消</button>
 			</form:form>
 		 </div>
 		 <br>
@@ -92,8 +92,8 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="return resourceOnclick();" class="btn btn-primary">OK</button>&nbsp;&nbsp;
-						<button type="reset" class="btn" onclick="closeResourceTypeAdd()">Cancel</button>
+							<button type="submit" onclick="return resourceOnclick();" class="btn btn-primary">添加</button>&nbsp;&nbsp;
+						<button type="reset" class="btn" onclick="closeResourceTypeAdd()">取消</button>
 						</div>
 					</div>
 				</form>

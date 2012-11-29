@@ -11,11 +11,11 @@
 <div style="text-align: center;">
 	
 	<table class="table table-bordered">
-		<thead><tr><th>课程标题</th><th>课程简述</th><th>发布时间</th></tr></thead>
+		<thead><tr><th width="15%">课程标题</th><th>课程简述</th><th width="20%">发布时间</th></tr></thead>
 		<tbody>
-			<tr><td align="left">${course.courseName}</td>
+			<tr><td align="left" width="15%">${course.courseName}</td>
 			<td align="center">${course.courseDesc}</td>
-			<td align="center">${course.courseDate}</td></tr>	
+			<td align="center" width="20%">${course.courseDate}</td></tr>	
 		</tbody>
 	</table>
 	<br>
@@ -24,12 +24,12 @@
 	<table class="table table-bordered">
 		<tbody>
 			<tr><td colspan="3"><a href='<c:url value="/admin/teacher/${course.id}/resource/new"></c:url>' class="btn">添加附件</a></td></tr>
-			<tr><td>资源名称</td><td>上传时间</td><td>下载</td></tr>
+			<tr><td >资源名称</td><td>上传时间</td><td >下载</td></tr>
 			<c:forEach items="${resourceList}" var="resource">
 				<tr>
-					<td align="left">${resource.fileName}</td>
+					<td align="left" >${resource.fileName}</td>
 					<td align="center">${resource.date}</td>
-					<td align="center"><a href="${resource.savePath}">下载</a></td>
+					<td align="center" ><a href="${resource.savePath}">下载</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

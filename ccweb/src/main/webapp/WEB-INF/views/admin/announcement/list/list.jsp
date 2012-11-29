@@ -26,15 +26,17 @@ $(document).ready(function() {
 					class="btn" data-toggle="modal">添加公告</a></td>
 			</tr>
 			<tr>
-				<td>公告标题</td>
+				<td>公告标签</td>
 				<td>公告内容</td>
 				<td>发布时间</td>
-				<td>详细操作</td>
+				<td>公告操作</td>
 			</tr>
 			<c:forEach items="${page.content}" var="page">
 				<tr>
 					<td align="left" width="15%">${page.title}</td>
-					<td align="center">${page.content}</td>
+					<td align="center" width="50%" >
+							<div style="width:300px;" id="content">${page.content}</div>
+					</td>
 					<td align="center" width="20%">${page.date}</td>
 					<td width="15%">
 					<!-- 
@@ -76,7 +78,7 @@ $(document).ready(function() {
 		<form:form action='new' method="post" id="anno_information">
 			<div class="modal-body" id="title">
 
-				公告标签：<input type="text" name="title" id="t" placeholder="公告标签"  >
+				公告标签：&nbsp;<input type="text" name="title" id="t" placeholder="公告标签"  >
 				<span class="help-inline"><form:errors path="title"></form:errors></span>
 			</div>
 			<div class="modal-body" id="content">

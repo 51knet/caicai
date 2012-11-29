@@ -146,7 +146,11 @@ public class HomeController {
 			UserInfo userInf = (UserInfo) session
 					.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User users = userInf.getUser();
+			
 			Announcement announcement = announcementService.findLatestByUid(id);
+			//String annoContent = announcement.getContent().substring(0, 100);
+			//announcement.setContent(annoContent);
+			
 			int followValue = friendsRelateService.getFollowById(id,
 					users.getId());
 
@@ -202,6 +206,8 @@ public class HomeController {
 			model.addAttribute("annoCount", annoList.size());
 
 			UserInfo userInfo = new UserInfo(user);
+			
+			
 			userInfo.setAnnouncement(announcement);
 			userInfo.setTeacher(teacher);
 
@@ -217,6 +223,7 @@ public class HomeController {
 			session.setAttribute("fansCount", fansCount);
 			// model.addAttribute("hostCount", hostCount);
 			session.setAttribute("hostCount", hostCount);
+			
 			return "teacher.basic";
 		} catch (Exception e) {
 			return "404";
