@@ -55,7 +55,7 @@ public class TeacherController {
 	@RequestMapping(value = "/admin/teacher/details")
 	public String detailInfoPage(@RequestParam("active") String active,Model model,HttpSession session) {
 		if(active == null || active.equals("")){
-			active = "psw";
+			active = "avatar";
 		}
 		model.addAttribute("active", active);
 		return "admin.teacher.details";

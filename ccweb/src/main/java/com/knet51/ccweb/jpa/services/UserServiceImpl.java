@@ -97,4 +97,12 @@ public class UserServiceImpl implements UserService {
 		int count =userDao.getcountByEmail(email);
 		return count;
 	}
+
+	@Override
+	public User updateUserAvatar(Long id, String avatarRelativePath) {
+		User user = userDao.findById(id);
+		user.setPhoto_url(avatarRelativePath);
+		user = userDao.update(user);
+		return user;
+	}
 }

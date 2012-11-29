@@ -92,7 +92,9 @@ public class UserInfo {
 	public UserInfo() {
 		super();
 	}
-
+	public String getAvatar() {
+		return this.user.getPhoto_url();
+	}
 	public String getFax(){
 		return this.user.getFax();
 	}
