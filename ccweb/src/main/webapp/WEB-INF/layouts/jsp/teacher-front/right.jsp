@@ -22,11 +22,62 @@
 	<div class="row"><h5>公告 </h5><hr/></div>
 	
 	<div class="row">
-		${teacherInfo.announcementContext}
+		 <div id="content" style="width:750px;">
+			${teacherInfo.announcementContext}
+		</div> 
+		
 	</div>
 	<hr>
 	<div style="text-align: right;">
 	</div>
+</div>
+
+<!-- teacher resource -->
+<div class="row-fluid custom round">
+		<div class="row">
+			<h5>教学资源</h5>
+			<hr>
+		</div>
+		
+		<div class="row ">
+		<table class="table">
+			<c:choose>
+				<c:when test="${resourceCount !=0}">
+					<thead>
+						<tr><th >资源名称</th><th>资源描述</th><th>资源类别</th><th>发表日期</th></tr>
+					</thead>
+					<tbody>
+						<c:forEach var="resource" items="${resourceList}">
+							<tr>
+								<td><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${resource.id}"></c:url>"> </a> ${resource.name }
+								</td>
+								<td>
+									<c:choose>
+									<c:when test="${page.description==null || page.description=='' }">
+										无描述
+									</c:when>
+									<c:otherwise>
+										${page.description }
+									</c:otherwise>
+								</c:choose>
+								</td>
+								<td>${resource.resourceType.typeName }</td>
+								<td>
+									${resource.date}
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</c:when>
+				<c:otherwise>
+					<tr><td colspan="4">无内容</td></tr>
+				</c:otherwise>
+			</c:choose>
+		</table>
+		<hr>
+		<div style="text-align: right;">
+		<c:if test="${resourceCount>3}"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
+		</div>
 </div>
 
 <!-- teacher course -->
@@ -75,53 +126,7 @@
 		</div>
 </div>
 
-<!-- teacher resource -->
-<div class="row-fluid custom round">
-		<div class="row">
-			<h5>教学资源</h5>
-			<hr>
-		</div>
-		
-		<div class="row ">
-		<table class="table">
-			<c:choose>
-				<c:when test="${resourceCount !=0}">
-					<thead>
-						<tr><th >资源名称</th><th>资源描述</th><th>资源类别</th><th>发表日期</th></tr>
-					</thead>
-					<tbody>
-						<c:forEach var="resource" items="${resourceList}">
-							<tr>
-								<td><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${resource.id}"></c:url>"> </a> ${resource.name }
-								</td>
-								<td>
-									<c:choose>
-									<c:when test="${page.description==null || page.description=='' }">
-										无描述
-									</c:when>
-									<c:otherwise>
-										${page.description }
-									</c:otherwise>
-								</c:choose>
-								</td>
-								<td>${resource.resourceType.typeName }</td>
-								<td>
-									${resource.date}
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</c:when>
-				<c:otherwise>
-					<tr><td colspan="4">无内容</td></tr>
-				</c:otherwise>
-			</c:choose>
-		</table>
-		<hr>
-		<div style="text-align: right;">
-		<c:if test="${resourceCount>2}"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
-		</div>
-</div>
+
 
 <!-- teacherAchievement  -->
 <div class="row-fluid custom round">

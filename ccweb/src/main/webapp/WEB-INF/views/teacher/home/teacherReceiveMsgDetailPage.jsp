@@ -25,44 +25,64 @@
 		});
 		checkAjax("receiveMsg_info_form","receiveMsgInfoAJAX");
 		});
-		</script>
+</script>
 
+<a href='<c:url value="/admin/teacher/message/list"></c:url>' ><b>站内信</b></a><hr>
 <div style="text-align: center;">
-
-	Welcome to teacher announcement page.<br>
-	${sessionUserInfo.user.email }<br>
-	${sessionUserInfo.user.id }<br>
-	${sessionUserInfo.user.name}<br>
-
-
-
 <table width="500" border="1" cellspacing="0" cellpadding="3">
   <tr>
-    <td style="background-color:#f2f2f2;"  align="left" valign="top">发件人：${sendMsg.user.name}<br> 
-      <br>发送日期：${sendMsg.date }
+    <td style="background-color:#f2f2f2;"  align="left" valign="top">
+    		信件标题：${sendMsg.date }<br>
+    		发件人：${sendMsg.user.name}<br> 
+      		发送日期：${sendMsg.date }<br>
     </td>
   </tr>
   <tr>
     <td align="left" >${sendMsg.content }</td>
   </tr>
 </table><br> 
-	<a href="javascript:void(0)" onclick="sendMsgForm()">点击回复</a><br>
-	<div id="sendMsgForm" style="display:none; width:450px; height:300px;">
+<a href="#myModal" role="button" class="btn btn-small" data-toggle="modal">点击回复</a>
+	<!-- <div id="sendMsgForm" style="display:none; width:450px; height:300px;">
 		<form:form action="sendMsg" method="post" id="receiveMsg_info_form">
 			<input type="hidden" value="${sendMsg.user.id }" name="receiveId">
 			<input type="hidden" value="${sendMsg.id }" name="sendMsgId" >
 			<input type="hidden" value="${urmId }" name="urmId" >
 			<div class="modal-body" id="title">
-			信件标题：<input type="text" name="title" id="t" placeholder="Title">
+			信件标题：<input type="text" name="title" id="t" placeholder="标题">
 			<span class="help-inline"></span>
 			</div >
 			<div class="modal-body" id="content">
-			信件内容：<textarea name="content" id="c" placeholder="content" cols="5" rows="8"></textarea>
+			信件内容：<textarea name="content" id="c" placeholder="内容" cols="5" rows="8"></textarea>
 			<span class="help-inline"></span>
 			</div>
 			<button type="submit" class="btn btn-primary">保存</button>
 			<button class="btn" type="reset" onclick="hiddenAddForm()">取消</button>
 		</form:form>
 	</div>
-
+		 -->
+	<div id="myModal" style="text-align: left;"  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">发送信件</h3>
+		</div>
+		<form:form action="sendMsg" method="post" id="receiveMsg_info_form">
+			<input type="hidden" value="${sendMsg.user.id }" name="receiveId">
+			<input type="hidden" value="${sendMsg.id }" name="sendMsgId" >
+			<input type="hidden" value="${urmId }" name="urmId" >
+			<div class="modal-body" id="title">
+			信件标题：<input type="text" name="title" id="t" placeholder="标题">
+			<span class="help-inline"></span>
+			</div >
+			<div class="modal-body" id="content">
+			信件内容：<textarea name="content" id="c" placeholder="内容" cols="5" rows="8" style="width:380px;"></textarea>
+			<span class="help-inline"></span>
+			</div>
+				<div class="modal-footer">
+			
+				<button class="btn btn-primary" type="submit">保存</button>
+					<button class="btn" type="reset" data-dismiss="modal"
+					aria-hidden="true">取消</button>
+			</div>
+		</form:form>
+	</div>
 </div>

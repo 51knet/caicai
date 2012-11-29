@@ -8,7 +8,6 @@
 <div style="text-align: center;">
 	<!-- <a href='<c:url value="/admin/teacher/resource/type/add"></c:url>'>添加新类别</a>&nbsp;&nbsp;&nbsp;&nbsp;<br> -->
 	<table class="table table-bordered" style="width:500px;">
-		<thead><tr><th colspan="2">全部类别</th></tr></thead>
 		<tbody>
 			<tr><td colspan="2"> 	
 				<a href='<c:url value="/admin/teacher/resource/new"></c:url>' class="btn">添加资源</a>&nbsp;&nbsp;

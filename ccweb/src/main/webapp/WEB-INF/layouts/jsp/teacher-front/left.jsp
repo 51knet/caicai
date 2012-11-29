@@ -84,19 +84,18 @@
 			<input type="hidden" value="${teacherInfo.id}" name="uid"> 
 		</div>
 		<div class="modal-body" id="title">
-			信件标题：<input type="text" name="title" id="t" placeholder="Title"> 
+			信件标题：<input type="text" name="title" id="t" placeholder="信件标题"> 
 			<span class="help-inline"></span>
 		</div>
 		<div class="modal-body" id="content">
 			信件内容：
-			<textarea name="content" placeholder="content" id="c" cols="5" rows="8"></textarea>
+			<textarea name="content" placeholder="信件内容" id="c" cols="5" rows="8" style="width:380px;"></textarea>
 			<span class="help-inline"></span>
 		</div>
 		<div class="modal-footer">
+			<button class="btn btn-primary" type="submit">发送</button>
 			<button class="btn" type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
-			<button class="btn btn-primary" type="submit">保存</button>
+			
 		</div>
 	</form>
-
-
 </div>

@@ -176,24 +176,16 @@
 			<c:choose>
 				<c:when test="${eduCount>0 }">
 					<table  class="table">
-						<thead><tr><th>学校</th><th>学院</th><th>学历</th><th>起止时间</th><th>更多操作</th></tr></thead>
+						<thead><tr><th>学校</th><th>学院</th><th>学历</th><th>起止时间</th><th>操作</th></tr></thead>
 						<tbody>
 							<c:forEach items="${eduInfo}" var="eduInfo">
 								<tr>
-									<td  align="center">${eduInfo.school}</td>
+									<td  align="center" >${eduInfo.school}</td>
 									<td  align="center">${eduInfo.college}</td>
 									<td  align="center">${eduInfo.degree}</td>
-									<td  align="center">${eduInfo.startTime} - ${eduInfo.endTime}</td>
+									<td  align="center" width="25%">${eduInfo.startTime} - ${eduInfo.endTime}</td>
 									<td>
-										 <div class="btn-group"> 
-											<button class="btn">操作</button>  
-											<button class="btn dropdown-toggle" data-toggle="dropdown">   
-											<span class="caret"></span> </button>
-											<ul class="dropdown-menu">
-												<li><a href='#'>修改</a></li>
-												<li><a href='<c:url value="/admin/teacher/eduInfo/destory/${eduInfo.id}"></c:url>'>删除</a></li>
-											</ul> 
-										</div>
+										 <a href='<c:url value="/admin/teacher/eduInfo/destory/${eduInfo.id}"></c:url>'>删除</a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -263,24 +255,16 @@
 				<c:choose>
 					<c:when test="${(workCount >0)}">
 						<table  class="table">
-							<thead><tr><th>单位</th><th>部门</th><th>职位</th><th>起止时间</th><th>更多操作</th></tr></thead>
+							<thead><tr><th>单位</th><th>部门</th><th>职位</th><th>起止时间</th><th>操作</th></tr></thead>
 							<tbody>
 								<c:forEach items="${workInfo}" var="workInfo">
 									<tr>
 										<td  align="center">${workInfo.company}</td>
 										<td  align="center">${workInfo.department}</td>
 										<td  align="center">${workInfo.position}</td>
-										<td  align="center">${workInfo.startTime} - ${workInfo.endTime}</td>
+										<td  align="center"  width="25%">${workInfo.startTime} - ${workInfo.endTime}</td>
 										<td>
-											 <div class="btn-group"> 
-												<button class="btn">操作</button>  
-												<button class="btn dropdown-toggle" data-toggle="dropdown">   
-												<span class="caret"></span> </button>
-												<ul class="dropdown-menu">
-													<li><a href='#'>修改</a></li>
-													<li><a href='<c:url value="/admin/teacher/workInfo/destory/${workInfo.id}"></c:url>'>删除</a></li>
-												</ul> 
-											</div>
+											<a href='<c:url value="/admin/teacher/workInfo/destory/${workInfo.id}"></c:url>'>删除</a>
 										</td>
 									</tr>
 								</c:forEach>

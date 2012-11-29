@@ -54,3 +54,9 @@ textarea {
 	font-size:12px;
 	font-family:'Microsoft YaHei',Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
 }
+
+#content{
+	overflow: hidden; 
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

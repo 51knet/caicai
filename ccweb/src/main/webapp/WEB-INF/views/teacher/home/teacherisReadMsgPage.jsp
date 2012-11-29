@@ -4,10 +4,8 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Welcome to teacher message page.</h1>
+<a href='<c:url value="/admin/teacher/message/list"></c:url>' ><b>站内信</b></a><hr>
 <div style="text-align: center;">
-<br/>
- 
  <table class="table table-bordered">
  <thead><tr><th colspan="5">
  	收到的站内信数量：${msgCount}件 &nbsp;&nbsp;&nbsp;：
@@ -20,20 +18,21 @@
   		<c:forEach items="${page.content}" var = "page" >
   			<tr>
   				
-  				<td>${page.sendMsg.title}</td>
+  				<td><a href='<c:url value="/admin/teacher/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>${page.sendMsg.title}</a></td>
   				<td>${page.sendMsg.date}</td>
   				<td>${page.sendMsg.user.name}</td>
-  				<td>
+  				<td><!-- 
   					 <div class="btn-group"> 
 						<button class="btn">更多</button>  
 						<button class="btn dropdown-toggle" data-toggle="dropdown">   
 						<span class="caret"></span> </button>
 						<ul class="dropdown-menu">
-							<li><a href='<c:url value="/admin/teacher/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>详细</a> </li>
-							<li><a href='<c:url value="/admin/teacher/message/deleOneReaded?mid=${page.sendMsg.id}"></c:url>'>删除</a> </li>
+							<li>详细</a> </li>
+							<li></li>
 							
 						</ul>
-					 </div>
+					 </div> -->
+					 <a href='<c:url value="/admin/teacher/message/deleOneReaded?mid=${page.sendMsg.id}"></c:url>'>删除</a> 
   				</td>
   			</tr>
   		</c:forEach>

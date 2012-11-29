@@ -17,7 +17,7 @@
 		<li><a href='<c:url value="/admin/teacher/resource/list"></c:url>' >资源管理</a></li>
 		<li><a href='<c:url value="/admin/teacher/achievement/list"></c:url>' >科研成果</a></li>
 		<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
-		<li><a href='<c:url value="/admin/teacher/friendsRelated/list"></c:url>' >好友互动</a></li>
+		<!-- <li><a href='<c:url value="/admin/teacher/friendsRelated/list"></c:url>' >好友互动</a></li> -->
 		<li><a href='<c:url value="/admin/teacher/message/list"></c:url>' >站内信</a></li>
 	</ul>
 </div>

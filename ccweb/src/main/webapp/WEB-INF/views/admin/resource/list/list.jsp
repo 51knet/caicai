@@ -7,12 +7,11 @@
 <a href='<c:url value="/admin/teacher/resource/list"></c:url>' ><b>资源管理</b></a><hr>
 <div style="text-align: center;">
 	<table class="table table-bordered">
-	<thead><tr><th colspan="5">全部资源</th></tr></thead>
 		<tbody>
 		<tr><td colspan="5">
 			<a href='<c:url value="/admin/teacher/resource/new"></c:url>' class="btn">添加资源</a>&nbsp;&nbsp;
 			<a href='<c:url value="/admin/teacher/resource/type/list"></c:url>'  class="btn">类别管理</a><br></td></tr>
-		<tr><td>文件名称</td><td>发布时间</td><td>文件描述</td><td>文件类型</td><td>详细操作</td></tr>
+		<tr><td>文件名称</td><td>发布时间</td><td>文件描述</td><td>文件类型</td><td>资源操作</td></tr>
 		<c:forEach items="${page.content}" var="page">
 			<tr><td align="left">${page.name}</td>
 			<td align="center">${page.date}</td>

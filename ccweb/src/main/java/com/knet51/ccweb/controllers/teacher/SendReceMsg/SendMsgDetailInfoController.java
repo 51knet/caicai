@@ -91,7 +91,7 @@ public class SendMsgDetailInfoController {
 			sendMsg.setDate(date);
 			sendMsg.setUser(sender);
 			sendMsgService.add(sendMsg, receiveId);
-			return "redirect:/admin/teacher/message/detailOne?mid=" + sendMsgId+"&urmid="+urmId;
+			return "redirect:/admin/teacher/message/isRead";
 		}	
 	}
 	

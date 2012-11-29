@@ -20,28 +20,26 @@ $(document).ready(function() {
 <hr>
 <div style="text-align: center;">
 	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th colspan="4">全部公告</th>
-			</tr>
-		</thead>
 		<tbody>
 			<tr>
 				<td colspan="4" align="right"><a href="#myModal" role="button"
 					class="btn" data-toggle="modal">添加公告</a></td>
 			</tr>
 			<tr>
-				<td>公告标题</td>
+				<td>公告标签</td>
 				<td>公告内容</td>
 				<td>发布时间</td>
-				<td>详细操作</td>
+				<td>公告操作</td>
 			</tr>
 			<c:forEach items="${page.content}" var="page">
 				<tr>
-					<td align="left">${page.title}</td>
-					<td align="center">${page.content}</td>
-					<td align="center">${page.date}</td>
-					<td>
+					<td align="left" width="15%">${page.title}</td>
+					<td align="center" width="50%" >
+							<div style="width:300px;" id="content">${page.content}</div>
+					</td>
+					<td align="center" width="20%">${page.date}</td>
+					<td width="15%">
+					<!-- 
 						<div class="btn-group">
 							<button class="btn">更多</button>
 							<button class="btn dropdown-toggle" data-toggle="dropdown">
@@ -50,11 +48,12 @@ $(document).ready(function() {
 							<ul class="dropdown-menu">
 								<li><a
 									href='<c:url value="/admin/teacher/announcement/edit/${page.id}"></c:url>'>修改</a></li>
-								<li><a
-									href='<c:url value="/admin/teacher/announcement/destory/${page.id}"></c:url>'>
-										删除</a></li>
+								<li></li>
 							</ul>
 						</div>
+						 -->
+						 <a href='<c:url value="/admin/teacher/announcement/destory/${page.id}"></c:url>'>
+										删除</a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -70,7 +69,7 @@ $(document).ready(function() {
 
 
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
+		aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: left;">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"
 				aria-hidden="true">×</button>
@@ -79,19 +78,20 @@ $(document).ready(function() {
 		<form:form action='new' method="post" id="anno_information">
 			<div class="modal-body" id="title">
 
-				公告标题：<input type="text" name="title" id="t" placeholder="Title">
+				公告标签：&nbsp;<input type="text" name="title" id="t" placeholder="公告标签"  >
 				<span class="help-inline"><form:errors path="title"></form:errors></span>
 			</div>
 			<div class="modal-body" id="content">
 				公告内容：
-				<textarea name="content" placeholder="Content" id="c" cols="5"
-					rows="8"></textarea>
+				<textarea name="content" placeholder="公告内容" id="c" cols="5"
+					rows="8" style="width:380px;"></textarea>
 				<span class="help-inline"><form:errors path="content"></form:errors></span>
 			</div>
 			<div class="modal-footer">
-				<button class="btn" type="reset" data-dismiss="modal"
-					aria-hidden="true">取消</button>
+			
 				<button class="btn btn-primary" type="submit">保存</button>
+					<button class="btn" type="reset" data-dismiss="modal"
+					aria-hidden="true">取消</button>
 			</div>
 		</form:form>
 	</div>
