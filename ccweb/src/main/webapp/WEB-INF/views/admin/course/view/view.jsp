@@ -4,7 +4,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>资源管理</b></a>>>
+<a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>课程管理</b></a>>>
 <a href='<c:url value="/admin/teacher/course/view/${course.id}"></c:url>'><b>课程详细</b></a><hr>
 <div style="text-align: center;">
 
@@ -22,7 +22,6 @@
 	课程资源<hr>
 	
 	<table class="table table-bordered">
-		<thead><tr><th colspan="3">全部资源</th></tr></thead>
 		<tbody>
 			<tr><td colspan="3"><a href='<c:url value="/admin/teacher/${course.id}/resource/new"></c:url>' class="btn">添加附件</a></td></tr>
 			<tr><td>资源名称</td><td>上传时间</td><td>下载</td></tr>

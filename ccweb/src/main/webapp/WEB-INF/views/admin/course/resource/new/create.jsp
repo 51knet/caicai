@@ -34,7 +34,7 @@
 	 resourceType.style.display="block";
  }
 </script>
-<a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>资源管理</b></a>>>
+<a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>课程管理</b></a>>>
 <a href='<c:url value="/admin/teacher/course/view/${id}"></c:url>'><b>课程详细</b></a>>><a href='<c:url value="/admin/teacher/${id}/resource/new"></c:url>' ><b>添加附件</b></a><hr>
 <div style="text-align: center;">
 	
@@ -49,8 +49,8 @@
 		<br>
 		<div id="container" style="margin-left:70px;"></div>
 		<br>
-		<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
-		<button type="reset" class="btn">Cancel</button>
+		<button type="submit" class="btn btn-primary">上传</button>&nbsp;&nbsp;
+		<button type="reset" class="btn">取消</button>
 	</form:form>
 </div>
  

@@ -29,52 +29,6 @@
 	</div>
 </div>
 
-<!-- teacher course -->
-<div class="row-fluid custom round">
-		<div class="row">
-			<h5>课程资料</h5>
-		</div>
-		<hr>
-		<div class="row ">
-		<table class="table">
-			<c:choose>
-				<c:when test="${courseCount !=0}">
-					<thead>
-						<tr><th >课程标题</th><th>课程简述</th><th>发布时间</th></tr>
-					</thead>
-					<tbody>
-						<c:forEach var="course" items="${courseList}">
-							<tr>
-								<td><a href="<c:url value="/teacher/${teacherInfo.id}/course/view/${course.id}"></c:url>"> ${course.courseName }</a> 
-								</td>
-								<td>
-									<c:choose>
-									<c:when test="${course.courseDesc==null || course.courseDesc=='' }">
-										无描述
-									</c:when>
-									<c:otherwise>
-										${course.courseDesc}
-									</c:otherwise>
-								</c:choose>
-								</td>
-								<td>
-									${course.courseDate}
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</c:when>
-				<c:otherwise>
-					<tr><td colspan="3">无内容</td></tr>
-				</c:otherwise>
-			</c:choose>
-		</table>
-		<hr>
-		<div style="text-align: right;">
-		<c:if test="${courseCount>2}"><a href="<c:url value="/teacher/${teacherInfo.id}/course/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
-		</div>
-</div>
-
 <!-- teacher resource -->
 <div class="row-fluid custom round">
 		<div class="row">
@@ -122,6 +76,54 @@
 		<c:if test="${resourceCount>2}"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 		</div>
 </div>
+
+<!-- teacher course -->
+<div class="row-fluid custom round">
+		<div class="row">
+			<h5>课程资料</h5>
+		</div>
+		<hr>
+		<div class="row ">
+		<table class="table">
+			<c:choose>
+				<c:when test="${courseCount !=0}">
+					<thead>
+						<tr><th >课程标题</th><th>课程简述</th><th>发布时间</th></tr>
+					</thead>
+					<tbody>
+						<c:forEach var="course" items="${courseList}">
+							<tr>
+								<td><a href="<c:url value="/teacher/${teacherInfo.id}/course/view/${course.id}"></c:url>"> ${course.courseName }</a> 
+								</td>
+								<td>
+									<c:choose>
+									<c:when test="${course.courseDesc==null || course.courseDesc=='' }">
+										无描述
+									</c:when>
+									<c:otherwise>
+										${course.courseDesc}
+									</c:otherwise>
+								</c:choose>
+								</td>
+								<td>
+									${course.courseDate}
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</c:when>
+				<c:otherwise>
+					<tr><td colspan="3">无内容</td></tr>
+				</c:otherwise>
+			</c:choose>
+		</table>
+		<hr>
+		<div style="text-align: right;">
+		<c:if test="${courseCount>2}"><a href="<c:url value="/teacher/${teacherInfo.id}/course/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
+		</div>
+</div>
+
+
 
 <!-- teacherAchievement  -->
 <div class="row-fluid custom round">
