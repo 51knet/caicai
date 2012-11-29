@@ -1,17 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<div style="text-align: center;">
-<!-- 	<a href="#" class="btn">aaaaa</a><hr />
-	<a href="#" class="btn">bbbbb</a><hr />
-	<a href="#" class="btn">ccccc</a><hr />
-	<a href="#" class="btn">ddddd</a><hr />
-	<a href="studentInfoPage" class="btn">详细资料</a><hr />
-	
-	 -->
+<div style="vertical-align: middle;text-align: center;">
+	<c:url var="avatar_url" value="/resources/attached/${sessionUserInfo.id}/avatar_large.jpg"></c:url>
+	<img width="90px" height="90px" src="${avatar_url}" style="margin: 15px 0px;">
+</div>
+<div>
 	<ul class="nav nav-tabs nav-stacked">
 		<li class="active"><a href='<c:url value="/admin"></c:url>' >个人中心</a></li>
 		<li><a href='<c:url value="/student/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>

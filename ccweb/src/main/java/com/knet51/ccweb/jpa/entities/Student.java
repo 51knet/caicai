@@ -1,6 +1,5 @@
 package com.knet51.ccweb.jpa.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -8,22 +7,24 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class Student {
-
 	@Id
 	private Long id; /* manually set id to user's id */
-	
-	@OneToOne(cascade = CascadeType.ALL)
+	//@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@PrimaryKeyJoinColumn(name = "id")
 	private User user;
 
-	private Integer role;
+	private String role;
 	private String college;
 	private String junior_high_school;
 	private String senior_high_school;
 	private String primary_school;
+	protected Student() {
 
-	public Student(User user){
+	}
+	public Student(User user) {
 		this.user = user;
+		setId(user.getId());
 	}
 	
 	public Long getId() {
@@ -42,11 +43,13 @@ public class Student {
 		this.user = user;
 	}
 
-	public Integer getRole() {
+	
+
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(Integer role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 
