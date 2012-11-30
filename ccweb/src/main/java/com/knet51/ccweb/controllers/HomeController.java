@@ -151,10 +151,13 @@ public class HomeController {
 					.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User users = userInf.getUser();
 			Announcement announcement = announcementService.findLatestByUid(id);
-			if(announcement !=null){
+			if(announcement !=null && announcement.getContent().length()>100){
 				String anno = announcement.getContent();
 				String annoContent = anno.substring(0, 100);
 				model.addAttribute("annoContent", annoContent);
+			}else if(announcement !=null && announcement.getContent().length()<=100){
+				String anno = announcement.getContent();
+				model.addAttribute("annoContent", anno);
 			}
 			int followValue = friendsRelateService.getFollowById(id,
 					users.getId());
