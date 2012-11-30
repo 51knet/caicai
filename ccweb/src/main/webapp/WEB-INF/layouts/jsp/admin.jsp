@@ -44,9 +44,7 @@
 				<tiles:insertAttribute name="banner" />
 			</div>
 			<!--/row-->
-			<div class="row-fluid">
-				<div class="span12"></div>
-			</div>
+			<tiles:insertAttribute name="breadcrumbs" />
 			<div class="row-fluid content-panel">
 				<div class="span3">
 					<div class="left-panel">

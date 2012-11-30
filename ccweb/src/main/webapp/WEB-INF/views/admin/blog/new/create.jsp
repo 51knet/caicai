@@ -39,11 +39,11 @@
 				allowFileManager : true,
 				afterCreate : function() {
 					var self = this;
-					K.ctrl(document, 13, function() {
+					KindEditor.ctrl(document, 13, function() {
 						self.sync();
 						document.forms['blog_post'].submit();
 					});
-					K.ctrl(self.edit.doc, 13, function() {
+					KindEditor.ctrl(self.edit.doc, 13, function() {
 						self.sync();
 						document.forms['blog_post'].submit();
 					});

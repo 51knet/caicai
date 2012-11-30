@@ -8,6 +8,7 @@
 	<!-- admin-layout was 2 columns layout structure -->
 	<definition name="admin-blog-layout" extends="admin-layout" >
 		<put-attribute name="title" value="我的博文" />
+		<put-attribute name="breadcrumbs" value="/WEB-INF/views/admin/blog/_shared/_breadcrumbs.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/admin/blog/_shared/_left.jsp" />
 	</definition>
 	
