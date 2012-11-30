@@ -18,7 +18,7 @@
 			<tr><td>类别名称</td><td>详细操作</td></tr>
 			<c:forEach items="${list}" var="l">
 				<tr><td align="left">${l.typeName}</td>
-				<td><a href='<c:url value="/admin/teacher/resource/type/destory/${l.id}" ></c:url>' class=btn> 删除</a></td></tr>
+				<td><a href='<c:url value="/admin/teacher/resource/type/destory/${l.id}" ></c:url>' > 删除</a></td></tr>
 			</c:forEach>
 		</tbody>
 	</table>
