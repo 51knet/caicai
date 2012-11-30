@@ -44,14 +44,6 @@
  function resourceOnclick(){
 	 return checkEmptyAjax("resource_type_form","resourceTypeAJAX");
  }
- /* function typeNameOnclick(){
-	 alert(1);
-	 var myFiles=document.getElementById("myFiles");
-	 if(myFiles==""){
-		 document.getElementById("myFilesError").html("上传文件不能为空");
-		 return false;
-	 }
- } */
 	$(document).ready(function() {
 		$("#typeNames").focus(function(){
 			$("#typeError").html("");

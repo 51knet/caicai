@@ -229,46 +229,6 @@ public class HomeController {
 			return "404";
 		}
 	}
-	/*@RequestMapping(value = "/student/{id}")
-	public String studentFront(@PathVariable Long id, Model model,
-			HttpSession session, HttpServletResponse response)
-					throws IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		logger.info("#### Into teacher front page ####");
-		try {
-			User user = userService.findOne(id);
-			UserInfo userInf = (UserInfo) session
-					.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			User users = userInf.getUser();
-			Announcement announcement = announcementService.findLatestByUid(id);
-			int followValue = friendsRelateService.getFollowById(id,
-					users.getId());
-			
-			Student student = studentService.findOne(id);
-			Page<Resource> pageResource = resourceService.findAllResouByUser(0,
-					5, user);
-			List<Resource> resourceList = pageResource.getContent();
-			Integer resourceCount = resourceService.listAllByUid(id).size();
-			model.addAttribute("resourceList", resourceList);
-			model.addAttribute("resourceCount", resourceCount);
-			
-			UserInfo userInfo = new UserInfo(user);
-			userInfo.setAnnouncement(announcement);
-			userInfo.setStudent(student);
-			Integer fansCount = friendsRelateService.getAllFans(id).size();
-			Integer hostCount = friendsRelateService.getAllHost(id).size();
-			model.addAttribute("teacher_id", id);
-			model.addAttribute("teacherInfo", userInfo);
-			model.addAttribute("role", userInfo.getStudentRole());
-			session.setAttribute("followValue", followValue);
-			session.setAttribute("fansCount", fansCount);
-			session.setAttribute("hostCount", hostCount);
-			return "student.basic";
-		} catch (Exception e) {
-			return "404";
-		}
-	}*/
-
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
