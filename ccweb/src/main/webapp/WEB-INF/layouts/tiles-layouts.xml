@@ -42,15 +42,7 @@
 		<put-attribute name="title" value="My Blog" />
 		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
-		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/teacher/left.jsp" />
-		<put-attribute name="right" value="/WEB-INF/layouts/jsp/admin-layout/right.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
-	</definition>
-	<definition name="adminStudent-layout" template="/WEB-INF/layouts/jsp/admin.jsp">
-		<put-attribute name="title" value="My Blog" />
-		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
-		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/student/left.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/left.jsp" />
 		<put-attribute name="right" value="/WEB-INF/layouts/jsp/admin-layout/right.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
