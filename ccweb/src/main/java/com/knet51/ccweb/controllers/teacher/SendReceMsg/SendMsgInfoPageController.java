@@ -33,9 +33,9 @@ public class SendMsgInfoPageController {
 		user = userService.findOne(userId);
 		announcement = announcementService.findLatestByUid(userId);
 		userInfo = new UserInfo(user);
-		userInfo.setAnnouncement(announcement);
+		
 		model.addAttribute("userInfoModel", userInfo);
-		model.addAttribute("annContext", userInfo.getAnnouncementContext());
+		model.addAttribute("announcement", announcement);
 		model.addAttribute("photoUrl", userInfo.getPhotoUrl());
 		model.addAttribute("uid", userInfo.getId());
 		model.addAttribute("name", userInfo.getName());

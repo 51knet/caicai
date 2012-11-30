@@ -26,7 +26,7 @@
 	</div>
 	<div class="row">
 		<table class="table">
-		<thead><tr><th width=20%>文件名称</th><th >描述</th><th width=10%>类型</th><th width=20%>发布时间</th><th width=10%>下载</th></tr></thead>
+		<thead><tr><th width=25%>文件名称</th><th >描述</th><th width=10%>类型</th><th width=20%>发布时间</th><th width=8%>下载</th></tr></thead>
 			<tbody>
 			<c:forEach items="${page.content}" var="page">
 				<tr><td align="left">${page.name}</td>

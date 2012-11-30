@@ -22,9 +22,13 @@
 	<div class="row"><h5>公告 </h5><hr/></div>
 	
 	<div class="row">
-		 <div id="content" style="width:750px;">
-			${teacherInfo.announcementContext}
-		</div> 
+		<!--  <div id="content" style="width:750px;">
+		</div> -->
+		<c:choose>
+			<c:when test="${annoContent != null && annoContent != ''}">${annoContent}</c:when>
+			<c:otherwise>无公告</c:otherwise>
+		</c:choose>
+		
 	</div>
 	<hr>
 	<div style="text-align: right;">
@@ -43,7 +47,7 @@
 			<c:choose>
 				<c:when test="${resourceCount !=0}">
 					<thead>
-						<tr><th >资源名称</th><th>资源描述</th><th>资源类别</th><th>发表日期</th></tr>
+						<tr><th width="25%">资源名称</th><th>描述</th><th width="10%">类别</th><th width="20%">发表日期</th></tr>
 					</thead>
 					<tbody>
 						<c:forEach var="resource" items="${resourceList}">
@@ -69,7 +73,6 @@
 					</tbody>
 				</c:when>
 				<c:otherwise>
-				
 					<tr><td colspan="4">无内容</td></tr>
 				</c:otherwise>
 			</c:choose>
@@ -166,7 +169,7 @@
 		<c:choose>
 			<c:when test="${projectCount !=0}">
 				<thead>
-					<tr><th >项目名称</th><th >项目来源</th><th width=20%>起止时间</th></tr>
+					<tr><th >项目名称</th><th >项目来源</th><th width=24%>起止时间</th></tr>
 				</thead>
 				<tbody>
 					<c:forEach var="project" items="${projectList}">

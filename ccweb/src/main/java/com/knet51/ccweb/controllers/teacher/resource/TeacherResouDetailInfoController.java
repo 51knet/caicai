@@ -59,15 +59,19 @@ public class TeacherResouDetailInfoController {
 				Resource resource = new Resource();
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
 				String fileName = files.get(i).getOriginalFilename();
+				String name = fileName.substring(0, fileName.indexOf("."));
 				resource.setDescription(desc);
-				resource.setName(fileName);
+				resource.setName(name);
+				
 				ResourceType resourceType = resourceTypeService.findOneById(value); 
 				String realPath = FileUtil.getPath("upload", userInfo.getId(), resourceType.getTypeName(), session);
 				resource.setResourceType(resourceType);
 				resource.setStatus(1);
+				
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String date = format.format(new Date());
 				resource.setDate(date);
+				
 				String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
 				resource.setSaveName(saveName);
 				String savePath = realPath+"\\"+saveName;

@@ -25,7 +25,7 @@
 	</div>
 	<div class="row">
 		<table class="table ">
-			<thead><tr><th>课程标题</th><th>课程简述</th><th>发布时间</th></tr></thead>
+			<thead><tr><th>课程标题</th><th>课程简述</th><th width=20%>发布时间</th></tr></thead>
 			<tbody>
 				<tr><td align="left">${course.courseName}</td>
 				<td align="center">${course.courseDesc}</td>
@@ -37,17 +37,17 @@
 			<h5>课程资源</h5>
 		</div>
 			
-		<table class="table table-bordered">
+		<table class="table ">
 			<c:choose>
 				<c:when test="${resourceCount>0}">
-					<thead><tr><th colspan="3">全部资源</th></tr></thead>
+					
 					<tbody>
 						<tr><td>资源名称</td><td>上传时间</td><td>下载</td></tr>
 						<c:forEach items="${resourceList}" var="resource">
 							<tr>
 								<td align="left">${resource.fileName}</td>
 								<td align="center">${resource.date}</td>
-								<td align="center"><a href="${resource.savePath}">下载</a></td>
+								<td align="center"><a href='<c:url value="/course/resource/download/${resource.id }"></c:url>'>下载</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -1,11 +1,18 @@
 package com.knet51.ccweb.jpa.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Announcement extends AbstractEntity {
 	private String title;
+	
+	@Lob
+	@Column(length=10000)
 	private String content;
 	private Integer code;
 	private String date;

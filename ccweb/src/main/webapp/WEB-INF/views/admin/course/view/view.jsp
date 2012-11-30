@@ -29,7 +29,8 @@
 				<tr>
 					<td align="left" >${resource.fileName}</td>
 					<td align="center">${resource.date}</td>
-					<td align="center" ><a href="${resource.savePath}">下载</a></td>
+					<td align="center"><a href='<c:url value="/course/resource/download/${resource.id }"></c:url>'>下载</a> | 
+					<a href='<c:url value="/admin/teacher/${course.id}/resource/destory/${resource.id }"></c:url>'>删除</a>	</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -13,13 +13,13 @@ public class UserInfo {
 	private User user;
 	private Teacher teacher;
 	private Student student;
-	private Announcement announcement;
+	//private Announcement announcement;
 
 	public UserInfo(User user) {
 		this.user = user;
 		this.teacher = null;
 		this.student = null;
-		this.announcement = null;
+		//this.announcement = null;
 	}
 
 	public Long getId() {
@@ -38,10 +38,10 @@ public class UserInfo {
 		return this.user.getPhoto_url();
 	}
 
-	public String getAnnouncementContext() {
-		return this.announcement == null ? "暂无公告" : this.announcement
-				.getContent();
-	}
+//	public String getAnnouncementContext() {
+//		return this.announcement == null ? "暂无公告" : this.announcement
+//				.getContent();
+//	}
 
 	public User getUser() {
 		return user;
@@ -67,13 +67,13 @@ public class UserInfo {
 		this.student = student;
 	}
 
-	public Announcement getAnnouncement() {
-		return announcement;
-	}
-
-	public void setAnnouncement(Announcement announcement) {
-		this.announcement = announcement;
-	}
+//	public Announcement getAnnouncement() {
+//		return announcement;
+//	}
+//
+//	public void setAnnouncement(Announcement announcement) {
+//		this.announcement = announcement;
+//	}
 	
 	public String getName(){
 		return this.user.getName();

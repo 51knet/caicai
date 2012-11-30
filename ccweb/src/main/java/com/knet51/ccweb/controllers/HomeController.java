@@ -151,9 +151,11 @@ public class HomeController {
 					.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User users = userInf.getUser();
 			Announcement announcement = announcementService.findLatestByUid(id);
-			//String annoContent = announcement.getContent().substring(0, 100);
-			//announcement.setContent(annoContent);
-			
+			if(announcement !=null){
+				String anno = announcement.getContent();
+				String annoContent = anno.substring(0, 100);
+				model.addAttribute("annoContent", annoContent);
+			}
 			int followValue = friendsRelateService.getFollowById(id,
 					users.getId());
 
@@ -189,6 +191,7 @@ public class HomeController {
 			Integer thesisCount = thesisService.getAllThesisById(id).size();
 			model.addAttribute("thesisList", thesisList);
 			model.addAttribute("thesisCount", thesisCount);
+			
 
 			Page<TeacherProject> pageProject = projectService
 					.findAllProjectByTeacher(0, 2, teacher);
@@ -209,7 +212,7 @@ public class HomeController {
 			model.addAttribute("annoCount", annoList.size());
 
 			UserInfo userInfo = new UserInfo(user);
-			userInfo.setAnnouncement(announcement);
+			//userInfo.setAnnouncement(announcement);
 			userInfo.setTeacher(teacher);
 
 			Integer fansCount = friendsRelateService.getAllFans(id).size();
@@ -217,6 +220,8 @@ public class HomeController {
 
 			model.addAttribute("teacher_id", id);
 			model.addAttribute("teacherInfo", userInfo);
+			//model.addAttribute("announcement", announcement);
+		
 			model.addAttribute("role", userInfo.getTeacherRole());
 			// model.addAttribute("followValue",followValue);
 			session.setAttribute("followValue", followValue);

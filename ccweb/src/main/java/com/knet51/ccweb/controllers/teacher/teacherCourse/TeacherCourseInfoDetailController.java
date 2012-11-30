@@ -3,6 +3,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -25,6 +27,7 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.controllers.teacher.TeacherWorkExpInfoForm;
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
@@ -117,24 +120,52 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/{course_id}/resource/create",method=RequestMethod.POST)
 	public String TeacherCourseResourceAdd(HttpSession session,Model model,
 			MultipartHttpServletRequest request,@PathVariable Long course_id) throws  Exception{
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("file");
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				CourseResource resource = new CourseResource();
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
+				
 				String fileName = files.get(i).getOriginalFilename();
-				String realPath = session.getServletContext().getRealPath("/WEB-INF/courseResources/");
-				resource.setFileName(fileName);
+				String name = fileName.substring(0, fileName.indexOf("."));
+				resource.setFileName(name);
+				
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String date = format.format(new Date());
 				resource.setDate(date);
-				String savePath = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
+				
+				TeacherCourse teacherCourse = courseService.findOneById(course_id);
+				String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
+				String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
+				String savePath = realPath+"\\"+saveName;
 				resource.setSavePath(savePath);
+				resource.setSaveName(saveName);
+				
 				resource.setCourse_id(course_id);
 				courseResourceService.createCourseResource(resource);
 			}
 		}
 		return "redirect:/admin/teacher/course/view/"+course_id;
+	}
+	
+	
+	@RequestMapping(value="/course/resource/download/{resource_id}")
+	public String resourceDownLoad(@PathVariable Long resource_id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		logger.info("-------Into resource DownLoad controller------");
+		CourseResource resource = courseResourceService.findOneById(resource_id);
+		String savePath = resource.getSavePath();
+		String fileName = resource.getSaveName();
+		FileUtil.downLoad(request, response, savePath, fileName);
+		return null;
+	}
+	
+	@Transactional
+	@RequestMapping(value="/admin/teacher/{course_id}/resource/destory/{resource_id}")
+	public String courseResourceDele( HttpSession session,@PathVariable Long resource_id,@PathVariable Long course_id){
+		logger.info("#### Into TeacherCourseAdd Controller ####");
+			courseResourceService.deleCourseResource(resource_id);
+			return "redirect:/admin/teacher/course/view/"+course_id;
 	}
 	
 }

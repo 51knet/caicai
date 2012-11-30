@@ -36,8 +36,8 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 	}
 
 	@Override
-	public void deleCourseResource(Long course_id) {
-
+	public void deleCourseResource(Long resource_id) {
+		resourceRepository.delete(resource_id);
 	}
 
 //	@Override

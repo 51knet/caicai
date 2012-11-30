@@ -8,6 +8,7 @@ import com.knet51.ccweb.jpa.entities.AbstractEntity;
 public class CourseResource extends AbstractEntity {
 	
 	private String fileName;
+	private String saveName;
 	private String savePath;
 	private String date;
 	private Long course_id;
@@ -38,6 +39,13 @@ public class CourseResource extends AbstractEntity {
 	}
 	public void setCourse_id(Long course_id) {
 		this.course_id = course_id;
+	}
+	
+	public String getSaveName() {
+		return saveName;
+	}
+	public void setSaveName(String saveName) {
+		this.saveName = saveName;
 	}
 	public CourseResource() {
 		super();
