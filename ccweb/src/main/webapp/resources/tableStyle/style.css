@@ -7,13 +7,19 @@ table.t1 th {
 	background-repeat::repeat-x;
 	
 }
-table.t1 td,table.t1 th{
+table.t1 th{
 	border:1px solid #cad9ea;
 	font-size: 13px;
 	
 }
 table.t1 tr.a1{
 	background-color:#f5fafe;
+	
+}
+
+table.t1 td{
+	border:1px dotted #cad9ea;
+	font-size: 13px;
 }
 
 
