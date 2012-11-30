@@ -9,7 +9,7 @@
  <thead><tr><th colspan="5">
  	收到的站内信数量：${msgCount}件 &nbsp;&nbsp;&nbsp;：
  	<a href='<c:url value="/admin/teacher/message/list"></c:url>'>未读信件数量${unReadCount}件</a>&nbsp;&nbsp;&nbsp;
- 	<a href='<c:url value="/admin/teacher/message/isRead"></c:url>'>已读信件数量：${isReadCount}件</a>
+ 	<a href='<c:url value="/admin/teacher/message/isRead"></c:url>'>已读信件数量：${isReadCount}件</a>&nbsp;&nbsp;&nbsp;
  	<a href='<c:url value="/admin/teacher/message/isDele"></c:url>'>回收站：${isDeleCount}件</a>
  </th></tr></thead>
 	<tbody>

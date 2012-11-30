@@ -25,7 +25,6 @@
 		 <div id="content" style="width:750px;">
 			${teacherInfo.announcementContext}
 		</div> 
-		
 	</div>
 	<hr>
 	<div style="text-align: right;">
@@ -70,6 +69,7 @@
 					</tbody>
 				</c:when>
 				<c:otherwise>
+				
 					<tr><td colspan="4">无内容</td></tr>
 				</c:otherwise>
 			</c:choose>
@@ -91,7 +91,7 @@
 			<c:choose>
 				<c:when test="${courseCount !=0}">
 					<thead>
-						<tr><th >课程标题</th><th>课程简述</th><th>发布时间</th></tr>
+						<tr><th >课程标题</th><th>课程简述</th><th width="20%">发布时间</th></tr>
 					</thead>
 					<tbody>
 						<c:forEach var="course" items="${courseList}">
@@ -166,7 +166,7 @@
 		<c:choose>
 			<c:when test="${projectCount !=0}">
 				<thead>
-					<tr><th >项目名称</th><th >项目来源</th><th >项目起止时间</th></tr>
+					<tr><th >项目名称</th><th >项目来源</th><th width=20%>起止时间</th></tr>
 				</thead>
 				<tbody>
 					<c:forEach var="project" items="${projectList}">

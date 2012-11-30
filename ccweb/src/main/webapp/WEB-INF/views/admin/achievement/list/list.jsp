@@ -30,8 +30,8 @@ $(document).ready(function(){
 	
 </script>
 <div style="text-align: center;">
-	<div style="width: 500px; text-align: left;">
-		<table width=500 border="0">
+	<div style="width: 700px; text-align: left;">
+		<table width=700 border="0">
 			<tr>
 				<td align="left"><span style=" font-size: 15px;">论文</span></td>
 				<td align=right><a href="javascript:void(0)" onclick="hiddenThesis()">收起</a> | <a href="javascript:void(0)" onclick="showThesis()">展开</a></td>
@@ -87,8 +87,8 @@ $(document).ready(function(){
 		</div>
 	</div>
 	<br>
-	<div style="width: 500px; text-align: left;">
-		<table width="500" border="0">
+	<div style="width: 700px; text-align: left;">
+		<table width="700" border="0">
 			<tr>
 				<td align="left"><span  font-size: 15px;">项目</span></td>
 				<td align="right"><a href="javascript:void(0)" onclick="hiddenProject()">收起</a> | <a href="javascript:void(0)" onclick="showProject()">展开</a></td>
@@ -157,8 +157,8 @@ $(document).ready(function(){
 	</div>
 
 	<br>
-	<div style="width: 500px; text-align: left;">
-		<table width="500" border="0">
+	<div style="width: 700px; text-align: left;">
+		<table width="700" border="0">
 			<tr>
 				<td align="left"><span style=" font-size: 15px;">专利</span></td>
 				<td align="right"><a href="javascript:void(0)" onclick="hiddenPatent()">收起</a> | <a href="javascript:void(0)" onclick="showPatent()">展开</a></td>
@@ -231,8 +231,8 @@ $(document).ready(function(){
 	</div>
 
 	<br>
-	<div style="width: 500px; text-align: left;">
-		<table width="500" border="0">
+	<div style="width: 700px; text-align: left;">
+		<table width="700" border="0">
 			<tr>
 				<td align="left"><span style=" font-size: 15px;">荣誉和奖项</span></td>
 				<td align="right"><a href="javascript:void(0)" onclick="hiddenHonor()">收起</a> | <a href="javascript:void(0)" onclick="showHonor()">展开</a></td>
