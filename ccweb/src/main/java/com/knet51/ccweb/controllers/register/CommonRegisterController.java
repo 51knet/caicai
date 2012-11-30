@@ -52,6 +52,7 @@ public class CommonRegisterController {
 				String randomUrl = MailSender.getInstance()
 						.produceRandomString();
 				user.setRandomUrl(randomUrl);
+				user.setPhoto_url("/resources/img/avatar/avatar90.png");
 				findUser = userService.createUser(user);
 				randomUrl += "/";
 				randomUrl += findUser.getId();

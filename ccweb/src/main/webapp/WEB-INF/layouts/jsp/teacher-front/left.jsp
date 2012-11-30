@@ -33,8 +33,8 @@
 		<h5></h5>
 	</div>
 	<div class="row-fluid">
-		<!-- <img src='${teacherInfo.photoUrl}' height='80px' width='60px' align="middle"> -->
-		<img width="90px" height="90px" src="http://dummyimage.com/90x90" style="margin: 15px 0px;"> <a href='<c:url value='/teacher/${teacherInfo.id}'></c:url>'>${teacherInfo.name }</a>
+	<c:url var="avatar_url" value="${teacherInfo.avatar}"></c:url>
+	<img width="90px" height="90px" src="${avatar_url}" style="margin: 15px 0px;"><a href='<c:url value='/teacher/${teacherInfo.id}'></c:url>'>${teacherInfo.name }</a>
 	</div>
 	<div class="row-fluid">
 		<a href='<c:url value='/teacher/${teacherInfo.id}/fans/list'></c:url>'<c:url value='/teacher/${teacherInfo.id}'></c:url>'' >${sessionScope.fansCount } 粉丝</a> | <a
