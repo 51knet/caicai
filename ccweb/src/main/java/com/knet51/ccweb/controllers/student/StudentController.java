@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,17 +21,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
-import com.knet51.ccweb.controllers.teacher.TeacherContactInfoForm;
-import com.knet51.ccweb.controllers.teacher.TeacherPersonalInfoForm;
-import com.knet51.ccweb.controllers.teacher.TeacherPswForm;
 import com.knet51.ccweb.jpa.entities.Student;
-import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.StudentService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
-
+@Controller
 public class StudentController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(StudentController.class);
@@ -54,7 +51,7 @@ public class StudentController {
 			active = "psw";
 		}
 		model.addAttribute("active", active);
-		return "admin.teacher.details";
+		return "admin.student.details";
 	}
 	@Transactional
 	@RequestMapping(value = "/admin/student/personalInfo")

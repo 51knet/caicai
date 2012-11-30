@@ -7,8 +7,7 @@ public class StudentPersonalInfoForm {
 	private String name;
 	@NotEmpty
 	private String gender;
-	@NotEmpty
-	private Integer role;
+	private String role;
 	@NotEmpty
 	private String college;
 	@NotEmpty
@@ -17,6 +16,12 @@ public class StudentPersonalInfoForm {
 	private String senior_high_school;
 	@NotEmpty
 	private String primary_school;
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public String getName() {
 		return name;
 	}
@@ -28,12 +33,6 @@ public class StudentPersonalInfoForm {
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
-	}
-	public Integer getRole() {
-		return role;
-	}
-	public void setRole(Integer role) {
-		this.role = role;
 	}
 	public String getCollege() {
 		return college;

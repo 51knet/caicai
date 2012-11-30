@@ -12,6 +12,13 @@ public interface UserService {
 	User findByEmailAddress(String emailAddress);
 	User createUser(User usr);
 	User updateUser(User usr);
+	/**
+	 * 
+	 * @param id
+	 * @param avatarRelativePath - /resources/attached/${id}/avatar_large.jpg
+	 * @return
+	 */
+	User updateUserAvatar(Long id, String avatarRelativePath);
 	List<User> findAllUsers();
 	boolean usableUrl(String url);
 	User findBySelfUrl(String url);

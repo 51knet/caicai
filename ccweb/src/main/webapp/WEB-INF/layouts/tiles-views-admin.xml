@@ -23,5 +23,22 @@
 		<put-attribute name="right" value="/WEB-INF/views/user/home/userHomePage.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/user/home/user_item_panel.jsp"></put-attribute>
 	</definition>
+	<definition name="admin.userStu" extends="adminStudent-layout">
+		<put-attribute name="title" value="Home Page" />
+		<put-attribute name="left" value="/WEB-INF/views/user/home/user_item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/home/userHomePage.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.userStu.details" extends="adminStudent-layout">
+		<put-attribute name="title" value="Detail Info" />
+		<put-attribute name="left" value="/WEB-INF/views/user/home/user_item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/home/userInfoPage.jsp"></put-attribute>
+	</definition>
+
+	<definition name="userStu.basic" extends="adminStudent-layout">
+		<put-attribute name="title" value="Welcom to user register" />
+		<put-attribute name="right" value="/WEB-INF/views/user/home/userHomePage.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/user/home/user_item_panel.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

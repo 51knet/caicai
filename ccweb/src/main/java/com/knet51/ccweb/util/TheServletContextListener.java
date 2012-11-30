@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogCategory;
@@ -86,6 +87,13 @@ public class TheServletContextListener implements ServletContextListener {
 		List<Teacher> teachers = em.createQuery("select c from Teacher c", Teacher.class).getResultList();
 		 for (Teacher teacher : teachers) {
 			em.remove(teacher);
+		}
+	}
+	@SuppressWarnings("unused")
+	private void destroyStudents() {
+		List<Student> students = em.createQuery("select c from Student c", Student.class).getResultList();
+		for (Student student : students) {
+			em.remove(student);
 		}
 	}
 

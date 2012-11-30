@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
@@ -25,6 +26,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.services.UserService;
+
 /**
  * Handles requests for the avatar upload and cut
  */
@@ -33,6 +39,8 @@ public class AvatarController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AvatarController.class);
 	public static final long MAX_FILE_SIZE_1M = 1024*1024;
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value = "/avatar/crossdomain.xml")
 	public @ResponseBody String renderCrossdomainXML() {
@@ -69,9 +77,13 @@ public class AvatarController {
 		boolean b3 = saveFile(savePath + "avatar_small.jpg", getFlashDataDecode(avatar3));
 		// <img src="/resources/attached/${user_id}/avatar_large.jpg">
 		if(b1 && b2 && b3){
-			return "<?xml version=\"1.0\" ?><root><face success=\"0\"/></root>";
-		}else{
+			User user = userService.updateUserAvatar(user_id, "/resources/attached/"+user_id+"/avatar_large.jpg");
+			logger.debug(user.toString());
+			UserInfo sessionUser = (UserInfo)session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			sessionUser.setUser(user);
 			return "<?xml version=\"1.0\" ?><root><face success=\"1\"/></root>";
+		}else{
+			return "<?xml version=\"1.0\" ?><root><face success=\"0\"/></root>";
 		}
 	}
 	/**
@@ -178,9 +190,9 @@ public class AvatarController {
 			FileOutputStream fs = new FileOutputStream(path);
 		    fs.write(b, 0, b.length);
 		    fs.close();
-			return false;
+			return true;
 		}catch(Exception e){
-		    return true;
+		    return false;
 		}
 	}
 

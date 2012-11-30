@@ -25,14 +25,15 @@ public class User extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", name=" + name
-				+ ", password=" + password + ", gender=" + gender + ", role="
-				+ role + ", register_date=" + register_date
+		return "User [email=" + email + ", randomUrl=" + randomUrl + ", name="
+				+ name + ", password=" + password + ", gender=" + gender
+				+ ", role=" + role + ", register_date=" + register_date
 				+ ", last_login_date=" + last_login_date + ", level=" + level
 				+ ", cell_phone=" + cell_phone + ", fix_phone=" + fix_phone
-				+ ", getId()=" + getId() + "]";
+				+ ", self_url=" + self_url + ", address=" + address + ", fax="
+				+ fax + ", qq=" + qq + ", msn=" + msn + ", photo_url="
+				+ photo_url + ", id=" + getId() + "]";
 	}
-
 
 	private String email;
 	private String randomUrl;

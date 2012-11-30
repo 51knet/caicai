@@ -36,7 +36,7 @@
 							<li><a tabindex="-1" href='<c:url value="/admin"></c:url>'>后台管理</a></li>
 							<li><a tabindex="-1" href='<c:url value="/teacher/${sessionUserInfo.id}"></c:url>'>我的主页</a></li>
 							<li><a tabindex="-1" href='<c:url value="/admin/teacher/resume?active=personal"></c:url>'>完善简历</a></li>
-							<li><a tabindex="-1" href='<c:url value="/admin/teacher/details?active=psw"></c:url>'>账号设置</a></li>
+							<li><a tabindex="-1" href='<c:url value="/admin/teacher/details?active=avatar"></c:url>'>账号设置</a></li>
 							<li class="divider"></li>
 							<li><a tabindex="-1" href='<c:url value="/signout"></c:url>'>退出登录</a></li>
 						</ul>

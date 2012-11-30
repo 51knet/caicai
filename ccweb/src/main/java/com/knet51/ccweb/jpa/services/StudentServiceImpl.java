@@ -1,10 +1,13 @@
 package com.knet51.ccweb.jpa.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.repository.StudentRepository;
-
+@Transactional
+@Service("studentService")
 public class StudentServiceImpl implements StudentService {
 	@Autowired
 	private StudentRepository studentRepository;

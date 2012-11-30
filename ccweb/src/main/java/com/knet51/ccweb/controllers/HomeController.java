@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
+import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
@@ -34,6 +35,7 @@ import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.ResourceService;
+import com.knet51.ccweb.jpa.services.StudentService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
@@ -55,7 +57,6 @@ public class HomeController {
 
 	@Autowired
 	private TeacherService teacherService;
-	
 	@Autowired
 	private ResourceService resourceService;
 
@@ -70,6 +71,8 @@ public class HomeController {
 
 	@Autowired
 	private TeacherThesisService thesisService;
+	@Autowired
+	private StudentService studentService;
 
 	@Autowired
 	private TeacherCourseService courseService;
@@ -124,8 +127,9 @@ public class HomeController {
 				return "user.basic";
 			} else if (role.equals("teacher")) {
 				return "redirect:/teacher/" + id;
-			} else {
-				// TODO: student and other role;
+			}else if(role.equals("student")) {
+				return "redirect:/student/"+id;
+			}else {
 				return "404";
 			}
 		} catch (Exception e) {
@@ -225,6 +229,45 @@ public class HomeController {
 			return "404";
 		}
 	}
+	/*@RequestMapping(value = "/student/{id}")
+	public String studentFront(@PathVariable Long id, Model model,
+			HttpSession session, HttpServletResponse response)
+					throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		logger.info("#### Into teacher front page ####");
+		try {
+			User user = userService.findOne(id);
+			UserInfo userInf = (UserInfo) session
+					.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			User users = userInf.getUser();
+			Announcement announcement = announcementService.findLatestByUid(id);
+			int followValue = friendsRelateService.getFollowById(id,
+					users.getId());
+			
+			Student student = studentService.findOne(id);
+			Page<Resource> pageResource = resourceService.findAllResouByUser(0,
+					5, user);
+			List<Resource> resourceList = pageResource.getContent();
+			Integer resourceCount = resourceService.listAllByUid(id).size();
+			model.addAttribute("resourceList", resourceList);
+			model.addAttribute("resourceCount", resourceCount);
+			
+			UserInfo userInfo = new UserInfo(user);
+			userInfo.setAnnouncement(announcement);
+			userInfo.setStudent(student);
+			Integer fansCount = friendsRelateService.getAllFans(id).size();
+			Integer hostCount = friendsRelateService.getAllHost(id).size();
+			model.addAttribute("teacher_id", id);
+			model.addAttribute("teacherInfo", userInfo);
+			model.addAttribute("role", userInfo.getStudentRole());
+			session.setAttribute("followValue", followValue);
+			session.setAttribute("fansCount", fansCount);
+			session.setAttribute("hostCount", hostCount);
+			return "student.basic";
+		} catch (Exception e) {
+			return "404";
+		}
+	}*/
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model, HttpSession session) {
@@ -237,8 +280,10 @@ public class HomeController {
 			return "redirect:/admin/user";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
 			return "redirect:/admin/teacher";
+		} else if(userInfo!=null&&userInfo.getRole().equals("student")) {
+			return "redirect:/admin/student";
 		} else {
-			return "home";
+		return "home";
 		}
 	}
 
@@ -253,6 +298,8 @@ public class HomeController {
 			return "admin.user";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
 			return "redirect:/admin/teacher";
+		}else if(userInfo!=null&&userInfo.getRole().equals("student")) {
+			return "redirect:/admin/student";
 		} else {
 			return "home";
 		}
@@ -274,10 +321,30 @@ public class HomeController {
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			// set default home page to set resume page;
 			return "redirect:/admin/teacher/resume?active=personal";
-		} else {
+		}else {
 			return "home";
 		}
 
+	}
+	@RequestMapping(value = "/admin/student", method = RequestMethod.GET)
+	public String adminStudent(Locale locale, Model model, HttpSession session) {
+		logger.info("Welcome home! the client locale is " + locale.toString());
+		
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		
+		if (userInfo != null && userInfo.getRole().equals("user")) {
+			return "redirect:/admin/user";
+		} else if (userInfo != null && userInfo.getRole().equals("student")) {
+			Student student=studentService.findOne(userInfo.getId());
+			userInfo.setStudent(student);
+			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+			// set default home page to set resume page;
+			return "redirect:/admin/student/resume?active=personal";
+		}else {
+			return "home";
+		}
+		
 	}
 
 	@RequestMapping(value = "/{selfUrl}")

@@ -7,7 +7,7 @@ import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 
-@JsonIgnoreProperties(value={"teacherRole"})
+@JsonIgnoreProperties(value={"teacherRole","studentRole"})
 public class UserInfo {
 
 	private User user;
@@ -82,15 +82,19 @@ public class UserInfo {
 	public String getGender(){
 		return this.user.getGender();
 	}
-	
 	public String getTeacherRole(){
 		return this.teacher.getRole();
+	}
+	public String getStudentRole(){
+		return this.student.getRole();
 	}
 
 	public UserInfo() {
 		super();
 	}
-
+	public String getAvatar() {
+		return this.user.getPhoto_url();
+	}
 	public String getFax(){
 		return this.user.getFax();
 	}
