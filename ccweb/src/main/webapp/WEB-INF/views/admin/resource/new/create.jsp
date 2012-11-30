@@ -49,6 +49,14 @@
 			$("#typeError").html("");
 		});
 		
+		$("form:first").submit(function(){
+			 var myFiles=$("#myFiles").val();
+			if(myFiles==""){
+				$("#myFilesError").html("上传文件不能为空");
+				return false;
+			}
+		});
+		
 	});
 </script>
 
@@ -72,12 +80,14 @@
 				&nbsp;&nbsp;<span class="help-inline"></span>
 					</div>
 				<br>
-				上传资源：<input type="file" name="myFiles" />&nbsp;&nbsp;<input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span>
+				上传资源：<input type="file" name="myFiles"  id="myFiles"/>&nbsp;&nbsp;<input  type="button" value="添加" onclick="addFile()"/>&nbsp;
+				<span style="color:red;font-size:14px;">单次上传不大于200M</span>
+				<span style="color:red;font-size:14px;" id="myFilesError"></span>
 				<br>
 				<div id="container" style="margin-left:70px;"></div>
 				<br>
 				<label style="clear: right;"></label>
-				<button type="submit" class="btn btn-primary">添加</button>&nbsp;&nbsp;
+				<button type="submit" class="btn btn-primary" onclick="typeNameOnclick();">添加</button>&nbsp;&nbsp;
 				<button type="reset" class="btn" >取消</button>
 			</form:form>
 		 </div>
