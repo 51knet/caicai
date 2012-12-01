@@ -60,3 +60,32 @@ textarea {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+
+
+
+/*START style-for-admin-pages*/
+body.admin {
+	max-width: 1680px;
+	width: 100%;
+}
+.admin .container-fluid {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+.admin .container-fluid.block-with-bg {
+	background: url(/ccweb/resources/img/admin_bg.jpg) repeat;
+}
+.admin .container-fluid.content-centered {
+	min-width: 1024px;
+	max-width: 1024px;
+	width: 1024px;
+	margin: 0 auto;
+	background-color: white;
+}
+.admin .left-panel {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	background-color: #FAFAFB;
+}
+/*END style-for-admin-pages*/

@@ -1,14 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:if test="${sessionUserInfo == null }">
 <style>
-	body {padding-top: 0px;}
-</style>
-</c:if>
-<c:if test="${ sessionUserInfo != null}">
-<style>
+body {padding-top: 0px;}
 .navbar-inner.custom {
 	height: 45px;
 	z-index: 2;
@@ -44,7 +40,6 @@
 				</ul>
 			</c:if>
 		</div>
-		
 	</div>
 </div>
 </c:if>

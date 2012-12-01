@@ -1,45 +1,17 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 	<jsp:include page="/WEB-INF/layouts/jsp/common/_html_head.jsp"></jsp:include>
-	<style>
-	body {
-		max-width: 1600px;
-		width: 100%;
-	}
-	
-	.container-fluid {
-		padding-right: 0px;
-		padding-left: 0px;
-	}
-	
-	.container-fluid.wrapper {
-		background: url(/ccweb/resources/img/teacher_front_bg.jpg) repeat;
-	}
-	.container-fluid.custom {
-		min-width: 1024px;
-		max-width: 1024px;
-		width: 1024px;
-		margin: 0 auto;
-		background-color: white;
-	}
-	.left-panel {
-		border-radius: 5px;
-		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;
-		background-color: #FAFAFB;
-	}
-	</style>
 </head>
-<body>
+<body class="admin">
 	<tiles:insertAttribute name="top-navbar" />
 
-	<div class="container-fluid wrapper">
-		<div class="container-fluid custom">
+	<div class="container-fluid block-with-bg">
+		<div class="container-fluid content-centered">
 			<div class="row-fluid">
 				<tiles:insertAttribute name="banner" />
 			</div>
