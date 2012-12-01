@@ -39,8 +39,8 @@ public class FileUtil {
 	}
 	
 	public static void downLoad(HttpServletRequest request,HttpServletResponse response,String savePath,String fileName) throws Exception{
-		response.setContentType("text/html;charset=utf-8");
-		request.setCharacterEncoding("UTF-8");
+		//response.setContentType("text/html;charset=utf-8");
+		//request.setCharacterEncoding("UTF-8");
 		BufferedInputStream bis = null;
 		BufferedOutputStream bos = null;
 		try {
