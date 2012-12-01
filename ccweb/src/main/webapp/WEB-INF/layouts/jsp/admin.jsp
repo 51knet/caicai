@@ -9,7 +9,7 @@
 </head>
 <body class="admin">
 	<tiles:insertAttribute name="top-navbar" />
-
+	<!-- /top-navbar -->
 	<div class="container-fluid block-with-bg">
 		<div class="container-fluid content-centered">
 			<div class="row-fluid">
@@ -35,9 +35,7 @@
 
 			<hr>
 
-			<footer>
-				<tiles:insertAttribute name="footer" />
-			</footer>
+			<footer><tiles:insertAttribute name="footer" /></footer>
 
 		</div>
 	</div>

@@ -7,6 +7,18 @@ body {
 	width: 1024px;
 	margin: 0 auto;
 }
+/*top level navbar*/
+.navbar.custom {
+	height: 45px;
+	z-index: 2;
+	background: #4E4E4E url(resources/img/noise.png);
+	background: url(resources/img/noise.png), -moz-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(resources/img/noise.png), -webkit-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(resources/img/noise.png), -o-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(resources/img/noise.png), -ms-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(resources/img/noise.png), linear-gradient(#4E4E4E, #1C1C1C);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.45);
+}
 
 /*banner*/
 .banner {
