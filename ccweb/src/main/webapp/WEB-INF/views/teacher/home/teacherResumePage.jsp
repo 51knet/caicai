@@ -294,24 +294,24 @@ function showEduAddForm(){
 	eduList.style.display="none"; 
 	 var eduForm = document.getElementById("eduForm"); 
 	 eduForm.style.display="block"; 
-	}; 
-	function closeEduAddForm(){ 
+}; 
+function closeEduAddForm(){ 
 	 var eduList = document.getElementById("eduList"); 
 	eduList.style.display="block"; 
 	 var eduForm = document.getElementById("eduForm"); 
 	 eduForm.style.display="none"; 
-	}; 
-	function showWorkAddForm(){ 
+}; 
+function showWorkAddForm(){ 
 	 //alert("111"); 
 	var workList = document.getElementById("workList"); 
 	 workList.style.display="none"; 
 	 var workForm = document.getElementById("workForm"); 
 	 workForm.style.display="block"; 
-	}; 
-	function closeWorkAddForm(){ 
+}; 
+function closeWorkAddForm(){ 
 	 var workList = document.getElementById("workList"); 
 	 workList.style.display="block"; 
 	 var workForm = document.getElementById("workForm"); 
 	  workForm.style.display="none"; 
-	}; 
+}; 
 </script>
