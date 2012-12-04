@@ -1,25 +1,40 @@
-table.t1{
+table.blue{
 	border:1px solid #cad9ea;
 	color:#666;
 }
-table.t1 th {
+table.blue th {
 	background-image: url(th_bg1.gif);
 	background-repeat::repeat-x;
 	
 }
-table.t1 th{
+table.blue th{
 	border:1px solid #cad9ea;
 	font-size: 13px;
 	
 }
-table.t1 tr.a1{
+table.blue tr.a1{
 	background-color:#f5fafe;
 	
 }
 
-table.t1 td{
+table.blue td{
 	border:1px dotted #cad9ea;
 	font-size: 13px;
+}
+
+
+.row-fluid.custom {
+	margin-bottom: 20px;
+	padding: 0px 0px 10px;
+	
+}
+.round {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+.row-fluid.custom .row {
+	margin: 0px 5px;
 }
 
 

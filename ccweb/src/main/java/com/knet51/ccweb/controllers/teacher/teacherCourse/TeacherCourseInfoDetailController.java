@@ -1,4 +1,5 @@
 package com.knet51.ccweb.controllers.teacher.teacherCourse;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -52,14 +53,15 @@ public class TeacherCourseInfoDetailController {
 	private TeacherService teacherService;
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/new",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/course/create",method=RequestMethod.POST)
 	public String TeacherCourseAddInfo(@Valid TeacherCourseInfoForm courseInfoForm,
-			BindingResult validResult, HttpSession session){
+			BindingResult validResult, HttpSession session,MultipartHttpServletRequest request) throws Exception{
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
 			return "redirect:/admin/teacher/course/list";
 		}else{
+			List<MultipartFile> files = request.getFiles("coverFile");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Teacher teacher = teacherService.findOne(userInfo.getId());
 			TeacherCourse course = new TeacherCourse();
@@ -71,6 +73,19 @@ public class TeacherCourseInfoDetailController {
 			String date = format.format(new Date());
 			course.setCourseDate(date);
 			course.setTeacher(teacher);
+			
+			for(int i=0;i<files.size();i++){
+				if(!files.get(i).isEmpty()){
+					logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
+					String fileName = files.get(i).getOriginalFilename();
+					String realPath = FileUtil.getPath("courseResource", userInfo.getId(), courseName, session);
+					String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
+					//String savePath = FileUtil.getSavePath("courseResource", userInfo.getId(), courseName, request)+"/"+saveName;
+					String savePath = request.getContextPath()+"/courseResource/"+userInfo.getId()+"/"+courseName+"/"+saveName;
+					course.setCourseCover(savePath);
+				}
+			}
+			
 			courseService.createTeacherCourse(course);
 			return "redirect:/admin/teacher/course/list";
 		}
@@ -122,6 +137,7 @@ public class TeacherCourseInfoDetailController {
 			MultipartHttpServletRequest request,@PathVariable Long course_id) throws  Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("file");
+		String resourceDesc = request.getParameter("resourceDesc");
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				CourseResource resource = new CourseResource();
@@ -141,7 +157,7 @@ public class TeacherCourseInfoDetailController {
 				String savePath = realPath+"\\"+saveName;
 				resource.setSavePath(savePath);
 				resource.setSaveName(saveName);
-				
+				resource.setResourceDesc(resourceDesc);
 				resource.setCourse_id(course_id);
 				courseResourceService.createCourseResource(resource);
 			}

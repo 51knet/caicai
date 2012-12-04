@@ -1,5 +1,7 @@
 package com.knet51.ccweb.controllers.teacher.teacherCourse;
 
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.knet51.ccweb.beans.CourseBeans;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
@@ -44,13 +47,19 @@ public class TeacherCourseInfoPageController {
 	
 	@RequestMapping(value="/admin/teacher/course/list")
 	public String teacherCourseInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		logger.info("#####Into TeacherCourseInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Teacher teacher = teacherService.findOne(userInfo.getId());
+		List<CourseBeans> cb = teacherCourseService.getAllCourseBeans(userInfo.getId());
 		Page<TeacherCourse> onePage =teacherCourseService.findAllCourseByTeacher(pageNumber, pageSize, teacher);
 		model.addAttribute("page", onePage);
 		return "admin.teacher.course.list";
+	}
+	
+	@RequestMapping(value="/admin/teacher/course/new")
+	public String courseAdd(){
+		return "admin.teacher.course.new";
 	}
 	
 
@@ -117,5 +126,47 @@ public class TeacherCourseInfoPageController {
 		model.addAttribute("resourceList",resourceList);
 		model.addAttribute("resourceCount", resourceList.size());
 		return "teacher.course.view";
+	}
+	
+	
+	@RequestMapping(value="/admin/teacher/allCourse/list")
+	public String teacherAllCourseInfo(HttpSession session,Model model ){
+		logger.info("#####Into TeacherCourseInfoPageController#####");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		//Teacher teacher = teacherService.findOne(userInfo.getId());
+		List<CourseBeans> courseBean = teacherCourseService.getAllCourseBeans(userInfo.getId());
+		model.addAttribute("cb", courseBean);
+		return "admin.teacher.allCourse.list";
+	}
+	
+	@RequestMapping(value="/admin/teacher/course/all/list")
+	public String teacherAllCourseList(HttpSession session,Model model,@RequestParam("school") String schoolName) throws Exception{
+		logger.info("#####Into TeacherCourseInfoPageController#####");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		List<String> school = teacherCourseService.getAllSchool();
+		schoolName = new String(schoolName.getBytes("iso-8859-1"),"utf-8"); 
+		List<CourseBeans> courseBean = teacherCourseService.getAllCourseBeans(userInfo.getId());
+		List<CourseBeans> newCourseBeans = new ArrayList<CourseBeans>();
+		if(schoolName.trim() !=null && !schoolName.trim().equals("all")){
+			for(CourseBeans c :courseBean){
+				if(schoolName.equals(c.getTeacher().getCollege())){
+					newCourseBeans.add(c);
+				}
+			}
+			model.addAttribute("schoolName", schoolName);
+			model.addAttribute("cb", newCourseBeans);
+			model.addAttribute("school", school);
+			return "admin.teacher.course.all.list";
+		}else if(schoolName.trim().equals("all")){
+			model.addAttribute("cb", courseBean);
+			model.addAttribute("school", school);
+			return "admin.teacher.course.all.list";
+		}else{
+			model.addAttribute("cb", courseBean);
+			model.addAttribute("school", school);
+			return "admin.teacher.course.all.list";
+		}
+		
+		
 	}
 }
