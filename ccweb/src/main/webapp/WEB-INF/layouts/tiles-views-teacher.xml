@@ -97,6 +97,12 @@
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/course/list/list.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.teacher.course.new" extends="admin-layout">
+		<put-attribute name="title" value="课程" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/new/create.jsp"></put-attribute>
+	</definition>
 
 	<definition name="admin.teacher.course.view" extends="admin-layout">
 		<put-attribute name="title" value="课程" />
@@ -214,6 +220,20 @@
 	<definition name="teacher.course.view" extends="frontPage-layout">
 		<put-attribute name="title" value="教师课程" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/course/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<!-- This is my test page to test the Knowledge market. by ZM   -->
+	
+	<definition name="admin.teacher.allCourse.list" extends="admin-layout">
+		<put-attribute name="title" value="课程" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/allCourse/list/list.jsp"></put-attribute>
+	</definition>
+	
+		<definition name="admin.teacher.course.all.list" extends="admin-layout">
+		<put-attribute name="title" value="课程" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/allCourse/all/list/list.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>

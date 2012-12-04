@@ -10,6 +10,7 @@ public class CourseResource extends AbstractEntity {
 	private String fileName;
 	private String saveName;
 	private String savePath;
+	private String resourceDesc;
 	private String date;
 	private Long course_id;
 	
@@ -46,6 +47,13 @@ public class CourseResource extends AbstractEntity {
 	}
 	public void setSaveName(String saveName) {
 		this.saveName = saveName;
+	}
+	
+	public String getResourceDesc() {
+		return resourceDesc;
+	}
+	public void setResourceDesc(String resourceDesc) {
+		this.resourceDesc = resourceDesc;
 	}
 	public CourseResource() {
 		super();

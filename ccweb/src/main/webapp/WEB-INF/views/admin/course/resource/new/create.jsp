@@ -33,6 +33,7 @@
 	 var resourceType = document.getElementById("addResourType");
 	 resourceType.style.display="block";
  }
+ 
 </script>
 <div  class="row-fluid custom round">
 	<div class="row" style="margin-top: 10px;">
@@ -42,16 +43,18 @@
 			<div style="text-align:center;">
 				<div style="width:560px; text-align:left;">
 					<form:form action="create" method="post" enctype="multipart/form-data">  
-						
 						<input type="hidden" value="${id }" name="course_id" />
-						<br>
-						上传资源：<input type="file" name="file" />&nbsp;&nbsp;<input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span>
-						
-						<br>
+						<div class="modal-body">
+							上传资源：<input type="file" name="file" />&nbsp;&nbsp;<!-- <input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span> -->
+						</div>
+						<div class="modal-body">
+							资源描述：<input type="text" name="resourceDesc" />&nbsp;&nbsp;<!-- <input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span> -->
+						</div>
 						<div id="container" style="margin-left:70px;"></div>
-						<br>
-						<button type="submit" class="btn btn-primary">上传</button>&nbsp;&nbsp;
-						<button type="reset" class="btn">取消</button>
+						<div class="modal-body" style="text-align: left;">
+							<button type="submit" class="btn btn-primary">添加</button>&nbsp;&nbsp;
+							<button type="reset" class="btn">取消</button>
+						</div>
 					</form:form>
 				</div>
 			</div>

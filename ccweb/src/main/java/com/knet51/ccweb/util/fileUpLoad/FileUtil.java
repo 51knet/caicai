@@ -29,13 +29,18 @@ public class FileUtil {
 		return fileName;
 	}
 	
-	public static String getPath(String file,Long id,String type,HttpSession session){
-		String rootPath = session.getServletContext().getRealPath("/")+file+"/"+id+"/"+type;
-		File f = new File(rootPath);
+	public static String getPath(String saveFileName,Long user_id,String type,HttpSession session){
+		String realPath = session.getServletContext().getRealPath("/")+saveFileName+"/"+user_id+"/"+type;
+		File f = new File(realPath);
 		if(!f.exists()) {
 			 f.mkdirs();
 	    }
-		return rootPath;
+		return realPath;
+	}
+	
+	public static String getSavePath(String saveFileName,Long user_id,String type,HttpServletRequest request){
+		String savePath = request.getContextPath()+"/"+saveFileName+"/"+user_id+"/"+type;
+		return savePath;
 	}
 	
 	public static void downLoad(HttpServletRequest request,HttpServletResponse response,String savePath,String fileName) throws Exception{

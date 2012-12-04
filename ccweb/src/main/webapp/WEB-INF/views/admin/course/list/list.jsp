@@ -20,11 +20,14 @@ $(document).ready(function() {
 	<div class="row" style="margin-top: 10px;">
 		<a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>课程管理</b></a><hr>
 		<div style="text-align: right;">
-			<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
-							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a><br>
+			<!-- 	<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
+							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
+			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/new"></c:url>' class="btn">添加新课程</a>				
+			<br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
 					<tr>
+						<th>课程封面</th>
 						<th width="15%">课程标题</th>
 						<th>课程简述</th>
 						<th width="20%">发布时间</th>
@@ -33,7 +36,9 @@ $(document).ready(function() {
 				</thead>
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
-						<tr><td align="left"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></td>
+						<tr>
+						<td align="left"><img src="${page.courseCover }" width="50" height="20" /></td>
+						<td align="left"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></td>
 						<td align="left">${page.courseDesc}</td>
 						<td align="left">${page.courseDate}</td>
 						<td align="center">

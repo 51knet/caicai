@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.knet51.ccweb.beans.CourseBeans;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.repository.TeacherCourseRepository;
@@ -50,6 +51,17 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
 		Page<TeacherCourse> onePage = teacherCourseRepository.findTeacherCourseByTeacher(teacher, dateDesc);
 		return onePage;
+	}
+
+	@Override
+	public List<CourseBeans> getAllCourseBeans(Long teacher_id) {
+		// TODO Auto-generated method stub
+		return teacherCourseRepository.listAllCourseBeans(teacher_id);
+	}
+
+	@Override
+	public List<String> getAllSchool() {
+		return teacherCourseRepository.getSchool();
 	}
 
 }
