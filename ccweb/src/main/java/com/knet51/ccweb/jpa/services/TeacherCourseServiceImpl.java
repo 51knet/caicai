@@ -1,5 +1,7 @@
 package com.knet51.ccweb.jpa.services;
 
+import java.lang.reflect.Array;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +57,9 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 
 	@Override
 	public List<CourseBeans> getAllCourseBeans(Long teacher_id) {
-		// TODO Auto-generated method stub
-		return teacherCourseRepository.listAllCourseBeans(teacher_id);
+		// FIXME this is stupid to depend the CourseBeans on this layer  
+		//return teacherCourseRepository.listAllCourseBeans(teacher_id);
+		return Collections.emptyList();
 	}
 
 	@Override
