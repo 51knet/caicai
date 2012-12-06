@@ -14,7 +14,7 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	 
-	<jpa:repositories base-package="com.knet51.courses.jpa.repository" />
+	<jpa:repositories base-package="com.knet51.ccweb.jpa.repository" />
  	
  	
 	<!-- JPA related -->
@@ -78,6 +78,6 @@
            </props>  
         </property>  
     </bean>  
-    
+
 	
 </beans>
