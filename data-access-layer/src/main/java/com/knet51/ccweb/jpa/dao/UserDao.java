@@ -3,7 +3,6 @@ package com.knet51.ccweb.jpa.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.knet51.ccweb.beans.UserBeans;
 import com.knet51.ccweb.jpa.entities.User;
 
 public interface UserDao {
@@ -25,6 +24,6 @@ public interface UserDao {
 
 	List<User> list();
 	
-	UserBeans getUserName(Long id);
+	//UserBeans getUserName(Long id);
 	int getcountByEmail(String email);
 }

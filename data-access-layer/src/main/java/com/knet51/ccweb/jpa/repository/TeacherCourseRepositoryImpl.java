@@ -24,6 +24,7 @@ public class TeacherCourseRepositoryImpl implements
 		return courseList;
 	}
 
+
 	@Override
 	public List<CourseBeans> listAllCourseBeans(Long teacher_id) {
 		/*List<CourseBeans> cb = em.createQuery("select new com.knet51.ccweb.beans.CourseBeans(t.college,u.name,tc) from User u,Teacher t,TeacherCourse tc where u.id=t.id and t.id=tc.teacher_id").getResultList();
@@ -33,6 +34,20 @@ public class TeacherCourseRepositoryImpl implements
 		List<CourseBeans> cb = em.createQuery("select new com.knet51.ccweb.beans.CourseBeans(t,tc) from Teacher t JOIN t.course tc ").getResultList();
 		return cb;
 	}
+
+//	@Override
+//	public List<CourseBeans> listAllCourseBeans(Long teacher_id) {
+//		/*List<CourseBeans> cb = em.createQuery("select new com.knet51.ccweb.beans.CourseBeans(t.college,u.name,tc) from User u,Teacher t,TeacherCourse tc where u.id=t.id and t.id=tc.teacher_id").getResultList();
+//		for(int i=0;i<cb.size();i++){
+//			System.out.println(cb.get(i).getSchoolName()+"-------"+cb.get(i).getTeacherName()+"++++++++"+cb.get(i).getCourse().getCourseName());
+//		}*/
+//		List<CourseBeans> cb = em.createQuery("select new com.knet51.ccweb.beans.CourseBeans(t,tc) from Teacher t JOIN t.course tc ").getResultList();
+////		for(int i=0;i<cb.size();i++){
+////			System.out.println(cb.get(i).getTeacher().getUser().getName()+"-------"+cb.get(i).getTeacher().getCollege()+"++++++++"+cb.get(i).getCourse().getCourseName());
+////		}
+//		return cb;
+//	}
+
 
 	@Override
 	public List<String> getSchool() {
