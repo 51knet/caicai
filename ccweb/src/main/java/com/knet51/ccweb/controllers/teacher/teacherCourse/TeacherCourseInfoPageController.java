@@ -51,7 +51,6 @@ public class TeacherCourseInfoPageController {
 		logger.info("#####Into TeacherCourseInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Teacher teacher = teacherService.findOne(userInfo.getId());
-		List<CourseBeans> cb = teacherCourseService.getAllCourseBeans(userInfo.getId());
 		Page<TeacherCourse> onePage =teacherCourseService.findAllCourseByTeacher(pageNumber, pageSize, teacher);
 		model.addAttribute("page", onePage);
 		return "admin.teacher.course.list";
@@ -128,13 +127,13 @@ public class TeacherCourseInfoPageController {
 		return "teacher.course.view";
 	}
 	
-	
+/*	
 	@RequestMapping(value="/admin/teacher/allCourse/list")
 	public String teacherAllCourseInfo(HttpSession session,Model model ){
 		logger.info("#####Into TeacherCourseInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		//Teacher teacher = teacherService.findOne(userInfo.getId());
-		List<CourseBeans> courseBean = teacherCourseService.getAllCourseBeans(userInfo.getId());
+		List<CourseBeans> courseBean = teacherCourseService.getAllCourseBeans();
 		model.addAttribute("cb", courseBean);
 		return "admin.teacher.allCourse.list";
 	}
@@ -146,7 +145,7 @@ public class TeacherCourseInfoPageController {
 		List<String> school = teacherCourseService.getAllSchool();
 		schoolName = new String(schoolName.getBytes("iso-8859-1"),"utf-8"); 
 		logger.info("+++++++++++++++++++++++"+schoolName+"++++++++++++++++++++");
-		List<CourseBeans> courseBean = teacherCourseService.getAllCourseBeans(userInfo.getId());
+		List<CourseBeans> courseBean = teacherCourseService.getAllCourseBeans();
 		List<CourseBeans> newCourseBeans = new ArrayList<CourseBeans>();
 		if(schoolName.trim() !=null && !schoolName.trim().equals("all")){
 			List<Teacher> teacherList = teacherCourseService.getAllCourseTeacher(schoolName);
@@ -171,5 +170,5 @@ public class TeacherCourseInfoPageController {
 		}
 		
 		
-	}
+	}  */
 }

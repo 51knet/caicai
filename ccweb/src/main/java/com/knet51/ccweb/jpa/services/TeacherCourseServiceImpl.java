@@ -1,6 +1,5 @@
 package com.knet51.ccweb.jpa.services;
 
-import java.lang.reflect.Array;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,12 +54,12 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		return onePage;
 	}
 
-	@Override
-	public List<CourseBeans> getAllCourseBeans(Long teacher_id) {
-		// FIXME this is stupid to depend the CourseBeans on this layer  
-		//return teacherCourseRepository.listAllCourseBeans(teacher_id);
-		return Collections.emptyList();
-	}
+//	@Override
+//	public List<CourseBeans> getAllCourseBeans() {
+//		// FIXME this is stupid to depend the CourseBeans on this layer  
+//		//return teacherCourseRepository.listAllCourseBeans(teacher_id);
+//		return Collections.emptyList();
+//	}
 
 	@Override
 	public List<String> getAllSchool() {

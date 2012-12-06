@@ -17,7 +17,7 @@ public interface TeacherCourseService {
 	void deleTeacherCourse(Long teacher_id);
 	Page<TeacherCourse> findAllCourseByTeacher(int pageNum, int pageSize, Teacher teacher);
 	
-	List<CourseBeans> getAllCourseBeans(Long teacher_id);
+	//List<CourseBeans> getAllCourseBeans();
 	List<String> getAllSchool();
 	List<Teacher> getAllCourseTeacher(String schoolName);
 	
