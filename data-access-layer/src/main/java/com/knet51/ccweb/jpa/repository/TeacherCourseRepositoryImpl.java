@@ -18,8 +18,8 @@ public class TeacherCourseRepositoryImpl implements
 	}
 
 	@Override
-	public List<TeacherCourse> getAllCourseById(Long id) {
-		List<TeacherCourse> courseList = em.createQuery("select tc from TeacherCourse tc where teacher_id="+id).getResultList();
+	public List<TeacherCourse> getAllCourseById(Long teacher_id) {
+		List<TeacherCourse> courseList = em.createQuery("select tc from TeacherCourse tc where teacher_id="+teacher_id).getResultList();
 		return courseList;
 	}
 

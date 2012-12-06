@@ -7,7 +7,7 @@ import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 public interface TeacherCourseRepositoryCustom {
 	
 	TeacherCourse updateTeacherCourseDetail(TeacherCourse teacherCourse);
-	List<TeacherCourse> getAllCourseById(Long id);
+	List<TeacherCourse> getAllCourseById(Long teacher_id);
 	
 	//List<CourseBeans> listAllCourseBeans();
 	List<String> getSchool();
