@@ -19,5 +19,6 @@ public interface TeacherCourseService {
 	
 	List<CourseBeans> getAllCourseBeans(Long teacher_id);
 	List<String> getAllSchool();
+	List<Teacher> getAllCourseTeacher(String schoolName);
 	
 }

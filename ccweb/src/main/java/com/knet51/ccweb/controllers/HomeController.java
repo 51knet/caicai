@@ -128,7 +128,7 @@ public class HomeController {
 			} else if (role.equals("teacher")) {
 				return "redirect:/teacher/" + id;
 			}else if(role.equals("student")) {
-				return "redirect:/student/"+id;
+				return "redirect:/student/"+ id;
 			}else {
 				return "404";
 			}

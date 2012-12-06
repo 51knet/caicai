@@ -5,7 +5,17 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
-
+	function showAll(){
+		$.ajax({
+			  type: "post",
+			  url:  "<c:url value='/admin/teacher/course/all/list' />",
+			  data: "school=all",
+			  dataType:"text",
+			  success:function(){
+				 	window.location.href='<c:url value="/admin/teacher/course/all/list"></c:url>';
+			  }
+		});
+	}
 </script>
 
 
@@ -17,8 +27,8 @@
 					${cb.teacher.user.name}-----${cb.teacher.college}-----${cb.course.courseName}
 				</div>
 			</c:forEach>
-			
 		</div>
-		<a href='<c:url value="/admin/teacher/course/all/list?school=all"></c:url>' class="btn" >查看所有课程</a>
+		<a href="#" onclick="showAll()" class="btn" >查看课程</a>
+		<a href='<c:url value="/admin/teacher/course/all/list?school=all"></c:url>'  class="btn" >查看所有课程</a>
 	</div>	
 </div>

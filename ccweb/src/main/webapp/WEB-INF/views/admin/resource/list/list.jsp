@@ -11,20 +11,20 @@
 					<a  style="margin-bottom: 10px;" href='<c:url value="/admin/teacher/resource/type/list"></c:url>'  class="btn">类别管理</a><br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
-					<tr><th>文件名称</th><th>发布时间</th><th>文件描述</th><th>文件类型</th><th>操作</th></tr>
+					<tr><th  align="center">文件名称</th><th align="center">发布时间</th><th align="center">文件描述</th><th align="center">文件类型</th><th align="center">操作</th></tr>
 				</thead>
 				<tbody>
 				<c:forEach items="${page.content}" var="page">
 					<tr><td align="left">${page.name}</td>
-					<td align="center">${page.date}</td>
-					<td>
+					<td align="left">${page.date}</td>
+					<td align="left">
 						<c:choose>
 							<c:when test="${(page.description!=null) && (page.description != '')}">${page.description}</c:when>
 							<c:otherwise>无描述</c:otherwise>
 						</c:choose>
 					</td>
-					<td>${page.resourceType.typeName}</td>
-					<td><a href='<c:url value="/admin/teacher/resource/destory/${page.id }"></c:url>'> 删除</a> 
+					<td align="left">${page.resourceType.typeName}</td>
+					<td align="center"><a href='<c:url value="/admin/teacher/resource/destory/${page.id }"></c:url>'> 删除</a> 
 						| <a href='<c:url value="/resource/download/${page.id }"></c:url>'>下载</a></td></tr>
 				</c:forEach>
 				</tbody>

@@ -207,61 +207,61 @@ background: #F7F7F7;
   <div id="myUniversity" class="carousel slide">
   <div class="carousel-inner">
     <div class="item active">
-      <div class="row">
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      </div>
-      <div class="row">
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      </div><div class="row">
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      </div>
+     	<div class="row">
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    </div>
+	    <div class="row">
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    </div><div class="row">
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    </div>
     </div>
     <div class="item">
-      <div class="row">
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      </div>
-      <div class="row">
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      </div><div class="row">
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      </div>
+     	<div class="row">
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    </div>
+	    <div class="row">
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    </div><div class="row">
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    </div>
     </div>
     <div class="item">
-      <div class="row">
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      </div>
-      <div class="row">
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      </div><div class="row">
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      	<div class="span3"></div>
-      </div>
+		<div class="row">
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    </div>
+	    <div class="row">
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    </div><div class="row">
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    </div>
     </div>
   </div>
   <div style="display: none;">
@@ -307,8 +307,8 @@ background: #F7F7F7;
     </div>
   </div>
   <div style="display: none;">
-  <a class="left carousel-control" href="#myTeacher" data-slide="prev">‹</a>
-  <a class="right carousel-control" href="#myTeacher" data-slide="next">›</a>
+	  <a class="left carousel-control" href="#myTeacher" data-slide="prev">‹</a>
+	  <a class="right carousel-control" href="#myTeacher" data-slide="next">›</a>
   </div>
 </div>
 

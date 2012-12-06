@@ -64,4 +64,9 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		return teacherCourseRepository.getSchool();
 	}
 
+	@Override
+	public List<Teacher> getAllCourseTeacher(String schoolName) {
+		return teacherCourseRepository.showCourseTeacher(schoolName);
+	}
+
 }

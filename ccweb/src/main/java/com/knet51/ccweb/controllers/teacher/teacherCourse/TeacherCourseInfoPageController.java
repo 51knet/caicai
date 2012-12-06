@@ -145,9 +145,11 @@ public class TeacherCourseInfoPageController {
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<String> school = teacherCourseService.getAllSchool();
 		schoolName = new String(schoolName.getBytes("iso-8859-1"),"utf-8"); 
+		logger.info("+++++++++++++++++++++++"+schoolName+"++++++++++++++++++++");
 		List<CourseBeans> courseBean = teacherCourseService.getAllCourseBeans(userInfo.getId());
 		List<CourseBeans> newCourseBeans = new ArrayList<CourseBeans>();
 		if(schoolName.trim() !=null && !schoolName.trim().equals("all")){
+			List<Teacher> teacherList = teacherCourseService.getAllCourseTeacher(schoolName);
 			for(CourseBeans c :courseBean){
 				if(schoolName.equals(c.getTeacher().getCollege())){
 					newCourseBeans.add(c);
@@ -156,6 +158,7 @@ public class TeacherCourseInfoPageController {
 			model.addAttribute("schoolName", schoolName);
 			model.addAttribute("cb", newCourseBeans);
 			model.addAttribute("school", school);
+			model.addAttribute("teacherList", teacherList);
 			return "admin.teacher.course.all.list";
 		}else if(schoolName.trim().equals("all")){
 			model.addAttribute("cb", courseBean);

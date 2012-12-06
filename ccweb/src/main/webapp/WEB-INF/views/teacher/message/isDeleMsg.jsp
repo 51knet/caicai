@@ -14,7 +14,7 @@
 		<div style="text-align: right;">
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 			 	<thead>
-					<tr><th width="30%">标题</th><th width="30%">发送时间</th><th width="20%">发件人</th><th width="20%">操作</th></tr>
+					<tr><th width="30%" align="center">标题</th><th width="30%" align="center">发送时间</th><th width="20%" align="center">发件人</th><th width="20%" align="center">操作</th></tr>
 				</thead>
 				<tbody>
 			  		<c:forEach items="${page.content}" var = "page" >

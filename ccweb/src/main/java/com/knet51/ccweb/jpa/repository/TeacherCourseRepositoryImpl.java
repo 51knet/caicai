@@ -1,12 +1,10 @@
 package com.knet51.ccweb.jpa.repository;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import com.knet51.ccweb.beans.CourseBeans;
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 
 public class TeacherCourseRepositoryImpl implements
@@ -33,9 +31,6 @@ public class TeacherCourseRepositoryImpl implements
 			System.out.println(cb.get(i).getSchoolName()+"-------"+cb.get(i).getTeacherName()+"++++++++"+cb.get(i).getCourse().getCourseName());
 		}*/
 		List<CourseBeans> cb = em.createQuery("select new com.knet51.ccweb.beans.CourseBeans(t,tc) from Teacher t JOIN t.course tc ").getResultList();
-//		for(int i=0;i<cb.size();i++){
-//			System.out.println(cb.get(i).getTeacher().getUser().getName()+"-------"+cb.get(i).getTeacher().getCollege()+"++++++++"+cb.get(i).getCourse().getCourseName());
-//		}
 		return cb;
 	}
 
@@ -47,6 +42,17 @@ public class TeacherCourseRepositoryImpl implements
 //		}
 		return school;
 	}
+
+	@Override
+	public List<Teacher> showCourseTeacher(String schoolName) {
+		List<Teacher> teacher = em.createQuery("select distinct t from Teacher t JOIN t.course tc where t.college='"+schoolName+"'").getResultList();
+//		for(int i=0;i<teacher.size();i++){
+//			System.out.println(teacher.get(i).getUser().getName()+"======================");
+//		}
+		return teacher;
+	}
+	
+	
 	
 	
 	

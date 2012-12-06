@@ -27,11 +27,11 @@ $(document).ready(function() {
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
 					<tr>
-						<th>课程封面</th>
-						<th width="15%">课程标题</th>
-						<th>课程简述</th>
-						<th width="20%">发布时间</th>
-						<th width="10%">课程操作</th>
+						<th align="center">课程封面</th>
+						<th align="center" width="15%">课程标题</th>
+						<th align="center">课程简述</th>
+						<th align="center" width="20%">发布时间</th>
+						<th align="center" width="10%">课程操作</th>
 					</tr>
 				</thead>
 				<tbody>
