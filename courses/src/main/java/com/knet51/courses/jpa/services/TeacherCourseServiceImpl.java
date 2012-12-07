@@ -1,5 +1,6 @@
 package com.knet51.courses.jpa.services;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.repository.TeacherCourseRepository;
 import com.knet51.ccweb.jpa.repository.TeacherRepository;
+import com.knet51.courses.beans.TeacherCourseBeans;
 
 @Transactional
 @Service("teacherCourseService")
@@ -44,6 +46,18 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 			}
 		}
 		return tcmap;
+	}
+
+	@Override
+	public List<TeacherCourseBeans> getAllTeacherCourseBeans() {
+		List<TeacherCourseBeans> tcBeansList = new ArrayList<TeacherCourseBeans>();
+		List<TeacherCourse> courseList = courseRepository.findAll();
+		for(int i=0;i<courseList.size();i++){
+			Teacher teacher = teacherRepository.findOne(courseList.get(i).getTeacher().getId());
+			TeacherCourseBeans tcBeans = new TeacherCourseBeans(teacher, courseList.get(i));
+			tcBeansList.add(tcBeans);
+		}
+		return tcBeansList;
 	}
 
 }
