@@ -45,8 +45,14 @@ public class TeacherCourseRepositoryImpl implements
 
 	@Override
 	public List<Teacher> showCourseTeacher(String schoolName) {
-		List<Teacher> teacher = em.createQuery("select distinct t from Teacher t JOIN t.course tc where t.college='"+schoolName+"'").getResultList();
-		return teacher;
+		if(schoolName!=null &&schoolName!=""){
+			List<Teacher> teacher = em.createQuery("select distinct t from Teacher t JOIN t.course tc where t.college='"+schoolName+"'").getResultList();
+			return teacher;
+		}else{
+			List<Teacher> teacher = em.createQuery("select distinct t from Teacher t JOIN t.course tc").getResultList();
+			return teacher;
+		}
+	
 	}
 	
 	

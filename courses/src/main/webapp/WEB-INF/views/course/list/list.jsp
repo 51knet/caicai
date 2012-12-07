@@ -173,33 +173,11 @@ background: #F7F7F7;
      	
 <div class="container marketing">
   <h2>教学资源（299）</h2>
-  <!-- Three columns of text below the carousel -->
-  <div class="row" >
-    <div class="span4">
-      <a href="#"><img src="resources/img/topics/240x135_1.png" width="324px"></a>
-      <h4>宇宙的形成</h4>
-      <h5>杜克大学</h5>
-      <p><span>更新至第二集</span></p>
-      
-    </div><!-- /.span4 -->
-    <div class="span4">
-      <a href="#"><img src="resources/img/topics/240x135_2.png" width="324px"></a>
-      <h4>药物和大脑</h4>
-      <h5>加州科技大学</h5>
-      <p><span>更新至第四集</span></p>
-    </div><!-- /.span4 -->
-    <div class="span4">
-      <a href="#"><img src="resources/img/topics/240x135_3.png" width="324px"></a>
-      <h4>如何解释和争论</h4>
-      <h5>杜克大学</h5>
-      <p><span>更新至第八集</span></p>
-    </div><!-- /.span4 -->
-  </div><!-- /.row -->
+ 
   <div class="row" >
   	<div style="margin-right: 35px;padding: 5px 5px;background: #F7F7F7;text-align: center;">
   		<a href='<c:url value="/course/list"></c:url>' >全部课程</a>
   	</div>
-  
   </div>
 
 </div>
