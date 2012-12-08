@@ -12,7 +12,7 @@
 	</definition>
 	<definition name="debug" extends="debug-layout">
 		<put-attribute name="title" value="Home - DB" />
-		<put-attribute name="body" value="/WEB-INF/views/controllers/home/debug.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/_shared/debug.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>
