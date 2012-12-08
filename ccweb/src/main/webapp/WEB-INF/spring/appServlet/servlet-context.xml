@@ -34,7 +34,7 @@
 		<beans:property name="definitions">
 			<beans:list>
 				<beans:value>WEB-INF/layouts/tiles-layouts.xml</beans:value>
-				<beans:value>WEB-INF/layouts/tiles-views-admin.xml</beans:value>
+				<beans:value>WEB-INF/layouts/tiles-views-user.xml</beans:value>
 				<beans:value>WEB-INF/layouts/tiles-views-register.xml</beans:value>
 				<beans:value>WEB-INF/layouts/tiles-views-home.xml</beans:value>
 				<beans:value>WEB-INF/layouts/tiles-views-debug.xml</beans:value>
