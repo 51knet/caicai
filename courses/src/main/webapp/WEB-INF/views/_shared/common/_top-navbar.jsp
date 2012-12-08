@@ -3,7 +3,8 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<div class="navbar">
+      
+<div class="navbar navbar-inverse">
    <div class="navbar-inner">
      <div class="container" style="margin-left: 80px; margin-right: 80px;">
        <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
