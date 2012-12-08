@@ -78,10 +78,10 @@ public class TeacherCourseInfoDetailController {
 				if(!files.get(i).isEmpty()){
 					logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
 					String fileName = files.get(i).getOriginalFilename();
-					String realPath = FileUtil.getPath("courseResource", userInfo.getId(), courseName, session);
+					String realPath = FileUtil.getPath("course", userInfo.getId(), courseName, session);
 					String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
-					//String savePath = FileUtil.getSavePath("courseResource", userInfo.getId(), courseName, request)+"/"+saveName;
-					String savePath = request.getContextPath()+"/courseResource/"+userInfo.getId()+"/"+courseName+"/"+saveName;
+					String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+"/"+saveName;
+					//String savePath = request.getContextPath()+"/course/"+userInfo.getId()+"/"+courseName+"/"+saveName;
 					course.setCourseCover(savePath);
 				}
 			}

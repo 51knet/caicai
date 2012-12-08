@@ -30,7 +30,7 @@ public class FileUtil {
 	}
 	
 	public static String getPath(String saveFileName,Long user_id,String type,HttpSession session){
-		String realPath = session.getServletContext().getRealPath("/")+saveFileName+"/"+user_id+"/"+type;
+		String realPath = session.getServletContext().getRealPath("/")+"/resources/attached/"+user_id+"/"+saveFileName+"/"+type;
 		File f = new File(realPath);
 		if(!f.exists()) {
 			 f.mkdirs();
@@ -39,7 +39,7 @@ public class FileUtil {
 	}
 	
 	public static String getSavePath(String saveFileName,Long user_id,String type,HttpServletRequest request){
-		String savePath = request.getContextPath()+"/"+saveFileName+"/"+user_id+"/"+type;
+		String savePath = request.getContextPath()+"/resources/attached/"+user_id+"/"+saveFileName+"/"+type;
 		return savePath;
 	}
 	

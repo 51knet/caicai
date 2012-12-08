@@ -14,6 +14,10 @@ $(document).ready(function() {
 	});
 	checkAjaxs("course_info_form","courserInfoAJAX");
 });
+
+function showUrl(url){
+	alert(url);
+}
 </script>
 
 <div class="row-fluid custom round">
@@ -37,7 +41,7 @@ $(document).ready(function() {
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
-						<td align="left"><img src="${page.courseCover }" width="50" height="20" /></td>
+						<td align="left"><img src="${page.courseCover }" width="50" height="20"  /></td>
 						<td align="left"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></td>
 						<td align="left">${page.courseDesc}</td>
 						<td align="left">${page.courseDate}</td>

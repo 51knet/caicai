@@ -4,8 +4,10 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 
 public class TeacherCourseBeans {
+	
 	private Teacher teacher;
 	private TeacherCourse teacherCourse;
+	
 	public Teacher getTeacher() {
 		return teacher;
 	}
