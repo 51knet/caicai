@@ -23,12 +23,12 @@ public class MailSender {
 		String context = "<div>亲爱的知识网注册用户，您好：</div><div>欢迎您注册知识网，请您点击下面链接来激活您的知识网的保密邮箱:</div>";
 		context += "<div><a href='" + url + "'>点击验证邮箱</a></div>";
 		context += "<div>本邮件为自动发送，请勿回复。</div>";
-		mailInfo.setMailServerHost("smtp.163.com");
+		mailInfo.setMailServerHost("smtp.ym.163.com");
 		mailInfo.setMailServerPort("25");
 		mailInfo.setValidate(true);
-		mailInfo.setUserName("caicaiadmin@163.com");
-		mailInfo.setPassword("123qweasd");
-		mailInfo.setFromAddress("caicaiadmin@163.com");
+		mailInfo.setUserName("service@51knet.com");
+		mailInfo.setPassword("123456");
+		mailInfo.setFromAddress("service@51knet.com");
 		mailInfo.setToAddress(sendToAddress);
 		mailInfo.setSubject("感谢您注册知识网。");
 		mailInfo.setContent(context);
