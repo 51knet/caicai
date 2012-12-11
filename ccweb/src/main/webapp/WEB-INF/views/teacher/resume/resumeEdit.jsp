@@ -126,39 +126,40 @@
 		<!-- Edu Info -->
 		<div class="tab-pane  <c:if test='${active == "edu"}'>active</c:if>" id="edu_bg_tab">
 			<div id="eduForm" style="display: none;">
-				<form class="form-horizontal" action="eduInfo" method="post" id="edu_info_form">
+				<form class="form-horizontal" action="eduInfo" method="post" id="edu_info_form" name="edu">
+					<input type="hidden" name="eduId" >
 					<div class="control-group" id="schoolName">
 						<label class="control-label" for="schoolName">学校</label>
 						<div class="controls">
-							<input type="text"  name="schoolName" placeholder="学校" data-provide="typeahead" data-items="8" data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'>
+							<input type="text"  name="schoolName"  id="schoolName" placeholder="学校" data-provide="typeahead" data-items="8" data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'>
 							<span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group" id="collegeName">
 						<label class="control-label" for="collegeName">学院</label>
 						<div class="controls">
-							<input type="text" name="collegeName" placeholder="学院"  >
+							<input type="text" name="collegeName" id="collegeName" value="" placeholder="学院"  >
 							<span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group" id="degree">
 						<label class="control-label" for="degree">学历</label>
 						<div class="controls">
-							<input type="text"   name="degree" placeholder="学历"  >
+							<input type="text" id="degree"   name="degree" placeholder="学历"  >
 							<span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group" id="startTime">
 						<label class="control-label" for="startTime">开始时间</label>
 						<div class="controls">
-							<input type="text"   name="startTime" placeholder="开始时间" >
+							<input type="text" id="startTime"  name="startTime" placeholder="开始时间" >
 							<span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group" id="endTime">
 						<label class="control-label" for="endTime">结束时间</label>
 						<div class="controls">
-							<input type="text"  name="endTime" placeholder="结束时间" >
+							<input type="text" id="endTime" name="endTime" placeholder="结束时间" >
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -172,31 +173,31 @@
 			</div>	
 			
 			<div id="eduList" style="display: block">
-			
-			<c:choose>
-				<c:when test="${eduCount>0 }">
-					<table  class="table">
-						<thead><tr><th>学校</th><th>学院</th><th>学历</th><th>起止时间</th><th>操作</th></tr></thead>
-						<tbody>
-							<c:forEach items="${eduInfo}" var="eduInfo">
-								<tr>
-									<td  align="center" >${eduInfo.school}</td>
-									<td  align="center">${eduInfo.college}</td>
-									<td  align="center">${eduInfo.degree}</td>
-									<td  align="center" width="25%">${eduInfo.startTime} - ${eduInfo.endTime}</td>
-									<td>
-										 <a href='<c:url value="/admin/teacher/eduInfo/destory/${eduInfo.id}"></c:url>'>删除</a>
-									</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</c:when>
-				<c:otherwise>
-					<b>尚未添加内容！！</b><br><br>
-				</c:otherwise>
-			</c:choose>
-				
+				<c:choose>
+					<c:when test="${eduCount>0 }">
+						<table  class="table">
+							<thead><tr><th>学校</th><th>学院</th><th>学历</th><th>起止时间</th><th>操作</th></tr></thead>
+							<tbody>
+								<c:forEach items="${eduInfo}" var="eduInfo">
+									<tr>
+										<td  align="center" >${eduInfo.school}</td>
+										<td  align="center">${eduInfo.college}</td>
+										<td  align="center">${eduInfo.degree}</td>
+										<td  align="center" width="25%">${eduInfo.startTime} - ${eduInfo.endTime}</td>
+										<td>
+											 <a href='<c:url value="/admin/teacher/eduInfo/destory/${eduInfo.id}"></c:url>'>删除</a> |
+											 <a href='javascript:void(0)' onclick="editEdu(${eduInfo.id})">修改</a>
+											 
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</c:when>
+					<c:otherwise>
+						<b>尚未添加内容！！</b><br><br>
+					</c:otherwise>
+				</c:choose>
 				<button onclick="showEduAddForm()">添加</button>
 			</div>
 		</div>
@@ -205,7 +206,8 @@
 		<div class="tab-pane <c:if test='${active == "work"}'>active</c:if>" id="work_exp_tab">
 			
 			<div id="workForm" style="display: none;">
-				<form class="form-horizontal" action="workInfo" method="post" id="workExpForm">
+				<form class="form-horizontal" action="workInfo" method="post" id="workExpForm" name="work">
+					<input type="hidden" name="workId">
 					<div class="control-group" id="company">
 						<label class="control-label" for="company">单位</label>
 						<div class="controls">
@@ -264,7 +266,8 @@
 										<td  align="center">${workInfo.position}</td>
 										<td  align="center"  width="25%">${workInfo.startTime} - ${workInfo.endTime}</td>
 										<td>
-											<a href='<c:url value="/admin/teacher/workInfo/destory/${workInfo.id}"></c:url>'>删除</a>
+											<a href='<c:url value="/admin/teacher/workInfo/destory/${workInfo.id}"></c:url>'>删除</a> |
+											 <a href='javascript:void(0)' onclick="editWork(${workInfo.id})">修改</a>
 										</td>
 									</tr>
 								</c:forEach>
@@ -286,32 +289,48 @@ function personalOnclick(){
 function eduOnclick(){
 	return checkEmptyAjax("edu_info_form","eduInfoAJAX");
 };
-function workOnclick(){
-	return checkEmptyAjax("workExpForm","workExpInfoAJAX");
+
+function editEdu(id){
+	//alert(id);
+	$("#eduList").css("display","none");
+	$("#eduForm").css("display","block");
+	$.ajax({
+		  type: "post",
+		  url: "<c:url value='/admin/teacher/eduInfo/edit/ajax' />",
+		  data: "eduId="+id,
+		  dataType:"text",
+		  success:function(msg){
+			  	//alert(msg);
+				eval("var eduInfo="+msg);
+				document.edu.eduId.value = eduInfo.id;
+			  	document.edu.schoolName.value=eduInfo.school;
+			  	document.edu.collegeName.value=eduInfo.college;
+			  	document.edu.degree.value=eduInfo.degree;
+			  	document.edu.startTime.value=eduInfo.startTime;
+			  	document.edu.endTime.value=eduInfo.endTime;
+		  }
+	});
 };
-function showEduAddForm(){ 
-	 var eduList = document.getElementById("eduList"); 
-	eduList.style.display="none"; 
-	 var eduForm = document.getElementById("eduForm"); 
-	 eduForm.style.display="block"; 
-}; 
-function closeEduAddForm(){ 
-	 var eduList = document.getElementById("eduList"); 
-	eduList.style.display="block"; 
-	 var eduForm = document.getElementById("eduForm"); 
-	 eduForm.style.display="none"; 
-}; 
-function showWorkAddForm(){ 
-	 //alert("111"); 
-	var workList = document.getElementById("workList"); 
-	 workList.style.display="none"; 
-	 var workForm = document.getElementById("workForm"); 
-	 workForm.style.display="block"; 
-}; 
-function closeWorkAddForm(){ 
-	 var workList = document.getElementById("workList"); 
-	 workList.style.display="block"; 
-	 var workForm = document.getElementById("workForm"); 
-	  workForm.style.display="none"; 
-}; 
+
+function editWork(id){
+	//alert(id);
+	$("#workList").css("display","none");
+	$("#workForm").css("display","block");
+	$.ajax({
+		  type: "post",
+		  url: "<c:url value='/admin/teacher/workInfo/edit/ajax' />",
+		  data: "workId="+id,
+		  dataType:"text",
+		  success:function(msg){
+				eval("var workInfo="+msg);
+				document.work.workId.value = workInfo.id;
+			  	document.work.company.value=workInfo.company;
+			  	document.work.department.value=workInfo.department;
+			  	document.work.position.value=workInfo.position;
+			  	document.work.startTimeName.value=workInfo.startTime;
+			  	document.work.endTimeName.value=workInfo.endTime;
+		  }
+	});
+};
+
 </script>

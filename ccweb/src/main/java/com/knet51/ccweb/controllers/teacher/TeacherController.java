@@ -1,5 +1,6 @@
 package com.knet51.ccweb.controllers.teacher;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.EduBackground;
@@ -153,7 +155,7 @@ public class TeacherController {
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/eduInfo")
-	public String eduInfo(@Valid TeacherEduInfoForm eduInfoForm,
+	public String eduInfo(@RequestParam("eduId")String eduId,@Valid TeacherEduInfoForm eduInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### eduInfo InfoController ####");
 		
@@ -161,18 +163,32 @@ public class TeacherController {
 			logger.info("eduInfo Validation Failed " + validResult);
 			return "redirect:/admin/teacher/resume?active=edu";
 		} else {
-			logger.info("### eduInfo Validation passed. ###");
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			//EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
-			EduBackground edu = new EduBackground();
-			edu.setCollege(eduInfoForm.getCollegeName());
-			edu.setSchool(eduInfoForm.getSchoolName());
-			edu.setDegree(eduInfoForm.getDegree());
-			edu.setStartTime(eduInfoForm.getStartTime());
-			edu.setEndTime(eduInfoForm.getEndTime());
-			edu.setTeacherid(userInfo.getId());
-			eduBackgroundService.createEduBackground(edu);
-			return "redirect:/admin/teacher/resume?active=edu";
+			if(eduId!=null && eduId!="" && Long.parseLong(eduId)>0){
+				logger.info("### eduInfo Validation passed. ###");
+				EduBackground edu = eduBackgroundService.findOneById(Long.parseLong(eduId));
+				System.out.println("++++++++++++++++++"+eduId+"------------------------");
+				edu.setCollege(eduInfoForm.getCollegeName());
+				edu.setSchool(eduInfoForm.getSchoolName());
+				edu.setDegree(eduInfoForm.getDegree());
+				edu.setStartTime(eduInfoForm.getStartTime());
+				edu.setEndTime(eduInfoForm.getEndTime());
+				eduBackgroundService.createEduBackground(edu);
+				return "redirect:/admin/teacher/resume?active=edu";
+			}else{
+				logger.info("### eduInfo Validation passed. ###");
+				UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+				//EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
+				EduBackground edu = new EduBackground();
+				edu.setCollege(eduInfoForm.getCollegeName());
+				edu.setSchool(eduInfoForm.getSchoolName());
+				edu.setDegree(eduInfoForm.getDegree());
+				edu.setStartTime(eduInfoForm.getStartTime());
+				edu.setEndTime(eduInfoForm.getEndTime());
+				edu.setTeacherid(userInfo.getId());
+				eduBackgroundService.createEduBackground(edu);
+				return "redirect:/admin/teacher/resume?active=edu";
+			}
+			
 		}
 	}
 	
@@ -294,4 +310,31 @@ public class TeacherController {
 		out.flush();
 		out.close();
 	}
+	
+	@RequestMapping(value="/admin/teacher/eduInfo/edit/ajax",method = RequestMethod.POST)
+	public void getEduJson(@RequestParam ("eduId") String eduId,HttpServletResponse response,HttpSession session) throws Exception{
+		//logger.info(eduId);
+		Long id = Long.parseLong(eduId);
+		EduBackground eduInfo = eduBackgroundService.findOneById(id);
+		PrintWriter out = response.getWriter();
+		Gson g = new Gson();
+		out.write(g.toJson(eduInfo));
+		out.flush();
+		out.close();
+		
+	}
+	
+	@RequestMapping(value="/admin/teacher/workInfo/edit/ajax",method = RequestMethod.POST)
+	public void getWorkJson(@RequestParam ("workId") String workId,HttpServletResponse response,HttpSession session) throws Exception{
+		//logger.info(eduId);
+		Long id = Long.parseLong(workId);
+		WorkExp workInfo = workExpService.findOneById(id);
+		PrintWriter out = response.getWriter();
+		Gson g = new Gson();
+		out.write(g.toJson(workInfo));
+		out.flush();
+		out.close();
+		
+	}
+	
 }
