@@ -134,6 +134,16 @@ background: #F7F7F7;
   });
 }(window.jQuery);
 </script>
+<div class="navbar">
+	<div class="navbar-inner">    
+     <div class="container" style="text-align: center;margin-left: 80px; margin-right: 80px;padding: 10px 10px;">
+           <form class="navbar-form">
+             <input type="text" class="span6" placeholder="搜索教师、课程、学校">
+             <button type="submit" class="btn btn-primary">搜索</button>
+           </form>
+		</div>
+	</div>
+</div>
 <div id="myCarousel" class="carousel slide">
   <div class="carousel-inner">
     <div class="item">
@@ -173,124 +183,45 @@ background: #F7F7F7;
      	
 <div class="container marketing">
   <h2>教学资源（299）</h2>
+  <!-- Three columns of text below the carousel -->
+  <div class="row" >
+    <div class="span4">
+      <a href="#"><img src="resources/img/topics/240x135_1.png" width="324px"></a>
+      <h4>宇宙的形成</h4>
+      <h5>杜克大学</h5>
+      <p><span>更新至第二集</span></p>
+      
+    </div><!-- /.span4 -->
+    <div class="span4">
+      <a href="#"><img src="resources/img/topics/240x135_2.png" width="324px"></a>
+      <h4>药物和大脑</h4>
+      <h5>加州科技大学</h5>
+      <p><span>更新至第四集</span></p>
+    </div><!-- /.span4 -->
+    <div class="span4">
+      <a href="#"><img src="resources/img/topics/240x135_3.png" width="324px"></a>
+      <h4>如何解释和争论</h4>
+      <h5>杜克大学</h5>
+      <p><span>更新至第八集</span></p>
+    </div><!-- /.span4 -->
+  </div><!-- /.row -->
+
+</div>
+
+
+
+<div class="container teacher" style="margin-bottom: 20px;">
+    <h2>课程数（${courseCount }）</h2>
  
   <div class="row" >
   	<div style="margin-right: 35px;padding: 5px 5px;background: #F7F7F7;text-align: center;">
-  		<a href='<c:url value="/course/list"></c:url>' >全部课程</a>
+  		<c:forEach items="${courseList}" var="course">
+  			<div class="span3" style="margin-left: 10px; margin-bottom: 10px; border:1px solid #000000;">课程名称：${course.courseName } <br> 课程描述：${course.courseDesc }<br>教师名称：${course.teacher.user.name }</div>
+  		</c:forEach>
   	</div>
   </div>
 
 </div>
 
-<div class="container university">
-  <h2>大学（318）</h2>
-  <div id="myUniversity" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="item active">
-     	<div class="row">
-     		<c:forEach items="${schoolList}" var="school">
-     			<div class="span3">${school}</div>
-     		</c:forEach>
-	    </div>
-	    <div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div><div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div>
-    </div>
-    <div class="item">
-     	<div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div>
-	    <div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div><div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div>
-    </div>
-    <div class="item">
-		<div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div>
-	    <div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div><div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div>
-    </div>
-  </div>
-  <div style="display: none;">
-  <a class="left carousel-control" href="#myUniversity" data-slide="prev">‹</a>
-  <a class="right carousel-control" href="#myUniversity" data-slide="next">›</a>
-  </div>
-</div>
 
-</div>
 
-<div class="container teacher">
-  <h2>热门教师（Top 50）</h2>
-  <div id="myTeacher" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="item active">
-	      <div class="row">
-	      	<c:forEach items="${teacher}" var="t" begin="0" end="2"><div class="span1">${t.user.name }</div></c:forEach>      	
-	      </div>
-	     
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-    </div>
-    <div class="item">
-	       <div class="row">
-	      	<c:forEach items="${teacher}" var="t" begin="3" end="5"><div class="span1">${t.user.name }</div></c:forEach> 
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-    </div>
- <!-- <div class="item">
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div> -->
-    </div>
-  </div>
-  <div style="display: none;">
-	  <a class="left carousel-control" href="#myTeacher" data-slide="prev">‹</a>
-	  <a class="right carousel-control" href="#myTeacher" data-slide="next">›</a>
-  </div>
-</div>
-
-</div>

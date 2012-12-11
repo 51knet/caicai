@@ -1,9 +1,10 @@
 package com.knet51.courses.jpa.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.repository.TeacherRepository;
 
@@ -13,7 +14,7 @@ public class TeacherServiceImpl implements TeacherService {
 
 	@Autowired
 	private TeacherRepository teacherRepository;
-
+	
 	@Override
 	public Teacher findOne(Long id) {
 		return teacherRepository.findOne(id);
@@ -27,6 +28,11 @@ public class TeacherServiceImpl implements TeacherService {
 	@Override
 	public Teacher updateTeacher(Teacher usr) {
 		return teacherRepository.save(usr);
+	}
+
+	@Override
+	public List<Teacher> findAllTeacher() {
+		return teacherRepository.findAll();
 	}
 
 }

@@ -16,4 +16,6 @@ public interface TeacherCourseService {
 	Map<Teacher,List<TeacherCourse>> tcmap();
 	
 	List<TeacherCourseBeans> getAllTeacherCourseBeans();
+	
+	List<TeacherCourse> findAllCourses();
 }

@@ -20,6 +20,21 @@
 							课程标题：<input type="text" id="names" name="courseName"  placeholder="课程标题">
 							<span class="help-inline"><form:errors path="courseName"></form:errors></span>
 						</div>
+						
+						<div class="modal-body" id="course">
+							课程类别：<select name="courseType">
+										<option selected value="计算机科学与技术">计算机科学与技术</option>
+										<option value="生物">生物</option>
+										<option value="数学">数学</option>
+										<option value="化学">化学</option>
+										<option value="语文">语文</option>
+										<option value="金融">金融</option>
+										<option value="英语">英语</option>
+										<option value="哲学">哲学</option>
+										<option value="其他">其他</option>
+								   </select>
+						</div>
+						
 						<div  class="modal-body" id="courseDesc">
 							课程描述：<textarea name="courseDesc" id="descs" placeholder="课程描述" cols="5" rows="8" style="width:380px;"></textarea>
 							<span class="help-inline"><form:errors path="courseDesc"></form:errors></span>

@@ -11,6 +11,7 @@ public class CourseResource extends AbstractEntity {
 	private String saveName;
 	private String savePath;
 	private String resourceDesc;
+	private String resourceOrder; //lesson 0ne,lesson two and so on....
 	private String date;
 	private Long course_id;
 	
@@ -51,6 +52,15 @@ public class CourseResource extends AbstractEntity {
 	
 	public String getResourceDesc() {
 		return resourceDesc;
+	}
+	
+	
+	
+	public String getResourceOrder() {
+		return resourceOrder;
+	}
+	public void setResourceOrder(String resourceOrder) {
+		this.resourceOrder = resourceOrder;
 	}
 	public void setResourceDesc(String resourceDesc) {
 		this.resourceDesc = resourceDesc;
