@@ -15,5 +15,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/controllers/home/404.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
+	
+	<definition name="course.list" extends="index-layout">
+		<put-attribute name="title" value="课程列表" />
+		<put-attribute name="body" value="/WEB-INF/views/course/list/list.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
+	</definition>
 
 </tiles-definitions>

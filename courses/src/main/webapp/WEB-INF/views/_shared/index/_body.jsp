@@ -214,22 +214,71 @@ background: #F7F7F7;
 
 </div>
 
+
+
+<div class="container teacher">
+  <h2>热门教师（Top 50）</h2>
+  <div id="myTeacher" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="item active">
+	      <div class="row">
+	      	<c:forEach items="${teacherList}" var="t" begin="0" end="12"><a href="http://localhost:8080/ccweb/teacher/${t.id}"><div class="span1" >${t.user.name }</div></a></c:forEach>      	
+	      </div>
+	     
+	      <div class="row">
+	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
+	      </div>
+    </div>
+    <div class="item">
+	      <div class="row">
+	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach> 
+	      </div>
+	      <div class="row">
+	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
+	      </div>
+	      <div class="row">
+	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
+	      </div>
+    </div>
+ 	<div class="item">
+	      <div class="row">
+	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
+	      </div>
+	      <div class="row">
+	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
+	      </div>
+	      <div class="row">
+	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
+	      </div> 
+    </div>
+  </div>
+  <div style="display: none;">
+	  <a class="left carousel-control" href="#myTeacher" data-slide="prev">‹</a>
+	  <a class="right carousel-control" href="#myTeacher" data-slide="next">›</a>
+  </div>
+</div>
+
+</div>
+
+
 <div class="container university">
-  <h2>大学（318）</h2>
+  <h2>企业（318）</h2>
   <div id="myUniversity" class="carousel slide">
   <div class="carousel-inner">
     <div class="item active">
      	<div class="row">
-     		<c:forEach items="${schoolList}" var="school">
-     			<div class="span3">${school}</div>
-     		</c:forEach>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
+	    	<div class="span3"></div>
 	    </div>
 	    <div class="row">
 	    	<div class="span3"></div>
 	    	<div class="span3"></div>
 	    	<div class="span3"></div>
 	    	<div class="span3"></div>
-	    </div><div class="row">
+	    </div>
+	    <div class="row">
 	    	<div class="span3"></div>
 	    	<div class="span3"></div>
 	    	<div class="span3"></div>
@@ -278,50 +327,6 @@ background: #F7F7F7;
   <div style="display: none;">
   <a class="left carousel-control" href="#myUniversity" data-slide="prev">‹</a>
   <a class="right carousel-control" href="#myUniversity" data-slide="next">›</a>
-  </div>
-</div>
-
-</div>
-
-<div class="container teacher">
-  <h2>热门教师（Top 50）</h2>
-  <div id="myTeacher" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="item active">
-	      <div class="row">
-	      	<c:forEach items="${teacher}" var="t" begin="0" end="2"><div class="span1">${t.user.name }</div></c:forEach>      	
-	      </div>
-	     
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-    </div>
-    <div class="item">
-	       <div class="row">
-	      	<c:forEach items="${teacher}" var="t" begin="3" end="5"><div class="span1">${t.user.name }</div></c:forEach> 
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-    </div>
- <!-- <div class="item">
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div> -->
-    </div>
-  </div>
-  <div style="display: none;">
-	  <a class="left carousel-control" href="#myTeacher" data-slide="prev">‹</a>
-	  <a class="right carousel-control" href="#myTeacher" data-slide="next">›</a>
   </div>
 </div>
 

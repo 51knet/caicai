@@ -60,4 +60,9 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		return tcBeansList;
 	}
 
+	@Override
+	public List<TeacherCourse> findAllCourses() {
+		return courseRepository.findAll();
+	}
+
 }
