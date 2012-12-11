@@ -4,8 +4,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
       
-<div class="navbar navbar-inverse">
-   <div class="navbar-inner">
+<div class="navbar navbar-inverse navbar-fixed-top">
+   <div class="navbar-inner custom">
      <div class="container" style="margin-left: 80px; margin-right: 80px;">
        <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
          <span class="icon-bar"></span>

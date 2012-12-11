@@ -136,7 +136,7 @@ background: #F7F7F7;
 </script>
 <div class="navbar">
 	<div class="navbar-inner">    
-     <div class="container" style="text-align: center;margin-left: 80px; margin-right: 80px;padding: 10px 10px;">
+     <div class="container" style="text-align: center;margin-left: 80px; margin-right: 80px;padding: 10px 10px;margin-top: 45px;">
            <form class="navbar-form">
              <input type="text" class="span6" placeholder="搜索教师、课程、学校">
              <button type="submit" class="btn btn-primary">搜索</button>
