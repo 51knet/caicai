@@ -73,7 +73,7 @@ public class TeacherCourseInfoDetailController {
 			String date = format.format(new Date());
 			course.setCourseDate(date);
 			course.setTeacher(teacher);
-			
+			course.setCourseType(courseInfoForm.getCourseType());
 			for(int i=0;i<files.size();i++){
 				if(!files.get(i).isEmpty()){
 					logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
@@ -138,6 +138,7 @@ public class TeacherCourseInfoDetailController {
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("file");
 		String resourceDesc = request.getParameter("resourceDesc");
+		String resourceOrder = request.getParameter("resourceOrder");
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				CourseResource resource = new CourseResource();
@@ -158,6 +159,7 @@ public class TeacherCourseInfoDetailController {
 				resource.setSavePath(savePath);
 				resource.setSaveName(saveName);
 				resource.setResourceDesc(resourceDesc);
+				resource.setResourceOrder(resourceOrder);
 				resource.setCourse_id(course_id);
 				courseResourceService.createCourseResource(resource);
 			}

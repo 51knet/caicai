@@ -33,9 +33,10 @@ function showUrl(url){
 					<tr>
 						<th align="center">课程封面</th>
 						<th align="center" width="15%">课程标题</th>
+						<th align="center" width="20%">课程类别</th>
 						<th align="center">课程简述</th>
 						<th align="center" width="20%">发布时间</th>
-						<th align="center" width="10%">课程操作</th>
+						<th align="center" width="8%">操作</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -43,6 +44,7 @@ function showUrl(url){
 						<tr>
 						<td align="left"><img src="${page.courseCover }" width="50" height="20"  /></td>
 						<td align="left"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></td>
+						<td align="left">${page.courseType}</td>
 						<td align="left">${page.courseDesc}</td>
 						<td align="left">${page.courseDate}</td>
 						<td align="center">

@@ -22,11 +22,12 @@
 				<a style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/${course.id}/resource/new"></c:url>' class="btn">添加附件</a><br>
 				</div>
 				<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
-					<thead><tr><th width="25%">资源名称</th><th>资源描述</th><th width="20%">上传时间</th><th width="20%">操作</th></tr></thead>
+					<thead><tr><th width="25%">资源名称</th><th width="10%">课时</th><th>资源描述</th><th width="20%">上传时间</th><th width="11%">操作</th></tr></thead>
 					<tbody>
 						<c:forEach items="${resourceList}" var="resource">
 							<tr>
 								<td align="center" >${resource.fileName}</td>
+								<td align="center" >第${resource.resourceOrder}课</td>
 								<td align="left" >${resource.resourceDesc}</td>
 								<td align="center">${resource.date}</td>
 								<td align="center"><a href='<c:url value="/course/resource/download/${resource.id }"></c:url>'>下载</a> | 

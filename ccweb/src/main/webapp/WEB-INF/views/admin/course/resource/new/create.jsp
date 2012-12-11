@@ -47,6 +47,20 @@
 						<div class="modal-body">
 							上传资源：<input type="file" name="file" />&nbsp;&nbsp;<!-- <input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span> -->
 						</div>
+							<div class="modal-body" id="resourceOrder">
+							资源课时：<select name="resourceOrder">
+										<option selected value="1">第一课</option>
+										<option value="2">第二课</option>
+										<option value="3">第三课</option>
+										<option value="4">第四课</option>
+										<option value="5">第五课</option>
+										<option value="6">第六课</option>
+										<option value="7">第七课</option>
+										<option value="8">第八课</option>
+										<option value="9">第九课</option>
+								   </select>
+						</div>
+						
 						<div class="modal-body">
 							资源描述：<input type="text" name="resourceDesc" />&nbsp;&nbsp;<!-- <input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span> -->
 						</div>

@@ -13,6 +13,7 @@ public class TeacherCourse extends AbstractEntity {
 	private String courseDesc;
 	private String courseDate;
 	private String courseCover;
+	private String courseType; 
 	@ManyToOne
 	private Teacher teacher;
 	public String getCourseName() {
@@ -46,6 +47,14 @@ public class TeacherCourse extends AbstractEntity {
 	}
 	public void setCourseCover(String courseCover) {
 		this.courseCover = courseCover;
+	}
+	
+	
+	public String getCourseType() {
+		return courseType;
+	}
+	public void setCourseType(String courseType) {
+		this.courseType = courseType;
 	}
 	public TeacherCourse() {
 		super();
