@@ -68,7 +68,7 @@
 					<div id="passwordErr"></div>
 				</div>
 			</div>
-			<div class="row-fluid" style="margin-left: 50%;">
+			<div class="row-fluid" style="margin-left: 55%;">
 				<div class="span6">
 					<button class="btn btn-large btn-primary" type="submit">登录</button>
 				</div>
