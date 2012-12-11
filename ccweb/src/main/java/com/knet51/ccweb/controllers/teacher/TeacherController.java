@@ -166,7 +166,6 @@ public class TeacherController {
 			if(eduId!=null && eduId!="" && Long.parseLong(eduId)>0){
 				logger.info("### eduInfo Validation passed. ###");
 				EduBackground edu = eduBackgroundService.findOneById(Long.parseLong(eduId));
-				System.out.println("++++++++++++++++++"+eduId+"------------------------");
 				edu.setCollege(eduInfoForm.getCollegeName());
 				edu.setSchool(eduInfoForm.getSchoolName());
 				edu.setDegree(eduInfoForm.getDegree());
@@ -203,24 +202,36 @@ public class TeacherController {
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/workInfo")
-	public String workInfo(@Valid TeacherWorkExpInfoForm workInfoForm,
+	public String workInfo(@RequestParam("workId")String workId,@Valid TeacherWorkExpInfoForm workInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### workInfo Controller ####");
 		if (validResult.hasErrors()) {
 			logger.info("eduInfo Validation Failed " + validResult);
 			return "redirect:/admin/teacher/resume?active=work";
 		} else {
-			logger.info("### workInfo Validation passed. ###");
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			WorkExp work = new WorkExp();
-			work.setCompany(workInfoForm.getCompany());
-			work.setDepartment(workInfoForm.getDepartment());
-			work.setPosition(workInfoForm.getPosition());
-			work.setStartTime(workInfoForm.getStartTimeName());
-			work.setEndTime(workInfoForm.getEndTimeName());
-			work.setTeacherid(userInfo.getId());
-			workExpService.createWorkExp(work);
-			return "redirect:/admin/teacher/resume?active=work";
+			if(workId!=null && workId!="" && Long.parseLong(workId)>0){
+				logger.info("### workInfo Validation passed. ###");
+				WorkExp work = workExpService.findOneById(Long.parseLong(workId));
+				work.setCompany(workInfoForm.getCompany());
+				work.setDepartment(workInfoForm.getDepartment());
+				work.setPosition(workInfoForm.getPosition());
+				work.setStartTime(workInfoForm.getStartTimeName());
+				work.setEndTime(workInfoForm.getEndTimeName());
+				workExpService.createWorkExp(work);
+				return "redirect:/admin/teacher/resume?active=work";
+			}else{
+				logger.info("### workInfo Validation passed. ###");
+				UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+				WorkExp work = new WorkExp();
+				work.setCompany(workInfoForm.getCompany());
+				work.setDepartment(workInfoForm.getDepartment());
+				work.setPosition(workInfoForm.getPosition());
+				work.setStartTime(workInfoForm.getStartTimeName());
+				work.setEndTime(workInfoForm.getEndTimeName());
+				work.setTeacherid(userInfo.getId());
+				workExpService.createWorkExp(work);
+				return "redirect:/admin/teacher/resume?active=work";
+			}
 		}
 	}
 	
