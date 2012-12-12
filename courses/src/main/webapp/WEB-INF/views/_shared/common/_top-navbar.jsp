@@ -8,7 +8,7 @@
 	<div class="navbar-inner custom">
 		<div class="container" style="margin-left: 80px; margin-right: 80px;">
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-			</a> <a class="brand" href="#">Courses</a> <a class="brand" href="#" style="padding: 0px 20px 0px;"><img src="resources/img/logo.png" style="height: 40px;" /> </a>
+			</a> <a class="brand" href="#">Courses</a> <a class="brand" href="#" style="padding: 0px 20px 0px;"><img  src='<c:url value="/resources/img/logo.png"></c:url>' style="height: 40px;" /> </a>
 			<div class="nav-collapse collapse navbar-responsive-collapse">
 				<ul class="nav">
 					<li class="active"><a href="#">主页</a></li>

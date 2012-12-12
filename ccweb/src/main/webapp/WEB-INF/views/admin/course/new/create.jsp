@@ -3,6 +3,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script type="text/javascript">
+function checkPicture(obj){
+	var flag = false;
+	
+	var fileValue = obj.coverFile.value;
+	var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length);
+	if(".gif"==temp || ".jpg"==temp || ".bmp"==temp){
+		
+		flag=true;
+	}else{
+		alert("只支持gif、jpg、bmp格式的图片！！");
+		flag=false;
+	}
+	
+	return flag;
+}
+</script>
 
 <div  class="row-fluid custom round">
 	<div class="row" style="margin-top: 10px;">
@@ -11,9 +28,9 @@
 		<div style="text-align: center;">
 			<div style="text-align:center;">
 				<div style="width:560px; text-align:left;" >
-					<form:form action="create" method="post" enctype="multipart/form-data" id="course_info_form">  
+					<form:form action="create" method="post" enctype="multipart/form-data" id="course_info_form" onsubmit="return checkPicture(this)">  
 						<div class="modal-body">
-							上传封面：<input type="file" name="coverFile" />&nbsp;&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span>
+							上传封面：<input type="file" name="coverFile"  />&nbsp;&nbsp;<span style="color:red;font-size:14px;">只支持jpg、gif、bmp格式</span>
 						</div>
 					
 						<div class="modal-body" id="courseName">

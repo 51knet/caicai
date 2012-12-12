@@ -14,6 +14,7 @@
 		@import url("<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>");
 		@import url("<c:url value="/resources/bootstrap/css/bootstrap-responsive.css"/>");
 		@import url("<c:url value="/resources/css/standard.css"/>");
+		@import url("<c:url value="/resources/tableStyle/style.css"/>");
 	</style>
 	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.8.0.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
