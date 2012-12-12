@@ -174,6 +174,17 @@ function DrawImage(ImgD){
 	}
 }
 
+function selectType(){
+	var sel = document.getElementById("type");
+	var opt = sel.options;
+	for(var i=0;i<opt.length;i++){
+		if(opt[i].selected){
+			var typeName = opt[i].innerHTML;
+			//alert(typeName);
+			window.location.href='<c:url value="/course/list/type?detail='+typeName+'"></c:url>';
+		}
+	}
+}
 </script>
 <div class="navbar">
 	<div class="navbar-inner">    
@@ -231,11 +242,18 @@ function DrawImage(ImgD){
 <div class="container course" style="margin-bottom: 20px; ">
 	<div class="container course detail"  style="background-color: #efefef; height: 40px;">
 		<div style="padding: 5px;">
-			<select >
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
+			<select  id="type" onchange="selectType()">
+				<option>全部课程</option>
+					<c:forEach items="${courseTypeList}"  var="course">
+						<c:choose>
+							<c:when test="${courseType == course}">
+								<option selected>${course}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="">${course}</option>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
 			</select>
 		</div>
 	</div>

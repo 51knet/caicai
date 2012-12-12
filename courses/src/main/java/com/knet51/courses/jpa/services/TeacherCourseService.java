@@ -18,4 +18,6 @@ public interface TeacherCourseService {
 	List<TeacherCourseBeans> getAllTeacherCourseBeans();
 	
 	List<TeacherCourse> findAllCourses();
+	
+	List<String> courseTypeList();
 }

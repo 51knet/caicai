@@ -65,4 +65,9 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		return courseRepository.findAll();
 	}
 
+	@Override
+	public List<String> courseTypeList() {
+		return courseRepository.getCourseType();
+	}
+
 }
