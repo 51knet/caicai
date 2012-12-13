@@ -35,6 +35,7 @@
 			<beans:list>
 				<beans:value>WEB-INF/views/layouts/tiles-layouts.xml</beans:value>
 				<beans:value>WEB-INF/views/layouts/tiles-views-home.xml</beans:value>
+				<beans:value>WEB-INF/views/layouts/tiles-views-teacherCourse.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

@@ -12,4 +12,5 @@ import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 @Transactional
 public interface TeacherCourseRepository extends JpaRepository<TeacherCourse, Long>, JpaSpecificationExecutor<TeacherCourse>,TeacherCourseRepositoryCustom{
 	Page<TeacherCourse> findTeacherCourseByTeacher(Teacher teacher,Pageable pageable);
+	Page<TeacherCourse> findAll(Pageable pageable);
 }

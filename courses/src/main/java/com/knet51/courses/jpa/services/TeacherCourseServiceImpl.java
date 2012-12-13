@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,6 +62,40 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 			tcBeansList.add(tcBeans);
 		}
 		return tcBeansList;
+	}
+
+	@Override
+	public TeacherCourse findOneById(Long id) {	 
+		return courseRepository.findOne(id);
+	}
+
+	@Override
+	public TeacherCourse createTeacherCourse(TeacherCourse teacherCourse) {
+		return courseRepository.save(teacherCourse);
+	}
+
+	@Override
+	public TeacherCourse updateTeacherCourse(TeacherCourse teacherCourse) {
+		return courseRepository.updateTeacherCourseDetail(teacherCourse);
+	}
+
+	@Override
+	public void deleTeacherCourse(Long teacher_id) {
+		courseRepository.delete(teacher_id);
+	}
+
+	@Override
+	public Page<TeacherCourse> findAllCourseByTeacher(int pageNum,
+			int pageSize, Teacher teacher) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
+		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByTeacher(teacher, dateDesc);
+		return onePage;
+	}
+	@Override
+	public Page<TeacherCourse> findAllCourse(int pageNum,int pageSize) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
+		Page<TeacherCourse> onePage = courseRepository.findAll(dateDesc);
+		return onePage;
 	}
 
 }

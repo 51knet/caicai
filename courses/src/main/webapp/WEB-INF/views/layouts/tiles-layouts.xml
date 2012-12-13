@@ -12,5 +12,23 @@
 		<put-attribute name="body" value="/WEB-INF/views/_shared/index/_body.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
+	<definition name="admin-layout" template="/WEB-INF/views/layouts/jsp/admin.jsp">
+		<put-attribute name="title" value="My Blog" />
+		<put-attribute name="top-navbar" value="/WEB-INF/views/_shared/common/_top-navbar.jsp" />
+		<!-- <put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" /> -->
+		<put-attribute name="breadcrumbs" value="" />
+		<!-- <put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/admin-layout/right.jsp" /> -->
+		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
+	</definition>
+	<definition name="admin-layout" template="/WEB-INF/views/layouts/jsp/admin.jsp">
+		<put-attribute name="title" value="My Blog" />
+		<put-attribute name="top-navbar" value="/WEB-INF/views/layouts/teacherCourse/_top-navbar.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/layouts/teacherCourse/banner.jsp" />
+		<put-attribute name="breadcrumbs" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/layouts/teacherCourse/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/layouts/teacherCourse/right.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/layouts/teacherCourse/_footer.jsp" />
+	</definition>
 	
 </tiles-definitions>

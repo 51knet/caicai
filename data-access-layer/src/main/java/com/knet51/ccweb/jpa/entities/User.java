@@ -91,7 +91,7 @@ public class User extends AbstractEntity {
 	}
 
 
-	protected User() {
+	public  User() {
 
 	}
 
