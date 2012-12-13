@@ -97,5 +97,15 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		Page<TeacherCourse> onePage = courseRepository.findAll(dateDesc);
 		return onePage;
 	}
+		public List<TeacherCourse> findAllCourses() {
+		return courseRepository.findAll();
+	}
+
+		
+
+	@Override
+	public List<String> courseTypeList() {
+		return null;
+	}
 
 }

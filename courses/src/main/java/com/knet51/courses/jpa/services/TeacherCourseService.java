@@ -20,4 +20,7 @@ public interface TeacherCourseService {
 	List<Teacher> getAllCourseTeacher(String schoolName);
 	Map<Teacher,List<TeacherCourse>> tcmap();
 	List<TeacherCourseBeans> getAllTeacherCourseBeans();
+	List<TeacherCourse> findAllCourses();
+	
+	List<String> courseTypeList();
 }

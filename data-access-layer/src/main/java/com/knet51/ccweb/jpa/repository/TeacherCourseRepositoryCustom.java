@@ -12,4 +12,5 @@ public interface TeacherCourseRepositoryCustom {
 	//List<CourseBeans> listAllCourseBeans();
 	List<String> getSchool();
 	List<Teacher> showCourseTeacher(String schoolName);
+	List<String> getCourseType();
 }

@@ -103,6 +103,16 @@ background: #F7F7F7;
   width: 1024px;
   max-width:1024px; 
 }
+.container.course{
+	width:1000px;
+	text-align: left;
+}
+
+.container.course.detail{
+	width:990px;
+	height:100px;
+}
+
 #myUniversity, #myTeacher {
   margin-bottom: 0px;
 }
@@ -110,7 +120,7 @@ background: #F7F7F7;
   margin-left: 0px;
 }
 .container.teacher .row .span1{
-  background-image: url(resources/img/avatar/avatar40.png);
+  background-image: url(resources/img/avatar/avatar40.png );
   background-position: center;
   background-repeat: no-repeat;
   height: 80px;
@@ -133,11 +143,64 @@ background: #F7F7F7;
     $('#myTeacher').carousel();
   });
 }(window.jQuery);
+
+
+function DrawImage(ImgD){ 
+	flag = false;	
+	var image=new Image(); 
+	image.src=ImgD.src; 
+	if(image.width>0 && image.height>0){ 
+	  flag=true; 
+	  if(image.width/image.height>= 220/90){ 
+	   if(image.width>220){
+	    ImgD.width=220; 
+	    ImgD.height=(image.height*90)/image.width; 
+	   }else{ 
+	    ImgD.width=image.width;
+	    ImgD.height=image.height; 
+	   } 
+	   /*ImgD.alt="bigpic"  */
+	  } 
+	  else{ 
+	   if(image.height>90){
+	    ImgD.height=90; 
+	    ImgD.width=(image.width*90)/image.height; 
+	   }else{ 
+	    ImgD.width=image.width;
+	    ImgD.height=image.height; 
+	   } 
+	    /*ImgD.alt="bigpic"  */ 
+	  } 
+	}
+}
+
+function selectType(){
+	var sel = document.getElementById("type");
+	var opt = sel.options;
+	for(var i=0;i<opt.length;i++){
+		if(opt[i].selected){
+			var typeName = opt[i].innerHTML;
+			//alert(typeName);
+			window.location.href='<c:url value="/course/list/type?detail='+typeName+'"></c:url>';
+		}
+	}
+}
 </script>
+<div class="navbar">
+	<div class="navbar-inner">    
+     <div class="container" style="text-align: center;margin-left: 80px; margin-right: 80px;padding: 10px 10px;"><br><br>
+           <form class="navbar-form" >
+             <input type="text" class="span6" placeholder="搜索教师、课程、学校">
+             <button type="submit" class="btn btn-primary">搜索</button>
+           </form>
+		</div>
+	</div>
+</div>
+ 
 <div id="myCarousel" class="carousel slide">
   <div class="carousel-inner">
     <div class="item">
-      <img src="resources/img/advertise/slide-01.jpg" alt="">
+      <img  src='<c:url value="/resources/img/advertise/slide-01.jpg"></c:url>' alt="">
       <div class="container">
         <div class="carousel-caption">
           <h1>Another example headline.</h1>
@@ -147,7 +210,7 @@ background: #F7F7F7;
       </div>
     </div>
     <div class="item">
-      <img src="resources/img/advertise/slide-02.jpg" alt="">
+      <img src='<c:url value="/resources/img/advertise/slide-02.jpg"></c:url>' alt="">
       <div class="container">
         <div class="carousel-caption">
           <h1>Another example headline.</h1>
@@ -157,7 +220,7 @@ background: #F7F7F7;
       </div>
     </div>
     <div class="item active">
-      <img src="resources/img/advertise/slide-03.jpg" alt="">
+      <img src='<c:url value="/resources/img/advertise/slide-03.jpg"></c:url>'alt="">
       <div class="container">
         <div class="carousel-caption">
           <h1>One more for good measure.</h1>
@@ -169,128 +232,50 @@ background: #F7F7F7;
   </div>
   <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
   <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-</div>
-     	
-<div class="container marketing">
-  <h2>教学资源（299）</h2>
+</div> 
  
-  <div class="row" >
-  	<div style="margin-right: 35px;padding: 5px 5px;background: #F7F7F7;text-align: center;">
-  		<a href='<c:url value="/course/list"></c:url>' >全部课程</a>
-  	</div>
+     	
+
+
+
+
+<div class="container course" style="margin-bottom: 20px; ">
+	<div class="container course detail"  style="background-color: #efefef; height: 40px;">
+		<div style="padding: 5px;">
+			<select  id="type" onchange="selectType()">
+				<option>全部课程</option>
+					<c:forEach items="${courseTypeList}"  var="course">
+						<c:choose>
+							<c:when test="${courseType == course}">
+								<option selected>${course}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="">${course}</option>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+			</select>
+		</div>
+	</div>
+    <h2>课程数（${courseCount }）</h2>
+ 
+  <div  style="text-align: center;">
+ 
+  		<c:forEach items="${courseList}" var="course">
+  			<div class="container course detail" style=" margin-bottom: 15px; border:0px solid #cccccc;">
+  				<table class="table table-bordered" style="width: 100%;height: 100%;" cellpadding="5">
+  					<tr>
+  						<td width="25%"><img src="http://localhost:8080/${course.courseCover }" onload="DrawImage(this);" width="220" height="90"  /></td>
+  						<td > 课程名称：${course.courseName}<br><br>课程描述：${course.courseDesc }<br>${course.courseCover }</td>
+  						<td width="25%">教师名称：${course.teacher.user.name }</td>
+  					</tr>
+  				</table>
+  			</div>
+  		</c:forEach>
+  
   </div>
 
 </div>
 
-<div class="container university">
-  <h2>大学（318）</h2>
-  <div id="myUniversity" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="item active">
-     	<div class="row">
-     		<c:forEach items="${schoolList}" var="school">
-     			<div class="span3">${school}</div>
-     		</c:forEach>
-	    </div>
-	    <div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div><div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div>
-    </div>
-    <div class="item">
-     	<div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div>
-	    <div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div><div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div>
-    </div>
-    <div class="item">
-		<div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div>
-	    <div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div><div class="row">
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    	<div class="span3"></div>
-	    </div>
-    </div>
-  </div>
-  <div style="display: none;">
-  <a class="left carousel-control" href="#myUniversity" data-slide="prev">‹</a>
-  <a class="right carousel-control" href="#myUniversity" data-slide="next">›</a>
-  </div>
-</div>
 
-</div>
 
-<div class="container teacher">
-  <h2>热门教师（Top 50）</h2>
-  <div id="myTeacher" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="item active">
-	      <div class="row">
-	      	<c:forEach items="${teacher}" var="t" begin="0" end="2"><div class="span1">${t.user.name }</div></c:forEach>      	
-	      </div>
-	     
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-    </div>
-    <div class="item">
-	       <div class="row">
-	      	<c:forEach items="${teacher}" var="t" begin="3" end="5"><div class="span1">${t.user.name }</div></c:forEach> 
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-    </div>
- <!-- <div class="item">
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
-	      </div> -->
-    </div>
-  </div>
-  <div style="display: none;">
-	  <a class="left carousel-control" href="#myTeacher" data-slide="prev">‹</a>
-	  <a class="right carousel-control" href="#myTeacher" data-slide="next">›</a>
-  </div>
-</div>
-
-</div>

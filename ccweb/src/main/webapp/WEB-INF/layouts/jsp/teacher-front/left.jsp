@@ -57,7 +57,7 @@
 			<h5>个人信息</h5>
 		</div>
 		<hr />
-		<address>
+		<address style="text-align: left; margin-left: 40px; margin-right: 40px;">
 			<abbr>姓名:</abbr> ${teacherInfo.name} <br> <abbr>性别:</abbr> ${teacherInfo.gender} <br> <abbr>院校:</abbr> ${teacherInfo.college} <br> <abbr>院系:</abbr> ${teacherInfo.school}
 		</address>
 	</div>

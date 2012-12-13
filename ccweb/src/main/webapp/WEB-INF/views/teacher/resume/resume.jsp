@@ -2,21 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<style>
-.row-fluid.custom {
-	margin-bottom: 20px;
-	padding: 0px 0px 10px;
-	background: #FAFAFB;
-}
-.round {
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-}
-.row-fluid.custom .row {
-	margin: 40px 60px;
-}
-</style>
+
 <div class="row-fluid custom round">
 	<div class="row ">
 		<h3>${teacherInfo.name}</h3>

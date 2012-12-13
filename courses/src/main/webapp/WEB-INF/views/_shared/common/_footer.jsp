@@ -11,6 +11,6 @@
 					<a href="#" >法律声明</a>
 					</p>
 				</div>
+				<div><p>沪ICP备20110827号</p></div>
 				<div><p>上海猜猜网络科技有限公司 版权所有 CopyRight © 2011-2012</p></div>
-				<div><p>沪ICP备20120827号 网址：www.51knet.com</p></div>
 			</div>

@@ -26,6 +26,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	}
 
 	function showThesisAddForm() {
+		$("#thesis").css("display","none");
 		var thesis = document.getElementById("thesisForm");
 		var thesisButton = document.getElementById("thesisButton");
 		thesis.style.display = "block";
@@ -33,6 +34,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	}
 
 	function hiddenThesisAddForm() {
+		$("#thesis").css("display","block");
 		var thesisForm = document.getElementById("thesisForm");
 		var thesisButton = document.getElementById("thesisButton");
 		var thesisContentMsg = document.getElementById("thesisContentMsg");
@@ -63,10 +65,8 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 		var projectButton = document.getElementById("projectButton");
 		var titleMsg = document.getElementById("titleMsg");
 		var sourceMsg = document.getElementById("sourceMsg");
-		var dateMsg = document.getElementById("dateMsg");
 		titleMsg.innerHTML="";
 		sourceMsg.innerHTML="";
-		dateMsg.innerHTML="2000.01.01-2001.01.01";
 		projectForm.style.display = "none";
 		projectButton.style.display = "block";
 	}
@@ -190,4 +190,33 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 				/^([\u4e00-\u9fa5]+)|(\w+)$/, "内容不能为空！", "只能是字母数字或汉字");
 		return nameFlag && reasonFlag;
 	}
+	
+	function workOnclick(){
+		return checkEmptyAjax("workExpForm","workExpInfoAJAX");
+	};
+	function showEduAddForm(){ 
+		 var eduList = document.getElementById("eduList"); 
+		eduList.style.display="none"; 
+		 var eduForm = document.getElementById("eduForm"); 
+		 eduForm.style.display="block"; 
+	}; 
+	function closeEduAddForm(){ 
+		 var eduList = document.getElementById("eduList"); 
+		eduList.style.display="block"; 
+		 var eduForm = document.getElementById("eduForm"); 
+		 eduForm.style.display="none"; 
+	}; 
+	function showWorkAddForm(){ 
+		 //alert("111"); 
+		var workList = document.getElementById("workList"); 
+		 workList.style.display="none"; 
+		 var workForm = document.getElementById("workForm"); 
+		 workForm.style.display="block"; 
+	}; 
+	function closeWorkAddForm(){ 
+		 var workList = document.getElementById("workList"); 
+		 workList.style.display="block"; 
+		 var workForm = document.getElementById("workForm"); 
+		  workForm.style.display="none"; 
+	}; 
 

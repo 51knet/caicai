@@ -44,6 +44,8 @@ public class AuthorizationListener implements Filter {
 		HttpServletResponse resp = ((HttpServletResponse)response); 
 		String path = req.getRequestURI();
 		String context = req.getContextPath();
+		//logger.info("+++++++++++++"+path);
+		//logger.info("-------------"+context);
 		String url = path.substring(context.length(), path.length());
 		logger.debug("->"+url);
 		if (url.startsWith("/admin")) { // ok, for now we only protect admin stuff
@@ -51,6 +53,9 @@ public class AuthorizationListener implements Filter {
 				resp.sendRedirect(context); // alternative: redirect to a url with flush message...
 				return;
 			}
+		}else if(url.startsWith("/teacher")){
+			req.getRequestDispatcher(url).forward(req, resp);
+			return;
 		}
 		// pass the request along the filter chain
 		chain.doFilter(request, response);

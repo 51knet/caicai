@@ -181,7 +181,7 @@ body {
 				</div>
 			</div>
 			<label style="clear: right;"></label>
-			<button class="btn btn-large btn-primary" type="submit" style="margin-top: 10px">登录</button>
+			<button class="btn btn-large btn-primary" type="submit" style="margin-top: 10px">　登录　</button>
 		</form:form>
 		<hr />
 		<a id="registerbtn" class="btn btn-large btn-success">快速注册</a>
