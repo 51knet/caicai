@@ -22,7 +22,7 @@
 	  <div class="control-group">
 	  	<textarea rows="20" cols="30" id="textarea" name="content" style="width: 98%;"></textarea>
 	  </div>
-	  <button type="submit" class="btn">Submit</button>
+	  <button type="submit" class="btn">提交</button>
 	</form>
 </div>
 <c:url var="uploadJson" value="/file_upload/${sessionUserInfo.id}"></c:url>
