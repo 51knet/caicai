@@ -25,10 +25,18 @@ import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.WorkExp;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
 import com.knet51.ccweb.jpa.services.EduBackgroundService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.WorkExpService;
+import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherHonorService;
+import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherPatentService;
+import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherProjectService;
+import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherThesisService;
 
 /**
  * Handles requests for the application home page.
@@ -44,6 +52,15 @@ public class TeacherResumeController {
 	private EduBackgroundService eduBackgroundService;
 	@Autowired
 	private WorkExpService workExpService;
+	@Autowired
+	private TeacherThesisService thesisService;
+	@Autowired
+	private TeacherProjectService projectService;
+	@Autowired
+	private TeacherPatentService patentService;
+	@Autowired
+	private TeacherHonorService honorService;
+	
 
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/resume")
@@ -85,9 +102,26 @@ public class TeacherResumeController {
 		}
 		model.addAttribute("active", active);
 		model.addAttribute("universityList", universityList);
+		
+		List<TeacherThesis> thesisList = thesisService.getAllThesisById(userInfo.getId());
+		model.addAttribute("thesisList", thesisList);
+		model.addAttribute("thesisCount", thesisList.size());
+		
+		List<TeacherProject> projectList = projectService.getAllProjectById(userInfo.getId());
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("projectCount", projectList.size());
+		
+		List<TeacherPatent> patentList = patentService.getAllPatentById(userInfo.getId());
+		model.addAttribute("patentList", patentList);
+		model.addAttribute("patentCount", patentList.size());
+		
+		List<TeacherHonor> honorList = honorService.getAllHonorById(userInfo.getId());
+		model.addAttribute("honorList", honorList);
+		model.addAttribute("honorCount", honorList.size());
 		return "admin.teacher.resume";
 	}
-
+	
+	// teacher front page
 	@RequestMapping(value = "/teacher/{teacher_id}/resume", method = RequestMethod.GET)
 	public String list(@PathVariable Long teacher_id, Model model) {
 		User user = userService.findOne(teacher_id);
@@ -107,6 +141,22 @@ public class TeacherResumeController {
 			model.addAttribute("workInfo", workInfo);
 			model.addAttribute("workCount", workInfo.size());
 		}
+		
+		List<TeacherThesis> thesisList = thesisService.getAllThesisById(teacher_id);
+		model.addAttribute("thesisList", thesisList);
+		model.addAttribute("thesisCount", thesisList.size());
+		
+		List<TeacherProject> projectList = projectService.getAllProjectById(teacher_id);
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("projectCount", projectList.size());
+		
+		List<TeacherPatent> patentList = patentService.getAllPatentById(teacher_id);
+		model.addAttribute("patentList", patentList);
+		model.addAttribute("patentCount", patentList.size());
+		
+		List<TeacherHonor> honorList = honorService.getAllHonorById(teacher_id);
+		model.addAttribute("honorList", honorList);
+		model.addAttribute("honorCount", honorList.size());
 		return "teacher.resume";
 	}
 }

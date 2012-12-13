@@ -16,6 +16,7 @@
 		<put-attribute name="title" value="完善简历" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/teacher/resume/resumeEdit.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
 
 	<definition name="admin.teacher" extends="admin-layout">

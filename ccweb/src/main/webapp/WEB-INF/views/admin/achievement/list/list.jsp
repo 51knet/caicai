@@ -101,12 +101,13 @@ $(document).ready(function(){
 					<div id="projectForm" style="display: none;">
 						<form action="project/new" method="post"  id="project_info_form">
 						<table  class="table">
-							<thead><tr><th>项目名称</th><th>项目来源</th><th>项目起止时间</th></tr></thead>
+							<thead><tr><th>项目名称</th><th>项目来源</th><th>开始时间</th><th>结束时间</th></tr></thead>
 							<tbody>
 								<tr>
 									<td align="center" class="modal-body" id="title"><input type="text" name="title" /> <span class="help-inline" style="color: red; font-size: 13px;" id="titleMsg"></span></td>
 									<td align="center" class="modal-body" id="source"><input type="text" name="source" /> <span class="help-inline" style="color: red; font-size: 13px;" id="sourceMsg"></span></td>
-									<td align="center" class="modal-body" id="date"><input type="text" name="date" /><span id="dateMsg" class="help-inline" style="color: red; font-size: 13px;">2000.01.01-2001.01.01</span></td>
+									<td align="center" class="modal-body" id="startTime"><input type="text" name="startTime" /><span id="startMsg" class="help-inline" style="color: red; font-size: 13px;">2000.01.01</span></td>
+									<td align="center" class="modal-body" id="endTime"><input type="text" name="endTime" /><span id="endMsg" class="help-inline" style="color: red; font-size: 13px;">2000.01.011</span></td>
 								</tr>
 								<tr><td  colspan="3">
 									<div class="control-group">
@@ -127,13 +128,14 @@ $(document).ready(function(){
 					<c:choose>
 						<c:when test="${projectCount>0}">
 							<table  class="table">
-								<thead><tr><th width="30%">项目名称</th><th width="30%">项目来源</th><th width="30%">项目起止时间</th><th width="10%">操作</th></tr></thead>
+								<thead><tr><th width="30%">项目名称</th><th width="30%">项目来源</th><th width="15%">开始时间</th><th width="15%">结束时间</th><th width="10%">操作</th></tr></thead>
 								<tbody>
 									<c:forEach items="${project}" var="project">
 										<tr>
 											<td align="center" >${project.title}</td>
 											<td align="center" >${project.source}</td>
-											<td align="center" >${project.date}</td>
+											<td align="center" >${project.startTime}</td>
+											<td align="center" >${project.endTime}</td>
 											<td >
 												 <!-- <div class="btn-group"> 
 													<button class="btn">操作</button>  

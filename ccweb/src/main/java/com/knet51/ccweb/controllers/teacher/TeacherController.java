@@ -24,14 +24,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.teacher.achievement.TeacherHonorDetailInfoForm;
+import com.knet51.ccweb.controllers.teacher.achievement.TeacherPatentDetailInfoForm;
+import com.knet51.ccweb.controllers.teacher.achievement.TeacherProjectDetailInfoForm;
+import com.knet51.ccweb.controllers.teacher.achievement.TeacherThesisDetailInfoForm;
 import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.WorkExp;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
 import com.knet51.ccweb.jpa.services.EduBackgroundService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.WorkExpService;
+import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherHonorService;
+import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherPatentService;
+import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherProjectService;
+import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherThesisService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 
@@ -52,6 +64,14 @@ public class TeacherController {
 	private EduBackgroundService eduBackgroundService;
 	@Autowired
 	private WorkExpService workExpService;
+	@Autowired
+	private TeacherThesisService thesisService;
+	@Autowired
+	private TeacherProjectService projectService;
+	@Autowired
+	private TeacherPatentService patentService;
+	@Autowired
+	private TeacherHonorService honorService;
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/details")
@@ -85,6 +105,23 @@ public class TeacherController {
 	@RequestMapping(value = "/admin/teacher/pswInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse pswfurInfoFormAjaxJson(@Valid TeacherPswForm teacherPswForm, BindingResult result) {
 		//logger.info("------into psw ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	
+	@RequestMapping(value = "/admin/teacher/thesisInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse thesisInfoFormAjaxJson(@Valid TeacherThesisDetailInfoForm teacherThesisDetailInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/projectInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse projectInfoFormAjaxJson(@Valid TeacherProjectDetailInfoForm teacherProjectDetailInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/patentInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse patentInfoFormAjaxJson(@Valid TeacherPatentDetailInfoForm teacherPatentDetailInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/honorInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse honorInfoFormAjaxJson(@Valid TeacherHonorDetailInfoForm teacherHonorDetailInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
 	
@@ -190,6 +227,7 @@ public class TeacherController {
 			
 		}
 	}
+	
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/eduInfo/destory/{edu_id}")
@@ -304,6 +342,108 @@ public class TeacherController {
 			return "redirect:/admin/teacher/details?active=url";
 		}
 	}
+	
+	@RequestMapping(value="/admin/teacher/thesis/new")
+	public String addThesis(@Valid TeacherThesisDetailInfoForm thesisDetailInfoForm, HttpSession session,
+			Model model, BindingResult validResult){
+		String content = thesisDetailInfoForm.getContent();
+		logger.info("#### Into teacherThesisAddController ####");
+		if(validResult.hasErrors()){
+			return "redirect:/admin/teacher/resume?active=thesis";
+		}
+		else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long id = userInfo.getUser().getId();
+			Teacher teacher= teacherService.findOne(id);
+			TeacherThesis thesis = new TeacherThesis();
+			thesis.setContent(content);
+			thesisService.save(thesis, teacher);
+			return "redirect:/admin/teacher/resume?active=thesis";
+		}
+	}
+	
+	@RequestMapping(value="/admin/teacher/thesis/destory/{thesis_id}")
+	public String deleThesis(@PathVariable Long thesis_id){
+		thesisService.deleteById(thesis_id);
+		return "redirect:/admin/teacher/resume?active=thesis";
+	}
+	
+	@RequestMapping(value="/admin/teacher/project/new")
+	public String addProject(@Valid TeacherProjectDetailInfoForm projectDetailForm, HttpSession session,
+			Model model,BindingResult validResult){
+		logger.info("#### Into teacherProjectAddController ####");
+		if(validResult.hasErrors()){
+			return "redirect:/admin/teacher/resume?active=project";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long id = userInfo.getUser().getId();
+			Teacher teacher= teacherService.findOne(id);
+			TeacherProject project = new TeacherProject();
+			project.setTitle(projectDetailForm.getProjectTitle());
+			project.setSource(projectDetailForm.getProjectSource());
+			project.setStartTime(projectDetailForm.getProjectStartTime());
+			project.setEndTime(projectDetailForm.getProjectEndTime());
+			projectService.save(project, teacher);
+			return "redirect:/admin/teacher/resume?active=project";
+		}
+	}
+	
+	@RequestMapping(value="/admin/teacher/project/destory/{project_id}")
+	public String deleProject(@PathVariable Long project_id){
+		projectService.deleteById(project_id);
+		return "redirect:/admin/teacher/resume?active=project";
+	}
+	
+	@RequestMapping(value="/admin/teacher/patent/new")
+	public String addPatent(@Valid TeacherPatentDetailInfoForm patentDetailForm, HttpSession session,
+			Model model,BindingResult validResult){
+		logger.info("#### Into teacherPatentAddController ####");
+		if(validResult.hasErrors()){
+			return "redirect:/admin/teacher/resume?active=patent";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long id = userInfo.getUser().getId();
+			Teacher teacher= teacherService.findOne(id);
+			TeacherPatent patent = new TeacherPatent();
+			patent.setInventer(patentDetailForm.getInventer());
+			patent.setName(patentDetailForm.getName());
+			patent.setNumber(patentDetailForm.getNumber());
+			patent.setType(patentDetailForm.getType());
+			patentService.save(patent, teacher);
+			return "redirect:/admin/teacher/resume?active=patent";
+		}
+	}
+	
+	@RequestMapping(value="/admin/teacher/patent/destory/{patent_id}")
+	public String delePatent(@PathVariable Long patent_id){
+		patentService.deleteById(patent_id);
+		return "redirect:/admin/teacher/resume?active=patent";
+	}
+	
+	@RequestMapping(value="/admin/teacher/honor/new")
+	public String addHonor(@Valid TeacherHonorDetailInfoForm honorDetailForm, HttpSession session,
+			Model model,BindingResult validResult){
+		logger.info("#### Into teacherProjectAddController ####");
+		if(validResult.hasErrors()){
+			return "redirect:/admin/teacher/resume?active=honor";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long id = userInfo.getUser().getId();
+			Teacher teacher= teacherService.findOne(id);
+			TeacherHonor honor = new TeacherHonor();
+			honor.setName(honorDetailForm.getHonorName());
+			honor.setReason(honorDetailForm.getReason());
+			honorService.save(honor, teacher);
+			return "redirect:/admin/teacher/resume?active=honor";
+		}
+	}
+	
+	@RequestMapping(value="/admin/teacher/honor/destory/{honor_id}")
+	public String deleHonor(@PathVariable Long honor_id){
+		honorService.deleteById(honor_id);
+		return "redirect:/admin/teacher/resume?active=honor";
+	}
+	
 	
 	@RequestMapping(value="/admin/teacher/pswInfoCheck", method = RequestMethod.POST)
 	public void checkEmail(@RequestParam("oriPsw") String oriPsw,HttpServletResponse response,HttpSession session) throws Exception{

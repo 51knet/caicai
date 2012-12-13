@@ -26,6 +26,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	}
 
 	function showThesisAddForm() {
+		$("#thesis").css("display","none");
 		var thesis = document.getElementById("thesisForm");
 		var thesisButton = document.getElementById("thesisButton");
 		thesis.style.display = "block";
@@ -33,6 +34,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	}
 
 	function hiddenThesisAddForm() {
+		$("#thesis").css("display","block");
 		var thesisForm = document.getElementById("thesisForm");
 		var thesisButton = document.getElementById("thesisButton");
 		var thesisContentMsg = document.getElementById("thesisContentMsg");
@@ -63,10 +65,8 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 		var projectButton = document.getElementById("projectButton");
 		var titleMsg = document.getElementById("titleMsg");
 		var sourceMsg = document.getElementById("sourceMsg");
-		var dateMsg = document.getElementById("dateMsg");
 		titleMsg.innerHTML="";
 		sourceMsg.innerHTML="";
-		dateMsg.innerHTML="2000.01.01-2001.01.01";
 		projectForm.style.display = "none";
 		projectButton.style.display = "block";
 	}

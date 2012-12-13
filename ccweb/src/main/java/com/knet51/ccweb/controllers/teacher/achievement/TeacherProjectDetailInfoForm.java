@@ -4,29 +4,45 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class TeacherProjectDetailInfoForm {
 	@NotEmpty
-	private String title;
+	private String projectTitle;
 	@NotEmpty
-	private String source;
+	private String projectSource;
 	@NotEmpty
-	private String date;
-	public String getTitle() {
-		return title;
+	private String projectStartTime;
+	@NotEmpty
+	private String projectEndTime;
+	
+	
+	public String getProjectTitle() {
+		return projectTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setProjectTitle(String projectTitle) {
+		this.projectTitle = projectTitle;
 	}
-	public String getSource() {
-		return source;
+	
+	public String getProjectSource() {
+		return projectSource;
 	}
-	public void setSource(String source) {
-		this.source = source;
+	public void setProjectSource(String projectSource) {
+		this.projectSource = projectSource;
 	}
-	public String getDate() {
-		return date;
+	public String getProjectStartTime() {
+		return projectStartTime;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setProjectStartTime(String projectStartTime) {
+		this.projectStartTime = projectStartTime;
 	}
+	public String getProjectEndTime() {
+		return projectEndTime;
+	}
+	public void setProjectEndTime(String projectEndTime) {
+		this.projectEndTime = projectEndTime;
+	}
+	public TeacherProjectDetailInfoForm() {
+		super();
+	}
+	
+	
 	
 
 }

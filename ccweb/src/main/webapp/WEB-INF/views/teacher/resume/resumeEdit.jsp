@@ -12,6 +12,7 @@
 		<li <c:if test='${active == "edu"}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
 		<li <c:if test='${active == "work"}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
 		<li <c:if test='${active == "thesis"}'>class="active"</c:if>><a href="#thesis_tab" data-toggle="tab">论文</a></li>
+		<li <c:if test='${active == "project"}'>class="active"</c:if>><a href="#project_tab" data-toggle="tab">项目</a></li>
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane <c:if test='${active == "personal"}'>active</c:if>" id="personal_info_tab">
@@ -285,82 +286,124 @@
 		<!-- Thesis -->
 		
 		<div class="tab-pane <c:if test='${active == "thesis"}'>active</c:if>" id="thesis_tab">
-			
-			<div id="thesisForm" style="display: none;">
-				<form class="form-horizontal" action="thesisInfo" method="post" id="workExpForm" name="work">
-					<input type="hidden" name="workId">
-					<div class="control-group" id="company">
-						<label class="control-label" for="company">单位</label>
-						<div class="controls">
-							<input type="text"  name="company" placeholder="单位" >
-							<span class="help-inline"><form:errors path="company" /></span>
-						</div>
-					</div>
-					<div class="control-group" id="department">
-						<label class="control-label" for="department">部门</label>
-						<div class="controls">
-							<input type="text"  name="department" placeholder="部门"  >
-							<span class="help-inline"><form:errors path="department" /></span>
-						</div>
-					</div>
-					<div class="control-group" id="position">
-						<label class="control-label" for="position">职位</label>
-						<div class="controls">
-							<input type="text"  name="position" placeholder="职位"  >
-							<span class="help-inline"><form:errors path="position" /></span>
-						</div>
-					</div>
-					<div class="control-group" id="startTimeName">
-						<label class="control-label" for="startTimeName">开始时间</label>
-						<div class="controls">
-							<input type="text"  name="startTimeName" placeholder="开始时间" >
-							<span class="help-inline"><form:errors path="startTime" /></span>
-						</div>
-					</div>
-					<div class="control-group" id="endTimeName">
-						<label class="control-label" for="endTimeName">结束时间</label>
-						<div class="controls">
-							<input type="text"  name="endTimeName" placeholder="结束时间" >
-							<span class="help-inline"><form:errors path="endTime" /></span>
-						</div>
-					</div>
-					<div class="control-group">
-						<div class="controls">
-							<button type="submit" onclick="return workOnclick();"  class="btn btn-large btn-success">保 存</button>
-							<button type="reset" onclick="closeWorkAddForm()" class="btn btn-large">取消</button>
-						</div>
-					</div>
-				</form>
-			</div>	
-			
-			<div id="workList" style="display: block">
-		
-				<c:choose>
-					<c:when test="${(workCount >0)}">
-						<table  class="table">
-							<thead><tr><th>单位</th><th>部门</th><th>职位</th><th>起止时间</th><th>操作</th></tr></thead>
+			<div id="thesis" style="display: block">
+					<c:choose>
+						<c:when test="${thesisCount>0}">
+							<table class="table">
+							<thead><tr><th>论文内容</th><th>操作</th></tr></thead>
 							<tbody>
-								<c:forEach items="${workInfo}" var="workInfo">
+								<c:forEach items="${thesisList}" var="thesis">
 									<tr>
-										<td  align="center">${workInfo.company}</td>
-										<td  align="center">${workInfo.department}</td>
-										<td  align="center">${workInfo.position}</td>
-										<td  align="center"  width="25%">${workInfo.startTime} - ${workInfo.endTime}</td>
-										<td>
-											<a href='<c:url value="/admin/teacher/workInfo/destory/${workInfo.id}"></c:url>'>删除</a> |
-											 <a href='javascript:void(0)' onclick="editWork(${workInfo.id})">修改</a>
+										<td width=90% align="left">${thesis.content}</td>
+										<td >
+											<a href='<c:url value="/admin/teacher/thesis/destory/${thesis.id}"></c:url>'>删除</a>
 										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
-						</table>
-					</c:when>
-					<c:otherwise><b>尚未添加内容！！</b><br><br></c:otherwise>
-				</c:choose>
-				
-				<button onclick="showWorkAddForm()">添加</button>
-			</div>
+							</table>
+						</c:when>
+						<c:otherwise><span style="font-size: 13px;">尚未添加内容<br><br></span></c:otherwise>
+					</c:choose>
+				</div>
+				<div id="thesisForm" style="display: none;">
+					<form action="thesis/new" method="post"  id="thesis_info_form">
+						内容：
+						<div class="modal-body" id="content">
+							<textarea style="width: 450px;" id="context" name="content" cols="40" rows="3" ></textarea>
+						    <span class="help-inline" style="color: red; font-size: 13px;" id="thesisContentMsg"></span>
+				        </div>
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit"  onclick="return thesisOnclick();" class="btn btn-large btn-success">保 存</button>
+						   		<button class="btn" type="reset" onclick="hiddenThesisAddForm()">取消</button>
+							</div>
+					     </div>
+					</form>
+				</div>
+				<div id="thesisButton" style="display: block">
+					<button onclick="showThesisAddForm()">添加</button>
+				</div>
 		</div>
+		
+		<div class="tab-pane <c:if test='${active == "project"}'>active</c:if>" id="project_tab">
+			<div id="project" style="display: block">
+					<div id="projectForm" style="display: none;">
+						<form action="project/new" method="post"  id="project_info_form" class="form-horizontal">
+							<!-- <table  class="table">
+								<thead><tr><th>项目名称</th><th>项目来源</th><th>开始时间</th><th>结束时间</th></tr></thead>
+								<tbody>
+									<tr>
+										<td align="center" class="modal-body" id="title"><input type="text" style="width:150px;" name="title" /> <span class="help-inline" style="color: red; font-size: 13px;" id="titleMsg"></span></td>
+										<td align="center" class="modal-body" id="source"><input type="text" style="width:150px;" name="source" /> <span class="help-inline" style="color: red; font-size: 13px;" id="sourceMsg"></span></td>
+										<td align="center" class="modal-body" id="startTime"><input type="text" style="width:150px;" name="startTime" /><span id="startMsg" class="help-inline" style="color: red; font-size: 13px;">2000.01.01</span></td>
+										<td align="center" class="modal-body" id="endTime"><input type="text" style="width:150px;" name="endTime" /><span id="endMsg" class="help-inline" style="color: red; font-size: 13px;">2000.01.011</span></td>									</tr>
+								</tbody>
+							</table> -->
+							
+							<div class="control-group" id="projectTitle">
+								<label class="control-label" for="projectTitle">项目名称</label>
+								<div class="controls">
+									<input type="text"  name="projectTitle" placeholder="项目名称"  >
+									<span class="help-inline"><form:errors path="projectTitle" /></span>
+								</div>
+							</div>
+							<div class="control-group" id="projectSource">
+								<label class="control-label" for="projectSource">项目来源</label>
+								<div class="controls">
+									<input type="text"  name="projectSource" placeholder="项目来源"  >
+									<span class="help-inline"><form:errors path="projectSource" /></span>
+								</div>
+							</div>
+							<div class="control-group" id="projectStartTime">
+								<label class="control-label" for="projectStartTime">开始时间</label>
+								<div class="controls">
+									<input type="text"  name="projectStartTime" placeholder="开始时间" >
+									<span class="help-inline"><form:errors path="projectStartTime" /></span>
+								</div>
+							</div>
+							<div class="control-group" id="projectEndTime">
+								<label class="control-label" for="projectEndTime">结束时间</label>
+								<div class="controls">
+									<input type="text"  name="projectEndTime" placeholder="结束时间" >
+									<span class="help-inline"><form:errors path="projectEndTime" /></span>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="submit" onclick ="return projectOnclick();" class="btn btn-large btn-success">保存</button>&nbsp;&nbsp;
+									<button class="btn" type="reset" onclick="hiddenProjectAddForm()">取消</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div id="projectButton" style="display: block">
+						<c:choose>
+							<c:when test="${projectCount>0}">
+								<table  class="table">
+									<thead><tr><th width="30%">项目名称</th><th width="30%">项目来源</th><th width="15%">开始时间</th><th width="15%">结束时间</th><th width="10%">操作</th></tr></thead>
+									<tbody>
+										<c:forEach items="${projectList}" var="project">
+											<tr>
+												<td align="left" >${project.title}</td>
+												<td align="left" >${project.source}</td>
+												<td align="left" >${project.startTime}</td>
+												<td align="left" >${project.endTime}</td>
+												<td >
+													<a href='<c:url value="/admin/teacher/project/destory/${project.id}"></c:url>'>删除</a>
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</c:when>
+							<c:otherwise><span style="font-size: 13px;">尚未添加内容<br><br></span></c:otherwise>
+						</c:choose>
+						<button onclick="showProjectAddForm()">添加</button>
+					</div>
+				</div>
+		</div>
+		
 	</div>
 </div>
 
@@ -372,6 +415,27 @@ function personalOnclick(){
 function eduOnclick(){
 	return checkEmptyAjax("edu_info_form","eduInfoAJAX");
 };
+
+function thesisOnclick(){
+	return checkTextAjax("thesis_info_form","thesisInfoAJAX");
+};
+ function projectOnclick (){
+	return checkEmptyAjax("project_info_form","projectInfoAJAX");
+};
+function patentOnclick (){
+	return checkEmptyAjax("patent_info_form","patentInfoAJAX");
+};
+function honorOnclick(){
+	return checkEmptyAjax("honor_info_Form","honorInfoAJAX");
+};
+$(document).ready(function(){
+	$("#context").focus(function(){
+		$("#thesisContentMsg").html("");
+	});
+	$("input").focus(function(){
+		$(".help-inline").html("");
+	});
+});
 
 function editEdu(id){
 	//alert(id);

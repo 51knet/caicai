@@ -43,40 +43,41 @@
 		</div>
 		
 		<div class="row ">
-		<table class="table">
 			<c:choose>
 				<c:when test="${resourceCount !=0}">
-					<thead>
-						<tr><th width="25%">资源名称</th><th>描述</th><th width="10%">类别</th><th width="20%">发表日期</th></tr>
-					</thead>
-					<tbody>
-						<c:forEach var="resource" items="${resourceList}">
-							<tr>
-								<td><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${resource.id}"></c:url>"> </a> ${resource.name }
-								</td>
-								<td>
-									<c:choose>
-									<c:when test="${page.description==null || page.description=='' }">
-										无描述
-									</c:when>
-									<c:otherwise>
-										${page.description }
-									</c:otherwise>
-								</c:choose>
-								</td>
-								<td>${resource.resourceType.typeName }</td>
-								<td>
-									${resource.date}
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
+					<table class="table">
+						<thead>
+							<tr><th width="25%">资源名称</th><th>描述</th><th width="10%">类别</th><th width="20%">发表日期</th></tr>
+						</thead>
+						<tbody>
+							<c:forEach var="resource" items="${resourceList}">
+								<tr>
+									<td><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${resource.id}"></c:url>"> </a> ${resource.name }
+									</td>
+									<td>
+										<c:choose>
+										<c:when test="${page.description==null || page.description=='' }">
+											无描述
+										</c:when>
+										<c:otherwise>
+											${page.description }
+										</c:otherwise>
+									</c:choose>
+									</td>
+									<td>${resource.resourceType.typeName }</td>
+									<td>
+										${resource.date}
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 				</c:when>
 				<c:otherwise>
 					<tr><td colspan="4">无内容</td></tr>
 				</c:otherwise>
 			</c:choose>
-		</table>
+		
 		<hr>
 		<div style="text-align: right;">
 		<c:if test="${resourceCount>3}"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
@@ -169,7 +170,7 @@
 		<c:choose>
 			<c:when test="${projectCount !=0}">
 				<thead>
-					<tr><th >项目名称</th><th >项目来源</th><th width=24%>起止时间</th></tr>
+					<tr><th >项目名称</th><th >项目来源</th><th width=15%>开始时间</th><th width=15%>结束时间</th></tr>
 				</thead>
 				<tbody>
 					<c:forEach var="project" items="${projectList}">
@@ -178,7 +179,8 @@
 							<td  ><!-- <a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a> --> 
 								${project.title}</td>
 							<td  >${project.source}</td>
-							<td  >${project.date}</td>
+							<td  >${project.startTime}</td>
+							<td  >${project.endTime}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

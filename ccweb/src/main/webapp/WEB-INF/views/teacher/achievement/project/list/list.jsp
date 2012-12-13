@@ -26,14 +26,15 @@
 	<div class="row">
 		<table class="table">
 			<thead>
-					<tr><th >项目名称</th><th >项目来源</th><th >项目起止时间</th></tr>
+					<tr><th >项目名称</th><th >项目来源</th><th >开始时间</th><th >结束时间</th></tr>
 			</thead>
 			<tbody>
 				<c:forEach var="project" items="${page.content}">
 					<tr>
 						<td >${project.title}</td>
 						<td  >${project.source}</td>
-						<td  >${project.date}</td>
+						<td  >${project.startTime}</td>
+						<td  >${project.endTime}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

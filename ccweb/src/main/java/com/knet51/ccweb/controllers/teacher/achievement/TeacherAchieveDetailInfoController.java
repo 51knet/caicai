@@ -78,9 +78,10 @@ public class TeacherAchieveDetailInfoController {
 			Long id = userInfo.getUser().getId();
 			Teacher teacher= teacherService.findOne(id);
 			TeacherProject project = new TeacherProject();
-			project.setTitle(projectDetailForm.getTitle());
-			project.setSource(projectDetailForm.getSource());
-			project.setDate(projectDetailForm.getDate());
+			project.setTitle(projectDetailForm.getProjectTitle());
+			project.setSource(projectDetailForm.getProjectSource());
+			project.setStartTime(projectDetailForm.getProjectStartTime());
+			project.setEndTime(projectDetailForm.getProjectEndTime());
 			projectService.save(project, teacher);
 			return "redirect:/admin/teacher/achievement/list";
 		}

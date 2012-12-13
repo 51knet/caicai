@@ -95,6 +95,7 @@ public class TeacherAchievePageController {
 		return AjaxValidationEngine.process(result);
 	}
 	
+	
 	/* teacher front page */
 	
 	@RequestMapping(value="/teacher/{teacher_id}/achievement/list")
