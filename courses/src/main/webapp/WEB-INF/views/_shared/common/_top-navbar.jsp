@@ -11,7 +11,7 @@
 			</a> <a class="brand" href="#">Courses</a> <a class="brand" href="#" style="padding: 0px 20px 0px;"><img  src='<c:url value="/resources/img/logo.png"></c:url>' style="height: 40px;" /> </a>
 			<div class="nav-collapse collapse navbar-responsive-collapse">
 				<ul class="nav">
-					<li class="active"><a href="#">主页</a></li>
+					<li class="active"><a href="/courses">主页</a></li>
 					<li><a href="#">大学</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">关于 <b class="caret"></b></a>
 						<ul class="dropdown-menu">

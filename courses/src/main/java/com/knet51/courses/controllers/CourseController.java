@@ -21,17 +21,17 @@ public class CourseController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CourseController.class);
 	
-	@RequestMapping(value="/course/list")
-	public String showAllCourse(Model model){
-//		List<TeacherCourseBeans> tcBeanList = courseService.getAllTeacherCourseBeans();
-//		model.addAttribute("courseList", tcBeanList);
-		List<TeacherCourse> courseList = courseService.findAllCourses();
-		List<String> courseTypeList = courseService.courseTypeList();
-		model.addAttribute("courseList", courseList);
-		model.addAttribute("courseCount", courseList.size());
-		model.addAttribute("courseTypeList", courseTypeList);
-		return "course.list";
-	}
+//	@RequestMapping(value="/course/list")
+//	public String showAllCourse(Model model){
+////		List<TeacherCourseBeans> tcBeanList = courseService.getAllTeacherCourseBeans();
+////		model.addAttribute("courseList", tcBeanList);
+//		List<TeacherCourse> courseList = courseService.findAllCourses();
+//		List<String> courseTypeList = courseService.courseTypeList();
+//		model.addAttribute("courseList", courseList);
+//		model.addAttribute("courseCount", courseList.size());
+//		model.addAttribute("courseTypeList", courseTypeList);
+//		return "course.list";
+//	}
 	
 	@RequestMapping(value="/course/list/type")
 	public String showCourseByType(@RequestParam("detail") String courseType,Model model) throws Exception{
@@ -40,7 +40,7 @@ public class CourseController {
 		List<TeacherCourse> courseList = courseService.findAllCourses();
 		List<String> courseTypeList = courseService.courseTypeList();
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
-		if(courseType.trim() !=null && !courseType.trim().equals("全部课程")){
+		if(courseType.trim() !=null && !courseType.trim().equals("全部课程") && !courseType.trim().equals("all") ){
 			for(TeacherCourse c :courseList){
 				if(courseType.equals(c.getCourseType())){
 					newCourseList.add(c);

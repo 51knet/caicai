@@ -207,7 +207,7 @@ background: #F7F7F7;
   </div><!-- /.row -->
   <div class="row" >
   	<div style="margin-right: 35px;padding: 5px 5px;background: #F7F7F7;text-align: center;">
-  		<a href='<c:url value="/course/list"></c:url>' >全部课程</a>
+  		<a href='<c:url value="/course/list/type?detail=all"></c:url>' >全部课程</a>
   	</div>
   
   </div>
@@ -251,6 +251,12 @@ background: #F7F7F7;
 	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
 	      </div> 
     </div>
+  </div>
+   <div class="row" >
+  	<div style="margin-right: 35px;padding: 5px 5px;background: #F7F7F7;text-align: center;">
+  		<a href='<c:url value="/course/list"></c:url>' >全部教师</a>
+  	</div>
+  
   </div>
   <div style="display: none;">
 	  <a class="left carousel-control" href="#myTeacher" data-slide="prev">‹</a>

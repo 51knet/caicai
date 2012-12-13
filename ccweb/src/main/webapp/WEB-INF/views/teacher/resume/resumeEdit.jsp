@@ -11,6 +11,7 @@
 		<li <c:if test='${active == "contact"}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>
 		<li <c:if test='${active == "edu"}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
 		<li <c:if test='${active == "work"}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
+		<li <c:if test='${active == "thesis"}'>class="active"</c:if>><a href="#thesis_tab" data-toggle="tab">论文</a></li>
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane <c:if test='${active == "personal"}'>active</c:if>" id="personal_info_tab">
@@ -280,8 +281,90 @@
 				<button onclick="showWorkAddForm()">添加</button>
 			</div>
 		</div>
+		
+		<!-- Thesis -->
+		
+		<div class="tab-pane <c:if test='${active == "thesis"}'>active</c:if>" id="thesis_tab">
+			
+			<div id="thesisForm" style="display: none;">
+				<form class="form-horizontal" action="thesisInfo" method="post" id="workExpForm" name="work">
+					<input type="hidden" name="workId">
+					<div class="control-group" id="company">
+						<label class="control-label" for="company">单位</label>
+						<div class="controls">
+							<input type="text"  name="company" placeholder="单位" >
+							<span class="help-inline"><form:errors path="company" /></span>
+						</div>
+					</div>
+					<div class="control-group" id="department">
+						<label class="control-label" for="department">部门</label>
+						<div class="controls">
+							<input type="text"  name="department" placeholder="部门"  >
+							<span class="help-inline"><form:errors path="department" /></span>
+						</div>
+					</div>
+					<div class="control-group" id="position">
+						<label class="control-label" for="position">职位</label>
+						<div class="controls">
+							<input type="text"  name="position" placeholder="职位"  >
+							<span class="help-inline"><form:errors path="position" /></span>
+						</div>
+					</div>
+					<div class="control-group" id="startTimeName">
+						<label class="control-label" for="startTimeName">开始时间</label>
+						<div class="controls">
+							<input type="text"  name="startTimeName" placeholder="开始时间" >
+							<span class="help-inline"><form:errors path="startTime" /></span>
+						</div>
+					</div>
+					<div class="control-group" id="endTimeName">
+						<label class="control-label" for="endTimeName">结束时间</label>
+						<div class="controls">
+							<input type="text"  name="endTimeName" placeholder="结束时间" >
+							<span class="help-inline"><form:errors path="endTime" /></span>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit" onclick="return workOnclick();"  class="btn btn-large btn-success">保 存</button>
+							<button type="reset" onclick="closeWorkAddForm()" class="btn btn-large">取消</button>
+						</div>
+					</div>
+				</form>
+			</div>	
+			
+			<div id="workList" style="display: block">
+		
+				<c:choose>
+					<c:when test="${(workCount >0)}">
+						<table  class="table">
+							<thead><tr><th>单位</th><th>部门</th><th>职位</th><th>起止时间</th><th>操作</th></tr></thead>
+							<tbody>
+								<c:forEach items="${workInfo}" var="workInfo">
+									<tr>
+										<td  align="center">${workInfo.company}</td>
+										<td  align="center">${workInfo.department}</td>
+										<td  align="center">${workInfo.position}</td>
+										<td  align="center"  width="25%">${workInfo.startTime} - ${workInfo.endTime}</td>
+										<td>
+											<a href='<c:url value="/admin/teacher/workInfo/destory/${workInfo.id}"></c:url>'>删除</a> |
+											 <a href='javascript:void(0)' onclick="editWork(${workInfo.id})">修改</a>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</c:when>
+					<c:otherwise><b>尚未添加内容！！</b><br><br></c:otherwise>
+				</c:choose>
+				
+				<button onclick="showWorkAddForm()">添加</button>
+			</div>
+		</div>
 	</div>
 </div>
+
+
 <script type="text/javascript">
 function personalOnclick(){
 	return checkEmptyAjax("personal_info_form","personalInfoAJAX");
