@@ -6,6 +6,6 @@ import com.knet51.ccweb.jpa.entities.teacher.Comment;
 public interface CommentRepositoryCustom {
 	Comment createComment(Comment comment);
 	Long getPerson(Long  teacherCourseId);
-	Long getMark(Long teacherCourseId, Long userId);
 	Long getMark(Long teacherCourseId);
+	Comment getComment(Long teacherCourseId, Long userId);
 }

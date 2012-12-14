@@ -10,5 +10,5 @@ import com.knet51.ccweb.jpa.entities.teacher.Comment;
 
 @Transactional
 public interface CommentRepository extends JpaRepository<Comment, Long>, JpaSpecificationExecutor<Comment>,CommentRepositoryCustom {
-	Page<Comment> findCommentByCourseid(Long teachercourseid ,Pageable pageable);
+	Page<Comment> findCommentByteachercourseid(Long teachercourseid ,Pageable pageable);
 }

@@ -1,15 +1,12 @@
 package com.knet51.ccweb.jpa.entities.teacher;
 
-import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 @Entity
 @Table(name="comment")
 public class Comment extends AbstractEntity {
@@ -20,16 +17,20 @@ public class Comment extends AbstractEntity {
 	private String commentTitle;
 
 	private Long userid;
-	private Long courseid;
-	
-	
-	
-	
-	public Long getCourseid() {
-		return courseid;
+	private Long teachercourseid;
+	@ManyToOne
+	private User user;
+	public User getUser() {
+		return user;
 	}
-	public void setCourseid(Long courseid) {
-		this.courseid = courseid;
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Long getTeachercourseid() {
+		return teachercourseid;
+	}
+	public void setTeachercourseid(Long teachercourseid) {
+		this.teachercourseid = teachercourseid;
 	}
 	public Long getUserid() {
 		return userid;

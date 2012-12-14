@@ -9,5 +9,5 @@ public interface CommentService {
 	Page<Comment> findAllCommit(int pageNumber, int pageSize,Long teacherCourse_id);
 	Long getMark(Long teacherCourseId);
 	Long getPerson(Long teacherCourseId);
-	Long getMark(Long teacherCourseId, Long userId);
+	Comment getComment(Long teacherCourseId, Long userId);
 }

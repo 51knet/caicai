@@ -28,11 +28,11 @@ public class CommentServiceImpl implements CommentService {
 			Long teacherCourse_id) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
 		
-		Page<Comment> onePage = commitRepository.findCommentByCourseid(teacherCourse_id, dateDesc);
-		List<Comment> list = onePage.getContent();
+		Page<Comment> onePage = commitRepository.findCommentByteachercourseid(teacherCourse_id, dateDesc);
+		/*List<Comment> list = onePage.getContent();
 		for (int i = 0; i < list.size(); i++) {
-			System.out.println("+++++++++++++++++"+list.get(i).getCourseid());
-		}
+			System.out.println("+++++++++++++++++"+list.get(i).getTeachercourseid());
+		}*/
 		return onePage;
 	}
 	@Override
@@ -46,8 +46,8 @@ public class CommentServiceImpl implements CommentService {
 		return personNum;
 	}
 	@Override
-	public Long getMark(Long teacherCourseId, Long userId) {
-		Long markNum=commitRepository.getMark(teacherCourseId, userId);
-		return markNum;
+	public Comment getComment(Long teacherCourseId, Long userId) {
+		Comment comment=commitRepository.getComment(teacherCourseId, userId);
+		return comment;
 	}
 }

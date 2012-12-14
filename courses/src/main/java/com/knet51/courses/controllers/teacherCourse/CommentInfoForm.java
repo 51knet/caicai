@@ -1,13 +1,5 @@
 package com.knet51.courses.controllers.teacherCourse;
-
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import org.hibernate.validator.constraints.NotEmpty;
-
-import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
-
 public class CommentInfoForm {
 	@NotEmpty
 	private Long mark;
@@ -17,24 +9,22 @@ public class CommentInfoForm {
 	private String commentDate;
 	@NotEmpty
 	private String commentTitle;
-	@ManyToOne
-	@JoinColumn(name="user_Id")
-	private User user;
-	@ManyToOne
-	@JoinColumn(name="teacherCourse_Id")
-	private TeacherCourse teacherCourse;
+	@NotEmpty
+	private Long teachercourseid;
+	@NotEmpty
+	private Long userId;
 	
-	public User getUser() {
-		return user;
+	public Long getTeachercourseid() {
+		return teachercourseid;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setTeachercourseid(Long teachercourseid) {
+		this.teachercourseid = teachercourseid;
 	}
-	public TeacherCourse getTeacherCourse() {
-		return teacherCourse;
+	public Long getUserId() {
+		return userId;
 	}
-	public void setTeacherCourse(TeacherCourse teacherCourse) {
-		this.teacherCourse = teacherCourse;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	public Long getMark() {
 		return mark;

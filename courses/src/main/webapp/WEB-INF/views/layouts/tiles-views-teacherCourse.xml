@@ -13,6 +13,6 @@
 	<definition name="admin.teacherCourse.course.view" extends="admin-layout">
 		<put-attribute name="title" value="教学课程" />
 		<!-- <put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute> -->
-		<put-attribute name="right" value="/WEB-INF/views/teacherCourse/view/courseView.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/teacherCourse/view/view.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

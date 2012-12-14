@@ -16,7 +16,7 @@ public class CommentRepositoryImpl implements
 
 	@Override
 	public Long getMark(Long teacherCourseId) {
-		Long mark = (Long) em.createQuery("select sum(mark) from Comment t where t.courseid="+teacherCourseId).getSingleResult();
+		Long mark = (Long) em.createQuery("select sum(mark) from Comment t where t.teachercourseid="+teacherCourseId).getSingleResult();
 		return mark;
 	}
 
@@ -29,16 +29,17 @@ public class CommentRepositoryImpl implements
 	@Override
 	@SuppressWarnings("unchecked")
 	public Long getPerson(Long teacherCourseId) {
-		String hql="select t from Comment t where t.courseid="+teacherCourseId;
+		String hql="select t from Comment t where t.teachercourseid="+teacherCourseId;
 		List<Comment> list =(List<Comment>) em.createQuery(hql).getResultList();
 		Long personNum=(long) list.size();
 		return personNum;
 	}
 
 	@Override
-	public Long getMark(Long teacherCourseId, Long userId) {
-		Long markNum=(Long) em.createQuery("select t.mark from Comment t where t.courseid="+teacherCourseId +" and t.userid="+userId).getSingleResult();
-		return markNum;
+	public Comment getComment(Long teacherCourseId, Long userId) {
+		Comment comment= (Comment) em.createQuery("select t from Comment t where t.teachercourseid="+teacherCourseId +" and t.userid="+userId).getSingleResult();
+		return comment;
 	}
+
 
 }

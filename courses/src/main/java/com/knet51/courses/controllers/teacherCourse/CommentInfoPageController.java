@@ -1,10 +1,16 @@
 package com.knet51.courses.controllers.teacherCourse;
 
 
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,13 +19,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.google.gson.Gson;
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.Comment;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
@@ -72,43 +80,66 @@ public class CommentInfoPageController {
 		session.setAttribute("user", user);
 		TeacherCourse teacherCourse= teacherCourseService.findOneById(id);
 		Long personNum=commentService.getPerson(id);
-		Long markNum=commentService.getMark(id, userId);
-		Long mark=commentService.getMark(id);
+		Comment comment=commentService.getComment(id, userId);
+		Long mark=comment.getMark();
+		Long markNum=commentService.getMark(id);
 		Page<Comment> onePage=commentService.findAllCommit(pageNumber, pageSize, id);
-		
 		model.addAttribute("page", onePage);
-		List<Comment> list=onePage.getContent();
+		/*List<Comment> list=onePage.getContent();
 		System.out.println(list.size());
 		String title = null;
 		for (Comment comment : list) {
 			 title=comment.getCommentTitle();
+			 String username=comment.getUser().getName();
 			 System.out.println(title);
-		}
-		
-		
+		}*/
 		model.addAttribute("teacherCourse", teacherCourse);
 		model.addAttribute("mark", mark);
 		model.addAttribute("personNum", personNum);
 		model.addAttribute("markNum", markNum);
 		return "admin.teacherCourse.course.view";
 	}
-	/*@RequestMapping(value= "/admin/course/{teacherCourse_id}/list", method=RequestMethod.GET)
-	public String listCommits(Model model,HttpSession session,@PathVariable Long teacherCourse_id, @RequestParam(value="pageNumber",defaultValue="5") int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize) {
-		UserInfo userinfo=(UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		User user=userinfo.getUser();
-		TeacherCourse teacherCourse= teacherCourseService.findOneById(teacherCourse_id);
-		Page<Comment> page=commitService.findAllCommit(pageNumber, pageSize, user, teacherCourse);
-		model.addAttribute("page", page);
-		return "admin.course.list";
+	@RequestMapping(value="/admin/teacherCourse/course/view/addComment",method=RequestMethod.POST)
+	public void commentAddInfo(Model model,
+			 HttpSession session,HttpServletRequest request,HttpServletResponse response,@RequestParam(value="pageNumber",defaultValue="5") int pageNumber, 
+			@RequestParam(value="pageSize", defaultValue="5") int pageSize) throws Exception{
+		PrintWriter out=response.getWriter();
+		Gson g = new Gson();	
+		String commentTitle=request.getParameter("commentTitle");
+		String commentDesc=request.getParameter("commentDesc");
+		long mark=Long.parseLong(request.getParameter("mark"));
+		long teachercourseid=Long.parseLong(request.getParameter("teachercourseid"));
+		User user =new User();
+		user.setId(4l);
+		Comment comment=new Comment();
+		Long userid=user.getId();
+		Comment com=commentService.getComment(teachercourseid, userid);
+		int  value=0;
+		if(com==null){
+			value=1;
+			out.write(value);
+			out.flush();
+			out.close();
+		}else{
+		comment.setCommentTitle(commentTitle);
+		comment.setCommentDesc(commentDesc);
+		comment.setMark(mark);
+		comment.setTeachercourseid(teachercourseid);
+		comment.setUserid(2l);
+		SimpleDateFormat date=new SimpleDateFormat("yyyy-mm-dd-hh-MM-ss");
+		String data=date.format(new Date());
+		comment.setCommentDate(data);
+		Page<Comment> onePage=commentService.findAllCommit(pageNumber, pageSize, teachercourseid);
+		Integer markNum=commentService.getMark(teachercourseid).intValue();
+		Integer personNum=commentService.getPerson(teachercourseid).intValue();
+		String pages=onePage.toString();
+		out.write(g.toJson(pages));
+		out.write(markNum);
+		out.wait(personNum);
+		out.flush();
+		out.close();
+		}
 	}
-	@RequestMapping(value= "/admin/course/{teacherCourse_id}/list", method=RequestMethod.GET)
-	public String addCommits(Model model,HttpSession session,@PathVariable Long teacherCourse_id, @RequestParam(value="pageNumber",defaultValue="5") int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize) {
-		UserInfo userinfo=(UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long userid=userinfo.getUser().getId();
-		Comment commit=new Comment();
-		//commit.set
-		return "admin.course.list";
-	}*/
 	
 	
 }
