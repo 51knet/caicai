@@ -13,6 +13,8 @@
 		<li <c:if test='${active == "work"}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
 		<li <c:if test='${active == "thesis"}'>class="active"</c:if>><a href="#thesis_tab" data-toggle="tab">论文</a></li>
 		<li <c:if test='${active == "project"}'>class="active"</c:if>><a href="#project_tab" data-toggle="tab">项目</a></li>
+		<li <c:if test='${active == "patent"}'>class="active"</c:if>><a href="#patent_tab" data-toggle="tab">专利</a></li>
+		<li <c:if test='${active == "honor"}'>class="active"</c:if>><a href="#honor_tab" data-toggle="tab">荣誉</a></li>
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane <c:if test='${active == "personal"}'>active</c:if>" id="personal_info_tab">
@@ -255,7 +257,6 @@
 			</div>	
 			
 			<div id="workList" style="display: block">
-		
 				<c:choose>
 					<c:when test="${(workCount >0)}">
 						<table  class="table">
@@ -328,80 +329,191 @@
 		
 		<div class="tab-pane <c:if test='${active == "project"}'>active</c:if>" id="project_tab">
 			<div id="project" style="display: block">
-					<div id="projectForm" style="display: none;">
-						<form action="project/new" method="post"  id="project_info_form" class="form-horizontal">
-							<!-- <table  class="table">
-								<thead><tr><th>项目名称</th><th>项目来源</th><th>开始时间</th><th>结束时间</th></tr></thead>
+				<div id="projectForm" style="display: none;">
+					<form action="project/new" method="post"  id="project_info_form" class="form-horizontal">
+						<div class="control-group" id="projectTitle">
+							<label class="control-label" for="projectTitle">项目名称</label>
+							<div class="controls">
+								<input type="text"  name="projectTitle" placeholder="项目名称"  >
+								<span class="help-inline"><form:errors path="projectTitle" /></span>
+							</div>
+						</div>
+						<div class="control-group" id="projectSource">
+							<label class="control-label" for="projectSource">项目来源</label>
+							<div class="controls">
+								<input type="text"  name="projectSource" placeholder="项目来源"  >
+								<span class="help-inline"><form:errors path="projectSource" /></span>
+							</div>
+						</div>
+						<div class="control-group" id="projectStartTime">
+							<label class="control-label" for="projectStartTime">开始时间</label>
+							<div class="controls">
+								<input type="text"  name="projectStartTime" placeholder="开始时间" >
+								<span class="help-inline"><form:errors path="projectStartTime" /></span>
+							</div>
+						</div>
+						<div class="control-group" id="projectEndTime">
+							<label class="control-label" for="projectEndTime">结束时间</label>
+							<div class="controls">
+								<input type="text"  name="projectEndTime" placeholder="结束时间" >
+								<span class="help-inline"><form:errors path="projectEndTime" /></span>
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit" onclick ="return projectOnclick();" class="btn btn-large btn-success">保存</button>&nbsp;&nbsp;
+								<button class="btn  btn-large" type="reset" onclick="hiddenProjectAddForm()">取消</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="projectButton" style="display: block">
+					<c:choose>
+						<c:when test="${projectCount>0}">
+							<table  class="table">
+								<thead><tr><th width="30%">项目名称</th><th width="30%">项目来源</th><th width="15%">开始时间</th><th width="15%">结束时间</th><th width="10%">操作</th></tr></thead>
 								<tbody>
-									<tr>
-										<td align="center" class="modal-body" id="title"><input type="text" style="width:150px;" name="title" /> <span class="help-inline" style="color: red; font-size: 13px;" id="titleMsg"></span></td>
-										<td align="center" class="modal-body" id="source"><input type="text" style="width:150px;" name="source" /> <span class="help-inline" style="color: red; font-size: 13px;" id="sourceMsg"></span></td>
-										<td align="center" class="modal-body" id="startTime"><input type="text" style="width:150px;" name="startTime" /><span id="startMsg" class="help-inline" style="color: red; font-size: 13px;">2000.01.01</span></td>
-										<td align="center" class="modal-body" id="endTime"><input type="text" style="width:150px;" name="endTime" /><span id="endMsg" class="help-inline" style="color: red; font-size: 13px;">2000.01.011</span></td>									</tr>
+									<c:forEach items="${projectList}" var="project">
+										<tr>
+											<td align="left" >${project.title}</td>
+											<td align="left" >${project.source}</td>
+											<td align="left" >${project.startTime}</td>
+											<td align="left" >${project.endTime}</td>
+											<td >
+												<a href='<c:url value="/admin/teacher/project/destory/${project.id}"></c:url>'>删除</a>
+											</td>
+										</tr>
+									</c:forEach>
 								</tbody>
-							</table> -->
-							
-							<div class="control-group" id="projectTitle">
-								<label class="control-label" for="projectTitle">项目名称</label>
+							</table>
+						</c:when>
+						<c:otherwise><span style="font-size: 13px;">尚未添加内容<br><br></span></c:otherwise>
+					</c:choose>
+					<button onclick="showProjectAddForm()">添加</button>
+				</div>
+			</div>
+		</div>
+		
+		<!-- patent -->
+		<div class="tab-pane <c:if test='${active == "patent"}'>active</c:if>" id="patent_tab">
+			<div id="patent" style="display: block">
+				<div id="patentForm" style="display: none;">
+						<form action="patent/new" method="post" id="patent_info_form"  class="form-horizontal">
+							<div class="control-group" id="inventer">
+								<label class="control-label" for="inventer">发明人</label>
 								<div class="controls">
-									<input type="text"  name="projectTitle" placeholder="项目名称"  >
-									<span class="help-inline"><form:errors path="projectTitle" /></span>
+									<input type="text"  name="inventer" placeholder="发明人"  >
+									<span class="help-inline"><form:errors path="inventer" /></span>
 								</div>
 							</div>
-							<div class="control-group" id="projectSource">
-								<label class="control-label" for="projectSource">项目来源</label>
+							<div class="control-group" id="patentName">
+								<label class="control-label" for="patentName">专利名称</label>
 								<div class="controls">
-									<input type="text"  name="projectSource" placeholder="项目来源"  >
-									<span class="help-inline"><form:errors path="projectSource" /></span>
+									<input type="text"  name="patentName" placeholder="专利名称"  >
+									<span class="help-inline"><form:errors path="patentName" /></span>
 								</div>
 							</div>
-							<div class="control-group" id="projectStartTime">
-								<label class="control-label" for="projectStartTime">开始时间</label>
+							<div class="control-group" id="patentType">
+								<label class="control-label" for="patentType">专利类型</label>
 								<div class="controls">
-									<input type="text"  name="projectStartTime" placeholder="开始时间" >
-									<span class="help-inline"><form:errors path="projectStartTime" /></span>
+									<input type="text"  name="patentType" placeholder="专利类型" >
+									<span class="help-inline"><form:errors path="patentType" /></span>
 								</div>
 							</div>
-							<div class="control-group" id="projectEndTime">
-								<label class="control-label" for="projectEndTime">结束时间</label>
+							<div class="control-group" id="number">
+								<label class="control-label" for="number">专利号</label>
 								<div class="controls">
-									<input type="text"  name="projectEndTime" placeholder="结束时间" >
-									<span class="help-inline"><form:errors path="projectEndTime" /></span>
+									<input type="text"  name="number" placeholder="专利号" >
+									<span class="help-inline"><form:errors path="number" /></span>
 								</div>
 							</div>
 							<div class="control-group">
 								<div class="controls">
-									<button type="submit" onclick ="return projectOnclick();" class="btn btn-large btn-success">保存</button>&nbsp;&nbsp;
-									<button class="btn" type="reset" onclick="hiddenProjectAddForm()">取消</button>
+									<button type="submit" onclick="return patentOnclick();" class="btn btn-large btn-success">保存</button>
+									<button class="btn  btn-large" type="reset" onclick="hiddenPatentAddForm()">取消</button>
 								</div>
-							</div>
+							</div>	
 						</form>
-					</div>
-					<div id="projectButton" style="display: block">
-						<c:choose>
-							<c:when test="${projectCount>0}">
-								<table  class="table">
-									<thead><tr><th width="30%">项目名称</th><th width="30%">项目来源</th><th width="15%">开始时间</th><th width="15%">结束时间</th><th width="10%">操作</th></tr></thead>
-									<tbody>
-										<c:forEach items="${projectList}" var="project">
-											<tr>
-												<td align="left" >${project.title}</td>
-												<td align="left" >${project.source}</td>
-												<td align="left" >${project.startTime}</td>
-												<td align="left" >${project.endTime}</td>
-												<td >
-													<a href='<c:url value="/admin/teacher/project/destory/${project.id}"></c:url>'>删除</a>
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</c:when>
-							<c:otherwise><span style="font-size: 13px;">尚未添加内容<br><br></span></c:otherwise>
-						</c:choose>
-						<button onclick="showProjectAddForm()">添加</button>
-					</div>
 				</div>
+				<div id="patentButton" style="display: block">
+					<c:choose>
+						<c:when test="${patentCount>0 }">
+							<table class="table">
+								<thead>
+									<tr><th width="23%">发明人</th><th width="23%">专利名称</th><th width="22%">专利类型</th><th width="22%">专利申请号</th><th width="10%">操作</th></tr>
+								</thead>
+								<tbody>
+								<c:forEach items="${patentList}" var="patent">
+									<tr>
+										<td align="center">${patent.inventer}</td>
+										<td align="center">${patent.name}</td>
+										<td align="center">${patent.type}</td>
+										<td align="center">${patent.number}</td>
+										<td >
+											<a href='<c:url value="/admin/teacher/patent/destory/${patent.id}"></c:url>'>删除</a>
+										</td>
+									</tr>
+								</c:forEach>
+							    </tbody>
+							</table>
+						</c:when>
+						<c:otherwise><span style="font-size: 13px;">尚未添加内容<br><br></span></c:otherwise>
+					</c:choose>
+					<button onclick="showPatentAddForm()">添加</button>
+				</div>
+			</div>
+		</div>
+		
+		<!-- honor -->
+		<div class="tab-pane <c:if test='${active == "honor"}'>active</c:if>" id="honor_tab">
+			<div id="honor" style="display: block">
+				<div id="honorForm" style="display: none;">
+					<form action="honor/new" method="post"  id="honor_info_Form"  class="form-horizontal">
+						<div class="control-group" id="honorName">
+							<label class="control-label" for="honorName">奖励或荣誉</label>
+							<div class="controls">
+								<input type="text"  name="honorName" placeholder="奖励或荣誉" >
+								<span class="help-inline"><form:errors path="honorName" /></span>
+							</div>
+						</div>
+						<div class="control-group" id="reason">
+							<label class="control-label" for="reason">获奖原因</label>
+							<div class="controls">
+								<input type="text"  name="reason" placeholder="获奖原因" >
+								<span class="help-inline"><form:errors path="reason" /></span>
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit"  onclick="return honorOnclick();" class="btn btn-large btn-success">保存</button>
+								<button class="btn  btn-large" type="reset" onclick="hiddenHonorAddForm()">取消</button>
+							</div>
+						</div>	
+					</form>
+				</div>
+				<div id="honorButton" style="display: block">
+					<c:choose>
+						<c:when test="${honorCount >0}">
+							<table class="table ">
+								<thead><tr><th align="center" width="30%">奖励或荣誉</th><th align="center" width="60%">获奖原因</th><th width="10%">操作</th></tr></thead>
+								<tbody>
+									<c:forEach items="${honorList}" var="honor">
+										<tr>
+											<td align="center">${honor.name}</td>
+											<td align="center">${honor.reason}</td>
+											<td>
+												<a href='<c:url value="/admin/teacher/honor/destory/${honor.id}"></c:url>'>删除</a></li>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</c:when>
+						<c:otherwise><span style="font-size: 13px;">尚未添加内容<br><br></span></c:otherwise>
+					</c:choose>
+					<button onclick="showHonorAddForm()">添加</button>
+				</div>
+			</div>
 		</div>
 		
 	</div>

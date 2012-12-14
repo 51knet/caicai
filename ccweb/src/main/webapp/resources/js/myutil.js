@@ -63,10 +63,6 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	function hiddenProjectAddForm() {
 		var projectForm = document.getElementById("projectForm");
 		var projectButton = document.getElementById("projectButton");
-		var titleMsg = document.getElementById("titleMsg");
-		var sourceMsg = document.getElementById("sourceMsg");
-		titleMsg.innerHTML="";
-		sourceMsg.innerHTML="";
 		projectForm.style.display = "none";
 		projectButton.style.display = "block";
 	}

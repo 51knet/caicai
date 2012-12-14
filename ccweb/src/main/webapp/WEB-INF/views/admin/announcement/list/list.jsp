@@ -15,6 +15,21 @@ $(document).ready(function() {
 	checkAjax("anno_information","annoInfoAJAX");
 });
 </script>
+<style>
+	.row-fluid.custom {
+	margin-bottom: 20px;
+	padding: 0px 0px 10px;
+	
+}
+.round {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+.row-fluid.custom .row {
+	margin: 0px 5px;
+}
+</style>
 
 
 <div class="row-fluid custom round">

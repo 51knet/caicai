@@ -406,9 +406,9 @@ public class TeacherController {
 			Teacher teacher= teacherService.findOne(id);
 			TeacherPatent patent = new TeacherPatent();
 			patent.setInventer(patentDetailForm.getInventer());
-			patent.setName(patentDetailForm.getName());
+			patent.setName(patentDetailForm.getPatentName());
 			patent.setNumber(patentDetailForm.getNumber());
-			patent.setType(patentDetailForm.getType());
+			patent.setType(patentDetailForm.getPatentType());
 			patentService.save(patent, teacher);
 			return "redirect:/admin/teacher/resume?active=patent";
 		}

@@ -3,6 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<style>
+	.row-fluid.custom {
+	margin-bottom: 20px;
+	padding: 0px 0px 10px;
+	
+}
+.round {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+.row-fluid.custom .row {
+	margin: 0px 5px;
+}
+</style>
 <div class="row-fluid custom round">
 	<div class="row" style="margin-top: 10px;">
 		<a href='<c:url value="/admin/teacher/resource/list"></c:url>'><b>资源管理</b></a>>>类别管理<hr>

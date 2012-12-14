@@ -6,9 +6,9 @@ public class TeacherPatentDetailInfoForm {
 	@NotEmpty
 	private String inventer;
 	@NotEmpty
-	private String name;
+	private String patentName;
 	@NotEmpty
-	private String type;
+	private String patentType;
 	@NotEmpty
 	private String number;
 	public String getInventer() {
@@ -17,23 +17,27 @@ public class TeacherPatentDetailInfoForm {
 	public void setInventer(String inventer) {
 		this.inventer = inventer;
 	}
-	public String getName() {
-		return name;
+	
+	public String getPatentName() {
+		return patentName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setPatentName(String patentName) {
+		this.patentName = patentName;
 	}
-	public String getType() {
-		return type;
+	public String getPatentType() {
+		return patentType;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setPatentType(String patentType) {
+		this.patentType = patentType;
 	}
 	public String getNumber() {
 		return number;
 	}
 	public void setNumber(String number) {
 		this.number = number;
+	}
+	public TeacherPatentDetailInfoForm() {
+		super();
 	}
 	
 	
