@@ -99,18 +99,30 @@ background: #F7F7F7;
   margin: 2px 2px;
 }
 
-
-.container.course{
-	width:1000px;
-	text-align: left;
+.container.teacher {
+  width: 1024px;
+  max-width:1024px; 
 }
 
-.container.course.detail{
-	width:990px;
-	height:110px;
+#myUniversity, #myTeacher {
+  margin-bottom: 0px;
 }
-
-
+.container.teacher .row {
+  margin-left: 0px;
+}
+.container.teacher .row .span1{
+  background-image: url(resources/img/avatar/avatar40.png );
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80px;
+  -webkit-box-shadow: #999 0px 1px 2px 0px;
+  box-shadow: #999 0px 1px 2px 0px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #EEE;
+  margin: 2px 2px;
+  margin-right: 18px;
+}
 </style>
 
 <script type="text/javascript">
@@ -124,46 +136,6 @@ background: #F7F7F7;
 }(window.jQuery);
 
 
-function DrawImage(ImgD){ 
-	flag = false;	
-	var image=new Image(); 
-	image.src=ImgD.src; 
-	if(image.width>0 && image.height>0){ 
-	  flag=true; 
-	  if(image.width/image.height>= 220/90){ 
-	   if(image.width>220){
-	    ImgD.width=220; 
-	    ImgD.height=(image.height*90)/image.width; 
-	   }else{ 
-	    ImgD.width=image.width;
-	    ImgD.height=image.height; 
-	   } 
-	   /*ImgD.alt="bigpic"  */
-	  } 
-	  else{ 
-	   if(image.height>90){
-	    ImgD.height=90; 
-	    ImgD.width=(image.width*90)/image.height; 
-	   }else{ 
-	    ImgD.width=image.width;
-	    ImgD.height=image.height; 
-	   } 
-	    /*ImgD.alt="bigpic"  */ 
-	  } 
-	}
-}
-
-function selectType(){
-	var sel = document.getElementById("type");
-	var opt = sel.options;
-	for(var i=0;i<opt.length;i++){
-		if(opt[i].selected){
-			var typeName = opt[i].innerHTML;
-			//alert(typeName);
-			window.location.href='<c:url value="/course/list/type?detail='+typeName+'"></c:url>';
-		}
-	}
-}
 </script>
 <div class="navbar">
 	<div class="navbar-inner">    
@@ -215,45 +187,14 @@ function selectType(){
  
      	
 
-
-
-
-<div class="container course" style="margin-bottom: 20px; ">
-	<div class="container course detail"  style="background-color: #efefef; height: 40px;">
-		<div style="padding: 5px;">
-			<select  id="type" onchange="selectType()">
-				<option>全部课程</option>
-				<c:forEach items="${courseTypeList}"  var="course">
-					<c:choose>
-						<c:when test="${courseType == course}">
-							<option selected>${course}</option>
-						</c:when>
-						<c:otherwise>
-							<option value="">${course}</option>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-			</select>
-		</div>
-	</div>
-    <h2>课程数（${courseCount }）</h2>
- 
-	  <div  style="text-align: center;">
-		<c:forEach items="${courseList}" var="course">
-			<div class="container course detail" style=" margin-bottom: 15px; border:0px solid #cccccc;">
-				<table class="table table-bordered" style="width: 100%;height: 100%;" cellpadding="5">
-					<tr>
-						<td valign="bottom" width="20%" background='<c:url value="http://localhost:8080/${course.courseCover }"></c:url>'>
-							<div style="width:100%; height: 100%; vertical-align: bottom;"></div>
-							<!-- <img src='<c:url value="http://localhost:8080/${course.courseCover }"></c:url>'  width="200px" height="90px"  /> -->
-						</td>
-						<td > 课程名称：${course.courseName}<br>课程描述：${course.courseDesc }<br><br><a href="#">点击查看详细</a></td>
-						<td width="25%">教师名称：${course.teacher.user.name }</td>
-					</tr>
-				</table>
-			</div>
-		</c:forEach>
-	  </div>
+<div class="container teacher">
+	<h2>热门教师（Top 50）</h2>
+   	<div class="row">
+      	<c:forEach items="${page.content}" var="t" >
+	      	<div class="span1" ><a href="http://localhost:8080/ccweb/teacher/${t.id}">${t.user.name }</a></div>
+      	</c:forEach>      	
+	 </div>
+	 <div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 </div>
 
 

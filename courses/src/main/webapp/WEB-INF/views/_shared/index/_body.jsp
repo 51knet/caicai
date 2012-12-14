@@ -254,7 +254,7 @@ background: #F7F7F7;
   </div>
    <div class="row" >
   	<div style="margin-right: 35px;padding: 5px 5px;background: #F7F7F7;text-align: center;">
-  		<a href='<c:url value="/course/list"></c:url>' >全部教师</a>
+  		<a href='<c:url value="/course/teacher/list"></c:url>' >全部教师</a>
   	</div>
   
   </div>
