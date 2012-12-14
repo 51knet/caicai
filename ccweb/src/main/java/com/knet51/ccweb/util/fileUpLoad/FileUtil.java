@@ -1,4 +1,8 @@
 package com.knet51.ccweb.util.fileUpLoad;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -7,11 +11,14 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Date;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class FileUtil {
+	private static final int WIDTH = 200;
+	private static final int HEIGHT = 90;
 	public static String saveFile(InputStream inputStream,String fileOriginalName,String realPath) throws Exception{
 		
 		String fileName = new Date().getTime()+fileOriginalName;
@@ -41,6 +48,27 @@ public class FileUtil {
 	public static String getSavePath(String saveFileName,Long user_id,String type,HttpServletRequest request){
 		String savePath = request.getContextPath()+"/resources/attached/"+user_id+"/"+saveFileName+"/"+type;
 		return savePath;
+	}
+	
+	public static void getPreviewImage(File sourceImage,File destImage,String format) throws Exception{
+		BufferedImage simage = ImageIO.read(sourceImage);
+		int x = simage.getWidth();
+		int y = simage.getHeight();
+		int x1 = WIDTH;
+		int y1 = HEIGHT;
+		if (WIDTH*y<HEIGHT*x) {
+			y1 = WIDTH*y/x;
+		}
+		if (WIDTH*y>HEIGHT*x) {
+			x1=HEIGHT*x/y;
+		}
+		BufferedImage newimage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.SCALE_SMOOTH);
+		Graphics2D  g = newimage.createGraphics();
+		g.setColor(new Color(255, 255, 255));
+		g.fillRect(0, 0, WIDTH, HEIGHT);
+		Image  image = simage.getScaledInstance(x1, y1, BufferedImage.SCALE_SMOOTH);
+		g.drawImage(image, (WIDTH-x1)/2, (HEIGHT-y1)/2, null);
+		ImageIO.write(newimage, format, destImage);
 	}
 	
 	public static void downLoad(HttpServletRequest request,HttpServletResponse response,String savePath,String fileName) throws Exception{

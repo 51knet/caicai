@@ -64,7 +64,7 @@ public class TeacherResouDetailInfoController {
 				resource.setName(name);
 				
 				ResourceType resourceType = resourceTypeService.findOneById(value); 
-				String realPath = FileUtil.getPath("upload", userInfo.getId(), resourceType.getTypeName(), session);
+				String realPath = FileUtil.getPath("upload", userInfo.getId(), resourceType.getTypeName(),session);
 				resource.setResourceType(resourceType);
 				resource.setStatus(1);
 				

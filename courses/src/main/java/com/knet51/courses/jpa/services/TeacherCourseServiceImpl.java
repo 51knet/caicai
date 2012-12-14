@@ -105,7 +105,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 
 	@Override
 	public List<String> courseTypeList() {
-		return null;
+		return courseRepository.getCourseType();
 	}
 
 }

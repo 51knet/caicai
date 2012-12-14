@@ -557,16 +557,14 @@ function editEdu(id){
 		  type: "post",
 		  url: "<c:url value='/admin/teacher/eduInfo/edit/ajax' />",
 		  data: "eduId="+id,
-		  dataType:"text",
+		  dataType:"json",
 		  success:function(msg){
-			  	//alert(msg);
-				eval("var eduInfo="+msg);
-				document.edu.eduId.value = eduInfo.id;
-			  	document.edu.schoolName.value=eduInfo.school;
-			  	document.edu.collegeName.value=eduInfo.college;
-			  	document.edu.degree.value=eduInfo.degree;
-			  	document.edu.startTime.value=eduInfo.startTime;
-			  	document.edu.endTime.value=eduInfo.endTime;
+				document.edu.eduId.value = msg.id;
+			  	document.edu.schoolName.value=msg.school;
+			  	document.edu.collegeName.value=msg.college;
+			  	document.edu.degree.value=msg.degree;
+			  	document.edu.startTime.value=msg.startTime;
+			  	document.edu.endTime.value=msg.endTime;
 		  }
 	});
 };
@@ -579,15 +577,14 @@ function editWork(id){
 		  type: "post",
 		  url: "<c:url value='/admin/teacher/workInfo/edit/ajax' />",
 		  data: "workId="+id,
-		  dataType:"text",
+		  dataType:"json",
 		  success:function(msg){
-				eval("var workInfo="+msg);
-				document.work.workId.value = workInfo.id;
-			  	document.work.company.value=workInfo.company;
-			  	document.work.department.value=workInfo.department;
-			  	document.work.position.value=workInfo.position;
-			  	document.work.startTimeName.value=workInfo.startTime;
-			  	document.work.endTimeName.value=workInfo.endTime;
+				document.work.workId.value = msg.id;
+			  	document.work.company.value=msg.company;
+			  	document.work.department.value=msg.department;
+			  	document.work.position.value=msg.position;
+			  	document.work.startTimeName.value=msg.startTime;
+			  	document.work.endTimeName.value=msg.endTime;
 		  }
 	});
 };

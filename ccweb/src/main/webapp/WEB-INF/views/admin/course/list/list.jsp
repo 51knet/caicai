@@ -56,7 +56,7 @@ function showUrl(url){
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
-						<td align="left"><img src="${page.courseCover }" width="50" height="20"  /></td>
+						<td align="left"><img src="${page.courseCover }" width="80" height="20"  /></td>
 						<td align="left"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></td>
 						<td align="left">${page.courseType}</td>
 						<td align="left">${page.courseDesc}</td>

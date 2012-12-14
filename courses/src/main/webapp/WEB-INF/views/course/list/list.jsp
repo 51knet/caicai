@@ -244,37 +244,34 @@ function selectType(){
 		<div style="padding: 5px;">
 			<select  id="type" onchange="selectType()">
 				<option>全部课程</option>
-					<c:forEach items="${courseTypeList}"  var="course">
-						<c:choose>
-							<c:when test="${courseType == course}">
-								<option selected>${course}</option>
-							</c:when>
-							<c:otherwise>
-								<option value="">${course}</option>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
+				<c:forEach items="${courseTypeList}"  var="course">
+					<c:choose>
+						<c:when test="${courseType == course}">
+							<option selected>${course}</option>
+						</c:when>
+						<c:otherwise>
+							<option value="">${course}</option>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
 			</select>
 		</div>
 	</div>
     <h2>课程数（${courseCount }）</h2>
  
-  <div  style="text-align: center;">
- 
-  		<c:forEach items="${courseList}" var="course">
-  			<div class="container course detail" style=" margin-bottom: 15px; border:0px solid #cccccc;">
-  				<table class="table table-bordered" style="width: 100%;height: 100%;" cellpadding="5">
-  					<tr>
-  						<td width="25%"><img src="http://localhost:8080/${course.courseCover }" onload="DrawImage(this);" width="220" height="90"  /></td>
-  						<td > 课程名称：${course.courseName}<br><br>课程描述：${course.courseDesc }<br>${course.courseCover }</td>
-  						<td width="25%">教师名称：${course.teacher.user.name }</td>
-  					</tr>
-  				</table>
-  			</div>
-  		</c:forEach>
-  
-  </div>
-
+	  <div  style="text-align: center;">
+		<c:forEach items="${courseList}" var="course">
+			<div class="container course detail" style=" margin-bottom: 15px; border:0px solid #cccccc;">
+				<table class="table table-bordered" style="width: 100%;height: 100%;" cellpadding="5">
+					<tr>
+						<td width="25%"><img src='<c:url value="http://localhost:8080/${course.courseCover }"></c:url>'  width="200px" height="90px"  /></td>
+						<td > 课程名称：${course.courseName}<br><br>课程描述：${course.courseDesc }<br>${course.courseCover }</td>
+						<td width="25%">教师名称：${course.teacher.user.name }</td>
+					</tr>
+				</table>
+			</div>
+		</c:forEach>
+	  </div>
 </div>
 
 

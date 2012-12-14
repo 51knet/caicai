@@ -39,6 +39,7 @@ public class CourseController {
 		//logger.info("++++++++++++++"+courseType);
 		List<TeacherCourse> courseList = courseService.findAllCourses();
 		List<String> courseTypeList = courseService.courseTypeList();
+	
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
 		if(courseType.trim() !=null && !courseType.trim().equals("全部课程") && !courseType.trim().equals("all") ){
 			for(TeacherCourse c :courseList){

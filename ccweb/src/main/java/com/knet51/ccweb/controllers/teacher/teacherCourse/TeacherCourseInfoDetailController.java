@@ -1,4 +1,5 @@
 package com.knet51.ccweb.controllers.teacher.teacherCourse;
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -77,10 +78,15 @@ public class TeacherCourseInfoDetailController {
 			for(int i=0;i<files.size();i++){
 				if(!files.get(i).isEmpty()){
 					logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
+					
 					String fileName = files.get(i).getOriginalFilename();
-					String realPath = FileUtil.getPath("course", userInfo.getId(), courseName, session);
+					String fileType = fileName.substring(fileName.lastIndexOf("."));
+					String realPath = FileUtil.getPath("course", userInfo.getId(), courseName,  session);
+					logger.info("+++++++++++++"+realPath);
+					String previewFile = FileUtil.getPath("course", userInfo.getId(), courseName,  session)+"/small"+fileType;
 					String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
-					String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+"/"+saveName;
+					FileUtil.getPreviewImage(new File(realPath+"/"+saveName), new File(previewFile), fileType.substring(1));
+					String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+"/"+"small"+fileType;
 					//String savePath = request.getContextPath()+"/course/"+userInfo.getId()+"/"+courseName+"/"+saveName;
 					course.setCourseCover(savePath);
 				}
