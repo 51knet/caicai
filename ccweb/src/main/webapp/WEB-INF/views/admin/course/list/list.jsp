@@ -35,7 +35,7 @@ function showUrl(url){
 }
 </style>
 <div class="row-fluid custom round">
-	<div class="row" style="margin-top: 10px;">
+	<div class="row" style="margin-top:10px;">
 		<a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>课程管理</b></a><hr>
 		<div style="text-align: right;">
 			<!-- 	<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"

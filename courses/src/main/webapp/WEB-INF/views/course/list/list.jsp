@@ -110,7 +110,7 @@ background: #F7F7F7;
 
 .container.course.detail{
 	width:990px;
-	height:100px;
+	height:110px;
 }
 
 #myUniversity, #myTeacher {
@@ -264,8 +264,11 @@ function selectType(){
 			<div class="container course detail" style=" margin-bottom: 15px; border:0px solid #cccccc;">
 				<table class="table table-bordered" style="width: 100%;height: 100%;" cellpadding="5">
 					<tr>
-						<td width="25%"><img src='<c:url value="http://localhost:8080/${course.courseCover }"></c:url>'  width="200px" height="90px"  /></td>
-						<td > 课程名称：${course.courseName}<br><br>课程描述：${course.courseDesc }<br>${course.courseCover }</td>
+						<td valign="bottom" width="20%" background='<c:url value="http://localhost:8080/${course.courseCover }"></c:url>'>
+							<div style="width:100%; height: 100%; vertical-align: bottom;"></div>
+							<!-- <img src='<c:url value="http://localhost:8080/${course.courseCover }"></c:url>'  width="200px" height="90px"  /> -->
+						</td>
+						<td > 课程名称：${course.courseName}<br>课程描述：${course.courseDesc }<br><br><a href="#">点击查看详细</a></td>
 						<td width="25%">教师名称：${course.teacher.user.name }</td>
 					</tr>
 				</table>

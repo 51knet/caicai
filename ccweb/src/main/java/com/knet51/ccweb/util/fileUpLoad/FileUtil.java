@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 
 public class FileUtil {
 	private static final int WIDTH = 200;
-	private static final int HEIGHT = 90;
+	private static final int HEIGHT = 110;
 	public static String saveFile(InputStream inputStream,String fileOriginalName,String realPath) throws Exception{
 		
 		String fileName = new Date().getTime()+fileOriginalName;

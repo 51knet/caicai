@@ -82,7 +82,7 @@ public class TeacherCourseInfoDetailController {
 					String fileName = files.get(i).getOriginalFilename();
 					String fileType = fileName.substring(fileName.lastIndexOf("."));
 					String realPath = FileUtil.getPath("course", userInfo.getId(), courseName,  session);
-					logger.info("+++++++++++++"+realPath);
+					//logger.info("+++++++++++++"+realPath);
 					String previewFile = FileUtil.getPath("course", userInfo.getId(), courseName,  session)+"/small"+fileType;
 					String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
 					FileUtil.getPreviewImage(new File(realPath+"/"+saveName), new File(previewFile), fileType.substring(1));

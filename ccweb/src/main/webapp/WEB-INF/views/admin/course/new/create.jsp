@@ -44,7 +44,7 @@ function checkPicture(obj){
 				<div style="width:560px; text-align:left;" >
 					<form:form action="create" method="post" enctype="multipart/form-data" id="course_info_form" onsubmit="return checkPicture(this)">  
 						<div class="modal-body">
-							上传封面：<input type="file" name="coverFile"  />&nbsp;&nbsp;<span style="color:red;font-size:14px;">只支持jpg、gif、bmp格式</span>
+							上传封面：<input type="file" name="coverFile"  style="margin-bottom: 10px;"/><br><span style="color:red;font-size:14px;">只支持jpg、gif、bmp格式,建议封面宽度200px,高度100px</span>
 						</div>
 					
 						<div class="modal-body" id="courseName">
