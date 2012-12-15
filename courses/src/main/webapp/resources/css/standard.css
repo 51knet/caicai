@@ -1,0 +1,53 @@
+/*footer*/
+.footer-text {
+	text-align: center;
+}
+
+/*fonts*/
+body {
+	color:#555;
+	font-family:Arial,/*'Microsoft YaHei',*/Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
+	font-size:14px;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight:bold;
+	letter-spacing:-0.05em;
+	font-family:'Microsoft YaHei',Arial;
+}
+.navbar .nav a {
+	font-family:'Microsoft YaHei',Arial;
+}
+textarea {
+	border:1px solid #A6A6A6;
+	padding:2px 1px;
+	font-size:12px;
+	font-family:'Microsoft YaHei',Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
+}
+
+#content{
+	overflow: hidden; 
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.navbar-inner.custom {
+	height: 45px;
+	z-index: 2;
+	background: #4E4E4E url(resources/img/topbar/noise.png);
+	background: url(resources/img/topbar/noise.png), -moz-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(resources/img/topbar/noise.png), -webkit-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(resources/img/topbar/noise.png), -o-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(resources/img/topbar/noise.png), -ms-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(resources/img/topbar/noise.png), linear-gradient(#4E4E4E, #1C1C1C);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.45);
+}
+.navbar.custom {
+	height: 45px;
+	z-index: 2;
+	background: #4E4E4E url(resources/img/topbar/noise.png);
+	background: url(resources/img/topbar/noise.png), -moz-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(resources/img/topbar/noise.png), -webkit-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(resources/img/topbar/noise.png), -o-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(resources/img/topbar/noise.png), -ms-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(resources/img/topbar/noise.png), linear-gradient(#4E4E4E, #1C1C1C);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.45);
+}
