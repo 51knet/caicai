@@ -18,6 +18,7 @@
 	
 	<definition name="course.list" extends="index-layout">
 		<put-attribute name="title" value="课程列表" />
+		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/course/list/list.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
@@ -27,5 +28,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/teacher/list/list.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
-
+	<definition name="teacherCourse.course.view" extends="admin-layout">
+		<put-attribute name="title" value="教学课程资料" />
+		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/course/view/view.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

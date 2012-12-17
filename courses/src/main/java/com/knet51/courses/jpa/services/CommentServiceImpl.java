@@ -1,7 +1,4 @@
 package com.knet51.courses.jpa.services;
-
-
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +46,16 @@ public class CommentServiceImpl implements CommentService {
 	public Comment getComment(Long teacherCourseId, Long userId) {
 		Comment comment=commitRepository.getComment(teacherCourseId, userId);
 		return comment;
+	}
+	@Override
+	public int getCommentByTeacherCourseIdAndUserId(Long teacherCourseId,
+			Long userId) {
+		int num=commitRepository.getCommentByTeacherCourseIdAndUserId(teacherCourseId, userId);
+		return num;
+	}
+	@Override
+	public List<Comment> getAllCourse(Long teacherCourseId) {
+		List<Comment> list=commitRepository.getAllCourse(teacherCourseId);
+		return list;
 	}
 }

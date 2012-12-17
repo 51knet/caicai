@@ -41,5 +41,25 @@ public class CommentRepositoryImpl implements
 		return comment;
 	}
 
+	@Override
+	@SuppressWarnings("unchecked")
+	public int getCommentByTeacherCourseIdAndUserId(Long teacherCourseId,
+			Long userId) {
+		int num=1;
+		List<Comment> list=em.createQuery("select t from Comment t where t.teachercourseid="+teacherCourseId +" and t.userid="+userId).getResultList();
+		if(list.size()==0){
+			num=0;
+			return num;
+		}
+		return num;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Comment> getAllCourse(Long teacherCourseId) {
+		List<Comment> list=em.createQuery("select t from Comment t where t.teachercourseid="+teacherCourseId ).getResultList();
+		return list;
+	}
+
 
 }

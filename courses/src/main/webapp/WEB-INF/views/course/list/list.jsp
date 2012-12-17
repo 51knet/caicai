@@ -248,7 +248,7 @@ function selectType(){
 							<!-- <img src='<c:url value="http://localhost:8080/${course.courseCover }"></c:url>'  width="200px" height="90px"  /> -->
 						</td>
 						<td > 课程名称：${course.courseName}<br>课程描述：${course.courseDesc }<br><br>
-						<a href="<c:url value="/admin/teacherCourse/course/view/${course.id}"></c:url>">点击查看详细</a>
+						<a href="<c:url value="/teacherCourse/course/view/${course.id}"></c:url>">点击查看详细</a>
 						</td>
 						<td width="25%">教师名称：${course.teacher.user.name }</td>
 					</tr>

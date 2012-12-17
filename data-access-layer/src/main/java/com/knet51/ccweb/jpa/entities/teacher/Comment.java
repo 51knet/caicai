@@ -1,6 +1,5 @@
 package com.knet51.ccweb.jpa.entities.teacher;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -11,11 +10,9 @@ import com.knet51.ccweb.jpa.entities.User;
 @Table(name="comment")
 public class Comment extends AbstractEntity {
 	private Long mark;
-	@Column(length=1000)
 	private String commentDesc;
 	private String commentDate;
 	private String commentTitle;
-
 	private Long userid;
 	private Long teachercourseid;
 	@ManyToOne
@@ -62,7 +59,9 @@ public class Comment extends AbstractEntity {
 	public void setCommentTitle(String commentTitle) {
 		this.commentTitle = commentTitle;
 	}
-	
+	public Comment(){
+		super();
+	}
 	
 	
 	

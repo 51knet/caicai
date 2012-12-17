@@ -18,4 +18,11 @@ public class TeacherCourseResourceRepositoryImpl implements TeacherCourseResourc
 		return list;
 	}
 
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<CourseResource> getResourceByResourceOrder(String resourceOrder) {
+		List<CourseResource> list = em.createQuery("from CourseResource where resourceOrder="+resourceOrder).getResultList();
+		return list;
+	}
+
 }

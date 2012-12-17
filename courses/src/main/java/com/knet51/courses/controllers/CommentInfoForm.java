@@ -1,31 +1,29 @@
-package com.knet51.courses.controllers.teacherCourse;
+package com.knet51.courses.controllers;
 import org.hibernate.validator.constraints.NotEmpty;
 public class CommentInfoForm {
-	@NotEmpty
 	private Long mark;
 	@NotEmpty
 	private String commentDesc;
-	@NotEmpty
 	private String commentDate;
 	@NotEmpty
 	private String commentTitle;
-	@NotEmpty
+
 	private Long teachercourseid;
-	@NotEmpty
+	/*@NotEmpty
 	private Long userId;
-	
+	*/
 	public Long getTeachercourseid() {
 		return teachercourseid;
 	}
 	public void setTeachercourseid(Long teachercourseid) {
 		this.teachercourseid = teachercourseid;
 	}
-	public Long getUserId() {
+	/*public Long getUserId() {
 		return userId;
 	}
 	public void setUserId(Long userId) {
 		this.userId = userId;
-	}
+	}*/
 	public Long getMark() {
 		return mark;
 	}

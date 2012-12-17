@@ -88,7 +88,7 @@
 	   <url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<!-- <filter>
+	<filter>
 		<display-name>AuthorizationListener</display-name>
 		<filter-name>AuthorizationListener</filter-name>
 		<filter-class>com.knet51.courses.util.AuthorizationListener</filter-class>
@@ -96,5 +96,5 @@
 	<filter-mapping>
 		<filter-name>AuthorizationListener</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
+	</filter-mapping>
 </web-app>
