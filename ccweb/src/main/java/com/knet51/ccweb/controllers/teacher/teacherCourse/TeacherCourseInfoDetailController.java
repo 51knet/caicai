@@ -81,11 +81,13 @@ public class TeacherCourseInfoDetailController {
 					
 					String fileName = files.get(i).getOriginalFilename();
 					String fileType = fileName.substring(fileName.lastIndexOf("."));
-					String realPath = FileUtil.getPath("course", userInfo.getId(), courseName,  session);
+					//String realPath = FileUtil.getPath("course", userInfo.getId(), courseName,  session);
+					String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+courseName;
+					FileUtil.createRealPath(path, session);
 					//logger.info("+++++++++++++"+realPath);
-					String previewFile = FileUtil.getPath("course", userInfo.getId(), courseName,  session)+"/small"+fileType;
-					String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
-					FileUtil.getPreviewImage(new File(realPath+"/"+saveName), new File(previewFile), fileType.substring(1));
+					String previewFile = path+"/small"+fileType;
+					String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
+					FileUtil.getPreviewImage(new File(path+"/"+saveName), new File(previewFile), fileType.substring(1));
 					String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+"/"+"small"+fileType;
 					//String savePath = request.getContextPath()+"/course/"+userInfo.getId()+"/"+courseName+"/"+saveName;
 					course.setCourseCover(savePath);
@@ -159,9 +161,11 @@ public class TeacherCourseInfoDetailController {
 				resource.setDate(date);
 				
 				TeacherCourse teacherCourse = courseService.findOneById(course_id);
-				String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
-				String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
-				String savePath = realPath+"\\"+saveName;
+				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
+				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+resourceOrder;
+				FileUtil.createRealPath(path, session);
+				String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
+				String savePath = path+"\\"+saveName;
 				resource.setSavePath(savePath);
 				resource.setSaveName(saveName);
 				resource.setResourceDesc(resourceDesc);

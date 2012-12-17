@@ -18,10 +18,10 @@ import javax.servlet.http.HttpSession;
 
 public class FileUtil {
 	private static final int WIDTH = 200;
-	private static final int HEIGHT = 110;
+	private static final int HEIGHT = 100;
 	public static String saveFile(InputStream inputStream,String fileOriginalName,String realPath) throws Exception{
 		
-		String fileName = new Date().getTime()+fileOriginalName;
+		String fileName = fileOriginalName;
 		//System.out.println(fileName);
 		//String savePath = realPath+"\\"+fileName;
 		FileOutputStream outputStream = new FileOutputStream(realPath+"\\"+fileName);
@@ -36,8 +36,16 @@ public class FileUtil {
 		return fileName;
 	}
 	
-	public static String getPath(String saveFileName,Long user_id,String type,HttpSession session){
-		String realPath = session.getServletContext().getRealPath("/")+"/resources/attached/"+user_id+"/"+saveFileName+"/"+type;
+	public static void createRealPath(String realPath,HttpSession session){
+		//String realPath = session.getServletContext().getRealPath("/")+"/resources/attached/"+user_id+"/"+saveFileName+"/"+type;
+		File f = new File(realPath);
+		if(!f.exists()) {
+			 f.mkdirs();
+	    }
+	}
+	
+	public static String getCoursePath(String saveFileName,Long user_id,String type,String lessonNum,HttpSession session){
+		String realPath = session.getServletContext().getRealPath("/")+"/resources/attached/"+user_id+"/"+saveFileName+"/"+type+"/"+lessonNum;
 		File f = new File(realPath);
 		if(!f.exists()) {
 			 f.mkdirs();
@@ -46,7 +54,7 @@ public class FileUtil {
 	}
 	
 	public static String getSavePath(String saveFileName,Long user_id,String type,HttpServletRequest request){
-		String savePath = request.getContextPath()+"/resources/attached/"+user_id+"/"+saveFileName+"/"+type;
+		String savePath = "/resources/attached/"+user_id+"/"+saveFileName+"/"+type;
 		return savePath;
 	}
 	
