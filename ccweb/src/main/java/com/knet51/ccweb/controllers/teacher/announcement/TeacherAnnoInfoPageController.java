@@ -70,7 +70,7 @@ public class TeacherAnnoInfoPageController {
 	
 	/* teacher front page */
 	@RequestMapping(value="/teacher/{teacher_id}/announcement/list")
-	public String detainAnno(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	public String annoList(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		
 		User user = userService.findOne(teacher_id);
@@ -83,6 +83,21 @@ public class TeacherAnnoInfoPageController {
 		Page<Announcement> page = annoService.findAllAnnoById(pageNumber, pageSize, user);
 		model.addAttribute("page", page);
 		return "teacher.announcement.list";
+	}
+	
+	@RequestMapping(value="/teacher/{teacher_id}/announcement/view/{anno_id}")
+	public String detailAnno(@PathVariable Long teacher_id,@PathVariable Long anno_id ,Model model){
+		
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
+		Announcement announcement = annoService.findOneById(anno_id);
+		model.addAttribute("announcement", announcement);
+		return "teacher.announcement.detail";
 	}
 	
 

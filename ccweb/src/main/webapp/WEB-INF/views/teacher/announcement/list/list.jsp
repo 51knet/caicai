@@ -3,20 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<script type="text/javascript">
-<!--
-
-//-->
-
-	function showAnnoForm(){
-		var annoForm = document.getElementById("annoForm");
-		annoForm.style.display="block";
-	}
-	function hidAnnoForm(){
-		var annoForm = document.getElementById("annoForm");
-		annoForm.style.display="none";
-	}
-</script>
 
 <style>
 .row-fluid.custom {

@@ -159,6 +159,8 @@ public class HomeController {
 				String anno = announcement.getContent();
 				model.addAttribute("annoContent", anno);
 			}
+			
+			model.addAttribute("annoId", announcement.getId());
 			int followValue = friendsRelateService.getFollowById(id,
 					users.getId());
 
