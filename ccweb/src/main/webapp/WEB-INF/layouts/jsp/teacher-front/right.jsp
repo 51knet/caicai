@@ -25,7 +25,9 @@
 		<!--  <div id="content" style="width:750px;">
 		</div> -->
 		<c:choose>
-			<c:when test="${annoContent != null && annoContent != ''}">${annoContent}</c:when>
+			<c:when test="${annoContent != null && annoContent != ''}">
+				<a href="<c:url value="/teacher/${teacherInfo.id}/announcement/view/${annoId}"></c:url>">${annoContent}</a>
+			</c:when>	
 			<c:otherwise>无公告</c:otherwise>
 		</c:choose>
 		
@@ -52,7 +54,7 @@
 						<tbody>
 							<c:forEach var="resource" items="${resourceList}">
 								<tr>
-									<td><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${resource.id}"></c:url>"> </a> ${resource.name }
+									<td><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${resource.id}"></c:url>"> ${resource.name } </a>
 									</td>
 									<td>
 										<c:choose>
@@ -131,8 +133,7 @@
 </div>
 
 
-
-<!-- teacherAchievement  -->
+<!-- teacherAchievement  
 <div class="row-fluid custom round">
 	<div class="row">
 		<h5>科研成果</h5>
@@ -150,7 +151,7 @@
 				<tbody>
 					<c:forEach var="thesis" items="${thesisList}">
 						<tr>
-							<td><!-- <a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a> --> 
+							<td>
 								${thesis.content }
 							</td>
 						</tr>
@@ -176,7 +177,7 @@
 					<c:forEach var="project" items="${projectList}">
 						<tr>
 							
-							<td  ><!-- <a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a> --> 
+							<td  >
 								${project.title}</td>
 							<td  >${project.source}</td>
 							<td  >${project.startTime}</td>
@@ -225,7 +226,7 @@
 				<tbody>
 					<c:forEach var="honor" items="${honorList}">
 						<tr>
-							<td><!-- <a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a> --> 
+							<td>
 								${honor.name }
 							</td>
 							<td>
@@ -243,6 +244,7 @@
 	</table>
 	</div>
 </div>
+-->
 	
 <div class="row-fluid custom round">
 	<div class="row">

@@ -64,7 +64,9 @@ public class TeacherResouDetailInfoController {
 				resource.setName(name);
 				
 				ResourceType resourceType = resourceTypeService.findOneById(value); 
-				String realPath = FileUtil.getPath("upload", userInfo.getId(), resourceType.getTypeName(),session);
+				//String realPath = FileUtil.getPath("upload", userInfo.getId(), resourceType.getTypeName(),session);
+				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/upload/"+resourceType.getTypeName();
+				FileUtil.createRealPath(path, session);
 				resource.setResourceType(resourceType);
 				resource.setStatus(1);
 				
@@ -72,9 +74,9 @@ public class TeacherResouDetailInfoController {
 				String date = format.format(new Date());
 				resource.setDate(date);
 				
-				String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, realPath);
+				String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
 				resource.setSaveName(saveName);
-				String savePath = realPath+"\\"+saveName;
+				String savePath = path+"\\"+saveName;
 				resource.setSavePath(savePath);
 				resourceService.create(resource, user);
 			}

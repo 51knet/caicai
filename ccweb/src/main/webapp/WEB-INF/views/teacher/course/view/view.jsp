@@ -25,11 +25,10 @@
 	</div>
 	<div class="row">
 		<table class="table ">
-			<thead><tr><th>课程标题</th><th>课程简述</th><th width=20%>发布时间</th></tr></thead>
 			<tbody>
-				<tr><td align="left">${course.courseName}</td>
-				<td align="center">${course.courseDesc}</td>
-				<td align="center">${course.courseDate}</td></tr>	
+				<tr><td align="left" width="12%">课程标题：</td><td align="left">${course.courseName}</td></tr>
+				<tr><td align="left">发布时间：</td><td align="left">${course.courseDate}</td></tr>
+				<tr><td align="left">课程概述：</td><td align="left">${course.courseDesc}</td></tr>	
 			</tbody>
 		</table>
 		<br>
@@ -37,24 +36,26 @@
 			<h5>课程资源</h5>
 		</div>
 			
-		<table class="table ">
-			<c:choose>
-				<c:when test="${resourceCount>0}">
-					
+		
+		<c:choose>
+			<c:when test="${resourceCount>0}">
+				<table class="table ">
+					<thead><tr><th>资源名称</th><th width="20%">课时</th><th width="30%">上传时间</th><th width="10%">下载</th></tr></thead>
 					<tbody>
-						<tr><td>资源名称</td><td>上传时间</td><td>下载</td></tr>
 						<c:forEach items="${resourceList}" var="resource">
 							<tr>
 								<td align="left">${resource.fileName}</td>
+								<td align="left">第${resource.resourceOrder}课</td>
 								<td align="center">${resource.date}</td>
 								<td align="center"><a href='<c:url value="/course/resource/download/${resource.id }"></c:url>'>下载</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
-				</c:when>
-				<c:otherwise><tr><td colspan="3">尚未添加资源！</td></tr></c:otherwise>
-			</c:choose>
-		</table>
+				</table>
+			</c:when>
+			<c:otherwise><tr><td colspan="3">尚未添加资源！</td></tr></c:otherwise>
+		</c:choose>
+		
 		
 	</div>
 

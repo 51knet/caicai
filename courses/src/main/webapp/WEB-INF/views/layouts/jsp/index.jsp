@@ -11,8 +11,12 @@
 	<tiles:insertAttribute name="top-navbar" />
 
 	<div class="container-fluid">
+		
 		<div class="row-fluid">
 			<tiles:insertAttribute name="body" />
+		</div>
+		<div class="row-fluid">
+			<tiles:insertAttribute name="test" />
 		</div>
 		<footer>
 			<tiles:insertAttribute name="footer" />

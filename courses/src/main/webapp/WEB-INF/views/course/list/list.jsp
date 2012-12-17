@@ -67,16 +67,7 @@
 .container.marketing .row {
   margin-left: 0px;
 }
-.row .span4 {
-width: 310px;
-margin: 12px 30px 24px 0px;
--webkit-box-shadow: #999 0px 1px 2px 0px;
-box-shadow: #999 0px 1px 2px 0px;
-border-top-width: 1px;
-border-top-style: solid;
-border-top-color: #EEE;
-background: #F7F7F7;
-}
+
 
 .container.university {
   width: 1024px;
@@ -86,18 +77,7 @@ background: #F7F7F7;
 .container.university .row {
   margin-left: 0px;
 }
-.container.university .row .span3{
-  background-image: url(resources/img/ust/ust_logo_160x60.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 80px;
-  -webkit-box-shadow: #999 0px 1px 2px 0px;
-  box-shadow: #999 0px 1px 2px 0px;
-  border-top-width: 1px;
-  border-top-style: solid;
-  border-top-color: #EEE;
-  margin: 2px 2px;
-}
+
 
 
 .container.course{
@@ -124,34 +104,6 @@ background: #F7F7F7;
 }(window.jQuery);
 
 
-function DrawImage(ImgD){ 
-	flag = false;	
-	var image=new Image(); 
-	image.src=ImgD.src; 
-	if(image.width>0 && image.height>0){ 
-	  flag=true; 
-	  if(image.width/image.height>= 220/90){ 
-	   if(image.width>220){
-	    ImgD.width=220; 
-	    ImgD.height=(image.height*90)/image.width; 
-	   }else{ 
-	    ImgD.width=image.width;
-	    ImgD.height=image.height; 
-	   } 
-	   /*ImgD.alt="bigpic"  */
-	  } 
-	  else{ 
-	   if(image.height>90){
-	    ImgD.height=90; 
-	    ImgD.width=(image.width*90)/image.height; 
-	   }else{ 
-	    ImgD.width=image.width;
-	    ImgD.height=image.height; 
-	   } 
-	    /*ImgD.alt="bigpic"  */ 
-	  } 
-	}
-}
 
 function selectType(){
 	var sel = document.getElementById("type");
@@ -175,50 +127,8 @@ function selectType(){
 		</div>
 	</div>
 </div>
- 
-<div id="myCarousel" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="item">
-      <img  src='<c:url value="/resources/img/advertise/slide-01.jpg"></c:url>' alt="">
-      <div class="container">
-        <div class="carousel-caption">
-          <h1>Another example headline.</h1>
-          <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-          <a class="btn btn-large btn-primary" href="#">Learn more</a>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <img src='<c:url value="/resources/img/advertise/slide-02.jpg"></c:url>' alt="">
-      <div class="container">
-        <div class="carousel-caption">
-          <h1>Another example headline.</h1>
-          <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-          <a class="btn btn-large btn-primary" href="#">Learn more</a>
-        </div>
-      </div>
-    </div>
-    <div class="item active">
-      <img src='<c:url value="/resources/img/advertise/slide-03.jpg"></c:url>'alt="">
-      <div class="container">
-        <div class="carousel-caption">
-          <h1>One more for good measure.</h1>
-          <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-          <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-</div> 
- 
-     	
 
-
-
-
-<div class="container course" style="margin-bottom: 20px; ">
+<div class="container course" style="margin-bottom: 20px; margin-top: 20px; ">
 	<div class="container course detail"  style="background-color: #efefef; height: 40px;">
 		<div style="padding: 5px;">
 			<select  id="type" onchange="selectType()">
@@ -243,14 +153,28 @@ function selectType(){
 			<div class="container course detail" style=" margin-bottom: 15px; border:0px solid #cccccc;">
 				<table class="table table-bordered" style="width: 100%;height: 100%;" cellpadding="5">
 					<tr>
-						<td valign="bottom" width="20%" background='<c:url value="http://localhost:8080/${course.courseCover }"></c:url>'>
-							<div style="width:100%; height: 100%; vertical-align: bottom;"></div>
-							<!-- <img src='<c:url value="http://localhost:8080/${course.courseCover }"></c:url>'  width="200px" height="90px"  /> -->
+						<td valign="bottom" width="22%" >
+							<c:choose>
+								<c:when test="${course.courseCover != null && course.courseCover != ''}">
+									 <a href='<c:url value="/course/view/${course.id}"></c:url>'>
+									 	<img src='<c:url value="http://localhost:8080/ccweb/${course.courseCover }"></c:url>'  style="width: 200px; height: 100px;" />
+									  </a> 
+								</c:when>
+								<c:otherwise>
+									 <a href='<c:url value="/course/view/${course.id}"></c:url>'>
+									 	<img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 200px; height: 100px;"/> 
+									 </a> 
+								</c:otherwise>
+							</c:choose>
+							
 						</td>
 						<td > 课程名称：${course.courseName}<br>课程描述：${course.courseDesc }<br><br>
 						<a href="<c:url value="/teacherCourse/course/view/${course.id}"></c:url>">点击查看详细</a>
+						<td > 课程名称：${course.courseName}<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</td>
+						<td width="25%">教师名称：${course.teacher.user.name }
+									<br>
+									所在学校：${course.teacher.college }
 						</td>
-						<td width="25%">教师名称：${course.teacher.user.name }</td>
 					</tr>
 				</table>
 			</div>

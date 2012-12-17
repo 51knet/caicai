@@ -168,9 +168,19 @@
 		<put-attribute name="right" value="/WEB-INF/views/teacher/resource/list/list.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="teacher.resource.detail" extends="frontPage-layout">
+		<put-attribute name="title" value="资源" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/resource/view/view.jsp"></put-attribute>
+	</definition>
+	
 	<definition name="teacher.announcement.list" extends="frontPage-layout">
 		<put-attribute name="title" value="公告" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/announcement/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.announcement.detail" extends="frontPage-layout">
+		<put-attribute name="title" value="公告" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/announcement/view/view.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.fans.list" extends="frontPage-layout">

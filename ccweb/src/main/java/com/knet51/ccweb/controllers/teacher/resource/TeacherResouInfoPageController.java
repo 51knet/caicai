@@ -92,6 +92,20 @@ public class TeacherResouInfoPageController {
 		return "teacher.resource.list";
 	}
 	
+	@RequestMapping(value="/teacher/{teacher_id}/resource/view/{resource_id}")
+	public String teacherResourceDetail(@PathVariable Long teacher_id,@PathVariable Long resource_id,Model model){
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
+		Resource resource = resourceService.findOneById(resource_id);
+		model.addAttribute("resource", resource);
+		return "teacher.resource.detail";
+	}
+	
 	
 	
 	
