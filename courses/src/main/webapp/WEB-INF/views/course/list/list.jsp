@@ -168,10 +168,10 @@ function selectType(){
 							</c:choose>
 							
 						</td>
-						<td > 课程名称：${course.courseName}<br>课程描述：${course.courseDesc }<br></td>
+						<td > 课程名称：${course.courseName}<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</td>
 						<td width="25%">教师名称：${course.teacher.user.name }
 									<br>
-									学校：${course.teacher.college }
+									所在学校：${course.teacher.college }
 						</td>
 					</tr>
 				</table>
