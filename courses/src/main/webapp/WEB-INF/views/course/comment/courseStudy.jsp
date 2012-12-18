@@ -36,7 +36,7 @@
 		</div>
 	</div>
 	<div>
-	<jsp:include page="/WEB-INF/views/course/view/comment.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/course/comment/comment.jsp"></jsp:include>
 	</div>
 	<div class="row">
 		<div id="comment">
