@@ -182,34 +182,56 @@ background: #F7F7F7;
 </div>
      	
 <div class="container marketing">
-  <h2>教学资源（299）</h2>
+  <h2>教学资源（${courseCount }）</h2>
   <!-- Three columns of text below the carousel -->
   <div class="row" >
-    <div class="span4">
-      <a href="#"><img src="resources/img/topics/240x135_1.png" width="324px"></a>
+    <!-- <div class="span4">
+      <a href="#"><img src="resources/img/topics/240x135_1.png" width="310px"></a> 
       <h4>宇宙的形成</h4>
       <h5>杜克大学</h5>
       <p><span>更新至第二集</span></p>
-      
-    </div><!-- /.span4 -->
+    </div>
     <div class="span4">
-      <a href="#"><img src="resources/img/topics/240x135_2.png" width="324px"></a>
-      <h4>药物和大脑</h4>
+      <a href="#"><img src="resources/img/topics/240x135_2.png" width="324px"></a> 
+      <h4>药物和大脑111</h4>
       <h5>加州科技大学</h5>
       <p><span>更新至第四集</span></p>
-    </div><!-- /.span4 -->
+    </div>
     <div class="span4">
       <a href="#"><img src="resources/img/topics/240x135_3.png" width="324px"></a>
       <h4>如何解释和争论</h4>
       <h5>杜克大学</h5>
       <p><span>更新至第八集</span></p>
-    </div><!-- /.span4 -->
+    </div>
+     -->
+    <c:forEach items="${courseList}" var="course"  begin="0" end="2">
+    	<div class="span4">
+    		<div>
+   				<c:choose>
+					<c:when test="${course.courseCover != null && course.courseCover != ''}">
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="http://localhost:8080/ccweb/${course.courseCover }"></c:url>' style="width: 310px; height: 150px;" />
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 310px; height: 150px;" />
+						</a>
+					</c:otherwise>
+				</c:choose>
+    		</div>
+    		<div style="padding: 3px;">${course.courseName}-${course.courseType }</div>
+    		<div style="padding: 3px;">
+    			教师名称：<a href="http://localhost:8080/ccweb/teacher/${course.teacher.id}">${course.teacher.user.name}</a>
+    		</div>
+    		<div style="padding: 3px;">
+    			学习人数：25人&nbsp;&nbsp;&nbsp;课程评分：8分
+    		</div>
+    	</div>
+    </c:forEach>
   </div><!-- /.row -->
   <div class="row" >
   	<div style="margin-right: 35px;padding: 5px 5px;background: #F7F7F7;text-align: center;">
   		<a href='<c:url value="/course/list/type?detail=all"></c:url>' >全部课程</a>
   	</div>
-  
   </div>
 
 </div>
@@ -222,7 +244,7 @@ background: #F7F7F7;
   <div class="carousel-inner">
     <div class="item active">
 	      <div class="row">
-	      	<c:forEach items="${teacherList}" var="t" begin="0" end="12"><a href="http://localhost:8080/ccweb/teacher/${t.id}"><div class="span1" >${t.user.name }</div></a></c:forEach>      	
+	      	<c:forEach items="${teacherList}" var="t" begin="0" end="12"><div class="span1" ><a href="http://localhost:8080/ccweb/teacher/${t.id}">${t.user.name }</a></div></c:forEach>      	
 	      </div>
 	     
 	      <div class="row">

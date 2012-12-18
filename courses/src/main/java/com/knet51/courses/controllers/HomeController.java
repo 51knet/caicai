@@ -40,12 +40,14 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpSession session,
 			HttpServletRequest request) {
+		logger.info("###### into the HomeController ######");
 		//List<TeacherCourseBeans> tcBeanList = courseService.getAllTeacherCourseBeans();
 		List<TeacherCourse> courseList = courseService.findAllCourses();
 		//List<String> courseSchoolList = courseService.getAllSchool();
 		List<Teacher> teacherList = teacherService.findAllTeacher();
 		//model.addAttribute("schoolList", courseSchoolList);
 		model.addAttribute("courseList", courseList);
+		model.addAttribute("courseCount", courseList.size());
 		model.addAttribute("teacherList", teacherList);
 		return "home";
 	}
