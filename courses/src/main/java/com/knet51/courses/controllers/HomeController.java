@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.UserCourse;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.courses.beans.TeacherCourseBeans;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
+import com.knet51.courses.jpa.services.UserCourseService;
 
 /**
  * Handles requests for the application home page.
@@ -31,6 +34,9 @@ public class HomeController {
 	
 	@Autowired
 	private TeacherService teacherService;
+	
+	@Autowired
+	private UserCourseService userCourseService;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -41,6 +47,9 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpSession session,
 			HttpServletRequest request) {
 		logger.info("###### into the HomeController ######");
+		User user = new User();
+		user.setId(2L);
+		session.setAttribute("userInfo", user);
 		//List<TeacherCourseBeans> tcBeanList = courseService.getAllTeacherCourseBeans();
 		List<TeacherCourse> courseList = courseService.findAllCourses();
 		//List<String> courseSchoolList = courseService.getAllSchool();
@@ -49,6 +58,8 @@ public class HomeController {
 		model.addAttribute("courseList", courseList);
 		model.addAttribute("courseCount", courseList.size());
 		model.addAttribute("teacherList", teacherList);
+		List<TeacherCourse> userCourse = userCourseService.getCourseByUserId(user.getId());
+		model.addAttribute("userCourse", userCourse);
 		return "home";
 	}
 }

@@ -7,16 +7,13 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.google.gson.Gson;
 import com.knet51.ccweb.jpa.entities.teacher.Comment;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
@@ -65,10 +60,8 @@ public class CourseController {
 	public String showCourseByType(@RequestParam("detail") String courseType,
 			Model model) throws Exception {
 		courseType = new String(courseType.getBytes("iso-8859-1"), "utf-8");
-		// logger.info("++++++++++++++"+courseType);
 		List<TeacherCourse> courseList = courseService.findAllCourses();
 		List<String> courseTypeList = courseService.courseTypeList();
-
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
 		if (courseType.trim() != null && !courseType.trim().equals("全部课程")
 				&& !courseType.trim().equals("all")) {

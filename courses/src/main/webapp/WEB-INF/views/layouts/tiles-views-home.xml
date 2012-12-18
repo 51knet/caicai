@@ -8,6 +8,7 @@
 
 
 	<definition name="home" extends="index-layout">
+	
 	</definition>
 
 	<definition name="404" extends="index-layout">

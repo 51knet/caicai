@@ -163,9 +163,24 @@
 								</c:otherwise>
 							</c:choose>
 						</td>
-						<td>课程名称：${course.courseName}<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }
+						<td>课程名称：${course.courseName}<br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }
 						</td>
-						<td width="35%">教师名称：${course.teacher.user.name } <br> <br> 所在学校：${course.teacher.college }
+						<td width="35%" align="left">
+							<div style="width: 100%;height: 100%;">
+								<div style="float: left; height: 100px; width: 120px;">
+									<c:choose>
+										<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
+											<a href='<c:url value="/teacher/${course.teacher.id}/view"></c:url>'><img src='<c:url value="http://localhost:8080/ccweb/${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
+											</a>
+										</c:when>
+										<c:otherwise>
+											<a href='<c:url value="/teacher/${course.teacher.id}/view"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar90.png"></c:url>' style="width: 100px; height: 100px;" />
+											</a>
+										</c:otherwise>
+									</c:choose>
+								</div>
+								<div style="float: left; height: 100px; ">教师名称：${course.teacher.user.name } <br>所在学校：${course.teacher.college }</div>
+							</div>
 						</td>
 					</tr>
 				</table>

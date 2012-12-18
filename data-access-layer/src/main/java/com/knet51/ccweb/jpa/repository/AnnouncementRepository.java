@@ -10,5 +10,6 @@ import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
 @Transactional
 public interface AnnouncementRepository  extends JpaRepository<Announcement, Long>, JpaSpecificationExecutor<Announcement>{
+	
 	Page<Announcement> findAnnoByUser(User user, Pageable pageable);
 }

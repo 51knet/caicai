@@ -1,10 +1,12 @@
 package com.knet51.ccweb.jpa.entities.teacher;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.User;
 
 @Entity
 public class TeacherCourse extends AbstractEntity {
@@ -16,6 +18,7 @@ public class TeacherCourse extends AbstractEntity {
 	private String courseType; 
 	@ManyToOne
 	private Teacher teacher;
+	
 	public String getCourseName() {
 		return courseName;
 	}
@@ -56,6 +59,7 @@ public class TeacherCourse extends AbstractEntity {
 	public void setCourseType(String courseType) {
 		this.courseType = courseType;
 	}
+	
 	public TeacherCourse() {
 		super();
 	}
