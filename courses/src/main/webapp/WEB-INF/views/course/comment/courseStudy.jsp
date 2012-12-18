@@ -36,16 +36,7 @@
 		</div>
 	</div>
 	<div>
-	<jsp:include page="/WEB-INF/views/course/view/comment.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/course/comment/comment.jsp"></jsp:include>
 	</div>
-	<div class="row">
-		<div id="comment">
-		<span>总评论人数:&nbsp;&nbsp;&nbsp;${sumPerson}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总评论分数:&nbsp;&nbsp;&nbsp;${sumMark}&nbsp;&nbsp;&nbsp;</span>
-			<c:forEach var="comment" items="${listcomment}">
-				<tr><td>&nbsp;&nbsp;&nbsp;昵称:${comment.user.name}:&nbsp;&nbsp;&nbsp;本人评分数:${mark}</td></tr>
-				<tr><td>&nbsp;&nbsp;&nbsp;标题:${comment.commentTitle}&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;评论时间:${comment.commentDate }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>					
-				<tr><td>&nbsp;&nbsp;&nbsp;评论信息:${comment.commentDesc}</td></tr>
-			</c:forEach>
-			</div>
-	</div>
+	<jsp:include page="/WEB-INF/views/course/comment/commentShow.jsp"></jsp:include>
 </div>

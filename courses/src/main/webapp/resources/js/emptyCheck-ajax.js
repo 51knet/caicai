@@ -34,15 +34,22 @@ function checkAjaxs(formID, actionName) {
 				}
 			} else {
 				$form.unbind('submit');
-				$.ajax({
+				/*$.ajax({
 					data:$form.serializeArray(),
 					type:"post",
 					dataType:"json",
 					url:"comment",
 					success:function(data){
-						alert(data);
+						String dataSum=eval(data);
+						alert(1);
+						if(dataSum==1){
+							$("#commentError").html("<font color='#ff0000'>谢谢你的评论,你已评论过此课程</font>");
+							return false;
+						}else{
+							
+						}
 					}
-				});
+				});*/
 				$form.submit();
 			}
 		}, 'json');

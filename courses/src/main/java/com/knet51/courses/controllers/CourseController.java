@@ -147,7 +147,7 @@ public class CourseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/teacherCourse/course/view/comment", method = RequestMethod.POST)
-	public void commentAddInfo(
+	public String commentAddInfo(
 			@Valid CommentInfoForm commentInfoForm,
 			BindingResult validResult,
 			HttpServletResponse response,
@@ -157,18 +157,17 @@ public class CourseController {
 			@RequestParam(value = "pageNumber", defaultValue = "5") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize)
 			throws Exception {
-		System.out.println("*********************************************");
 		PrintWriter out = response.getWriter();
-		Gson gson = new Gson();
+		//Gson gson = new Gson();
 		Long id = commentInfoForm.getTeachercourseid();
-		Long mark = commentInfoForm.getMark();
+		Long marks = commentInfoForm.getMark();
 		String commentTitle = commentInfoForm.getCommentTitle();
 		// Long mark=Long.parseLong(request.getParameter("mark"));
 		String commentDesc = commentInfoForm.getCommentDesc();
 		logger.info("####  CourseController  ####");
 		if (validResult.hasErrors()) {
 			logger.info("CommentInfoForm Validation Failed " + validResult);
-			// return "redirect:/teacherCourse/course/view/"+id;
+			 return "redirect:/teacherCourse/course/view/"+id;
 		} else {
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
 			int num = commentService.getCommentByTeacherCourseIdAndUserId(id,
@@ -179,14 +178,14 @@ public class CourseController {
 			 * = userInfo.getId(); User user = userService.findOne(user_id);
 			 */
 			if (num == 1) {
-				out.write(num);
-				out.close();
-				out.flush();
+				String s="谢谢你的评论,你已评论过此课程";
+				m.addAttribute("message", s);
+				return "redirect:/teacherCourse/course/view/"+id;
 			} else {
 				Comment comment = new Comment();
 				comment.setCommentTitle(commentTitle);
 				comment.setCommentDesc(commentDesc);
-				comment.setMark(mark);
+				comment.setMark(marks);
 				comment.setTeachercourseid(id);
 				comment.setUserid(4l);
 				SimpleDateFormat format = new SimpleDateFormat(
@@ -195,32 +194,32 @@ public class CourseController {
 				comment.setCommentDate(date);
 				// comment.setUserid(userid);
 				commentService.createComment(comment);
-				Comment comm = commentService.getComment(id, 4l);
-				Integer marks = comm.getMark().intValue();
+				/*Comment comm = commentService.getComment(id, 4l);
+				Integer mark = comm.getMark().intValue();
 				Integer sumMark = commentService.getMark(id).intValue();
-				Integer sumPerson = commentService.getPerson(id).intValue();
+				Integer sumPerson = commentService.getPerson(id).intValue();*/
 				// Page<Comment> onePage =
 				// commentService.findAllCommit(pageNumber, pageSize, id);
 				// return "redirect:/teacherCourse/course/view/"+id;
-				List<Comment> listcomment = commentService.getAllCourse(id);
-				m.addAttribute("sumMark", sumMark);
+				//List<Comment> listcomment = commentService.getAllCourse(id);
+			/*	m.addAttribute("sumMark", sumMark);
 				m.addAttribute("mark", marks);
 				m.addAttribute("sumPerson", sumPerson);
-				m.addAttribute("listcomment", listcomment);
-				System.out.println(listcomment);
+				m.addAttribute("listcomment", listcomment);*/
 				// String data ="{\"mark\":"+sumMark+",\"mark\":"+marks+"}";
-				StringBuilder data = new StringBuilder("{");
-				data.append("\"mark\":" + sumMark + ",\"mark\":" + marks + ",\"list:\"[");
-				boolean flag = false;
+				/*StringBuilder data = new StringBuilder("{");
+				data.append("\"sumMark\":" + sumMark + ",\"mark\":" + mark +",\"sumPerson\":"+sumPerson+",\"list:\"[");
+				boolean flag=false;
 				for (Comment item : listcomment) {
-					if (flag)
-						data.append("{\"commentTitle\":\""+item.getCommentTitle()+"\",\"commentDesc\":\""+item.getCommentDesc()+"\",\"commentDate\":\""+item.getCommentDate()+"\"}");
-					else
-						data.append(",{\"commentTitle\":\""+item.getCommentTitle()+"\",\"commentDesc\":\""+item.getCommentDesc()+"\",\"commentDate\":\""+item.getCommentDate()+"\"}");
+				data.append(",{\"commentTitle\":\""+item.getCommentTitle()+"\",\"commentDesc\":\""+item.getCommentDesc()+"\",\"commentDate\":\""+item.getCommentDate()+"\"}");
 				}
 				data.append("]}");
-				out.write(gson.toJson(data));
-
+				System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+data);
+				out.write(date);
+				System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"+gson.toJson(data));
+				out.close();
+				out.flush();*/
+				return "redirect:/teacherCourse/course/view/"+id;
 			}
 
 		}
