@@ -209,11 +209,11 @@ background: #F7F7F7;
     		<div>
    				<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="http://localhost:8080/ccweb/${course.courseCover }"></c:url>' style="width: 310px; height: 150px;" />
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="http://localhost:8080/ccweb/${course.courseCover }"></c:url>' style="width: 310px; height: 120px;" />
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 310px; height: 150px;" />
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 310px; height: 120px;" />
 						</a>
 					</c:otherwise>
 				</c:choose>

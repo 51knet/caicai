@@ -58,8 +58,12 @@ public class HomeController {
 		model.addAttribute("courseList", courseList);
 		model.addAttribute("courseCount", courseList.size());
 		model.addAttribute("teacherList", teacherList);
-		List<TeacherCourse> userCourse = userCourseService.getCourseByUserId(user.getId());
-		model.addAttribute("userCourse", userCourse);
+		User currentUser = (User) session.getAttribute("userInfo");
+		if(currentUser !=null){
+			List<TeacherCourse> userCourse = userCourseService.getCourseByUserId(currentUser.getId());
+			model.addAttribute("userCourse", userCourse);
+		}
+		
 		return "home";
 	}
 }
