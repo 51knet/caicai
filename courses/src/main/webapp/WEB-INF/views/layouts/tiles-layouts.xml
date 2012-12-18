@@ -10,7 +10,7 @@
 		<put-attribute name="title" value="Courses" />
 		<put-attribute name="top-navbar" value="/WEB-INF/views/_shared/common/_top-navbar.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/_shared/index/_body.jsp" />
-		<put-attribute name="test" value="/WEB-INF/views/layouts/jsp/test.jsp" />
+		<put-attribute name="test" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 	<definition name="admin-layout" template="/WEB-INF/views/layouts/jsp/admin.jsp">

@@ -38,7 +38,7 @@ public class TeacherController {
 		model.addAttribute("page", teacherPage);
 		return "course.teacher.list";
 	}
-	@RequestMapping(value="/course/teacher/teacherInfo/{id}")
+	@RequestMapping(value="/course/teacher/{id}")
 	public String showTeacherInfoById(@PathVariable Long id,Model model){
 		Teacher teacher=teacherService.findOne(id);
 		List<TeacherCourse> teacherCourseList=courseService.getAllCourseById(id);

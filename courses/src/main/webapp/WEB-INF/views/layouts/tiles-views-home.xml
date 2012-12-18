@@ -8,7 +8,7 @@
 
 
 	<definition name="home" extends="index-layout">
-	
+		<put-attribute name="test" value="/WEB-INF/views/layouts/jsp/test.jsp" />
 	</definition>
 
 	<definition name="404" extends="index-layout">
@@ -30,7 +30,7 @@
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 	<definition name="course.teacher.teacherInfo" extends="index-layout">
-		<put-attribute name="title" value="教师个人课程详细信息" />
+		<put-attribute name="title" value="教师课程详细信息" />
 		<put-attribute name="body" value="/WEB-INF/views/teacher/teacherShop/teacherinfo.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>

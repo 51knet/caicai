@@ -170,11 +170,11 @@
 								<div style="float: left; height: 100px; width: 120px;">
 									<c:choose>
 										<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-											<a href='<c:url value="/teacher/${course.teacher.id}/view"></c:url>'><img src='<c:url value="http://localhost:8080/ccweb/${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
+											<a href='<c:url value="/course/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="http://localhost:8080/ccweb/${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
 											</a>
 										</c:when>
 										<c:otherwise>
-											<a href='<c:url value="/teacher/${course.teacher.id}/view"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar90.png"></c:url>' style="width: 100px; height: 100px;" />
+											<a href='<c:url value="/course/teacher/${course.teacher.id}"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar90.png"></c:url>' style="width: 100px; height: 100px;" />
 											</a>
 										</c:otherwise>
 									</c:choose>
