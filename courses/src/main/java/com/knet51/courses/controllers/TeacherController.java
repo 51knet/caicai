@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 
@@ -35,5 +37,13 @@ public class TeacherController {
 	
 		model.addAttribute("page", teacherPage);
 		return "course.teacher.list";
+	}
+	@RequestMapping(value="/course/teacher/teacherInfo/{id}")
+	public String showTeacherInfoById(@PathVariable Long id,Model model){
+		Teacher teacher=teacherService.findOne(id);
+		List<TeacherCourse> teacherCourseList=courseService.getAllCourseById(id);
+		model.addAttribute("teacherCourseList", teacherCourseList);
+		model.addAttribute("teacher", teacher);
+		return "course.teacher.teacherInfo";
 	}
 }

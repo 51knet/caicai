@@ -108,4 +108,19 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		return courseRepository.getCourseType();
 	}
 
+	/**
+	 * 查询通过教师ID教师课程
+	 */
+	@Override
+	public List<TeacherCourse> getAllCourseById(Long teacher_id) {
+		List<TeacherCourse> list=new ArrayList<TeacherCourse>();
+		try {
+			list=courseRepository.getAllCourseById(teacher_id);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
 }
