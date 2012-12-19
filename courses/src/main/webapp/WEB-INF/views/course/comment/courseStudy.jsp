@@ -16,22 +16,34 @@
 .row-fluid.custom .row {
 	margin: 0px 5px;
 }
+.fileName{}
 </style>
-
+<script type="text/javascript">
+function courseOnclick(obj) {
+	  var courseId = obj.id;
+	  var id = courseId.substring(courseId.indexOf('_')+1, courseId.length); // 这里indexOf('-')和lastIndexOf('-')相等
+		$(".fileName_" + id).slideToggle();
+	  return false;
+}
+</script>
 <div class="row-fluid custom round">
 	<div class="row">
 		<h5>课程资料</h5>
 	</div>
 	<div class="row">
 		<div>
-		<table class="table">
-		<c:forEach var="course" items="${courseMap}">
-			<tr><td >${course.key} &nbsp;&nbsp;</td></tr>
+		<div class="table">
+		<c:forEach var="course" items="${courseMap}" varStatus="i">
+			<div id="course_${i.count}" onclick="javascript:courseOnclick(this);">
+			<span>${course.key} &nbsp;&nbsp;</span>
+			</div>
 			<c:forEach var="fileNames" items="${course.value}">
-			<tr><td>${fileNames.fileName}&nbsp;&nbsp;</td></tr>
+			<div class="fileName_${i.count}" style="display: none;">
+			<span>${fileNames.fileName}&nbsp;&nbsp;</span> 
+			</div>
 			</c:forEach>
 		</c:forEach>
-		</table>
+		</div>
 		</div>
 	</div>
 </div>
