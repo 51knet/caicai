@@ -20,7 +20,7 @@
 </style>
 <div class="row-fluid custom round">
 	<div  class="row" style="margin-top: 10px;">
-		<a href='<c:url value="/admin/teacher/announcement/list"></c:url>' ><b>教师公告111</b></a><hr>
+		<a href='<c:url value="/admin/teacher/announcement/list"></c:url>' ><b>教师公告</b></a><hr>
 		<div style="text-align: left;">
 			${sessionUserInfo.id}<br>
 			<form action= "new"  method="post" name="anno_post">
