@@ -15,7 +15,7 @@
 			<tiles:insertAttribute name="search" />
 		</div>
 			<div class="row-fluid">
-			<tiles:insertAttribute name="test" />
+			<tiles:insertAttribute name="userCourse" />
 		</div>
 		<div class="row-fluid">
 			<tiles:insertAttribute name="body" />
