@@ -22,12 +22,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.Comment;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.courses.jpa.services.CommentService;
 import com.knet51.courses.jpa.services.CourseService;
 import com.knet51.courses.jpa.services.TeacherCourseService;
+import com.knet51.courses.jpa.services.TeacherService;
 import com.knet51.courses.util.ajax.AjaxValidationEngine;
 import com.knet51.courses.util.ajax.ValidationResponse;
 
@@ -39,6 +42,9 @@ public class CourseController {
 	private CourseService courseResourceService;
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private TeacherService teacherService;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(CourseController.class);
@@ -82,6 +88,15 @@ public class CourseController {
 			model.addAttribute("courseTypeList", courseTypeList);
 			return "course.list";
 		}
+	}
+	
+	@RequestMapping(value="/course/view/{course_id}")
+	public String showCourseDetail(@PathVariable Long course_id,Model model){
+		TeacherCourse course = courseService.findOneById(course_id);
+		Teacher teacher = course.getTeacher();
+		model.addAttribute("course", course);
+		model.addAttribute("teacher", teacher);
+		return "course.list.view";
 	}
 
 	/**

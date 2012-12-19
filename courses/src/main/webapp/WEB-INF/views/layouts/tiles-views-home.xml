@@ -26,6 +26,13 @@
 		<put-attribute name="test" value="" />
 	</definition>
 	
+		<definition name="course.list.view" extends="course-layout">
+		<put-attribute name="title" value="课程列表" />
+		<put-attribute name="courseInfo" value="/WEB-INF/views/course/view/view.jsp" />
+		<put-attribute name="teacherInfo" value="/WEB-INF/views/teacher/teacherShop/teacherinfo.jsp"></put-attribute>
+		<put-attribute name="comment" value="/WEB-INF/views/course/comment/commentShow.jsp" />
+	</definition>
+	
 	
 	
 	<definition name="course.teacher.list" extends="index-layout">
