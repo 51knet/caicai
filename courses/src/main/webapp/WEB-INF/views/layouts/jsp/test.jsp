@@ -113,29 +113,43 @@ background: #F7F7F7;
 	<div class="row" style="text-align:left; margin-left: 0px;">
 		<c:choose>
 			<c:when test="${sessionScope.userInfo != null}">
-				<h4>您的课程</h4>
-			  <c:forEach items="${userCourse}" var="course"  begin="0" end="2">
-			    	<div class="span4">
-			    		<div>
-			   				<c:choose>
-								<c:when test="${course.courseCover != null && course.courseCover != ''}">
-									<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="http://localhost:8080/ccweb/${course.courseCover }"></c:url>' style="width: 310px; height: 120px;" />
-									</a>
-								</c:when>
-								<c:otherwise>
-									<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 310px; height: 120px;" />
-									</a>
-								</c:otherwise>
-							</c:choose>
-			    		</div>
-			    		<div style="padding: 3px;">${course.courseName}-${course.courseType }</div>
-			    		<div style="padding: 3px;">
-			    			教师名称：<a href="http://localhost:8080/ccweb/teacher/${course.teacher.id}">${course.teacher.user.name}</a>
-			    		</div>
-			    		<div style="padding: 3px;">
-			    			学习人数：25人&nbsp;&nbsp;&nbsp;课程评分：8分
-			    		</div>
-			    	</div>
+				<h2>您的课程</h2>
+			  <c:forEach items="${userCourse}" var="course"  begin="0" end="0">
+			    	<table class="table table-bordered" style="width: 97%; height: 100%;" cellpadding="5">
+						<tr>
+							<td valign="bottom" width="22%" align="center">
+								<c:choose>
+									<c:when test="${course.courseCover != null && course.courseCover != ''}">
+										<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="http://localhost:8080/ccweb/${course.courseCover }"></c:url>' style="width: 200px; height: 100px;" />
+										</a>
+									</c:when>
+									<c:otherwise>
+										<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 200px; height: 100px;" />
+										</a>
+									</c:otherwise>
+								</c:choose>
+							</td>
+							<td>课程名称：${course.courseName}<br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }
+							</td>
+							<td width="35%" align="left">
+								<div style="width: 100%;height: 100%;">
+									<div style="float: left; height: 100px; width: 120px;">
+										<c:choose>
+											<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
+												<a href='<c:url value="/course/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="http://localhost:8080/ccweb/${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
+												</a>
+											</c:when>
+											<c:otherwise>
+												<a href='<c:url value="/course/teacher/${course.teacher.id}"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar90.png"></c:url>' style="width: 100px; height: 100px;" />
+												</a>
+											</c:otherwise>
+										</c:choose>
+									</div>
+									<div style="float: left; height: 100px; ">教师名称：${course.teacher.user.name } <br>所在学校：${course.teacher.college }</div>
+								</div>
+							</td>
+						</tr>
+					</table>
 			    </c:forEach>
 			</c:when>
 			<c:otherwise>

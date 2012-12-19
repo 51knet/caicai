@@ -11,12 +11,14 @@
 	<tiles:insertAttribute name="top-navbar" />
 
 	<div class="container-fluid">
-		
 		<div class="row-fluid">
-			<tiles:insertAttribute name="body" />
+			<tiles:insertAttribute name="search" />
+		</div>
+			<div class="row-fluid">
+			<tiles:insertAttribute name="test" />
 		</div>
 		<div class="row-fluid">
-			<tiles:insertAttribute name="test" />
+			<tiles:insertAttribute name="body" />
 		</div>
 		<footer>
 			<tiles:insertAttribute name="footer" />

@@ -134,16 +134,7 @@ background: #F7F7F7;
   });
 }(window.jQuery);
 </script>
-<div class="navbar">
-	<div class="navbar-inner">    
-     <div class="container" style="text-align: center;margin-left: 80px; margin-right: 80px;padding: 10px 10px;margin-top: 45px;">
-           <form class="navbar-form">
-             <input type="text" class="span6" placeholder="搜索教师、课程、学校">
-             <button type="submit" class="btn btn-primary">搜索</button>
-           </form>
-		</div>
-	</div>
-</div>
+<!-- 
 <div id="myCarousel" class="carousel slide">
   <div class="carousel-inner">
     <div class="item">
@@ -180,7 +171,7 @@ background: #F7F7F7;
   <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
   <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
 </div>
-     	
+  -->    	
 <div class="container marketing">
   <h2>教学资源（${courseCount }）</h2>
   <!-- Three columns of text below the carousel -->
@@ -209,11 +200,11 @@ background: #F7F7F7;
     		<div>
    				<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="http://localhost:8080/ccweb/${course.courseCover }"></c:url>' style="width: 310px; height: 120px;" />
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="http://localhost:8080/ccweb/${course.courseCover }"></c:url>' style="width: 310px; height: 100px;" />
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 310px; height: 120px;" />
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 310px; height: 100px;" />
 						</a>
 					</c:otherwise>
 				</c:choose>

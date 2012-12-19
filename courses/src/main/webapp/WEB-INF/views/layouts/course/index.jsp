@@ -12,10 +12,13 @@
 
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<tiles:insertAttribute name="body" />
+			<tiles:insertAttribute name="courseInfo" />
 		</div>
 		<div class="row-fluid">
-			<tiles:insertAttribute name="test" />
+			<tiles:insertAttribute name="teacherInfo" />
+		</div>
+		<div class="row-fluid">
+			<tiles:insertAttribute name="comment" />
 		</div>
 		<footer>
 			<tiles:insertAttribute name="footer" />

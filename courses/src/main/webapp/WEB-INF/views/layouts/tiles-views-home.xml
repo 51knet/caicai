@@ -8,26 +8,29 @@
 
 
 	<definition name="home" extends="index-layout">
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
 		<put-attribute name="test" value="/WEB-INF/views/layouts/jsp/test.jsp" />
 	</definition>
 
 	<definition name="404" extends="index-layout">
 		<put-attribute name="title" value="404 Error" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/controllers/home/404.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 	
 	<definition name="course.list" extends="index-layout">
 		<put-attribute name="title" value="课程列表" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/course/list/list.jsp"></put-attribute>
 		<put-attribute name="test" value="" />
-		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
+	
+	
 	
 	<definition name="course.teacher.list" extends="index-layout">
 		<put-attribute name="title" value="教师详细" />
 		<put-attribute name="body" value="/WEB-INF/views/teacher/list/list.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 	<definition name="course.teacher.teacherInfo" extends="index-layout">
 		<put-attribute name="title" value="教师课程详细信息" />

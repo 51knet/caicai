@@ -114,10 +114,11 @@
 		}
 	}
 </script>
+<!-- 
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container" style="text-align: center; margin-left: 80px; margin-right: 80px; padding: 10px 10px;">
-			<br> <br>
+			
 			<form class="navbar-form">
 				<input type="text" class="span6" placeholder="搜索教师、课程、学校">
 				<button type="submit" class="btn btn-primary">搜索</button>
@@ -125,7 +126,7 @@
 		</div>
 	</div>
 </div>
-
+ -->
 <div class="container course" style="margin-bottom: 20px; margin-top: 20px;">
 	<div class="container course detail" style="background-color: #efefef; height: 40px;">
 		<div style="padding: 5px;">
