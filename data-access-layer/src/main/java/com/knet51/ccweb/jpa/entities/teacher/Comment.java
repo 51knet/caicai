@@ -15,14 +15,6 @@ public class Comment extends AbstractEntity {
 	private String commentTitle;
 	private Long userid;
 	private Long teachercourseid;
-	@ManyToOne
-	private User user;
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
 	public Long getTeachercourseid() {
 		return teachercourseid;
 	}

@@ -8,6 +8,12 @@
 		<li><a
 			href='<c:url value="/course/list/type"></c:url>'>教师资料</a></li>
 		<li><a
+			href='<c:url value="/course/list/type"></c:url>'>教师资料</a></li>
+		<li><a
+			href='<c:url value="/course/list/type"></c:url>'>教师资料</a></li>
+		<li><a
+			href='<c:url value="/course/list/type"></c:url>'>教师资料</a></li>
+		<li><a
 			href='<c:url value=""></c:url>'>退出</a></li>
 	</ul>
 </div>

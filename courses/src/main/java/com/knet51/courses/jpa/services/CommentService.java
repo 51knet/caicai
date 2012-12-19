@@ -2,6 +2,8 @@ package com.knet51.courses.jpa.services;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.Comment;
 
 public interface CommentService {
@@ -12,4 +14,5 @@ public interface CommentService {
 	Comment getComment(Long teacherCourseId, Long userId);
 	int  getCommentByTeacherCourseIdAndUserId(Long teacherCourseId, Long userId);
 	List<Comment> getAllCourse(Long  teacherCourseId);
+	User getByUser(Long  userId);
 }

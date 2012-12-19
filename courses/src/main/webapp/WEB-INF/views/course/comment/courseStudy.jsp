@@ -7,7 +7,6 @@
 .row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
-	background: #FAFAFB;
 }
 .round {
 	border-radius: 5px;
@@ -35,8 +34,4 @@
 		</table>
 		</div>
 	</div>
-	<div>
-	<jsp:include page="/WEB-INF/views/course/comment/comment.jsp"></jsp:include>
-	</div>
-	<jsp:include page="/WEB-INF/views/course/comment/commentShow.jsp"></jsp:include>
 </div>

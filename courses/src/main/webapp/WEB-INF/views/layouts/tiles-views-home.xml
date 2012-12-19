@@ -41,12 +41,18 @@
 	</definition>
 	<definition name="course.teacher.teacherInfo" extends="index-layout">
 		<put-attribute name="title" value="教师课程详细信息" />
-		<put-attribute name="body" value="/WEB-INF/views/teacher/teacherShop/teacherinfo.jsp"></put-attribute>
+		<put-attribute name="test" value="/WEB-INF/views/teacher/teacherShop/teacherinfo.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/teacher/teacherShop/courses.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 	<definition name="teacherCourse.course.view" extends="admin-layout">
 		<put-attribute name="title" value="教学课程资料" />
+		<put-attribute name="banner" value=""></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/course/comment/courseStudy.jsp"></put-attribute>
+		<put-attribute name="right" value=""></put-attribute>
+		<put-attribute name="right_top" value="/WEB-INF/views/course/comment/courseStudy.jsp"></put-attribute>
+		<put-attribute name="right_center" value="/WEB-INF/views/course/comment/comment.jsp"></put-attribute>
+		<put-attribute name="right_footer" value="/WEB-INF/views/course/comment/commentShow.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 </tiles-definitions>

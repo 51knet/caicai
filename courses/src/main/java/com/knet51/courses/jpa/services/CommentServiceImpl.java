@@ -8,14 +8,20 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.Comment;
 import com.knet51.ccweb.jpa.repository.CommentRepository;
+import com.knet51.ccweb.jpa.repository.UserRepository;
 @Transactional
 @Service("commentService")
 public class CommentServiceImpl implements CommentService {
 
 	@Autowired
 	private CommentRepository commitRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	@Override
 	public Comment createComment(Comment comment) {
 		return commitRepository.save(comment);
@@ -57,5 +63,10 @@ public class CommentServiceImpl implements CommentService {
 	public List<Comment> getAllCourse(Long teacherCourseId) {
 		List<Comment> list=commitRepository.getAllCourse(teacherCourseId);
 		return list;
+	}
+	@Override
+	public User getByUser(Long userId) {
+		User user=userRepository.findOne(userId);
+		return user;
 	}
 }
