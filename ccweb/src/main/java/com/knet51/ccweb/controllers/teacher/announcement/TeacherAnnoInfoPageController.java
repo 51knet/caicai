@@ -62,6 +62,12 @@ public class TeacherAnnoInfoPageController {
 		return "admin.teacher.announcement.edit";
 	}
 	
+	@RequestMapping(value="/admin/teacher/announcement/testKind")
+	public String detailAnno(){
+		
+		return "admin.teacher.announcement.editKind";
+	}
+	
 	public Long getId(HttpSession session){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long id = userInfo.getUser().getId();
@@ -99,6 +105,8 @@ public class TeacherAnnoInfoPageController {
 		model.addAttribute("announcement", announcement);
 		return "teacher.announcement.detail";
 	}
+	
+	
 	
 
 

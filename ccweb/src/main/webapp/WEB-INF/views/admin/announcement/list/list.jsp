@@ -38,7 +38,9 @@ $(document).ready(function() {
 		<hr>
 		<div style="text-align: right;">
 			<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
-							class="btn" data-toggle="modal">添加公告&nbsp;&nbsp;</a><br>
+							class="btn" data-toggle="modal">添加公告&nbsp;&nbsp;</a>
+			<a href='<c:url value="/admin/teacher/announcement/testKind"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
+				添加可编辑公告&nbsp;&nbsp;</a><br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead><tr>
 						<th  align="center" width="15%">公告标签</th>
@@ -48,12 +50,6 @@ $(document).ready(function() {
 					</tr>
 				</thead>
 				<tbody>
-					<!-- <tr>
-						<td>公告标签</td>
-						<td>公告内容</td>
-						<td>发布时间</td>
-						<td>公告操作</td>
-					</tr> -->
 					<c:forEach items="${page.content}" var="page">
 						<tr>
 							<td align="left" >${page.title}</td>
