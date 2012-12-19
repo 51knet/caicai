@@ -24,25 +24,43 @@
 </style>
 
 <div class="row-fluid custom round">
-	<div class="row">
-		<h5>教师资源</h5>
-	</div>
 	<div>
-		<table class="table">
-		  <tr>
-		    <td rowspan="2">&nbsp;${teacher.user.photo_url}</td>
-		    <td >&nbsp;&nbsp;姓名:&nbsp;&nbsp;${teacher.user.name }</td><td >&nbsp;&nbsp;性别:&nbsp;&nbsp;${teacher.user.gender }</td><td>&nbsp;&nbsp;部门: &nbsp;&nbsp;${teacher.teaching_subject}&nbsp;&nbsp;</td>
-		  </tr>
-		 	<br/>
-		  	<tr>
-		    <td>&nbsp;&nbsp;所属高校:${teacher.college }&nbsp;&nbsp;</td><td>&nbsp;&nbsp;所属院系:${teacher.school}&nbsp;&nbsp;</td>
-		    </tr>
-		    <br/>
-		    <tr>
-		    <td>教授课程:${teacher.major}&nbsp;&nbsp;</td><td>&nbsp;&nbsp;职称:${teacher.title}&nbsp;&nbsp;</td><td>&nbsp;&nbsp;导师类别:${teacher.role}&nbsp;&nbsp;</td>
-		  </tr>
-	</table>
-	<div>
-	<jsp:include page="/WEB-INF/views/teacher/teacherShop/courses.jsp"></jsp:include></div>
+		<h5>讲师介绍</h5>
 	</div>
+<div align="center">
+<table class="table" style="width:65%;">
+  <tr>
+    <td  style="width:20%"  valign="middle" bordercolor="#F0F0F0" bgcolor="#CCCCCC"><h1><span class="STYLE1"> 讲师介绍</span></h1>
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="3" valign="bottom" width="20%">
+    <c:choose>
+		<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
+			<img src='<c:url value="${teacher.user.photo_url }"></c:url>'/>
+		</c:when>
+		<c:otherwise>
+			 <img src='<c:url value="/resources/img/logo.png"></c:url>'/>
+		</c:otherwise>
+	</c:choose>
+	</td>
+    <td>姓名:${teacher.user.name }</td>
+    <td>性别:${teacher.user.gender }</td>
+    <td>所属高校:${teacher.college }</td>
+  </tr>
+  <tr>
+    <td>所属高校:${teacher.college }</td>
+    <td>所属院系:${teacher.school}</td>
+    <td>教授课程:${teacher.major}</td>
+  </tr>
+  <tr>
+    <td>职称:${teacher.title}</td>
+    <td>导师类别:${teacher.role}</td>
+    <td></td>
+  </tr>
+</table>
+<div >
+<jsp:include page="/WEB-INF/views/teacher/teacherShop/courses.jsp"></jsp:include>
+</div>
+</div>
 </div>
