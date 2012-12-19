@@ -10,8 +10,8 @@
 		<put-attribute name="title" value="Courses" />
 		<put-attribute name="top-navbar" value="/WEB-INF/views/_shared/common/_top-navbar.jsp" />
 		<put-attribute name="search" value="" />
+		<put-attribute name="userCourse" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/_shared/index/_body.jsp" />
-		<put-attribute name="test" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 	<definition name="admin-layout" template="/WEB-INF/views/layouts/jsp/admin.jsp">
@@ -25,7 +25,7 @@
 	</definition>
 	<definition name="course-layout" template="/WEB-INF/views/layouts/course/index.jsp">
 		<put-attribute name="title" value="Courses" />
-		<put-attribute name="top-navbar" value="/WEB-INF/views/layouts/teacherCourse/_top-navbar.jsp" />
+		<put-attribute name="top-navbar" value="/WEB-INF/views/_shared/common/_top-navbar.jsp" />
 		<put-attribute name="courseInfo" value="" />
 		<put-attribute name="teacherInfo" value="" />
 		<put-attribute name="comment" value="" />

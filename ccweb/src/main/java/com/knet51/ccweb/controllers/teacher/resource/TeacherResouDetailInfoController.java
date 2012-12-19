@@ -70,7 +70,7 @@ public class TeacherResouDetailInfoController {
 				resource.setResourceType(resourceType);
 				resource.setStatus(1);
 				
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String date = format.format(new Date());
 				resource.setDate(date);
 				

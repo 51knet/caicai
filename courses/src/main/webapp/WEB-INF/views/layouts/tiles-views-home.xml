@@ -9,7 +9,7 @@
 
 	<definition name="home" extends="index-layout">
 		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
-		<put-attribute name="test" value="/WEB-INF/views/layouts/jsp/test.jsp" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/layouts/jsp/userCourse.jsp" />
 	</definition>
 
 	<definition name="404" extends="index-layout">
@@ -26,7 +26,7 @@
 		<put-attribute name="test" value="" />
 	</definition>
 	
-		<definition name="course.list.view" extends="course-layout">
+	<definition name="course.list.view" extends="course-layout">
 		<put-attribute name="title" value="课程列表" />
 		<put-attribute name="courseInfo" value="/WEB-INF/views/course/view/view.jsp" />
 		<put-attribute name="teacherInfo" value="/WEB-INF/views/teacher/teacherShop/teacherinfo.jsp"></put-attribute>

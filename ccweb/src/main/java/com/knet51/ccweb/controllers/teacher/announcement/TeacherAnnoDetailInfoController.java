@@ -58,7 +58,7 @@ public class TeacherAnnoDetailInfoController {
 			Announcement announcement = new Announcement();
 			announcement.setTitle(title);
 			announcement.setContent(content);
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String date = format.format(new Date());
 			announcement.setDate(date); 
 			announcement.setUser(user);
@@ -87,7 +87,7 @@ public class TeacherAnnoDetailInfoController {
 			Announcement announcement = annoService.findOneById(id);
 			announcement.setTitle(title);
 			announcement.setContent(content);
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String date = format.format(new Date());
 			announcement.setDate(date);  
 			annoService.updateAnnouncement(announcement);

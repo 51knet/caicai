@@ -30,9 +30,9 @@
 
 
 
-<div class="container course" style="margin-bottom: 20px; margin-top: 20px;">
-	<div class="container course detail" style="background-color: #efefef; height: 40px;">
-
+<div class="container course" style=" margin-bottom: 20px;margin-top: 60px;">
+	<div class="container course detail" style="background-color: #efefef; height: 60px;margin-bottom: 20px; vertical-align: middle;">
+		<h2>&nbsp;课程详细</h2>
 	</div>
 	
 

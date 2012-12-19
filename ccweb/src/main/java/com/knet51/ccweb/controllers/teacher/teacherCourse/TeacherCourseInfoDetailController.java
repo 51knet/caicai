@@ -70,7 +70,7 @@ public class TeacherCourseInfoDetailController {
 			String courseDesc = courseInfoForm.getCourseDesc();
 			course.setCourseName(courseName);
 			course.setCourseDesc(courseDesc);
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String date = format.format(new Date());
 			course.setCourseDate(date);
 			course.setTeacher(teacher);
@@ -122,7 +122,7 @@ public class TeacherCourseInfoDetailController {
 			String courseDesc = courseInfoForm.getCourseDesc();
 			course.setCourseName(courseName);
 			course.setCourseDesc(courseDesc);
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String date = format.format(new Date());
 			course.setCourseDate(date);
 			courseService.updateTeacherCourse(course);
@@ -156,7 +156,7 @@ public class TeacherCourseInfoDetailController {
 				String name = fileName.substring(0, fileName.indexOf("."));
 				resource.setFileName(name);
 				
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String date = format.format(new Date());
 				resource.setDate(date);
 				
