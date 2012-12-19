@@ -24,11 +24,7 @@ textarea {
 	font-family:'Microsoft YaHei',Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
 }
 
-#content{
-	overflow: hidden; 
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
+
 .navbar-inner.custom {
 	height: 45px;
 	z-index: 2;
@@ -50,4 +46,10 @@ textarea {
 	background: url(resources/img/topbar/noise.png), -ms-linear-gradient(#4E4E4E, #1C1C1C);
 	background: url(resources/img/topbar/noise.png), linear-gradient(#4E4E4E, #1C1C1C);
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.45);
+}
+
+#contentlimit{
+	overflow: hidden; 
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }

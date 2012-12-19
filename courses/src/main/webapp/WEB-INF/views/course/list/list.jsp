@@ -6,79 +6,13 @@
 .navbar {
 	margin-bottom: 0px;
 }
-/* CUSTOMIZE THE NAVBAR
--------------------------------------------------- */
+
 .container-fluid {
 	padding-right: 0px;
 	padding-left: 0px;
 }
-/* Carousel base class */
-.carousel {
-	margin-bottom: 60px;
-}
 
-.carousel .container {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	left: 0;
-}
 
-.carousel-control {
-	background-color: transparent;
-	border: 0;
-	font-size: 120px;
-	margin-top: 0;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
-}
-
-.carousel .item {
-	height: 300px;
-}
-
-#myCarousel .carousel img {
-	min-width: 100%;
-	height: 300px;
-}
-
-.carousel-caption {
-	background-color: transparent;
-	position: static;
-	max-width: 550px;
-	padding: 0 40px;
-	margin-bottom: 100px;
-}
-
-.carousel-caption h1,.carousel-caption .lead {
-	margin: 0;
-	line-height: 1.25;
-	color: #fff;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
-}
-
-.carousel-caption .btn {
-	margin-top: 10px;
-}
-/* MARKETING CONTENT
--------------------------------------------------- */
-.container.marketing {
-	width: 1024px;
-	max-width: 1024px;
-}
-
-.container.marketing .row {
-	margin-left: 0px;
-}
-
-.container.university {
-	width: 1024px;
-	max-width: 1024px;
-	margin-bottom: 0px;
-}
-
-.container.university .row {
-	margin-left: 0px;
-}
 
 .container.course {
 	width: 1000px;
@@ -92,15 +26,6 @@
 </style>
 
 <script type="text/javascript">
-	!function($) {
-		$(function() {
-			// carousel demo
-			$('#myCarousel').carousel();
-			$('#myUniversity').carousel();
-			$('#myTeacher').carousel();
-		});
-	}(window.jQuery);
-
 	function selectType() {
 		var sel = document.getElementById("type");
 		var opt = sel.options;
@@ -164,7 +89,8 @@
 								</c:otherwise>
 							</c:choose>
 						</td>
-						<td>课程名称：${course.courseName}<br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }
+						<td>
+							<div style="width:400px;" id="contentlimit">课程名称：${course.courseName}<br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
 						</td>
 						<td width="35%" align="left">
 							<div style="width: 100%;height: 100%;">
