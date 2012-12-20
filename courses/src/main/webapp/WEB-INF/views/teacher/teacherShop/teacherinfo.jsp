@@ -3,19 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<div>
-	<h5></h5>
-</div><br/>
-<div>
 <div align="center">
-<table  style="width:50%;">
-  <tr>
-    <td colspan="4"  align="left" bordercolor="#F0F0F0" bgcolor="#CCCCCC"><h4><span class="STYLE1"> 讲师介绍</span></h4>
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="3" valign="bottom">
-    <c:choose>
+<div style="height: 20px"></div>
+    <br/>
+<div align="left" style="width:52%;">
+    <div  align="left" style="background-color:#F7F7F7;height:40px; clear:both"><h4><span> 讲师介绍</span></h4></div>
+    <br/>
+    <div  style="width: 120px;height: 210px; float:left; margin-left:10px">
+    <c:choose >
 		<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
 			<img src='<c:url value="${teacher.user.photo_url }"></c:url>'/>
 		</c:when>
@@ -23,20 +18,21 @@
 			 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>'/>
 		</c:otherwise>
 	</c:choose>
-	</td>
-    <td>姓名:${teacher.user.name }</td>
-    <td>性别:${teacher.user.gender }</td>
-    <td>所属高校:${teacher.college }</td>
-  </tr>
-  <tr>
-    <td>所属高校:${teacher.college }</td>
-    <td>所属院系:${teacher.school}</td>
-    <td>教授课程:${teacher.major}</td>
-  </tr>
-  <tr>
-    <td>职称:${teacher.title}</td>
-    <td>导师类别:${teacher.role}</td>
-  </tr>
-</table>
+	</div>
+	<div align="left" style="width:350px;height:100px " >
+    <span>	&nbsp;&nbsp;&nbsp;&nbsp;姓名:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.user.name }&nbsp;&nbsp;&nbsp;&nbsp;
+    	 	&nbsp;&nbsp;&nbsp;&nbsp;性别:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.user.gender }&nbsp;&nbsp;&nbsp;&nbsp;
+    	 	&nbsp;&nbsp;&nbsp;&nbsp;所属高校:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.college }&nbsp;&nbsp;&nbsp;&nbsp;
+    </span>
+    <br/>
+  	<span>
+  			&nbsp;&nbsp;&nbsp;&nbsp;所属院系:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.school}&nbsp;&nbsp;&nbsp;&nbsp;
+  			&nbsp;&nbsp;&nbsp;&nbsp;教授课程:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.major}&nbsp;&nbsp;&nbsp;&nbsp;
+  	</span>
+  	<br/>
+  	<span>	&nbsp;&nbsp;&nbsp;&nbsp;职称:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.title}&nbsp;&nbsp;&nbsp;&nbsp;
+  		 	&nbsp;&nbsp;&nbsp;&nbsp;导师类别:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.role}&nbsp;&nbsp;&nbsp;&nbsp;
+  	</span>
+  	</div>
 </div>
 </div>
