@@ -147,22 +147,19 @@ public class HomeController {
 		logger.info("#### Into teacher front page ####");
 		try {
 			User user = userService.findOne(id);
-			UserInfo userInf = (UserInfo) session
-					.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			User users = userInf.getUser();
-			Announcement announcement = announcementService.findLatestByUid(id);
-			if(announcement !=null && announcement.getContent().length()>100){
-				String anno = announcement.getContent();
-				String annoContent = anno.substring(0, 100);
-				model.addAttribute("annoContent", annoContent);
-			}else if(announcement !=null && announcement.getContent().length()<=100){
-				String anno = announcement.getContent();
-				model.addAttribute("annoContent", anno);
+			UserInfo sessionUserInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			boolean isFollower = false;
+			if (sessionUserInfo!=null) { // this is only valid when user logged in and see teacher home page
+				User sessionUser = sessionUserInfo.getUser();
+				isFollower = friendsRelateService.isTheFollower(id, sessionUser.getId());
 			}
-			
-			model.addAttribute("annoId", announcement.getId());
-			int followValue = friendsRelateService.getFollowById(id,
-					users.getId());
+			Announcement announcement = announcementService.findLatestByUid(id);
+			if(announcement!=null) {
+				String anno = announcement.getContent();
+				String annoContent = (anno.length()>100) ? anno.substring(0, 100) : anno;
+				model.addAttribute("annoContent", annoContent);
+				model.addAttribute("annoId", announcement.getId());
+			}
 
 			Teacher teacher = teacherService.findOne(id);
 			Page<BlogPost> page = blogService.findAllBlogs(0, 5, teacher);
@@ -228,14 +225,17 @@ public class HomeController {
 			//model.addAttribute("announcement", announcement);
 		
 			model.addAttribute("role", userInfo.getTeacherRole());
+			
+			//FIXME: WTF?!!!  
 			// model.addAttribute("followValue",followValue);
-			session.setAttribute("followValue", followValue);
+			session.setAttribute("isFollower", isFollower);
 			// model.addAttribute("fansCount", fansCount);
 			session.setAttribute("fansCount", fansCount);
 			// model.addAttribute("hostCount", hostCount);
 			session.setAttribute("hostCount", hostCount);
 			return "teacher.basic";
 		} catch (Exception e) {
+			e.printStackTrace();
 			return "404";
 		}
 	}

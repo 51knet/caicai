@@ -5,21 +5,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="row-fluid custom round">
 <div align="center">
-	<table style="width:50%;">
-	<tr>
-    <td  colspan="4" style="width:20%" bordercolor="#F0F0F0" bgcolor="#CCCCCC" align="left"><h4><span class="STYLE1">课程计划</span></h4>
-    </td>
-  	</tr>
+	<div style="width:52%;">
+    <div align="left" style="background-color: #F7F7F7;height:40px"  ><h4><span>课程计划</span></h4></div>
+    <br/>
 		<c:forEach var="teacherCourse" items="${teacherCourseList}">
-		  <tr align="left">
-		    <td>课程名称:${teacherCourse.courseName }</td>
-		    <td>此课程所属类型:${teacherCourse.courseType }</td>
-		    <td colspan="2">此课程发布时间:${teacherCourse.courseDate }</td>
-		  </tr>
-		  <tr align="left">
-		    <td>课程描述:${teacherCourse.courseDesc }</td>
-		  </tr>
+		    <div align="left">
+		    &nbsp;&nbsp; &nbsp;&nbsp;课程名称:${teacherCourse.courseName }&nbsp;&nbsp; &nbsp;&nbsp;
+		   &nbsp;&nbsp; &nbsp;&nbsp; 所属类型:${teacherCourse.courseType }&nbsp;&nbsp; &nbsp;&nbsp;
+		    &nbsp;&nbsp; &nbsp;&nbsp;发布时间:${teacherCourse.courseDate }&nbsp;&nbsp; &nbsp;&nbsp;</div>
+		  <br/>
+		   <div align="left" >&nbsp;&nbsp; &nbsp;&nbsp;课程描述:${teacherCourse.courseDesc }&nbsp;&nbsp; &nbsp;&nbsp;</div>
+		  <br/>
 		</c:forEach>
-	</table>
+	</div>
 	</div>
 </div>
