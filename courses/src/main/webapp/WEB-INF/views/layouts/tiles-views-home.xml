@@ -41,7 +41,7 @@
 	</definition>
 	<definition name="course.teacher.teacherInfo" extends="index-layout">
 		<put-attribute name="title" value="教师课程详细信息" />
-		<put-attribute name="test" value="/WEB-INF/views/teacher/teacherShop/teacherinfo.jsp"></put-attribute>
+		<put-attribute name="userCourse" value="/WEB-INF/views/teacher/teacherShop/teacherinfo.jsp"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/teacher/teacherShop/courses.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
