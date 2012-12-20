@@ -35,7 +35,7 @@ function courseOnclick(obj) {
 		<div class="table">
 		<c:forEach var="course" items="${courseMap}" varStatus="i">
 			<div id="course_${i.count}" onclick="javascript:courseOnclick(this);">
-			<span>${course.key} &nbsp;&nbsp;</span>
+			<h4><span style="bordercolor=''#F0F0F0',bgcolor='CCCCCC'">${course.key}&nbsp;&nbsp;</span></h4>
 			</div>
 			<c:forEach var="fileNames" items="${course.value}">
 			<div class="fileName_${i.count}" style="display: none;">
