@@ -1,5 +1,6 @@
 package com.knet51.ccweb.jpa.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -37,7 +38,16 @@ public class CommentRepositoryImpl implements
 
 	@Override
 	public Comment getComment(Long teacherCourseId, Long userId) {
-		Comment comment= (Comment) em.createQuery("select t from Comment t where t.teachercourseid="+teacherCourseId +" and t.userid="+userId).getSingleResult();
+		Comment comment= new Comment();
+		try {
+			comment= (Comment) em.createQuery("select t from Comment t where t.teachercourseid="+teacherCourseId +" and t.userid="+userId).getSingleResult();
+			if(comment==null){
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return comment;
 	}
 
@@ -57,7 +67,15 @@ public class CommentRepositoryImpl implements
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Comment> getAllCourse(Long teacherCourseId) {
-		List<Comment> list=em.createQuery("select t from Comment t where t.teachercourseid="+teacherCourseId ).getResultList();
+		List<Comment> list= new ArrayList<Comment>();
+		try {
+			list=em.createQuery("select t from Comment t where t.teachercourseid="+teacherCourseId ).getResultList();
+			if(list.size()==0){
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return list;
 	}
 
