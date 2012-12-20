@@ -132,26 +132,37 @@ public class CourseController {
 		}
 		// model.addAttribute("listCourse", listCourse);
 		model.addAttribute("courseMap", courseMap);
-		Comment comment = commentService.getComment(id, 2l);
-		Integer mark = comment.getMark().intValue();
-		Integer sumMark = commentService.getMark(id).intValue();
-		Integer sumPerson = commentService.getPerson(id).intValue();
 		// Page<Comment> onePage = commentService.findAllCommit(pageNumber,
 		// pageSize, id);
-		List<Comment> listcomment = commentService.getAllCourse(id);
+		Comment comment=new Comment();
+		Integer sumMark=0;
+		Integer mark=0;
+		Integer sumPerson=0;
 		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
-		for (int i = 0; i < listcomment.size(); i++) {
-			User user=commentService.getByUser(listcomment.get(i).getUserid());
-			String commentTitle=listcomment.get(i).getCommentTitle();
-			String commentDate=listcomment.get(i).getCommentDate();
-			String commentDesc=listcomment.get(i).getCommentDesc();
-			String name=user.getName();
-			CommentUserBeans commentUser=new CommentUserBeans();
-			 commentUser.setName(name);
-			 commentUser.setCommentTitle(commentTitle);
-			 commentUser.setCommentDesc(commentDesc);
-			 commentUser.setCommentDate(commentDate);
-			list.add(commentUser);
+		List<Comment> listcomment =new ArrayList<Comment>();
+		try {
+			 listcomment = commentService.getAllCourse(id);
+			if(listcomment.size()>0){
+				comment = commentService.getComment(id, 4l);
+				mark = comment.getMark().intValue();
+				sumMark = commentService.getMark(id).intValue();
+				sumPerson = commentService.getPerson(id).intValue();
+			for (int i = 0; i < listcomment.size(); i++) {
+				User user=commentService.getByUser(listcomment.get(i).getUserid());
+				String commentTitle=listcomment.get(i).getCommentTitle();
+				String commentDate=listcomment.get(i).getCommentDate();
+				String commentDesc=listcomment.get(i).getCommentDesc();
+				String name=user.getName();
+				CommentUserBeans commentUser=new CommentUserBeans();
+				 commentUser.setName(name);
+				 commentUser.setCommentTitle(commentTitle);
+				 commentUser.setCommentDesc(commentDesc);
+				 commentUser.setCommentDate(commentDate);
+				list.add(commentUser);
+			}
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		model.addAttribute("id", id);
 		model.addAttribute("sumMark", sumMark);
@@ -182,12 +193,9 @@ public class CourseController {
 			@RequestParam(value = "pageNumber", defaultValue = "5") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize)
 			throws Exception {
-		PrintWriter out = response.getWriter();
-		//Gson gson = new Gson();
 		Long id = commentInfoForm.getTeachercourseid();
 		Long marks = commentInfoForm.getMark();
 		String commentTitle = commentInfoForm.getCommentTitle();
-		// Long mark=Long.parseLong(request.getParameter("mark"));
 		String commentDesc = commentInfoForm.getCommentDesc();
 		logger.info("####  CourseController  ####");
 		if (validResult.hasErrors()) {
@@ -195,58 +203,32 @@ public class CourseController {
 			 return "redirect:/teacherCourse/course/view/"+id;
 		} else {
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
-			int num = commentService.getCommentByTeacherCourseIdAndUserId(id,4l);
-			/*
-			 * UserInfo userInfo = (UserInfo)
-			 * session.getAttribute(GlobalDefs.SESSION_USER_INFO); Long user_id
-			 * = userInfo.getId(); User user = userService.findOne(user_id);
-			 */
-			if (num == 1) {
-				/*String s="谢谢你的评论,你已评论过此课程";
-				m.addAttribute("message", s);*/
-				return "redirect:/teacherCourse/course/view/"+id;
-			} else {
-				Comment comment = new Comment();
-				comment.setCommentTitle(commentTitle);
-				comment.setCommentDesc(commentDesc);
-				comment.setMark(marks);
-				comment.setTeachercourseid(id);
-				comment.setUserid(4l);
-				SimpleDateFormat format = new SimpleDateFormat(
-						"yyyy-MM-dd HH:mm:ss");
-				String date = format.format(new Date());
-				comment.setCommentDate(date);
-				// comment.setUserid(userid);
-				commentService.createComment(comment);
-				/*Comment comm = commentService.getComment(id, 4l);
-				Integer mark = comm.getMark().intValue();
-				Integer sumMark = commentService.getMark(id).intValue();
-				Integer sumPerson = commentService.getPerson(id).intValue();*/
-				// Page<Comment> onePage =
-				// commentService.findAllCommit(pageNumber, pageSize, id);
-				// return "redirect:/teacherCourse/course/view/"+id;
-				//List<Comment> listcomment = commentService.getAllCourse(id);
-			/*	m.addAttribute("sumMark", sumMark);
-				m.addAttribute("mark", marks);
-				m.addAttribute("sumPerson", sumPerson);
-				m.addAttribute("listcomment", listcomment);*/
-				// String data ="{\"mark\":"+sumMark+",\"mark\":"+marks+"}";
-				/*StringBuilder data = new StringBuilder("{");
-				data.append("\"sumMark\":" + sumMark + ",\"mark\":" + mark +",\"sumPerson\":"+sumPerson+",\"list:\"[");
-				boolean flag=false;
-				for (Comment item : listcomment) {
-				data.append(",{\"commentTitle\":\""+item.getCommentTitle()+"\",\"commentDesc\":\""+item.getCommentDesc()+"\",\"commentDate\":\""+item.getCommentDate()+"\"}");
+			try {
+				int num = commentService.getCommentByTeacherCourseIdAndUserId(id,4l);
+				if (num == 1) {
+					return "redirect:/teacherCourse/course/view/"+id;
+				} else if(num==0) {
+					Comment comment = new Comment();
+					comment.setCommentTitle(commentTitle);
+					comment.setCommentDesc(commentDesc);
+					comment.setMark(marks);
+					comment.setTeachercourseid(id);
+					comment.setUserid(4l);
+					SimpleDateFormat format = new SimpleDateFormat(
+							"yyyy-MM-dd HH:mm:ss");
+					String date = format.format(new Date());
+					comment.setCommentDate(date);
+					commentService.createComment(comment);
+					return "redirect:/teacherCourse/course/view/"+id;
 				}
-				data.append("]}");
-				System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+data);
-				out.write(date);
-				System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"+gson.toJson(data));
-				out.close();
-				out.flush();*/
-				return "redirect:/teacherCourse/course/view/"+id;
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+			
+			
 
 		}
+		return "redirect:/teacherCourse/course/view/"+id;
 	}
 
 	/**
