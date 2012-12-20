@@ -56,9 +56,9 @@ public class FriendsRelateServiceImpl implements FriendsRelateService {
 	 * 判断followId是否存在以此来验证是否对其关注
 	 */
 	@Override
-	public int getFollowById(Long followId,Long hostId) {
+	public boolean isTheFollower(Long followId,Long hostId) {
 		int followValue=friendsRelatedDao.getFollowById(hostId,followId);
-		return followValue;
+		return (followValue!=0);
 	}
 	/* get the fans infor */
 	@Override

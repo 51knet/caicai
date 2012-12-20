@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.FriendsRelated;
-import com.knet51.ccweb.jpa.entities.User;
 
 public interface FriendsRelateService {
 	
@@ -20,7 +19,13 @@ public interface FriendsRelateService {
 	
 	List<FriendsRelated> getAllHost(Long followId);
 	
-	int getFollowById(Long followId,Long hostId);
+	/**
+	 * check if the followId(normally the user in session) follows the hostId(teacher)
+	 * @param followId
+	 * @param hostId
+	 * @return
+	 */
+	boolean isTheFollower(Long followId,Long hostId);
 	
 	List<UserInfo> getAllFansInfo(Long user_id);
 	

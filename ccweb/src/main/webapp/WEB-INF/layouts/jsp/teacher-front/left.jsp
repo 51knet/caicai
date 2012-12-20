@@ -42,7 +42,7 @@
 	</div>
 	<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.id != teacher_id) }">
 		<div class="row-fluid">
-			<c:if test="${sessionScope.followValue!=1}">
+			<c:if test="${! sessionScope.isFollower}">
 				<a href='<c:url value='/addrelation?uid=${teacherInfo.id}'></c:url>' id="attention" class="btn btn-success btn-small">+关注</a>
 			</c:if>
 			<!-- <a href='<c:url value='/sendmessage?uid=${teacherInfo.id}'></c:url>' class="btn btn-small">发私信</a>  -->
