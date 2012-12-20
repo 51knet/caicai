@@ -4,10 +4,10 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div align="center">
-<div style="height: 20px"></div>
+<div style="height: 40px"></div>
     <br/>
-<div align="left" style="width:52%;">
-    <div  align="left" style="background-color:#F7F7F7;height:40px; clear:both"><h4><span> 讲师介绍</span></h4></div>
+<div align="center" style="width:52%;">
+    <div  align="left" style=" background-color:#F7F7F7;height:40px; clear:both ; line-height:10px"><h4><span style="height:10px"> 讲师介绍</span></h4></div>
     <br/>
     <div  style="width: 120px;height: 210px; float:left; margin-left:10px">
     <c:choose >
@@ -19,7 +19,7 @@
 		</c:otherwise>
 	</c:choose>
 	</div>
-	<div align="left" style="width:350px;height:100px " >
+	<div align="left" style="width:500px;height:100px " >
     <span>	&nbsp;&nbsp;&nbsp;&nbsp;姓名:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.user.name }&nbsp;&nbsp;&nbsp;&nbsp;
     	 	&nbsp;&nbsp;&nbsp;&nbsp;性别:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.user.gender }&nbsp;&nbsp;&nbsp;&nbsp;
     	 	&nbsp;&nbsp;&nbsp;&nbsp;所属高校:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.college }&nbsp;&nbsp;&nbsp;&nbsp;

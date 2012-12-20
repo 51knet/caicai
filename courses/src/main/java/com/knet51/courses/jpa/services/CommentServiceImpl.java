@@ -1,6 +1,9 @@
 package com.knet51.courses.jpa.services;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +19,8 @@ import com.knet51.ccweb.jpa.repository.UserRepository;
 @Transactional
 @Service("commentService")
 public class CommentServiceImpl implements CommentService {
-
+	private static final Logger logger = LoggerFactory
+			.getLogger(CommentServiceImpl.class);
 	@Autowired
 	private CommentRepository commitRepository;
 	
@@ -61,7 +65,17 @@ public class CommentServiceImpl implements CommentService {
 	}
 	@Override
 	public List<Comment> getAllCourse(Long teacherCourseId) {
-		List<Comment> list=commitRepository.getAllCourse(teacherCourseId);
+		List<Comment> list=new ArrayList<Comment>();
+		try {
+			
+			 list=commitRepository.getAllCourse(teacherCourseId);
+			 if(list.size()==0){
+				 return null;
+			 }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return list;
 	}
 	@Override
