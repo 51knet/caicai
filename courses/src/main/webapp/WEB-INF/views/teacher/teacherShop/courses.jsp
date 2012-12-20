@@ -6,7 +6,7 @@
 <div class="row-fluid custom round">
 <div align="center">
 	<div style="width:52%;">
-    <div align="left" style="background-color: #F7F7F7;height:40px"  ><h4><span>课程计划</span></h4></div>
+	<div  align="left" style="background-color:#F7F7F7;height:40px; line-height:40px;clear:both"><h4 style=" float:left">课程计划</h4></div>
     <br/>
 		<c:forEach var="teacherCourse" items="${teacherCourseList}">
 		    <div align="left">
