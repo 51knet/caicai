@@ -62,6 +62,7 @@ public class HomeController {
 		if(currentUser !=null){
 			List<TeacherCourse> userCourse = userCourseService.getCourseByUserId(currentUser.getId());
 			model.addAttribute("userCourse", userCourse);
+			model.addAttribute("userCourseCount", userCourse.size());
 		}
 		
 		return "home";

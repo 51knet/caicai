@@ -52,8 +52,8 @@
 	</div>
 </div>
  -->
-<div class="container course" style="margin-bottom: 20px; margin-top: 20px;">
-	<div class="container course detail" style="background-color: #efefef; height: 40px;">
+<div class="container course" style="margin-bottom: 10px; margin-top: 10px;">
+	<div class="container course detail" style="background-color: #f7f7f7; height: 40px;">
 		<div style="padding: 5px;">
 			<select id="type" onchange="selectType()">
 				<option>全部课程</option>

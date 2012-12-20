@@ -28,6 +28,7 @@
 		<put-attribute name="top-navbar" value="/WEB-INF/views/_shared/common/_top-navbar.jsp" />
 		<put-attribute name="courseInfo" value="" />
 		<put-attribute name="teacherInfo" value="" />
+		<put-attribute name="courseResource" value="" />
 		<put-attribute name="comment" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
