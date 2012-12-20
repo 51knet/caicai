@@ -39,24 +39,21 @@ $(document).ready(function() {
 		<div style="text-align: right;">
 			<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
 							class="btn" data-toggle="modal">添加公告&nbsp;&nbsp;</a>
-			<a href='<c:url value="/admin/teacher/announcement/testKind"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
+			<a href='<c:url value="/admin/teacher/announcement/create"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
 				添加可编辑公告&nbsp;&nbsp;</a><br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead><tr>
-						<th  align="center" width="15%">公告标签</th>
-						<th  align="center" width="50%" >公告内容</th>
-						<th  align="center" width="20%">发布时间</th>
-						<th  align="center" width="15%">操作</th>
+						<th  align="center">公告标签</th>
+						
+						<th  align="center" width="25%">发布时间</th>
+						<th  align="center" width="20%">操作</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
 							<td align="left" >${page.title}</td>
-							<td align="left" >
-									<div style="width:350px;" id="content">${page.content}</div>
-							</td>
-							<td align="left">${page.date}</td>
+							<td align="center">${page.date}</td>
 							<td align="center">
 							<!-- 
 								<div class="btn-group">
@@ -70,8 +67,9 @@ $(document).ready(function() {
 										<li></li>
 									</ul>
 								</div>
-								 -->
-								 <a href='<c:url value="/admin/teacher/announcement/destory/${page.id}"></c:url>'>删除</a>
+							 -->
+								 <a href='<c:url value="/admin/teacher/announcement/destory/${page.id}"></c:url>'>删除</a> | 
+								 <a href='<c:url value="/admin/teacher/announcement/edit/${page.id}"></c:url>'>修改</a>
 							</td>
 						</tr>
 					</c:forEach>

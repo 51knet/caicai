@@ -32,7 +32,7 @@
 				<c:forEach var="course" items="${page.content}">
 					<tr>
 						<td ><a href="<c:url value="/teacher/${teacherInfo.id}/course/view/${course.id}"></c:url>">${course.courseName}</a></td>
-						<td >${course.courseDesc}</td>
+						<td ><div style="width: 240px;" id="content">${course.courseDesc}</div></td>
 						<td >${course.courseDate}</td>
 					</tr>
 				</c:forEach>

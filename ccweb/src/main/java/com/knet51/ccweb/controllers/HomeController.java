@@ -153,19 +153,24 @@ public class HomeController {
 				User sessionUser = sessionUserInfo.getUser();
 				isFollower = friendsRelateService.isTheFollower(id, sessionUser.getId());
 			}
-			Announcement announcement = announcementService.findLatestByUid(id);
-			if(announcement!=null) {
-				String anno = announcement.getContent();
-				String annoContent = (anno.length()>100) ? anno.substring(0, 100) : anno;
-				model.addAttribute("annoContent", annoContent);
-				model.addAttribute("annoId", announcement.getId());
-			}
+//			Announcement announcement = announcementService.findLatestByUid(id);
+//			if(announcement!=null) {
+//				String anno = announcement.getContent();
+//				String annoContent = (anno.length()>100) ? anno.substring(0, 100) : anno;
+//				model.addAttribute("annoContent", annoContent);
+//				model.addAttribute("annoId", announcement.getId());
+//			}
+			
+			
 
 			Teacher teacher = teacherService.findOne(id);
 			Page<BlogPost> page = blogService.findAllBlogs(0, 5, teacher);
 			List<BlogPost> blogPosts = page.getContent();
 			model.addAttribute("blogPosts", blogPosts);
-
+			
+			Page<Announcement> annoPage = announcementService.findAllAnnoByUser(0, 4, user);
+			model.addAttribute("annolist", annoPage.getContent());
+			model.addAttribute("annoCount", annoPage.getContent().size());
 			Page<Resource> pageResource = resourceService.findAllResouByUser(0,
 					5, user);
 			List<Resource> resourceList = pageResource.getContent();

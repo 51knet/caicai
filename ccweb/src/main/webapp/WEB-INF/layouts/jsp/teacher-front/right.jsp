@@ -22,15 +22,38 @@
 	<div class="row"><h5>公告 </h5><hr/></div>
 	
 	<div class="row">
-		<!--  <div id="content" style="width:750px;">
-		</div> -->
-		<c:choose>
+		<!--<c:choose>
 			<c:when test="${annoContent != null && annoContent != ''}">
 				<a href="<c:url value="/teacher/${teacherInfo.id}/announcement/view/${annoId}"></c:url>">${annoContent}</a>
 			</c:when>	
 			<c:otherwise>无公告</c:otherwise>
+		</c:choose>-->
+		<c:choose>
+			<c:when test="${annoCount>0}">
+				<table class="table">
+					<thead>
+						<tr><th >公告标题</th><th width="20%">发表日期</th></tr>
+					</thead>
+					<tbody>
+						<c:forEach var="anno" items="${annolist}" begin="0" end="2">
+							<tr>
+								<td><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a>
+								</td>
+								<td>
+									${anno.date}
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</c:when>
+			<c:otherwise>
+				<tr><td colspan="4">无内容</td></tr>
+			</c:otherwise>
 		</c:choose>
-		
+				<hr>
+		<div style="text-align: right;">
+		<c:if test="${annoCount>3}"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 	</div>
 	<hr>
 	<div style="text-align: right;">

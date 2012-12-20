@@ -24,13 +24,24 @@
 		<h5>课程详细</h5>
 	</div>
 	<div class="row">
-		<table class="table ">
+		<!--<table class="table ">
 			<tbody>
 				<tr><td align="left" width="12%">课程标题：</td><td align="left">${course.courseName}</td></tr>
-				<tr><td align="left">发布时间：</td><td align="left">${course.courseDate}</td></tr>
+				<tr><td align="left">发布时间：</td><td align="left">${course.courseName}</td></tr>
 				<tr><td align="left">课程概述：</td><td align="left">${course.courseDesc}</td></tr>	
 			</tbody>
-		</table>
+		</table> -->
+		
+		<div class="span12" style="text-align: left;">
+			<h4 >${course.courseName}</h4>
+			<span >发布时间: ${course.courseDate}</span>
+		</div>
+		<div class="clearfix"></div>
+		<hr />
+		<div class="span12" style="margin-left: 5px; margin-right: 5px;">${course.courseDesc}</div>
+		<div class="clearfix"></div>
+		<hr />
+		
 		<br>
 		<div class="row">
 			<h5>课程资源</h5>
