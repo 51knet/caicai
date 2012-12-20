@@ -27,6 +27,19 @@
 				<div class="span9">
 					<div class="right-panel">
 						<tiles:insertAttribute name="right" />
+						<div class="row-fluid content-panel">
+							<div class="span9">
+							<div >
+								<tiles:insertAttribute name="right_top"/>
+							</div>
+							<div >
+								<tiles:insertAttribute name="right_center"/>
+							</div>
+							<div >
+								<tiles:insertAttribute name="right_footer"/>
+							</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<!--/span-->

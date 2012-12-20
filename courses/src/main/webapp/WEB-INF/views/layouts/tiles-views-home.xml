@@ -9,7 +9,7 @@
 
 	<definition name="home" extends="index-layout">
 		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
-		<put-attribute name="userCourse" value="/WEB-INF/views/layouts/jsp/userCourse.jsp" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/layouts/course/userCourse.jsp" />
 	</definition>
 
 	<definition name="404" extends="index-layout">
@@ -23,7 +23,6 @@
 		<put-attribute name="title" value="课程列表" />
 		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/course/list/list.jsp"></put-attribute>
-		<put-attribute name="test" value="" />
 	</definition>
 	
 	<definition name="course.list.view" extends="course-layout">
@@ -41,12 +40,18 @@
 	</definition>
 	<definition name="course.teacher.teacherInfo" extends="index-layout">
 		<put-attribute name="title" value="教师课程详细信息" />
-		<put-attribute name="body" value="/WEB-INF/views/teacher/teacherShop/teacherinfo.jsp"></put-attribute>
+		<put-attribute name="userCourse" value="/WEB-INF/views/teacher/teacherShop/teacherinfo.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/teacher/teacherShop/courses.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 	<definition name="teacherCourse.course.view" extends="admin-layout">
 		<put-attribute name="title" value="教学课程资料" />
+		<put-attribute name="banner" value=""></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/course/comment/courseStudy.jsp"></put-attribute>
+		<put-attribute name="right" value=""></put-attribute>
+		<put-attribute name="right_top" value="/WEB-INF/views/course/comment/courseStudy.jsp"></put-attribute>
+		<put-attribute name="right_center" value="/WEB-INF/views/course/comment/comment.jsp"></put-attribute>
+		<put-attribute name="right_footer" value="/WEB-INF/views/course/comment/commentShow.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 </tiles-definitions>

@@ -23,13 +23,12 @@
 		<put-attribute name="right" value="/WEB-INF/layouts/jsp/admin-layout/right.jsp" /> -->
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
-
-	
 	<definition name="course-layout" template="/WEB-INF/views/layouts/course/index.jsp">
 		<put-attribute name="title" value="Courses" />
 		<put-attribute name="top-navbar" value="/WEB-INF/views/_shared/common/_top-navbar.jsp" />
 		<put-attribute name="courseInfo" value="" />
 		<put-attribute name="teacherInfo" value="" />
+		<put-attribute name="courseResource" value="" />
 		<put-attribute name="comment" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>

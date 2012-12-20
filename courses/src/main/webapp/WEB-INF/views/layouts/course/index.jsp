@@ -18,6 +18,9 @@
 			<tiles:insertAttribute name="teacherInfo" />
 		</div>
 		<div class="row-fluid">
+			<tiles:insertAttribute name="courseResource" />
+		</div>
+		<div class="row-fluid">
 			<tiles:insertAttribute name="comment" />
 		</div>
 		<footer>

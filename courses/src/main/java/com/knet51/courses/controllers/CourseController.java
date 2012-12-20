@@ -24,9 +24,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.Comment;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.courses.beans.CommentUserBeans;
 import com.knet51.courses.jpa.services.CommentService;
 import com.knet51.courses.jpa.services.CourseService;
 import com.knet51.courses.jpa.services.TeacherCourseService;
@@ -109,6 +111,7 @@ public class CourseController {
 	 * @param pageSize
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/teacherCourse/course/view/{id}", method = RequestMethod.GET)
 	public String listCourseByTeacherCourseId(
 			Model model,
@@ -136,11 +139,25 @@ public class CourseController {
 		// Page<Comment> onePage = commentService.findAllCommit(pageNumber,
 		// pageSize, id);
 		List<Comment> listcomment = commentService.getAllCourse(id);
+		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
+		for (int i = 0; i < listcomment.size(); i++) {
+			User user=commentService.getByUser(listcomment.get(i).getUserid());
+			String commentTitle=listcomment.get(i).getCommentTitle();
+			String commentDate=listcomment.get(i).getCommentDate();
+			String commentDesc=listcomment.get(i).getCommentDesc();
+			String name=user.getName();
+			CommentUserBeans commentUser=new CommentUserBeans();
+			 commentUser.setName(name);
+			 commentUser.setCommentTitle(commentTitle);
+			 commentUser.setCommentDesc(commentDesc);
+			 commentUser.setCommentDate(commentDate);
+			list.add(commentUser);
+		}
 		model.addAttribute("id", id);
 		model.addAttribute("sumMark", sumMark);
 		model.addAttribute("mark", mark);
 		model.addAttribute("sumPerson", sumPerson);
-		model.addAttribute("listcomment", listcomment);
+		model.addAttribute("listcomment", list);
 		return "teacherCourse.course.view";
 	}
 
@@ -178,16 +195,15 @@ public class CourseController {
 			 return "redirect:/teacherCourse/course/view/"+id;
 		} else {
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
-			int num = commentService.getCommentByTeacherCourseIdAndUserId(id,
-					4l);
+			int num = commentService.getCommentByTeacherCourseIdAndUserId(id,4l);
 			/*
 			 * UserInfo userInfo = (UserInfo)
 			 * session.getAttribute(GlobalDefs.SESSION_USER_INFO); Long user_id
 			 * = userInfo.getId(); User user = userService.findOne(user_id);
 			 */
 			if (num == 1) {
-				String s="谢谢你的评论,你已评论过此课程";
-				m.addAttribute("message", s);
+				/*String s="谢谢你的评论,你已评论过此课程";
+				m.addAttribute("message", s);*/
 				return "redirect:/teacherCourse/course/view/"+id;
 			} else {
 				Comment comment = new Comment();
