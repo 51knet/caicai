@@ -24,13 +24,15 @@
 		<h5>公告详细</h5>
 	</div>
 	<div class="row">
-		<table class="table ">
-			<tbody>
-				<tr><td align="left" width="12%">公告标题：</td><td align="left">${announcement.title}</td></tr>
-				<tr><td align="left">发布时间：</td><td align="left">${announcement.date}</td></tr>
-				<tr><td align="left">公告内容：</td><td align="left">${announcement.content}</td></tr>	
-			</tbody>
-		</table>
+		<div class="span12" style="text-align: center;">
+			<h4 >${announcement.title}</h4>
+			<span >发布时间: ${announcement.date}</span>
+		</div>
+		<div class="clearfix"></div>
+		<hr />
+		<div class="span12" style="margin-left: 5px; margin-right: 5px;">${announcement.content}</div>
+		<div class="clearfix"></div>
+		<hr />
 	</div>
 
 </div>

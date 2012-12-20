@@ -40,13 +40,13 @@
 	<definition name="admin.teacher.announcement.edit" extends="admin-layout">
 		<put-attribute name="title" value="公告" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/edit/edit.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/edit/editKind.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.teacher.announcement.editKind" extends="admin-layout">
 		<put-attribute name="title" value="公告" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/edit/editKind.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/new/create.jsp"></put-attribute>
 	</definition>
 	
 	<!-- teacher resource admin layout-->

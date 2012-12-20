@@ -13,7 +13,7 @@ public interface AnnouncementService {
 	
 	List<Announcement> findAllByUid(Long uId);
 	
-	Page<Announcement> findAllAnnoById(int pageNum, int pageSize, User user);
+	Page<Announcement> findAllAnnoByUser(int pageNum, int pageSize, User user);
 	
 	Announcement findLatestByUid(Long uId);
 	

@@ -26,12 +26,12 @@
 	</div>
 	<div class="row">
 		<table class="table">
-			<thead><tr><th width="15%">标签</th><th >内容</th><th width="20%">发布时间</th></tr></thead>
+			<thead><tr><th >标题</th><th width="25%">发布时间</th></tr></thead>
 			<tbody>
 				<c:forEach items="${page.content}" var="page">
-					<tr><td align="left">${page.title}</td>
-					<td align="center">
-						<div id="content" style="width:450px;">${page.content}</div></td>
+					<tr><td align="left">
+						<div style="width: 540px;" id="content"><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/view/${page.id}"></c:url>">${page.title}</a></div>
+					</td>
 					<td align="center">${page.date}</td>
 					</tr>
 				</c:forEach>

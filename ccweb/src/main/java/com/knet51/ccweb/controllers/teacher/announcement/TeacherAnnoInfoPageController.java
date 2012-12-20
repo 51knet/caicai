@@ -47,7 +47,7 @@ public class TeacherAnnoInfoPageController {
 		logger.info("#### into TeacherAnno ####");
 			Long id = getId(session);
 			User user = userService.findOne(id);
-			Page<Announcement> page = annoService.findAllAnnoById(pageNumber, pageSize, user);
+			Page<Announcement> page = annoService.findAllAnnoByUser(pageNumber, pageSize, user);
 			List<Announcement> list = annoService.findAllByUid(id);
 			model.addAttribute("page", page);
 			model.addAttribute("list",list);
@@ -57,12 +57,12 @@ public class TeacherAnnoInfoPageController {
 	@RequestMapping(value="/admin/teacher/announcement/edit/{announcement_id}")
 	public String detailAnnoInfo( @PathVariable Long announcement_id, Model model){
 		//System.out.println(id);
-		Announcement ann = annoService.findOneById(announcement_id);
-		model.addAttribute("ann", ann);
+		Announcement anno = annoService.findOneById(announcement_id);
+		model.addAttribute("anno", anno);
 		return "admin.teacher.announcement.edit";
 	}
 	
-	@RequestMapping(value="/admin/teacher/announcement/testKind")
+	@RequestMapping(value="/admin/teacher/announcement/create")
 	public String detailAnno(){
 		
 		return "admin.teacher.announcement.editKind";
@@ -86,7 +86,7 @@ public class TeacherAnnoInfoPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", teacher_id);
-		Page<Announcement> page = annoService.findAllAnnoById(pageNumber, pageSize, user);
+		Page<Announcement> page = annoService.findAllAnnoByUser(pageNumber, pageSize, user);
 		model.addAttribute("page", page);
 		return "teacher.announcement.list";
 	}

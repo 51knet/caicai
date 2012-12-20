@@ -56,7 +56,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	}
 
 	@Override
-	public Page<Announcement> findAllAnnoById(int pageNumber, int pageSize,
+	public Page<Announcement> findAllAnnoByUser(int pageNumber, int pageSize,
 			User user) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
 		Page<Announcement> onePage = annoRepository.findAnnoByUser(user, dateDesc);

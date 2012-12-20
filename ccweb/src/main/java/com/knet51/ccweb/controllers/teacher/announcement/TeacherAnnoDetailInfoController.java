@@ -80,7 +80,7 @@ public class TeacherAnnoDetailInfoController {
 	public String teacherAnnoUpdate(@RequestParam("id") Long id,@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm,
 			BindingResult validResult, HttpSession session,Model m){
 		if(validResult.hasErrors()){
-			return "redirect:/admin/teacher/announcement/view/"+id;
+			return "redirect:/admin/teacher/announcement/edit/"+id;
 		}else{	
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();
