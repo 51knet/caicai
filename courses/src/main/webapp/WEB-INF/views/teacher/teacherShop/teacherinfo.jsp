@@ -22,7 +22,7 @@
 	</c:choose>
 	</div>
 	<div align="left" style="width:500px;height:100px " >
-    <span>	&nbsp;&nbsp;&nbsp;&nbsp;姓名:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.user.name }&nbsp;&nbsp;&nbsp;&nbsp;
+    <span >	&nbsp;&nbsp;&nbsp;&nbsp;姓名:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.user.name }&nbsp;&nbsp;&nbsp;&nbsp;
     	 	&nbsp;&nbsp;&nbsp;&nbsp;性别:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.user.gender }&nbsp;&nbsp;&nbsp;&nbsp;
     	 	&nbsp;&nbsp;&nbsp;&nbsp;所属高校:&nbsp;&nbsp;&nbsp;&nbsp;${teacher.college }&nbsp;&nbsp;&nbsp;&nbsp;
     </span>

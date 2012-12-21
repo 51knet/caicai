@@ -84,7 +84,7 @@
 			<div style="width: 60%; float: left; height:150px;border: 0px solid #cccccc; font-size: 13px;">
 				<h4>${course.courseName}</h4><h4>${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</h4>
 				<h5>类别：${course.courseType }&nbsp;&nbsp;&nbsp;&nbsp;课程评分：<span style="color: red;">7</span>分</h5><h5>发布时间：${course.courseDate }</h5>
-				学员（20）&nbsp;&nbsp;评论（30）&nbsp;&nbsp;<a href='#' class="btn  btn-success">点击学习</a>
+				学员（20）&nbsp;&nbsp;评论（30）&nbsp;&nbsp;<a href='<c:url value="/teacherCourse/course/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
 			</div>
 		</div>
 		<div class="container course detail" style="background-color: #f7f7f7; margin-bottom: 10px; ">

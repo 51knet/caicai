@@ -5,8 +5,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="row-fluid custom round">
 <div align="center">
-	<div style="width:52%;">
-	<div  align="left" style="background-color:#F7F7F7;height:40px; line-height:40px;clear:both"><h4 style=" float:left">课程计划</h4></div>
+	<div style="width:1024px;">
+	<div  align="left" style="background-color:#F7F7F7;height:40px; line-height:40px;clear:both"><h4 style=" float:left; margin-left: 40px;">课程计划</h4></div>
     <br/>
 		<c:forEach var="teacherCourse" items="${teacherCourseList}">
 		    <div align="left">

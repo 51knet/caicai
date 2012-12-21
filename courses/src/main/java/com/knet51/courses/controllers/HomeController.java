@@ -48,7 +48,7 @@ public class HomeController {
 			HttpServletRequest request) {
 		logger.info("###### into the HomeController ######");
 		User user = new User();
-		user.setId(2L);
+		user.setId(4L);
 		session.setAttribute("userInfo", user);
 		//List<TeacherCourseBeans> tcBeanList = courseService.getAllTeacherCourseBeans();
 		List<TeacherCourse> courseList = courseService.findAllCourses();
