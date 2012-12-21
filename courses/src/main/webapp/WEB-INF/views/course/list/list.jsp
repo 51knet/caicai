@@ -58,7 +58,7 @@
 </div>
  -->
 <div class="container course" style="margin-bottom: 10px; margin-top: 10px;">
-	<div class="row">
+	<div class="container course row">
 	<div class="container course detail" style="background-color: #f7f7f7; height: 40px;">
 		<div style="padding: 5px;">
 			<select id="type" onchange="selectType()">
