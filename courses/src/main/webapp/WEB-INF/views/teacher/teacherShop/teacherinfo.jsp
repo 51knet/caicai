@@ -6,8 +6,10 @@
 <div align="center">
 <div style="height: 40px"></div>
     <br/>
-<div align="center" style="width:52%;">
-    <div  align="left" style="background-color:#F7F7F7;height:40px; line-height:40px;clear:both"><h4 style=" float:left">讲师介绍</h4></div>
+<div align="center" style="width:1024px;;">
+    <div  align="left" style="width:100%;background-color:#F7F7F7; height: 40px;">
+    	<h4 style="margin-left: 50px; float: left;">讲师介绍</h4>
+    </div>
     <br/>
     <div  style="width: 120px;height: 210px; float:left; margin-left:10px">
     <c:choose >

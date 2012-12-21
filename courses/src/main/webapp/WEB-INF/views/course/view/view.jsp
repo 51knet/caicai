@@ -29,7 +29,6 @@
 
 .container.course.detail {
 	width: 1024px;
-	height: 110px;
 }
 
 .container.course.detail.desc{
@@ -88,7 +87,7 @@
 				学员（20）&nbsp;&nbsp;评论（30）&nbsp;&nbsp;<a href='#' class="btn  btn-success">点击学习</a>
 			</div>
 		</div>
-		<div class="container course detail" style="background-color: #f7f7f7; margin-bottom: 10px; height: 40px;">
+		<div class="container course detail" style="background-color: #f7f7f7; margin-bottom: 10px; ">
 			<h4 style="margin-left: 50px;">课程介绍</h4>
 		</div>
 		<div class="container course detail">
