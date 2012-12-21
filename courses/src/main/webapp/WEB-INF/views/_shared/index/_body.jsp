@@ -214,7 +214,7 @@ background: #F7F7F7;
     			教师名称：<a href="http://localhost:8080/ccweb/teacher/${course.teacher.id}">${course.teacher.user.name}</a>
     		</div>
     		<div style="padding: 3px;">
-    			学习人数：25人&nbsp;&nbsp;&nbsp;课程评分：8分
+    			学习人数：25人&nbsp;&nbsp;&nbsp;课程评分：8分&nbsp;&nbsp;&nbsp;<span style="color: red;">￥ 20</span>
     		</div>
     	</div>
     </c:forEach>

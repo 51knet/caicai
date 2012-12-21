@@ -92,7 +92,7 @@
 		</div>
 		<div class="container course detail">
 			<div class="container course detail desc">
-				课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程
+				${course.courseDesc}
 			</div>
 		</div>
 	</div>
