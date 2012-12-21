@@ -36,10 +36,13 @@ $(document).ready(function (){
 				<textarea name="commentDesc" id="commentdescs" placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width:380px;"></textarea>
 				<span class="help-inline"></span>
 		        </div>
-		        <div id="commentError">${message}</div>
 				<div class="control-group">
 					<div class="controls">
+					<div>
+						<font color='#ff0000'>${message}</font>
+						</div>
 						<button type="submit"  class="btn btn-large btn-success">发表评论</button>
+						
 					</div>
 				</div>
 			</form>

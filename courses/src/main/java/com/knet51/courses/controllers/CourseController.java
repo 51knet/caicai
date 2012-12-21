@@ -95,6 +95,53 @@ public class CourseController {
 	@RequestMapping(value="/course/view/{course_id}")
 	public String showCourseDetail(@PathVariable Long course_id,Model model){
 		TeacherCourse course = courseService.findOneById(course_id);
+		List<CourseResource> listCourse = courseResourceService
+				.getResourceByCourseId(course_id);
+		List<CourseResource> listCourses = new ArrayList<CourseResource>();
+		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
+		String resourceOrder = null;
+		for (CourseResource courseResource : listCourse) {
+			resourceOrder = courseResource.getResourceOrder();
+			listCourses = courseResourceService
+					.getResourceByResourceOrder(resourceOrder);
+			courseMap.put(resourceOrder, listCourses);
+		}
+		Comment comment=new Comment();
+		Integer sumMark=0;
+		Integer mark=0;
+		Integer sumPerson=0;
+		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
+		List<Comment> listcomment =new ArrayList<Comment>();
+		try {
+			 listcomment = commentService.getAllCourse(course_id);
+			if(listcomment.size()>0){
+				comment = commentService.getComment(course_id, 4l);
+				mark = comment.getMark().intValue();
+				sumMark = commentService.getMark(course_id).intValue();
+				sumPerson = commentService.getPerson(course_id).intValue();
+			for (int i = 0; i < listcomment.size(); i++) {
+				User user=commentService.getByUser(listcomment.get(i).getUserid());
+				String commentTitle=listcomment.get(i).getCommentTitle();
+				String commentDate=listcomment.get(i).getCommentDate();
+				String commentDesc=listcomment.get(i).getCommentDesc();
+				String name=user.getName();
+				CommentUserBeans commentUser=new CommentUserBeans();
+				 commentUser.setName(name);
+				 commentUser.setCommentTitle(commentTitle);
+				 commentUser.setCommentDesc(commentDesc);
+				 commentUser.setCommentDate(commentDate);
+				list.add(commentUser);
+			}
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("id", course_id);
+		model.addAttribute("sumMark", sumMark);
+		model.addAttribute("mark", mark);
+		model.addAttribute("sumPerson", sumPerson);
+		model.addAttribute("listcomment", list);
+		model.addAttribute("courseMap", courseMap);
 		Teacher teacher = course.getTeacher();
 		model.addAttribute("course", course);
 		model.addAttribute("teacher", teacher);
@@ -140,10 +187,15 @@ public class CourseController {
 		Integer sumPerson=0;
 		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
 		List<Comment> listcomment =new ArrayList<Comment>();
+		String message="";
 		try {
 			 listcomment = commentService.getAllCourse(id);
 			if(listcomment.size()>0){
 				comment = commentService.getComment(id, 4l);
+				int num = commentService.getCommentByTeacherCourseIdAndUserId(id,4l);
+				if (num == 1) {
+					message="请不要重复评论";
+				}
 				mark = comment.getMark().intValue();
 				sumMark = commentService.getMark(id).intValue();
 				sumPerson = commentService.getPerson(id).intValue();
@@ -164,6 +216,7 @@ public class CourseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		model.addAttribute("message", message);
 		model.addAttribute("id", id);
 		model.addAttribute("sumMark", sumMark);
 		model.addAttribute("mark", mark);

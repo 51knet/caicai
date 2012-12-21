@@ -4,18 +4,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
-.row-fluid.custom {
-	margin-bottom: 20px;
-	padding: 0px 0px 10px;
-}
-.round {
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-}
-.row-fluid.custom .row {
-	margin: 0px 5px;
-}
 .fileName{}
 </style>
 <script type="text/javascript">
@@ -26,16 +14,10 @@ function courseOnclick(obj) {
 	  return false;
 }
 </script>
-<div class="row-fluid custom round">
-	<div class="row">
-		<h5>课程资料</h5>
-	</div>
-	<div class="row">
-		<div>
-		<div class="table">
+		<div style="margin-top: 100px">
 		<c:forEach var="course" items="${courseMap}" varStatus="i">
-			<div id="course_${i.count}" onclick="javascript:courseOnclick(this);">
-			<h4><span style="background-color:#F7F7F7;">${course.key}&nbsp;&nbsp;</span></h4>
+			<div id="course_${i.count}" onclick="javascript:courseOnclick(this);"style="background-color:#F7F7F7; ;height:40px; line-height:40px;clear:both" >
+			<h4 style="float:left;margin-left: 40px;"><span >${course.key}&nbsp;&nbsp;</span></h4>
 			</div>
 			<c:forEach var="fileNames" items="${course.value}">
 			<div class="fileName_${i.count}" style="display: none;">
@@ -44,6 +26,3 @@ function courseOnclick(obj) {
 			</c:forEach>
 		</c:forEach>
 		</div>
-		</div>
-	</div>
-</div>
