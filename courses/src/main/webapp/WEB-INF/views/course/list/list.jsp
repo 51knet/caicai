@@ -25,7 +25,7 @@
 }
 
 .container.course.detail {
-	width: 1024px;
+	width: 990px;
 	height: 110px;
 }
 </style>
@@ -97,7 +97,7 @@
 					<td>
 						<div style="width:410px;" id="contentlimit">课程名称：${course.courseName}<br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
 					</td>
-					<td width="35%" align="left">
+					<td width="34%" align="left">
 						<div style="width: 100%;height: 100%;">
 							<div style="float: left; height: 100px; width: 120px;">
 								<c:choose>
