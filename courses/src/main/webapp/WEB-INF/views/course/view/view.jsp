@@ -18,17 +18,22 @@
 -------------------------------------------------- */
 
 .container.course {
-	width: 1000px;
+	width: 1024px;
+	max-width:1024px;
 	text-align: left;
 }
 
+.container.course .row{
+	 margin-left: 0px;
+}
+
 .container.course.detail {
-	width: 990px;
+	width: 1024px;
 	height: 110px;
 }
 
 .container.course.detail.desc{
-	width: 890px;
+	width: 950px;
 	margin-left: 50px;
 	margin-bottom: 10px;
 }
@@ -40,6 +45,7 @@
 	<!-- <div class="container course detail" style="background-color: #f7f7f7; height: 60px;margin-bottom: 10px; vertical-align: middle;">
 		<h2>&nbsp;课程详细</h2>
 	</div> -->
+	<div class="container course row">
 		<div class="container course detail" style="margin-bottom: 20px; margin-top:10px; height: 180px;">
 			<!-- <table class="table table-bordered" style="width: 100%; height: 100%;" cellpadding="5">
 				<tr>
@@ -90,7 +96,7 @@
 				课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程课程
 			</div>
 		</div>
-	
+	</div>
 </div>
 
 
