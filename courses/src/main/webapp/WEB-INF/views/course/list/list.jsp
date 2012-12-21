@@ -111,7 +111,9 @@
 									</c:otherwise>
 								</c:choose>
 							</div>
-							<div style="float: left; height: 100px; ">教师名称：${course.teacher.user.name } <br>所在学校：${course.teacher.college }</div>
+							<div style="float: left; height: 100px; ">教师名称：${course.teacher.user.name } <br>所在学校：${course.teacher.college }<br>专业：${course.teacher.major }<br>
+								<a style="margin-top: 5px;" href='<c:url value="/course/teacher/${course.teacher.id}"></c:url>' class="btn  btn-success">查看发布的课程</a>
+							</div>
 						</div>
 					</td>
 				</tr>

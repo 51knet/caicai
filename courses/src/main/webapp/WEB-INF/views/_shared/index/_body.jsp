@@ -211,7 +211,7 @@ background: #F7F7F7;
     		</div>
     		<div style="padding: 3px;">${course.courseName}-${course.courseType }</div>
     		<div style="padding: 3px;">
-    			教师名称：<a href="http://localhost:8080/ccweb/teacher/${course.teacher.id}">${course.teacher.user.name}</a>
+    			教师名称：<a href='<c:url value="/course/teacher/${course.teacher.id}"></c:url>'>${course.teacher.user.name}</a>
     		</div>
     		<div style="padding: 3px;">
     			学习人数：25人&nbsp;&nbsp;&nbsp;课程评分：8分&nbsp;&nbsp;&nbsp;<span style="color: red;">￥ 20</span>
