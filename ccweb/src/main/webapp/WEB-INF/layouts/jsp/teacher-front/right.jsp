@@ -85,7 +85,7 @@
 											无描述
 										</c:when>
 										<c:otherwise>
-											${page.description }
+											<div style="width: 320px;" id="content">${page.description }</div>
 										</c:otherwise>
 									</c:choose>
 									</td>
@@ -120,7 +120,7 @@
 			<c:choose>
 				<c:when test="${courseCount !=0}">
 					<thead>
-						<tr><th >课程标题</th><th>课程简述</th><th width="20%">发布时间</th></tr>
+						<tr><th width="20%">课程标题</th><th width="60%">课程简述</th><th width="20%">发布时间</th></tr>
 					</thead>
 					<tbody>
 						<c:forEach var="course" items="${courseList}">
@@ -133,7 +133,7 @@
 										无描述
 									</c:when>
 									<c:otherwise>
-										${course.courseDesc}
+										<div style="width: 450px;" id="content">${course.courseDesc}</div>
 									</c:otherwise>
 								</c:choose>
 								</td>
