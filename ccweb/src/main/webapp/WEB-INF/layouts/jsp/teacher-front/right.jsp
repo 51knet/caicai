@@ -19,7 +19,7 @@
 </style>
 <!-- ${teacherInfo.id} -->
 <div class="row-fluid custom round">
-	<div class="row"><h5>公告 </h5><hr/></div>
+	<div class="row"><h5>公告 </h5></div>
 	
 	<div class="row">
 		<!--<c:choose>
@@ -31,13 +31,10 @@
 		<c:choose>
 			<c:when test="${annoCount>0}">
 				<table class="table">
-					<thead>
-						<tr><th >公告标题</th><th width="20%">发表日期</th></tr>
-					</thead>
 					<tbody>
 						<c:forEach var="anno" items="${annolist}" begin="0" end="2">
 							<tr>
-								<td><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a>
+								<td  width="80%"><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a>
 								</td>
 								<td>
 									${anno.date}
@@ -64,32 +61,19 @@
 <div class="row-fluid custom round">
 		<div class="row">
 			<h5>教学资源</h5>
-			<hr>
+		
 		</div>
 		
 		<div class="row ">
 			<c:choose>
 				<c:when test="${resourceCount !=0}">
 					<table class="table">
-						<thead>
-							<tr><th width="25%">资源名称</th><th>描述</th><th width="10%">类别</th><th width="20%">发表日期</th></tr>
-						</thead>
 						<tbody>
 							<c:forEach var="resource" items="${resourceList}">
 								<tr>
-									<td><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${resource.id}"></c:url>"> ${resource.name } </a>
+									<td  width="60%"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${resource.id}"></c:url>"> ${resource.name } </a>
 									</td>
-									<td>
-										<c:choose>
-										<c:when test="${page.description==null || page.description=='' }">
-											无描述
-										</c:when>
-										<c:otherwise>
-											<div style="width: 320px;" id="content">${page.description }</div>
-										</c:otherwise>
-									</c:choose>
-									</td>
-									<td>${resource.resourceType.typeName }</td>
+									<td width="20%">${resource.resourceType.typeName }</td>
 									<td>
 										${resource.date}
 									</td>
@@ -114,28 +98,15 @@
 		<div class="row">
 			<h5>课程资料</h5>
 		</div>
-		<hr>
+	
 		<div class="row ">
 		<table class="table">
 			<c:choose>
 				<c:when test="${courseCount !=0}">
-					<thead>
-						<tr><th width="20%">课程标题</th><th width="60%">课程简述</th><th width="20%">发布时间</th></tr>
-					</thead>
 					<tbody>
 						<c:forEach var="course" items="${courseList}">
 							<tr>
-								<td><a href="<c:url value="/teacher/${teacherInfo.id}/course/view/${course.id}"></c:url>"> ${course.courseName }</a> 
-								</td>
-								<td>
-									<c:choose>
-									<c:when test="${course.courseDesc==null || course.courseDesc=='' }">
-										无描述
-									</c:when>
-									<c:otherwise>
-										<div style="width: 450px;" id="content">${course.courseDesc}</div>
-									</c:otherwise>
-								</c:choose>
+								<td width="80%"><a href="<c:url value="/teacher/${teacherInfo.id}/course/view/${course.id}"></c:url>"> ${course.courseName }</a> 
 								</td>
 								<td>
 									${course.courseDate}
@@ -272,14 +243,11 @@
 <div class="row-fluid custom round">
 	<div class="row">
 		<h5>博文</h5>
-		<hr>
+	
 	</div>
 	
 	<div class="row ">
 	<table class="table">
-		<thead>
-			<tr><th width="80%">标题</th><th>发表日期</th></tr>
-		</thead>
 		<tbody>
 			<c:forEach var="blogPost" items="${blogPosts}">
 			<tr>
