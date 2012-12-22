@@ -22,7 +22,9 @@
 	  <div class="control-group">
 	  	<textarea rows="20" cols="30" id="textarea" name="content" style="width: 98%;"></textarea>
 	  </div>
-	  <button type="submit" class="btn">提交</button>
+	  <input type="hidden" id="draft" name="draft" value="false">
+	  <a href="#" class="btn" id="btn-save-draft">保存草稿</a>
+	  <button type="submit" id="btn-submit" class="btn btn-success">发布</button>
 	</form>
 </div>
 <c:url var="uploadJson" value="/file_upload/${sessionUserInfo.id}"></c:url>
@@ -50,6 +52,12 @@
 				}
 			});
 			prettyPrint();
+			
+			$('#btn-save-draft').on('click',function(event){
+				event.preventDefault();
+				$('#draft').val('true');
+				$('#btn-submit').click();
+			});
 	    });
 </script>
 	

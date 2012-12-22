@@ -12,4 +12,5 @@ import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 @Transactional
 public interface BlogPostRepository extends JpaRepository<BlogPost, Long>, JpaSpecificationExecutor<BlogPost>, BlogPostRepositoryCustom {
 	Page<BlogPost> findByAuthor(Teacher author, Pageable pageable);
+	Page<BlogPost> findByAuthorAndGarbage(Teacher author, boolean garbage, Pageable pageable);
 }

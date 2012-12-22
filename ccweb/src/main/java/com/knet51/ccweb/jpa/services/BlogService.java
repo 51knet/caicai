@@ -17,6 +17,8 @@ public interface BlogService {
 	List<BlogPost> findAllBlogs();
 	Page<BlogPost> findAllBlogs(int pageNumber, int pageSize);
 	Page<BlogPost> findAllBlogs(int pageNumber, int pageSize, Teacher teacher);
+	Page<BlogPost> findAllBlogsNotInGarbageCan(int pageNumber, int pageSize, Teacher teacher);
+	Page<BlogPost> findAllBlogsInGarbageCan(int pageNumber, int pageSize, Teacher teacher);
 	List<BlogCategory> findBlogCategories(Teacher teacher);
 	BlogCategory findBlogCategory(Long category_id);
 	List<BlogPost> findBlogPosts(Long teacher_id);

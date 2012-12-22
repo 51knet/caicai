@@ -53,6 +53,19 @@ public class BlogServiceImpl implements BlogService {
 		Page<BlogPost> onePage = blogPostRepository.findByAuthor(teacher, dateDesc);
 		return onePage;
 	}
+	@Override
+	public Page<BlogPost> findAllBlogsNotInGarbageCan(int pageNumber, int pageSize, Teacher teacher) {
+		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
+		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbage(teacher, false, dateDesc);
+		return onePage;
+	}
+
+	@Override
+	public Page<BlogPost> findAllBlogsInGarbageCan(int pageNumber, int pageSize, Teacher teacher) {
+		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
+		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbage(teacher, true, dateDesc);
+		return onePage;
+	}
 
 	@Override
 	public BlogPost createBlogPost(BlogPost blogPost) {

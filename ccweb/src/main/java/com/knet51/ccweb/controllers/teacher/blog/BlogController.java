@@ -50,7 +50,7 @@ public class BlogController {
 	public String list(@RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize, Model model, HttpSession session) {
 		Long id = getUserId(session);
 		Teacher teacher = teacherService.findOne(id);
-		Page<BlogPost> page = blogService.findAllBlogs(pageNumber, pageSize, teacher);
+		Page<BlogPost> page = blogService.findAllBlogsNotInGarbageCan(pageNumber, pageSize, teacher);
 		model.addAttribute("page", page);
 		return "admin.blog.list";
 	}
@@ -64,7 +64,8 @@ public class BlogController {
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", teacher_id);
 		
-		Page<BlogPost> page = blogService.findAllBlogs(pageNumber, pageSize, teacher);
+		//Page<BlogPost> page = blogService.findAllBlogs(pageNumber, pageSize, teacher);
+		Page<BlogPost> page = blogService.findAllBlogsNotInGarbageCan(pageNumber, pageSize, teacher);
 		model.addAttribute("page", page);
 		return "teacher.blog.list";
 	}
@@ -176,8 +177,12 @@ public class BlogController {
 	}
 	@RequestMapping(value= "/admin/blog/destroy", method=RequestMethod.POST)
 	public String destroy(@RequestParam("blog_post_id") Long blog_post_id) {
-		//TODO: add logic to judge if there are comments attached
-		blogService.deleteBlogPost(blog_post_id);
+		//DONE: no need to add logic to judge if there are comments attached, we just mark it in garbage can.
+		//blogService.deleteBlogPost(blog_post_id);
+		BlogPost blogPost = blogService.findOne(blog_post_id);
+		blogPost.setGarbage(true);
+		blogService.updateBlogPost(blogPost);
+		
 		//TODO: flash
 		return "redirect:/admin/blog/list";
 	}

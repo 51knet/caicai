@@ -1,27 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
 <div class="">
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th colspan="5">全部博文</th>
+				<th colspan="6">全部博文</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td colspan="5"><a href="<c:url value="/admin/blog/new"></c:url>" class="btn">写博文</a>
+				<td colspan="6"><a href="<c:url value="/admin/blog/new"></c:url>" class="btn">写博文</a>
 					<a id="category_management"  href="<c:url value="/admin/blog/category/list"></c:url>" class="btn">管理分类</a></td>
 			</tr>
 			<tr style="display: none;">
-				<td colspan="5">${page}</td>
+				<td colspan="6">${page}</td>
+			</tr>
+			<tr>
+				<th>标题</th>
+				<th>创建时间</th>
+				<th>更新时间</th>
+				<th>状态</th>
+				<th colspan="2">操作</th>
 			</tr>
 			<c:forEach var="blogPost" items="${page.content}">
 			<tr>
 				<td><a href="<c:url value="/admin/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
-				<td>${blogPost.dateCreated}</td>
-				<td>${blogPost.dateUpdated}</td>
+				<td><fmt:formatDate value="${blogPost.dateCreated}" pattern="yyyy-MM-dd HH:mm"/>  </td>
+				<td><fmt:formatDate value="${blogPost.dateUpdated}" pattern="yyyy-MM-dd HH:mm"/>  </td>
+				<td> ${blogPost.draft ? "草稿":"已发布"}</td>
+								<td> ${blogPost.garbage ? "回收站":"不在回收站"}</td>
 				<td><a href="<c:url value="/admin/blog/edit/${blogPost.id}"></c:url>">编辑</a></td>
 				<td>
 					<div class="btn-group">
@@ -46,7 +56,7 @@
 			</c:forEach>
 		</tbody>
 		<tfoot>
-			<tr><td colspan="5">
+			<tr><td colspan="6">
 				<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
 			</td></tr>
 		</tfoot>

@@ -10,6 +10,13 @@
 		  <input type="text" name="title" placeholder="" value="${blogPost.title}">
 		  <input type="hidden" name="id" value="${blogPost.id}">
 	  </div>
+	  <div class="control-group" >
+		  <label class="control-label" style="display:inline-block;width: 40px;">状态:</label>
+		  <select name="draft">
+		  	<option value="false" ${blogPost.draft ? "":"selected='selected'"}>已发布</option>
+		  	<option value="true" ${blogPost.draft ? "selected='selected'" : ""}>草稿</option> 
+		  </select>
+	  </div>
       <div class="control-group" >
 		  <label class="control-label" style="display:inline-block; width: 40px;">分类:</label>
 		  <select name="blogcategory_id">
@@ -18,16 +25,16 @@
 		  			${ (blogCategory.id==blogPost.blogCategory.id) ?"selected='selected'":"" }
 		  		>${blogCategory.name}</option>
 		  	</c:forEach>
-
 		  </select>
 	  </div>
+	  
 	  <div class="clearfix"></div>
 	  <div class="control-group">
 	  	<textarea rows="20" cols="30" id="textarea" name="content" style="width: 98%;">
 	  	${blogPost.content}
 	  	</textarea>
 	  </div>
-	  <button type="submit" class="btn">Submit</button>
+	  <button type="submit" class="btn btn-success">更新</button>
 	</form>
 </div>
 

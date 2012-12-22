@@ -39,6 +39,8 @@ public class BlogPost extends AbstractEntity {
 	private String content;
 	private Date dateCreated;
 	private Date dateUpdated;
+	private boolean draft = false; // by default all blogPosts are not draft
+	private boolean garbage = false; // by default blogPost is not in garbageCan
 	
 	public BlogPost() {
 		this.dateCreated  = new Date();
@@ -105,6 +107,21 @@ public class BlogPost extends AbstractEntity {
 				+ ", dateUpdated=" + dateUpdated + "]";
 	}
 
+	public boolean isDraft() {
+		return draft;
+	}
 
+	public void setDraft(boolean draft) {
+		this.draft = draft;
+	}
+
+	public boolean isGarbage() {
+		return garbage;
+	}
+
+	public void setGarbage(boolean garbage) {
+		this.garbage = garbage;
+	}
+	
 
 }
