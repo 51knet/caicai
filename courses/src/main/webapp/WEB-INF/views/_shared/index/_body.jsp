@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
@@ -195,26 +196,35 @@ background: #F7F7F7;
       <p><span>更新至第八集</span></p>
     </div>
      -->
-    <c:forEach items="${courseList}" var="course"  begin="0" end="2">
+    <c:forEach items="${courseList}" var="c"  begin="0" end="2">
     	<div class="span4">
     		<div>
    				<c:choose>
-					<c:when test="${course.courseCover != null && course.courseCover != ''}">
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="http://localhost:8080/ccweb/${course.courseCover }"></c:url>' style="width: 310px; height: 100px;" />
+					<c:when test="${c.teacherCourse.courseCover != null && c.teacherCourse.courseCover != ''}">
+						<a href='<c:url value="/course/view/${c.course.id}"></c:url>'> <img src='<c:url value="http://localhost:8080/ccweb/${c.teacherCourse.courseCover }"></c:url>' style="width: 310px; height: 100px;" />
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 310px; height: 100px;" />
+						<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 310px; height: 100px;" />
 						</a>
 					</c:otherwise>
 				</c:choose>
     		</div>
-    		<div style="padding: 3px;">${course.courseName}-${course.courseType }</div>
+    		<div style="padding: 3px;">${c.teacherCourse.courseName}-${c.teacherCourse.courseType }</div>
     		<div style="padding: 3px;">
-    			教师名称：<a href='<c:url value="/course/teacher/${course.teacher.id}"></c:url>'>${course.teacher.user.name}</a>
+    			教师名称：<a href='<c:url value="/course/teacher/${c.teacherCourse.teacher.id}"></c:url>'>${c.teacherCourse.teacher.user.name}</a>
     		</div>
     		<div style="padding: 3px;">
-    			学习人数：25人&nbsp;&nbsp;&nbsp;课程评分：8分&nbsp;&nbsp;&nbsp;<span style="color: red;">￥ 20</span>
+    			学习人数：${c.userCount}人&nbsp;&nbsp;&nbsp;课程评分：
+    			<c:choose>
+    				<c:when test="${c.courseMark !=null && c.courseMark>0 }">
+    					<fmt:formatNumber type="number" value="${c.courseMark }" maxFractionDigits="0" />分
+    				</c:when>
+    				<c:otherwise>
+    					0分
+    				</c:otherwise>
+    			</c:choose>
+    			&nbsp;&nbsp;&nbsp;<span style="color: red;">￥ 20</span>
     		</div>
     	</div>
     </c:forEach>

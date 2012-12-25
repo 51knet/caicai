@@ -28,8 +28,8 @@ public class EduBackgroundServiceImpl implements EduBackgroundService {
 	}
 
 	@Override
-	public List<EduBackground> findEduInfoList(Long teacher_id) {
-		return eduBackgroundRepository.findEduList(teacher_id);
+	public List<EduBackground> findEduListByTeacherId(Long teacher_id) {
+		return eduBackgroundRepository.findEduBackgroundByTeacherid(teacher_id);
 	}
 
 	@Override

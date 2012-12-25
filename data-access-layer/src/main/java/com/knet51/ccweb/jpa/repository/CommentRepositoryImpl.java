@@ -16,8 +16,8 @@ public class CommentRepositoryImpl implements
 	private EntityManager em;
 
 	@Override
-	public Long getMark(Long teacherCourseId) {
-		Long mark = (Long) em.createQuery("select sum(mark) from Comment t where t.teachercourseid="+teacherCourseId).getSingleResult();
+	public Double getMark(Long teacherCourseId) {
+		Double mark = (Double) em.createQuery("select avg(mark) from Comment t where t.teachercourseid="+teacherCourseId).getSingleResult();
 		return mark;
 	}
 
@@ -39,15 +39,7 @@ public class CommentRepositoryImpl implements
 	@Override
 	public Comment getComment(Long teacherCourseId, Long userId) {
 		Comment comment= new Comment();
-		try {
-			comment= (Comment) em.createQuery("select t from Comment t where t.teachercourseid="+teacherCourseId +" and t.userid="+userId).getSingleResult();
-			if(comment==null){
-				return null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		comment= (Comment) em.createQuery("select t from Comment t where t.teachercourseid="+teacherCourseId +" and t.userid="+userId).getSingleResult();
 		return comment;
 	}
 
@@ -68,14 +60,7 @@ public class CommentRepositoryImpl implements
 	@SuppressWarnings("unchecked")
 	public List<Comment> getAllCourse(Long teacherCourseId) {
 		List<Comment> list= new ArrayList<Comment>();
-		try {
-			list=em.createQuery("select t from Comment t where t.teachercourseid="+teacherCourseId ).getResultList();
-			if(list.size()==0){
-				return null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		list=em.createQuery("select t from Comment t where t.teachercourseid="+teacherCourseId ).getResultList();
 		return list;
 	}
 

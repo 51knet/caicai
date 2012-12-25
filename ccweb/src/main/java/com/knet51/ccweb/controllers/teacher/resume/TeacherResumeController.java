@@ -90,7 +90,7 @@ public class TeacherResumeController {
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<EduBackground> eduInfo = eduBackgroundService
-				.findEduInfoList(userInfo.getId());
+			.findEduListByTeacherId(userInfo.getId());
 		if (eduInfo != null) {
 			model.addAttribute("eduInfo", eduInfo);
 			model.addAttribute("eduCount", eduInfo.size());
@@ -131,7 +131,7 @@ public class TeacherResumeController {
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", teacher_id);
 		List<EduBackground> eduInfo = eduBackgroundService
-				.findEduInfoList(teacher_id);
+				.findEduListByTeacherId(teacher_id);
 		if (eduInfo != null) {
 			model.addAttribute("eduInfo", eduInfo);
 			model.addAttribute("eduCount", eduInfo.size());

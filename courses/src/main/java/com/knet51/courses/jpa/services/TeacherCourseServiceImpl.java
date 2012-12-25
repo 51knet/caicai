@@ -14,9 +14,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.teacher.Comment;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.repository.CommentRepository;
 import com.knet51.ccweb.jpa.repository.TeacherCourseRepository;
 import com.knet51.ccweb.jpa.repository.TeacherRepository;
+import com.knet51.courses.beans.CourseBeans;
 import com.knet51.courses.beans.TeacherCourseBeans;
 
 @Transactional
@@ -28,6 +31,9 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	
 	@Autowired
 	private TeacherCourseRepository courseRepository;
+	
+	@Autowired
+	private CommentRepository commentRepository;
 
 	@Override
 	public List<String> getAllSchool() {
@@ -121,6 +127,32 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		}
 		
 		return list;
+	}
+
+	@Override
+	public List<CourseBeans> getAllCourseBeans() {
+		List<CourseBeans> courseBeansList = new ArrayList<CourseBeans>();
+		List<TeacherCourse> teacherCourseList = courseRepository.findAll();
+		for(int i=0;i<teacherCourseList.size();i++){
+			TeacherCourse teacherCourse = courseRepository.findOne(teacherCourseList.get(i).getId());
+			Double avgMark = commentRepository.getMark(teacherCourseList.get(i).getId());
+			Long userCount = commentRepository.getPerson(teacherCourseList.get(i).getId());
+			CourseBeans courseBeans = new CourseBeans(userCount, avgMark, teacherCourse);
+			courseBeansList.add(courseBeans);
+		}
+		return courseBeansList;
+	}
+
+	@Override
+	public CourseBeans getCourseBeansById(Long course_id) {
+		TeacherCourse teacherCourse = courseRepository.findOne(course_id);
+		Double avgMark = commentRepository.getMark(course_id);
+		Long userCount = commentRepository.getPerson(course_id);
+		CourseBeans courseBeans = new CourseBeans();
+		courseBeans.setCourseMark(avgMark);
+		courseBeans.setTeacherCourse(teacherCourse);
+		courseBeans.setUserCount(userCount);
+		return courseBeans;
 	}
 
 }

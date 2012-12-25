@@ -18,7 +18,10 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.UserCourse;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.repository.CommentRepository;
+import com.knet51.courses.beans.CourseBeans;
 import com.knet51.courses.beans.TeacherCourseBeans;
+import com.knet51.courses.jpa.services.CommentService;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 import com.knet51.courses.jpa.services.UserCourseService;
@@ -37,6 +40,9 @@ public class HomeController {
 	
 	@Autowired
 	private UserCourseService userCourseService;
+	
+	@Autowired
+	private CommentService commentService;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -48,15 +54,16 @@ public class HomeController {
 			HttpServletRequest request) {
 		logger.info("###### into the HomeController ######");
 		User user = new User();
-		user.setId(4L);
+		user.setId(2L);
 		session.setAttribute("userInfo", user);
 		//List<TeacherCourseBeans> tcBeanList = courseService.getAllTeacherCourseBeans();
-		List<TeacherCourse> courseList = courseService.findAllCourses();
+		//List<TeacherCourse> courseList = courseService.findAllCourses();
+		List<CourseBeans> cBeans = courseService.getAllCourseBeans();
 		//List<String> courseSchoolList = courseService.getAllSchool();
 		List<Teacher> teacherList = teacherService.findAllTeacher();
 		//model.addAttribute("schoolList", courseSchoolList);
-		model.addAttribute("courseList", courseList);
-		model.addAttribute("courseCount", courseList.size());
+		model.addAttribute("courseList", cBeans);
+		model.addAttribute("courseCount", cBeans.size());
 		model.addAttribute("teacherList", teacherList);
 		User currentUser = (User) session.getAttribute("userInfo");
 		if(currentUser !=null){

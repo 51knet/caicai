@@ -6,7 +6,7 @@ import com.knet51.ccweb.jpa.entities.EduBackground;
 
 public interface EduBackgroundRepositoryCustom {
 
-	EduBackground findOneByTeacherId(Long teacher_id);
 	
-	List<EduBackground> findEduList(Long teacher_id);
+	
+	
 }

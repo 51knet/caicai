@@ -97,6 +97,11 @@ public class CourseController {
 		TeacherCourse course = courseService.findOneById(course_id);
 		List<CourseResource> listCourse = courseResourceService
 				.getResourceByCourseId(course_id);
+		
+		Double courseMark = commentService.getMark(course_id);
+		model.addAttribute("courseMark", courseMark);
+		model.addAttribute("userCount", commentService.getPerson(course_id));
+		
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
 		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
 		String resourceOrder = null;
@@ -109,7 +114,7 @@ public class CourseController {
 		Comment comment=new Comment();
 		Integer sumMark=0;
 		Integer mark=0;
-		Integer sumPerson=0;
+		
 		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
 		List<Comment> listcomment =new ArrayList<Comment>();
 		try {
@@ -118,7 +123,7 @@ public class CourseController {
 				comment = commentService.getComment(course_id, 4l);
 				mark = comment.getMark().intValue();
 				sumMark = commentService.getMark(course_id).intValue();
-				sumPerson = commentService.getPerson(course_id).intValue();
+				
 			for (int i = 0; i < listcomment.size(); i++) {
 				User user=commentService.getByUser(listcomment.get(i).getUserid());
 				String commentTitle=listcomment.get(i).getCommentTitle();
@@ -137,9 +142,9 @@ public class CourseController {
 			e.printStackTrace();
 		}
 		model.addAttribute("id", course_id);
-		model.addAttribute("sumMark", sumMark);
+		model.addAttribute("sumMark",sumMark);
 		model.addAttribute("mark", mark);
-		model.addAttribute("sumPerson", sumPerson);
+		model.addAttribute("sumPerson", commentService.getPerson(course_id));
 		model.addAttribute("listcomment", list);
 		model.addAttribute("courseMap", courseMap);
 		Teacher teacher = course.getTeacher();

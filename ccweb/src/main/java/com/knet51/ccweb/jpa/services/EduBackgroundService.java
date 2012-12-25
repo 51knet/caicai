@@ -9,5 +9,5 @@ public interface EduBackgroundService {
 	EduBackground findOneById(Long Id);
 	EduBackground updateEduBackground(EduBackground eduBackground);
 	void destory(Long id);
-	List<EduBackground> findEduInfoList(Long teacher_id);
+	List<EduBackground> findEduListByTeacherId(Long teacher_id);
 }
