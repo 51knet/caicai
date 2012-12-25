@@ -1,40 +1,36 @@
 package com.knet51.courses.beans;
 
+import com.knet51.ccweb.jpa.entities.teacher.Comment;
+
 public class CommentUserBeans {
-	private String name;
-	private String commentTitle;
-	private String commentDate;
-	private String commentDesc;
-	public String getName() {
-		return name;
+	private String userName;
+	private String photoUrl;
+	private Comment comment;
+	public String getPhotoUrl() {
+		return photoUrl;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
-	public String getCommentTitle() {
-		return commentTitle;
+	
+	public String getUserName() {
+		return userName;
 	}
-	public void setCommentTitle(String commentTitle) {
-		this.commentTitle = commentTitle;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getCommentDate() {
-		return commentDate;
+	
+	public Comment getComment() {
+		return comment;
 	}
-	public void setCommentDate(String commentDate) {
-		this.commentDate = commentDate;
+	public void setComment(Comment comment) {
+		this.comment = comment;
 	}
-	public String getCommentDesc() {
-		return commentDesc;
-	}
-	public void setCommentDesc(String commentDesc) {
-		this.commentDesc = commentDesc;
-	}
-	public CommentUserBeans(String name,String commentTitle,String commentDate,String commentDesc) {
+	public CommentUserBeans(String userName,String photoUrl,Comment comment) {
 		super();
-		this.name=name;
-		this.commentTitle=commentTitle;
-		this.commentDesc=commentDesc;
-		this.commentDate=commentDate;
+		this.userName=userName;
+		this.photoUrl=photoUrl;
+		this.comment=comment;
 	}
 	public CommentUserBeans() {
 		super();

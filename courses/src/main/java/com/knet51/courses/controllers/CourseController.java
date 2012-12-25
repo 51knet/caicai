@@ -1,6 +1,5 @@
 package com.knet51.courses.controllers;
 
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +13,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,7 +44,6 @@ public class CourseController {
 	private CourseService courseResourceService;
 	@Autowired
 	private CommentService commentService;
-	
 	@Autowired
 	private TeacherService teacherService;
 
@@ -95,53 +94,6 @@ public class CourseController {
 	@RequestMapping(value="/course/view/{course_id}")
 	public String showCourseDetail(@PathVariable Long course_id,Model model){
 		TeacherCourse course = courseService.findOneById(course_id);
-		List<CourseResource> listCourse = courseResourceService
-				.getResourceByCourseId(course_id);
-		List<CourseResource> listCourses = new ArrayList<CourseResource>();
-		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
-		String resourceOrder = null;
-		for (CourseResource courseResource : listCourse) {
-			resourceOrder = courseResource.getResourceOrder();
-			listCourses = courseResourceService
-					.getResourceByResourceOrder(resourceOrder);
-			courseMap.put(resourceOrder, listCourses);
-		}
-		Comment comment=new Comment();
-		Integer sumMark=0;
-		Integer mark=0;
-		Integer sumPerson=0;
-		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
-		List<Comment> listcomment =new ArrayList<Comment>();
-		try {
-			 listcomment = commentService.getAllCourse(course_id);
-			if(listcomment.size()>0){
-				comment = commentService.getComment(course_id, 4l);
-				mark = comment.getMark().intValue();
-				sumMark = commentService.getMark(course_id).intValue();
-				sumPerson = commentService.getPerson(course_id).intValue();
-			for (int i = 0; i < listcomment.size(); i++) {
-				User user=commentService.getByUser(listcomment.get(i).getUserid());
-				String commentTitle=listcomment.get(i).getCommentTitle();
-				String commentDate=listcomment.get(i).getCommentDate();
-				String commentDesc=listcomment.get(i).getCommentDesc();
-				String name=user.getName();
-				CommentUserBeans commentUser=new CommentUserBeans();
-				 commentUser.setName(name);
-				 commentUser.setCommentTitle(commentTitle);
-				 commentUser.setCommentDesc(commentDesc);
-				 commentUser.setCommentDate(commentDate);
-				list.add(commentUser);
-			}
-		}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("id", course_id);
-		model.addAttribute("sumMark", sumMark);
-		model.addAttribute("mark", mark);
-		model.addAttribute("sumPerson", sumPerson);
-		model.addAttribute("listcomment", list);
-		model.addAttribute("courseMap", courseMap);
 		Teacher teacher = course.getTeacher();
 		model.addAttribute("course", course);
 		model.addAttribute("teacher", teacher);
@@ -164,8 +116,8 @@ public class CourseController {
 			Model model,
 			HttpSession session,
 			@PathVariable Long id,
-			@RequestParam(value = "pageNumber", defaultValue = "5") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize) {
+			@RequestParam(value = "pageNumber", defaultValue = "3") int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "4") int pageSize) {
 		List<CourseResource> listCourse = courseResourceService
 				.getResourceByCourseId(id);
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
@@ -177,51 +129,30 @@ public class CourseController {
 					.getResourceByResourceOrder(resourceOrder);
 			courseMap.put(resourceOrder, listCourses);
 		}
-		// model.addAttribute("listCourse", listCourse);
-		model.addAttribute("courseMap", courseMap);
-		// Page<Comment> onePage = commentService.findAllCommit(pageNumber,
-		// pageSize, id);
-		Comment comment=new Comment();
-		Integer sumMark=0;
-		Integer mark=0;
-		Integer sumPerson=0;
-		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
-		List<Comment> listcomment =new ArrayList<Comment>();
 		String message="";
-		try {
-			 listcomment = commentService.getAllCourse(id);
-			if(listcomment.size()>0){
-				comment = commentService.getComment(id, 4l);
-				int num = commentService.getCommentByTeacherCourseIdAndUserId(id,4l);
-				if (num == 1) {
-					message="请不要重复评论";
-				}
-				mark = comment.getMark().intValue();
-				sumMark = commentService.getMark(id).intValue();
-				sumPerson = commentService.getPerson(id).intValue();
-			for (int i = 0; i < listcomment.size(); i++) {
-				User user=commentService.getByUser(listcomment.get(i).getUserid());
-				String commentTitle=listcomment.get(i).getCommentTitle();
-				String commentDate=listcomment.get(i).getCommentDate();
-				String commentDesc=listcomment.get(i).getCommentDesc();
-				String name=user.getName();
-				CommentUserBeans commentUser=new CommentUserBeans();
-				 commentUser.setName(name);
-				 commentUser.setCommentTitle(commentTitle);
-				 commentUser.setCommentDesc(commentDesc);
-				 commentUser.setCommentDate(commentDate);
-				list.add(commentUser);
-			}
+		Comment comment = commentService.findByTeachercourseidAndUserid(id, 4l);
+		if(comment!=null){
+			message="请不要重复评论";
 		}
-		} catch (Exception e) {
-			e.printStackTrace();
+		List<Comment> listComment=commentService.findByTeachercourseid(id);
+		Integer sumPerson=listComment.size();
+		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
+		Page<Comment> onePage = commentService.findCommentByTeachercourseid(pageNumber,pageSize, id);
+		CommentUserBeans commentUser=new CommentUserBeans();
+		for (int i = 0; i < onePage.getContent().size(); i++) {
+			User user=commentService.findByUserId(onePage.getContent().get(i).getUserid());
+			Comment comm=onePage.getContent().get(i);
+			String userName=user.getName();
+			String photoUrl=user.getPhoto_url();
+			commentUser.setComment(comm);
+			commentUser.setPhotoUrl(photoUrl);
+			commentUser.setUserName(userName);
+			list.add(commentUser);
 		}
-		model.addAttribute("message", message);
-		model.addAttribute("id", id);
-		model.addAttribute("sumMark", sumMark);
-		model.addAttribute("mark", mark);
-		model.addAttribute("sumPerson", sumPerson);
 		model.addAttribute("listcomment", list);
+		model.addAttribute("sumPerson", sumPerson);
+		model.addAttribute("message", message);
+		model.addAttribute("courseMap", courseMap);
 		return "teacherCourse.course.view";
 	}
 
@@ -257,21 +188,20 @@ public class CourseController {
 		} else {
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
 			try {
-				int num = commentService.getCommentByTeacherCourseIdAndUserId(id,4l);
-				if (num == 1) {
+				Comment comment=commentService.findByTeachercourseidAndUserid(id, 4l);
+				if (comment!=null) {
 					return "redirect:/teacherCourse/course/view/"+id;
-				} else if(num==0) {
-					Comment comment = new Comment();
-					comment.setCommentTitle(commentTitle);
-					comment.setCommentDesc(commentDesc);
-					comment.setMark(marks);
-					comment.setTeachercourseid(id);
-					comment.setUserid(4l);
-					SimpleDateFormat format = new SimpleDateFormat(
-							"yyyy-MM-dd HH:mm:ss");
+				} else{
+					Comment comm = new Comment();
+					comm.setCommentTitle(commentTitle);
+					comm.setCommentDesc(commentDesc);
+					comm.setMark(marks);
+					comm.setTeachercourseid(id);
+					comm.setUserid(4l);
+					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					String date = format.format(new Date());
-					comment.setCommentDate(date);
-					commentService.createComment(comment);
+					comm.setCommentDate(date);
+					commentService.save(comm);
 					return "redirect:/teacherCourse/course/view/"+id;
 				}
 			} catch (Exception e) {
