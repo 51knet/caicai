@@ -167,7 +167,7 @@ public class CourseController {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/teacherCourse/course/view/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/teacherCourse/course/view/{id}")
 	public String listCourseByTeacherCourseId(
 			Model model,
 			HttpSession session,
@@ -209,6 +209,11 @@ public class CourseController {
 		model.addAttribute("sumPerson", sumPerson);
 		model.addAttribute("message", message);
 		model.addAttribute("courseMap", courseMap);
+		
+		
+		/*    zm   */
+		TeacherCourse teacherCourse = courseService.findOneById(id);
+		model.addAttribute("course", teacherCourse);
 		return "teacherCourse.course.view";
 	}
 

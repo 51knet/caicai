@@ -20,6 +20,7 @@
 		<div class="row-fluid">
 			<tiles:insertAttribute name="body" />
 		</div>
+		<br>
 		<footer>
 			<tiles:insertAttribute name="footer" />
 		</footer>

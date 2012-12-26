@@ -14,15 +14,15 @@ function courseOnclick(obj) {
 	  return false;
 }
 </script>
-		<div style="margin-top: 100px">
-		<c:forEach var="course" items="${courseMap}" varStatus="i">
-			<div id="course_${i.count}" onclick="javascript:courseOnclick(this);"style="background-color:#F7F7F7; ;height:40px; line-height:40px;clear:both" >
-			<h4 style="float:left;margin-left: 40px;"><span >${course.key}&nbsp;&nbsp;</span></h4>
-			</div>
-			<c:forEach var="fileNames" items="${course.value}">
-			<div class="fileName_${i.count}" style="display: none;">
-			<span>${fileNames.fileName}&nbsp;&nbsp;</span> 
-			</div>
-			</c:forEach>
-		</c:forEach>
+<div style="margin-top: 100px">
+	<c:forEach var="course" items="${courseMap}" varStatus="i">
+		<div id="course_${i.count}" onclick="javascript:courseOnclick(this);"style="background-color:#F7F7F7; ;height:40px; line-height:40px;clear:both" >
+		<h4 style="float:left;margin-left: 40px;"><span >${course.key}&nbsp;&nbsp;</span></h4>
 		</div>
+		<c:forEach var="fileNames" items="${course.value}">
+		<div class="fileName_${i.count}" style="display: none;">
+		<span>${fileNames.fileName}&nbsp;&nbsp;</span> 
+		</div>
+		</c:forEach>
+	</c:forEach>
+</div>

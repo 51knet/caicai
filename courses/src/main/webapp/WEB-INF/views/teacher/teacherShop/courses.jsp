@@ -26,7 +26,7 @@ border-top-color: #EEE;
 background: #F7F7F7;
 }
 </style>
-<div class="container course">
+<div class="container course" style="margin-bottom: 20px;">
 	<div style="width:990px; text-align: center;"  class="container course row" >
 	<div   style="background-color:#F7F7F7;height:40px; clear:both"><h4 style=" float:left; margin-left: 40px;">课程计划</h4></div>
 		<c:forEach items="${teacherCourseList}" var="course">

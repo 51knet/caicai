@@ -46,7 +46,7 @@
     <td style="width:150px;height: 30px">${teacher.title }</td><td>${teacher.school }</td>
     </tr>
     <tr>
-    <td style="width:150px;height: 30px">${teacher.teaching_subject }</td><td>${teache.rmajor }</td>
+    <td style="width:150px;height: 30px">${teacher.teaching_subject }</td><td>${teacher.major }</td>
     </tr>
     </table>
     
