@@ -10,6 +10,11 @@ $(document).ready(function (){
 });
 </script>
 <div class="row-fluid custom round">
+	<div  align="left" style="width:100%;background-color:#F7F7F7; height: 40px; margin-bottom: 20px;">
+    	<h4 style="margin-left: 50px; float: left;">课程评论</h4>
+    </div>
+    
+    
 	<div class="row">
 		<form id="comment_info_form" action="comment" class="form-horizontal" method="post">
 				<div ><input type="hidden" name="teachercourseid"  value="${id}" /></div>

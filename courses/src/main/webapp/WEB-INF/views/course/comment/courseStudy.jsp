@@ -21,7 +21,6 @@
 		return false;
 	}
 </script>
-
 <div class=" container courseResource">
 	<div align="left" style="background-color:#F7F7F7;height:40px">
 		<h4 style="margin-left:50px; float: left;">课程</h4>
@@ -39,4 +38,16 @@
 			</c:forEach>
 		</c:forEach>
 	</div>
+<div style="margin-top: 100px">
+	<c:forEach var="course" items="${courseMap}" varStatus="i">
+		<div id="course_${i.count}" onclick="javascript:courseOnclick(this);"style="background-color:#F7F7F7; ;height:40px; line-height:40px;clear:both" >
+		<h4 style="float:left;margin-left: 40px;"><span >${course.key}&nbsp;&nbsp;</span></h4>
+		</div>
+		<c:forEach var="fileNames" items="${course.value}">
+		<div class="fileName_${i.count}" style="display: none;">
+		<span>${fileNames.fileName}&nbsp;&nbsp;</span> 
+		</div>
+		</c:forEach>
+	</c:forEach>
+</div>
 </div>

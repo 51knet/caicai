@@ -210,7 +210,7 @@ background: #F7F7F7;
 					</c:otherwise>
 				</c:choose>
     		</div>
-    		<div style="padding: 3px;">${c.teacherCourse.courseName}-${c.teacherCourse.courseType }</div>
+    		<div style="padding: 3px;"><b>${c.teacherCourse.courseName}</b> — ${c.teacherCourse.courseType }</div>
     		<div style="padding: 3px;">
     			教师名称：<a href='<c:url value="/course/teacher/${c.teacherCourse.teacher.id}"></c:url>'>${c.teacherCourse.teacher.user.name}</a>
     		</div>

@@ -13,14 +13,14 @@
 <body class="admin">
 	<tiles:insertAttribute name="top-navbar" />
 	<!-- /top-navbar -->
-	<div class="container-fluid block-with-bg">
+	<div class="container-fluid">
 		<div class="container-fluid content-centered">
-			<div class="row-fluid">
+			<div class="row-fluid" style="margin-bottom: 20px;width: 810px;">
 				<tiles:insertAttribute name="banner" />
 			</div>
 			<!--/row-->
 			<tiles:insertAttribute name="breadcrumbs" />
-			<div class="row-fluid content-panel">
+			<div class="row-fluid">
 				<div class="span2" >
 					<div class="left-panel">
 						<tiles:insertAttribute name="left" />
@@ -30,19 +30,6 @@
 				<div class="span10" style="width: 810px;">
 					<div class="right-panel">
 						<tiles:insertAttribute name="right" />
-						<div class="row-fluid content-panel">
-							
-							<div >
-								<tiles:insertAttribute name="right_top"/>
-							</div>
-							<div >
-								<tiles:insertAttribute name="right_center"/>
-							</div>
-							<div >
-								<tiles:insertAttribute name="right_footer"/>
-							</div>
-							
-						</div>
 					</div>
 				</div>
 				<!--/span-->

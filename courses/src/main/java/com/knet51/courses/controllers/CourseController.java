@@ -95,10 +95,16 @@ public class CourseController {
 	
 	@RequestMapping(value="/course/view/{course_id}")
 	public String showCourseDetail(@PathVariable Long course_id,Model model){
+		/*     zm    */
 		TeacherCourse course = courseService.findOneById(course_id);
-		List<Comment> listComment =commentService.findByTeachercourseid(course_id);
 		Double courseMark = commentService.getMark(course_id);
 		model.addAttribute("courseMark", courseMark);
+		model.addAttribute("course", course);
+		
+		
+		/*     lbx    */
+		List<CourseResource> listCourses = new ArrayList<CourseResource>();
+		List<Comment> listComment =commentService.findByTeachercourseid(course_id);
 		model.addAttribute("userCount", listComment.size());
 		//List<CourseResource> listCourse = courseResourceService.getResourceByCourseId(course_id);
 		/*List<CourseResource> listCourses = new ArrayList<CourseResource>();
@@ -148,7 +154,6 @@ public class CourseController {
 		model.addAttribute("courseMap", courseMap);
 */
 		Teacher teacher = course.getTeacher();
-		model.addAttribute("course", course);
 		model.addAttribute("teacher", teacher);
 		return "course.list.view";
 	}
@@ -164,7 +169,7 @@ public class CourseController {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/teacherCourse/course/view/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/teacherCourse/course/view/{id}")
 	public String listCourseByTeacherCourseId(
 			Model model,
 			HttpSession session,
@@ -210,6 +215,11 @@ public class CourseController {
 		model.addAttribute("message", message);
 		model.addAttribute("courseMap", courseMap);
 		model.addAttribute("courseMark", courseMark);
+		
+		
+		/*    zm   */
+		TeacherCourse teacherCourse = courseService.findOneById(id);
+		model.addAttribute("course", teacherCourse);
 		return "teacherCourse.course.view";
 	}
 

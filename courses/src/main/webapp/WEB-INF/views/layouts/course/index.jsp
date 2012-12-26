@@ -44,6 +44,7 @@
 		<div class="container course">
 			<tiles:insertAttribute name="comment" />
 		</div>
+		<br>
 		<footer>
 			<tiles:insertAttribute name="footer" />
 		</footer>
