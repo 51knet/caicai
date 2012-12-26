@@ -1,25 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
-.navbar {
-	margin-bottom: 0px;
-}
-/* CUSTOMIZE THE NAVBAR
--------------------------------------------------- */
-.container-fluid {
-	padding-right: 0px;
-	padding-left: 0px;
-}
-
-
-/* COURSE CONTENT
--------------------------------------------------- */
-
 .container.course {
-	width: 1024px;
-	max-width:1024px;
+	width: 990px;
+	max-width:990px;
 	text-align: left;
 }
 
@@ -28,7 +15,7 @@
 }
 
 .container.course.detail {
-	width: 1024px;
+	width: 990px;
 }
 
 .container.course.detail.desc{
@@ -82,9 +69,20 @@
 				</c:choose>
 			</div>
 			<div style="width: 60%; float: left; height:150px;border: 0px solid #cccccc; font-size: 13px;">
-				<h4>${course.courseName}</h4><h4>${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</h4>
-				<h5>类别：${course.courseType }&nbsp;&nbsp;&nbsp;&nbsp;课程评分：<span style="color: red;">7</span>分</h5><h5>发布时间：${course.courseDate }</h5>
-				学员（20）&nbsp;&nbsp;评论（30）&nbsp;&nbsp;<a href='<c:url value="/teacherCourse/course/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
+				<h4>${course.courseName}</h4>
+				<h4>${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</h4>
+				<h5>类别：${course.courseType }&nbsp;&nbsp;&nbsp;&nbsp;课程评分：<span style="color: red;">
+    			<c:choose>
+    				<c:when test="${courseMark !=null && courseMark>0 }">
+    					<fmt:formatNumber type="number" value="${courseMark }" maxFractionDigits="0" />
+    				</c:when>
+    				<c:otherwise>
+    					0
+    				</c:otherwise>
+    			</c:choose></span>分</h5>
+				<h5>发布时间：${course.courseDate }</h5>
+				学员（${userCount}）&nbsp;&nbsp;评论（${userCount}）&nbsp;&nbsp;
+				<a href='<c:url value="/teacherCourse/course/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
 			</div>
 		</div>
 		<div class="container course detail" style="background-color: #f7f7f7; margin-bottom: 10px; ">
@@ -92,7 +90,7 @@
 		</div>
 		<div class="container course detail">
 			<div class="container course detail desc">
-				${course.courseDesc}
+				${course.courseDesc}--- ${sumMark }
 			</div>
 		</div>
 	</div>

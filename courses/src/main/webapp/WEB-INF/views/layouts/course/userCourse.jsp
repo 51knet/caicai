@@ -23,8 +23,8 @@
 				<c:when test="${userCourseCount>0}">
 				<div class="row" style="text-align:left; margin-left: 0px;">
 					<h2>您的课程</h2>
-				 	 <c:forEach items="${userCourse}" var="course"  begin="0" end="0">
-				    	<table class="table table-bordered" style="width: 97%; height: 100%;" cellpadding="5">
+				 	 <c:forEach items="${userCourse}" var="course"  begin="0" end="2">
+				    	<table class="table table-bordered" style="width: 97%; height: 100%; margin-bottom: 10px;" cellpadding="5">
 							<tr>
 								<td valign="bottom" width="22%" align="center">
 									<c:choose>

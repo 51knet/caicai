@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.courses.beans.CourseBeans;
 import com.knet51.courses.beans.TeacherCourseBeans;
 
 public interface TeacherCourseService {
@@ -23,4 +24,6 @@ public interface TeacherCourseService {
 	List<TeacherCourse> findAllCourses();
 	List<TeacherCourse> getAllCourseById(Long teacher_id);
 	List<String> courseTypeList();
+	List<CourseBeans> getAllCourseBeans();
+	CourseBeans getCourseBeansById(Long course_id);
 }

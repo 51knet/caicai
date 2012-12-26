@@ -4,19 +4,25 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
+
+.container-fluid {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
 .container.teacher {
-width: 990px;
-max-width:990px;
-text-align: left;
+	width: 990px;
+	max-width:990px;
+	text-align: left;
 }
+
 .container.teacher .row{
- margin-left: 0px;
-}
+	 margin-left: 0px;
+
 </style>
 <div class="container teacher">
-<div style="height: 40px"></div>
+	<div style="height: 40px"></div>
     <br/>
-	
     <div  align="left" style="width:100%;background-color:#F7F7F7; height: 40px;">
     	<h4 style="margin-left: 50px; float: left;">讲师介绍</h4>
     </div>

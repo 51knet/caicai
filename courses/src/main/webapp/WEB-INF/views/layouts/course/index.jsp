@@ -17,8 +17,8 @@
 }
 
 .container.course {
-	width: 1024px;
-	max-width:1024px;
+	width: 990px;
+	max-width:990px;
 	text-align: left;
 }
 

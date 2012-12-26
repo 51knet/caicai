@@ -41,10 +41,16 @@ public class CommentServiceImpl implements CommentService {
 		return listComment;
 	}
 	@Override
+	public Double getMark(Long teacherCourseId) {
+		Double mark=commitRepository.getMark(teacherCourseId);
+		return mark;
+	}
+	@Override
 	public Comment save(Comment comment) {
 		 comment=commitRepository.save(comment);
 		return comment;
 	}
+	
 	@Override
 	public Comment findByTeachercourseidAndUserid(Long teacherCourseId, Long userId) {
 		Comment comment=commitRepository.findByTeachercourseidAndUserid(teacherCourseId, userId);
@@ -54,6 +60,11 @@ public class CommentServiceImpl implements CommentService {
 	public User findByUserId(Long id) {
 		User user=userRepository.findOne(id);
 		return user;
+	}
+	@Override
+	public List<Comment> findCommentByUserid(Long user_id) {
+		List<Comment> list=commitRepository.findCommentByUserid(user_id);
+		return list;
 	}
 	
 }

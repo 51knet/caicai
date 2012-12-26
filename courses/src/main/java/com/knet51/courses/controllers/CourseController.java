@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.Comment;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
@@ -35,7 +34,7 @@ import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 import com.knet51.courses.util.ajax.AjaxValidationEngine;
 import com.knet51.courses.util.ajax.ValidationResponse;
-
+	
 @Controller
 public class CourseController {
 	@Autowired
@@ -94,9 +93,62 @@ public class CourseController {
 	@RequestMapping(value="/course/view/{course_id}")
 	public String showCourseDetail(@PathVariable Long course_id,Model model){
 		TeacherCourse course = courseService.findOneById(course_id);
+		List<CourseResource> listCourse = courseResourceService
+				.getResourceByCourseId(course_id);
+		
+		//Double courseMark = commentService.getMark(course_id);
+		//model.addAttribute("courseMark", courseMark);
+		//model.addAttribute("userCount", commentService.getPerson(course_id));
+		
+		/*List<CourseResource> listCourses = new ArrayList<CourseResource>();
+		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
+		String resourceOrder = null;
+		for (CourseResource courseResource : listCourse) {
+			resourceOrder = courseResource.getResourceOrder();
+			listCourses = courseResourceService
+					.getResourceByResourceOrder(resourceOrder);
+			courseMap.put(resourceOrder, listCourses);
+		}
+		Comment comment=new Comment();
+		Integer sumMark=0;
+		Integer mark=0;
+		
+		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
+		List<Comment> listcomment =new ArrayList<Comment>();
+		try {
+			 listcomment = commentService.getAllCourse(course_id);
+			if(listcomment.size()>0){
+				comment = commentService.getComment(course_id, 4l);
+				mark = comment.getMark().intValue();
+				sumMark = commentService.getMark(course_id).intValue();
+				
+			for (int i = 0; i < listcomment.size(); i++) {
+				User user=commentService.getByUser(listcomment.get(i).getUserid());
+				String commentTitle=listcomment.get(i).getCommentTitle();
+				String commentDate=listcomment.get(i).getCommentDate();
+				String commentDesc=listcomment.get(i).getCommentDesc();
+				String name=user.getName();
+				CommentUserBeans commentUser=new CommentUserBeans();
+				 commentUser.setName(name);
+				 commentUser.setCommentTitle(commentTitle);
+				 commentUser.setCommentDesc(commentDesc);
+				 commentUser.setCommentDate(commentDate);
+				list.add(commentUser);
+			}
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("id", course_id);
+		model.addAttribute("sumMark",sumMark);
+		model.addAttribute("mark", mark);
+		model.addAttribute("sumPerson", commentService.getPerson(course_id));
+		model.addAttribute("listcomment", list);
+		model.addAttribute("courseMap", courseMap);
+>>>>>>> b8e0695c7803854b1adcaea371b1ddfce52573b2
 		Teacher teacher = course.getTeacher();
 		model.addAttribute("course", course);
-		model.addAttribute("teacher", teacher);
+		model.addAttribute("teacher", teacher);*/
 		return "course.list.view";
 	}
 

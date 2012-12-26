@@ -14,10 +14,11 @@ import com.knet51.ccweb.jpa.entities.teacher.Comment;
 
 @Transactional
 @SuppressWarnings("unchecked")
-public interface CommentRepository extends JpaRepository<Comment, Long>, JpaSpecificationExecutor<Comment>{
+public interface CommentRepository extends JpaRepository<Comment, Long>, JpaSpecificationExecutor<Comment>,CommentRepositoryCustom{
 	Page<Comment> findCommentByTeachercourseid(Long teachercourseid ,Pageable pageable);
 	List<Comment> findByTeachercourseid(Long teacherCourseId);
 	Comment save(Comment comment);
+	List<Comment> findCommentByUserid(Long user_id);
 	@Query("select c from Comment c where c.teachercourseid = :teachercourseid and c.userid = :userid")
 	Comment findByTeachercourseidAndUserid(@Param("teachercourseid") Long teachercourseid,
 	                                 @Param("userid") Long userid);

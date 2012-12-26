@@ -7,6 +7,9 @@
 <head>
 	<jsp:include page="/WEB-INF/views/_shared/common/_html_head.jsp"></jsp:include>
 </head>
+<style>
+	
+</style>
 <body class="admin">
 	<tiles:insertAttribute name="top-navbar" />
 	<!-- /top-navbar -->
@@ -18,17 +21,17 @@
 			<!--/row-->
 			<tiles:insertAttribute name="breadcrumbs" />
 			<div class="row-fluid content-panel">
-				<div class="span3">
+				<div class="span2" >
 					<div class="left-panel">
 						<tiles:insertAttribute name="left" />
 					</div>
 				</div>
 				<!--/span-->
-				<div class="span9">
+				<div class="span10" style="width: 810px;">
 					<div class="right-panel">
 						<tiles:insertAttribute name="right" />
 						<div class="row-fluid content-panel">
-							<div class="span9">
+							
 							<div >
 								<tiles:insertAttribute name="right_top"/>
 							</div>
@@ -38,7 +41,7 @@
 							<div >
 								<tiles:insertAttribute name="right_footer"/>
 							</div>
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -46,7 +49,7 @@
 			</div>
 			<!--/row-->
 
-			<hr>
+			<br>
 
 			<footer><tiles:insertAttribute name="footer" /></footer>
 
