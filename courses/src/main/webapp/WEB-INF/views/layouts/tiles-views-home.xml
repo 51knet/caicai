@@ -50,6 +50,7 @@
 		<put-attribute name="banner" value="/WEB-INF/views/layouts/course/courseDetail.jsp" />
 		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/course/comment/comment.jsp" />
+		<put-attribute name="right2" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 </tiles-definitions>

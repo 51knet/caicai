@@ -15,7 +15,7 @@ $(document).ready(function (){
     </div>
     
     
-	<div class="row">
+	<div class="row" style="margin-left: 50px;">
 		<form id="comment_info_form" action="comment" class="form-horizontal" method="post">
 				<div ><input type="hidden" name="teachercourseid"  value="${id}" /></div>
 				<div class="control-group" id="commentTitle">

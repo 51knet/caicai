@@ -21,6 +21,7 @@
 		<put-attribute name="breadcrumbs" value="" />
 		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />
 		<put-attribute name="right" value="" />
+		<put-attribute name="right2" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 	<definition name="course-layout" template="/WEB-INF/views/layouts/course/index.jsp">
