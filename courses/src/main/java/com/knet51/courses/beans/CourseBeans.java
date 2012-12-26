@@ -5,6 +5,7 @@ import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 public class CourseBeans {
 	private Integer userCount;
 	private Double courseMark;
+	
 	private TeacherCourse teacherCourse;
 	
 	public Integer getUserCount() {
