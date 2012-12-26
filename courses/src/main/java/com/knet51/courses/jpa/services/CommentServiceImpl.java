@@ -26,21 +26,19 @@ public class CommentServiceImpl implements CommentService {
 	
 	@Autowired
 	private UserRepository userRepository;
+
 	@Override
-	public Comment createComment(Comment comment) {
-		return commitRepository.save(comment);
-	}
-	@Override
-	public Page<Comment> findAllCommit(int pageNumber, int pageSize,
+	@SuppressWarnings("unchecked")
+	public Page<Comment> findCommentByTeachercourseid(int pageNumber, int pageSize,
 			Long teacherCourse_id) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
-		
 		Page<Comment> onePage = commitRepository.findCommentByTeachercourseid(teacherCourse_id, dateDesc);
-		/*List<Comment> list = onePage.getContent();
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println("+++++++++++++++++"+list.get(i).getTeachercourseid());
-		}*/
 		return onePage;
+	}
+	@Override
+	public List<Comment> findByTeachercourseid(Long teacherCourseId) {
+		List<Comment> listComment=commitRepository.findByTeachercourseid(teacherCourseId);
+		return listComment;
 	}
 	@Override
 	public Double getMark(Long teacherCourseId) {
@@ -48,30 +46,25 @@ public class CommentServiceImpl implements CommentService {
 		return mark;
 	}
 	@Override
-	public Long getPerson(Long teacherCourseId) {
-		Long personNum=commitRepository.getPerson(teacherCourseId);
-		return personNum;
+	public Comment save(Comment comment) {
+		 comment=commitRepository.save(comment);
+		return comment;
 	}
+	
 	@Override
-	public Comment getComment(Long teacherCourseId, Long userId) {
-		Comment comment=commitRepository.getComment(teacherCourseId, userId);
+	public Comment findByTeachercourseidAndUserid(Long teacherCourseId, Long userId) {
+		Comment comment=commitRepository.findByTeachercourseidAndUserid(teacherCourseId, userId);
 		return comment;
 	}
 	@Override
-	public int getCommentByTeacherCourseIdAndUserId(Long teacherCourseId,
-			Long userId) {
-		int num=commitRepository.getCommentByTeacherCourseIdAndUserId(teacherCourseId, userId);
-		return num;
-	}
-	@Override
-	public List<Comment> getAllCourse(Long teacherCourseId) {
-		List<Comment> list=new ArrayList<Comment>();
-		list=commitRepository.getAllCourse(teacherCourseId);
-		return list;
-	}
-	@Override
-	public User getByUser(Long userId) {
-		User user=userRepository.findOne(userId);
+	public User findByUserId(Long id) {
+		User user=userRepository.findOne(id);
 		return user;
 	}
+	@Override
+	public List<Comment> findCommentByUserid(Long user_id) {
+		List<Comment> list=commitRepository.findCommentByUserid(user_id);
+		return list;
+	}
+	
 }

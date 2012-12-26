@@ -7,12 +7,11 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.Comment;
 
 public interface CommentService {
-	Comment createComment(Comment comment);
-	Page<Comment> findAllCommit(int pageNumber, int pageSize,Long teacherCourse_id);
+	Page<Comment> findCommentByTeachercourseid(int pageNumber, int pageSize,Long teacherCourse_id);
+	List<Comment> findByTeachercourseid(Long teacherCourseId);
+	Comment save(Comment comment);
+	List<Comment> findCommentByUserid(Long user_id);
+	Comment findByTeachercourseidAndUserid( Long teachercourseid,Long userid);
 	Double getMark(Long teacherCourseId);
-	Long getPerson(Long teacherCourseId);
-	Comment getComment(Long teacherCourseId, Long userId);
-	int  getCommentByTeacherCourseIdAndUserId(Long teacherCourseId, Long userId);
-	List<Comment> getAllCourse(Long  teacherCourseId);
-	User getByUser(Long  userId);
+	public User findByUserId(Long id);
 }

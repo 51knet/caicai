@@ -3,13 +3,14 @@ package com.knet51.courses.beans;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 
 public class CourseBeans {
-	private Long userCount;
+	private Integer userCount;
 	private Double courseMark;
 	private TeacherCourse teacherCourse;
-	public Long getUserCount() {
+	
+	public Integer getUserCount() {
 		return userCount;
 	}
-	public void setUserCount(Long userCount) {
+	public void setUserCount(Integer userCount) {
 		this.userCount = userCount;
 	}
 	public Double getCourseMark() {
@@ -24,7 +25,7 @@ public class CourseBeans {
 	public void setTeacherCourse(TeacherCourse teacherCourse) {
 		this.teacherCourse = teacherCourse;
 	}
-	public CourseBeans(Long userCount, Double courseMark,
+	public CourseBeans(Integer userCount, Double courseMark,
 			TeacherCourse teacherCourse) {
 		super();
 		this.userCount = userCount;

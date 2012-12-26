@@ -42,7 +42,6 @@ $(document).ready(function (){
 						<font color='#ff0000'>${message}</font>
 						</div>
 						<button type="submit"  class="btn btn-large btn-success">发表评论</button>
-						
 					</div>
 				</div>
 			</form>

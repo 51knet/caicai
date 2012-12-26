@@ -136,7 +136,8 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		for(int i=0;i<teacherCourseList.size();i++){
 			TeacherCourse teacherCourse = courseRepository.findOne(teacherCourseList.get(i).getId());
 			Double avgMark = commentRepository.getMark(teacherCourseList.get(i).getId());
-			Long userCount = commentRepository.getPerson(teacherCourseList.get(i).getId());
+			List<Comment> listComment=commentRepository.findByTeachercourseid(teacherCourseList.get(i).getId());
+			Integer userCount = listComment.size();
 			CourseBeans courseBeans = new CourseBeans(userCount, avgMark, teacherCourse);
 			courseBeansList.add(courseBeans);
 		}
@@ -147,7 +148,8 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	public CourseBeans getCourseBeansById(Long course_id) {
 		TeacherCourse teacherCourse = courseRepository.findOne(course_id);
 		Double avgMark = commentRepository.getMark(course_id);
-		Long userCount = commentRepository.getPerson(course_id);
+		List<Comment> listComment=commentRepository.findByTeachercourseid(course_id);
+		Integer userCount = listComment.size();
 		CourseBeans courseBeans = new CourseBeans();
 		courseBeans.setCourseMark(avgMark);
 		courseBeans.setTeacherCourse(teacherCourse);
