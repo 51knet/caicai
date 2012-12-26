@@ -94,14 +94,16 @@ public class CourseController {
 	
 	@RequestMapping(value="/course/view/{course_id}")
 	public String showCourseDetail(@PathVariable Long course_id,Model model){
+		/*     zm    */
 		TeacherCourse course = courseService.findOneById(course_id);
 		List<CourseResource> listCourse = courseResourceService
 				.getResourceByCourseId(course_id);
-		
 		Double courseMark = commentService.getMark(course_id);
 		model.addAttribute("courseMark", courseMark);
 		model.addAttribute("userCount", commentService.getPerson(course_id));
+		model.addAttribute("course", course);
 		
+		/*     lbx    */
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
 		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
 		String resourceOrder = null;
@@ -148,7 +150,6 @@ public class CourseController {
 		model.addAttribute("listcomment", list);
 		model.addAttribute("courseMap", courseMap);
 		Teacher teacher = course.getTeacher();
-		model.addAttribute("course", course);
 		model.addAttribute("teacher", teacher);
 		return "course.list.view";
 	}

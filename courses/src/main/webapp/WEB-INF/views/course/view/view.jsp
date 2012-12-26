@@ -90,7 +90,7 @@
 		</div>
 		<div class="container course detail">
 			<div class="container course detail desc">
-				${course.courseDesc}--- ${sumMark }
+				${course.courseDesc}
 			</div>
 		</div>
 	</div>
