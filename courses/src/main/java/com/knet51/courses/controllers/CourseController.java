@@ -187,36 +187,7 @@ public class CourseController {
 					.getResourceByResourceOrder(resourceOrder);
 			courseMap.put(resourceOrder, listCourses);
 		}
-		String message="";
-		Comment comment = commentService.findByTeachercourseidAndUserid(id, 4l);
-		if(comment!=null){
-			message="请不要重复评论";
-		}
-		List<Comment> listComment=commentService.findByTeachercourseid(id);
-		Integer sumPerson=listComment.size();
-		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
-		Page<Comment> onePage = commentService.findCommentByTeachercourseid(pageNumber,pageSize, id);
-		List<Comment> listPage=onePage.getContent();
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+listPage.size());
-		CommentUserBeans commentUser=new CommentUserBeans();
-		for (int i = 0; i < onePage.getContent().size(); i++) {
-			User user=commentService.findByUserId(onePage.getContent().get(i).getUserid());
-			Comment comm=onePage.getContent().get(i);
-			String userName=user.getName();
-			String photoUrl=user.getPhoto_url();
-			commentUser.setComment(comm);
-			commentUser.setPhotoUrl(photoUrl);
-			commentUser.setUserName(userName);
-			list.add(commentUser);
-		}
-		double courseMark=commentService.getMark(id);//一个视频的评论平均分数
-		model.addAttribute("listcomment", list);
-		model.addAttribute("sumPerson", sumPerson);
-		model.addAttribute("message", message);
 		model.addAttribute("courseMap", courseMap);
-		model.addAttribute("courseMark", courseMark);
-		
-		
 		/*    zm   */
 		TeacherCourse teacherCourse = courseService.findOneById(id);
 		model.addAttribute("course", teacherCourse);
