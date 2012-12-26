@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.Comment;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
@@ -93,13 +94,11 @@ public class CourseController {
 	@RequestMapping(value="/course/view/{course_id}")
 	public String showCourseDetail(@PathVariable Long course_id,Model model){
 		TeacherCourse course = courseService.findOneById(course_id);
-		List<CourseResource> listCourse = courseResourceService
-				.getResourceByCourseId(course_id);
-		
-		//Double courseMark = commentService.getMark(course_id);
-		//model.addAttribute("courseMark", courseMark);
-		//model.addAttribute("userCount", commentService.getPerson(course_id));
-		
+		List<Comment> listComment =commentService.findByTeachercourseid(course_id);
+		Double courseMark = commentService.getMark(course_id);
+		model.addAttribute("courseMark", courseMark);
+		model.addAttribute("userCount", listComment.size());
+		//List<CourseResource> listCourse = courseResourceService.getResourceByCourseId(course_id);
 		/*List<CourseResource> listCourses = new ArrayList<CourseResource>();
 		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
 		String resourceOrder = null;
@@ -145,10 +144,10 @@ public class CourseController {
 		model.addAttribute("sumPerson", commentService.getPerson(course_id));
 		model.addAttribute("listcomment", list);
 		model.addAttribute("courseMap", courseMap);
->>>>>>> b8e0695c7803854b1adcaea371b1ddfce52573b2
+*/
 		Teacher teacher = course.getTeacher();
 		model.addAttribute("course", course);
-		model.addAttribute("teacher", teacher);*/
+		model.addAttribute("teacher", teacher);
 		return "course.list.view";
 	}
 
