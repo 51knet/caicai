@@ -37,5 +37,11 @@ public class CourseServiceImpl implements CourseService {
 		} 
 		return list;
 	}
+
+	@Override
+	public CourseResource findById(Long id) {
+		CourseResource courseResource=teacherCourseResourceRepository.findOne(id);
+		return courseResource;
+	}
 	
 }

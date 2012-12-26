@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.teacher.Comment;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
@@ -35,6 +36,7 @@ import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 import com.knet51.courses.util.ajax.AjaxValidationEngine;
 import com.knet51.courses.util.ajax.ValidationResponse;
+import com.knet51.courses.util.fileUpLoad.FileUtil;
 	
 @Controller
 public class CourseController {
@@ -189,6 +191,8 @@ public class CourseController {
 		Integer sumPerson=listComment.size();
 		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
 		Page<Comment> onePage = commentService.findCommentByTeachercourseid(pageNumber,pageSize, id);
+		List<Comment> listPage=onePage.getContent();
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+listPage.size());
 		CommentUserBeans commentUser=new CommentUserBeans();
 		for (int i = 0; i < onePage.getContent().size(); i++) {
 			User user=commentService.findByUserId(onePage.getContent().get(i).getUserid());
@@ -200,10 +204,12 @@ public class CourseController {
 			commentUser.setUserName(userName);
 			list.add(commentUser);
 		}
+		double courseMark=commentService.getMark(id);//一个视频的评论平均分数
 		model.addAttribute("listcomment", list);
 		model.addAttribute("sumPerson", sumPerson);
 		model.addAttribute("message", message);
 		model.addAttribute("courseMap", courseMap);
+		model.addAttribute("courseMark", courseMark);
 		return "teacherCourse.course.view";
 	}
 
@@ -263,6 +269,14 @@ public class CourseController {
 
 		}
 		return "redirect:/teacherCourse/course/view/"+id;
+	}
+	@RequestMapping(value = "/teacherCourse/course/view/${fileNames.id}", method = RequestMethod.POST)
+	public String resourceDownLoad(@PathVariable Long fileNames_id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		CourseResource courseResource=courseResourceService.findById(fileNames_id);
+		String savePath = courseResource.getSavePath();
+		String fileName = courseResource.getSaveName();
+		FileUtil.downLoad(request, response, savePath, fileName);
+		return null;
 	}
 
 	/**

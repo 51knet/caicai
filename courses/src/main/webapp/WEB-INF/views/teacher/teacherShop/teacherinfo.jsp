@@ -18,6 +18,7 @@
 
 .container.teacher .row{
 	 margin-left: 0px;
+	 }
 
 </style>
 <div class="container teacher">

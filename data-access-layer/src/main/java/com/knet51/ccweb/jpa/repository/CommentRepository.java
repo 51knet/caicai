@@ -15,7 +15,7 @@ import com.knet51.ccweb.jpa.entities.teacher.Comment;
 @Transactional
 @SuppressWarnings("unchecked")
 public interface CommentRepository extends JpaRepository<Comment, Long>, JpaSpecificationExecutor<Comment>,CommentRepositoryCustom{
-	Page<Comment> findCommentByTeachercourseid(Long teachercourseid ,Pageable pageable);
+	Page<Comment> findCommByTeachercourseid(Long teachercourseid ,Pageable pageable);
 	List<Comment> findByTeachercourseid(Long teacherCourseId);
 	Comment save(Comment comment);
 	List<Comment> findCommentByUserid(Long user_id);

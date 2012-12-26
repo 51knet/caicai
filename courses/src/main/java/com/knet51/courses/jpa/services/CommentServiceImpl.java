@@ -1,5 +1,4 @@
 package com.knet51.courses.jpa.services;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -32,7 +31,7 @@ public class CommentServiceImpl implements CommentService {
 	public Page<Comment> findCommentByTeachercourseid(int pageNumber, int pageSize,
 			Long teacherCourse_id) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
-		Page<Comment> onePage = commitRepository.findCommentByTeachercourseid(teacherCourse_id, dateDesc);
+		Page<Comment> onePage = commitRepository.findCommByTeachercourseid(teacherCourse_id, dateDesc);
 		return onePage;
 	}
 	@Override
