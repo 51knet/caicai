@@ -201,7 +201,7 @@ background: #F7F7F7;
     		<div>
    				<c:choose>
 					<c:when test="${c.teacherCourse.courseCover != null && c.teacherCourse.courseCover != ''}">
-						<a href='<c:url value="/course/view/${c.course.id}"></c:url>'> <img src='<c:url value="http://localhost:8080/ccweb/${c.teacherCourse.courseCover }"></c:url>' style="width: 310px; height: 100px;" />
+						<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'> <img src='<c:url value="http://localhost:8080/ccweb/${c.teacherCourse.courseCover }"></c:url>' style="width: 310px; height: 100px;" />
 						</a>
 					</c:when>
 					<c:otherwise>
