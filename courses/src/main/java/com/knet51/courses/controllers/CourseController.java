@@ -99,6 +99,7 @@ public class CourseController {
 		model.addAttribute("courseMark", courseMark);
 		model.addAttribute("course", course);
 		
+		
 		/*     lbx    */
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
 		List<Comment> listComment =commentService.findByTeachercourseid(course_id);
