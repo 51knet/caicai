@@ -18,10 +18,31 @@
     				</c:otherwise>
     			</c:choose>
     			</span>
+    			<hr style="margin-right: 40px">
 			<c:forEach var="comment" items="${listcomment}">
-				<span style="line-height:40px;">昵称:&nbsp;&nbsp;&nbsp;${comment.userName}&nbsp;&nbsp;&nbsp;本人评分数:&nbsp;&nbsp;&nbsp;${comment.comment.mark}</span><br/>
-				<span style="line-height:40px;">标题:&nbsp;&nbsp;&nbsp;${comment.comment.commentTitle}&nbsp;&nbsp;&nbsp;评论时间:&nbsp;&nbsp;&nbsp;${comment.comment.commentDate }</span><br/>					
-				<span style="line-height:40px;">评论信息:&nbsp;&nbsp;&nbsp;${comment.comment.commentDesc}</span><br/>
+				<table style="text-align:left;">
+				  <tr style="margin-bottom: 10px;">
+				    <td rowspan="3" style="width: 40px;height: 50px; float:left; margin-left:30px;">
+					    <c:choose >
+						<c:when test="${comment.photoUrl != null && comment.photoUrl != ''}">
+						<img src='<c:url value="${comment.photoUrl }"></c:url>'/>
+						</c:when>
+						<c:otherwise>
+						<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>'/>
+						</c:otherwise>
+						</c:choose>
+					</td>
+				    <td style="margin-left: 20px;float: left;">${comment.userName}&nbsp;&nbsp;&nbsp;</td>
+				    <td style="float: left;">&nbsp;&nbsp;&nbsp;${comment.comment.mark}</td>
+				  </tr>
+				  <tr style="margin-bottom: 10px;">
+				    <td colspan="2" style="margin-left: 20px;float: left;text-align: left; ">${comment.comment.commentDesc}</td>
+				  </tr>
+				  <tr style="margin-bottom: 10px;">
+				    <td colspan="2" style="margin-left:20px;float: left;text-align: left;">${comment.comment.commentDate }</td>
+				  </tr>
+				</table>
+				<hr>				
 			</c:forEach>
 		</div>
 </div>

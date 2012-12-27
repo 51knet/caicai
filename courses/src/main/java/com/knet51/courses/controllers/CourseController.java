@@ -174,11 +174,11 @@ public class CourseController {
 		Integer sumPerson=listComment.size();
 		double courseMark=commentService.getMark(id);//一个视频的评论平均分数
 		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
-		Page<Comment> onePage = commentService.findCommentByTeachercourseid(pageNumber,pageSize, id);
+		//Page<Comment> onePage = commentService.findCommentByTeachercourseid(pageNumber,pageSize, id);
 		CommentUserBeans commentUser=new CommentUserBeans();
-		for (int i = 0; i < onePage.getContent().size(); i++) {
-			User user=commentService.findByUserId(onePage.getContent().get(i).getUserid());
-			Comment comm=onePage.getContent().get(i);
+		for (int i = 0; i < listComment.size(); i++) {
+			User user=commentService.findByUserId(listComment.get(i).getUserid());
+			Comment comm=listComment.get(i);
 			String userName=user.getName();
 			String photoUrl=user.getPhoto_url();
 			commentUser.setComment(comm);
@@ -186,10 +186,10 @@ public class CourseController {
 			commentUser.setUserName(userName);
 			list.add(commentUser);
 		}
+		model.addAttribute("listcomment", list);
 		model.addAttribute("id", id);
 		model.addAttribute("sumPerson", sumPerson);
 		model.addAttribute("courseMark", courseMark);
-		model.addAttribute("listcomment", list);
 		return "teacherCourse.course.comment";
 	}
 	/**
