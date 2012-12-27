@@ -191,6 +191,8 @@ public class CourseController {
 		model.addAttribute("id", id);
 		model.addAttribute("sumPerson", sumPerson);
 		model.addAttribute("courseMark", courseMark);
+		TeacherCourse teacherCourse = courseService.findOneById(id);
+		model.addAttribute("course", teacherCourse);
 		return "teacherCourse.course.comment";
 	}
 	/**
