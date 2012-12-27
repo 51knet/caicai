@@ -46,7 +46,7 @@
 					</c:forEach>
 			</c:when>
 			<c:otherwise>
-				<h5>尚未添加资源</h5>
+				<h5 style="padding: 5px;">尚未添加资源</h5>
 			</c:otherwise>
 		</c:choose>
 </div>
