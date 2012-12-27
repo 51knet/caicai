@@ -235,7 +235,7 @@ public class CourseController {
 			}
 		}
 	}
-	@RequestMapping(value = "/teacherCourse/course/view/{fileNames.id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/teacherCourse/course/view/{fileNames_id}", method = RequestMethod.POST)
 	public String resourceDownLoad(@PathVariable Long fileNames_id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		CourseResource courseResource=courseResourceService.findById(fileNames_id);
 		String savePath = courseResource.getSavePath();
