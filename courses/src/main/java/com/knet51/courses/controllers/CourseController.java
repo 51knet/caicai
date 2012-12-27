@@ -107,6 +107,19 @@ public class CourseController {
 		model.addAttribute("userCount", listComment.size());
 		Teacher teacher = course.getTeacher();
 		model.addAttribute("teacher", teacher);
+		model.addAttribute("sumPerson", listComment.size());
+		List<CourseResource> listCourse = courseResourceService
+				.getResourceByCourseId(course_id);
+		List<CourseResource> listCourses = new ArrayList<CourseResource>();
+		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
+		String resourceOrder = null;
+		for (CourseResource courseResource : listCourse) {
+			resourceOrder = courseResource.getResourceOrder();
+			listCourses = courseResourceService
+					.getResourceByResourceOrder(resourceOrder);
+			courseMap.put(resourceOrder, listCourses);
+		}
+		model.addAttribute("courseMap", courseMap);
 		return "course.list.view";
 	}
 
@@ -121,7 +134,7 @@ public class CourseController {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/teacherCourse/course/view/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/teacherCourse/course/view/{id}")
 	public String listCourseByTeacherCourseId(
 			Model model,
 			HttpSession session,
@@ -152,7 +165,7 @@ public class CourseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/teacherCourse/course/comment/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/teacherCourse/course/view/{id}/comment")
 	public String listCommentByTeacherCourseId(@Valid CommentInfoForm commentInfoForm,@PathVariable Long id, Model model,HttpSession session
 			,@RequestParam(value = "pageNumber", defaultValue = "3") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "4") int pageSize)

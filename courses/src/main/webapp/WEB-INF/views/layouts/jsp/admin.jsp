@@ -28,10 +28,10 @@
 				</div>
 				<!--/span-->
 				<div class="span10" style="width: 810px;">
-					<div class="right-panel">
+					<div class="right-panel"  style="width: 810px;">
 						<tiles:insertAttribute name="right" />
 					</div>
-					<div class="right-panel">
+					<div class="right-panel"  style="width: 810px;">
 						<tiles:insertAttribute name="right2" />
 					</div>
 				</div>
