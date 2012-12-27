@@ -4,8 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
 .container.courseResource {
-	width: 818px;
-	max-width: 818px;
+
 	text-align: left;
 }
 .container.courseResource.row {
@@ -20,21 +19,20 @@
 		return false;
 	}
 </script>
-<div class=" container courseResource">
+
 	<div align="left" style="background-color:#F7F7F7;height:40px">
-		<h4 style="margin-left:50px; float: left;">课程</h4>
+		<h4 style="margin-left:40px; float: left;">课程资源</h4>
 	</div>
-	<div style="margin-top:30px;margin-left:50px">
+	<div  class="row" style="margin-left:40px">
 		<c:forEach var="course" items="${courseMap}" varStatus="i">
 			<div id="course_${i.count}" onclick="javascript:courseOnclick(this);">
-				<h4><span>第${course.key}课时</span></h4>
+				<h5><span style="font-size: 15px;">第${course.key}课时</span></h5>
 			</div>
 			<c:forEach var="fileNames" items="${course.value}">
-				<div class="fileName_${i.count}">
-					<span>${fileNames.fileName}&nbsp;&nbsp;</span>
-					<a  style="margin-left:498px" href='<c:url value="/teacherCourse/course/view/${fileNames.id}"></c:url>'><img src="<c:url  value="/resources/img/courseResource/u173_normal.jpg"></c:url>" ></a>
+				<div class="fileName_${i.count}" >
+					<div style="width: 80%; float: left;">${fileNames.fileName}</div>
+					<div style="width: 20%; float: left;"><a   href='<c:url value="/teacherCourse/course/view/${fileNames.id}"></c:url>'><img src="<c:url  value="/resources/img/courseResource/u173_normal.jpg"></c:url>" ></a></div>
 				</div>
 			</c:forEach>
 		</c:forEach>
 	</div>
-</div>

@@ -9,7 +9,7 @@ $(document).ready(function (){
 	checkAjaxs("comment_info_form","commentAjax");
 });
 </script>
-<div class="row-fluid custom round">
+
 	<div  align="left" style="width:100%;background-color:#F7F7F7; height: 40px; margin-bottom: 20px;">
     	<h4 style="margin-left: 50px; float: left;">课程评论</h4>
     </div>
@@ -51,4 +51,4 @@ $(document).ready(function (){
 				</div>
 			</form>
 		</div>
-	</div>
+

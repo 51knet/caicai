@@ -107,6 +107,19 @@ public class CourseController {
 		model.addAttribute("userCount", listComment.size());
 		Teacher teacher = course.getTeacher();
 		model.addAttribute("teacher", teacher);
+		model.addAttribute("sumPerson", listComment.size());
+		List<CourseResource> listCourse = courseResourceService
+				.getResourceByCourseId(course_id);
+		List<CourseResource> listCourses = new ArrayList<CourseResource>();
+		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
+		String resourceOrder = null;
+		for (CourseResource courseResource : listCourse) {
+			resourceOrder = courseResource.getResourceOrder();
+			listCourses = courseResourceService
+					.getResourceByResourceOrder(resourceOrder);
+			courseMap.put(resourceOrder, listCourses);
+		}
+		model.addAttribute("courseMap", courseMap);
 		return "course.list.view";
 	}
 
@@ -157,7 +170,6 @@ public class CourseController {
 			,@RequestParam(value = "pageNumber", defaultValue = "3") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "4") int pageSize)
 			throws Exception {
-		
 		List<Comment> listComment=commentService.findByTeachercourseid(id);
 		Integer sumPerson=listComment.size();
 		double courseMark=commentService.getMark(id);//一个视频的评论平均分数
