@@ -12,7 +12,6 @@ public class Comment extends AbstractEntity {
 	private Long mark;
 	private String commentDesc;
 	private String commentDate;
-	private String commentTitle;
 	private Long userid;
 	private Long teachercourseid;
 	public Long getTeachercourseid() {
@@ -44,12 +43,6 @@ public class Comment extends AbstractEntity {
 	}
 	public void setCommentDate(String commentDate) {
 		this.commentDate = commentDate;
-	}
-	public String getCommentTitle() {
-		return commentTitle;
-	}
-	public void setCommentTitle(String commentTitle) {
-		this.commentTitle = commentTitle;
 	}
 	public Comment(){
 		super();

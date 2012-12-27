@@ -19,22 +19,24 @@
 		return false;
 	}
 </script>
-
-	<div align="left" style="background-color:#F7F7F7;height:40px">
-		<h4 style="margin-left:40px; float: left;">课程资源</h4>
-	</div>
-	<div  class="row" style="margin-left:40px;" >
+	<div   style="margin-left:38px; margin-top: 10px; margin-bottom: 10px;">
 		<c:forEach var="course" items="${courseMap}" varStatus="i">
-		<div style="border:1px solid #cccccc;">
-			<div id="course_${i.count}" onclick="javascript:courseOnclick(this);">
-				<h5><span style="font-size: 15px;">第${course.key}课时</span></h5>
-			</div>
-			<c:forEach var="fileNames" items="${course.value}">
-				<div class="fileName_${i.count}" >
-					<div style="width: 80%; float: left;">${fileNames.fileName}</div>
-					<div style="width: 20%; float: left;"><a   href='<c:url value="/teacherCourse/course/view/courseResource/${fileNames.id}"></c:url>'><img src="<c:url  value="/resources/img/courseResource/u173_normal.jpg"></c:url>" ></a></div>
-				</div>
-			</c:forEach>
-			</div>
+			<table   style="width: 95%;  border: 2px solid #f1f1f1; margin-bottom: 5px;">
+				<tbody>
+					<tr>
+						<td align="left">
+							<div id="course_${i.count}" onclick="javascript:courseOnclick(this);">
+								<div style="font-size: 16px;  background-color: #f7f7f7; padding: 5px;"><b>第${course.key}课时</b></div>
+								<c:forEach var="fileNames" items="${course.value}">
+									<div class="fileName_${i.count}"  >
+										<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${fileNames.fileName}</div>
+										<div style="width:10%; float: left; text-align: center;"><a   href='<c:url value="/teacherCourse/course/view/${fileNames.id}"></c:url>'><img src="<c:url  value="/resources/img/courseResource/u173_normal.jpg"></c:url>" ></a></div>
+									</div>
+								</c:forEach>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</c:forEach>
 	</div>
