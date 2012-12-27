@@ -33,7 +33,7 @@
 						</c:choose>
 					</td>
 				    <td style="margin-left: 20px;float: left;">${comment.userName}&nbsp;&nbsp;&nbsp;</td>
-				    <td style="float: left;">&nbsp;&nbsp;&nbsp;${comment.comment.mark}</td>
+				    <td style="float: left;">&nbsp;&nbsp;&nbsp;${comment.comment.mark} </td>
 				  </tr>
 				  <tr style="margin-bottom: 10px;">
 				    <td colspan="2" style="margin-left: 20px;float: left;text-align: left; ">${comment.comment.commentDesc}</td>
