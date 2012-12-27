@@ -4,61 +4,18 @@ version 1.0
 
 
 
-# URLs 重构参考
-大家根据下面的建议重构相关的路由信息
+# URLs 命名和使用规则
 
-## 注册登陆
-
-| url         
-|   
-| /            
-| /signin      
-| /commonregister  -> /register/common   
-| /registerpage    -> /register  
-| /mail/{randomUrl}/{idString}  
-
-
-## 学生页面
-| url         
-|         
-| /student/{user_id}         
-| /studentDetailInfo -> /admin/student/details         
-| /studentInfoPage   -> /admin/student/basic         
-
-## 普通用户
-| url          
-|         
-| /user/{id}         
-| /usertype       -> /user/dispatcher         
-| /userDetailInfo -> /admin/user/details         
-| /userInfoPage   -> /admin/user/basic         
-
-## 教师用户
-| url         
-|        
-| /teacherDetailInfo -> /admin/teacher/details         
-| /teacherInfoPage   -> /admin/teacher/basic         
-
-## 教师博客
-| url         
-|    
+* url必须全部小写
+* 对于资源的读取，列表，分页等必须使用GET
+* 对于资源修改必须使用POST，且修改完成后一般返回redirect的GET的url
+* 后台管理的url必须以/admin开头，后面接你的资源名称
+* 一般来说增删改查的URL必须符合下面的规则
 | /admin/blog/list         
 | /admin/blog/new         
 | /admin/blog/edit/{blog_post_id}         
 | /admin/blog/view/{blog_post_id}         
-| /admin/blog/destroy         
-| /admin/blog/category/list         
-| /admin/blog/category/new         
-| /admin/blog/category/edit         
-| /admin/blog/category/destroy         
-
-## 其他
-| url         
-|         
-| /debug         
-| /one2one/{user_id}/{student_collage}         
-| /admin -> /admin/teacher | /admin/user       
-| / -> /user/{id} | /teacher/{id}         
+| /admin/blog/destroy                  
 
 ## URLs和Tiles视图的命名如何对应以方便查找？
 **重构前:** URL:userInfoPage, Tiles视图定义如下

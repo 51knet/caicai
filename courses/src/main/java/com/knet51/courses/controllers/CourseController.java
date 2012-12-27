@@ -96,19 +96,12 @@ public class CourseController {
 	public String showCourseDetail(@PathVariable Long course_id,Model model){
 		/*     zm    */
 		TeacherCourse course = courseService.findOneById(course_id);
-		Double courseMark = commentService.getMark(course_id);
-		model.addAttribute("courseMark", courseMark);
 		model.addAttribute("course", course);
-		
-		
 		/*     lbx    */
-		//List<CourseResource> listCourses = new ArrayList<CourseResource>();
-		List<Comment> listComment =commentService.findByTeachercourseid(course_id);
+		listCommentByTeacherCourseId(course_id, model);
 		Teacher teacher = course.getTeacher();
 		model.addAttribute("teacher", teacher);
-		model.addAttribute("sumPerson", listComment.size());
-		List<CourseResource> listResource = courseResourceService
-				.getResourceByCourseId(course_id);
+		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
 		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
 		String resourceOrder = null;
@@ -134,7 +127,7 @@ public class CourseController {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/teacherCourse/course/view/{id}")
+	@RequestMapping(value = "/teachercourse/course/view/{id}")
 	public String listCourseByTeacherCourseId(
 			Model model,
 			HttpSession session,
@@ -155,7 +148,7 @@ public class CourseController {
 		TeacherCourse teacherCourse = courseService.findOneById(id);
 		model.addAttribute("course", teacherCourse);
 		model.addAttribute("resourceCount", listResource.size());
-		return "teacherCourse.course.view";
+		return "teachercourse.course.view";
 	}
 	/**
 	 * 查询出相关的评论信息
@@ -166,11 +159,90 @@ public class CourseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/teacherCourse/course/comment/{id}")
-	public String listCommentByTeacherCourseId(@PathVariable Long id, Model model,HttpSession session
+	@RequestMapping(value = "/teachercourse/course/comment/{id}")
+	public String listComment(@PathVariable Long id, Model model,HttpSession session
 			,@RequestParam(value = "pageNumber", defaultValue = "5") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize)
-			throws Exception {
+			throws Exception {			
+		listCommentByTeacherCourseId(id, model);
+		TeacherCourse teacherCourse = courseService.findOneById(id);
+		model.addAttribute("course", teacherCourse);
+		return "teachercourse.course.comment";
+
+	}
+	
+	/**
+	 * 增加评论内容
+	 * @param commentInfoForm
+	 * @param id
+	 * @param model
+	 * @param session
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/teachercourse/course/comment/new", method = RequestMethod.POST)
+	public String contactInfo( @RequestParam("teachercourseid") Long id,@Valid CommentInfoForm commentInfoForm,BindingResult validResult,Model model, HttpSession session) {
+		logger.info("#### contactInfo InfoController ####");
+		Long marks = commentInfoForm.getMark();
+		String commentDesc = commentInfoForm.getCommentDesc();
+		//String message="";
+		if (validResult.hasErrors()) {
+			logger.info("contactInfo Validation Failed " + validResult);
+			return "redirect:/teachercourse/course/comment/"+id;
+		} else {
+			logger.info("### contactInfo Validation passed. ###");
+			Comment comment=commentService.findByTeachercourseidAndUserid(id, 4l);
+			if (comment!=null) {
+				/*message="您已经评论过此课程,请不要重复评论";
+				model.addAttribute("message", message);*/
+				return "redirect:/teachercourse/course/comment/"+id;
+			} else{
+				Comment comm = new Comment();
+				comm.setCommentDesc(commentDesc);
+				comm.setMark(marks);
+				comm.setTeachercourseid(id);
+				comm.setUserid(4l);
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String date = format.format(new Date());
+				comm.setCommentDate(date);
+				commentService.save(comm);
+				return "redirect:/teachercourse/course/comment/"+id;
+			}
+		}
+	}
+	/**
+	 * 下载视频
+	 * @param id
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception    
+	 */
+	@RequestMapping(value = "/teachercourse/course/view/resource/{id}")
+	public String resourceDownLoad(@PathVariable Long id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		CourseResource courseResource=courseResourceService.findById(id);
+		String savePath = courseResource.getSavePath();
+		String fileName = courseResource.getSaveName();
+		FileUtil.downLoad(request, response, savePath, fileName);
+		return null;
+	}
+
+	/**
+	 * 验证输入框是否为空
+	 * 
+	 * @param commentInfoForm
+	 * @param result
+	 * @return
+	 */
+	@RequestMapping(value = "/teachercourse/course/comment/commentajax", method = RequestMethod.POST)
+	public @ResponseBody
+	ValidationResponse commentInfoFormAjaxJson(
+			@Valid CommentInfoForm commentInfoForm,BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	private void listCommentByTeacherCourseId(Long id, Model model){
 		List<Comment> listComment=commentService.findByTeachercourseid(id);
 		Integer sumPerson=listComment.size();
 		double courseMark=commentService.getMark(id);//一个视频的评论平均分数
@@ -191,81 +263,5 @@ public class CourseController {
 		model.addAttribute("id", id);
 		model.addAttribute("sumPerson", sumPerson);
 		model.addAttribute("courseMark", courseMark);
-		TeacherCourse teacherCourse = courseService.findOneById(id);
-		model.addAttribute("course", teacherCourse);
-		return "teacherCourse.course.comment";
 	}
-	/**
-	 * 增加评论内容
-	 * @param commentInfoForm
-	 * @param id
-	 * @param model
-	 * @param session
-	 * @param pageNumber
-	 * @param pageSize
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value = "/teacherCourse/course/comment/addComment", method = RequestMethod.POST)
-	public String contactInfo( @RequestParam("teachercourseid") Long id,@Valid CommentInfoForm commentInfoForm,BindingResult validResult,Model model, HttpSession session) {
-		logger.info("#### contactInfo InfoController ####");
-		Long marks = commentInfoForm.getMark();
-		String commentDesc = commentInfoForm.getCommentDesc();
-		//String message="";
-		if (validResult.hasErrors()) {
-			logger.info("contactInfo Validation Failed " + validResult);
-			return "redirect:/teacherCourse/course/comment/"+id;
-		} else {
-			logger.info("### contactInfo Validation passed. ###");
-			Comment comment=commentService.findByTeachercourseidAndUserid(id, 4l);
-			if (comment!=null) {
-				/*message="您已经评论过此课程,请不要重复评论";
-				model.addAttribute("message", message);*/
-				return "redirect:/teacherCourse/course/comment/"+id;
-			} else{
-				Comment comm = new Comment();
-				comm.setCommentDesc(commentDesc);
-				comm.setMark(marks);
-				comm.setTeachercourseid(id);
-				comm.setUserid(4l);
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				String date = format.format(new Date());
-				comm.setCommentDate(date);
-				commentService.save(comm);
-				return "redirect:/teacherCourse/course/comment/"+id;
-			}
-		}
-	}
-	/**
-	 * 下载视频
-	 * @param id
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception    
-	 */
-	@RequestMapping(value = "/teacherCourse/course/view/courseResource/{id}")
-	public String resourceDownLoad(@PathVariable Long id,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		CourseResource courseResource=courseResourceService.findById(id);
-		String savePath = courseResource.getSavePath();
-		String fileName = courseResource.getSaveName();
-		FileUtil.downLoad(request, response, savePath, fileName);
-		return null;
-	}
-
-	/**
-	 * 验证输入框是否为空
-	 * 
-	 * @param commentInfoForm
-	 * @param result
-	 * @return
-	 */
-	@RequestMapping(value = "/teacherCourse/course/comment/commentAjax", method = RequestMethod.POST)
-	public @ResponseBody
-	ValidationResponse commentInfoFormAjaxJson(
-			@Valid CommentInfoForm commentInfoForm,BindingResult result) {
-		System.out.println("##############################################");
-		return AjaxValidationEngine.process(result);
-	}
-
 }

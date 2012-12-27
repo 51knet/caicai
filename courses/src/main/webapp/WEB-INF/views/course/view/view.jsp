@@ -82,7 +82,7 @@
     			</c:choose></span>分</h5>
 				<h5>发布时间：${course.courseDate }</h5>
 				学员（${sumPerson}）&nbsp;&nbsp;评论（${sumPerson}）&nbsp;&nbsp;
-				<a href='<c:url value="/teacherCourse/course/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
+				<a href='<c:url value="/teachercourse/course/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
 			</div>
 		</div>
 		<div class="container course detail" style="background-color: #f7f7f7; margin-bottom: 10px; ">
