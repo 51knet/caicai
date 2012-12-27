@@ -168,8 +168,8 @@ public class CourseController {
 	 */
 	@RequestMapping(value = "/teacherCourse/course/comment/{id}")
 	public String listCommentByTeacherCourseId(@PathVariable Long id, Model model,HttpSession session
-			,@RequestParam(value = "pageNumber", defaultValue = "3") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "4") int pageSize)
+			,@RequestParam(value = "pageNumber", defaultValue = "5") int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize)
 			throws Exception {
 		List<Comment> listComment=commentService.findByTeachercourseid(id);
 		Integer sumPerson=listComment.size();
@@ -185,8 +185,8 @@ public class CourseController {
 			commentUser.setComment(comm);
 			commentUser.setPhotoUrl(photoUrl);
 			commentUser.setUserName(userName);
-			list.add(commentUser);
 		}
+		list.add(commentUser);
 		model.addAttribute("listcomment", list);
 		model.addAttribute("id", id);
 		model.addAttribute("sumPerson", sumPerson);
