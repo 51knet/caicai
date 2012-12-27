@@ -104,22 +104,22 @@ public class CourseController {
 		/*     lbx    */
 		//List<CourseResource> listCourses = new ArrayList<CourseResource>();
 		List<Comment> listComment =commentService.findByTeachercourseid(course_id);
-		model.addAttribute("userCount", listComment.size());
 		Teacher teacher = course.getTeacher();
 		model.addAttribute("teacher", teacher);
 		model.addAttribute("sumPerson", listComment.size());
-		List<CourseResource> listCourse = courseResourceService
+		List<CourseResource> listResource = courseResourceService
 				.getResourceByCourseId(course_id);
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
 		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
 		String resourceOrder = null;
-		for (CourseResource courseResource : listCourse) {
+		for (CourseResource courseResource : listResource) {
 			resourceOrder = courseResource.getResourceOrder();
 			listCourses = courseResourceService
 					.getResourceByResourceOrder(resourceOrder);
 			courseMap.put(resourceOrder, listCourses);
 		}
 		model.addAttribute("courseMap", courseMap);
+		model.addAttribute("resourceCount", listResource.size());
 		return "course.list.view";
 	}
 
@@ -139,12 +139,12 @@ public class CourseController {
 			Model model,
 			HttpSession session,
 			@PathVariable Long id) {
-		List<CourseResource> listCourse = courseResourceService
+		List<CourseResource> listResource = courseResourceService
 				.getResourceByCourseId(id);
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
 		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
 		String resourceOrder = null;
-		for (CourseResource courseResource : listCourse) {
+		for (CourseResource courseResource : listResource) {
 			resourceOrder = courseResource.getResourceOrder();
 			listCourses = courseResourceService
 					.getResourceByResourceOrder(resourceOrder);
@@ -154,7 +154,7 @@ public class CourseController {
 		/*    zm   */
 		TeacherCourse teacherCourse = courseService.findOneById(id);
 		model.addAttribute("course", teacherCourse);
-		model.addAttribute("resourceCount", listCourses.size());
+		model.addAttribute("resourceCount", listResource.size());
 		return "teacherCourse.course.view";
 	}
 	/**
