@@ -165,8 +165,8 @@ public class CourseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/teacherCourse/course/{id}/comment")
-	public String listCommentByTeacherCourseId(@Valid CommentInfoForm commentInfoForm,@PathVariable Long id, Model model,HttpSession session
+	@RequestMapping(value = "/teacherCourse/course/comment/{id}")
+	public String listCommentByTeacherCourseId(@PathVariable Long id, Model model,HttpSession session
 			,@RequestParam(value = "pageNumber", defaultValue = "3") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "4") int pageSize)
 			throws Exception {
@@ -203,26 +203,24 @@ public class CourseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/teacherCourse/course/addComment/{id}", method = RequestMethod.POST)
-	public String contactInfo(@Valid CommentInfoForm commentInfoForm,@PathVariable Long id,BindingResult validResult,Model model, HttpSession session) {
+	@RequestMapping(value = "/teacherCourse/course/comment/addComment", method = RequestMethod.POST)
+	public String contactInfo( @RequestParam("teachercourseid") Long id,@Valid CommentInfoForm commentInfoForm,BindingResult validResult,Model model, HttpSession session) {
 		logger.info("#### contactInfo InfoController ####");
 		Long marks = commentInfoForm.getMark();
-		String commentTitle = commentInfoForm.getCommentTitle();
 		String commentDesc = commentInfoForm.getCommentDesc();
-		String message="";
+		//String message="";
 		if (validResult.hasErrors()) {
 			logger.info("contactInfo Validation Failed " + validResult);
-			return "/teacherCourse/course/comment/"+id;
+			return "redirect:/teacherCourse/course/comment/"+id;
 		} else {
 			logger.info("### contactInfo Validation passed. ###");
 			Comment comment=commentService.findByTeachercourseidAndUserid(id, 4l);
 			if (comment!=null) {
-				message="您已经评论过此课程,请不要重复评论";
-				model.addAttribute("message", message);
-				return "/teacherCourse/course/comment/"+id;
+				/*message="您已经评论过此课程,请不要重复评论";
+				model.addAttribute("message", message);*/
+				return "redirect:/teacherCourse/course/comment/"+id;
 			} else{
 				Comment comm = new Comment();
-				comm.setCommentTitle(commentTitle);
 				comm.setCommentDesc(commentDesc);
 				comm.setMark(marks);
 				comm.setTeachercourseid(id);
@@ -231,13 +229,21 @@ public class CourseController {
 				String date = format.format(new Date());
 				comm.setCommentDate(date);
 				commentService.save(comm);
-				return "/teacherCourse/course/comment/"+id;
+				return "redirect:/teacherCourse/course/comment/"+id;
 			}
 		}
 	}
-	@RequestMapping(value = "/teacherCourse/course/view/{fileNames.id}", method = RequestMethod.POST)
-	public String resourceDownLoad(@PathVariable Long fileNames_id,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		CourseResource courseResource=courseResourceService.findById(fileNames_id);
+	/**
+	 * 下载视频
+	 * @param id
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception    
+	 */
+	@RequestMapping(value = "/teacherCourse/course/view/courseResource/{id}")
+	public String resourceDownLoad(@PathVariable Long id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		CourseResource courseResource=courseResourceService.findById(id);
 		String savePath = courseResource.getSavePath();
 		String fileName = courseResource.getSaveName();
 		FileUtil.downLoad(request, response, savePath, fileName);
@@ -251,10 +257,11 @@ public class CourseController {
 	 * @param result
 	 * @return
 	 */
-	@RequestMapping(value = "/teacherCourse/course/view/commentAjax", method = RequestMethod.POST)
+	@RequestMapping(value = "/teacherCourse/course/comment/commentAjax", method = RequestMethod.POST)
 	public @ResponseBody
 	ValidationResponse commentInfoFormAjaxJson(
-			@Valid CommentInfoForm commentInfoForm, BindingResult result) {
+			@Valid CommentInfoForm commentInfoForm,BindingResult result) {
+		System.out.println("##############################################");
 		return AjaxValidationEngine.process(result);
 	}
 

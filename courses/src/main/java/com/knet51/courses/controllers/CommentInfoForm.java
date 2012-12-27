@@ -5,8 +5,6 @@ public class CommentInfoForm {
 	@NotEmpty
 	private String commentDesc;
 	private String commentDate;
-	@NotEmpty
-	private String commentTitle;
 
 	private Long teachercourseid;
 	/*@NotEmpty
@@ -41,12 +39,6 @@ public class CommentInfoForm {
 	}
 	public void setCommentDate(String commentDate) {
 		this.commentDate = commentDate;
-	}
-	public String getCommentTitle() {
-		return commentTitle;
-	}
-	public void setCommentTitle(String commentTitle) {
-		this.commentTitle = commentTitle;
 	}
 	
 }

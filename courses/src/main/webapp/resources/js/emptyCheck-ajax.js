@@ -8,20 +8,17 @@ function collectFormData(fields) {
 }
 
 function checkAjaxs(formID, actionName) {
-	$form = $('#' + formID);
+	var flag = false;
+	var $form = $('#' + formID);
 	var action = actionName;
-	$form.bind('submit', function(e) {
-		var $inputs = $form.find('input');
-		var $textarea = $form.find('textarea');
-		var data = collectFormData($inputs);
-		//alert($inputs);
-		var textdata = collectFormData($textarea);
-		var dataInfo = data['commentTitle'];
-		var textInfo = textdata['commentDesc'];
-		var annoInfo = '{"commentTitle":"' + dataInfo + '","commentDesc": "'
-				+ textInfo + '"}';
-		var annoData = eval("(" + annoInfo + ")");
-		$.post(action, annoData, function(response) {
+	var $textarea = $form.find('textarea');
+	var textdata = collectFormData($textarea);
+	$.ajax({
+		type:"post",
+		url : action,
+		data : textdata,
+		async:false,
+		success : function(response) {
 			$form.find('.modal-body').removeClass('error');
 			$form.find('.help-inline').empty();
 			$form.find('.alert').remove();
@@ -32,28 +29,16 @@ function checkAjaxs(formID, actionName) {
 					$controlGroup.addClass('error');
 					$controlGroup.find('.help-inline').html(item.message);
 				}
+				flag = false;
 			} else {
-				$form.unbind('submit');
-				/*$.ajax({
-					data:$form.serializeArray(),
-					type:"post",
-					dataType:"json",
-					url:"comment",
-					success:function(data){
-						String dataSum=eval(data);
-						alert(1);
-						if(dataSum==1){
-							$("#commentError").html("<font color='#ff0000'>谢谢你的评论,你已评论过此课程</font>");
-							return false;
-						}else{
-							
-						}
-					}
-				});*/
-				$form.submit();
+				flag = true;
 			}
-		}, 'json');
-		e.preventDefault();
-		return false;
+		}
 	});
+	// e.preventDefault();
+	return flag;
+	
+	
+	
+	
 }
