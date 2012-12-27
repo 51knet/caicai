@@ -28,7 +28,11 @@
     	<h4 style="margin-left: 50px; float: left;">讲师介绍</h4>
     </div>
     <br/>
+<<<<<<< HEAD
+    <div  style="width: 120px;height: 210px; float:left; margin-left:30px">
+=======
     <div  style="width: 120px;height: 210px; float:left; margin-left:20px">
+>>>>>>> aff8b4dcef773b1ad41d034dba43d33e517eba90
 	    <c:choose >
 			<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
 				<img src='<c:url value="${teacher.user.photo_url }"></c:url>'/>

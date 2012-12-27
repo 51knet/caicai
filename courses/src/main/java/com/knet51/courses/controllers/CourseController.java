@@ -165,12 +165,11 @@ public class CourseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/teacherCourse/course/view/{id}/comment")
+	@RequestMapping(value = "/teacherCourse/course/{id}/comment")
 	public String listCommentByTeacherCourseId(@Valid CommentInfoForm commentInfoForm,@PathVariable Long id, Model model,HttpSession session
 			,@RequestParam(value = "pageNumber", defaultValue = "3") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "4") int pageSize)
 			throws Exception {
-		
 		List<Comment> listComment=commentService.findByTeachercourseid(id);
 		Integer sumPerson=listComment.size();
 		double courseMark=commentService.getMark(id);//一个视频的评论平均分数
