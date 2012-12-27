@@ -121,7 +121,7 @@ public class CourseController {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/teacherCourse/course/view/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/teacherCourse/course/view/{id}")
 	public String listCourseByTeacherCourseId(
 			Model model,
 			HttpSession session,
@@ -152,7 +152,7 @@ public class CourseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/teacherCourse/course/comment/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/teacherCourse/course/{id}/comment")
 	public String listCommentByTeacherCourseId(@Valid CommentInfoForm commentInfoForm,@PathVariable Long id, Model model,HttpSession session
 			,@RequestParam(value = "pageNumber", defaultValue = "3") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "4") int pageSize)
