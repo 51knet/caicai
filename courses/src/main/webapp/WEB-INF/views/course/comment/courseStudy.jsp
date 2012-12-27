@@ -19,6 +19,9 @@
 		return false;
 	}
 </script>
+<div  align="left" style="width:100%;background-color:#F7F7F7; height: 40px; margin-bottom: 10px;">
+    	<h4 style="margin-left: 40px; float: left;">课程学习</h4>
+    </div>
 	<div   style="margin-left:38px; margin-top: 10px; margin-bottom: 10px;">
 		<c:forEach var="course" items="${courseMap}" varStatus="i">
 			<table   style="width: 95%;  border: 2px solid #f1f1f1; margin-bottom: 5px;">
