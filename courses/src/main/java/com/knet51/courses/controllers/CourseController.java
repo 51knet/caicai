@@ -96,18 +96,14 @@ public class CourseController {
 	public String showCourseDetail(@PathVariable Long course_id,Model model){
 		/*     zm    */
 		TeacherCourse course = courseService.findOneById(course_id);
-		Double courseMark = commentService.getMark(course_id);
-		model.addAttribute("courseMark", courseMark);
 		model.addAttribute("course", course);
 		
 		
 		/*     lbx    */
-		//List<CourseResource> listCourses = new ArrayList<CourseResource>();
-		List<Comment> listComment =commentService.findByTeachercourseid(course_id);
-		model.addAttribute("userCount", listComment.size());
+		listCommentByTeacherCourseId(course_id, model);
 		Teacher teacher = course.getTeacher();
 		model.addAttribute("teacher", teacher);
-		model.addAttribute("sumPerson", listComment.size());
+		
 		List<CourseResource> listCourse = courseResourceService
 				.getResourceByCourseId(course_id);
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
@@ -134,7 +130,7 @@ public class CourseController {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/teacherCourse/course/view/{id}")
+	@RequestMapping(value = "/teachercourse/course/view/{id}")
 	public String listCourseByTeacherCourseId(
 			Model model,
 			HttpSession session,
@@ -154,7 +150,7 @@ public class CourseController {
 		/*    zm   */
 		TeacherCourse teacherCourse = courseService.findOneById(id);
 		model.addAttribute("course", teacherCourse);
-		return "teacherCourse.course.view";
+		return "teachercourse.course.view";
 	}
 	/**
 	 * 查询出相关的评论信息
@@ -165,11 +161,17 @@ public class CourseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/teacherCourse/course/comment/{id}")
-	public String listCommentByTeacherCourseId(@PathVariable Long id, Model model,HttpSession session
+	@RequestMapping(value = "/teachercourse/course/comment/{id}")
+	public String listComment(@PathVariable Long id, Model model,HttpSession session
 			,@RequestParam(value = "pageNumber", defaultValue = "5") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize)
 			throws Exception {
+		listCommentByTeacherCourseId(id, model);
+		TeacherCourse teacherCourse = courseService.findOneById(id);
+		model.addAttribute("course", teacherCourse);
+		return "teachercourse.course.comment";
+	}
+	private void listCommentByTeacherCourseId(Long id, Model model){
 		List<Comment> listComment=commentService.findByTeachercourseid(id);
 		Integer sumPerson=listComment.size();
 		double courseMark=commentService.getMark(id);//一个视频的评论平均分数
@@ -190,7 +192,6 @@ public class CourseController {
 		model.addAttribute("id", id);
 		model.addAttribute("sumPerson", sumPerson);
 		model.addAttribute("courseMark", courseMark);
-		return "teacherCourse.course.comment";
 	}
 	/**
 	 * 增加评论内容
@@ -203,7 +204,7 @@ public class CourseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/teacherCourse/course/comment/addComment", method = RequestMethod.POST)
+	@RequestMapping(value = "/teachercourse/course/comment/new", method = RequestMethod.POST)
 	public String contactInfo( @RequestParam("teachercourseid") Long id,@Valid CommentInfoForm commentInfoForm,BindingResult validResult,Model model, HttpSession session) {
 		logger.info("#### contactInfo InfoController ####");
 		Long marks = commentInfoForm.getMark();
@@ -211,14 +212,14 @@ public class CourseController {
 		//String message="";
 		if (validResult.hasErrors()) {
 			logger.info("contactInfo Validation Failed " + validResult);
-			return "redirect:/teacherCourse/course/comment/"+id;
+			return "redirect:/teachercourse/course/comment/"+id;
 		} else {
 			logger.info("### contactInfo Validation passed. ###");
 			Comment comment=commentService.findByTeachercourseidAndUserid(id, 4l);
 			if (comment!=null) {
 				/*message="您已经评论过此课程,请不要重复评论";
 				model.addAttribute("message", message);*/
-				return "redirect:/teacherCourse/course/comment/"+id;
+				return "redirect:/teachercourse/course/comment/"+id;
 			} else{
 				Comment comm = new Comment();
 				comm.setCommentDesc(commentDesc);
@@ -229,7 +230,7 @@ public class CourseController {
 				String date = format.format(new Date());
 				comm.setCommentDate(date);
 				commentService.save(comm);
-				return "redirect:/teacherCourse/course/comment/"+id;
+				return "redirect:/teachercourse/course/comment/"+id;
 			}
 		}
 	}
@@ -241,7 +242,7 @@ public class CourseController {
 	 * @return
 	 * @throws Exception    
 	 */
-	@RequestMapping(value = "/teacherCourse/course/view/courseResource/{id}")
+	@RequestMapping(value = "/teachercourse/course/view/resource/{id}")
 	public String resourceDownLoad(@PathVariable Long id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		CourseResource courseResource=courseResourceService.findById(id);
 		String savePath = courseResource.getSavePath();
@@ -257,11 +258,10 @@ public class CourseController {
 	 * @param result
 	 * @return
 	 */
-	@RequestMapping(value = "/teacherCourse/course/comment/commentAjax", method = RequestMethod.POST)
+	@RequestMapping(value = "/teachercourse/course/comment/commentajax", method = RequestMethod.POST)
 	public @ResponseBody
 	ValidationResponse commentInfoFormAjaxJson(
 			@Valid CommentInfoForm commentInfoForm,BindingResult result) {
-		System.out.println("##############################################");
 		return AjaxValidationEngine.process(result);
 	}
 

@@ -45,14 +45,14 @@
 		<put-attribute name="body" value="/WEB-INF/views/teacher/teacherShop/courses.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
-	<definition name="teacherCourse.course.view" extends="admin-layout">
+	<definition name="teachercourse.course.view" extends="admin-layout">
 		<put-attribute name="title" value="课程学习" />
 		<put-attribute name="banner" value="/WEB-INF/views/layouts/course/courseDetail.jsp" />
 		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/course/comment/courseStudy.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
-	<definition name="teacherCourse.course.comment" extends="admin-layout">
+	<definition name="teachercourse.course.comment" extends="admin-layout">
 		<put-attribute name="title" value="课程学习" />
 		<put-attribute name="banner" value="/WEB-INF/views/layouts/course/courseDetail.jsp" />
 		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />

@@ -17,7 +17,7 @@ function commentAjax(){
     
     
 	<div class="row" style="margin-left: 50px;">
-		<form id="comment_info_form" action="addComment" class="form-horizontal" method="post">
+		<form id="comment_info_form" action="new" class="form-horizontal" method="post">
 		<div ><input type="hidden" name="teachercourseid"  value="${id}" /></div>
 		
 			<div class="control-group" id="commentDesc">
