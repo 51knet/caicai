@@ -97,25 +97,22 @@ public class CourseController {
 		/*     zm    */
 		TeacherCourse course = courseService.findOneById(course_id);
 		model.addAttribute("course", course);
-		
-		
 		/*     lbx    */
 		listCommentByTeacherCourseId(course_id, model);
 		Teacher teacher = course.getTeacher();
 		model.addAttribute("teacher", teacher);
-		
-		List<CourseResource> listCourse = courseResourceService
-				.getResourceByCourseId(course_id);
+		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
 		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
 		String resourceOrder = null;
-		for (CourseResource courseResource : listCourse) {
+		for (CourseResource courseResource : listResource) {
 			resourceOrder = courseResource.getResourceOrder();
 			listCourses = courseResourceService
 					.getResourceByResourceOrder(resourceOrder);
 			courseMap.put(resourceOrder, listCourses);
 		}
 		model.addAttribute("courseMap", courseMap);
+		model.addAttribute("resourceCount", listResource.size());
 		return "course.list.view";
 	}
 
@@ -135,12 +132,12 @@ public class CourseController {
 			Model model,
 			HttpSession session,
 			@PathVariable Long id) {
-		List<CourseResource> listCourse = courseResourceService
+		List<CourseResource> listResource = courseResourceService
 				.getResourceByCourseId(id);
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
 		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
 		String resourceOrder = null;
-		for (CourseResource courseResource : listCourse) {
+		for (CourseResource courseResource : listResource) {
 			resourceOrder = courseResource.getResourceOrder();
 			listCourses = courseResourceService
 					.getResourceByResourceOrder(resourceOrder);
@@ -150,6 +147,7 @@ public class CourseController {
 		/*    zm   */
 		TeacherCourse teacherCourse = courseService.findOneById(id);
 		model.addAttribute("course", teacherCourse);
+		model.addAttribute("resourceCount", listResource.size());
 		return "teachercourse.course.view";
 	}
 	/**
@@ -171,28 +169,7 @@ public class CourseController {
 		model.addAttribute("course", teacherCourse);
 		return "teachercourse.course.comment";
 	}
-	private void listCommentByTeacherCourseId(Long id, Model model){
-		List<Comment> listComment=commentService.findByTeachercourseid(id);
-		Integer sumPerson=listComment.size();
-		double courseMark=commentService.getMark(id);//一个视频的评论平均分数
-		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
-		//Page<Comment> onePage = commentService.findCommentByTeachercourseid(pageNumber,pageSize, id);
-		CommentUserBeans commentUser=new CommentUserBeans();
-		for (int i = 0; i < listComment.size(); i++) {
-			User user=commentService.findByUserId(listComment.get(i).getUserid());
-			Comment comm=listComment.get(i);
-			String userName=user.getName();
-			String photoUrl=user.getPhoto_url();
-			commentUser.setComment(comm);
-			commentUser.setPhotoUrl(photoUrl);
-			commentUser.setUserName(userName);
-		}
-		list.add(commentUser);
-		model.addAttribute("listcomment", list);
-		model.addAttribute("id", id);
-		model.addAttribute("sumPerson", sumPerson);
-		model.addAttribute("courseMark", courseMark);
-	}
+	
 	/**
 	 * 增加评论内容
 	 * @param commentInfoForm
@@ -264,5 +241,26 @@ public class CourseController {
 			@Valid CommentInfoForm commentInfoForm,BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
-
+	private void listCommentByTeacherCourseId(Long id, Model model){
+		List<Comment> listComment=commentService.findByTeachercourseid(id);
+		Integer sumPerson=listComment.size();
+		double courseMark=commentService.getMark(id);//一个视频的评论平均分数
+		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
+		//Page<Comment> onePage = commentService.findCommentByTeachercourseid(pageNumber,pageSize, id);
+		CommentUserBeans commentUser=new CommentUserBeans();
+		for (int i = 0; i < listComment.size(); i++) {
+			User user=commentService.findByUserId(listComment.get(i).getUserid());
+			Comment comm=listComment.get(i);
+			String userName=user.getName();
+			String photoUrl=user.getPhoto_url();
+			commentUser.setComment(comm);
+			commentUser.setPhotoUrl(photoUrl);
+			commentUser.setUserName(userName);
+		}
+		list.add(commentUser);
+		model.addAttribute("listcomment", list);
+		model.addAttribute("id", id);
+		model.addAttribute("sumPerson", sumPerson);
+		model.addAttribute("courseMark", courseMark);
+	}
 }
