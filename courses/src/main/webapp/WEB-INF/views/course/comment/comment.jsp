@@ -15,9 +15,9 @@ $(document).ready(function (){
     </div>
     
     
-	<div class="row">
-		<form id="comment_info_form" action="comment" class="form-horizontal" method="post">
-				<div ><input type="hidden" name="teachercourseid"  value="${id}" /></div>
+	<div class="row" style="margin-left: 50px;">
+		<form id="comment_info_form" action="addComment" class="form-horizontal" method="post">
+		<div ><input type="hidden" name="teachercourseid"  value="${id}" /></div>
 				<div class="control-group" id="commentTitle">
 					<label class="control-label" for="commentTitle"><i class="icon-star"></i>标题</label>
 					<div class="controls">
@@ -44,7 +44,7 @@ $(document).ready(function (){
 				<div class="control-group">
 					<div class="controls">
 					<div>
-						<font color='#ff0000'>${message}</font>
+						<font color='#ff0000'></font>
 						</div>
 						<button type="submit"  class="btn btn-large btn-success">发表评论</button>
 					</div>

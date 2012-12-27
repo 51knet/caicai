@@ -31,6 +31,9 @@
 					<div class="right-panel">
 						<tiles:insertAttribute name="right" />
 					</div>
+					<div class="right-panel">
+						<tiles:insertAttribute name="right2" />
+					</div>
 				</div>
 				<!--/span-->
 			</div>

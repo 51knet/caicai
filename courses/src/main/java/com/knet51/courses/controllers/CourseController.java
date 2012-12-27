@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.teacher.Comment;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
@@ -64,7 +64,7 @@ public class CourseController {
 	// model.addAttribute("courseTypeList", courseTypeList);
 	// return "course.list";
 	// }
-
+	@Transactional
 	@RequestMapping(value = "/course/list/type")
 	public String showCourseByType(@RequestParam("detail") String courseType,
 			Model model) throws Exception {
@@ -92,7 +92,6 @@ public class CourseController {
 			return "course.list";
 		}
 	}
-	
 	@RequestMapping(value="/course/view/{course_id}")
 	public String showCourseDetail(@PathVariable Long course_id,Model model){
 		/*     zm    */
@@ -103,56 +102,9 @@ public class CourseController {
 		
 		
 		/*     lbx    */
-		List<CourseResource> listCourses = new ArrayList<CourseResource>();
+		//List<CourseResource> listCourses = new ArrayList<CourseResource>();
 		List<Comment> listComment =commentService.findByTeachercourseid(course_id);
 		model.addAttribute("userCount", listComment.size());
-		//List<CourseResource> listCourse = courseResourceService.getResourceByCourseId(course_id);
-		/*List<CourseResource> listCourses = new ArrayList<CourseResource>();
-		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
-		String resourceOrder = null;
-		for (CourseResource courseResource : listCourse) {
-			resourceOrder = courseResource.getResourceOrder();
-			listCourses = courseResourceService
-					.getResourceByResourceOrder(resourceOrder);
-			courseMap.put(resourceOrder, listCourses);
-		}
-		Comment comment=new Comment();
-		Integer sumMark=0;
-		Integer mark=0;
-		
-		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
-		List<Comment> listcomment =new ArrayList<Comment>();
-		try {
-			 listcomment = commentService.getAllCourse(course_id);
-			if(listcomment.size()>0){
-				comment = commentService.getComment(course_id, 4l);
-				mark = comment.getMark().intValue();
-				sumMark = commentService.getMark(course_id).intValue();
-				
-			for (int i = 0; i < listcomment.size(); i++) {
-				User user=commentService.getByUser(listcomment.get(i).getUserid());
-				String commentTitle=listcomment.get(i).getCommentTitle();
-				String commentDate=listcomment.get(i).getCommentDate();
-				String commentDesc=listcomment.get(i).getCommentDesc();
-				String name=user.getName();
-				CommentUserBeans commentUser=new CommentUserBeans();
-				 commentUser.setName(name);
-				 commentUser.setCommentTitle(commentTitle);
-				 commentUser.setCommentDesc(commentDesc);
-				 commentUser.setCommentDate(commentDate);
-				list.add(commentUser);
-			}
-		}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("id", course_id);
-		model.addAttribute("sumMark",sumMark);
-		model.addAttribute("mark", mark);
-		model.addAttribute("sumPerson", commentService.getPerson(course_id));
-		model.addAttribute("listcomment", list);
-		model.addAttribute("courseMap", courseMap);
-*/
 		Teacher teacher = course.getTeacher();
 		model.addAttribute("teacher", teacher);
 		return "course.list.view";
@@ -169,13 +121,11 @@ public class CourseController {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/teacherCourse/course/view/{id}")
+	@RequestMapping(value = "/teacherCourse/course/view/{id}", method = RequestMethod.POST)
 	public String listCourseByTeacherCourseId(
 			Model model,
 			HttpSession session,
-			@PathVariable Long id,
-			@RequestParam(value = "pageNumber", defaultValue = "3") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "4") int pageSize) {
+			@PathVariable Long id) {
 		List<CourseResource> listCourse = courseResourceService
 				.getResourceByCourseId(id);
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
@@ -193,10 +143,8 @@ public class CourseController {
 		model.addAttribute("course", teacherCourse);
 		return "teacherCourse.course.view";
 	}
-
 	/**
-	 * 增加评论内容
-	 * 
+	 * 查询出相关的评论信息
 	 * @param validResult
 	 * @param request
 	 * @param session
@@ -204,54 +152,78 @@ public class CourseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/teacherCourse/course/view/comment", method = RequestMethod.POST)
-	public String commentAddInfo(
-			@Valid CommentInfoForm commentInfoForm,
-			BindingResult validResult,
-			HttpServletResponse response,
-			HttpServletRequest request,
-			HttpSession session,
-			Model m,
-			@RequestParam(value = "pageNumber", defaultValue = "5") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize)
+	@RequestMapping(value = "/teacherCourse/course/comment/{id}", method = RequestMethod.POST)
+	public String listCommentByTeacherCourseId(@Valid CommentInfoForm commentInfoForm,@PathVariable Long id, Model model,HttpSession session
+			,@RequestParam(value = "pageNumber", defaultValue = "3") int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "4") int pageSize)
 			throws Exception {
-		Long id = commentInfoForm.getTeachercourseid();
+		
+		List<Comment> listComment=commentService.findByTeachercourseid(id);
+		Integer sumPerson=listComment.size();
+		double courseMark=commentService.getMark(id);//一个视频的评论平均分数
+		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
+		Page<Comment> onePage = commentService.findCommentByTeachercourseid(pageNumber,pageSize, id);
+		CommentUserBeans commentUser=new CommentUserBeans();
+		for (int i = 0; i < onePage.getContent().size(); i++) {
+			User user=commentService.findByUserId(onePage.getContent().get(i).getUserid());
+			Comment comm=onePage.getContent().get(i);
+			String userName=user.getName();
+			String photoUrl=user.getPhoto_url();
+			commentUser.setComment(comm);
+			commentUser.setPhotoUrl(photoUrl);
+			commentUser.setUserName(userName);
+			list.add(commentUser);
+		}
+		model.addAttribute("id", id);
+		model.addAttribute("sumPerson", sumPerson);
+		model.addAttribute("courseMark", courseMark);
+		model.addAttribute("listcomment", list);
+		return "teacherCourse.course.comment";
+	}
+	/**
+	 * 增加评论内容
+	 * @param commentInfoForm
+	 * @param id
+	 * @param model
+	 * @param session
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/teacherCourse/course/addComment/{id}", method = RequestMethod.POST)
+	public String contactInfo(@Valid CommentInfoForm commentInfoForm,@PathVariable Long id,BindingResult validResult,Model model, HttpSession session) {
+		logger.info("#### contactInfo InfoController ####");
 		Long marks = commentInfoForm.getMark();
 		String commentTitle = commentInfoForm.getCommentTitle();
 		String commentDesc = commentInfoForm.getCommentDesc();
-		logger.info("####  CourseController  ####");
+		String message="";
 		if (validResult.hasErrors()) {
-			logger.info("CommentInfoForm Validation Failed " + validResult);
-			 return "redirect:/teacherCourse/course/view/"+id;
+			logger.info("contactInfo Validation Failed " + validResult);
+			return "/teacherCourse/course/comment/"+id;
 		} else {
-			logger.info("####  TeacherAnnoDetailController passed.  ####");
-			try {
-				Comment comment=commentService.findByTeachercourseidAndUserid(id, 4l);
-				if (comment!=null) {
-					return "redirect:/teacherCourse/course/view/"+id;
-				} else{
-					Comment comm = new Comment();
-					comm.setCommentTitle(commentTitle);
-					comm.setCommentDesc(commentDesc);
-					comm.setMark(marks);
-					comm.setTeachercourseid(id);
-					comm.setUserid(4l);
-					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String date = format.format(new Date());
-					comm.setCommentDate(date);
-					commentService.save(comm);
-					return "redirect:/teacherCourse/course/view/"+id;
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
+			logger.info("### contactInfo Validation passed. ###");
+			Comment comment=commentService.findByTeachercourseidAndUserid(id, 4l);
+			if (comment!=null) {
+				message="您已经评论过此课程,请不要重复评论";
+				model.addAttribute("message", message);
+				return "/teacherCourse/course/comment/"+id;
+			} else{
+				Comment comm = new Comment();
+				comm.setCommentTitle(commentTitle);
+				comm.setCommentDesc(commentDesc);
+				comm.setMark(marks);
+				comm.setTeachercourseid(id);
+				comm.setUserid(4l);
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String date = format.format(new Date());
+				comm.setCommentDate(date);
+				commentService.save(comm);
+				return "/teacherCourse/course/comment/"+id;
 			}
-			
-			
-
 		}
-		return "redirect:/teacherCourse/course/view/"+id;
 	}
-	@RequestMapping(value = "/teacherCourse/course/view/${fileNames.id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/teacherCourse/course/view/{fileNames.id}", method = RequestMethod.POST)
 	public String resourceDownLoad(@PathVariable Long fileNames_id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		CourseResource courseResource=courseResourceService.findById(fileNames_id);
 		String savePath = courseResource.getSavePath();
