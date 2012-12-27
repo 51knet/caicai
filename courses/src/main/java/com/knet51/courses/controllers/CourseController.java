@@ -154,6 +154,7 @@ public class CourseController {
 		/*    zm   */
 		TeacherCourse teacherCourse = courseService.findOneById(id);
 		model.addAttribute("course", teacherCourse);
+		model.addAttribute("resourceCount", listCourses.size());
 		return "teacherCourse.course.view";
 	}
 	/**
