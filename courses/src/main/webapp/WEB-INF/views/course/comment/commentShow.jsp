@@ -19,27 +19,27 @@
     			</c:choose>
     			</span>
     			<hr style="margin-right: 40px">
-			<c:forEach var="comment" items="${listcomment}">
-				<table style="text-align:left;">
-				  <tr style="margin-bottom: 10px;">
-				    <td rowspan="3" style="width: 40px;height: 50px; float:left; margin-left:30px;">
-					    <c:choose >
-						<c:when test="${comment.photoUrl != null && comment.photoUrl != ''}">
-						<img src='<c:url value="${comment.photoUrl }"></c:url>'/>
-						</c:when>
-						<c:otherwise>
-						<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>'/>
-						</c:otherwise>
+			<c:forEach var="comment" items="${listcomment}" begin="0" end="3">
+				<table style="width: 100%">
+				  <tr>
+				    <td width="20%" rowspan="3" align="center">
+				    	 <c:choose >
+							<c:when test="${comment.photoUrl != null && comment.photoUrl != ''}">
+								<img src='<c:url value="${comment.photoUrl }"></c:url>'   style="width: 40px;height: 50px;" />
+							</c:when>
+							<c:otherwise>
+								<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 40px;height: 50px;" />
+							</c:otherwise>
 						</c:choose>
-					</td>
-				    <td style="margin-left: 20px;float: left;">${comment.userName}&nbsp;&nbsp;&nbsp;</td>
-				    <td style="float: left;">&nbsp;&nbsp;&nbsp;${comment.comment.mark} </td>
+				    </td>
+				    <td align="left" style="width:40px">${comment.userName}</td>
+				    <td align="left" style="">${comment.comment.mark}</td>
 				  </tr>
-				  <tr style="margin-bottom: 10px;">
-				    <td colspan="2" style="margin-left: 20px;float: left;text-align: left; ">${comment.comment.commentDesc}</td>
+				  <tr>
+				    <td colspan="2" align="left">${comment.comment.commentDesc}</td>
 				  </tr>
-				  <tr style="margin-bottom: 10px;">
-				    <td colspan="2" style="margin-left:20px;float: left;text-align: left;">${comment.comment.commentDate }</td>
+				  <tr>
+				    <td colspan="2" align="left">${comment.comment.commentDate }</td>
 				  </tr>
 				</table>
 				<hr>				
