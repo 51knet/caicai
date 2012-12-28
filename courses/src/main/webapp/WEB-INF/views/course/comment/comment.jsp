@@ -14,7 +14,7 @@ function commentAjax(){
 	<div  align="left" style="width:100%;background-color:#F7F7F7; height: 40px; margin-bottom: 20px;">
     	<h4 style="margin-left: 50px; float: left;">课程评论</h4>
     </div>
-    
+    <div style="text-align: left; margin-left: 50px"><font color='#ff0000'>${message}</font></div>
     
 	<div class="row" style="margin-left: 50px;">
 		<form id="comment_info_form" action="new" class="form-horizontal" method="post">
@@ -35,9 +35,6 @@ function commentAjax(){
 				</div>
 				
 				<div class="control-group">
-					<div>
-						<font color='#ff0000'></font>
-						</div>
 						<button type="submit" onclick="commentAjax();" class="btn  btn-success">发表评论</button>
 				</div>
 			</form>
