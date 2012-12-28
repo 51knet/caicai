@@ -165,6 +165,11 @@ public class CourseController {
 			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize)
 			throws Exception {			
 		listCommentByTeacherCourseId(id, model);
+		Comment comment=commentService.findByTeachercourseidAndUserid(id, 4l);
+		if (comment!=null){
+			String message="请不要重复评论";
+			model.addAttribute("message", message);
+		}
 		TeacherCourse teacherCourse = courseService.findOneById(id);
 		model.addAttribute("course", teacherCourse);
 		return "teachercourse.course.comment";

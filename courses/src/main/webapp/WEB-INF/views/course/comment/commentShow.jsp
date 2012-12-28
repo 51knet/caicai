@@ -6,7 +6,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div id="comment">
 		<div  align="left" style="background-color:#F7F7F7;height:40px; line-height:40px;clear:both"><h4 style=" float:left; margin-left: 40px;">用户评价</h4></div> 
-		<div style="margin-left: 40px;">
+		<div style="margin-left:35px; margin-top: 10px; margin-bottom: 10px;">
+    	<c:choose>
+			<c:when test="${listCount>0 }">
 			<span style="line-height:40px">总评论人数:&nbsp;&nbsp;&nbsp;${sumPerson}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			评论分数:
 			<c:choose>
@@ -19,8 +21,6 @@
     			</c:choose>
     			</span>
     			<hr>
-    	<c:choose>
-			<c:when test="${listCount>0 }">
 			<c:forEach var="comment" items="${listcomment}" begin="0" end="3">
 				<table style="width: 100%">
 				  <tr>
@@ -48,7 +48,7 @@
 			</c:forEach>
 			</c:when>
 			<c:otherwise>
-			<h5 style="padding: 5px;">尚未有课程评论</h5>
+			<h5 style="margin-left: 5px;margin-top:16px">尚未有课程评论</h5>
 			</c:otherwise>
 			</c:choose>		
 		</div>

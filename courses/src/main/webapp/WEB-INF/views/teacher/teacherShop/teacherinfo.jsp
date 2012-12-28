@@ -28,13 +28,13 @@
     	<h4 style="margin-left: 50px; float: left;">讲师介绍</h4>
     </div>
     <br/>
-    <div  style="width: 120px;height: 150px; float:left; margin-left:30px">
+    <div  style="width: 120px;height: 120px; float:left; margin-left:30px">
 	    <c:choose >
 			<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
-				<img src='<c:url value="${teacher.user.photo_url }"></c:url>'/>
+				<img src='<c:url value="${teacher.user.photo_url }"> </c:url>'style="width: 100px;height:100px; float:left; margin-left:30px"/>
 			</c:when>
 			<c:otherwise>
-				 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>'/>
+				 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>'style="width: 100px;height: 100px; float:left; margin-left:30px"/>
 			</c:otherwise>
 		</c:choose>
 	</div>
