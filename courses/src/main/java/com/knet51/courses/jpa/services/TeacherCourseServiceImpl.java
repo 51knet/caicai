@@ -157,4 +157,9 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		return courseBeans;
 	}
 
+	@Override
+	public List<String> getCourseTypeByTeacherId(Long teacher_id) {
+		return courseRepository.getCourseTypeByTeacherId(teacher_id);
+	}
+
 }

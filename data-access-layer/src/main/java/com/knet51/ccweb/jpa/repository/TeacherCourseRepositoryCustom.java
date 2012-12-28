@@ -13,4 +13,6 @@ public interface TeacherCourseRepositoryCustom {
 	List<String> getSchool();
 	List<Teacher> showCourseTeacher(String schoolName);
 	List<String> getCourseType();
+	
+	List<String> getCourseTypeByTeacherId(Long teacher_id);
 }

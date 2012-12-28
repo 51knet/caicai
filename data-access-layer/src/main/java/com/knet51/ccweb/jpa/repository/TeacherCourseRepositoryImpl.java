@@ -60,6 +60,12 @@ public class TeacherCourseRepositoryImpl implements
 		List<String> typeList = em.createQuery("select distinct c.courseType from TeacherCourse c").getResultList();
 		return typeList;
 	}
+
+	@Override
+	public List<String> getCourseTypeByTeacherId(Long teacher_id) {
+		List<String> typeList = em.createQuery("select distinct c.courseType from TeacherCourse c where c.teacher.id="+teacher_id).getResultList();
+		return typeList;
+	}
 	
 	
 	

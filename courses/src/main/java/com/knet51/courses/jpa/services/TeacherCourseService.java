@@ -26,4 +26,5 @@ public interface TeacherCourseService {
 	List<String> courseTypeList();
 	List<CourseBeans> getAllCourseBeans();
 	CourseBeans getCourseBeansById(Long course_id);
+	List<String> getCourseTypeByTeacherId(Long teacher_id);
 }
