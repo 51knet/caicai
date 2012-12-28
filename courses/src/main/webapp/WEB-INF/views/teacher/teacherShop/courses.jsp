@@ -30,7 +30,7 @@ background: #F7F7F7;
 	<div style=" text-align: center;"  class="container course row" >
 	<div   style="background-color:#F7F7F7;height:40px; clear:both"><h4 style=" float:left; margin-left: 40px;">发布课程</h4></div>
 		<c:forEach items="${teacherCourseList}" var="course">
-			<div class="container course row span4" align="left"  style="margin-left: 10px;">
+			<div class="container course row span4" align="left"  style="margin-left: 20px;">
 				<div style="padding:5px;">
 					<c:choose>
 						<c:when test="${course.courseCover != null && course.courseCover != ''}">
@@ -43,8 +43,8 @@ background: #F7F7F7;
 						</c:otherwise>
 					</c:choose>
 				</div>
-				<div  style="padding: 5px;" id="contentlimit">${course.courseName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${course.courseType }<br>发布时间：${course.courseDate }</div>
+				<div  style="padding: 5px;" id="contentlimit">${course.courseName}—${course.courseType }<br>发布时间：${course.courseDate }</div>
 			</div>
-	</c:forEach>
+		</c:forEach>
 	</div>
 </div>
