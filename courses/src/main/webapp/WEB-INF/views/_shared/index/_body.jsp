@@ -212,7 +212,7 @@ background: #F7F7F7;
     		</div>
     		<div style="padding: 3px;"><b>${c.teacherCourse.courseName}</b> — ${c.teacherCourse.courseType }</div>
     		<div style="padding: 3px;">
-    			教师名称：<a href='<c:url value="/course/teacher/${c.teacherCourse.teacher.id}"></c:url>'>${c.teacherCourse.teacher.user.name}</a>
+    			教师名称：<a href='<c:url value="/teacher/${c.teacherCourse.teacher.id}"></c:url>'>${c.teacherCourse.teacher.user.name}</a>
     		</div>
     		<div style="padding: 3px;">
     			学习人数：${c.userCount}人&nbsp;&nbsp;&nbsp;课程评分：
@@ -277,7 +277,7 @@ background: #F7F7F7;
   </div>
    <div class="row" >
   	<div style="margin-right: 35px;padding: 5px 5px;background: #F7F7F7;text-align: center;">
-  		<a href='<c:url value="/course/teacher/list"></c:url>' >全部教师</a>
+  		<a href='<c:url value="/teacher/list"></c:url>' >全部教师</a>
   	</div>
   
   </div>

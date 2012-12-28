@@ -18,12 +18,16 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public List<CourseResource> getResourceByCourseId(Long course_id) {
+		boolean flag=false;
 		List<CourseResource> list= new ArrayList<CourseResource>(); 
-		try {
-			list=teacherCourseResourceRepository.getResourceByCourseId(course_id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
+		 flag=teacherCourseResourceRepository.exists(course_id);
+		 if(flag){
+			 try {
+				 list=teacherCourseResourceRepository.getResourceByCourseId(course_id);
+			 } catch (Exception e) {
+				 e.printStackTrace();
+			 } 
+		 }
 		return list;
 	}
 

@@ -28,22 +28,21 @@ public class TeacherController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TeacherController.class);
 	
-	@RequestMapping(value="/course/teacher/list")
+	@RequestMapping(value="/teacher/list")
 	public String showAllTeacher(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		//List<Teacher> teacherList = teacherService.findAllTeacher();
 		Page<Teacher> teacherPage = teacherService.getAllTeacherPage(pageNumber, pageSize);
-		List<Teacher> teacher = teacherPage.getContent();
-	
+		//List<Teacher> teacher = teacherPage.getContent();
 		model.addAttribute("page", teacherPage);
-		return "course.teacher.list";
+		return "teacher.list";
 	}
-	@RequestMapping(value="/course/teacher/{id}")
+	@RequestMapping(value="/teacher/{id}")
 	public String showTeacherInfoById(@PathVariable Long id,Model model){
 		Teacher teacher=teacherService.findOne(id);
 		List<TeacherCourse> teacherCourseList=courseService.getAllCourseById(id);
 		model.addAttribute("teacherCourseList", teacherCourseList);
 		model.addAttribute("teacher", teacher);
-		return "course.teacher.teacherInfo";
+		return "teacher.teacherInfo";
 	}
 }

@@ -41,7 +41,12 @@ public class CommentServiceImpl implements CommentService {
 	}
 	@Override
 	public Double getMark(Long teacherCourseId) {
-		Double mark=commitRepository.getMark(teacherCourseId);
+		boolean flag=false;
+		Double mark=0.0;
+		flag=commitRepository.exists(teacherCourseId);
+		if(flag){
+			 mark=commitRepository.getMark(teacherCourseId);
+		}
 		return mark;
 	}
 	@Override

@@ -35,11 +35,11 @@
 	
 	
 	
-	<definition name="course.teacher.list" extends="index-layout">
+	<definition name="teacher.list" extends="index-layout">
 		<put-attribute name="title" value="教师详细" />
 		<put-attribute name="body" value="/WEB-INF/views/teacher/list/list.jsp" />
 	</definition>
-	<definition name="course.teacher.teacherInfo" extends="index-layout">
+	<definition name="teacher.teacherInfo" extends="index-layout">
 		<put-attribute name="title" value="教师课程详细信息" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/teacher/teacherShop/teacherinfo.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/teacher/teacherShop/courses.jsp" />
