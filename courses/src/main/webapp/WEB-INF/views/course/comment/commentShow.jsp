@@ -19,6 +19,8 @@
     			</c:choose>
     			</span>
     			<hr>
+    	<c:choose>
+			<c:when test="${listCount>0 }">
 			<c:forEach var="comment" items="${listcomment}" begin="0" end="3">
 				<table style="width: 100%">
 				  <tr>
@@ -44,5 +46,10 @@
 				</table>
 				<hr>				
 			</c:forEach>
+			</c:when>
+			<c:otherwise>
+			<h5 style="padding: 5px;">尚未有课程评论</h5>
+			</c:otherwise>
+			</c:choose>		
 		</div>
 </div>

@@ -259,6 +259,7 @@ public class CourseController {
 			commentUser.setUserName(userName);
 		}
 		list.add(commentUser);
+		model.addAttribute("listCount", listComment.size());
 		model.addAttribute("listcomment", list);
 		model.addAttribute("id", id);
 		model.addAttribute("sumPerson", sumPerson);
