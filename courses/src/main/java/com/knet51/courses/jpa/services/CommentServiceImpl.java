@@ -1,6 +1,8 @@
 package com.knet51.courses.jpa.services;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +44,12 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public Double getMark(Long teacherCourseId) {
 		Double mark=0.0;
-		List <Comment> commentList=commitRepository.findByTeachercourseid(teacherCourseId);
-		if(commentList.size()>0){
-			 mark=commitRepository.getMark(teacherCourseId);
+		try {
+			mark=commitRepository.getMark(teacherCourseId);
+		} catch (NoResultException e) {
+			e.printStackTrace();
 		}
+			 
 		return mark;
 	}
 	@Override
