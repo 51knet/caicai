@@ -1,0 +1,21 @@
+body.admin {
+	max-width: 1680px;
+	width: 100%;
+}
+.admin .container-fluid {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.admin .container-fluid.content-centered {
+	min-width: 1024px;
+	max-width:1024px;
+	width: 1024px;
+	margin: 0 auto;
+	background-color: white;
+}
+.admin .left-panel {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}

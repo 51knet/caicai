@@ -9,7 +9,6 @@
 
 	<definition name="home" extends="index-layout">
 		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
-		<put-attribute name="userCourse" value="/WEB-INF/views/layouts/course/userCourse.jsp" />
 	</definition>
 
 	<definition name="404" extends="index-layout">
