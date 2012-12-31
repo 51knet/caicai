@@ -8,7 +8,6 @@
 
 
 	<definition name="home" extends="index-layout">
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
 	</definition>
 
 	<definition name="404" extends="index-layout">

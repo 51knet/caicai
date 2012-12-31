@@ -131,5 +131,14 @@ background: #F7F7F7;
   border-top-style: solid;
   border-top-color: #EEE;
   margin: 2px 2px;
-  margin-right: 18px;
+  margin-right: 24px;
+}
+
+.view-all-teachers-link, .view-all-courses-link {
+	display: block;
+	text-align: center;
+	margin-right: 35px;
+	padding: 5px 5px;
+	background: #EEE;
+	border: 1px solid rgba(0, 0, 0, 0.05);
 }

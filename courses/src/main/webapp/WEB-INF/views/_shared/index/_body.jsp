@@ -3,9 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<style>
-	@import url("<c:url value="/resources/css/index.css"/>");
-</style>
+
 <script type="text/javascript">
 !function ($) {
   $(function(){
@@ -76,9 +74,7 @@
     </c:forEach>
   </div><!-- /.row -->
   <div class="row" >
-  	<div style="margin-right: 35px;padding: 5px 5px;background: #F7F7F7;text-align: center;">
-  		<a href='<c:url value="/course/list/type?detail=all"></c:url>' >全部课程</a>
-  	</div>
+  		<a class="view-all-courses-link btn" href='<c:url value="/course/list/type?detail=all"></c:url>' >全部课程</a>
   </div>
 
 </div>
@@ -91,44 +87,40 @@
   <div class="carousel-inner">
     <div class="item active">
 	      <div class="row">
-	      	<c:forEach items="${teacherList}" var="t" begin="0" end="12"><div class="span1" ><a href="http://localhost:8080/ccweb/teacher/${t.id}">${t.user.name }</a></div></c:forEach>      	
-	      </div>
-	     
-	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
+	      	<c:forEach items="${teacherList}" var="t" begin="0" end="10"><div class="span1" ><a href="http://localhost:8080/ccweb/teacher/${t.id}">${t.user.name }</a></div></c:forEach>      	
 	      </div>
 	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
+	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
+	      </div>
+	      <div class="row">
+	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
 	      </div>
     </div>
     <div class="item">
 	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach> 
+	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach> 
 	      </div>
 	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
+	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
 	      </div>
 	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
+	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
 	      </div>
     </div>
  	<div class="item">
 	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
+	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
 	      </div>
 	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
+	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
 	      </div>
 	      <div class="row">
-	      	<c:forEach begin="1" end="12"><div class="span1"></div></c:forEach>  
+	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
 	      </div> 
     </div>
   </div>
-   <div class="row" >
-  	<div style="margin-right: 35px;padding: 5px 5px;background: #F7F7F7;text-align: center;">
-  		<a href='<c:url value="/teacher/list"></c:url>' >全部教师</a>
-  	</div>
-  
+  <div class="row">
+  		<a class="view-all-teachers-link btn" href='<c:url value="/teacher/list"></c:url>' >全部教师</a>  
   </div>
   <div style="display: none;">
 	  <a class="left carousel-control" href="#myTeacher" data-slide="prev">‹</a>
