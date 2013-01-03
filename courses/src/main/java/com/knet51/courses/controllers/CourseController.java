@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
@@ -98,8 +99,24 @@ public class CourseController {
 		TeacherCourse course = courseService.findOneById(course_id);
 		model.addAttribute("course", course);
 		/*     lbx    */
-		listCommentByTeacherCourseId(course_id, model);
+		
 		Teacher teacher = course.getTeacher();
+		List<Comment> listComment = commentService.findByTeachercourseid(course_id);
+		Integer sumPerson=listComment.size();
+		double courseMark=commentService.getMark(course_id);//一个视频的评论平均分数
+		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
+		CommentUserBeans commentUser=new CommentUserBeans();
+		for (int i = 0; i < listComment.size(); i++) {
+			long userid=listComment.get(i).getUserid();
+			User user=commentService.findByUserId(userid);
+			Comment comm=listComment.get(i);
+			String userName=user.getName();
+			String photoUrl=user.getPhoto_url();
+			commentUser.setComment(comm);
+			commentUser.setPhotoUrl(photoUrl);
+			commentUser.setUserName(userName);
+			list.add(commentUser);		
+		}
 		model.addAttribute("teacher", teacher);
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
@@ -111,6 +128,10 @@ public class CourseController {
 					.getResourceByResourceOrder(resourceOrder);
 			courseMap.put(resourceOrder, listCourses);
 		}
+		model.addAttribute("listcomment", list);
+		//model.addAttribute("id", id);
+		model.addAttribute("sumPerson", sumPerson);
+		model.addAttribute("courseMark", courseMark);
 		model.addAttribute("courseMap", courseMap);
 		model.addAttribute("resourceCount", listResource.size());
 		return "course.list.view";
@@ -161,17 +182,34 @@ public class CourseController {
 	 */
 	@RequestMapping(value = "/teachercourse/course/comment/{id}")
 	public String listComment(@PathVariable Long id, Model model,HttpSession session
-			,@RequestParam(value = "pageNumber", defaultValue = "5") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize)
-			throws Exception {			
-		listCommentByTeacherCourseId(id, model);
-		Comment comment=commentService.findByTeachercourseidAndUserid(id, 4l);
-		if (comment!=null){
-			String message="请不要重复评论";
-			model.addAttribute("message", message);
+			,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "2") int pageSize)
+			throws Exception {	
+		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
+		Page<Comment> onePage = commentService.findCommentByTeachercourseid(pageNumber,pageSize, id);
+		CommentUserBeans commentUser;
+		for (int i = 0; i < onePage.getContent().size(); i++) {
+			commentUser=new CommentUserBeans();
+			long userid=onePage.getContent().get(i).getUserid();
+			User user=commentService.findByUserId(userid);
+			Comment comm=onePage.getContent().get(i);
+			String userName=user.getName();
+			String photoUrl=user.getPhoto_url();
+			commentUser.setComment(comm);
+			commentUser.setPhotoUrl(photoUrl);
+			commentUser.setUserName(userName);
+			list.add(commentUser);
 		}
+		Integer sumPerson=list.size();
+		double courseMark=commentService.getMark(id);//一个视频的评论平均分数
 		TeacherCourse teacherCourse = courseService.findOneById(id);
 		model.addAttribute("course", teacherCourse);
+		//model.addAttribute("listCount", listComment.size());
+		model.addAttribute("listcomment", list);
+		//model.addAttribute("id", id);
+		model.addAttribute("page", onePage);
+		model.addAttribute("sumPerson", sumPerson);
+		model.addAttribute("courseMark", courseMark);
 		return "teachercourse.course.comment";
 
 	}
@@ -188,7 +226,7 @@ public class CourseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/teachercourse/course/comment/new", method = RequestMethod.POST)
-	public String contactInfo( @RequestParam("teachercourseid") Long id,@Valid CommentInfoForm commentInfoForm,BindingResult validResult,Model model, HttpSession session) {
+	public String contactInfo( @RequestParam("teachercourseid") Long id,@Valid CommentInfoForm commentInfoForm,BindingResult validResult,RedirectAttributes redirectAttr, HttpSession session) {
 		logger.info("#### contactInfo InfoController ####");
 		Long marks = commentInfoForm.getMark();
 		String commentDesc = commentInfoForm.getCommentDesc();
@@ -200,8 +238,9 @@ public class CourseController {
 			logger.info("### contactInfo Validation passed. ###");
 			Comment comment=commentService.findByTeachercourseidAndUserid(id, 4l);
 			if (comment!=null) {
-				/*message="您已经评论过此课程,请不要重复评论";
-				model.addAttribute("message", message);*/
+				String message="请不要重复评论";
+				redirectAttr.addFlashAttribute("message", message);
+				//model.addAttribute("message", message);
 				return "redirect:/teachercourse/course/comment/"+id;
 			} else{
 				Comment comm = new Comment();
@@ -246,28 +285,5 @@ public class CourseController {
 	ValidationResponse commentInfoFormAjaxJson(
 			@Valid CommentInfoForm commentInfoForm,BindingResult result) {
 		return AjaxValidationEngine.process(result);
-	}
-	private void listCommentByTeacherCourseId(Long id, Model model){
-		List<Comment> listComment=commentService.findByTeachercourseid(id);
-		Integer sumPerson=listComment.size();
-		double courseMark=commentService.getMark(id);//一个视频的评论平均分数
-		List<CommentUserBeans> list=new ArrayList<CommentUserBeans>();
-		//Page<Comment> onePage = commentService.findCommentByTeachercourseid(pageNumber,pageSize, id);
-		CommentUserBeans commentUser=new CommentUserBeans();
-		for (int i = 0; i < listComment.size(); i++) {
-			User user=commentService.findByUserId(listComment.get(i).getUserid());
-			Comment comm=listComment.get(i);
-			String userName=user.getName();
-			String photoUrl=user.getPhoto_url();
-			commentUser.setComment(comm);
-			commentUser.setPhotoUrl(photoUrl);
-			commentUser.setUserName(userName);
-		}
-		list.add(commentUser);
-		model.addAttribute("listCount", listComment.size());
-		model.addAttribute("listcomment", list);
-		model.addAttribute("id", id);
-		model.addAttribute("sumPerson", sumPerson);
-		model.addAttribute("courseMark", courseMark);
 	}
 }

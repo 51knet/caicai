@@ -8,9 +8,9 @@
 
 	<definition name="index-layout" template="/WEB-INF/views/layouts/jsp/index.jsp">
 		<put-attribute name="title" value="Courses" />
+		<put-attribute name="css" value="/resources/css/index.css" />
 		<put-attribute name="top-navbar" value="/WEB-INF/views/_shared/common/_top-navbar.jsp" />
-		<put-attribute name="search" value="" />
-		<put-attribute name="userCourse" value="" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/_shared/index/_body.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>

@@ -2,23 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<style>
-
-.container.mycourse {
-  width: 1024px;
-  max-width:1024px; 
-}
-
-.container.mycourse .row {
-  margin-left: 0px;
-}
-
-</style>
-
-
 <c:choose>
 	<c:when test="${sessionScope.userInfo != null}">
-		<div class="container mycourse">
+		<div class="container user-course">
 			<c:choose>
 				<c:when test="${userCourseCount>0}">
 				<div class="row" style="text-align:left; margin-left: 0px;">

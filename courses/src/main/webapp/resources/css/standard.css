@@ -24,29 +24,20 @@ textarea {
 	font-family:'Microsoft YaHei',Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
 }
 
-
-.navbar-inner.custom {
-	height: 45px;
-	z-index: 2;
-	background: #4E4E4E url(resources/img/topbar/noise.png);
-	background: url(resources/img/topbar/noise.png), -moz-linear-gradient(#4E4E4E, #1C1C1C);
-	background: url(resources/img/topbar/noise.png), -webkit-linear-gradient(#4E4E4E, #1C1C1C);
-	background: url(resources/img/topbar/noise.png), -o-linear-gradient(#4E4E4E, #1C1C1C);
-	background: url(resources/img/topbar/noise.png), -ms-linear-gradient(#4E4E4E, #1C1C1C);
-	background: url(resources/img/topbar/noise.png), linear-gradient(#4E4E4E, #1C1C1C);
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.45);
-}
+/*navbar*/
 .navbar.custom {
-	height: 45px;
+	height: 40px;
 	z-index: 2;
-	background: #4E4E4E url(resources/img/topbar/noise.png);
-	background: url(resources/img/topbar/noise.png), -moz-linear-gradient(#4E4E4E, #1C1C1C);
-	background: url(resources/img/topbar/noise.png), -webkit-linear-gradient(#4E4E4E, #1C1C1C);
-	background: url(resources/img/topbar/noise.png), -o-linear-gradient(#4E4E4E, #1C1C1C);
-	background: url(resources/img/topbar/noise.png), -ms-linear-gradient(#4E4E4E, #1C1C1C);
-	background: url(resources/img/topbar/noise.png), linear-gradient(#4E4E4E, #1C1C1C);
+	margin-bottom: 0px;
+	background: #4E4E4E url(../img/topbar/noise.png);
+	background: url(../img/topbar/noise.png), -moz-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(../img/topbar/noise.png), -webkit-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(../img/topbar/noise.png), -o-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(../img/topbar/noise.png), -ms-linear-gradient(#4E4E4E, #1C1C1C);
+	background: url(../img/topbar/noise.png), linear-gradient(#4E4E4E, #1C1C1C);
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.45);
 }
+
 
 #contentlimit{
 	overflow: hidden; 
@@ -55,24 +46,3 @@ textarea {
 }
 
 
-body.admin {
-	max-width: 1680px;
-	width: 100%;
-}
-.admin .container-fluid {
-	padding-right: 0px;
-	padding-left: 0px;
-}
-
-.admin .container-fluid.content-centered {
-	min-width: 1024px;
-	max-width:1024px;
-	width: 1024px;
-	margin: 0 auto;
-	background-color: white;
-}
-.admin .left-panel {
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-}
