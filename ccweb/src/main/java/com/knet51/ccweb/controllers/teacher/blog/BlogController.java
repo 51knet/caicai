@@ -2,6 +2,7 @@ package com.knet51.ccweb.controllers.teacher.blog;
 
 import java.util.Date;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
@@ -29,6 +31,8 @@ import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.message.FlashMessage;
+import com.knet51.ccweb.util.message.MessageType;
 
 /**
  * Handles requests for the application home page.
@@ -176,14 +180,15 @@ public class BlogController {
 		return "admin.blog.view";
 	}
 	@RequestMapping(value= "/admin/blog/destroy", method=RequestMethod.POST)
-	public String destroy(@RequestParam("blog_post_id") Long blog_post_id) {
+	public String destroy(@RequestParam("blog_post_id") Long blog_post_id, RedirectAttributes redirectAttrs) {
 		//DONE: no need to add logic to judge if there are comments attached, we just mark it in garbage can.
 		//blogService.deleteBlogPost(blog_post_id);
 		BlogPost blogPost = blogService.findOne(blog_post_id);
 		blogPost.setGarbage(true);
 		blogService.updateBlogPost(blogPost);
 		
-		//TODO: flash
+		FlashMessage flash = new FlashMessage(MessageType.info, "成功移到回收站");
+		redirectAttrs.addFlashAttribute("flash", flash);
 		return "redirect:/admin/blog/list";
 	}
 }

@@ -26,6 +26,7 @@
 				<!--/span-->
 				<div class="span9">
 					<div class="right-panel">
+						<tiles:insertAttribute name="flash" />
 						<tiles:insertAttribute name="right" />
 					</div>
 				</div>

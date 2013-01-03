@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
@@ -106,10 +107,11 @@ public class BlogCategoryController {
 		return "/admin/blog/create";
 	}
 	@RequestMapping(value= "/admin/blog/category/destroy", method=RequestMethod.POST)
-	public String desctroy_category(@RequestParam Long blog_category_id) {
+	public String desctroy_category(@RequestParam Long blog_category_id, RedirectAttributes redirectAttrs) {
 		//TODO: add logic to judge if there are posts attached
 		blogService.deleteBlogCategory(blog_category_id);
 		//TODO: flash
+		redirectAttrs.addFlashAttribute("message", "Account created!");
 		return "redirect:/admin/blog/category/list";
 	}
 	
