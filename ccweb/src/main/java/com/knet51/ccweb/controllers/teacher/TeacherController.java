@@ -133,7 +133,7 @@ public class TeacherController {
 		
 		if (validResult.hasErrors()) {
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/resume?active=personal";
+			
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
 			logger.info("### "+ personalInfoForm.getGender() +" ###");
@@ -152,9 +152,8 @@ public class TeacherController {
 			userInfo.setUser(user);
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-
-			return "redirect:/admin/teacher/resume?active=personal";
 		}
+		return "redirect:/admin/teacher/resume?active=personal";
 	}
 	
 	@Transactional
@@ -165,7 +164,6 @@ public class TeacherController {
 		
 		if (validResult.hasErrors()) {
 			logger.info("contactInfo Validation Failed " + validResult);
-			return "redirect:/admin/teacher/resume?active=contact";
 		} else {
 			logger.info("### contactInfo Validation passed. ###");
 
@@ -179,15 +177,12 @@ public class TeacherController {
 			user.setQq(contactInfoForm.getQq());
 			user.setMsn(contactInfoForm.getMsn());
 			user = userService.updateUser(user);
-			
 			Teacher teacher = teacherService.findOne(userInfo.getId());
 			userInfo.setUser(user);
 			userInfo.setTeacher(teacher);
-			
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-			
-			return "redirect:/admin/teacher/resume?active=contact";
 		}
+		return "redirect:/admin/teacher/resume?active=contact";
 	}
 	
 	@Transactional
@@ -198,7 +193,7 @@ public class TeacherController {
 		
 		if (validResult.hasErrors()) {
 			logger.info("eduInfo Validation Failed " + validResult);
-			return "redirect:/admin/teacher/resume?active=edu";
+			
 		} else {
 			if(eduId!=null && eduId!="" && Long.parseLong(eduId)>0){
 				logger.info("### eduInfo Validation passed. ###");
@@ -209,7 +204,6 @@ public class TeacherController {
 				edu.setStartTime(eduInfoForm.getStartTime());
 				edu.setEndTime(eduInfoForm.getEndTime());
 				eduBackgroundService.createEduBackground(edu);
-				return "redirect:/admin/teacher/resume?active=edu";
 			}else{
 				logger.info("### eduInfo Validation passed. ###");
 				UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -222,10 +216,10 @@ public class TeacherController {
 				edu.setEndTime(eduInfoForm.getEndTime());
 				edu.setTeacherid(userInfo.getId());
 				eduBackgroundService.createEduBackground(edu);
-				return "redirect:/admin/teacher/resume?active=edu";
 			}
 			
 		}
+		return "redirect:/admin/teacher/resume?active=edu";
 	}
 	
 	
@@ -245,7 +239,7 @@ public class TeacherController {
 		logger.info("#### workInfo Controller ####");
 		if (validResult.hasErrors()) {
 			logger.info("eduInfo Validation Failed " + validResult);
-			return "redirect:/admin/teacher/resume?active=work";
+			
 		} else {
 			if(workId!=null && workId!="" && Long.parseLong(workId)>0){
 				logger.info("### workInfo Validation passed. ###");
@@ -256,7 +250,6 @@ public class TeacherController {
 				work.setStartTime(workInfoForm.getStartTimeName());
 				work.setEndTime(workInfoForm.getEndTimeName());
 				workExpService.createWorkExp(work);
-				return "redirect:/admin/teacher/resume?active=work";
 			}else{
 				logger.info("### workInfo Validation passed. ###");
 				UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -268,9 +261,9 @@ public class TeacherController {
 				work.setEndTime(workInfoForm.getEndTimeName());
 				work.setTeacherid(userInfo.getId());
 				workExpService.createWorkExp(work);
-				return "redirect:/admin/teacher/resume?active=work";
 			}
 		}
+		return "redirect:/admin/teacher/resume?active=work";
 	}
 	
 	@Transactional

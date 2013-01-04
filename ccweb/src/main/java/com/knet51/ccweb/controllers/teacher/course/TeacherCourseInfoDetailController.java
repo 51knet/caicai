@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.teacher.teacherCourse;
+package com.knet51.ccweb.controllers.teacher.course;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;

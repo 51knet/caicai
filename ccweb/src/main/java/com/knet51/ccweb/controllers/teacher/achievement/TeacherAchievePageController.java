@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
-import com.knet51.ccweb.controllers.teacher.teacherCourse.TeacherCourseInfoForm;
+import com.knet51.ccweb.controllers.teacher.course.TeacherCourseInfoForm;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
