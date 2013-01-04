@@ -73,14 +73,13 @@ public class TeacherController {
 			model.addAttribute("courseCount", newCourseList.size());
 			model.addAttribute("courseTypeList", courseTypeList);
 			model.addAttribute("teacher", teacher);
-			return "teacher.teacherInfo";
 		} else {
 			model.addAttribute("teacherCourseList", courseList);
 			model.addAttribute("courseType", courseType);
 			model.addAttribute("courseCount", courseList.size());
 			model.addAttribute("courseTypeList", courseTypeList);
 			model.addAttribute("teacher", teacher);
-			return "teacher.teacherInfo";
 		}
+		return "teacher.teacherInfo";
 	}
 }

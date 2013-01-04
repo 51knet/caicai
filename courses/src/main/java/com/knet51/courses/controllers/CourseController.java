@@ -84,14 +84,14 @@ public class CourseController {
 			model.addAttribute("courseList", newCourseList);
 			model.addAttribute("courseCount", newCourseList.size());
 			model.addAttribute("courseTypeList", courseTypeList);
-			return "course.list";
+			
 		} else {
 			model.addAttribute("courseList", courseList);
 			model.addAttribute("courseType", courseType);
 			model.addAttribute("courseCount", courseList.size());
 			model.addAttribute("courseTypeList", courseTypeList);
-			return "course.list";
 		}
+		return "course.list";
 	}
 	@RequestMapping(value="/course/view/{course_id}")
 	public String showCourseDetail(@PathVariable Long course_id,Model model){
