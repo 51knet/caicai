@@ -195,5 +195,11 @@ public class TeacherCourseInfoDetailController {
 			courseResourceService.deleCourseResource(resource_id);
 			return "redirect:/admin/teacher/course/view/"+course_id;
 	}
+	@Transactional
+	@RequestMapping(value="/admin/teacherCourse/view/create")
+	public String addTeacherCourse(){
+		logger.info("###111111111111111111111111111111111");
+		return "admin.teacherCourse.view";
+	}
 	
 }
