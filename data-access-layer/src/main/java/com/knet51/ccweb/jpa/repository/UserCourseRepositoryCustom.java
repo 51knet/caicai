@@ -1,4 +1,4 @@
 package com.knet51.ccweb.jpa.repository;
-public interface CommentRepositoryCustom {
+public interface UserCourseRepositoryCustom {
 	Double getMark(Long teacherCourseId);
 }

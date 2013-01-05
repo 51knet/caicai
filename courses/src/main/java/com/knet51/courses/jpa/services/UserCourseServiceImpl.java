@@ -14,38 +14,38 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.teacher.Comment;
-import com.knet51.ccweb.jpa.repository.CommentRepository;
+import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
+import com.knet51.ccweb.jpa.repository.UserCourseRepository;
 import com.knet51.ccweb.jpa.repository.UserRepository;
 @Transactional
-@Service("commentService")
-public class CommentServiceImpl implements CommentService {
+@Service("userCourseService")
+public class UserCourseServiceImpl implements UserCourseService {
 	private static final Logger logger = LoggerFactory
-			.getLogger(CommentServiceImpl.class);
+			.getLogger(UserCourseServiceImpl.class);
 	@Autowired
-	private CommentRepository commitRepository;
+	private UserCourseRepository userCourseRepository;
 	
 	@Autowired
 	private UserRepository userRepository;
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public Page<Comment> findCommentByTeachercourseid(int pageNumber, int pageSize,
+	public Page<UserCourse> findUserCourseByTeachercourseid(int pageNumber, int pageSize,
 			Long teacherCourse_id) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
-		Page<Comment> onePage = commitRepository.findCommByTeachercourseid(teacherCourse_id, dateDesc);
+		Page<UserCourse> onePage = userCourseRepository.findUserCourseByTeachercourseid(teacherCourse_id, dateDesc);
 		return onePage;
 	}
 	@Override
-	public List<Comment> findByTeachercourseid(Long teacherCourseId) {
-		List<Comment> listComment=commitRepository.findByTeachercourseid(teacherCourseId);
-		return listComment;
+	public List<UserCourse> findByTeachercourseid(Long teacherCourseId) {
+		List<UserCourse> listUserCourse=userCourseRepository.findByTeachercourseid(teacherCourseId);
+		return listUserCourse;
 	}
 	@Override
 	public Double getMark(Long teacherCourseId) {
 		Double mark=0.0;
 		try {
-			mark=commitRepository.getMark(teacherCourseId);
+			mark=userCourseRepository.getMark(teacherCourseId);
 		} catch (NoResultException e) {
 			e.printStackTrace();
 		}
@@ -53,15 +53,15 @@ public class CommentServiceImpl implements CommentService {
 		return mark;
 	}
 	@Override
-	public Comment save(Comment comment) {
-		 comment=commitRepository.save(comment);
-		return comment;
+	public UserCourse save(UserCourse UserCourse) {
+		 UserCourse=userCourseRepository.save(UserCourse);
+		return UserCourse;
 	}
 	
 	@Override
-	public Comment findByTeachercourseidAndUserid(Long teacherCourseId, Long userId) {
-		Comment comment=commitRepository.findByTeachercourseidAndUserid(teacherCourseId, userId);
-		return comment;
+	public UserCourse findByTeachercourseidAndUserid(Long teacherCourseId, Long userId) {
+		UserCourse UserCourse=userCourseRepository.findByTeachercourseidAndUserid(teacherCourseId, userId);
+		return UserCourse;
 	}
 	@Override
 	public User findByUserId(Long id) {
@@ -69,8 +69,8 @@ public class CommentServiceImpl implements CommentService {
 		return user;
 	}
 	@Override
-	public List<Comment> findCommentByUserid(Long user_id) {
-		List<Comment> list=commitRepository.findCommentByUserid(user_id);
+	public List<UserCourse> findUserCourseByUserid(Long user_id) {
+		List<UserCourse> list=userCourseRepository.findUserCourseByUserid(user_id);
 		return list;
 	}
 	

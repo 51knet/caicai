@@ -1,31 +1,27 @@
-package com.knet51.ccweb.jpa.entities.teacher;
-
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import com.knet51.ccweb.jpa.entities.AbstractEntity;
-import com.knet51.ccweb.jpa.entities.User;
-@Entity
-@Table(name="comment")
-public class Comment extends AbstractEntity {
+package com.knet51.courses.controllers;
+import org.hibernate.validator.constraints.NotEmpty;
+public class UserCourseForm {
 	private Long mark;
+	@NotEmpty
 	private String commentDesc;
 	private String commentDate;
-	private Long userid;
+
 	private Long teachercourseid;
+	/*@NotEmpty
+	private Long userId;
+	*/
 	public Long getTeachercourseid() {
 		return teachercourseid;
 	}
 	public void setTeachercourseid(Long teachercourseid) {
 		this.teachercourseid = teachercourseid;
 	}
-	public Long getUserid() {
-		return userid;
+	/*public Long getUserId() {
+		return userId;
 	}
-	public void setUserid(Long userid) {
-		this.userid = userid;
-	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}*/
 	public Long getMark() {
 		return mark;
 	}
@@ -44,11 +40,5 @@ public class Comment extends AbstractEntity {
 	public void setCommentDate(String commentDate) {
 		this.commentDate = commentDate;
 	}
-	public Comment(){
-		super();
-	}
-	
-	
-	
 	
 }

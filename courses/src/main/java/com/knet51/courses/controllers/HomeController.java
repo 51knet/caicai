@@ -18,9 +18,9 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.courses.beans.CourseBeans;
-import com.knet51.courses.jpa.services.CommentService;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
+import com.knet51.courses.jpa.services.UserCourseService;
 
 /**
  * Handles requests for the application home page.
@@ -35,7 +35,7 @@ public class HomeController {
 	private TeacherService teacherService;
 	
 	@Autowired
-	private CommentService commentService;
+	private UserCourseService userCourseService;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 

@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.teacher.Comment;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
-import com.knet51.ccweb.jpa.repository.CommentRepository;
+import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
+import com.knet51.ccweb.jpa.repository.UserCourseRepository;
 import com.knet51.ccweb.jpa.repository.TeacherCourseRepository;
 import com.knet51.ccweb.jpa.repository.TeacherRepository;
 import com.knet51.courses.beans.CourseBeans;
@@ -33,7 +33,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	private TeacherCourseRepository courseRepository;
 	
 	@Autowired
-	private CommentRepository commentRepository;
+	private UserCourseRepository commentRepository;
 
 	@Override
 	public List<String> getAllSchool() {
@@ -136,7 +136,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		for(int i=0;i<teacherCourseList.size();i++){
 			TeacherCourse teacherCourse = courseRepository.findOne(teacherCourseList.get(i).getId());
 			Double avgMark = commentRepository.getMark(teacherCourseList.get(i).getId());
-			List<Comment> listComment=commentRepository.findByTeachercourseid(teacherCourseList.get(i).getId());
+			List<UserCourse> listComment=commentRepository.findByTeachercourseid(teacherCourseList.get(i).getId());
 			Integer userCount = listComment.size();
 			CourseBeans courseBeans = new CourseBeans(userCount, avgMark, teacherCourse);
 			courseBeansList.add(courseBeans);
@@ -148,7 +148,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	public CourseBeans getCourseBeansById(Long course_id) {
 		TeacherCourse teacherCourse = courseRepository.findOne(course_id);
 		Double avgMark = commentRepository.getMark(course_id);
-		List<Comment> listComment=commentRepository.findByTeachercourseid(course_id);
+		List<UserCourse> listComment=commentRepository.findByTeachercourseid(course_id);
 		Integer userCount = listComment.size();
 		CourseBeans courseBeans = new CourseBeans();
 		courseBeans.setCourseMark(avgMark);
@@ -164,7 +164,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 
 	@Override
 	public List<TeacherCourse> getCourseByUserId(Long user_id) {
-		List<Comment> commentList = commentRepository.findCommentByUserid(user_id);
+		List<UserCourse> commentList = commentRepository.findUserCourseByUserid(user_id);
 		List<TeacherCourse> courseList = new ArrayList<TeacherCourse>();
 		for(int i=0;i<commentList.size();i++){
 			TeacherCourse course = new TeacherCourse();

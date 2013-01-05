@@ -1,11 +1,12 @@
 package com.knet51.courses.beans;
 
-import com.knet51.ccweb.jpa.entities.teacher.Comment;
+import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
 
-public class CommentUserBeans {
+
+public class UserCourseBeans {
 	private String userName;
 	private String photoUrl;
-	private Comment comment;
+	private UserCourse userCourse;
 	public String getPhotoUrl() {
 		return photoUrl;
 	}
@@ -20,19 +21,20 @@ public class CommentUserBeans {
 		this.userName = userName;
 	}
 	
-	public Comment getComment() {
-		return comment;
+	
+	public UserCourse getUserCourse() {
+		return userCourse;
 	}
-	public void setComment(Comment comment) {
-		this.comment = comment;
+	public void setUserCourse(UserCourse userCourse) {
+		this.userCourse = userCourse;
 	}
-	public CommentUserBeans(String userName,String photoUrl,Comment comment) {
+	public UserCourseBeans(String userName,String photoUrl,UserCourse userCourse) {
 		super();
 		this.userName=userName;
 		this.photoUrl=photoUrl;
-		this.comment=comment;
+		this.userCourse=userCourse;
 	}
-	public CommentUserBeans() {
+	public UserCourseBeans() {
 		super();
 	}
 }
