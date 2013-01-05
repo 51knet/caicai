@@ -1,10 +1,10 @@
-package com.knet51.ccweb.controllers.teacher.teacherCourse;
-
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+package com.knet51.ccweb.controllers.teacher.course;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,22 +12,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.knet51.ccweb.beans.CourseBeans;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 
 @Controller
 public class TeacherCourseInfoPageController {
@@ -127,7 +130,85 @@ public class TeacherCourseInfoPageController {
 		return "teacher.course.view";
 	}
 	
-/*	
+	@RequestMapping(value="/admin/teacher/course/addcourse")
+	public String addCoursePage(@RequestParam("active") String active,Model model){
+		if (active == null || active.equals("")) {
+			active = "first";
+		}
+		model.addAttribute("active", active);
+		return "admin.teacher.course.add";
+	}
+	
+//	@RequestMapping(value="/admin/teacher/course/firststep",method=RequestMethod.POST)
+//	public String addCourseFirst(Model model){
+//		return "redirect:/admin/teacher/course/addCourse?active=second";
+//	}
+	
+	@RequestMapping(value="/admin/teacher/course/firststep",method=RequestMethod.POST)
+	public String TeacherCourseAddInfo(@Valid TeacherCourseInfoForm courseInfoForm,
+			BindingResult validResult, HttpSession session,MultipartHttpServletRequest request) throws Exception{
+		logger.info("#### Into TeacherCourseAdd Controller ####");
+		if(validResult.hasErrors()){
+			logger.info("detailInfoForm Validation Failed " + validResult);
+			return "redirect:/admin/teacher/course/addcourse?active=second";
+		}else{
+			List<MultipartFile> files = request.getFiles("coverFile");
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Teacher teacher = teacherService.findOne(userInfo.getId());
+			TeacherCourse course = new TeacherCourse();
+			String courseName = courseInfoForm.getCourseName();
+			String courseDesc = courseInfoForm.getCourseDesc();
+			course.setCourseName(courseName);
+			course.setCourseDesc(courseDesc);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			String date = format.format(new Date());
+			course.setCourseDate(date);
+			course.setTeacher(teacher);
+			course.setCourseType(courseInfoForm.getCourseType());
+			for(int i=0;i<files.size();i++){
+				if(!files.get(i).isEmpty()){
+					logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
+					
+					String fileName = files.get(i).getOriginalFilename();
+					String fileType = fileName.substring(fileName.lastIndexOf("."));
+					//String realPath = FileUtil.getPath("course", userInfo.getId(), courseName,  session);
+					String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+courseName;
+					FileUtil.createRealPath(path, session);
+					//logger.info("+++++++++++++"+realPath);
+					String previewFile = path+"/small"+fileType;
+					String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
+					FileUtil.getPreviewImage(new File(path+"/"+saveName), new File(previewFile), fileType.substring(1));
+					String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+"/"+"small"+fileType;
+					//String savePath = request.getContextPath()+"/course/"+userInfo.getId()+"/"+courseName+"/"+saveName;
+					course.setCourseCover(savePath);
+				}
+			}
+			
+			teacherCourseService.createTeacherCourse(course);
+			return "redirect:/admin/teacher/course/addcourse?active=second";
+		}
+	
+	}
+	
+	@RequestMapping(value="/admin/teacher/course/secondstep")
+	public String addCourseSecond(Model model){
+		return "redirect:/admin/teacher/course/addcourse?active=third";
+	}
+	
+	@RequestMapping(value="/admin/teacher/course/thirdstep")
+	public String addCourseThird(Model model){
+		return "redirect:/admin/teacher/course/list";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*	
 	@RequestMapping(value="/admin/teacher/allCourse/list")
 	public String teacherAllCourseInfo(HttpSession session,Model model ){
 		logger.info("#####Into TeacherCourseInfoPageController#####");

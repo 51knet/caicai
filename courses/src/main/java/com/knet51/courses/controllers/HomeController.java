@@ -16,15 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.UserCourse;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
-import com.knet51.ccweb.jpa.repository.CommentRepository;
 import com.knet51.courses.beans.CourseBeans;
-import com.knet51.courses.beans.TeacherCourseBeans;
 import com.knet51.courses.jpa.services.CommentService;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
-import com.knet51.courses.jpa.services.UserCourseService;
 
 /**
  * Handles requests for the application home page.
@@ -37,9 +33,6 @@ public class HomeController {
 	
 	@Autowired
 	private TeacherService teacherService;
-	
-	@Autowired
-	private UserCourseService userCourseService;
 	
 	@Autowired
 	private CommentService commentService;
@@ -67,7 +60,7 @@ public class HomeController {
 		model.addAttribute("teacherList", teacherList);
 		User currentUser = (User) session.getAttribute("userInfo");
 		if(currentUser !=null){
-			List<TeacherCourse> userCourse = userCourseService.getCourseByUserId(currentUser.getId());
+			List<TeacherCourse> userCourse = courseService.getCourseByUserId(currentUser.getId());
 			model.addAttribute("userCourse", userCourse);
 			model.addAttribute("userCourseCount", userCourse.size());
 		}

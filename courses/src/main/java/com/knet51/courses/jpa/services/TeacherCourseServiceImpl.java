@@ -162,4 +162,16 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		return courseRepository.getCourseTypeByTeacherId(teacher_id);
 	}
 
+	@Override
+	public List<TeacherCourse> getCourseByUserId(Long user_id) {
+		List<Comment> commentList = commentRepository.findCommentByUserid(user_id);
+		List<TeacherCourse> courseList = new ArrayList<TeacherCourse>();
+		for(int i=0;i<commentList.size();i++){
+			TeacherCourse course = new TeacherCourse();
+			course = courseRepository.findOne(commentList.get(i).getTeachercourseid());
+			courseList.add(course);
+		}
+		return courseList;
+	}
+
 }

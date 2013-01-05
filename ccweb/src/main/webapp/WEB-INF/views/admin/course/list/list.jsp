@@ -15,9 +15,6 @@ $(document).ready(function() {
 	checkAjaxs("course_info_form","courserInfoAJAX");
 });
 
-function showUrl(url){
-	alert(url);
-}
 </script>
 <style>
 	.row-fluid.custom {
@@ -40,7 +37,8 @@ function showUrl(url){
 		<div style="text-align: right;">
 			<!-- 	<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
 							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
-			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/new"></c:url>' class="btn">添加新课程</a>				
+			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/new"></c:url>' class="btn">添加新课程</a>
+			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/addcourse"><c:param name="active" value="first" /></c:url>' class="btn">添加新课程(Test)</a>				
 			<br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
@@ -59,7 +57,7 @@ function showUrl(url){
 						<td align="left"><img src="/ccweb/${page.courseCover }" width="80" height="20"  /></td>
 						<td align="left"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></td>
 						<td align="left">${page.courseType}</td>
-						<td align="left">${page.courseDesc}</td>
+						<td align="left"><div style="width:130px;" id="content">${page.courseDesc}</div></td>
 						<td align="left">${page.courseDate}</td>
 						<td align="center">
 						 	<!-- <div class="btn-group"> 
