@@ -22,27 +22,27 @@
     			</span>
     			<hr>
 				<table style="width: 100%">
-			<c:forEach var="comment" items="${listcomment}">
+			<c:forEach var="usercourse" items="${listUserCourse}">
 				  <table>
 				  <tr>
 				    <td width="10%" rowspan="3" align="center" valign="top">
 				    	 <c:choose >
-							<c:when test="${comment.photoUrl != null && comment.photoUrl != ''}">
-								<img src='<c:url value="${comment.photoUrl }"></c:url>'   style="width: 50px;height: 50px;" />
+							<c:when test="${usercourse.photoUrl != null && usercourse.photoUrl != ''}">
+								<img src='<c:url value="${usercourse.photoUrl }"></c:url>'   style="width: 50px;height: 50px;" />
 							</c:when>
 							<c:otherwise>
 								<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 50px;height: 50px;" />
 							</c:otherwise>
 						</c:choose>
 				    </td>
-				    <td align="left" style="width: 15%">${comment.userName}</td>
-				    <td align="left">评分:${comment.comment.mark}</td>
+				    <td align="left" style="width: 15%">${usercourse.userName}</td>
+				    <td align="left">评分:${usercourse.userCourse.mark}</td>
 				  </tr>
 				  <tr>
-				    <td colspan="2" align="left"><br>${comment.comment.commentDesc}</td>
+				    <td colspan="2" align="left"><br>${usercourse.userCourse.commentDesc}</td>
 				  </tr>
 				  <tr>
-				    <td colspan="2" align="left"><br>${comment.comment.commentDate }</td>
+				    <td colspan="2" align="left"><br>${usercourse.userCourse.commentDate }</td>
 				  </tr>
 				  </table>
 				  <hr>

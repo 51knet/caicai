@@ -50,12 +50,12 @@
 		<put-attribute name="right" value="/WEB-INF/views/course/comment/courseStudy.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
-	<definition name="teachercourse.course.comment" extends="admin-layout">
+	<definition name="teachercourse.course.userCourse" extends="admin-layout">
 		<put-attribute name="title" value="课程学习" />
 		<put-attribute name="banner" value="/WEB-INF/views/layouts/course/courseDetail.jsp" />
 		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/course/comment/comment.jsp" />
-		<put-attribute name="right2" value="/WEB-INF/views/course/comment/commentShow.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/course/usercourse/usercourse.jsp" />
+		<put-attribute name="right2" value="/WEB-INF/views/course/usercourse/usercourseShow.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 </tiles-definitions>
