@@ -130,7 +130,7 @@ public class TeacherCourseInfoPageController {
 		return "teacher.course.view";
 	}
 	
-	@RequestMapping(value="/admin/teacher/course/addCourse")
+	@RequestMapping(value="/admin/teacher/course/addcourse")
 	public String addCoursePage(@RequestParam("active") String active,Model model){
 		if (active == null || active.equals("")) {
 			active = "first";
@@ -150,7 +150,7 @@ public class TeacherCourseInfoPageController {
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/course/addCourse?active=second";
+			return "redirect:/admin/teacher/course/addcourse?active=second";
 		}else{
 			List<MultipartFile> files = request.getFiles("coverFile");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -185,14 +185,14 @@ public class TeacherCourseInfoPageController {
 			}
 			
 			teacherCourseService.createTeacherCourse(course);
-			return "redirect:/admin/teacher/course/addCourse?active=second";
+			return "redirect:/admin/teacher/course/addcourse?active=second";
 		}
 	
 	}
 	
 	@RequestMapping(value="/admin/teacher/course/secondstep")
 	public String addCourseSecond(Model model){
-		return "redirect:/admin/teacher/course/addCourse?active=third";
+		return "redirect:/admin/teacher/course/addcourse?active=third";
 	}
 	
 	@RequestMapping(value="/admin/teacher/course/thirdstep")

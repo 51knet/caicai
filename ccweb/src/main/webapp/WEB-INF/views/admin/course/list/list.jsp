@@ -38,7 +38,7 @@ $(document).ready(function() {
 			<!-- 	<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
 							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
 			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/new"></c:url>' class="btn">添加新课程</a>
-			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/addCourse"><c:param name="active" value="first" /></c:url>' class="btn">添加新课程(Test)</a>				
+			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/addcourse"><c:param name="active" value="first" /></c:url>' class="btn">添加新课程(Test)</a>				
 			<br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>

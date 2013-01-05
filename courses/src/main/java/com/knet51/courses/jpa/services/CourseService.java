@@ -3,6 +3,7 @@ package com.knet51.courses.jpa.services;
 import java.util.List;
 
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 
 public interface CourseService {
 	List<CourseResource> getResourceByCourseId(Long course_id);
