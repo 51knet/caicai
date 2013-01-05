@@ -104,6 +104,7 @@ public class CourseController {
 		List<UserCourse> listUserCourse = userCourseService.findByTeachercourseid(course_id);
 		Integer sumPerson=listUserCourse.size();
 		double courseMark=userCourseService.getMark(course_id);//一个视频的评论平均分数
+		System.out.println("===================================="+courseMark);
 		List<UserCourseBeans> list=new ArrayList<UserCourseBeans>();
 		UserCourseBeans UserCourseUser=new UserCourseBeans();
 		for (int i = 0; i < listUserCourse.size(); i++) {

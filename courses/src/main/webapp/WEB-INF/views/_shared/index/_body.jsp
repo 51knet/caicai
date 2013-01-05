@@ -68,7 +68,7 @@
     					0分
     				</c:otherwise>
     			</c:choose>
-    			&nbsp;&nbsp;&nbsp;<span style="color: red;">￥ 20</span>
+    			&nbsp;&nbsp;&nbsp;<span style="color: red;"></span>
     		</div>
     	</div>
     </c:forEach>

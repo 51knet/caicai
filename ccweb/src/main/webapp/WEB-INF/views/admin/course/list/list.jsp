@@ -54,7 +54,7 @@ $(document).ready(function() {
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
-						<td align="left"><img src="/ccweb/${page.courseCover }" width="80" height="20"  /></td>
+						<td align="left"><img src="/ccweb/${page.courseCover }" style="width: 80px; height: 40px;"/></td>
 						<td align="left"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></td>
 						<td align="left">${page.courseType}</td>
 						<td align="left"><div style="width:130px;" id="content">${page.courseDesc}</div></td>

@@ -51,7 +51,7 @@ function checkPicture(obj){
 <hr />
 <div class="tabbable">
 	<ul class="nav nav-tabs">
-		<li <c:if test='${active == "first"}'> class="active" </c:if>><a href="#" data-toggle="tab">第一步：基本信息</a></li>
+		<li <c:if test='${active == "first"}'> class="active" </c:if>><a  href="#"  data-toggle="tab">第一步：基本信息</a></li>
 		<li <c:if test='${active == "second"}'> class="active" </c:if>><a href="#" data-toggle="tab">第二部：权限价格</a></li>
 		<li <c:if test='${active == "third"}'> class="active" </c:if>><a href="#" data-toggle="tab">第三部：计划</a></li>
 	</ul>
