@@ -131,22 +131,21 @@ public class TeacherCourseInfoPageController {
 	}
 	
 	@RequestMapping(value="/admin/teacher/course/addcourse")
-	public String addCoursePage(@RequestParam("active") String active,Model model){
+	public String addCoursePage(@RequestParam("active") String active,@RequestParam("cid") Integer course_id,Model model){
 		if (active == null || active.equals("")) {
 			active = "first";
 		}
+		if (course_id == null || course_id.equals("")) {
+			course_id = 0;
+		}
 		model.addAttribute("active", active);
+		model.addAttribute("cid", course_id);
 		return "admin.teacher.course.add";
 	}
 	
-//	@RequestMapping(value="/admin/teacher/course/firststep",method=RequestMethod.POST)
-//	public String addCourseFirst(Model model){
-//		return "redirect:/admin/teacher/course/addCourse?active=second";
-//	}
-	
 	@RequestMapping(value="/admin/teacher/course/firststep",method=RequestMethod.POST)
 	public String TeacherCourseAddInfo(@Valid TeacherCourseInfoForm courseInfoForm,
-			BindingResult validResult, HttpSession session,MultipartHttpServletRequest request) throws Exception{
+			BindingResult validResult, HttpSession session,MultipartHttpServletRequest request,Model model) throws Exception{
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
@@ -173,10 +172,8 @@ public class TeacherCourseInfoPageController {
 					
 					String fileName = files.get(i).getOriginalFilename();
 					String fileType = fileName.substring(fileName.lastIndexOf("."));
-					//String realPath = FileUtil.getPath("course", userInfo.getId(), courseName,  session);
 					String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+courseName;
 					FileUtil.createRealPath(path, session);
-					//logger.info("+++++++++++++"+realPath);
 					String previewFile = path+"/small"+fileType;
 					String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
 					FileUtil.getPreviewImage(new File(path+"/"+saveName), new File(previewFile), fileType.substring(1));
@@ -186,15 +183,19 @@ public class TeacherCourseInfoPageController {
 				}
 			}
 			
-			teacherCourseService.createTeacherCourse(course);
-			return "redirect:/admin/teacher/course/addcourse?active=second";
+			TeacherCourse newCourse = teacherCourseService.createTeacherCourse(course);
+			model.addAttribute("newCourse", newCourse);
+			return "redirect:/admin/teacher/course/addcourse?active=second&cid="+newCourse.getId();
 		}
 	
 	}
 	
 	@RequestMapping(value="/admin/teacher/course/secondstep")
-	public String addCourseSecond(Model model){
-		return "redirect:/admin/teacher/course/addcourse?active=third";
+	public String addCourseSecond(@RequestParam("cid") Long course_id,@RequestParam("pwd") String pwd, Model model){
+		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		course.setPwd(pwd);
+		teacherCourseService.updateTeacherCourse(course);
+		return "redirect:/admin/teacher/course/addcourse?active=third&cid="+course_id;
 	}
 	
 	@RequestMapping(value="/admin/teacher/course/thirdstep")

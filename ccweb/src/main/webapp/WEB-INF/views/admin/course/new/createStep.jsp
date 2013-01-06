@@ -16,20 +16,33 @@ function checkPicture(obj){
 		alert("只支持gif、jpg、bmp格式的图片！！");
 		imgflag=false;
 	}
-	
 	var nameValue = $.trim($("#names").val());
 	if(""==nameValue){
 		alert("课程名称不能为空！");
 		nameflag = false; 
 	}
-	
 	var descValue = $.trim($("#descs").val());
 	if(""==descValue){
 		alert("课程描述不能为空！");
 		descflag = false; 
 	}
-	
 	return imgflag && nameflag &&descflag;
+}
+
+function showCheckpwd(){
+	var pwd = $.trim($("#pwd").val());
+	"" != pwd ? $("#checkpwdform").css("display","block") :$("#checkpwdform").css("display","none")
+}
+function checkPwd(){
+	var flag = true;
+	var pwd = $.trim($("#pwd").val());
+	var checkpwd = $.trim($("#checkpwd").val());
+	if(pwd != checkpwd){
+		alert("两次输入的密码不一致，请重新输入！");
+		$("#checkpwd").val("");
+		flag = false;
+	}
+	return flag;
 }
 </script>
 <style>
@@ -47,7 +60,7 @@ function checkPicture(obj){
 	margin: 0px 5px;
 }
 </style>
-<h3>添加课程</h3><i class="icon-star"></i><i>必须填写项</i>
+<h3>添加课程</h3>
 <hr />
 <div class="tabbable">
 	<ul class="nav nav-tabs">
@@ -59,16 +72,13 @@ function checkPicture(obj){
 		<div class="tab-pane <c:if test='${active == "first"}'>active</c:if>" id="first_tab">
 			<div  class="row-fluid custom round">
 				<div class="row" style="margin-top: 10px;">
-					
-					
-						<div style="text-align:center;">
 							<div style="width:560px; text-align:left;" >
 								<form:form action="firststep" method="post" enctype="multipart/form-data" id="course_info_form" onsubmit="return checkPicture(this)">  
 									<div class="modal-body">
 										上传封面：<input type="file" name="coverFile"  style="margin-bottom: 10px; width: 380px;"/><br><span style="color:red;font-size:14px; margin-left: 70px;">只支持jpg、gif、bmp格式，建议封面宽度210px，高度110px</span>
 									</div>
 									<div class="modal-body" id="courseName">
-										课程标题：<input type="text" id="names" name="courseName" style="width: 370px;"  placeholder="课程标题">
+										课程名称：<input type="text" id="names" name="courseName" style="width: 370px;"  placeholder="课程名称">
 										<span class="help-inline"><form:errors path="courseName"></form:errors></span>
 									</div>
 									<div class="modal-body" id="course">
@@ -89,32 +99,24 @@ function checkPicture(obj){
 										<span class="help-inline"><form:errors path="courseDesc"></form:errors></span>
 									</div>
 									<div class="modal-body" style="text-align: center;">
-										<button type="submit"    class="btn btn-large btn-success">下一步</button>&nbsp;&nbsp;
-										<button type="reset" class="btn">取消</button>
+										<button type="submit"    class="btn btn-large btn-success">下一步</button>
 									</div>
 								</form:form>
 							</div>
-						</div>
-					
 				</div>
 			</div>
 		</div>
 		
 		<div class="tab-pane <c:if test='${active == "second"}'>active</c:if>" id="second_tab">
-			<form class="form-horizontal"  action="secondstep" method="post">
-				<!--<div class="control-group" id="address">
-					<label class="control-label" for="address">地址</label>
-					<div class="controls">
-						<input type="text" id="address" name="address" placeholder="地址" value="${sessionScope.sessionUserInfo.user.address}">
-					</div>
+			<form:form  class="form-horizontal"  action="secondstep" method="post" onsubmit="return checkPwd()">
+				<input type="hidden" name="cid" value="${cid }" />
+				<div class="modal-body" id="pwdform">
+						设置密码：<input type="text" id="pwd" name="pwd" style="width: 250px;"  onblur="showCheckpwd()" >
 				</div>
-				<div class="control-group" id="cellphone">
-					<label class="control-label" for="cellphone">手机</label>
-					<div class="controls">
-						<input type="text" id="cellphone" name="cellphone" placeholder="手机号码" value="${sessionScope.sessionUserInfo.user.cell_phone}">
-					</div>
+				<div class="modal-body" id="checkpwdform" style="display: none;">
+						确认密码：<input type="text" id="checkpwd" name="checkpwd" style="width: 250px;" onblur="checkPwd()" >
 				</div>
-				<div class="control-group">
+				<!--  <div class="control-group">
 					<label class="control-label" for="phone">固话</label>
 					<div class="controls">
 						<input type="text" id="phone" name="phone" placeholder="固定电话" value="${sessionScope.sessionUserInfo.user.fix_phone}">
@@ -131,8 +133,8 @@ function checkPicture(obj){
 						<button type="submit" class="btn btn-large btn-success">下一步</button>
 					</div>
 				</div>
-			</form> 
-			second
+			</form:form>
+			second ===${cid }
 		</div>
 		
 		<!-- third -->

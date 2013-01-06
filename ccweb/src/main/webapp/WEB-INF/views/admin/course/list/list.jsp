@@ -39,7 +39,7 @@ $(document).ready(function() {
 							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
 			<span style="margin-right: 270px;"> <a href="#" style="margin-right: 20px;"> 查看未发布课程</a> <a href="#"> 查看未发布课程</a></span>
 			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/new"></c:url>' class="btn">添加新课程</a>
-			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/addcourse"><c:param name="active" value="first" /></c:url>' class="btn">添加新课程(Test)</a>				
+			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/addcourse"><c:param name="active" value="first" /><c:param name="cid" value="0" /></c:url>' class="btn">添加新课程(Test)</a>				
 			<br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
