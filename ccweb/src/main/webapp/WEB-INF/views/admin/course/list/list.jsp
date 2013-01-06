@@ -37,7 +37,7 @@ $(document).ready(function() {
 		<div style="text-align: right;">
 			<!-- 	<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
 							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
-			<span style="margin-right: 270px;"> <a href="#" style="margin-right: 20px;"> 查看未发布课程</a> <a href="#"> 查看未发布课程</a></span>
+			<span style="margin-right: 270px;"> <a href="#" style="margin-right: 20px;"> 查看未发布课程</a> <a href="#"> 查看已发布课程</a></span>
 			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/new"></c:url>' class="btn">添加新课程</a>
 			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/addcourse"><c:param name="active" value="first" /><c:param name="cid" value="0" /></c:url>' class="btn">添加新课程(Test)</a>				
 			<br>
@@ -57,9 +57,9 @@ $(document).ready(function() {
 						<tr>
 						<td align="left"><img src="/ccweb/${page.courseCover }" style="width: 80px; height: 40px;"/></td>
 						<td align="left"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></td>
-						<td align="left">${page.courseType}</td>
-						<td align="left"><c:if test="${page.publish ==1 }">未发布</c:if><c:if test="${page.publish ==2 }">已发布</c:if></td>
-						<td align="left">${page.courseDate}</td>
+						<td align="center">${page.courseType}</td>
+						<td align="center"><c:if test="${page.publish ==1 }">未发布</c:if><c:if test="${page.publish ==2 }">已发布</c:if></td>
+						<td align="center">${page.courseDate}</td>
 						<td align="center">
 						 	<!-- <div class="btn-group"> 
 								<button class="btn">更多</button>  

@@ -184,16 +184,17 @@ public class TeacherCourseInfoPageController {
 			}
 			
 			TeacherCourse newCourse = teacherCourseService.createTeacherCourse(course);
-			model.addAttribute("newCourse", newCourse);
 			return "redirect:/admin/teacher/course/addcourse?active=second&cid="+newCourse.getId();
 		}
 	
 	}
 	
-	@RequestMapping(value="/admin/teacher/course/secondstep")
-	public String addCourseSecond(@RequestParam("cid") Long course_id,@RequestParam("pwd") String pwd, Model model){
+	@RequestMapping(value="/admin/teacher/course/secondstep",method=RequestMethod.POST)
+	public String addCourseSecond(@RequestParam("cid") Long course_id,
+			@RequestParam("pwd") String pwd, @RequestParam("status") Integer status, Model model){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
 		course.setPwd(pwd);
+		course.setStatus(status);
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/addcourse?active=third&cid="+course_id;
 	}

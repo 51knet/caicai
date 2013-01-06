@@ -116,6 +116,9 @@ function checkPwd(){
 				<div class="modal-body" id="checkpwdform" style="display: none;">
 						确认密码：<input type="text" id="checkpwd" name="checkpwd" style="width: 250px;" onblur="checkPwd()" >
 				</div>
+					<div class="modal-body" id="status" >
+						发布到知识超市：<input type="radio" name="status" value="2" checked="checked">是&nbsp;&nbsp;<input type="radio" name="status" value="1" >否
+				</div>
 				<!--  <div class="control-group">
 					<label class="control-label" for="phone">固话</label>
 					<div class="controls">
@@ -134,7 +137,7 @@ function checkPwd(){
 					</div>
 				</div>
 			</form:form>
-			second ===${cid }
+	
 		</div>
 		
 		<!-- third -->
