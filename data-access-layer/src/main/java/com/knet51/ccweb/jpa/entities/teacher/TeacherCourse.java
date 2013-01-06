@@ -1,5 +1,6 @@
 package com.knet51.ccweb.jpa.entities.teacher;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -16,6 +17,11 @@ public class TeacherCourse extends AbstractEntity {
 	private String courseDate;
 	private String courseCover;
 	private String courseType; 
+	@Column(columnDefinition="int default 1")
+	private Integer status;  // 1:just show the course in ccweb; 2: both.
+	@Column(columnDefinition="int default 1")
+	private Integer publish; // 1:just show it in teacher admin page; 2:show it in the admin page and front page.
+	private String pwd;      // Check the pwd when someone want to check the course.
 	@ManyToOne
 	private Teacher teacher;
 	
@@ -52,7 +58,6 @@ public class TeacherCourse extends AbstractEntity {
 		this.courseCover = courseCover;
 	}
 	
-	
 	public String getCourseType() {
 		return courseType;
 	}
@@ -60,6 +65,26 @@ public class TeacherCourse extends AbstractEntity {
 		this.courseType = courseType;
 	}
 	
+	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Integer getPublish() {
+		return publish;
+	}
+	public void setPublish(Integer publish) {
+		this.publish = publish;
+	}
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
 	public TeacherCourse() {
 		super();
 	}

@@ -37,8 +37,9 @@ $(document).ready(function() {
 		<div style="text-align: right;">
 			<!-- 	<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
 							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
+			<span style="margin-right: 270px;"> <a href="#" style="margin-right: 20px;"> 查看未发布课程</a> <a href="#"> 查看未发布课程</a></span>
 			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/new"></c:url>' class="btn">添加新课程</a>
-			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/addcourse"><c:param name="active" value="first" /></c:url>' class="btn">添加新课程(Test)</a>				
+			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/addcourse"><c:param name="active" value="first" /><c:param name="cid" value="0" /></c:url>' class="btn">添加新课程(Test)</a>				
 			<br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
@@ -46,18 +47,22 @@ $(document).ready(function() {
 						<th align="center">课程封面</th>
 						<th align="center" width="15%">课程标题</th>
 						<th align="center" width="20%">课程类别</th>
-						<th align="center">课程简述</th>
+						<th align="center">是否发布</th>
 						<th align="center" width="20%">发布时间</th>
+<<<<<<< HEAD
 						<th align="center" width="15%">操作</th>
+=======
+						<th align="center" width="13%">操作</th>
+>>>>>>> 406d0c77797197530bac00ac3f8f04d0218ca25e
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
-						<td align="left"><img src="/ccweb/${page.courseCover }" width="80" height="20"  /></td>
+						<td align="left"><img src="/ccweb/${page.courseCover }" style="width: 80px; height: 40px;"/></td>
 						<td align="left"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></td>
 						<td align="left">${page.courseType}</td>
-						<td align="left"><div style="width:130px;" id="content">${page.courseDesc}</div></td>
+						<td align="left"><c:if test="${page.publish ==1 }">未发布</c:if><c:if test="${page.publish ==2 }">已发布</c:if></td>
 						<td align="left">${page.courseDate}</td>
 						<td align="center">
 						 	<!-- <div class="btn-group"> 
