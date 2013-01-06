@@ -130,6 +130,9 @@ public class TeacherCourseInfoPageController {
 		return "teacher.course.view";
 	}
 	
+	
+	/*   new add course   */
+	
 	@RequestMapping(value="/admin/teacher/course/addcourse")
 	public String addCoursePage(@RequestParam("active") String active,@RequestParam("cid") Integer course_id,Model model){
 		if (active == null || active.equals("")) {
@@ -143,7 +146,7 @@ public class TeacherCourseInfoPageController {
 		return "admin.teacher.course.add";
 	}
 	
-	@RequestMapping(value="/admin/teacher/course/firststep",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/course/new/firststep",method=RequestMethod.POST)
 	public String TeacherCourseAddInfo(@Valid TeacherCourseInfoForm courseInfoForm,
 			BindingResult validResult, HttpSession session,MultipartHttpServletRequest request,Model model) throws Exception{
 		logger.info("#### Into TeacherCourseAdd Controller ####");
@@ -189,7 +192,7 @@ public class TeacherCourseInfoPageController {
 	
 	}
 	
-	@RequestMapping(value="/admin/teacher/course/secondstep",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/course/new/secondstep",method=RequestMethod.POST)
 	public String addCourseSecond(@RequestParam("cid") Long course_id,
 			@RequestParam("pwd") String pwd, @RequestParam("status") Integer status, Model model){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
@@ -199,8 +202,40 @@ public class TeacherCourseInfoPageController {
 		return "redirect:/admin/teacher/course/addcourse?active=third&cid="+course_id;
 	}
 	
-	@RequestMapping(value="/admin/teacher/course/thirdstep")
-	public String addCourseThird(Model model){
+	@RequestMapping(value="/admin/teacher/course/new/thirdstep",method=RequestMethod.POST)
+	public String addCourseThird(HttpSession session,Model model,
+			MultipartHttpServletRequest request,@RequestParam("cid") Long course_id) throws  Exception{
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		List<MultipartFile> files = request.getFiles("resourceFile");
+		String resourceDesc = request.getParameter("resourceDesc");
+		String resourceOrder = request.getParameter("resourceOrder");
+		for(int i=0;i<files.size();i++){
+			if(!files.get(i).isEmpty()){
+				CourseResource resource = new CourseResource();
+				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
+				
+				String fileName = files.get(i).getOriginalFilename();
+				String name = fileName.substring(0, fileName.indexOf("."));
+				resource.setFileName(name);
+				
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				String date = format.format(new Date());
+				resource.setDate(date);
+				
+				TeacherCourse teacherCourse = teacherCourseService.findOneById(course_id);
+				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
+				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+resourceOrder;
+				FileUtil.createRealPath(path, session);
+				String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
+				String savePath = path+"\\"+saveName;
+				resource.setSavePath(savePath);
+				resource.setSaveName(saveName);
+				resource.setResourceDesc(resourceDesc);
+				resource.setResourceOrder(resourceOrder);
+				resource.setCourse_id(course_id);
+				courseResourceService.createCourseResource(resource);
+			}
+		}
 		return "redirect:/admin/teacher/course/list";
 	}
 	

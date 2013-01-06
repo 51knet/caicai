@@ -8,7 +8,7 @@
 	<img width="90px" height="90px" src="${avatar_url}" style="margin: 15px 0px;">
   </div>
 	<ul class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value=""></c:url>'>全部课程</a></li>
+		<li><a href='<c:url value="/admin/teacher/course/list"></c:url>'>全部课程</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/edit/createcourse"></c:url>'>添加课程资料</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/edit/basicmessage"></c:url>'>基本信息</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/edit/detailmessage"></c:url>'>详细信息</a></li>

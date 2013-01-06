@@ -73,7 +73,7 @@ function checkPwd(){
 			<div  class="row-fluid custom round">
 				<div class="row" style="margin-top: 10px;">
 							<div style="width:560px; text-align:left;" >
-								<form:form action="firststep" method="post" enctype="multipart/form-data" id="course_info_form" onsubmit="return checkPicture(this)">  
+								<form:form action="new/firststep" method="post" enctype="multipart/form-data" id="course_info_form" onsubmit="return checkPicture(this)">  
 									<div class="modal-body">
 										上传封面：<input type="file" name="coverFile"  style="margin-bottom: 10px; width: 380px;"/><br><span style="color:red;font-size:14px; margin-left: 70px;">只支持jpg、gif、bmp格式，建议封面宽度210px，高度110px</span>
 									</div>
@@ -108,7 +108,7 @@ function checkPwd(){
 		</div>
 		
 		<div class="tab-pane <c:if test='${active == "second"}'>active</c:if>" id="second_tab">
-			<form:form  class="form-horizontal"  action="secondstep" method="post" onsubmit="return checkPwd()">
+			<form:form  class="form-horizontal"  action="new/secondstep" method="post" onsubmit="return checkPwd()">
 				<input type="hidden" name="cid" value="${cid }" />
 				<div class="modal-body" id="pwdform">
 						设置密码：<input type="text" id="pwd" name="pwd" style="width: 250px;"  onblur="showCheckpwd()" >
@@ -119,18 +119,6 @@ function checkPwd(){
 					<div class="modal-body" id="status" >
 						发布到知识超市：<input type="radio" name="status" value="2" checked="checked">是&nbsp;&nbsp;<input type="radio" name="status" value="1" >否
 				</div>
-				<!--  <div class="control-group">
-					<label class="control-label" for="phone">固话</label>
-					<div class="controls">
-						<input type="text" id="phone" name="phone" placeholder="固定电话" value="${sessionScope.sessionUserInfo.user.fix_phone}">
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="fax">传真</label>
-					<div class="controls">
-						<input type="text" id="fax" name="fax" placeholder="传真号码" value="${sessionScope.sessionUserInfo.user.fax}">
-					</div>
-				</div>-->
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-large btn-success">下一步</button>
@@ -142,50 +130,35 @@ function checkPwd(){
 		
 		<!-- third -->
 		<div class="tab-pane  <c:if test='${active == "third"}'>active</c:if>" id="third_tab">
-			<form class="form-horizontal" action="thirdstep" method="post"  name="edu">
-					<!--  <input type="hidden" name="eduId" >
-					<div class="control-group" id="schoolName">
-						<label class="control-label" for="schoolName">学校</label>
-						<div class="controls">
-							<input type="text"  name="schoolName"  id="schoolName" placeholder="学校" data-provide="typeahead" data-items="8" data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'>
-							<span class="help-inline"></span>
+			<form:form class="form-horizontal" action="new/thirdstep" method="post" enctype="multipart/form-data">
+					<input type="hidden" value="${cid }" name="cid" />
+						<div class="modal-body">
+							上传资源：&nbsp;<input type="file" name="resourceFile"  style="width:380px;" />&nbsp;&nbsp;<!-- <input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span> -->
 						</div>
-					</div>
-					<div class="control-group" id="collegeName">
-						<label class="control-label" for="collegeName">学院</label>
-						<div class="controls">
-							<input type="text" name="collegeName" id="collegeName" value="" placeholder="学院"  >
-							<span class="help-inline"></span>
+							<div class="modal-body" id="resourceOrder">
+							资源课时：&nbsp;<select name="resourceOrder"  style="width:380px;">
+										<option selected value="1">第一课</option>
+										<option value="2">第二课</option>
+										<option value="3">第三课</option>
+										<option value="4">第四课</option>
+										<option value="5">第五课</option>
+										<option value="6">第六课</option>
+										<option value="7">第七课</option>
+										<option value="8">第八课</option>
+										<option value="9">第九课</option>
+								   </select>
 						</div>
-					</div>
-					<div class="control-group" id="degree">
-						<label class="control-label" for="degree">学历</label>
-						<div class="controls">
-							<input type="text" id="degree"   name="degree" placeholder="学历"  >
-							<span class="help-inline"></span>
+						<div class="modal-body">
+							资源描述：
+							<textarea name="resourceDesc" id="resourcedesc" placeholder="资源描述" cols="5" rows="8" style="width:380px;"></textarea>
+							<!-- <input type="text" name="resourceDesc" />&nbsp;&nbsp;  --><!-- <input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span> -->
 						</div>
-					</div>
-					<div class="control-group" id="startTime">
-						<label class="control-label" for="startTime">开始时间</label>
-						<div class="controls">
-							<input type="text" id="startTime"  name="startTime" placeholder="开始时间" >
-							<span class="help-inline"></span>
-						</div>
-					</div>
-					<div class="control-group" id="endTime">
-						<label class="control-label" for="endTime">结束时间</label>
-						<div class="controls">
-							<input type="text" id="endTime" name="endTime" placeholder="结束时间" >
-							<span class="help-inline"></span>
-						</div>
-					</div> -->
 					<div class="control-group">
 						<div class="controls">
 							<button type="submit"   class="btn btn-large btn-success">保 存</button>
 						</div>
 					</div>
-				</form>
-				third
+				</form:form>
 		</div>
 
 	</div>
