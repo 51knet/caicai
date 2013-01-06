@@ -71,7 +71,7 @@ $(document).ready(function() {
 								</ul>
 							</div> -->
 							<a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a> | 
-							<a href='<c:url value="/admin/teacher/course/edit/createcourse/${page.id}"></c:url>'>修改</a>
+							<a href='<c:url value="/admin/teacher/course/edit/${page.id}/modifycourse"></c:url>'>修改</a>
 						</td></tr>
 					</c:forEach>
 				</tbody>

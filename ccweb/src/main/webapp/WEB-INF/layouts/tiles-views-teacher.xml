@@ -260,29 +260,29 @@
 	
 	
 	
-	<definition name="admin.teacher.course.edit.createcourse" extends="admin-layout">
+	<definition name="admin.teacher.course.edit.modifycourse" extends="admin-layout">
 		<put-attribute name="title" value="添加课程资料"></put-attribute>
 		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/createTeacherCourse.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/modifyTeacherCourse.jsp" />
 	</definition>
-	<definition name="admin.teacher.course.edit.basicmessage" extends="admin-layout">
+	<definition name="admin.teacher.course.edit.basicinfo" extends="admin-layout">
 		<put-attribute name="title" value="基本信息"></put-attribute>
 		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/basicMessage.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/basicinfo.jsp" />
 	</definition>
-	<definition name="admin.teacher.course.edit.detailmessage" extends="admin-layout">
+	<definition name="admin.teacher.course.edit.detailinfo" extends="admin-layout">
 		<put-attribute name="title" value="详细信息"></put-attribute>
 		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/detailMessage.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/detailinfo.jsp" />
 	</definition>
-	<definition name="admin.teacher.course.edit.createcover" extends="admin-layout">
+	<definition name="admin.teacher.course.edit.modifycover" extends="admin-layout">
 		<put-attribute name="title" value="添加封面"></put-attribute>
 		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/createCover.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/modifyCover.jsp" />
 	</definition>
 	<definition name="admin.teacher.course.edit.watchvideo" extends="admin-layout">
 		<put-attribute name="title" value="试看视频"></put-attribute>
@@ -296,7 +296,7 @@
 		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/power_price.jsp" />
 	</definition>
-	<definition name="admin.teacher.course.edit.deletemessage" extends="admin-layout">
+	<definition name="admin.teacher.course.edit.deleteinfo" extends="admin-layout">
 		<put-attribute name="title" value="取消课程"></put-attribute>
 		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />

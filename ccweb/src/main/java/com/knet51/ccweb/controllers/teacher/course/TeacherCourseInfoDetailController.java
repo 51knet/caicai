@@ -200,36 +200,38 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/createcourse")
-	public String modifyCreateTeacherCourse(){
-		return "admin.teacher.course.edit.createcourse";
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/modifycourse")
+	public String modifyCreateTeacherCourse(HttpSession session,@PathVariable Long id,Model model){
+		TeacherCourse course=courseService.findOneById(id);
+		model.addAttribute("course", course);
+		return "admin.teacher.course.edit.modifycourse";
 	}
 	/**
 	 * 修改基本信息
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/basicmessage")
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/basicinfo")
 	public String modifyBasicMessage(){
-		return "admin.teacher.course.edit.basicmessage";
+		return "admin.teacher.course.edit.basicinfo";
 	}
 	/***
 	 * 修改详细信息
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/detailmessage")
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/detailinfo")
 	public String modifyDetailMessage(){
-		return "admin.teacher.course.edit.detailmessage";
+		return "admin.teacher.course.edit.detailinfo";
 	}
 	/***
 	 * 修改封面
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/createcover")
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/moidfycover")
 	public String modifyCreateCover(){
-		return "admin.teacher.course.edit.createcover";
+		return "admin.teacher.course.edit.moidfycover";
 	}
 	/**
 	 * 修改视频
@@ -254,9 +256,9 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/deletemessage")
+	@RequestMapping(value="/admin/teacher/course/edit/deletecourse")
 	public String modifyDeleteMessage(){
-		return "admin.teacher.course.edit.deletemessage";
+		return "admin.teacher.course.edit.deletecourse";
 	}
 	
 }
