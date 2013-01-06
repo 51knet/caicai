@@ -195,11 +195,68 @@ public class TeacherCourseInfoDetailController {
 			courseResourceService.deleCourseResource(resource_id);
 			return "redirect:/admin/teacher/course/view/"+course_id;
 	}
+	/**
+	 * 修改添加课程资料
+	 * @return
+	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacherCourse/view/create")
-	public String addTeacherCourse(){
-		logger.info("###111111111111111111111111111111111");
-		return "admin.teacherCourse.view";
+	@RequestMapping(value="/admin/teacher/course/edit/createcourse")
+	public String modifyCreateTeacherCourse(){
+		return "admin.teacher.course.edit.createcourse";
+	}
+	/**
+	 * 修改基本信息
+	 * @return
+	 */
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/edit/basicmessage")
+	public String modifyBasicMessage(){
+		return "admin.teacher.course.edit.basicmessage";
+	}
+	/***
+	 * 修改详细信息
+	 * @return
+	 */
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/edit/detailmessage")
+	public String modifyDetailMessage(){
+		return "admin.teacher.course.edit.detailmessage";
+	}
+	/***
+	 * 修改封面
+	 * @return
+	 */
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/edit/createcover")
+	public String modifyCreateCover(){
+		return "admin.teacher.course.edit.createcover";
+	}
+	/**
+	 * 修改视频
+	 * @return
+	 */
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/edit/watchvideo")
+	public String modifyWatchVideo(){
+		return "admin.teacher.course.edit.watchvideo";
+	}
+	/**
+	 * 修改权限和价格
+	 * @return
+	 */
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/edit/powerprice")
+	public String modifyPowerPrice(){
+		return "admin.teacher.course.edit.powerprice";
+	}
+	/**
+	 * 取消课程
+	 * @return
+	 */
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/edit/deletemessage")
+	public String modifyDeleteMessage(){
+		return "admin.teacher.course.edit.deletemessage";
 	}
 	
 }

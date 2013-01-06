@@ -48,7 +48,7 @@ $(document).ready(function() {
 						<th align="center" width="20%">课程类别</th>
 						<th align="center">课程简述</th>
 						<th align="center" width="20%">发布时间</th>
-						<th align="center" width="8%">操作</th>
+						<th align="center" width="15%">操作</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -69,7 +69,8 @@ $(document).ready(function() {
 									<li><a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a></li>
 								</ul>
 							</div> -->
-							<a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a>
+							<a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a> | 
+							<a href='<c:url value="/admin/teacher/course/edit/createcourse/${page.id}"></c:url>'>修改</a>
 						</td></tr>
 					</c:forEach>
 				</tbody>
