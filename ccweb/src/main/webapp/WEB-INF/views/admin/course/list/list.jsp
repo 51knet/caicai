@@ -37,6 +37,7 @@ $(document).ready(function() {
 		<div style="text-align: right;">
 			<!-- 	<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
 							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
+			<span style="margin-right: 270px;"> <a href="#" style="margin-right: 20px;"> 查看未发布课程</a> <a href="#"> 查看未发布课程</a></span>
 			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/new"></c:url>' class="btn">添加新课程</a>
 			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/addcourse"><c:param name="active" value="first" /></c:url>' class="btn">添加新课程(Test)</a>				
 			<br>
@@ -46,9 +47,9 @@ $(document).ready(function() {
 						<th align="center">课程封面</th>
 						<th align="center" width="15%">课程标题</th>
 						<th align="center" width="20%">课程类别</th>
-						<th align="center">课程简述</th>
+						<th align="center">是否发布</th>
 						<th align="center" width="20%">发布时间</th>
-						<th align="center" width="8%">操作</th>
+						<th align="center" width="13%">操作</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -57,7 +58,7 @@ $(document).ready(function() {
 						<td align="left"><img src="/ccweb/${page.courseCover }" style="width: 80px; height: 40px;"/></td>
 						<td align="left"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></td>
 						<td align="left">${page.courseType}</td>
-						<td align="left"><div style="width:130px;" id="content">${page.courseDesc}</div></td>
+						<td align="left"><c:if test="${page.publish ==1 }">未发布</c:if><c:if test="${page.publish ==2 }">已发布</c:if></td>
 						<td align="left">${page.courseDate}</td>
 						<td align="center">
 						 	<!-- <div class="btn-group"> 
@@ -69,7 +70,7 @@ $(document).ready(function() {
 									<li><a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a></li>
 								</ul>
 							</div> -->
-							<a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a>
+							<a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a> | <a href="#">修改</a>
 						</td></tr>
 					</c:forEach>
 				</tbody>

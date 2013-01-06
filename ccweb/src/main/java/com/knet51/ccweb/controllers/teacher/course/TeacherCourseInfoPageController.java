@@ -163,6 +163,8 @@ public class TeacherCourseInfoPageController {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String date = format.format(new Date());
 			course.setCourseDate(date);
+			course.setStatus(1);
+			course.setPublish(1);
 			course.setTeacher(teacher);
 			course.setCourseType(courseInfoForm.getCourseType());
 			for(int i=0;i<files.size();i++){
