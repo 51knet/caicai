@@ -49,11 +49,7 @@ $(document).ready(function() {
 						<th align="center" width="20%">课程类别</th>
 						<th align="center">是否发布</th>
 						<th align="center" width="20%">发布时间</th>
-<<<<<<< HEAD
-						<th align="center" width="15%">操作</th>
-=======
 						<th align="center" width="13%">操作</th>
->>>>>>> 406d0c77797197530bac00ac3f8f04d0218ca25e
 					</tr>
 				</thead>
 				<tbody>
