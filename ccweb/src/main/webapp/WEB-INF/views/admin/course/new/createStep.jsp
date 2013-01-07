@@ -4,46 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
-function checkPicture(obj){
-	var imgflag = false;
-	var nameflag = true;
-	var descflag = true;
-	var fileValue = obj.coverFile.value;
-	var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length);
-	if(".gif"==temp || ".jpg"==temp || ".bmp"==temp){
-		imgflag=true;
-	}else{
-		alert("只支持gif、jpg、bmp格式的图片！！");
-		imgflag=false;
-	}
-	var nameValue = $.trim($("#names").val());
-	if(""==nameValue){
-		alert("课程名称不能为空！");
-		nameflag = false; 
-	}
-	var descValue = $.trim($("#descs").val());
-	if(""==descValue){
-		alert("课程描述不能为空！");
-		descflag = false; 
-	}
-	return imgflag && nameflag &&descflag;
-}
 
-function showCheckpwd(){
-	var pwd = $.trim($("#pwd").val());
-	"" != pwd ? $("#checkpwdform").css("display","block") :$("#checkpwdform").css("display","none")
-}
-function checkPwd(){
-	var flag = true;
-	var pwd = $.trim($("#pwd").val());
-	var checkpwd = $.trim($("#checkpwd").val());
-	if(pwd != checkpwd){
-		alert("两次输入的密码不一致，请重新输入！");
-		$("#checkpwd").val("");
-		flag = false;
-	}
-	return flag;
-}
 </script>
 <style>
 	.row-fluid.custom {
