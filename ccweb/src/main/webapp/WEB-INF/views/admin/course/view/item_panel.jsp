@@ -9,7 +9,7 @@
   </div>
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value="/admin/teacher/course/list"></c:url>'>全部课程</a></li>
-		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/modifycourse"></c:url>'>添加课程资料</a></li>
+		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/modifycourse"></c:url>'>课程资料</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/basicinfo"></c:url>'>基本信息</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/detailinfo"></c:url>'>详细信息</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/moidfycover"></c:url>'>添加封面</a></li>

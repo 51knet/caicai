@@ -15,7 +15,7 @@
 }
 </style>
 <div style="margin-top: 10px;">
-	<a href="#">删除课程</a>
+	<a href="#">取消课程</a>
 	<hr />
 	<form action="">
 		<div>

@@ -4,7 +4,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 	<div style="margin-top: 10px;">
-	<a href="#">添加课程资料</a>
+	<a href="#">课程资料</a>
 	<hr/>
 	<div>
 	<div style="background-color: #f7f7f7; text-align:left; padding:10px;margin-left:10px;"><div><span>第一部分:第一部分</span><span style="margin-left: 70%"><a>编辑</a></span></div></div>

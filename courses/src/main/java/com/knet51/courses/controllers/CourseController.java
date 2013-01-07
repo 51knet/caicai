@@ -31,7 +31,7 @@ import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
 import com.knet51.courses.beans.UserCourseBeans;
-import com.knet51.courses.jpa.services.CourseService;
+import com.knet51.courses.jpa.services.ResourceService;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 import com.knet51.courses.jpa.services.UserCourseService;
@@ -44,7 +44,7 @@ public class CourseController {
 	@Autowired
 	private TeacherCourseService courseService;
 	@Autowired
-	private CourseService courseResourceService;
+	private ResourceService courseResourceService;
 	@Autowired
 	private UserCourseService userCourseService;
 	@Autowired
@@ -180,10 +180,10 @@ public class CourseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/teachercourse/course/UserCourse/{id}")
+	@RequestMapping(value = "/teachercourse/course/usercourse/{id}")
 	public String listUserCourse(@PathVariable Long id, Model model,HttpSession session
 			,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "2") int pageSize)
+			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize)
 			throws Exception {	
 		List<UserCourseBeans> list=new ArrayList<UserCourseBeans>();
 		Page<UserCourse> onePage = userCourseService.findUserCourseByTeachercourseid(pageNumber,pageSize, id);
@@ -210,7 +210,7 @@ public class CourseController {
 		model.addAttribute("page", onePage);
 		model.addAttribute("sumPerson", sumPerson);
 		model.addAttribute("courseMark", courseMark);
-		return "teachercourse.course.UserCourse";
+		return "teachercourse.course.usercourse";
 
 	}
 	
@@ -225,7 +225,7 @@ public class CourseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/teachercourse/course/UserCourse/new", method = RequestMethod.POST)
+	@RequestMapping(value = "/teachercourse/course/usercourse/new", method = RequestMethod.POST)
 	public String contactInfo( @RequestParam("teachercourseid") Long id,@Valid UserCourseForm userCourseForm,BindingResult validResult,RedirectAttributes redirectAttr, HttpSession session) {
 		logger.info("#### contactInfo InfoController ####");
 		Long marks = userCourseForm.getMark();
@@ -252,7 +252,7 @@ public class CourseController {
 				String date = format.format(new Date());
 				comm.setCommentDate(date);
 				userCourseService.save(comm);
-				return "redirect:/teachercourse/course/UserCourse/"+id;
+				return "redirect:/teachercourse/course/usercourse/"+id;
 			}
 		}
 	}
@@ -280,7 +280,7 @@ public class CourseController {
 	 * @param result
 	 * @return
 	 */
-	@RequestMapping(value = "/teachercourse/course/UserCourse/UserCourseajax", method = RequestMethod.POST)
+	@RequestMapping(value = "/teachercourse/course/usercourse/usercourseajax", method = RequestMethod.POST)
 	public @ResponseBody
 	ValidationResponse UserCourseInfoFormAjaxJson(
 			@Valid UserCourseForm userCourseForm,BindingResult result) {

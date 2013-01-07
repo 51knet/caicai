@@ -6,7 +6,7 @@
 <script type="text/javascript" src="<c:url value="/resources/js/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
 function commentAjax(){
-	checkAjaxs("usercourse_info_form","usercourseAjax");
+	checkAjaxs("usercourse_info_form","usercourseajax");
 	return false;
 };
 </script>
@@ -35,7 +35,7 @@ function commentAjax(){
 				</div>
 				
 				<div class="control-group">
-						<button type="submit" onclick="usercourseAjax();" class="btn  btn-success">发表评论</button>
+						<button type="submit" onclick="commentAjax();" class="btn  btn-success">发表评论</button>
 				</div>
 			</form>
 		</div>
