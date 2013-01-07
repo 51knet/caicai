@@ -15,9 +15,9 @@ import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 public interface TeacherCourseRepository extends JpaRepository<TeacherCourse, Long>, JpaSpecificationExecutor<TeacherCourse>,TeacherCourseRepositoryCustom{
 	Page<TeacherCourse> findTeacherCourseByTeacher(Teacher teacher,Pageable pageable);
 	Page<TeacherCourse> findAll(Pageable pageable);
-	TeacherCourse findOneById(Long id);
 	//List<String> getCourseType();
 	List<TeacherCourse> findTeacherCourseByStatusAndPublish(Integer status,Integer publish);
 	List<TeacherCourse> findTeacherCourseByTeacherAndStatusAndPublish(Teacher teacher,Integer status,Integer publish);
 	Page<TeacherCourse> findTeacherCourseByTeacherAndPublish(Teacher teacher,Integer publish,Pageable pageable);
+	List<TeacherCourse> findTeacherCourseByTeacherAndPublish(Teacher teacher,Integer publish);
 }

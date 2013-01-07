@@ -14,10 +14,9 @@ public interface TeacherCourseService {
 	TeacherCourse findOneById(Long id);
 	TeacherCourse createTeacherCourse(TeacherCourse teacherCourse);
 	TeacherCourse updateTeacherCourse(TeacherCourse teacherCourse);
-	List<TeacherCourse> getAllTeacherCourseById(Long teacher_id);
-	void deleTeacherCourse(Long teacher_id);
+	List<TeacherCourse> getAllTeacherCourseByTeacheridAndPublish(Long teacher_id,Integer Publish);
+	void deleTeacherCourse(Long course_id);
 	Page<TeacherCourse> findAllCourseByTeacher(int pageNum, int pageSize, Teacher teacher);
-	
 	//List<CourseBeans> getAllCourseBeans();
 	List<String> getAllSchool();
 	List<Teacher> getAllCourseTeacher(String schoolName);

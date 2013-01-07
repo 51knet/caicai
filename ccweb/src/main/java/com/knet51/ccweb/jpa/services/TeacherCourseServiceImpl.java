@@ -15,42 +15,46 @@ import com.knet51.ccweb.beans.CourseBeans;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.repository.TeacherCourseRepository;
+import com.knet51.ccweb.jpa.repository.TeacherRepository;
 @Transactional
 @Service("teacherCourseService")
 public class TeacherCourseServiceImpl implements TeacherCourseService {
 	@Autowired
-	private TeacherCourseRepository teacherCourseRepository;
+	private TeacherCourseRepository courseRepository;
+	@Autowired
+	private TeacherRepository teacherRepository;
 
 	@Override
 	public TeacherCourse findOneById(Long id) {	 
-		return teacherCourseRepository.findOne(id);
+		return courseRepository.findOne(id);
 	}
 
 	@Override
 	public TeacherCourse createTeacherCourse(TeacherCourse teacherCourse) {
-		return teacherCourseRepository.save(teacherCourse);
+		return courseRepository.save(teacherCourse);
 	}
 
 	@Override
 	public TeacherCourse updateTeacherCourse(TeacherCourse teacherCourse) {
-		return teacherCourseRepository.updateTeacherCourseDetail(teacherCourse);
+		return courseRepository.updateTeacherCourseDetail(teacherCourse);
 	}
 
 	@Override
-	public List<TeacherCourse> getAllTeacherCourseById(Long teacher_id) {
-		return teacherCourseRepository.getAllCourseById(teacher_id);
+	public List<TeacherCourse> getAllTeacherCourseByTeacheridAndPublish(Long teacher_id,Integer publish) {
+		Teacher teacher = teacherRepository.findOne(teacher_id);
+		return courseRepository.findTeacherCourseByTeacherAndPublish(teacher, publish);
 	}
 
 	@Override
-	public void deleTeacherCourse(Long teacher_id) {
-		teacherCourseRepository.delete(teacher_id);
+	public void deleTeacherCourse(Long course_id) {
+		courseRepository.delete(course_id);
 	}
 
 	@Override
 	public Page<TeacherCourse> findAllCourseByTeacher(int pageNum, int pageSize,
 			Teacher teacher) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = teacherCourseRepository.findTeacherCourseByTeacher(teacher, dateDesc);
+		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByTeacher(teacher, dateDesc);
 		return onePage;
 	}
 
@@ -63,20 +67,23 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 
 	@Override
 	public List<String> getAllSchool() {
-		return teacherCourseRepository.getSchool();
+		return courseRepository.getSchool();
 	}
 
 	@Override
 	public List<Teacher> getAllCourseTeacher(String schoolName) {
-		return teacherCourseRepository.showCourseTeacher(schoolName);
+		return courseRepository.showCourseTeacher(schoolName);
 	}
 
 	@Override
 	public Page<TeacherCourse> findTeacherCourseByTeacherAndPublish(
 			int pageNum, int pageSize, Teacher teacher, Integer publish) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = teacherCourseRepository.findTeacherCourseByTeacherAndPublish(teacher, publish, dateDesc);
+		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByTeacherAndPublish(teacher, publish, dateDesc);
 		return onePage;
 	}
+
+
+	
 
 }
