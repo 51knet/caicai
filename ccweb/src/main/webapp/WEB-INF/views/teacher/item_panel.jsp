@@ -34,7 +34,6 @@
 								<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
 								<!-- <li><a href='<c:url value="/admin/teacher/friendsRelated/list"></c:url>' >好友互动</a></li> -->
 								<li><a href='<c:url value="/admin/teacher/message/list"></c:url>' >站内信</a></li>
-								<li><a href='<c:url value="/admin/teacher/course/edit/createcourse"></c:url>' >教师资源管理</a></li>
 								<!-- <li><a href='<c:url value="/admin/teacher/allCourse/list"></c:url>' >全部课程</a></li> -->
 							</ul>
 						</div>

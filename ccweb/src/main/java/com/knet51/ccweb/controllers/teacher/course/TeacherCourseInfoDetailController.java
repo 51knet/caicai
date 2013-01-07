@@ -212,7 +212,9 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/basicinfo")
-	public String modifyBasicMessage(){
+	public String modifyBasicMessage(HttpSession session,@PathVariable Long id,Model model){
+		TeacherCourse course=courseService.findOneById(id);
+		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.basicinfo";
 	}
 	/***
@@ -221,7 +223,9 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/detailinfo")
-	public String modifyDetailMessage(){
+	public String modifyDetailMessage(HttpSession session,@PathVariable Long id,Model model){
+		TeacherCourse course=courseService.findOneById(id);
+		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.detailinfo";
 	}
 	/***
@@ -230,7 +234,9 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/moidfycover")
-	public String modifyCreateCover(){
+	public String modifyCreateCover(HttpSession session,@PathVariable Long id,Model model){
+		TeacherCourse course=courseService.findOneById(id);
+		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.moidfycover";
 	}
 	/**
@@ -238,8 +244,10 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/watchvideo")
-	public String modifyWatchVideo(){
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/watchvideo")
+	public String modifyWatchVideo(HttpSession session,@PathVariable Long id,Model model){
+		TeacherCourse course=courseService.findOneById(id);
+		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.watchvideo";
 	}
 	/**
@@ -247,8 +255,10 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/powerprice")
-	public String modifyPowerPrice(){
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/powerprice")
+	public String modifyPowerPrice(HttpSession session,@PathVariable Long id,Model model){
+		TeacherCourse course=courseService.findOneById(id);
+		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.powerprice";
 	}
 	/**
@@ -256,8 +266,10 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/deletecourse")
-	public String modifyDeleteMessage(){
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/deletecourse")
+	public String modifyDeleteMessage(HttpSession session,@PathVariable Long id,Model model){
+		TeacherCourse course=courseService.findOneById(id);
+		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.deletecourse";
 	}
 	

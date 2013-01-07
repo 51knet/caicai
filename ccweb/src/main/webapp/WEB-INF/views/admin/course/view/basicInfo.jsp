@@ -16,11 +16,11 @@
 			<table style="margin-left: 8%;">
 				<tr>
 					<td><h5>课程名称:</h5></td>
-					<td class="row-fluid custom basic"><input type="text" value="请输入课程名称" style="width: 450px;" /></td>
+					<td class="row-fluid custom basic"><input type="text"  style="width: 450px;" value="${course.courseName }"/></td>
 				</tr>
 				<tr>
 					<td><h5>课程介绍:</h5></td>
-					<td class="row-fluid custom basic"><textarea rows="3" cols="8" style="width: 459px;margin-top: 20px;"></textarea></td>
+					<td class="row-fluid custom basic"><textarea rows="3" cols="8" style="width: 459px;margin-top: 20px;">${course.courseDesc}</textarea></td>
 				</tr>
 				<tr>
 					<td><h5>知识形式:</h5></td>
