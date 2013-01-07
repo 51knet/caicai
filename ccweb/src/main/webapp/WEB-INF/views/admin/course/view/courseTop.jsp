@@ -23,7 +23,7 @@
 		<h4><span>${course.courseName}</span></h4>
 		<h4><span>${course.courseType}</span></h4>
 		</div>
-		<div style="margin-left: 86%;float: left;margin-top: -85px;">
+		<div style="margin-left: 86%;float: left;margin-top: -105px;">
 		<span ><button class="btn btn-large btn-success" style="width:120px;">预览</button></span>
 		</div>
 		

@@ -6,6 +6,7 @@
 .row-fluid.custom.basic {
 	margin-left: 4%;
 	float: left;
+	margin-top: 20px;
 }
 </style>
 <div style="margin-top: 10px;">
@@ -16,13 +17,28 @@
 			<table style="margin-left: 8%;">
 				<tr>
 					<td><h5>课程名称:</h5></td>
-					<td class="row-fluid custom basic"><input type="text"  style="width: 450px;" value="${course.courseName }"/></td>
+					<td class="row-fluid custom basic"><input type="text" style="width: 450px;" value="${course.courseName }" /></td>
+				</tr>
+				<tr >
+					<td ><h5>课程类别：</h5></td>
+					<td class="row-fluid custom basic"><select name="courseType" style="width: 465px;">
+							<option selected value="计算机科学与技术">计算机科学与技术</option>
+							<option value="生物">生物</option>
+							<option value="数学">数学</option>
+							<option value="化学">化学</option>
+							<option value="语文">语文</option>
+							<option value="金融">金融</option>
+							<option value="英语">英语</option>
+							<option value="哲学">哲学</option>
+							<option value="其他">其他</option>
+					</select>
+					</td>
 				</tr>
 				<tr>
 					<td><h5>课程介绍:</h5></td>
-					<td class="row-fluid custom basic"><textarea rows="3" cols="8" style="width: 459px;margin-top: 20px;">${course.courseDesc}</textarea></td>
+					<td class="row-fluid custom basic"><textarea rows="5" cols="8" style="width: 459px;height: 100px;">${course.courseDesc}</textarea></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td><h5>知识形式:</h5></td>
 					<td class="row-fluid custom basic"><select style="width: 250px;margin-top: 20px;">
 							<option value="volvo">在线视频</option>
@@ -47,8 +63,10 @@
 							<option value="audi">其它</option>
 					</select>
 					</td>
+				</tr> -->
+				<tr>
+					<td style="text-align: left; margin-left: 80px; float: left; margin-top: 40px;" colspan="2"><button class="btn btn-large btn-success">保存</button></td>
 				</tr>
-				<tr><td style="text-align: left;margin-left: 80px;float: left;margin-top: 40px;" colspan="2" ><button class="btn btn-large btn-success">保存</button></td></tr>
 			</table>
 		</div>
 	</form>
