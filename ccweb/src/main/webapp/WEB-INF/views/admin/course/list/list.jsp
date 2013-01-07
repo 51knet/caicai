@@ -37,7 +37,10 @@ $(document).ready(function() {
 		<div style="text-align: right;">
 			<!-- 	<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
 							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
-			<span style="margin-right: 270px;"> <a href="#" style="margin-right: 20px;"> 查看未发布课程</a> <a href="#"> 查看已发布课程</a></span>
+			<span style="margin-right: 340px;">
+				 <a href='<c:url value="/admin/teacher/course/list/1"></c:url>' style="margin-right: 15px;"> 未发布课程</a> 
+				<a href='<c:url value="/admin/teacher/course/list/2"></c:url>'> 已发布课程</a>
+			</span>
 			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/new"></c:url>' class="btn">添加新课程</a>
 			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/addcourse"><c:param name="active" value="first" /><c:param name="cid" value="0" /></c:url>' class="btn">添加新课程(Test)</a>				
 			<br>

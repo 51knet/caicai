@@ -21,8 +21,8 @@ public interface TeacherCourseService {
 	List<Teacher> getAllCourseTeacher(String schoolName);
 	Map<Teacher,List<TeacherCourse>> tcmap();
 	List<TeacherCourseBeans> getAllTeacherCourseBeans();
-	List<TeacherCourse> findAllCourses();
-	List<TeacherCourse> getAllCourseById(Long teacher_id);
+	List<TeacherCourse> findCoursesByStatus(Integer status);
+	List<TeacherCourse> getAllCourseByTeacherId(Long teacher_id);
 	List<String> courseTypeList();
 	List<CourseBeans> getAllCourseBeans();
 	CourseBeans getCourseBeansById(Long course_id);

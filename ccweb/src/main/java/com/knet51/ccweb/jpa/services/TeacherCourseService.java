@@ -3,6 +3,7 @@ package com.knet51.ccweb.jpa.services;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.knet51.ccweb.beans.CourseBeans;
 import com.knet51.ccweb.jpa.entities.Teacher;
@@ -20,5 +21,6 @@ public interface TeacherCourseService {
 	//List<CourseBeans> getAllCourseBeans();
 	List<String> getAllSchool();
 	List<Teacher> getAllCourseTeacher(String schoolName);
+	Page<TeacherCourse> findTeacherCourseByTeacherAndPublish(int pageNum, int pageSize, Teacher teacher,Integer publish);
 	
 }
