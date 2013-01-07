@@ -196,7 +196,7 @@ public class TeacherCourseInfoDetailController {
 			return "redirect:/admin/teacher/course/view/"+course_id;
 	}
 	/**
-	 * 修改添加课程资料
+	 * 修改课程
 	 * @return
 	 */
 	@Transactional

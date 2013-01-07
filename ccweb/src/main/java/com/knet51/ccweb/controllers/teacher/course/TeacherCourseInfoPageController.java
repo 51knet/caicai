@@ -111,7 +111,7 @@ public class TeacherCourseInfoPageController {
 	
 	@RequestMapping(value="/teacher/{teacher_id}/course/list")
 	public String getAllTeacherCourse(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		User user = userService.findOne(teacher_id);
 		Teacher teacher = teacherService.findOne(teacher_id);
 		UserInfo userInfo = new UserInfo(user);
@@ -119,7 +119,7 @@ public class TeacherCourseInfoPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", teacher_id);
-		Page<TeacherCourse> onePage = teacherCourseService.findAllCourseByTeacher(pageNumber, pageSize, teacher);
+		Page<TeacherCourse> onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, 2);
 		model.addAttribute("page", onePage);
 		return "teacher.course.list";
 	}
@@ -184,7 +184,6 @@ public class TeacherCourseInfoPageController {
 			for(int i=0;i<files.size();i++){
 				if(!files.get(i).isEmpty()){
 					logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
-					
 					String fileName = files.get(i).getOriginalFilename();
 					String fileType = fileName.substring(fileName.lastIndexOf("."));
 					String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+courseName;
@@ -225,15 +224,12 @@ public class TeacherCourseInfoPageController {
 			if(!files.get(i).isEmpty()){
 				CourseResource resource = new CourseResource();
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
-				
 				String fileName = files.get(i).getOriginalFilename();
 				String name = fileName.substring(0, fileName.indexOf("."));
 				resource.setFileName(name);
-				
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String date = format.format(new Date());
 				resource.setDate(date);
-				
 				TeacherCourse teacherCourse = teacherCourseService.findOneById(course_id);
 				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
 				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+resourceOrder;
@@ -248,7 +244,7 @@ public class TeacherCourseInfoPageController {
 				courseResourceService.createCourseResource(resource);
 			}
 		}
-		return "redirect:/admin/teacher/course/list";
+		return "redirect:/admin/teacher/course/edit/"+course_id+"/modifycourse";
 	}
 	
 	

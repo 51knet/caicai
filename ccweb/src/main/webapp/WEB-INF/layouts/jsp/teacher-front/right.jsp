@@ -50,7 +50,7 @@
 		</c:choose>
 				<hr>
 		<div style="text-align: right;">
-		<c:if test="${annoCount>3}"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
+		<c:if test="${annoCount>3}"><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 	</div>
 	<hr>
 	<div style="text-align: right;">
@@ -122,7 +122,7 @@
 		</table>
 		<hr>
 		<div style="text-align: right;">
-		<c:if test="${courseCount>2}"><a href="<c:url value="/teacher/${teacherInfo.id}/course/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
+		<c:if test="${courseCount>5}"><a href="<c:url value="/teacher/${teacherInfo.id}/course/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 		</div>
 </div>
 
