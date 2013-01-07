@@ -2,9 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script type="text/javascript" src="<c:url value="/resources/jquery/courseType.js" />"></script>
 <style>
 .row-fluid.custom.basic {
-	margin-left: 4%;
+	margin-left: 10px;
 	float: left;
 	margin-top: 20px;
 }
@@ -16,12 +17,13 @@
 		<div>
 			<table style="margin-left: 8%;">
 				<tr>
-					<td><h5>课程名称:</h5></td>
+					<td>课程名称：</td>
 					<td class="row-fluid custom basic"><input type="text" style="width: 450px;" value="${course.courseName }" /></td>
 				</tr>
 				<tr >
-					<td ><h5>课程类别：</h5></td>
-					<td class="row-fluid custom basic"><select name="courseType" style="width: 465px;">
+					<td >课程类别：</td>
+					<td class="row-fluid custom basic">
+					<select name="courseType" style="width: 465px;" id="courseType" title="${course.courseType}">
 							<option selected value="计算机科学与技术">计算机科学与技术</option>
 							<option value="生物">生物</option>
 							<option value="数学">数学</option>
@@ -35,7 +37,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td><h5>课程介绍:</h5></td>
+					<td style="padding-top: -40px;">课程介绍：</td>
 					<td class="row-fluid custom basic"><textarea rows="5" cols="8" style="width: 459px;height: 100px;">${course.courseDesc}</textarea></td>
 				</tr>
 				<!-- <tr>

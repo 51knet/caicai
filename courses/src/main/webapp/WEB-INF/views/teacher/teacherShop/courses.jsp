@@ -64,7 +64,7 @@
 			<select id="type" onchange="selectType(${teacher.id })">
 				<option>全部课程</option>
 				<c:forEach items="${courseTypeList}" var="course">
-					<<c:choose>
+					<c:choose>
 						<c:when test="${courseType == course}">
 							<option selected>${course}</option>
 						</c:when>
