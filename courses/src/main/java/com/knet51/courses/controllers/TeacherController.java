@@ -39,11 +39,11 @@ public class TeacherController {
 		model.addAttribute("page", teacherPage);
 		return "teacher.list";
 	}
-	@RequestMapping(value="/teacher/{id}")
-	public String showTeacherInfoById(@PathVariable Long id,Model model){
-		Teacher teacher=teacherService.findOne(id);
-		List<String> courseTypeList = courseService.getCourseTypeByTeacherId(id);
-		List<TeacherCourse> teacherCourseList=courseService.getAllCourseById(id);
+	@RequestMapping(value="/teacher/{teacher_id}")
+	public String showTeacherInfoById(@PathVariable Long teacher_id,Model model){
+		Teacher teacher=teacherService.findOne(teacher_id);
+		List<String> courseTypeList = courseService.getCourseTypeByTeacherId(teacher_id);
+		List<TeacherCourse> teacherCourseList=courseService.getAllCourseByTeacherId(teacher_id);
 		model.addAttribute("teacherCourseList", teacherCourseList);
 		model.addAttribute("teacher", teacher);
 		model.addAttribute("courseCount", teacherCourseList.size());
@@ -54,13 +54,13 @@ public class TeacherController {
 	
 	
 	@Transactional
-	@RequestMapping(value = "/teacher/{id}/course/type")
+	@RequestMapping(value = "/teacher/{teacher_id}/course/type")
 	public String showCourseByType(@RequestParam("detail") String courseType,
-			Model model,@PathVariable Long id) throws Exception {
+			Model model,@PathVariable Long teacher_id) throws Exception {
 		courseType = new String(courseType.getBytes("iso-8859-1"), "utf-8");
-		Teacher teacher=teacherService.findOne(id);
-		List<String> courseTypeList = courseService.getCourseTypeByTeacherId(id);
-		List<TeacherCourse> courseList=courseService.getAllCourseById(id);
+		Teacher teacher=teacherService.findOne(teacher_id);
+		List<String> courseTypeList = courseService.getCourseTypeByTeacherId(teacher_id);
+		List<TeacherCourse> courseList=courseService.getAllCourseByTeacherId(teacher_id);
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
 		if (courseType.trim() != null && !courseType.trim().equals("全部课程")) {
 			for (TeacherCourse c : courseList) {

@@ -70,7 +70,7 @@ public class CourseController {
 	public String showCourseByType(@RequestParam("detail") String courseType,
 			Model model) throws Exception {
 		courseType = new String(courseType.getBytes("iso-8859-1"), "utf-8");
-		List<TeacherCourse> courseList = courseService.findAllCourses();
+		List<TeacherCourse> courseList = courseService.findCoursesByStatus(2);
 		List<String> courseTypeList = courseService.courseTypeList();
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
 		if (courseType.trim() != null && !courseType.trim().equals("全部课程")

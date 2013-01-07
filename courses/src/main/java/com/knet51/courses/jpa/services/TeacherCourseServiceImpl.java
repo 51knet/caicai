@@ -103,12 +103,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		Page<TeacherCourse> onePage = courseRepository.findAll(dateDesc);
 		return onePage;
 	}
-		public List<TeacherCourse> findAllCourses() {
-		return courseRepository.findAll();
-	}
-
-		
-
+	
 	@Override
 	public List<String> courseTypeList() {
 		return courseRepository.getCourseType();
@@ -118,10 +113,11 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	 * 查询通过教师ID教师课程
 	 */
 	@Override
-	public List<TeacherCourse> getAllCourseById(Long teacher_id) {
+	public List<TeacherCourse> getAllCourseByTeacherId(Long teacher_id) {
 		List<TeacherCourse> list=new ArrayList<TeacherCourse>();
+		Teacher teacher = teacherRepository.findOne(teacher_id);
 		try {
-			list=courseRepository.getAllCourseById(teacher_id);	
+			list=courseRepository.findTeacherCourseByTeacherAndStatus(teacher, 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -171,6 +167,12 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 			course = courseRepository.findOne(commentList.get(i).getTeachercourseid());
 			courseList.add(course);
 		}
+		return courseList;
+	}
+
+	@Override
+	public List<TeacherCourse> findCoursesByStatus(Integer status) {
+		List<TeacherCourse> courseList = courseRepository.findTeacherCourseByStatus(status);
 		return courseList;
 	}
 
