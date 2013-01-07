@@ -117,7 +117,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		List<TeacherCourse> list=new ArrayList<TeacherCourse>();
 		Teacher teacher = teacherRepository.findOne(teacher_id);
 		try {
-			list=courseRepository.findTeacherCourseByTeacherAndStatus(teacher, 2);
+			list=courseRepository.findTeacherCourseByTeacherAndStatusAndPublish(teacher, 2,2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -128,7 +128,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	@Override
 	public List<CourseBeans> getAllCourseBeans() {
 		List<CourseBeans> courseBeansList = new ArrayList<CourseBeans>();
-		List<TeacherCourse> teacherCourseList = courseRepository.findAll();
+		List<TeacherCourse> teacherCourseList = courseRepository.findTeacherCourseByStatusAndPublish(2, 2);
 		for(int i=0;i<teacherCourseList.size();i++){
 			TeacherCourse teacherCourse = courseRepository.findOne(teacherCourseList.get(i).getId());
 			Double avgMark = commentRepository.getMark(teacherCourseList.get(i).getId());
@@ -171,8 +171,8 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	}
 
 	@Override
-	public List<TeacherCourse> findCoursesByStatus(Integer status) {
-		List<TeacherCourse> courseList = courseRepository.findTeacherCourseByStatus(status);
+	public List<TeacherCourse> findAllCourses() {
+		List<TeacherCourse> courseList = courseRepository.findTeacherCourseByStatusAndPublish(2,2);
 		return courseList;
 	}
 
