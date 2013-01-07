@@ -12,7 +12,7 @@
 		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/modifycourse"></c:url>'>添加课程资料</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/basicinfo"></c:url>'>基本信息</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/detailinfo"></c:url>'>详细信息</a></li>
-		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/modifycover"></c:url>'>添加封面</a></li>
+		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/moidfycover"></c:url>'>添加封面</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/watchvideo"></c:url>'>试看视频</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/powerprice"></c:url>'>权限&价格</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/deletecourse"></c:url>'>取消课程</a></li>

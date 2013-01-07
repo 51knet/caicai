@@ -270,15 +270,15 @@
 		<put-attribute name="title" value="基本信息"></put-attribute>
 		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/basicinfo.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/basicInfo.jsp" />
 	</definition>
 	<definition name="admin.teacher.course.edit.detailinfo" extends="admin-layout">
 		<put-attribute name="title" value="详细信息"></put-attribute>
 		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/detailinfo.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/detailInfo.jsp" />
 	</definition>
-	<definition name="admin.teacher.course.edit.modifycover" extends="admin-layout">
+	<definition name="admin.teacher.course.edit.moidfycover" extends="admin-layout">
 		<put-attribute name="title" value="添加封面"></put-attribute>
 		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
@@ -296,7 +296,7 @@
 		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/power_price.jsp" />
 	</definition>
-	<definition name="admin.teacher.course.edit.deleteinfo" extends="admin-layout">
+	<definition name="admin.teacher.course.edit.deletecourse" extends="admin-layout">
 		<put-attribute name="title" value="取消课程"></put-attribute>
 		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
