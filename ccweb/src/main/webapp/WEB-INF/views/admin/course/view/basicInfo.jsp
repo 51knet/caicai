@@ -9,7 +9,7 @@
 }
 </style>
 <div style="margin-top: 10px;">
-	<a href="#">课程基本信息</a>
+	<a href="#">基本信息</a>
 	<hr />
 	<form action="">
 		<div>

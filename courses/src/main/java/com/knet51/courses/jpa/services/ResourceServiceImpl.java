@@ -12,7 +12,7 @@ import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.repository.TeacherCourseResourceRepository;
 @Transactional
 @Service("courseService")
-public class CourseServiceImpl implements CourseService {
+public class ResourceServiceImpl implements ResourceService {
 
 	@Autowired
 	private TeacherCourseResourceRepository teacherCourseResourceRepository;

@@ -31,7 +31,7 @@ import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
 import com.knet51.courses.beans.UserCourseBeans;
-import com.knet51.courses.jpa.services.CourseService;
+import com.knet51.courses.jpa.services.ResourceService;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 import com.knet51.courses.jpa.services.UserCourseService;
@@ -44,7 +44,7 @@ public class CourseController {
 	@Autowired
 	private TeacherCourseService courseService;
 	@Autowired
-	private CourseService courseResourceService;
+	private ResourceService courseResourceService;
 	@Autowired
 	private UserCourseService userCourseService;
 	@Autowired
