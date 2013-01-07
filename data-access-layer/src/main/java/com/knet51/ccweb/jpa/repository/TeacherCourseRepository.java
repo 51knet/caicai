@@ -18,5 +18,5 @@ public interface TeacherCourseRepository extends JpaRepository<TeacherCourse, Lo
 	TeacherCourse findOneById(Long id);
 	//List<String> getCourseType();
 	List<TeacherCourse> findTeacherCourseByTeacherAndStatus(Teacher teacher,Integer status);
-	List<TeacherCourse> findTeacherCourseByTeacherAndPublish(Teacher teacher,Integer publish);
+	Page<TeacherCourse> findTeacherCourseByTeacherAndPublish(Teacher teacher,Integer publish,Pageable pageable);
 }
