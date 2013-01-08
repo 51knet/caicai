@@ -77,6 +77,7 @@ public class FileUtil {
 		Image  image = simage.getScaledInstance(x1, y1, BufferedImage.SCALE_SMOOTH);
 		g.drawImage(image, (WIDTH-x1)/2, (HEIGHT-y1)/2, null);
 		ImageIO.write(newimage, format, destImage);
+		sourceImage.delete();
 	}
 	
 	public static void downLoad(HttpServletRequest request,HttpServletResponse response,String savePath,String fileName) throws Exception{
