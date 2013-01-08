@@ -128,6 +128,13 @@
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/edit.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.teacher.course.preview" extends="homepage-layout">
+		<put-attribute name="title" value="课程预览" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/course/view/preview.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
 
 	<definition name="admin.teacher.course.resource.new" extends="admin-layout">
 		<put-attribute name="title" value="课程" />
