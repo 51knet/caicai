@@ -214,7 +214,7 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/basicinfo")
-	public String BasicMessage(HttpSession session,@PathVariable Long id,Model model){
+	public String basicMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.basicinfo";
@@ -250,7 +250,7 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/detailinfo")
-	public String DetailMessage(HttpSession session,@PathVariable Long id,Model model){
+	public String detailMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.detailinfo";
@@ -293,13 +293,28 @@ public class TeacherCourseInfoDetailController {
 		return "admin.teacher.course.edit.watchvideo";
 	}
 	/**
-	 * 修改权限和价格
+	 * 权限和价格
 	 * @return
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/powerprice")
-	public String modifyPowerPrice(HttpSession session,@PathVariable Long id,Model model){
+	public String powerPrice(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
+		model.addAttribute("course", course);
+		return "admin.teacher.course.edit.powerprice";
+	}
+	/**
+	 * 修改权限和价格
+	 * @return
+	 */
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/powerpricemodify")
+	public String modifyPowerPrice(HttpSession session,@PathVariable Long id,Model model,HttpServletRequest request){
+		Integer status=Integer.parseInt(request.getParameter("status"));
+		String pwd=request.getParameter("pwd");
+		TeacherCourse course=courseService.findOneById(id);
+		course.setStatus(status);
+		course.setPwd(pwd);
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.powerprice";
 	}
@@ -318,7 +333,7 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/deletecoursemodify")
-	public String DeleteMessage(HttpSession session,@PathVariable Long id,Model model){
+	public String deleteMessage(HttpSession session,@PathVariable Long id,Model model){
 			courseService.deleTeacherCourse(id);
 		return "redirect:/admin/teacher/course/list";
 	}
