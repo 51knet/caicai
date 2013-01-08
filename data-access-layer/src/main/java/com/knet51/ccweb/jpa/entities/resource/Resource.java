@@ -1,6 +1,8 @@
 package com.knet51.ccweb.jpa.entities.resource;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
@@ -12,6 +14,8 @@ public class Resource  extends AbstractEntity{
 	private String name;
 	private String saveName;
 	private String savePath;
+	@Lob
+	@Column(length=10000)
 	private String description;
 	private String date;
 	private Integer status;

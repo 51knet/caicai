@@ -1,6 +1,8 @@
 package com.knet51.ccweb.jpa.entities.teacher;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
 
@@ -10,6 +12,8 @@ public class CourseResource extends AbstractEntity {
 	private String fileName;
 	private String saveName;
 	private String savePath;
+	@Lob
+	@Column(length=10000)
 	private String resourceDesc;
 	private String resourceOrder; //lesson 0ne,lesson two and so on....
 	private String date;

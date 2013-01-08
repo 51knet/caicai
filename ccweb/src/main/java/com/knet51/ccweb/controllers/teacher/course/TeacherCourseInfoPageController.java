@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -158,6 +159,7 @@ public class TeacherCourseInfoPageController {
 		return "admin.teacher.course.add";
 	}
 	
+	@Transactional
 	@RequestMapping(value="/admin/teacher/course/new/firststep",method=RequestMethod.POST)
 	public String TeacherCourseAddInfo(@Valid TeacherCourseInfoForm courseInfoForm,
 			BindingResult validResult, HttpSession session,MultipartHttpServletRequest request,Model model) throws Exception{
@@ -203,6 +205,7 @@ public class TeacherCourseInfoPageController {
 	
 	}
 	
+	@Transactional
 	@RequestMapping(value="/admin/teacher/course/new/secondstep",method=RequestMethod.POST)
 	public String addCourseSecond(@RequestParam("cid") Long course_id,
 			@RequestParam("pwd") String pwd, @RequestParam("status") Integer status, Model model){
@@ -213,6 +216,7 @@ public class TeacherCourseInfoPageController {
 		return "redirect:/admin/teacher/course/addcourse?active=third&cid="+course_id;
 	}
 	
+	@Transactional
 	@RequestMapping(value="/admin/teacher/course/new/thirdstep",method=RequestMethod.POST)
 	public String addCourseThird(HttpSession session,Model model,
 			MultipartHttpServletRequest request,@RequestParam("cid") Long course_id) throws  Exception{
@@ -247,13 +251,20 @@ public class TeacherCourseInfoPageController {
 		return "redirect:/admin/teacher/course/edit/"+course_id+"/modifycourse";
 	}
 	
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/publish")
+	public String publishCourse(@PathVariable Long course_id){
+		TeacherCourse course= teacherCourseService.findOneById(course_id);
+		course.setPublish(2);
+		teacherCourseService.updateTeacherCourse(course);
+		return "redirect:/admin/teacher/course/list";
+	}
 	
-	
-	
-	
-	
-	
-	
+	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/preview")
+	public String previewCourse(@PathVariable Long course_id){
+		return "";
+	}
+
 	
 	/*	
 	@RequestMapping(value="/admin/teacher/allCourse/list")

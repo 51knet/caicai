@@ -1,6 +1,8 @@
 package com.knet51.ccweb.jpa.entities.teacher;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
@@ -8,7 +10,8 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 
 @Entity
 public class TeacherThesis extends AbstractEntity {
-	
+	@Lob
+	@Column(length=10000)
 	private String content;
 	private String date;
 	

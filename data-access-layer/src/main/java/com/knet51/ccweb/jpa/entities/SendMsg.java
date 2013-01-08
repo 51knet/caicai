@@ -17,7 +17,6 @@ public class SendMsg extends AbstractEntity {
 	private String title;
 	
 	@Lob
-	@NotEmpty
 	@Column(length=10000)
 	private String content;
 	private String date;

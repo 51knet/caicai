@@ -136,6 +136,7 @@ public class TeacherCourseInfoDetailController {
 	public String TeacherCourseDele( HttpSession session,@PathVariable Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 			courseService.deleTeacherCourse(course_id);
+			//TeacherCourse course = courseService.findOneById(course_id);
 			return "redirect:/admin/teacher/course/list";
 	}
 	

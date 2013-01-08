@@ -2,6 +2,7 @@ package com.knet51.ccweb.jpa.entities.teacher;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -13,6 +14,8 @@ import com.knet51.ccweb.jpa.entities.User;
 public class TeacherCourse extends AbstractEntity {
 	
 	private String courseName;
+	@Lob
+	@Column(length=10000)
 	private String courseDesc;
 	private String courseDate;
 	private String courseCover;
