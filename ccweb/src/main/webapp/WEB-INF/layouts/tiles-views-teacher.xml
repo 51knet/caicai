@@ -264,7 +264,7 @@
 		<put-attribute name="title" value="添加课程资料"></put-attribute>
 		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
 		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/modifyTeacherCourse.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/modifyCourse.jsp" />
 	</definition>
 	<definition name="admin.teacher.course.edit.basicinfo" extends="admin-layout">
 		<put-attribute name="title" value="基本信息"></put-attribute>

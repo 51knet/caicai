@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.teacher.TeacherPersonalInfoForm;
 import com.knet51.ccweb.controllers.teacher.TeacherWorkExpInfoForm;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
@@ -201,30 +202,70 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/modifycourse")
-	public String modifyCreateTeacherCourse(HttpSession session,@PathVariable Long id,Model model){
+	public String modifyCreateTeacherCourse(HttpSession session,@PathVariable Long id,Model model,HttpServletRequest request){
 		TeacherCourse course=courseService.findOneById(id);
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.modifycourse";
+	}
+	/**
+	 * 基本信息
+	 * @return
+	 */
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/basicinfo")
+	public String BasicMessage(HttpSession session,@PathVariable Long id,Model model){
+		TeacherCourse course=courseService.findOneById(id);
+		model.addAttribute("course", course);
+		return "admin.teacher.course.edit.basicinfo";
 	}
 	/**
 	 * 修改基本信息
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/basicinfo")
-	public String modifyBasicMessage(HttpSession session,@PathVariable Long id,Model model){
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/basicinfomodify")
+	public String modifyBasicMessage(HttpSession session,@PathVariable Long id,Model model,HttpServletRequest request,@Valid TeacherCourseInfoForm teacherCourseInfoForm,BindingResult validResult){
+		if (validResult.hasErrors()) {
+			logger.info("detailInfoForm Validation Failed " + validResult);
+			return "redirect:/admin/teacher/course/edit/{id}/basicinfo";
+		}else{
+		TeacherCourse course=courseService.findOneById(id);
+		String courseName=teacherCourseInfoForm.getCourseName();
+		String courseType=teacherCourseInfoForm.getCourseType();
+		String courseDesc=teacherCourseInfoForm.getCourseDesc();
+		if(courseName!=null||courseType!=null||courseDesc!=null){
+			course.setCourseName(courseName);
+			course.setCourseType(courseType);
+			course.setCourseDesc(courseDesc); 
+			courseService.updateTeacherCourse(course);
+		}
+		model.addAttribute("course", course);
+	}
+		return "redirect:/admin/teacher/course/edit/{id}/basicinfo";
+	}
+	/***
+	 * 详细信息
+	 * @return
+	 */
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/detailinfo")
+	public String DetailMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
 		model.addAttribute("course", course);
-		return "admin.teacher.course.edit.basicinfo";
+		return "admin.teacher.course.edit.detailinfo";
 	}
 	/***
 	 * 修改详细信息
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/detailinfo")
-	public String modifyDetailMessage(HttpSession session,@PathVariable Long id,Model model){
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/detailinfomodify")
+	public String modifyDetailMessage(HttpSession session,@PathVariable Long id,Model model,HttpServletRequest request){
+		String character=request.getParameter("courseCharacter");
+		String targetPerson=request.getParameter("targetPerson");
 		TeacherCourse course=courseService.findOneById(id);
+		course.setCourseCharacter(character);
+		course.setTargetPerson(targetPerson);
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.detailinfo";
 	}
@@ -268,9 +309,17 @@ public class TeacherCourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/deletecourse")
 	public String modifyDeleteMessage(HttpSession session,@PathVariable Long id,Model model){
-		TeacherCourse course=courseService.findOneById(id);
-		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.deletecourse";
+	}
+	/**
+	 * 删除课程
+	 * @return
+	 */
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/deletecoursemodify")
+	public String DeleteMessage(HttpSession session,@PathVariable Long id,Model model){
+			courseService.deleTeacherCourse(id);
+		return "redirect:/admin/teacher/course/list";
 	}
 	
 }
