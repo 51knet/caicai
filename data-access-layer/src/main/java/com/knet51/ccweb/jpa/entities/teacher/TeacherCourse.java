@@ -20,6 +20,12 @@ public class TeacherCourse extends AbstractEntity {
 	private String courseDate;
 	private String courseCover;
 	private String courseType; 
+	@Lob
+	@Column(length=10000)
+	private String courseCharacter;
+	@Lob
+	@Column(length=10000)
+	private String targetPerson;
 	@Column(columnDefinition="int default 1")
 	private Integer status;  // 1:just show the course in ccweb; 2: both.
 	@Column(columnDefinition="int default 1")
@@ -90,6 +96,19 @@ public class TeacherCourse extends AbstractEntity {
 	}
 	public TeacherCourse() {
 		super();
+	}
+	
+	public String getCourseCharacter() {
+		return courseCharacter;
+	}
+	public void setCourseCharacter(String courseCharacter) {
+		this.courseCharacter = courseCharacter;
+	}
+	public String getTargetPerson() {
+		return targetPerson;
+	}
+	public void setTargetPerson(String targetPerson) {
+		this.targetPerson = targetPerson;
 	}
 	
 	

@@ -17,7 +17,7 @@
 <div style="margin-top: 10px;">
 	<a href="#">取消课程</a>
 	<hr />
-	<form action="">
+	<form action="deletecoursemodify">
 		<div>
 				<label>如果你删除了本课程，本课程将不会恢复。请确认后再删除。</label> 
 			<span class="row-fluid custom price power">

@@ -2,7 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<script type="text/javascript" src="<c:url value="/resources/jquery/courseType.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+var value=$("#courseType").attr("title");
+$("#courseType option[value='"+value+"']").attr("selected","selected");
+	return false;
+});
+</script>
 <style>
 .row-fluid.custom.basic {
 	margin-left: 10px;
@@ -13,17 +21,17 @@
 <div style="margin-top: 10px;">
 	<a href="#">基本信息</a>
 	<hr />
-	<form action="">
+	<form action="basicinfomodify" method="post" id="basic_info_form">
 		<div>
-			<table style="margin-left: 8%;">
-				<tr>
-					<td>课程名称：</td>
-					<td class="row-fluid custom basic"><input type="text" style="width: 450px;" value="${course.courseName }" /></td>
-				</tr>
-				<tr >
-					<td >课程类别：</td>
-					<td class="row-fluid custom basic">
-					<select name="courseType" style="width: 465px;" id="courseType" title="${course.courseType}">
+				<div><input type="hidden" value="${course.id}" name="id"></div>
+			<div style="margin-left: 20px;">
+				<div id="courseName" class="modal-body">
+					课程名称：<input type="text"  style="width: 450px;" name="courseName" value="${course.courseName }" />
+					<span class="help-inline"><form:errors path="name"></form:errors></span>
+				</div>
+				<div id="courseType" class="modal-body">
+					课程类别：
+					<select name="courseType" style="width: 465px;"  title="${course.courseType}">
 							<option selected value="计算机科学与技术">计算机科学与技术</option>
 							<option value="生物">生物</option>
 							<option value="数学">数学</option>
@@ -34,12 +42,12 @@
 							<option value="哲学">哲学</option>
 							<option value="其他">其他</option>
 					</select>
-					</td>
-				</tr>
-				<tr>
-					<td style="padding-top: -40px;">课程介绍：</td>
-					<td class="row-fluid custom basic"><textarea rows="5" cols="8" style="width: 459px;height: 100px;">${course.courseDesc}</textarea></td>
-				</tr>
+					<span class="help-inline"></span>
+				</div>
+				<div class="modal-body" id="courseDesc">
+					课程介绍：<textarea rows="5" name="courseDesc" cols="8" style="width: 459px;height: 100px;">${course.courseDesc}</textarea>
+					<span class="help-inline"></span>
+				</div>
 				<!-- <tr>
 					<td><h5>知识形式:</h5></td>
 					<td class="row-fluid custom basic"><select style="width: 250px;margin-top: 20px;">
@@ -66,10 +74,10 @@
 					</select>
 					</td>
 				</tr> -->
-				<tr>
-					<td style="text-align: left; margin-left: 80px; float: left; margin-top: 40px;" colspan="2"><button class="btn btn-large btn-success">保存</button></td>
-				</tr>
-			</table>
+				<div style="text-align: left; margin-left: 80px; float: left; margin-top: 20px;">
+					<button type="submit" class="btn btn-large btn-success">保存</button></td>
+				</div>
+			</div>
 		</div>
 	</form>
 </div>
