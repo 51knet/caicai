@@ -32,7 +32,7 @@
 						<tiles:insertAttribute name="right" />
 					</div>
 					<div class="right-panel"  style="width: 810px;">
-						<tiles:insertAttribute name="right2" />
+						<tiles:insertAttribute name="right_bottom" />
 					</div>
 				</div>
 				<!--/span-->

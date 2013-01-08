@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript">
+	function showPreview(cid){
+		window.location.href = '<c:url value="/admin/teacher/course/edit/'+ cid + '/preview"></c:url>';
+	}
+	
+	function showPublish(cid){
+		window.location.href = '<c:url value="/admin/teacher/course/edit/'+ cid + '/publish"></c:url>';
+	}
+</script>
 <style>
 .row-fluid.custom.teacherCourse {
 	text-align: left;
@@ -24,9 +33,9 @@
 		<h4><span>${course.courseType}</span></h4>
 		</div>
 		<div >
-		<span style="margin-left: 86%;float: left;margin-top: -115px;"><button class="btn btn-large btn-success" style="width:120px;">预览</button></span>
+		<span style="margin-left: 86%;float: left;margin-top: -115px;"><button class="btn btn-large btn-success" style="width:120px;" onclick="showPreview(${course.id})">预览</button></span>
 		<br/>
-		<span style="margin-left: 86%;float: left;margin-top: -70px;"><button class="btn btn-large btn-success" style="width:120px;">发布</button></span>
+		<span style="margin-left: 86%;float: left;margin-top: -70px;"><button class="btn btn-large btn-success" style="width:120px;"  onclick="showPublish(${course.id})">发布</button></span>
 		</div>
 	</div>
 </div>

@@ -38,25 +38,11 @@
 			if (opt[i].selected) {
 				var typeName = opt[i].innerHTML;
 				//alert(typeName);
-				window.location.href = '<c:url value="/course/list/type?detail='
-						+ typeName + '"></c:url>';
+				window.location.href = '<c:url value="/course/list/type?detail='+ typeName + '"></c:url>';
 			}
 		}
 	}
 </script>
-<!-- 
-<div class="navbar">
-	<div class="navbar-inner">
-		<div class="container" style="text-align: center; margin-left: 80px; margin-right: 80px; padding: 10px 10px;">
-			
-			<form class="navbar-form">
-				<input type="text" class="span6" placeholder="搜索教师、课程、学校">
-				<button type="submit" class="btn btn-primary">搜索</button>
-			</form>
-		</div>
-	</div>
-</div>
- -->
 <div class="container course" style="margin-bottom: 10px; margin-top: 10px;">
 	<div class="container course row">
 	<div class="container course detail" style="background-color: #f7f7f7; height: 40px;">

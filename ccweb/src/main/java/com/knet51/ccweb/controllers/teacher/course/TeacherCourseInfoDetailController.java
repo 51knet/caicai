@@ -48,6 +48,7 @@ public class TeacherCourseInfoDetailController {
 	
 	@Autowired
 	private TeacherCourseService courseService;
+	
 	@Autowired
 	private CourseResourceService courseResourceService; 
 	
@@ -79,19 +80,18 @@ public class TeacherCourseInfoDetailController {
 			for(int i=0;i<files.size();i++){
 				if(!files.get(i).isEmpty()){
 					logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
-					
 					String fileName = files.get(i).getOriginalFilename();
 					String fileType = fileName.substring(fileName.lastIndexOf("."));
 					//String realPath = FileUtil.getPath("course", userInfo.getId(), courseName,  session);
 					String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+courseName;
 					FileUtil.createRealPath(path, session);
-					//logger.info("+++++++++++++"+realPath);
 					String previewFile = path+"/small"+fileType;
 					String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
 					FileUtil.getPreviewImage(new File(path+"/"+saveName), new File(previewFile), fileType.substring(1));
 					String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+"/"+"small"+fileType;
 					//String savePath = request.getContextPath()+"/course/"+userInfo.getId()+"/"+courseName+"/"+saveName;
 					course.setCourseCover(savePath);
+					
 				}
 			}
 			
@@ -137,6 +137,7 @@ public class TeacherCourseInfoDetailController {
 	public String TeacherCourseDele( HttpSession session,@PathVariable Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 			courseService.deleTeacherCourse(course_id);
+			//TeacherCourse course = courseService.findOneById(course_id);
 			return "redirect:/admin/teacher/course/list";
 	}
 	
