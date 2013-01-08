@@ -65,7 +65,7 @@
 		</div>
 		<div class="container course detail">
 			<div class="container course detail desc">
-				${course.courseDesc}
+				${course.targetPerson}
 			</div>
 		</div>
 		
@@ -74,7 +74,7 @@
 		</div>
 		<div class="container course detail">
 			<div class="container course detail desc">
-				${course.courseDesc}
+				${course.courseCharacter}
 			</div>
 		</div>
 		
@@ -114,7 +114,7 @@
 		</div>
 		<div class="container course detail">
 			<div class="container course detail desc">
-				${course.courseDesc}
+				尚未添加计划
 			</div>
 		</div>
 		
@@ -123,7 +123,7 @@
 		</div>
 		<div class="container course detail">
 			<div class="container course detail desc">
-				${course.courseDesc}
+				用户总体评分：0 分&nbsp;&nbsp;&nbsp; 
 			</div>
 		</div>
 		
