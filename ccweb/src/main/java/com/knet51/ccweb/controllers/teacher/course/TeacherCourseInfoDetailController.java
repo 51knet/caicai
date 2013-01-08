@@ -47,6 +47,7 @@ public class TeacherCourseInfoDetailController {
 	
 	@Autowired
 	private TeacherCourseService courseService;
+	
 	@Autowired
 	private CourseResourceService courseResourceService; 
 	
@@ -78,7 +79,6 @@ public class TeacherCourseInfoDetailController {
 			for(int i=0;i<files.size();i++){
 				if(!files.get(i).isEmpty()){
 					logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
-					
 					String fileName = files.get(i).getOriginalFilename();
 					String fileType = fileName.substring(fileName.lastIndexOf("."));
 					//String realPath = FileUtil.getPath("course", userInfo.getId(), courseName,  session);
