@@ -260,9 +260,20 @@ public class TeacherCourseInfoPageController {
 		return "redirect:/admin/teacher/course/list";
 	}
 	
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/cancelpublish")
+	public String cancelPublish(@PathVariable Long course_id){
+		TeacherCourse course= teacherCourseService.findOneById(course_id);
+		course.setPublish(1);
+		teacherCourseService.updateTeacherCourse(course);
+		return "redirect:/admin/teacher/course/list";
+	}
+	
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/preview")
-	public String previewCourse(@PathVariable Long course_id){
-		return "";
+	public String previewCourse(@PathVariable Long course_id,Model model){
+		TeacherCourse course= teacherCourseService.findOneById(course_id);
+		model.addAttribute("course", course);
+		return "admin.teacher.course.preview";
 	}
 
 	
