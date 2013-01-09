@@ -130,10 +130,35 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/destory/{course_id}")
 	public String TeacherCourseDele( HttpSession session,@PathVariable Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
-			courseService.deleTeacherCourse(course_id);
-			//TeacherCourse course = courseService.findOneById(course_id);
+			//courseService.deleTeacherCourse(course_id);
+			TeacherCourse course = courseService.findOneById(course_id);
+			course.setPublish(0);
+			courseService.updateTeacherCourse(course);
 			return "redirect:/admin/teacher/course/list";
 	}
+	
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/recoverpub/{course_id}")
+	public String courseRecoverPublish( HttpSession session,@PathVariable Long course_id){
+		logger.info("#### Into TeacherCourseAdd Controller ####");
+			//courseService.deleTeacherCourse(course_id);
+			TeacherCourse course = courseService.findOneById(course_id);
+			course.setPublish(2);
+			courseService.updateTeacherCourse(course);
+			return "redirect:/admin/teacher/course/list";
+	}
+	
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/recoverunpub/{course_id}")
+	public String courseRecoverUnpublish( HttpSession session,@PathVariable Long course_id){
+		logger.info("#### Into TeacherCourseAdd Controller ####");
+			//courseService.deleTeacherCourse(course_id);
+			TeacherCourse course = courseService.findOneById(course_id);
+			course.setPublish(1);
+			courseService.updateTeacherCourse(course);
+			return "redirect:/admin/teacher/course/list";
+	}
+	
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/{course_id}/resource/create",method=RequestMethod.POST)

@@ -23,20 +23,20 @@
 	</div>
 	<div>
 		<div style="margin-top: 10px;margin-left:60px;float: left;">
-		<h4><span>${course.courseName}</span></h4>
-		<h4><span>${course.courseType}</span></h4>
+			<h4><span>${course.courseName}</span></h4>
+			<h4><span>${course.courseType}</span></h4>
 		</div>
 		<div >
-		<span style="margin-left: 86%;float: left;margin-top: -115px;"><a href= '<c:url value="/admin/teacher/course/edit/${course.id }/preview"></c:url>'  class="btn btn-large btn-success" style="width: 80px;" target="_blank" >预览</a></span>
-		<br/>
-		<span style="margin-left: 86%;float: left;margin-top: -70px;">
-			<c:if test="${course.publish ==1 }">
-					<a href='<c:url value="/admin/teacher/course/edit/${course.id }/publish"></c:url>'  class="btn btn-large btn-success" style="width: 80px;"  >发布</a>
-			</c:if>
-			<c:if test="${course.publish ==2 }">
-					<a href='<c:url value="/admin/teacher/course/edit/${course.id }/cancelpublish"></c:url>'  class="btn btn-large btn-success" style="width: 80px;"  >取消发布</a>
-			</c:if>
-		</span>
+			<span style="margin-left: 86%;float: left;margin-top: -115px;"><a href= '<c:url value="/admin/teacher/course/edit/${course.id }/preview"></c:url>'  class="btn btn-large btn-success" style="width: 80px;" target="_blank" >预览</a></span>
+			<br/>
+			<span style="margin-left: 86%;float: left;margin-top: -70px;">
+				<c:if test="${course.publish ==1 }">
+						<a href='<c:url value="/admin/teacher/course/edit/${course.id }/publish"></c:url>'  class="btn btn-large btn-success" style="width: 80px;"  >发布</a>
+				</c:if>
+				<c:if test="${course.publish ==2 }">
+						<a href='<c:url value="/admin/teacher/course/edit/${course.id }/cancelpublish"></c:url>'  class="btn btn-large btn-success" style="width: 80px;"  >取消发布</a>
+				</c:if>
+			</span>
 		</div>
 	</div>
 </div>

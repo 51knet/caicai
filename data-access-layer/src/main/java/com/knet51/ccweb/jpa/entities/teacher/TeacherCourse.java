@@ -29,7 +29,7 @@ public class TeacherCourse extends AbstractEntity {
 	@Column(columnDefinition="int default 1")
 	private Integer status;  // 1:just show the course in ccweb; 2: both.
 	@Column(columnDefinition="int default 1")
-	private Integer publish; // 1:just show it in teacher admin page; 2:show it in the admin page and front page.
+	private Integer publish; // 0:the course has been deleted; 1:just show it in teacher admin page; 2:show it in the admin page and front page.
 	private String pwd;      // Check the pwd when someone want to check the course.
 	@ManyToOne
 	private Teacher teacher;

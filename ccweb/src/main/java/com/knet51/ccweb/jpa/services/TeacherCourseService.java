@@ -22,4 +22,6 @@ public interface TeacherCourseService {
 	List<Teacher> getAllCourseTeacher(String schoolName);
 	Page<TeacherCourse> findTeacherCourseByTeacherAndPublish(int pageNum, int pageSize, Teacher teacher,Integer publish);
 	
+	Page<TeacherCourse> findTeacherCourseByTeacherAndPublishGreaterThan(int pageNum, int pageSize,Teacher teacher,Integer publish);
+	
 }
