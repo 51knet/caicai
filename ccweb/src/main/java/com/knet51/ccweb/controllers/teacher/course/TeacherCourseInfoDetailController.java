@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
@@ -99,13 +100,6 @@ public class TeacherCourseInfoDetailController {
 			return "redirect:/admin/teacher/course/list";
 		}
 	
-	}
-	
-	
-	
-	@RequestMapping(value = "/admin/teacher/course/courserInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse courseInfoFormAjaxJson(@Valid TeacherCourseInfoForm teacherCourseInfoForm, BindingResult result) {
-		return AjaxValidationEngine.process(result);
 	}
 	
 	@Transactional
@@ -271,16 +265,47 @@ public class TeacherCourseInfoDetailController {
 		return "admin.teacher.course.edit.detailinfo";
 	}
 	/***
-	 * 修改封面
+	 * 封面
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/moidfycover")
-	public String modifyCreateCover(HttpSession session,@PathVariable Long id,Model model){
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/cover")
+	public String CreateCover(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
 		model.addAttribute("course", course);
-		return "admin.teacher.course.edit.moidfycover";
+		return "admin.teacher.course.edit.cover";
 	}
+	/***
+	 * 修改封面
+	 * @return
+	 * @throws Exception 
+	 * @throws IOException 
+	 */
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/moidfycover",method=RequestMethod.POST)
+	public String modifyCreateCover(HttpSession session,@PathVariable Long id,MultipartHttpServletRequest request,Model model) throws Exception{
+			List<MultipartFile> files = request.getFiles("coverFile");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		TeacherCourse teacherCourse=courseService.findOneById(id);
+		String courseName = teacherCourse.getCourseName();
+		for(int i=0;i<files.size();i++){
+			if(!files.get(i).isEmpty()){
+				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
+				String fileName = files.get(i).getOriginalFilename();
+				String fileType = fileName.substring(fileName.lastIndexOf("."));
+				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+courseName;
+				FileUtil.createRealPath(path, session);
+				String previewFile = path+"/small"+fileType;
+				String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
+				FileUtil.getPreviewImage(new File(path+"/"+saveName), new File(previewFile), fileType.substring(1));
+				String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+"/"+"small"+fileType;
+				teacherCourse.setCourseCover(savePath);
+			}
+		}
+		TeacherCourse course = courseService.updateTeacherCourse(teacherCourse);
+		model.addAttribute("course", course);
+		return "admin.teacher.course.edit.moidfycover";
+		}
 	/**
 	 * 修改视频
 	 * @return

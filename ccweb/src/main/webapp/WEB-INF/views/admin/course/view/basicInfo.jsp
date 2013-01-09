@@ -5,9 +5,8 @@
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
-var value=$("#courseType").attr("title");
-$("#courseType option[value='"+value+"']").attr("selected","selected");
+	var courseType=$("#courseType").attr("title");
+	$("#courseType option[value='"+courseType+"']").attr("selected","selected");
 	return false;
 });
 </script>
@@ -29,9 +28,9 @@ $("#courseType option[value='"+value+"']").attr("selected","selected");
 					课程名称：<input type="text"  style="width: 450px;" name="courseName" value="${course.courseName }" />
 					<span class="help-inline"><form:errors path="name"></form:errors></span>
 				</div>
-				<div id="courseType" class="modal-body">
+				<div class="modal-body">
 					课程类别：
-					<select name="courseType" style="width: 465px;"  title="${course.courseType}">
+					<select name="courseType" style="width: 465px;" id="courseType" title="${course.courseType}">
 							<option selected value="计算机科学与技术">计算机科学与技术</option>
 							<option value="生物">生物</option>
 							<option value="数学">数学</option>

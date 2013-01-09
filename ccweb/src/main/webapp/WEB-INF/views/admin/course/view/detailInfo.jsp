@@ -15,11 +15,11 @@
 		<div>
 			<table style="margin-left: 8%;">
 				<tr>
-					<td><h5>目标人群:</h5></td>
+					<td>目标人群:</td>
 					<td class="row-fluid custom basic"><textarea rows="6" cols="8" name="targetPerson" style="width: 459px;margin-top: 20px;">${course.targetPerson}</textarea></td>
 				</tr>
 				<tr>
-					<td><h5>课程看点:</h5></td>
+					<td>课程看点:</td>
 					<td class="row-fluid custom basic"><textarea rows="6" cols="8" style="width: 459px;margin-top: 20px;" name="courseCharacter">${course.courseCharacter}</textarea></td>
 				</tr>
 				<tr><td style="text-align: left;margin-left: 80px;float: left;margin-top: 40px;" colspan="2" ><button class="btn btn-large btn-success">保存</button></td></tr>

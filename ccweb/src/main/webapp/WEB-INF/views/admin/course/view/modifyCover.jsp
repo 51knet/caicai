@@ -8,36 +8,47 @@
 	float: left;
 }
 </style>
+<script type="text/javascript">
+function viewmypic(mypic, imgfile) {
+	if (imgfile.value) {
+		document.getElementById("courseCover").style.display="none";
+		mypic.src = imgfile.value;
+		mypic.style.display = "";
+		mypic.border = 1;
+	}
+}
+</script>
 <div style="margin-top: 10px;">
-	<a href="#">添加封面</a>
+	<a href="#">修改封面</a>
 	<hr />
-	<form action="">
-		<table style="text-align: center;">
-			<tr>
-				<td style="text-align: center; margin-left: 42%; float: left;" colspan="2">封面预览</td>
-			</tr>
-			<tr>
-				<td style="text-align: center; margin-left: 22%; float: left; margin-top:10px;" colspan="2"><c:choose>
-						<c:when test="">
-							<img src='<c:url value=""> </c:url>' style="width: 100px; height: 100px; float: left; margin-left: 30px" />
+	<div>
+			<span style="text-align: center; margin-left: 42%; float: left;"> 封面预览 </span>
+			<div  style="text-align: center; margin-left: 22%; float: left; margin-top: 10px;">
+			<img name="showimg" id="showimg" style="display:none; width:300px; height:200px;"/> 
+			</div>
+			<div id="courseCover" >
+				<span style="text-align: center; margin-left: 22%; float: left; margin-top: 10px;">
+				<c:choose>
+						<c:when test="${course.courseCover != null && course.courseCover != ''}">
+							<img src='<c:url value="${course.courseCover}"> </c:url>' style="width: 300px; height: 200px; float: left; margin-left: 30px" />
 						</c:when>
 						<c:otherwise>
 							<img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width: 300px; height: 200px; float: left; margin-left: 30px" />
 						</c:otherwise>
-					</c:choose></td>
+				</c:choose></span>
+			</div>
+		</div>
+	<form action="moidfycover" method="post" enctype="multipart/form-data">
+		<table style="text-align: center;">
+			<tr>
+				<td>上传封面</td>
+				<td><input type="file" name="coverFile" style="margin-left: 60px; width: 450px; margin-top: 10px; float: left;" onChange="viewmypic(showimg,this.form.coverFile);"></td>
 			</tr>
 			<tr>
-				<td style="margin-top: 5%; float: left; margin-left: 8%;" colspan="2">添加/改变封面</td>
+				<td style="color: red; font-size: 14px; margin-left: 115px; float: left;" colspan="2">只支持jpg、gif、bmp格式，建议封面宽度300px，高度200px</td>
 			</tr>
 			<tr>
-				<td><input type="file" style="margin-left:12%;width:500px;margin-top: 10px;"></td>
-				<td style="margin-left:150px;float: left;"><button class="btn btn-large btn-success">上传</button></td>
-			</tr>
-			<tr>
-				<td colspan="2" style="margin-left: 8%;float: left;margin-top: 30px;">限定图片.jpg,限定大小在1M</td>
-			</tr>
-			<tr>
-				<td colspan="2" style="margin-left: 8%;float: left;margin-top: 30px;"><button class="btn btn-large btn-success" type="submit">保存</button></td>
+				<td colspan="2" style="margin-left: 280px; float: left; margin-top: 30px;"><button class="btn btn-large btn-success" type="submit">保存</button></td>
 			</tr>
 		</table>
 	</form>
