@@ -7,7 +7,7 @@
 $(document).ready(function(){
 	
 var value=$("#courseType").attr("title");
-$("#courseType option[value='"+value+"']").attr("selected","selected");
+$("#courseType option[value="+value+"]").attr("selected","selected");
 	return false;
 });
 </script>

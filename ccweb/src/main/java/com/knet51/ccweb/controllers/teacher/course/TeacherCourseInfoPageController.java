@@ -55,7 +55,7 @@ public class TeacherCourseInfoPageController {
 		logger.info("#####Into TeacherCourseInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Teacher teacher = teacherService.findOne(userInfo.getId());
-		Page<TeacherCourse> onePage =teacherCourseService.findAllCourseByTeacher(pageNumber, pageSize, teacher);
+		Page<TeacherCourse> onePage =teacherCourseService.findTeacherCourseByTeacherAndPublishGreaterThan(pageNumber, pageSize, teacher, 0);
 		//Page<TeacherCourse> page = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, publish)
 		model.addAttribute("page", onePage);
 		return "admin.teacher.course.list";
