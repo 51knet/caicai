@@ -22,7 +22,7 @@ $(document).ready(function(){
 });
 </script>
 <div style="margin-top: 10px;">
-	<a href="#">权限&价格</a>
+	<a href="#">权限设置</a>
 	<hr />
 	<form:form class="form-horizontal" action="powerpricemodify" method="post" onsubmit="return checkPwd()">
 		<input type="hidden" name="id" value="${course.id }" />
