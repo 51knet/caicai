@@ -123,10 +123,10 @@
 								<td width="80%"><!--   -->
 									<c:choose>
 										<c:when test='${course.pwd == "" || course.pwd == null}'>
-												<a href="<c:url value="/teacher/${teacherInfo.id}/course/view/${course.id}"></c:url>"> ${course.courseName }--${course.pwd}</a>
+												<a href="<c:url value="/teacher/${teacherInfo.id}/course/view/${course.id}"></c:url>"> ${course.courseName }</a>
 										</c:when>
 										<c:otherwise>
-											<a href="#checkcourse" data-toggle="modal"> ${course.courseName }--${course.pwd}</a> 
+											<a href="#checkcourse" data-toggle="modal"> ${course.courseName }</a> 
 											<div id="checkcourse" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 400px; height:180px; ">
 												<div class="modal-header">
 													<h4 id="myModalLabel">验证密码</h4>
