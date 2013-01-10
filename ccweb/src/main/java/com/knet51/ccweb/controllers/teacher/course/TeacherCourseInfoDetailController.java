@@ -375,6 +375,8 @@ public class TeacherCourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/deletecourse")
 	public String modifyDeleteMessage(HttpSession session,@PathVariable Long id,Model model){
+		TeacherCourse course=courseService.findOneById(id);
+		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.deletecourse";
 	}
 	/**
