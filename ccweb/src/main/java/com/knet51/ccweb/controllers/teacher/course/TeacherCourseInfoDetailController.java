@@ -329,7 +329,7 @@ public class TeacherCourseInfoDetailController {
 		}
 		TeacherCourse course = courseService.updateTeacherCourse(teacherCourse);
 		model.addAttribute("course", course);
-		return "admin.teacher.course.edit.moidfycover";
+		return "redirect:/admin/teacher/course/edit/{id}/cover";
 		}
 	/**
 	 * 修改视频
