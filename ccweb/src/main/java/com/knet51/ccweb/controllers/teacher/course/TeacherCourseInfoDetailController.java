@@ -364,7 +364,7 @@ public class TeacherCourseInfoDetailController {
 		String pwd=request.getParameter("pwd");
 		TeacherCourse course=courseService.findOneById(id);
 		course.setStatus(status);
-		course.setPwd(pwd);
+		course.setPwd(pwd.trim());
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.powerprice";
 	}

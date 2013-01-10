@@ -2,6 +2,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<script type="text/javascript">
+	function checkCoursePwd(cid,tid){
+		$("#errorMsg").html("");
+		$.post('<c:url value="/checkCoursePwd" />', $("#checkpwd_form").serialize(), function(flag){
+			//alert(typeof flag+flag);
+				if('true'==flag){
+					window.location.href ='<c:url value="/teacher/'+tid+'/course/view/'+cid+'" ></c:url>';
+				}else{
+					$("#errorMsg").html("密码错误！");
+					return false;
+				}			
+		});
+	}
+</script>
 <style>
 .row-fluid.custom {
 	margin-bottom: 20px;
@@ -106,7 +120,31 @@
 					<tbody>
 						<c:forEach var="course" items="${courseList}">
 							<tr>
-								<td width="80%"><a href="<c:url value="/teacher/${teacherInfo.id}/course/view/${course.id}"></c:url>"> ${course.courseName }</a> 
+								<td width="80%"><!--   -->
+									<c:choose>
+										<c:when test='${course.pwd == "" || course.pwd == null}'>
+												<a href="<c:url value="/teacher/${teacherInfo.id}/course/view/${course.id}"></c:url>"> ${course.courseName }--${course.pwd}</a>
+										</c:when>
+										<c:otherwise>
+											<a href="#checkcourse" data-toggle="modal"> ${course.courseName }--${course.pwd}</a> 
+											<div id="checkcourse" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 400px; height:180px; ">
+												<div class="modal-header">
+													<h4 id="myModalLabel">验证密码</h4>
+												</div>
+												<div class="modal-body">
+													<form  method="post" id="checkpwd_form">
+														<input type="hidden" value="${course.id}" name="cid"> 
+														输入密码：<input type="text" name="coursepwd" id="coursepwd" placeholder="密码">
+														<span id="errorMsg" style="font-size: 14px; color: red"></span>
+													</form>
+													<div style="margin-left: 120px;">
+														<button class="btn btn-primary"  onclick="checkCoursePwd( ${course.id} , ${teacherInfo.id})">确定</button>&nbsp;&nbsp;
+														<button class="btn" type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
+													</div>
+												</div>
+											</div>
+										</c:otherwise>
+									</c:choose>
 								</td>
 								<td>
 									${course.courseDate}
@@ -254,10 +292,11 @@
 				<td>
 				<fmt:formatDate value="${blogPost.dateCreated}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>
-				
 			</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	</div>
 </div>
+
+

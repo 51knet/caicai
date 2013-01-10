@@ -244,13 +244,14 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	}
 
 	function showCheckpwd(){
+		$("#pwd").val($.trim($("#pwd").val()));
 		var pwd = $.trim($("#pwd").val());
 		"" != pwd ? $("#checkpwdform").css("display","block") :$("#checkpwdform").css("display","none")
 	}
 	function checkPwd(){
 		var flag = true;
-		var pwd = $.trim($("#pwd").val());
-		var checkpwd = $.trim($("#checkpwd").val());
+		var pwd = $("#pwd").val();
+		var checkpwd = $("#checkpwd").val();
 		if(pwd != checkpwd){
 			alert("两次输入的密码不一致，请重新输入！");
 			$("#checkpwd").val("");

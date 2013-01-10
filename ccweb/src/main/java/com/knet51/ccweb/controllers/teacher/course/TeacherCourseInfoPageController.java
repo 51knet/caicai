@@ -1,8 +1,13 @@
 package com.knet51.ccweb.controllers.teacher.course;
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -210,7 +215,7 @@ public class TeacherCourseInfoPageController {
 	public String addCourseSecond(@RequestParam("cid") Long course_id,
 			@RequestParam("pwd") String pwd, @RequestParam("status") Integer status, Model model){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
-		course.setPwd(pwd);
+		course.setPwd(pwd.trim());
 		course.setStatus(status);
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/addcourse?active=third&cid="+course_id;
@@ -275,6 +280,25 @@ public class TeacherCourseInfoPageController {
 		model.addAttribute("course", course);
 		return "admin.teacher.course.preview";
 	}
+	
+	@RequestMapping(value="/checkCoursePwd")
+	public String checkCoursePwd(@RequestParam("cid") Long course_id,@RequestParam("coursepwd") String pwd,HttpServletRequest request,HttpServletResponse response ) throws IOException{
+		logger.info("======== into the ajax checkCoursePwd controller ======="+course_id+pwd);
+		PrintWriter out = response.getWriter();
+		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		logger.info("================"+course.getPwd());
+		boolean flag;
+		if(!pwd.equals(course.getPwd())){
+			flag = false;
+		}else{
+			flag = true;
+		}
+		out.print(flag);
+		out.flush();
+		out.close();
+		return null;
+	}	
+	
 
 	
 	/*	

@@ -30,7 +30,7 @@ $(document).ready(function(){
 			修改密码：<input type="text" id="pwd" name="pwd" style="width: 250px;" onblur="showCheckpwd()" value="${course.pwd}">
 		</div>
 		<div class="modal-body" id="checkpwdform" style="display: none;">
-			确认密码：<input type="text" id="checkpwd" name="checkpwd" style="width: 250px;" onblur="checkPwd()" value="${course.pwd}">
+			确认密码：<input type="text" id="checkpwd" name="checkpwd" style="width: 250px;" onblur="checkPwd()" >
 		</div>
 		<div class="modal-body" id="status" title="${course.status}">
 			发布到知识超市：
