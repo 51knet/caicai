@@ -99,24 +99,32 @@ public class CourseController {
 		TeacherCourse course = courseService.findOneById(course_id);
 		model.addAttribute("course", course);
 		/*     lbx    */
-		
+		UserCourse  userCourse=new UserCourse();
+		userCourse.setUserid(4l);
+		userCourse.setTeachercourseid(course_id);
+		UserCourse courses =userCourseService.save(userCourse);
 		Teacher teacher = course.getTeacher();
 		List<UserCourse> listUserCourse = userCourseService.findByTeachercourseid(course_id);
 		Integer sumPerson=listUserCourse.size();
-		double courseMark=userCourseService.getMark(course_id);//一个视频的评论平均分数
+		double courseMark=0.0;
+		if(courses.getMark()!=null){
+			 courseMark=userCourseService.getMark(course_id);//一个视频的评论平均分数
+		}
 		List<UserCourseBeans> list=new ArrayList<UserCourseBeans>();
 		UserCourseBeans UserCourseUser=new UserCourseBeans();
-		for (int i = 0; i < listUserCourse.size(); i++) {
-			long userid=listUserCourse.get(i).getUserid();
-			User user=userCourseService.findByUserId(userid);
-			UserCourse comm=listUserCourse.get(i);
-			String userName=user.getName();
-			String photoUrl=user.getPhoto_url();
-			UserCourseUser.setUserCourse(comm);
-			UserCourseUser.setPhotoUrl(photoUrl);
-			UserCourseUser.setUserName(userName);
-			list.add(UserCourseUser);		
-		}
+			for (int i = 0; i < listUserCourse.size(); i++) {
+				long userid=listUserCourse.get(i).getUserid();
+				User user=userCourseService.findByUserId(userid);
+				UserCourse comm=listUserCourse.get(i);
+				if(comm.getCommentDesc()!=null){
+					UserCourseUser.setUserCourse(comm);
+				}
+				String userName=user.getName();
+				String photoUrl=user.getPhoto_url();
+				UserCourseUser.setPhotoUrl(photoUrl);
+				UserCourseUser.setUserName(userName);
+				list.add(UserCourseUser);		
+			}
 		model.addAttribute("teacher", teacher);
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
@@ -236,11 +244,10 @@ public class CourseController {
 			return "redirect:/teachercourse/course/UserCourse/"+id;
 		} else {
 			logger.info("### contactInfo Validation passed. ###");
-			UserCourse UserCourse=userCourseService.findByTeachercourseidAndUserid(id, 4l);
-			if (UserCourse!=null) {
+			UserCourse userCourse=userCourseService.findByTeachercourseidAndUserid(id, 4l);
+			if (userCourse.getCommentDesc()!=null&&userCourse.getMark()!=null) {
 				String message="请不要重复评论";
 				redirectAttr.addFlashAttribute("message", message);
-				//model.addAttribute("message", message);
 				return "redirect:/teachercourse/course/UserCourse/"+id;
 			} else{
 				UserCourse comm = new UserCourse();
