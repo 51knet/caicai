@@ -286,7 +286,6 @@ public class TeacherCourseInfoPageController {
 		logger.info("======== into the ajax checkCoursePwd controller ======="+course_id+pwd);
 		PrintWriter out = response.getWriter();
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
-		logger.info("================"+course.getPwd());
 		boolean flag;
 		if(!pwd.equals(course.getPwd())){
 			flag = false;
