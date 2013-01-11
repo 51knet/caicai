@@ -31,29 +31,29 @@
 			<div>添加一部分</div>
 		</div>
 	</div>
-	<!-- 
+
 	<div id="testUploadify" style="margin-top: 20px;">
 		<div id="fileQueue" style="height: 100px; padding-left: 10px; display: block;"></div>
 		<form id="course_form">
 		<input type="hidden" name="tid" value="${course.teacher.id }"  />
 			课时：<input type="text" name="courseOrder" id="courseOrder"  /><br>
 		</form>
-			<input type="file" name="uploadify" id="uploadify" />
+			<input type="file" name="uploadify" id="uploadify_test" />
 		<p>
-		<a href="javascript:jQuery('#uploadify').uploadifyUpload()">开始上传</a>&nbsp;
-		<a href="javascript:jQuery('#uploadify').uploadifyClearQueue()">取消所有上传</a>
+		<a href="javascript: $('#uploadify_test').uploadifySettings('scriptData',{'courseOrder':$('#courseOrder').val()}); jQuery('#uploadify_test').uploadifyUpload()">开始上传</a>&nbsp;
+		<a href="javascript:jQuery('#uploadify_test').uploadifyClearQueue()">取消所有上传</a>
 		</p>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$("#uploadify").uploadify({
+				$("#uploadify_test").uploadify({
 					'uploader'       : '<c:url value="/resources/js/uploadify/uploadify.swf" />',
 					'script'        	    : '<c:url value="/admin/teacher/course/edit/'+${course.id}+'/resource/new" />',
 					'cancelImg'     : '<c:url value="/resources/js/uploadify/images/cancel.png" />',
 				//	'scriptData'     : $("#course_form").serialize(),
-				//	'scriptData'		:{'courseOrder':''+$("#courseOrder").val()+'','b':'value2'},
+				//	'scriptData'		:{'courseOrder': $("#courseOrder").val()},
 					'folder'         	: 'uploads',
 					'queueID'        : 'fileQueue',
-					//'method'			:'get',
+					'method'			:'get',
 					'auto'           : false,
 					'multi'          : true,
 					'simUploadLimit' : 2,
@@ -62,6 +62,6 @@
 			});
 		</script>
 	</div>
-	 -->
+	
 
 </div>
