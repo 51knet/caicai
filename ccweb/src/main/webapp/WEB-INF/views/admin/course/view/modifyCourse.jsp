@@ -12,7 +12,7 @@
 	<hr />
 	<div>
 		<div
-			style="background-color: #f7f7f7; text-align: left; padding: 10px; margin-left: 10px;">
+			style="background-color: #f7f7f7; text-align: left; padding: 10px;margin-top:30px; margin-left: 10px;">
 			<div>
 				<span>第一部分:第一部分</span><span style="margin-left: 70%"><a>编辑</a></span>
 			</div>

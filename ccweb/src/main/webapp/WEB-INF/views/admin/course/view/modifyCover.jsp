@@ -2,12 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<style>
-.row-fluid.custom.basic {
-	margin-left: 4%;
-	float: left;
-}
-</style>
 <script type="text/javascript">
 	function viewmypic(url) {
 		var patn = /\.jpg$|\.jpeg$|\.gif$/i;
@@ -26,32 +20,38 @@
 <div style="margin-top: 10px;">
 	<a href="#">修改封面</a>
 	<hr />
-	<div>
-		<span style="text-align: center; margin-left: 280px; float: left;"> 封面预览 </span> <img name="showimg" id="showimg" src=""
-			style="display: none; width: 210px; height: 110px; margin-left: -120px; margin-top: 20px;" />
-		<div id="courseCover">
-			<span style="text-align: center; margin-left: -120px; float: left; margin-top: 20px;"> <c:choose>
+	<div style="width: 780px;margin-top: 30px;">
+		<span style="margin-left: 170px;"> 封面预览 </span> 
+		<img name="showimg" id="showimg" src=""
+			style="display: none; margin-top: 10px;" />
+		<div id="courseCover" style="margin-top: 10px;">
+			<span > 
+			<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
-						<img src='<c:url value="${course.courseCover}"> </c:url>' style="width: 210px; height: 110px; float: left;" />
+						<img src='<c:url value="${course.courseCover}"> </c:url>' style="width: 210px; height: 110px;margin-left:100px;" />
 					</c:when>
 					<c:otherwise>
-						<img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width: 210px; height: 110px; float: left;" />
+						<img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width: 210px; height: 110px;" />
 					</c:otherwise>
-				</c:choose></span>
+				</c:choose>
+				</span>
 		</div>
 	</div>
+	<br/>
+	<div style="margin-top:10px;width:780px;">
 	<form action="moidfycover" method="post" enctype="multipart/form-data">
-		<table style="text-align: center;">
+		<table >
 			<tr>
-				<td>上传封面</td>
-				<td><input type="file" name="file" id="coverFile" style="margin-left: 60px; width: 450px; margin-top: 10px; float: left;" onChange="viewmypic(this);"></td>
+				<td >上传封面</td>
+				<td><input type="file"  style="width: 450px; margin-left:40px;" size="50px" name="file" id="coverFile"   onChange="viewmypic(this);"></td>
 			</tr>
 			<tr>
-				<td style="color: red; font-size: 14px; margin-left: 115px; float: left;" colspan="2">只支持jpg、gif、bmp格式，建议封面宽度210px，高度110px</td>
+				<td style="color: red;font-size: 14px; padding-left: 98px;" colspan="2">只支持jpg、gif、bmp格式，建议封面宽度210px，高度110px</td>
 			</tr>
-			<tr>
-				<td colspan="2" style="margin-left: 280px; float: left; margin-top: 30px;"><button class="btn btn-large btn-success" type="submit">保存</button></td>
+			<tr >
+				<td colspan="2" ><button class="btn btn-large btn-success" type="submit" style="margin-left: 100px;">保存</button></td>
 			</tr>
 		</table>
 	</form>
+	</div>
 </div>

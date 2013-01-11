@@ -261,7 +261,7 @@ public class TeacherCourseInfoDetailController {
 		}
 		model.addAttribute("course", course);
 	}
-		return "redirect:/admin/teacher/course/edit/{id}/basicinfo";
+		return "redirect:/admin/teacher/course/edit/"+id+"/basicinfo";
 	}
 	/***
 	 * 详细信息
@@ -287,7 +287,7 @@ public class TeacherCourseInfoDetailController {
 		course.setCourseCharacter(character);
 		course.setTargetPerson(targetPerson);
 		model.addAttribute("course", course);
-		return "redirect:/admin/teacher/course/edit/{id}/detailinfo";
+		return "redirect:/admin/teacher/course/edit/"+id+"/detailinfo";
 	}
 	/***
 	 * 封面
@@ -329,7 +329,7 @@ public class TeacherCourseInfoDetailController {
 		}
 		TeacherCourse course = courseService.updateTeacherCourse(teacherCourse);
 		model.addAttribute("course", course);
-		return "redirect:/admin/teacher/course/edit/{id}/cover";
+		return "redirect:/admin/teacher/course/edit/"+id+"/cover";
 		}
 	/**
 	 * 修改视频
@@ -366,7 +366,7 @@ public class TeacherCourseInfoDetailController {
 		course.setStatus(status);
 		course.setPwd(pwd.trim());
 		model.addAttribute("course", course);
-		return "redirect:/admin/teacher/course/edit/{id}/powerprice";
+		return "redirect:/admin/teacher/course/edit/"+id+"/powerprice";
 	}
 	/**
 	 * 取消课程
