@@ -281,9 +281,18 @@ public class TeacherCourseInfoPageController {
 		return "admin.teacher.course.preview";
 	}
 	
+	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/resource/new")
+	public String modifyCourseResource(@PathVariable Long course_id,Model model,HttpServletRequest request){
+		String courseOrder = request.getParameter("courseOrder");
+		TeacherCourse course= teacherCourseService.findOneById(course_id);
+		model.addAttribute("course", course);
+		logger.info("=================="+courseOrder);
+		return null;
+	}
+	
 	@RequestMapping(value="/checkCoursePwd")
 	public String checkCoursePwd(@RequestParam("cid") Long course_id,@RequestParam("coursepwd") String pwd,HttpServletRequest request,HttpServletResponse response ) throws IOException{
-		logger.info("======== into the ajax checkCoursePwd controller ======="+course_id+pwd);
+		logger.info("==== into the ajax checkCoursePwd controller ===="+course_id+pwd);
 		PrintWriter out = response.getWriter();
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
 		boolean flag;
