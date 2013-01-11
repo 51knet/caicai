@@ -27,10 +27,10 @@ $(document).ready(function(){
 	<form:form class="form-horizontal" action="powerpricemodify" method="post" onsubmit="return checkPwd()">
 		<input type="hidden" name="id" value="${course.id }" />
 		<div class="modal-body" id="pwdform">
-			修改密码：<input type="text" id="pwd" name="pwd" style="width: 250px;" onblur="showCheckpwd()" value="${course.pwd}">
+			修改密码：<input type="text" id="pwd" name="pwd" style="width: 250px;"  value="${course.pwd}" onblur="deleSpace()">
 		</div>
-		<div class="modal-body" id="checkpwdform" style="display: none;">
-			确认密码：<input type="text" id="checkpwd" name="checkpwd" style="width: 250px;" onblur="checkPwd()" >
+		<div class="modal-body" id="checkpwdform" >
+			确认密码：<input type="text" id="checkpwd" name="checkpwd" style="width: 250px;" value="${course.pwd}"  >
 		</div>
 		<div class="modal-body" id="status" title="${course.status}">
 			发布到知识超市：

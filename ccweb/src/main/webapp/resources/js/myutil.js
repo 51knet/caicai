@@ -248,6 +248,10 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 		var pwd = $.trim($("#pwd").val());
 		"" != pwd ? $("#checkpwdform").css("display","block") :$("#checkpwdform").css("display","none")
 	}
+	
+	function deleSpace(){
+		$("#pwd").val($.trim($("#pwd").val()));
+	}
 	function checkPwd(){
 		var flag = true;
 		var pwd = $("#pwd").val();
