@@ -10,27 +10,20 @@ $(document).ready(function(){
 	return false;
 });
 </script>
-<style>
-.row-fluid.custom.basic {
-	margin-left: 10px;
-	float: left;
-	margin-top: 20px;
-}
-</style>
 <div style="margin-top: 10px;">
 	<a href="#">基本信息</a>
 	<hr />
 	<form action="basicinfomodify" method="post" id="basic_info_form">
 		<div>
 				<div><input type="hidden" value="${course.id}" name="id"></div>
-			<div style="margin-left: 20px;">
+			<div style="margin-left:20px;">
 				<div id="courseName" class="modal-body">
-					课程名称：<input type="text"  style="width: 450px;" name="courseName" value="${course.courseName }" />
+					课程名称：<input type="text"  style="width: 450px;margin-left:5px;margin-top: 2px;" name="courseName" value="${course.courseName }" />
 					<span class="help-inline"><form:errors path="name"></form:errors></span>
 				</div>
 				<div class="modal-body">
 					课程类别：
-					<select name="courseType" style="width: 465px;" id="courseType" title="${course.courseType}">
+					<select name="courseType" style="width: 463px;margin-left: 2px;margin-top:2px;" id="courseType" title="${course.courseType}">
 							<option selected value="计算机科学与技术">计算机科学与技术</option>
 							<option value="生物">生物</option>
 							<option value="数学">数学</option>
@@ -44,7 +37,7 @@ $(document).ready(function(){
 					<span class="help-inline"></span>
 				</div>
 				<div class="modal-body" id="courseDesc">
-					课程介绍：<textarea rows="5" name="courseDesc" cols="8" style="width: 459px;height: 100px;">${course.courseDesc}</textarea>
+					课程介绍：<textarea rows="5" name="courseDesc" cols="8" style="width: 463px;margin-top:2px;height: 100px;margin-left: 5px;">${course.courseDesc}</textarea>
 					<span class="help-inline"></span>
 				</div>
 				<!-- <tr>
@@ -73,7 +66,7 @@ $(document).ready(function(){
 					</select>
 					</td>
 				</tr> -->
-				<div style="text-align: left; margin-left: 80px; float: left; margin-top: 20px;">
+				<div style="text-align: left; margin-left: 80px; float: left; margin-top:10px;">
 					<button type="submit" class="btn btn-large btn-success">保存</button></td>
 				</div>
 			</div>
