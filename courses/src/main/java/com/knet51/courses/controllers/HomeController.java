@@ -46,9 +46,6 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpSession session,
 			HttpServletRequest request) {
 		logger.info("###### into the HomeController ######");
-		User user = new User();
-		user.setId(2L);
-		session.setAttribute("userInfo", user);
 		//List<TeacherCourseBeans> tcBeanList = courseService.getAllTeacherCourseBeans();
 		//List<TeacherCourse> courseList = courseService.findAllCourses();
 		List<CourseBeans> cBeans = courseService.getAllCourseBeans();
