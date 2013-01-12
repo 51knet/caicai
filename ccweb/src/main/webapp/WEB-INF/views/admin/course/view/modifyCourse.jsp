@@ -31,7 +31,7 @@
 			<div>添加一部分</div>
 		</div>
 	</div>
-
+<!-- 
 	<div id="testUploadify" style="margin-top: 20px;">
 		<div id="fileQueue" style="height: 100px; padding-left: 10px; display: block;"></div>
 		<form id="course_form">
@@ -62,6 +62,6 @@
 			});
 		</script>
 	</div>
-	
+	 -->
 
 </div>
