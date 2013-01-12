@@ -41,3 +41,6 @@ target/
 
 # Maven plugin generate files
 .apt_generated/
+
+# Log files
+*.log
