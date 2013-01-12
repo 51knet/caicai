@@ -209,7 +209,13 @@ public class CourseController {
 			list.add(UserCourseUser);
 		}
 		Integer sumPerson=list.size();
-		double courseMark=userCourseService.getMark(id);//一个视频的评论平均分数
+		List<UserCourse> userCourseList=userCourseService.findByTeachercourseid(id);
+		double courseMark=0.0;
+		for (UserCourse userCourse : userCourseList) {
+			if(userCourse.getMark()!=null){
+				 courseMark=userCourseService.getMark(id);//一个视频的评论平均分数
+			}
+		}
 		TeacherCourse teacherCourse = courseService.findOneById(id);
 		model.addAttribute("course", teacherCourse);
 		//model.addAttribute("listCount", listUserCourse.size());
