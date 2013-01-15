@@ -5,11 +5,11 @@
 	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-
+<!-- 
 	<definition name="register" extends="registerStandard-layout">
 		<put-attribute name="title" value="欢迎注册" />
 		<put-attribute name="body" value="/WEB-INF/views/register/register.jsp"></put-attribute>
-	</definition>
+	</definition> -->
 
 	<definition name="register.successful" extends="registerStandard-layout">
 		<put-attribute name="title" value="欢迎注册" />

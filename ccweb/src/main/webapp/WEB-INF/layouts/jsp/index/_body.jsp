@@ -63,10 +63,12 @@ body {
 		$("#registerbtn").click(function() {
 			$(".login-panel").hide(500);
 			$(".register-panel").show(500);
+			return false;
 		});
 		$("#loginbtn").click(function() {
 			$(".login-panel").show(500);
 			$(".register-panel").hide(500);
+			return false;
 		});
 		
 		$("#psw").blur(function (){
@@ -85,16 +87,20 @@ body {
 			}
 			if(psw!=confirmpsw){
 				$("#passwordError").html("两次输入的密码不一致,请重新输入");
+				return false;
 			}
 		});
 		$("#psw").focus(function(){
 			$("#emptyPwd").html("");
+			return false;
 		});
 		$("#confirmpsw").focus(function(){
 			$("#passwordError").html("");
+			return false;
 		});
 		$("#emails").focus(function(){
 			$("#checkEmails").html("");
+			return false;
 		});
 		$("#emails").blur(function(){
 			var email=$("#emails").val();
@@ -115,8 +121,10 @@ body {
 			  success:function(num){
 					if(num=='1'){
 					$("#checkEmails").html("此邮箱地址已存在");
+					return false;
 					}else{
 						$("#checkEmails").html("");
+						return false;
 					}
 				}
 			});
@@ -124,10 +132,12 @@ body {
 		$("#email").focus(function(){
 			$("#emailError").html("");
 			$("#em").html("");
+			return false;
 		});
 		$("#password").focus(function(){
 			$("#passwordErr").html("");
 			$("#pass").html("");
+			return false;
 		});
 		$("#password").blur(function(){
 			var email=$("#email").val();

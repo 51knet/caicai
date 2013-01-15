@@ -68,7 +68,7 @@ public class CommonRegisterController {
 					return "404";
 				}
 			} else {
-				return "register";
+				return "redirect:/";
 			}
 		}
 	}
