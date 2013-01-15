@@ -269,45 +269,45 @@
 	
 	<definition name="admin.teacher.course.edit.modifycourse" extends="admin-layout">
 		<put-attribute name="title" value="添加课程资料"></put-attribute>
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/modifyCourse.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/modifyCourse.jsp" />
 	</definition>
 	<definition name="admin.teacher.course.edit.basicinfo" extends="admin-layout">
 		<put-attribute name="title" value="基本信息"></put-attribute>
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/basicInfo.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/basicInfo.jsp" />
 	</definition>
 	<definition name="admin.teacher.course.edit.detailinfo" extends="admin-layout">
 		<put-attribute name="title" value="详细信息"></put-attribute>
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/detailInfo.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/detailInfo.jsp" />
 	</definition>
 	<definition name="admin.teacher.course.edit.cover" extends="admin-layout">
 		<put-attribute name="title" value="添加封面"></put-attribute>
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/modifyCover.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/modifyCover.jsp" />
 	</definition>
 	<definition name="admin.teacher.course.edit.watchvideo" extends="admin-layout">
 		<put-attribute name="title" value="试看视频"></put-attribute>
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/watchVideo.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/watchVideo.jsp" />
 	</definition>
 	<definition name="admin.teacher.course.edit.powerprice" extends="admin-layout">
 		<put-attribute name="title" value="权限价格"></put-attribute>
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/power_price.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/power_price.jsp" />
 	</definition>
 	<definition name="admin.teacher.course.edit.deletecourse" extends="admin-layout">
 		<put-attribute name="title" value="取消课程"></put-attribute>
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/view/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/view/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/deleteCourse.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/deleteCourse.jsp" />
 	</definition>
 
 </tiles-definitions>
