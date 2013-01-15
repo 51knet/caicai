@@ -15,7 +15,7 @@
 								<td valign="bottom" width="22%" align="center">
 									<c:choose>
 										<c:when test="${course.courseCover != null && course.courseCover != ''}">
-											<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="http://localhost:8080/ccweb/${course.courseCover }"></c:url>' style="width: 200px; height: 100px;" />
+											<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="http://www.51knet.com/ccweb/${course.courseCover }"></c:url>' style="width: 200px; height: 100px;" />
 											</a>
 										</c:when>
 										<c:otherwise>
@@ -32,7 +32,7 @@
 										<div style="float: left; height: 100px; width: 140px; text-align: center;">
 											<c:choose>
 												<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-													<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="http://localhost:8080/ccweb/${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
+													<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="http://www.51knet.com/ccweb/${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
 													</a>
 												</c:when>
 												<c:otherwise>

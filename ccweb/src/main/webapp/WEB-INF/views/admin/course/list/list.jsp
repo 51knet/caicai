@@ -53,7 +53,7 @@ $(document).ready(function() {
 						<th align="center" width="20%">课程类别</th>
 						<th align="center">课程状态</th>
 						<th align="center" width="20%">发布时间</th>
-						<th align="center" width="13%">操作				
+						<th align="center" width="18%">操作				
 						</th>
 					</tr>
 				</thead>
@@ -80,8 +80,8 @@ $(document).ready(function() {
 								</ul>
 							</div> -->
 							<c:if test="${page.publish ==0 }">
-								<a href='<c:url value="/admin/teacher/course/recoverpub/${page.id}"></c:url>'>恢复已发布</a><br>
-								<a href='<c:url value="/admin/teacher/course/recoverunpub/${page.id}"></c:url>'>恢复未发布</a>
+								<a href='<c:url value="/admin/teacher/course/recover/${page.id}"></c:url>'>恢复</a> | 
+								<a href='<c:url value="/admin/teacher/course/deleted/${page.id}"></c:url>'>彻底删除</a>
 							</c:if>
 							<c:if test="${page.publish ==1 ||page.publish ==2 }">
 									<a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a> | 
