@@ -62,7 +62,14 @@
 		</div>
 		<div class="container course detail">
 			<div class="container course detail desc">
-				${course.courseDesc}
+				<c:choose>
+				<c:when test="${course.courseDesc!=null}">
+					${course.courseDesc}
+				</c:when>
+				<c:otherwise>
+					尚未添加课程介绍
+				</c:otherwise>
+			</c:choose>
 			</div>
 		</div>
 		
@@ -71,7 +78,14 @@
 		</div>
 		<div class="container course detail">
 			<div class="container course detail desc">
-				${course.targetPerson}
+				<c:choose>
+				<c:when test="${course.targetPerson!=null}">
+					${course.targetPerson}
+				</c:when>
+				<c:otherwise>
+					尚未添加目标人群
+				</c:otherwise>
+			</c:choose>
 			</div>
 		</div>
 		
@@ -80,7 +94,14 @@
 		</div>
 		<div class="container course detail">
 			<div class="container course detail desc">
-				${course.courseCharacter}
+			<c:choose>
+				<c:when test="${course.courseCharacter!=null }">
+					${course.courseCharacter}
+				</c:when>
+				<c:otherwise>
+					尚未添加课程看点
+				</c:otherwise>
+			</c:choose>
 			</div>
 		</div>
 		

@@ -180,6 +180,26 @@ public class CourseController {
 		return "teachercourse.course.view";
 	}
 	/**
+	 * 通过ID查询出一条课程资料
+	 * 
+	 * @param model
+	 * @param session
+	 * @param teacherCourse_id
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/teachercourse/course/preview/{id}")
+	public String coursesByTeacherCourseId(
+			Model model,
+			HttpSession session,
+			@PathVariable Long id) {
+		TeacherCourse teacherCourse=courseService.findOneById(id);
+		model.addAttribute("course",teacherCourse );
+		return "teachercourse.course.preview";
+	}
+	/**
 	 * 查询出相关的评论信息
 	 * @param validResult
 	 * @param request
