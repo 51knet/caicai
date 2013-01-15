@@ -2,7 +2,7 @@ function collectFormData(fields) {
 	var data = {};
 	for ( var i = 0; i < fields.length; i++) {
 		var $item = $(fields[i]);
-		data[$item.attr('name')] = $item.val();
+		data[$item.attr('name')] = $item.val().trim();
 	}
 	return data;
 }
@@ -11,7 +11,7 @@ function checkAjaxs(formID, actionName) {
 	var flag = false;
 	var $form = $('#' + formID);
 	var action = actionName;
-	var $textarea = $form.find('textarea');
+	var $textarea = $form.find('textarea').trim();
 	var textdata = collectFormData($textarea);
 	$.ajax({
 		type:"post",

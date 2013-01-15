@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div>
 	<ul  class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value="/teachercourse/course/preview/${course.id}"></c:url>'><font style="size: 22px">课程信息</font></a></li>
+		<li><a href='<c:url value="/teachercourse/course/courseInfo/${course.id}"></c:url>'><font style="size: 22px">课程信息</font></a></li>
 		<li><a href='<c:url value="/teachercourse/course/view/${course.id}"></c:url>'><font style="size: 22px">课程资料</font></a></li>
 		<li><a href='<c:url value="/teachercourse/course/usercourse/${course.id}"></c:url>'><font style="size: 22px">用户评价</font></a></li>
 		<li><a href='<c:url value="/course/list/type?detail=all"></c:url>'><font style="size: 22px">全部课程</font></a></li>

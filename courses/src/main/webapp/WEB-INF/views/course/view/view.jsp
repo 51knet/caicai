@@ -73,7 +73,7 @@
 				<h4>${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</h4>
 				<h5>类别：${course.courseType }&nbsp;&nbsp;&nbsp;&nbsp;课程评分：<span style="color: red;">
     			<c:choose>
-    				<c:when test="${courseMark !=null && courseMark>0 }">
+    				<c:when test="${courseMark>0 }">
     					<fmt:formatNumber type="number" value="${courseMark }" maxFractionDigits="0" />
     				</c:when>
     				<c:otherwise>
@@ -81,7 +81,16 @@
     				</c:otherwise>
     			</c:choose></span>分</h5>
 				<h5>发布时间：${course.courseDate }</h5>
-				学员（${sumPerson}）&nbsp;&nbsp;评论（${sumPerson}）&nbsp;&nbsp;
+				学员（${sumPerson}）&nbsp;&nbsp;
+				
+				<c:choose>
+				<c:when test="${courseMark>0 }">
+				评论（${sumPerson}）&nbsp;&nbsp;
+				</c:when>
+				<c:otherwise>
+				评论（0）&nbsp;&nbsp;
+				</c:otherwise>
+				</c:choose>
 				<a href='<c:url value="/teachercourse/course/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
 			</div>
 		</div>

@@ -1,6 +1,8 @@
 package com.knet51.ccweb.jpa.repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
 public class UserCourseRepositoryImpl implements
 		UserCourseRepositoryCustom {
 	@PersistenceContext
@@ -11,4 +13,5 @@ public class UserCourseRepositoryImpl implements
 		Double mark = (Double) em.createQuery("select avg(mark) from UserCourse t where t.teachercourseid="+teacherCourseId).getSingleResult();
 		return mark;
 	}
+
 }

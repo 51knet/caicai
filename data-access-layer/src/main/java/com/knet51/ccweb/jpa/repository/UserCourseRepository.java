@@ -21,4 +21,5 @@ public interface UserCourseRepository extends JpaRepository<UserCourse, Long>, J
 	@Query("select c from UserCourse c where c.teachercourseid = :teachercourseid and c.userid = :userid")
 	UserCourse findByTeachercourseidAndUserid(@Param("teachercourseid") Long teachercourseid,
 	                                 @Param("userid") Long userid);
+	
 }

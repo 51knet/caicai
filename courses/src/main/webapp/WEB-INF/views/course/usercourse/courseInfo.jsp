@@ -5,8 +5,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
 .container.course {
-	width: 990px;
-	max-width:990px;
+	width: 815px;
+	max-width:815px;
 	text-align: left;
 }
 
@@ -15,11 +15,11 @@
 }
 
 .container.course.detail {
-	width: 990px;
+	width: 805px;
 }
 
 .container.course.detail.desc{
-	width: 950px;
+	width: 815px;
 	margin-left: 50px;
 	margin-bottom: 10px;
 }
