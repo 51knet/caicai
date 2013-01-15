@@ -22,8 +22,6 @@
 
 </style>
 <div class="container teacher">
-	<div style="height: 40px"></div>
-    <br/>
     <div  align="left" style="width:100%;background-color:#F7F7F7; height: 40px;">
     	<h4 style="margin-left: 50px; float: left;">讲师介绍</h4>
     </div>

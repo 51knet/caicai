@@ -102,6 +102,38 @@
 				${course.courseDesc}
 			</div>
 		</div>
+		
+		<div class="container course detail" style="background-color: #f7f7f7; margin-bottom: 10px; ">
+			<h4 style="margin-left: 50px;">目标人群</h4>
+		</div>
+		<div class="container course detail">
+			<div class="container course detail desc">
+				<c:choose>
+				<c:when test="${course.targetPerson!=null}">
+					${course.targetPerson}
+				</c:when>
+				<c:otherwise>
+					尚未添加目标人群
+				</c:otherwise>
+			</c:choose>
+			</div>
+		</div>
+		
+		<div class="container course detail" style="background-color: #f7f7f7; margin-bottom: 10px; ">
+			<h4 style="margin-left: 50px;">课程看点</h4>
+		</div>
+		<div class="container course detail">
+			<div class="container course detail desc">
+			<c:choose>
+				<c:when test="${course.courseCharacter!=null }">
+					${course.courseCharacter}
+				</c:when>
+				<c:otherwise>
+					尚未添加课程看点
+				</c:otherwise>
+			</c:choose>
+			</div>
+		</div>
 	</div>
 </div>
 

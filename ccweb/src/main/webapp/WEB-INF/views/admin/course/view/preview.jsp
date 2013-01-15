@@ -43,12 +43,18 @@
 				</c:choose>
 			</div>
 			<div style="width: 60%; float: left; height:150px;border: 0px solid #cccccc; font-size: 13px;">
-				<h4>${course.courseName}</h4>
-				<h4>${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</h4>
-				<h5>类别：${course.courseType }&nbsp;&nbsp;&nbsp;&nbsp;课程评分：<span style="color: red;">0</span>分</h5>
-				<h5>发布时间：${course.courseDate }</h5>
-				学员（0）&nbsp;&nbsp;评论（0）&nbsp;&nbsp;
-				<a href='#' class="btn  btn-success">点击学习</a>
+				<div style="width: 60%; float: left; ">
+					<h4>${course.courseName}</h4>
+					<h4>${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</h4>
+					<h5>类别：${course.courseType }&nbsp;&nbsp;&nbsp;&nbsp;课程评分：<span style="color: red;">0</span>分</h5>
+					<h5>发布时间：${course.courseDate }</h5>
+					学员（0）&nbsp;&nbsp;评论（0）&nbsp;&nbsp;
+					<a href='#' class="btn  btn-success">点击学习</a>
+				</div>
+				<div style="float: left; width: 40%; text-align: right;">
+					<a href='<c:url value="/admin/teacher/course/edit/${course.id }/publish"></c:url>'  class="btn btn-large  btn-success" style="width: 80px;float: right;"  >发布课程</a>
+				</div>
+				
 			</div>
 		</div>
 		<div class="container course detail" style="background-color: #f7f7f7; margin-bottom: 10px; ">
@@ -144,7 +150,7 @@
 		</div>
 		<div class="container course detail">
 			<div class="container course detail desc">
-				用户总体评分：0 分&nbsp;&nbsp;&nbsp; 
+				尚未添加内容
 			</div>
 		</div>
 		
