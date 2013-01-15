@@ -11,7 +11,7 @@
 }
 </style>
 <div class=" row-fluid custom teacherCourse">
-    <div>
+    <div style="float: left; width: 25%;">
 	    <c:choose >
 			<c:when test="${course.courseCover != null && course.courseCover != ''}">
 				<img src='<c:url value="${course.courseCover}"> </c:url>'style="width: 210px;height:110px; float:left; margin-left:30px;margin-top: 20px;margin-bottom: 20px;"/>
@@ -21,22 +21,22 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<div>
-		<div style="margin-top: 10px;margin-left:60px;float: left;">
+	<div style="float: left; width: 75%;">
+		<div style="margin-top: 10px; float: left; width:80%;">
 			<h4><span>${course.courseName}</span></h4>
 			<h4><span>${course.courseType}</span></h4>
 		</div>
-		<div >
-			<span style="margin-left: 86%;float: left;margin-top: -115px;"><a href= '<c:url value="/admin/teacher/course/edit/${course.id }/preview"></c:url>'  class="btn btn-large btn-success" style="width: 80px;" target="_blank" >预览</a></span>
-			<br/>
-			<span style="margin-left: 86%;float: left;margin-top: -70px;">
-				<c:if test="${course.publish ==1 }">
-						<a href='<c:url value="/admin/teacher/course/edit/${course.id }/publish"></c:url>'  class="btn btn-large btn-success" style="width: 80px;"  >发布</a>
-				</c:if>
-				<c:if test="${course.publish ==2 }">
-						<a href='<c:url value="/admin/teacher/course/edit/${course.id }/cancelpublish"></c:url>'  class="btn btn-large btn-success" style="width: 80px;"  >取消发布</a>
-				</c:if>
-			</span>
+		<div  style="float: left; vertical-align: middle; width: 20%; text-align: center;">
+			<c:if test="${course.publish==1}">
+				<br>
+				<a href= '<c:url value="/admin/teacher/course/edit/${course.id }/preview"></c:url>'  class="btn btn-large btn-success" style="width: 80px;height: 20px;" target="_blank" >预览</a>
+				<br>
+				<a href='<c:url value="/admin/teacher/course/edit/${course.id }/publish"></c:url>'  class="btn btn-large btn-success" style="width: 80px; height: 20px; margin-top: 15px;"  >发布</a>
+			</c:if>
+			<c:if test="${course.publish ==2 }">
+				<br><br>
+				<a href='<c:url value="/admin/teacher/course/edit/${course.id }/cancelpublish"></c:url>'  class="btn btn-large btn-success" style="width: 80px;height:20px;"  >取消发布</a>
+			</c:if>
 		</div>
 	</div>
 </div>

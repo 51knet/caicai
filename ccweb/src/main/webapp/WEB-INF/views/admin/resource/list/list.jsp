@@ -30,15 +30,15 @@
 				</thead>
 				<tbody>
 				<c:forEach items="${page.content}" var="page">
-					<tr><td align="left">${page.name}</td>
-					<td align="left">${page.date}</td>
-					<td align="left">
+					<tr><td  align="center">${page.name}</td>
+					<td  align="center">${page.date}</td>
+					<td  align="center">
 						<c:choose>
 							<c:when test="${(page.description!=null) && (page.description != '')}">${page.description}</c:when>
 							<c:otherwise>无描述</c:otherwise>
 						</c:choose>
 					</td>
-					<td align="left">${page.resourceType.typeName}</td>
+					<td align="center">${page.resourceType.typeName}</td>
 					<td align="center"><a href='<c:url value="/admin/teacher/resource/destory/${page.id }"></c:url>'> 删除</a> 
 						| <a href='<c:url value="/resource/download/${page.id }"></c:url>'>下载</a></td></tr>
 				</c:forEach>
