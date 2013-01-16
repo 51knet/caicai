@@ -313,18 +313,21 @@ public class TeacherCourseInfoDetailController {
 		TeacherCourse teacherCourse=courseService.findOneById(id);
 		String courseName = teacherCourse.getCourseName();
 		for(int i=0;i<files.size();i++){
+			MultipartFile multipartFile = files.get(i);
 			if(!files.get(i).isEmpty()){
-				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
-				String fileName = files.get(i).getOriginalFilename();
-				String fileType = fileName.substring(fileName.lastIndexOf("."));
+				//logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
+				String fileName = multipartFile.getOriginalFilename();
+				String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
 				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+courseName;
+				logger.debug("Upload Path:"+path); 
 				FileUtil.createRealPath(path, session);
-				String previewFile = path+"/small"+fileType;
-				String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
-				FileUtil.getPreviewImage(new File(path+"/"+saveName), new File(previewFile), fileType.substring(1));
-				String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+"/"+"small"+fileType;
+				String previewFile = path+File.separator+"small"+"."+fileExtension;
+				File saveDest = new File(path + File.separator + fileName);
+				multipartFile.transferTo(saveDest);
+				FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
+				String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+File.separator+"small"+"."+fileExtension;
 				teacherCourse.setCourseCover(savePath);
-			}
+			}      
 		}
 		TeacherCourse course = courseService.updateTeacherCourse(teacherCourse);
 		model.addAttribute("course", course);
