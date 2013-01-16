@@ -3,8 +3,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -87,9 +90,20 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/view/{course_id}")
 	public String detailCourseInfo(@PathVariable Long course_id,Model model){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
-		List<CourseResource> resourceList = courseResourceService.getAllCourseResourceById(course_id);
 		model.addAttribute("course", course);
-		model.addAttribute("resourceList",resourceList);
+
+		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
+		List<CourseResource> listCourses = new ArrayList<CourseResource>();
+		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
+		String resourceOrder = null;
+		for (CourseResource courseResource : listResource) {
+			resourceOrder = courseResource.getResourceOrder();
+			listCourses = courseResourceService
+					.getResourceByResourceOrder(resourceOrder);
+			courseMap.put(resourceOrder, listCourses);
+		}
+		model.addAttribute("resourceCount", listResource.size());
+		model.addAttribute("courseMap", courseMap);
 		return "admin.teacher.course.view";
 	}
 	
@@ -141,15 +155,28 @@ public class TeacherCourseInfoPageController {
 		model.addAttribute("teacher_id", teacher_id);
 		
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
-		List<CourseResource> resourceList = courseResourceService.getAllCourseResourceById(course_id);
 		model.addAttribute("course", course);
+		/*List<CourseResource> resourceList = courseResourceService.getAllCourseResourceById(course_id);
 		model.addAttribute("resourceList",resourceList);
-		model.addAttribute("resourceCount", resourceList.size());
+		model.addAttribute("resourceCount", resourceList.size());*/
+		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
+		List<CourseResource> listCourses = new ArrayList<CourseResource>();
+		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
+		String resourceOrder = null;
+		for (CourseResource courseResource : listResource) {
+			resourceOrder = courseResource.getResourceOrder();
+			listCourses = courseResourceService
+					.getResourceByResourceOrder(resourceOrder);
+			courseMap.put(resourceOrder, listCourses);
+		}
+		model.addAttribute("resourceCount", listResource.size());
+		model.addAttribute("courseMap", courseMap);
 		return "teacher.course.view";
 	}
 	
 	
 	/*   new add course   */
+	
 	
 	@RequestMapping(value="/admin/teacher/course/addcourse")
 	public String addCoursePage(@RequestParam("active") String active,@RequestParam("cid") Integer course_id,Model model){
@@ -286,6 +313,18 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/preview")
 	public String previewCourse(@PathVariable Long course_id,Model model){
 		TeacherCourse course= teacherCourseService.findOneById(course_id);
+		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
+		List<CourseResource> listCourses = new ArrayList<CourseResource>();
+		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
+		String resourceOrder = null;
+		for (CourseResource courseResource : listResource) {
+			resourceOrder = courseResource.getResourceOrder();
+			listCourses = courseResourceService
+					.getResourceByResourceOrder(resourceOrder);
+			courseMap.put(resourceOrder, listCourses);
+		}
+		model.addAttribute("resourceCount", listResource.size());
+		model.addAttribute("courseMap", courseMap);
 		model.addAttribute("course", course);
 		return "admin.teacher.course.preview";
 	}
@@ -315,7 +354,12 @@ public class TeacherCourseInfoPageController {
 		out.close();
 		return null;
 	}
-	
+	/**
+	 * show the course in courses
+	 * @param course_id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/pubcourses")
 	public String publishToCourses(@PathVariable Long course_id,Model model){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);

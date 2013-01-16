@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -134,9 +136,10 @@ public class CourseController {
 			list.add(UserCourseUser);
 		}
 		model.addAttribute("teacher", teacher);
+		
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
-		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
+		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String resourceOrder = null;
 		for (CourseResource courseResource : listResource) {
 			resourceOrder = courseResource.getResourceOrder();

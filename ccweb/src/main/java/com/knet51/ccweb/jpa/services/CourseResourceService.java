@@ -8,6 +8,8 @@ public interface CourseResourceService {
 	CourseResource createCourseResource(CourseResource CourseResource);
 	CourseResource updateCourseResource(CourseResource CourseResource);
 	List<CourseResource> getAllCourseResourceById(Long course_id);
+	List<CourseResource> getResourceByCourseId(Long course_id);
+	List<CourseResource> getResourceByResourceOrder(String resourceOrder);
 	void deleCourseResource(Long resource_id);
 	//Page<CourseResource> findAllCourseResourceByCourse(int pageNum, int pageSize, TeacherCourse course);
 	

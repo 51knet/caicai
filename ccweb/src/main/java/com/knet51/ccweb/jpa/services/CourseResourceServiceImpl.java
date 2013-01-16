@@ -1,5 +1,6 @@
 package com.knet51.ccweb.jpa.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 	
 	@Autowired
 	private TeacherCourseResourceRepository resourceRepository;
+	
 	
 	@Override
 	public CourseResource findOneById(Long resource_id) {
@@ -38,6 +40,27 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 	@Override
 	public void deleCourseResource(Long resource_id) {
 		resourceRepository.delete(resource_id);
+	}
+	
+	@Override
+	public List<CourseResource> getResourceByCourseId(Long course_id) {
+		List<CourseResource> list= new ArrayList<CourseResource>();
+			 try {
+				 list=resourceRepository.getResourceByCourseId(course_id);
+			 } catch (Exception e) {
+				 e.printStackTrace();
+			 } 
+			 return list;
+		 }
+	@Override
+	public List<CourseResource> getResourceByResourceOrder(String resourceOrder) {
+		List<CourseResource> list= new ArrayList<CourseResource>(); 
+		try {
+			list=resourceRepository.getResourceByResourceOrder(resourceOrder);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return list;
 	}
 
 //	@Override
