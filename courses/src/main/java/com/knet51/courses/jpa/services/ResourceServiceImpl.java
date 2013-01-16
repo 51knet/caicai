@@ -19,19 +19,14 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public List<CourseResource> getResourceByCourseId(Long course_id) {
-		boolean flag=false;
 		List<CourseResource> list= new ArrayList<CourseResource>(); 
-		 flag=teacherCourseResourceRepository.exists(course_id);
-		 if(flag){
 			 try {
 				 list=teacherCourseResourceRepository.getResourceByCourseId(course_id);
 			 } catch (Exception e) {
 				 e.printStackTrace();
 			 } 
+			 return list;
 		 }
-		return list;
-	}
-
 	@Override
 	public List<CourseResource> getResourceByResourceOrder(String resourceOrder) {
 		List<CourseResource> list= new ArrayList<CourseResource>(); 
