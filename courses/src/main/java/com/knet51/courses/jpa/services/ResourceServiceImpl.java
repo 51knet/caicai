@@ -19,7 +19,7 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public List<CourseResource> getResourceByCourseId(Long course_id) {
-		List<CourseResource> list= new ArrayList<CourseResource>(); 
+		List<CourseResource> list= new ArrayList<CourseResource>();
 			 try {
 				 list=teacherCourseResourceRepository.getResourceByCourseId(course_id);
 			 } catch (Exception e) {

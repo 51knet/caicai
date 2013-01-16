@@ -22,7 +22,7 @@
 <div align="left" style="width:100%;background-color:#F7F7F7; height: 40px; margin-bottom: 15px;">
     	<h4 style="margin-left: 40px; float: left;">课程学习</h4>
 </div>
-<div   style="margin-left:38px; margin-top: 10px; margin-bottom: 10px;">
+<div style="margin-left:38px; margin-top: 10px; margin-bottom: 10px;">
 		<c:choose>
 			<c:when test="${resourceCount>0 }">
 				<c:forEach var="course" items="${courseMap}" varStatus="i">
