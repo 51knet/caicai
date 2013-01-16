@@ -235,22 +235,27 @@ public class TeacherCourseInfoPageController {
 		String resourceOrder = request.getParameter("resourceOrder");
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
+				MultipartFile multipartFile = files.get(i);
 				CourseResource resource = new CourseResource();
-				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
-				String fileName = files.get(i).getOriginalFilename();
+				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 	
+				String fileName = multipartFile.getOriginalFilename();
 				String name = fileName.substring(0, fileName.indexOf("."));
 				resource.setFileName(name);
+				
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String date = format.format(new Date());
 				resource.setDate(date);
+				
 				TeacherCourse teacherCourse = teacherCourseService.findOneById(course_id);
 				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
 				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+resourceOrder;
 				FileUtil.createRealPath(path, session);
-				String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
-				String savePath = path+"\\"+saveName;
+				File saveDest = new File(path + File.separator + fileName);
+				multipartFile.transferTo(saveDest);
+			//	String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
+				String savePath = path+File.separator+fileName;
 				resource.setSavePath(savePath);
-				resource.setSaveName(saveName);
+				resource.setSaveName(fileName);
 				resource.setResourceDesc(resourceDesc);
 				resource.setResourceOrder(resourceOrder);
 				resource.setCourse_id(course_id);
@@ -309,7 +314,15 @@ public class TeacherCourseInfoPageController {
 		out.flush();
 		out.close();
 		return null;
-	}	
+	}
+	
+	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/pubcourses")
+	public String publishToCourses(@PathVariable Long course_id,Model model){
+		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		course.setStatus(2);
+		teacherCourseService.updateTeacherCourse(course);
+		return "redirect:/admin/teacher/course/view/"+course_id;
+	}
 	
 
 	

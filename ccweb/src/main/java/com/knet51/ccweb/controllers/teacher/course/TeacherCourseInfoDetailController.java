@@ -185,7 +185,7 @@ public class TeacherCourseInfoDetailController {
 				File saveDest = new File(path + File.separator + fileName);
 				multipartFile.transferTo(saveDest);
 			//	String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
-				String savePath = path+"\\"+fileName;
+				String savePath = path+File.separator+fileName;
 				resource.setSavePath(savePath);
 				resource.setSaveName(fileName);
 				resource.setResourceDesc(resourceDesc);

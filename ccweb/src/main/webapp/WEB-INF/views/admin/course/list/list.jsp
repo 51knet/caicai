@@ -37,7 +37,7 @@ $(document).ready(function() {
 		<div style="text-align: right;">
 			<!-- 	<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
 							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
-			<span style="margin-right: 170px;">
+			<span style="margin-right: 180px;">
 			 	<a href='<c:url value="/admin/teacher/course/list"></c:url>' style="margin-right: 10px;"> 全部课程</a> 
 				 <a href='<c:url value="/admin/teacher/course/list/1"></c:url>' style="margin-right: 10px;"> 未发布课程</a> 
 				<a href='<c:url value="/admin/teacher/course/list/2"></c:url>'  style="margin-right: 10px;"> 已发布课程</a>
@@ -62,7 +62,7 @@ $(document).ready(function() {
 					<c:forEach items="${page.content}" var="page">
 						<tr>
 						<td align="left"><img src="/ccweb/${page.courseCover }" style="width: 80px; height: 40px;"/></td>
-						<td align="left"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></td>
+						<td align="left"><div style="width: 110px;" id="content"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></div></td>
 						<td align="center">${page.courseType}</td>
 						<td align="center">
 							<c:if test="${page.publish ==1 }">未发布</c:if>
@@ -116,7 +116,8 @@ $(document).ready(function() {
 						<span class="help-inline"><form:errors path="courseDesc"></form:errors></span>
 						<!-- 
 							<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
-							<button type="reset" class="btn" onclick="hidAnnoForm()">Cancel</button> -->
+							<button type="reset" class="btn" onclick="hidAnnoForm()">Cancel</button>
+						 -->
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-primary" type="submit">保存</button>
