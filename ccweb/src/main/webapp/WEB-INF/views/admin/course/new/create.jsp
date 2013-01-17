@@ -3,8 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
-function checkPicture(obj){
+/* function checkPicture(obj){
 	var flag = false;
 	
 	var fileValue = obj.coverFile.value;
@@ -18,6 +19,9 @@ function checkPicture(obj){
 	}
 	
 	return flag;
+} */
+function courseCreate(){
+	checkAjaxs("course_info_form","courseInfoAJAX");
 }
 </script>
 <style>
@@ -71,7 +75,7 @@ function checkPicture(obj){
 							<span class="help-inline"><form:errors path="courseDesc"></form:errors></span>
 						</div>
 						<div class="modal-body" style="text-align: center;">
-							<button type="submit" class="btn btn-primary">添加</button>&nbsp;&nbsp;
+							<button type="submit" class="btn btn-primary" onclick="courseCreate();">添加</button>&nbsp;&nbsp;
 							<button type="reset" class="btn">取消</button>
 						</div>
 					</form:form>
