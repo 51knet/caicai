@@ -220,8 +220,8 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	
 	function checkPicture(obj){
 		var imgflag = false;
-		var nameflag = true;
-		var descflag = true;
+		//var nameflag = true;
+		//var descflag = true;
 		var fileValue = obj.coverFile.value;
 		var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length);
 		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp){
@@ -230,7 +230,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 			alert("只支持gif、jpg、bmp格式的图片！！");
 			imgflag=false;
 		}
-		var nameValue = $.trim($("#names").val());
+		/*var nameValue = $.trim($("#names").val());
 		if(""==nameValue){
 			alert("课程名称不能为空！");
 			nameflag = false; 
@@ -239,8 +239,8 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 		if(""==descValue){
 			alert("课程描述不能为空！");
 			descflag = false; 
-		}
-		return imgflag && nameflag &&descflag;
+		}*/
+		return imgflag;
 	}
 
 	function showCheckpwd(){

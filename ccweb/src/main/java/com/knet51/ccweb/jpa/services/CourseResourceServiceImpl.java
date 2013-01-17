@@ -73,7 +73,7 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 		} catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		return courseOrder == null? "1":courseOrder;
+		return courseOrder == null? "0":courseOrder;
 	}
 
 //	@Override

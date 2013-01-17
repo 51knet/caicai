@@ -3,6 +3,7 @@ package com.knet51.courses.controllers;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -145,6 +146,7 @@ public class CourseController {
 			resourceOrder = courseResource.getResourceOrder();
 			listCourses = courseResourceService
 					.getResourceByResourceOrder(resourceOrder);
+			
 			courseMap.put(resourceOrder, listCourses);
 		}
 		model.addAttribute("page", onePage);
@@ -176,7 +178,7 @@ public class CourseController {
 		List<CourseResource> listResource = courseResourceService
 				.getResourceByCourseId(id);
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
-		Map<String, List<CourseResource>> courseMap = new LinkedHashMap<String, List<CourseResource>>();
+		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String resourceOrder = null;
 		for (CourseResource courseResource : listResource) {
 			resourceOrder = courseResource.getResourceOrder();

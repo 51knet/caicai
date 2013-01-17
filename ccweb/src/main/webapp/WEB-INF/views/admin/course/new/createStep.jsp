@@ -62,7 +62,7 @@
 												<span class="help-inline"><form:errors path="courseDesc"></form:errors></span>
 											</div>
 											<div class="modal-body" style="text-align: center;">
-												<button type="submit"    class="btn btn-large btn-success">下一步</button>
+												<button type="submit"  onclick="firststep();"  class="btn btn-large btn-success">下一步</button>
 											</div>
 										</form:form>
 									</div>
@@ -84,7 +84,7 @@
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" class="btn btn-large btn-success">下一步</button>
+								<button type="submit"  class="btn btn-large btn-success">下一步</button>
 							</div>
 						</div>
 					</form:form>
@@ -129,6 +129,9 @@
 </div>
 
 <script type="text/javascript">
-
+function firststep(){
+	checkAjaxs("course_info_form","courseInfoAJAX");
+	return false;
+}
 
 </script>
