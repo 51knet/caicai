@@ -5,7 +5,7 @@
 <script type="text/javascript" src="<c:url value="/resources/js/img.js" />"></script>
 <style type="text/css">
 #preview{}
-#showimg {width: 210px; height: 110px; margin-left:100px; margin-top: 20px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
+#showimg {width: 210px; height: 110px; margin-left:100px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
 </style>
 <script type="text/javascript">
 function previewImages(file){
@@ -17,11 +17,11 @@ function previewImages(file){
 	<hr />
 	<div style="width: 780px; margin-top: 30px;">
 		<span > 封面预览 </span>
-		<div id="preview">
+		<div id="preview" style="margin-top: -20px;">
 		<img name="showimg" id="showimg" src=""
 			style="display: none;" />
 		</div>
-		<div id="courseCover" style="margin-top: 10px;">
+		<div id="courseCover" style="margin-top: -16px;">
 			<span> <c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
 						<img src='<c:url value="${course.courseCover}"> </c:url>' style="width: 210px; height: 110px; margin-left: 100px;" />
