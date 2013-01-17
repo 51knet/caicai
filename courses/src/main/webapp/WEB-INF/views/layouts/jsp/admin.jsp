@@ -15,19 +15,19 @@
 	<!-- /top-navbar -->
 	<div class="container-fluid">
 		<div class="container-fluid content-centered">
-			<div class="row-fluid" style="margin-bottom: 20px;width: 810px;">
+			<div class="row-fluid" style="margin-bottom: 20px;width: 810px;margin-left: 458px;margin-top:25px;">
 				<tiles:insertAttribute name="banner" />
 			</div>
 			<!--/row-->
 			<tiles:insertAttribute name="breadcrumbs" />
-			<div class="row-fluid">
-				<div class="span2" >
+			<div class="row-fluid" >
+				<div class="span2" style="margin-left: 458px;">
 					<div class="left-panel">
 						<tiles:insertAttribute name="left" />
 					</div>
 				</div>
 				<!--/span-->
-				<div class="span10" style="width: 810px;">
+				<div class="span10" style="width: 810px;margin-left: 634px;margin-top: -205px;">
 					<div class="right-panel"  style="width: 810px;">
 						<tiles:insertAttribute name="right" />
 					</div>

@@ -27,7 +27,7 @@
 
 
 
-<div class="container course" style=" margin-bottom: 20px;margin-top: 10px;">
+<div class="container course" style=" margin-bottom: 20px;">
 	<div class="container course row">
 		<div class="container course detail" style="background-color: #f7f7f7; margin-bottom: 10px; ">
 			<h4 style="margin-left: 50px;">课程介绍</h4>
