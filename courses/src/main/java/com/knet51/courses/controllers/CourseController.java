@@ -139,15 +139,14 @@ public class CourseController {
 		model.addAttribute("teacher", teacher);
 		
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
-		List<CourseResource> listCourses = new ArrayList<CourseResource>();
-		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
+		CourseResource courses = new CourseResource();
+		Map<String, CourseResource> courseMap = new TreeMap<String, CourseResource>();
 		String resourceOrder = null;
 		for (CourseResource courseResource : listResource) {
 			resourceOrder = courseResource.getResourceOrder();
-			listCourses = courseResourceService
-					.getResourceByResourceOrder(resourceOrder);
-			
-			courseMap.put(resourceOrder, listCourses);
+			courses = courseResourceService
+					.getResourceByResourceOrderAndCourseId(resourceOrder,course_id);
+			courseMap.put(resourceOrder, courses);
 		}
 		model.addAttribute("page", onePage);
 		model.addAttribute("listUserCourse", list);
@@ -177,14 +176,14 @@ public class CourseController {
 			@PathVariable Long id) {
 		List<CourseResource> listResource = courseResourceService
 				.getResourceByCourseId(id);
-		List<CourseResource> listCourses = new ArrayList<CourseResource>();
-		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
+		CourseResource course = new CourseResource();
+		Map<String, CourseResource> courseMap = new TreeMap<String, CourseResource>();
 		String resourceOrder = null;
 		for (CourseResource courseResource : listResource) {
 			resourceOrder = courseResource.getResourceOrder();
-			listCourses = courseResourceService
-					.getResourceByResourceOrder(resourceOrder);
-			courseMap.put(resourceOrder, listCourses);
+			course = courseResourceService
+					.getResourceByResourceOrderAndCourseId(resourceOrder,id);
+			courseMap.put(resourceOrder, course);
 		}
 		model.addAttribute("courseMap", courseMap);
 		/*    zm   */

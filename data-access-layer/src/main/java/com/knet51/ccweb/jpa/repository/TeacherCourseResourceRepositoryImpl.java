@@ -17,18 +17,18 @@ public class TeacherCourseResourceRepositoryImpl implements TeacherCourseResourc
 		List<CourseResource> list = em.createQuery("from CourseResource where course_id="+course_id).getResultList();
 		return list;
 	}
-
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<CourseResource> getResourceByResourceOrder(String resourceOrder) {
-		List<CourseResource> list = em.createQuery("from CourseResource where resourceOrder="+resourceOrder).getResultList();
-		return list;
-	}
-
 	@Override
 	public String getMaxCourseOrderByCourseId(Long course_id) {
 		String resourceOrder = (String) em.createQuery("select max(resourceOrder) from CourseResource where course_id="+course_id).getSingleResult();
 		return resourceOrder;
+	}
+
+	@Override
+	@SuppressWarnings("unused")
+	public CourseResource getResourceByResourceOrderAndCourseId(String resourceOrder,
+			Long course_id) {
+		CourseResource courseResource = (CourseResource) em.createQuery("from CourseResource where resourceOrder="+resourceOrder+" and course_id="+course_id).getSingleResult();
+		return courseResource;
 	}
 
 }

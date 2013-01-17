@@ -7,6 +7,6 @@ import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 public interface TeacherCourseResourceRepositoryCustom {
 	
 	List<CourseResource> getResourceByCourseId(Long course_id);
-	List<CourseResource> getResourceByResourceOrder(String resourceOrder);
+	CourseResource getResourceByResourceOrderAndCourseId(String resourceOrder,Long course_id);
 	String getMaxCourseOrderByCourseId(Long course_id);
 }

@@ -55,17 +55,6 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 			 return list;
 		 }
 	@Override
-	public List<CourseResource> getResourceByResourceOrder(String resourceOrder) {
-		List<CourseResource> list= new ArrayList<CourseResource>(); 
-		try {
-			list=resourceRepository.getResourceByResourceOrder(resourceOrder);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-		return list;
-	}
-
-	@Override
 	public String getMaxCourseOrderByCourseId(Long course_id) {
 		String courseOrder = "";
 		try {
@@ -74,6 +63,17 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 			e.printStackTrace();
 		}
 		return courseOrder == null? "0":courseOrder;
+	}
+
+	public CourseResource getResourceByResourceOrderAndCourseId(
+			String resourceOrder, Long course_id) {
+		CourseResource courseResource= new CourseResource(); 
+		try {
+			courseResource=resourceRepository.getResourceByResourceOrderAndCourseId(resourceOrder,course_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return courseResource;
 	}
 
 //	@Override
