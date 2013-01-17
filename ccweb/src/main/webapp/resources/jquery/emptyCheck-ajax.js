@@ -65,8 +65,6 @@ function checkAjaxs(formID, actionName) {
 				+ textInfo + '"}';
 		var annoData = eval("(" + annoInfo + ")");
 		$.post(action, annoData, function(response) {
-			alert(annoData);
-			alert(action);
 			$form.find('.modal-body').removeClass('error');
 			$form.find('.help-inline').empty();
 			$form.find('.alert').remove();
@@ -76,7 +74,6 @@ function checkAjaxs(formID, actionName) {
 					var $controlGroup = $('#' + item.fieldName);
 					$controlGroup.addClass('error');
 					$controlGroup.find('.help-inline').html("<font color='#ff0000'>" + item.message+ "</font>");
-					alert(item.message);
 				}
 			} else {
 				$form.unbind('submit');
