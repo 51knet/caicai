@@ -8,42 +8,55 @@
 	<jsp:include page="/WEB-INF/views/_shared/common/_html_head.jsp"></jsp:include>
 </head>
 <style>
+.navbar {
+	margin-bottom: 0px;
+}
+.container-fluid {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.container.course {
+	width: 990px;
+	max-width:990px;
 	
+	text-align: center;
+}
+
+.container.course.row{
+     padding-left: 0px;
+	margin-left: 18%;
+	 margin-top: -205px;
+	 text-align: left;
+}
 </style>
-<body class="admin">
+<body >
 	<tiles:insertAttribute name="top-navbar" />
-	<!-- /top-navbar -->
 	<div class="container-fluid">
-		<div class="container-fluid content-centered">
-			<div class="row-fluid" style="margin-bottom: 20px;width: 810px;margin-left: 458px;margin-top:25px;">
+			<div class="container course" >
 				<tiles:insertAttribute name="banner" />
 			</div>
 			<!--/row-->
 			<tiles:insertAttribute name="breadcrumbs" />
-			<div class="row-fluid" >
-				<div class="span2" style="margin-left: 458px;">
-					<div class="left-panel">
+					<div class="container course" style="margin-top: 20px;">
 						<tiles:insertAttribute name="left" />
 					</div>
-				</div>
 				<!--/span-->
-				<div class="span10" style="width: 810px;margin-left: 634px;margin-top: -205px;">
-					<div class="right-panel"  style="width: 810px;">
+				<div class="container course" >
+					<div class="container course row"  style="width: 810px;">
 						<tiles:insertAttribute name="right" />
 					</div>
-					<div class="right-panel"  style="width: 810px;">
+					<div class="container course row"  style="width: 810px;">
 						<tiles:insertAttribute name="right_bottom" />
 					</div>
-				</div>
+				</div>	
 				<!--/span-->
-			</div>
 			<!--/row-->
 
 			<br>
 
 			<footer><tiles:insertAttribute name="footer" /></footer>
 
-		</div>
 	</div>
 	<!--/.fluid-container-->
 </body>
