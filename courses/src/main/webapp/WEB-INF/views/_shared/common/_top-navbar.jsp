@@ -29,7 +29,13 @@
          </form>
           -->
 			<ul class="nav pull-right">
-				<li><a style="margin-bottom: 10px; font-size: 14px;" href="#loginModal" data-toggle="modal">登录</a><br></li>
+				<c:if test="${sessionUserInfo != null}">
+				<li><a href='<c:url value="#"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
+				<li><a style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/signout"></c:url>'>退出登录</a><br></li>
+				</c:if>
+				<c:if test="${sessionUserInfo == null}">
+				<li><a style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/signin"></c:url>'>登录</a><br></li>
+				</c:if>
 				<li class="divider-vertical"></li>
 				<li class="dropdown" style="display: none;"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
 					<ul class="dropdown-menu">
@@ -41,34 +47,5 @@
 					</ul></li>
 			</ul>
 		</div>
-	</div>
-</div>
-<div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true" style="text-align: left;">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="loginModalLabel" style="text-align: center;">用户登录</h3>
-	</div>
-	<div class="span4 login-panel">
-		<form:form class="form-horizontal" action="#" id="sigin_info_form" modelAttribute="loginForm" method="get">
-			<div class="control-group" style="margin-top: 30px;">
-				<label class="control-label" for="email">邮箱地址</label>
-				<div class="controls">
-					<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址"> <span class="help-block" id="em"><form:errors path="email"></form:errors></span>
-					<div id="emailError"></div>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="password">登录密码</label>
-				<div class="controls">
-					<input type="password" id="password" name="password" placeholder="请输入您的密码"> <span class="help-block" id="pass"><form:errors path="password"></form:errors></span>
-					<div id="passwordErr"></div>
-				</div>
-			</div>
-			<div class="row-fluid" style="margin-left: 55%;">
-				<div class="span6">
-					<button class="btn btn-large btn-primary" type="submit">登录</button>
-				</div>
-			</div>
-		</form:form>
 	</div>
 </div>

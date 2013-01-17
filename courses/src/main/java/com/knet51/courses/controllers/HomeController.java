@@ -14,10 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.courses.beans.CourseBeans;
+import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 import com.knet51.courses.jpa.services.UserCourseService;
@@ -55,7 +56,7 @@ public class HomeController {
 		model.addAttribute("courseList", cBeans);
 		model.addAttribute("courseCount", cBeans.size());
 		model.addAttribute("teacherList", teacherList);
-		User currentUser = (User) session.getAttribute("userInfo");
+		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(currentUser !=null){
 			List<TeacherCourse> userCourse = courseService.getCourseByUserId(currentUser.getId());
 			model.addAttribute("userCourse", userCourse);
