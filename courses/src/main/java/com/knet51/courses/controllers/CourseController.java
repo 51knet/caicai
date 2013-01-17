@@ -137,6 +137,7 @@ public class CourseController {
 			list.add(UserCourseUser);
 		}
 		model.addAttribute("teacher", teacher);
+		
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
 		List<CourseResource> listCourses = new ArrayList<CourseResource>();
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();

@@ -3,6 +3,14 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script type="text/javascript">
+	function courseOnclick(obj) {
+		var courseId = obj.id;
+		var id = courseId.substring(courseId.indexOf('_') + 1, courseId.length); // 这里indexOf('-')和lastIndexOf('-')相等
+		$(".fileName_" + id).slideToggle();
+		return false;
+	}
+</script>
 <style>
 .container.course {
 	width: 990px;
@@ -24,9 +32,6 @@
 	margin-bottom: 10px;
 }
 </style>
-
-
-
 <div class="container course" style=" margin-bottom: 20px;margin-top: 10px;">
 	<div class="container course row">
 		<div class="container course detail" style="margin-bottom: 20px; margin-top:10px; height: 180px;">
@@ -141,7 +146,36 @@
 		</div>
 		<div class="container course detail">
 			<div class="container course detail desc">
-				尚未添加计划
+				<c:choose>
+						<c:when test="${resourceCount>0 }">
+							<c:forEach var="course" items="${courseMap}" varStatus="i">
+									<table   style="width: 95%;  border: 2px solid #f1f1f1; margin-bottom: 5px;">
+										<tbody>
+											<tr>
+												<td align="left">
+													<div >
+														<div style="font-size: 16px;  background-color: #f7f7f7; padding: 5px;" id="course_${i.count}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
+														<c:forEach var="fileNames" items="${course.value}">
+															<div  class="fileName_${i.count}" >
+																<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${fileNames.fileName}</div>
+																<div style="width:10%; float: left; text-align: center;">
+																	<a href='#'>
+																		<img src="<c:url  value="/resources/img/u173_normal.jpg" ></c:url> ">
+																	</a>
+																</div>
+															</div>
+														</c:forEach>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</c:forEach>
+						</c:when>
+						<c:otherwise>
+							尚未添加资源
+						</c:otherwise>
+					</c:choose>
 			</div>
 		</div>
 		
