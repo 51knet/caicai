@@ -58,7 +58,7 @@
 						</c:choose>
 					</div>
 					<div style="width: 60%; float: left; height:150px;border: 0px solid #cccccc; font-size: 13px;">
-						<div style="width: 60%; float: left; ">
+						<div style="width: 80%; float: left; ">
 							<h5 style="width: 300px;" id="content">${course.courseName}</h5>
 							<h5>${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</h5>
 							<h5>类别：${course.courseType }&nbsp;&nbsp;&nbsp;&nbsp;课程评分：<span style="color: red;">0</span>分</h5>
@@ -66,13 +66,13 @@
 							学员（0）&nbsp;&nbsp;评论（0）&nbsp;&nbsp;
 							<c:if test="${course.publish==1}">
 									<a href= '<c:url value="/admin/teacher/course/edit/${course.id }/preview"></c:url>'  class="btn  btn-success"  target="_blank" >预览</a>
-									<a href='<c:url value="/admin/teacher/course/edit/${course.id}/modifycourse"></c:url>'  class="btn  btn-success">修改</a>		
 							</c:if>
 							<c:if test="${course.publish==2}">
 									<c:if test="${course.status==1 }">
 										<a href= '<c:url value="/admin/teacher/course/edit/${course.id }/pubcourses"></c:url>'  class="btn  btn-success" >发布到知识超市</a>
 									</c:if>	
 							</c:if>
+								&nbsp;<a href='<c:url value="/admin/teacher/course/edit/${course.id}/modifycourse"></c:url>'  class="btn  btn-success">修改</a>	
 						</div>
 					</div>
 				</div>

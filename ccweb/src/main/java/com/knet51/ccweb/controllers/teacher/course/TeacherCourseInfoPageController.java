@@ -334,7 +334,6 @@ public class TeacherCourseInfoPageController {
 		String courseOrder = request.getParameter("courseOrder");
 		TeacherCourse course= teacherCourseService.findOneById(course_id);
 		model.addAttribute("course", course);
-		logger.info("=================="+courseOrder);
 		return null;
 	}
 	
@@ -368,50 +367,20 @@ public class TeacherCourseInfoPageController {
 		return "redirect:/admin/teacher/course/view/"+course_id;
 	}
 	
-
-	
-	/*	
-	@RequestMapping(value="/admin/teacher/allCourse/list")
-	public String teacherAllCourseInfo(HttpSession session,Model model ){
-		logger.info("#####Into TeacherCourseInfoPageController#####");
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		//Teacher teacher = teacherService.findOne(userInfo.getId());
-		List<CourseBeans> courseBean = teacherCourseService.getAllCourseBeans();
-		model.addAttribute("cb", courseBean);
-		return "admin.teacher.allCourse.list";
-	}
-	
-	@RequestMapping(value="/admin/teacher/course/all/list")
-	public String teacherAllCourseList(HttpSession session,Model model,@RequestParam("school") String schoolName) throws Exception{
-		logger.info("#####Into TeacherCourseInfoPageController#####");
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		List<String> school = teacherCourseService.getAllSchool();
-		schoolName = new String(schoolName.getBytes("iso-8859-1"),"utf-8"); 
-		logger.info("+++++++++++++++++++++++"+schoolName+"++++++++++++++++++++");
-		List<CourseBeans> courseBean = teacherCourseService.getAllCourseBeans();
-		List<CourseBeans> newCourseBeans = new ArrayList<CourseBeans>();
-		if(schoolName.trim() !=null && !schoolName.trim().equals("all")){
-			List<Teacher> teacherList = teacherCourseService.getAllCourseTeacher(schoolName);
-			for(CourseBeans c :courseBean){
-				if(schoolName.equals(c.getTeacher().getCollege())){
-					newCourseBeans.add(c);
-				}
-			}
-			model.addAttribute("schoolName", schoolName);
-			model.addAttribute("cb", newCourseBeans);
-			model.addAttribute("school", school);
-			model.addAttribute("teacherList", teacherList);
-			return "admin.teacher.course.all.list";
-		}else if(schoolName.trim().equals("all")){
-			model.addAttribute("cb", courseBean);
-			model.addAttribute("school", school);
-			return "admin.teacher.course.all.list";
-		}else{
-			model.addAttribute("cb", courseBean);
-			model.addAttribute("school", school);
-			return "admin.teacher.course.all.list";
+	@RequestMapping(value="/admin/teacher/course/edit/addcourseorder")
+	public String addNewCourseOrder(@RequestParam("courseid") Long course_id,Model model){
+		String courseOrder = courseResourceService.getMaxCourseOrderByCourseId(course_id);
+		String newOrder = "";
+		if(courseOrder.equals("1")){
+			newOrder = courseOrder;
+		}else {
+			newOrder = Integer.parseInt(courseOrder)+1+"";
 		}
-		
-		
-	}  */
+		CourseResource courseResource = new CourseResource();
+		courseResource.setResourceOrder(newOrder);
+		courseResource.setCourse_id(course_id);
+		courseResourceService.createCourseResource(courseResource);
+		logger.info("======================="+newOrder);
+		return "redirect:/admin/teacher/course/edit/"+course_id+"/modifycourse";
+	}
 }

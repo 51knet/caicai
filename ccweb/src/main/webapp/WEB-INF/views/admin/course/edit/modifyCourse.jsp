@@ -7,9 +7,65 @@
 <link href="<c:url value="/resources/js/uploadify/css/uploadify.css" />" rel="stylesheet" type="text/css" />
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/uploadify/js/jquery.uploadify.v2.0.1.js" />"></script>
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/uploadify/js/swfobject.js" />"></script>
+<style>
+<!--
+ .cont {
+	width: 100%;
+	margin-left: 30px;
+	margin-bottom: 10px;
+}
+-->
+</style>
 <div style="margin-top: 10px;">
 	<a href="#">课程资料</a>
 	<hr />
+	<div class="cont">
+			<c:choose>
+				<c:when test="${resourceCount>0 }">
+					<c:forEach var="course" items="${courseMap}" varStatus="i">
+							<table   style="width: 90%;  border: 1px solid #dcdcdc; margin-bottom: 3px;">
+								<tbody>
+									<tr>
+										<td align="left">
+											<div id="courseOrder">
+												<div style="font-size: 15px;  background-color: #f2f2f2; padding: 3px;" id="course_${i.count}" >
+													<b>第${course.key}课时</b>
+													<span style="float: right; margin-right: 26px;">
+														<a href="#">添加内容</a> | <a href="#">编辑</a>
+													</span>
+													<c:forEach var="fileNames" items="${course.value}">
+														<div  class="fileName_${i.count}" >
+															<c:if test="${fileNames.fileName != null }">
+																<div style="width: 87%; float: left; margin-left: 10px; margin-top: 3px;">${fileNames.fileName}</div>
+																<div style="width:11%; float: left; text-align: center;  margin-top:3px;">
+																	<a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>
+																		编辑
+																	</a>
+																</div>
+															</c:if>
+														</div>
+													</c:forEach>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</c:forEach>
+				</c:when>
+				<c:otherwise>
+					尚未添加资源
+				</c:otherwise>
+			</c:choose>
+			<div style="font-size: 15px; text-align:right;   padding: 5px; width:675px;margin-top: 5px;"  >
+					<form action='<c:url value="/admin/teacher/course/edit/addcourseorder"></c:url>' method="post">
+							<input type="hidden" name="courseid" value="${course.id }" >
+							<button type="submit"    class="btn btn-success">添加新课时</button>
+					</form>
+			</div>
+		</div>
+	</div>
+	<!-- 
 	<div>
 		<div
 			style="background-color: #f7f7f7; text-align: left; padding: 10px;margin-top:30px; margin-left: 10px;">
@@ -31,7 +87,7 @@
 			<div>添加一部分</div>
 		</div>
 	</div>
-<!-- 
+
 	<div id="testUploadify" style="margin-top: 20px;">
 		<div id="fileQueue" style="height: 100px; padding-left: 10px; display: block;"></div>
 		<form id="course_form">
@@ -63,5 +119,3 @@
 		</script>
 	</div>
 	 -->
-
-</div>

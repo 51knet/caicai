@@ -25,4 +25,10 @@ public class TeacherCourseResourceRepositoryImpl implements TeacherCourseResourc
 		return list;
 	}
 
+	@Override
+	public String getMaxCourseOrderByCourseId(Long course_id) {
+		String resourceOrder = (String) em.createQuery("select max(resourceOrder) from CourseResource where course_id="+course_id).getSingleResult();
+		return resourceOrder;
+	}
+
 }

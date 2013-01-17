@@ -3,6 +3,8 @@ package com.knet51.ccweb.jpa.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,6 +63,17 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 			e.printStackTrace();
 		} 
 		return list;
+	}
+
+	@Override
+	public String getMaxCourseOrderByCourseId(Long course_id) {
+		String courseOrder = "";
+		try {
+			courseOrder = resourceRepository.getMaxCourseOrderByCourseId(course_id);
+		} catch (NoResultException e) {
+			e.printStackTrace();
+		}
+		return courseOrder == null? "1":courseOrder;
 	}
 
 //	@Override

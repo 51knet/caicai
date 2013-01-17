@@ -8,4 +8,5 @@ public interface TeacherCourseResourceRepositoryCustom {
 	
 	List<CourseResource> getResourceByCourseId(Long course_id);
 	List<CourseResource> getResourceByResourceOrder(String resourceOrder);
+	String getMaxCourseOrderByCourseId(Long course_id);
 }

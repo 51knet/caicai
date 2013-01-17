@@ -2,8 +2,11 @@ package com.knet51.ccweb.controllers.teacher.course;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -223,6 +226,18 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/modifycourse")
 	public String modifyCreateTeacherCourse(HttpSession session,@PathVariable Long id,Model model,HttpServletRequest request){
 		TeacherCourse course=courseService.findOneById(id);
+		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(id);
+		List<CourseResource> listCourses = new ArrayList<CourseResource>();
+		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
+		String resourceOrder = null;
+		for (CourseResource courseResource : listResource) {
+			resourceOrder = courseResource.getResourceOrder();
+			listCourses = courseResourceService
+					.getResourceByResourceOrder(resourceOrder);
+			courseMap.put(resourceOrder, listCourses);
+		}
+		model.addAttribute("resourceCount", listResource.size());
+		model.addAttribute("courseMap", courseMap);
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.modifycourse";
 	}
