@@ -16,7 +16,7 @@ function commentAjax(){
     </div>
     <div style="text-align: left; margin-left: 50px"><font color='#ff0000'>${message}</font></div>
     
-	<div class="row" style="margin-left: 50px;">
+	<div class="row" style="margin-left: 50px;margin-bottom: 185px;">
 		<form id="usercourse_info_form" action="new" class="form-horizontal" method="post">
 		<div ><input type="hidden" name="teachercourseid"  value="${id}" /></div>
 		

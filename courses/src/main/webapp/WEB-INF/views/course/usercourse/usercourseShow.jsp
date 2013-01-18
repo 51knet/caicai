@@ -5,8 +5,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div id="comment">
-		<div  align="left" style="background-color:#F7F7F7;height:40px; line-height:40px;clear:both;margin-top: 200px;"><h4 style=" float:left; margin-left: 40px;">用户评价</h4></div> 
-		<div style="margin-left:35px; margin-top: 10px; margin-bottom: 10px;">
+		<div  align="left" style="background-color:#F7F7F7;height:40px; line-height:40px;clear:both;margin-top: 20px;"><h4 style=" float:left; margin-left: 40px;">用户评价</h4></div> 
+		<div style="margin-left:35px; margin-top: 10px;">
     	<c:choose>
 			<c:when test="${courseMark>0 }">
 			<span style="line-height:40px">总评论人数:&nbsp;&nbsp;&nbsp;${sumPerson}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
