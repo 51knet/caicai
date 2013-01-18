@@ -27,7 +27,7 @@
 	}
 </script>
 <div style="margin-top: 10px;">
-	<a href="#">课程资料${resource.id }</a>
+	<a href="#">课程资料</a>
 	<hr />
 	<div class="cont">
 		<c:choose>

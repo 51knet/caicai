@@ -384,7 +384,6 @@ public class TeacherCourseInfoPageController {
 		courseResource.setCourseOrder(newOrder);
 		courseResource.setCourse_id(course_id);
 		CourseResource resource = courseResourceService.createCourseResource(courseResource);
-		model.addAttribute("resource", resource);
 		logger.info("======================="+newOrder);
 		return "redirect:/admin/teacher/course/edit/"+course_id+"/modifycourse";
 	}	
