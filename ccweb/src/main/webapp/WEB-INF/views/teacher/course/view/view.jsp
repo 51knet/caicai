@@ -115,6 +115,7 @@
 											<div >
 												<div style="font-size: 16px;  background-color: #f2f2f2; padding: 5px;" id="course_${i.count}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
 												<c:forEach var="fileNames" items="${course.value}">
+												<c:if test="${fileNames.fileName!=null}">
 													<div  class="fileName_${i.count}"  style="background-color:#ffffff;">
 														<c:if test="${fileNames.fileName != null }">
 															<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${fileNames.fileName}</div>
@@ -125,7 +126,8 @@
 															</div>
 														</c:if>
 													</div>
-												</c:forEach>
+												</c:if>
+											</c:forEach>
 											</div>
 										</td>
 									</tr>

@@ -323,7 +323,7 @@
 					</form>
 				</div>
 				<div id="thesisButton" style="display: block">
-					<button onclick="showThesisAddForm()">添加</button>
+					<button onclick="showThesisAddForm();">添加</button>
 				</div>
 		</div>
 		
