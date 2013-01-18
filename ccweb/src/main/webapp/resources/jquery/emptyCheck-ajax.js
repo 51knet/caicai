@@ -35,10 +35,7 @@ function checkAjax(formID, actionName) {
 					var item = response.errorMessageList[i];
 					var $controlGroup = $('#' + item.fieldName);
 					$controlGroup.addClass('error');
-					$controlGroup.find('.help-inline')
-							.html(
-									"<font color='#ff0000'>" + item.message
-											+ "</font>");
+					$controlGroup.find('.help-inline').html(item.message);
 				}
 			} else {
 				$form.unbind('submit');

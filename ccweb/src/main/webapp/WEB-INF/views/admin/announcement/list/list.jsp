@@ -83,30 +83,30 @@ $(document).ready(function() {
 			<div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 			<br />
 			
-			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: left;">
+			<div id="myModal" class="modal hide fade" tabindex="-1"  style="text-align: left;">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
+					<button type="button" class="close" data-dismiss="modal">×</button>
 					<h3 id="myModalLabel">公告添加</h3>
 				</div>
 				<form:form action='new' method="post" id="anno_information">
-					<div class="modal-body" id="title">
-		
-						公告标签：&nbsp;<input type="text" name="title" id="t" placeholder="公告标签"  >
+					<div class="control-group" id="title">
+						<div class="controls">
+						<span style="margin-left:16px;">公告标签:</span>&nbsp;<input style="margin-left: 40px;margin-top: 16px;width: 349px;" type="text" name="title" id="t" placeholder="公告标签"  >
 						<span class="help-inline"><form:errors path="title"></form:errors></span>
+						</div>
 					</div>
-					<div class="modal-body" id="content">
-						公告内容：
-						<textarea name="content" placeholder="公告内容" id="c" cols="5"
-							rows="8" style="width:380px;"></textarea>
+					
+					
+					<div class="control-group" id="content">
+						<div class="controls">
+						<span style="margin-left: 16px;">公告内容:</span>
+						<textarea name="content" placeholder="公告内容" id="c" cols="5" rows="8" style="width:350px;margin-left: 40px;margin-top:4px; "></textarea>
 						<span class="help-inline"><form:errors path="content"></form:errors></span>
+						</div>
 					</div>
 					<div class="modal-footer">
-					
 						<button class="btn btn-primary" type="submit">保存</button>
-							<button class="btn" type="reset" data-dismiss="modal"
-							aria-hidden="true">取消</button>
+							<button class="btn" type="reset" data-dismiss="modal">取消</button>
 					</div>
 				</form:form>
 			</div>
