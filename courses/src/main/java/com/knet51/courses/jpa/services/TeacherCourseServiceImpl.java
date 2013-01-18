@@ -21,6 +21,7 @@ import com.knet51.ccweb.jpa.repository.TeacherCourseRepository;
 import com.knet51.ccweb.jpa.repository.TeacherRepository;
 import com.knet51.courses.beans.CourseBeans;
 import com.knet51.courses.beans.TeacherCourseBeans;
+import com.knet51.courses.controllers.defs.GlobalDefs;
 
 @Transactional
 @Service("teacherCourseService")
@@ -117,7 +118,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		List<TeacherCourse> list=new ArrayList<TeacherCourse>();
 		Teacher teacher = teacherRepository.findOne(teacher_id);
 		try {
-			list=courseRepository.findTeacherCourseByTeacherAndStatusAndPublish(teacher, 2,2);
+			list=courseRepository.findTeacherCourseByTeacherAndStatusAndPublish(teacher, GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -128,7 +129,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	@Override
 	public List<CourseBeans> getAllCourseBeans() {
 		List<CourseBeans> courseBeansList = new ArrayList<CourseBeans>();
-		List<TeacherCourse> teacherCourseList = courseRepository.findTeacherCourseByStatusAndPublish(2, 2);
+		List<TeacherCourse> teacherCourseList = courseRepository.findTeacherCourseByStatusAndPublish(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		for(int i=0;i<teacherCourseList.size();i++){
 			TeacherCourse teacherCourse = courseRepository.findOne(teacherCourseList.get(i).getId());
 			Double avgMark = commentRepository.getMark(teacherCourseList.get(i).getId());
@@ -172,7 +173,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 
 	@Override
 	public List<TeacherCourse> findAllCourses() {
-		List<TeacherCourse> courseList = courseRepository.findTeacherCourseByStatusAndPublish(2,2);
+		List<TeacherCourse> courseList = courseRepository.findTeacherCourseByStatusAndPublish(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		return courseList;
 	}
 
