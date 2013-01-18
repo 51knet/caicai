@@ -383,7 +383,7 @@ public class TeacherCourseInfoPageController {
 		CourseResource courseResource = new CourseResource();
 		courseResource.setCourseOrder(newOrder);
 		courseResource.setCourse_id(course_id);
-		courseResourceService.createCourseResource(courseResource);
+		CourseResource resource = courseResourceService.createCourseResource(courseResource);
 		logger.info("======================="+newOrder);
 		return "redirect:/admin/teacher/course/edit/"+course_id+"/modifycourse";
 	}	

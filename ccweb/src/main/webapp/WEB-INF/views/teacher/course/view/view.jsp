@@ -117,12 +117,14 @@
 												<c:forEach var="fileNames" items="${course.value}">
 												<c:if test="${fileNames.fileName!=null}">
 													<div  class="fileName_${i.count}"  style="background-color:#ffffff;">
-														<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${fileNames.fileName}</div>
-														<div style="width:10%; float: left; text-align: center;">
-															<a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>
-																<img src="<c:url  value="/resources/img/u173_normal.jpg" ></c:url> ">
-															</a>
-														</div>
+														<c:if test="${fileNames.fileName != null }">
+															<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${fileNames.fileName}</div>
+															<div style="width:10%; float: left; text-align: center;">
+																<a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>
+																	<img src="<c:url  value="/resources/img/u173_normal.jpg" ></c:url> ">
+																</a>
+															</div>
+														</c:if>
 													</div>
 												</c:if>
 											</c:forEach>

@@ -165,22 +165,20 @@ public class TeacherCourseInfoDetailController {
 	public String TeacherCourseResourceAdd(HttpSession session,Model model,
 			MultipartHttpServletRequest request,@PathVariable Long course_id) throws  Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		List<MultipartFile> files = request.getFiles("file");
-		String resourceDesc = request.getParameter("resourceDesc");
-		String courseOrder = request.getParameter("resourceOrder");
+		List<MultipartFile> files = request.getFiles("resourceFile");
+		String courseOrder = request.getParameter("courseOrder");
+		String resourceName = request.getParameter("resourceName");
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
 				CourseResource resource = new CourseResource();
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 	
 				String fileName = multipartFile.getOriginalFilename();
-				String name = fileName.substring(0, fileName.indexOf("."));
-				resource.setFileName(name);
-				
+				//String name = fileName.substring(0, fileName.indexOf("."));
+				resource.setFileName(resourceName);
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String date = format.format(new Date());
 				resource.setDate(date);
-				
 				TeacherCourse teacherCourse = courseService.findOneById(course_id);
 				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
 				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+courseOrder;
@@ -191,13 +189,16 @@ public class TeacherCourseInfoDetailController {
 				String savePath = path+File.separator+fileName;
 				resource.setSavePath(savePath);
 				resource.setSaveName(fileName);
-				resource.setResourceDesc(resourceDesc);
 				resource.setCourseOrder(courseOrder);
 				resource.setCourse_id(course_id);
 				courseResourceService.createCourseResource(resource);
 			}
 		}
-		return "redirect:/admin/teacher/course/view/"+course_id;
+		List<CourseResource> resource = courseResourceService.findNullResourceByCourseIdAndCourseOrder(course_id, courseOrder);
+		if(resource.size()>0){
+			courseResourceService.deleCourseResource(resource.get(0).getId());
+		}
+		return "redirect:/admin/teacher/course/edit/"+course_id+"/modifycourse";
 	}
 	
 	
