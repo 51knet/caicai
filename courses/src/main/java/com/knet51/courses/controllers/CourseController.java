@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
@@ -100,15 +102,16 @@ public class CourseController {
 	public String showCourseDetail(@PathVariable Long course_id,Model model,HttpSession session
 			,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		/*     zm    */
 		TeacherCourse course = courseService.findOneById(course_id);
 		model.addAttribute("course", course);
 		/*     lbx    */
 		UserCourse  userCourse;
-		userCourse=userCourseService.findByTeachercourseidAndUserid(course_id, 4l);
+		userCourse=userCourseService.findByTeachercourseidAndUserid(course_id, userInfo.getId());
 		if(userCourse==null){
 			userCourse=new UserCourse();
-			userCourse.setUserid(4l);
+			userCourse.setUserid(userInfo.getId());
 			userCourse.setTeachercourseid(course_id);
 			userCourseService.save(userCourse);
 		}
@@ -283,13 +286,14 @@ public class CourseController {
 			return "redirect:/teachercourse/course/usercourse/"+id;
 		} else {
 			logger.info("### contactInfo Validation passed. ###");
-			UserCourse userCourse=userCourseService.findByTeachercourseidAndUserid(id, 4l);
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			UserCourse userCourse=userCourseService.findByTeachercourseidAndUserid(id, userInfo.getId());
 			if (userCourse.getCommentDesc()!=null&&userCourse.getMark()>=0) {
 				String message="请不要重复评论";
 				redirectAttr.addFlashAttribute("message", message);
 				return "redirect:/teachercourse/course/usercourse/"+id;
 			} else{
-				UserCourse comm = userCourseService.findByTeachercourseidAndUserid(id, 4l);
+				UserCourse comm = userCourseService.findByTeachercourseidAndUserid(id, userInfo.getId());
 				if(userCourseDesc!=null&&!(userCourseDesc.equals(""))){
 					comm.setCommentDesc(userCourseDesc);
 					comm.setMark(marks);
