@@ -19,15 +19,15 @@ public class TeacherCourseResourceRepositoryImpl implements TeacherCourseResourc
 	}
 	@Override
 	public String getMaxCourseOrderByCourseId(Long course_id) {
-		String resourceOrder = (String) em.createQuery("select max(resourceOrder) from CourseResource where course_id="+course_id).getSingleResult();
+		String resourceOrder = (String) em.createQuery("select max(courseOrder) from CourseResource where course_id="+course_id).getSingleResult();
 		return resourceOrder;
 	}
 
 	@Override
 	@SuppressWarnings("unused")
-	public CourseResource getResourceByResourceOrderAndCourseId(String resourceOrder,
+	public CourseResource getResourceByCourseOrderAndCourseId(String courseOrder,
 			Long course_id) {
-		CourseResource courseResource = (CourseResource) em.createQuery("from CourseResource where resourceOrder="+resourceOrder+" and course_id="+course_id).getSingleResult();
+		CourseResource courseResource = (CourseResource) em.createQuery("from CourseResource where courseOrder="+courseOrder+" and course_id="+course_id).getSingleResult();
 		return courseResource;
 	}
 

@@ -101,9 +101,9 @@ public class TeacherCourseInfoPageController {
 		Map<String, CourseResource> courseMap = new TreeMap<String, CourseResource>();
 		String resourceOrder = null;
 		for (CourseResource courseResource : listResource) {
-			resourceOrder = courseResource.getResourceOrder();
+			resourceOrder = courseResource.getCourseOrder();
 			courses = courseResourceService
-					.getResourceByResourceOrderAndCourseId(resourceOrder,course_id);
+					.getResourceByCourseOrderAndCourseId(resourceOrder,course_id);
 			courseMap.put(resourceOrder, courses);
 		}
 		model.addAttribute("resourceCount", listResource.size());
@@ -168,9 +168,9 @@ public class TeacherCourseInfoPageController {
 		Map<String, CourseResource> courseMap = new TreeMap<String, CourseResource>();
 		String resourceOrder = null;
 		for (CourseResource courseResource : listResource) {
-			resourceOrder = courseResource.getResourceOrder();
+			resourceOrder = courseResource.getCourseOrder();
 			courses = courseResourceService
-					.getResourceByResourceOrderAndCourseId(resourceOrder,course_id);
+					.getResourceByCourseOrderAndCourseId(resourceOrder,course_id);
 			courseMap.put(resourceOrder, courses);
 		}
 		model.addAttribute("resourceCount", listResource.size());
@@ -263,7 +263,7 @@ public class TeacherCourseInfoPageController {
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("resourceFile");
 		String resourceDesc = request.getParameter("resourceDesc");
-		String resourceOrder = request.getParameter("resourceOrder");
+		String courseOrder = request.getParameter("resourceOrder");
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
@@ -279,7 +279,7 @@ public class TeacherCourseInfoPageController {
 				
 				TeacherCourse teacherCourse = teacherCourseService.findOneById(course_id);
 				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
-				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+resourceOrder;
+				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+courseOrder;
 				FileUtil.createRealPath(path, session);
 				File saveDest = new File(path + File.separator + fileName);
 				multipartFile.transferTo(saveDest);
@@ -288,7 +288,7 @@ public class TeacherCourseInfoPageController {
 				resource.setSavePath(savePath);
 				resource.setSaveName(fileName);
 				resource.setResourceDesc(resourceDesc);
-				resource.setResourceOrder(resourceOrder);
+				resource.setCourseOrder(courseOrder);
 				resource.setCourse_id(course_id);
 				courseResourceService.createCourseResource(resource);
 			}
@@ -322,9 +322,9 @@ public class TeacherCourseInfoPageController {
 		Map<String, CourseResource> courseMap = new TreeMap<String, CourseResource>();
 		String resourceOrder = null;
 		for (CourseResource courseResource : listResource) {
-			resourceOrder = courseResource.getResourceOrder();
+			resourceOrder = courseResource.getCourseOrder();
 			courses = courseResourceService
-					.getResourceByResourceOrderAndCourseId(resourceOrder,course_id);
+					.getResourceByCourseOrderAndCourseId(resourceOrder,course_id);
 			courseMap.put(resourceOrder, courses);
 		}
 		model.addAttribute("resourceCount", listResource.size());
@@ -378,7 +378,7 @@ public class TeacherCourseInfoPageController {
 		String newOrder = "";
 		newOrder = Integer.parseInt(courseOrder)+1+"";
 		CourseResource courseResource = new CourseResource();
-		courseResource.setResourceOrder(newOrder);
+		courseResource.setCourseOrder(newOrder);
 		courseResource.setCourse_id(course_id);
 		courseResourceService.createCourseResource(courseResource);
 		logger.info("======================="+newOrder);

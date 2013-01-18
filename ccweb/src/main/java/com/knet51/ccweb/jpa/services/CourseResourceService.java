@@ -9,7 +9,7 @@ public interface CourseResourceService {
 	CourseResource updateCourseResource(CourseResource CourseResource);
 	List<CourseResource> getAllCourseResourceById(Long course_id);
 	List<CourseResource> getResourceByCourseId(Long course_id);
-	CourseResource getResourceByResourceOrderAndCourseId(String resourceOrder,Long course_id);
+	CourseResource getResourceByCourseOrderAndCourseId(String courseOrder,Long course_id);
 	void deleCourseResource(Long resource_id);
 	String getMaxCourseOrderByCourseId(Long course_id);
 	//Page<CourseResource> findAllCourseResourceByCourse(int pageNum, int pageSize, TeacherCourse course);

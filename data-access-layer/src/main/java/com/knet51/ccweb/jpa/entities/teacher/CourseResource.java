@@ -15,7 +15,7 @@ public class CourseResource extends AbstractEntity {
 	@Lob
 	@Column(length=10000)
 	private String resourceDesc;
-	private String resourceOrder; //lesson 0ne,lesson two and so on....
+	private String courseOrder; //lesson 0ne,lesson two and so on....
 	private String date;
 	private Long course_id;
 	
@@ -60,11 +60,11 @@ public class CourseResource extends AbstractEntity {
 	
 	
 	
-	public String getResourceOrder() {
-		return resourceOrder;
+	public String getCourseOrder() {
+		return courseOrder;
 	}
-	public void setResourceOrder(String resourceOrder) {
-		this.resourceOrder = resourceOrder;
+	public void setCourseOrder(String courseOrder) {
+		this.courseOrder = courseOrder;
 	}
 	public void setResourceDesc(String resourceDesc) {
 		this.resourceDesc = resourceDesc;

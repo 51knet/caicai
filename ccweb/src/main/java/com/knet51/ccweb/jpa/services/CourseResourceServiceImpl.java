@@ -65,11 +65,11 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 		return courseOrder == null? "0":courseOrder;
 	}
 
-	public CourseResource getResourceByResourceOrderAndCourseId(
+	public CourseResource getResourceByCourseOrderAndCourseId(
 			String resourceOrder, Long course_id) {
 		CourseResource courseResource= new CourseResource(); 
 		try {
-			courseResource=resourceRepository.getResourceByResourceOrderAndCourseId(resourceOrder,course_id);
+			courseResource=resourceRepository.getResourceByCourseOrderAndCourseId(resourceOrder,course_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 

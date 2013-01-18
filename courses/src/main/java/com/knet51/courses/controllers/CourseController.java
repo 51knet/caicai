@@ -143,9 +143,9 @@ public class CourseController {
 		Map<String, CourseResource> courseMap = new TreeMap<String, CourseResource>();
 		String resourceOrder = null;
 		for (CourseResource courseResource : listResource) {
-			resourceOrder = courseResource.getResourceOrder();
+			resourceOrder = courseResource.getCourseOrder();
 			courses = courseResourceService
-					.getResourceByResourceOrderAndCourseId(resourceOrder,course_id);
+					.getResourceByCourseOrderAndCourseId(resourceOrder,course_id);
 			courseMap.put(resourceOrder, courses);
 		}
 		model.addAttribute("page", onePage);
@@ -180,9 +180,9 @@ public class CourseController {
 		Map<String, CourseResource> courseMap = new TreeMap<String, CourseResource>();
 		String resourceOrder = null;
 		for (CourseResource courseResource : listResource) {
-			resourceOrder = courseResource.getResourceOrder();
+			resourceOrder = courseResource.getCourseOrder();
 			course = courseResourceService
-					.getResourceByResourceOrderAndCourseId(resourceOrder,id);
+					.getResourceByCourseOrderAndCourseId(resourceOrder,id);
 			courseMap.put(resourceOrder, course);
 		}
 		model.addAttribute("courseMap", courseMap);
