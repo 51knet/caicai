@@ -24,11 +24,11 @@ public class TeacherCourseResourceRepositoryImpl implements TeacherCourseResourc
 	}
 
 	@Override
-	@SuppressWarnings("unused")
-	public CourseResource getResourceByCourseOrderAndCourseId(String courseOrder,
+	@SuppressWarnings("unchecked")
+	public List<CourseResource> getResourceByCourseOrderAndCourseId(String courseOrder,
 			Long course_id) {
-		CourseResource courseResource = (CourseResource) em.createQuery("from CourseResource where courseOrder="+courseOrder+" and course_id="+course_id).getSingleResult();
-		return courseResource;
+		List<CourseResource> courseResourceList =  em.createQuery("from CourseResource where courseOrder in("+courseOrder+") and course_id="+course_id).getResultList();
+		return courseResourceList;
 	}
 
 }

@@ -227,14 +227,15 @@ public class TeacherCourseInfoDetailController {
 	public String modifyCreateTeacherCourse(HttpSession session,@PathVariable Long id,Model model,HttpServletRequest request){
 		TeacherCourse course=courseService.findOneById(id);
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(id);
-		CourseResource courses = new CourseResource();
-		Map<String, CourseResource> courseMap = new TreeMap<String, CourseResource>();
+		List<CourseResource> courseList;
+		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String resourceOrder = null;
 		for (CourseResource courseResource : listResource) {
+			courseList = new ArrayList<CourseResource>();
 			resourceOrder = courseResource.getCourseOrder();
-			courses = courseResourceService
+			courseList = courseResourceService
 					.getResourceByCourseOrderAndCourseId(resourceOrder,id);
-			courseMap.put(resourceOrder, courses);
+			courseMap.put(resourceOrder, courseList);
 		}
 		model.addAttribute("resourceCount", listResource.size());
 		model.addAttribute("courseMap", courseMap);

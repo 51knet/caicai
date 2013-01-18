@@ -32,10 +32,12 @@
 									<td align="left">
 										<div >
 											<div style="font-size: 16px;  background-color: #f7f7f7; padding: 5px;" id="course_${i.count}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
+												<c:forEach var="fileNames" items="${course.value}">
 												<div  class="fileName_${i.count}" >
-													<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${course.value.fileName}</div>
-													<div style="width:10%; float: left; text-align: center;"><a href='<c:url  value="/teachercourse/course/view/resource/${course.value.id}"></c:url>'><img src="<c:url  value="/resources/img/courseResource/u173_normal.jpg" ></c:url> "></a></div>
+													<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${fileNames.fileName}</div>
+													<div style="width:10%; float: left; text-align: center;"><a href='<c:url  value="/teachercourse/course/view/resource/${fileNames.id}"></c:url>'><img src="<c:url  value="/resources/img/courseResource/u173_normal.jpg" ></c:url> "></a></div>
 												</div>
+												</c:forEach>
 										</div>
 									</td>
 								</tr>
