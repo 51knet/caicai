@@ -33,16 +33,18 @@
 													<span style="float: right; margin-right: 26px;">
 														<a href="#">添加内容</a> | <a href="#">编辑</a>
 													</span>
+													<c:forEach var="fileNames" items="${course.value}"> 
 														<div  class="fileName_${i.count}" >
-															<c:if test="${course.value.fileName != null }">
-																<div style="width: 87%; float: left; margin-left: 10px; margin-top: 3px;">${course.value.fileName}</div>
+															<c:if test="${fileNames.fileName != null }">
+																<div style="width: 87%; float: left; margin-left: 10px; margin-top: 3px;">${fileNames.fileName}</div>
 																<div style="width:11%; float: left; text-align: center;  margin-top:3px;">
-																	<a href='<c:url value="/course/resource/download/${course.value.id}"></c:url>'>
+																	<a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>
 																		编辑
 																	</a>
 																</div>
 															</c:if>
 														</div>
+														</c:forEach>
 												</div>
 											</div>
 										</td>
