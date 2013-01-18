@@ -30,5 +30,11 @@ public class TeacherCourseResourceRepositoryImpl implements TeacherCourseResourc
 		List<CourseResource> courseResourceList =  em.createQuery("from CourseResource where courseOrder in("+courseOrder+") and course_id="+course_id).getResultList();
 		return courseResourceList;
 	}
+	@Override
+	public List<CourseResource> findNullResourceByCourseIdAndCourseOrder(Long course_id,
+			String courseOrder) {
+		List<CourseResource> resource =  em.createQuery("from CourseResource where courseOrder="+courseOrder+" and course_id="+course_id+"and saveName is null").getResultList();
+		return resource;
+	}
 
 }

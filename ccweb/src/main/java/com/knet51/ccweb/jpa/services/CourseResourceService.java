@@ -12,6 +12,7 @@ public interface CourseResourceService {
 	List<CourseResource> getResourceByCourseOrderAndCourseId(String resourceOrder,Long course_id);
 	void deleCourseResource(Long resource_id);
 	String getMaxCourseOrderByCourseId(Long course_id);
+	List<CourseResource> findNullResourceByCourseIdAndCourseOrder(Long course_id,String courseOrder);
 	//Page<CourseResource> findAllCourseResourceByCourse(int pageNum, int pageSize, TeacherCourse course);
 	
 }

@@ -76,6 +76,13 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 		return courseResourceList;
 	}
 
+	@Override
+	public List<CourseResource> findNullResourceByCourseIdAndCourseOrder(
+			Long course_id, String courseOrder) {
+		List<CourseResource> resource  = resourceRepository.findNullResourceByCourseIdAndCourseOrder(course_id, courseOrder);
+		return resource;
+	}
+
 //	@Override
 //	public Page<CourseResource> findAllCourseResourceByCourse(int pageNum,
 //			int pageSize, TeacherCourse course) {
