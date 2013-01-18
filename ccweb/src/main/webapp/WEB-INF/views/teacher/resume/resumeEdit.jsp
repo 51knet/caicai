@@ -309,11 +309,13 @@
 				</div>
 				<div id="thesisForm" style="display: none;">
 					<form action="thesis/new" method="post"  id="thesis_info_form">
-						内容：
-						<div class="modal-body" id="content">
-							<textarea style="width: 450px;" id="context" name="content" cols="40" rows="3" ></textarea>
-						    <span class="help-inline" style="color: red; font-size: 13px;" id="thesisContentMsg"></span>
-				        </div>
+						<div class="control-group" id="content">
+						<div class="controls">
+						内容:
+							<textarea style="width: 450px;margin-left: 20px;" id="context" name="content" cols="40" rows="3" ></textarea>
+						    <span class="help-inline"></span>
+						</div>
+					</div>
 						<div class="control-group">
 							<div class="controls">
 								<button type="submit"  onclick="return thesisOnclick();" class="btn btn-large btn-success">保 存</button>
