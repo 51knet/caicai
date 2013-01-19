@@ -67,7 +67,7 @@ public class TeacherCourseInfoPageController {
 		logger.info("#####Into TeacherCourseInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Teacher teacher = teacherService.findOne(userInfo.getId());
-		Page<TeacherCourse> onePage =teacherCourseService.findTeacherCourseByTeacherAndPublishGreaterThan(pageNumber, pageSize, teacher,GlobalDefs.PUBLIC_NUM_DELETE);
+		Page<TeacherCourse> onePage =teacherCourseService.findTeacherCourseByTeacherAndPublishGreaterThan(pageNumber, pageSize, teacher,GlobalDefs.PUBLISH_NUM_DELETE);
 		//Page<TeacherCourse> page = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, publish)
 		model.addAttribute("page", onePage);
 		return "admin.teacher.course.list";
@@ -144,7 +144,7 @@ public class TeacherCourseInfoPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", teacher_id);
-		Page<TeacherCourse> onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, 2);
+		Page<TeacherCourse> onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("page", onePage);
 		return "teacher.course.list";
 	}

@@ -3,7 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:choose>
-	<c:when test="${sessionScope.userInfo != null}">
+	<c:when test="${sessionScope.sessionUserInfo!= null}">
 		<div class="container user-course">
 			<c:choose>
 				<c:when test="${userCourseCount>0}">
