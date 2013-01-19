@@ -102,16 +102,16 @@ public class CourseController {
 	public String showCourseDetail(@PathVariable Long course_id,Model model,HttpSession session
 			,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize){
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		//UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		/*     zm    */
 		TeacherCourse course = courseService.findOneById(course_id);
 		model.addAttribute("course", course);
 		/*     lbx    */
 		UserCourse  userCourse;
-		userCourse=userCourseService.findByTeachercourseidAndUserid(course_id, userInfo.getId());
+		userCourse=userCourseService.findByTeachercourseidAndUserid(course_id, 4L);
 		if(userCourse==null){
 			userCourse=new UserCourse();
-			userCourse.setUserid(userInfo.getId());
+			userCourse.setUserid(4L);
 			userCourse.setTeachercourseid(course_id);
 			userCourseService.save(userCourse);
 		}
@@ -286,14 +286,14 @@ public class CourseController {
 			return "redirect:/teachercourse/course/usercourse/"+id;
 		} else {
 			logger.info("### contactInfo Validation passed. ###");
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			UserCourse userCourse=userCourseService.findByTeachercourseidAndUserid(id, userInfo.getId());
+			//UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			UserCourse userCourse=userCourseService.findByTeachercourseidAndUserid(id, 4l);
 			if (userCourse.getCommentDesc()!=null&&userCourse.getMark()>=0) {
 				String message="请不要重复评论";
 				redirectAttr.addFlashAttribute("message", message);
 				return "redirect:/teachercourse/course/usercourse/"+id;
 			} else{
-				UserCourse comm = userCourseService.findByTeachercourseidAndUserid(id, userInfo.getId());
+				UserCourse comm = userCourseService.findByTeachercourseidAndUserid(id, 4l);
 				if(userCourseDesc!=null&&!(userCourseDesc.equals(""))){
 					comm.setCommentDesc(userCourseDesc);
 					comm.setMark(marks);
