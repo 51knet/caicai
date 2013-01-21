@@ -27,13 +27,13 @@
 			<h4><span>${course.courseType}</span></h4>
 		</div>
 		<div  style="float: left; vertical-align: middle; width: 20%; text-align: center;">
-			<c:if test="${course.publish==1}">
+			<c:if test="${course.publish==2}">
 				<br>
 				<a href= '<c:url value="/admin/teacher/course/edit/${course.id }/preview"></c:url>'  class="btn btn-large btn-success" style="width: 80px;height: 20px;" target="_blank" >预览</a>
 				<br>
 				<a href='<c:url value="/admin/teacher/course/edit/${course.id }/publish"></c:url>'  class="btn btn-large btn-success" style="width: 80px; height: 20px; margin-top: 15px;"  >发布</a>
 			</c:if>
-			<c:if test="${course.publish ==2 }">
+			<c:if test="${course.publish ==3 }">
 				<br><br>
 				<a href='<c:url value="/admin/teacher/course/edit/${course.id }/cancelpublish"></c:url>'  class="btn btn-large btn-success" style="width: 80px;height:20px;"  >取消发布</a>
 			</c:if>

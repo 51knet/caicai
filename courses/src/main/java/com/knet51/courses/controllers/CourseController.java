@@ -171,7 +171,6 @@ public class CourseController {
 	 * @param pageSize
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/teachercourse/course/view/{id}")
 	public String listCourseByTeacherCourseId(
 			Model model,
@@ -205,7 +204,7 @@ public class CourseController {
 	 * @param pageSize
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+
 	@RequestMapping(value = "/teachercourse/course/courseInfo/{id}")
 	public String coursesByTeacherCourseId(
 			Model model,

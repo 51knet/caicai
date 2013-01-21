@@ -135,17 +135,19 @@ public class TeacherCourseInfoDetailController {
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 			//courseService.deleTeacherCourse(course_id);
 			TeacherCourse course = courseService.findOneById(course_id);
-			course.setPublish(0);
+			course.setPublish(GlobalDefs.PUBLISH_NUM_RECYCLE);
 			courseService.updateTeacherCourse(course);
 			return "redirect:/admin/teacher/course/list";
 	}
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/deleted/{course_id}")
-	public String courseRecoverPublish( HttpSession session,@PathVariable Long course_id){
+	public String deleFromCourseRecycle( HttpSession session,@PathVariable Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
-			courseService.deleTeacherCourse(course_id);
-			return "redirect:/admin/teacher/course/list";
+		TeacherCourse course = courseService.findOneById(course_id);
+		course.setPublish(GlobalDefs.PUBLISH_NUM_DELETE);
+		courseService.updateTeacherCourse(course);
+		return "redirect:/admin/teacher/course/list";
 	}
 	
 	@Transactional
@@ -154,7 +156,7 @@ public class TeacherCourseInfoDetailController {
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 			//courseService.deleTeacherCourse(course_id);
 			TeacherCourse course = courseService.findOneById(course_id);
-			course.setPublish(1);
+			course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
 			courseService.updateTeacherCourse(course);
 			return "redirect:/admin/teacher/course/list";
 	}
@@ -395,6 +397,7 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/deletecourse")
 	public String modifyDeleteMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
+		course.setPublish(GlobalDefs.PUBLISH_NUM_RECYCLE);
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.deletecourse";
 	}

@@ -204,7 +204,7 @@ public class TeacherCourseInfoPageController {
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/course/addcourse?active=second";
+			return "redirect:/admin/teacher/course/addcourse?active=first";
 		}else{
 			List<MultipartFile> files = request.getFiles("coverFile");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -217,8 +217,8 @@ public class TeacherCourseInfoPageController {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String date = format.format(new Date());
 			course.setCourseDate(date);
-			course.setStatus(1);
-			course.setPublish(1);
+			course.setStatus(GlobalDefs.STATUS_CCWEB);
+			course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
 			course.setTeacher(teacher);
 			course.setCourseType(courseInfoForm.getCourseType());
 			for(int i=0;i<files.size();i++){
@@ -302,7 +302,7 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/publish")
 	public String publishCourse(@PathVariable Long course_id){
 		TeacherCourse course= teacherCourseService.findOneById(course_id);
-		course.setPublish(2);
+		course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/list";
 	}
@@ -311,7 +311,7 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/cancelpublish")
 	public String cancelPublish(@PathVariable Long course_id){
 		TeacherCourse course= teacherCourseService.findOneById(course_id);
-		course.setPublish(1);
+		course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/list";
 	}
@@ -369,7 +369,7 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/pubcourses")
 	public String publishToCourses(@PathVariable Long course_id,Model model){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
-		course.setStatus(2);
+		course.setStatus(GlobalDefs.STATUS_CCWEB_COURSES);
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/view/"+course_id;
 	}
