@@ -3,8 +3,6 @@ package com.knet51.ccweb.jpa.entities;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 @Entity
 @Table(name = "educational_background")
 public class EduBackground extends AbstractEntity {
@@ -18,6 +16,9 @@ public class EduBackground extends AbstractEntity {
 	private String startTime;
 	
 	private String endTime;
+	
+	private String educationDesc;
+	
 	private Long teacherid;
 
 
@@ -56,6 +57,12 @@ public class EduBackground extends AbstractEntity {
 	}
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+	public String getEducationDesc() {
+		return educationDesc;
+	}
+	public void setEducationDesc(String educationDesc) {
+		this.educationDesc = educationDesc;
 	}
 	public EduBackground() {
 		super();

@@ -1,6 +1,5 @@
 package com.knet51.ccweb.controllers.teacher;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -203,6 +202,7 @@ public class TeacherController {
 				edu.setDegree(eduInfoForm.getDegree());
 				edu.setStartTime(eduInfoForm.getStartTime());
 				edu.setEndTime(eduInfoForm.getEndTime());
+				edu.setEducationDesc(eduInfoForm.getEducationDesc());
 				eduBackgroundService.createEduBackground(edu);
 			}else{
 				logger.info("### eduInfo Validation passed. ###");
@@ -215,6 +215,7 @@ public class TeacherController {
 				edu.setStartTime(eduInfoForm.getStartTime());
 				edu.setEndTime(eduInfoForm.getEndTime());
 				edu.setTeacherid(userInfo.getId());
+				edu.setEducationDesc(eduInfoForm.getEducationDesc());
 				eduBackgroundService.createEduBackground(edu);
 			}
 			

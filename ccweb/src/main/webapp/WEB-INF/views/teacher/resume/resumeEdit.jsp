@@ -168,6 +168,13 @@
 						</div>
 					</div>
 					<div class="control-group">
+						<label class="control-label" for="educationDesc">详细介绍</label>
+						<div class="controls">
+							<textarea id="educationDesc" name="educationDesc" rows="6" cols="8" style="width: 500px; height:300px;"></textarea>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="control-group">
 						<div class="controls">
 							<button type="submit" onclick="return eduOnclick();"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeEduAddForm()" class="btn btn-large">取消</button>
@@ -191,8 +198,16 @@
 										<td>
 											 <a href='<c:url value="/admin/teacher/eduInfo/destory/${eduInfo.id}"></c:url>'>删除</a> |
 											 <a href='javascript:void(0)' onclick="editEdu(${eduInfo.id})">修改</a>
-											 
 										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>详细描述：</td>
+										<td>
+										${eduInfo.educationDesc}
+										</td>
+										<td></td>
+										<td></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -521,8 +536,34 @@
 	</div>
 </div>
 
-
+<c:url var="uploadJson" value="/file_upload/${sessionUserInfo.id}"></c:url>
+<c:url var="fileManagerJson" value="/file_manager/${sessionUserInfo.id}"></c:url>
+<link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/themes/default/default.css"/>" />
+<link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>" />
+<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.js"/>"></script>
 <script type="text/javascript">
+$(document).ready(function() {
+	var editor = KindEditor.create('textarea[name="educationDesc"]',{
+		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+		uploadJson : '${uploadJson}',
+		fileManagerJson : '${fileManagerJson}',
+		allowFileManager : true,
+		afterCreate : function() {
+			var self = this;
+			KindEditor.ctrl(document, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+			KindEditor.ctrl(self.edit.doc, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+		}
+	});
+	
+	prettyPrint();
+});
+
 function personalOnclick(){
 	return checkEmptyAjax("personal_info_form","personalInfoAJAX");
 };
@@ -567,6 +608,7 @@ function editEdu(id){
 			  	document.edu.degree.value=msg.degree;
 			  	document.edu.startTime.value=msg.startTime;
 			  	document.edu.endTime.value=msg.endTime;
+			  	document.getElementById("educationDesc").value=msg.educationDesc;
 		  }
 	});
 };

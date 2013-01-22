@@ -74,6 +74,15 @@
 											<td align="center">${eduInfo.degree}</td>
 											<td align="center">${eduInfo.startTime} - ${eduInfo.endTime}</td>
 										</tr>
+										<tr>
+										<td></td>
+										<td>详细描述：</td>
+										<td>
+										${eduInfo.educationDesc}
+										</td>
+										<td></td>
+										<td></td>
+									</tr>
 									</c:forEach>
 								</tbody>
 							</table>
