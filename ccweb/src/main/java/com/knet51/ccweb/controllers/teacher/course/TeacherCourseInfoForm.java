@@ -7,7 +7,7 @@ public class TeacherCourseInfoForm {
 	private String courseName;
 	@NotEmpty
 	private String courseDesc;
-	@NotEmpty
+	
 	private String courseType;
 	
 	public String getCourseName() {

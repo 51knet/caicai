@@ -25,7 +25,7 @@ function checkAjax(formID, actionName) {
 		var textInfo = textdata['content'];
 		var annoInfo = '{"title":"' + dataInfo + '","content": "' + textInfo
 				+ '"}';
-		var annoData = eval("(" + annoInfo + ")");
+		var annoData=eval("("+annoInfo+");");
 		$.post(action, annoData, function(response) {
 			$form.find('.modal-body').removeClass('error');
 			$form.find('.help-inline').empty();
@@ -60,7 +60,8 @@ function checkAjaxs(formID, actionName) {
 		var textInfo = textdata['courseDesc'];
 		var annoInfo = '{"courseName":"' + dataInfo + '","courseDesc": "'
 				+ textInfo + '"}';
-		var annoData = eval("(" + annoInfo + ")");
+		alert(annoInfo);
+		var annoData=eval("("+annoInfo+");");
 		$.post(action, annoData, function(response) {
 			$form.find('.modal-body').removeClass('error');
 			$form.find('.help-inline').empty();
