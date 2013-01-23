@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.asm.commons.Method;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -186,7 +187,7 @@ public class TeacherController {
 	}
 	
 	@Transactional
-	@RequestMapping(value = "/admin/teacher/eduInfo")
+	@RequestMapping(value = "/admin/teacher/eduInfo" ,method = RequestMethod.POST)
 	public String eduInfo(@RequestParam("eduId")String eduId,@Valid TeacherEduInfoForm eduInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### eduInfo InfoController ####");
@@ -195,7 +196,7 @@ public class TeacherController {
 			logger.info("eduInfo Validation Failed " + validResult);
 			
 		} else {
-			if(eduId!=null && eduId!="" && Long.parseLong(eduId)>0){
+			if(eduId!=null){
 				logger.info("### eduInfo Validation passed. ###");
 				EduBackground edu = eduBackgroundService.findOneById(Long.parseLong(eduId));
 				edu.setCollege(eduInfoForm.getCollegeName());
@@ -233,7 +234,7 @@ public class TeacherController {
 	}
 	
 	@Transactional
-	@RequestMapping(value = "/admin/teacher/workInfo")
+	@RequestMapping(value = "/admin/teacher/workInfo",method = RequestMethod.POST)
 	public String workInfo(@RequestParam("workId")String workId,@Valid TeacherWorkExpInfoForm workInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### workInfo Controller ####");
@@ -241,7 +242,7 @@ public class TeacherController {
 			logger.info("eduInfo Validation Failed " + validResult);
 			
 		} else {
-			if(workId!=null && workId!="" && Long.parseLong(workId)>0){
+			if(workId!=null){
 				logger.info("### workInfo Validation passed. ###");
 				WorkExp work = workExpService.findOneById(Long.parseLong(workId));
 				work.setCompany(workInfoForm.getCompany());
@@ -267,8 +268,8 @@ public class TeacherController {
 	}
 	
 	@Transactional
-	@RequestMapping(value = "/admin/teacher/workInfo/destory/{work_id}")
-	public String destoryWorkInfo(@PathVariable Long work_id, HttpSession session) {
+	@RequestMapping(value = "/admin/teacher/workInfo/destory",method = RequestMethod.POST)
+	public String destoryWorkInfo(@RequestParam("workId") Long work_id, HttpSession session) {
 		logger.info("#### eduInfo InfoController ####");
 		workExpService.destory(work_id);
 		return "redirect:/admin/teacher/resume?active=work";

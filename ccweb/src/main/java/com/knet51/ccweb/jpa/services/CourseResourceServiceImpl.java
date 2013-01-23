@@ -55,21 +55,21 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 			 return list;
 		 }
 	@Override
-	public String getMaxCourseOrderByCourseId(Long course_id) {
-		String courseOrder = "";
+	public String getMaxLessonNumByCourseId(Long course_id) {
+		String LessonNum = "";
 		try {
-			courseOrder = resourceRepository.getMaxCourseOrderByCourseId(course_id);
+			LessonNum = resourceRepository.getMaxLessonNumByCourseId(course_id);
 		} catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		return courseOrder == null? "0":courseOrder;
+		return LessonNum == null? "0":LessonNum;
 	}
 
-	public List<CourseResource> getResourceByCourseOrderAndCourseId(
-			String resourceOrder, Long course_id) {
+	public List<CourseResource> getResourceByLessonNumAndCourseId(
+			String lessonNum, Long course_id) {
 		List<CourseResource>  courseResourceList= new ArrayList<CourseResource>(); 
 		try {
-			courseResourceList=resourceRepository.getResourceByCourseOrderAndCourseId(resourceOrder,course_id);
+			courseResourceList=resourceRepository.getResourceByLessonNumAndCourseId(lessonNum,course_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
@@ -77,9 +77,9 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 	}
 
 	@Override
-	public List<CourseResource> findNullResourceByCourseIdAndCourseOrder(
-			Long course_id, String courseOrder) {
-		List<CourseResource> resource  = resourceRepository.findNullResourceByCourseIdAndCourseOrder(course_id, courseOrder);
+	public List<CourseResource> findNullResourceByCourseIdAndLessonNum(
+			Long course_id, String lessonNum) {
+		List<CourseResource> resource  = resourceRepository.findNullResourceByCourseIdAndLessonNum(course_id, lessonNum);
 		return resource;
 	}
 

@@ -144,12 +144,12 @@ public class CourseController {
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
 		List<CourseResource> courseList;
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
-		String resourceOrder = null;
+		String lessonNum = null;
 		for (CourseResource courseResource : listResource) {
-			resourceOrder = courseResource.getCourseOrder();
+			lessonNum = courseResource.getLessonNum();
 			courseList= new ArrayList<CourseResource>();
-			courseList = courseResourceService.getResourceByCourseOrderAndCourseId(resourceOrder,course_id);
-			courseMap.put(resourceOrder, courseList);
+			courseList = courseResourceService.getResourceByLessonNumAndCourseId(lessonNum,course_id);
+			courseMap.put(lessonNum, courseList);
 		}
 		model.addAttribute("page", onePage);
 		model.addAttribute("listUserCourse", list);
@@ -182,9 +182,9 @@ public class CourseController {
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String resourceOrder = null;
 		for (CourseResource courseResource : listResource) {
-			resourceOrder = courseResource.getCourseOrder();
+			resourceOrder = courseResource.getLessonNum();
 			courseList = courseResourceService
-					.getResourceByCourseOrderAndCourseId(resourceOrder,id);
+					.getResourceByLessonNumAndCourseId(resourceOrder,id);
 			courseMap.put(resourceOrder, courseList);
 		}
 		model.addAttribute("courseMap", courseMap);

@@ -383,6 +383,8 @@
 											<td align="left" >${project.endTime}</td>
 											<td >
 												<a href='<c:url value="/admin/teacher/project/destory/${project.id}"></c:url>'>删除</a>
+												<a class="deletePostBtn" href="#deletePostModal" role="button" data-toggle="modal" data-target="#deletePostModal">删除</a>
+												<input type="hidden" value="${project.id} " >
 											</td>
 										</tr>
 									</c:forEach>
@@ -504,7 +506,7 @@
 											<td align="center">${honor.name}</td>
 											<td align="center">${honor.reason}</td>
 											<td>
-												<a href='<c:url value="/admin/teacher/honor/destory/${honor.id}"></c:url>'>删除</a></li>
+												<a href='<c:url value="/admin/teacher/honor/destory/${honor.id}"></c:url>'>删除</a>
 											</td>
 										</tr>
 									</c:forEach>
@@ -521,6 +523,24 @@
 	</div>
 </div>
 
+
+<!-- Modal -->
+<div class="modal hide fade" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">请注意</h3>
+  </div>
+  <div class="modal-body">
+    <p>你确定删除吗？</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+    <form action='<c:url value="/admin/blog/destroy"></c:url>' method="post" style="display: inline-block;">
+    	<input id="blog_post_id" type="hidden" name="blog_post_id" />
+    	<button class="btn btn-primary">确定</button>
+    </form>
+  </div>
+</div>
 
 <script type="text/javascript">
 function personalOnclick(){
