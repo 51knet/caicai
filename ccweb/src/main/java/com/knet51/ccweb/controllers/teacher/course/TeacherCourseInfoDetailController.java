@@ -35,9 +35,13 @@ import com.knet51.ccweb.controllers.teacher.TeacherPersonalInfoForm;
 import com.knet51.ccweb.controllers.teacher.TeacherWorkExpInfoForm;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
+import com.knet51.ccweb.jpa.entities.resource.ResourceType;
+import com.knet51.ccweb.jpa.entities.teacher.CourseLesson;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.services.CourseLessonService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
+import com.knet51.ccweb.jpa.services.ResourceTypeService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
@@ -52,12 +56,14 @@ public class TeacherCourseInfoDetailController {
 	
 	@Autowired
 	private TeacherCourseService courseService;
-	
 	@Autowired
 	private CourseResourceService courseResourceService; 
-	
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private CourseLessonService lessonService;
+	@Autowired
+	private ResourceTypeService resourceTypeService;
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/create",method=RequestMethod.POST)
@@ -130,32 +136,32 @@ public class TeacherCourseInfoDetailController {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/destory/{course_id}")
-	public String TeacherCourseDele( HttpSession session,@PathVariable Long course_id){
+	@RequestMapping(value="/admin/teacher/course/destory",method=RequestMethod.POST)
+	public String TeacherCourseDele( HttpSession session,@RequestParam("cId") Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 			//courseService.deleTeacherCourse(course_id);
-			TeacherCourse course = courseService.findOneById(course_id);
+			TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
 			course.setPublish(GlobalDefs.PUBLISH_NUM_RECYCLE);
 			courseService.updateTeacherCourse(course);
 			return "redirect:/admin/teacher/course/list";
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/deleted/{course_id}")
-	public String deleFromCourseRecycle( HttpSession session,@PathVariable Long course_id){
+	@RequestMapping(value="/admin/teacher/course/deleted",method=RequestMethod.POST)
+	public String deleFromCourseRecycle( HttpSession session,@RequestParam("cId") Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
-		TeacherCourse course = courseService.findOneById(course_id);
+		TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
 		course.setPublish(GlobalDefs.PUBLISH_NUM_DELETE);
 		courseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/list";
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/recover/{course_id}")
-	public String courseRecoverUnpublish( HttpSession session,@PathVariable Long course_id){
+	@RequestMapping(value="/admin/teacher/course/recover",method=RequestMethod.POST)
+	public String courseRecoverUnpublish( HttpSession session,@RequestParam("cId") Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 			//courseService.deleTeacherCourse(course_id);
-			TeacherCourse course = courseService.findOneById(course_id);
+			TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
 			course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
 			courseService.updateTeacherCourse(course);
 			return "redirect:/admin/teacher/course/list";
@@ -168,11 +174,15 @@ public class TeacherCourseInfoDetailController {
 			MultipartHttpServletRequest request,@PathVariable Long course_id) throws  Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("resourceFile");
-		String courseOrder = request.getParameter("courseOrder");
+		String lessonNum = request.getParameter("lessonNum");
 		String resourceName = request.getParameter("resourceName");
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
+				Long type = Long.parseLong(request.getParameter("type"));
+				ResourceType resourceType = resourceTypeService.findOneById(type);
+				Long courseLessonId = Long.parseLong(request.getParameter("lessonId"));
+				CourseLesson courseLesson = lessonService.findOne(courseLessonId);
 				CourseResource resource = new CourseResource();
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 	
 				String fileName = multipartFile.getOriginalFilename();
@@ -183,7 +193,7 @@ public class TeacherCourseInfoDetailController {
 				resource.setDate(date);
 				TeacherCourse teacherCourse = courseService.findOneById(course_id);
 				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
-				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+courseOrder;
+				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+File.separator+lessonNum;
 				FileUtil.createRealPath(path, session);
 				File saveDest = new File(path + File.separator + fileName);
 				multipartFile.transferTo(saveDest);
@@ -191,12 +201,14 @@ public class TeacherCourseInfoDetailController {
 				String savePath = path+File.separator+fileName;
 				resource.setSavePath(savePath);
 				resource.setSaveName(fileName);
-				resource.setCourseOrder(courseOrder);
+				resource.setLessonNum(lessonNum);
 				resource.setCourse_id(course_id);
+				resource.setCourseLesson(courseLesson);
+				resource.setResourceType(resourceType);
 				courseResourceService.createCourseResource(resource);
 			}
 		}
-		List<CourseResource> resource = courseResourceService.findNullResourceByCourseIdAndCourseOrder(course_id, courseOrder);
+		List<CourseResource> resource = courseResourceService.findNullResourceByCourseIdAndLessonNum(course_id, lessonNum);
 		if(resource.size()>0){
 			courseResourceService.deleCourseResource(resource.get(0).getId());
 		}
@@ -226,20 +238,26 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/modifycourse")
-	public String modifyCreateTeacherCourse(HttpSession session,@PathVariable Long id,Model model,HttpServletRequest request){
-		TeacherCourse course=courseService.findOneById(id);
-		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(id);
+	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/modifycourse")
+	public String modifyCreateTeacherCourse(HttpSession session,@PathVariable Long course_id,Model model,HttpServletRequest request){
+		TeacherCourse course=courseService.findOneById(course_id);
+		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
 		List<CourseResource> courseList;
+		List<ResourceType> listType = resourceTypeService.getAllType();
+		model.addAttribute("type", listType);
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
-		String resourceOrder = null;
+		String LessonNum = null;
 		for (CourseResource courseResource : listResource) {
 			courseList = new ArrayList<CourseResource>();
-			resourceOrder = courseResource.getCourseOrder();
+			LessonNum = courseResource.getLessonNum();
 			courseList = courseResourceService
-					.getResourceByCourseOrderAndCourseId(resourceOrder,id);
-			courseMap.put(resourceOrder, courseList);
+					.getResourceByLessonNumAndCourseId(LessonNum,course_id);
+			courseMap.put(LessonNum, courseList);
 		}
+		
+		List<CourseLesson> lessonList = lessonService.findCourseLessonByCourseId(course_id);
+		model.addAttribute("lessonList", lessonList);
+		model.addAttribute("lessonListCount", lessonList.size());
 		model.addAttribute("resourceCount", listResource.size());
 		model.addAttribute("courseMap", courseMap);
 		model.addAttribute("course", course);

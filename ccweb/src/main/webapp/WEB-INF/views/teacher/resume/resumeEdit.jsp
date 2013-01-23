@@ -196,7 +196,8 @@
 										<td  align="center">${eduInfo.degree}</td>
 										<td  align="center" width="25%">${eduInfo.startTime} - ${eduInfo.endTime}</td>
 										<td>
-											 <a href='<c:url value="/admin/teacher/eduInfo/destory/${eduInfo.id}"></c:url>'>删除</a> |
+											 <a class="deleteEduPostBtn" href="#deleteEduPostModal" role="button" data-toggle="modal" data-target="#deleteEduPostModal">删除</a>
+												<input type="hidden" value="${eduInfo.id} " >|
 											 <a href='javascript:void(0)' onclick="editEdu(${eduInfo.id})">修改</a>
 										</td>
 									</tr>
@@ -219,6 +220,25 @@
 				</c:choose>
 				<button onclick="showEduAddForm()">添加</button>
 			</div>
+			
+				<!-- edu Modal -->
+				<div class="modal hide fade" id="deleteEduPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    <h3 id="myModalLabel">请注意</h3>
+				  </div>
+				  <div class="modal-body">
+				    <p>你确定删除吗？</p>
+				  </div>
+				  <div class="modal-footer">
+				    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+				    <form action='<c:url value="/admin/teacher/eduInfo/destory"></c:url>' method="post" style="display: inline-block;" >
+				    	<input id="eduId" type="hidden" name="eduId" />
+				    	<button class="btn btn-primary">确定</button>
+				    </form>
+				  </div>
+				</div>
+			
 		</div>
 		
 		<!-- work exp  -->
@@ -284,7 +304,8 @@
 										<td  align="center">${workInfo.position}</td>
 										<td  align="center"  width="25%">${workInfo.startTime} - ${workInfo.endTime}</td>
 										<td>
-											<a href='<c:url value="/admin/teacher/workInfo/destory/${workInfo.id}"></c:url>'>删除</a> |
+											 <a class="deleteWorkPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteWorkPostModal">删除</a>
+											 	<input type="hidden" value="${workInfo.id} " >|
 											 <a href='javascript:void(0)' onclick="editWork(${workInfo.id})">修改</a>
 										</td>
 									</tr>
@@ -297,6 +318,24 @@
 				
 				<button onclick="showWorkAddForm()">添加</button>
 			</div>
+			
+				<!-- work Modal -->
+				<div class="modal hide fade" id="deleteWorkPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    <h3 id="myModalLabel">请注意</h3>
+				  </div>
+				  <div class="modal-body">
+				    <p>你确定删除吗？</p>
+				  </div>
+				  <div class="modal-footer">
+				    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+				    <form action='<c:url value="/admin/teacher/workInfo/destory"></c:url>' method="post" style="display: inline-block;" >
+				    	<input id="workId" type="hidden" name="workId" />
+				    	<button class="btn btn-primary">确定</button>
+				    </form>
+				  </div>
+				</div>
 		</div>
 		
 		<!-- Thesis -->
@@ -312,7 +351,8 @@
 									<tr>
 										<td width=90% align="left">${thesis.content}</td>
 										<td >
-											<a href='<c:url value="/admin/teacher/thesis/destory/${thesis.id}"></c:url>'>删除</a>
+											<a class="deleteThesisPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteThesisPostModal">删除</a>
+											 	<input type="hidden" value="${thesis.id} " >
 										</td>
 									</tr>
 								</c:forEach>
@@ -342,8 +382,27 @@
 				<div id="thesisButton" style="display: block">
 					<button onclick="showThesisAddForm();">添加</button>
 				</div>
+				
+						<!-- thesis Modal -->
+				<div class="modal hide fade" id="deleteThesisPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    <h3 id="myModalLabel">请注意</h3>
+				  </div>
+				  <div class="modal-body">
+				    <p>你确定删除吗？</p>
+				  </div>
+				  <div class="modal-footer">
+				    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+				    <form action='<c:url value="/admin/teacher/thesis/destory"></c:url>' method="post" style="display: inline-block;" >
+				    	<input id="thesisId" type="hidden" name="thesisId" />
+				    	<button class="btn btn-primary">确定</button>
+				    </form>
+				  </div>
+				</div>
 		</div>
-		
+	
+	<!--  project  -->
 		<div class="tab-pane <c:if test='${active == "project"}'>active</c:if>" id="project_tab">
 			<div id="project" style="display: block">
 				<div id="projectForm" style="display: none;">
@@ -397,7 +456,8 @@
 											<td align="left" >${project.startTime}</td>
 											<td align="left" >${project.endTime}</td>
 											<td >
-												<a href='<c:url value="/admin/teacher/project/destory/${project.id}"></c:url>'>删除</a>
+												<a class="deleteProjectPostBtn" href="#deleteProjectPostModal" role="button" data-toggle="modal" data-target="#deleteProjectPostModal">删除</a>
+												<input type="hidden" value="${project.id} " >
 											</td>
 										</tr>
 									</c:forEach>
@@ -409,6 +469,24 @@
 					<button onclick="showProjectAddForm()">添加</button>
 				</div>
 			</div>
+			
+			<!-- project Modal -->
+				<div class="modal hide fade" id="deleteProjectPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    <h3 id="myModalLabel">请注意</h3>
+				  </div>
+				  <div class="modal-body">
+				    <p>你确定删除吗？</p>
+				  </div>
+				  <div class="modal-footer">
+				    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+				    <form action='<c:url value="/admin/teacher/project/destory"></c:url>' method="post" style="display: inline-block;" >
+				    	<input id="projectId" type="hidden" name="projectId" />
+				    	<button class="btn btn-primary">确定</button>
+				    </form>
+				  </div>
+				</div>
 		</div>
 		
 		<!-- patent -->
@@ -467,7 +545,8 @@
 										<td align="center">${patent.type}</td>
 										<td align="center">${patent.number}</td>
 										<td >
-											<a href='<c:url value="/admin/teacher/patent/destory/${patent.id}"></c:url>'>删除</a>
+											<a class="deletePatentPostBtn" href="#deletePatentPostModal" role="button" data-toggle="modal" data-target="#deletePatentPostModal">删除</a>
+											<input type="hidden" value="${patent.id} " >
 										</td>
 									</tr>
 								</c:forEach>
@@ -479,6 +558,24 @@
 					<button onclick="showPatentAddForm()">添加</button>
 				</div>
 			</div>
+			
+					<!-- patentModal -->
+				<div class="modal hide fade" id="deletePatentPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    <h3 id="myModalLabel">请注意</h3>
+				  </div>
+				  <div class="modal-body">
+				    <p>你确定删除吗？</p>
+				  </div>
+				  <div class="modal-footer">
+				    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+				    <form action='<c:url value="/admin/teacher/patent/destory"></c:url>' method="post" style="display: inline-block;" >
+				    	<input id="patentId" type="hidden" name="patentId" />
+				    	<button class="btn btn-primary">确定</button>
+				    </form>
+				  </div>
+				</div>
 		</div>
 		
 		<!-- honor -->
@@ -519,7 +616,8 @@
 											<td align="center">${honor.name}</td>
 											<td align="center">${honor.reason}</td>
 											<td>
-												<a href='<c:url value="/admin/teacher/honor/destory/${honor.id}"></c:url>'>删除</a></li>
+												<a class="deleteHonorPostBtn" href="#deleteHonorPostModal" role="button" data-toggle="modal" data-target="#deleteHonorPostModal">删除</a>
+												<input type="hidden" value="${honor.id} " >
 											</td>
 										</tr>
 									</c:forEach>
@@ -531,16 +629,40 @@
 					<button onclick="showHonorAddForm()">添加</button>
 				</div>
 			</div>
+			
+						<!-- honorModal -->
+				<div class="modal hide fade" id="deleteHonorPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    <h3 id="myModalLabel">请注意</h3>
+				  </div>
+				  <div class="modal-body">
+				    <p>你确定删除吗？</p>
+				  </div>
+				  <div class="modal-footer">
+				    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+				    <form action='<c:url value="/admin/teacher/honor/destory"></c:url>' method="post" style="display: inline-block;" >
+				    	<input id="honorId" type="hidden" name="honorId" />
+				    	<button class="btn btn-primary">确定</button>
+				    </form>
+				  </div>
+				</div>
 		</div>
 		
 	</div>
 </div>
 
+<<<<<<< HEAD
 <c:url var="uploadJson" value="/file_upload/${sessionUserInfo.id}"></c:url>
 <c:url var="fileManagerJson" value="/file_manager/${sessionUserInfo.id}"></c:url>
 <link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/themes/default/default.css"/>" />
 <link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>" />
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.js"/>"></script>
+=======
+
+
+
+>>>>>>> 6e3eff0f671d32b776328776146a647d3d2e3daa
 <script type="text/javascript">
 $(document).ready(function() {
 	var editor = KindEditor.create('textarea[name="educationDesc"]',{
@@ -590,6 +712,37 @@ $(document).ready(function(){
 	$("input").focus(function(){
 		$(".help-inline").html("");
 	});
+	
+	// 表格里的删除按钮按下的时候，需要为对话框动态修改一些属性的值
+	$('.deleteProjectPostBtn').on('click', function() {
+		var project_id = $(this).next().val();
+		$('#deleteProjectPostModal #projectId').val(project_id);	
+	});
+	
+	$('.deleteEduPostBtn').on('click', function() {
+		var edu_id = $(this).next().val();
+		$('#deleteEduPostModal #eduId').val(edu_id);	
+	});
+	
+	$('.deleteWorkPostBtn').on('click', function() {
+		var work_id = $(this).next().val();
+		$('#deleteWorkPostModal #workId').val(work_id);	
+	});
+	
+	$('.deleteThesisPostBtn').on('click', function() {
+		var thesis_id = $(this).next().val();
+		$('#deleteThesisPostModal #thesisId').val(thesis_id);	
+	});
+	
+	$('.deletePatentPostBtn').on('click', function() {
+		var patent_id = $(this).next().val();
+		$('#deletePatentPostModal #patentId').val(patent_id);	
+	});
+	
+	$('.deleteHonorPostBtn').on('click', function() {
+		var honor_id = $(this).next().val();
+		$('#deleteHonorPostModal #honorId').val(honor_id);	
+	});
 });
 
 function editEdu(id){
@@ -613,24 +766,5 @@ function editEdu(id){
 	});
 };
 
-function editWork(id){
-	//alert(id);
-	$("#workList").css("display","none");
-	$("#workForm").css("display","block");
-	$.ajax({
-		  type: "post",
-		  url: "<c:url value='/admin/teacher/workInfo/edit/ajax' />",
-		  data: "workId="+id,
-		  dataType:"json",
-		  success:function(msg){
-				document.work.workId.value = msg.id;
-			  	document.work.company.value=msg.company;
-			  	document.work.department.value=msg.department;
-			  	document.work.position.value=msg.position;
-			  	document.work.startTimeName.value=msg.startTime;
-			  	document.work.endTimeName.value=msg.endTime;
-		  }
-	});
-};
 
 </script>
