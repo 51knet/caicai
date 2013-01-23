@@ -136,32 +136,32 @@ public class TeacherCourseInfoDetailController {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/destory/{course_id}")
-	public String TeacherCourseDele( HttpSession session,@PathVariable Long course_id){
+	@RequestMapping(value="/admin/teacher/course/destory",method=RequestMethod.POST)
+	public String TeacherCourseDele( HttpSession session,@RequestParam("cId") Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 			//courseService.deleTeacherCourse(course_id);
-			TeacherCourse course = courseService.findOneById(course_id);
+			TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
 			course.setPublish(GlobalDefs.PUBLISH_NUM_RECYCLE);
 			courseService.updateTeacherCourse(course);
 			return "redirect:/admin/teacher/course/list";
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/deleted/{course_id}")
-	public String deleFromCourseRecycle( HttpSession session,@PathVariable Long course_id){
+	@RequestMapping(value="/admin/teacher/course/deleted",method=RequestMethod.POST)
+	public String deleFromCourseRecycle( HttpSession session,@RequestParam("cId") Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
-		TeacherCourse course = courseService.findOneById(course_id);
+		TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
 		course.setPublish(GlobalDefs.PUBLISH_NUM_DELETE);
 		courseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/list";
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/recover/{course_id}")
-	public String courseRecoverUnpublish( HttpSession session,@PathVariable Long course_id){
+	@RequestMapping(value="/admin/teacher/course/recover",method=RequestMethod.POST)
+	public String courseRecoverUnpublish( HttpSession session,@RequestParam("cId") Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 			//courseService.deleTeacherCourse(course_id);
-			TeacherCourse course = courseService.findOneById(course_id);
+			TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
 			course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
 			courseService.updateTeacherCourse(course);
 			return "redirect:/admin/teacher/course/list";
