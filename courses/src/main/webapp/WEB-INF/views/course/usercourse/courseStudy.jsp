@@ -36,7 +36,7 @@
 												<c:if test="${fileNames.fileName!=null}">
 												<div class="fileName_${i.count}" >
 													<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${fileNames.fileName}</div>
-													<div style="width:10%; float: left; text-align: center;"><a href='<c:url  value="/teachercourse/course/view/resource/${fileNames.id}"></c:url>'><img src="<c:url  value="/resources/img/courseResource/u173_normal.jpg" ></c:url> "></a></div>
+													<div style="width:10%; float: left; text-align: center;"><a href='<c:url  value="/course/study/view/resource/${fileNames.id}"></c:url>'><img src="<c:url  value="/resources/img/courseResource/u173_normal.jpg" ></c:url> "></a></div>
 												</div>
 												</c:if>
 												</c:forEach>

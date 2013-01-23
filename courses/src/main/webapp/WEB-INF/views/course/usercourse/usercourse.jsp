@@ -5,8 +5,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/js/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
-function commentAjax(){
-	checkAjaxs("usercourse_info_form","usercourseajax");
+function commentOnclick(){
+	checkAjaxs("usercourse_info_form","commentajax");
 	return false;
 };
 </script>
@@ -21,7 +21,7 @@ function commentAjax(){
 		<div ><input type="hidden" name="teachercourseid"  value="${id}" /></div>
 		
 			<div class="control-group" id="commentDesc">
-			<textarea name="commentDesc" id="commentdescs" placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width:380px;"></textarea>
+			<textarea name="commentDesc"  placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width:380px;"></textarea>
 			<span class="help-inline"></span>
 	        </div>
 				<div class="control-group" id="mark">
@@ -35,7 +35,7 @@ function commentAjax(){
 				</div>
 				
 				<div class="control-group">
-						<button type="submit" onclick="commentAjax();" class="btn  btn-success">发表评论</button>
+						<button type="submit" onclick="javascript:commentOnclick();" class="btn  btn-success">发表评论</button>
 				</div>
 			</form>
 		</div>

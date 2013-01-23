@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService {
 	public User getValidUser(String email, String psw) {
 		return userRepository.getValidUser(email, psw);
 	}
+
+	@Override
+	public User getValidEmail(String email) {
+		return userRepository.getValidEmail(email);
+	}
 }
