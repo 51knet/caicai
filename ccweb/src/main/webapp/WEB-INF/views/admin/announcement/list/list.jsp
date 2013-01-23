@@ -13,7 +13,16 @@ $(document).ready(function() {
 		$(".help-inline").html("");
 	});
 	checkAjax("anno_information","annoInfoAJAX");
+	
+	$('.deleteAnnoPostBtn').on('click', function() {
+		var anno_id = $("#anno_id").val();
+		$('#deleteAnnoPostModal #annoId').val(anno_id);	
+	});
 });
+
+function editTheAnno(){
+	$("#post_anno_form").submit();
+}
 </script>
 <style>
 	.row-fluid.custom {
@@ -62,14 +71,16 @@ $(document).ready(function() {
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
-										<li><a
-											href='<c:url value="/admin/teacher/announcement/edit/${page.id}"></c:url>'>修改</a></li>
+										<li><a href='<c:url value="/admin/teacher/announcement/edit/${page.id}"></c:url>'>修改</a></li>
 										<li></li>
 									</ul>
 								</div>
 							 -->
-								 <a href='<c:url value="/admin/teacher/announcement/destory/${page.id}"></c:url>'>删除</a> | 
-								 <a href='<c:url value="/admin/teacher/announcement/edit/${page.id}"></c:url>'>修改</a>
+								 <a class="deleteAnnoPostBtn" href="#deleteAnnoPostModal" role="button" data-toggle="modal" data-target="#deleteAnnoPostModal">删除</a> | 
+								 <a  href='javascript:void(0)' onclick="editTheAnno()">修改</a>
+								 <form id="post_anno_form" action='<c:url value="/admin/teacher/announcement/edit"></c:url>'  method="post" style="display: inline-block;" >
+								 	<input type="hidden" value="${page.id} " id="anno_id" name="annoId" > 
+								 </form>
 							</td>
 						</tr>
 					</c:forEach>
@@ -95,8 +106,6 @@ $(document).ready(function() {
 						<span class="help-inline"><form:errors path="title"></form:errors></span>
 						</div>
 					</div>
-					
-					
 					<div class="control-group" id="content">
 						<div class="controls">
 						<span style="margin-left: 16px;">公告内容:</span>
@@ -122,4 +131,22 @@ $(document).ready(function() {
 			<a href="javascript:;" onclick="ApplyStyle(this)">t3</a>
 		</td></tr></table> -->
 	</div>	
+</div>
+
+<!-- delete annoForm -->
+<div class="modal hide fade" id="deleteAnnoPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">请注意</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>你确定删除该公告吗？</p>
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+	    <form action='<c:url value="/admin/teacher/announcement/destory"></c:url>' method="post" style="display: inline-block;" >
+	    	<input id="annoId" type="hidden" name="annoId" />
+	    	<button class="btn btn-primary">确定</button>
+	    </form>
+	  </div>
 </div>

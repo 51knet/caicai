@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.asm.commons.Method;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -84,48 +85,6 @@ public class TeacherController {
 		return "admin.teacher.details";
 	}
 	
-	@RequestMapping(value = "/admin/teacher/personalInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse processFormAjaxJson(@Valid TeacherPersonalInfoForm personalInfoForm, BindingResult result,HttpSession session) {
-		return AjaxValidationEngine.process(result);
-	}
-	@RequestMapping(value = "/admin/teacher/eduInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse eduInfoFormAjaxJson(@Valid TeacherEduInfoForm teacherEduInfoForm, BindingResult result) {
-		return AjaxValidationEngine.process(result);
-	}
-	
-	@RequestMapping(value = "/admin/teacher/workExpInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse workExpInfoFormAjaxJson(@Valid TeacherWorkExpInfoForm workInfoForm, BindingResult result) {
-		//logger.info("------into workExp ajax");
-		return AjaxValidationEngine.process(result);
-	}
-	@RequestMapping(value = "/admin/teacher/selfurlInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse selfurInfoFormAjaxJson(@Valid TeacherSelfUrlForm teacherSelfUrlForm, BindingResult result) {
-		//logger.info("------into selfur ajax");
-		return AjaxValidationEngine.process(result);
-	}
-	@RequestMapping(value = "/admin/teacher/pswInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse pswfurInfoFormAjaxJson(@Valid TeacherPswForm teacherPswForm, BindingResult result) {
-		//logger.info("------into psw ajax");
-		return AjaxValidationEngine.process(result);
-	}
-	
-	@RequestMapping(value = "/admin/teacher/thesisInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse thesisInfoFormAjaxJson(@Valid TeacherThesisDetailInfoForm teacherThesisDetailInfoForm, BindingResult result) {
-		return AjaxValidationEngine.process(result);
-	}
-	@RequestMapping(value = "/admin/teacher/projectInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse projectInfoFormAjaxJson(@Valid TeacherProjectDetailInfoForm teacherProjectDetailInfoForm, BindingResult result) {
-		return AjaxValidationEngine.process(result);
-	}
-	@RequestMapping(value = "/admin/teacher/patentInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse patentInfoFormAjaxJson(@Valid TeacherPatentDetailInfoForm teacherPatentDetailInfoForm, BindingResult result) {
-		return AjaxValidationEngine.process(result);
-	}
-	@RequestMapping(value = "/admin/teacher/honorInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse honorInfoFormAjaxJson(@Valid TeacherHonorDetailInfoForm teacherHonorDetailInfoForm, BindingResult result) {
-		return AjaxValidationEngine.process(result);
-	}
-	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/personalInfo")
 	public String personalInfo(@Valid TeacherPersonalInfoForm personalInfoForm,
@@ -188,7 +147,7 @@ public class TeacherController {
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/eduInfo" ,method = RequestMethod.POST)
-	public String eduInfo(@RequestParam("eduId")String eduId,@Valid TeacherEduInfoForm eduInfoForm,
+	public String eduInfo(@RequestParam("eduId")Long edu_id,@Valid TeacherEduInfoForm eduInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### eduInfo InfoController ####");
 		
@@ -196,9 +155,9 @@ public class TeacherController {
 			logger.info("eduInfo Validation Failed " + validResult);
 			
 		} else {
-			if(eduId!=null){
+			if(edu_id!=null){
 				logger.info("### eduInfo Validation passed. ###");
-				EduBackground edu = eduBackgroundService.findOneById(Long.parseLong(eduId));
+				EduBackground edu = eduBackgroundService.findOneById(Long.valueOf(edu_id));
 				edu.setCollege(eduInfoForm.getCollegeName());
 				edu.setSchool(eduInfoForm.getSchoolName());
 				edu.setDegree(eduInfoForm.getDegree());
@@ -225,26 +184,26 @@ public class TeacherController {
 	
 	
 	@Transactional
-	@RequestMapping(value = "/admin/teacher/eduInfo/destory/{edu_id}")
-	public String destoryEduInfo(@PathVariable Long edu_id, HttpSession session) {
+	@RequestMapping(value = "/admin/teacher/eduInfo/destory",method=RequestMethod.POST)
+	public String destoryEduInfo(@RequestParam("eduId") Long edu_id, HttpSession session) {
 		logger.info("#### eduInfo InfoController ####");
-		eduBackgroundService.destory(edu_id);
+		eduBackgroundService.destory(Long.valueOf(edu_id));
 		return "redirect:/admin/teacher/resume?active=edu";
 		
 	}
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/workInfo",method = RequestMethod.POST)
-	public String workInfo(@RequestParam("workId")String workId,@Valid TeacherWorkExpInfoForm workInfoForm,
+	public String workInfo(@RequestParam("workId")Long work_Id,@Valid TeacherWorkExpInfoForm workInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### workInfo Controller ####");
 		if (validResult.hasErrors()) {
 			logger.info("eduInfo Validation Failed " + validResult);
 			
 		} else {
-			if(workId!=null){
+			if(work_Id!=null){
 				logger.info("### workInfo Validation passed. ###");
-				WorkExp work = workExpService.findOneById(Long.parseLong(workId));
+				WorkExp work = workExpService.findOneById(Long.valueOf(work_Id));
 				work.setCompany(workInfoForm.getCompany());
 				work.setDepartment(workInfoForm.getDepartment());
 				work.setPosition(workInfoForm.getPosition());
@@ -271,7 +230,7 @@ public class TeacherController {
 	@RequestMapping(value = "/admin/teacher/workInfo/destory",method = RequestMethod.POST)
 	public String destoryWorkInfo(@RequestParam("workId") Long work_id, HttpSession session) {
 		logger.info("#### eduInfo InfoController ####");
-		workExpService.destory(work_id);
+		workExpService.destory(Long.valueOf(work_id));
 		return "redirect:/admin/teacher/resume?active=work";
 		
 	}
@@ -356,9 +315,9 @@ public class TeacherController {
 		}
 	}
 	
-	@RequestMapping(value="/admin/teacher/thesis/destory/{thesis_id}")
-	public String deleThesis(@PathVariable Long thesis_id){
-		thesisService.deleteById(thesis_id);
+	@RequestMapping(value="/admin/teacher/thesis/destory",method=RequestMethod.POST)
+	public String deleThesis(@RequestParam("thesisId") Long thesis_id){
+		thesisService.deleteById(Long.valueOf(thesis_id));
 		return "redirect:/admin/teacher/resume?active=thesis";
 	}
 	
@@ -382,9 +341,9 @@ public class TeacherController {
 		}
 	}
 	
-	@RequestMapping(value="/admin/teacher/project/destory/{project_id}")
-	public String deleProject(@PathVariable Long project_id){
-		projectService.deleteById(project_id);
+	@RequestMapping(value="/admin/teacher/project/destory",method=RequestMethod.POST)
+	public String deleProject(@RequestParam("projectId") Long project_id){
+		projectService.deleteById(Long.valueOf(project_id));
 		return "redirect:/admin/teacher/resume?active=project";
 	}
 	
@@ -408,9 +367,9 @@ public class TeacherController {
 		}
 	}
 	
-	@RequestMapping(value="/admin/teacher/patent/destory/{patent_id}")
-	public String delePatent(@PathVariable Long patent_id){
-		patentService.deleteById(patent_id);
+	@RequestMapping(value="/admin/teacher/patent/destory",method=RequestMethod.POST)
+	public String delePatent(@RequestParam("patentId")Long patent_id){
+		patentService.deleteById(Long.valueOf(patent_id));
 		return "redirect:/admin/teacher/resume?active=patent";
 	}
 	
@@ -432,12 +391,54 @@ public class TeacherController {
 		}
 	}
 	
-	@RequestMapping(value="/admin/teacher/honor/destory/{honor_id}")
-	public String deleHonor(@PathVariable Long honor_id){
-		honorService.deleteById(honor_id);
+	@RequestMapping(value="/admin/teacher/honor/destory",method=RequestMethod.POST)
+	public String deleHonor(@RequestParam("honorId")Long honor_id){
+		honorService.deleteById(Long.valueOf(honor_id));
 		return "redirect:/admin/teacher/resume?active=honor";
 	}
 	
+	
+	@RequestMapping(value = "/admin/teacher/personalInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse processFormAjaxJson(@Valid TeacherPersonalInfoForm personalInfoForm, BindingResult result,HttpSession session) {
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/eduInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse eduInfoFormAjaxJson(@Valid TeacherEduInfoForm teacherEduInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	
+	@RequestMapping(value = "/admin/teacher/workExpInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse workExpInfoFormAjaxJson(@Valid TeacherWorkExpInfoForm workInfoForm, BindingResult result) {
+		//logger.info("------into workExp ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/selfurlInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse selfurInfoFormAjaxJson(@Valid TeacherSelfUrlForm teacherSelfUrlForm, BindingResult result) {
+		//logger.info("------into selfur ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/pswInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse pswfurInfoFormAjaxJson(@Valid TeacherPswForm teacherPswForm, BindingResult result) {
+		//logger.info("------into psw ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	
+	@RequestMapping(value = "/admin/teacher/thesisInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse thesisInfoFormAjaxJson(@Valid TeacherThesisDetailInfoForm teacherThesisDetailInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/projectInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse projectInfoFormAjaxJson(@Valid TeacherProjectDetailInfoForm teacherProjectDetailInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/patentInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse patentInfoFormAjaxJson(@Valid TeacherPatentDetailInfoForm teacherPatentDetailInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	@RequestMapping(value = "/admin/teacher/honorInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse honorInfoFormAjaxJson(@Valid TeacherHonorDetailInfoForm teacherHonorDetailInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
 	
 	@RequestMapping(value="/admin/teacher/pswInfoCheck", method = RequestMethod.POST)
 	public void checkEmail(@RequestParam("oriPsw") String oriPsw,HttpServletResponse response,HttpSession session) throws Exception{
@@ -457,10 +458,8 @@ public class TeacherController {
 	}
 	
 	@RequestMapping(value="/admin/teacher/eduInfo/edit/ajax",method = RequestMethod.POST)
-	public void getEduJson(@RequestParam ("eduId") String eduId,HttpServletResponse response,HttpSession session) throws Exception{
-		//logger.info(eduId);
-		Long id = Long.parseLong(eduId);
-		EduBackground eduInfo = eduBackgroundService.findOneById(id);
+	public void getEduJson(@RequestParam ("eduId") Long edu_id,HttpServletResponse response,HttpSession session) throws Exception{
+		EduBackground eduInfo = eduBackgroundService.findOneById(Long.valueOf(edu_id));
 		PrintWriter out = response.getWriter();
 		Gson g = new Gson();
 		out.write(g.toJson(eduInfo));
@@ -470,16 +469,15 @@ public class TeacherController {
 	}
 	
 	@RequestMapping(value="/admin/teacher/workInfo/edit/ajax",method = RequestMethod.POST)
-	public void getWorkJson(@RequestParam ("workId") String workId,HttpServletResponse response,HttpSession session) throws Exception{
-		//logger.info(eduId);
-		Long id = Long.parseLong(workId);
-		WorkExp workInfo = workExpService.findOneById(id);
+	public void getWorkJson(@RequestParam ("workId") Long work_id,HttpServletResponse response,HttpSession session) throws Exception{
+		WorkExp workInfo = workExpService.findOneById(Long.valueOf(work_id));
 		PrintWriter out = response.getWriter();
 		Gson g = new Gson();
 		out.write(g.toJson(workInfo));
 		out.flush();
 		out.close();
-		
 	}
+	
+	
 	
 }

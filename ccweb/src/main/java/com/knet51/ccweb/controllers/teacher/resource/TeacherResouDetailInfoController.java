@@ -100,15 +100,15 @@ public class TeacherResouDetailInfoController {
 //	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/resource/destory/{resource_id}")
-	public String teacherResouDele(HttpSession session,Model model, @PathVariable Long resource_id) throws Exception{
+	@RequestMapping(value="/admin/teacher/resource/destory",method=RequestMethod.POST)
+	public String teacherResouDele(HttpSession session,Model model, @RequestParam("resourceId")Long resource_id) throws Exception{
 		logger.info("#####Into TeacherResouInfoDelePageController#####");
 //		Resource resource = resourceService.findOneById(id);
 //		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //		String date = format.format(new Date());
 //		resource.setDate(date);
 //		resourceService.delete(resource, 2);
-		resourceService.deleteResource(resource_id);
+		resourceService.deleteResource(Long.valueOf(resource_id));
 		return "redirect:/admin/teacher/resource/list";
 	}
 	
