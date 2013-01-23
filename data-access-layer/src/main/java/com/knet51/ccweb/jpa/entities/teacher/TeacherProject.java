@@ -13,6 +13,7 @@ public class TeacherProject extends AbstractEntity {
 	private String source;
 	private String startTime;
 	private String endTime;
+	private String detailDesc;
 	
 	@ManyToOne
 	private Teacher teacher;
@@ -47,6 +48,12 @@ public class TeacherProject extends AbstractEntity {
 	}
 	public void setSource(String source) {
 		this.source = source;
+	}
+	public String getDesc() {
+		return detailDesc;
+	}
+	public void setDesc(String projectDesc) {
+		this.detailDesc = projectDesc;
 	}
 	public TeacherProject() {
 		super();

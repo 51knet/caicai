@@ -11,6 +11,7 @@ public class TeacherPatentDetailInfoForm {
 	private String patentType;
 	@NotEmpty
 	private String number;
+	private String patentDesc;
 	public String getInventer() {
 		return inventer;
 	}
@@ -35,6 +36,12 @@ public class TeacherPatentDetailInfoForm {
 	}
 	public void setNumber(String number) {
 		this.number = number;
+	}
+	public String getPatentDesc() {
+		return patentDesc;
+	}
+	public void setPatentDesc(String patentDesc) {
+		this.patentDesc = patentDesc;
 	}
 	public TeacherPatentDetailInfoForm() {
 		super();

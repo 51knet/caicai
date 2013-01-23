@@ -11,6 +11,7 @@ public class WorkExp extends AbstractEntity {
 	private String position;
 	private String startTime;
 	private String endTime;
+	private String workDesc;
 	private Long teacherid;
 	public String getCompany() {
 		return company;
@@ -48,6 +49,12 @@ public class WorkExp extends AbstractEntity {
 	}
 	public void setTeacherid(Long teacherid) {
 		this.teacherid = teacherid;
+	}
+	public String getWorkDesc() {
+		return workDesc;
+	}
+	public void setWorkDesc(String workDesc) {
+		this.workDesc = workDesc;
 	}
 	public WorkExp() {
 		super();

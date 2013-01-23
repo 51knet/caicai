@@ -7,6 +7,7 @@ public class TeacherHonorDetailInfoForm {
 	private String honorName;
 	@NotEmpty
 	private String reason;
+	private String honorDesc;
 	
 	public String getHonorName() {
 		return honorName;
@@ -19,6 +20,12 @@ public class TeacherHonorDetailInfoForm {
 	}
 	public void setReason(String reason) {
 		this.reason = reason;
+	}
+	public String getHonorDesc() {
+		return honorDesc;
+	}
+	public void setHonorDesc(String honorDesc) {
+		this.honorDesc = honorDesc;
 	}
 	
 }

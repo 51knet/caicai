@@ -12,6 +12,7 @@ public class TeacherPatent  extends AbstractEntity {
 	private String name;
 	private String type;
 	private String number;
+	private String detailDesc;
 	@ManyToOne
 	private Teacher teacher;
 	public String getInventer() {
@@ -43,6 +44,12 @@ public class TeacherPatent  extends AbstractEntity {
 	}
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
+	}
+	public String getDesc() {
+		return detailDesc;
+	}
+	public void setDesc(String desc) {
+		this.detailDesc = desc;
 	}
 	public TeacherPatent() {
 		super();

@@ -283,6 +283,13 @@
 						</div>
 					</div>
 					<div class="control-group">
+						<label class="control-label" for="workDesc">详细介绍</label>
+						<div class="controls">
+							<textarea id="workDesc" name="workDesc" rows="6" cols="8" style="width: 500px; height:300px;"></textarea>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="control-group">
 						<div class="controls">
 							<button type="submit" onclick="return workOnclick();"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeWorkAddForm()" class="btn btn-large">取消</button>
@@ -308,6 +315,15 @@
 											 	<input type="hidden" value="${workInfo.id} " >|
 											 <a href='javascript:void(0)' onclick="editWork(${workInfo.id})">修改</a>
 										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>详细描述：</td>
+										<td>
+										${workInfo.workDesc}
+										</td>
+										<td></td>
+										<td></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -367,7 +383,7 @@
 						<div class="control-group" id="content">
 						<div class="controls">
 						内容:
-							<textarea style="width: 450px;margin-left: 20px;" id="context" name="content" cols="40" rows="3" ></textarea>
+							<textarea id="context" name="context" rows="6" cols="8" style="width: 600px; height:300px;"></textarea>
 						    <span class="help-inline"></span>
 						</div>
 					</div>
@@ -436,6 +452,13 @@
 							</div>
 						</div>
 						<div class="control-group">
+							<label class="control-label" for="projectDesc">详细介绍</label>
+							<div class="controls">
+								<textarea id="projectDesc" name="projectDesc" rows="6" cols="8" style="width: 500px; height:300px;"></textarea>
+								<span class="help-inline"></span>
+							</div>
+						</div>
+						<div class="control-group">
 							<div class="controls">
 								<button type="submit" onclick ="return projectOnclick();" class="btn btn-large btn-success">保存</button>&nbsp;&nbsp;
 								<button class="btn  btn-large" type="reset" onclick="hiddenProjectAddForm()">取消</button>
@@ -459,6 +482,15 @@
 												<a class="deleteProjectPostBtn" href="#deleteProjectPostModal" role="button" data-toggle="modal" data-target="#deleteProjectPostModal">删除</a>
 												<input type="hidden" value="${project.id} " >
 											</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>详细描述：</td>
+											<td>
+											${project.desc}
+											</td>
+											<td></td>
+											<td></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -523,6 +555,13 @@
 								</div>
 							</div>
 							<div class="control-group">
+								<label class="control-label" for="patentDesc">详细介绍</label>
+								<div class="controls">
+									<textarea id="patentDesc" name="patentDesc" rows="6" cols="8" style="width: 500px; height:300px;"></textarea>
+									<span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group">
 								<div class="controls">
 									<button type="submit" onclick="return patentOnclick();" class="btn btn-large btn-success">保存</button>
 									<button class="btn  btn-large" type="reset" onclick="hiddenPatentAddForm()">取消</button>
@@ -548,6 +587,15 @@
 											<a class="deletePatentPostBtn" href="#deletePatentPostModal" role="button" data-toggle="modal" data-target="#deletePatentPostModal">删除</a>
 											<input type="hidden" value="${patent.id} " >
 										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>详细描述：</td>
+										<td>
+										${patent.desc}
+										</td>
+										<td></td>
+										<td></td>
 									</tr>
 								</c:forEach>
 							    </tbody>
@@ -598,6 +646,13 @@
 							</div>
 						</div>
 						<div class="control-group">
+							<label class="control-label" for="honorDesc">详细介绍</label>
+							<div class="controls">
+								<textarea id="honorDesc" name="honorDesc" rows="6" cols="8" style="width: 500px; height:300px;"></textarea>
+								<span class="help-inline"></span>
+							</div>
+						</div>
+						<div class="control-group">
 							<div class="controls">
 								<button type="submit"  onclick="return honorOnclick();" class="btn btn-large btn-success">保存</button>
 								<button class="btn  btn-large" type="reset" onclick="hiddenHonorAddForm()">取消</button>
@@ -619,6 +674,13 @@
 												<a class="deleteHonorPostBtn" href="#deleteHonorPostModal" role="button" data-toggle="modal" data-target="#deleteHonorPostModal">删除</a>
 												<input type="hidden" value="${honor.id} " >
 											</td>
+										</tr>
+										<tr>
+											<td>详细描述：</td>
+											<td>
+											${honor.desc}
+											</td>
+											<td></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -652,20 +714,105 @@
 	</div>
 </div>
 
-<<<<<<< HEAD
 <c:url var="uploadJson" value="/file_upload/${sessionUserInfo.id}"></c:url>
 <c:url var="fileManagerJson" value="/file_manager/${sessionUserInfo.id}"></c:url>
 <link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/themes/default/default.css"/>" />
 <link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>" />
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.js"/>"></script>
-=======
 
-
-
->>>>>>> 6e3eff0f671d32b776328776146a647d3d2e3daa
 <script type="text/javascript">
 $(document).ready(function() {
-	var editor = KindEditor.create('textarea[name="educationDesc"]',{
+	var eduDescEditor = KindEditor.create('textarea[name="educationDesc"]',{
+		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+		uploadJson : '${uploadJson}',
+		fileManagerJson : '${fileManagerJson}',
+		allowFileManager : true,
+		afterCreate : function() {
+			var self = this;
+			KindEditor.ctrl(document, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+			KindEditor.ctrl(self.edit.doc, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+		}
+	});
+	
+	var workDescEditor = KindEditor.create('textarea[name="workDesc"]',{
+		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+		uploadJson : '${uploadJson}',
+		fileManagerJson : '${fileManagerJson}',
+		allowFileManager : true,
+		afterCreate : function() {
+			var self = this;
+			KindEditor.ctrl(document, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+			KindEditor.ctrl(self.edit.doc, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+		}
+	});
+	
+	var contextEditor = KindEditor.create('textarea[name="context"]',{
+		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+		uploadJson : '${uploadJson}',
+		fileManagerJson : '${fileManagerJson}',
+		allowFileManager : true,
+		afterCreate : function() {
+			var self = this;
+			KindEditor.ctrl(document, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+			KindEditor.ctrl(self.edit.doc, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+		}
+	});
+	
+	var projectEditor = KindEditor.create('textarea[name="projectDesc"]',{
+		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+		uploadJson : '${uploadJson}',
+		fileManagerJson : '${fileManagerJson}',
+		allowFileManager : true,
+		afterCreate : function() {
+			var self = this;
+			KindEditor.ctrl(document, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+			KindEditor.ctrl(self.edit.doc, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+		}
+	});
+	
+	var patentEditor = KindEditor.create('textarea[name="patentDesc"]',{
+		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+		uploadJson : '${uploadJson}',
+		fileManagerJson : '${fileManagerJson}',
+		allowFileManager : true,
+		afterCreate : function() {
+			var self = this;
+			KindEditor.ctrl(document, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+			KindEditor.ctrl(self.edit.doc, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+		}
+	});
+	
+	var honorEditor = KindEditor.create('textarea[name="honorDesc"]',{
 		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
 		uploadJson : '${uploadJson}',
 		fileManagerJson : '${fileManagerJson}',
@@ -744,27 +891,5 @@ $(document).ready(function(){
 		$('#deleteHonorPostModal #honorId').val(honor_id);	
 	});
 });
-
-function editEdu(id){
-	//alert(id);
-	$("#eduList").css("display","none");
-	$("#eduForm").css("display","block");
-	$.ajax({
-		  type: "post",
-		  url: "<c:url value='/admin/teacher/eduInfo/edit/ajax' />",
-		  data: "eduId="+id,
-		  dataType:"json",
-		  success:function(msg){
-				document.edu.eduId.value = msg.id;
-			  	document.edu.schoolName.value=msg.school;
-			  	document.edu.collegeName.value=msg.college;
-			  	document.edu.degree.value=msg.degree;
-			  	document.edu.startTime.value=msg.startTime;
-			  	document.edu.endTime.value=msg.endTime;
-			  	document.getElementById("educationDesc").value=msg.educationDesc;
-		  }
-	});
-};
-
 
 </script>

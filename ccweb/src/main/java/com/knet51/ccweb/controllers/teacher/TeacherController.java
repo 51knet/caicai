@@ -210,6 +210,7 @@ public class TeacherController {
 				work.setPosition(workInfoForm.getPosition());
 				work.setStartTime(workInfoForm.getStartTimeName());
 				work.setEndTime(workInfoForm.getEndTimeName());
+				work.setWorkDesc(workInfoForm.getWorkDesc());
 				workExpService.createWorkExp(work);
 			}else{
 				logger.info("### workInfo Validation passed. ###");
@@ -220,6 +221,7 @@ public class TeacherController {
 				work.setPosition(workInfoForm.getPosition());
 				work.setStartTime(workInfoForm.getStartTimeName());
 				work.setEndTime(workInfoForm.getEndTimeName());
+				work.setWorkDesc(workInfoForm.getWorkDesc());
 				work.setTeacherid(userInfo.getId());
 				workExpService.createWorkExp(work);
 			}
@@ -337,6 +339,7 @@ public class TeacherController {
 			project.setSource(projectDetailForm.getProjectSource());
 			project.setStartTime(projectDetailForm.getProjectStartTime());
 			project.setEndTime(projectDetailForm.getProjectEndTime());
+			project.setDesc(projectDetailForm.getProjectDesc());
 			projectService.save(project, teacher);
 			return "redirect:/admin/teacher/resume?active=project";
 		}
@@ -363,6 +366,7 @@ public class TeacherController {
 			patent.setName(patentDetailForm.getPatentName());
 			patent.setNumber(patentDetailForm.getNumber());
 			patent.setType(patentDetailForm.getPatentType());
+			patent.setDesc(patentDetailForm.getPatentDesc());
 			patentService.save(patent, teacher);
 			return "redirect:/admin/teacher/resume?active=patent";
 		}
@@ -387,6 +391,7 @@ public class TeacherController {
 			TeacherHonor honor = new TeacherHonor();
 			honor.setName(honorDetailForm.getHonorName());
 			honor.setReason(honorDetailForm.getReason());
+			honor.setDesc(honorDetailForm.getHonorDesc());
 			honorService.save(honor, teacher);
 			return "redirect:/admin/teacher/resume?active=honor";
 		}

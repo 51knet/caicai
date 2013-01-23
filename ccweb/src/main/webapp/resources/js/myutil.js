@@ -233,6 +233,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 				  	document.edu.degree.value=msg.degree;
 				  	document.edu.startTime.value=msg.startTime;
 				  	document.edu.endTime.value=msg.endTime;
+				  	document.getElementById("educationDesc").value=msg.educationDesc;
 			  }
 		});
 	};
@@ -253,6 +254,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 				  	document.work.position.value=msg.position;
 				  	document.work.startTimeName.value=msg.startTime;
 				  	document.work.endTimeName.value=msg.endTime;
+				  	document.getElementById("workDesc").value=msg.educationDesc;
 			  }
 		});
 	};

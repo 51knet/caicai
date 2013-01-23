@@ -115,6 +115,15 @@
 											<td align="center">${workInfo.position}</td>
 											<td align="center">${workInfo.startTime} - ${workInfo.endTime}</td>
 										</tr>
+										<tr>
+										<td></td>
+										<td>详细描述：</td>
+										<td>
+										${workInfo.workDesc}
+										</td>
+										<td></td>
+										<td></td>
+									</tr>
 									</c:forEach>
 								</tbody>
 							</table>
@@ -172,6 +181,15 @@
 								<td  >${project.startTime}</td>
 								<td  >${project.endTime}</td>
 							</tr>
+							<tr>
+								<td></td>
+								<td>详细描述：</td>
+								<td>
+								${project.desc}
+								</td>
+								<td></td>
+								<td></td>
+							</tr>
 						</c:forEach>
 					</tbody>
 				</c:when>
@@ -195,6 +213,15 @@
 								<td >${patent.name}</td>
 								<td >${patent.type}</td>
 								<td >${patent.number}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>详细描述：</td>
+								<td>
+								${patent.desc}
+								</td>
+								<td></td>
+								<td></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -221,6 +248,13 @@
 								<td>
 									${honor.reason}
 								</td>
+							</tr>
+							<tr>
+								<td>详细描述：</td>
+								<td>
+								${honor.desc}
+								</td>
+								<td></td>
 							</tr>
 						</c:forEach>
 					</tbody>
