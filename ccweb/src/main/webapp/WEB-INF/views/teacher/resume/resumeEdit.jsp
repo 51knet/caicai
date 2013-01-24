@@ -382,10 +382,10 @@
 				
 				<div id="thesisNewInfoForm"  style="display: none;">
 					<form action="thesis/new" method="post"  id="thesis_info_form">
-						<div class="control-group" id="thesisContent">
+						<div class="control-group" id="content">
 						<div class="controls">
 						内容:
-							<textarea id="thesisContext" name="context" rows="6" cols="8" style="width: 600px; height:300px;"></textarea>
+							<textarea id=" context" name="content" rows="6" cols="8" style="width: 600px; height:300px;"></textarea>
 						    <span class="help-inline"></span>
 						</div>
 					</div>
@@ -757,7 +757,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	var thesisContextEditor = KindEditor.create('textarea[name="thesisContext"]',{
+	var contextEditor = KindEditor.create('textarea[name="content"]',{
 		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
 		uploadJson : '${uploadJson}',
 		fileManagerJson : '${fileManagerJson}',
