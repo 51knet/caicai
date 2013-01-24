@@ -371,13 +371,14 @@
 						</c:when>
 						<c:otherwise><span style="font-size: 13px;">尚未添加内容<br><br></span></c:otherwise>
 					</c:choose>
+					<button onclick="showThesisAddForm();">添加</button>
 				</div>
-				<div id="thesisForm" style="display: none;">
+				<div id="thesisNewInfoForm"  style="display: none;">
 					<form action="thesis/new" method="post"  id="thesis_info_form">
 						<div class="control-group" id="content">
 						<div class="controls">
 						内容:
-							<textarea id="context" name="content" rows="6" cols="8" style="width: 600px; height:300px;"></textarea>
+							<textarea id="thesisContext" name="content" rows="6" cols="8" style="width: 600px; height:300px;"></textarea>
 						    <span class="help-inline"></span>
 						</div>
 					</div>
@@ -389,10 +390,7 @@
 					     </div>
 					</form>
 				</div>
-				<div id="thesisButton" style="display: block">
-					<button onclick="showThesisAddForm();">添加</button>
-				</div>
-				
+				 
 						<!-- thesis Modal -->
 				<div class="modal hide fade" id="deleteThesisPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-header">
@@ -745,7 +743,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	var contextEditor = KindEditor.create('textarea[name="context"]',{
+	var thesisContextEditor = KindEditor.create('textarea[name="thesisContext"]',{
 		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
 		uploadJson : '${uploadJson}',
 		fileManagerJson : '${fileManagerJson}',
@@ -798,6 +796,8 @@ $(document).ready(function() {
 			});
 		}
 	});
+	
+
 	
 	var honorEditor = KindEditor.create('textarea[name="honorDesc"]',{
 		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',

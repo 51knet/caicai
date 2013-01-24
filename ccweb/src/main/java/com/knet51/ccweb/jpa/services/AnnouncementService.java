@@ -24,4 +24,6 @@ public interface AnnouncementService {
 	Announcement updateAnnouncement(Announcement ann);
 	
 	void deleAnnouncementById(Long id);
+	
+	List<Announcement> findAnnoByUserAndId(User user,Long id);
 }

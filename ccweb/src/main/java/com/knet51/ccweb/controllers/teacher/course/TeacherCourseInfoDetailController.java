@@ -25,17 +25,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
-
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
-import com.knet51.ccweb.controllers.teacher.TeacherPersonalInfoForm;
-import com.knet51.ccweb.controllers.teacher.TeacherWorkExpInfoForm;
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 import com.knet51.ccweb.jpa.entities.teacher.CourseLesson;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
@@ -45,8 +39,6 @@ import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.ResourceTypeService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
-import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
-import com.knet51.ccweb.util.ajax.ValidationResponse;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 
 
@@ -120,9 +112,9 @@ public class TeacherCourseInfoDetailController {
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/course/edit/"+course_id;
+			return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id);
 		}else{
-			TeacherCourse course = courseService.findOneById(course_id);
+			TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
 			String courseName = courseInfoForm.getCourseName();
 			String courseDesc = courseInfoForm.getCourseDesc();
 			course.setCourseName(courseName);
@@ -170,9 +162,9 @@ public class TeacherCourseInfoDetailController {
 	
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/{course_id}/resource/create",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/teacher/course/resource/create",method=RequestMethod.POST)
 	public String TeacherCourseResourceAdd(HttpSession session,Model model,
-			MultipartHttpServletRequest request,@PathVariable Long course_id) throws  Exception{
+			MultipartHttpServletRequest request,@RequestParam("cId") Long course_id) throws  Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("resourceFile");
 		String lessonNum = request.getParameter("lessonNum");
@@ -183,7 +175,7 @@ public class TeacherCourseInfoDetailController {
 				Long type = Long.parseLong(request.getParameter("type"));
 				ResourceType resourceType = resourceTypeService.findOneById(type);
 				Long courseLessonId = Long.parseLong(request.getParameter("lessonId"));
-				CourseLesson courseLesson = lessonService.findOne(courseLessonId);
+				//CourseLesson courseLesson = lessonService.findOne(courseLessonId);
 				CourseResource resource = new CourseResource();
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 	
 				String fileName = multipartFile.getOriginalFilename();
@@ -192,7 +184,7 @@ public class TeacherCourseInfoDetailController {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String date = format.format(new Date());
 				resource.setDate(date);
-				TeacherCourse teacherCourse = courseService.findOneById(course_id);
+				TeacherCourse teacherCourse = courseService.findOneById(Long.valueOf(course_id));
 				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
 				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+File.separator+lessonNum;
 				FileUtil.createRealPath(path, session);
@@ -203,17 +195,13 @@ public class TeacherCourseInfoDetailController {
 				resource.setSavePath(savePath);
 				resource.setSaveName(fileName);
 				resource.setLessonNum(lessonNum);
-				resource.setCourse_id(course_id);
-				resource.setCourseLesson(courseLesson);
+				resource.setCourse_id(Long.valueOf(course_id));
+				resource.setCourseLessonId(courseLessonId);
 				resource.setResourceType(resourceType);
 				courseResourceService.createCourseResource(resource);
 			}
 		}
-		List<CourseResource> resource = courseResourceService.findNullResourceByCourseIdAndLessonNum(course_id, lessonNum);
-		if(resource.size()>0){
-			courseResourceService.deleCourseResource(resource.get(0).getId());
-		}
-		return "redirect:/admin/teacher/course/edit/"+course_id+"/modifycourse";
+		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 	}
 	
 	
@@ -260,13 +248,17 @@ public class TeacherCourseInfoDetailController {
 					.getResourceByLessonNumAndCourseId(LessonNum,course_id);
 			courseMap.put(LessonNum, courseList);
 		}
-		
+		List<CourseLesson> lessonNumList = lessonService.getMaxLessonNumByCourseId(course_id);
+		if(lessonNumList.size()>0){
+			model.addAttribute("lesson", lessonNumList.get(0));
+		}
 		List<CourseLesson> lessonList = lessonService.findCourseLessonByCourseId(course_id);
 		model.addAttribute("lessonList", lessonList);
 		model.addAttribute("lessonListCount", lessonList.size());
 		model.addAttribute("resourceCount", listResource.size());
 		model.addAttribute("courseMap", courseMap);
 		model.addAttribute("course", course);
+		
 		return "admin.teacher.course.edit.modifycourse";
 	}
 	/**

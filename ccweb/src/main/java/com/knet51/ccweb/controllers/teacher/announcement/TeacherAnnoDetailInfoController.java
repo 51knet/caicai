@@ -77,14 +77,14 @@ public class TeacherAnnoDetailInfoController {
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/announcement/edit/edit" , method = RequestMethod.POST)
-	public String teacherAnnoUpdate(@RequestParam("id") Long id,@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm,
+	public String teacherAnnoUpdate(@RequestParam("id") Long anno_id,@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm,
 			BindingResult validResult, HttpSession session,Model m){
 		if(validResult.hasErrors()){
-			return "redirect:/admin/teacher/announcement/edit";
+			return "redirect:/admin/teacher/announcement/edit/"+anno_id;
 		}else{	
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();
-			Announcement announcement = annoService.findOneById(id);
+			Announcement announcement = annoService.findOneById(anno_id);
 			announcement.setTitle(title);
 			announcement.setContent(content);
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");

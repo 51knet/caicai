@@ -54,12 +54,19 @@ public class TeacherAnnoInfoPageController {
 			return "admin.teacher.announcement.list";
 	}
 	
-	@RequestMapping(value="/admin/teacher/announcement/edit",method=RequestMethod.POST)
-	public String detailAnnoInfo( @RequestParam("annoId") Long anno_id, Model model){
+	@RequestMapping(value="/admin/teacher/announcement/edit/{anno_id}")
+	public String detailAnnoInfo(HttpSession session, Model model,@PathVariable Long anno_id){
 		//System.out.println(id);
-		Announcement anno = annoService.findOneById(Long.valueOf(anno_id));
-		model.addAttribute("anno", anno);
-		return "admin.teacher.announcement.edit";
+		Long user_id = getId(session);
+		User user = userService.findOne(user_id);
+		List<Announcement> annoList = annoService.findAnnoByUserAndId(user, anno_id);
+		if(annoList.size()>0){
+			Announcement anno = annoService.findOneById(Long.valueOf(anno_id));
+			model.addAttribute("anno", anno);
+			return "admin.teacher.announcement.edit";
+		}else{
+			return "redirect:/admin/teacher/announcement/list";
+		}
 	}
 	
 	@RequestMapping(value="/admin/teacher/announcement/create")

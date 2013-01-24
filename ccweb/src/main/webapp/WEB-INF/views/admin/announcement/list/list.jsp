@@ -20,9 +20,6 @@ $(document).ready(function() {
 	});
 });
 
-function editTheAnno(){
-	$("#post_anno_form").submit();
-}
 </script>
 <style>
 	.row-fluid.custom {
@@ -77,10 +74,8 @@ function editTheAnno(){
 								</div>
 							 -->
 								 <a class="deleteAnnoPostBtn" href="#deleteAnnoPostModal" role="button" data-toggle="modal" data-target="#deleteAnnoPostModal">删除</a> | 
-								 <a  href='javascript:void(0)' onclick="editTheAnno()">修改</a>
-								 <form id="post_anno_form" action='<c:url value="/admin/teacher/announcement/edit"></c:url>'  method="post" style="display: inline-block;" >
-								 	<input type="hidden" value="${page.id} " id="anno_id" name="annoId" > 
-								 </form>
+								 <a href='<c:url value="/admin/teacher/announcement/edit/${page.id}"></c:url>'>修改</a>
+								 <input type="hidden" value="${page.id} " id="anno_id" name="annoId" > 
 							</td>
 						</tr>
 					</c:forEach>
