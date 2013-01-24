@@ -27,20 +27,14 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 
 	function showThesisAddForm() {
 		$("#thesis").css("display","none");
-		var thesis = document.getElementById("thesisForm");
-		var thesisButton = document.getElementById("thesisButton");
-		thesis.style.display = "block";
-		thesisButton.style.display = "none";
+		$("#thesisNewInfoForm").css("display","block");
+		
 	}
 
 	function hiddenThesisAddForm() {
 		$("#thesis").css("display","block");
-		var thesisForm = document.getElementById("thesisForm");
-		var thesisButton = document.getElementById("thesisButton");
-		var thesisContentMsg = document.getElementById("thesisContentMsg");
-		thesisContentMsg.innerHTML="";
-		thesisForm.style.display = "none";
-		thesisButton.style.display = "block";
+		$("#thesisNewInfoForm").css("display","none");
+		
 	}
 
 	function hiddenProject() {
