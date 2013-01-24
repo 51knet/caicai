@@ -22,7 +22,7 @@
 	<div  class="row" style="margin-top: 10px;">
 		<a href='<c:url value="/admin/teacher/announcement/list"></c:url>' ><b>教师公告</b></a><hr>
 		<div style="text-align: left;">
-			<form action= "edit/edit"  method="post" name="anno_post">
+			<form action= "edit"  method="post" name="anno_post">
 				<input type="hidden" value="${anno.id }" name="id" />
 				公告标签：<input type="text" name="title"  placeholder="公告标签" value="${anno.title }">
 				<span class="help-block"><form:errors path="title"></form:errors></span>

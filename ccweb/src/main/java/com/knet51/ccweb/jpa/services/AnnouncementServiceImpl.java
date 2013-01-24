@@ -63,4 +63,10 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		return onePage;
 	}
 
+	@Override
+	public List<Announcement> findAnnoByUserAndId(User user, Long id) {
+		List<Announcement> annoList = annoRepository.findAnnoByUserAndId(user, id);
+		return annoList;
+	}
+
 }
