@@ -33,11 +33,11 @@ public class ResourceServiceImpl implements ResourceService {
 		return courseResource;
 	}
 	@Override
-	public List<CourseResource> getResourceByCourseOrderAndCourseId(
-			String resourceOrder, Long course_id) {
+	public List<CourseResource> getResourceByLessonNumAndCourseId(
+			String LessonNum, Long course_id) {
 		List<CourseResource> courseResourceList= new ArrayList<CourseResource>(); 
 		try {
-			courseResourceList=teacherCourseResourceRepository.getResourceByCourseOrderAndCourseId(resourceOrder,course_id);
+			courseResourceList=teacherCourseResourceRepository.getResourceByLessonNumAndCourseId(LessonNum,course_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 

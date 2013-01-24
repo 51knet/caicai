@@ -14,6 +14,7 @@ public class TeacherWorkExpInfoForm {
 	private String startTimeName;
 	@NotEmpty
 	private String endTimeName;
+	private String workDesc;
 	public String getCompany() {
 		return company;
 	}
@@ -48,7 +49,10 @@ public class TeacherWorkExpInfoForm {
 	public void setEndTimeName(String endTimeName) {
 		this.endTimeName = endTimeName;
 	}
-	
-	
-
+	public String getWorkDesc() {
+		return workDesc;
+	}
+	public void setWorkDesc(String workDesc) {
+		this.workDesc = workDesc;
+	}
 }

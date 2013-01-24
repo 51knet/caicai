@@ -54,10 +54,10 @@ public class TeacherAnnoInfoPageController {
 			return "admin.teacher.announcement.list";
 	}
 	
-	@RequestMapping(value="/admin/teacher/announcement/edit/{announcement_id}")
-	public String detailAnnoInfo( @PathVariable Long announcement_id, Model model){
+	@RequestMapping(value="/admin/teacher/announcement/edit",method=RequestMethod.POST)
+	public String detailAnnoInfo( @RequestParam("annoId") Long anno_id, Model model){
 		//System.out.println(id);
-		Announcement anno = annoService.findOneById(announcement_id);
+		Announcement anno = annoService.findOneById(Long.valueOf(anno_id));
 		model.addAttribute("anno", anno);
 		return "admin.teacher.announcement.edit";
 	}

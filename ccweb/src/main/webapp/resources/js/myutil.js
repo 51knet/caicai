@@ -215,6 +215,49 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 		 var workForm = document.getElementById("workForm"); 
 		  workForm.style.display="none"; 
 	}; 
+	
+	
+	function editEdu(id){
+		//alert(id);
+		$("#eduList").css("display","none");
+		$("#eduForm").css("display","block");
+		$.ajax({
+			  type: "post",
+			  url: "eduInfo/edit/ajax",
+			  data: "eduId="+id,
+			  dataType:"json",
+			  success:function(msg){
+					document.edu.eduId.value = msg.id;
+				  	document.edu.schoolName.value=msg.school;
+				  	document.edu.collegeName.value=msg.college;
+				  	document.edu.degree.value=msg.degree;
+				  	document.edu.startTime.value=msg.startTime;
+				  	document.edu.endTime.value=msg.endTime;
+				  	document.getElementById("educationDesc").value=msg.educationDesc;
+			  }
+		});
+	};
+
+	function editWork(id){
+		//alert(id);
+		$("#workList").css("display","none");
+		$("#workForm").css("display","block");
+		$.ajax({
+			  type: "post",
+			  url: "workInfo/edit/ajax",
+			  data: "workId="+id,
+			  dataType:"json",
+			  success:function(msg){
+					document.work.workId.value = msg.id;
+				  	document.work.company.value=msg.company;
+				  	document.work.department.value=msg.department;
+				  	document.work.position.value=msg.position;
+				  	document.work.startTimeName.value=msg.startTime;
+				  	document.work.endTimeName.value=msg.endTime;
+				  	document.getElementById("workDesc").value=msg.educationDesc;
+			  }
+		});
+	};
 
 	
 	

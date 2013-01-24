@@ -11,7 +11,7 @@ public class TeacherProjectDetailInfoForm {
 	private String projectStartTime;
 	@NotEmpty
 	private String projectEndTime;
-	
+	private String projectDesc;
 	
 	public String getProjectTitle() {
 		return projectTitle;
@@ -37,6 +37,12 @@ public class TeacherProjectDetailInfoForm {
 	}
 	public void setProjectEndTime(String projectEndTime) {
 		this.projectEndTime = projectEndTime;
+	}
+	public String getProjectDesc() {
+		return projectDesc;
+	}
+	public void setProjectDesc(String projectDesc) {
+		this.projectDesc = projectDesc;
 	}
 	public TeacherProjectDetailInfoForm() {
 		super();

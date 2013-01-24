@@ -3,8 +3,11 @@ package com.knet51.ccweb.jpa.entities.teacher;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 
 @Entity
 public class CourseResource extends AbstractEntity {
@@ -15,9 +18,15 @@ public class CourseResource extends AbstractEntity {
 	@Lob
 	@Column(length=10000)
 	private String resourceDesc;
-	private String courseOrder; //lesson 0ne,lesson two and so on....
+	private String lessonNum; //lesson 0ne,lesson two and so on....
 	private String date;
 	private Long course_id;
+	@ManyToOne
+	private ResourceType resourceType;
+	@ManyToOne
+	private CourseLesson courseLesson;
+	@ManyToOne
+	private User user;
 	
 	public String getDate() {
 		return date;
@@ -59,12 +68,23 @@ public class CourseResource extends AbstractEntity {
 	}
 	
 	
-	
-	public String getCourseOrder() {
-		return courseOrder;
+	public CourseLesson getCourseLesson() {
+		return courseLesson;
 	}
-	public void setCourseOrder(String courseOrder) {
-		this.courseOrder = courseOrder;
+	public void setCourseLesson(CourseLesson courseLesson) {
+		this.courseLesson = courseLesson;
+	}
+	public ResourceType getResourceType() {
+		return resourceType;
+	}
+	public void setResourceType(ResourceType resourceType) {
+		this.resourceType = resourceType;
+	}
+	public String getLessonNum() {
+		return lessonNum;
+	}
+	public void setLessonNum(String lessonNum) {
+		this.lessonNum = lessonNum;
 	}
 	public void setResourceDesc(String resourceDesc) {
 		this.resourceDesc = resourceDesc;

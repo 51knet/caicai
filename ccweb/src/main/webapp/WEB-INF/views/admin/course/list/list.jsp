@@ -4,18 +4,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-	$("#names").focus(function() {
-		$(".help-inline").html("");
-	});
-	$("#descs").focus(function() {
-		$(".help-inline").html("");
-	});
-	checkAjaxs("course_info_form","courserInfoAJAX");
-});
-
-</script>
 <style>
 	.row-fluid.custom {
 	margin-bottom: 20px;
@@ -39,9 +27,9 @@ $(document).ready(function() {
 							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
 			<span style="margin-right: 180px;">
 			 	<a href='<c:url value="/admin/teacher/course/list"></c:url>' style="margin-right: 10px;"> 全部课程</a> 
-				 <a href='<c:url value="/admin/teacher/course/list/1"></c:url>' style="margin-right: 10px;"> 未发布课程</a> 
-				<a href='<c:url value="/admin/teacher/course/list/2"></c:url>'  style="margin-right: 10px;"> 已发布课程</a>
-				<a href='<c:url value="/admin/teacher/course/list/0"></c:url>'> 已删除课程</a>
+				 <a href='<c:url value="/admin/teacher/course/list/2"></c:url>' style="margin-right: 10px;"> 未发布课程</a> 
+				<a href='<c:url value="/admin/teacher/course/list/3"></c:url>'  style="margin-right: 10px;"> 已发布课程</a>
+				<a href='<c:url value="/admin/teacher/course/list/1"></c:url>'> 已删除课程</a>
 			</span>
 			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/new"></c:url>' class="btn">添加新课程</a>
 			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/addcourse"><c:param name="active" value="first" /><c:param name="cid" value="0" /></c:url>' class="btn">添加新课程(Test)</a>				
@@ -62,12 +50,21 @@ $(document).ready(function() {
 					<c:forEach items="${page.content}" var="page">
 						<tr>
 						<td align="left"><img src="/ccweb/${page.courseCover }" style="width: 80px; height: 40px;"/></td>
-						<td align="left"><div style="width: 110px;" id="content"><a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a></div></td>
+						<td align="left">
+							<div style="width: 110px;" id="content">
+								<c:if test="${page.publish==1 }">
+									${page.courseName}
+								</c:if>
+								<c:if test="${page.publish >1 }">
+									<a href='<c:url value="/admin/teacher/course/view/${page.id}"></c:url>'>${page.courseName}</a>
+								</c:if>
+							</div>
+						</td>
 						<td align="center">${page.courseType}</td>
 						<td align="center">
-							<c:if test="${page.publish ==1 }">未发布</c:if>
-							<c:if test="${page.publish ==2 }">已发布</c:if>
-							<c:if test="${page.publish ==0 }">已删除</c:if>
+							<c:if test="${page.publish ==2 }">未发布</c:if>
+							<c:if test="${page.publish ==3 }">已发布</c:if>
+							<c:if test="${page.publish ==1 }">已删除</c:if>
 						</td>
 						<td align="center">${page.courseDate}</td>
 						<td align="center">
@@ -80,14 +77,18 @@ $(document).ready(function() {
 									<li><a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a></li>
 								</ul>
 							</div> -->
-							<c:if test="${page.publish ==0 }">
-								<a href='<c:url value="/admin/teacher/course/recover/${page.id}"></c:url>'>恢复</a> | 
-								<a href='<c:url value="/admin/teacher/course/deleted/${page.id}"></c:url>'>彻底删除</a>
+							<c:if test="${page.publish ==1 }">
+							<!--  	<a href='<c:url value="/admin/teacher/course/recover/${page.id}"></c:url>'>恢复</a>-->
+								 <a class="recoverCoursePostBtn" href="#recoverCoursePostModal" role="button" data-toggle="modal" data-target="#recoverAnnoPostModal">恢复</a>  | 
+								<!-- <a href='<c:url value="/admin/teacher/course/deleted/${page.id}"></c:url>'>彻底删除</a> -->
+								 <a class="deleteCoursePostBtn" href="#deleteCoursePostModal" role="button" data-toggle="modal" data-target="#deleteAnnoPostModal">彻底删除</a>
 							</c:if>
-							<c:if test="${page.publish ==1 ||page.publish ==2 }">
-									<a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a> | 
-									<a href='<c:url value="/admin/teacher/course/edit/${page.id}/modifycourse"></c:url>'>修改</a>							
+							<c:if test="${page.publish ==2 ||page.publish ==3 }">
+								<!-- <a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a>  -->	
+									 <a class="destoryCoursePostBtn" href="#destoryCoursePostModal" role="button" data-toggle="modal" data-target="#destoryAnnoPostModal">删除</a> 
+									| <a href='<c:url value="/admin/teacher/course/edit/${page.id}/modifycourse"></c:url>'>修改</a>							
 							</c:if>
+							 <input type="hidden"  value="${page.id}" id="courseId">
 						</td></tr>
 					</c:forEach>
 				</tbody>
@@ -129,5 +130,83 @@ $(document).ready(function() {
 		</div>
 	</div>
 </div>
+<!-- destory course (remove to recycle) -->
+<div class="modal hide fade" id="destoryAnnoPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">请注意</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>你确定删除该课程吗？</p>
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+	    <form action='<c:url value="/admin/teacher/course/destory"></c:url>' method="post" style="display: inline-block;" >
+	    	<input id="c_delete_id" type="hidden" name="cId" />
+	    	<button class="btn btn-primary">确定</button>
+	    </form>
+	  </div>
+</div>
 
+<!-- delete course from recycle) -->
+<div class="modal hide fade" id="deleteAnnoPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">请注意</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>你确定彻底删除该课程吗？</p>
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+	    <form action='<c:url value="/admin/teacher/course/deleted"></c:url>' method="post" style="display: inline-block;" >
+	    	<input id="c_recycle_Id" type="hidden" name="cId" />
+	    	<button class="btn btn-primary">确定</button>
+	    </form>
+	  </div>
+</div>
 
+<!-- recover course from recycle) -->
+<div class="modal hide fade" id="recoverAnnoPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">请注意</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>你确定恢复该课程吗？</p>
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+	    <form action='<c:url value="/admin/teacher/course/recover"></c:url>' method="post" style="display: inline-block;" >
+	    	<input id="c_recover_Id" type="hidden" name="cId" />
+	    	<button class="btn btn-primary">确定</button>
+	    </form>
+	  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#names").focus(function() {
+		$(".help-inline").html("");
+	});
+	$("#descs").focus(function() {
+		$(".help-inline").html("");
+	});
+	checkAjaxs("course_info_form","courserInfoAJAX");
+	
+	$('.destoryCoursePostBtn').on('click', function() {
+		var course_id = $("#courseId").val();
+		$('#c_delete_id').val(course_id);	
+	});
+	
+	$('.deleteCoursePostBtn').on('click', function() {
+		var course_id = $("#courseId").val();
+		$(' #c_recycle_Id').val(course_id);	
+		
+	});
+	$('.recoverCoursePostBtn').on('click', function() {
+		var course_id = $("#courseId").val();
+		$('#c_recover_Id').val(course_id);	
+	});
+});
+
+</script>

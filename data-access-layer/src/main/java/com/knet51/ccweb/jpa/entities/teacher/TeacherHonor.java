@@ -11,6 +11,7 @@ public class TeacherHonor extends AbstractEntity {
 	
 	private String name;
 	private String reason;
+	private String detailDesc;
 	@ManyToOne
 	private Teacher teacher;
 	public String getName() {
@@ -30,6 +31,12 @@ public class TeacherHonor extends AbstractEntity {
 	}
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
+	}
+	public String getDesc() {
+		return detailDesc;
+	}
+	public void setDesc(String desc) {
+		this.detailDesc = desc;
 	}
 	public TeacherHonor() {
 		super();

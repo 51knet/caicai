@@ -30,6 +30,7 @@
 	<a href="#">课程资料</a>
 	<hr />
 	<div class="cont">
+		<!--  
 		<c:choose>
 			<c:when test="${resourceCount>0 }">
 				<c:forEach var="courseResource" items="${courseMap}" varStatus="i">
@@ -74,6 +75,63 @@
 				尚未添加资源
 			</c:otherwise>
 		</c:choose>
+		-->
+		<c:choose>
+			<c:when test="${lessonListCount>0 }">
+				<c:forEach items="${lessonList }" var="lesson">
+					<table   style="width: 90%;  border: 1px solid #dcdcdc; margin-bottom: 5px;">
+							<tbody>
+								<tr>
+									<td align="left">
+										<div style="font-size: 15px;  background-color: #f2f2f2; padding: 3px;" >
+											<b>第${lesson.lessonNum}课时</b>
+											<span style="float: right; margin-right: 27px; font-size: 14px;">
+												<a href="#" onclick="showAddResourceForm(${lesson.lessonNum})">添加</a> | <a href="#">删除</a>
+											</span>
+											<div style=" border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;" id="${lesson.lessonNum}_resourceForm">
+													<form style="margin-left:30px;" method="post" action='<c:url value="/admin/teacher/${course.id }/resource/create"></c:url>' enctype="multipart/form-data" >
+														<input type="hidden" name="lessonNum" value="${lesson.lessonNum }">
+														<input type="hidden" name="lessonId" value="${lesson.id}">
+														资源名称：<input type="text" style="width: 207px;" name="resourceName" >&nbsp;“如：第一讲：物种的起源”<br>
+														资源类别：<select name="type"   style="width: 220px;">
+																			<option >请选择</option>
+																			<c:forEach items="${type}" var="l">
+																				<option  value="${l.id}">${l.typeName}</option>
+																			</c:forEach>
+																		</select><br>
+														上传资源：<input type="file" name="resourceFile" >
+															<button type="reset"   class="btn " style="margin-left: 5px;float: right;" onclick="closeResourceForm(${lesson.lessonNum})">取消</button>
+														<button type="submit"   class="btn  btn-success" style=" float: right;">上传</button>&nbsp;&nbsp;
+													
+													</form>
+											</div>
+											<div style="">
+												<c:forEach items="${courseMap}" var="cm">
+														<c:if test="${cm.key == lesson.lessonNum }">
+															<c:forEach var="fileNames" items="${cm.value}"> 
+																<div >
+																	<c:if test="${fileNames.fileName != null }">
+																		<div style="width: 100%; float: left;margin-top: 5px; margin-bottom:5px; font-size: 14px; border-bottom: 1px dotted #dcdcdc;">
+																			<span style="margin-left: 30px;">${fileNames.fileName}</span>
+																			<a style="float: right; margin-right: 27px;" href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>
+																					编辑
+																			</a>
+																		</div>
+																	</c:if>
+																</div>
+															</c:forEach>
+														</c:if>
+												</c:forEach>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+				</c:forEach>
+			</c:when>
+			<c:otherwise></c:otherwise>
+		</c:choose>
 		<div style="font-size: 15px; text-align:right;   padding: 5px; width:675px;margin-top: 5px;"  >
 				<form action='<c:url value="/admin/teacher/course/edit/addcourseorder"></c:url>' method="post">
 						<input type="hidden" name="courseid" value="${course.id }" >
@@ -82,29 +140,10 @@
 		</div>
 	</div>
 </div>
-	<!-- 
-	<div>
-		<div
-			style="background-color: #f7f7f7; text-align: left; padding: 10px;margin-top:30px; margin-left: 10px;">
-			<div>
-				<span>第一部分:第一部分</span><span style="margin-left: 70%"><a>编辑</a></span>
-			</div>
-		</div>
-		<div
-			style="margin-left: 4%; height: 20px; line-height: 20px; margin-top: 20px">
-			<span>第1课:第1课</span><span style="margin-left: 50%; margin-right: 10%">
-				添加内容</span><span>编辑</span>
-		</div>
-		<hr />
-		<div
-			style="margin-left: 4%; height: 20px; line-height: 20px; margin-top: 20px">添加1课</div>
-		<div></div>
-		<div
-			style="background-color: #f7f7f7; padding: 10px; margin-top: 20px; margin-left: 10px;">
-			<div>添加一部分</div>
-		</div>
-	</div>
 
+		
+
+	<!--
 	<div id="testUploadify" style="margin-top: 20px;">
 		<div id="fileQueue" style="height: 100px; padding-left: 10px; display: block;"></div>
 		<form id="course_form">

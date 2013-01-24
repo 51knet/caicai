@@ -46,7 +46,9 @@
 										<li> </li>
 									</ul>
 								 </div> -->
-								 <a href='<c:url value="/admin/teacher/message/destory?mid=${page.sendMsg.id}"></c:url>'>彻底删除</a>
+								
+								  <a class="deleteMsgPostBtn" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">彻底删除</a>
+									 <input type="hidden"  value="${page.sendMsg.id}" id="mId">
 			  				</td>
 			  			</tr>
 			  		</c:forEach>
@@ -55,3 +57,29 @@
 		</div>
 	</div>
 </div>
+
+<!-- delete  msg Form -->
+<div class="modal hide fade" id="deleteMsgPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">请注意</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>你确定删除该信件吗？</p>
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+	    <form action='<c:url value="/admin/teacher/message/destory"></c:url>' method="post" style="display: inline-block;" >
+	    	<input id="mId" type="hidden" name="mId" />
+	    	<button class="btn btn-primary">确定</button>
+	    </form>
+	  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {	
+	$('.deleteMsgPostBtn').on('click', function() {
+		var m_id = $("#mId").val();
+		$('#deleteMsgPostModal #mId').val(m_id);	
+	});
+});
+</script>

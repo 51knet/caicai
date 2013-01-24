@@ -99,13 +99,13 @@ public class TeacherCourseInfoPageController {
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
 		List<CourseResource> courseList;
 		Map<String, List<CourseResource> > courseMap = new TreeMap<String, List<CourseResource> >();
-		String resourceOrder = null;
+		String lessonNum = null;
 		for (CourseResource courseResource : listResource) {
 			courseList = new ArrayList<CourseResource>();
-			resourceOrder = courseResource.getCourseOrder();
+			lessonNum = courseResource.getLessonNum();
 			courseList = courseResourceService
-					.getResourceByCourseOrderAndCourseId(resourceOrder,course_id);
-			courseMap.put(resourceOrder, courseList);
+					.getResourceByLessonNumAndCourseId(lessonNum,course_id);
+			courseMap.put(lessonNum, courseList);
 		}
 		model.addAttribute("resourceCount", listResource.size());
 		model.addAttribute("courseMap", courseMap);
@@ -144,7 +144,7 @@ public class TeacherCourseInfoPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", teacher_id);
-		Page<TeacherCourse> onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, 2);
+		Page<TeacherCourse> onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("page", onePage);
 		return "teacher.course.list";
 	}
@@ -169,10 +169,10 @@ public class TeacherCourseInfoPageController {
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String resourceOrder = null;
 		for (CourseResource courseResource : listResource) {
-			resourceOrder = courseResource.getCourseOrder();
+			resourceOrder = courseResource.getLessonNum();
 			courseList = new ArrayList<CourseResource>();
 			courseList = courseResourceService
-					.getResourceByCourseOrderAndCourseId(resourceOrder,course_id);
+					.getResourceByLessonNumAndCourseId(resourceOrder,course_id);
 			courseMap.put(resourceOrder, courseList);
 		}
 		model.addAttribute("resourceCount", listResource.size());
@@ -204,7 +204,7 @@ public class TeacherCourseInfoPageController {
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/course/addcourse?active=second";
+			return "redirect:/admin/teacher/course/addcourse?active=first";
 		}else{
 			List<MultipartFile> files = request.getFiles("coverFile");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -217,8 +217,8 @@ public class TeacherCourseInfoPageController {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String date = format.format(new Date());
 			course.setCourseDate(date);
-			course.setStatus(1);
-			course.setPublish(1);
+			course.setStatus(GlobalDefs.STATUS_CCWEB);
+			course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
 			course.setTeacher(teacher);
 			course.setCourseType(courseInfoForm.getCourseType());
 			for(int i=0;i<files.size();i++){
@@ -265,7 +265,7 @@ public class TeacherCourseInfoPageController {
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("resourceFile");
 		String resourceDesc = request.getParameter("resourceDesc");
-		String courseOrder = request.getParameter("resourceOrder");
+		String lessonNum = request.getParameter("resourceOrder");
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
@@ -281,7 +281,7 @@ public class TeacherCourseInfoPageController {
 				
 				TeacherCourse teacherCourse = teacherCourseService.findOneById(course_id);
 				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
-				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+courseOrder;
+				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+lessonNum;
 				FileUtil.createRealPath(path, session);
 				File saveDest = new File(path + File.separator + fileName);
 				multipartFile.transferTo(saveDest);
@@ -290,7 +290,7 @@ public class TeacherCourseInfoPageController {
 				resource.setSavePath(savePath);
 				resource.setSaveName(fileName);
 				resource.setResourceDesc(resourceDesc);
-				resource.setCourseOrder(courseOrder);
+				resource.setLessonNum(lessonNum);
 				resource.setCourse_id(course_id);
 				courseResourceService.createCourseResource(resource);
 			}
@@ -302,7 +302,7 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/publish")
 	public String publishCourse(@PathVariable Long course_id){
 		TeacherCourse course= teacherCourseService.findOneById(course_id);
-		course.setPublish(2);
+		course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/list";
 	}
@@ -311,7 +311,7 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/cancelpublish")
 	public String cancelPublish(@PathVariable Long course_id){
 		TeacherCourse course= teacherCourseService.findOneById(course_id);
-		course.setPublish(1);
+		course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/list";
 	}
@@ -322,13 +322,13 @@ public class TeacherCourseInfoPageController {
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
 		List<CourseResource> courseList;
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
-		String resourceOrder = null;
+		String LessonNum = null;
 		for (CourseResource courseResource : listResource) {
-			resourceOrder = courseResource.getCourseOrder();
+			LessonNum = courseResource.getLessonNum();
 			courseList= new ArrayList<CourseResource>();
 			courseList = courseResourceService
-					.getResourceByCourseOrderAndCourseId(resourceOrder,course_id);
-			courseMap.put(resourceOrder, courseList);
+					.getResourceByLessonNumAndCourseId(LessonNum,course_id);
+			courseMap.put(LessonNum, courseList);
 		}
 		model.addAttribute("resourceCount", listResource.size());
 		model.addAttribute("courseMap", courseMap);
@@ -369,22 +369,22 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/pubcourses")
 	public String publishToCourses(@PathVariable Long course_id,Model model){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
-		course.setStatus(2);
+		course.setStatus(GlobalDefs.STATUS_CCWEB_COURSES);
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/view/"+course_id;
 	}
 
 	
 	@RequestMapping(value="/admin/teacher/course/edit/addcourseorder")
-	public String addNewCourseOrder(@RequestParam("courseid") Long course_id,Model model){
-		String courseOrder = courseResourceService.getMaxCourseOrderByCourseId(course_id);
-		String newOrder = "";
-		newOrder = Integer.parseInt(courseOrder)+1+"";
+	public String addNewLessonNum(@RequestParam("courseid") Long course_id,Model model){
+		String lessonNum = courseResourceService.getMaxLessonNumByCourseId(course_id);
+		String newLessonNum = "";
+		newLessonNum = Integer.parseInt(lessonNum)+1+"";
 		CourseResource courseResource = new CourseResource();
-		courseResource.setCourseOrder(newOrder);
+		courseResource.setLessonNum(newLessonNum);
 		courseResource.setCourse_id(course_id);
-		CourseResource resource = courseResourceService.createCourseResource(courseResource);
-		logger.info("======================="+newOrder);
+		courseResourceService.createCourseResource(courseResource);
+		logger.info("======================="+newLessonNum);
 		return "redirect:/admin/teacher/course/edit/"+course_id+"/modifycourse";
 	}	
 

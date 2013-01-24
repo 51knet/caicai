@@ -69,9 +69,9 @@ public class TeacherAnnoDetailInfoController {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/announcement/destory/{announcement_id}")
-	public String teacherAnnoDele( @PathVariable Long announcement_id,HttpSession session, Model m){
-		annoService.deleAnnouncementById(announcement_id);
+	@RequestMapping(value="/admin/teacher/announcement/destory", method = RequestMethod.POST)
+	public String teacherAnnoDele( @RequestParam("annoId") Long anno_id,HttpSession session, Model m){
+		annoService.deleAnnouncementById(Long.valueOf(anno_id));
 		return "redirect:/admin/teacher/announcement/list";
 	}
 	
@@ -80,7 +80,7 @@ public class TeacherAnnoDetailInfoController {
 	public String teacherAnnoUpdate(@RequestParam("id") Long id,@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm,
 			BindingResult validResult, HttpSession session,Model m){
 		if(validResult.hasErrors()){
-			return "redirect:/admin/teacher/announcement/edit/"+id;
+			return "redirect:/admin/teacher/announcement/edit";
 		}else{	
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();

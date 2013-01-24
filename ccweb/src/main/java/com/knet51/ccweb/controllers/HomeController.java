@@ -208,9 +208,9 @@ public class HomeController {
 			model.addAttribute("projectCount", projectCount);
 
 			Page<TeacherCourse> pageCourse = courseService
-					.findTeacherCourseByTeacherAndPublish(0, 5, teacher, 2);
+					.findTeacherCourseByTeacherAndPublish(0, 5, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 			List<TeacherCourse> courseList = pageCourse.getContent();
-			Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(id,2).size();
+			Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
 			model.addAttribute("courseList", courseList);
 			model.addAttribute("courseCount", courseCount);
 			

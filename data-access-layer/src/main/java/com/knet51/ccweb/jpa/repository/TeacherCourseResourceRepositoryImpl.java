@@ -18,22 +18,22 @@ public class TeacherCourseResourceRepositoryImpl implements TeacherCourseResourc
 		return list;
 	}
 	@Override
-	public String getMaxCourseOrderByCourseId(Long course_id) {
-		String resourceOrder = (String) em.createQuery("select max(courseOrder) from CourseResource where course_id="+course_id).getSingleResult();
+	public String getMaxLessonNumByCourseId(Long course_id) {
+		String resourceOrder = (String) em.createQuery("select max(lessonNum) from CourseResource where course_id="+course_id).getSingleResult();
 		return resourceOrder;
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<CourseResource> getResourceByCourseOrderAndCourseId(String courseOrder,
+	public List<CourseResource> getResourceByLessonNumAndCourseId(String lessonNum,
 			Long course_id) {
-		List<CourseResource> courseResourceList =  em.createQuery("from CourseResource where courseOrder in("+courseOrder+") and course_id="+course_id).getResultList();
+		List<CourseResource> courseResourceList =  em.createQuery("from CourseResource where lessonNum in("+lessonNum+") and course_id="+course_id).getResultList();
 		return courseResourceList;
 	}
 	@Override
-	public List<CourseResource> findNullResourceByCourseIdAndCourseOrder(Long course_id,
-			String courseOrder) {
-		List<CourseResource> resource =  em.createQuery("from CourseResource where courseOrder="+courseOrder+" and course_id="+course_id+"and saveName is null").getResultList();
+	public List<CourseResource> findNullResourceByCourseIdAndLessonNum(Long course_id,
+			String lessonNum) {
+		List<CourseResource> resource =  em.createQuery("from CourseResource where lessonNum="+lessonNum+" and course_id="+course_id+"and saveName is null").getResultList();
 		return resource;
 	}
 

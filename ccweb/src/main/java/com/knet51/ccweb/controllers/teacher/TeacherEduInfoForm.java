@@ -14,6 +14,7 @@ public class TeacherEduInfoForm {
 	private String startTime;
 	@NotEmpty
 	private String endTime;
+	private String educationDesc;
 
 	
 	public String getSchoolName() {
@@ -45,6 +46,12 @@ public class TeacherEduInfoForm {
 	}
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+	public String getEducationDesc() {
+		return educationDesc;
+	}
+	public void setEducationDesc(String educationDesc) {
+		this.educationDesc = educationDesc;
 	}
 	public TeacherEduInfoForm() {
 		super();
