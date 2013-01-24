@@ -195,7 +195,7 @@ public class TeacherCourseInfoDetailController {
 				resource.setSaveName(fileName);
 				resource.setLessonNum(lessonNum);
 				resource.setCourse_id(Long.valueOf(course_id));
-				resource.setLessonNumId(courseLessonId);
+				resource.setCourseLessonId(courseLessonId);
 				resource.setResourceType(resourceType);
 				courseResourceService.createCourseResource(resource);
 			}

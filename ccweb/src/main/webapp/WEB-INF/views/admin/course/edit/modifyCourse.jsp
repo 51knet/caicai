@@ -26,8 +26,8 @@
 		$("#"+id).css("display","none");
 	}
 	
-	function deleLessonNum(){
-		$("#lessonId").val($("#lesson_id").val());
+	function deleLessonNum(lesson_id){
+		$("#courseLessonId").val(lesson_id);
 		$("#deleLessonNumForm").submit();
 	}
 </script>
@@ -45,8 +45,7 @@
 										<div style="font-size: 15px;  background-color: #f2f2f2; padding: 3px;" >
 											<b>第${lesson.lessonNum}课时</b>
 											<span style="float: right; margin-right: 27px; font-size: 13px;">
-												<input type="hidden" id="lesson_id" value="${lesson.id }">
-												<c:if test="${lesson.status != null }"> <a href="javascript:void(0)" onclick="deleLessonNum()"><b>删除课时</b></a>  |</c:if> 
+												<c:if test="${lesson.status != null }"> <a href="javascript:void(0)" onclick="deleLessonNum(${lesson.id })"><b>删除课时</b></a>  |</c:if> 
 												<a href="#" onclick="showAddResourceForm(${lesson.lessonNum})"><b>添加资源</b></a>
 											</span>
 											<div style=" border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;" id="${lesson.lessonNum}_resourceForm">
@@ -102,7 +101,7 @@
 		</div>
 		
 		<form action='<c:url value="/admin/teacher/course/edit/courselesson/destory"></c:url>' method="post" style="display:none;" id="deleLessonNumForm">
-				<input type="hidden" name="lessonId" id="lessonId" >
+				<input type="hidden" name="lessonId" id="courseLessonId" >
 				<input type="hidden" name="courseId" value="${course.id }" >
 		</form>
 	</div>

@@ -21,7 +21,7 @@ public class CourseResource extends AbstractEntity {
 	private String lessonNum; //lesson 0ne,lesson two and so on....
 	private String date;
 	private Long course_id;
-	private Long lessonNumId;
+	private Long courseLessonId;
 	@ManyToOne
 	private ResourceType resourceType;
 	@ManyToOne
@@ -66,11 +66,11 @@ public class CourseResource extends AbstractEntity {
 		return resourceDesc;
 	}
 
-	public Long getLessonNumId() {
-		return lessonNumId;
+	public Long getCourseLessonId() {
+		return courseLessonId;
 	}
-	public void setLessonNumId(Long lessonNumId) {
-		this.lessonNumId = lessonNumId;
+	public void setCourseLessonId(Long courseLessonId) {
+		this.courseLessonId = courseLessonId;
 	}
 	public User getUser() {
 		return user;
