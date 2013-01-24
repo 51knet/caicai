@@ -35,7 +35,7 @@
 		<put-attribute name="courseInfo" value="/WEB-INF/views/course/view/view.jsp" />
 		<put-attribute name="teacherInfo" value="/WEB-INF/views/teacher/teacherShop/teacherinfo.jsp" />
 		<put-attribute name="courseResource" value="/WEB-INF/views/course/usercourse/courseStudy.jsp" />
-		<put-attribute name="comment" value="/WEB-INF/views/course/usercourse/usercourseShow.jsp" />
+		<put-attribute name="comment" value="/WEB-INF/views/course/usercourse/commentShow.jsp" />
 	</definition>
 	
 	
@@ -51,26 +51,26 @@
 		<put-attribute name="body" value="/WEB-INF/views/teacher/teacherShop/courses.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
-	<definition name="teachercourse.course.courseInfo" extends="admin-layout">
+	<definition name="course.study.courseinfo" extends="admin-layout">
 		<put-attribute name="title" value="课程资料" />
 		<put-attribute name="banner" value="/WEB-INF/views/layouts/course/courseDetail.jsp" />
 		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/course/usercourse/courseInfo.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
-	<definition name="teachercourse.course.view" extends="admin-layout">
+	<definition name="course.study.view" extends="admin-layout">
 		<put-attribute name="title" value="课程学习" />
 		<put-attribute name="banner" value="/WEB-INF/views/layouts/course/courseDetail.jsp" />
 		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/course/usercourse/courseStudy.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
-	<definition name="teachercourse.course.usercourse" extends="admin-layout">
+	<definition name="course.study.comment" extends="admin-layout">
 		<put-attribute name="title" value="课程学习" />
 		<put-attribute name="banner" value="/WEB-INF/views/layouts/course/courseDetail.jsp" />
 		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/course/usercourse/usercourse.jsp" />
-		<put-attribute name="right_bottom" value="/WEB-INF/views/course/usercourse/usercourseShow.jsp" />
+		<put-attribute name="right_bottom" value="/WEB-INF/views/course/usercourse/commentShow.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 </tiles-definitions>

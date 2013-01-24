@@ -91,7 +91,7 @@
 				评论（0）&nbsp;&nbsp;
 				</c:otherwise>
 				</c:choose>
-				<a href='<c:url value="/teachercourse/course/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
+				<a href='<c:url value="/course/study/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
 			</div>
 		</div>
 		<div class="container course detail" style="background-color: #f7f7f7; margin-bottom: 10px; ">

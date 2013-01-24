@@ -1,5 +1,8 @@
 package com.knet51.courses.controllers.login;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,8 +13,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.User;
@@ -60,5 +65,27 @@ public class LoginController {
 	public String signout(HttpSession session, HttpServletRequest request) {
 		session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
 		return "redirect:/";
+	}
+	/**
+	 * author lbx
+	 * @param session
+	 * @param request
+	 * @param 邮箱验证是否存在
+	 * @param password
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/checkemailajax", method =RequestMethod.POST)
+	public void checkEmail(HttpSession session, HttpServletRequest request,@RequestParam("email") String email,HttpServletResponse response) throws Exception {
+		PrintWriter out=response.getWriter();
+		User user=service.getValidEmail(email);
+		Integer num=1;
+		if(user==null){
+			num=0;
+		}
+		String number=num.toString();
+		out.write(number);
+		out.flush();
+		out.close();
 	}
 }

@@ -6,19 +6,13 @@ function collectFormData(fields) {
 	}
 	return data;
 }
-
 function checkAjaxs(formID, actionName) {
-	var flag = false;
-	var $form = $('#' + formID);
+	$form = $('#' + formID);
 	var action = actionName;
-	var $textarea = $form.find('textarea').trim();
-	var textdata = collectFormData($textarea);
-	$.ajax({
-		type:"post",
-		url : action,
-		data : textdata,
-		async:false,
-		success : function(response) {
+	$form.bind('submit', function(e) {
+		var $inputs = $form.find('textarea');
+		var data = collectFormData($inputs);
+		$.post(action, data, function(response) {
 			$form.find('.modal-body').removeClass('error');
 			$form.find('.help-inline').empty();
 			$form.find('.alert').remove();
@@ -29,16 +23,14 @@ function checkAjaxs(formID, actionName) {
 					$controlGroup.addClass('error');
 					$controlGroup.find('.help-inline').html(item.message);
 				}
-				flag = false;
 			} else {
-				flag = true;
+				$form.unbind('submit');
+				$form.submit();
 			}
-		}
+		}, 'json');
+
+		e.preventDefault();
+		return false;
+
 	});
-	// e.preventDefault();
-	return flag;
-	
-	
-	
-	
 }

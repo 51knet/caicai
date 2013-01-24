@@ -9,5 +9,6 @@ public interface UserService {
 	User createUser(User usr);
 	User updateUser(User usr);
 	User getValidUser(String email, String psw);
+	User getValidEmail(String email);
 	List<User> findAllUser();
 }

@@ -5,7 +5,7 @@
 <script type="text/javascript" src="<c:url value="/resources/js/img.js" />"></script>
 <style type="text/css">
 #preview{}
-#showimg {width: 210px; height: 110px; margin-left:100px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
+#showimg {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
 </style>
 <script type="text/javascript">
 function previewImages(file){
@@ -17,7 +17,7 @@ function previewImages(file){
 	<hr />
 	<div style="width: 780px; margin-top: 30px;">
 		<span > 封面预览 </span>
-		<div id="preview" style="margin-top: -20px;">
+		<div id="preview" style="margin-top:-15px; margin-left:100px;">
 		<img name="showimg" id="showimg" src=""
 			style="display: none;" />
 		</div>

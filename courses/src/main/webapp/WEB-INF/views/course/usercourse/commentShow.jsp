@@ -53,7 +53,7 @@
 			</table>
 			</c:when>
 			<c:otherwise>
-			<h5 style="margin-left: 5px;margin-top:16px">尚未有课程评论</h5>
+			<div style="margin-left: 5px;margin-top:16px">尚未有课程评论</div>
 			</c:otherwise>
 			</c:choose>		
 		</div>

@@ -11,10 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.courses.beans.CourseBeans;
@@ -64,5 +66,18 @@ public class HomeController {
 		}
 		
 		return "home";
+	}
+	@RequestMapping(value = "/course/study", method = RequestMethod.GET)
+	public String adminStudent(Locale locale, Model model, HttpSession session) {
+		logger.info("Welcome home! the client locale is " + locale.toString());
+		
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if (userInfo != null) {
+			return "redirect:/course/list/type";
+		} else {
+			return "redirect:/signin";
+		}
+		
 	}
 }
