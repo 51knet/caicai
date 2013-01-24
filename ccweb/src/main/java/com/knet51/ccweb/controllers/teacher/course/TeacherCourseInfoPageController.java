@@ -394,16 +394,11 @@ public class TeacherCourseInfoPageController {
 	
 	@RequestMapping(value="/admin/teacher/course/edit/courselesson/destory",method=RequestMethod.POST)
 	public String modifyCourseResource(@RequestParam("lessonId") Long lesson_id,@RequestParam("courseId") Long course_id){
-		logger.info("-----------------lessonId"+lesson_id);
-		logger.info("------------------courseid"+course_id);
 		CourseLesson bigLesson = lessonService.findOne(lesson_id);
-		logger.info("====================bignum"+bigLesson.getLessonNum());
 		List<CourseLesson> courseLessonList = lessonService.findCourseLessonByCourseId(course_id);
 		if(Integer.parseInt(bigLesson.getLessonNum())>=2 && courseLessonList.size()>=2){
 			String smallLessonNum = Integer.parseInt(bigLesson.getLessonNum())-1+"";
-			logger.info("--------------------smallnum"+smallLessonNum);
 			List<CourseLesson> smallLessonList = lessonService.findCourseLessonByCourseIdAndLessonNum(course_id, smallLessonNum);
-			logger.info("++++++++++++++++++++++++++"+smallLessonList.get(0).getLessonNum());
 			if(smallLessonList.size()>0){
 				smallLessonList.get(0).setStatus("max");
 				lessonService.createCourseLesson(smallLessonList.get(0));
