@@ -18,9 +18,9 @@ public class CourseLessonServiceImpl implements CourseLessonService {
 	private CourseLessonRepository lessonRepository;
 
 	@Override
-	public CourseLesson getMaxLessonNumByCourseId(Long course_id) {
+	public List<CourseLesson> getMaxLessonNumByCourseId(Long course_id) {
 		
-		return null;
+		return lessonRepository.getMaxLessonNumByCourseId(course_id);
 	}
 
 	@Override
@@ -32,19 +32,28 @@ public class CourseLessonServiceImpl implements CourseLessonService {
 	@Override
 	public CourseLesson createCourseLesson(CourseLesson courseLesson) {
 		// TODO Auto-generated method stub
-		return null;
+		return lessonRepository.save(courseLesson);
 	}
 
-	@Override
-	public CourseLesson destory(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public List<CourseLesson> findCourseLessonByCourseId(Long course_id) {
 		Sort sort = new Sort("lessonNum");
 		List<CourseLesson> lessonList = lessonRepository.findCourseLessonByCourseId(course_id, sort);
+		return lessonList;
+	}
+
+	@Override
+	public void destory(Long id) {
+		lessonRepository.delete(id);
+		
+	}
+
+	@Override
+	public List<CourseLesson> findCourseLessonByCourseIdAndLessonNum(
+			Long course_id, String lessonNum) {
+		List<CourseLesson> lessonList = lessonRepository.findCourseLessonByCourseIdAndLessonNum(course_id, lessonNum);
 		return lessonList;
 	}
 

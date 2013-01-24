@@ -35,8 +35,10 @@ import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.controllers.teacher.TeacherPersonalInfoForm;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.teacher.CourseLesson;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.services.CourseLessonService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
@@ -60,6 +62,9 @@ public class TeacherCourseInfoPageController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private CourseLessonService lessonService;
 	
 	@RequestMapping(value="/admin/teacher/course/list")
 	public String teacherCourseInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
@@ -251,11 +256,11 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/new/secondstep",method=RequestMethod.POST)
 	public String addCourseSecond(@RequestParam("cid") Long course_id,
 			@RequestParam("pwd") String pwd, @RequestParam("status") Integer status, Model model){
-		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
 		course.setPwd(pwd.trim());
 		course.setStatus(status);
 		teacherCourseService.updateTeacherCourse(course);
-		return "redirect:/admin/teacher/course/addcourse?active=third&cid="+course_id;
+		return "redirect:/admin/teacher/course/addcourse?active=third&cid="+Long.valueOf(course_id);
 	}
 	
 	@Transactional
@@ -279,7 +284,7 @@ public class TeacherCourseInfoPageController {
 				String date = format.format(new Date());
 				resource.setDate(date);
 				
-				TeacherCourse teacherCourse = teacherCourseService.findOneById(course_id);
+				TeacherCourse teacherCourse = teacherCourseService.findOneById(Long.valueOf(course_id));
 				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
 				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+lessonNum;
 				FileUtil.createRealPath(path, session);
@@ -291,17 +296,17 @@ public class TeacherCourseInfoPageController {
 				resource.setSaveName(fileName);
 				resource.setResourceDesc(resourceDesc);
 				resource.setLessonNum(lessonNum);
-				resource.setCourse_id(course_id);
+				resource.setCourse_id(Long.valueOf(course_id));
 				courseResourceService.createCourseResource(resource);
 			}
 		}
-		return "redirect:/admin/teacher/course/edit/"+course_id+"/modifycourse";
+		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 	}
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/publish")
 	public String publishCourse(@PathVariable Long course_id){
-		TeacherCourse course= teacherCourseService.findOneById(course_id);
+		TeacherCourse course= teacherCourseService.findOneById(Long.valueOf(course_id));
 		course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/list";
@@ -310,7 +315,7 @@ public class TeacherCourseInfoPageController {
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/cancelpublish")
 	public String cancelPublish(@PathVariable Long course_id){
-		TeacherCourse course= teacherCourseService.findOneById(course_id);
+		TeacherCourse course= teacherCourseService.findOneById(Long.valueOf(course_id));
 		course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/list";
@@ -318,8 +323,8 @@ public class TeacherCourseInfoPageController {
 	
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/preview")
 	public String previewCourse(@PathVariable Long course_id,Model model){
-		TeacherCourse course= teacherCourseService.findOneById(course_id);
-		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
+		TeacherCourse course= teacherCourseService.findOneById(Long.valueOf(course_id));
+		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(Long.valueOf(course_id));
 		List<CourseResource> courseList;
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String LessonNum = null;
@@ -327,7 +332,7 @@ public class TeacherCourseInfoPageController {
 			LessonNum = courseResource.getLessonNum();
 			courseList= new ArrayList<CourseResource>();
 			courseList = courseResourceService
-					.getResourceByLessonNumAndCourseId(LessonNum,course_id);
+					.getResourceByLessonNumAndCourseId(LessonNum,Long.valueOf(course_id));
 			courseMap.put(LessonNum, courseList);
 		}
 		model.addAttribute("resourceCount", listResource.size());
@@ -335,15 +340,7 @@ public class TeacherCourseInfoPageController {
 		model.addAttribute("course", course);
 		return "admin.teacher.course.preview";
 	}
-	
-	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/resource/new")
-	public String modifyCourseResource(@PathVariable Long course_id,Model model,HttpServletRequest request){
-		String courseOrder = request.getParameter("courseOrder");
-		TeacherCourse course= teacherCourseService.findOneById(course_id);
-		model.addAttribute("course", course);
-		return null;
-	}
-	
+
 	@RequestMapping(value="/checkCoursePwd")
 	public String checkCoursePwd(@RequestParam("cid") Long course_id,@RequestParam("coursepwd") String pwd,HttpServletRequest request,HttpServletResponse response ) throws IOException{
 		logger.info("==== into the ajax checkCoursePwd controller ===="+course_id+pwd);
@@ -368,25 +365,51 @@ public class TeacherCourseInfoPageController {
 	 */
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/pubcourses")
 	public String publishToCourses(@PathVariable Long course_id,Model model){
-		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
 		course.setStatus(GlobalDefs.STATUS_CCWEB_COURSES);
 		teacherCourseService.updateTeacherCourse(course);
-		return "redirect:/admin/teacher/course/view/"+course_id;
+		return "redirect:/admin/teacher/course/view/"+Long.valueOf(course_id);
 	}
 
 	
-	@RequestMapping(value="/admin/teacher/course/edit/addcourseorder")
-	public String addNewLessonNum(@RequestParam("courseid") Long course_id,Model model){
-		String lessonNum = courseResourceService.getMaxLessonNumByCourseId(course_id);
+	@RequestMapping(value="/admin/teacher/course/edit/addlessonnum",method=RequestMethod.POST)
+	public String addNewLessonNum(@RequestParam("courseId") Long course_id,Model model){
+		List<CourseLesson> lessonList = lessonService.getMaxLessonNumByCourseId(Long.valueOf(course_id));
+		String lessonNum = "0";
+		if(lessonList.size()>0){
+			lessonNum = lessonList.get(0).getLessonNum();
+			lessonList.get(0).setStatus(null);
+			lessonService.createCourseLesson(lessonList.get(0));
+		}
 		String newLessonNum = "";
 		newLessonNum = Integer.parseInt(lessonNum)+1+"";
-		CourseResource courseResource = new CourseResource();
-		courseResource.setLessonNum(newLessonNum);
-		courseResource.setCourse_id(course_id);
-		courseResourceService.createCourseResource(courseResource);
-		logger.info("======================="+newLessonNum);
-		return "redirect:/admin/teacher/course/edit/"+course_id+"/modifycourse";
-	}	
+		CourseLesson courselesson = new CourseLesson();
+		courselesson.setLessonNum(newLessonNum);
+		courselesson.setCourseId(Long.valueOf(course_id));
+		courselesson.setStatus("max");
+		lessonService.createCourseLesson(courselesson);
+		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
+	}
+	
+	
+	@RequestMapping(value="/admin/teacher/course/edit/courselesson/destory",method=RequestMethod.POST)
+	public String modifyCourseResource(@RequestParam("lessonId") Long lesson_id,@RequestParam("courseId") Long course_id){
+		CourseLesson bigLesson = lessonService.findOne(lesson_id);
+		logger.info("===================="+bigLesson.getLessonNum());
+		if(Integer.parseInt(bigLesson.getLessonNum())>=2){
+			String smallLessonNum = Integer.parseInt(bigLesson.getLessonNum())-1+"";
+			logger.info("--------------------"+smallLessonNum);
+			List<CourseLesson> smallLessonList = lessonService.findCourseLessonByCourseIdAndLessonNum(course_id, smallLessonNum);
+			logger.info("++++++++++++++++++++++++++"+smallLessonList.get(0).getLessonNum());
+			if(smallLessonList.size()>0){
+				smallLessonList.get(0).setLessonNum("max");
+				lessonService.createCourseLesson(smallLessonList.get(0));
+			}
+		}
+		lessonService.destory(Long.valueOf(lesson_id));
+		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
+	}
+	
 
 	@RequestMapping(value = "/admin/teacher/course/courseInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse courseFormAjaxJson(@Valid TeacherCourseInfoForm teacherCourseInfoForm, BindingResult result,HttpSession session) {
