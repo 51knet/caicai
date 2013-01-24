@@ -21,7 +21,7 @@
 	return flag;
 } */
 function courseCreate(){
-	checkAjaxs("course_info_form","courseInfoAJAX");
+	checkEmptyAjax("course_info_form","courseInfoAJAX");
 }
 </script>
 <style>

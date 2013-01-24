@@ -7,7 +7,7 @@
 <script type="text/javascript">
 
 function thesisOnclick(){
-	return checkTextAjax("thesis_info_form","thesisInfoAJAX");
+	return checkEmptyAjax("thesis_info_form","thesisInfoAJAX");
 };
  function projectOnclick (){
 	return checkEmptyAjax("project_info_form","projectInfoAJAX");
@@ -122,10 +122,23 @@ $(document).ready(function(){
 							<thead><tr><th>项目名称</th><th>项目来源</th><th>开始时间</th><th>结束时间</th></tr></thead>
 							<tbody>
 								<tr>
-									<td align="center" class="modal-body" id="title"><input type="text" name="title" /> <span class="help-inline" style="color: red; font-size: 13px;" id="titleMsg"></span></td>
-									<td align="center" class="modal-body" id="source"><input type="text" name="source" /> <span class="help-inline" style="color: red; font-size: 13px;" id="sourceMsg"></span></td>
-									<td align="center" class="modal-body" id="startTime"><input type="text" name="startTime" /><span id="startMsg" class="help-inline" style="color: red; font-size: 13px;">2000.01.01</span></td>
-									<td align="center" class="modal-body" id="endTime"><input type="text" name="endTime" /><span id="endMsg" class="help-inline" style="color: red; font-size: 13px;">2000.01.011</span></td>
+									<td align="center" class="modal-body" id="projectTitle">
+									<input type="text" name="projectTitle" />
+									 <span class="help-inline" style="color: red; font-size: 13px;" id="titleMsg"></span>
+									 </td>
+									<td align="center" class="modal-body" id="projectSource">
+									<input type="text" name="projectSource" /> 
+									<span class="help-inline" style="color: red; font-size: 13px;" id="sourceMsg">
+									</span>
+									</td>
+									<td align="center" class="modal-body" id="projectStartTime">
+									<input type="text" name="projectStartTime" />
+									<span id="startMsg" class="help-inline" style="color: red; font-size: 13px;">2000.01.01</span>
+									</td>
+									<td align="center" class="modal-body" id="projectEndTime">
+									<input type="text" name="projectEndTime" />
+									<span id="endMsg" class="help-inline" style="color: red; font-size: 13px;">2000.01.011</span>
+									</td>
 								</tr>
 								<tr><td  colspan="3">
 									<div class="control-group">
@@ -196,10 +209,22 @@ $(document).ready(function(){
 							</thead>
 							<tbody>
 								<tr>
-									<td align="center"  class="modal-body" id="inventer"><input type="text" style="width:150px;" name="inventer" /> <span class="help-inline" style="color: red; font-size: 13px;" id="inventerMsg"></span></td>
-									<td align="center" class="modal-body" id="name"><input type="text" style="width:150px;" name="name" /> <span class="help-inline" style="color: red; font-size: 13px;" id="nameMsg"></span></td>
-									<td align="center" class="modal-body" id="type"><input type="text" style="width:150px;" name="type" /> <span class="help-inline" style="color: red; font-size: 13px;" id="typeMsg"></span></td>
-									<td align="center" class="modal-body" id="number"><input type="text" style="width:150px;" name="number" /> <span class="help-inline" style="color: red; font-size: 13px;" id="numberMsg"></span></td>
+									<td align="center"  class="modal-body" id="inventer">
+									<input type="text" style="width:150px;" name="inventer" /> 
+									<span class="help-inline" style="color: red; font-size: 13px;" id="inventerMsg"></span>
+									</td>
+									<td align="center" class="modal-body" id="patentName">
+									<input type="text" style="width:150px;" name="patentName" /> 
+									<span class="help-inline" style="color: red; font-size: 13px;" id="nameMsg"></span>
+									</td>
+									<td align="center" class="modal-body" id="patentType">
+									<input type="text" style="width:150px;" name="patentType" /> 
+									<span class="help-inline" style="color: red; font-size: 13px;" id="typeMsg"></span>
+									</td>
+									<td align="center" class="modal-body" id="number">
+									<input type="text" style="width:150px;" name="number" />
+									 <span class="help-inline" style="color: red; font-size: 13px;" id="numberMsg"></span>
+									 </td>
 								</tr>
 								<tr><td align="right" colspan="4">
 								<div class="control-group">
@@ -268,8 +293,13 @@ $(document).ready(function(){
 							<thead><tr><th align="center">奖励或荣誉</th><th align="center">获奖原因</th></tr></thead>
 							<tbody>
 								<tr>
-									<td align="center" class="modal-body" id="honorName"><input type="text" name="honorName" /> <span class="help-inline" style="color: red; font-size: 13px;" id="honorNameMsg"></span></td>
-									<td align="center" class="modal-body" id="reason"><input type="text" name="reason" /> <span class="help-inline" style="color: red; font-size: 13px;" id="reasonMsg"></span></td>
+									<td align="center" class="modal-body" id="honorName">
+									<input type="text" name="honorName" /> 
+									<span class="help-inline" style="color: red; font-size: 13px;" id="honorNameMsg"></span>
+									</td>
+									<td align="center" class="modal-body" id="reason"><input type="text" name="reason" /> 
+									<span class="help-inline" style="color: red; font-size: 13px;" id="reasonMsg"></span>
+									</td>
 								</tr>
 								<tr><td align="right" colspan="2">
 									<button type="submit" onclick="return honorOnclick();"class="btn btn-primary">保存</button>

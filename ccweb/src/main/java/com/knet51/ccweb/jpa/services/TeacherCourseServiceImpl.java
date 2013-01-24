@@ -91,6 +91,12 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		return onePage;
 	}
 
+	@Override
+	public TeacherCourse getTeacherCourseByCourseName(String cousername) {
+		TeacherCourse teacherCourse=courseRepository.getTeacherCourseByCourseName(cousername);
+		return teacherCourse;
+	}
+
 
 	
 

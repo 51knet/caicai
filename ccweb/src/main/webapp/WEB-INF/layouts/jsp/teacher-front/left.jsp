@@ -25,7 +25,7 @@
 		$("#c").focus(function() {
 			$(".help-inline").html("");
 		});
-		checkAjax('sendMsg_info_form','sendMsgInfoAJAX');
+		checkEmptyAjax('sendMsg_info_form','sendMsgInfoAJAX');
 	});
 	</script>
 <div class="row-fluid centralize round">

@@ -201,14 +201,11 @@
 											 <a href='javascript:void(0)' onclick="editEdu(${eduInfo.id})">修改</a>
 										</td>
 									</tr>
-									<tr>
-										<td></td>
+									<tr style="margin-left: -70px;">
 										<td>详细描述：</td>
-										<td>
+										<td colspan="4">
 										${eduInfo.educationDesc}
 										</td>
-										<td></td>
-										<td></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -316,14 +313,11 @@
 											 <a href='javascript:void(0)' onclick="editWork(${workInfo.id})">修改</a>
 										</td>
 									</tr>
-									<tr>
-										<td></td>
+									<tr style="margin-left: -70px;">
 										<td>详细描述：</td>
-										<td>
+										<td colspan="4">
 										${workInfo.workDesc}
 										</td>
-										<td></td>
-										<td></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -383,7 +377,7 @@
 						<div class="control-group" id="content">
 						<div class="controls">
 						内容:
-							<textarea id="context" name="context" rows="6" cols="8" style="width: 600px; height:300px;"></textarea>
+							<textarea id="context" name="content" rows="6" cols="8" style="width: 600px; height:300px;"></textarea>
 						    <span class="help-inline"></span>
 						</div>
 					</div>
@@ -483,14 +477,11 @@
 												<input type="hidden" value="${project.id} " >
 											</td>
 										</tr>
-										<tr>
-											<td></td>
+										<tr style="margin-left: -70px;">
 											<td>详细描述：</td>
-											<td>
+											<td colspan="3">
 											${project.desc}
 											</td>
-											<td></td>
-											<td></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -588,14 +579,11 @@
 											<input type="hidden" value="${patent.id} " >
 										</td>
 									</tr>
-									<tr>
-										<td></td>
+									<tr style="margin-left: -70px;">
 										<td>详细描述：</td>
-										<td>
+										<td colspan="4">
 										${patent.desc}
 										</td>
-										<td></td>
-										<td></td>
 									</tr>
 								</c:forEach>
 							    </tbody>
@@ -675,12 +663,11 @@
 												<input type="hidden" value="${honor.id} " >
 											</td>
 										</tr>
-										<tr>
+										<tr style="margin-left: -70px;">
 											<td>详细描述：</td>
-											<td>
+											<td colspan="3">
 											${honor.desc}
 											</td>
-											<td></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -841,7 +828,7 @@ function eduOnclick(){
 };
 
 function thesisOnclick(){
-	return checkTextAjax("thesis_info_form","thesisInfoAJAX");
+	return checkEmptyAjax("thesis_info_form","thesisInfoAJAX");
 };
  function projectOnclick (){
 	return checkEmptyAjax("project_info_form","projectInfoAJAX");

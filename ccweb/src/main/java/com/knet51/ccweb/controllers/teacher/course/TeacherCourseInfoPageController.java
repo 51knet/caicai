@@ -392,7 +392,19 @@ public class TeacherCourseInfoPageController {
 	public @ResponseBody ValidationResponse courseFormAjaxJson(@Valid TeacherCourseInfoForm teacherCourseInfoForm, BindingResult result,HttpSession session) {
 		return AjaxValidationEngine.process(result);
 	}
-
+	@RequestMapping(value="/admin/teacher/course/checkcoursename", method = RequestMethod.POST)
+	public void checkCoureName(@RequestParam("courseName") String courseName,HttpServletResponse response) throws Exception{
+		PrintWriter out=response.getWriter();
+		TeacherCourse teacherCourse=teacherCourseService.getTeacherCourseByCourseName(courseName);
+		Integer number=0;
+		if(teacherCourse!=null){
+			number=1;
+		}
+		String num=number.toString();
+		out.write(num);
+		out.flush();
+		out.close();
+	}
 	
 	/*	
 	@RequestMapping(value="/admin/teacher/allCourse/list")

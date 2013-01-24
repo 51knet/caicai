@@ -66,10 +66,4 @@ public class TeacherCourseRepositoryImpl implements
 		List<String> typeList = em.createQuery("select distinct c.courseType from TeacherCourse c where c.status=2 and c.publish=2 and c.teacher.id="+teacher_id).getResultList();
 		return typeList;
 	}
-	
-	
-	
-	
-	
-
 }

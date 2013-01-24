@@ -41,6 +41,7 @@
 
  function resourceOnclick(){
 	 return checkEmptyAjax("resource_type_form","resourceTypeAJAX");
+	 return false;
  }
 	$(document).ready(function() {
 		$("#typeNames").focus(function(){

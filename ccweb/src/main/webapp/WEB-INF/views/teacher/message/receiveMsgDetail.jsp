@@ -21,7 +21,7 @@
 		$("#c").focus(function() {
 			$(".help-inline").html("");
 		});
-		checkAjax("receiveMsg_info_form","receiveMsgInfoAJAX");
+		checkEmptyAjax("receiveMsg_info_form","receiveMsgInfoAJAX");
 		});
 </script>
 <style>

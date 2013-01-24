@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -241,6 +242,11 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/modifycourse")
 	public String modifyCreateTeacherCourse(HttpSession session,@PathVariable Long course_id,Model model,HttpServletRequest request){
 		TeacherCourse course=courseService.findOneById(course_id);
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Long teacherId=course.getTeacher().getId();
+		if(userInfo.getId()!=teacherId){
+			return "redirect:/admin/teacher/course/list";
+		}
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
 		List<CourseResource> courseList;
 		List<ResourceType> listType = resourceTypeService.getAllType();

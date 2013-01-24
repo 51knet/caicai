@@ -48,7 +48,7 @@ function checkAjax(formID, actionName) {
 
 	});
 }
-function checkAjaxs(formID, actionName) {
+/*function checkAjaxs(formID, actionName) {
 	$form = $('#' + formID);
 	var action = actionName;
 	$form.bind('submit', function(e) {
@@ -60,7 +60,6 @@ function checkAjaxs(formID, actionName) {
 		var textInfo = textdata['courseDesc'];
 		var annoInfo = '{"courseName":"' + dataInfo + '","courseDesc": "'
 				+ textInfo + '"}';
-		alert(annoInfo);
 		var annoData=eval("("+annoInfo+");");
 		$.post(action, annoData, function(response) {
 			$form.find('.modal-body').removeClass('error');
@@ -83,7 +82,7 @@ function checkAjaxs(formID, actionName) {
 		return false;
 
 	});
-}
+}*/
 /**
  * 对input是否为空进行验证
  * 
@@ -124,8 +123,7 @@ function checkEmptyAjax(formID, actionName) {
 	var flag = false;
 	var $form = $('#' + formID);
 	var action = actionName;
-	var $inputs = $form.find('input');
-	var data = collectFormData($inputs);
+	var data=$form.serialize();
 	$.ajax({
 		type:"post",
 		url : action,
@@ -159,7 +157,7 @@ function checkEmptyAjax(formID, actionName) {
 
 
 
-function checkTextAjax(formID, actionName) {
+/*function checkTextAjax(formID, actionName) {
 	var flag = false;
 	var $form = $('#' + formID);
 	var action = actionName;
@@ -190,4 +188,4 @@ function checkTextAjax(formID, actionName) {
 	// e.preventDefault();
 	return flag;
 	// });
-}
+}*/

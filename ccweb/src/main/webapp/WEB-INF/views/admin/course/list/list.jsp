@@ -191,8 +191,7 @@ $(document).ready(function() {
 	$("#descs").focus(function() {
 		$(".help-inline").html("");
 	});
-	checkAjaxs("course_info_form","courserInfoAJAX");
-	
+	checkEmptyAjax("course_info_form","courseInfoAJAX");
 	$('.destoryCoursePostBtn').on('click', function() {
 		var course_id = $("#courseId").val();
 		$('#c_delete_id').val(course_id);	
