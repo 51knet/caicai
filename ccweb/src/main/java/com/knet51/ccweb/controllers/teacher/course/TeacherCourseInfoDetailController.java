@@ -269,6 +269,11 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/basicinfo")
 	public String basicMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Long teacherId=course.getTeacher().getId();
+		if(userInfo.getId()!=teacherId){
+			return "redirect:/admin/teacher/course/list";
+		}
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.basicinfo";
 	}
@@ -277,7 +282,7 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/basicinfomodify")
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/basicinfomodify",method=RequestMethod.POST)
 	public String modifyBasicMessage(HttpSession session,@PathVariable Long id,Model model,HttpServletRequest request,@Valid TeacherCourseInfoForm teacherCourseInfoForm,BindingResult validResult){
 		if (validResult.hasErrors()) {
 			logger.info("detailInfoForm Validation Failed " + validResult);
@@ -305,6 +310,11 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/detailinfo")
 	public String detailMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Long teacherId=course.getTeacher().getId();
+		if(userInfo.getId()!=teacherId){
+			return "redirect:/admin/teacher/course/list";
+		}
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.detailinfo";
 	}
@@ -313,7 +323,7 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/detailinfomodify")
+	@RequestMapping(value="/admin/teacher/course/edit/{id}/detailinfomodify",method=RequestMethod.POST)
 	public String modifyDetailMessage(HttpSession session,@PathVariable Long id,Model model,HttpServletRequest request){
 		String character=request.getParameter("courseCharacter");
 		String targetPerson=request.getParameter("targetPerson");
@@ -331,6 +341,11 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/cover")
 	public String CreateCover(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Long teacherId=course.getTeacher().getId();
+		if(userInfo.getId()!=teacherId){
+			return "redirect:/admin/teacher/course/list";
+		}
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.cover";
 	}
@@ -376,6 +391,11 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/watchvideo")
 	public String modifyWatchVideo(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Long teacherId=course.getTeacher().getId();
+		if(userInfo.getId()!=teacherId){
+			return "redirect:/admin/teacher/course/list";
+		}
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.watchvideo";
 	}
@@ -387,6 +407,11 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/powerprice")
 	public String powerPrice(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Long teacherId=course.getTeacher().getId();
+		if(userInfo.getId()!=teacherId){
+			return "redirect:/admin/teacher/course/list";
+		}
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.powerprice";
 	}
@@ -413,6 +438,11 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/deletecourse")
 	public String modifyDeleteMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Long teacherId=course.getTeacher().getId();
+		if(userInfo.getId()!=teacherId){
+			return "redirect:/admin/teacher/course/list";
+		}
 		course.setPublish(GlobalDefs.PUBLISH_NUM_RECYCLE);
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.deletecourse";
@@ -424,7 +454,13 @@ public class TeacherCourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/deletecoursemodify")
 	public String deleteMessage(HttpSession session,@PathVariable Long id,Model model){
-			courseService.deleTeacherCourse(id);
+		TeacherCourse course=courseService.findOneById(id);
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Long teacherId=course.getTeacher().getId();
+		if(userInfo.getId()!=teacherId){
+			return "redirect:/admin/teacher/course/list";
+		}
+		courseService.deleTeacherCourse(id);
 		return "redirect:/admin/teacher/course/list";
 	}
 	

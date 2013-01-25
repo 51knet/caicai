@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
@@ -190,22 +191,20 @@ public class TeacherCourseInfoPageController {
 	
 	
 	@RequestMapping(value="/admin/teacher/course/addcourse")
-	public String addCoursePage(@RequestParam("active") String active,@RequestParam("cid") Integer course_id,Model model){
+	public String addCoursePage(@RequestParam("active") String active,Model model){
 		if (active == null || active.equals("")) {
 			active = "first";
 		}
-		if (course_id == null || course_id.equals("")) {
-			course_id = 0;
-		}
 		model.addAttribute("active", active);
-		model.addAttribute("cid", course_id);
+
 		return "admin.teacher.course.add";
 	}
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/new/firststep",method=RequestMethod.POST)
 	public String TeacherCourseAddInfo(@Valid TeacherCourseInfoForm courseInfoForm,
-			BindingResult validResult, HttpSession session,MultipartHttpServletRequest request,Model model) throws Exception{
+			BindingResult validResult, HttpSession session,MultipartHttpServletRequest request,Model model,
+			RedirectAttributes redirectAttributes) throws Exception{
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
@@ -247,26 +246,28 @@ public class TeacherCourseInfoPageController {
 			}
 			
 			TeacherCourse newCourse = teacherCourseService.createTeacherCourse(course);
-			return "redirect:/admin/teacher/course/addcourse?active=second&cid="+newCourse.getId();
+			redirectAttributes.addFlashAttribute("courseId", newCourse.getId());
+			return "redirect:/admin/teacher/course/addcourse?active=second";
 		}
 	
 	}
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/new/secondstep",method=RequestMethod.POST)
-	public String addCourseSecond(@RequestParam("cid") Long course_id,
-			@RequestParam("pwd") String pwd, @RequestParam("status") Integer status, Model model){
+	public String addCourseSecond(@RequestParam("courseId") Long course_id,@RequestParam("pwd") String pwd, 
+			@RequestParam("status") Integer status, Model model,RedirectAttributes redirectAttributes){
 		TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
 		course.setPwd(pwd.trim());
 		course.setStatus(status);
 		teacherCourseService.updateTeacherCourse(course);
-		return "redirect:/admin/teacher/course/addcourse?active=third&cid="+Long.valueOf(course_id);
+		redirectAttributes.addFlashAttribute("courseId", course_id);
+		return "redirect:/admin/teacher/course/addcourse?active=third";
 	}
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/new/thirdstep",method=RequestMethod.POST)
 	public String addCourseThird(HttpSession session,Model model,
-			MultipartHttpServletRequest request,@RequestParam("cid") Long course_id) throws  Exception{
+			MultipartHttpServletRequest request,@RequestParam("courseId") Long course_id) throws  Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("resourceFile");
 		String resourceDesc = request.getParameter("resourceDesc");
