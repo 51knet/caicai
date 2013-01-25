@@ -38,14 +38,14 @@
 						<div class="row" style="margin-top: 10px;">
 							<div style="width: 560px; text-align: left;">
 								<form:form action="new/firststep" method="post" enctype="multipart/form-data" id="course_info_form" onsubmit="return checkPicture(this)">
-									<div class="modal-body">
+									<div class="modal-body"> 
 										上传封面：<input type="file" name="coverFile" style="margin-bottom: 10px; width: 380px;" /><br>
 										<span style="color: red; font-size: 14px; margin-left: 70px;">只支持jpg、gif、bmp格式，建议封面宽度260px，高度150px</span>
 									</div>
 									<div class="control-group" id="courseName" >
 										<div class="controls" style="margin-left: 13px;">
 											课程名称：<input type="text" id="coursenames" name="courseName" placeholder="课程名称"> 
-											<span class="help-inline" id="courseNameError"><form:errors path="courseName" /></span>
+											<span class="help-inline"><form:errors path="courseName" /></span>
 										</div>
 									</div>
 									<div class="modal-body" id="course">
@@ -143,7 +143,7 @@
 
 <script type="text/javascript">
 	function firststep() {
-		checkEmptyAjax("course_info_form", "courseInfoAJAX");
+		checkAjaxs("course_info_form", "courseInfoAJAX");
 		return false;
 	}
 	$(document).ready(function(){
@@ -156,12 +156,9 @@
 					   dataType:"text",
 					   success: function(num){
 					     if(num=="1"){
-					    	$("#courseNameError").html("");
-					    	$("#courseNameError").html('<font color="red">课程名已存在</font>');
+					    	alert('课程名已存在,请重新输入');
+					    	$("#coursenames").val("");
 					    	return false;
-					     }else{
-					    	 $("#courseNameError").html("");
-					    	 return false;
 					     }
 					   }
 					});

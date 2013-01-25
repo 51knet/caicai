@@ -414,9 +414,10 @@ public class TeacherCourseInfoPageController {
 		return AjaxValidationEngine.process(result);
 	}
 	@RequestMapping(value="/admin/teacher/course/checkcoursename", method = RequestMethod.POST)
-	public void checkCoureName(@RequestParam("courseName") String courseName,HttpServletResponse response) throws Exception{
+	public void checkCoureName(@RequestParam("courseName") String courseName,HttpServletResponse response,HttpSession session) throws Exception{
 		PrintWriter out=response.getWriter();
-		TeacherCourse teacherCourse=teacherCourseService.getTeacherCourseByCourseName(courseName);
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		TeacherCourse teacherCourse=teacherCourseService.getTeacherCourseByCourseName(courseName,userInfo.getId());
 		Integer number=0;
 		if(teacherCourse!=null){
 			number=1;
