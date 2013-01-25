@@ -282,8 +282,8 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/basicinfomodify",method=RequestMethod.POST)
-	public String modifyBasicMessage(HttpSession session,@PathVariable Long id,Model model,HttpServletRequest request,@Valid TeacherCourseInfoForm teacherCourseInfoForm,BindingResult validResult){
+	@RequestMapping(value="/admin/teacher/course/edit/basicinfomodify",method=RequestMethod.POST)
+	public String modifyBasicMessage(HttpSession session,@RequestParam("basicId") Long id,Model model,HttpServletRequest request,@Valid TeacherCourseInfoForm teacherCourseInfoForm,BindingResult validResult){
 		if (validResult.hasErrors()) {
 			logger.info("detailInfoForm Validation Failed " + validResult);
 			return "redirect:/admin/teacher/course/edit/{id}/basicinfo";
@@ -323,8 +323,8 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/detailinfomodify",method=RequestMethod.POST)
-	public String modifyDetailMessage(HttpSession session,@PathVariable Long id,Model model,HttpServletRequest request){
+	@RequestMapping(value="/admin/teacher/course/edit/detailinfomodify",method=RequestMethod.POST)
+	public String modifyDetailMessage(HttpSession session,@RequestParam("detailId") Long id,Model model,HttpServletRequest request){
 		String character=request.getParameter("courseCharacter");
 		String targetPerson=request.getParameter("targetPerson");
 		TeacherCourse course=courseService.findOneById(id);
@@ -356,8 +356,8 @@ public class TeacherCourseInfoDetailController {
 	 * @throws IOException 
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/moidfycover",method=RequestMethod.POST)
-	public String modifyCreateCover(HttpSession session,@PathVariable Long id,MultipartHttpServletRequest request,Model model) throws Exception{
+	@RequestMapping(value="/admin/teacher/course/edit/moidfycover",method=RequestMethod.POST)
+	public String modifyCreateCover(HttpSession session,@RequestParam("coverId") Long id,MultipartHttpServletRequest request,Model model) throws Exception{
 			List<MultipartFile> files = request.getFiles("coverFile");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		TeacherCourse teacherCourse=courseService.findOneById(id);
@@ -420,8 +420,8 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/powerpricemodify")
-	public String modifyPowerPrice(HttpSession session,@PathVariable Long id,Model model,HttpServletRequest request){
+	@RequestMapping(value="/admin/teacher/course/edit/powerpricemodify")
+	public String modifyPowerPrice(HttpSession session,@RequestParam("powerpriceId") Long id,Model model,HttpServletRequest request){
 		Integer status=Integer.parseInt(request.getParameter("status"));
 		String pwd=request.getParameter("pwd");
 		TeacherCourse course=courseService.findOneById(id);
@@ -452,8 +452,8 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/deletecoursemodify")
-	public String deleteMessage(HttpSession session,@PathVariable Long id,Model model){
+	@RequestMapping(value="/admin/teacher/course/edit/deletecoursemodify")
+	public String deleteMessage(HttpSession session,@RequestParam("") Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long teacherId=course.getTeacher().getId();

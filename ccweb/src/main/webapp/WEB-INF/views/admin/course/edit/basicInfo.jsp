@@ -13,9 +13,9 @@ $(document).ready(function(){
 <div style="margin-top: 10px;">
 	<a href="#">基本信息</a>
 	<hr />
-	<form action="basicinfomodify" method="post" id="basic_info_form">
+	<form action="<c:url value="/admin/teacher/course/edit/basicinfomodify"></c:url>" method="post" id="basic_info_form">
 		<div>
-				<div><input type="hidden" value="${course.id}" name="id"></div>
+			<div><input type="hidden" value="${course.id}" name="basicId"></div>
 			<div style="margin-left:20px;">
 				<div id="courseName" class="modal-body">
 					课程名称：<input type="text"  style="width: 450px;margin-left:5px;margin-top: 2px;" name="courseName" value="${course.courseName }" />

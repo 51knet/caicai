@@ -11,7 +11,8 @@
 <div style="margin-top: 10px;">
 	<a href="#">详细信息</a>
 	<hr />
-	<form action="detailinfomodify" method="post" name="detail_form">
+	<form action="<c:url value="/admin/teacher/course/edit/detailinfomodify"></c:url>" method="post" name="detail_form">
+		<input type="hidden" name="detailId" value="${course.id}">
 		<div>
 			<table >
 				<tr>

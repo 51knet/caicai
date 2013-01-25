@@ -25,9 +25,8 @@ $(document).ready(function(){
 	<a href="#">权限设置</a>
 	<hr />
 	<div style="margin-top: 30px;">
-	<form:form class="form-horizontal" action="powerpricemodify"   method="post" onsubmit="return checkPwd()">
-		<input type="hidden" name="id" value="${course.id }" />
-
+	<form class="form-horizontal" action="<c:url value="/admin/teacher/course/edit/powerpricemodify"></c:url>"   method="post" onsubmit="return checkPwd()">
+		<input type="hidden" name="powerpriceId" value="${course.id }" />
 		<div class="modal-body" id="pwdform">
 			修改密码：<input type="text" id="pwd" name="pwd" style="width: 250px;"  value="${course.pwd}" onblur="deleSpace()">
 		</div>
@@ -45,6 +44,6 @@ $(document).ready(function(){
 				<button type="submit" class="btn btn-large btn-success">保存</button>
 			</div>
 		</div>
-	</form:form>
+	</form>
 	</div>
 </div>
