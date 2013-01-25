@@ -229,10 +229,14 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/modifycourse")
 	public String modifyCreateTeacherCourse(HttpSession session,@PathVariable Long course_id,Model model,HttpServletRequest request){
 		TeacherCourse course=courseService.findOneById(course_id);
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long teacherId=course.getTeacher().getId();
-		if(userInfo.getId()!=teacherId){
+		if(course == null){
 			return "redirect:/admin/teacher/course/list";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long teacherId=course.getTeacher().getId();
+			if(userInfo.getId()!=teacherId){
+				return "redirect:/admin/teacher/course/list";
+			}
 		}
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
 		List<CourseResource> courseList;
@@ -268,10 +272,14 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/basicinfo")
 	public String basicMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long teacherId=course.getTeacher().getId();
-		if(userInfo.getId()!=teacherId){
+		if(course == null){
 			return "redirect:/admin/teacher/course/list";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long teacherId=course.getTeacher().getId();
+			if(userInfo.getId()!=teacherId){
+				return "redirect:/admin/teacher/course/list";
+			}
 		}
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.basicinfo";
@@ -309,10 +317,14 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/detailinfo")
 	public String detailMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long teacherId=course.getTeacher().getId();
-		if(userInfo.getId()!=teacherId){
+		if(course == null){
 			return "redirect:/admin/teacher/course/list";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long teacherId=course.getTeacher().getId();
+			if(userInfo.getId()!=teacherId){
+				return "redirect:/admin/teacher/course/list";
+			}
 		}
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.detailinfo";
@@ -340,10 +352,14 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/cover")
 	public String CreateCover(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long teacherId=course.getTeacher().getId();
-		if(userInfo.getId()!=teacherId){
+		if(course == null){
 			return "redirect:/admin/teacher/course/list";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long teacherId=course.getTeacher().getId();
+			if(userInfo.getId()!=teacherId){
+				return "redirect:/admin/teacher/course/list";
+			}
 		}
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.cover";
@@ -390,10 +406,14 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/watchvideo")
 	public String modifyWatchVideo(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long teacherId=course.getTeacher().getId();
-		if(userInfo.getId()!=teacherId){
+		if(course == null){
 			return "redirect:/admin/teacher/course/list";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long teacherId=course.getTeacher().getId();
+			if(userInfo.getId()!=teacherId){
+				return "redirect:/admin/teacher/course/list";
+			}
 		}
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.watchvideo";
@@ -406,10 +426,14 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/powerprice")
 	public String powerPrice(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long teacherId=course.getTeacher().getId();
-		if(userInfo.getId()!=teacherId){
+		if(course == null){
 			return "redirect:/admin/teacher/course/list";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long teacherId=course.getTeacher().getId();
+			if(userInfo.getId()!=teacherId){
+				return "redirect:/admin/teacher/course/list";
+			}
 		}
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.powerprice";
@@ -437,10 +461,14 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/deletecourse")
 	public String modifyDeleteMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long teacherId=course.getTeacher().getId();
-		if(userInfo.getId()!=teacherId){
+		if(course == null){
 			return "redirect:/admin/teacher/course/list";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long teacherId=course.getTeacher().getId();
+			if(userInfo.getId()!=teacherId){
+				return "redirect:/admin/teacher/course/list";
+			}
 		}
 		course.setPublish(GlobalDefs.PUBLISH_NUM_RECYCLE);
 		model.addAttribute("course", course);
@@ -454,10 +482,14 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/edit/deletecoursemodify")
 	public String deleteMessage(HttpSession session,@RequestParam("courseId") Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long teacherId=course.getTeacher().getId();
-		if(userInfo.getId()!=teacherId){
+		if(course == null){
 			return "redirect:/admin/teacher/course/list";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long teacherId=course.getTeacher().getId();
+			if(userInfo.getId()!=teacherId){
+				return "redirect:/admin/teacher/course/list";
+			}
 		}
 		courseService.deleTeacherCourse(id);
 		return "redirect:/admin/teacher/course/list";

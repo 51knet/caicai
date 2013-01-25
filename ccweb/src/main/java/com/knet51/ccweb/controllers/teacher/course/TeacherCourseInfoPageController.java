@@ -53,7 +53,7 @@ public class TeacherCourseInfoPageController {
 	private static final Logger logger = 
 			LoggerFactory.getLogger(TeacherCourseInfoPageController.class);
 	@Autowired
-	private TeacherCourseService teacherCourseService;
+	private  TeacherCourseService teacherCourseService;
 	
 	@Autowired
 	private TeacherService teacherService;
@@ -105,8 +105,17 @@ public class TeacherCourseInfoPageController {
 
 	
 	@RequestMapping(value="/admin/teacher/course/view/{course_id}")
-	public String detailCourseInfo(@PathVariable Long course_id,Model model){
+	public String detailCourseInfo(@PathVariable Long course_id,Model model,HttpSession session){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		if(course == null){
+			return "redirect:/admin/teacher/course/list";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long teacherId=course.getTeacher().getId();
+			if(userInfo.getId()!=teacherId){
+				return "redirect:/admin/teacher/course/list";
+			}
+		}
 		model.addAttribute("course", course);
 
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
@@ -124,19 +133,7 @@ public class TeacherCourseInfoPageController {
 		model.addAttribute("courseMap", courseMap);
 		return "admin.teacher.course.view";
 	}
-	
-	@RequestMapping(value="/admin/teacher/course/edit/{course_id}")
-	public String updateCourseInfo(@PathVariable Long course_id,Model model){
-		TeacherCourse course = teacherCourseService.findOneById(course_id);
-		model.addAttribute("course", course);
-		return "admin.teacher.course.edit";
-	}
-	
-	@RequestMapping(value="/admin/teacher/{course_id}/resource/new")
-	public String addTeacherCourseResource(Model model,@PathVariable Long course_id){
-		model.addAttribute("id",course_id);
-		return "admin.teacher.course.resource.new";
-	}
+
 	
 	/*@RequestMapping(value="/admin/teacher/teacherCourse/detailCourse")
 	public String detailCourse(@RequestParam("id") Long id, Model m){
@@ -313,8 +310,17 @@ public class TeacherCourseInfoPageController {
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/publish")
-	public String publishCourse(@PathVariable Long course_id){
+	public String publishCourse(@PathVariable Long course_id,HttpSession session){
 		TeacherCourse course= teacherCourseService.findOneById(Long.valueOf(course_id));
+		if(course == null){
+			return "redirect:/admin/teacher/course/list";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long teacherId=course.getTeacher().getId();
+			if(userInfo.getId()!=teacherId){
+				return "redirect:/admin/teacher/course/list";
+			}
+		}
 		course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/list";
@@ -324,10 +330,14 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/cancelpublish")
 	public String cancelPublish(@PathVariable Long course_id,HttpSession session){
 		TeacherCourse course= teacherCourseService.findOneById(Long.valueOf(course_id));
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long teacherId=course.getTeacher().getId();
-		if(userInfo.getId()!=teacherId){
+		if(course == null){
 			return "redirect:/admin/teacher/course/list";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long teacherId=course.getTeacher().getId();
+			if(userInfo.getId()!=teacherId){
+				return "redirect:/admin/teacher/course/list";
+			}
 		}
 		course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
 		teacherCourseService.updateTeacherCourse(course);
@@ -337,11 +347,17 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/preview")
 	public String previewCourse(@PathVariable Long course_id,Model model,HttpSession session){
 		TeacherCourse course= teacherCourseService.findOneById(Long.valueOf(course_id));
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long teacherId=course.getTeacher().getId();
-		if(userInfo.getId()!=teacherId){
+		
+		if(course == null){
 			return "redirect:/admin/teacher/course/list";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long teacherId=course.getTeacher().getId();
+			if(userInfo.getId()!=teacherId){
+				return "redirect:/admin/teacher/course/list";
+			}
 		}
+		
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(Long.valueOf(course_id));
 		List<CourseResource> courseList;
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
@@ -384,10 +400,14 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/pubcourses")
 	public String publishToCourses(@PathVariable Long course_id,Model model,HttpSession session){
 		TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long teacherId=course.getTeacher().getId();
-		if(userInfo.getId()!=teacherId){
+		if(course == null){
 			return "redirect:/admin/teacher/course/list";
+		}else{
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Long teacherId=course.getTeacher().getId();
+			if(userInfo.getId()!=teacherId){
+				return "redirect:/admin/teacher/course/list";
+			}
 		}
 		course.setStatus(GlobalDefs.STATUS_CCWEB_COURSES);
 		teacherCourseService.updateTeacherCourse(course);
@@ -473,6 +493,7 @@ public class TeacherCourseInfoPageController {
 		out.flush();
 		out.close();
 	}
+	
 	
 	/*	
 	@RequestMapping(value="/admin/teacher/allCourse/list")
