@@ -97,7 +97,6 @@ public class TeacherCourseInfoDetailController {
 					course.setCourseCover(savePath);
 				}
 			}
-			
 			courseService.createTeacherCourse(course);
 			return "redirect:/admin/teacher/course/list";
 		}

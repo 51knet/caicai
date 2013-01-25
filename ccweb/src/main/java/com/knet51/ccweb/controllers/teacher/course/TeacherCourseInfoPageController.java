@@ -80,12 +80,19 @@ public class TeacherCourseInfoPageController {
 	}
 	
 	@RequestMapping(value="/admin/teacher/course/list/{publish}")
-	public String teacherCoursePublished(@PathVariable Integer publish,HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
+	public String teacherCoursePublished(@PathVariable String publish,HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		logger.info("##### Into teacherCoursePublished #####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Teacher teacher = teacherService.findOne(userInfo.getId());
-		Page<TeacherCourse> onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, publish);
+		Page<TeacherCourse> onePage = null;
+		if("publish".equals(publish)){
+			onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		}else if("unpub".equals(publish)){
+			onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN);
+		}else if("recycle".equals(publish)){
+			onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_RECYCLE);
+		}
 		model.addAttribute("page", onePage);
 		return "admin.teacher.course.list";
 	}
@@ -315,16 +322,26 @@ public class TeacherCourseInfoPageController {
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/cancelpublish")
-	public String cancelPublish(@PathVariable Long course_id){
+	public String cancelPublish(@PathVariable Long course_id,HttpSession session){
 		TeacherCourse course= teacherCourseService.findOneById(Long.valueOf(course_id));
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Long teacherId=course.getTeacher().getId();
+		if(userInfo.getId()!=teacherId){
+			return "redirect:/admin/teacher/course/list";
+		}
 		course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/list";
 	}
 	
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/preview")
-	public String previewCourse(@PathVariable Long course_id,Model model){
+	public String previewCourse(@PathVariable Long course_id,Model model,HttpSession session){
 		TeacherCourse course= teacherCourseService.findOneById(Long.valueOf(course_id));
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Long teacherId=course.getTeacher().getId();
+		if(userInfo.getId()!=teacherId){
+			return "redirect:/admin/teacher/course/list";
+		}
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(Long.valueOf(course_id));
 		List<CourseResource> courseList;
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
@@ -365,8 +382,13 @@ public class TeacherCourseInfoPageController {
 	 * @return
 	 */
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/pubcourses")
-	public String publishToCourses(@PathVariable Long course_id,Model model){
+	public String publishToCourses(@PathVariable Long course_id,Model model,HttpSession session){
 		TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Long teacherId=course.getTeacher().getId();
+		if(userInfo.getId()!=teacherId){
+			return "redirect:/admin/teacher/course/list";
+		}
 		course.setStatus(GlobalDefs.STATUS_CCWEB_COURSES);
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/view/"+Long.valueOf(course_id);
