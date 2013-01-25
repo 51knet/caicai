@@ -66,7 +66,7 @@ public class TeacherCourseInfoPageController {
 	private UserService userService;
 	
 	@Autowired
-	private CourseLessonService lessonService;
+	private CourseLessonService courseLessonService;
 	
 	@RequestMapping(value="/admin/teacher/course/list")
 	public String teacherCourseInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
@@ -408,12 +408,12 @@ public class TeacherCourseInfoPageController {
 	
 	@RequestMapping(value="/admin/teacher/course/edit/addlessonnum",method=RequestMethod.POST)
 	public String addNewLessonNum(@RequestParam("courseId") Long course_id,Model model){
-		List<CourseLesson> lessonList = lessonService.getMaxLessonNumByCourseId(Long.valueOf(course_id));
+		List<CourseLesson> lessonList = courseLessonService.getMaxLessonNumByCourseId(Long.valueOf(course_id));
 		String lessonNum = "0";
 		if(lessonList.size()>0){
 			lessonNum = lessonList.get(0).getLessonNum();
 			lessonList.get(0).setStatus(null);
-			lessonService.createCourseLesson(lessonList.get(0));
+			courseLessonService.createCourseLesson(lessonList.get(0));
 		}
 		String newLessonNum = "";
 		newLessonNum = Integer.parseInt(lessonNum)+1+"";
@@ -421,24 +421,47 @@ public class TeacherCourseInfoPageController {
 		courselesson.setLessonNum(newLessonNum);
 		courselesson.setCourseId(Long.valueOf(course_id));
 		courselesson.setStatus("max");
-		lessonService.createCourseLesson(courselesson);
+		courseLessonService.createCourseLesson(courselesson);
 		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 	}
 	
-	
-	@RequestMapping(value="/admin/teacher/course/edit/courselesson/destory",method=RequestMethod.POST)
-	public String modifyCourseLesson(@RequestParam("lessonId") Long lesson_id,@RequestParam("courseId") Long course_id){
-		CourseLesson bigLesson = lessonService.findOne(lesson_id);
-		List<CourseLesson> courseLessonList = lessonService.findCourseLessonByCourseId(course_id);
-		if(Integer.parseInt(bigLesson.getLessonNum())>=2 && courseLessonList.size()>=2){
-			String smallLessonNum = Integer.parseInt(bigLesson.getLessonNum())-1+"";
-			List<CourseLesson> smallLessonList = lessonService.findCourseLessonByCourseIdAndLessonNum(course_id, smallLessonNum);
-			if(smallLessonList.size()>0){
-				smallLessonList.get(0).setStatus("max");
-				lessonService.createCourseLesson(smallLessonList.get(0));
+	/**
+	 * 验证 课程 fileName是否为空
+	 * author:lbx
+	 * @param lesson_id
+	 * @param course_id
+	 * @return
+	 */
+	@RequestMapping(value="/admin/teacher/course/edit/courselesson/checkFileName", method = RequestMethod.POST)
+	public void checkFileName(@RequestParam("lessonId") Long id,HttpServletResponse response,HttpSession session) throws Exception{
+		PrintWriter out=response.getWriter();
+		CourseLesson courseLesson=courseLessonService.findOne(id);
+		List<CourseResource> courseResources=courseResourceService.getResourceByLessonNumAndCourseId(courseLesson.getLessonNum(), courseLesson.getCourseId());
+		Integer number=0;
+		for (CourseResource courseResource : courseResources) {
+			if(courseResource.getFileName()!=null){
+				number=1;
 			}
 		}
-		lessonService.destory(Long.valueOf(lesson_id));
+		String num=number.toString();
+		out.write(num);
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="/admin/teacher/course/edit/courselesson/destory",method=RequestMethod.POST)
+	public String modifyCourseResource(@RequestParam("lessonId") Long lesson_id,@RequestParam("courseId") Long course_id){
+		CourseLesson bigLesson = courseLessonService.findOne(lesson_id);
+		List<CourseLesson> courseLessonList = courseLessonService.findCourseLessonByCourseId(course_id);
+		if(Integer.parseInt(bigLesson.getLessonNum())>=2 && courseLessonList.size()>=2){
+			String smallLessonNum = Integer.parseInt(bigLesson.getLessonNum())-1+"";
+			List<CourseLesson> smallLessonList = courseLessonService.findCourseLessonByCourseIdAndLessonNum(course_id, smallLessonNum);
+			if(smallLessonList.size()>0){
+				smallLessonList.get(0).setStatus("max");
+				courseLessonService.createCourseLesson(smallLessonList.get(0));
+			}
+		}
+		courseLessonService.destory(Long.valueOf(lesson_id));
 		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 	}
 	
