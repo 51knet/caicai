@@ -27,9 +27,9 @@
 							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
 			<span style="margin-right: 180px;">
 			 	<a href='<c:url value="/admin/teacher/course/list"></c:url>' style="margin-right: 10px;"> 全部课程</a> 
-				 <a href='<c:url value="/admin/teacher/course/list/2"></c:url>' style="margin-right: 10px;"> 未发布课程</a> 
-				<a href='<c:url value="/admin/teacher/course/list/3"></c:url>'  style="margin-right: 10px;"> 已发布课程</a>
-				<a href='<c:url value="/admin/teacher/course/list/1"></c:url>'> 已删除课程</a>
+				 <a href='<c:url value="/admin/teacher/course/list/unpub"></c:url>' style="margin-right: 10px;"> 未发布课程</a> 
+				<a href='<c:url value="/admin/teacher/course/list/publish"></c:url>'  style="margin-right: 10px;"> 已发布课程</a>
+				<a href='<c:url value="/admin/teacher/course/list/recycle"></c:url>'> 已删除课程</a>
 			</span>
 			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/new"></c:url>' class="btn">添加新课程</a>
 			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/addcourse"><c:param name="active" value="first" /></c:url>' class="btn">添加新课程(Test)</a>				
@@ -49,8 +49,8 @@
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
-						<td align="left"><img src="/ccweb/${page.courseCover }" style="width: 80px; height: 40px;"/></td>
-						<td align="left">
+						<td align="center"><img src="/ccweb/${page.courseCover }" style="width: 80px; height: 40px;"/></td>
+						<td align="center">
 							<div style="width: 110px;" id="content">
 								<c:if test="${page.publish==1 }">
 									${page.courseName}
