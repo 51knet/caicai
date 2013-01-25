@@ -282,7 +282,7 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/basicinfomodify",method=RequestMethod.POST)
-	public String modifyBasicMessage(HttpSession session,@RequestParam("basicId") Long id,Model model,HttpServletRequest request,@Valid TeacherCourseInfoForm teacherCourseInfoForm,BindingResult validResult){
+	public String modifyBasicMessage(HttpSession session,@RequestParam("courseId") Long id,Model model,HttpServletRequest request,@Valid TeacherCourseInfoForm teacherCourseInfoForm,BindingResult validResult){
 		if (validResult.hasErrors()) {
 			logger.info("detailInfoForm Validation Failed " + validResult);
 			return "redirect:/admin/teacher/course/edit/{id}/basicinfo";
@@ -323,7 +323,7 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/detailinfomodify",method=RequestMethod.POST)
-	public String modifyDetailMessage(HttpSession session,@RequestParam("detailId") Long id,Model model,HttpServletRequest request){
+	public String modifyDetailMessage(HttpSession session,@RequestParam("courseId") Long id,Model model,HttpServletRequest request){
 		String character=request.getParameter("courseCharacter");
 		String targetPerson=request.getParameter("targetPerson");
 		TeacherCourse course=courseService.findOneById(id);
@@ -356,7 +356,7 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/moidfycover",method=RequestMethod.POST)
-	public String modifyCreateCover(HttpSession session,@RequestParam("coverId") Long id,MultipartHttpServletRequest request,Model model) throws Exception{
+	public String modifyCreateCover(HttpSession session,@RequestParam("courseId") Long id,MultipartHttpServletRequest request,Model model) throws Exception{
 			List<MultipartFile> files = request.getFiles("coverFile");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		TeacherCourse teacherCourse=courseService.findOneById(id);
@@ -420,7 +420,7 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/powerpricemodify")
-	public String modifyPowerPrice(HttpSession session,@RequestParam("powerpriceId") Long id,Model model,HttpServletRequest request){
+	public String modifyPowerPrice(HttpSession session,@RequestParam("courseId") Long id,Model model,HttpServletRequest request){
 		Integer status=Integer.parseInt(request.getParameter("status"));
 		String pwd=request.getParameter("pwd");
 		TeacherCourse course=courseService.findOneById(id);
@@ -431,7 +431,7 @@ public class TeacherCourseInfoDetailController {
 	}
 	/**
 	 * 取消课程
-	 * @return
+	 * @returndeleLessonNum
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{id}/deletecourse")
@@ -452,7 +452,7 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/deletecoursemodify")
-	public String deleteMessage(HttpSession session,@RequestParam("") Long id,Model model){
+	public String deleteMessage(HttpSession session,@RequestParam("courseId") Long id,Model model){
 		TeacherCourse course=courseService.findOneById(id);
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long teacherId=course.getTeacher().getId();

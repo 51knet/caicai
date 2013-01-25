@@ -12,7 +12,7 @@
 	<a href="#">详细信息</a>
 	<hr />
 	<form action="<c:url value="/admin/teacher/course/edit/detailinfomodify"></c:url>" method="post" name="detail_form">
-		<input type="hidden" name="detailId" value="${course.id}">
+		<input type="hidden" name="courseId" value="${course.id}">
 		<div>
 			<table >
 				<tr>

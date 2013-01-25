@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.teacher.CourseLesson;
 import com.knet51.ccweb.jpa.repository.CourseLessonRepository;
-@Service
+@Service("courseLessonService")
 @Transactional
 public class CourseLessonServiceImpl implements CourseLessonService {
 	

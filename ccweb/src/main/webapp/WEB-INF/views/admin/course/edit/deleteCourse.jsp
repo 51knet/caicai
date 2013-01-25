@@ -19,7 +19,7 @@
 	<hr />
 	<div style="margin-top: 30px;">
 	<form action="<c:url value="/admin/teacher/course/edit/deletecoursemodify"></c:url>">
-	<input type="hidden" name="deleteId" value="${course.id}">
+	<input type="hidden" name="courseId" value="${course.id}">
 		<div style="margin-left: 40px;">
 				<label>如果你删除了本课程，本课程将不会恢复。请确认后再删除。</label> 
 			<span class="row-fluid custom price power">

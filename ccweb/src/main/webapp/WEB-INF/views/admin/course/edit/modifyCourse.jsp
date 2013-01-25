@@ -27,8 +27,23 @@
 	}
 	
 	function deleLessonNum(lesson_id){
-		$("#courseLessonId").val(lesson_id);
-		$("#deleLessonNumForm").submit();
+		$.ajax({
+			  type: "post",
+			  url: "<c:url value='/admin/teacher/course/edit/courselesson/checkFileName'/>",
+			  data: "lessonId="+lesson_id,
+			  dataType:"text",
+			  success:function(num){
+					if(num=='1'){
+					alert("课时下存在课程资源,请先删除课程资源");
+					$("#deleLessonNumForm").unbind( "submit" );
+					return false;
+					}else{
+						$("#courseLessonId").val(lesson_id);
+						$("#deleLessonNumForm").submit();
+					}
+				}
+			});
+		
 	}
 </script>
 <div style="margin-top: 10px;">

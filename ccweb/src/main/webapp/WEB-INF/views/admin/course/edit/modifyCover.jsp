@@ -36,7 +36,7 @@ function previewImages(file){
 	<br />
 	<div style="margin-top: 2px; width: 780px;">
 		<form action="<c:url value="/admin/teacher/course/edit/moidfycover"></c:url>" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="coverId" value="${course.id}">
+		<input type="hidden" name="courseId" value="${course.id}">
 			<table>
 				<tr>
 					<td>上传封面</td>
