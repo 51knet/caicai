@@ -24,5 +24,5 @@ public interface TeacherCourseService {
 	Page<TeacherCourse> findTeacherCourseByTeacherAndPublish(int pageNum, int pageSize, Teacher teacher,Integer publish);
 	
 	Page<TeacherCourse> findTeacherCourseByTeacherAndPublishGreaterThan(int pageNum, int pageSize,Teacher teacher,Integer publish);
-	TeacherCourse getTeacherCourseByCourseName(String cousername);
+	TeacherCourse getTeacherCourseByCourseName(String cousername,Long teacherId);
 }

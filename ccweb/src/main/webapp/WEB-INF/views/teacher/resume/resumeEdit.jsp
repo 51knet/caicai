@@ -767,7 +767,7 @@ $(document).ready(function() {
 		fileManagerJson : '${fileManagerJson}',
 		allowFileManager : true,
 		afterCreate : function() {
-			var self = this;
+			var self = this;        
 			KindEditor.ctrl(document, 13, function() {
 				self.sync();
 				document.forms['detail_form'].submit();

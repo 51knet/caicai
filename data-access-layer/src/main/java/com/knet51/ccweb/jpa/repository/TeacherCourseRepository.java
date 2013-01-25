@@ -23,6 +23,6 @@ public interface TeacherCourseRepository extends JpaRepository<TeacherCourse, Lo
 	List<TeacherCourse> findTeacherCourseByTeacherAndStatusAndPublish(Teacher teacher,Integer status,Integer publish);
 	Page<TeacherCourse> findTeacherCourseByTeacherAndPublish(Teacher teacher,Integer publish,Pageable pageable);
 	List<TeacherCourse> findTeacherCourseByTeacherAndPublish(Teacher teacher,Integer publish);
-	@Query("select t from TeacherCourse t where t.courseName = :coursename")
-	TeacherCourse getTeacherCourseByCourseName(@Param("coursename") String cousername);
+	@Query("select t from TeacherCourse t where t.courseName = :coursename and t.teacher.id= :teacherid")
+	TeacherCourse getTeacherCourseByCourseName(@Param("coursename") String cousername,@Param("teacherid") Long teacherid);
 }

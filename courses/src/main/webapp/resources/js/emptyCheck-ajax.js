@@ -23,7 +23,7 @@ function checkAjaxs(formID, actionName) {
 					$controlGroup.addClass('error');
 					$controlGroup.find('.help-inline').html(item.message);
 				}
-			} else {
+			}else{
 				$form.unbind('submit');
 				$form.submit();
 			}

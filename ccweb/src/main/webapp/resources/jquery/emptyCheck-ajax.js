@@ -48,7 +48,7 @@ function checkAjax(formID, actionName) {
 
 	});
 }
-/*function checkAjaxs(formID, actionName) {
+function checkAjaxs(formID, actionName) {
 	$form = $('#' + formID);
 	var action = actionName;
 	$form.bind('submit', function(e) {
@@ -82,7 +82,7 @@ function checkAjax(formID, actionName) {
 		return false;
 
 	});
-}*/
+}
 /**
  * 对input是否为空进行验证
  * 

@@ -92,8 +92,8 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	}
 
 	@Override
-	public TeacherCourse getTeacherCourseByCourseName(String cousername) {
-		TeacherCourse teacherCourse=courseRepository.getTeacherCourseByCourseName(cousername);
+	public TeacherCourse getTeacherCourseByCourseName(String cousername,Long teacherId) {
+		TeacherCourse teacherCourse=courseRepository.getTeacherCourseByCourseName(cousername,teacherId);
 		return teacherCourse;
 	}
 
