@@ -73,7 +73,7 @@
 													<form style="margin-left:30px;" method="post" action='<c:url value="/admin/teacher/course/resource/create"></c:url>' enctype="multipart/form-data" >
 														<input type="hidden" name="lessonNum" value="${lesson.lessonNum }">
 														<input type="hidden" name="lessonId" value="${lesson.id}">
-														<input type="hidden" name="cId" value="${course.id}">
+														<input type="hidden" name="courseId" value="${course.id}">
 														资源名称：<input type="text" style="width: 207px;" name="resourceName" >&nbsp;“如：第一讲：物种的起源”<br>
 														资源类别：<select name="type"   style="width: 220px;">
 																			<option >请选择</option>
@@ -81,13 +81,13 @@
 																				<option  value="${l.id}">${l.typeName}</option>
 																			</c:forEach>
 																		</select><br>
-														上传资源：<input type="file" name="resourceFile" >
+														上传资源：<input type="file" name="resourceFile" >&nbsp;不大于200M
 														<button type="reset"   class="btn " style="margin-left: 5px;float: right;" onclick="closeResourceForm(${lesson.lessonNum})">取消</button>
 														<button type="submit"   class="btn  btn-success" style=" float: right;">上传</button>&nbsp;&nbsp;
 													</form>
 											</div>
 										</div>
-										<div style="">
+										<div style="display:block;" id="courseResourceShow">
 											<c:forEach items="${courseMap}" var="cm">
 												<c:if test="${cm.key == lesson.lessonNum }">
 													<c:forEach var="fileNames" items="${cm.value}"> 
@@ -96,7 +96,7 @@
 																<div style="width: 100%; float: left;margin-top: 5px; margin-bottom:5px; border-bottom: 1px dotted #dcdcdc;">
 																	<span style="margin-left: 30px; ">${fileNames.fileName}</span>
 																	<span style="float: right;font-size: 13px;">
-																		<a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>修改</a>  | 
+																		<a href='javascript:void(0)' onclick="editCourseResource(${fileNames.id})">修改</a>  | 
 																		<a style=" margin-right: 31px;" href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>删除</a> 
 																	</span>
 																</div>
@@ -105,6 +105,22 @@
 													</c:forEach>
 												</c:if>
 											</c:forEach>
+										</div>
+										<div id="editCourseResourceForm" style=" border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;" >
+											<form name="resourceEditForm" style="margin-left:30px;" method="post" action='<c:url value="/admin/teacher/course/resource/edit"></c:url>' enctype="multipart/form-data" >
+												<input type="hidden" name="resourceId" id="editResourceId" >
+												<input type="hidden" name="courseId" id="editResourceId" >
+												资源名称：<input type="text" style="width: 207px;" id="editResourceName" name="resourceName" >&nbsp;“如：第一讲：物种的起源”<br>
+												资源类别：<select name="type" id="editResourceType"   style="width: 220px;">
+																	<option >请选择</option>
+																	<c:forEach items="${type}" var="l">
+																		<option  value="${l.id}">${l.typeName}</option>
+																	</c:forEach>
+																</select><br>
+												上传资源：<input type="file" name="resourceFile" >&nbsp;不大于200M
+												<button type="reset"   class="btn " style="margin-left: 5px;float: right;" onclick="closeEditResourceForm()">取消</button>
+												<button type="submit"   class="btn  btn-success" style=" float: right;">上传</button>&nbsp;&nbsp;
+											</form>
 										</div>
 									</td>
 								</tr>
@@ -141,7 +157,29 @@
 			</div>
 	</div>
 </div>
-
+<script type="text/javascript">
+	function editCourseResource(resource_id){
+		//alert(resource_id);
+		$("#courseResourceShow").css("display","none");
+		$("#editCourseResourceForm").css("display","block");
+		$.ajax({
+			  type: "post",
+			  url: '<c:url value="/admin/teacher/course/resource/edit/ajax"></c:url>',
+			  data: "resourceId="+resource_id,
+			  dataType:"json",
+			  success:function(msg){
+				  	$("#editResourceId").val(msg.id);
+				  	$("#editResourceName").val(msg.fileName);
+				  	$("#editResourceType option[value='"+msg.resourceType.id+"']").attr("selected","selected");
+			  }
+		}); 
+	}
+	
+	function closeEditResourceForm(){
+		$("#courseResourceShow").css("display","block");
+		$("#editCourseResourceForm").css("display","none");
+	}
+</script>
 		
 
 	<!--

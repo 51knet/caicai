@@ -248,7 +248,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 				  	document.work.position.value=msg.position;
 				  	document.work.startTimeName.value=msg.startTime;
 				  	document.work.endTimeName.value=msg.endTime;
-				  	document.getElementById("workDesc").value=msg.educationDesc;
+				  	document.getElementById("workDesc").value=msg.workDesc;
 			  }
 		});
 	};

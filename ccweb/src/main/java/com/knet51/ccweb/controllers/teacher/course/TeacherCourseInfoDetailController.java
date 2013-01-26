@@ -163,7 +163,7 @@ public class TeacherCourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/resource/create",method=RequestMethod.POST)
 	public String TeacherCourseResourceAdd(HttpSession session,Model model,
-			MultipartHttpServletRequest request,@RequestParam("cId") Long course_id) throws  Exception{
+			MultipartHttpServletRequest request,@RequestParam("courseId") Long course_id) throws  Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("resourceFile");
 		String lessonNum = request.getParameter("lessonNum");
@@ -201,6 +201,44 @@ public class TeacherCourseInfoDetailController {
 			}
 		}
 		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
+	}
+	
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/resource/edit",method=RequestMethod.POST)
+	public String TeacherCourseResourceEdit(HttpSession session,Model model,
+			MultipartHttpServletRequest request,@RequestParam("resourceId") Long resource_id) throws  Exception{
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		List<MultipartFile> files = request.getFiles("resourceFile");
+		String resourceName = request.getParameter("resourceName");
+		CourseResource resource = courseResourceService.findOneById(resource_id); 
+		for(int i=0;i<files.size();i++){
+			if(!files.get(i).isEmpty()){
+				MultipartFile multipartFile = files.get(i);
+				Long type = Long.parseLong(request.getParameter("type"));
+				ResourceType resourceType = resourceTypeService.findOneById(type);
+				File oldResource = new File(resource.getSavePath());
+				if(oldResource != null){
+					oldResource.delete();
+				}
+				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 	
+				String fileName = multipartFile.getOriginalFilename();
+				resource.setFileName(resourceName);
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				String date = format.format(new Date());
+				resource.setDate(date);
+				TeacherCourse teacherCourse = courseService.findOneById(resource.getCourse_id());
+				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+File.separator+resource.getLessonNum();
+				FileUtil.createRealPath(path, session);
+				File saveDest = new File(path + File.separator + fileName);
+				multipartFile.transferTo(saveDest);
+				String savePath = path+File.separator+fileName;
+				resource.setSavePath(savePath);
+				resource.setSaveName(fileName);
+				resource.setResourceType(resourceType);
+				courseResourceService.createCourseResource(resource);
+			}
+		}
+		return "redirect:/admin/teacher/course/edit/"+resource.getCourse_id()+"/modifycourse";
 	}
 	
 	

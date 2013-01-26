@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.controllers.teacher.TeacherPersonalInfoForm;
@@ -133,16 +134,6 @@ public class TeacherCourseInfoPageController {
 		model.addAttribute("courseMap", courseMap);
 		return "admin.teacher.course.view";
 	}
-
-	
-	/*@RequestMapping(value="/admin/teacher/teacherCourse/detailCourse")
-	public String detailCourse(@RequestParam("id") Long id, Model m){
-		TeacherCourse course = teacherCourseService.findOneById(id);
-		List<CourseResource> resourceList = courseResourceService.getAllCourseResourceById(id);
-		m.addAttribute("course", course);
-		m.addAttribute("resourceList",resourceList);
-		return "admin.teacher.teacherCourse.detailCourse";
-	}*/
 	
 	@RequestMapping(value="/teacher/{teacher_id}/course/list")
 	public String getAllTeacherCourse(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
@@ -375,7 +366,7 @@ public class TeacherCourseInfoPageController {
 		return "admin.teacher.course.preview";
 	}
 
-	@RequestMapping(value="/checkCoursePwd")
+	@RequestMapping(value="/checkCoursePwd", method = RequestMethod.POST)
 	public String checkCoursePwd(@RequestParam("cid") Long course_id,@RequestParam("coursepwd") String pwd,HttpServletRequest request,HttpServletResponse response ) throws IOException{
 		logger.info("==== into the ajax checkCoursePwd controller ===="+course_id+pwd);
 		PrintWriter out = response.getWriter();
@@ -494,6 +485,17 @@ public class TeacherCourseInfoPageController {
 		out.close();
 	}
 	
+	@RequestMapping(value="/admin/teacher/course/resource/edit/ajax")
+	public String courseResourceEditAjax(@RequestParam("resourceId") Long resource_id,HttpServletRequest request,HttpServletResponse response ) throws IOException{
+		logger.info("==== into thecourseResourceEditAjax controller ===="+resource_id);
+		PrintWriter out = response.getWriter();
+		CourseResource resource = courseResourceService.findOneById(Long.valueOf(resource_id));
+		Gson g = new Gson();
+		out.print(g.toJson(resource));
+		out.flush();
+		out.close();
+		return null;
+	}
 	
 	/*	
 	@RequestMapping(value="/admin/teacher/allCourse/list")
