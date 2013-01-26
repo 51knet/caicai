@@ -83,7 +83,7 @@
 
 				<div class="tab-pane <c:if test='${active == "second"}'>active</c:if>" id="second_tab">
 					<form:form class="form-horizontal" action="new/secondstep" method="post" onsubmit="return checkPwd()">
-						<input type="hidden" name="cid" value="${cid }" />
+						<input type="hidden" name="courseId" value="${courseId }" />
 						<div class="modal-body" id="pwdform">
 							设置密码：<input type="text" id="pwd" name="pwd" style="width: 250px;" onblur="showCheckpwd()">
 						</div>
@@ -105,7 +105,7 @@
 				<!-- third -->
 				<div class="tab-pane  <c:if test='${active == "third"}'>active</c:if>" id="third_tab">
 					<form:form class="form-horizontal" action="new/thirdstep" method="post" enctype="multipart/form-data">
-						<input type="hidden" value="${cid }" name="cid" />
+						<input type="hidden" value="${courseId }" name="courseId" />
 						<div class="modal-body">
 							上传资源：&nbsp;<input type="file" name="resourceFile" style="width: 380px;" />&nbsp;&nbsp;
 							<!-- <input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span> -->

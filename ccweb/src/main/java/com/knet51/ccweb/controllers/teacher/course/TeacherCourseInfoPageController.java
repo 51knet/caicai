@@ -251,6 +251,9 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/new/secondstep",method=RequestMethod.POST)
 	public String addCourseSecond(@RequestParam("courseId") Long course_id,@RequestParam("pwd") String pwd, 
 			@RequestParam("status") Integer status, Model model,RedirectAttributes redirectAttributes){
+		if(course_id == null){
+			return "redirect:/admin/teacher/course/list";
+		}
 		TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
 		course.setPwd(pwd.trim());
 		course.setStatus(status);
@@ -263,6 +266,9 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/teacher/course/new/thirdstep",method=RequestMethod.POST)
 	public String addCourseThird(HttpSession session,Model model,
 			MultipartHttpServletRequest request,@RequestParam("courseId") Long course_id) throws  Exception{
+		if(course_id == null){
+			return "redirect:/admin/teacher/course/list";
+		}
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("resourceFile");
 		String resourceDesc = request.getParameter("resourceDesc");
@@ -275,18 +281,14 @@ public class TeacherCourseInfoPageController {
 				String fileName = multipartFile.getOriginalFilename();
 				String name = fileName.substring(0, fileName.indexOf("."));
 				resource.setFileName(name);
-				
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String date = format.format(new Date());
 				resource.setDate(date);
-				
 				TeacherCourse teacherCourse = teacherCourseService.findOneById(Long.valueOf(course_id));
-				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
 				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+lessonNum;
 				FileUtil.createRealPath(path, session);
 				File saveDest = new File(path + File.separator + fileName);
 				multipartFile.transferTo(saveDest);
-			//	String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
 				String savePath = path+File.separator+fileName;
 				resource.setSavePath(savePath);
 				resource.setSaveName(fileName);

@@ -16,7 +16,6 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -58,50 +57,6 @@ public class TeacherCourseInfoDetailController {
 	@Autowired
 	private ResourceTypeService resourceTypeService;
 	
-	@Transactional
-	@RequestMapping(value="/admin/teacher/course/create",method=RequestMethod.POST)
-	public String TeacherCourseAddInfo(@Valid TeacherCourseInfoForm courseInfoForm,
-			BindingResult validResult, HttpSession session,MultipartHttpServletRequest request) throws Exception{
-		logger.info("#### Into TeacherCourseAdd Controller ####");
-		if(validResult.hasErrors()){
-			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/course/list";
-		}else{
-			List<MultipartFile> files = request.getFiles("coverFile");
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Teacher teacher = teacherService.findOne(userInfo.getId());
-			TeacherCourse course = new TeacherCourse();
-			String courseName = courseInfoForm.getCourseName();
-			String courseDesc = courseInfoForm.getCourseDesc();
-			course.setCourseName(courseName);
-			course.setCourseDesc(courseDesc);
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			String date = format.format(new Date());
-			course.setCourseDate(date);
-			course.setTeacher(teacher);
-			course.setCourseType(courseInfoForm.getCourseType());
-			for(int i=0;i<files.size();i++){
-				MultipartFile multipartFile = files.get(i);
-				if(!multipartFile.isEmpty()){
-					logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
-					String fileName = multipartFile.getOriginalFilename();
-					String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
-					String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+courseName;
-					logger.debug("Upload Path:"+path); 
-					FileUtil.createRealPath(path, session);
-					String previewFile = path+File.separator+"small"+"."+fileExtension;
-					File saveDest = new File(path + File.separator + fileName);
-					multipartFile.transferTo(saveDest);
-					FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
-					String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+File.separator+"small"+"."+fileExtension;
-					course.setCourseCover(savePath);
-				}
-			}
-			teacherCourseService.createTeacherCourse(course);
-			return "redirect:/admin/teacher/course/list";
-		}
-	
-	}
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/edit",method=RequestMethod.POST)
@@ -226,7 +181,7 @@ public class TeacherCourseInfoDetailController {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String date = format.format(new Date());
 				resource.setDate(date);
-				TeacherCourse teacherCourse = courseService.findOneById(resource.getCourse_id());
+				TeacherCourse teacherCourse = teacherCourseService.findOneById(resource.getCourse_id());
 				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+File.separator+resource.getLessonNum();
 				FileUtil.createRealPath(path, session);
 				File saveDest = new File(path + File.separator + fileName);
