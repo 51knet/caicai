@@ -62,7 +62,6 @@ public class HomeController {
 		model.addAttribute("teacherList", teacherList);
 		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(currentUser != null){
-			logger.info("=================="+currentUser.getName());
 			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
 			List<TeacherCourse> userCourse = new ArrayList<TeacherCourse>();
 			for (int i = 0; i < userCourseList.size(); i++) {
