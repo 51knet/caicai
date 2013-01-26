@@ -1,5 +1,6 @@
 package com.knet51.courses.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -19,6 +20,7 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
 import com.knet51.courses.beans.CourseBeans;
 import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.TeacherCourseService;
@@ -59,8 +61,15 @@ public class HomeController {
 		model.addAttribute("courseCount", cBeans.size());
 		model.addAttribute("teacherList", teacherList);
 		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		if(currentUser !=null){
-			List<TeacherCourse> userCourse = courseService.getCourseByUserId(currentUser.getId());
+		if(currentUser != null){
+			logger.info("=================="+currentUser.getName());
+			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
+			List<TeacherCourse> userCourse = new ArrayList<TeacherCourse>();
+			for (int i = 0; i < userCourseList.size(); i++) {
+				TeacherCourse teacherCourse = courseService.findOneById(userCourseList.get(i).getTeachercourseid());
+				userCourse.add(teacherCourse);
+			}
+			
 			model.addAttribute("userCourse", userCourse);
 			model.addAttribute("userCourseCount", userCourse.size());
 		}

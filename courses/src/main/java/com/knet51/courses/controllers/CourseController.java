@@ -78,6 +78,9 @@ public class CourseController {
 		courseType = new String(courseType.getBytes("iso-8859-1"), "utf-8");
 		List<TeacherCourse> courseList = courseService.findAllCourses();
 		List<String> courseTypeList = courseService.courseTypeList();
+		for (int i = 0; i < courseTypeList.size(); i++) {
+			logger.info("=================="+courseTypeList.get(i));
+		}
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
 		if (courseType.trim() != null && !courseType.trim().equals("全部课程")
 				&& !courseType.trim().equals("all")) {
