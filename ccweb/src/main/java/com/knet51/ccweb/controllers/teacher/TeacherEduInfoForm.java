@@ -14,6 +14,7 @@ public class TeacherEduInfoForm {
 	private String startTime;
 	@NotEmpty
 	private String endTime;
+	@NotEmpty
 	private String educationDesc;
 
 	

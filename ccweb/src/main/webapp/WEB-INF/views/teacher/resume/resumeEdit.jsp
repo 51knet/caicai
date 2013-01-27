@@ -165,16 +165,17 @@
 							<input type="text" id="endTime" name="endTime" placeholder="结束时间"> <span class="help-inline"></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group"  id="educationDesc" >
 						<label class="control-label" for="educationDesc">详细介绍</label>
 						<div class="controls">
-							<textarea id="educationDesc" name="educationDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+							<textarea  name="educationDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
 							<span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="return eduOnclick();" class="btn btn-large btn-success">保 存</button>
+							<!-- <button type="submit" onclick="return eduOnclick();" class="btn btn-large btn-success">保 存</button> -->
+							<button type="submit"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeEduAddForm()" class="btn btn-large">取消</button>
 						</div>
 					</div>
@@ -742,7 +743,10 @@ $(document).ready(function() {
 			});
 		}
 	});
-	
+	$("#edu_info_form").submit(function(){
+		eduDescEditor.sync();
+		return checkEmptyAjax("edu_info_form","eduInfoAJAX");
+	});
 	var workDescEditor = KindEditor.create('textarea[name="workDesc"]',{
 		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
 		uploadJson : '${uploadJson}',
@@ -841,9 +845,9 @@ $(document).ready(function() {
 function personalOnclick(){
 	return checkEmptyAjax("personal_info_form","personalInfoAJAX");
 };
-function eduOnclick(){
+/* function eduOnclick(){
 	return checkEmptyAjax("edu_info_form","eduInfoAJAX");
-};
+}; */
 
 function thesisOnclick(){
 	return checkEmptyAjax("thesis_info_form","thesisInfoAJAX");

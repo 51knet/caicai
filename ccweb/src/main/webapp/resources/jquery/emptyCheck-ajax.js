@@ -118,7 +118,6 @@ function checkAjaxs(formID, actionName) {
 
 	});
 }*/
-
 function checkEmptyAjax(formID, actionName) {
 	var flag = false;
 	var $form = $('#' + formID);
