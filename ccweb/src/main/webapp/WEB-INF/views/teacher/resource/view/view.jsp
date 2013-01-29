@@ -33,7 +33,7 @@
 		<hr />
 		<div class="span12" style="margin-left: 5px; margin-right: 5px;">
 			<c:choose>
-				<c:when test="${resource.resourceDesc != null && resource.resourceDesc!=''}">${resource.resourceDesc}</c:when>
+				<c:when test="${resource.resourceDesc != null && resource.resourceDesc!=''}"> ${resource.resourceDesc} </c:when>
 				<c:otherwise>无描述</c:otherwise>
 			</c:choose>
 		</div>
