@@ -14,6 +14,7 @@ public class TeacherWorkExpInfoForm {
 	private String startTimeName;
 	@NotEmpty
 	private String endTimeName;
+	@NotEmpty
 	private String workDesc;
 	public String getCompany() {
 		return company;

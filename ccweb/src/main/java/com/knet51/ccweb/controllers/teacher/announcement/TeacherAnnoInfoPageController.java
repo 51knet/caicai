@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.controllers.teacher.TeacherContactInfoForm;
+import com.knet51.ccweb.controllers.teacher.TeacherWorkExpInfoForm;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
@@ -67,6 +68,11 @@ public class TeacherAnnoInfoPageController {
 		}else{
 			return "redirect:/admin/teacher/announcement/list";
 		}
+	}
+	@RequestMapping(value = "/admin/teacher/announcement/createAnnouncementAjax", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse announcementInfoFormAjaxJson(@Valid TeacherAnnoDetailInfoForm teacherAnnoDetailInfoForm, BindingResult result) {
+		//logger.info("------into workExp ajax");
+		return AjaxValidationEngine.process(result);
 	}
 	
 	@RequestMapping(value="/admin/teacher/announcement/create")

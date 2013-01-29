@@ -137,32 +137,32 @@
 					<div class="control-group" id="schoolName">
 						<label class="control-label" for="schoolName">学校</label>
 						<div class="controls">
-							<input type="text" name="schoolName" id="schoolName" placeholder="学校" data-provide="typeahead" data-items="8"
+							<input type="text" name="schoolName"  placeholder="学校" data-provide="typeahead" data-items="8"
 								data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'> <span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group" id="collegeName">
 						<label class="control-label" for="collegeName">学院</label>
 						<div class="controls">
-							<input type="text" name="collegeName" id="collegeName" value="" placeholder="学院"> <span class="help-inline"></span>
+							<input type="text" name="collegeName"  value="" placeholder="学院"> <span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group" id="degree">
 						<label class="control-label" for="degree">学历</label>
 						<div class="controls">
-							<input type="text" id="degree" name="degree" placeholder="学历"> <span class="help-inline"></span>
+							<input type="text"  name="degree" placeholder="学历"> <span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group" id="startTime">
 						<label class="control-label" for="startTime">开始时间</label>
 						<div class="controls">
-							<input type="text" id="startTime" name="startTime" placeholder="开始时间"> <span class="help-inline"></span>
+							<input type="text"  name="startTime" placeholder="开始时间"> <span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group" id="endTime">
 						<label class="control-label" for="endTime">结束时间</label>
 						<div class="controls">
-							<input type="text" id="endTime" name="endTime" placeholder="结束时间"> <span class="help-inline"></span>
+							<input type="text"  name="endTime" placeholder="结束时间"> <span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group"  id="educationDesc" >
@@ -174,7 +174,6 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<!-- <button type="submit" onclick="return eduOnclick();" class="btn btn-large btn-success">保 存</button> -->
 							<button type="submit"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeEduAddForm()" class="btn btn-large">取消</button>
 						</div>
@@ -278,16 +277,16 @@
 							<input type="text" name="endTimeName" placeholder="结束时间"> <span class="help-inline"><form:errors path="endTime" /></span>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="control-group" id="workDesc">
 						<label class="control-label" for="workDesc">详细介绍</label>
 						<div class="controls">
-							<textarea id="workDesc" name="workDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+							<textarea  name="workDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
 							<span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="return workOnclick();" class="btn btn-large btn-success">保 存</button>
+							<button type="submit"  class="btn btn-large btn-success">保 存</button>
 							<button type="reset" onclick="closeWorkAddForm()" class="btn btn-large">取消</button>
 						</div>
 					</div>
@@ -395,7 +394,7 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" onclick="return thesisOnclick();" class="btn btn-large btn-success">保 存</button>
+							<button type="submit" class="btn btn-large btn-success">保 存</button>
 							<button class="btn" type="reset" onclick="hiddenThesisAddForm()">取消</button>
 						</div>
 					</div>
@@ -450,16 +449,16 @@
 								<input type="text" name="projectEndTime" placeholder="结束时间"> <span class="help-inline"><form:errors path="projectEndTime" /></span>
 							</div>
 						</div>
-						<div class="control-group">
+						<div class="control-group" id="projectDesc">
 							<label class="control-label" for="projectDesc">详细介绍</label>
 							<div class="controls">
-								<textarea id="projectDesc" name="projectDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+								<textarea  name="projectDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
 								<span class="help-inline"></span>
 							</div>
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" onclick="return projectOnclick();" class="btn btn-large btn-success">保存</button>
+								<button type="submit"  class="btn btn-large btn-success">保存</button>
 								&nbsp;&nbsp;
 								<button class="btn  btn-large" type="reset" onclick="hiddenProjectAddForm()">取消</button>
 							</div>
@@ -554,16 +553,16 @@
 								<input type="text" name="number" placeholder="专利号"> <span class="help-inline"><form:errors path="number" /></span>
 							</div>
 						</div>
-						<div class="control-group">
+						<div class="control-group"  id="patentDesc">
 							<label class="control-label" for="patentDesc">详细介绍</label>
 							<div class="controls">
-								<textarea id="patentDesc" name="patentDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+								<textarea name="patentDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
 								<span class="help-inline"></span>
 							</div>
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" onclick="return patentOnclick();" class="btn btn-large btn-success">保存</button>
+								<button type="submit"  class="btn btn-large btn-success">保存</button>
 								<button class="btn  btn-large" type="reset" onclick="hiddenPatentAddForm()">取消</button>
 							</div>
 						</div>
@@ -645,16 +644,16 @@
 								<input type="text" name="reason" placeholder="获奖原因"> <span class="help-inline"><form:errors path="reason" /></span>
 							</div>
 						</div>
-						<div class="control-group">
+						<div class="control-group" id="honorDesc">
 							<label class="control-label" for="honorDesc">详细介绍</label>
 							<div class="controls">
-								<textarea id="honorDesc" name="honorDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+								<textarea  name="honorDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
 								<span class="help-inline"></span>
 							</div>
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" onclick="return honorOnclick();" class="btn btn-large btn-success">保存</button>
+								<button type="submit"  class="btn btn-large btn-success">保存</button>
 								<button class="btn  btn-large" type="reset" onclick="hiddenHonorAddForm()">取消</button>
 							</div>
 						</div>
@@ -764,6 +763,10 @@ $(document).ready(function() {
 			});
 		}
 	});
+	$("#workExpForm").submit(function(){
+		workDescEditor.sync();
+		return checkEmptyAjax("workExpForm","workExpInfoAJAX");
+	});
 	
 	var contextEditor = KindEditor.create('textarea[name="content"]',{
 		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
@@ -781,6 +784,10 @@ $(document).ready(function() {
 				document.forms['detail_form'].submit();
 			});
 		}
+	});
+	$("#thesis_info_form").submit(function(){
+		contextEditor.sync();
+		return checkEmptyAjax("thesis_info_form","thesisInfoAJAX");
 	});
 	
 	var projectEditor = KindEditor.create('textarea[name="projectDesc"]',{
@@ -800,7 +807,10 @@ $(document).ready(function() {
 			});
 		}
 	});
-	
+	$("#project_info_form").submit(function(){
+		projectEditor.sync();
+		return checkEmptyAjax("project_info_form","projectInfoAJAX");
+	});
 	var patentEditor = KindEditor.create('textarea[name="patentDesc"]',{
 		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
 		uploadJson : '${uploadJson}',
@@ -818,8 +828,10 @@ $(document).ready(function() {
 			});
 		}
 	});
-	
-
+	$("#patent_info_form").submit(function(){
+		patentEditor.sync();
+		return checkEmptyAjax("patent_info_form","patentInfoAJAX");
+	});
 	
 	var honorEditor = KindEditor.create('textarea[name="honorDesc"]',{
 		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
@@ -838,28 +850,15 @@ $(document).ready(function() {
 			});
 		}
 	});
-	
+	$("#honor_info_Form").submit(function(){
+		honorEditor.sync();
+		return checkEmptyAjax("honor_info_Form","honorInfoAJAX");
+	});
 	prettyPrint();
 });
 
 function personalOnclick(){
 	return checkEmptyAjax("personal_info_form","personalInfoAJAX");
-};
-/* function eduOnclick(){
-	return checkEmptyAjax("edu_info_form","eduInfoAJAX");
-}; */
-
-function thesisOnclick(){
-	return checkEmptyAjax("thesis_info_form","thesisInfoAJAX");
-};
- function projectOnclick (){
-	return checkEmptyAjax("project_info_form","projectInfoAJAX");
-};
-function patentOnclick (){
-	return checkEmptyAjax("patent_info_form","patentInfoAJAX");
-};
-function honorOnclick(){
-	return checkEmptyAjax("honor_info_Form","honorInfoAJAX");
 };
 $(document).ready(function(){
 	$("#context").focus(function(){

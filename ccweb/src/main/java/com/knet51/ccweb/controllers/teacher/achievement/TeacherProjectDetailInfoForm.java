@@ -11,6 +11,7 @@ public class TeacherProjectDetailInfoForm {
 	private String projectStartTime;
 	@NotEmpty
 	private String projectEndTime;
+	@NotEmpty
 	private String projectDesc;
 	
 	public String getProjectTitle() {

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <style>
 	.row-fluid.custom {
 	margin-bottom: 20px;
@@ -23,13 +24,20 @@
 		<a href='<c:url value="/admin/teacher/announcement/list"></c:url>' ><b>教师公告</b></a><hr>
 		<div style="text-align: left;">
 			
-			<form action= "new"  method="post" name="anno_post">
-				公告标签：<input type="text" name="title"  placeholder="公告标签">
-				<span class="help-block"><form:errors path="title"></form:errors></span>
-				
-				<textarea cols="100" rows="20" style="width:700px;height:300px;"  name="content" id="textarea" placeholder="Content" ></textarea>
-				<span class="help-block"><form:errors path="content"></form:errors></span>
-			
+			<form action= "new"  method="post" name="anno_post" id="announcement_new_form">
+				<div class="control-group" id="title">
+					<label class="control-label" for="title">公告标签</label>
+					<div class="controls">
+						<input type="text" name="title" placeholder="公告标签"> <span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="control-group" id="content">
+					<label class="control-label" for="content">公告内容</label>
+					<div class="controls">
+						<textarea  cols="100" rows="20" style="width:700px;height:300px;"  name="content"  placeholder="公告内容"></textarea>
+						<span class="help-inline"></span>
+					</div>
+				</div>
 				<label style="clear: right;"></label>
 				<button type="submit" class="btn btn-primary">保存</button>&nbsp;&nbsp;
 				<button type="reset" class="btn">取消</button>
@@ -57,6 +65,10 @@
 								document.forms['anno_post'].submit();
 							});
 						}
+					});
+					$("#announcement_new_form").submit(function(){
+						editor.sync();
+						return checkEmptyAjax("announcement_new_form","createAnnouncementAjax")
 					});
 					prettyPrint();
 			    });

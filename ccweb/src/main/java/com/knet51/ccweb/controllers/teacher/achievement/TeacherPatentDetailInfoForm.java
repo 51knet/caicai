@@ -11,6 +11,7 @@ public class TeacherPatentDetailInfoForm {
 	private String patentType;
 	@NotEmpty
 	private String number;
+	@NotEmpty
 	private String patentDesc;
 	public String getInventer() {
 		return inventer;

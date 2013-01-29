@@ -7,6 +7,7 @@ public class TeacherHonorDetailInfoForm {
 	private String honorName;
 	@NotEmpty
 	private String reason;
+	@NotEmpty
 	private String honorDesc;
 	
 	public String getHonorName() {
