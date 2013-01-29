@@ -17,15 +17,6 @@
 -->
 </style>
 <script type="text/javascript">
-	function showAddResourceForm(courseOrder){
-		var id = courseOrder+"_resourceForm";
-		$("#"+id).css("display","block");
-	}
-	function closeResourceForm(courseOrder){
-		var id = courseOrder+"_resourceForm";
-		$("#"+id).css("display","none");
-	}
-	
 	function deleLessonNum(lesson_id){
 		$.ajax({
 			  type: "post",
@@ -50,6 +41,12 @@
 			var honor_id = $(this).next().val();
 			$('#deleteHonorPostModal #lessonId').val(honor_id);	
 		});
+		
+		$('.deleteResourcePostBtn').on('click', function() {
+			var resource_id = $(this).next().val();
+			//alert(resource_id);
+			$(' #c_resource_Id').val(resource_id);	
+		});
 	});
 </script>
 <div style="margin-top: 10px;">
@@ -65,7 +62,7 @@
 									<td align="left">
 										<div style="font-size: 15px;  background-color: #f2f2f2; padding: 3px;" >
 											<b>第${lesson.lessonNum}课时</b>
-											<span style="float: right; margin-right: 27px; font-size: 13px;">
+											<span style="float: right; margin-right: 20px; font-size: 13px;">
 												<c:if test="${lesson.status != null }"> <a  class="deleteHonorPostBtn" href="#deleteHonorPostModal" data-toggle="modal" data-target="#deleteHonorPostModal" role="button" onclick="deleLessonNum(${lesson.id })"><b>删除课时</b></a>  |</c:if> 
 												<a href="#" onclick="showAddResourceForm(${lesson.lessonNum})"><b>添加资源</b></a>
 											</span>
@@ -76,11 +73,13 @@
 														<input type="hidden" name="courseId" value="${course.id}">
 														资源名称：<input type="text" style="width: 207px;" name="resourceName" >&nbsp;“如：第一讲：物种的起源”<br>
 														资源类别：<select name="type"   style="width: 220px;">
-																			<option >请选择</option>
+																			<!-- <option >请选择</option>
 																			<c:forEach items="${type}" var="l">
 																				<option  value="${l.id}">${l.typeName}</option>
-																			</c:forEach>
-																		</select><br>
+																			</c:forEach> -->
+																			<option value="1"  selected>文档</option>
+																			<option value="2">视频</option>
+																		</select><br> 
 														上传资源：<input type="file" name="resourceFile" >&nbsp;不大于200M
 														<button type="reset"   class="btn " style="margin-left: 5px;float: right;" onclick="closeResourceForm(${lesson.lessonNum})">取消</button>
 														<button type="submit"   class="btn  btn-success" style=" float: right;">上传</button>&nbsp;&nbsp;
@@ -94,10 +93,11 @@
 														<div style="font-size: 13px;">
 															<c:if test="${fileNames.fileName != null }">
 																<div style="width: 100%; float: left;margin-top: 5px; margin-bottom:5px; border-bottom: 1px dotted #dcdcdc;">
-																	<span style="margin-left: 30px; ">${fileNames.fileName}</span>
+																	<a  href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'><span style="margin-left: 30px; ">${fileNames.fileName}</span></a> 
 																	<span style="float: right;font-size: 13px;">
 																		<a href='javascript:void(0)' onclick="editCourseResource(${fileNames.id})">修改</a>  | 
-																		<a style=" margin-right: 31px;" href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>删除</a> 
+																		<a  style=" margin-right: 24px;" class="deleteResourcePostBtn" href="#deleteResourcePostModal" role="button" data-toggle="modal" data-target="#deleteResourcePostModal">删除</a>
+																		<input type="hidden" value="${fileNames.id}">
 																	</span>
 																</div>
 															</c:if>
@@ -112,7 +112,6 @@
 												<input type="hidden" name="courseId" id="editResourceId" >
 												资源名称：<input type="text" style="width: 207px;" id="editResourceName" name="resourceName" >&nbsp;“如：第一讲：物种的起源”<br>
 												资源类别：<select name="type" id="editResourceType"   style="width: 220px;">
-																	<option >请选择</option>
 																	<c:forEach items="${type}" var="l">
 																		<option  value="${l.id}">${l.typeName}</option>
 																	</c:forEach>
@@ -154,7 +153,26 @@
 						<button class="btn btn-primary">确定</button>
 					</form>
 				</div>
-			</div>
+		</div>
+		
+		<!-- delete resource) -->
+		<div class="modal hide fade" id="deleteResourcePostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			    <h3 id="myModalLabel">请注意</h3>
+			  </div>
+			  <div class="modal-body">
+			    <p>你确定恢复该课程吗？</p>
+			  </div>
+			  <div class="modal-footer">
+			    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+			    <form action='<c:url value="/admin/teacher/course/resource/destory"></c:url>' method="post" style="display: inline-block;" >
+			    	<input id="c_resource_Id" type="hidden" name="resourceId" />
+			    	<button class="btn btn-primary">确定</button>
+			    </form>
+			  </div>
+		</div>
+		
 	</div>
 </div>
 <script type="text/javascript">
@@ -178,6 +196,15 @@
 	function closeEditResourceForm(){
 		$("#courseResourceShow").css("display","block");
 		$("#editCourseResourceForm").css("display","none");
+	}
+	
+	function showAddResourceForm(courseOrder){
+		var id = courseOrder+"_resourceForm";
+		$("#"+id).css("display","block");
+	}
+	function closeResourceForm(courseOrder){
+		var id = courseOrder+"_resourceForm";
+		$("#"+id).css("display","none");
 	}
 </script>
 		

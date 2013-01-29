@@ -166,18 +166,17 @@ public class TeacherCourseInfoDetailController {
 		List<MultipartFile> files = request.getFiles("resourceFile");
 		String resourceName = request.getParameter("resourceName");
 		CourseResource resource = courseResourceService.findOneById(resource_id); 
+		Long type = Long.parseLong(request.getParameter("type"));
+		ResourceType resourceType = resourceTypeService.findOneById(type);
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
-				Long type = Long.parseLong(request.getParameter("type"));
-				ResourceType resourceType = resourceTypeService.findOneById(type);
 				File oldResource = new File(resource.getSavePath());
 				if(oldResource != null){
 					oldResource.delete();
 				}
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 	
 				String fileName = multipartFile.getOriginalFilename();
-				resource.setFileName(resourceName);
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String date = format.format(new Date());
 				resource.setDate(date);
@@ -189,10 +188,25 @@ public class TeacherCourseInfoDetailController {
 				String savePath = path+File.separator+fileName;
 				resource.setSavePath(savePath);
 				resource.setSaveName(fileName);
-				resource.setResourceType(resourceType);
-				courseResourceService.createCourseResource(resource);
+				
 			}
+			resource.setFileName(resourceName);
+			resource.setResourceType(resourceType);
+			courseResourceService.createCourseResource(resource);
 		}
+		return "redirect:/admin/teacher/course/edit/"+resource.getCourse_id()+"/modifycourse";
+	}
+	
+	@Transactional
+	@RequestMapping(value="/admin/teacher/course/resource/destory",method=RequestMethod.POST)
+	public String destoryTeacherCourseResource(HttpSession session,Model model,
+			@RequestParam("resourceId") Long resource_id) throws  Exception{
+		CourseResource resource = courseResourceService.findOneById(resource_id); 
+		File oldResource = new File(resource.getSavePath());
+		if(oldResource != null){
+			oldResource.delete();
+		}
+		courseResourceService.deleCourseResource(resource_id);
 		return "redirect:/admin/teacher/course/edit/"+resource.getCourse_id()+"/modifycourse";
 	}
 	
@@ -283,7 +297,8 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/basicinfomodify",method=RequestMethod.POST)
-	public String modifyBasicMessage(HttpSession session,@RequestParam("courseId") Long id,Model model,HttpServletRequest request,@Valid TeacherCourseInfoForm teacherCourseInfoForm,BindingResult validResult){
+	public String modifyBasicMessage(HttpSession session,@RequestParam("courseId") Long id,Model model,
+			HttpServletRequest request,@Valid TeacherCourseInfoForm teacherCourseInfoForm,BindingResult validResult){
 		if (validResult.hasErrors()) {
 			logger.info("detailInfoForm Validation Failed " + validResult);
 			return "redirect:/admin/teacher/course/edit/{id}/basicinfo";
@@ -463,7 +478,6 @@ public class TeacherCourseInfoDetailController {
 				return "redirect:/admin/teacher/course/list";
 			}
 		}
-		course.setPublish(GlobalDefs.PUBLISH_NUM_RECYCLE);
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.deletecourse";
 	}
@@ -484,7 +498,8 @@ public class TeacherCourseInfoDetailController {
 				return "redirect:/admin/teacher/course/list";
 			}
 		}
-		teacherCourseService.deleTeacherCourse(id);
+		course.setPublish(GlobalDefs.PUBLISH_NUM_RECYCLE);
+		teacherCourseService.createTeacherCourse(course);
 		return "redirect:/admin/teacher/course/list";
 	}
 	

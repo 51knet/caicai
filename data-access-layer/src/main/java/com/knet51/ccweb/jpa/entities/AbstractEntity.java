@@ -5,6 +5,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * Base class to derive entity classes from.
  * 
@@ -12,7 +14,7 @@ import javax.persistence.MappedSuperclass;
  */
 @MappedSuperclass
 public class AbstractEntity {
-
+	@Expose
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
