@@ -7,6 +7,7 @@
 <link href="<c:url value="/resources/js/uploadify/css/uploadify.css" />" rel="stylesheet" type="text/css" />
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/uploadify/js/jquery.uploadify.v2.0.1.js" />"></script>
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/uploadify/js/swfobject.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <style>
 <!--
  .cont {
@@ -51,6 +52,9 @@
 			$('#deleteHonorPostModal #lessonId').val(honor_id);	
 		});
 	});
+	function upLoadClick(){
+		return checkEmptyAjax("personal_info_form","personalInfoAJAX");
+	}
 </script>
 <div style="margin-top: 10px;">
 	<a href="#">课程资料</a>
@@ -74,6 +78,20 @@
 														<input type="hidden" name="lessonNum" value="${lesson.lessonNum }">
 														<input type="hidden" name="lessonId" value="${lesson.id}">
 														<input type="hidden" name="courseId" value="${course.id}">
+														
+														<div class="control-group" id="fileName">
+															<label class="control-label" for="fileName">资源名称</label>
+															<div class="controls">
+																<input type="text" style="width: 207px;" name="fileName" >&nbsp;“如：第一讲：物种的起源”<br>
+															</div>
+														</div>
+														
+														
+														
+														
+														
+														
+														
 														资源名称：<input type="text" style="width: 207px;" name="resourceName" >&nbsp;“如：第一讲：物种的起源”<br>
 														资源类别：<select name="type"   style="width: 220px;">
 																			<option >请选择</option>
@@ -83,7 +101,7 @@
 																		</select><br>
 														上传资源：<input type="file" name="resourceFile" >&nbsp;不大于200M
 														<button type="reset"   class="btn " style="margin-left: 5px;float: right;" onclick="closeResourceForm(${lesson.lessonNum})">取消</button>
-														<button type="submit"   class="btn  btn-success" style=" float: right;">上传</button>&nbsp;&nbsp;
+														<button type="submit" onclick="upLoadClick();"  class="btn  btn-success" style=" float: right;">上传</button>&nbsp;&nbsp;
 													</form>
 											</div>
 										</div>
