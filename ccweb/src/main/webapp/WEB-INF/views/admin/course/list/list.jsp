@@ -78,13 +78,13 @@
 							</div> -->
 							<c:if test="${page.publish ==1 }">
 							<!--  	<a href='<c:url value="/admin/teacher/course/recover/${page.id}"></c:url>'>恢复</a>-->
-								 <a class="recoverCoursePostBtn" href="#recoverCoursePostModal" role="button" data-toggle="modal" data-target="#recoverAnnoPostModal">恢复</a>  | 
+								 <a class="recoverCoursePostBtn" href="#recoverCoursePostModal" role="button" data-toggle="modal" data-target="#recoverCoursePostModal">恢复</a>  | 
 								<!-- <a href='<c:url value="/admin/teacher/course/deleted/${page.id}"></c:url>'>彻底删除</a> -->
-								 <a class="deleteCoursePostBtn" href="#deleteCoursePostModal" role="button" data-toggle="modal" data-target="#deleteAnnoPostModal">彻底删除</a>
+								 <a class="deleteCoursePostBtn" href="#deleteCoursePostModal" role="button" data-toggle="modal" data-target="#deleteCoursePostModal">彻底删除</a>
 							</c:if>
 							<c:if test="${page.publish ==2 ||page.publish ==3 }">
 								<!-- <a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a>  -->	
-									 <a class="destoryCoursePostBtn" href="#destoryCoursePostModal" role="button" data-toggle="modal" data-target="#destoryAnnoPostModal">删除</a> 
+									 <a class="destoryCoursePostBtn" href="#destoryCoursePostModal" role="button" data-toggle="modal" data-target="#destoryCoursePostModal">删除</a> 
 									| <a href='<c:url value="/admin/teacher/course/edit/${page.id}/modifycourse"></c:url>'>修改</a>							
 							</c:if>
 							 <input type="hidden"  value="${page.id}" id="courseId">
@@ -130,7 +130,7 @@
 	</div>
 </div>
 <!-- destory course (remove to recycle) -->
-<div class="modal hide fade" id="destoryAnnoPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal hide fade" id="destoryCoursePostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    <h3 id="myModalLabel">请注意</h3>
@@ -148,7 +148,7 @@
 </div>
 
 <!-- delete course from recycle) -->
-<div class="modal hide fade" id="deleteAnnoPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal hide fade" id="deleteCoursePostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    <h3 id="myModalLabel">请注意</h3>
@@ -166,7 +166,7 @@
 </div>
 
 <!-- recover course from recycle) -->
-<div class="modal hide fade" id="recoverAnnoPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal hide fade" id="recoverCoursePostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    <h3 id="myModalLabel">请注意</h3>
@@ -199,7 +199,6 @@ $(document).ready(function() {
 	$('.deleteCoursePostBtn').on('click', function() {
 		var course_id = $("#courseId").val();
 		$(' #c_recycle_Id').val(course_id);	
-		
 	});
 	$('.recoverCoursePostBtn').on('click', function() {
 		var course_id = $("#courseId").val();

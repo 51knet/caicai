@@ -5,13 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import com.google.gson.annotations.Expose;
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 
 @Entity
 public class CourseResource extends AbstractEntity {
-	
+	@Expose
 	private String fileName;
 	private String saveName;
 	private String savePath;
@@ -22,6 +23,7 @@ public class CourseResource extends AbstractEntity {
 	private String date;
 	private Long course_id;
 	private Long courseLessonId;
+	@Expose
 	@ManyToOne
 	private ResourceType resourceType;
 	@ManyToOne

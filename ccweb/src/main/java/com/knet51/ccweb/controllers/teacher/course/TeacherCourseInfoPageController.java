@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.controllers.teacher.TeacherPersonalInfoForm;
@@ -492,7 +493,7 @@ public class TeacherCourseInfoPageController {
 		logger.info("==== into thecourseResourceEditAjax controller ===="+resource_id);
 		PrintWriter out = response.getWriter();
 		CourseResource resource = courseResourceService.findOneById(Long.valueOf(resource_id));
-		Gson g = new Gson();
+		Gson g = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		out.print(g.toJson(resource));
 		out.flush();
 		out.close();
