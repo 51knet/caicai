@@ -92,13 +92,33 @@
 													<c:forEach var="fileNames" items="${cm.value}"> 
 														<div style="font-size: 13px;">
 															<c:if test="${fileNames.fileName != null }">
-																<div style="width: 100%; float: left;margin-top: 5px; margin-bottom:5px; border-bottom: 1px dotted #dcdcdc;">
-																	<a  href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'><span style="margin-left: 30px; ">${fileNames.fileName}</span></a> 
-																	<span style="float: right;font-size: 13px;">
-																		<a href='javascript:void(0)' onclick="editCourseResource(${fileNames.id})">修改</a>  | 
-																		<a  style=" margin-right: 24px;" class="deleteResourcePostBtn" href="#deleteResourcePostModal" role="button" data-toggle="modal" data-target="#deleteResourcePostModal">删除</a>
-																		<input type="hidden" value="${fileNames.id}">
-																	</span>
+																<div style="width: 100%; float: left;margin-top: 5px; margin-bottom:1px; border-bottom: 1px dotted #dcdcdc;">
+																	<table style="width: 90%;margin-left: 20px;" >
+																		<tbody>
+																			<tr>
+																				<td width="8%"> 
+																					<c:if test="${fileNames.resourceType.id ==1 }">
+																					 	<img src='<c:url value="/resources/resourceType/text.jpg"></c:url>'style="width: 40px;height: 40px; "/>
+																					 </c:if>
+																					  <c:if test="${fileNames.resourceType.id ==2 }">
+																					 	<img src='<c:url value="/resources/resourceType/video.jpg"></c:url>'style="width: 40px;height: 40px; "/>
+																					 </c:if>
+																				</td>
+																				<td align="left" width="60%">
+																					<a  href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>
+																						<span style="margin-left: 0px; ">${fileNames.fileName}</span>
+																					</a> 
+																				</td>
+																				<td align="right" width="32%">
+																					<span style="font-size: 13px;">
+																						<a href='javascript:void(0)' onclick="editCourseResource(${fileNames.id})">修改</a>  | 
+																						<a  style=" " class="deleteResourcePostBtn" href="#deleteResourcePostModal" role="button" data-toggle="modal" data-target="#deleteResourcePostModal">删除</a>
+																						<input type="hidden" value="${fileNames.id}">
+																					</span>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
 																</div>
 															</c:if>
 														</div>
