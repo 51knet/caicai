@@ -15,7 +15,8 @@ import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
 @SuppressWarnings("unchecked")
 public interface UserCourseRepository extends JpaRepository<UserCourse, Long>, JpaSpecificationExecutor<UserCourse>,UserCourseRepositoryCustom{
 	Page<UserCourse> findUserCourseByTeachercourseid(Long teachercourseid ,Pageable pageable);
-	List<UserCourse> findByTeachercourseid(Long teacherCourseId);
+	@Query("SELECT u FROM UserCourse u where u.teachercourseid =:teachercourseid AND u.teachercourseid IN (SELECT c.teachercourseid FROM UserCourse c)")
+	List<UserCourse> findByTeachercourseid(@Param("teachercourseid") Long teacherCourseId);
 	UserCourse save(UserCourse userCourse);
 	List<UserCourse> findUserCourseByUserid(Long user_id);
 	@Query("select c from UserCourse c where c.teachercourseid = :teachercourseid and c.userid = :userid")
