@@ -146,7 +146,7 @@ public class CourseController {
 		
 		model.addAttribute("teacher", teacher);
 		
-		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
+		List<CourseResource> listResource = courseResourceService.getResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList;
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String lessonNum = null;
@@ -191,8 +191,7 @@ public class CourseController {
 			userCourse.setUserid(userInfo.getId());
 			userCourseService.save(userCourse);
 		}
-		List<CourseResource> listResource = courseResourceService
-				.getResourceByCourseId(id);
+		List<CourseResource> listResource = courseResourceService.getResourceByCourseIdAndStatus(id, GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList = new ArrayList<CourseResource>();
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String resourceOrder = null;
