@@ -180,10 +180,10 @@ background: #F7F7F7;
 	<h2>热门教师（Top 50）</h2>
    	<div class="row">
       	<c:forEach items="${page.content}" var="t" >
-	      	<div class="span1" ><a href="http://www.51knet.com/ccweb/teacher/${t.id}">${t.user.name }</a></div>
+	      	<div class="span1" style="width: 175px;height: 200px;"><a href='<c:url value="/teacher/${t.id}"></c:url>'>${t.user.name }</a></div>
       	</c:forEach>      	
 	 </div>
-	 <div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+	 <div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp" ></jsp:include></div>
 </div>
 
 

@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 
@@ -40,7 +42,11 @@ public class TeacherController {
 		return "teacher.list";
 	}
 	@RequestMapping(value="/teacher/{teacher_id}")
-	public String showTeacherInfoById(@PathVariable Long teacher_id,Model model){
+	public String showTeacherInfoById(@PathVariable Long teacher_id,Model model,HttpSession session){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if (userInfo == null) {
+			return "redirect:/signin";
+		} 
 		Teacher teacher=teacherService.findOne(teacher_id);
 		List<String> courseTypeList = courseService.getCourseTypeByTeacherId(teacher_id);
 		List<TeacherCourse> teacherCourseList=courseService.getAllCourseByTeacherId(teacher_id);

@@ -76,47 +76,37 @@
   <div class="row" >
   		<a class="view-all-courses-link btn" href='<c:url value="/course/list/type?detail=all"></c:url>' >全部课程</a>
   </div>
-
 </div>
-
-
-
-<div class="container teacher">
+<div class="container teacher" >
   <h2>热门教师（Top 50）</h2>
   <div id="myTeacher" class="carousel slide">
-  <div class="carousel-inner">
+  <div class="carousel-inner" style="margin-bottom: -50px;">
     <div class="item active">
 	      <div class="row">
-	      	<c:forEach items="${teacherList}" var="t" begin="0" end="10"><div class="span1" ><a href="http://www.51knet.com/ccweb/teacher/${t.id}">${t.user.name }</a></div></c:forEach>      	
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
-	      </div>
+					<c:forEach items="${teacherList}" var="t" begin="0" end="4">
+						<div class="span1" style="width: 175px;height: 200px;">
+							<a href='<c:url value="/teacher/${t.id}"></c:url>'>${t.user.name }</a>
+						</div>
+					</c:forEach>
+				</div>
     </div>
     <div class="item">
-	      <div class="row">
-	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach> 
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
-	      </div>
+       <div class="row">
+			<c:forEach items="${teacherList}" var="t" begin="5" end="10">
+				<div class="span1" style="width: 175px;height: 200px;">
+					<a href='<c:url value="/teacher/${t.id}"></c:url>'>${t.user.name }</a>
+				</div>
+			</c:forEach>
+		</div>
     </div>
  	<div class="item">
 	      <div class="row">
-	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
-	      </div>
-	      <div class="row">
-	      	<c:forEach begin="0" end="10"><div class="span1"></div></c:forEach>  
-	      </div> 
+			<c:forEach items="${teacherList}" var="t" begin="11" end="15">
+				<div class="span1" style="width: 175px;height: 200px;">
+					<a href='<c:url value="/teacher/${t.id}"></c:url>'>${t.user.name }</a>
+				</div>
+			</c:forEach>
+		</div> 
     </div>
   </div>
   <div class="row">
