@@ -4,18 +4,17 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
+import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 
 public interface ResourceService {
 	
-	Resource create(Resource resource,User user);
+
+	void delete(CourseResource resource,Integer status);
 	
-	void delete(Resource resource,Integer status);
+	List<CourseResource> listAllByUser(User user);
 	
-	List<Resource> listAllByUid(Long uId);
+	CourseResource findOneById(Long id);
 	
-	Resource findOneById(Long Id);
+	Page<CourseResource> findAllResouByUserAndStatus(int pageNum, int pageSize, User user,Integer status);
 	
-	Page<Resource> findAllResouByUser(int pageNum, int pageSize, User user);
-	
-	void deleteResource(Long resource_id);
 }

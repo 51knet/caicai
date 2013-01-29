@@ -26,6 +26,7 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
+import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
@@ -171,10 +172,10 @@ public class HomeController {
 			Page<Announcement> annoPage = announcementService.findAllAnnoByUser(0, 4, user);
 			model.addAttribute("annolist", annoPage.getContent());
 			model.addAttribute("annoCount", annoPage.getContent().size());
-			Page<Resource> pageResource = resourceService.findAllResouByUser(0,
-					5, user);
-			List<Resource> resourceList = pageResource.getContent();
-			Integer resourceCount = resourceService.listAllByUid(id).size();
+			
+			Page<CourseResource> pageResource = resourceService.findAllResouByUserAndStatus(0, 5, user, GlobalDefs.STATUS_RESOURCE);
+			List<CourseResource> resourceList = pageResource.getContent();
+			Integer resourceCount = resourceService.listAllByUser(user).size();
 			model.addAttribute("resourceList", resourceList);
 			model.addAttribute("resourceCount", resourceCount);
 

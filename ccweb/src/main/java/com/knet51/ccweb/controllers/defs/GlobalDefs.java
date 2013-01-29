@@ -12,4 +12,5 @@ public final class GlobalDefs {
 	
 	public static final Integer STATUS_COURSE_RESOURCE = 1;// show the resource in course
 	public static final Integer STATUS_RESOURCE = 2; //show the resource in teacher resource
+	public static final Integer STATUS_RESOURCE_DESTORY = 3; //the resource has been deleted;
 }

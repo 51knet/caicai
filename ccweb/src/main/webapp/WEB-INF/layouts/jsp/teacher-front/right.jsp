@@ -85,7 +85,7 @@
 						<tbody>
 							<c:forEach var="resource" items="${resourceList}">
 								<tr>
-									<td  width="60%"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${resource.id}"></c:url>"> ${resource.name } </a>
+									<td  width="60%"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${resource.id}"></c:url>"> ${resource.fileName } </a>
 									</td>
 									<td width="20%">${resource.resourceType.typeName }</td>
 									<td>

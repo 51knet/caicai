@@ -81,6 +81,7 @@ public class TeacherResouDetailInfoController {
 				resource.setSaveName(fileName);
 				String savePath = path+File.separator+fileName;
 				resource.setSavePath(savePath);
+				resource.setStatus(GlobalDefs.STATUS_RESOURCE);
 				resource.setUser(user);
 				courseResourceService.createCourseResource(resource);
 			}
@@ -107,12 +108,8 @@ public class TeacherResouDetailInfoController {
 	@RequestMapping(value="/admin/teacher/resource/destory",method=RequestMethod.POST)
 	public String teacherResouDele(HttpSession session,Model model, @RequestParam("resourceId")Long resource_id) throws Exception{
 		logger.info("#####Into TeacherResouInfoDelePageController#####");
-//		Resource resource = resourceService.findOneById(id);
-//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		String date = format.format(new Date());
-//		resource.setDate(date);
-//		resourceService.delete(resource, 2);
-		resourceService.deleteResource(Long.valueOf(resource_id));
+		CourseResource resource = resourceService.findOneById(resource_id);
+		resourceService.delete(resource, GlobalDefs.STATUS_RESOURCE_DESTORY);
 		return "redirect:/admin/teacher/resource/list";
 	}
 	
@@ -162,7 +159,7 @@ public class TeacherResouDetailInfoController {
 	@RequestMapping(value="/resource/download/{resource_id}")
 	public String resourceDownLoad(@PathVariable Long resource_id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		logger.info("-------Into resource DownLoad controller------");
-		Resource resource = resourceService.findOneById(resource_id);
+		CourseResource resource = resourceService.findOneById(resource_id);
 		String savePath = resource.getSavePath();
 		String fileName = resource.getSaveName();
 		FileUtil.downLoad(request, response, savePath, fileName);
