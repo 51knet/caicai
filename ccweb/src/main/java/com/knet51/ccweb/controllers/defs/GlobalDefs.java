@@ -9,4 +9,7 @@ public final class GlobalDefs {
 	public static final Integer PUBLISH_NUM_ADMIN_FRONT = 3;//show it in the admin page and front page
 	public static final Integer STATUS_CCWEB = 1; //just show the course in ccweb
 	public static final Integer STATUS_CCWEB_COURSES = 2;//both show
+	
+	public static final Integer STATUS_COURSE_RESOURCE = 1;// show the resource in course
+	public static final Integer STATUS_RESOURCE = 2; //show the resource in teacher resource
 }

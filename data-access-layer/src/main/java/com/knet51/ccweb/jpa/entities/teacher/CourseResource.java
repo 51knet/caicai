@@ -23,6 +23,7 @@ public class CourseResource extends AbstractEntity {
 	private String date;
 	private Long course_id;
 	private Long courseLessonId;
+	private Integer status;
 	@Expose
 	@ManyToOne
 	private ResourceType resourceType;
@@ -94,6 +95,13 @@ public class CourseResource extends AbstractEntity {
 	}
 	public void setResourceDesc(String resourceDesc) {
 		this.resourceDesc = resourceDesc;
+	}
+	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	public CourseResource() {
 		super();

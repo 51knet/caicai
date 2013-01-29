@@ -77,7 +77,6 @@
 	<div class="row" style="margin-top: 10px;">
 		<a href='<c:url value="/admin/teacher/resource/list"></c:url>'><b>资源管理</b></a>>>资源添加<hr>
 		<div style="text-align: center;">
-			${user.user["email"] }<br>
 			<div style="text-align:center;">
 				<div style="width:560px; text-align:left;">
 					<form:form action="new/create" method="post" enctype="multipart/form-data" id="resource_form">  
@@ -91,8 +90,7 @@
 									<option  value="${l.id}">${l.typeName}</option>
 								</c:forEach>
 								</select>
-						&nbsp;&nbsp;<a href="javascript:void(0)"  onclick="showResourceTypeAdd()" style="color:red; font-size:14px;">点击添加新类别</a>
-						&nbsp;&nbsp;
+						<!-- &nbsp;&nbsp;<a href="javascript:void(0)"  onclick="showResourceTypeAdd()" style="color:red; font-size:14px;">点击添加新类别</a> -->
 							</div>
 					
 						上传资源：<input type="file" name="myFiles"  id="myFiles"/>&nbsp;&nbsp;<input  type="button" value="添加" onclick="addFile()"/>&nbsp;

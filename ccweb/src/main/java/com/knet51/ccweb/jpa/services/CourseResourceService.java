@@ -7,12 +7,11 @@ public interface CourseResourceService {
 	CourseResource findOneById(Long resource_id);
 	CourseResource createCourseResource(CourseResource CourseResource);
 	CourseResource updateCourseResource(CourseResource CourseResource);
-	List<CourseResource> getAllCourseResourceById(Long course_id);
-	List<CourseResource> getResourceByCourseId(Long course_id);
+	List<CourseResource> getAllCourseResourceByCourseIdAndStatus(Long course_id,Integer status);
 	List<CourseResource> getResourceByLessonNumAndCourseId(String lessonNum,Long course_id);
 	void deleCourseResource(Long resource_id);
 	String getMaxLessonNumByCourseId(Long course_id);
-	List<CourseResource> findNullResourceByCourseIdAndLessonNum(Long course_id,String lessonNum);
+	
 	//Page<CourseResource> findAllCourseResourceByCourse(int pageNum, int pageSize, TeacherCourse course);
 	
 }
