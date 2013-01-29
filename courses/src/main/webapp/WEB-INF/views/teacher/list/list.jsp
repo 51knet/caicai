@@ -137,17 +137,6 @@ background: #F7F7F7;
 
 
 </script>
-<div class="navbar">
-	<div class="navbar-inner">    
-     <div class="container" style="text-align: center;margin-left: 80px; margin-right: 80px;padding: 10px 10px;"><br><br>
-           <form class="navbar-form" >
-             <input type="text" class="span6" placeholder="搜索教师、课程、学校">
-             <button type="submit" class="btn btn-primary">搜索</button>
-           </form>
-		</div>
-	</div>
-</div>
- 
 <div id="myCarousel" class="carousel slide">
   <div class="carousel-inner">
     <div class="item">
@@ -191,10 +180,10 @@ background: #F7F7F7;
 	<h2>热门教师（Top 50）</h2>
    	<div class="row">
       	<c:forEach items="${page.content}" var="t" >
-	      	<div class="span1" ><a href="http://www.51knet.com/ccweb/teacher/${t.id}">${t.user.name }</a></div>
+	      	<div class="span1" style="width: 175px;height: 200px;"><a href='<c:url value="/teacher/${t.id}"></c:url>'>${t.user.name }</a></div>
       	</c:forEach>      	
 	 </div>
-	 <div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+	 <div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp" ></jsp:include></div>
 </div>
 
 

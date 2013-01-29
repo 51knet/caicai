@@ -109,48 +109,41 @@ public class CourseController {
 		model.addAttribute("course", course);
 		/*     lbx    */
 		Teacher teacher = course.getTeacher();
-		UserCourse usercourse;
 		List<UserCourse> listUserCourse = userCourseService.findByTeachercourseid(course_id);
-		if(listUserCourse.size()==0){
-			usercourse=new UserCourse();
-			usercourse.setTeachercourseid(course_id);
-			userCourseService.save(usercourse);
-			
-		}
-		Integer sumPerson=userCourseService.findByTeachercourseid(course_id).size();
 		double courseMark=0.0;
-		double markSum=0.0;
-		for (UserCourse userCourse : listUserCourse) {
-			if(userCourse.getMark()!=null){
-				courseMark=userCourse.getMark();
-				markSum=markSum+courseMark;
-				courseMark=markSum/sumPerson;
+		Integer sumPerson=0;
+		if(listUserCourse.size()==0){
+			courseMark=0;
+			sumPerson=0;
+		}else{
+			sumPerson=listUserCourse.size();
+			courseMark=userCourseService.getMark(course_id);
+			List<UserCourseBeans> list=new ArrayList<UserCourseBeans>();
+			Page<UserCourse> onePage = userCourseService.findUserCourseByTeachercourseid(pageNumber,pageSize, course_id);
+			UserCourseBeans UserCourseUser;
+			for (int i = 0; i < onePage.getContent().size(); i++) {
+				UserCourseUser=new UserCourseBeans();
+				UserCourse comm=onePage.getContent().get(i);
+				User user =null;
+				if(comm.getUserid()!=null){
+					long userid=comm.getUserid();
+					user=userCourseService.findByUserId(userid);
+					 String photoUrl=user.getPhoto_url();
+					 String userName=user.getName();
+					 UserCourseUser.setPhotoUrl(photoUrl);
+					UserCourseUser.setUserName(userName);
+				}
+				if(comm.getCommentDesc()!=null){
+					UserCourseUser.setUserCourse(comm);
+				}
+				list.add(UserCourseUser);
 			}
+			model.addAttribute("page", onePage);
+			model.addAttribute("listUserCourse", list);
 		}
 		model.addAttribute("sumPerson", sumPerson);
 		model.addAttribute("courseMark", courseMark);
 		
-		
-		List<UserCourseBeans> list=new ArrayList<UserCourseBeans>();
-		Page<UserCourse> onePage = userCourseService.findUserCourseByTeachercourseid(pageNumber,pageSize, course_id);
-		UserCourseBeans UserCourseUser;
-		for (int i = 0; i < onePage.getContent().size(); i++) {
-			UserCourseUser=new UserCourseBeans();
-			UserCourse comm=onePage.getContent().get(i);
-			User user =null;
-			if(comm.getUserid()!=null){
-				long userid=comm.getUserid();
-				user=userCourseService.findByUserId(userid);
-				 String photoUrl=user.getPhoto_url();
-				 String userName=user.getName();
-				 UserCourseUser.setPhotoUrl(photoUrl);
-				UserCourseUser.setUserName(userName);
-			}
-			if(comm.getCommentDesc()!=null){
-				UserCourseUser.setUserCourse(comm);
-			}
-			list.add(UserCourseUser);
-		}
 		model.addAttribute("teacher", teacher);
 		
 		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
@@ -163,8 +156,7 @@ public class CourseController {
 			courseList = courseResourceService.getResourceByLessonNumAndCourseId(lessonNum,course_id);
 			courseMap.put(lessonNum, courseList);
 		}
-		model.addAttribute("page", onePage);
-		model.addAttribute("listUserCourse", list);
+		
 		//model.addAttribute("id", id);
 		model.addAttribute("courseMap", courseMap);
 		model.addAttribute("resourceCount", listResource.size());
@@ -191,6 +183,14 @@ public class CourseController {
 		if (userInfo == null) {
 			return "redirect:/signin";
 		} 
+		List<UserCourse> listCourse=userCourseService.findByTeachercourseid(id);
+		UserCourse userCourse=null;
+		if(listCourse.size()==0){
+			userCourse=new UserCourse();
+			userCourse.setTeachercourseid(id);
+			userCourse.setUserid(userInfo.getId());
+			userCourseService.save(userCourse);
+		}
 		List<CourseResource> listResource = courseResourceService
 				.getResourceByCourseId(id);
 		List<CourseResource> courseList = new ArrayList<CourseResource>();
@@ -291,6 +291,10 @@ public class CourseController {
 	@RequestMapping(value = "/course/study/comment/new", method = RequestMethod.POST)
 	public String contactInfo( @RequestParam("teachercourseid") Long id,@Valid UserCourseForm userCourseForm,BindingResult validResult,RedirectAttributes redirectAttr, HttpSession session) {
 		logger.info("#### contactInfo InfoController ####");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if (userInfo == null) {
+			return "redirect:/signin";
+		} 
 		Long marks = userCourseForm.getMark();
 		String userCourseDesc = userCourseForm.getCommentDesc().trim();
 		//String message="";
@@ -300,21 +304,18 @@ public class CourseController {
 		} else {
 			logger.info("### contactInfo Validation passed. ###");
 			//UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			UserCourse userCourse=userCourseService.findByTeachercourseidAndUserid(id, 4l);
+			UserCourse userCourse=userCourseService.findByTeachercourseidAndUserid(id, userInfo.getId());
 			if (userCourse.getCommentDesc()!=null&&userCourse.getMark()>=0) {
 				String message="请不要重复评论";
 				redirectAttr.addFlashAttribute("message", message);
 				return "redirect:/course/study/comment/"+id;
 			} else{
-				UserCourse comm = userCourseService.findByTeachercourseidAndUserid(id, 4l);
-				if(userCourseDesc!=null&&!(userCourseDesc.equals(""))){
-					comm.setCommentDesc(userCourseDesc);
-					comm.setMark(marks);
-					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String date = format.format(new Date());
-					comm.setCommentDate(date);
-					userCourseService.update(comm);
-				}
+				userCourse.setCommentDesc(userCourseDesc);
+				userCourse.setMark(marks);
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String date = format.format(new Date());
+				userCourse.setCommentDate(date);
+				userCourseService.save(userCourse);
 				return "redirect:/course/study/comment/"+id;
 			}
 		}

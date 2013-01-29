@@ -19,12 +19,17 @@
 					<td align="left" valign="top">目标人群：</td>
 					<td  align="left"  valign="top"><textarea rows="6" cols="8" name="targetPerson" style="width: 670px; height:170px;">${course.targetPerson}</textarea></td>
 				</tr>
-				<tr><td>&nbsp;</td></tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
 				<tr>
 					<td align="left" valign="top">课程看点：</td>
 					<td align="left" valign="top"><textarea rows="6" cols="8" style="width: 670px; height:170px;" name="courseCharacter">${course.courseCharacter}</textarea></td>
 				</tr>
-				<tr><td style="text-align: left;margin-left: 80px;float: left;margin-top: 20px;" colspan="2" ><button class="btn btn-large btn-success">保存</button></td></tr>
+				<tr>
+				</tr>
+				<tr>
+				<td colspan="2">
+				<br/>
+				<button class="btn btn-large btn-success" style="margin-left: 70px;float: left;" >保存</button></td></tr>
 			</table>
 		</div>
 	</form>
