@@ -5,15 +5,26 @@
 <script type="text/javascript">
 	function checkCoursePwd(cid,tid){
 		$("#errorMsg").html("");
+		var pwd = $("#coursepwd").val();
 		$.post('<c:url value="/checkCoursePwd" />', $("#checkpwd_form").serialize(), function(flag){
 			//alert(typeof flag+flag);
 				if('true'==flag){
-					window.location.href ='<c:url value="/teacher/'+tid+'/course/view/'+cid+'" ></c:url>';
+					$("#course_id").val(cid);
+					$("#teacher_id").val(tid);
+					$("#course_pwd").val(pwd);
+					$("#showCourseDetail").submit();
 				}else{
 					$("#errorMsg").html("密码错误！");
 					return false;
 				}			
 		});
+	}
+	
+	
+	function requestCourseDetail(cid,tid){
+		$("#course_id").val(cid);
+		$("#teacher_id").val(tid);
+		$("#showCourseDetail").submit();
 	}
 </script>
 <style>
@@ -123,7 +134,7 @@
 								<td width="80%"><!--   -->
 									<c:choose>
 										<c:when test='${course.pwd == "" || course.pwd == null}'>
-												<a href="<c:url value="/teacher/${teacherInfo.id}/course/view/${course.id}"></c:url>"> ${course.courseName }</a>
+											<a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> ${course.courseName }</a>
 										</c:when>
 										<c:otherwise>
 											<a href="#checkcourse" data-toggle="modal"> ${course.courseName }</a> 
@@ -139,7 +150,7 @@
 													</form>
 													<div style="margin-left: 120px;">
 														<button class="btn btn-primary"  onclick="checkCoursePwd( ${course.id} , ${teacherInfo.id})">确定</button>&nbsp;&nbsp;
-														<button class="btn" type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
+														<button class="btn"  type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
 													</div>
 												</div>
 											</div>
@@ -158,10 +169,16 @@
 				</c:otherwise>
 			</c:choose>
 		</table>
+		
 		<hr>
 		<div style="text-align: right;">
 		<c:if test="${courseCount>5}"><a href="<c:url value="/teacher/${teacherInfo.id}/course/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 		</div>
+		<form action="<c:url value="/teacher/course/view"></c:url>" id="showCourseDetail" method="post">
+			<input type="hidden"  name="teacherId" id="teacher_id" >
+			<input type="hidden"  name="courseId" id="course_id">
+			<input type="hidden"  name="coursepwd" id="course_pwd">
+		</form>
 </div>
 
 

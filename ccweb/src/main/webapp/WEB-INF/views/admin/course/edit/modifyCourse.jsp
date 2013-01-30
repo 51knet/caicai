@@ -71,20 +71,6 @@
 														<input type="hidden" name="lessonNum" value="${lesson.lessonNum }">
 														<input type="hidden" name="lessonId" value="${lesson.id}">
 														<input type="hidden" name="courseId" value="${course.id}">
-														
-														<div class="control-group" id="fileName">
-															<label class="control-label" for="fileName">资源名称</label>
-															<div class="controls">
-																<input type="text" style="width: 207px;" name="fileName" >&nbsp;“如：第一讲：物种的起源”<br>
-															</div>
-														</div>
-														
-														
-														
-														
-														
-														
-														
 														资源名称：<input type="text" style="width: 207px;" name="resourceName" >&nbsp;“如：第一讲：物种的起源”<br>
 														资源类别：<select name="type"   style="width: 220px;">
 																			<!-- <option >请选择</option>
@@ -198,7 +184,7 @@
 			    <h3 id="myModalLabel">请注意</h3>
 			  </div>
 			  <div class="modal-body">
-			    <p>你确定恢复该课程吗？</p>
+			    <p>你确定删除该资源吗？</p>
 			  </div>
 			  <div class="modal-footer">
 			    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
