@@ -30,28 +30,24 @@
 					$("#deleLessonNumForm").unbind( "submit" );
 					return false;
 					}else{
-						$("#courseLessonId").val(lesson_id);
-						$("#deleLessonNumForm").submit();
+						if(window.confirm('你确定要删除课时吗')){
+							$("#courseLessonId").val(lesson_id);
+							$("#deleLessonNumForm").submit();
+			                 return true;
+			              }
+						
 					}
 				}
 			});
 		
 	}
 	$(document).ready(function(){
-		$('.deleteHonorPostBtn').on('click', function() {
-			var honor_id = $(this).next().val();
-			$('#deleteHonorPostModal #lessonId').val(honor_id);	
-		});
-		
 		$('.deleteResourcePostBtn').on('click', function() {
 			var resource_id = $(this).next().val();
 			//alert(resource_id);
 			$(' #c_resource_Id').val(resource_id);	
 		});
 	});
-	function upLoadClick(){
-		return checkEmptyAjax("personal_info_form","personalInfoAJAX");
-	}
 </script>
 <div style="margin-top: 10px;">
 	<a href="#">课程资料</a>
@@ -67,7 +63,7 @@
 										<div style="font-size: 15px;  background-color: #f2f2f2; padding: 3px;" >
 											<b>第${lesson.lessonNum}课时</b>
 											<span style="float: right; margin-right: 20px; font-size: 13px;">
-												<c:if test="${lesson.status != null }"> <a  class="deleteHonorPostBtn" href="#deleteHonorPostModal" data-toggle="modal" data-target="#deleteHonorPostModal" role="button" onclick="deleLessonNum(${lesson.id })"><b>删除课时</b></a>  |</c:if> 
+												<c:if test="${lesson.status != null }"> <a href="javascript:void(0)" onclick="deleLessonNum(${lesson.id })"><b>删除课时</b></a>  |</c:if> 
 												<a href="#" onclick="showAddResourceForm(${lesson.lessonNum})"><b>添加资源</b></a>
 											</span>
 											<div style=" border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;" id="${lesson.lessonNum}_resourceForm">
@@ -154,8 +150,11 @@
 				</form>
 		</div>
 		
-		
-		<div class="modal hide fade" id="deleLessonNumForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<form action='<c:url value="/admin/teacher/course/edit/courselesson/destory"></c:url>' method="post" style="display:none;" id="deleLessonNumForm">
+				<input type="hidden" name="lessonId" id="courseLessonId" >
+				<input type="hidden" name="courseId" value="${course.id }" >
+		</form>
+		<%-- <div class="modal hide fade" id="deleLessonNumForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<h3 id="myModalLabel">请注意</h3>
@@ -171,7 +170,7 @@
 						<button class="btn btn-primary">确定</button>
 					</form>
 				</div>
-		</div>
+		</div> --%>
 		
 		<!-- delete resource) -->
 		<div class="modal hide fade" id="deleteResourcePostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
