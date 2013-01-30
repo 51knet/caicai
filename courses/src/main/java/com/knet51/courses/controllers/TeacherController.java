@@ -34,7 +34,7 @@ public class TeacherController {
 	
 	@RequestMapping(value="/teacher/list")
 	public String showAllTeacher(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		//List<Teacher> teacherList = teacherService.findAllTeacher();
 		Page<Teacher> teacherPage = teacherService.getAllTeacherPage(pageNumber, pageSize);
 		//List<Teacher> teacher = teacherPage.getContent();
@@ -42,11 +42,11 @@ public class TeacherController {
 		return "teacher.list";
 	}
 	@RequestMapping(value="/teacher/{teacher_id}")
-	public String showTeacherInfoById(@PathVariable Long teacher_id,Model model,HttpSession session){
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+	public String showTeacherInfoById(@PathVariable Long teacher_id,Model model){
+		/*UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if (userInfo == null) {
 			return "redirect:/signin";
-		} 
+		} */
 		Teacher teacher=teacherService.findOne(teacher_id);
 		List<String> courseTypeList = courseService.getCourseTypeByTeacherId(teacher_id);
 		List<TeacherCourse> teacherCourseList=courseService.getAllCourseByTeacherId(teacher_id);
