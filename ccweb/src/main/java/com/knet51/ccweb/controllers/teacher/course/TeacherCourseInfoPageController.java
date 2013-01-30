@@ -151,35 +151,37 @@ public class TeacherCourseInfoPageController {
 		return "teacher.course.list";
 	}
 	
-	@RequestMapping(value="/teacher/{teacher_id}/course/view/{course_id}")
-	public String detailCourse(@PathVariable Long teacher_id, @PathVariable Long course_id,Model model){
-		User user = userService.findOne(teacher_id);
-		Teacher teacher = teacherService.findOne(teacher_id);
-		UserInfo userInfo = new UserInfo(user);
-		userInfo.setTeacher(teacher);
-		logger.debug(userInfo.toString());
-		model.addAttribute("teacherInfo", userInfo);
-		model.addAttribute("teacher_id", teacher_id);
-		
+	@RequestMapping(value="/teacher/course/view",method=RequestMethod.POST)
+	public String detailCourse(@RequestParam("teacherId") Long teacher_id,@RequestParam("courseId") Long course_id,
+			@RequestParam("coursepwd") String pwd,Model model){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
-		model.addAttribute("course", course);
-		/*List<CourseResource> resourceList = courseResourceService.getAllCourseResourceById(course_id);
-		model.addAttribute("resourceList",resourceList);
-		model.addAttribute("resourceCount", resourceList.size());*/
-		List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
-		List<CourseResource> courseList;
-		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
-		String resourceOrder = null;
-		for (CourseResource courseResource : listResource) {
-			resourceOrder = courseResource.getLessonNum();
-			courseList = new ArrayList<CourseResource>();
-			courseList = courseResourceService
-					.getResourceByLessonNumAndCourseId(resourceOrder,course_id);
-			courseMap.put(resourceOrder, courseList);
+		if(pwd.equals(course.getPwd())){
+			Teacher teacher = teacherService.findOne(teacher_id);
+			User user = teacher.getUser();
+			UserInfo userInfo = new UserInfo(user);
+			userInfo.setTeacher(teacher);
+			logger.debug(userInfo.toString());
+			model.addAttribute("teacherInfo", userInfo);
+			model.addAttribute("teacher_id", teacher_id);
+			model.addAttribute("course", course);
+			List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
+			List<CourseResource> courseList;
+			Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
+			String resourceOrder = null;
+			for (CourseResource courseResource : listResource) {
+				resourceOrder = courseResource.getLessonNum();
+				courseList = new ArrayList<CourseResource>();
+				courseList = courseResourceService
+						.getResourceByLessonNumAndCourseId(resourceOrder,course_id);
+				courseMap.put(resourceOrder, courseList);
+			}
+			model.addAttribute("resourceCount", listResource.size());
+			model.addAttribute("courseMap", courseMap);
+			return "teacher.course.view";
 		}
-		model.addAttribute("resourceCount", listResource.size());
-		model.addAttribute("courseMap", courseMap);
-		return "teacher.course.view";
+		return "redirect:/teacher/"+teacher_id;
+		
+		
 	}
 	
 	
@@ -369,22 +371,6 @@ public class TeacherCourseInfoPageController {
 		return "admin.teacher.course.preview";
 	}
 
-	@RequestMapping(value="/checkCoursePwd", method = RequestMethod.POST)
-	public String checkCoursePwd(@RequestParam("cid") Long course_id,@RequestParam("coursepwd") String pwd,HttpServletRequest request,HttpServletResponse response ) throws IOException{
-		logger.info("==== into the ajax checkCoursePwd controller ===="+course_id+pwd);
-		PrintWriter out = response.getWriter();
-		TeacherCourse course = teacherCourseService.findOneById(course_id);
-		boolean flag;
-		if(!pwd.equals(course.getPwd())){
-			flag = false;
-		}else{
-			flag = true;
-		}
-		out.print(flag);
-		out.flush();
-		out.close();
-		return null;
-	}
 	/**
 	 * show the course in courses
 	 * @param course_id
@@ -490,11 +476,29 @@ public class TeacherCourseInfoPageController {
 	
 	@RequestMapping(value="/admin/teacher/course/resource/edit/ajax")
 	public String courseResourceEditAjax(@RequestParam("resourceId") Long resource_id,HttpServletRequest request,HttpServletResponse response ) throws IOException{
-		logger.info("==== into thecourseResourceEditAjax controller ===="+resource_id);
+		logger.info("==== into thecourseResourceEditAjax controller ====");
 		PrintWriter out = response.getWriter();
 		CourseResource resource = courseResourceService.findOneById(Long.valueOf(resource_id));
 		Gson g = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		out.print(g.toJson(resource));
+		out.flush();
+		out.close();
+		return null;
+	}
+	
+
+	@RequestMapping(value="/checkCoursePwd", method = RequestMethod.POST)
+	public String checkCoursePwd(@RequestParam("cid") Long course_id,@RequestParam("coursepwd") String pwd,HttpServletRequest request,HttpServletResponse response ) throws IOException{
+		logger.info("==== into the ajax checkCoursePwd controller ====");
+		PrintWriter out = response.getWriter();
+		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		boolean flag;
+		if(!pwd.equals(course.getPwd())){
+			flag = false;
+		}else{
+			flag = true;
+		}
+		out.print(flag);
 		out.flush();
 		out.close();
 		return null;

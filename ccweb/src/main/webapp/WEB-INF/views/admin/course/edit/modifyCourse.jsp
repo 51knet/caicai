@@ -181,7 +181,7 @@
 			    <h3 id="myModalLabel">请注意</h3>
 			  </div>
 			  <div class="modal-body">
-			    <p>你确定恢复该课程吗？</p>
+			    <p>你确定删除该资源吗？</p>
 			  </div>
 			  <div class="modal-footer">
 			    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
