@@ -34,7 +34,7 @@ public class TeacherController {
 	
 	@RequestMapping(value="/teacher/list")
 	public String showAllTeacher(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		//List<Teacher> teacherList = teacherService.findAllTeacher();
 		Page<Teacher> teacherPage = teacherService.getAllTeacherPage(pageNumber, pageSize);
 		//List<Teacher> teacher = teacherPage.getContent();
