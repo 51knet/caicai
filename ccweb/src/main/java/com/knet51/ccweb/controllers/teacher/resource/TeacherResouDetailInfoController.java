@@ -1,5 +1,6 @@
 package com.knet51.ccweb.controllers.teacher.resource;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +31,8 @@ import com.knet51.ccweb.controllers.teacher.TeacherWorkExpInfoForm;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
+import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
+import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.ResourceTypeService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
@@ -45,6 +48,8 @@ public class TeacherResouDetailInfoController {
 	private ResourceService resourceService;
 	@Autowired
 	private ResourceTypeService resourceTypeService;
+	@Autowired 
+	private CourseResourceService courseResourceService;
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/resource/new/create",method=RequestMethod.POST)
@@ -56,29 +61,29 @@ public class TeacherResouDetailInfoController {
 		User user = userInfo.getUser();
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
-				Resource resource = new Resource();
+				MultipartFile multipartFile = files.get(i);
+				CourseResource resource = new CourseResource();
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
 				String fileName = files.get(i).getOriginalFilename();
 				String name = fileName.substring(0, fileName.indexOf("."));
-				resource.setDescription(desc);
-				resource.setName(name);
-				
 				ResourceType resourceType = resourceTypeService.findOneById(value); 
 				//String realPath = FileUtil.getPath("upload", userInfo.getId(), resourceType.getTypeName(),session);
 				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/upload/"+resourceType.getTypeName();
 				FileUtil.createRealPath(path, session);
+				File saveDest = new File(path + File.separator + fileName);
+				multipartFile.transferTo(saveDest);
 				resource.setResourceType(resourceType);
-				resource.setStatus(1);
-				
+				resource.setResourceDesc(desc);
+				resource.setFileName(name);
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String date = format.format(new Date());
 				resource.setDate(date);
-				
-				String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
-				resource.setSaveName(saveName);
-				String savePath = path+"\\"+saveName;
+				resource.setSaveName(fileName);
+				String savePath = path+File.separator+fileName;
 				resource.setSavePath(savePath);
-				resourceService.create(resource, user);
+				resource.setStatus(GlobalDefs.STATUS_RESOURCE);
+				resource.setUser(user);
+				courseResourceService.createCourseResource(resource);
 			}
 		}
 		return "redirect:/admin/teacher/resource/list";
@@ -103,12 +108,8 @@ public class TeacherResouDetailInfoController {
 	@RequestMapping(value="/admin/teacher/resource/destory",method=RequestMethod.POST)
 	public String teacherResouDele(HttpSession session,Model model, @RequestParam("resourceId")Long resource_id) throws Exception{
 		logger.info("#####Into TeacherResouInfoDelePageController#####");
-//		Resource resource = resourceService.findOneById(id);
-//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		String date = format.format(new Date());
-//		resource.setDate(date);
-//		resourceService.delete(resource, 2);
-		resourceService.deleteResource(Long.valueOf(resource_id));
+		CourseResource resource = resourceService.findOneById(resource_id);
+		resourceService.delete(resource, GlobalDefs.STATUS_RESOURCE_DESTORY);
 		return "redirect:/admin/teacher/resource/list";
 	}
 	
@@ -158,7 +159,7 @@ public class TeacherResouDetailInfoController {
 	@RequestMapping(value="/resource/download/{resource_id}")
 	public String resourceDownLoad(@PathVariable Long resource_id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		logger.info("-------Into resource DownLoad controller------");
-		Resource resource = resourceService.findOneById(resource_id);
+		CourseResource resource = resourceService.findOneById(resource_id);
 		String savePath = resource.getSavePath();
 		String fileName = resource.getSaveName();
 		FileUtil.downLoad(request, response, savePath, fileName);

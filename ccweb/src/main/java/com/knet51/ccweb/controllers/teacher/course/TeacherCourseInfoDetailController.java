@@ -152,6 +152,7 @@ public class TeacherCourseInfoDetailController {
 				resource.setCourse_id(Long.valueOf(course_id));
 				resource.setCourseLessonId(courseLessonId);
 				resource.setResourceType(resourceType);
+				resource.setStatus(GlobalDefs.STATUS_COURSE_RESOURCE);
 				courseResourceService.createCourseResource(resource);
 			}
 		}
@@ -245,7 +246,7 @@ public class TeacherCourseInfoDetailController {
 				return "redirect:/admin/teacher/course/list";
 			}
 		}
-		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
+		List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList;
 		List<ResourceType> listType = resourceTypeService.getAllType();
 		model.addAttribute("type", listType);

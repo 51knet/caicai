@@ -9,10 +9,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.dao.ResourceDao;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
+import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.repository.ResourceRepository;
+import com.knet51.ccweb.jpa.repository.TeacherCourseRepository;
+import com.knet51.ccweb.jpa.repository.TeacherCourseResourceRepository;
 
 @Transactional
 @Service("resourceService")
@@ -23,40 +28,35 @@ public class ResourceServiceImpl implements ResourceService {
 	
 	@Autowired
 	private ResourceRepository resourceRepository;
+	
+	@Autowired
+	private TeacherCourseResourceRepository courseResourceRepository;
 
-	@Override
-	public Resource create(Resource resource,User user) {
-		resource.setUser(user);
-		return resourceDao.save(resource);
-	}
 
+	
 	@Override
-	public List<Resource> listAllByUid(Long uId) {
-		return resourceDao.listAllByUid(uId);
-	}
-
-	@Override
-	public void delete(Resource resource, Integer status) {
+	public void delete(CourseResource resource, Integer status) {
 		resource.setStatus(status);
-		resourceDao.delete(resource);
+		courseResourceRepository.save(resource);
 		
 	}
+	
+	@Override
+	public List<CourseResource> listAllByUser(User user) {
+		return courseResourceRepository.findResourceByUserAndStatus(user, GlobalDefs.STATUS_RESOURCE);
+	}
+
 
 	@Override
-	public Resource findOneById(Long Id) {
-		return resourceDao.getOneById(Id);
+	public CourseResource findOneById(Long id) {
+		return courseResourceRepository.findOne(id);
 	}
 
 	@Override
-	public Page<Resource> findAllResouByUser(int pageNumber, int pageSize, User user) {
+	public Page<CourseResource> findAllResouByUserAndStatus(int pageNumber, int pageSize, User user,Integer status) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
-		Page<Resource> onePage = resourceRepository.findResourceByUser(user, dateDesc);
+		Page<CourseResource> onePage = courseResourceRepository.findResourceByUserAndStatus(user, status, dateDesc);
 		return onePage;
-	}
-
-	@Override
-	public void deleteResource(Long resource_id) {
-		resourceDao.deleteResource(resource_id);
 	}
 
 }

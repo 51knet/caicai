@@ -38,11 +38,11 @@ $(document).ready(function() {
 				</thead>
 				<tbody>
 				<c:forEach items="${page.content}" var="page">
-					<tr><td  align="center">${page.name}</td>
+					<tr><td  align="center">${page.fileName}</td>
 					<td  align="center">${page.date}</td>
 					<td  align="center">
 						<c:choose>
-							<c:when test="${(page.description!=null) && (page.description != '')}">${page.description}</c:when>
+							<c:when test="${(page.resourceDesc!=null) && (page.resourceDesc != '')}">${page.resourceDesc}</c:when>
 							<c:otherwise>无描述</c:otherwise>
 						</c:choose>
 					</td>

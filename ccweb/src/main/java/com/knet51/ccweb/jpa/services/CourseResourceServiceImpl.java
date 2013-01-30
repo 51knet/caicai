@@ -35,8 +35,8 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 	}
 
 	@Override
-	public List<CourseResource> getAllCourseResourceById(Long course_id) {
-		return resourceRepository.getResourceByCourseId(course_id);
+	public List<CourseResource> getAllCourseResourceByCourseIdAndStatus(Long course_id,Integer status) {
+		return resourceRepository.getResourceByCourseIdAndStatus(course_id,status);
 	}
 
 	@Override
@@ -44,16 +44,7 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 		resourceRepository.delete(resource_id);
 	}
 	
-	@Override
-	public List<CourseResource> getResourceByCourseId(Long course_id) {
-		List<CourseResource> list= new ArrayList<CourseResource>();
-			 try {
-				 list=resourceRepository.getResourceByCourseId(course_id);
-			 } catch (Exception e) {
-				 e.printStackTrace();
-			 } 
-			 return list;
-		 }
+
 	@Override
 	public String getMaxLessonNumByCourseId(Long course_id) {
 		String LessonNum = "";
@@ -76,12 +67,7 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 		return courseResourceList;
 	}
 
-	@Override
-	public List<CourseResource> findNullResourceByCourseIdAndLessonNum(
-			Long course_id, String lessonNum) {
-		List<CourseResource> resource  = resourceRepository.findNullResourceByCourseIdAndLessonNum(course_id, lessonNum);
-		return resource;
-	}
+	
 
 //	@Override
 //	public Page<CourseResource> findAllCourseResourceByCourse(int pageNum,

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.repository.TeacherCourseResourceRepository;
+import com.knet51.courses.controllers.defs.GlobalDefs;
 @Transactional
 @Service("courseService")
 public class ResourceServiceImpl implements ResourceService {
@@ -18,10 +19,10 @@ public class ResourceServiceImpl implements ResourceService {
 	private TeacherCourseResourceRepository teacherCourseResourceRepository;
 
 	@Override
-	public List<CourseResource> getResourceByCourseId(Long course_id) {
+	public List<CourseResource> getResourceByCourseIdAndStatus(Long course_id,Integer status) {
 		List<CourseResource> list= new ArrayList<CourseResource>();
 			 try {
-				 list=teacherCourseResourceRepository.getResourceByCourseId(course_id);
+				 list=teacherCourseResourceRepository.getResourceByCourseIdAndStatus(course_id,GlobalDefs.STATUS_COURSE_RESOURCE);
 			 } catch (Exception e) {
 				 e.printStackTrace();
 			 } 

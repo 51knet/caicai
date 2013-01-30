@@ -29,10 +29,10 @@
 		<thead><tr><th width=25%>文件名称</th><th >描述</th><th width=10%>类型</th><th width=20%>发布时间</th><th width=8%>下载</th></tr></thead>
 			<tbody>
 			<c:forEach items="${page.content}" var="page">
-				<tr><td align="left"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${page.id}"></c:url>">${page.name}</a></td>
+				<tr><td align="left"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${page.id}"></c:url>">${page.fileName}</a></td>
 				<td>
 					<c:choose>
-						<c:when test="${page.description != null && page.description !=''}">${page.description}</c:when>
+						<c:when test="${page.resourceDesc != null && page.resourceDesc !=''}">${page.resourceDesc}</c:when>
 						<c:otherwise>无描述</c:otherwise>
 					</c:choose>
 				</td>

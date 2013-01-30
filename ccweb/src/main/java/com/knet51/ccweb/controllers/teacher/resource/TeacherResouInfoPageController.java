@@ -20,6 +20,7 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
+import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.ResourceTypeService;
 import com.knet51.ccweb.jpa.services.TeacherService;
@@ -48,7 +49,7 @@ public class TeacherResouInfoPageController {
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long user_id = userInfo.getId();
 		User user = userService.findOne(user_id);
-		Page<Resource> onePage = resourceService.findAllResouByUser(pageNumber, pageSize, user);
+		Page<CourseResource> onePage = resourceService.findAllResouByUserAndStatus(pageNumber, pageSize, user, GlobalDefs.STATUS_RESOURCE);
 		model.addAttribute("page", onePage);
 		return "admin.teacher.resource.list";
 	}
@@ -87,7 +88,7 @@ public class TeacherResouInfoPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", teacher_id);
-		Page<Resource> onePage = resourceService.findAllResouByUser(pageNumber, pageSize, user);
+		Page<CourseResource> onePage = resourceService.findAllResouByUserAndStatus(pageNumber, pageSize, user, GlobalDefs.STATUS_RESOURCE);
 		model.addAttribute("page", onePage);
 		return "teacher.resource.list";
 	}
@@ -101,7 +102,7 @@ public class TeacherResouInfoPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", teacher_id);
-		Resource resource = resourceService.findOneById(resource_id);
+		CourseResource resource = resourceService.findOneById(resource_id);
 		model.addAttribute("resource", resource);
 		return "teacher.resource.detail";
 	}

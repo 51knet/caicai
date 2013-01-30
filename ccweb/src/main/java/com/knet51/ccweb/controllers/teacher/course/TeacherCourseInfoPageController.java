@@ -120,7 +120,7 @@ public class TeacherCourseInfoPageController {
 		}
 		model.addAttribute("course", course);
 
-		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
+		List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id,GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList;
 		Map<String, List<CourseResource> > courseMap = new TreeMap<String, List<CourseResource> >();
 		String lessonNum = null;
@@ -166,7 +166,7 @@ public class TeacherCourseInfoPageController {
 		/*List<CourseResource> resourceList = courseResourceService.getAllCourseResourceById(course_id);
 		model.addAttribute("resourceList",resourceList);
 		model.addAttribute("resourceCount", resourceList.size());*/
-		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(course_id);
+		List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList;
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String resourceOrder = null;
@@ -352,7 +352,7 @@ public class TeacherCourseInfoPageController {
 			}
 		}
 		
-		List<CourseResource> listResource = courseResourceService.getResourceByCourseId(Long.valueOf(course_id));
+		List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList;
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String LessonNum = null;
@@ -453,7 +453,7 @@ public class TeacherCourseInfoPageController {
 	}
 	
 	@RequestMapping(value="/admin/teacher/course/edit/courselesson/destory",method=RequestMethod.POST)
-	public String modifyCourseResource(@RequestParam("lessonId") Long lesson_id,@RequestParam("courseId") Long course_id){
+	public String deleteCoourseLesson(@RequestParam("lessonId") Long lesson_id,@RequestParam("courseId") Long course_id){
 		CourseLesson bigLesson = courseLessonService.findOne(lesson_id);
 		List<CourseLesson> courseLessonList = courseLessonService.findCourseLessonByCourseId(course_id);
 		if(Integer.parseInt(bigLesson.getLessonNum())>=2 && courseLessonList.size()>=2){

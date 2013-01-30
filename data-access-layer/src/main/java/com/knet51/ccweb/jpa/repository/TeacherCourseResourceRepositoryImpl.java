@@ -13,8 +13,8 @@ public class TeacherCourseResourceRepositoryImpl implements TeacherCourseResourc
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<CourseResource> getResourceByCourseId(Long course_id) {
-		List<CourseResource> list = em.createQuery("from CourseResource where course_id="+course_id).getResultList();
+	public List<CourseResource> getResourceByCourseIdAndStatus(Long course_id,Integer status) {
+		List<CourseResource> list = em.createQuery("from CourseResource where course_id="+course_id+"and status="+status).getResultList();
 		return list;
 	}
 	@Override
@@ -30,11 +30,6 @@ public class TeacherCourseResourceRepositoryImpl implements TeacherCourseResourc
 		List<CourseResource> courseResourceList =  em.createQuery("from CourseResource where lessonNum in("+lessonNum+") and course_id="+course_id).getResultList();
 		return courseResourceList;
 	}
-	@Override
-	public List<CourseResource> findNullResourceByCourseIdAndLessonNum(Long course_id,
-			String lessonNum) {
-		List<CourseResource> resource =  em.createQuery("from CourseResource where lessonNum="+lessonNum+" and course_id="+course_id+"and saveName is null").getResultList();
-		return resource;
-	}
+
 
 }
