@@ -99,6 +99,36 @@ public class CourseController {
 		}
 		return "course.list";
 	}
+	
+	@Transactional
+	@RequestMapping(value = "/search",method=RequestMethod.POST)
+	public String searchCourseOrTeacher(@RequestParam("searchParam") String searchParam,
+			Model model) throws Exception {
+		List<TeacherCourse> courseList = courseService.findAllCourses();
+		List<String> courseTypeList = courseService.courseTypeList();
+		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
+		if (searchParam.trim() != null && !searchParam.trim().equals("")) {
+			for (TeacherCourse c : courseList) {
+				if(searchParam.equals(c.getCourseName()) || searchParam.equals(c.getTeacher().getUser().getName())){
+					newCourseList.add(c);
+				}
+			}
+			model.addAttribute("searchParam", searchParam);
+			model.addAttribute("courseList", newCourseList);
+			model.addAttribute("courseCount", newCourseList.size());
+			model.addAttribute("courseTypeList", courseTypeList);
+			
+		} else {
+			model.addAttribute("courseList", courseList);
+			model.addAttribute("courseCount", courseList.size());
+			model.addAttribute("courseTypeList", courseTypeList);
+			model.addAttribute("searchParam", searchParam);
+		}
+		return "course.list";
+	}
+	
+	
+	
 	@RequestMapping(value="/course/view/{course_id}")
 	public String showCourseDetail(@PathVariable Long course_id,Model model,HttpSession session
 			,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
