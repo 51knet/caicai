@@ -112,12 +112,20 @@ public class CourseController {
 		List<UserCourse> listUserCourse = userCourseService.findByTeachercourseid(course_id);
 		double courseMark=0.0;
 		Integer sumPerson=0;
+		
 		if(listUserCourse.size()==0){
 			courseMark=0;
 			sumPerson=0;
 		}else{
+			
 			sumPerson=listUserCourse.size();
-			courseMark=userCourseService.getMark(course_id);
+			for (UserCourse userCourse : listUserCourse) {
+				if(userCourse.getMark()==null){
+					courseMark=0.0;
+				}else{
+					courseMark=userCourseService.getMark(course_id);
+				}
+			}
 			List<UserCourseBeans> list=new ArrayList<UserCourseBeans>();
 			Page<UserCourse> onePage = userCourseService.findUserCourseByTeachercourseid(pageNumber,pageSize, course_id);
 			UserCourseBeans UserCourseUser;

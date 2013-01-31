@@ -42,7 +42,7 @@
 											</c:choose>
 										</div>
 										教师名称：${course.teacher.user.name } <br>所在学校：${course.teacher.college }<br>
-										<a style="margin-top: 10px;" href='<c:url value="/teachercourse/course/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
+										<a style="margin-top: 10px;" href='<c:url value="/course/study/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
 									</div>
 								</td>
 							</tr>
