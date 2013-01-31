@@ -42,11 +42,11 @@ public class TeacherController {
 		return "teacher.list";
 	}
 	@RequestMapping(value="/teacher/{teacher_id}")
-	public String showTeacherInfoById(@PathVariable Long teacher_id,Model model,HttpSession session){
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+	public String showTeacherInfoById(@PathVariable Long teacher_id,Model model){
+		/*UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if (userInfo == null) {
 			return "redirect:/signin";
-		} 
+		} */
 		Teacher teacher=teacherService.findOne(teacher_id);
 		List<String> courseTypeList = courseService.getCourseTypeByTeacherId(teacher_id);
 		List<TeacherCourse> teacherCourseList=courseService.getAllCourseByTeacherId(teacher_id);
