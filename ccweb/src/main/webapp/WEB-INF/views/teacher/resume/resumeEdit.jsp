@@ -168,7 +168,7 @@
 					<div class="control-group"  id="educationDesc" >
 						<label class="control-label" for="educationDesc">详细介绍</label>
 						<div class="controls">
-							<textarea  name="educationDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+							<textarea  id="KEeducationDesc"  name="educationDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -202,7 +202,9 @@
 										<td align="center">${eduInfo.degree}</td>
 										<td align="center" width="25%">${eduInfo.startTime} - ${eduInfo.endTime}</td>
 										<td><a class="deleteEduPostBtn" href="#deleteEduPostModal" role="button" data-toggle="modal" data-target="#deleteEduPostModal">删除</a> <input type="hidden" value="${eduInfo.id} ">|
-											<a href='javascript:void(0)' onclick="editEdu(${eduInfo.id})">修改</a></td>
+											<!-- <a href='javascript:void(0)' onclick="editEdu(${eduInfo.id})">修改</a> -->
+												<a class="editEduAjaxBtn" href="javascript:void(0)">修改</a><input type="hidden" value="${eduInfo.id }" id="eduInfo_id">
+										</td>
 									</tr>
 									<tr style="margin-left: -70px;">
 										<td>详细描述：</td>
@@ -314,7 +316,9 @@
 										<td align="center">${workInfo.position}</td>
 										<td align="center" width="25%">${workInfo.startTime} - ${workInfo.endTime}</td>
 										<td><a class="deleteWorkPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteWorkPostModal">删除</a> <input type="hidden" value="${workInfo.id} ">|
-											<a href='javascript:void(0)' onclick="editWork(${workInfo.id})">修改</a></td>
+											<a href='javascript:void(0)' class="editWorkAjaxBtn">修改</a>
+											<input type="hidden" value="${workInfo.id}">
+											</td>
 									</tr>
 									<tr style="margin-left: -70px;">
 										<td>详细描述：</td>
@@ -742,10 +746,32 @@ $(document).ready(function() {
 			});
 		}
 	});
+	$('.editEduAjaxBtn').on('click', function() {
+		var edu_id = $(this).next().val();
+		$("#eduList").css("display","none");
+		$("#eduForm").css("display","block");
+		$.ajax({
+			  type: "post",
+			  url: "eduInfo/edit/ajax",
+			  data: "eduId="+edu_id,
+			  dataType:"json",
+			  success:function(msg){
+					document.edu.eduId.value = msg.id;
+				  	document.edu.schoolName.value=msg.school;
+				  	document.edu.collegeName.value=msg.college;
+				  	document.edu.degree.value=msg.degree;
+				  	document.edu.startTime.value=msg.startTime;
+				  	document.edu.endTime.value=msg.endTime;
+				  	eduDescEditor.html(msg.educationDesc);
+			  }
+		});
+	});
 	$("#edu_info_form").submit(function(){
 		eduDescEditor.sync();
 		return checkEmptyAjax("edu_info_form","eduInfoAJAX");
 	});
+	
+	
 	var workDescEditor = KindEditor.create('textarea[name="workDesc"]',{
 		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
 		uploadJson : '${uploadJson}',
@@ -763,6 +789,28 @@ $(document).ready(function() {
 			});
 		}
 	});
+	
+	$('.editWorkAjaxBtn').on('click', function() {
+		var work_id = $(this).next().val();
+		$("#workList").css("display","none");
+		$("#workForm").css("display","block");
+		$.ajax({
+			  type: "post",
+			  url: "workInfo/edit/ajax",
+			  data: "workId="+work_id,
+			  dataType:"json",
+			  success:function(msg){
+					document.work.workId.value = msg.id;
+				  	document.work.company.value=msg.company;
+				  	document.work.department.value=msg.department;
+				  	document.work.position.value=msg.position;
+				  	document.work.startTimeName.value=msg.startTime;
+				  	document.work.endTimeName.value=msg.endTime;
+				  	workDescEditor.html(msg.workDesc);
+			  }
+		});
+	});
+	
 	$("#workExpForm").submit(function(){
 		workDescEditor.sync();
 		return checkEmptyAjax("workExpForm","workExpInfoAJAX");
@@ -899,5 +947,7 @@ $(document).ready(function(){
 		$('#deleteHonorPostModal #honorId').val(honor_id);	
 	});
 });
+
+
 
 </script>

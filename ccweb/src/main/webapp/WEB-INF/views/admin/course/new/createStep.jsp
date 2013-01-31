@@ -107,31 +107,12 @@
 					<form:form class="form-horizontal" action="new/thirdstep" method="post" enctype="multipart/form-data">
 						<input type="hidden" value="${courseId }" name="courseId" />
 						<div class="modal-body">
-							上传资源：&nbsp;<input type="file" name="resourceFile" style="width: 380px;" />&nbsp;&nbsp;
-							<!-- <input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span> -->
+								课程创建已完成，请点击下一步进入资源添加页面
 						</div>
-						<div class="modal-body" id="resourceOrder">
-							资源课时：&nbsp;<select name="resourceOrder" style="width: 380px;">
-								<option selected value="1">第一课</option>
-								<option value="2">第二课</option>
-								<option value="3">第三课</option>
-								<option value="4">第四课</option>
-								<option value="5">第五课</option>
-								<option value="6">第六课</option>
-								<option value="7">第七课</option>
-								<option value="8">第八课</option>
-								<option value="9">第九课</option>
-							</select>
-						</div>
-						<div class="modal-body">
-							资源描述：
-							<textarea name="resourceDesc" id="resourcedesc" placeholder="资源描述" cols="5" rows="8" style="width: 380px;"></textarea>
-							<!-- <input type="text" name="resourceDesc" />&nbsp;&nbsp;  -->
-							<!-- <input  type="button" value="添加" onclick="addFile()"/>&nbsp;<span style="color:red;font-size:14px;">单次上传不大于200M</span> -->
-						</div>
+						<div style="margin-top: 20px;"></div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" class="btn btn-large btn-success">保 存</button>
+								<button type="submit" class="btn btn-large btn-success">下一步</button>
 							</div>
 						</div>
 					</form:form>

@@ -211,7 +211,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	}; 
 	
 	
-	function editEdu(id){
+/*	function editEdu(id){
 		//alert(id);
 		$("#eduList").css("display","none");
 		$("#eduForm").css("display","block");
@@ -231,7 +231,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 			  }
 		});
 	};
-
+	
 	function editWork(id){
 		//alert(id);
 		$("#workList").css("display","none");
@@ -251,7 +251,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 				  	document.getElementById("workDesc").value=msg.workDesc;
 			  }
 		});
-	};
+	};*/
 
 	
 	
