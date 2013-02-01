@@ -45,7 +45,7 @@
     		<div>
    				<c:choose>
 					<c:when test="${c.teacherCourse.courseCover != null && c.teacherCourse.courseCover != ''}">
-						<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'> <img src='<c:url value="http://www.51knet.com/ccweb/${c.teacherCourse.courseCover }"></c:url>' style="width: 310px; height: 100px;" />
+						<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'> <img src='<c:url value="${url }${c.teacherCourse.courseCover }"></c:url>' style="width: 310px; height: 100px;" />
 						</a>
 					</c:when>
 					<c:otherwise>
@@ -85,7 +85,7 @@
 	      <div class="row">
 					<c:forEach items="${teacherList}" var="t" begin="0" end="4">
 						<div class="span1" style="width: 175px;height: 200px;">
-							<a href='<c:url value="http://www.51knet.com/ccweb/teacher/${t.id}"></c:url>'>${t.user.name }</a>
+							<a href='<c:url value="${url }/teacher/${t.id}"></c:url>'>${t.user.name }</a>
 						</div>
 					</c:forEach>
 				</div>
@@ -94,7 +94,7 @@
        <div class="row">
 			<c:forEach items="${teacherList}" var="t" begin="5" end="10">
 				<div class="span1" style="width: 175px;height: 200px;">
-					<a href='<c:url value="http://www.51knet.com/ccweb/teacher/${t.id}"></c:url>'>${t.user.name }</a>
+					<a href='<c:url value="${url }/teacher/${t.id}"></c:url>'>${t.user.name }</a>
 				</div>
 			</c:forEach>
 		</div>
@@ -103,7 +103,7 @@
 	      <div class="row">
 			<c:forEach items="${teacherList}" var="t" begin="11" end="15">
 				<div class="span1" style="width: 175px;height: 200px;">
-					<a href='<c:url value="http://www.51knet.com/ccweb/teacher/${t.id}"></c:url>'>${t.user.name }</a>
+					<a href='<c:url value="${url }/teacher/${t.id}"></c:url>'>${t.user.name }</a>
 				</div>
 			</c:forEach>
 		</div> 

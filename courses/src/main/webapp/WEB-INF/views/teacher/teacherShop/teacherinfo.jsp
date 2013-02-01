@@ -29,7 +29,7 @@
     <div>
 	    <c:choose >
 			<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
-				<img src='<c:url value="http://www.51knet.com/ccweb/${teacher.user.photo_url }"> </c:url>'style="width: 100px;height:100px; float:left; margin-left:30px"/>
+				<img src='<c:url value="${url }${teacher.user.photo_url }"> </c:url>'style="width: 100px;height:100px; float:left; margin-left:30px"/>
 			</c:when>
 			<c:otherwise>
 				 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>'style="width: 100px;height: 100px; float:left; margin-left:30px"/>
