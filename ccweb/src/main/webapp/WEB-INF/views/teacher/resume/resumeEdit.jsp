@@ -430,8 +430,8 @@
 		<div class="tab-pane <c:if test='${active == "project"}'>active</c:if>" id="project_tab">
 			<div id="project" style="display: block">
 				<div id="projectForm" style="display: none;">
-				<input type="hidden" name="projectId">
 					<form action="project/new" method="post" id="project_info_form" class="form-horizontal" name="project">
+						<input type="hidden" name="projectId">
 						<div class="control-group" id="projectTitle">
 							<label class="control-label" for="projectTitle">项目名称</label>
 							<div class="controls">
@@ -478,11 +478,11 @@
 							<table class="table">
 								<thead>
 									<tr>
-										<th width="30%">项目名称</th>
-										<th width="30%">项目来源</th>
-										<th width="15%">开始时间</th>
-										<th width="15%">结束时间</th>
-										<th width="10%">操作</th>
+										<th width="23%">项目名称</th>
+										<th width="23%">项目来源</th>
+										<th width="22%">开始时间</th>
+										<th width="17%">结束时间</th>
+										<th width="15%">操作</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -537,8 +537,8 @@
 		<div class="tab-pane <c:if test='${active == "patent"}'>active</c:if>" id="patent_tab">
 			<div id="patent" style="display: block">
 				<div id="patentForm" style="display: none;">
-				<input type="hidden" name="patentId">
 					<form action="patent/new" method="post" id="patent_info_form" name="teacherPatent" class="form-horizontal">
+					<input type="hidden" name="patentId">
 						<div class="control-group" id="inventer">
 							<label class="control-label" for="inventer">发明人</label>
 							<div class="controls">
@@ -643,8 +643,8 @@
 		<div class="tab-pane <c:if test='${active == "honor"}'>active</c:if>" id="honor_tab">
 			<div id="honor" style="display: block">
 				<div id="honorForm" style="display: none;">
-				<input type="hidden" name="honorId">
 					<form action="honor/new" method="post" id="honor_info_Form" name="teacherHonor" class="form-horizontal">
+					<input type="hidden" name="honorId">
 						<div class="control-group" id="honorName">
 							<label class="control-label" for="honorName">奖励荣誉</label>
 							<div class="controls">
@@ -939,7 +939,7 @@ $(document).ready(function() {
 				  	document.teacherPatent.patentName.value=msg.name;
 				  	document.teacherPatent.patentType.value=msg.type;
 				  	document.teacherPatent.number.value=msg.number;
-				  	patentEditor.html(msg.patentDesc);
+				  	patentEditor.html(msg.detailDesc);
 			  }
 		});
 	});
@@ -974,7 +974,6 @@ $(document).ready(function() {
 			  data: "honorId="+honor_id,
 			  dataType:"json",
 			  success:function(msg){
-				  	alert(msg.id+msg.name+msg.reason);
 					document.teacherHonor.honorId.value = msg.id;
 					document.teacherHonor.honorName.value=msg.name;
 				  	document.teacherHonor.reason.value=msg.reason;

@@ -347,22 +347,31 @@ public class TeacherController {
 	}
 	
 	@RequestMapping(value="/admin/teacher/project/new")
-	public String addProject(@Valid TeacherProjectDetailInfoForm projectDetailForm, HttpSession session,
+	public String addProject(@RequestParam("projectId") Long projectId, @Valid TeacherProjectDetailInfoForm projectDetailForm, HttpSession session,
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherProjectAddController ####");
 		if(validResult.hasErrors()){
 			return "redirect:/admin/teacher/resume?active=project";
 		}else{
+			TeacherProject project=null;
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long id = userInfo.getUser().getId();
-			Teacher teacher= teacherService.findOne(id);
-			TeacherProject project = new TeacherProject();
-			project.setTitle(projectDetailForm.getProjectTitle());
-			project.setSource(projectDetailForm.getProjectSource());
-			project.setStartTime(projectDetailForm.getProjectStartTime());
-			project.setEndTime(projectDetailForm.getProjectEndTime());
-			project.setDesc(projectDetailForm.getProjectDesc());
-			projectService.save(project, teacher);
+			if(projectId!=null){
+				project=projectService.findOneById(projectId);
+				project.setTitle(projectDetailForm.getProjectTitle());
+				project.setSource(projectDetailForm.getProjectSource());
+				project.setStartTime(projectDetailForm.getProjectStartTime());
+				project.setEndTime(projectDetailForm.getProjectEndTime());
+				project.setDesc(projectDetailForm.getProjectDesc());
+				projectService.update(project);
+			}else{
+				project = new TeacherProject();
+				project.setTitle(projectDetailForm.getProjectTitle());
+				project.setSource(projectDetailForm.getProjectSource());
+				project.setStartTime(projectDetailForm.getProjectStartTime());
+				project.setEndTime(projectDetailForm.getProjectEndTime());
+				project.setDesc(projectDetailForm.getProjectDesc());
+				projectService.save(project, userInfo.getTeacher());
+			}
 			return "redirect:/admin/teacher/resume?active=project";
 		}
 	}
@@ -374,22 +383,32 @@ public class TeacherController {
 	}
 	
 	@RequestMapping(value="/admin/teacher/patent/new")
-	public String addPatent(@Valid TeacherPatentDetailInfoForm patentDetailForm, HttpSession session,
+	public String addPatent(@RequestParam("patentId")Long patentId,@Valid TeacherPatentDetailInfoForm patentDetailForm, HttpSession session,
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherPatentAddController ####");
 		if(validResult.hasErrors()){
 			return "redirect:/admin/teacher/resume?active=patent";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long id = userInfo.getUser().getId();
-			Teacher teacher= teacherService.findOne(id);
-			TeacherPatent patent = new TeacherPatent();
-			patent.setInventer(patentDetailForm.getInventer());
-			patent.setName(patentDetailForm.getPatentName());
-			patent.setNumber(patentDetailForm.getNumber());
-			patent.setType(patentDetailForm.getPatentType());
-			patent.setDesc(patentDetailForm.getPatentDesc());
-			patentService.save(patent, teacher);
+			TeacherPatent patent = null;
+			if(patentId!=null){
+				patent=patentService.findOneById(patentId);
+				patent.setInventer(patentDetailForm.getInventer());
+				patent.setName(patentDetailForm.getPatentName());
+				patent.setNumber(patentDetailForm.getNumber());
+				patent.setType(patentDetailForm.getPatentType());
+				patent.setDesc(patentDetailForm.getPatentDesc());
+				patentService.update(patent);
+			}else{
+				patent=new TeacherPatent();
+				patent.setInventer(patentDetailForm.getInventer());
+				patent.setName(patentDetailForm.getPatentName());
+				patent.setNumber(patentDetailForm.getNumber());
+				patent.setType(patentDetailForm.getPatentType());
+				patent.setDesc(patentDetailForm.getPatentDesc());
+				patentService.save(patent, userInfo.getTeacher());
+			}		
+					
 			return "redirect:/admin/teacher/resume?active=patent";
 		}
 	}
@@ -401,20 +420,28 @@ public class TeacherController {
 	}
 	
 	@RequestMapping(value="/admin/teacher/honor/new")
-	public String addHonor(@Valid TeacherHonorDetailInfoForm honorDetailForm, HttpSession session,
+	public String addHonor(@RequestParam("honorId") Long honorId, @Valid TeacherHonorDetailInfoForm honorDetailForm, HttpSession session,
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherProjectAddController ####");
 		if(validResult.hasErrors()){
 			return "redirect:/admin/teacher/resume?active=honor";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long id = userInfo.getUser().getId();
-			Teacher teacher= teacherService.findOne(id);
-			TeacherHonor honor = new TeacherHonor();
-			honor.setName(honorDetailForm.getHonorName());
-			honor.setReason(honorDetailForm.getReason());
-			honor.setDesc(honorDetailForm.getHonorDesc());
-			honorService.save(honor, teacher);
+			
+			TeacherHonor honor = null;
+			if(honorId!=null){
+				honor=honorService.findOneById(honorId);
+				honor.setName(honorDetailForm.getHonorName());
+				honor.setReason(honorDetailForm.getReason());
+				honor.setDesc(honorDetailForm.getHonorDesc());
+				honorService.update(honor);
+			}else{
+				honor=new TeacherHonor();
+				honor.setName(honorDetailForm.getHonorName());
+				honor.setReason(honorDetailForm.getReason());
+				honor.setDesc(honorDetailForm.getHonorDesc());
+				honorService.save(honor, userInfo.getTeacher());
+			}
 			return "redirect:/admin/teacher/resume?active=honor";
 		}
 	}
