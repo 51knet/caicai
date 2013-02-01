@@ -19,7 +19,7 @@ import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
 
 @Entity
-@JsonIgnoreProperties(value={"project","thesis","patent","honor","course"})
+@JsonIgnoreProperties(value={"course"})
 public class Teacher {
 
 	@Id
@@ -30,18 +30,6 @@ public class Teacher {
 	@PrimaryKeyJoinColumn(name = "id")
 	private User user;
 
-	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
-	private Set<TeacherProject> project = new HashSet<TeacherProject>();
-
-	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
-	private Set<TeacherThesis> thesis = new HashSet<TeacherThesis>();
-
-	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
-	private Set<TeacherPatent> patent = new HashSet<TeacherPatent>();
-
-	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
-	private Set<TeacherHonor> honor = new HashSet<TeacherHonor>();
-	
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
 	private Set<TeacherCourse> course = new HashSet<TeacherCourse>();
 
@@ -123,38 +111,6 @@ public class Teacher {
 
 	public void setMajor(String major) {
 		this.major = major;
-	}
-	
-	public Set<TeacherProject> getProject() {
-		return project;
-	}
-
-	public void setProject(Set<TeacherProject> project) {
-		this.project = project;
-	}
-
-	public Set<TeacherThesis> getThesis() {
-		return thesis;
-	}
-
-	public void setThesis(Set<TeacherThesis> thesis) {
-		this.thesis = thesis;
-	}
-
-	public Set<TeacherPatent> getPatent() {
-		return patent;
-	}
-
-	public void setPatent(Set<TeacherPatent> patent) {
-		this.patent = patent;
-	}
-
-	public Set<TeacherHonor> getHonor() {
-		return honor;
-	}
-
-	public void setHonor(Set<TeacherHonor> honor) {
-		this.honor = honor;
 	}
 
 	public Set<TeacherCourse> getCourse() {

@@ -112,8 +112,8 @@
 																				<td align="right" width="32%">
 																					<span style="font-size: 13px;">
 																						<a href='javascript:void(0)' onclick="editCourseResource(${fileNames.id})">修改</a>  | 
-																						<a  style=" " class="deleteResourcePostBtn" href="#deleteResourcePostModal" role="button" data-toggle="modal" data-target="#deleteResourcePostModal">删除</a>
-																						<input type="hidden" value="${fileNames.id}">
+																						<a  style=" " class="deleteResourcePostBtn" href="#deleteResourcePostModal" role="button" data-toggle="modal" data-target="#deleteResourcePostModal">
+																						删除</a><input type="hidden" value="${fileNames.id}">
 																					</span>
 																				</td>
 																			</tr>

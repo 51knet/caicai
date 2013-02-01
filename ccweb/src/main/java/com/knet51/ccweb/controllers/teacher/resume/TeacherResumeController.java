@@ -5,9 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.Gson;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.EduBackground;
@@ -158,5 +161,26 @@ public class TeacherResumeController {
 		model.addAttribute("honorList", honorList);
 		model.addAttribute("honorCount", honorList.size());
 		return "teacher.resume";
+	}
+	
+	@RequestMapping(value="/admin/teacher/eduInfo/edit/ajax",method = RequestMethod.POST)
+	public void getEduJson(@RequestParam ("eduId") Long edu_id,HttpServletResponse response,HttpSession session) throws Exception{
+		EduBackground eduInfo = eduBackgroundService.findOneById(Long.valueOf(edu_id));
+		PrintWriter out = response.getWriter();
+		Gson g = new Gson();
+		out.write(g.toJson(eduInfo));
+		out.flush();
+		out.close();
+		
+	}
+	
+	@RequestMapping(value="/admin/teacher/workInfo/edit/ajax",method = RequestMethod.POST)
+	public void getWorkJson(@RequestParam ("workId") Long work_id,HttpServletResponse response,HttpSession session) throws Exception{
+		WorkExp workInfo = workExpService.findOneById(Long.valueOf(work_id));
+		PrintWriter out = response.getWriter();
+		Gson g = new Gson();
+		out.write(g.toJson(workInfo));
+		out.flush();
+		out.close();
 	}
 }
