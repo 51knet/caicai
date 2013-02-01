@@ -989,7 +989,6 @@ $(document).ready(function() {
 	});
 	prettyPrint();
 });
-
 function personalOnclick(){
 	return checkEmptyAjax("personal_info_form","personalInfoAJAX");
 };
