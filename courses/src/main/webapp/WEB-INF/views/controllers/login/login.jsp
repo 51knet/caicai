@@ -93,7 +93,7 @@ $(document).ready(function (){
 			<div style="padding: 20px;">
 				<h3>没有账号？</h3>
 				<p>
-					立刻<a href="#" class="internal-home">注册</a>！
+					立刻<a href="<c:url value="signup" />" class="internal-home">注册</a>！
 				</p>
 			</div>
 		</div>

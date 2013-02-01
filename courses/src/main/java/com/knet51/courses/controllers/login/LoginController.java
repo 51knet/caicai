@@ -1,6 +1,5 @@
 package com.knet51.courses.controllers.login;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,7 +49,7 @@ public class LoginController {
 			if (succeed) {
 				UserInfo userInfo = new UserInfo(user);
 				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-				logger.info(userInfo.getEmail()+" = "+userInfo.getId());
+				logger.info(userInfo.getEmail() + " = " + userInfo.getId());
 				return "redirect:/";
 			} else {
 				return "signin";
@@ -66,8 +64,10 @@ public class LoginController {
 		session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
 		return "redirect:/";
 	}
+
 	/**
 	 * author lbx
+	 * 
 	 * @param session
 	 * @param request
 	 * @param 邮箱验证是否存在
@@ -75,15 +75,18 @@ public class LoginController {
 	 * @param response
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/checkemailajax", method =RequestMethod.POST)
-	public void checkEmail(HttpSession session, HttpServletRequest request,@RequestParam("email") String email,HttpServletResponse response) throws Exception {
-		PrintWriter out=response.getWriter();
-		User user=service.getValidEmail(email);
-		Integer num=1;
-		if(user==null){
-			num=0;
+	@RequestMapping(value = "/checkemailajax", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public void checkEmail(HttpSession session, HttpServletRequest request,
+			@RequestParam("email") String email, HttpServletResponse response)
+			throws Exception {
+		PrintWriter out = response.getWriter();
+		User user = service.getValidEmail(email);
+		Integer num = 1;
+		if (user == null) {
+			num = 0;
 		}
-		String number=num.toString();
+		String number = num.toString();
 		out.write(number);
 		out.flush();
 		out.close();

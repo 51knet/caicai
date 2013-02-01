@@ -35,6 +35,7 @@
 				</c:if>
 				<c:if test="${sessionUserInfo == null}">
 				<li><a style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/signin"></c:url>'>登录</a><br></li>
+				<li><a style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/signup"></c:url>'>注册</a><br></li>
 				</c:if>
 				<li class="divider-vertical"></li>
 				<li class="dropdown" style="display: none;"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
