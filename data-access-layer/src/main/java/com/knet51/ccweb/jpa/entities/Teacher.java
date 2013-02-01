@@ -112,7 +112,11 @@ public class Teacher {
 	public void setMajor(String major) {
 		this.major = major;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 186f3a89bfe668cca0063cb0a3c5d6feacca35ab
 	public Set<TeacherCourse> getCourse() {
 		return course;
 	}

@@ -162,6 +162,7 @@ public class TeacherResumeController {
 		model.addAttribute("honorCount", honorList.size());
 		return "teacher.resume";
 	}
+
 	@RequestMapping(value="/admin/teacher/thesisInfo/edit/ajax",method = RequestMethod.POST)
 	public void getThesisJson(@RequestParam ("thesisId") Long thesis_id,HttpServletResponse response,HttpSession session) throws Exception{
 		TeacherThesis teacherThesisInfo = thesisService.findOneById(Long.valueOf(thesis_id));
@@ -195,6 +196,24 @@ public class TeacherResumeController {
 		PrintWriter out = response.getWriter();
 		Gson g = new Gson();
 		out.write(g.toJson(honorInfo));
+		}
+	@RequestMapping(value="/admin/teacher/eduInfo/edit/ajax",method = RequestMethod.POST)
+	public void getEduJson(@RequestParam ("eduId") Long edu_id,HttpServletResponse response,HttpSession session) throws Exception{
+		EduBackground eduInfo = eduBackgroundService.findOneById(Long.valueOf(edu_id));
+		PrintWriter out = response.getWriter();
+		Gson g = new Gson();
+		out.write(g.toJson(eduInfo));
+		out.flush();
+		out.close();
+		
+	}
+	
+	@RequestMapping(value="/admin/teacher/workInfo/edit/ajax",method = RequestMethod.POST)
+	public void getWorkJson(@RequestParam ("workId") Long work_id,HttpServletResponse response,HttpSession session) throws Exception{
+		WorkExp workInfo = workExpService.findOneById(Long.valueOf(work_id));
+		PrintWriter out = response.getWriter();
+		Gson g = new Gson();
+		out.write(g.toJson(workInfo));
 		out.flush();
 		out.close();
 	}

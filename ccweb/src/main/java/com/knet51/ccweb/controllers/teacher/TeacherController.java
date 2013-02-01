@@ -445,42 +445,4 @@ public class TeacherController {
 	public @ResponseBody ValidationResponse honorInfoFormAjaxJson(@Valid TeacherHonorDetailInfoForm teacherHonorDetailInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
-	
-	@RequestMapping(value="/admin/teacher/pswInfoCheck", method = RequestMethod.POST)
-	public void checkEmail(@RequestParam("oriPsw") String oriPsw,HttpServletResponse response,HttpSession session) throws Exception{
-		PrintWriter out=response.getWriter();
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		String password=userInfo.getUser().getPassword();
-		Integer count=0;
-		if(password.equals(oriPsw)){
-			count=1;
-		}else{
-			count=0;
-		}
-		String countString  = count.toString();
-		out.write(countString);
-		out.flush();
-		out.close();
-	}
-	
-	@RequestMapping(value="/admin/teacher/eduInfo/edit/ajax",method = RequestMethod.POST)
-	public void getEduJson(@RequestParam ("eduId") Long edu_id,HttpServletResponse response,HttpSession session) throws Exception{
-		EduBackground eduInfo = eduBackgroundService.findOneById(Long.valueOf(edu_id));
-		PrintWriter out = response.getWriter();
-		Gson g = new Gson();
-		out.write(g.toJson(eduInfo));
-		out.flush();
-		out.close();
-		
-	}
-	
-	@RequestMapping(value="/admin/teacher/workInfo/edit/ajax",method = RequestMethod.POST)
-	public void getWorkJson(@RequestParam ("workId") Long work_id,HttpServletResponse response,HttpSession session) throws Exception{
-		WorkExp workInfo = workExpService.findOneById(Long.valueOf(work_id));
-		PrintWriter out = response.getWriter();
-		Gson g = new Gson();
-		out.write(g.toJson(workInfo));
-		out.flush();
-		out.close();
-	}
 }
