@@ -483,6 +483,42 @@ public class TeacherController {
 		out.flush();
 		out.close();
 	}
+	@RequestMapping(value="/admin/teacher/thesisInfo/edit/ajax",method = RequestMethod.POST)
+	public void getThesisJson(@RequestParam ("thesisId") Long thesis_id,HttpServletResponse response,HttpSession session) throws Exception{
+		TeacherThesis teacherThesisInfo = thesisService.findOneById(Long.valueOf(thesis_id));
+		PrintWriter out = response.getWriter();
+		Gson g = new Gson();
+		out.write(g.toJson(teacherThesisInfo));
+		out.flush();
+		out.close();
+	}
+	@RequestMapping(value="/admin/teacher/projectInfo/edit/ajax",method = RequestMethod.POST)
+	public void getProjectJson(@RequestParam ("projectId") Long project_id,HttpServletResponse response,HttpSession session) throws Exception{
+		TeacherProject teacherProjectInfo = projectService.findOneById(Long.valueOf(project_id));
+		PrintWriter out = response.getWriter();
+		Gson g = new Gson();
+		out.write(g.toJson(teacherProjectInfo));
+		out.flush();
+		out.close();
+	}
+	@RequestMapping(value="/admin/teacher/patentInfo/edit/ajax",method = RequestMethod.POST)
+	public void getPatentJson(@RequestParam ("patentId") Long patent_id,HttpServletResponse response,HttpSession session) throws Exception{
+		TeacherPatent teacherPatentInfo = patentService.findOneById(Long.valueOf(patent_id));
+		PrintWriter out = response.getWriter();
+		Gson g = new Gson();
+		out.write(g.toJson(teacherPatentInfo));
+		out.flush();
+		out.close();
+	}
+	@RequestMapping(value="/admin/teacher/honorInfo/edit/ajax",method = RequestMethod.POST)
+	public void getTeacherHonorJson(@RequestParam ("honorId") Long honor_id,HttpServletResponse response,HttpSession session) throws Exception{
+		TeacherHonor honorInfo = honorService.findOneById(Long.valueOf(honor_id));
+		PrintWriter out = response.getWriter();
+		Gson g = new Gson();
+		out.write(g.toJson(honorInfo));
+		out.flush();
+		out.close();
+	}
 	
 	
 	

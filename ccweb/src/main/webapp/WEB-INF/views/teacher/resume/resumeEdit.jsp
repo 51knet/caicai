@@ -360,7 +360,7 @@
 		<!-- Thesis -->
 
 		<div class="tab-pane <c:if test='${active == "thesis"}'>active</c:if>" id="thesis_tab">
-			<div id="thesis" style="display: block">
+			<div id="thesisList" style="display: block">
 				<c:choose>
 					<c:when test="${thesisCount>0}">
 						<table class="table">
@@ -375,6 +375,8 @@
 									<tr>
 										<td width=90% align="left">${thesis.content}</td>
 										<td><a class="deleteThesisPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteThesisPostModal">删除</a> <input type="hidden" value="${thesis.id} ">
+										|<a href='javascript:void(0)' class="editThesisAjaxBtn">修改</a>
+										<input type="hidden" value="${thesis.id}">
 										</td>
 									</tr>
 								</c:forEach>
@@ -389,7 +391,8 @@
 				<button onclick="showThesisAddForm();">添加</button>
 			</div>
 			<div id="thesisNewInfoForm" style="display: none;">
-				<form action="thesis/new" method="post" id="thesis_info_form">
+				<form action="thesis/new" method="post" id="thesis_info_form" name="thesis">
+				<input type="hidden" name="thesisId">
 					<div class="control-group" id="content">
 						<div class="controls">
 							内容:<textarea  name="content" rows="6" cols="8" style="width: 600px; height: 300px;"></textarea>
@@ -427,8 +430,9 @@
 		<!--  project  -->
 		<div class="tab-pane <c:if test='${active == "project"}'>active</c:if>" id="project_tab">
 			<div id="project" style="display: block">
-				<div id="projectForm" style="display: none;">
-					<form action="project/new" method="post" id="project_info_form" class="form-horizontal">
+				<div id="projectForm" style="display: none;">\
+				<input type="hidden" name="projectId">
+					<form action="project/new" method="post" id="project_info_form" class="form-horizontal" name="project">
 						<div class="control-group" id="projectTitle">
 							<label class="control-label" for="projectTitle">项目名称</label>
 							<div class="controls">
@@ -469,7 +473,7 @@
 						</div>
 					</form>
 				</div>
-				<div id="projectButton" style="display: block">
+				<div id="projectList" style="display: block">
 					<c:choose>
 						<c:when test="${projectCount>0}">
 							<table class="table">
@@ -490,7 +494,10 @@
 											<td align="left">${project.startTime}</td>
 											<td align="left">${project.endTime}</td>
 											<td><a class="deleteProjectPostBtn" href="#deleteProjectPostModal" role="button" data-toggle="modal" data-target="#deleteProjectPostModal">删除</a> <input type="hidden"
-												value="${project.id} "></td>
+												value="${project.id} ">
+												<a href='javascript:void(0)' class="editProjectAjaxBtn">修改</a>
+												<input type="hidden" value="${project.id}">
+												</td>
 										</tr>
 										<tr style="margin-left: -70px;">
 											<td>详细描述：</td>
@@ -532,7 +539,8 @@
 		<div class="tab-pane <c:if test='${active == "patent"}'>active</c:if>" id="patent_tab">
 			<div id="patent" style="display: block">
 				<div id="patentForm" style="display: none;">
-					<form action="patent/new" method="post" id="patent_info_form" class="form-horizontal">
+				<input type="hidden" name="patentId">
+					<form action="patent/new" method="post" id="patent_info_form" name="teacherPatent" class="form-horizontal">
 						<div class="control-group" id="inventer">
 							<label class="control-label" for="inventer">发明人</label>
 							<div class="controls">
@@ -572,7 +580,7 @@
 						</div>
 					</form>
 				</div>
-				<div id="patentButton" style="display: block">
+				<div id="patentList" style="display: block">
 					<c:choose>
 						<c:when test="${patentCount>0 }">
 							<table class="table">
@@ -593,7 +601,10 @@
 											<td align="center">${patent.type}</td>
 											<td align="center">${patent.number}</td>
 											<td><a class="deletePatentPostBtn" href="#deletePatentPostModal" role="button" data-toggle="modal" data-target="#deletePatentPostModal">删除</a> <input type="hidden"
-												value="${patent.id} "></td>
+												value="${patent.id} ">|
+												<a href='javascript:void(0)' class="editPatentAjaxBtn">修改</a>
+												<input type="hidden" value="${patent.id}">
+												</td>
 										</tr>
 										<tr style="margin-left: -70px;">
 											<td>详细描述：</td>
@@ -635,7 +646,8 @@
 		<div class="tab-pane <c:if test='${active == "honor"}'>active</c:if>" id="honor_tab">
 			<div id="honor" style="display: block">
 				<div id="honorForm" style="display: none;">
-					<form action="honor/new" method="post" id="honor_info_Form" class="form-horizontal">
+				<input type="hidden" name="honorId">
+					<form action="honor/new" method="post" id="honor_info_Form" name="teacherHonor" class="form-horizontal">
 						<div class="control-group" id="honorName">
 							<label class="control-label" for="honorName">奖励或荣誉</label>
 							<div class="controls">
@@ -663,7 +675,7 @@
 						</div>
 					</form>
 				</div>
-				<div id="honorButton" style="display: block">
+				<div id="honorList" style="display: block">
 					<c:choose>
 						<c:when test="${honorCount >0}">
 							<table class="table ">
@@ -680,6 +692,9 @@
 											<td align="center">${honor.name}</td>
 											<td align="center">${honor.reason}</td>
 											<td><a class="deleteHonorPostBtn" href="#deleteHonorPostModal" role="button" data-toggle="modal" data-target="#deleteHonorPostModal">删除</a> <input type="hidden" value="${honor.id} ">
+											editHonorAjaxBtn|
+											<a href='javascript:void(0)' class="editHonorAjaxBtn">修改</a>
+												<input type="hidden" value="${honor.id}">
 											</td>
 										</tr>
 										<tr style="margin-left: -70px;">
@@ -833,6 +848,22 @@ $(document).ready(function() {
 			});
 		}
 	});
+	$('.editThesisAjaxBtn').on('click', function() {
+		var thesis_id = $(this).next().val();
+		$("#thesisList").css("display","none");
+		$("#thesisNewInfoForm").css("display","block");
+		$.ajax({
+			  type: "post",
+			  url: "thesisInfo/edit/ajax",
+			  data: "thesisId="+thesis_id,
+			  dataType:"json",
+			  success:function(msg){
+				  	alert(msg);
+					document.thesis.thesisId.value = msg.id;
+				  	contextEditor.html(msg.content);
+			  }
+		});
+	});
 	$("#thesis_info_form").submit(function(){
 		contextEditor.sync();
 		return checkEmptyAjax("thesis_info_form","thesisInfoAJAX");
@@ -859,6 +890,25 @@ $(document).ready(function() {
 		projectEditor.sync();
 		return checkEmptyAjax("project_info_form","projectInfoAJAX");
 	});
+	$('.editProjectAjaxBtn').on('click', function() {
+		var project_id = $(this).next().val();
+		$("#projectList").css("display","none");
+		$("#projectForm").css("display","block");
+		$.ajax({
+			  type: "post",
+			  url: "projectInfo/edit/ajax",
+			  data: "projectId="+project_id,
+			  dataType:"json",
+			  success:function(msg){
+					document.project.projectId.value = msg.id;
+					document.project.projectTitle.value=msg.title;
+				  	document.project.projectSource.value=msg.source;
+				  	document.project.projectStartTime.value=msg.startTime;
+				  	document.project.projectEndTime.value=msg.endTime;
+				  	projectEditor.html(msg.detailDesc);
+			  }
+		});
+	});
 	var patentEditor = KindEditor.create('textarea[name="patentDesc"]',{
 		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
 		uploadJson : '${uploadJson}',
@@ -880,7 +930,25 @@ $(document).ready(function() {
 		patentEditor.sync();
 		return checkEmptyAjax("patent_info_form","patentInfoAJAX");
 	});
-	
+	$('.editPatentAjaxBtn').on('click', function() {
+		var patent_id = $(this).next().val();
+		$("#patentList").css("display","none");
+		$("#patentForm").css("display","block");
+		$.ajax({
+			  type: "post",
+			  url: "patentInfo/edit/ajax",
+			  data: "patentId="+patent_id,
+			  dataType:"json",
+			  success:function(msg){
+					document.teacherPatent.patentId.value = msg.id;
+					document.teacherPatent.inventer.value=msg.inventer;
+				  	document.teacherPatent.patentName.value=msg.name;
+				  	document.teacherPatent.patentType.value=msg.type;
+				  	document.teacherPatent.number.value=msg.number;
+				  	patentEditor.html(msg.patentDesc);
+			  }
+		});
+	});
 	var honorEditor = KindEditor.create('textarea[name="honorDesc"]',{
 		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
 		uploadJson : '${uploadJson}',
@@ -901,6 +969,23 @@ $(document).ready(function() {
 	$("#honor_info_Form").submit(function(){
 		honorEditor.sync();
 		return checkEmptyAjax("honor_info_Form","honorInfoAJAX");
+	});
+	$('.editHonorAjaxBtn').on('click', function() {
+		var honor_id = $(this).next().val();
+		$("#honorList").css("display","none");
+		$("#honorForm").css("display","block");
+		$.ajax({
+			  type: "post",
+			  url: "honorInfo/edit/ajax",
+			  data: "honorId="+honor_id,
+			  dataType:"json",
+			  success:function(msg){
+					document.teacherHonor.honorId.value = msg.id;
+					document.teacherHonor.honorName.value=msg.name;
+				  	document.teacherHonor.reason.value=msg.reason;
+				  	honorEditor.html(msg.detailDesc);
+			  }
+		});
 	});
 	prettyPrint();
 });
