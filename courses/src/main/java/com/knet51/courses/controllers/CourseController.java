@@ -44,7 +44,7 @@ import com.knet51.courses.jpa.services.UserCourseService;
 import com.knet51.courses.util.ajax.AjaxValidationEngine;
 import com.knet51.courses.util.ajax.ValidationResponse;
 import com.knet51.courses.util.fileUpLoad.FileUtil;
-	
+
 @Controller
 public class CourseController {
 	@Autowired
@@ -90,7 +90,7 @@ public class CourseController {
 			model.addAttribute("courseList", newCourseList);
 			model.addAttribute("courseCount", newCourseList.size());
 			model.addAttribute("courseTypeList", courseTypeList);
-			
+
 		} else {
 			model.addAttribute("courseList", courseList);
 			model.addAttribute("courseType", courseType);
@@ -99,17 +99,20 @@ public class CourseController {
 		}
 		return "course.list";
 	}
-	
+
 	@Transactional
-	@RequestMapping(value = "/search",method=RequestMethod.POST)
-	public String searchCourseOrTeacher(@RequestParam("searchParam") String searchParam,
-			Model model) throws Exception {
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String searchCourseOrTeacher(
+			@RequestParam("searchParam") String searchParam, Model model)
+			throws Exception {
 		List<TeacherCourse> courseList = courseService.findAllCourses();
 		List<String> courseTypeList = courseService.courseTypeList();
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
 		if (searchParam.trim() != null && !searchParam.trim().equals("")) {
 			for (TeacherCourse c : courseList) {
-				if(searchParam.equals(c.getCourseName()) || searchParam.equals(c.getTeacher().getUser().getName())){
+				if (searchParam.contains(c.getCourseName())
+						|| searchParam.contains(c.getTeacher().getUser()
+								.getName())) {
 					newCourseList.add(c);
 				}
 			}
@@ -117,7 +120,7 @@ public class CourseController {
 			model.addAttribute("courseList", newCourseList);
 			model.addAttribute("courseCount", newCourseList.size());
 			model.addAttribute("courseTypeList", courseTypeList);
-			
+
 		} else {
 			model.addAttribute("courseList", courseList);
 			model.addAttribute("courseCount", courseList.size());
@@ -126,52 +129,57 @@ public class CourseController {
 		}
 		return "course.list";
 	}
-	
-	
-	
-	@RequestMapping(value="/course/view/{course_id}")
-	public String showCourseDetail(@PathVariable Long course_id,Model model,HttpSession session
-			,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize){
-		//UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		/*     zm    */
+
+	@RequestMapping(value = "/course/view/{course_id}")
+	public String showCourseDetail(
+			@PathVariable Long course_id,
+			Model model,
+			HttpSession session,
+			@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize) {
+		// UserInfo userInfo = (UserInfo)
+		// session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		/* zm */
 		TeacherCourse course = courseService.findOneById(course_id);
 		model.addAttribute("course", course);
-		/*     lbx    */
+		/* lbx */
 		Teacher teacher = course.getTeacher();
-		List<UserCourse> listUserCourse = userCourseService.findByTeachercourseid(course_id);
-		double courseMark=0.0;
-		Integer sumPerson=0;
-		
-		if(listUserCourse.size()==0){
-			courseMark=0;
-			sumPerson=0;
-		}else{
-			
-			sumPerson=listUserCourse.size();
+		List<UserCourse> listUserCourse = userCourseService
+				.findByTeachercourseid(course_id);
+		double courseMark = 0.0;
+		Integer sumPerson = 0;
+
+		if (listUserCourse.size() == 0) {
+			courseMark = 0;
+			sumPerson = 0;
+		} else {
+
+			sumPerson = listUserCourse.size();
 			for (UserCourse userCourse : listUserCourse) {
-				if(userCourse.getMark()==null){
-					courseMark=0.0;
-				}else{
-					courseMark=userCourseService.getMark(course_id);
+				if (userCourse.getMark() == null) {
+					courseMark = 0.0;
+				} else {
+					courseMark = userCourseService.getMark(course_id);
 				}
 			}
-			List<UserCourseBeans> list=new ArrayList<UserCourseBeans>();
-			Page<UserCourse> onePage = userCourseService.findUserCourseByTeachercourseid(pageNumber,pageSize, course_id);
+			List<UserCourseBeans> list = new ArrayList<UserCourseBeans>();
+			Page<UserCourse> onePage = userCourseService
+					.findUserCourseByTeachercourseid(pageNumber, pageSize,
+							course_id);
 			UserCourseBeans UserCourseUser;
 			for (int i = 0; i < onePage.getContent().size(); i++) {
-				UserCourseUser=new UserCourseBeans();
-				UserCourse comm=onePage.getContent().get(i);
-				User user =null;
-				if(comm.getUserid()!=null){
-					long userid=comm.getUserid();
-					user=userCourseService.findByUserId(userid);
-					 String photoUrl=user.getPhoto_url();
-					 String userName=user.getName();
-					 UserCourseUser.setPhotoUrl(photoUrl);
+				UserCourseUser = new UserCourseBeans();
+				UserCourse comm = onePage.getContent().get(i);
+				User user = null;
+				if (comm.getUserid() != null) {
+					long userid = comm.getUserid();
+					user = userCourseService.findByUserId(userid);
+					String photoUrl = user.getPhoto_url();
+					String userName = user.getName();
+					UserCourseUser.setPhotoUrl(photoUrl);
 					UserCourseUser.setUserName(userName);
 				}
-				if(comm.getCommentDesc()!=null){
+				if (comm.getCommentDesc() != null) {
 					UserCourseUser.setUserCourse(comm);
 				}
 				list.add(UserCourseUser);
@@ -181,29 +189,32 @@ public class CourseController {
 		}
 		model.addAttribute("sumPerson", sumPerson);
 		model.addAttribute("courseMark", courseMark);
-		
+
 		model.addAttribute("teacher", teacher);
-		
-		List<CourseResource> listResource = courseResourceService.getResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
+
+		List<CourseResource> listResource = courseResourceService
+				.getResourceByCourseIdAndStatus(course_id,
+						GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList;
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String lessonNum = null;
 		for (CourseResource courseResource : listResource) {
 			lessonNum = courseResource.getLessonNum();
-			courseList= new ArrayList<CourseResource>();
-			courseList = courseResourceService.getResourceByLessonNumAndCourseId(lessonNum,course_id);
+			courseList = new ArrayList<CourseResource>();
+			courseList = courseResourceService
+					.getResourceByLessonNumAndCourseId(lessonNum, course_id);
 			courseMap.put(lessonNum, courseList);
 		}
-		
-		//model.addAttribute("id", id);
+
+		// model.addAttribute("id", id);
 		model.addAttribute("courseMap", courseMap);
 		model.addAttribute("resourceCount", listResource.size());
 		return "course.list.view";
 	}
+
 	/**
-	 * 通过ID查询出一条课程详细资料
-	 * author:lbx
-	 * 判断session是否为空
+	 * 通过ID查询出一条课程详细资料 author:lbx 判断session是否为空
+	 * 
 	 * @param model
 	 * @param session
 	 * @param teacherCourse_id
@@ -212,40 +223,43 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/course/study/view/{id}")
-	public String listCourseByTeacherCourseId(
-			Model model,
-			HttpSession session,
+	public String listCourseByTeacherCourseId(Model model, HttpSession session,
 			@PathVariable Long id) {
-		
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if (userInfo == null) {
 			return "redirect:/signin";
-		} 
-		List<UserCourse> listCourse=userCourseService.findByTeachercourseid(id);
-		UserCourse userCourse=null;
-		if(listCourse.size()==0){
-			userCourse=new UserCourse();
+		}
+		List<UserCourse> listCourse = userCourseService
+				.findByTeachercourseid(id);
+		UserCourse userCourse = null;
+		if (listCourse.size() == 0) {
+			userCourse = new UserCourse();
 			userCourse.setTeachercourseid(id);
 			userCourse.setUserid(userInfo.getId());
 			userCourseService.save(userCourse);
 		}
-		List<CourseResource> listResource = courseResourceService.getResourceByCourseIdAndStatus(id, GlobalDefs.STATUS_COURSE_RESOURCE);
+		List<CourseResource> listResource = courseResourceService
+				.getResourceByCourseIdAndStatus(id,
+						GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList = new ArrayList<CourseResource>();
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String resourceOrder = null;
 		for (CourseResource courseResource : listResource) {
 			resourceOrder = courseResource.getLessonNum();
 			courseList = courseResourceService
-					.getResourceByLessonNumAndCourseId(resourceOrder,id);
+					.getResourceByLessonNumAndCourseId(resourceOrder, id);
 			courseMap.put(resourceOrder, courseList);
 		}
 		model.addAttribute("courseMap", courseMap);
-		/*    zm   */
+		/* zm */
 		TeacherCourse teacherCourse = courseService.findOneById(id);
 		model.addAttribute("course", teacherCourse);
 		model.addAttribute("resourceCount", listResource.size());
 		return "course.study.view";
 	}
+
 	/**
 	 * 通过ID查询出一条课程资料
 	 * 
@@ -257,16 +271,16 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/course/study/courseinfo/{id}")
-	public String coursesByTeacherCourseId(
-			Model model,
-			HttpSession session,
+	public String coursesByTeacherCourseId(Model model, HttpSession session,
 			@PathVariable Long id) {
-		TeacherCourse teacherCourse=courseService.findOneById(id);
-		model.addAttribute("course",teacherCourse );
+		TeacherCourse teacherCourse = courseService.findOneById(id);
+		model.addAttribute("course", teacherCourse);
 		return "course.study.courseinfo";
 	}
+
 	/**
 	 * 查询出相关的评论信息
+	 * 
 	 * @param validResult
 	 * @param request
 	 * @param session
@@ -275,47 +289,53 @@ public class CourseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/course/study/comment/{id}")
-	public String listUserCourse(@PathVariable Long id, Model model,HttpSession session
-			,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+	public String listUserCourse(
+			@PathVariable Long id,
+			Model model,
+			HttpSession session,
+			@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize)
-			throws Exception {	
-		List<UserCourseBeans> list=new ArrayList<UserCourseBeans>();
-		Page<UserCourse> onePage = userCourseService.findUserCourseByTeachercourseid(pageNumber,pageSize, id);
+			throws Exception {
+		List<UserCourseBeans> list = new ArrayList<UserCourseBeans>();
+		Page<UserCourse> onePage = userCourseService
+				.findUserCourseByTeachercourseid(pageNumber, pageSize, id);
 		UserCourseBeans UserCourseUser;
 		for (int i = 0; i < onePage.getContent().size(); i++) {
-			UserCourseUser=new UserCourseBeans();
-			long userid=onePage.getContent().get(i).getUserid();
-			User user=userCourseService.findByUserId(userid);
-			UserCourse comm=onePage.getContent().get(i);
-			String userName=user.getName();
-			String photoUrl=user.getPhoto_url();
+			UserCourseUser = new UserCourseBeans();
+			long userid = onePage.getContent().get(i).getUserid();
+			User user = userCourseService.findByUserId(userid);
+			UserCourse comm = onePage.getContent().get(i);
+			String userName = user.getName();
+			String photoUrl = user.getPhoto_url();
 			UserCourseUser.setUserCourse(comm);
 			UserCourseUser.setPhotoUrl(photoUrl);
 			UserCourseUser.setUserName(userName);
 			list.add(UserCourseUser);
 		}
-		Integer sumPerson=list.size();
-		List<UserCourse> userCourseList=userCourseService.findByTeachercourseid(id);
-		double courseMark=0.0;
+		Integer sumPerson = list.size();
+		List<UserCourse> userCourseList = userCourseService
+				.findByTeachercourseid(id);
+		double courseMark = 0.0;
 		for (UserCourse userCourse : userCourseList) {
-			if(userCourse.getMark()!=null){
-				 courseMark=userCourseService.getMark(id);//一个视频的评论平均分数
+			if (userCourse.getMark() != null) {
+				courseMark = userCourseService.getMark(id);// 一个视频的评论平均分数
 			}
 		}
 		TeacherCourse teacherCourse = courseService.findOneById(id);
 		model.addAttribute("course", teacherCourse);
-		//model.addAttribute("listCount", listUserCourse.size());
+		// model.addAttribute("listCount", listUserCourse.size());
 		model.addAttribute("listUserCourse", list);
-		//model.addAttribute("id", id);
+		// model.addAttribute("id", id);
 		model.addAttribute("page", onePage);
 		model.addAttribute("sumPerson", sumPerson);
 		model.addAttribute("courseMark", courseMark);
 		return "course.study.comment";
 
 	}
-	
+
 	/**
 	 * 增加评论内容
+	 * 
 	 * @param UserCourseInfoForm
 	 * @param id
 	 * @param model
@@ -326,48 +346,59 @@ public class CourseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/course/study/comment/new", method = RequestMethod.POST)
-	public String contactInfo( @RequestParam("teachercourseid") Long id,@Valid UserCourseForm userCourseForm,BindingResult validResult,RedirectAttributes redirectAttr, HttpSession session) {
+	public String contactInfo(@RequestParam("teachercourseid") Long id,
+			@Valid UserCourseForm userCourseForm, BindingResult validResult,
+			RedirectAttributes redirectAttr, HttpSession session) {
 		logger.info("#### contactInfo InfoController ####");
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if (userInfo == null) {
 			return "redirect:/signin";
-		} 
+		}
 		Long marks = userCourseForm.getMark();
 		String userCourseDesc = userCourseForm.getCommentDesc().trim();
-		//String message="";
+		// String message="";
 		if (validResult.hasErrors()) {
 			logger.info("contactInfo Validation Failed " + validResult);
-			return "redirect:/course/study/comment/"+id;
+			return "redirect:/course/study/comment/" + id;
 		} else {
 			logger.info("### contactInfo Validation passed. ###");
-			//UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			UserCourse userCourse=userCourseService.findByTeachercourseidAndUserid(id, userInfo.getId());
-			if (userCourse.getCommentDesc()!=null&&userCourse.getMark()>=0) {
-				String message="请不要重复评论";
+			// UserInfo userInfo = (UserInfo)
+			// session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			UserCourse userCourse = userCourseService
+					.findByTeachercourseidAndUserid(id, userInfo.getId());
+			if (userCourse.getCommentDesc() != null
+					&& userCourse.getMark() >= 0) {
+				String message = "请不要重复评论";
 				redirectAttr.addFlashAttribute("message", message);
-				return "redirect:/course/study/comment/"+id;
-			} else{
+				return "redirect:/course/study/comment/" + id;
+			} else {
 				userCourse.setCommentDesc(userCourseDesc);
 				userCourse.setMark(marks);
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				SimpleDateFormat format = new SimpleDateFormat(
+						"yyyy-MM-dd HH:mm:ss");
 				String date = format.format(new Date());
 				userCourse.setCommentDate(date);
 				userCourseService.save(userCourse);
-				return "redirect:/course/study/comment/"+id;
+				return "redirect:/course/study/comment/" + id;
 			}
 		}
 	}
+
 	/**
 	 * 下载视频
+	 * 
 	 * @param id
 	 * @param request
 	 * @param response
 	 * @return
-	 * @throws Exception    
+	 * @throws Exception
 	 */
 	@RequestMapping(value = "/course/study/view/resource/{id}")
-	public String resourceDownLoad(@PathVariable Long id,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		CourseResource courseResource=courseResourceService.findById(id);
+	public String resourceDownLoad(@PathVariable Long id,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		CourseResource courseResource = courseResourceService.findById(id);
 		String savePath = courseResource.getSavePath();
 		String fileName = courseResource.getSaveName();
 		FileUtil.downLoad(request, response, savePath, fileName);
@@ -383,7 +414,8 @@ public class CourseController {
 	 */
 	@RequestMapping(value = "/course/study/comment/commentajax", method = RequestMethod.POST)
 	public @ResponseBody
-	ValidationResponse UserCourseInfoFormAjaxJson(@Valid UserCourseForm userCourseForm,BindingResult result) {
+	ValidationResponse UserCourseInfoFormAjaxJson(
+			@Valid UserCourseForm userCourseForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
 }

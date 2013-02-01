@@ -28,7 +28,7 @@
 				    <td width="10%" rowspan="3" align="center" valign="top">
 				    	 <c:choose >
 							<c:when test="${usercourse.photoUrl != null && usercourse.photoUrl != ''}">
-								<img src='<c:url value="http://www.51knet.com/ccweb/${usercourse.photoUrl }"></c:url>'   style="width: 50px;height: 50px;" />
+								<img src='<c:url value="${url }${usercourse.photoUrl }"></c:url>'   style="width: 50px;height: 50px;" />
 							</c:when>
 							<c:otherwise>
 								<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 50px;height: 50px;" />

@@ -1,5 +1,10 @@
 package com.knet51.courses.controllers;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -51,6 +56,24 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpSession session,
 			HttpServletRequest request) {
 		logger.info("###### into the HomeController ######");
+		
+		String urlFilePath = "";
+		String url = "";
+		BufferedReader br;
+		urlFilePath = session.getServletContext().getRealPath("/");
+		urlFilePath += "resources\\url\\knet_url.property";
+		//urlFilePath += "resources\\url\\localccweb_url.property";
+		try {
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(
+					urlFilePath), "utf-8"));
+			String data = "";
+			while ((data = br.readLine()) != null) {
+				url = data;
+			}
+			br.close();
+		} catch (Exception e) {
+			url = "http://www.51knet.com/ccweb/";
+		}
 		//List<TeacherCourseBeans> tcBeanList = courseService.getAllTeacherCourseBeans();
 		//List<TeacherCourse> courseList = courseService.findAllCourses();
 		List<CourseBeans> cBeans = courseService.getAllCourseBeans();
@@ -60,6 +83,7 @@ public class HomeController {
 		model.addAttribute("courseList", cBeans);
 		model.addAttribute("courseCount", cBeans.size());
 		model.addAttribute("teacherList", teacherList);
+		session.setAttribute("url", url);
 		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(currentUser != null){
 			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
