@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.EduBackground;
@@ -167,7 +168,7 @@ public class TeacherResumeController {
 	public void getThesisJson(@RequestParam ("thesisId") Long thesis_id,HttpServletResponse response,HttpSession session) throws Exception{
 		TeacherThesis teacherThesisInfo = thesisService.findOneById(Long.valueOf(thesis_id));
 		PrintWriter out = response.getWriter();
-		Gson g = new Gson();
+		Gson g = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		out.write(g.toJson(teacherThesisInfo));
 		out.flush();
 		out.close();
@@ -176,7 +177,7 @@ public class TeacherResumeController {
 	public void getProjectJson(@RequestParam ("projectId") Long project_id,HttpServletResponse response,HttpSession session) throws Exception{
 		TeacherProject teacherProjectInfo = projectService.findOneById(Long.valueOf(project_id));
 		PrintWriter out = response.getWriter();
-		Gson g = new Gson();
+		Gson g =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		out.write(g.toJson(teacherProjectInfo));
 		out.flush();
 		out.close();
@@ -185,7 +186,7 @@ public class TeacherResumeController {
 	public void getPatentJson(@RequestParam ("patentId") Long patent_id,HttpServletResponse response,HttpSession session) throws Exception{
 		TeacherPatent teacherPatentInfo = patentService.findOneById(Long.valueOf(patent_id));
 		PrintWriter out = response.getWriter();
-		Gson g = new Gson();
+		Gson g =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		out.write(g.toJson(teacherPatentInfo));
 		out.flush();
 		out.close();
@@ -194,8 +195,10 @@ public class TeacherResumeController {
 	public void getTeacherHonorJson(@RequestParam ("honorId") Long honor_id,HttpServletResponse response,HttpSession session) throws Exception{
 		TeacherHonor honorInfo = honorService.findOneById(Long.valueOf(honor_id));
 		PrintWriter out = response.getWriter();
-		Gson g = new Gson();
+		Gson g =  new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		out.write(g.toJson(honorInfo));
+		out.flush();
+		out.close();
 		}
 	@RequestMapping(value="/admin/teacher/eduInfo/edit/ajax",method = RequestMethod.POST)
 	public void getEduJson(@RequestParam ("eduId") Long edu_id,HttpServletResponse response,HttpSession session) throws Exception{

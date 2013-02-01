@@ -201,8 +201,7 @@
 										<td align="center">${eduInfo.college}</td>
 										<td align="center">${eduInfo.degree}</td>
 										<td align="center" width="25%">${eduInfo.startTime} - ${eduInfo.endTime}</td>
-										<td><a class="deleteEduPostBtn" href="#deleteEduPostModal" role="button" data-toggle="modal" data-target="#deleteEduPostModal">删除</a> <input type="hidden" value="${eduInfo.id} ">|
-											<!-- <a href='javascript:void(0)' onclick="editEdu(${eduInfo.id})">修改</a> -->
+										<td><a class="deleteEduPostBtn" href="#deleteEduPostModal" role="button" data-toggle="modal" data-target="#deleteEduPostModal">删除</a> |
 												<a class="editEduAjaxBtn" href="javascript:void(0)">修改</a><input type="hidden" value="${eduInfo.id }" id="eduInfo_id">
 										</td>
 									</tr>
@@ -315,10 +314,10 @@
 										<td align="center">${workInfo.department}</td>
 										<td align="center">${workInfo.position}</td>
 										<td align="center" width="25%">${workInfo.startTime} - ${workInfo.endTime}</td>
-										<td><a class="deleteWorkPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteWorkPostModal">删除</a> <input type="hidden" value="${workInfo.id} ">|
-											<a href='javascript:void(0)' class="editWorkAjaxBtn">修改</a>
-											<input type="hidden" value="${workInfo.id}">
-											</td>
+										<td><a class="deleteWorkPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteWorkPostModal">删除</a> |
+												<a href='javascript:void(0)' class="editWorkAjaxBtn">修改</a>
+												<input type="hidden" value="${workInfo.id} ">
+										</td>
 									</tr>
 									<tr style="margin-left: -70px;">
 										<td>详细描述：</td>
@@ -373,10 +372,10 @@
 							<tbody>
 								<c:forEach items="${thesisList}" var="thesis">
 									<tr>
-										<td width=90% align="left">${thesis.content}</td>
-										<td><a class="deleteThesisPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteThesisPostModal">删除</a> <input type="hidden" value="${thesis.id} ">
-										|<a href='javascript:void(0)' class="editThesisAjaxBtn">修改</a>
-										<input type="hidden" value="${thesis.id}">
+										<td width=80% align="left">${thesis.content}</td>
+										<td align="left"><a class="deleteThesisPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteThesisPostModal">删除</a>
+											| <a href='javascript:void(0)' class="editThesisAjaxBtn">修改</a>
+											<input type="hidden" value="${thesis.id}">
 										</td>
 									</tr>
 								</c:forEach>
@@ -430,7 +429,7 @@
 		<!--  project  -->
 		<div class="tab-pane <c:if test='${active == "project"}'>active</c:if>" id="project_tab">
 			<div id="project" style="display: block">
-				<div id="projectForm" style="display: none;">\
+				<div id="projectForm" style="display: none;">
 				<input type="hidden" name="projectId">
 					<form action="project/new" method="post" id="project_info_form" class="form-horizontal" name="project">
 						<div class="control-group" id="projectTitle">
@@ -493,11 +492,10 @@
 											<td align="left">${project.source}</td>
 											<td align="left">${project.startTime}</td>
 											<td align="left">${project.endTime}</td>
-											<td><a class="deleteProjectPostBtn" href="#deleteProjectPostModal" role="button" data-toggle="modal" data-target="#deleteProjectPostModal">删除</a> <input type="hidden"
-												value="${project.id} ">
-												<a href='javascript:void(0)' class="editProjectAjaxBtn">修改</a>
+											<td><a class="deleteProjectPostBtn" href="#deleteProjectPostModal" role="button" data-toggle="modal" data-target="#deleteProjectPostModal">删除</a> 
+												| <a href='javascript:void(0)' class="editProjectAjaxBtn">修改</a>
 												<input type="hidden" value="${project.id}">
-												</td>
+											</td>
 										</tr>
 										<tr style="margin-left: -70px;">
 											<td>详细描述：</td>
@@ -589,8 +587,8 @@
 										<th width="23%">发明人</th>
 										<th width="23%">专利名称</th>
 										<th width="22%">专利类型</th>
-										<th width="22%">专利申请号</th>
-										<th width="10%">操作</th>
+										<th width="17%">专利申请号</th>
+										<th width="15%">操作</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -600,11 +598,10 @@
 											<td align="center">${patent.name}</td>
 											<td align="center">${patent.type}</td>
 											<td align="center">${patent.number}</td>
-											<td><a class="deletePatentPostBtn" href="#deletePatentPostModal" role="button" data-toggle="modal" data-target="#deletePatentPostModal">删除</a> <input type="hidden"
-												value="${patent.id} ">|
-												<a href='javascript:void(0)' class="editPatentAjaxBtn">修改</a>
+											<td><a class="deletePatentPostBtn" href="#deletePatentPostModal" role="button" data-toggle="modal" data-target="#deletePatentPostModal">删除</a>
+												| <a href='javascript:void(0)' class="editPatentAjaxBtn">修改</a>
 												<input type="hidden" value="${patent.id}">
-												</td>
+											</td>
 										</tr>
 										<tr style="margin-left: -70px;">
 											<td>详细描述：</td>
@@ -649,7 +646,7 @@
 				<input type="hidden" name="honorId">
 					<form action="honor/new" method="post" id="honor_info_Form" name="teacherHonor" class="form-horizontal">
 						<div class="control-group" id="honorName">
-							<label class="control-label" for="honorName">奖励或荣誉</label>
+							<label class="control-label" for="honorName">奖励荣誉</label>
 							<div class="controls">
 								<input type="text" name="honorName" placeholder="奖励或荣誉"> <span class="help-inline"><form:errors path="honorName" /></span>
 							</div>
@@ -681,9 +678,9 @@
 							<table class="table ">
 								<thead>
 									<tr>
-										<th align="center" width="30%">奖励或荣誉</th>
-										<th align="center" width="60%">获奖原因</th>
-										<th width="10%">操作</th>
+										<th align="center" width="30%">奖励荣誉</th>
+										<th align="center" width="55%">获奖原因</th>
+										<th width="15%">操作</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -691,10 +688,8 @@
 										<tr>
 											<td align="center">${honor.name}</td>
 											<td align="center">${honor.reason}</td>
-											<td><a class="deleteHonorPostBtn" href="#deleteHonorPostModal" role="button" data-toggle="modal" data-target="#deleteHonorPostModal">删除</a> <input type="hidden" value="${honor.id} ">
-											editHonorAjaxBtn|
-											<a href='javascript:void(0)' class="editHonorAjaxBtn">修改</a>
-												<input type="hidden" value="${honor.id}">
+											<td><a class="deleteHonorPostBtn" href="#deleteHonorPostModal" role="button" data-toggle="modal" data-target="#deleteHonorPostModal">删除</a> 
+												| <a href='javascript:void(0)' class="editHonorAjaxBtn">修改</a><input type="hidden" value="${honor.id}">
 											</td>
 										</tr>
 										<tr style="margin-left: -70px;">
@@ -858,7 +853,6 @@ $(document).ready(function() {
 			  data: "thesisId="+thesis_id,
 			  dataType:"json",
 			  success:function(msg){
-				  	alert(msg);
 					document.thesis.thesisId.value = msg.id;
 				  	contextEditor.html(msg.content);
 			  }
@@ -980,6 +974,7 @@ $(document).ready(function() {
 			  data: "honorId="+honor_id,
 			  dataType:"json",
 			  success:function(msg){
+				  	alert(msg.id+msg.name+msg.reason);
 					document.teacherHonor.honorId.value = msg.id;
 					document.teacherHonor.honorName.value=msg.name;
 				  	document.teacherHonor.reason.value=msg.reason;
@@ -1002,32 +997,32 @@ $(document).ready(function(){
 	
 	// 表格里的删除按钮按下的时候，需要为对话框动态修改一些属性的值
 	$('.deleteProjectPostBtn').on('click', function() {
-		var project_id = $(this).next().val();
+		var project_id = $(this).next().next().val();
 		$('#deleteProjectPostModal #projectId').val(project_id);	
 	});
 	
 	$('.deleteEduPostBtn').on('click', function() {
-		var edu_id = $(this).next().val();
+		var edu_id = $(this).next().next().val();
 		$('#deleteEduPostModal #eduId').val(edu_id);	
 	});
 	
 	$('.deleteWorkPostBtn').on('click', function() {
-		var work_id = $(this).next().val();
+		var work_id = $(this).next().next().val();
 		$('#deleteWorkPostModal #workId').val(work_id);	
 	});
 	
 	$('.deleteThesisPostBtn').on('click', function() {
-		var thesis_id = $(this).next().val();
+		var thesis_id = $(this).next().next().val();
 		$('#deleteThesisPostModal #thesisId').val(thesis_id);	
 	});
 	
 	$('.deletePatentPostBtn').on('click', function() {
-		var patent_id = $(this).next().val();
+		var patent_id = $(this).next().next().val();
 		$('#deletePatentPostModal #patentId').val(patent_id);	
 	});
 	
 	$('.deleteHonorPostBtn').on('click', function() {
-		var honor_id = $(this).next().val();
+		var honor_id = $(this).next().next().val();
 		$('#deleteHonorPostModal #honorId').val(honor_id);	
 	});
 });

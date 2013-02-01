@@ -26,13 +26,14 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	}
 
 	function showThesisAddForm() {
-		$("#thesis").css("display","none");
+		$("#thesisList").css("display","none");
 		$("#thesisNewInfoForm").css("display","block");
 		
 	}
 
 	function hiddenThesisAddForm() {
-		$("#thesis").css("display","block");
+
+		$("#thesisList").css("display","block");
 		$("#thesisNewInfoForm").css("display","none");
 		
 	}
@@ -48,17 +49,13 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	}
 
 	function showProjectAddForm() {
-		var project = document.getElementById("projectForm");
-		var projectButton = document.getElementById("projectButton");
-		project.style.display = "block";
-		projectButton.style.display = "none";
+		$("#projectList").css("display","none");
+		$("#projectForm").css("display","block");
 	}
 
 	function hiddenProjectAddForm() {
-		var projectForm = document.getElementById("projectForm");
-		var projectButton = document.getElementById("projectButton");
-		projectForm.style.display = "none";
-		projectButton.style.display = "block";
+		$("#projectList").css("display","block");
+		$("#projectForm").css("display","none");
 	}
 
 	function hiddenPatent() {
@@ -72,25 +69,13 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	}
 
 	function showPatentAddForm() {
-		var patent = document.getElementById("patentForm");
-		var patentButton = document.getElementById("patentButton");
-		patent.style.display = "block";
-		patentButton.style.display = "none";
+		$("#patentList").css("display","none");
+		$("#patentForm").css("display","block");
 	}
 
 	function hiddenPatentAddForm() {
-		var patentForm = document.getElementById("patentForm");
-		var patentButton = document.getElementById("patentButton");
-		var inventerMsg = document.getElementById("inventerMsg");
-		var nameMsg = document.getElementById("nameMsg");
-		var typeMsg = document.getElementById("typeMsg");
-		var numberMsg = document.getElementById("numberMsg");
-		patentForm.style.display = "none";
-		patentButton.style.display = "block";
-		inventerMsg.innerHTML="";
-		nameMsg.innerHTML="";
-		typeMsg.innerHTML="";
-		numberMsg.innerHTML="";
+		$("#patentList").css("display","block");
+		$("#patentForm").css("display","none");
 	}
 
 	function hiddenHonor() {
@@ -104,17 +89,13 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	}
 
 	function showHonorAddForm() {
-		var honor = document.getElementById("honorForm");
-		var honorButton = document.getElementById("honorButton");
-		honor.style.display = "block";
-		honorButton.style.display = "none";
+		$("#honorList").css("display","none");
+		$("#honorForm").css("display","block");
 	}
 
 	function hiddenHonorAddForm() {
-		var honorForm = document.getElementById("honorForm");
-		var honorButton = document.getElementById("honorButton");
-		honorForm.style.display = "none";
-		honorButton.style.display = "block";
+		$("#honorList").css("display","block");
+		$("#honorForm").css("display","none");
 	}
 
 	function checkThesisForm(obj) {

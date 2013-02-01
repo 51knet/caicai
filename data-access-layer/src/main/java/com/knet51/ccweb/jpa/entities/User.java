@@ -20,7 +20,7 @@ import com.knet51.ccweb.jpa.entities.resource.Resource;
  */
 @Entity
 @Table(name = "Usr")
-@JsonIgnoreProperties(value={"announcement","resources","receiveMsg","sendMsg"})
+@JsonIgnoreProperties(value={"announcement","receiveMsg","sendMsg"})
 public class User extends AbstractEntity {
 
 	@Override
@@ -55,8 +55,6 @@ public class User extends AbstractEntity {
 	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
 	private Set<Announcement> announcement = new HashSet<Announcement>();
 	
-	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
-	private Set<Resource> resources = new HashSet<Resource>();
 	
 	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
 	private Set<ReceiveMsg>  receiveMsg= new HashSet<ReceiveMsg>();
@@ -202,16 +200,6 @@ public class User extends AbstractEntity {
 		this.announcement = announcement;
 	}
 
-
-	public Set<Resource> getResources() {
-		return resources;
-	}
-
-
-	public void setResources(Set<Resource> resources) {
-		this.resources = resources;
-	}
-	
 	
 	public String getPhoto_url() {
 		return photo_url;

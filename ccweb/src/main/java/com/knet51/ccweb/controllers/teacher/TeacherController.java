@@ -146,7 +146,7 @@ public class TeacherController {
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/eduInfo" ,method = RequestMethod.POST)
-	public String eduInfo(@RequestParam("eduId")Long edu_id,@Valid TeacherEduInfoForm eduInfoForm,
+	public String changeEduInfo(@RequestParam("eduId")Long edu_id,@Valid TeacherEduInfoForm eduInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### eduInfo InfoController ####");
 		
@@ -154,31 +154,25 @@ public class TeacherController {
 			logger.info("eduInfo Validation Failed " + validResult);
 			
 		} else {
+			EduBackground edu;
 			if(edu_id!=null){
 				logger.info("### eduInfo Validation passed. ###");
-				EduBackground edu = eduBackgroundService.findOneById(Long.valueOf(edu_id));
-				edu.setCollege(eduInfoForm.getCollegeName());
-				edu.setSchool(eduInfoForm.getSchoolName());
-				edu.setDegree(eduInfoForm.getDegree());
-				edu.setStartTime(eduInfoForm.getStartTime());
-				edu.setEndTime(eduInfoForm.getEndTime());
-				edu.setEducationDesc(eduInfoForm.getEducationDesc());
-				eduBackgroundService.createEduBackground(edu);
+				edu = eduBackgroundService.findOneById(Long.valueOf(edu_id));
+		
 			}else{
 				logger.info("### eduInfo Validation passed. ###");
 				UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 				//EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
-				EduBackground edu = new EduBackground();
-				edu.setCollege(eduInfoForm.getCollegeName());
-				edu.setSchool(eduInfoForm.getSchoolName());
-				edu.setDegree(eduInfoForm.getDegree());
-				edu.setStartTime(eduInfoForm.getStartTime());
-				edu.setEndTime(eduInfoForm.getEndTime());
+				edu = new EduBackground();
 				edu.setTeacherid(userInfo.getId());
-				edu.setEducationDesc(eduInfoForm.getEducationDesc());
-				eduBackgroundService.createEduBackground(edu);
 			}
-			
+			edu.setCollege(eduInfoForm.getCollegeName());
+			edu.setSchool(eduInfoForm.getSchoolName());
+			edu.setDegree(eduInfoForm.getDegree());
+			edu.setStartTime(eduInfoForm.getStartTime());
+			edu.setEndTime(eduInfoForm.getEndTime());
+			edu.setEducationDesc(eduInfoForm.getEducationDesc());
+			eduBackgroundService.createEduBackground(edu);
 		}
 		return "redirect:/admin/teacher/resume?active=edu";
 	}
@@ -195,36 +189,30 @@ public class TeacherController {
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/workInfo",method = RequestMethod.POST)
-	public String workInfo(@RequestParam("workId")Long work_Id,@Valid TeacherWorkExpInfoForm workInfoForm,
+	public String changeWorkInfo(@RequestParam("workId")Long work_Id,@Valid TeacherWorkExpInfoForm workInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### workInfo Controller ####");
 		if (validResult.hasErrors()) {
 			logger.info("eduInfo Validation Failed " + validResult);
 			
 		} else {
+			WorkExp work = null;
 			if(work_Id!=null){
 				logger.info("### workInfo Validation passed. ###");
-				WorkExp work = workExpService.findOneById(Long.valueOf(work_Id));
-				work.setCompany(workInfoForm.getCompany());
-				work.setDepartment(workInfoForm.getDepartment());
-				work.setPosition(workInfoForm.getPosition());
-				work.setStartTime(workInfoForm.getStartTimeName());
-				work.setEndTime(workInfoForm.getEndTimeName());
-				work.setWorkDesc(workInfoForm.getWorkDesc());
-				workExpService.createWorkExp(work);
+				work = workExpService.findOneById(Long.valueOf(work_Id));
 			}else{
 				logger.info("### workInfo Validation passed. ###");
 				UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-				WorkExp work = new WorkExp();
-				work.setCompany(workInfoForm.getCompany());
-				work.setDepartment(workInfoForm.getDepartment());
-				work.setPosition(workInfoForm.getPosition());
-				work.setStartTime(workInfoForm.getStartTimeName());
-				work.setEndTime(workInfoForm.getEndTimeName());
-				work.setWorkDesc(workInfoForm.getWorkDesc());
+				work = new WorkExp();
 				work.setTeacherid(userInfo.getId());
-				workExpService.createWorkExp(work);
 			}
+			work.setCompany(workInfoForm.getCompany());
+			work.setDepartment(workInfoForm.getDepartment());
+			work.setPosition(workInfoForm.getPosition());
+			work.setStartTime(workInfoForm.getStartTimeName());
+			work.setEndTime(workInfoForm.getEndTimeName());
+			work.setWorkDesc(workInfoForm.getWorkDesc());
+			workExpService.createWorkExp(work);
 		}
 		return "redirect:/admin/teacher/resume?active=work";
 	}
@@ -235,8 +223,35 @@ public class TeacherController {
 		logger.info("#### eduInfo InfoController ####");
 		workExpService.destory(Long.valueOf(work_id));
 		return "redirect:/admin/teacher/resume?active=work";
-		
 	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/teacher/thesisInfo",method = RequestMethod.POST)
+	public String changeThesisInfo(@RequestParam("thesisd")Long thesis_Id,@Valid TeacherThesisDetailInfoForm thesisDetailInfoForm,
+			BindingResult validResult, HttpSession session) {
+		logger.info("#### workInfo Controller ####");
+		if (validResult.hasErrors()) {
+			logger.info("eduInfo Validation Failed " + validResult);
+			
+		} else {
+			TeacherThesis thesis = null;
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			if(thesis_Id!=null){
+				logger.info("### thesisnfo Validation passed. ###");
+				thesis = thesisService.findOneById(thesis_Id);
+				thesis.setContent(thesisDetailInfoForm.getContent());
+				thesisService.update(thesis);
+			}else{
+				logger.info("### thesisInfo Validation passed. ###");
+				thesis = new TeacherThesis();
+				thesis.setContent(thesisDetailInfoForm.getContent());
+				thesisService.save(thesis, userInfo.getTeacher());
+			}
+			
+		}
+		return "redirect:/admin/teacher/resume?active=thesis";
+	}
+	
 	
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/changePsw")
@@ -300,23 +315,30 @@ public class TeacherController {
 	}
 	
 	@RequestMapping(value="/admin/teacher/thesis/new")
-	public String addThesis(@Valid TeacherThesisDetailInfoForm thesisDetailInfoForm, HttpSession session,
+	public String addThesis(@RequestParam("thesisId") Long thesis_id,@Valid TeacherThesisDetailInfoForm thesisDetailInfoForm, HttpSession session,
 			Model model, BindingResult validResult){
-		String content = thesisDetailInfoForm.getContent();
-		logger.info("#### Into teacherThesisAddController ####");
-		if(validResult.hasErrors()){
+		logger.info("#### workInfo Controller ####");
+		if (validResult.hasErrors()) {
+			logger.info("eduInfo Validation Failed " + validResult);
 			return "redirect:/admin/teacher/resume?active=thesis";
-		}
-		else{
+		} else {
+			TeacherThesis thesis = null;
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long id = userInfo.getUser().getId();
-			Teacher teacher= teacherService.findOne(id);
-			TeacherThesis thesis = new TeacherThesis();
-			thesis.setContent(content);
-			thesisService.save(thesis, teacher);
-			return "redirect:/admin/teacher/resume?active=thesis";
+			if(thesis_id!=null){
+				logger.info("### thesisnfo Validation passed. ###");
+				thesis = thesisService.findOneById(thesis_id);
+				thesis.setContent(thesisDetailInfoForm.getContent());
+				thesisService.update(thesis);
+			}else{
+				logger.info("### thesisInfo Validation passed. ###");
+				thesis = new TeacherThesis();
+				thesis.setContent(thesisDetailInfoForm.getContent());
+				thesisService.save(thesis, userInfo.getTeacher());
+			}
+			
 		}
-	}
+		return "redirect:/admin/teacher/resume?active=thesis";
+	}	
 	
 	@RequestMapping(value="/admin/teacher/thesis/destory",method=RequestMethod.POST)
 	public String deleThesis(@RequestParam("thesisId") Long thesis_id){

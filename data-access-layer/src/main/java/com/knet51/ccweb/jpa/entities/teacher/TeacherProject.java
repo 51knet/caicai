@@ -3,16 +3,21 @@ package com.knet51.ccweb.jpa.entities.teacher;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
+import com.google.gson.annotations.Expose;
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
 import com.knet51.ccweb.jpa.entities.Teacher;
 
 @Entity
 public class TeacherProject extends AbstractEntity {
-	
+	@Expose
 	private String title;
+	@Expose
 	private String source;
+	@Expose
 	private String startTime;
+	@Expose
 	private String endTime;
+	@Expose
 	private String detailDesc;
 	
 	@ManyToOne
