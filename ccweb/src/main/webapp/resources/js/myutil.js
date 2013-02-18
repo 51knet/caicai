@@ -25,19 +25,6 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 		thesis.style.display = "block";
 	}
 
-	function showThesisAddForm() {
-		$("#thesisList").css("display","none");
-		$("#thesisNewInfoForm").css("display","block");
-		
-	}
-
-	function hiddenThesisAddForm() {
-
-		$("#thesisList").css("display","block");
-		$("#thesisNewInfoForm").css("display","none");
-		
-	}
-
 	function hiddenProject() {
 		var project = document.getElementById("project");
 		project.style.display = "none";
@@ -46,16 +33,6 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	function showProject() {
 		var project = document.getElementById("project");
 		project.style.display = "block";
-	}
-
-	function showProjectAddForm() {
-		$("#projectList").css("display","none");
-		$("#projectForm").css("display","block");
-	}
-
-	function hiddenProjectAddForm() {
-		$("#projectList").css("display","block");
-		$("#projectForm").css("display","none");
 	}
 
 	function hiddenPatent() {
@@ -68,16 +45,6 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 		patent.style.display = "block";
 	}
 
-	function showPatentAddForm() {
-		$("#patentList").css("display","none");
-		$("#patentForm").css("display","block");
-	}
-
-	function hiddenPatentAddForm() {
-		$("#patentList").css("display","block");
-		$("#patentForm").css("display","none");
-	}
-
 	function hiddenHonor() {
 		var honor = document.getElementById("honor");
 		honor.style.display = "none";
@@ -86,16 +53,6 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	function showHonor() {
 		var honor = document.getElementById("honor");
 		honor.style.display = "block";
-	}
-
-	function showHonorAddForm() {
-		$("#honorList").css("display","none");
-		$("#honorForm").css("display","block");
-	}
-
-	function hiddenHonorAddForm() {
-		$("#honorList").css("display","block");
-		$("#honorForm").css("display","none");
 	}
 
 	function checkThesisForm(obj) {
@@ -165,31 +122,6 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	function workOnclick(){
 		return checkEmptyAjax("workExpForm","workExpInfoAJAX");
 	};
-	function showEduAddForm(){ 
-		 var eduList = document.getElementById("eduList"); 
-		eduList.style.display="none"; 
-		 var eduForm = document.getElementById("eduForm"); 
-		 eduForm.style.display="block"; 
-	}; 
-	function closeEduAddForm(){ 
-		 var eduList = document.getElementById("eduList"); 
-		eduList.style.display="block"; 
-		 var eduForm = document.getElementById("eduForm"); 
-		 eduForm.style.display="none"; 
-	}; 
-	function showWorkAddForm(){ 
-		 //alert("111"); 
-		var workList = document.getElementById("workList"); 
-		 workList.style.display="none"; 
-		 var workForm = document.getElementById("workForm"); 
-		 workForm.style.display="block"; 
-	}; 
-	function closeWorkAddForm(){ 
-		 var workList = document.getElementById("workList"); 
-		 workList.style.display="block"; 
-		 var workForm = document.getElementById("workForm"); 
-		  workForm.style.display="none"; 
-	}; 
 	
 	
 /*	function editEdu(id){
