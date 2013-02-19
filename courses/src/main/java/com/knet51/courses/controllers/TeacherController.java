@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
 import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
+import com.knet51.courses.jpa.services.UserCourseService;
 
 @Controller
 public class TeacherController {
@@ -29,6 +31,9 @@ public class TeacherController {
 	private TeacherCourseService courseService;
 	@Autowired
 	private TeacherService teacherService;
+	
+	@Autowired
+	private UserCourseService userCourseService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(TeacherController.class);
 	
@@ -39,6 +44,18 @@ public class TeacherController {
 		Page<Teacher> teacherPage = teacherService.getAllTeacherPage(pageNumber, pageSize);
 		//List<Teacher> teacher = teacherPage.getContent();
 		model.addAttribute("page", teacherPage);
+		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(currentUser != null){
+			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
+			List<TeacherCourse> userCourse = new ArrayList<TeacherCourse>();
+			for (int i = 0; i < userCourseList.size(); i++) {
+				TeacherCourse teacherCourse = courseService.findOneById(userCourseList.get(i).getTeachercourseid());
+				userCourse.add(teacherCourse);
+			}
+			
+			model.addAttribute("userCourse", userCourse);
+			model.addAttribute("userCourseCount", userCourse.size());
+		}
 		return "teacher.list";
 	}
 	@RequestMapping(value="/teacher/{teacher_id}")

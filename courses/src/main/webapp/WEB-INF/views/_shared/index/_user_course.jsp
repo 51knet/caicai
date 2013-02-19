@@ -68,7 +68,7 @@
 		<div id="myCarousel" class="carousel slide">
 		  <div class="carousel-inner">
 		    <div class="item">
-		      <img src="resources/img/advertise/slide-01.jpg" alt="">
+		      <img src="<c:url value='/resources/img/advertise/slide-01.jpg'></c:url>" alt="">
 		      <div class="container">
 		        <div class="carousel-caption">
 		          <h1>Another example headline.</h1>
@@ -78,7 +78,7 @@
 		      </div>
 		    </div>
 		    <div class="item">
-		      <img src="resources/img/advertise/slide-02.jpg" alt="">
+		      <img src="<c:url value='/resources/img/advertise/slide-02.jpg'></c:url>" alt="">
 		      <div class="container">
 		        <div class="carousel-caption">
 		          <h1>Another example headline.</h1>
@@ -88,7 +88,7 @@
 		      </div>
 		    </div>
 		    <div class="item active">
-		      <img src="resources/img/advertise/slide-03.jpg" alt="">
+		      <img src="<c:url value='/resources/img/advertise/slide-03.jpg'></c:url>" alt="">
 		      <div class="container">
 		        <div class="carousel-caption">
 		          <h1>One more for good measure.</h1>
