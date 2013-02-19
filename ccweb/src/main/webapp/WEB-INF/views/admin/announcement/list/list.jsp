@@ -12,10 +12,11 @@ $(document).ready(function() {
 	$("#c").focus(function() {
 		$(".help-inline").html("");
 	});
+	
 	checkAjax("anno_information","annoInfoAJAX");
 	
 	$('.deleteAnnoPostBtn').on('click', function() {
-		var anno_id = $("#anno_id").val();
+		var anno_id = $(this).next().val();
 		$('#deleteAnnoPostModal #annoId').val(anno_id);	
 	});
 });
@@ -43,10 +44,10 @@ $(document).ready(function() {
 		<a href='<c:url value="/admin/teacher/announcement/list"></c:url>'><b>教师公告</b></a>
 		<hr>
 		<div style="text-align: right;">
-			<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
-							class="btn" data-toggle="modal">添加公告&nbsp;&nbsp;</a>
+			<!-- <a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
+							class="btn" data-toggle="modal">添加公告</a> -->
 			<a href='<c:url value="/admin/teacher/announcement/create"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
-				添加可编辑公告&nbsp;&nbsp;</a><br>
+				添加公告</a><br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead><tr>
 						<th  align="center">公告标签</th>
@@ -73,9 +74,8 @@ $(document).ready(function() {
 									</ul>
 								</div>
 							 -->
-								 <a class="deleteAnnoPostBtn" href="#deleteAnnoPostModal" role="button" data-toggle="modal" data-target="#deleteAnnoPostModal">删除</a> | 
-								 <a href='<c:url value="/admin/teacher/announcement/edit/${page.id}"></c:url>'>修改</a>
-								 <input type="hidden" value="${page.id} " id="anno_id" name="annoId" > 
+								 <a class="deleteAnnoPostBtn" href="#deleteAnnoPostModal" role="button" data-toggle="modal" data-target="#deleteAnnoPostModal">删除</a> <input type="hidden" value="${page.id} " id="anno_id" name="annoId" >  | 
+								 <a href='<c:url value="/admin/teacher/announcement/edit/${page.id}"></c:url>'>修改</a>	
 							</td>
 						</tr>
 					</c:forEach>
@@ -88,7 +88,7 @@ $(document).ready(function() {
 			</table>
 			<div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 			<br />
-			
+			<!--
 			<div id="myModal" class="modal hide fade" tabindex="-1"  style="text-align: left;">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">×</button>
@@ -113,7 +113,7 @@ $(document).ready(function() {
 							<button class="btn" type="reset" data-dismiss="modal">取消</button>
 					</div>
 				</form:form>
-			</div>
+			</div> -->
 		</div>
 		<script type="text/javascript">
 			function ApplyStyle(s){

@@ -23,6 +23,7 @@
 				<th>创建时间</th>
 				<th>更新时间</th>
 				<th>状态</th>
+				<th>是否删除</th>
 				<th colspan="2">操作</th>
 			</tr>
 			<c:forEach var="blogPost" items="${page.content}">

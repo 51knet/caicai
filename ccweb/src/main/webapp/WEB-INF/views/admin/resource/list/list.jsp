@@ -6,7 +6,7 @@
 <script type="text/javascript">
 $(document).ready(function() {	
 	$('.deleteResourcePostBtn').on('click', function() {
-		var resource_id = $("#resourceId").val();
+		var resource_id = $(this).next().val();
 		$('#deleteResourcePostModal #resourceId').val(resource_id);	
 	});
 });
@@ -30,8 +30,8 @@ $(document).ready(function() {
 	<div class="row" style="margin-top: 10px;">
 		<a href='<c:url value="/admin/teacher/resource/list"></c:url>' ><b>资源管理</b></a><hr>
 		<div style="text-align: right;">
-			<a  style="margin-bottom: 10px;" href='<c:url value="/admin/teacher/resource/new"></c:url>' class="btn">添加资源</a>&nbsp;&nbsp;
-					<a  style="margin-bottom: 10px;" href='<c:url value="/admin/teacher/resource/type/list"></c:url>'  class="btn">类别管理</a><br>
+			<a  style="margin-bottom: 10px;" href='<c:url value="/admin/teacher/resource/new"></c:url>' class="btn">添加资源</a>
+				<!-- &nbsp;&nbsp;<a  style="margin-bottom: 10px;" href='<c:url value="/admin/teacher/resource/type/list"></c:url>'  class="btn">类别管理</a> -->	<br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
 					<tr><th  align="center">文件名称</th><th align="center">发布时间</th><th align="center">文件描述</th><th align="center">文件类型</th><th align="center">操作</th></tr>
