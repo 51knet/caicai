@@ -71,6 +71,13 @@ public class CourseController {
 	// model.addAttribute("courseTypeList", courseTypeList);
 	// return "course.list";
 	// }
+	/**
+	 * filter the course by course type
+	 * @param courseType
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
 	@Transactional
 	@RequestMapping(value = "/course/list/type")
 	public String showCourseByType(@RequestParam("detail") String courseType,
@@ -96,35 +103,6 @@ public class CourseController {
 			model.addAttribute("courseType", courseType);
 			model.addAttribute("courseCount", courseList.size());
 			model.addAttribute("courseTypeList", courseTypeList);
-		}
-		return "course.list";
-	}
-
-	@Transactional
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String searchCourseOrTeacher(
-			@RequestParam("searchParam") String searchParam, Model model)
-			throws Exception {
-		List<TeacherCourse> courseList = courseService.findAllCourses();
-		List<String> courseTypeList = courseService.courseTypeList();
-		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
-		if (searchParam.trim() != null && !searchParam.trim().equals("")) {
-			for (TeacherCourse c : courseList) {
-				if (c.getCourseName().contains(searchParam)
-						|| c.getTeacher().getUser().getName().contains(searchParam)) {
-					newCourseList.add(c);
-				}
-			}
-			model.addAttribute("searchParam", searchParam);
-			model.addAttribute("courseList", newCourseList);
-			model.addAttribute("courseCount", newCourseList.size());
-			model.addAttribute("courseTypeList", courseTypeList);
-
-		} else {
-			model.addAttribute("courseList", courseList);
-			model.addAttribute("courseCount", courseList.size());
-			model.addAttribute("courseTypeList", courseTypeList);
-			model.addAttribute("searchParam", searchParam);
 		}
 		return "course.list";
 	}
@@ -415,5 +393,46 @@ public class CourseController {
 	ValidationResponse UserCourseInfoFormAjaxJson(
 			@Valid UserCourseForm userCourseForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
+	}
+	
+
+	/**search the teacher or courses
+	 * @author zm
+	 * @param searchParam
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String searchCourseOrTeacher(
+			@RequestParam("searchParam") String searchParam, Model model)
+			throws Exception {
+		List<TeacherCourse> courseList = courseService.findAllCourses();
+		List<String> courseTypeList = courseService.courseTypeList();
+		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
+		if (searchParam.trim() != null && !searchParam.trim().equals("")) {
+			for (TeacherCourse c : courseList) {
+				if (c.getCourseName().contains(searchParam)
+						|| c.getTeacher().getUser().getName().contains(searchParam)) {
+					newCourseList.add(c);
+				}
+			}
+			if(newCourseList.size()>0){
+				model.addAttribute("courseList", newCourseList);
+				model.addAttribute("courseCount", newCourseList.size());
+			}else{
+				model.addAttribute("courseList", courseList);
+				model.addAttribute("courseCount", courseList.size());
+			}
+			model.addAttribute("searchParam", searchParam);
+			model.addAttribute("courseTypeList", courseTypeList);
+
+		} else {
+			model.addAttribute("courseList", courseList);
+			model.addAttribute("courseCount", courseList.size());
+			model.addAttribute("courseTypeList", courseTypeList);
+			model.addAttribute("searchParam", searchParam);
+		}
+		return "course.list";
 	}
 }

@@ -36,7 +36,14 @@ public class TeacherController {
 	private UserCourseService userCourseService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(TeacherController.class);
-	
+	/**
+	 * show all teacher
+	 * @param session
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
 	@RequestMapping(value="/teacher/list")
 	public String showAllTeacher(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
@@ -58,6 +65,12 @@ public class TeacherController {
 		}
 		return "teacher.list";
 	}
+	/**
+	 * show teacher's courses by teacher_id
+	 * @param teacher_id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/teacher/{teacher_id}")
 	public String showTeacherInfoById(@PathVariable Long teacher_id,Model model){
 		/*UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -75,7 +88,14 @@ public class TeacherController {
 	}
 	
 	
-	
+	/**
+	 * filter the courses by course type in teacher shop
+	 * @param courseType
+	 * @param model
+	 * @param teacher_id
+	 * @return
+	 * @throws Exception
+	 */
 	@Transactional
 	@RequestMapping(value = "/teacher/{teacher_id}/course/type")
 	public String showCourseByType(@RequestParam("detail") String courseType,
