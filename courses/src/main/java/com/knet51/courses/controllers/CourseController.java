@@ -230,10 +230,9 @@ public class CourseController {
 		if (userInfo == null) {
 			return "redirect:/signin";
 		}
-		List<UserCourse> listCourse = userCourseService
-				.findByTeachercourseid(id);
-		UserCourse userCourse = null;
-		if (listCourse.size() == 0) {
+		UserCourse userCourse = userCourseService
+				.findByTeachercourseidAndUserid(id, userInfo.getId());
+		if (userCourse==null) {
 			userCourse = new UserCourse();
 			userCourse.setTeachercourseid(id);
 			userCourse.setUserid(userInfo.getId());
