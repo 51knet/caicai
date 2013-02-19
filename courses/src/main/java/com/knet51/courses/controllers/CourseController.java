@@ -110,9 +110,8 @@ public class CourseController {
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
 		if (searchParam.trim() != null && !searchParam.trim().equals("")) {
 			for (TeacherCourse c : courseList) {
-				if (searchParam.contains(c.getCourseName())
-						|| searchParam.contains(c.getTeacher().getUser()
-								.getName())) {
+				if (c.getCourseName().contains(searchParam)
+						|| c.getTeacher().getUser().getName().contains(searchParam)) {
 					newCourseList.add(c);
 				}
 			}
