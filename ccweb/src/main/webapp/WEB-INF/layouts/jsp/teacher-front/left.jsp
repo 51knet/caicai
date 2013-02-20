@@ -25,7 +25,7 @@
 		$("#c").focus(function() {
 			$(".help-inline").html("");
 		});
-		checkEmptyAjax('sendMsg_info_form','sendMsgInfoAJAX');
+		checkAjax('sendMsg_info_form','sendMsgInfoAJAX');
 	});
 	</script>
 <div class="row-fluid centralize round">
@@ -83,19 +83,25 @@
 		<div class="modal-body" >
 			<input type="hidden" value="${teacherInfo.id}" name="uid"> 
 		</div>
-		<div class="modal-body" id="title">
-			信件标题：<input type="text" name="title" id="t" placeholder="信件标题"> 
-			<span class="help-inline"></span>
+		<div class="control-group" id="title" style="padding-left: 20px;">
+			<div class="controls">
+			信件标题：
+				<input type="text" name="title" id="t" placeholder="信件标题"> 
+				<span class="help-inline"></span>
+			</div>
 		</div>
-		<div class="modal-body" id="content">
+		<div class="control-group" id="content" style="padding-left: 20px;">
+			<div class="controls" >
 			信件内容：
-			<textarea name="content" placeholder="信件内容" id="c" cols="5" rows="8" style="width:380px;"></textarea>
-			<span class="help-inline"></span>
+				<textarea  name="content" placeholder="信件内容" id="c" cols="5" rows="8" style="width:380px;"></textarea>
+				<span class="help-inline"></span>
+			</div>
 		</div>
-		<div class="modal-footer">
-			<button class="btn btn-primary" type="submit">发送</button>
-			<button class="btn" type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
-			
+		<div class="control-group" style="margin-left: 20px;">
+			<div class="controls">
+				<button type="submit"  class="btn btn-large btn-success">发送</button>
+				<button type="reset" data-dismiss="modal" class="btn btn-large">取消</button>
+			</div>
 		</div>
 	</form>
 </div>

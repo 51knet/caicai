@@ -85,7 +85,8 @@
 					<form:form class="form-horizontal" action="new/secondstep" method="post" onsubmit="return checkPwd()">
 						<input type="hidden" name="courseId" value="${courseId }" />
 						<div class="modal-body" id="pwdform">
-							设置密码：<input type="text" id="pwd" name="pwd" style="width: 250px;" onblur="showCheckpwd()">
+							设置密码：<input type="text" id="pwd" name="pwd" style="width: 250px;" onblur="showCheckpwd();" onfocus="clearHtml();">
+						<span id="pwdError"></span>
 						</div>
 						<div class="modal-body" id="checkpwdform" style="display: none;">
 							确认密码：<input type="text" id="checkpwd" name="checkpwd" style="width: 250px;" onblur="checkPwd()">

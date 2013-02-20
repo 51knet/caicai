@@ -196,11 +196,33 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	function showCheckpwd(){
 		$("#pwd").val($.trim($("#pwd").val()));
 		var pwd = $.trim($("#pwd").val());
-		"" != pwd ? $("#checkpwdform").css("display","block") :$("#checkpwdform").css("display","none")
+		"" != pwd ? $("#checkpwdform").css("display","block") :$("#checkpwdform").css("display","none");
+		var reg = /^[a-zA-Z]+|[\d]+$/;
+		if(!reg.test(pwd)){
+			$("#pwdError").html("只能输入数字或字母");
+			return false;
+		}
+		if(pwd.length>6){
+			$("#pwdError").html("输入的密码长度超过6个字符");
+			return false;
+		}
 	}
-	
 	function deleSpace(){
 		$("#pwd").val($.trim($("#pwd").val()));
+		var reg = /^[a-zA-Z]+|[\d]+$/;
+		var pwd=$.trim($("#pwd").val());
+		if(!reg.test(pwd)){
+			$("#pwdError").html("只能输入数字或字母");
+			return false;
+		}
+		if(pwd.length>6){
+			$("#pwdError").html("输入的密码长度超过6个字符");
+			return false;
+		}
+	}
+	function clearHtml(){
+		$("#pwdError").html("");
+		return false;
 	}
 	function checkPwd(){
 		var flag = true;

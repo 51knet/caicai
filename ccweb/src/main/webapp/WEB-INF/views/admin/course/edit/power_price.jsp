@@ -28,7 +28,8 @@ $(document).ready(function(){
 	<form class="form-horizontal" action="<c:url value="/admin/teacher/course/edit/powerpricemodify"></c:url>"   method="post" onsubmit="return checkPwd()">
 		<input type="hidden" name="courseId" value="${course.id }" />
 		<div class="modal-body" id="pwdform">
-			修改密码：<input type="text" id="pwd" name="pwd" style="width: 250px;"  value="${course.pwd}" onblur="deleSpace()">
+			修改密码：<input type="text" id="pwd" name="pwd" style="width: 250px;"  value="${course.pwd}" onblur="deleSpace()" onfocus="clearHtml();">
+			<span id="pwdError"></span>
 		</div>
 		<div class="modal-body" id="checkpwdform" >
 			确认密码：<input type="text" id="checkpwd" name="checkpwd" style="width: 250px;" value="${course.pwd}"  >

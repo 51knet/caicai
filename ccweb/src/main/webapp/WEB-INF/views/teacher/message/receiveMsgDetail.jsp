@@ -21,7 +21,7 @@
 		$("#c").focus(function() {
 			$(".help-inline").html("");
 		});
-		checkEmptyAjax("receiveMsg_info_form","receiveMsgInfoAJAX");
+		checkAjax("receiveMsg_info_form","receiveMsgInfoAJAX");
 		});
 </script>
 <style>
@@ -65,20 +65,27 @@
 					<input type="hidden" value="${sendMsg.user.id }" name="receiveId">
 					<input type="hidden" value="${sendMsg.id }" name="sendMsgId" >
 					<input type="hidden" value="${urmId }" name="urmId" >
-					<div class="modal-body" id="title">
-					信件标题：<input type="text" name="title" id="t" placeholder="标题">
-					<span class="help-inline"></span>
-					</div >
-					<div class="modal-body" id="content">
-					信件内容：<textarea name="content" id="c" placeholder="内容" cols="5" rows="8" style="width:380px;"></textarea>
-					<span class="help-inline"></span>
-					</div>
-						<div class="modal-footer">
 					
-						<button class="btn btn-primary" type="submit">保存</button>
-							<button class="btn" type="reset" data-dismiss="modal"
-							aria-hidden="true">取消</button>
-					</div>
+			<div class="control-group" id="title" style="padding-left: 20px;">
+			<div class="controls">
+			信件标题：
+				<input type="text" name="title" id="t" placeholder="信件标题"> 
+				<span class="help-inline"></span>
+			</div>
+			</div>
+			<div class="control-group" id="content" style="padding-left: 20px;">
+			<div class="controls" >
+			信件内容：
+				<textarea  name="content" placeholder="信件内容" id="c" cols="5" rows="8" style="width:380px;"></textarea>
+				<span class="help-inline"></span>
+			</div>
+			</div>
+			<div class="control-group" style="margin-left: 20px;">
+			<div class="controls">
+				<button type="submit"  class="btn btn-large btn-success">保存</button>
+				<button type="reset" data-dismiss="modal" class="btn btn-large">取消</button>
+			</div>
+			</div>
 				</form:form>
 			</div>
 		</div>

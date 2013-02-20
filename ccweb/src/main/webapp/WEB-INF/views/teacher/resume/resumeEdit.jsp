@@ -25,7 +25,7 @@
 				<div class="control-group" id="name">
 					<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 					<div class="controls">
-						<input type="text" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.name}"> <span class="help-inline"><form:errors path="name"></form:errors></span>
+						<input type="text" name="name"  placeholder="姓名" value="${sessionScope.sessionUserInfo.name}"> <span class="help-inline"><form:errors path="name"></form:errors></span>
 					</div>
 				</div>
 				<div class="control-group" id="gender">
@@ -39,14 +39,14 @@
 				<div class="control-group" id="college">
 					<label class="control-label" for="college"><i class="icon-star"></i> 所属高校</label>
 					<div class="controls">
-						<input type="text" name="college" placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="8"
+						<input type="text" name="college"   placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="8"
 							data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'> <span class="help-inline"><form:errors path="college" /></span>
 					</div>
 				</div>
 				<div class="control-group" id="school">
 					<label class="control-label" for="school"><i class="icon-star"></i> 所属院系</label>
 					<div class="controls">
-						<input type="text" name="school" placeholder="所属院系" value="${sessionScope.sessionUserInfo.teacher.school}" style="margin: 0 auto;" data-provide="typeahead" data-items="4"
+						<input type="text" name="school"   placeholder="所属院系" value="${sessionScope.sessionUserInfo.teacher.school}" style="margin: 0 auto;" data-provide="typeahead" data-items="4"
 							data-source='["计算机学院","财金学院","女子学院"]'> <span class="help-inline"><form:errors path="school" /></span>
 					</div>
 					<!--  
@@ -145,25 +145,25 @@
 					<div class="control-group" id="collegeName">
 						<label class="control-label" for="collegeName">学院</label>
 						<div class="controls">
-							<input type="text" name="collegeName"  value="" placeholder="学院"> <span class="help-inline"></span>
+							<input type="text" name="collegeName"   value="" placeholder="学院"> <span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group" id="degree">
 						<label class="control-label" for="degree">学历</label>
 						<div class="controls">
-							<input type="text"  name="degree" placeholder="学历"> <span class="help-inline"></span>
+							<input type="text"  name="degree"  placeholder="学历"> <span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group" id="startTime">
 						<label class="control-label" for="startTime">开始时间</label>
 						<div class="controls">
-							<input type="text"  name="startTime" placeholder="开始时间"> <span class="help-inline"></span>
+							<input type="text"  name="startTime"  placeholder="开始时间"> <span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group" id="endTime">
 						<label class="control-label" for="endTime">结束时间</label>
 						<div class="controls">
-							<input type="text"  name="endTime" placeholder="结束时间"> <span class="help-inline"></span>
+							<input type="text"  name="endTime"  placeholder="结束时间"> <span class="help-inline"></span>
 						</div>
 					</div>
 					<div class="control-group"  id="educationDesc" >
@@ -282,7 +282,7 @@
 					<div class="control-group" id="workDesc">
 						<label class="control-label" for="workDesc">详细介绍</label>
 						<div class="controls">
-							<textarea  name="workDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+							<textarea  name="workDesc"   id="workDescs" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -395,7 +395,7 @@
 				<input type="hidden" name="thesisId">
 					<div class="control-group" id="content">
 						<div class="controls">
-							内容:<textarea  name="content" rows="6" cols="8" style="width: 600px; height: 300px;"></textarea>
+							内容:<textarea  name="content" id="contents" rows="6" cols="8" style="width: 600px; height: 300px;"></textarea>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -460,7 +460,7 @@
 						<div class="control-group" id="projectDesc">
 							<label class="control-label" for="projectDesc">详细介绍</label>
 							<div class="controls">
-								<textarea  name="projectDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+								<textarea  name="projectDesc" id="projectDescs"   rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
 								<span class="help-inline"></span>
 							</div>
 						</div>
@@ -567,7 +567,7 @@
 						<div class="control-group"  id="patentDesc">
 							<label class="control-label" for="patentDesc">详细介绍</label>
 							<div class="controls">
-								<textarea name="patentDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+								<textarea name="patentDesc" id="patentDescs" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
 								<span class="help-inline"></span>
 							</div>
 						</div>
@@ -661,7 +661,7 @@
 						<div class="control-group" id="honorDesc">
 							<label class="control-label" for="honorDesc">详细介绍</label>
 							<div class="controls">
-								<textarea  name="honorDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+								<textarea  name="honorDesc" id="honorDescs" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
 								<span class="help-inline"></span>
 							</div>
 						</div>

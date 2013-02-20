@@ -38,6 +38,11 @@ $(document).ready(function() {
 	});
 	$("#edu_info_form").submit(function(){
 		eduDescEditor.sync();
+		var KEeducationDesc =$("#KEeducationDesc").val();
+		if(KEeducationDesc.length>=1000){
+			alert("内容过多，请精减内容");
+			return false;
+		}
 		return checkEmptyAjax("edu_info_form","eduInfoAJAX");
 	});
 	
@@ -83,6 +88,11 @@ $(document).ready(function() {
 	
 	$("#workExpForm").submit(function(){
 		workDescEditor.sync();
+		var workDescs=$("#workDescs").val();
+		if(workDescs.length>=1000){
+			alert("内容过多，请精减内容");
+			return false;
+		}
 		return checkEmptyAjax("workExpForm","workExpInfoAJAX");
 	});
 	
@@ -119,8 +129,14 @@ $(document).ready(function() {
 		});
 	});
 	$("#thesis_info_form").submit(function(){
-		contextEditor.sync();
-		return checkEmptyAjax("thesis_info_form","thesisInfoAJAX");
+		var contents=$("#contents").val().trim();
+		if(contents.length>=1000){
+			alert("内容过多，请精减内容");
+			return false;
+		}else{
+			contextEditor.sync();
+			return checkEmptyAjax("thesis_info_form","thesisInfoAJAX");
+		}
 	});
 	
 	var projectEditor = KindEditor.create('textarea[name="projectDesc"]',{
@@ -142,6 +158,11 @@ $(document).ready(function() {
 	});
 	$("#project_info_form").submit(function(){
 		projectEditor.sync();
+		var projectDescs=$("#projectDescs").val();
+		if(projectDescs.length>=1000){
+			alert("内容过多，请精减内容");
+			return false;
+		}
 		return checkEmptyAjax("project_info_form","projectInfoAJAX");
 	});
 	$('.editProjectAjaxBtn').on('click', function() {
@@ -182,6 +203,11 @@ $(document).ready(function() {
 	});
 	$("#patent_info_form").submit(function(){
 		patentEditor.sync();
+		var patentDescs=$("#patentDescs").val();
+		if(patentDescs.length>=1000){
+			alert("内容过多，请精减内容");
+			return false;
+		}
 		return checkEmptyAjax("patent_info_form","patentInfoAJAX");
 	});
 	$('.editPatentAjaxBtn').on('click', function() {
@@ -222,6 +248,11 @@ $(document).ready(function() {
 	});
 	$("#honor_info_Form").submit(function(){
 		honorEditor.sync();
+		var honorDescs=$("#honorDescs").val();
+		if(honorDescs.length>=1000){
+			alert("内容过多，请精减内容");
+			return false;
+		}
 		return checkEmptyAjax("honor_info_Form","honorInfoAJAX");
 	});
 	$('.editHonorAjaxBtn').on('click', function() {
@@ -244,7 +275,7 @@ $(document).ready(function() {
 	prettyPrint();
 });
 function personalOnclick(){
-	return checkEmptyAjax("personal_info_form","personalInfoAJAX");
+	return checkEmptyAjaxs("personal_info_form","personalInfoAJAX");
 };
 $(document).ready(function(){
 	$("#context").focus(function(){
@@ -253,7 +284,6 @@ $(document).ready(function(){
 	$("input").focus(function(){
 		$(".help-inline").html("");
 	});
-	
 	// 表格里的删除按钮按下的时候，需要为对话框动态修改一些属性的值
 	$('.deleteProjectPostBtn').on('click', function() {
 		var project_id = $(this).next().next().val();

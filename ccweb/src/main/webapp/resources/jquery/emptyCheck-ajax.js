@@ -2,9 +2,10 @@ function collectFormData(fields) {
 	var data = {};
 	for ( var i = 0; i < fields.length; i++) {
 		var $item = $(fields[i]);
-		data[$item.attr('name')] = $item.val();
+		data[$item.attr('name')] = $item.val().trim();
 	}
 	return data;
+	
 }
 /**
  * 对input和textarea是否为空进行验证
@@ -90,7 +91,7 @@ function checkAjaxs(formID, actionName) {
  * @param e
  * @returns {Boolean}
  */
-/*function checkEmptyAjax(formID, actionName) {
+function checkEmptyAjaxs(formID, actionName) {
 	$form = $('#' + formID);
 	var action = actionName;
 	$form.bind('submit', function(e) {
@@ -117,7 +118,7 @@ function checkAjaxs(formID, actionName) {
 		return false;
 
 	});
-}*/
+}
 function checkEmptyAjax(formID, actionName) {
 	var flag = false;
 	var $form = $('#' + formID);
