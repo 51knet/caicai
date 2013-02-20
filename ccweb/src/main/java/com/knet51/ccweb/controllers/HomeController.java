@@ -139,7 +139,15 @@ public class HomeController {
 		}
 
 	}
-
+	/**
+	 * show the teacher's front page
+	 * @param id
+	 * @param model
+	 * @param session
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/teacher/{id}")
 	public String teacherFront(@PathVariable Long id, Model model,
 			HttpSession session, HttpServletResponse response)

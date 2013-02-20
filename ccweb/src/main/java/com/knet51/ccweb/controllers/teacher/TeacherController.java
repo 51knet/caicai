@@ -83,7 +83,15 @@ public class TeacherController {
 		model.addAttribute("active", active);
 		return "admin.teacher.details";
 	}
-	
+	/**
+	 * update the teacher's personalInfo
+	 * @param personalInfoForm
+	 * @param validResult
+	 * @param session
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/personalInfo")
 	public String personalInfo(@Valid TeacherPersonalInfoForm personalInfoForm,
@@ -114,7 +122,13 @@ public class TeacherController {
 		}
 		return "redirect:/admin/teacher/resume?active=personal";
 	}
-	
+	/**
+	 * update the teacher's contactInfo
+	 * @param contactInfoForm
+	 * @param validResult
+	 * @param session
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/contactInfo")
 	public String contactInfo(@Valid TeacherContactInfoForm contactInfoForm,
@@ -143,7 +157,14 @@ public class TeacherController {
 		}
 		return "redirect:/admin/teacher/resume?active=contact";
 	}
-	
+	/**
+	 * update or create the teacher's educationInfo
+	 * @param edu_id
+	 * @param eduInfoForm
+	 * @param validResult
+	 * @param session
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/eduInfo" ,method = RequestMethod.POST)
 	public String changeEduInfo(@RequestParam("eduId")Long edu_id,@Valid TeacherEduInfoForm eduInfoForm,
@@ -177,7 +198,12 @@ public class TeacherController {
 		return "redirect:/admin/teacher/resume?active=edu";
 	}
 	
-	
+	/**
+	 * delete the teacher's eduInfo
+	 * @param edu_id
+	 * @param session
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/eduInfo/destory",method=RequestMethod.POST)
 	public String destoryEduInfo(@RequestParam("eduId") Long edu_id, HttpSession session) {
@@ -187,6 +213,14 @@ public class TeacherController {
 		
 	}
 	
+	/**
+	 * update or create the teacher's workExpInfo
+	 * @param work_Id
+	 * @param workInfoForm
+	 * @param validResult
+	 * @param session
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/workInfo",method = RequestMethod.POST)
 	public String changeWorkInfo(@RequestParam("workId")Long work_Id,@Valid TeacherWorkExpInfoForm workInfoForm,
@@ -217,6 +251,12 @@ public class TeacherController {
 		return "redirect:/admin/teacher/resume?active=work";
 	}
 	
+	/**
+	 * delete the teacher's workExpInfo
+	 * @param work_id
+	 * @param session
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/workInfo/destory",method = RequestMethod.POST)
 	public String destoryWorkInfo(@RequestParam("workId") Long work_id, HttpSession session) {
@@ -224,7 +264,14 @@ public class TeacherController {
 		workExpService.destory(Long.valueOf(work_id));
 		return "redirect:/admin/teacher/resume?active=work";
 	}
-	
+	/**
+	 * update or create the teacher's thesisInfo
+	 * @param thesis_Id
+	 * @param thesisDetailInfoForm
+	 * @param validResult
+	 * @param session
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/thesisInfo",method = RequestMethod.POST)
 	public String changeThesisInfo(@RequestParam("thesisd")Long thesis_Id,@Valid TeacherThesisDetailInfoForm thesisDetailInfoForm,
@@ -252,7 +299,15 @@ public class TeacherController {
 		return "redirect:/admin/teacher/resume?active=thesis";
 	}
 	
-	
+	/**
+	 * update the teacher's pwd
+	 * @param pswForm
+	 * @param validResult
+	 * @param session
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/changePsw")
 	public String changePsw(@Valid TeacherPswForm pswForm,
