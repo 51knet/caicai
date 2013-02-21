@@ -338,7 +338,7 @@ public class HomeController {
 			Long id = user.getId();
 			return "redirect:/user/" + id.toString();
 		} else {
-			return "404";
+			return "404" ;
 		}
 	}
 }
