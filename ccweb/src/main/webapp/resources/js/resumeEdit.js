@@ -39,6 +39,7 @@ $(document).ready(function() {
 	$("#edu_info_form").submit(function(){
 		eduDescEditor.sync();
 		var KEeducationDesc =$("#KEeducationDesc").val();
+		alert(KEeducationDesc);
 		if(KEeducationDesc.length>=1000){
 			alert("内容过多，请精减内容");
 			return false;

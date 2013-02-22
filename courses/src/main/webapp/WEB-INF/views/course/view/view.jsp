@@ -81,10 +81,10 @@
     				</c:otherwise>
     			</c:choose></span>分</h5>
 				<h5>发布时间：${course.courseDate }</h5>
-				学员（${sumPerson}）&nbsp;&nbsp;
+				学员（${studentPerson}）&nbsp;&nbsp;
 				
 				<c:choose>
-				<c:when test="${courseMark>0 }">
+				<c:when test="${courseMark!=-1.0 }">
 				评论（${sumPerson}）&nbsp;&nbsp;
 				</c:when>
 				<c:otherwise>

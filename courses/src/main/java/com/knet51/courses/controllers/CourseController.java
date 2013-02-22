@@ -125,17 +125,17 @@ public class CourseController {
 				.findByTeachercourseid(course_id);
 		double courseMark = 0.0;
 		Integer sumPerson = 0;
+		Integer studentPerson=0;
 
 		if (listUserCourse.size() == 0) {
 			courseMark = 0;
 			sumPerson = 0;
 		} else {
-
-			sumPerson = listUserCourse.size();
+			studentPerson=listUserCourse.size();
 			for (UserCourse userCourse : listUserCourse) {
-				if (userCourse.getMark() == null) {
-					courseMark = 0.0;
-				} else {
+				
+				if (userCourse.getMark() != null) {
+					sumPerson = sumPerson+1;
 					courseMark = userCourseService.getMark(course_id);
 				}
 			}
@@ -164,9 +164,10 @@ public class CourseController {
 			model.addAttribute("page", onePage);
 			model.addAttribute("listUserCourse", list);
 		}
-		model.addAttribute("sumPerson", sumPerson);
+		model.addAttribute("sumPerson", sumPerson);//评论人员
+		model.addAttribute("studentPerson", studentPerson);//学员
 		model.addAttribute("courseMark", courseMark);
-
+		
 		model.addAttribute("teacher", teacher);
 
 		List<CourseResource> listResource = courseResourceService
@@ -288,12 +289,13 @@ public class CourseController {
 			UserCourseUser.setUserName(userName);
 			list.add(UserCourseUser);
 		}
-		Integer sumPerson = list.size();
+		Integer sumPerson = 0;
 		List<UserCourse> userCourseList = userCourseService
 				.findByTeachercourseid(id);
 		double courseMark = 0.0;
 		for (UserCourse userCourse : userCourseList) {
 			if (userCourse.getMark() != null) {
+				sumPerson=sumPerson+1;
 				courseMark = userCourseService.getMark(id);// 一个视频的评论平均分数
 			}
 		}

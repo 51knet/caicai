@@ -8,11 +8,11 @@
 		<div  align="left" style="background-color:#F7F7F7;height:40px; line-height:40px;clear:both;margin-top: 20px;"><h4 style=" float:left; margin-left: 40px;">用户评价</h4></div> 
 		<div style="margin-left:35px; margin-top: 10px;">
     	<c:choose>
-			<c:when test="${sumPerson>0&&courseMark>0 }">
+			<c:when test="${sumPerson>0}">
 			<span style="line-height:40px">总评论人数:&nbsp;&nbsp;&nbsp;${sumPerson}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			评论分数:
 			<c:choose>
-    				<c:when test="${courseMark !=null && courseMark>0 }">
+    				<c:when test="${courseMark>0 }">
     					<fmt:formatNumber type="number" value="${courseMark }" maxFractionDigits="0" />&nbsp;&nbsp;分
     				</c:when>
     				<c:otherwise>
@@ -23,10 +23,13 @@
     			<hr>
 				<table style="width: 100%">
 			<c:forEach var="usercourse" items="${listUserCourse}">
+				 <c:choose>
+				    <c:when test="${usercourse.userCourse.commentDesc!=null  }">
 				  <table>
 				  <tr>
 				    <td width="10%" rowspan="3" align="center" valign="top">
-				    	 <c:choose >
+				    	
+				    	<c:choose >
 							<c:when test="${usercourse.photoUrl != null && usercourse.photoUrl != ''}">
 								<img src='<c:url value="${url }${usercourse.photoUrl }"></c:url>'   style="width: 50px;height: 50px;" />
 							</c:when>
@@ -46,6 +49,9 @@
 				  </tr>
 				  </table>
 				  <hr>
+				   </c:when>
+				  </c:choose>
+				    	 
 			</c:forEach>
 			 <tr><td>
        				 <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
