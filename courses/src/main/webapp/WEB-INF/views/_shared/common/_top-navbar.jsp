@@ -30,7 +30,7 @@
           -->
 			<ul class="nav pull-right">
 				<c:if test="${sessionUserInfo != null}">
-				<li><a href='<c:url value="#"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
+				<li><a href='<c:url value="/mycourses"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
 				<li><a style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/signout"></c:url>'>退出登录</a><br></li>
 				</c:if>
 				<c:if test="${sessionUserInfo == null}">

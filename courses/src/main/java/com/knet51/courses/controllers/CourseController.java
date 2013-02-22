@@ -435,4 +435,21 @@ public class CourseController {
 		}
 		return "course.list";
 	}
+	
+	@RequestMapping(value="/mycourses")
+	public String showUserCourse(HttpSession session,Model model){
+		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(currentUser != null){
+			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
+			List<TeacherCourse> userCourse = new ArrayList<TeacherCourse>();
+			for (int i = 0; i < userCourseList.size(); i++) {
+				TeacherCourse teacherCourse = courseService.findOneById(userCourseList.get(i).getTeachercourseid());
+				userCourse.add(teacherCourse);
+			}
+			model.addAttribute("userInfo", currentUser.getUser());
+			model.addAttribute("userCourse", userCourse);
+			model.addAttribute("userCourseCount", userCourse.size());
+		}
+		return "user.courses.list";
+	}
 }
