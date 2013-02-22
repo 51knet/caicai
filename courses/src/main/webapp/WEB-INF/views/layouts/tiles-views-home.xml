@@ -49,6 +49,14 @@
 		<put-attribute name="title" value="教师详细" />
 		<put-attribute name="body" value="/WEB-INF/views/teacher/list/list.jsp" />
 	</definition>
+	
+	<definition name="user.courses.list" extends="index-layout">
+		<put-attribute name="title" value="个人信息" />
+		<put-attribute name="search" value="" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/course/usercourse/userinfo.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/course/usercourse/list/list.jsp" />
+	</definition>
+	
 	<definition name="teacher.teacherInfo" extends="index-layout">
 		<put-attribute name="title" value="课程详细信息" />
 		<put-attribute name="search" value="" />

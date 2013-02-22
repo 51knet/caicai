@@ -56,7 +56,7 @@
 					</td>
 				</tr>
 			</table> -->
-			<div style="width: 40%; height:150px; text-align:center;  float: left;border: 0px solid #cccccc;">
+			<div style="width: 42%; height:150px; text-align:center;  float: left;border: 0px solid #cccccc;">
 				<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
 						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 240px; height: 120px;margin-top: 10px;" />
@@ -68,7 +68,7 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div style="width: 60%; float: left; height:150px;border: 0px solid #cccccc; font-size: 13px;">
+			<div style="width: 55%; float: right; height:150px;border: 0px solid #cccccc; font-size: 13px;">
 				<h4>${course.courseName}</h4>
 				<h4>${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</h4>
 				<h5>类别：${course.courseType }&nbsp;&nbsp;&nbsp;&nbsp;课程评分：<span style="color: red;">
@@ -79,7 +79,7 @@
     				<c:otherwise>
     					0
     				</c:otherwise>
-    			</c:choose></span>分</h5>
+    			</c:choose></span>&nbsp;分</h5>
 				<h5>发布时间：${course.courseDate }</h5>
 				学员（${studentPerson}）&nbsp;&nbsp;
 				

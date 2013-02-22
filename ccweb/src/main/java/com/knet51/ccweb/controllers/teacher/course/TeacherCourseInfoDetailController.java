@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.knet51.ccweb.beans.UserInfo;
@@ -57,7 +58,14 @@ public class TeacherCourseInfoDetailController {
 	@Autowired
 	private ResourceTypeService resourceTypeService;
 	
-	
+	/**
+	 * update the teacher's course basic information
+	 * @param courseInfoForm
+	 * @param validResult
+	 * @param session
+	 * @param course_id
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/edit",method=RequestMethod.POST)
 	public String TeacherCourseUpdateInfo(@Valid TeacherCourseInfoForm courseInfoForm,
@@ -81,7 +89,12 @@ public class TeacherCourseInfoDetailController {
 		}
 	
 	}
-	
+	/**
+	 * remove the course to the recycle bin
+	 * @param session
+	 * @param course_id
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/destory",method=RequestMethod.POST)
 	public String TeacherCourseDele( HttpSession session,@RequestParam("cId") Long course_id){
@@ -92,7 +105,12 @@ public class TeacherCourseInfoDetailController {
 			teacherCourseService.updateTeacherCourse(course);
 			return "redirect:/admin/teacher/course/list";
 	}
-	
+	/**
+	 * delete the course but it will still save in the DB
+	 * @param session
+	 * @param course_id
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/deleted",method=RequestMethod.POST)
 	public String deleFromCourseRecycle( HttpSession session,@RequestParam("cId") Long course_id){
@@ -102,7 +120,12 @@ public class TeacherCourseInfoDetailController {
 		teacherCourseService.updateTeacherCourse(course);
 		return "redirect:/admin/teacher/course/list";
 	}
-	
+	/**
+	 * recover the course which is in recycle bin
+	 * @param session
+	 * @param course_id
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/recover",method=RequestMethod.POST)
 	public String courseRecoverUnpublish( HttpSession session,@RequestParam("cId") Long course_id){
@@ -114,7 +137,15 @@ public class TeacherCourseInfoDetailController {
 			return "redirect:/admin/teacher/course/list";
 	}
 	
-	
+	/**
+	 * create the course resource
+	 * @param session
+	 * @param model
+	 * @param request
+	 * @param course_id
+	 * @return
+	 * @throws Exception
+	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/resource/create",method=RequestMethod.POST)
 	public String TeacherCourseResourceAdd(HttpSession session,Model model,
@@ -126,6 +157,10 @@ public class TeacherCourseInfoDetailController {
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
+//				if(multipartFile.getSize()>1024*1024){
+//					
+//					return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
+//				}
 				Long type = Long.parseLong(request.getParameter("type"));
 				ResourceType resourceType = resourceTypeService.findOneById(type);
 				Long courseLessonId = Long.parseLong(request.getParameter("lessonId"));
@@ -159,6 +194,15 @@ public class TeacherCourseInfoDetailController {
 		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 	}
 	
+	/**
+	 * update the course resource
+	 * @param session
+	 * @param model
+	 * @param request
+	 * @param resource_id
+	 * @return
+	 * @throws Exception
+	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/resource/edit",method=RequestMethod.POST)
 	public String TeacherCourseResourceEdit(HttpSession session,Model model,
@@ -197,7 +241,14 @@ public class TeacherCourseInfoDetailController {
 		}
 		return "redirect:/admin/teacher/course/edit/"+resource.getCourse_id()+"/modifycourse";
 	}
-	
+	/**
+	 * destory the course resource
+	 * @param session
+	 * @param model
+	 * @param resource_id
+	 * @return
+	 * @throws Exception
+	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/resource/destory",method=RequestMethod.POST)
 	public String destoryTeacherCourseResource(HttpSession session,Model model,
@@ -211,7 +262,14 @@ public class TeacherCourseInfoDetailController {
 		return "redirect:/admin/teacher/course/edit/"+resource.getCourse_id()+"/modifycourse";
 	}
 	
-	
+	/**
+	 * download the course resource
+	 * @param resource_id
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/course/resource/download/{resource_id}")
 	public String resourceDownLoad(@PathVariable Long resource_id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		logger.info("-------Into resource DownLoad controller------");
@@ -222,13 +280,7 @@ public class TeacherCourseInfoDetailController {
 		return null;
 	}
 	
-	@Transactional
-	@RequestMapping(value="/admin/teacher/{course_id}/resource/destory/{resource_id}")
-	public String courseResourceDele( HttpSession session,@PathVariable Long resource_id,@PathVariable Long course_id){
-		logger.info("#### Into TeacherCourseAdd Controller ####");
-			courseResourceService.deleCourseResource(resource_id);
-			return "redirect:/admin/teacher/course/view/"+course_id;
-	}
+
 	/**
 	 * 修改课程
 	 * @return

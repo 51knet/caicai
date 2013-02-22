@@ -164,7 +164,8 @@ public class TeacherCourseInfoPageController {
 			model.addAttribute("teacherInfo", userInfo);
 			model.addAttribute("teacher_id", teacher_id);
 			model.addAttribute("course", course);
-			List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
+			List<CourseResource> listResource = 
+					courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
 			List<CourseResource> courseList;
 			Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 			String resourceOrder = null;
@@ -394,7 +395,12 @@ public class TeacherCourseInfoPageController {
 		return "redirect:/admin/teacher/course/view/"+Long.valueOf(course_id);
 	}
 
-	
+	/**
+	 * add the lesson number
+	 * @param course_id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/admin/teacher/course/edit/addlessonnum",method=RequestMethod.POST)
 	public String addNewLessonNum(@RequestParam("courseId") Long course_id,Model model){
 		List<CourseLesson> lessonList = courseLessonService.getMaxLessonNumByCourseId(Long.valueOf(course_id));
@@ -437,7 +443,12 @@ public class TeacherCourseInfoPageController {
 		out.flush();
 		out.close();
 	}
-	
+	/**
+	 * destory the lessonNum
+	 * @param lesson_id
+	 * @param course_id
+	 * @return
+	 */
 	@RequestMapping(value="/admin/teacher/course/edit/courselesson/destory",method=RequestMethod.POST)
 	public String deleteCoourseLesson(@RequestParam("lessonId") Long lesson_id,@RequestParam("courseId") Long course_id){
 		CourseLesson bigLesson = courseLessonService.findOne(lesson_id);
@@ -459,6 +470,7 @@ public class TeacherCourseInfoPageController {
 	public @ResponseBody ValidationResponse courseFormAjaxJson(@Valid TeacherCourseInfoForm teacherCourseInfoForm, BindingResult result,HttpSession session) {
 		return AjaxValidationEngine.process(result);
 	}
+	
 	@RequestMapping(value="/admin/teacher/course/checkcoursename", method = RequestMethod.POST)
 	public void checkCourseName(@RequestParam("courseName") String courseName,HttpServletResponse response,HttpSession session) throws Exception{
 		PrintWriter out=response.getWriter();
@@ -486,7 +498,15 @@ public class TeacherCourseInfoPageController {
 		return null;
 	}
 	
-
+	/**
+	 * validate the course's pwd when someone wants to check a course which has the pwd in ccweb front page
+	 * @param course_id
+	 * @param pwd
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value="/checkCoursePwd", method = RequestMethod.POST)
 	public String checkCoursePwd(@RequestParam("cid") Long course_id,@RequestParam("coursepwd") String pwd,HttpServletRequest request,HttpServletResponse response ) throws IOException{
 		logger.info("==== into the ajax checkCoursePwd controller ====");
