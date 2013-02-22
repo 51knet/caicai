@@ -115,23 +115,6 @@
 			</c:forEach>
 		</div>
     </div>
- 	<div class="item">
-	      <div class="row">
-			<c:forEach items="${teacherList}" var="t" begin="11" end="15">
-				<div class="span2" style="width: 175px;height: 200px;">
-					<c:choose>
-						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-								</a>
-						</c:when>
-						<c:otherwise>
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
-						</c:otherwise>
-						</c:choose>
-				</div>
-			</c:forEach>
-		</div> 
-    </div>
   </div>
   <div class="row">
   		<a class="view-all-teachers-link btn" href='<c:url value="/teacher/list"></c:url>' >全部教师</a>  
@@ -200,7 +183,8 @@
 	    	<div class="span3"></div>
 	    	<div class="span3"></div>
 	    	<div class="span3"></div>
-	    </div><div class="row">
+	    </div>
+	    <div class="row">
 	    	<div class="span3"></div>
 	    	<div class="span3"></div>
 	    	<div class="span3"></div>
