@@ -39,6 +39,7 @@ public class Teacher {
 	private String school;
 	private String teaching_subject;
 	private String major;
+	private String isEnterprise;
 
 	public Long getId() {
 		return id;
@@ -119,6 +120,15 @@ public class Teacher {
 
 	public void setCourse(Set<TeacherCourse> course) {
 		this.course = course;
+	}
+
+	
+	public String getIsEnterprise() {
+		return isEnterprise;
+	}
+
+	public void setIsEnterprise(String isEnterprise) {
+		this.isEnterprise = isEnterprise;
 	}
 
 	@Override
