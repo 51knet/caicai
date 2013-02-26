@@ -155,10 +155,7 @@ public class TeacherCourseInfoPageController {
 	public String detailCourse(@RequestParam("teacherId") Long teacher_id,@RequestParam("courseId") Long course_id,
 			@RequestParam("coursepwd") String pwd,Model model){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
-		String coursePwd = course.getPwd();
-		logger.info("++++++++++++++++++"+pwd+"-------"+course.getPwd()+"+++++"+pwd.equals(coursePwd));
 		if(pwd.equals(course.getPwd()) || course.getPwd() == null || course.getPwd().trim() .equals("")){
-			logger.info("==========================================");
 			Teacher teacher = teacherService.findOne(teacher_id);
 			User user = teacher.getUser();
 			UserInfo userInfo = new UserInfo(user);
