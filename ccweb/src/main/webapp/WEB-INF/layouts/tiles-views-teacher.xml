@@ -309,5 +309,10 @@
 		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/deleteCourse.jsp" />
 	</definition>
+	<definition name="admin.teacher.upgradeRole" extends="admin-layout">
+		<put-attribute name="title" value="升级成为企业用户" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/teacher/upgrade/upgradeRole.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>
