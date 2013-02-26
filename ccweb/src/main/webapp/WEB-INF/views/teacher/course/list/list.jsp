@@ -18,7 +18,7 @@
 					$("#errorMsg").html("密码错误！");
 					return false;
 				}			
-		});
+		},"text");
 	}
 	
 	
@@ -83,7 +83,7 @@
 							</c:choose>
 						</td>
 						<td>
-							${course.courseDesc}
+							<div style="width: 420px;" id="content">${course.courseDesc}</div>
 						</td>
 						<td>
 							${course.courseDate}

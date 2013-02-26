@@ -7,7 +7,6 @@
 		$("#errorMsg").html("");
 		var pwd = $("#coursepwd").val();
 		$.post('<c:url value="/checkCoursePwd" />', $("#checkpwd_form").serialize(), function(flag){
-			//alert(typeof flag+flag);
 				if('true'==flag){
 					$("#course_id").val(cid);
 					$("#teacher_id").val(tid);
@@ -17,7 +16,7 @@
 					$("#errorMsg").html("密码错误！");
 					return false;
 				}			
-		});
+		}, "text");
 	}
 	
 	
