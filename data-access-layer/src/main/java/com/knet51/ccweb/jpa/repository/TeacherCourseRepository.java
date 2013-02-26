@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -19,7 +20,7 @@ public interface TeacherCourseRepository extends JpaRepository<TeacherCourse, Lo
 	Page<TeacherCourse> findAll(Pageable pageable);
 	Page<TeacherCourse> findTeacherCourseByTeacherAndPublishGreaterThan(Teacher teacher,Integer publish,Pageable pageable);
 	//List<String> getCourseType();
-	List<TeacherCourse> findTeacherCourseByStatusAndPublish(Integer status,Integer publish);
+	List<TeacherCourse> findTeacherCourseByStatusAndPublish(Integer status,Integer publish,Sort sort);
 	List<TeacherCourse> findTeacherCourseByTeacherAndStatusAndPublish(Teacher teacher,Integer status,Integer publish);
 	Page<TeacherCourse> findTeacherCourseByTeacherAndPublish(Teacher teacher,Integer publish,Pageable pageable);
 	List<TeacherCourse> findTeacherCourseByTeacherAndPublish(Teacher teacher,Integer publish);

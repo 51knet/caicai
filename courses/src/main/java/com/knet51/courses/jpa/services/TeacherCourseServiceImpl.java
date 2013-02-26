@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -129,7 +130,8 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	@Override
 	public List<CourseBeans> getAllCourseBeans() {
 		List<CourseBeans> courseBeansList = new ArrayList<CourseBeans>();
-		List<TeacherCourse> teacherCourseList = courseRepository.findTeacherCourseByStatusAndPublish(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		Sort sort = new Sort(Direction.DESC, "id");
+		List<TeacherCourse> teacherCourseList = courseRepository.findTeacherCourseByStatusAndPublish(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,sort);
 		for(int i=0;i<teacherCourseList.size();i++){
 			TeacherCourse teacherCourse = courseRepository.findOne(teacherCourseList.get(i).getId());
 			Double avgMark = commentRepository.getMark(teacherCourseList.get(i).getId());
@@ -173,7 +175,8 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 
 	@Override
 	public List<TeacherCourse> findAllCourses() {
-		List<TeacherCourse> courseList = courseRepository.findTeacherCourseByStatusAndPublish(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		Sort sort = new Sort(Direction.DESC, "id");
+		List<TeacherCourse> courseList = courseRepository.findTeacherCourseByStatusAndPublish(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,sort);
 		return courseList;
 	}
 
