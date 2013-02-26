@@ -22,7 +22,9 @@
 
 </style>
 <div class="container teacher">
-    <div  align="left" style="width:100%;background-color:#F7F7F7; height: 40px;">
+<c:choose>
+<c:when test="${teacher.isEnterprise == null}">
+<div  align="left" style="width:100%;background-color:#F7F7F7; height: 40px;">
     	<h4 style="margin-left: 50px; float: left;">讲师介绍</h4>
     </div>
     <br/>
@@ -50,4 +52,31 @@
     </table>
     
   	</div>
+</c:when>
+<c:otherwise>
+<div  align="left" style="width:100%;background-color:#F7F7F7; height: 40px;">
+    	<h4 style="margin-left: 50px; float: left;">企业介绍</h4>
+    </div>
+    <br/>
+    <div>
+	    <c:choose >
+			<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
+				<img src='<c:url value="${url }${teacher.user.photo_url }"> </c:url>'style="width: 100px;height:100px; float:left; margin-left:30px"/>
+			</c:when>
+			<c:otherwise>
+				 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>'style="width: 100px;height: 100px; float:left; margin-left:30px"/>
+			</c:otherwise>
+		</c:choose>
+	</div>
+	<div style="width:500px; margin-left: 100px; float: left;" >
+    <table>
+    <tr>
+    <td style="width:150px;height: 30px">${teacher.title }</td>
+    </tr>
+    </table>
+    
+  	</div>
+
+</c:otherwise>
+</c:choose>
 </div>
