@@ -12,11 +12,13 @@
 	<ul class="nav nav-tabs">
 		<li <c:if test='${active == "personal"}'>class="active"</c:if>><a href="#personal_info_tab" data-toggle="tab">个人信息</a></li>
 		<li <c:if test='${active == "contact"}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>
-		<li <c:if test='${active == "edu"}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
-		<li <c:if test='${active == "work"}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
-		<li <c:if test='${active == "thesis"}'>class="active"</c:if>><a href="#thesis_tab" data-toggle="tab">论文</a></li>
-		<li <c:if test='${active == "project"}'>class="active"</c:if>><a href="#project_tab" data-toggle="tab">项目</a></li>
-		<li <c:if test='${active == "patent"}'>class="active"</c:if>><a href="#patent_tab" data-toggle="tab">专利</a></li>
+		<c:if test="${sessionScope.sessionUserInfo.teacher.isEnterprise == null}">
+			<li <c:if test='${active == "edu"}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
+			<li <c:if test='${active == "work"}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
+			<li <c:if test='${active == "thesis"}'>class="active"</c:if>><a href="#thesis_tab" data-toggle="tab">论文</a></li>
+			<li <c:if test='${active == "project"}'>class="active"</c:if>><a href="#project_tab" data-toggle="tab">项目</a></li>
+			<li <c:if test='${active == "patent"}'>class="active"</c:if>><a href="#patent_tab" data-toggle="tab">专利</a></li>
+		</c:if>
 		<li <c:if test='${active == "honor"}'>class="active"</c:if>><a href="#honor_tab" data-toggle="tab">荣誉</a></li>
 	</ul>
 	<div class="tab-content">
@@ -28,55 +30,57 @@
 						<input type="text" name="name"  placeholder="姓名" value="${sessionScope.sessionUserInfo.name}"> <span class="help-inline"><form:errors path="name"></form:errors></span>
 					</div>
 				</div>
-				<div class="control-group" id="gender">
-					<label class="control-label" for="gender"><i class="icon-star"></i> 性别</label>
-					<div class="controls">
-						<label class="radio"> <input type="radio" name="gender" id="genderMale" value="男" <c:if test='${sessionScope.sessionUserInfo.gender != "女"}'>checked</c:if>>男
-						</label> <label class="radio"> <input type="radio" name="gender" id="genderFemale" value="女" <c:if test='${sessionScope.sessionUserInfo.gender == "女"}'>checked</c:if>>女
-						</label>
+				<c:if test="${sessionScope.sessionUserInfo.teacher.isEnterprise == null}">
+					<div class="control-group" id="gender">
+						<label class="control-label" for="gender"><i class="icon-star"></i> 性别</label>
+						<div class="controls">
+							<label class="radio"> <input type="radio" name="gender" id="genderMale" value="男" <c:if test='${sessionScope.sessionUserInfo.gender != "女"}'>checked</c:if>>男
+							</label> <label class="radio"> <input type="radio" name="gender" id="genderFemale" value="女" <c:if test='${sessionScope.sessionUserInfo.gender == "女"}'>checked</c:if>>女
+							</label>
+						</div>
 					</div>
-				</div>
-				<div class="control-group" id="college">
-					<label class="control-label" for="college"><i class="icon-star"></i> 所属高校</label>
-					<div class="controls">
-						<input type="text" name="college"   placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="8"
-							data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'> <span class="help-inline"><form:errors path="college" /></span>
+					<div class="control-group" id="college">
+						<label class="control-label" for="college"><i class="icon-star"></i> 所属高校</label>
+						<div class="controls">
+							<input type="text" name="college"   placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="8"
+								data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'> <span class="help-inline"><form:errors path="college" /></span>
+						</div>
 					</div>
-				</div>
-				<div class="control-group" id="school">
-					<label class="control-label" for="school"><i class="icon-star"></i> 所属院系</label>
-					<div class="controls">
-						<input type="text" name="school"   placeholder="所属院系" value="${sessionScope.sessionUserInfo.teacher.school}" style="margin: 0 auto;" data-provide="typeahead" data-items="4"
-							data-source='["计算机学院","财金学院","女子学院"]'> <span class="help-inline"><form:errors path="school" /></span>
+					<div class="control-group" id="school">
+						<label class="control-label" for="school"><i class="icon-star"></i> 所属院系</label>
+						<div class="controls">
+							<input type="text" name="school"   placeholder="所属院系" value="${sessionScope.sessionUserInfo.teacher.school}" style="margin: 0 auto;" data-provide="typeahead" data-items="4"
+								data-source='["计算机学院","财金学院","女子学院"]'> <span class="help-inline"><form:errors path="school" /></span>
+						</div>
+						<!--  
+						<div class="controls">
+							<select class="span3" name="college">
+								<option>计算机学院</option>
+								<option>财金学院</option>
+								<option>女子学院</option>
+							</select>
+						</div>
+						-->
 					</div>
-					<!--  
-					<div class="controls">
-						<select class="span3" name="college">
-							<option>计算机学院</option>
-							<option>财金学院</option>
-							<option>女子学院</option>
-						</select>
+					<div class="control-group" id="major">
+						<label class="control-label" for="major">教授课程</label>
+						<div class="controls">
+							<input type="text" name="major" value="${sessionScope.sessionUserInfo.teacher.major}" placeholder="教授课程">
+						</div>
 					</div>
-					-->
-				</div>
-				<div class="control-group" id="major">
-					<label class="control-label" for="major">教授课程</label>
-					<div class="controls">
-						<input type="text" name="major" value="${sessionScope.sessionUserInfo.teacher.major}" placeholder="教授课程">
+					<div class="control-group" id="title">
+						<label class="control-label" for="title">职称</label>
+						<div class="controls">
+							<input type="text" name="title" value="${sessionScope.sessionUserInfo.teacher.title}" placeholder="职称">
+						</div>
 					</div>
-				</div>
-				<div class="control-group" id="title">
-					<label class="control-label" for="title">职称</label>
-					<div class="controls">
-						<input type="text" name="title" value="${sessionScope.sessionUserInfo.teacher.title}" placeholder="职称">
+					<div class="control-group" id="role">
+						<label class="control-label" for="role">导师类别</label>
+						<div class="controls">
+							<input type="text" name="role" value="${sessionScope.sessionUserInfo.teacher.role}" placeholder="导师类别">
+						</div>
 					</div>
-				</div>
-				<div class="control-group" id="role">
-					<label class="control-label" for="role">导师类别</label>
-					<div class="controls">
-						<input type="text" name="role" value="${sessionScope.sessionUserInfo.teacher.role}" placeholder="导师类别">
-					</div>
-				</div>
+				</c:if>
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" onclick="return personalOnclick();" class="btn btn-large btn-success">保 存</button>
