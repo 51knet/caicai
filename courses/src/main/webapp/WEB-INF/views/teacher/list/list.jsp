@@ -139,9 +139,29 @@ background: #F7F7F7;
 </script>
 <jsp:include page="/WEB-INF/views/_shared/index/_user_course.jsp"></jsp:include>
 <div class="container teacher">
+	<c:choose>
+	<c:when test="${isEnterPrise=='null'}">
 	<h2>热门教师（Top 50）</h2>
    	<div class="row">
-      	<c:forEach items="${page.content}" var="t" >
+      	<c:forEach items="${teacherList}" var="t" >
+	      	<div class="span2" style="width: 175px;height: 200px;">
+	      	<c:choose>
+				<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
+				<a href='<c:url value="/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
+				</a>
+				</c:when>
+				<c:otherwise>
+				<a href='<c:url value="/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
+				</c:otherwise>
+				</c:choose>
+	      	</div>
+      	</c:forEach>  
+	 </div>
+	</c:when>
+	<c:otherwise>
+	<h2>热门企业（Top 50）</h2>
+   	<div class="row">
+      	<c:forEach items="${enterPriseList}" var="t" >
 	      	<div class="span2" style="width: 175px;height: 200px;">
 		      	<c:choose>
 					<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
@@ -155,6 +175,8 @@ background: #F7F7F7;
 	      	</div>
       	</c:forEach>      	
 	 </div>
+	</c:otherwise>
+	</c:choose>
 	 <div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp" ></jsp:include></div>
 </div>
 

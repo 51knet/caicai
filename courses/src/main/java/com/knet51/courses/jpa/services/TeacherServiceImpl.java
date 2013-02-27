@@ -38,13 +38,23 @@ public class TeacherServiceImpl implements TeacherService {
 	public List<Teacher> findAllTeacher() {
 		return teacherRepository.findAll();
 	}
-
+	@Override
+	public List<Teacher> findByIsEnterprise() {
+		List<Teacher> list=teacherRepository.findByIsEnterprise();
+		return list;
+	}
 
 	@Override
-	public Page<Teacher> getAllTeacherPage(int pageNum, int pageSize) {
+	public Page<Teacher> findAll(int pageNum, int pageSize) {
 		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
 		Page<Teacher> onePage = teacherRepository.findAll(pageable);
 		return onePage;
+	}
+
+	@Override
+	public List<Teacher> findByisEnterprise(String isEnterprise) {
+		List<Teacher> list=teacherRepository.findByisEnterprise(isEnterprise);
+		return list;
 	}
 
 }

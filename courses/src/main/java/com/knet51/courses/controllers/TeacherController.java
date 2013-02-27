@@ -45,11 +45,21 @@ public class TeacherController {
 	 * @return
 	 */
 	@RequestMapping(value="/teacher/list")
-	public String showAllTeacher(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
+	public String showAllTeacher(@RequestParam("isEnterPrise") String isEnterPrise,HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		//List<Teacher> teacherList = teacherService.findAllTeacher();
-		Page<Teacher> teacherPage = teacherService.getAllTeacherPage(pageNumber, pageSize);
+		List<Teacher> teacherList=null;
+		List<Teacher> enterPriseList=null;
+		Page<Teacher> teacherPage=teacherService.findAll(pageNumber, pageSize);
+		 if(isEnterPrise.equals("1")){
+			 enterPriseList = teacherService.findByisEnterprise(isEnterPrise);
+		}else if(isEnterPrise.equals("null")){
+			teacherList=teacherService.findByIsEnterprise();
+		}
 		//List<Teacher> teacher = teacherPage.getContent();
+		 model.addAttribute("enterPriseList", enterPriseList);
+		model.addAttribute("isEnterPrise", isEnterPrise);
+		model.addAttribute("teacherList", teacherList);
 		model.addAttribute("page", teacherPage);
 		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(currentUser != null){
