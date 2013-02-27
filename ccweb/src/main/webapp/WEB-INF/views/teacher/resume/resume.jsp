@@ -22,14 +22,16 @@
 <div class="row-fluid custom round">
 	<div class="row ">
 		<h3>${teacherInfo.name}</h3>
-		<hr />
 		<div class="jumbotron">
+			<c:if test="${teacherInfo.teacher.isEnterprise == null}">
+			<hr />
 			<h5>基本信息</h5>
-			<address>
-				<abbr>性别:</abbr> ${teacherInfo.gender} <br> 
-				<abbr>院校:</abbr> ${teacherInfo.college} <br> 
-				<abbr>院系:</abbr> ${teacherInfo.school}
-			</address>
+				<address>
+					 <abbr>性别:</abbr> ${teacherInfo.gender} <br> 
+				 	<abbr>院校:</abbr> ${teacherInfo.college} <br> 
+					 <abbr>院系:</abbr> ${teacherInfo.school}
+				</address>
+			</c:if>
 		</div>
 		<hr />
 		<div class="jumbotron">
@@ -51,94 +53,95 @@
 			</address>
 		</div>
 		<hr />
-		<c:if test="${eduCount != 0 }">
-			<div class="jumbotron">
-				<h5>教育背景</h5>
-				<div id="eduList" style="display: block">
-					<c:choose>
-						<c:when test="${eduCount>0 }">
-							<table class="table">
-								<thead>
-									<tr>
-										<th>学校名称</th>
-										<th>学院名称</th>
-										<th>学历</th>
-										<th>起止时间</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${eduInfo}" var="eduInfo">
+		
+	<c:if test="${teacherInfo.teacher.isEnterprise == null}">
+			<c:if test="${eduCount != 0 }">
+				<div class="jumbotron">
+					<h5>教育背景</h5>
+					<div id="eduList" style="display: block">
+						<c:choose>
+							<c:when test="${eduCount>0 }">
+								<table class="table">
+									<thead>
 										<tr>
-											<td align="center">${eduInfo.school}</td>
-											<td align="center">${eduInfo.college}</td>
-											<td align="center">${eduInfo.degree}</td>
-											<td align="center">${eduInfo.startTime} - ${eduInfo.endTime}</td>
+											<th>学校名称</th>
+											<th>学院名称</th>
+											<th>学历</th>
+											<th>起止时间</th>
 										</tr>
-										<tr>
-										<td></td>
-										<td>详细描述：</td>
-										<td>
-										${eduInfo.educationDesc}
-										</td>
-										<td></td>
-										<td></td>
-									</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</c:when>
-					</c:choose>
-				</div>
-			</div>
-			<hr />
-		</c:if>
-		<c:if test="${workCount != 0 }">
-			<div class="jumbotron">
-				<h5>工作经历</h5>
-				<div id="workList" style="display: block">
-					<c:choose>
-						<c:when test="${(workCount >0)}">
-							<table class="table">
-								<thead>
-									<tr>
-										<th>公司名称</th>
-										<th>部门名称</th>
-										<th>职位</th>
-										<th>起止时间</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${workInfo}" var="workInfo">
-										<tr>
-											<td align="center">${workInfo.company}</td>
-											<td align="center">${workInfo.department}</td>
-											<td align="center">${workInfo.position}</td>
-											<td align="center">${workInfo.startTime} - ${workInfo.endTime}</td>
+									</thead>
+									<tbody>
+										<c:forEach items="${eduInfo}" var="eduInfo">
+											<tr>
+												<td align="center">${eduInfo.school}</td>
+												<td align="center">${eduInfo.college}</td>
+												<td align="center">${eduInfo.degree}</td>
+												<td align="center">${eduInfo.startTime} - ${eduInfo.endTime}</td>
+											</tr>
+											<tr>
+											<td></td>
+											<td>详细描述：</td>
+											<td>
+											${eduInfo.educationDesc}
+											</td>
+											<td></td>
+											<td></td>
 										</tr>
-										<tr>
-										<td></td>
-										<td>详细描述：</td>
-										<td>
-										${workInfo.workDesc}
-										</td>
-										<td></td>
-										<td></td>
-									</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</c:when>
-					</c:choose>
+										</c:forEach>
+									</tbody>
+								</table>
+							</c:when>
+						</c:choose>
+					</div>
 				</div>
-			</div>
+				<hr />
+			</c:if>
+			<c:if test="${workCount != 0 }">
+				<div class="jumbotron">
+					<h5>工作经历</h5>
+					<div id="workList" style="display: block">
+						<c:choose>
+							<c:when test="${(workCount >0)}">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>公司名称</th>
+											<th>部门名称</th>
+											<th>职位</th>
+											<th>起止时间</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${workInfo}" var="workInfo">
+											<tr>
+												<td align="center">${workInfo.company}</td>
+												<td align="center">${workInfo.department}</td>
+												<td align="center">${workInfo.position}</td>
+												<td align="center">${workInfo.startTime} - ${workInfo.endTime}</td>
+											</tr>
+											<tr>
+											<td></td>
+											<td>详细描述：</td>
+											<td>
+											${workInfo.workDesc}
+											</td>
+											<td></td>
+											<td></td>
+										</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</c:when>
+						</c:choose>
+					</div>
+				</div>
+			</c:if>
 		</c:if>
 	</div>
-	
-		<div class="row">
-			<h5>科研成果</h5>
-		
-		
+	<div class="row">
+		<c:if test="${teacherInfo.teacher.isEnterprise == null}"><h5>科研成果</h5></c:if>
 		<div class="jumbotron">
+			<c:if test="${teacherInfo.teacher.isEnterprise == null}">
 			<b>论文</b>
 		<table class="table">
 			<c:choose>
@@ -163,8 +166,7 @@
 			</c:choose>
 			<!--<c:if test="${thesisCount > 2}"><tr><td align="right"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/achievement/thesis/list"></c:url>"> 查看所有>></a></div></td></tr></c:if> -->
 		</table>
-		
-				<b>项目</b>
+		<b>项目</b>
 		<table class="table">
 			<c:choose>
 				<c:when test="${projectCount !=0}">
@@ -199,7 +201,7 @@
 			</c:choose>
 			<!-- <c:if test="${projectCount > 2}"><tr><td align="right" colspan="3"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/achievement/project/list"></c:url>"> 查看所有>></a></div></td></tr></c:if> -->
 		</table>
-					<b>专利</b>
+		<b>专利</b>
 		<table class="table">
 			<c:choose>
 				<c:when test="${patentCount !=0}">
@@ -232,7 +234,8 @@
 			</c:choose>
 			<!-- <c:if test="${patentCount > 2}"><tr><td align="right" colspan="4"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/achievement/patent/list"></c:url>"> 查看所有>></a></div></td></tr></c:if> -->	
 		</table>
-			<b>荣誉</b>
+		</c:if>
+		<b>荣誉</b>
 		<table class="table">
 			<c:choose>
 				<c:when test="${honorCount !=0}">

@@ -58,7 +58,12 @@
 		</div>
 		<hr />
 		<address style="text-align: left; margin-left: 40px; margin-right: 40px;">
-			<abbr>姓名:</abbr> ${teacherInfo.name} <br> <abbr>性别:</abbr> ${teacherInfo.gender} <br> <abbr>院校:</abbr> ${teacherInfo.college} <br> <abbr>院系:</abbr> ${teacherInfo.school}
+			<abbr>姓名:</abbr> ${teacherInfo.name} <br>
+			<c:if test="${teacherInfo.teacher.isEnterprise == null}">
+				 <abbr>性别:</abbr> ${teacherInfo.gender} <br> 
+			 	<abbr>院校:</abbr> ${teacherInfo.college} <br> 
+				 <abbr>院系:</abbr> ${teacherInfo.school}
+			</c:if>
 		</address>
 	</div>
 </div>

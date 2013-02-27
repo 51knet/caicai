@@ -34,6 +34,12 @@
 								<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
 								<!-- <li><a href='<c:url value="/admin/teacher/friendsRelated/list"></c:url>' >好友互动</a></li> -->
 								<li><a href='<c:url value="/admin/teacher/message/list"></c:url>' >站内信</a></li>
+								<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.isEnterprise != null) }">
+								       <li><a href='<c:url value="/admin/teacher/downgradeRole"></c:url>' >升级成为教师用户</a></li>
+								</c:if>
+								<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.isEnterprise == null) || (sessionUserInfo.isEnterprise == '')}">
+								       <li><a href='<c:url value="/admin/teacher/upgradeRole"></c:url>' >升级成为企业用户</a></li>
+								</c:if>
 								<!-- <li><a href='<c:url value="/admin/teacher/allCourse/list"></c:url>' >全部课程</a></li> -->
 							</ul>
 						</div>

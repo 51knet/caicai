@@ -65,27 +65,26 @@
 					<input type="hidden" value="${sendMsg.user.id }" name="receiveId">
 					<input type="hidden" value="${sendMsg.id }" name="sendMsgId" >
 					<input type="hidden" value="${urmId }" name="urmId" >
-					
-			<div class="control-group" id="title" style="padding-left: 20px;">
-			<div class="controls">
-			信件标题：
-				<input type="text" name="title" id="t" placeholder="信件标题"> 
-				<span class="help-inline"></span>
-			</div>
-			</div>
-			<div class="control-group" id="content" style="padding-left: 20px;">
-			<div class="controls" >
-			信件内容：
-				<textarea  name="content" placeholder="信件内容" id="c" cols="5" rows="8" style="width:380px;"></textarea>
-				<span class="help-inline"></span>
-			</div>
-			</div>
-			<div class="control-group" style="margin-left: 20px;">
-			<div class="controls">
-				<button type="submit"  class="btn btn-large btn-success">保存</button>
-				<button type="reset" data-dismiss="modal" class="btn btn-large">取消</button>
-			</div>
-			</div>
+					<div class="control-group" id="title" style="padding-left: 20px; margin-top: 10px;">
+						<div class="controls">
+						信件标题：
+							<input type="text" name="title" id="t" placeholder="信件标题"> 
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="control-group" id="content" style="padding-left: 20px;">
+						<div class="controls" >
+						信件内容：
+							<textarea  name="content" placeholder="信件内容" id="c" cols="5" rows="8" style="width:450px;"></textarea>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="control-group" style="margin-left: 20px;">
+						<div class="controls"  style="text-align: right; margin-right: 10px;">
+							<button type="submit"  class="btn btn-large btn-success">保存</button>
+							<button type="reset" data-dismiss="modal" class="btn btn-large">取消</button>
+						</div>
+					</div>
 				</form:form>
 			</div>
 		</div>
