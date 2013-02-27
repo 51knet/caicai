@@ -166,7 +166,7 @@
     </div>
   </div>
   <div class="row">
-  		<a class="view-all-teachers-link btn" href='<c:url value="/teacher/list"></c:url>' >全部企业</a>  
+  		<a class="view-all-teachers-link btn" href='<c:url value="/teacher/list?isEnterPrise=1"></c:url>' >全部企业</a>  
   </div>
   <div style="display: none;">
 	  <a class="left carousel-control" href="#myTeacher" data-slide="prev">‹</a>
