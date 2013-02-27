@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
@@ -148,7 +150,7 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/resource/create",method=RequestMethod.POST)
-	public String TeacherCourseResourceAdd(HttpSession session,Model model,
+	public String TeacherCourseResourceAdd(HttpSession session,Model model,RedirectAttributes redirectAttributes,
 			MultipartHttpServletRequest request,@RequestParam("courseId") Long course_id) throws  Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("resourceFile");
@@ -157,10 +159,10 @@ public class TeacherCourseInfoDetailController {
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
-//				if(multipartFile.getSize()>1024*1024){
-//					
-//					return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
-//				}
+				if(multipartFile.getSize()>1024*1024*100){
+					redirectAttributes.addFlashAttribute("fileMaxError", "上传文件不得大于100M");
+					return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
+				}
 				Long type = Long.parseLong(request.getParameter("type"));
 				ResourceType resourceType = resourceTypeService.findOneById(type);
 				Long courseLessonId = Long.parseLong(request.getParameter("lessonId"));
@@ -205,8 +207,8 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/resource/edit",method=RequestMethod.POST)
-	public String TeacherCourseResourceEdit(HttpSession session,Model model,
-			MultipartHttpServletRequest request,@RequestParam("resourceId") Long resource_id) throws  Exception{
+	public String TeacherCourseResourceEdit(HttpSession session,Model model,RedirectAttributes redirectAttributes,
+			MultipartHttpServletRequest request,@RequestParam("resourceId") Long resource_id,@RequestParam("courseId") Long course_id) throws  Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("resourceFile");
 		String resourceName = request.getParameter("resourceName");
@@ -216,6 +218,10 @@ public class TeacherCourseInfoDetailController {
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
+				if(multipartFile.getSize()>1024*1024*100){
+					redirectAttributes.addFlashAttribute("fileMaxError", "上传文件不得大于100M");
+					return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
+				}
 				File oldResource = new File(resource.getSavePath());
 				if(oldResource != null){
 					oldResource.delete();
@@ -239,7 +245,7 @@ public class TeacherCourseInfoDetailController {
 			resource.setResourceType(resourceType);
 			courseResourceService.createCourseResource(resource);
 		}
-		return "redirect:/admin/teacher/course/edit/"+resource.getCourse_id()+"/modifycourse";
+		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 	}
 	/**
 	 * destory the course resource

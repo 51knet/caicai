@@ -174,7 +174,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 		//var descflag = true;
 		var fileValue = obj.coverFile.value;
 		var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length);
-		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp){
+		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp|| ".jpeg"==temp){
 			imgflag=true;
 		}else{
 			alert("只支持gif、jpg、bmp格式的图片！！");

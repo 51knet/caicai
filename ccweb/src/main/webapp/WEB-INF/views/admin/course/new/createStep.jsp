@@ -39,8 +39,8 @@
 							<div style="width: 560px; text-align: left;">
 								<form:form action="new/firststep" method="post" enctype="multipart/form-data" id="course_info_form" onsubmit="return checkPicture(this)">
 									<div class="modal-body"> 
-										上传封面：<input type="file" name="coverFile" style="margin-bottom: 10px; width: 380px;" /><br>
-										<span style="color: red; font-size: 14px; margin-left: 70px;">只支持jpg、gif、bmp格式，建议封面宽度260px，高度150px</span>
+										上传封面：<input type="file" name="coverFile" style="margin-bottom: 10px; width: 350px;" /> <span style="font-size: 13px; color: red;">${errorMsg }</span>
+										<br><span style="color: red; font-size: 14px; margin-left: 70px;">只支持jpg、gif、bmp格式，建议封面宽度260px，高度150px</span>
 									</div>
 									<div class="control-group" id="courseName" >
 										<div class="controls" style="margin-left: 13px;">

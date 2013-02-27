@@ -143,17 +143,15 @@ background: #F7F7F7;
    	<div class="row">
       	<c:forEach items="${page.content}" var="t" >
 	      	<div class="span2" style="width: 175px;height: 200px;">
-	      	<c:choose>
-				<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-				<a href='<c:url value="/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-				</a>
-				</c:when>
-				<c:otherwise>
-				<a href='<c:url value="/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
-				</c:otherwise>
+		      	<c:choose>
+					<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
+					<a href='<c:url value="/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
+					</a>
+					</c:when>
+					<c:otherwise>
+					<a href='<c:url value="/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
+					</c:otherwise>
 				</c:choose>
-	      	
-	      	
 	      	</div>
       	</c:forEach>      	
 	 </div>
