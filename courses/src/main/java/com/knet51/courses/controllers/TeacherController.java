@@ -50,6 +50,21 @@ public class TeacherController {
 		//List<Teacher> teacherList = teacherService.findAllTeacher();
 		Page<Teacher> teacherPage = teacherService.getAllTeacherPage(pageNumber, pageSize);
 		//List<Teacher> teacher = teacherPage.getContent();
+		List<Teacher> teacherList=new ArrayList<Teacher>();
+		List<Teacher> enterPriseList=new ArrayList<Teacher>();
+		Teacher  teacher=null;
+		for (int i = 0; i < teacherPage.getContent().size(); i++) {
+			teacher=teacherPage.getContent().get(i);
+			if(teacher.getIsEnterprise()==null){
+				teacherList.add(teacher);
+				model.addAttribute("enterPrise", teacher.getIsEnterprise());
+				model.addAttribute("teacherList", teacherList);
+			}else{
+				enterPriseList.add(teacher);
+				model.addAttribute("enterPrise", teacher.getIsEnterprise());
+				model.addAttribute("enterPriseList", enterPriseList);
+			}
+		}
 		model.addAttribute("page", teacherPage);
 		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(currentUser != null){

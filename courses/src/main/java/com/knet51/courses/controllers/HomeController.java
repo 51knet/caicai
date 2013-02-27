@@ -79,10 +79,21 @@ public class HomeController {
 		List<CourseBeans> cBeans = courseService.getAllCourseBeans();
 		//List<String> courseSchoolList = courseService.getAllSchool();
 		List<Teacher> teacherList = teacherService.findAllTeacher();
+		List<Teacher> teacherLists=new ArrayList<Teacher>();
+		List<Teacher> enterPriseList=new ArrayList<Teacher>();
+		for (Teacher teacher : teacherList) {
+			if(teacher.getIsEnterprise()!=null){
+				enterPriseList.add(teacher);
+				model.addAttribute("enterPriseList", enterPriseList);
+			}else{
+				teacherLists.add(teacher);
+				model.addAttribute("teacherLists", teacherLists);
+			}
+		}
 		//model.addAttribute("schoolList", courseSchoolList);
 		model.addAttribute("courseList", cBeans);
 		model.addAttribute("courseCount", cBeans.size());
-		model.addAttribute("teacherList", teacherList);
+		//model.addAttribute("teacherList", teacherList);
 		session.setAttribute("url", url);
 		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(currentUser != null){
