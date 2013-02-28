@@ -1,11 +1,14 @@
 package com.knet51.ccweb.controllers.teacher.course;
 
+import javax.validation.constraints.Max;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TeacherCourseInfoForm {
 	@NotEmpty
 	private String courseName;
 	@NotEmpty
+	@Max(value = 10000, message="overflow 10000!!")
 	private String courseDesc;
 	
 	private String courseType;

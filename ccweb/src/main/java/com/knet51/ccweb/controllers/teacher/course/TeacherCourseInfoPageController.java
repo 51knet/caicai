@@ -54,6 +54,7 @@ import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 public class TeacherCourseInfoPageController {
 	private static final Logger logger = 
 			LoggerFactory.getLogger(TeacherCourseInfoPageController.class);
+	public static final long MAX_FILE_SIZE_2M = 2*1024*1024;
 	@Autowired
 	private  TeacherCourseService teacherCourseService;
 	
@@ -227,20 +228,25 @@ public class TeacherCourseInfoPageController {
 			for(int i=0;i<files.size();i++){
 				MultipartFile multipartFile = files.get(i);
 				if(!multipartFile.isEmpty()){
-					logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
-					String fileName = multipartFile.getOriginalFilename();
-					String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
-					String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+courseName;
-					logger.debug("Upload Path:"+path); 
-					FileUtil.createRealPath(path, session);
-					String previewFile = path+File.separator+"small"+"."+fileExtension;
-					File saveDest = new File(path + File.separator + fileName);
-					multipartFile.transferTo(saveDest);
-					//String saveName = FileUtil.saveFile(multipartFile.getInputStream(), fileName, path);
-					FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
-					String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+File.separator+"small"+"."+fileExtension;
-					//String savePath = request.getContextPath()+"/course/"+userInfo.getId()+"/"+courseName+"/"+saveName;
-					course.setCourseCover(savePath);
+					if(multipartFile.getSize()>MAX_FILE_SIZE_2M){
+						redirectAttributes.addFlashAttribute("errorMsg", "图片不得大于2M");
+						return "redirect:/admin/teacher/course/addcourse?active=first";
+					}else{
+						logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
+						String fileName = multipartFile.getOriginalFilename();
+						String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
+						String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+courseName;
+						logger.debug("Upload Path:"+path); 
+						FileUtil.createRealPath(path, session);
+						String previewFile = path+File.separator+"small"+"."+fileExtension;
+						File saveDest = new File(path + File.separator + fileName);
+						multipartFile.transferTo(saveDest);
+						//String saveName = FileUtil.saveFile(multipartFile.getInputStream(), fileName, path);
+						FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
+						String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+File.separator+"small"+"."+fileExtension;
+						//String savePath = request.getContextPath()+"/course/"+userInfo.getId()+"/"+courseName+"/"+saveName;
+						course.setCourseCover(savePath);
+					}
 				}
 			}
 			
