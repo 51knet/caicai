@@ -1,12 +1,20 @@
 package com.knet51.ccweb.controllers.teacher;
 
+import javax.validation.constraints.Size;
+
 
 public class TeacherContactInfoForm {
+	@Size(min=3,max=25)
 	private String address;
+	@Size(min=3,max=25)
 	private String cellphone;
+	@Size(min=3,max=25)
 	private String phone;
+	@Size(min=3,max=25)
 	private String fax;
+	@Size(min=3,max=25)
 	private String qq;
+	@Size(min=3,max=25)
 	private String msn;
 	
 	

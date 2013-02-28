@@ -277,6 +277,9 @@ $(document).ready(function() {
 function personalOnclick(){
 	return checkEmptyAjaxs("personal_info_form","personalInfoAJAX");
 };
+function contactOnclick(){
+	return checkEmptyAjaxs("teacher_contact_from","teacherContactAjax");
+}
 $(document).ready(function(){
 	$("#context").focus(function(){
 		$("#thesisContentMsg").html("");
