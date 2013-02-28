@@ -11,7 +11,9 @@
 			<li><a href='<c:url value='/teacher/${teacherInfo.id}/announcement/list'></c:url>'>公告</a></li>
 			<li><a href='<c:url value='/teacher/${teacherInfo.id}/resource/list'></c:url>'>教学资源</a></li>
 			<li><a href='<c:url value='/teacher/${teacherInfo.id}/course/list'></c:url>'>课程资料</a></li>
-			<li><a href='<c:url value='/teacher/${teacherInfo.id}/achievement/list'></c:url>'>科研成果</a></li>
+			<c:if test="${teacherInfo.isEnterprise == null}">
+				<li><a href='<c:url value='/teacher/${teacherInfo.id}/achievement/list'></c:url>'>科研成果</a></li>
+			</c:if>
 			<li><a href='<c:url value='/teacher/${teacherInfo.id}/blog/list'></c:url>'>博文</a></li>
 		</ul>
 	</div>

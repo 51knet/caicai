@@ -53,7 +53,6 @@
 	<a href="#">课程资料</a>
 	<hr />
 	<div class="cont">
-		<h5 style="color: red;">${fileMaxError }</h5>
 		<c:choose>
 			<c:when test="${lessonListCount>0 }">
 				<c:forEach items="${lessonList }" var="lesson">
@@ -81,7 +80,7 @@
 																			<option value="1"  selected>文档</option>
 																			<option value="2">视频</option>
 																		</select><br> 
-														上传资源：<input type="file" name="resourceFile" >&nbsp;不大于100M
+														上传资源：<input type="file" name="resourceFile" >&nbsp;不大于200M
 														<button type="reset"   class="btn " style="margin-left: 5px;float: right;" onclick="closeResourceForm(${lesson.lessonNum})">取消</button>
 														<button type="submit" onclick="upLoadClick();"  class="btn  btn-success" style=" float: right;">上传</button>&nbsp;&nbsp;
 													</form>
@@ -125,7 +124,6 @@
 															<div id="${fileNames.id}_editCourseResourceForm" style=" border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;" >
 																<form name="resourceEditForm" style="margin-left:30px;" method="post" action='<c:url value="/admin/teacher/course/resource/edit"></c:url>' enctype="multipart/form-data" >
 																	<input type="hidden" name="resourceId" value="${fileNames.id}" >
-																	<input type="hidden" name="courseId" value="${course.id}">
 																	资源名称：<input type="text" style="width: 207px;" id="${fileNames.id}_editResourceName" name="resourceName" >&nbsp;“如：第一讲：物种的起源”<br>
 																	资源类别：<select name="type" id="${fileNames.id}_editResourceType"   style="width: 220px;">
 																						<c:forEach items="${type}" var="l">

@@ -4,6 +4,8 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -88,6 +90,25 @@ public class TeacherResouDetailInfoController {
 		}
 		return "redirect:/admin/teacher/resource/list";
 	}
+	
+	@Transactional
+	@RequestMapping(value="/admin/teacher/resource/new/new",method=RequestMethod.POST)
+	public String newResouInfo(HttpSession session,Model model,
+			@RequestParam("type") Long value, HttpServletRequest httpRequest) throws Exception{
+		logger.info("#####Into TeacherResouInfoAddPageController#####");
+		 MultipartHttpServletRequest request = (MultipartHttpServletRequest) httpRequest;
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		String desc = request.getParameter("desc");
+		logger.info("============="+desc);
+		Map<String, MultipartFile> fileMap = request.getFileMap();
+		for (Map.Entry<String, MultipartFile> entry : fileMap.entrySet()) {
+			MultipartFile file = entry.getValue();
+			String fileName = file.getOriginalFilename();
+			System.out.println("-------"+fileName);
+		}
+		//String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/upload/";
+		return desc;
+	}
 
 //	@Override
 //	public ModelAndView resolveException(HttpServletRequest request,
@@ -101,7 +122,7 @@ public class TeacherResouDetailInfoController {
 //				model.put("errors", "Unexpected error: " + e.getMessage()); 
 //		} 
 //		return new ModelAndView("teacherResouAddDetail", (Map) model); 
-//		
+//				Map<String, MultipartFile> fileMap = request.getFileMap();
 //	}
 	
 	@Transactional

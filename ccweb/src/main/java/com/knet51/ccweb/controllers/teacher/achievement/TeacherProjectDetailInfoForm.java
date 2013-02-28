@@ -1,5 +1,7 @@
 package com.knet51.ccweb.controllers.teacher.achievement;
 
+import javax.validation.constraints.Max;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TeacherProjectDetailInfoForm {
@@ -12,6 +14,7 @@ public class TeacherProjectDetailInfoForm {
 	@NotEmpty
 	private String projectEndTime;
 	@NotEmpty
+	@Max(value = 10000, message="overflow 10000!!")
 	private String projectDesc;
 	
 	public String getProjectTitle() {

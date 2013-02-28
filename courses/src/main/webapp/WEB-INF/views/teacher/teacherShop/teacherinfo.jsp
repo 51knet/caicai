@@ -75,7 +75,7 @@
 	<div style="width:500px; margin-left: 100px; float: left;" >
     <table>
     <tr>
-    <td style="width:150px;height: 30px">${teacher.college }</td>
+    <td style="width:150px;height: 30px">${teacher.user.name }</td>
     </tr>
     </table>
     
