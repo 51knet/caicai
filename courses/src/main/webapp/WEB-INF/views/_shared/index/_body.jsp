@@ -98,6 +98,7 @@
 					</c:forEach>
 				</div>
     </div>
+    <c:if test="${teacherLists.size()-5>0}">
     <div class="item">
        <div class="row">
 			<c:forEach items="${teacherLists}" var="t" begin="5" end="10">
@@ -115,6 +116,7 @@
 			</c:forEach>
 		</div>
     </div>
+    </c:if>
   </div>
   <div class="row">
   		<a class="view-all-teachers-link btn" href='<c:url value="/teacher/list?isEnterPrise=null"></c:url>' >全部教师</a>  
@@ -147,6 +149,7 @@
 					</c:forEach>
 				</div>
     </div>
+    <c:if test="${enterPriseList.size()-5>0}">
     <div class="item">
        <div class="row">
 			<c:forEach items="${enterPriseList}" var="t" begin="5" end="10">
@@ -164,6 +167,7 @@
 			</c:forEach>
 		</div>
     </div>
+    </c:if>
   </div>
   <div class="row">
   		<a class="view-all-teachers-link btn" href='<c:url value="/teacher/list?isEnterPrise=1"></c:url>' >全部企业</a>  
