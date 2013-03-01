@@ -92,13 +92,14 @@ public class TeacherResouDetailInfoController {
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/resource/new/new",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/resource/new")
 	public String newResouInfo(HttpSession session,Model model,
 			@RequestParam("type") Long value, HttpServletRequest httpRequest) throws Exception{
 		logger.info("#####Into TeacherResouInfoAddPageController#####");
+		System.out.println("------");
 		 MultipartHttpServletRequest request = (MultipartHttpServletRequest) httpRequest;
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		String desc = request.getParameter("desc");
+		String desc = request.getParameter("courseOrder");
 		logger.info("============="+desc);
 		Map<String, MultipartFile> fileMap = request.getFileMap();
 		for (Map.Entry<String, MultipartFile> entry : fileMap.entrySet()) {
