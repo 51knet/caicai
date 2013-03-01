@@ -1,14 +1,16 @@
 package com.knet51.ccweb.controllers.teacher.SendReceMsg;
 
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class SendMsgInfoForm {
 	@NotEmpty
+	@Size(max=50)
 	private String title;
-	@Max(value = 10000)
 	@NotEmpty
+	@Size(min=10,max=10000)
 	private String content;
 	public String getTitle() {
 		return title;

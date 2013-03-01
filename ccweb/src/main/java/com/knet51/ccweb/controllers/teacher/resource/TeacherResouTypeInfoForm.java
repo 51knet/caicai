@@ -1,10 +1,13 @@
 package com.knet51.ccweb.controllers.teacher.resource;
 
+import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TeacherResouTypeInfoForm {
 	
 	@NotEmpty
+	@Size(max=50)
 	private String typeName;
 
 	public TeacherResouTypeInfoForm(String typeName) {

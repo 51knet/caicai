@@ -1,14 +1,15 @@
 package com.knet51.ccweb.controllers.teacher.announcement;
 
-import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TeacherAnnoDetailInfoForm {
 	@NotEmpty
+	@Size(min=3,max=50)
 	private String title;
 	@NotEmpty
-	@Max(value = 10000, message="overflow 10000!!")
+	@Size(min=10,max=10000)
 	private String content;
 	public String getTitle() {
 		return title;
