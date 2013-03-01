@@ -107,22 +107,44 @@
 		<div class="cont">
 			<c:choose>
 				<c:when test="${resourceCount>0 }">
-					<c:forEach var="course" items="${courseMap}" varStatus="i">
+					<c:forEach var="course" items="${courseMap}" varStatus="status">
 							<table   style="width: 95%;  border: 2px solid #f2f2f2; margin-bottom: 5px;">
 								<tbody>
 									<tr>
 										<td align="left">
 											<div >
-												<div style="font-size: 16px;  background-color: #f2f2f2; padding: 5px;" id="course_${i.count}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
+												<div style="font-size: 16px;  background-color: #f2f2f2; padding: 5px;" id="course_${status.count}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
 												<c:forEach var="fileNames" items="${course.value}">
 												<c:if test="${fileNames.fileName!=null}">
-													<div  class="fileName_${i.count}"  style="background-color:#ffffff;">
+													<div  class="fileName_${status.count}"  style="background-color:#ffffff;">
 														<c:if test="${fileNames.fileName != null }">
 															<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${fileNames.fileName}</div>
 															<div style="width:10%; float: left; text-align: center;">
 																<a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>
 																	<img src="<c:url  value="/resources/img/u173_normal.jpg" ></c:url> ">
 																</a>
+																<a href="#myModal_${status.count}" role="button" data-toggle="modal"><i class="icon-play"></i></a>
+																<!-- Modal -->
+																<div id="myModal_${status.count}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																  <div class="modal-header">
+																    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+																    <h3 id="myModalLabel">Modal header</h3>
+																  </div>
+																  <div class="modal-body">
+																    <div id="myPlayer_${status.count}"></div>
+																    <script type="text/javascript">
+																    	//TODO: fix me, the file name extension should be mp4
+																	    jwplayer("myPlayer_${status.count}").setup({
+																	        file: '<c:url value="/course/resource/download/${fileNames.id}"></c:url>',
+																	        //image: "/uploads/myPoster.jpg"
+																	        //TODO: each mp4 can have a preview image
+																	    });
+																	</script>
+																  </div>
+																  <div class="modal-footer">
+																    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+																  </div>
+																</div>
 															</div>
 														</c:if>
 													</div>
