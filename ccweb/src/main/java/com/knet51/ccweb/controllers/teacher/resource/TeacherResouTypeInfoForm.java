@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class TeacherResouTypeInfoForm {
 	
 	@NotEmpty
-	@Size(max=50)
+	@Size(min=1,max=50)
 	private String typeName;
 
 	public TeacherResouTypeInfoForm(String typeName) {

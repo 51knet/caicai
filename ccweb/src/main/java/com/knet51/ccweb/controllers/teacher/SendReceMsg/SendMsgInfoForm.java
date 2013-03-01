@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class SendMsgInfoForm {
 	@NotEmpty
-	@Size(max=50)
+	@Size(min=1,max=50)
 	private String title;
 	@NotEmpty
 	@Size(min=10,max=10000)
