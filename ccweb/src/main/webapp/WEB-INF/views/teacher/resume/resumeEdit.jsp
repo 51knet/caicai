@@ -27,7 +27,7 @@
 				<div class="control-group" id="name">
 					<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 					<div class="controls">
-						<input type="text" name="name"  placeholder="姓名" value="${sessionScope.sessionUserInfo.name}"> <span class="help-inline"><form:errors path="name"></form:errors></span>
+						<input type="text" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.name}"> <span class="help-inline"><form:errors path="name"></form:errors></span>
 					</div>
 				</div>
 				<c:if test="${sessionScope.sessionUserInfo.teacher.isEnterprise == null}">
@@ -66,18 +66,21 @@
 						<label class="control-label" for="major">教授课程</label>
 						<div class="controls">
 							<input type="text" name="major" value="${sessionScope.sessionUserInfo.teacher.major}" placeholder="教授课程">
+							<span class="help-inline"><form:errors path="major"></form:errors></span>
 						</div>
 					</div>
 					<div class="control-group" id="title">
 						<label class="control-label" for="title">职称</label>
 						<div class="controls">
 							<input type="text" name="title" value="${sessionScope.sessionUserInfo.teacher.title}" placeholder="职称">
+							<span class="help-inline"><form:errors path="title"></form:errors></span>
 						</div>
 					</div>
 					<div class="control-group" id="role">
 						<label class="control-label" for="role">导师类别</label>
 						<div class="controls">
 							<input type="text" name="role" value="${sessionScope.sessionUserInfo.teacher.role}" placeholder="导师类别">
+							<span class="help-inline"><form:errors path="role"></form:errors></span>
 						</div>
 					</div>
 				</c:if>
@@ -89,46 +92,52 @@
 			</form>
 		</div>
 		<div class="tab-pane <c:if test='${active == "contact"}'>active</c:if>" id="contact_info_tab">
-			<form class="form-horizontal" action="contactInfo" method="post">
+			<form class="form-horizontal" action="contactInfo" method="post" id="teacher_contact_from">
 				<div class="control-group" id="address">
 					<label class="control-label" for="address">地址</label>
 					<div class="controls">
-						<input type="text" id="address" name="address" placeholder="地址" value="${sessionScope.sessionUserInfo.user.address}">
+						<input type="text"  name="address" placeholder="地址" value="${sessionScope.sessionUserInfo.user.address}">
+						<span class="help-inline"><form:errors path="address"></form:errors></span>
 					</div>
 				</div>
 				<div class="control-group" id="cellphone">
 					<label class="control-label" for="cellphone">手机</label>
 					<div class="controls">
-						<input type="text" id="cellphone" name="cellphone" placeholder="手机号码" value="${sessionScope.sessionUserInfo.user.cell_phone}">
+						<input type="text"  name="cellphone" placeholder="手机号码" value="${sessionScope.sessionUserInfo.user.cell_phone}">
+						<span class="help-inline"><form:errors path="cellphone"></form:errors></span>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="phone">
 					<label class="control-label" for="phone">固话</label>
 					<div class="controls">
-						<input type="text" id="phone" name="phone" placeholder="固定电话" value="${sessionScope.sessionUserInfo.user.fix_phone}">
+						<input type="text"  name="phone" placeholder="固定电话" value="${sessionScope.sessionUserInfo.user.fix_phone}">
+						<span class="help-inline"><form:errors path="phone"></form:errors></span>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="fax">
 					<label class="control-label" for="fax">传真</label>
 					<div class="controls">
-						<input type="text" id="fax" name="fax" placeholder="传真号码" value="${sessionScope.sessionUserInfo.user.fax}">
+						<input type="text"  name="fax" placeholder="传真号码" value="${sessionScope.sessionUserInfo.user.fax}">
+						<span class="help-inline"><form:errors path="fax"></form:errors></span>
 					</div>
 				</div>
-				<div class="control-group" id="QQ">
+				<div class="control-group" id="qq">
 					<label class="control-label" for="qq">QQ</label>
 					<div class="controls">
 						<input type="text" name="qq" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
+						<span class="help-inline"><form:errors path="qq"></form:errors></span>
 					</div>
 				</div>
 				<div class="control-group" id="msn">
 					<label class="control-label" for="msn">MSN</label>
 					<div class="controls">
-						<input type="text" id="msn" name="msn" placeholder="MSN" value="${sessionScope.sessionUserInfo.user.msn}">
+						<input type="text"  name="msn" placeholder="MSN" value="${sessionScope.sessionUserInfo.user.msn}">
+						<span class="help-inline"><form:errors path="msn"></form:errors></span>
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit" class="btn btn-large btn-success">保 存</button>
+						<button type="submit" onclick="reuturn:contactOnclick();"    class="btn btn-large btn-success">保 存</button>
 					</div>
 				</div>
 			</form>

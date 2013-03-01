@@ -1,21 +1,30 @@
 package com.knet51.ccweb.controllers.teacher;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TeacherPersonalInfoForm {
 
 	@NotEmpty
+	@Size(min=3,max=25)
 	private String name;
 	@NotEmpty
 	private String gender;
 	@NotEmpty
+	@Size(min=3,max=25)
 	private String college;
 	@NotEmpty
+	@Size(min=3,max=25)
 	private String school;
 	// private String university_province;
 	// private String university_city;
+	@Size(min=3,max=25)
 	private String title;
+	@Size(min=3,max=25)
 	private String major;
+	@Size(min=3,max=25)
 	private String role;
 
 	public String getName() {
