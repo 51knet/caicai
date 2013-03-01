@@ -206,9 +206,10 @@ public class TeacherCourseInfoDetailController {
 	 * @throws Exception
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/resource/edit",method=RequestMethod.POST)
-	public String TeacherCourseResourceEdit(HttpSession session,Model model,RedirectAttributes redirectAttributes,
+	@RequestMapping(value="/admin/teacher/course/resource/update",method=RequestMethod.POST)
+	public String ResourceEdit(HttpSession session,Model model,RedirectAttributes redirectAttributes,
 			MultipartHttpServletRequest request,@RequestParam("resourceId") Long resource_id,@RequestParam("courseId") Long course_id) throws  Exception{
+		logger.info("+++++++++++++++++++++");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("resourceFile");
 		String resourceName = request.getParameter("resourceName");
