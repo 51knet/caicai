@@ -342,9 +342,8 @@
 						</table>
 					</c:when>
 					<c:otherwise>
-						<b>尚未添加内容！！</b>
-						<br>
-						<br>
+					<span style="font-size: 13px;">尚未添加内容<br>
+						<br></span>
 					</c:otherwise>
 				</c:choose>
 

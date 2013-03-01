@@ -98,11 +98,11 @@
 		<div class="control-group" id="content" style="padding-left: 20px;">
 			<div class="controls" >
 			信件内容：
-				<textarea  name="content" placeholder="信件内容" id="c" cols="5" rows="8" style="width:380px;"></textarea>
+				<textarea  name="content" placeholder="信件内容" id="c" cols="5" rows="8" style="width:430px;"></textarea>
 				<span class="help-inline"></span>
 			</div>
 		</div>
-		<div class="control-group" style="margin-left: 20px;">
+		<div class="control-group" style="float: right; margin-right: 20px;">
 			<div class="controls">
 				<button type="submit"  class="btn btn-large btn-success">发送</button>
 				<button type="reset" data-dismiss="modal" class="btn btn-large">取消</button>

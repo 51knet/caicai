@@ -91,15 +91,12 @@ public class TeacherResouDetailInfoController {
 		return "redirect:/admin/teacher/resource/list";
 	}
 	
-	@Transactional
-	@RequestMapping(value="/admin/resource/new")
-	public String newResouInfo(HttpSession session,Model model,
-			@RequestParam("type") Long value, HttpServletRequest httpRequest) throws Exception{
+	@RequestMapping(value="/admin/resource/new/new",method=RequestMethod.POST)
+	public void newResouInfo(HttpSession session,Model model,HttpServletRequest httpRequest) throws Exception{
 		logger.info("#####Into TeacherResouInfoAddPageController#####");
-		System.out.println("------");
 		 MultipartHttpServletRequest request = (MultipartHttpServletRequest) httpRequest;
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		String desc = request.getParameter("courseOrder");
+		String desc = request.getParameter("rdesc");
 		logger.info("============="+desc);
 		Map<String, MultipartFile> fileMap = request.getFileMap();
 		for (Map.Entry<String, MultipartFile> entry : fileMap.entrySet()) {
@@ -108,7 +105,7 @@ public class TeacherResouDetailInfoController {
 			System.out.println("-------"+fileName);
 		}
 		//String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/upload/";
-		return desc;
+	
 	}
 
 //	@Override

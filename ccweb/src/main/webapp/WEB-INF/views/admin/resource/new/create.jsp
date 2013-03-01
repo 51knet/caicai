@@ -125,32 +125,33 @@
 		</div>
 		
 		<!-- test uploadify  -->
-		<!--  
+		<!-- 
 		<div id="testUploadify" style="margin-top: 20px;">
 			<div id="fileQueue" style="height: 100px; padding-left: 10px; display: block;"></div>
 			<form id="course_form">
-				课时：<input type="text" name="desc" id="courseOrder"  /><br>
+				课时：<input type="text" name="rdesc" id="courseOrder"  /><br>
 			</form>
 			<input type="file" name="uploadify"  id="uploadify_test" />
 			<p>
-			<a href="javascript: $('#uploadify_test').uploadifySettings('scriptData',{'desc':$('#courseOrder').val()}); jQuery('#uploadify_test').uploadifyUpload()">开始上传</a>&nbsp;
+			<a href="javascript: $('#uploadify_test').uploadifySettings('scriptData',{'rdesc':$('#courseOrder').val()}); jQuery('#uploadify_test').uploadifyUpload()">开始上传</a>&nbsp;
 			<a href="javascript:jQuery('#uploadify_test').uploadifyClearQueue()">取消所有上传</a>
 			</p>
 			<script type="text/javascript">
 				$(document).ready(function() {
 					$("#uploadify_test").uploadify({
 						'uploader'       : '<c:url value="/resources/js/uploadify/uploadify.swf" />',
-						'script'        	    : '<c:url value="/admin/teacher/resource/new/new" />',
+						'script'        	    : '<c:url value="/admin/resource/new/new" />',
 						'cancelImg'     : '<c:url value="/resources/js/uploadify/images/cancel.png" />',
 					//	'scriptData'     : $("#course_form").serialize(),
 					//	'scriptData'		:{'courseOrder': $("#courseOrder").val()},
 						'folder'         	: 'uploads',
 						'queueID'        : 'fileQueue',
+						'method'			:'post',
 						'auto'           : false,
-						'multi'          : false,
+						'multi'          : true,
 						'simUploadLimit' : 2,
 						'buttonText'	 : 'search',
-						'onComplete': function(event, queueID, fileObj,serverData,data) {//当上传完成后的回调函数，ajax方式哦~~
+						'onComplete': function(event, queueID, fileObj,response,data) {//当上传完成后的回调函数，ajax方式哦~~
 							alert("-------");
 							alert(data.speed); 
 						}
@@ -158,6 +159,6 @@
 				});
 			</script>
 		</div>
-		-->
+		 -->
 	</div>	
 </div>
