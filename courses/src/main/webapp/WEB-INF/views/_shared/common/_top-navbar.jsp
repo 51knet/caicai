@@ -12,7 +12,7 @@
 			<ul class="nav">
 				<li class="active"><a href="/courses">主页</a></li>
 				<li><a href="#">大学</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">关于 <b class="caret"></b></a>
+				<!-- <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">关于 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Action</a></li>
 						<li><a href="#">Another action</a></li>
@@ -21,7 +21,7 @@
 						<li class="nav-header">Nav header</li>
 						<li><a href="#">Separated link</a></li>
 						<li><a href="#">One more separated link</a></li>
-					</ul></li>
+					</ul></li> -->
 			</ul>
 			<!-- 
          <form class="navbar-search pull-left" action="">

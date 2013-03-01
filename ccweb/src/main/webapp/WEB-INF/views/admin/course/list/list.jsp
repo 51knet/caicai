@@ -37,7 +37,6 @@
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
 					<tr>
-						<th align="center">课程封面</th>
 						<th align="center" width="15%">课程标题</th>
 						<th align="center" width="20%">课程类别</th>
 						<th align="center">课程状态</th>
@@ -49,7 +48,6 @@
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
-						<td align="center"><img src="/ccweb/${page.courseCover }" style="width: 80px; height: 40px;"/></td>
 						<td align="center">
 							<div style="width: 110px;" id="content">
 								<c:if test="${page.publish==1 }">
@@ -79,16 +77,15 @@
 							</div> -->
 							<c:if test="${page.publish ==1 }">
 							<!--  	<a href='<c:url value="/admin/teacher/course/recover/${page.id}"></c:url>'>恢复</a>-->
-								 <a class="recoverCoursePostBtn" href="#recoverCoursePostModal" role="button" data-toggle="modal" data-target="#recoverCoursePostModal">恢复</a>  | 
-								<!-- <a href='<c:url value="/admin/teacher/course/deleted/${page.id}"></c:url>'>彻底删除</a> -->
-								 <a class="deleteCoursePostBtn" href="#deleteCoursePostModal" role="button" data-toggle="modal" data-target="#deleteCoursePostModal">彻底删除</a>
+								 <a class="recoverCoursePostBtn" href="#recoverCoursePostModal" role="button" data-toggle="modal" data-target="#recoverCoursePostModal">恢复</a><input type="hidden"  value="${page.id}" id="courseId"> 
+								 | <!-- <a href='<c:url value="/admin/teacher/course/deleted/${page.id}"></c:url>'>彻底删除</a> -->
+								 <a class="deleteCoursePostBtn" href="#deleteCoursePostModal" role="button" data-toggle="modal" data-target="#deleteCoursePostModal">彻底删除</a><input type="hidden"  value="${page.id}" id="courseId">
 							</c:if>
 							<c:if test="${page.publish ==2 ||page.publish ==3 }">
 								<!-- <a href='<c:url value="/admin/teacher/course/destory/${page.id}"></c:url>'>删除</a>  -->	
-									 <a class="destoryCoursePostBtn" href="#destoryCoursePostModal" role="button" data-toggle="modal" data-target="#destoryCoursePostModal">删除</a> 
+									 <a class="destoryCoursePostBtn" href="#destoryCoursePostModal" role="button" data-toggle="modal" data-target="#destoryCoursePostModal">删除</a><input type="hidden"  value="${page.id}" id="courseId"> 
 									| <a href='<c:url value="/admin/teacher/course/edit/${page.id}/modifycourse"></c:url>'>修改</a>							
 							</c:if>
-							 <input type="hidden"  value="${page.id}" id="courseId">
 						</td></tr>
 					</c:forEach>
 				</tbody>
@@ -193,16 +190,16 @@ $(document).ready(function() {
 	});
 	checkEmptyAjax("course_info_form","courseInfoAJAX");
 	$('.destoryCoursePostBtn').on('click', function() {
-		var course_id = $("#courseId").val();
+		var course_id = $(this).next().val();
 		$('#c_delete_id').val(course_id);	
 	});
 	
 	$('.deleteCoursePostBtn').on('click', function() {
-		var course_id = $("#courseId").val();
+		var course_id =  $(this).next().val();
 		$(' #c_recycle_Id').val(course_id);	
 	});
 	$('.recoverCoursePostBtn').on('click', function() {
-		var course_id = $("#courseId").val();
+		var course_id =  $(this).next().val();
 		$('#c_recover_Id').val(course_id);	
 	});
 });

@@ -31,11 +31,11 @@
     <div>
 	    <c:choose >
 			<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
-			<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:30px" />
+			<a href='<c:url value="${url}/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:30px" />
 										</a>
 			</c:when>
 			<c:otherwise>
-			<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:30px" />
+			<a href='<c:url value="${url}/teacher/${course.teacher.id}"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:30px" />
 										</a>
 			</c:otherwise>
 		</c:choose>
@@ -63,11 +63,11 @@
     <div>
 	    <c:choose >
 			<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
-				<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:30px" />
+				<a href='<c:url value="${url}/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:30px" />
 										</a>
 			</c:when>
 			<c:otherwise>
-			<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:30px" />
+			<a href='<c:url value="${url}/teacher/${course.teacher.id}"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:30px" />
 										</a>
 			</c:otherwise>
 		</c:choose>
