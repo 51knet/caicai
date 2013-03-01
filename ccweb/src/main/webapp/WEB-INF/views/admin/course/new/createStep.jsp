@@ -84,12 +84,16 @@
 				<div class="tab-pane <c:if test='${active == "second"}'>active</c:if>" id="second_tab">
 					<form:form class="form-horizontal" action="new/secondstep" method="post" onsubmit="return checkPwd()">
 						<input type="hidden" name="courseId" value="${courseId }" />
+						<div id="password"><input type="radio" value="0" checked="checked" name="pass" style="margin-bottom: 20px;">公开<br/>
+						<input type="radio" value="1" name="pass">设置密码</div>
+						<div id="passwordInput">
 						<div class="modal-body" id="pwdform">
 							设置密码：<input type="text" id="pwd" name="pwd" style="width: 250px;" onblur="showCheckpwd();" onfocus="clearHtml();">
 						<span id="pwdError"></span>
 						</div>
 						<div class="modal-body" id="checkpwdform" style="display: none;">
 							确认密码：<input type="text" id="checkpwd" name="checkpwd" style="width: 250px;" onblur="checkPwd()">
+						</div>
 						</div>
 						<div class="modal-body" id="status">
 							发布到知识超市：<input type="radio" name="status" value="2" checked="checked">是&nbsp;&nbsp;<input type="radio" name="status" value="1">否
@@ -129,6 +133,17 @@
 		return false;
 	}
 	$(document).ready(function(){
+		$("#passwordInput").hide();
+		$("#password").click(function(){
+			var statusValue=$('input:radio[name="pass"]:checked').val();
+			if(statusValue=='0'){
+				$("#pwd").val("");
+				$("#checkpwd").val("");
+				$("#passwordInput").hide();
+			}else{
+				$("#passwordInput").show();
+			}
+		});
 		$("#coursenames").blur(function(){
 			var coursename =$("#coursenames").val();
 				$.ajax({
