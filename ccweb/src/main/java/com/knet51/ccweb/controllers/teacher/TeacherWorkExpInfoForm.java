@@ -1,20 +1,29 @@
 package com.knet51.ccweb.controllers.teacher;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 
 public class TeacherWorkExpInfoForm {
 	@NotEmpty
+	@Size(max=25)
 	private String company;
 	@NotEmpty
+	@Size(max=25)
 	private String department;
 	@NotEmpty
+	@Size(max=25)
 	private String position;
 	@NotEmpty
+	@Size(max=25)
 	private String startTimeName;
 	@NotEmpty
+	@Size(max=25)
 	private String endTimeName;
 	@NotEmpty
+	@Max(value = 10000, message="overflow 10000!!")
 	private String workDesc;
 	public String getCompany() {
 		return company;
