@@ -43,7 +43,7 @@
 	<div style="width:500px; margin-left: 100px; float: left;" >
     <table>
     <tr >
-    <td style="width:150px;"><h4>${teacher.user.name }</h4></td><td>${teacher.college }</td>
+    <td style="width:150px;"><h4><a href='<c:url value="${url}/teacher/${course.teacher.id}"></c:url>'> ${teacher.user.name }</a></h4></td><td>${teacher.college }</td>
     </tr>
     <tr>
     <td style="width:150px;height: 30px">${teacher.title }</td><td>${teacher.school }</td>
@@ -75,7 +75,7 @@
 	<div style="width:500px; margin-left: 100px; float: left;" >
     <table>
     <tr>
-    <td style="width:150px;height: 30px">${teacher.user.name }</td>
+    <td style="width:150px;height: 30px"><a href='<c:url value="${url}/teacher/${course.teacher.id}"></c:url>'> ${teacher.user.name }</a></td>
     </tr>
     </table>
     
