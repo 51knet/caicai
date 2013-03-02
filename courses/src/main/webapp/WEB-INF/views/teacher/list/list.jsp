@@ -145,14 +145,6 @@ background: #F7F7F7;
    	<div class="row">
       	<c:forEach items="${teacherList}" var="t">
 			<div class="span2" style="width: 175px;height: 200px;">
-			<c:if test="${!t.user.name.equals('')}">
-			<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
-				</a>
-			</c:if>
-			<c:if test="${t.user.name.equals('')}">
-			<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
-			</a>
-			</c:if>
 			<c:choose>
 			<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
 			<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
@@ -161,6 +153,18 @@ background: #F7F7F7;
 			<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
 			</c:otherwise>
 			</c:choose>
+			<div style="margin-top: 5px;">
+						姓名：<c:if test="${!t.user.name.equals('')}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
+							</a>
+						</c:if>
+						<c:if test="${t.user.name.equals('')}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
+						</a>
+						</c:if>
+						</div>
+						<br/>
+						<div style="margin-top: 1px;">学校：${t.school}</div>
 			</div>
 		</c:forEach>
 	 </div>
@@ -170,14 +174,6 @@ background: #F7F7F7;
    	<div class="row">
       	<c:forEach items="${enterPriseList}" var="t" >
 				<div class="span2" style="width: 175px;height: 200px;">
-				<c:if test="${!t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
-							</a>
-						</c:if>
-						<c:if test="${t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
-						</a>
-						</c:if>
 					<c:choose>
 						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
 						<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
@@ -186,12 +182,24 @@ background: #F7F7F7;
 						<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
 						</c:otherwise>
 						</c:choose>
+						<div style="margin-top: 5px;">
+						姓名：<c:if test="${!t.user.name.equals('')}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
+							</a>
+						</c:if>
+						<c:if test="${t.user.name.equals('')}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
+						</a>
+						</c:if>
+						</div>
+						<br/>
+						<div >学校：${t.school}</div>
 				</div>
 			</c:forEach>    	
 	 </div>
 	</c:otherwise>
 	</c:choose>
-	 <div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp" ></jsp:include></div>
+	 <div class="row" style="margin-top: 55px; "><jsp:include page="/WEB-INF/views/_shared/pagination.jsp" ></jsp:include></div>
 </div>
 
 
