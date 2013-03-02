@@ -13,4 +13,7 @@ import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 public interface BlogPostRepository extends JpaRepository<BlogPost, Long>, JpaSpecificationExecutor<BlogPost>, BlogPostRepositoryCustom {
 	Page<BlogPost> findByAuthor(Teacher author, Pageable pageable);
 	Page<BlogPost> findByAuthorAndGarbage(Teacher author, boolean garbage, Pageable pageable);
+	Page<BlogPost> findByAuthorAndDraft(Teacher teacher, boolean b, Pageable dateDesc);
+	Page<BlogPost> findByAuthorAndGarbageAndDraft(Teacher teacher,boolean garbage, boolean draft, Pageable pageable);
+	
 }

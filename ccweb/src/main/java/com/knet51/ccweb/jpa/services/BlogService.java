@@ -17,8 +17,8 @@ public interface BlogService {
 	List<BlogPost> findAllBlogs();
 	Page<BlogPost> findAllBlogs(int pageNumber, int pageSize);
 	Page<BlogPost> findAllBlogs(int pageNumber, int pageSize, Teacher teacher);
-	Page<BlogPost> findAllBlogsNotInGarbageCan(int pageNumber, int pageSize, Teacher teacher);
-	Page<BlogPost> findAllBlogsInGarbageCan(int pageNumber, int pageSize, Teacher teacher);
+	Page<BlogPost> findAllBlogsNotGarbage(int pageNumber, int pageSize, Teacher teacher);
+	Page<BlogPost> findAllBlogsNotGarbageAndNotDraft(int pageNumber, int pageSize, Teacher teacher);
 	List<BlogCategory> findBlogCategories(Teacher teacher);
 	BlogCategory findBlogCategory(Long category_id);
 	List<BlogPost> findBlogPosts(Long teacher_id);
@@ -27,4 +27,8 @@ public interface BlogService {
 	boolean isBlogCategoryExist(String name, Teacher teacher);
 	BlogCategory renameBlogCategory(BlogCategory blogCategory);
 	void deleteBlogCategory(Long blog_category_id);
+	Page<BlogPost> findAllBlogsIsGarbage(int pageNumber, int pageSize, Teacher teacher);
+	Page<BlogPost> findAllBlogsIsDraft(int pageNumber, int pageSize, Teacher teacher);
+	Page<BlogPost> findAllBlogsIsDraftNotGarbage(int pageNumber, int pageSize, Teacher teacher);
+	
 }

@@ -51,10 +51,18 @@ public class BlogController {
 
 	@Transactional
 	@RequestMapping(value= "/admin/blog/list", method=RequestMethod.GET)
-	public String list(@RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize, Model model, HttpSession session) {
+	public String list(@RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize,
+			@RequestParam(value="type",defaultValue="all") String type,
+			Model model, HttpSession session) {
 		Long id = getUserId(session);
 		Teacher teacher = teacherService.findOne(id);
-		Page<BlogPost> page = blogService.findAllBlogsNotInGarbageCan(pageNumber, pageSize, teacher);
+		
+		Page<BlogPost> page = blogService.findAllBlogsNotGarbage(pageNumber, pageSize, teacher);
+		if (type.equals("garbage")) {
+			page = blogService.findAllBlogsIsGarbage(pageNumber, pageSize, teacher);
+		} else if (type.equals("draft")) {
+			page = blogService.findAllBlogsIsDraftNotGarbage(pageNumber, pageSize, teacher);
+		}
 		model.addAttribute("page", page);
 		return "admin.blog.list";
 	}
@@ -69,7 +77,7 @@ public class BlogController {
 		model.addAttribute("teacher_id", teacher_id);
 		
 		//Page<BlogPost> page = blogService.findAllBlogs(pageNumber, pageSize, teacher);
-		Page<BlogPost> page = blogService.findAllBlogsNotInGarbageCan(pageNumber, pageSize, teacher);
+		Page<BlogPost> page = blogService.findAllBlogsNotGarbageAndNotDraft(pageNumber, pageSize, teacher);
 		model.addAttribute("page", page);
 		return "teacher.blog.list";
 	}

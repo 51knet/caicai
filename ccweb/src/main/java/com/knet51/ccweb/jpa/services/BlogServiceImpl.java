@@ -54,19 +54,37 @@ public class BlogServiceImpl implements BlogService {
 		return onePage;
 	}
 	@Override
-	public Page<BlogPost> findAllBlogsNotInGarbageCan(int pageNumber, int pageSize, Teacher teacher) {
+	public Page<BlogPost> findAllBlogsNotGarbage(int pageNumber, int pageSize, Teacher teacher) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
 		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbage(teacher, false, dateDesc);
 		return onePage;
 	}
+	@Override
+	public Page<BlogPost> findAllBlogsNotGarbageAndNotDraft(int pageNumber,
+			int pageSize, Teacher teacher) {
+		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
+		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbageAndDraft(teacher, false, false, dateDesc);
+		return onePage;
+	}
 
 	@Override
-	public Page<BlogPost> findAllBlogsInGarbageCan(int pageNumber, int pageSize, Teacher teacher) {
+	public Page<BlogPost> findAllBlogsIsGarbage(int pageNumber, int pageSize, Teacher teacher) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
 		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbage(teacher, true, dateDesc);
 		return onePage;
 	}
-
+	@Override
+	public Page<BlogPost> findAllBlogsIsDraft(int pageNumber, int pageSize, Teacher teacher) {
+		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
+		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndDraft(teacher, true, dateDesc);
+		return onePage;
+	}
+	@Override
+	public Page<BlogPost> findAllBlogsIsDraftNotGarbage(int pageNumber, int pageSize, Teacher teacher) {
+		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
+		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbageAndDraft(teacher, false, true, dateDesc);
+		return onePage;
+	}
 	@Override
 	public BlogPost createBlogPost(BlogPost blogPost) {
 		return blogPostRepository.save(blogPost);
@@ -120,5 +138,11 @@ public class BlogServiceImpl implements BlogService {
 	public BlogCategory renameBlogCategory(BlogCategory blogCategory) {
 		return blogCategoryRepository.save(blogCategory);
 	}
+
+	
+
+	
+
+	
 
 }

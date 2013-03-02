@@ -7,16 +7,16 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th colspan="6">全部博文</th>
+				<th colspan="7">全部博文</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td colspan="6"><a href="<c:url value="/admin/blog/new"></c:url>" class="btn">写博文</a>
+				<td colspan="7"><a href="<c:url value="/admin/blog/new"></c:url>" class="btn">写博文</a>
 					<a id="category_management"  href="<c:url value="/admin/blog/category/list"></c:url>" class="btn">管理分类</a></td>
 			</tr>
 			<tr style="display: none;">
-				<td colspan="6">${page}</td>
+				<td colspan="7">${page}</td>
 			</tr>
 			<tr>
 				<th>标题</th>
@@ -57,7 +57,7 @@
 			</c:forEach>
 		</tbody>
 		<tfoot>
-			<tr><td colspan="6">
+			<tr><td colspan="7">
 				<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
 			</td></tr>
 		</tfoot>

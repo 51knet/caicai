@@ -19,13 +19,10 @@
 				<td><a href="<c:url value="/admin/blog/list"></c:url>">全部博文</a></td>
 			</tr>
 			<tr>
-				<td><a href="<c:url value="/admin/blog/list"></c:url>">私密博文</a></td>
+				<td><a href="<c:url value="/admin/blog/list?type=draft"></c:url>">草稿箱</a></td>
 			</tr>
 			<tr>
-				<td><a href="#">草稿箱</a></td>
-			</tr>
-			<tr>
-				<td><a href="#">回收站</a></td>
+				<td><a href="<c:url value="/admin/blog/list?type=garbage"></c:url>">回收站</a></td>
 			</tr>
 		</tbody>
 	</table>
