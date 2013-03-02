@@ -24,6 +24,7 @@ public class CourseResource extends AbstractEntity {
 	private Long course_id;
 	private Long courseLessonId;
 	private Integer status;
+	private String relativePath;
 	@Expose
 	@ManyToOne
 	private ResourceType resourceType;
@@ -102,6 +103,13 @@ public class CourseResource extends AbstractEntity {
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	
+	public String getRelativePath() {
+		return relativePath;
+	}
+	public void setRelativePath(String relativePath) {
+		this.relativePath = relativePath;
 	}
 	public CourseResource() {
 		super();

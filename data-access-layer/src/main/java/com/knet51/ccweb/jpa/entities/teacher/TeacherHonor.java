@@ -1,6 +1,8 @@
 package com.knet51.ccweb.jpa.entities.teacher;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import com.google.gson.annotations.Expose;
@@ -14,6 +16,8 @@ public class TeacherHonor extends AbstractEntity {
 	@Expose
 	private String reason;
 	@Expose
+	@Lob
+	@Column(length=10000)
 	private String detailDesc;
 	@ManyToOne
 	private Teacher teacher;
