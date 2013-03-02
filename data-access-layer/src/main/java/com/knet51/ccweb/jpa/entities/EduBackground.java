@@ -1,6 +1,8 @@
 package com.knet51.ccweb.jpa.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +18,8 @@ public class EduBackground extends AbstractEntity {
 	private String startTime;
 	
 	private String endTime;
-	
+	@Lob
+	@Column(length=10000)
 	private String educationDesc;
 	
 	private Long teacherid;

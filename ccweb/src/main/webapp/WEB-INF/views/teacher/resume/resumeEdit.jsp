@@ -63,14 +63,14 @@
 						-->
 					</div>
 					<div class="control-group" id="major">
-						<label class="control-label" for="major">教授课程</label>
+						<label class="control-label" for="major">研究方向</label>
 						<div class="controls">
 							<input type="text" name="major" value="${sessionScope.sessionUserInfo.teacher.major}" placeholder="教授课程">
 							<span class="help-inline"><form:errors path="major"></form:errors></span>
 						</div>
 					</div>
 					<div class="control-group" id="title">
-						<label class="control-label" for="title">职称</label>
+						<label class="control-label" for="title">职称/职务</label>
 						<div class="controls">
 							<input type="text" name="title" value="${sessionScope.sessionUserInfo.teacher.title}" placeholder="职称">
 							<span class="help-inline"><form:errors path="title"></form:errors></span>

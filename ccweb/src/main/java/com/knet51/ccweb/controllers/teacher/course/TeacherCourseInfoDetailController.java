@@ -177,18 +177,20 @@ public class TeacherCourseInfoDetailController {
 				resource.setDate(date);
 				TeacherCourse teacherCourse = teacherCourseService.findOneById(Long.valueOf(course_id));
 				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
-				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+File.separator+lessonNum;
+				String path = session.getServletContext().getRealPath("/")+"resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId()+"/"+lessonNum;
+				String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId()+"/"+lessonNum;
 				FileUtil.createRealPath(path, session);
 				File saveDest = new File(path + File.separator + fileName);
 				multipartFile.transferTo(saveDest);
 			//	String saveName = FileUtil.saveFile(files.get(i).getInputStream(), fileName, path);
-				String savePath = path+File.separator+fileName;
+				String savePath = path+"/"+fileName;
 				resource.setSavePath(savePath);
 				resource.setSaveName(fileName);
 				resource.setLessonNum(lessonNum);
 				resource.setCourse_id(Long.valueOf(course_id));
 				resource.setCourseLessonId(courseLessonId);
 				resource.setResourceType(resourceType);
+				resource.setRelativePath(relativePath+"/"+fileName);
 				resource.setStatus(GlobalDefs.STATUS_COURSE_RESOURCE);
 				courseResourceService.createCourseResource(resource);
 			}
@@ -209,7 +211,6 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/teacher/course/resource/update",method=RequestMethod.POST)
 	public String ResourceEdit(HttpSession session,Model model,RedirectAttributes redirectAttributes,
 			MultipartHttpServletRequest request,@RequestParam("resourceId") Long resource_id,@RequestParam("courseId") Long course_id) throws  Exception{
-		logger.info("+++++++++++++++++++++");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("resourceFile");
 		String resourceName = request.getParameter("resourceName");

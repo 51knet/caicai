@@ -1,6 +1,8 @@
 package com.knet51.ccweb.jpa.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -11,6 +13,8 @@ public class WorkExp extends AbstractEntity {
 	private String position;
 	private String startTime;
 	private String endTime;
+	@Lob
+	@Column(length=10000)
 	private String workDesc;
 	private Long teacherid;
 	public String getCompany() {

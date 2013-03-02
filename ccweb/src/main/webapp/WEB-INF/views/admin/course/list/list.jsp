@@ -22,8 +22,18 @@
 <div class="row-fluid custom round">
 	<div class="row" style="margin-top:10px;">
 		<a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>课程管理</b></a><hr>
-	
+		
 		<div style="text-align: right;">
+	<!-- 
+		<div id="player"></div>
+			    <script type="text/javascript">
+				    	//TODO: fix me, the file name extension should be mp4
+					    jwplayer("player").setup({
+					        file: '<c:url value="/resources/iphone.mp4" />',
+					        //image: "/uploads/myPoster.jpg"
+					        //TODO: each mp4 can have a preview image
+					    });
+				</script> -->
 			<!-- 	<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
 							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
 			<span style="margin-right: 330px;">

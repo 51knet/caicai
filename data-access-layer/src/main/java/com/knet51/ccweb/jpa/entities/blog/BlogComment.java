@@ -2,8 +2,10 @@ package com.knet51.ccweb.jpa.entities.blog;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
@@ -18,6 +20,8 @@ public class BlogComment extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name="teacher_id")
 	private Teacher author;
+	@Lob
+	@Column(length=10000)
 	private String content;
 	private Date dateCreated;
 	private Date dateUpdated;

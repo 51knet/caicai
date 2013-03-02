@@ -29,7 +29,7 @@
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
 				<li <c:if test='${active == "first"}'> class="active" </c:if>><a href="#" data-toggle="tab">第一步：基本信息</a></li>
-				<li <c:if test='${active == "second"}'> class="active" </c:if>><a href="#" data-toggle="tab">第二部：权限价格</a></li>
+				<li <c:if test='${active == "second"}'> class="active" </c:if>><a href="#" data-toggle="tab">第二部：权限设置</a></li>
 				<li <c:if test='${active == "third"}'> class="active" </c:if>><a href="#" data-toggle="tab">第三部：计划</a></li>
 			</ul>
 			<div class="tab-content">
@@ -55,6 +55,7 @@
 											<option value="数学">数学</option>
 											<option value="化学">化学</option>
 											<option value="语文">语文</option>
+											<option value="历史">历史</option>
 											<option value="金融">金融</option>
 											<option value="英语">英语</option>
 											<option value="哲学">哲学</option>

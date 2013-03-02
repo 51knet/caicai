@@ -23,7 +23,7 @@
 						</c:choose>
 						<div>
 							<ul class="nav nav-tabs nav-stacked">
-								<li class="active"><a href='<c:url value="/admin"></c:url>' >个人中心</a></li>
+								<!-- <li class="active"><a href='<c:url value="/admin"></c:url>' >个人中心</a></li> -->
 								<li><a href='<c:url value="/teacher/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>
 								<li><a href='<c:url value="/admin/teacher/resume"><c:param name="active" value="personal" /></c:url>' >我的简历</a></li>
 								<li><a href='<c:url value="/admin/teacher/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
