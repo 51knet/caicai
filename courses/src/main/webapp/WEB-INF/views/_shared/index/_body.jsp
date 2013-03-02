@@ -85,10 +85,17 @@
 	      <div class="row">
 					<c:forEach items="${teacherLists}" var="t" begin="0" end="4">
 						<div class="span2" style="width: 175px;height: 200px;">
+						<c:if test="${!t.user.name.equals('')}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
+							</a>
+						</c:if>
+						<c:if test="${t.user.name.equals('')}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
+						</a>
+						</c:if>
 						<c:choose>
 						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-								</a>
+						<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
 						</c:when>
 						<c:otherwise>
 						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
@@ -103,13 +110,20 @@
        <div class="row">
 			<c:forEach items="${teacherLists}" var="t" begin="5" end="10">
 				<div class="span2" style="width: 175px;height: 200px;">
-					<c:choose>
+					<c:if test="${!t.user.name.equals('')}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
+							</a>
+						</c:if>
+						<c:if test="${t.user.name.equals('')}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
+						</a>
+						</c:if>
+						<c:choose>
 						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-								</a>
+						<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
 						</c:when>
 						<c:otherwise>
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
+						<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
 						</c:otherwise>
 						</c:choose>
 				</div>
@@ -136,13 +150,20 @@
 	      <div class="row">
 					<c:forEach items="${enterPriseList}" var="t" begin="0" end="4">
 						<div class="span2" style="width: 175px;height: 200px;">
+						<c:if test="${!t.user.name.equals('')}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
+							</a>
+						</c:if>
+						<c:if test="${t.user.name.equals('')}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
+						</a>
+						</c:if>
 						<c:choose>
 						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-								</a>
+						<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
 						</c:when>
 						<c:otherwise>
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
+						<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
 						</c:otherwise>
 						</c:choose>
 						</div>
@@ -154,13 +175,20 @@
        <div class="row">
 			<c:forEach items="${enterPriseList}" var="t" begin="5" end="10">
 				<div class="span2" style="width: 175px;height: 200px;">
+				<c:if test="${!t.user.name.equals('')}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
+							</a>
+						</c:if>
+						<c:if test="${t.user.name.equals('')}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
+						</a>
+						</c:if>
 					<c:choose>
 						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-								</a>
+						<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
 						</c:when>
 						<c:otherwise>
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
+						<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
 						</c:otherwise>
 						</c:choose>
 				</div>
