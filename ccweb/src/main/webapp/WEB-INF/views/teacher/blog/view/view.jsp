@@ -45,15 +45,21 @@
 		</div>
 		<hr />
 		<div class="clearfix"></div>
-		<div class="span12">
-			<b>发表评论</b>
-
-			<form action='<c:url value="/admin/blog/comment/new" />' method="post">
-				<input type="hidden" name="blogpost_id" value="${blogPost.id}">
-				<textarea name="content" rows="4" cols="120" style="width: 98%"></textarea>
-				<button class="btn btn-primary" type="submit">提交</button>
-			</form>
-		</div>
+		<c:choose>
+			<c:when test="${sessionUserInfo==null}">
+				<div class="span12"><b>请<a href="<c:url value="/" />">登录</a>评论</b></div>
+			</c:when>
+			<c:otherwise>
+			<div class="span12">
+				<b>发表评论</b>
+				<form action='<c:url value="/teacher/${teacher_id}/blog/comment" />' method="post">
+					<input type="hidden" name="blogpost_id" value="${blogPost.id}">
+					<textarea name="content" rows="4" cols="120" style="width: 98%"></textarea>
+					<button class="btn btn-primary" type="submit">提交</button>
+				</form>
+			</div>		
+			</c:otherwise>
+		</c:choose>
 	</div>
 </div>
 

@@ -146,6 +146,23 @@ public class BlogController {
 		
 		return "redirect:/admin/blog/view/"+blogpost_id;
 	}
+	@RequestMapping(value= "/teacher/{teacher_id}/blog/comment", method=RequestMethod.POST)
+	public String view(@PathVariable Long teacher_id, @Valid BlogComment blogComment, BindingResult result, @RequestParam("blogpost_id") Long blogpost_id, Model model, HttpSession session) {
+		BlogPost blogPost = blogService.findOne(blogpost_id);
+		if (result.hasErrors()) {
+			logger.info("Validation Failed " + result);
+			model.addAttribute("blogPost", blogPost);
+			return "teacher.blog.view";
+		}
+		
+		Teacher teacher = teacherService.findOne(getUserId(session));
+		blogComment.setAuthor(teacher);
+		blogComment.setBlogPost(blogPost);
+		blogService.createBlogComment(blogComment);
+		
+		return "redirect:/teacher/"+teacher_id+"/blog/view/"+blogpost_id;
+		
+	}
 	
 	@RequestMapping(value= "/admin/blog/edit/{blog_post_id}", method=RequestMethod.GET)
 	public String edit(@PathVariable Long blog_post_id, Model model, HttpSession session) {
