@@ -14,13 +14,13 @@ body {
 }
 
 .container-fluid .row-fluid {
-	background: url(<c:url value="/resources/img/top_bg.jpg" ></c:url>) repeat;
+	background: url(<c:url value="/resources/img/default/top_bg.jpg" ></c:url>) repeat;
 }
 
 .container-fluid .row-fluid .row.mac {
 	margin: 0px auto;
 	height: 640px;
-	background: url(<c:url value='/resources/img/home_bg.png' ></c:url>) center -10px no-repeat;
+	background: url(<c:url value='/resources/img/default/index/home_bg.png' ></c:url>) center -10px no-repeat;
 }
 
 .span4.login-panel {
