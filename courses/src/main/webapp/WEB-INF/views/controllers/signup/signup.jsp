@@ -60,6 +60,12 @@ $(document).ready(function (){
 	});
 	
 });
+$(function(){
+    $("#email").autoMailSuggest(defaultMailSuffix);
+  });
+$(function(){
+    $("#emails").autoMailSuggest(defaultMailSuffix);
+  });
 </script>
 <div class="container">
 	<div class="row">

@@ -167,6 +167,12 @@ body {
 		});
 	});
 	
+	$(function(){
+	    $("#email").autoMailSuggest(defaultMailSuffix);
+	  });
+	$(function(){
+	    $("#emails").autoMailSuggest(defaultMailSuffix);
+	  });
 </script>
 
 <div class="row mac">
