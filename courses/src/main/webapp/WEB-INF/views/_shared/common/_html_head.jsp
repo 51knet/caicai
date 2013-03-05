@@ -24,3 +24,4 @@
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/kindeditor.js" />"></script>
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/lang/zh_CN.js" />"></script>
     <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/jquery.autoMailSuggest.js"/>"></script>
+    <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/jwplayer/jwplayer.js"/>"></script>
