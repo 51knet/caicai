@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib  prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <style>
 .navbar {
 	margin-bottom: 0px;
@@ -142,9 +143,15 @@ background: #F7F7F7;
 	<c:choose>
 	<c:when test="${isEnterPrise=='null'}">
 	<h2>热门教师（Top 50）</h2>
+	  <c:if test="${fn:length(teacherLists)==0}">
+    <div class="item">
+       <div class="row">
+       	<h3>暂无教师数据</h3>
+       </div></div>
+    </c:if>
    	<div class="row">
       	<c:forEach items="${teacherList}" var="t">
-			<div class="span2" style="width: 175px;height: 200px;">
+			<div class="span2" style="width: 175px;height:260px;">
 			<c:choose>
 			<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
 			<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
@@ -153,27 +160,33 @@ background: #F7F7F7;
 			<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
 			</c:otherwise>
 			</c:choose>
-			<div style="margin-top: 5px;">
-						姓名：<c:if test="${!t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
-							</a>
-						</c:if>
-						<c:if test="${t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
-						</a>
-						</c:if>
-						</div>
-						<br/>
-						<div style="margin-top: 1px;">学校：${t.school}</div>
+			<div>
+			姓名：<c:choose>
+			<c:when test="${t.user.name==null||t.user.name==''}">
+			<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
+			</c:when>
+			<c:otherwise>
+			<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
+			</c:otherwise>
+			</c:choose>
+			<br/>
+			<div style="margin-top: 5px;">学校：${t.school}</div>
+			</div>
 			</div>
 		</c:forEach>
 	 </div>
 	</c:when>
 	<c:otherwise>
 	<h2>热门企业（Top 50）</h2>
+  <c:if test="${fn:length(enterPriseList)==0}">
+		   <div class="item">
+		      <div class="row">
+		      <h3>暂无企业数据</h3>	
+		      </div></div>
+		   </c:if>
    	<div class="row">
       	<c:forEach items="${enterPriseList}" var="t" >
-				<div class="span2" style="width: 175px;height: 200px;">
+				<div class="span2" style="width: 175px;height:260px;">
 					<c:choose>
 						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
 						<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
@@ -182,24 +195,24 @@ background: #F7F7F7;
 						<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
 						</c:otherwise>
 						</c:choose>
-						<div style="margin-top: 5px;">
-						姓名：<c:if test="${!t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
-							</a>
-						</c:if>
-						<c:if test="${t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
-						</a>
-						</c:if>
-						</div>
+						<div>
+						姓名：<c:choose>
+						<c:when test="${t.user.name==null||t.user.name==''}">
+						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
+						</c:when>
+						<c:otherwise>
+						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
+						</c:otherwise>
+						</c:choose>
 						<br/>
-						<div >学校：${t.school}</div>
+						<div style="margin-top: 5px;">学校：${t.school}</div>
+						</div>
 				</div>
 			</c:forEach>    	
 	 </div>
 	</c:otherwise>
 	</c:choose>
-	 <div class="row" style="margin-top: 55px; "><jsp:include page="/WEB-INF/views/_shared/pagination.jsp" ></jsp:include></div>
+	 <div class="row" style="margin-top: 50px; "><jsp:include page="/WEB-INF/views/_shared/pagination.jsp" ></jsp:include></div>
 </div>
 
 

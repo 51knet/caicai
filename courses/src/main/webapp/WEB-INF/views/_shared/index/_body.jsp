@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <script type="text/javascript">
 !function ($) {
@@ -79,6 +80,12 @@
 </div>
 <div class="container teacher" >
   <h2>热门教师（Top 50）</h2>
+    <c:if test="${fn:length(teacherLists)==0}">
+    <div class="item">
+       <div class="row">
+       	<h3>暂无教师数据</h3>
+       </div></div>
+    </c:if>
   <div id="myTeacher" class="carousel slide">
   <div class="carousel-inner" style="margin-bottom: -50px;">
     <div class="item active">
@@ -90,18 +97,19 @@
 						<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
 						</c:when>
 						<c:otherwise>
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
+						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
 						</c:otherwise>
 						</c:choose>
 						<div style="margin-top: 5px;">
-						姓名：<c:if test="${!t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
-							</a>
-						</c:if>
-						<c:if test="${t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
-						</a>
-						</c:if>
+						姓名：
+						<c:choose>
+						<c:when test="${t.user.name==null||t.user.name==''}">
+						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
+						</c:when>
+						<c:otherwise>
+						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
+						</c:otherwise>
+						</c:choose>
 						</div>
 						<br/>
 						<div style="margin-top: 1px;">学校：${t.school}</div>
@@ -109,7 +117,7 @@
 					</c:forEach>
 				</div>
     </div>
-    <c:if test="${teacherLists.size()-5>0}">
+    <c:if test="${fn:length(teacherLists) >5}">
     <div class="item">
        <div class="row">
 			<c:forEach items="${teacherLists}" var="t" begin="5" end="10">
@@ -123,14 +131,14 @@
 						</c:otherwise>
 						</c:choose>
 						<div style="margin-top: 5px;">
-						姓名：<c:if test="${!t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
-							</a>
-						</c:if>
-						<c:if test="${t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
-						</a>
-						</c:if>
+						姓名：<c:choose>
+						<c:when test="${t.user.name==null||t.user.name==''}">
+						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
+						</c:when>
+						<c:otherwise>
+						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
+						</c:otherwise>
+						</c:choose>
 						</div>
 						<br/>
 						<div style="margin-top: 1px;">学校：${t.school}</div>
@@ -152,6 +160,12 @@
 </div>
 <div class="container teacher" >
   <h2>热门企业（Top 50）</h2>
+  <c:if test="${fn:length(enterPriseList)==0}">
+		   <div class="item">
+		      <div class="row">
+		      <h3>暂无企业数据</h3>	
+		      </div></div>
+		   </c:if>
   <div id="myUniversity" class="carousel slide">
   <div class="carousel-inner" style="margin-bottom: -50px;">
     <div class="item active">
@@ -167,14 +181,14 @@
 						</c:otherwise>
 						</c:choose>
 						<div style="margin-top: 5px;">
-						姓名：<c:if test="${!t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
-							</a>
-						</c:if>
-						<c:if test="${t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
-						</a>
-						</c:if>
+						姓名：<c:choose>
+						<c:when test="${t.user.name==null||t.user.name==''}">
+						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
+						</c:when>
+						<c:otherwise>
+						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
+						</c:otherwise>
+						</c:choose>
 						</div>
 						<br/>
 						<div style="margin-top: 1px;">学校：${t.school}</div>
@@ -182,19 +196,11 @@
 					</c:forEach>
 				</div>
     </div>
-    <c:if test="${enterPriseList.size()-5>0}">
+    <c:if test="${fn:length(enterPriseList) >5}">
     <div class="item">
        <div class="row">
 			<c:forEach items="${enterPriseList}" var="t" begin="5" end="10">
 				<div class="span2" style="width: 175px;height: 200px;">
-				<c:if test="${!t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
-							</a>
-						</c:if>
-						<c:if test="${t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
-						</a>
-						</c:if>
 					<c:choose>
 						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
 						<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
@@ -204,14 +210,14 @@
 						</c:otherwise>
 						</c:choose>
 						<div style="margin-top: 5px;">
-						姓名：<c:if test="${!t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }
-							</a>
-						</c:if>
-						<c:if test="${t.user.name.equals('')}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏
-						</a>
-						</c:if>
+						姓名：<c:choose>
+						<c:when test="${t.user.name==null||t.user.name==''}">
+						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
+						</c:when>
+						<c:otherwise>
+						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
+						</c:otherwise>
+						</c:choose>
 						</div>
 						<br/>
 						<div style="margin-top: 1px;">学校：${t.school}</div>

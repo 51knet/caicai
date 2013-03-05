@@ -53,7 +53,7 @@ public class TeacherController {
 		Page<Teacher> teacherPage=teacherService.findAll(pageNumber, pageSize);
 		 if(isEnterPrise.equals("1")){
 			 enterPriseList = teacherService.findByisEnterprise(isEnterPrise);
-		}else if(isEnterPrise.equals("null")){
+		}else if(isEnterPrise.equals("null")||isEnterPrise.isEmpty()){
 			teacherList=teacherService.findByIsEnterprise();
 		}
 		//List<Teacher> teacher = teacherPage.getContent();
