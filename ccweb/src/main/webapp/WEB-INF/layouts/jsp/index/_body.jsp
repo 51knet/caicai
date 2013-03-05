@@ -17,34 +17,60 @@ body {
 	background: url(<c:url value="/resources/img/default/top_bg.jpg" ></c:url>) repeat;
 }
 
-.container-fluid .row-fluid .row.mac {
+.container-fluid .row-fluid .row.bg {
 	margin: 0px auto;
-	height: 640px;
-	background: url(<c:url value='/resources/img/default/index/home_bg.png' ></c:url>) center -10px no-repeat;
+	height: 750px;
+	background: url(<c:url value='/resources/img/default/index/home_bg.png' ></c:url>) center -50px no-repeat;
+}
+
+.container-fluid .row-fluid .row.ad {
+	margin: 0px auto;
+	height: 750px;
+	background: url(<c:url value='/resources/img/default/index/home_ad.png' ></c:url>) center -120px no-repeat;
+}
+
+.container-fluid .row-fluid .row.login {
+	margin: 0px auto;
+	height: 750px;
+	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center -120px no-repeat;
+}
+
+.span8.left {
+	width: 988px;
 }
 
 .span4.login-panel {
-	width: 340px;
-	margin-top: 40px;
-	padding-bottom: 10px;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	background: #F8F8FA;
+	width: 441px;
+	height: 602px;
+	margin-left: 0px;
+	margin-top: 70px;
 	text-align: center;
-	
+	background: url(<c:url value='/resources/img/default/index/login_logo.png' ></c:url>) center no-repeat;
+}
+
+.span4.login-context {
+	width: 350px;
+	height: 100%;
+	background: url(<c:url value='/resources/img/default/index/hr_bg.png' ></c:url>) center no-repeat;
 }
 
 .span4.register-panel {
-	width: 340px;
-	margin-top: 40px;
-	padding-bottom: 10px;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	background: #F8F8FA;
+	width: 441px;
+	height: 602px;
+	margin-left: 0px;
+	margin-top: 70px;
 	text-align: center;
-	display: none;
+	background: url(<c:url value='/resources/img/default/index/login_logo.png' ></c:url>) center no-repeat;
+}
+
+.span4.register-context {
+	width: 350px;
+	height: 100%;
+	background: url(<c:url value='/resources/img/default/index/hr_bg.png' ></c:url>) center no-repeat;
+}
+
+.form-horizontal {
+	margin: 150px 0 20px;
 }
 
 .form-horizontal .control-label {
@@ -175,67 +201,65 @@ body {
 	  });
 </script>
 
-<div class="row mac">
-	<div class="span7"></div>
-	<div class="span4 login-panel">
-		<form:form class="form-horizontal" action="signin" id="sigin_info_form" modelAttribute="loginForm" method="post">
-			<h3 class="form-signin-heading" style="font-family:'Microsoft YaHei'">用户登录</h3>
-			<div class="control-group">
-				<label class="control-label" for="email">邮箱地址</label>
-				<div class="controls">
-					<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址">
-					<span class="help-block" id="em"><form:errors path="email"></form:errors></span>
-					<div id="emailError"></div>
+<div class="row bg">
+	<div class="row ad">
+		<div class="row login">
+			<div class="span8 left"></div>
+			<div class="span4 login-panel">
+				<div class="span4 login-context" style="margin-left: 45px;">
+				<form:form class="form-horizontal" action="signin" id="sigin_info_form" modelAttribute="loginForm" method="post">
+					<h1 class="form-signin-heading" style="font-family: 'Microsoft YaHei';font-size: 25pt;">用户登录</h1>
+					<div class="control-group">
+						<h4 style="text-align: left;">邮箱地址</h4>
+						<div class="controls" style="text-align: left;">
+							<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址" style="width:335px;"> <span class="help-block" id="em"><form:errors path="email"></form:errors></span>
+							<div id="emailError"></div>
+						</div>
+					</div>
+					<div class="control-group">
+						<h4 style="text-align: left;">登录密码</h4>
+						<div class="controls" style="text-align: left;">
+							<input type="password" id="password" name="password" placeholder="请输入您的密码" style="width:335px;"> <span class="help-block" id="pass"><form:errors path="password"></form:errors></span>
+							<div id="passwordErr"></div>
+						</div>
+					</div>
+					<label style="clear: right;"></label>
+					<button class="btn btn-large btn-block btn-primary" type="submit" style="margin-top: 30px">登录</button>
+				</form:form>
+				<a id="registerbtn" class="btn btn-large btn-block btn-success" style="margin-top: 20%;">快速注册</a>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label" for="password">登录密码</label>
-				<div class="controls">
-					<input type="password" id="password" name="password" placeholder="请输入您的密码">
-					<span class="help-block" id="pass"><form:errors path="password" ></form:errors></span>
-					<div id="passwordErr" ></div>
+			<div class="span4 register-panel" style="display:none;">
+				<div class="span4 register-context" style="margin-left: 45px;">
+				<form:form class="form-horizontal" action="register/common" modelAttribute="commonRegisterForm" method="post">
+					<h1 class="form-signin-heading" style="font-family: 'Microsoft YaHei';font-size: 25pt;">快速注册</h1>
+					<div class="control">
+						<h4 style="text-align: left;margin-top: 20px;">邮箱地址</h4>
+						<div class="controls" style="text-align: left;">
+							<input type="text" id="emails" name="email" placeholder="请输入您的邮箱地址" style="width:335px;"> <span class="help-block"><form:errors path="email"></form:errors></span>
+							<div id="checkEmails"></div>
+						</div>
+					</div>
+					<div class="control">
+						<h4 style="text-align: left;">密码</h4>
+						<div class="controls" style="text-align: left;">
+							<input type="password" id="psw" name="psw" placeholder="请设置您的密码" style="width:335px;"> <span class="help-block"><form:errors path="psw"></form:errors></span>
+							<div id="emptyPwd"></div>
+						</div>
+					</div>
+					<div class="control">
+						<h4 style="text-align: left;">密码确认</h4>
+						<div class="controls" style="text-align: left;">
+							<input type="password" id="confirmpsw" name="confirmpsw" placeholder="请再次输入您的密码" style="width:335px;"> <span class="help-block"><form:errors path="confirmpsw"></form:errors></span>
+							<div id="passwordError"></div>
+						</div>
+					</div>
+					<label style="clear: right;"></label>
+					<button type="submit" class="btn btn-large btn-block btn-primary" style="margin-top: 20px">确认注册</button>
+				</form:form>
+				<a id="loginbtn" class="btn btn-large btn-block btn-success" style="margin-top: 30px;">用户登录</a>
 				</div>
 			</div>
-			<label style="clear: right;"></label>
-			<button class="btn btn-large btn-primary" type="submit" style="margin-top: 10px">　登录　</button>
-		</form:form>
-		<hr />
-		<a id="registerbtn" class="btn btn-large btn-success">快速注册</a>
-		
-	</div>
-	<div class="span4 register-panel" style="display: none;">
-		<form:form class="form-horizontal" action="register/common" modelAttribute="commonRegisterForm" method="post">
-			<h3 class="form-signin-heading" style="font-family:'Microsoft YaHei'">快速注册</h3>
-			<div class="control-group">
-				<label class="control-label" for="email">邮箱地址</label>
-				<div class="controls">
-					<input type="text" id="emails" name="email" placeholder="请输入您的邮箱地址">
-					<span class="help-block"><form:errors path="email"></form:errors></span>
-					<div id="checkEmails"></div>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="psw">密码</label>
-				<div class="controls">
-					<input type="password" id="psw" name="psw" placeholder="请设置您的密码">
-					<span class="help-block"><form:errors path="psw"></form:errors></span>
-					<div id="emptyPwd"></div>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="confirmpsw">密码确认</label>
-				<div class="controls">
-					<input type="password" id="confirmpsw" name="confirmpsw" placeholder="请再次输入您的密码">
-					<span class="help-block"><form:errors path="confirmpsw"></form:errors></span>
-					<div id="passwordError" ></div>
-				</div>
-			</div>
-			<label style="clear: right;"></label>
-			<button type="submit" class="btn btn-large btn-primary">确认注册</button>
-		</form:form>
-		<hr />
-		<a id="loginbtn" class="btn btn-large btn-success" style="margin-top: -7px">用户登录</a>
-		
+		</div>
 	</div>
 </div>
- 	
