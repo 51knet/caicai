@@ -13,7 +13,6 @@ public class TeacherHonorDetailInfoForm {
 	@Size(max=25)
 	private String reason;
 	@NotEmpty
-	@Max(value = 10000, message="overflow 10000!!")
 	private String honorDesc;
 	
 	public String getHonorName() {

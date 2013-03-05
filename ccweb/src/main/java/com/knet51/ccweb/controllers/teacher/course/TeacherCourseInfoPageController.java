@@ -259,8 +259,9 @@ public class TeacherCourseInfoPageController {
 	
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/new/secondstep",method=RequestMethod.POST)
-	public String addCourseSecond(@RequestParam("courseId") Long course_id,@RequestParam("pwd") String pwd, 
-			@RequestParam("status") Integer status, Model model,RedirectAttributes redirectAttributes){
+	public String addCourseSecond(HttpSession session,Model model,
+			MultipartHttpServletRequest request,@RequestParam("courseId") Long course_id,@RequestParam("pwd") String pwd, 
+			@RequestParam("status") Integer status,RedirectAttributes redirectAttributes)throws  Exception{
 		if(course_id == null){
 			return "redirect:/admin/teacher/course/list";
 		}
@@ -269,7 +270,36 @@ public class TeacherCourseInfoPageController {
 		course.setStatus(status);
 		teacherCourseService.updateTeacherCourse(course);
 		redirectAttributes.addFlashAttribute("courseId", course_id);
-		return "redirect:/admin/teacher/course/addcourse?active=third";
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		List<MultipartFile> files = request.getFiles("resourceFile");
+		String resourceDesc = request.getParameter("resourceDesc");
+		String lessonNum = request.getParameter("resourceOrder");
+		for(int i=0;i<files.size();i++){
+			if(!files.get(i).isEmpty()){
+				MultipartFile multipartFile = files.get(i);
+				CourseResource resource = new CourseResource();
+				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 	
+				String fileName = multipartFile.getOriginalFilename();
+				String name = fileName.substring(0, fileName.indexOf("."));
+				resource.setFileName(name);
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				String date = format.format(new Date());
+				resource.setDate(date);
+				TeacherCourse teacherCourse = teacherCourseService.findOneById(Long.valueOf(course_id));
+				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+lessonNum;
+				FileUtil.createRealPath(path, session);
+				File saveDest = new File(path + File.separator + fileName);
+				multipartFile.transferTo(saveDest);
+				String savePath = path+File.separator+fileName;
+				resource.setSavePath(savePath);
+				resource.setSaveName(fileName);
+				resource.setResourceDesc(resourceDesc);
+				resource.setLessonNum(lessonNum);
+				resource.setCourse_id(Long.valueOf(course_id));
+				courseResourceService.createCourseResource(resource);
+			}
+		}
+		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 	}
 	
 	@Transactional

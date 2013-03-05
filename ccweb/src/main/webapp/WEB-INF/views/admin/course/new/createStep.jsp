@@ -30,7 +30,7 @@
 			<ul class="nav nav-tabs">
 				<li <c:if test='${active == "first"}'> class="active" </c:if>><a href="#" data-toggle="tab">第一步：基本信息</a></li>
 				<li <c:if test='${active == "second"}'> class="active" </c:if>><a href="#" data-toggle="tab">第二部：权限设置</a></li>
-				<li <c:if test='${active == "third"}'> class="active" </c:if>><a href="#" data-toggle="tab">第三部：计划</a></li>
+				<%-- <li <c:if test='${active == "third"}'> class="active" </c:if>><a href="#" data-toggle="tab">第三部：计划</a></li> --%>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane <c:if test='${active == "first"}'>active</c:if>" id="first_tab">
@@ -62,19 +62,20 @@
 											<option value="其他">其他</option>
 										</select>
 									</div>
+									
+									
+									
 									<div class="control-group" id="courseDesc">
 										<div class="controls" style="margin-left: 13px;">
 										课程描述：
-											<textarea name="courseDesc" rows="8" cols="5" style="width: 380px;"></textarea>
+										<div style="margin-left: 70px; margin-top: -10px;">
+											<textarea id="KEcourseDesc" name="courseDesc" rows="8" cols="5" style="width: 500px; height: 300px;"></textarea>
 											<span class="help-inline"></span>
 										</div>
+										</div>
 									</div>
-
-
-
-
 									<div class="modal-body" style="text-align: center;">
-										<button type="submit" onclick="firststep();" class="btn btn-large btn-success">下一步</button>
+										<button type="submit" class="btn btn-large btn-success">下一步</button>
 									</div>
 								</form:form>
 							</div>
@@ -83,7 +84,7 @@
 				</div>
 
 				<div class="tab-pane <c:if test='${active == "second"}'>active</c:if>" id="second_tab">
-					<form:form class="form-horizontal" action="new/secondstep" method="post" onsubmit="return checkPwd()">
+					<form:form class="form-horizontal" action="new/secondstep" method="post" onsubmit="return checkPwd()" enctype="multipart/form-data">
 						<input type="hidden" name="courseId" value="${courseId }" />
 						<div id="password"><input type="radio" value="0" checked="checked" name="pass" style="margin-bottom: 20px;">公开<br/>
 						<input type="radio" value="1" name="pass">设置密码</div>
@@ -101,15 +102,13 @@
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" class="btn btn-large btn-success">下一步</button>
+								<button type="submit" class="btn btn-large btn-success">完成</button>
 							</div>
 						</div>
 					</form:form>
-
 				</div>
-
 				<!-- third -->
-				<div class="tab-pane  <c:if test='${active == "third"}'>active</c:if>" id="third_tab">
+			<%-- 	<div class="tab-pane  <c:if test='${active == "third"}'>active</c:if>" id="third_tab">
 					<form:form class="form-horizontal" action="new/thirdstep" method="post" enctype="multipart/form-data">
 						<input type="hidden" value="${courseId }" name="courseId" />
 						<div class="modal-body">
@@ -122,17 +121,13 @@
 							</div>
 						</div>
 					</form:form>
-				</div>
+				</div> --%>
 			</div>
 		</div>
 	</div>
 </div>
 
 <script type="text/javascript">
-	function firststep() {
-		checkAjaxs("course_info_form", "courseInfoAJAX");
-		return false;
-	}
 	$(document).ready(function(){
 		$("#passwordInput").hide();
 		$("#password").click(function(){
@@ -161,6 +156,29 @@
 					   }
 					});
 			});
+		
+		var courseDescEditor = KindEditor.create('textarea[name="courseDesc"]',{
+			cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+			uploadJson : '${uploadJson}',
+			fileManagerJson : '${fileManagerJson}',
+			allowFileManager : true,
+			afterCreate : function() {
+				var self = this;
+				KindEditor.ctrl(document, 13, function() {
+					self.sync();
+					document.forms['detail_form'].submit();
+				});
+				KindEditor.ctrl(self.edit.doc, 13, function() {
+					self.sync();
+					document.forms['detail_form'].submit();
+				});
+			}
+		});
+		$("#course_info_form").submit(function(){
+			courseDescEditor.sync();
+			return checkEmptyAjax("course_info_form","courseInfoAJAX");
+		});
+		
 	});
 	
 </script>

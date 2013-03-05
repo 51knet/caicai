@@ -9,7 +9,6 @@ public class TeacherCourseInfoForm {
 	@Size(min=1,max=50)
 	private String courseName;
 	@NotEmpty
-	@Size(min=1,max=10000)
 	private String courseDesc;
 	
 	private String courseType;
