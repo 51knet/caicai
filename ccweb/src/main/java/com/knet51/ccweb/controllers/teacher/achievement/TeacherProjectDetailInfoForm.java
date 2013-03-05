@@ -6,20 +6,19 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TeacherProjectDetailInfoForm {
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String projectTitle;
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String projectSource;
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String projectStartTime;
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String projectEndTime;
 	@NotEmpty
-	@Max(value = 10000, message="overflow 10000!!")
 	private String projectDesc;
 	
 	public String getProjectTitle() {

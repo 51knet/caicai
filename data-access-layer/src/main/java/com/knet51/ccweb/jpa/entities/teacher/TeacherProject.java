@@ -21,7 +21,6 @@ public class TeacherProject extends AbstractEntity {
 	private String endTime;
 	@Expose
 	@Lob
-	@Column(length=10000)
 	private String detailDesc;
 	
 	@ManyToOne

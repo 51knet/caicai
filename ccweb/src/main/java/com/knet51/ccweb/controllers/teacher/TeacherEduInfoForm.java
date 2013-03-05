@@ -7,23 +7,23 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 
 public class TeacherEduInfoForm {
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String schoolName;
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String collegeName;
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String degree;
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String startTime;
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String endTime;
 	@NotEmpty
-	@Max(value = 10000, message="overflow 10000!!")
+
 	private String educationDesc;
 
 	

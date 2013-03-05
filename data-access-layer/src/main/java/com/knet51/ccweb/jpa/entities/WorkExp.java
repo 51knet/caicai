@@ -14,7 +14,6 @@ public class WorkExp extends AbstractEntity {
 	private String startTime;
 	private String endTime;
 	@Lob
-	@Column(length=10000)
 	private String workDesc;
 	private Long teacherid;
 	public String getCompany() {

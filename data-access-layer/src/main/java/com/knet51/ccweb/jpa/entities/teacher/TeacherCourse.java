@@ -15,16 +15,13 @@ public class TeacherCourse extends AbstractEntity {
 	
 	private String courseName;
 	@Lob
-	@Column(length=10000)
 	private String courseDesc;
 	private String courseDate;
 	private String courseCover;
 	private String courseType; 
 	@Lob
-	@Column(length=10000)
 	private String courseCharacter;
 	@Lob
-	@Column(length=10000)
 	private String targetPerson;
 	@Column(columnDefinition="int default 1")
 	private Integer status;  // 1:just show the course in ccweb; 2: both.

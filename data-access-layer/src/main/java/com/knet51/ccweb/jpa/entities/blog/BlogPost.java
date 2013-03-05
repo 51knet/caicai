@@ -35,7 +35,6 @@ public class BlogPost extends AbstractEntity {
 	
 	@Lob
 	@NotEmpty
-	@Column(length=10000)
 	private String content;
 	private Date dateCreated;
 	private Date dateUpdated;

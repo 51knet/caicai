@@ -37,9 +37,11 @@
 								<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.isEnterprise != null) }">
 								       <li><a href='<c:url value="/admin/teacher/downgradeRole"></c:url>' >升级成为教师用户</a></li>
 								</c:if>
+								<!-- 
 								<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.isEnterprise == null) || (sessionUserInfo.isEnterprise == '')}">
 								       <li><a href='<c:url value="/admin/teacher/upgradeRole"></c:url>' >升级成为企业用户</a></li>
 								</c:if>
+								 -->
 								<!-- <li><a href='<c:url value="/admin/teacher/allCourse/list"></c:url>' >全部课程</a></li> -->
 							</ul>
 						</div>

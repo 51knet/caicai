@@ -145,9 +145,10 @@
 
 		<!-- Edu Info -->
 		<div class="tab-pane  <c:if test='${active == "edu"}'>active</c:if>" id="edu_bg_tab">
-			<div id="eduForm" style="display: none;">
-				<form class="form-horizontal" action="eduInfo" method="post" id="edu_info_form" name="edu">
+			<div id="eduForm" style="display: none;  border: 0px solid; padding-left: 20px;">
+				<form action="eduInfo" method="post" id="edu_info_form" name="edu" >
 					<input type="hidden" name="eduId">
+					<!-- 
 					<div class="control-group" id="schoolName">
 						<label class="control-label" for="schoolName">学校</label>
 						<div class="controls">
@@ -179,10 +180,10 @@
 							<input type="text"  name="endTime"  placeholder="结束时间"> <span class="help-inline"></span>
 						</div>
 					</div>
+					-->
 					<div class="control-group"  id="educationDesc" >
-						<label class="control-label" for="educationDesc">详细介绍</label>
 						<div class="controls">
-							<textarea  id="KEeducationDesc"  name="educationDesc" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+							<textarea  id="KEeducationDesc"  name="educationDesc" rows="6" cols="8" style="width: 670px; height: 300px;"></textarea>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -201,34 +202,36 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th>学校</th>
-									<th>学院</th>
+									<th colspan="2">详细内容</th>
+									<!-- <th>学院</th>
 									<th>学历</th>
 									<th>起止时间</th>
-									<th>操作</th>
+									<th>操作</th> -->
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${eduInfo}" var="eduInfo">
 									<tr>
+										<td colspan="2" >${eduInfo.educationDesc}</td>
+									</tr>
+									<tr>
+									<!-- 
 										<td align="center">${eduInfo.school}</td>
 										<td align="center">${eduInfo.college}</td>
 										<td align="center">${eduInfo.degree}</td>
-										<td align="center" width="25%">${eduInfo.startTime} - ${eduInfo.endTime}</td>
-										<td><a class="deleteEduPostBtn" href="#deleteEduPostModal" role="button" data-toggle="modal" data-target="#deleteEduPostModal">删除</a> |
-												<a class="editEduAjaxBtn" href="javascript:void(0)">修改</a><input type="hidden" value="${eduInfo.id }" id="eduInfo_id">
+										<td align="center" width="25%">${eduInfo.startTime} - ${eduInfo.endTime}</td> -->
+										<td width="85%"></td>
+										<td  width="15%">
+											<a class="deleteEduPostBtn" href="#deleteEduPostModal" role="button" data-toggle="modal" data-target="#deleteEduPostModal">删除</a> |
+											<a class="editEduAjaxBtn" href="javascript:void(0)">修改</a><input type="hidden" value="${eduInfo.id }" id="eduInfo_id">
 										</td>
-									</tr>
-									<tr style="margin-left: -70px;">
-										<td>详细描述：</td>
-										<td colspan="4">${eduInfo.educationDesc}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 					</c:when>
 					<c:otherwise>
-						<b>尚未添加内容！！</b>
+						尚未添加内容
 						<br>
 						<br>
 					</c:otherwise>
@@ -259,9 +262,10 @@
 		<!-- work exp  -->
 		<div class="tab-pane <c:if test='${active == "work"}'>active</c:if>" id="work_exp_tab">
 
-			<div id="workForm" style="display: none;">
-				<form class="form-horizontal" action="workInfo" method="post" id="workExpForm" name="work">
+			<div id="workForm" style="display: none; padding-left: 20px;">
+				<form  action="workInfo" method="post" id="workExpForm" name="work">
 					<input type="hidden" name="workId">
+					<!--  
 					<div class="control-group" id="company">
 						<label class="control-label" for="company">单位</label>
 						<div class="controls">
@@ -292,10 +296,10 @@
 							<input type="text" name="endTimeName" placeholder="结束时间"> <span class="help-inline"><form:errors path="endTime" /></span>
 						</div>
 					</div>
+					-->
 					<div class="control-group" id="workDesc">
-						<label class="control-label" for="workDesc">详细介绍</label>
 						<div class="controls">
-							<textarea  name="workDesc"   id="workDescs" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+							<textarea  name="workDesc"   id="workDescs" rows="6" cols="8" style="width: 670px; height: 300px;"></textarea>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -314,28 +318,31 @@
 						<table class="table">
 							<thead>
 								<tr>
+									<!-- 
 									<th>单位</th>
 									<th>部门</th>
 									<th>职位</th>
-									<th>起止时间</th>
-									<th>操作</th>
+									<th>起止时间</th> -->
+									<th colspan="2">详细内容</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${workInfo}" var="workInfo">
 									<tr>
-										<td align="center">${workInfo.company}</td>
+										<td colspan="2">${workInfo.workDesc}</td>
+									</tr>
+									<tr>
+										
+										<!-- <td align="center">${workInfo.company}</td>
 										<td align="center">${workInfo.department}</td>
 										<td align="center">${workInfo.position}</td>
-										<td align="center" width="25%">${workInfo.startTime} - ${workInfo.endTime}</td>
-										<td><a class="deleteWorkPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteWorkPostModal">删除</a> |
-												<a href='javascript:void(0)' class="editWorkAjaxBtn">修改</a>
-												<input type="hidden" value="${workInfo.id} ">
+										<td align="center" width="25%">${workInfo.startTime} - ${workInfo.endTime}</td> -->
+										<td width="85%">&nbsp;</td>
+										<td width="15%">
+											<a class="deleteWorkPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteWorkPostModal">删除</a> |
+											<a href='javascript:void(0)' class="editWorkAjaxBtn">修改</a>
+											<input type="hidden" value="${workInfo.id} ">
 										</td>
-									</tr>
-									<tr style="margin-left: -70px;">
-										<td>详细描述：</td>
-										<td colspan="4">${workInfo.workDesc}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -378,15 +385,18 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th>论文内容</th>
-									<th>操作</th>
+									<th colspan="2">详细内容</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${thesisList}" var="thesis">
 									<tr>
-										<td width=80% align="left">${thesis.content}</td>
-										<td align="left"><a class="deleteThesisPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteThesisPostModal">删除</a>
+										<td colspan="2">${thesis.content}</td>
+									</tr>
+									<tr>
+										<td width="85%"></td>
+										<td>
+											<a class="deleteThesisPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteThesisPostModal">删除</a>
 											| <a href='javascript:void(0)' class="editThesisAjaxBtn">修改</a>
 											<input type="hidden" value="${thesis.id}">
 										</td>
@@ -402,12 +412,12 @@
 				</c:choose>
 				<button onclick="showThesisAddForm();">添加</button>
 			</div>
-			<div id="thesisNewInfoForm" style="display: none;">
+			<div id="thesisNewInfoForm" style="display: none; padding-left: 20px;">
 				<form action="thesis/new" method="post" id="thesis_info_form" name="thesis">
 				<input type="hidden" name="thesisId">
 					<div class="control-group" id="content">
 						<div class="controls">
-							内容:<textarea  name="content" id="contents" rows="6" cols="8" style="width: 600px; height: 300px;"></textarea>
+							<textarea  name="content" id="contents" rows="6" cols="8" style="width: 670px; height: 300px;"></textarea>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -442,9 +452,10 @@
 		<!--  project  -->
 		<div class="tab-pane <c:if test='${active == "project"}'>active</c:if>" id="project_tab">
 			<div id="project" style="display: block">
-				<div id="projectForm" style="display: none;">
-					<form action="project/new" method="post" id="project_info_form" class="form-horizontal" name="project">
+				<div id="projectForm" style="display: none; padding-left: 20px;">
+					<form action="project/new" method="post" id="project_info_form"  name="project">
 						<input type="hidden" name="projectId">
+						<!--  
 						<div class="control-group" id="projectTitle">
 							<label class="control-label" for="projectTitle">项目名称</label>
 							<div class="controls">
@@ -469,10 +480,10 @@
 								<input type="text" name="projectEndTime" placeholder="结束时间"> <span class="help-inline"><form:errors path="projectEndTime" /></span>
 							</div>
 						</div>
+						-->
 						<div class="control-group" id="projectDesc">
-							<label class="control-label" for="projectDesc">详细介绍</label>
 							<div class="controls">
-								<textarea  name="projectDesc" id="projectDescs"   rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+								<textarea  name="projectDesc" id="projectDescs"   rows="6" cols="8" style="width: 670px; height: 400px;"></textarea>
 								<span class="help-inline"></span>
 							</div>
 						</div>
@@ -491,28 +502,25 @@
 							<table class="table">
 								<thead>
 									<tr>
-										<th width="23%">项目名称</th>
-										<th width="23%">项目来源</th>
-										<th width="22%">开始时间</th>
-										<th width="17%">结束时间</th>
-										<th width="15%">操作</th>
+										<th colspan="2">详细内容</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${projectList}" var="project">
+										<tr style="margin-left: -70px;">
+											<td colspan="2">${project.desc}</td>
+										</tr>
 										<tr>
+											<!-- 
 											<td align="left">${project.title}</td>
 											<td align="left">${project.source}</td>
 											<td align="left">${project.startTime}</td>
-											<td align="left">${project.endTime}</td>
-											<td align="left"><a class="deleteProjectPostBtn" href="#deleteProjectPostModal" role="button" data-toggle="modal" data-target="#deleteProjectPostModal">删除</a> 
-												| <a href='javascript:void(0)' class="editProjectAjaxBtn">修改</a>
-												<input type="hidden" value="${project.id}">
+											<td align="left">${project.endTime}</td> -->
+											<td width="85%"></td>
+											<td >
+												<a class="deleteProjectPostBtn" href="#deleteProjectPostModal" role="button" data-toggle="modal" data-target="#deleteProjectPostModal">删除</a> 
+												| <a href='javascript:void(0)' class="editProjectAjaxBtn">修改</a><input type="hidden" value="${project.id}">
 											</td>
-										</tr>
-										<tr style="margin-left: -70px;">
-											<td>详细描述：</td>
-											<td colspan="4">${project.desc}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -549,9 +557,10 @@
 		<!-- patent -->
 		<div class="tab-pane <c:if test='${active == "patent"}'>active</c:if>" id="patent_tab">
 			<div id="patent" style="display: block">
-				<div id="patentForm" style="display: none;">
-					<form action="patent/new" method="post" id="patent_info_form" name="teacherPatent" class="form-horizontal">
+				<div id="patentForm" style="display: none; padding-left: 20px;">
+					<form action="patent/new" method="post" id="patent_info_form" name="teacherPatent" >
 					<input type="hidden" name="patentId">
+					<!-- 
 						<div class="control-group" id="inventer">
 							<label class="control-label" for="inventer">发明人</label>
 							<div class="controls">
@@ -575,11 +584,10 @@
 							<div class="controls">
 								<input type="text" name="number" placeholder="专利号"> <span class="help-inline"><form:errors path="number" /></span>
 							</div>
-						</div>
+						</div> -->
 						<div class="control-group"  id="patentDesc">
-							<label class="control-label" for="patentDesc">详细介绍</label>
 							<div class="controls">
-								<textarea name="patentDesc" id="patentDescs" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+								<textarea name="patentDesc" id="patentDescs" rows="6" cols="8" style="width: 670px; height: 400px;"></textarea>
 								<span class="help-inline"></span>
 							</div>
 						</div>
@@ -597,28 +605,25 @@
 							<table class="table">
 								<thead>
 									<tr>
-										<th width="23%">发明人</th>
-										<th width="23%">专利名称</th>
-										<th width="22%">专利类型</th>
-										<th width="17%">专利申请号</th>
-										<th width="15%">操作</th>
+										<th >详细内容</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${patentList}" var="patent">
 										<tr>
+											<td colspan="2">${patent.desc}</td>
+										</tr>
+										<tr>
+										<!-- 
 											<td align="center">${patent.inventer}</td>
 											<td align="center">${patent.name}</td>
 											<td align="center">${patent.type}</td>
-											<td align="center">${patent.number}</td>
+											<td align="center">${patent.number}</td> -->
+											<td width="85%"></td>
 											<td><a class="deletePatentPostBtn" href="#deletePatentPostModal" role="button" data-toggle="modal" data-target="#deletePatentPostModal">删除</a>
 												| <a href='javascript:void(0)' class="editPatentAjaxBtn">修改</a>
 												<input type="hidden" value="${patent.id}">
 											</td>
-										</tr>
-										<tr style="margin-left: -70px;">
-											<td>详细描述：</td>
-											<td colspan="4">${patent.desc}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -655,10 +660,10 @@
 		<!-- honor -->
 		<div class="tab-pane <c:if test='${active == "honor"}'>active</c:if>" id="honor_tab">
 			<div id="honor" style="display: block">
-				<div id="honorForm" style="display: none;">
-					<form action="honor/new" method="post" id="honor_info_Form" name="teacherHonor" class="form-horizontal">
+				<div id="honorForm" style="display: none; padding-left: 20px;">
+					<form action="honor/new" method="post" id="honor_info_Form" name="teacherHonor" >
 					<input type="hidden" name="honorId">
-						<div class="control-group" id="honorName">
+						<!-- <div class="control-group" id="honorName">
 							<label class="control-label" for="honorName">奖励荣誉</label>
 							<div class="controls">
 								<input type="text" name="honorName" placeholder="奖励或荣誉"> <span class="help-inline"><form:errors path="honorName" /></span>
@@ -669,11 +674,10 @@
 							<div class="controls">
 								<input type="text" name="reason" placeholder="获奖原因"> <span class="help-inline"><form:errors path="reason" /></span>
 							</div>
-						</div>
+						</div> -->
 						<div class="control-group" id="honorDesc">
-							<label class="control-label" for="honorDesc">详细介绍</label>
 							<div class="controls">
-								<textarea  name="honorDesc" id="honorDescs" rows="6" cols="8" style="width: 500px; height: 300px;"></textarea>
+								<textarea  name="honorDesc" id="honorDescs" rows="6" cols="8" style="width: 670px; height: 400px;"></textarea>
 								<span class="help-inline"></span>
 							</div>
 						</div>
@@ -691,23 +695,21 @@
 							<table class="table ">
 								<thead>
 									<tr>
-										<th align="center" width="30%">奖励荣誉</th>
-										<th align="center" width="55%">获奖原因</th>
-										<th width="15%">操作</th>
+										<th  colspan="2">详细内容</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${honorList}" var="honor">
 										<tr>
-											<td align="center">${honor.name}</td>
-											<td align="center">${honor.reason}</td>
+											<td colspan="2">${ honor.desc}</td>
+										</tr>
+										<tr>
+											<!-- <td align="center">${honor.name}</td>
+											<td align="center">${honor.reason}</td> -->
+											<td width="85%"></td>
 											<td><a class="deleteHonorPostBtn" href="#deleteHonorPostModal" role="button" data-toggle="modal" data-target="#deleteHonorPostModal">删除</a> 
 												| <a href='javascript:void(0)' class="editHonorAjaxBtn">修改</a><input type="hidden" value="${honor.id}">
 											</td>
-										</tr>
-										<tr style="margin-left: -70px;">
-											<td>详细描述：</td>
-											<td colspan="3">${honor.desc}</td>
 										</tr>
 									</c:forEach>
 								</tbody>

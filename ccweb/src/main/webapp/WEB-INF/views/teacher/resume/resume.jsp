@@ -62,25 +62,9 @@
 						<c:choose>
 							<c:when test="${eduCount>0 }">
 								<table class="table">
-									<thead>
-										<tr>
-											<th>学校名称</th>
-											<th>学院名称</th>
-											<th>学历</th>
-											<th>起止时间</th>
-										</tr>
-									</thead>
 									<tbody>
 										<c:forEach items="${eduInfo}" var="eduInfo">
 											<tr>
-												<td align="center">${eduInfo.school}</td>
-												<td align="center">${eduInfo.college}</td>
-												<td align="center">${eduInfo.degree}</td>
-												<td align="center">${eduInfo.startTime} - ${eduInfo.endTime}</td>
-											</tr>
-											<tr>
-											<td></td>
-											<td>详细描述：</td>
 											<td>
 											${eduInfo.educationDesc}
 											</td>
@@ -103,25 +87,9 @@
 						<c:choose>
 							<c:when test="${(workCount >0)}">
 								<table class="table">
-									<thead>
-										<tr>
-											<th>公司名称</th>
-											<th>部门名称</th>
-											<th>职位</th>
-											<th>起止时间</th>
-										</tr>
-									</thead>
 									<tbody>
 										<c:forEach items="${workInfo}" var="workInfo">
 											<tr>
-												<td align="center">${workInfo.company}</td>
-												<td align="center">${workInfo.department}</td>
-												<td align="center">${workInfo.position}</td>
-												<td align="center">${workInfo.startTime} - ${workInfo.endTime}</td>
-											</tr>
-											<tr>
-											<td></td>
-											<td>详细描述：</td>
 											<td>
 											${workInfo.workDesc}
 											</td>
@@ -146,9 +114,6 @@
 		<table class="table">
 			<c:choose>
 				<c:when test="${thesisCount !=0}">
-					<thead>
-						<tr><th >论文内容</th></tr>
-					</thead>
 					<tbody>
 						<c:forEach var="thesis" items="${thesisList}">
 							<tr>
@@ -170,27 +135,12 @@
 		<table class="table">
 			<c:choose>
 				<c:when test="${projectCount !=0}">
-					<thead>
-						<tr><th >项目名称</th><th >项目来源</th><th width=15%>开始时间</th><th width=15%>结束时间</th></tr>
-					</thead>
 					<tbody>
 						<c:forEach var="project" items="${projectList}">
 							<tr>
-								
-								<td  ><!-- <a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a> --> 
-									${project.title}</td>
-								<td  >${project.source}</td>
-								<td  >${project.startTime}</td>
-								<td  >${project.endTime}</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td>详细描述：</td>
 								<td>
 								${project.desc}
 								</td>
-								<td></td>
-								<td></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -205,25 +155,12 @@
 		<table class="table">
 			<c:choose>
 				<c:when test="${patentCount !=0}">
-					<thead>
-							<tr><th>发明人</th><th>专利名称</th><th>专利类型</th><th>专利申请号</th></tr>
-					</thead>
 					<tbody>
 						<c:forEach var="patent" items="${patentList}">
 							<tr>
-								<td >${patent.inventer}</td>
-								<td >${patent.name}</td>
-								<td >${patent.type}</td>
-								<td >${patent.number}</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td>详细描述：</td>
 								<td>
 								${patent.desc}
 								</td>
-								<td></td>
-								<td></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -239,25 +176,12 @@
 		<table class="table">
 			<c:choose>
 				<c:when test="${honorCount !=0}">
-					<thead>
-						<tr><th >荣誉名称</th><th>获奖原因</th></tr>
-					</thead>
 					<tbody>
 						<c:forEach var="honor" items="${honorList}">
 							<tr>
-								<td><!-- <a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a> --> 
-									${honor.name }
-								</td>
-								<td>
-									${honor.reason}
-								</td>
-							</tr>
-							<tr>
-								<td>详细描述：</td>
 								<td>
 								${honor.desc}
 								</td>
-								<td></td>
 							</tr>
 						</c:forEach>
 					</tbody>
