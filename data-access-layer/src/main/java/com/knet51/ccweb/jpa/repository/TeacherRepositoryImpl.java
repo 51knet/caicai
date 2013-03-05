@@ -13,7 +13,7 @@ public class TeacherRepositoryImpl implements TeacherRepositoryCustom{
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Teacher> findByIsEnterprise() {
-		List<Teacher> list =  em.createQuery("select t from Teacher t where t.isEnterprise is null").getResultList();
+		List<Teacher> list =  em.createQuery("select t from Teacher t where t.isEnterprise is null  OR t.isEnterprise=''").getResultList();
 		return list;
 	}
 }
