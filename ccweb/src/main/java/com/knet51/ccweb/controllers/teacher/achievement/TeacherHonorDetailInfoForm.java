@@ -6,11 +6,11 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TeacherHonorDetailInfoForm {
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String honorName;
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String reason;
 	@NotEmpty
 	private String honorDesc;

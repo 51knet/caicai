@@ -13,7 +13,6 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 public class TeacherThesis extends AbstractEntity {
 	@Expose
 	@Lob
-	@Column(length=10000)
 	private String content;
 	private String date;
 	

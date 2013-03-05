@@ -6,10 +6,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class TeacherAnnoDetailInfoForm {
 	@NotEmpty
-	@Size(min=3,max=50)
+	@Size(min=1,max=50)
 	private String title;
 	@NotEmpty
-	@Size(min=10,max=10000)
 	private String content;
 	public String getTitle() {
 		return title;

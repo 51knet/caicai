@@ -12,7 +12,6 @@ public class Announcement extends AbstractEntity {
 	private String title;
 	
 	@Lob
-	@Column(length=10000)
 	private String content;
 	private Integer code;
 	private String date;

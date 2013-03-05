@@ -21,7 +21,6 @@ public class TeacherPatent  extends AbstractEntity {
 	private String number;
 	@Expose
 	@Lob
-	@Column(length=10000)
 	private String detailDesc;
 	@ManyToOne
 	private Teacher teacher;

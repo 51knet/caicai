@@ -17,7 +17,6 @@ public class TeacherHonor extends AbstractEntity {
 	private String reason;
 	@Expose
 	@Lob
-	@Column(length=10000)
 	private String detailDesc;
 	@ManyToOne
 	private Teacher teacher;

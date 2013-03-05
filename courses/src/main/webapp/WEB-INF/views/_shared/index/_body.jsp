@@ -19,7 +19,7 @@
 <jsp:include page="/WEB-INF/views/_shared/index/_user_course.jsp"></jsp:include>
   	
 <div class="container marketing">
-  <h2>教学资源（${courseCount }）</h2>
+  <h2>学习资源（${courseCount }）</h2>
   <!-- Three columns of text below the carousel -->
   <div class="row" >
     <!-- <div class="span4">

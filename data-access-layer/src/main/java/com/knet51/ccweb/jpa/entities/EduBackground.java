@@ -19,7 +19,6 @@ public class EduBackground extends AbstractEntity {
 	
 	private String endTime;
 	@Lob
-	@Column(length=10000)
 	private String educationDesc;
 	
 	private Long teacherid;

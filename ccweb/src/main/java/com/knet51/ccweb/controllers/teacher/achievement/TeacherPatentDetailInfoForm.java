@@ -6,20 +6,19 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TeacherPatentDetailInfoForm {
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String inventer;
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String patentName;
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String patentType;
-	@NotEmpty
-	@Size(max=25)
+	//@NotEmpty
+	//@Size(max=25)
 	private String number;
 	@NotEmpty
-	@Max(value = 10000, message="overflow 10000!!")
 	private String patentDesc;
 	public String getInventer() {
 		return inventer;

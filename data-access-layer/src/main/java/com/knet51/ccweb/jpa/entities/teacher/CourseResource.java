@@ -17,7 +17,6 @@ public class CourseResource extends AbstractEntity {
 	private String saveName;
 	private String savePath;
 	@Lob
-	@Column(length=10000)
 	private String resourceDesc;
 	private String lessonNum; //lesson 0ne,lesson two and so on....
 	private String date;

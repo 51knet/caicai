@@ -27,11 +27,11 @@ $(document).ready(function() {
 			  dataType:"json",
 			  success:function(msg){
 					document.edu.eduId.value = msg.id;
-				  	document.edu.schoolName.value=msg.school;
+				  	/*document.edu.schoolName.value=msg.school;
 				  	document.edu.collegeName.value=msg.college;
 				  	document.edu.degree.value=msg.degree;
 				  	document.edu.startTime.value=msg.startTime;
-				  	document.edu.endTime.value=msg.endTime;
+				  	document.edu.endTime.value=msg.endTime;*/
 				  	eduDescEditor.html(msg.educationDesc);
 			  }
 		});
@@ -71,11 +71,12 @@ $(document).ready(function() {
 			  dataType:"json",
 			  success:function(msg){
 					document.work.workId.value = msg.id;
-				  	document.work.company.value=msg.company;
+				  /*	document.work.company.value=msg.company;
 				  	document.work.department.value=msg.department;
 				  	document.work.position.value=msg.position;
 				  	document.work.startTimeName.value=msg.startTime;
-				  	document.work.endTimeName.value=msg.endTime;
+				  	document.work.endTimeName.value=msg.endTime;*/
+					//alert(msg.workDesc);
 				  	workDescEditor.html(msg.workDesc);
 			  }
 		});
@@ -155,10 +156,10 @@ $(document).ready(function() {
 			  dataType:"json",
 			  success:function(msg){
 					document.project.projectId.value = msg.id;
-					document.project.projectTitle.value=msg.title;
+					/*document.project.projectTitle.value=msg.title;
 				  	document.project.projectSource.value=msg.source;
 				  	document.project.projectStartTime.value=msg.startTime;
-				  	document.project.projectEndTime.value=msg.endTime;
+				  	document.project.projectEndTime.value=msg.endTime;*/
 				  	projectEditor.html(msg.detailDesc);
 			  }
 		});
@@ -195,10 +196,10 @@ $(document).ready(function() {
 			  dataType:"json",
 			  success:function(msg){
 					document.teacherPatent.patentId.value = msg.id;
-					document.teacherPatent.inventer.value=msg.inventer;
+					/*document.teacherPatent.inventer.value=msg.inventer;
 				  	document.teacherPatent.patentName.value=msg.name;
 				  	document.teacherPatent.patentType.value=msg.type;
-				  	document.teacherPatent.number.value=msg.number;
+				  	document.teacherPatent.number.value=msg.number;*/
 				  	patentEditor.html(msg.detailDesc);
 			  }
 		});
@@ -235,8 +236,8 @@ $(document).ready(function() {
 			  dataType:"json",
 			  success:function(msg){
 					document.teacherHonor.honorId.value = msg.id;
-					document.teacherHonor.honorName.value=msg.name;
-				  	document.teacherHonor.reason.value=msg.reason;
+					/*document.teacherHonor.honorName.value=msg.name;
+				  	document.teacherHonor.reason.value=msg.reason;*/
 				  	honorEditor.html(msg.detailDesc);
 			  }
 		});

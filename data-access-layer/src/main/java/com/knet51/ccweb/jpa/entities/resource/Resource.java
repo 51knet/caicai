@@ -17,7 +17,6 @@ public class Resource  extends AbstractEntity{
 	private String saveName;
 	private String savePath;
 	@Lob
-	@Column(length=10000)
 	private String description;
 	private String date;
 	private Integer status;

@@ -21,7 +21,6 @@ public class BlogComment extends AbstractEntity {
 	@JoinColumn(name="teacher_id")
 	private Teacher author;
 	@Lob
-	@Column(length=10000)
 	private String content;
 	private Date dateCreated;
 	private Date dateUpdated;

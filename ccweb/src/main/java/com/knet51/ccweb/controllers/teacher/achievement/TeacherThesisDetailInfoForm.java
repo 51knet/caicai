@@ -5,7 +5,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class TeacherThesisDetailInfoForm {
 	@NotEmpty
-	@Max(value = 10000, message="overflow 10000!!")
 	private String content;
 
 	public String getContent() {
