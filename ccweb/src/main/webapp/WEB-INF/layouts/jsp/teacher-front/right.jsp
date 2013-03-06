@@ -19,7 +19,6 @@
 		}, "text");
 	}
 	
-	
 	function requestCourseDetail(cid,tid){
 		$("#course_id").val(cid);
 		$("#teacher_id").val(tid);
@@ -38,14 +37,25 @@
 	-moz-border-radius: 5px;
 }
 .row-fluid.custom .row {
-	margin: 0px 5px;
+	margin: 5px 25px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+
+.row-fluid.custom .row1 {
+	margin: 5px 25px;
+	color: cccccc;
+}
+
+.row-fluid.custom .row1 .bb{
+	border-bottom: dashed #cccccc 1px;
 }
 </style>
 <!-- ${teacherInfo.id} -->
 <div class="row-fluid custom round">
-	<div class="row"><h5>公告 </h5></div>
+	<div class="row"><h4>公告 </h4></div>
 	
-	<div class="row">
+	<div class="row1">
 		<!--<c:choose>
 			<c:when test="${annoContent != null && annoContent != ''}">
 				<a href="<c:url value="/teacher/${teacherInfo.id}/announcement/view/${annoId}"></c:url>">${annoContent}</a>
@@ -54,13 +64,13 @@
 		</c:choose>-->
 		<c:choose>
 			<c:when test="${annoCount>0}">
-				<table class="table">
+				<table cellpadding="4" width="100%" style="margin-top: 10px;">
 					<tbody>
 						<c:forEach var="anno" items="${annolist}" begin="0" end="2">
 							<tr>
-								<td  width="80%"><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a>
+								<td  width="80%" class="bb"><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a>
 								</td>
-								<td>
+								<td class="bb">
 									${anno.date}
 								</td>
 							</tr>
@@ -69,35 +79,31 @@
 				</table>
 			</c:when>
 			<c:otherwise>
-				<tr><td colspan="4">无内容</td></tr>
+			<br>
+				无内容<hr>
 			</c:otherwise>
 		</c:choose>
-				<hr>
 		<div style="text-align: right;">
-		<c:if test="${annoCount>3}"><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
-	</div>
-	<hr>
-	<div style="text-align: right;">
-	</div>
+			<c:if test="${annoCount>3}"><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
+		</div>
 </div>
 
 <!-- teacher resource -->
 <div class="row-fluid custom round">
 		<div class="row">
-			<h5>教学资源</h5>
-		
+			<h4>教学资源</h4>
 		</div>
 		
-		<div class="row ">
+		<div class="row1">
 			<c:choose>
 				<c:when test="${resourceCount !=0}">
-					<table class="table">
+					<table  cellpadding="4" width="100%" style="margin-top: 10px;">
 						<tbody>
 							<c:forEach var="resource" items="${resourceList}">
 								<tr>
-									<td  width="80%"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${resource.id}"></c:url>"> ${resource.fileName } </a>
+									<td  width="80%"  class="bb"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${resource.id}"></c:url>"> ${resource.fileName } </a>
 									</td>
-									<td>
+									<td class="bb">
 										${resource.date}
 									</td>
 								</tr>
@@ -106,11 +112,10 @@
 					</table>
 				</c:when>
 				<c:otherwise>
-					<tr><td colspan="4">无内容</td></tr>
+				<br>
+				无内容<hr>
 				</c:otherwise>
 			</c:choose>
-		
-		<hr>
 		<div style="text-align: right;">
 		<c:if test="${resourceCount>3}"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 		</div>
@@ -119,17 +124,17 @@
 <!-- teacher course -->
 <div class="row-fluid custom round">
 		<div class="row">
-			<h5>课程资料</h5>
+			<h4>课程资料</h4>
 		</div>
 	
-		<div class="row ">
-		<table class="table">
+		<div class="row1">
 			<c:choose>
 				<c:when test="${courseCount !=0}">
+					<table cellpadding="4" width="100%" style="margin-top: 10px;">
 					<tbody>
 						<c:forEach var="course" items="${courseList}">
 							<tr>
-								<td width="80%"><!--   -->
+								<td width="80%" class="bb"><!--   -->
 									<c:choose>
 										<c:when test='${course.pwd == "" || course.pwd == null}'>
 											<a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> ${course.courseName }</a>
@@ -155,20 +160,19 @@
 										</c:otherwise>
 									</c:choose>
 								</td>
-								<td>
+								<td class="bb">
 									${course.courseDate}
 								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
+				</table>
 				</c:when>
 				<c:otherwise>
-					<tr><td colspan="3">无内容</td></tr>
+				<br>
+					无内容<hr>
 				</c:otherwise>
 			</c:choose>
-		</table>
-		
-		<hr>
 		<div style="text-align: right;">
 		<c:if test="${courseCount>5}"><a href="<c:url value="/teacher/${teacherInfo.id}/course/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 		</div>
@@ -178,133 +182,18 @@
 			<input type="hidden"  name="coursepwd" id="course_pwd">
 		</form>
 </div>
-
-
-<!-- teacherAchievement  
-<div class="row-fluid custom round">
-	<div class="row">
-		<h5>科研成果</h5>
-		<hr>
-	</div>
-	
-	<div class="row">
-		&nbsp;&nbsp;<b>论文</b>
-	<table class="table">
-		<c:choose>
-			<c:when test="${thesisCount !=0}">
-				<thead>
-					<tr><th >论文内容</th></tr>
-				</thead>
-				<tbody>
-					<c:forEach var="thesis" items="${thesisList}">
-						<tr>
-							<td>
-								${thesis.content }
-							</td>
-						</tr>
-					</c:forEach>
-				
-				</tbody>
-			</c:when>
-			<c:otherwise>
-				<tr><td >无内容</td></tr>
-			</c:otherwise>
-		</c:choose>
-		<c:if test="${thesisCount > 2}"><tr><td align="right"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/achievement/thesis/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
-	</table><br>
-	
-			&nbsp;&nbsp;<b>项目</b>
-	<table class="table">
-		<c:choose>
-			<c:when test="${projectCount !=0}">
-				<thead>
-					<tr><th >项目名称</th><th >项目来源</th><th width=15%>开始时间</th><th width=15%>结束时间</th></tr>
-				</thead>
-				<tbody>
-					<c:forEach var="project" items="${projectList}">
-						<tr>
-							
-							<td  >
-								${project.title}</td>
-							<td  >${project.source}</td>
-							<td  >${project.startTime}</td>
-							<td  >${project.endTime}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</c:when>
-			<c:otherwise>
-				<tr><td colspan="3">无内容</td></tr>
-			</c:otherwise>
-		</c:choose>
-		<c:if test="${projectCount > 2}"><tr><td align="right" colspan="3"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/achievement/project/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
-	</table><br>
-				&nbsp;&nbsp;<b>专利</b>
-	<table class="table">
-		<c:choose>
-			<c:when test="${patentCount !=0}">
-				<thead>
-						<tr><th>发明人</th><th>专利名称</th><th>专利类型</th><th>专利申请号</th></tr>
-				</thead>
-				<tbody>
-					<c:forEach var="patent" items="${patentList}">
-						<tr>
-							<td >${patent.inventer}</td>
-							<td >${patent.name}</td>
-							<td >${patent.type}</td>
-							<td >${patent.number}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</c:when>
-			<c:otherwise>
-				<tr><td colspan="4">无内容</td></tr>
-			</c:otherwise>
-		</c:choose>
-			<c:if test="${patentCount > 2}"><tr><td align="right" colspan="4"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/achievement/patent/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
-	</table><br>
-		&nbsp;&nbsp;<b>荣誉</b>
-	<table class="table">
-		<c:choose>
-			<c:when test="${honorCount !=0}">
-				<thead>
-					<tr><th >荣誉名称</th><th>获奖原因</th></tr>
-				</thead>
-				<tbody>
-					<c:forEach var="honor" items="${honorList}">
-						<tr>
-							<td>
-								${honor.name }
-							</td>
-							<td>
-								${honor.reason}
-							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</c:when>
-			<c:otherwise>
-				<tr><td colspan="2">无内容</td></tr>
-			</c:otherwise>
-		</c:choose>
-				<c:if test="${honorCount > 2}"><tr><td align="right" colspan="2"><div style="text-align: right;"><a href="<c:url value="/teacher/${teacherInfo.id}/achievement/honor/list"></c:url>"> 查看所有>></a></div></td></tr></c:if>
-	</table>
-	</div>
-</div>
--->
 	
 <div class="row-fluid custom round">
 	<div class="row">
-		<h5>博文</h5>
+		<h4>博文</h4>
 	</div>
-	
-	<div class="row ">
-	<table class="table">
+	<div class="row1">
+	<table cellpadding="4" width="100%" style="margin-top: 10px;">
 		<tbody>
 			<c:forEach var="blogPost" items="${blogPosts}">
 			<tr>
-				<td width="80%"><a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
-				<td>
+				<td width="80%" class="bb"><a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
+				<td class="bb">
 				<fmt:formatDate value="${blogPost.dateCreated}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>
 			</tr>

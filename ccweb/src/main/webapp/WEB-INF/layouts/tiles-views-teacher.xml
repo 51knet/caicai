@@ -26,6 +26,7 @@
 	</definition>
 
 	<definition name="teacher.basic" extends="frontPage-layout">
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="title" value="教师主页" />
 	</definition>
 	
@@ -184,71 +185,85 @@
 	
 	<definition name="teacher.resource.list" extends="frontPage-layout">
 		<put-attribute name="title" value="资源" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/resource/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.resource.detail" extends="frontPage-layout">
 		<put-attribute name="title" value="资源" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/resource/view/view.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.announcement.list" extends="frontPage-layout">
 		<put-attribute name="title" value="公告" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/announcement/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.announcement.detail" extends="frontPage-layout">
 		<put-attribute name="title" value="公告" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/announcement/view/view.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.fans.list" extends="frontPage-layout">
 		<put-attribute name="title" value="好友" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/fans/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.host.list" extends="frontPage-layout">
 		<put-attribute name="title" value="关注列表" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/host/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.resume" extends="frontPage-layout">
 		<put-attribute name="title" value="简历" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/resume/resume.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.achievement.thesis.list" extends="frontPage-layout">
 		<put-attribute name="title" value="教师论文" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/thesis/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.achievement.project.list" extends="frontPage-layout">
 		<put-attribute name="title" value="教师项目" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/project/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.achievement.patent.list" extends="frontPage-layout">
 		<put-attribute name="title" value="教师专利" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/patent/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.achievement.honor.list" extends="frontPage-layout">
 		<put-attribute name="title" value="荣誉奖项" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/honor/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.achievement.list" extends="frontPage-layout">
 		<put-attribute name="title" value="科研成果" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.course.list" extends="frontPage-layout">
 		<put-attribute name="title" value="教师课程" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/course/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="teacher.course.view" extends="frontPage-layout">
 		<put-attribute name="title" value="教师课程" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/course/view/view.jsp"></put-attribute>
 	</definition>
 	

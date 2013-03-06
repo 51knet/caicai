@@ -65,7 +65,36 @@ textarea {
 	text-overflow: ellipsis;
 }
 
-
+/*banner_front*/
+.banner_front {
+	background-color: #ECECF0;
+	height: 224px;
+}
+.leftInfo{
+	background-color: #ccdfa8; 
+	margin-bottom: 20px; 
+	height: 200px; 
+	color: #353535;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+.leftInfo .top{
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	height: 40px; 
+	text-align: center; 
+	padding-top:1px; 
+	background-color: #b1cf75;
+}
+.leftInfo .content{
+	text-align: left; 
+	margin-left: 40px; 
+	margin-right: 40px; 
+	margin-top: 10px; 
+	line-height: 28px;
+}
 
 /*START style-for-admin-pages*/
 body.admin {

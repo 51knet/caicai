@@ -143,12 +143,12 @@ public class TeacherController {
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			
 			User user = userService.findOne(userInfo.getId());
-			user.setAddress(contactInfoForm.getAddress());
-			user.setCell_phone(contactInfoForm.getCellphone());
-			user.setFix_phone(contactInfoForm.getPhone());
-			user.setFax(contactInfoForm.getFax());
-			user.setQq(contactInfoForm.getQq());
-			user.setMsn(contactInfoForm.getMsn());
+			user.setAddress(contactInfoForm.getAddress().trim());
+			user.setCell_phone(contactInfoForm.getCellphone().trim());
+			user.setFix_phone(contactInfoForm.getPhone().trim());
+			user.setFax(contactInfoForm.getFax().trim());
+			user.setQq(contactInfoForm.getQq().trim());
+			user.setMsn(contactInfoForm.getMsn().trim());
 			user = userService.updateUser(user);
 			Teacher teacher = teacherService.findOne(userInfo.getId());
 			userInfo.setUser(user);

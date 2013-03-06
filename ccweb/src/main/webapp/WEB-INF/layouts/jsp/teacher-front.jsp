@@ -18,7 +18,10 @@
 	}
 	
 	.container-fluid.wrapper {
-		background: url(/ccweb/resources/img/teacher_front_bg.jpg) repeat;
+		background-image: url(/ccweb/resources/img/front_bg.png);
+		background-position: center top;
+		background-repeat: repeat-y;
+		background-color: #929294;
 	}
 	.container-fluid.custom {
 		min-width: 1024px;

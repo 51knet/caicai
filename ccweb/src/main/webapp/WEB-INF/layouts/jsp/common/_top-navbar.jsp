@@ -3,7 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="navbar custom navbar-inverse navbar-fixed-top">
-	<div class="container-fluid" style="text-align: center">
+	<div class="container-fluid" style="text-align: center;height: 54px;">
 		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 		</a> <a id="logo" class="brand" href='<c:url value="/admin"></c:url>'>Knet</a>
 		<c:if test="${sessionUserInfo != null}">
@@ -25,4 +25,5 @@
 	</div>
 	<!-- /container-fluid -->
 </div>
+
 <!-- /navbar navbar-inverse navbar-fixed-top -->
