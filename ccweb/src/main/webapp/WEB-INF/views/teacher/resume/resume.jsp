@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <style>
 .row-fluid.custom {
@@ -26,10 +27,26 @@
 			<c:if test="${teacherInfo.teacher.isEnterprise == null}">
 			<hr />
 			<h5>基本信息</h5>
-				<address>
-					 <abbr>性别:</abbr> ${teacherInfo.gender} <br> 
-				 	<abbr>院校:</abbr> ${teacherInfo.college} <br> 
-					 <abbr>院系:</abbr> ${teacherInfo.school}
+			<address>
+			<c:choose>
+				<c:when test="${teacherInfo.gender == null||teacherInfo.gender == '' }">
+				</c:when>
+				<c:otherwise>
+				<abbr>性别:</abbr> ${teacherInfo.gender} <br>
+				</c:otherwise>
+				</c:choose><c:choose>
+				<c:when test="${teacherInfo.college == null||teacherInfo.college == '' }">
+				</c:when>
+				<c:otherwise>
+				<abbr>院校:</abbr> ${teacherInfo.college} <br>
+				</c:otherwise>
+				</c:choose><c:choose>
+				<c:when test="${teacherInfo.school == null||teacherInfo.school == '' }">
+				</c:when>
+				<c:otherwise>
+				<abbr>院系:</abbr> ${teacherInfo.school}
+				</c:otherwise>
+				</c:choose>
 				</address>
 			</c:if>
 		</div>
@@ -37,19 +54,37 @@
 		<div class="jumbotron">
 			<h5>联系方式</h5>
 			<address>
-				<c:if test="${teacherInfo.address != null }">
+				<c:choose>
+				<c:when test="${teacherInfo.address == null||teacherInfo.address == '' }">
+				</c:when>
+				<c:otherwise>
 				<abbr title="地址">联系地址:</abbr> ${teacherInfo.address} 
 				<br>
-				</c:if>
-				<c:if test="${teacherInfo.fax != null }">
+				</c:otherwise>
+				</c:choose>
+				<c:choose>
+				<c:when test="${teacherInfo.fax == null||teacherInfo.fax == '' }">
+				</c:when>
+				<c:otherwise>
 				<abbr title="传真">传真:</abbr> ${teacherInfo.fax}
 				<br>
-				</c:if>
-				<c:if test="${teacherInfo.phone != null }">
-				<abbr title="电话">电话:</abbr> ${teacherInfo.phone}
+				</c:otherwise>
+				</c:choose>
+				<c:choose>
+				<c:when test="${teacherInfo.phone == null||teacherInfo.phone == '' }">
+				</c:when>
+				<c:otherwise>
+				<abbr title="电话">电话:</abbr> ${teacherInfo.phone} 
 				<br>
-				</c:if>
+				</c:otherwise>
+				</c:choose>
+				<c:choose>
+				<c:when test="${teacherInfo.email == null||teacherInfo.email == '' }">
+				</c:when>
+				<c:otherwise>
 				<abbr title="电邮">电子邮件:</abbr> <a href="mailto:#">${teacherInfo.email}</a>
+				</c:otherwise>
+				</c:choose>
 			</address>
 		</div>
 		<hr />
