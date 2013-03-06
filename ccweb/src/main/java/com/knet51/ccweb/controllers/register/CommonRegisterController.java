@@ -45,9 +45,11 @@ public class CommonRegisterController {
 		} else {
 			String email = commonRegisterForm.getEmail();
 			String psw = commonRegisterForm.getPsw();
+			String type = commonRegisterForm.getUserType();
 			User findUser = userService.findByEmailAddress(email);
 			if (findUser == null) {
 				User user = new User(email, psw);
+				user.setRole(type);
 				boolean mailSuccess = false;
 				String randomUrl = MailSender.getInstance()
 						.produceRandomString();

@@ -6,6 +6,8 @@
 body {
 	max-width: 1600px;
 	width: 100%;
+	font-family: 'Microsoft YaHei';
+	overflow-y:hidden;
 }
 
 .container-fluid {
@@ -29,38 +31,27 @@ body {
 	background: url(<c:url value='/resources/img/default/index/home_ad.png' ></c:url>) center -120px no-repeat;
 }
 
-.container-fluid .row-fluid .row.login {
-	margin: 0px auto;
-	height: 750px;
-	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center -120px no-repeat;
-}
-
 .span8.left {
-	width: 988px;
+	width: 62%;
 }
 
 .span4.login-panel {
-	width: 441px;
-	height: 602px;
-	margin-left: 0px;
-	margin-top: 70px;
-	text-align: center;
-	background: url(<c:url value='/resources/img/default/index/login_logo.png' ></c:url>) center no-repeat;
-}
-
-.span4.login-context {
-	width: 350px;
 	height: 100%;
-	background: url(<c:url value='/resources/img/default/index/hr_bg.png' ></c:url>) center no-repeat;
+	margin:0 auto;
+	text-align: center;
+	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center no-repeat;
 }
 
 .span4.register-panel {
-	width: 441px;
-	height: 602px;
-	margin-left: 0px;
-	margin-top: 70px;
+	height: 100%;
+	margin:0 auto;
 	text-align: center;
-	background: url(<c:url value='/resources/img/default/index/login_logo.png' ></c:url>) center no-repeat;
+	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center no-repeat;
+}
+
+.login-context {
+	width: 67.391%;
+	margin:0 auto;
 }
 
 .span4.register-context {
@@ -69,18 +60,34 @@ body {
 	background: url(<c:url value='/resources/img/default/index/hr_bg.png' ></c:url>) center no-repeat;
 }
 
-.form-horizontal {
-	margin: 150px 0 20px;
+.login-logo {
+	width: 100%;
+	height: 103px;
+	margin:70px 0 auto;
+	text-align: center;
+	background: url(<c:url value='/resources/img/default/index/login_logo.png' ></c:url>) center no-repeat;
 }
 
-.form-horizontal .control-label {
-	float: left;
-	width: 75px;
-	padding-top: 5px;
-	text-align: right;
+.form-horizontal {
+	margin: 40px 0 0;
 }
+
 .form-horizontal .controls {
 	margin-left: 0px;
+}
+.hr-bg {
+	height: 40px;
+	background: url(<c:url value='/resources/img/default/index/hr.png' ></c:url>) center no-repeat;
+}
+.register-hr-bg {
+	height: 20px;
+	background: url(<c:url value='/resources/img/default/index/hr.png' ></c:url>) center no-repeat;
+}
+.inputError{
+	height: 20px;
+}
+.radio.inline{
+	width: 20%;
 }
 </style>
 
@@ -203,62 +210,74 @@ body {
 
 <div class="row bg">
 	<div class="row ad">
-		<div class="row login">
-			<div class="span8 left"></div>
-			<div class="span4 login-panel">
-				<div class="span4 login-context" style="margin-left: 45px;">
+		<div class="span8 left"></div>
+		<div class="span4 login-panel">
+			<div class="login-context">
+				<div class="login-logo"></div>
 				<form:form class="form-horizontal" action="signin" id="sigin_info_form" modelAttribute="loginForm" method="post">
-					<h1 class="form-signin-heading" style="font-family: 'Microsoft YaHei';font-size: 25pt;">用户登录</h1>
-					<div class="control-group">
+					<h1 class="form-signin-heading" style="font-family: 'Microsoft YaHei'; font-size: 25pt;">用户登录</h1>
+					<div class="hr-bg"></div>
+					<div style="height: 10px"></div>
+					<div class="controls">
 						<h4 style="text-align: left;">邮箱地址</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址" style="width:335px;"> <span class="help-block" id="em"><form:errors path="email"></form:errors></span>
-							<div id="emailError"></div>
+							<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址" style="width: 327px;"> <span class="help-block" id="em"><form:errors path="email"></form:errors></span>
+							<div id="emailError" class="inputError"></div>
 						</div>
 					</div>
-					<div class="control-group">
+					<div class="controls">
 						<h4 style="text-align: left;">登录密码</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="password" id="password" name="password" placeholder="请输入您的密码" style="width:335px;"> <span class="help-block" id="pass"><form:errors path="password"></form:errors></span>
-							<div id="passwordErr"></div>
+							<input type="password" id="password" name="password" placeholder="请输入您的密码" style="width: 327px;"> <span class="help-block" id="pass"><form:errors path="password"></form:errors></span>
+							<div id="passwordErr" class="inputError"></div>
 						</div>
 					</div>
 					<label style="clear: right;"></label>
-					<button class="btn btn-large btn-block btn-primary" type="submit" style="margin-top: 30px">登录</button>
+					<button class="btn btn-large btn-block btn-primary" type="submit" style="font-family: 'Microsoft YaHei';">登录</button>
 				</form:form>
-				<a id="registerbtn" class="btn btn-large btn-block btn-success" style="margin-top: 20%;">快速注册</a>
-				</div>
+				<div class="hr-bg"></div>
+				<a id="registerbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">快速注册</a>
 			</div>
-			<div class="span4 register-panel" style="display:none;">
-				<div class="span4 register-context" style="margin-left: 45px;">
-				<form:form class="form-horizontal" action="register/common" modelAttribute="commonRegisterForm" method="post">
-					<h1 class="form-signin-heading" style="font-family: 'Microsoft YaHei';font-size: 25pt;">快速注册</h1>
+		</div>
+		<div class="span4 register-panel" style="display: none;">
+			<div class="login-context">
+				<div style="margin-top: 100px"></div>
+				<form:form class="form-horizontal" style="margin-top: 10px;" action="register/common" modelAttribute="commonRegisterForm" method="post">
+					<h1 class="form-signin-heading" style="font-family: 'Microsoft YaHei'; font-size: 25pt;">快速注册</h1>
+					<div class="hr-bg" style="height: 30px;"></div>
 					<div class="control">
-						<h4 style="text-align: left;margin-top: 20px;">邮箱地址</h4>
+						<h4 style="text-align: left;">邮箱地址</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="text" id="emails" name="email" placeholder="请输入您的邮箱地址" style="width:335px;"> <span class="help-block"><form:errors path="email"></form:errors></span>
-							<div id="checkEmails"></div>
+							<input type="text" id="emails" name="email" placeholder="请输入您的邮箱地址" style="width: 327px;"> <span class="help-block"><form:errors path="email"></form:errors></span>
+							<div id="checkEmails" class="inputError"></div>
 						</div>
 					</div>
 					<div class="control">
 						<h4 style="text-align: left;">密码</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="password" id="psw" name="psw" placeholder="请设置您的密码" style="width:335px;"> <span class="help-block"><form:errors path="psw"></form:errors></span>
-							<div id="emptyPwd"></div>
+							<input type="password" id="psw" name="psw" placeholder="请设置您的密码" style="width: 327px;"> <span class="help-block"><form:errors path="psw"></form:errors></span>
+							<div id="emptyPwd" class="inputError"></div>
 						</div>
 					</div>
 					<div class="control">
 						<h4 style="text-align: left;">密码确认</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="password" id="confirmpsw" name="confirmpsw" placeholder="请再次输入您的密码" style="width:335px;"> <span class="help-block"><form:errors path="confirmpsw"></form:errors></span>
-							<div id="passwordError"></div>
+							<input type="password" id="confirmpsw" name="confirmpsw" placeholder="请再次输入您的密码" style="width: 327px;"> <span class="help-block"><form:errors path="confirmpsw"></form:errors></span>
+							<div id="passwordError" class="inputError"></div>
+						</div>
+					</div>
+					<div class="control">
+						<h4 style="text-align: left;">角色选择</h4>
+						<div class="controls" style="text-align: left;">
+							<label class="radio inline" style="font-family: 'Microsoft YaHei';"> <input type="radio" name="userType" id="teacher" value="teacher" checked>教师用户</label>
+							<label class="radio inline" style="font-family: 'Microsoft YaHei';"> <input type="radio" name="userType" id="enterprise" value="enterprise">企业用户</label>
 						</div>
 					</div>
 					<label style="clear: right;"></label>
-					<button type="submit" class="btn btn-large btn-block btn-primary" style="margin-top: 20px">确认注册</button>
+					<button type="submit" class="btn btn-large btn-block btn-primary"  style="margin-top: 20px;font-family: 'Microsoft YaHei';">确认注册</button>
 				</form:form>
-				<a id="loginbtn" class="btn btn-large btn-block btn-success" style="margin-top: 30px;">用户登录</a>
-				</div>
+				<div class="register-hr-bg"></div>
+				<a id="loginbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">用户登录</a>
 			</div>
 		</div>
 	</div>

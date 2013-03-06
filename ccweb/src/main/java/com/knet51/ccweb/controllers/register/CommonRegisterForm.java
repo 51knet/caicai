@@ -22,7 +22,9 @@ public class CommonRegisterForm {
 	@NotEmpty
 	@Size(min=3, max=25)
 	private String confirmpsw;
-
+	
+	private String userType;
+	
 	public String getEmail() {
 		return email;
 	}
@@ -46,4 +48,13 @@ public class CommonRegisterForm {
 	public void setConfirmpsw(String confirmpsw) {
 		this.confirmpsw = confirmpsw;
 	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+	
 }
