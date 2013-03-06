@@ -9,7 +9,7 @@ body {
 }
 /*top level navbar*/
 .navbar.custom {
-	height: 54px;
+	height: 49px;
 	z-index: 2;
 	background: url(../img/default/navbar.png) center no-repeat;
 }

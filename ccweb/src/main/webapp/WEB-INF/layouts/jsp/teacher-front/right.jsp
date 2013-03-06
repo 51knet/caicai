@@ -37,13 +37,13 @@
 	-moz-border-radius: 5px;
 }
 .row-fluid.custom .row {
-	margin: 5px 25px;
+	margin: 10px 40px;
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
 
 .row-fluid.custom .row1 {
-	margin: 5px 25px;
+	margin: 10px 40px;
 	color: cccccc;
 }
 
@@ -56,12 +56,6 @@
 	<div class="row"><h4>公告 </h4></div>
 	
 	<div class="row1">
-		<!--<c:choose>
-			<c:when test="${annoContent != null && annoContent != ''}">
-				<a href="<c:url value="/teacher/${teacherInfo.id}/announcement/view/${annoId}"></c:url>">${annoContent}</a>
-			</c:when>	
-			<c:otherwise>无公告</c:otherwise>
-		</c:choose>-->
 		<c:choose>
 			<c:when test="${annoCount>0}">
 				<table cellpadding="4" width="100%" style="margin-top: 10px;">

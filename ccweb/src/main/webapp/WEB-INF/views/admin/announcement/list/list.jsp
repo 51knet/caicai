@@ -44,8 +44,6 @@ $(document).ready(function() {
 		<a href='<c:url value="/admin/teacher/announcement/list"></c:url>'><b>教师公告</b></a>
 		<hr>
 		<div style="text-align: right;">
-			<!-- <a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
-							class="btn" data-toggle="modal">添加公告</a> -->
 			<a href='<c:url value="/admin/teacher/announcement/create"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
 				添加公告</a><br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
@@ -62,58 +60,15 @@ $(document).ready(function() {
 							<td align="left" >${page.title}</td>
 							<td align="center">${page.date}</td>
 							<td align="center">
-							<!-- 
-								<div class="btn-group">
-									<button class="btn">更多</button>
-									<button class="btn dropdown-toggle" data-toggle="dropdown">
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu">
-										<li><a href='<c:url value="/admin/teacher/announcement/edit/${page.id}"></c:url>'>修改</a></li>
-										<li></li>
-									</ul>
-								</div>
-							 -->
 								 <a class="deleteAnnoPostBtn" href="#deleteAnnoPostModal" role="button" data-toggle="modal" data-target="#deleteAnnoPostModal">删除</a> <input type="hidden" value="${page.id} " id="anno_id" name="annoId" >  | 
 								 <a href='<c:url value="/admin/teacher/announcement/edit/${page.id}"></c:url>'>修改</a>	
 							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
-				<!-- <tfoot>
-					<tr>
-						<td colspan="4" align="right"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></td>
-					</tr>
-				</tfoot> -->
 			</table>
 			<div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 			<br />
-			<!--
-			<div id="myModal" class="modal hide fade" tabindex="-1"  style="text-align: left;">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">×</button>
-					<h3 id="myModalLabel">公告添加</h3>
-				</div>
-				<form:form action='new' method="post" id="anno_information">
-					<div class="control-group" id="title">
-						<div class="controls">
-						<span style="margin-left:16px;">公告标签:</span>&nbsp;<input style="margin-left: 40px;margin-top: 16px;width: 349px;" type="text" name="title" id="t" placeholder="公告标签"  >
-						<span class="help-inline"><form:errors path="title"></form:errors></span>
-						</div>
-					</div>
-					<div class="control-group" id="content">
-						<div class="controls">
-						<span style="margin-left: 16px;">公告内容:</span>
-						<textarea name="content" placeholder="公告内容" id="c" cols="5" rows="8" style="width:350px;margin-left: 40px;margin-top:4px; "></textarea>
-						<span class="help-inline"><form:errors path="content"></form:errors></span>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button class="btn btn-primary" type="submit">保存</button>
-							<button class="btn" type="reset" data-dismiss="modal">取消</button>
-					</div>
-				</form:form>
-			</div> -->
 		</div>
 		<script type="text/javascript">
 			function ApplyStyle(s){

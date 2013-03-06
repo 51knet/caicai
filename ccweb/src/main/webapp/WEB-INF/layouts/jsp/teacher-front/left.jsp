@@ -16,8 +16,6 @@
 }
 </style>
 <script type="text/javascript">
-
-
 	$(document).ready(function() {
 		$("#t").focus(function() {
 			$(".help-inline").html("");
@@ -51,72 +49,7 @@
 		</div>
 	</c:if>
 </div>
-<!-- 
-<div class="row-fluid centralize round" style=" background-color: #ccdfa8;">
-	<div class="row-fluid" >
-		<div class="round header" >
-			<h5>个人信息</h5>
-		</div>
-		<hr />
-		<address style="text-align: left; margin-left: 40px; margin-right: 40px;">
-			<abbr>姓名:</abbr> ${teacherInfo.name} <br>
-			<c:if test="${teacherInfo.teacher.isEnterprise == null}">
-				 <c:choose>
-				 <c:when test="${teacherInfo.gender==null||teacherInfo.gender==''}"></c:when>
-				 <c:otherwise>
-				 <abbr>性别:</abbr> ${teacherInfo.gender} <br> 
-				 </c:otherwise>
-				 </c:choose>
-				 <c:choose>
-				 <c:when test="${teacherInfo.college==null||teacherInfo.college==''}"></c:when>
-				 <c:otherwise>
-				<abbr>院校:</abbr> ${teacherInfo.college} <br> 
-				 </c:otherwise>
-				 </c:choose>
-				 <c:choose>
-				 <c:when test="${teacherInfo.school==null||teacherInfo.school==''}"></c:when>
-				 <c:otherwise>
-				  <abbr>院系:</abbr> ${teacherInfo.school}
-				 </c:otherwise>
-				 </c:choose>
-			</c:if>
-		</address>
-	</div>
-</div>
 
-<div class="row-fluid centralize round">
-	<div class="row-fluid">
-		<h5>联系方式</h5>
-	</div>
-	<hr />
-	<address style="text-align: left; margin-left: 40px; margin-right: 40px;">
-	<c:choose>
-	<c:when test="${teacherInfo.address==null||teacherInfo.address=='' }"></c:when>
-	<c:otherwise>
-	<abbr title="地址"><i class="icon-home"></i>:</abbr> ${teacherInfo.address} <br>
-	</c:otherwise>
-	</c:choose>
-	<c:choose>
-	<c:when test="${teacherInfo.fax==null||teacherInfo.fax=='' }"></c:when>
-	<c:otherwise>
-	<abbr title="传真"><i class="icon-print"></i>:</abbr> ${teacherInfo.fax} <br> 
-	</c:otherwise>
-	</c:choose>
-	<c:choose>
-	<c:when test="${teacherInfo.phone==null||teacherInfo.phone=='' }"></c:when>
-	<c:otherwise>
-	<abbr title="电话"><i class="icon-headphones"></i>:</abbr> ${teacherInfo.phone} <br> 
-	</c:otherwise>
-	</c:choose>
-	<c:choose>
-	<c:when test="${teacherInfo.email==null||teacherInfo.email=='' }"></c:when>
-	<c:otherwise>
-	<abbr title="电邮"><i class="icon-envelope"></i>:</abbr><a href="mailto:#">${teacherInfo.email}</a>
-	</c:otherwise>
-	</c:choose>
-	</address>
-</div>
- -->
 <div class="leftInfo">
 	<div class="top" >
 		<h4>个人信息</h4>
