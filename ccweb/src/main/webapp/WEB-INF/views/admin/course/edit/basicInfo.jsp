@@ -7,13 +7,29 @@
 $(document).ready(function(){
 	var courseType=$("#courseType").attr("title");
 	$("#courseType option[value='"+courseType+"']").attr("selected","selected");
-	return false;
+	var courseDescEditor = KindEditor.create('textarea[name="courseDesc"]',{
+		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+		uploadJson : '${uploadJson}',
+		fileManagerJson : '${fileManagerJson}',
+		allowFileManager : true,
+		afterCreate : function() {
+			var self = this;
+			KindEditor.ctrl(document, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+			KindEditor.ctrl(self.edit.doc, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+		}
+	});
 });
 </script>
 <div style="margin-top: 10px;">
 	<a href="#">基本信息</a>
 	<hr />
-	<form action="<c:url value="/admin/teacher/course/edit/basicinfomodify"></c:url>" method="post" id="basic_info_form">
+	<form action="<c:url value="/admin/teacher/course/edit/basicinfomodify"></c:url>" method="post" id="basic_info_form" name="basic">
 		<div>
 			<div><input type="hidden" value="${course.id}" name="courseId"></div>
 			<div style="margin-left:20px;">
@@ -36,10 +52,14 @@ $(document).ready(function(){
 					</select>
 					<span class="help-inline"></span>
 				</div>
-				<div class="modal-body" id="courseDesc">
-					课程介绍：<textarea rows="5" name="courseDesc" cols="8" style="width: 463px;margin-top:2px;height: 100px;margin-left: 5px;">${course.courseDesc}</textarea>
-					<span class="help-inline"></span>
-				</div>
+				
+				<div class="control-group"  id="courseDesc" >
+						课程介绍：
+						<div class="controls" style="margin-left: 85px; margin-top: -20px;">
+							<textarea  id="KEcourseDesc"  rows="5" name="courseDesc" cols="8" style="width:465px;height: 100px;margin-left: 5px;">${course.courseDesc}</textarea>
+							<span class="help-inline"></span>
+						</div>
+					</div>
 				<!-- <tr>
 					<td><h5>知识形式:</h5></td>
 					<td class="row-fluid custom basic"><select style="width: 250px;margin-top: 20px;">

@@ -3,8 +3,15 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/img.js" />"></script>
+<style type="text/css">
+#preview{}
+#showimg {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
+</style>
 <script type="text/javascript">
-	
+function previewImages(file){
+	previewImage(file);
+}
 </script>
 <style>
 .row-fluid.custom {
@@ -32,14 +39,25 @@
 				<li <c:if test='${active == "second"}'> class="active" </c:if>><a href="#" data-toggle="tab">第二部：权限设置</a></li>
 				<%-- <li <c:if test='${active == "third"}'> class="active" </c:if>><a href="#" data-toggle="tab">第三部：计划</a></li> --%>
 			</ul>
+			
 			<div class="tab-content">
 				<div class="tab-pane <c:if test='${active == "first"}'>active</c:if>" id="first_tab">
 					<div class="row-fluid custom round">
+						<div>
+							<span> 封面预览 </span>
+							<div id="preview" style="margin-left:90px;margin-top: -12px;">
+								<img name="showimg" id="showimg" src="" style="display: none;" />
+							</div>
+							<div id="courseCover" style="margin-left: 90px; margin-top: -15px;">
+								<span> <img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width: 210px; height: 110px;" />
+								</span>
+							</div>
+						</div>
 						<div class="row" style="margin-top: 10px;">
 							<div style="width: 560px; text-align: left;">
 								<form:form action="new/firststep" method="post" enctype="multipart/form-data" id="course_info_form" onsubmit="return checkPicture(this)">
 									<div class="modal-body"> 
-										上传封面：<input type="file" name="coverFile" style="margin-bottom: 10px; width: 350px;" /> <span style="font-size: 13px; color: red;">${errorMsg }</span>
+										上传封面：<input type="file" name="coverFile" style="margin-bottom: 10px; width: 350px;" onChange="previewImages(this);"/> <span style="font-size: 13px; color: red;">${errorMsg }</span>
 										<br><span style="color: red; font-size: 14px; margin-left: 70px;">只支持jpg、gif、bmp格式，建议封面宽度260px，高度150px</span>
 									</div>
 									<div class="control-group" id="courseName" >
