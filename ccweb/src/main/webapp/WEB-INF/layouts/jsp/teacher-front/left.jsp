@@ -16,8 +16,6 @@
 }
 </style>
 <script type="text/javascript">
-
-
 	$(document).ready(function() {
 		$("#t").focus(function() {
 			$(".help-inline").html("");

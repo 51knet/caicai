@@ -65,4 +65,25 @@ public class UserTypeController {
 		}
 		return "redirect:/admin";
 	}
+	
+	@RequestMapping(value = "/enterprise/dispatcher", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String enterprise(HttpServletRequest request, HttpSession session) {
+		String userType = "teacher";
+		logger.info("### user type is " + userType + " ###");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		User user = userService.findOne(userInfo.getId());
+		// Temp solution for enterprise;
+		if (userType.equals("teacher")) {
+			Teacher teacher = new Teacher(user);
+			user.setRole("teacher");
+			user = userService.updateUser(user);
+			teacher.setIsEnterprise("1");
+			teacher = teacherService.createTeacher(teacher);
+			userInfo.setUser(user);
+			userInfo.setTeacher(teacher);
+			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+		}
+		return "redirect:/admin";
+	}
 }

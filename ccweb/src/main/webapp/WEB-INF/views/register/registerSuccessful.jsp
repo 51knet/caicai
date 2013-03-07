@@ -9,7 +9,7 @@
 		<hr />
 		<p class="lead" style="font-family: 'Microsoft YaHei'">感谢您注册成为知识网会员，我们已向您的注册邮箱发送一封确认电子邮件，请点击确认邮件中的链接激活您的账号。</p>
 		<p>
-			<a class="btn btn-success btn-large" href="http://mail.${hrefString}" style="font-family: 'Microsoft YaHei'">进入邮箱 »</a>
+			<a class="btn btn-success btn-large" href="http://www.${hrefString}" style="font-family: 'Microsoft YaHei'">进入邮箱 »</a>
 		</p>
 	</div>
 </div>

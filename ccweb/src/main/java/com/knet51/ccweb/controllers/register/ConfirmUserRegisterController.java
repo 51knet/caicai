@@ -45,7 +45,12 @@ public class ConfirmUserRegisterController {
 
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			logger.info("Confirm user email successful.");
-			return "redirect:/teacher/dispatcher";
+			String type = result.getRole();
+			if(type != null && type.equals("enterprise")){
+				return "redirect:/enterprise/dispatcher";
+			}else{
+				return "redirect:/teacher/dispatcher";
+			}
 			// TODO: user type select
 			// return "user.dispatcher";
 		} else {
