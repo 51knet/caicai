@@ -8,13 +8,24 @@
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/uploadify/js/swfobject.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <style>
-<!--
-.cont {
-	width: 100%;
-	margin-left: 30px;
-	margin-bottom: 10px;
+.row-fluid.custom {
+	margin-bottom: 20px;
+	padding: 0px 0px 10px;
+	
 }
--->
+.round {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+.row-fluid .custom .row {
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+.row-fluid.custom .row1 {
+	margin: 20px 40px;
+}
 </style>
 <script type="text/javascript">
 	function deleLessonNum(lesson_id){
@@ -54,14 +65,13 @@
 		});
 	});
 </script>
-<div style="margin-top: 10px;">
-	<a href="#">课程资料</a>
-	<hr />
-	<div class="cont">
+<div  class="row-fluid custom round" >
+	<div class="row"><h4>课程资料</h4></div>
+	<div class="row1">
 		<c:choose>
 			<c:when test="${lessonListCount>0 }">
 				<c:forEach items="${lessonList }" var="lesson" varStatus="status">
-					<table style="width: 90%; border: 1px solid #dcdcdc; margin-bottom: 5px;">
+					<table style="width: 100%; border: 1px solid #dcdcdc; margin-bottom: 5px;" >
 						<tbody>
 							<tr>
 								<td align="left">
@@ -163,13 +173,12 @@
 			</c:when>
 			<c:otherwise></c:otherwise>
 		</c:choose>
-		<div style="font-size: 15px; text-align: right; padding: 5px; width: 675px; margin-top: 5px;">
+		<div style="font-size: 15px; width: 675px; margin-top: 5px;margin-left: 580px; ">
 			<form action='<c:url value="/admin/teacher/course/edit/addlessonnum"></c:url>' method="post">
 				<input type="hidden" name="courseId" value="${course.id }">
 				<button type="submit" class="btn btn-success">添加新课时</button>
 			</form>
 		</div>
-
 		<form action='<c:url value="/admin/teacher/course/edit/courselesson/destory"></c:url>' method="post" style="display: none;" id="deleLessonNumForm">
 			<input type="hidden" name="lessonId" id="courseLessonId"> <input type="hidden" name="courseId" value="${course.id }">
 		</form>

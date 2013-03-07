@@ -139,6 +139,12 @@ public class BlogServiceImpl implements BlogService {
 		return blogCategoryRepository.save(blogCategory);
 	}
 
+	@Override
+	public List<BlogComment> getBlogCommentByblogpost_id(Long blogpost_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 	
