@@ -40,18 +40,24 @@
 	-moz-border-radius: 5px;
 }
 .row-fluid.custom .row {
-	margin: 5px 25px;
+	margin: 10px 40px;
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
 
 .row-fluid.custom .row1 {
-	margin: 40px 40px;
+	margin: 10px 40px;
 	color: cccccc;
 }
 
 .row-fluid.custom .row1 .bb{
 	border-bottom: dashed #cccccc 1px;
+}
+.nar {
+	background-color:#ccdfa8; 
+	width:100%; 
+	font-size: 14px;
+	color: #f7f7f7;
 }
 </style>
 
@@ -60,9 +66,9 @@
 		<h4>教师课程</h4>
 	</div>
 	<div class="row1">
-		<table  style="margin-top: 10px; margin-bottom: 15px; margin-left: -16px;"  cellpadding="4">
+		<table  style="margin-top: 15px;"  cellpadding="5">
 			<thead>
-					<tr><td><h5>课程名称</h5></td><td  width=60%><h5>课程描述</h5></td><td width=20%><h5>创建时间</h5></td></tr>
+					<tr class="nar"><td>课程名称</td><td  width=60%>课程描述</td><td width=20%>创建时间</td></tr>
 			</thead>
 			<tbody>
 				<c:forEach var="course" items="${page.content}">

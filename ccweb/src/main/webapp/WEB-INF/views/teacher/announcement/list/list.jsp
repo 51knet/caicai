@@ -16,18 +16,24 @@
 	-moz-border-radius: 5px;
 }
 .row-fluid.custom .row {
-	margin: 5px 25px;
+	margin: 10px 40px;
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
 
 .row-fluid.custom .row1 {
-	margin: 40px 40px;
+	margin: 10px 40px;
 	color: cccccc;
 }
 
 .row-fluid.custom .row1 .bb{
 	border-bottom: dashed #cccccc 1px;
+}
+.nar {
+	background-color:#ccdfa8; 
+	width:100%; 
+	font-size: 14px;
+	color: #f7f7f7;
 }
 </style>
 
@@ -36,11 +42,11 @@
 		<h4>公告</h4>
 	</div>
 	<div class="row1">
-		<table  style="margin-top: 10px; margin-left: -15px;"  cellpadding="4">
-			<thead><tr><td ><h5>标题</h5></td><td width="25%"><h5>发布时间</h5></td></tr></thead>
+		<table style="margin-top: 15px;"  cellpadding="5">
+			<tr class="nar" ><td>标题</td><td width="25%">发布时间</td></tr>
 			<tbody>
 				<c:forEach items="${page.content}" var="page">
-					<tr ><td align="left" class="bb" >
+					<tr><td align="left" class="bb" >
 						<div style="width: 540px;" id="content"><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/view/${page.id}"></c:url>">
 						${page.title}</a></div>
 					</td>

@@ -15,24 +15,33 @@
 	-moz-border-radius: 5px;
 }
 .row-fluid.custom .row {
-	margin: 0px 5px;
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+
+.row-fluid.custom .row1 {
+	margin: 10px 40px;
+	color: cccccc;
+}
+
+.row-fluid.custom .row1 .bb{
+	border-bottom: dashed #cccccc 1px;
 }
 </style>
 
 <div class="row-fluid custom round">
 	<div class="row">
-		<h5>公告详细</h5>
+		<h4>公告详细</h4>
 	</div>
-	<div class="row">
-		<div class="span12" style="text-align: center;">
-			<h4 >${announcement.title}</h4>
-			<span >发布时间: ${announcement.date}</span>
+	<div class="row1">
+		<div>
+			<div><span style="font-size: 16px;color: black;">${announcement.title}</span><span style="margin-left: 415px;font-size: 16px;color: black;">${announcement.date}</span></div>
 		</div>
-		<div class="clearfix"></div>
-		<hr />
-		<div class="span12" style="margin-left: 5px; margin-right: 5px;">${announcement.content}</div>
-		<div class="clearfix"></div>
-		<hr />
+		<div class="bb"></div>
+		<div  style="text-align: center;">${announcement.content}</div>
+		
+		<div class="bb"></div>
 	</div>
 
 </div>
