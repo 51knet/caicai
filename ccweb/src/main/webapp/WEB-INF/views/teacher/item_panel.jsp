@@ -7,7 +7,8 @@
 	text-align: center;
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
- 	background-image:url('<c:url value='/resources/img/default/admin_left_bg.png'></c:url>');
+ 	/*background-image:url('<c:url value='/resources/img/default/admin_left_bg.png'></c:url>');*/
+ 	background-color:#ccdfa8;
  	background-position:top center;
  	background-repeat:repeat-y;
 	vertical-align: middle;
@@ -38,7 +39,7 @@
 		</div>		
 	</c:otherwise>
 </c:choose>
-<div style="background-image: url('<c:url value='/resources/img/default/admin_left_bg.png'></c:url>');">
+<div style="background-color: #ccdfa8;">
 	<ul class="nav nav-tabs nav-stacked">
 		<!-- <li class="active"><a href='<c:url value="/admin"></c:url>' >个人中心</a></li> -->
 		<li><a href='<c:url value="/teacher/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>
