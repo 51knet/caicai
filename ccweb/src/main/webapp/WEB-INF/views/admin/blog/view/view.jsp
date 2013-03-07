@@ -2,8 +2,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
-<div class="">
-	  <b>阅读博文</b>
+<style>
+.row-fluid.custom {
+	margin-bottom: 20px;
+	padding: 0px 0px 10px;
+	background: #FAFAFB;
+}
+.row-fluid.custom .row {
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+</style>
+
+<div class="row-fluid custom">
+	<div class="row">
+		<h4>阅读博文</h4>
+	</div>
+<div class="row">
 	  <div class="span12" >
 		  <label>${blogPost.title}</label>
 		  <span>发表于: ${blogPost.dateCreated} | 分类: ${blogPost.blogCategory.name}
@@ -43,6 +59,7 @@
 			<button class="btn btn-primary" type="submit">提交</button>
 		  </form>
 	  </div>
+</div>
 </div>
 
 <!-- Modal -->

@@ -2,9 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
-<div class="">
+<div class="row-fluid custom">
+	<div class="row">
+		<h4>新建分类</h4>
+	</div>
+<div class="row">
 	<form method="post">
-	  <legend>写博文</legend>
 	  <div class="control-group" >
 		  <label class="control-label" style="display:inline-block;width: 40px;">标题:</label>
 		  <input type="text" name="title" placeholder="">
@@ -25,7 +28,7 @@
 	  <button type="submit" class="btn">Submit</button>
 	</form>
 </div>
-
+</div>
 <script type="text/javascript">
 		$(document).ready(function() {
 			var editor = KindEditor.create('textarea[name="content"]');

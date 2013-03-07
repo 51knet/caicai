@@ -2,13 +2,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
-<div class="">
+<style>
+.row-fluid.custom {
+	margin-bottom: 20px;
+	padding: 0px 0px 10px;
+	background: #FAFAFB;
+}
+.row-fluid.custom .row {
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+</style>
+
+<div class="row-fluid custom">
+	<div class="row">
+		<h4>全部分类</h4>
+	</div>
+<div class="row">
+
 	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th colspan="5">全部分类</th>
-			</tr>
-		</thead>
 		<tbody>
 			<tr>
 				<td colspan="5">
@@ -40,6 +53,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
+</div>
 </div>
 
 <!-- Modal -->
