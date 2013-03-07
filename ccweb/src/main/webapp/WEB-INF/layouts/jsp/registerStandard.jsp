@@ -10,51 +10,36 @@
 	body {
 		max-width: 1600px;
 		width: 100%;
+		background-color: #FFFFFF;
 	}
-	
+	.container {
+		width: 1170px;
+	}
 	.container-fluid {
-		padding-right: 0px;
-		padding-left: 0px;
-	}
-	
-	.container-fluid.wrapper {
-		background: url(/ccweb/resources/img/teacher_front_bg.jpg) repeat;
-	}
-	.container-fluid.custom {
 		min-width: 1024px;
 		max-width: 1024px;
-		width: 1024px;
 		margin: 0 auto;
+		padding-right: 0px;
+		padding-left: 0px;
 	}
 	</style>
 </head>
 <body>
 	<tiles:insertAttribute name="top-navbar" />
-	
 	<div class="container-fluid">
-		<div class="row-fluid content-panel">
-			<!--/span-->
-			<div class="span9">
-				<div class="right-panel">
-					<tiles:insertAttribute name="body" />
-				</div>
+		<div class="row-fluid">
 			</div>
-			<!--/span-->
+		<div class="row-fluid">
+			</div>
+		<div class="row-fluid">
+			<tiles:insertAttribute name="body" />
 		</div>
-		<!--/row-->
-
 		<hr>
-
 		<footer>
 			<tiles:insertAttribute name="footer" />
 		</footer>
 
 	</div>
-	<!--/.fluid-container-->
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-		});
-	</script>
 </body>
 </html>
