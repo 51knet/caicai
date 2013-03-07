@@ -40,23 +40,34 @@
 	-moz-border-radius: 5px;
 }
 .row-fluid.custom .row {
-	margin: 0px 5px;
+	margin: 5px 25px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+
+.row-fluid.custom .row1 {
+	margin: 40px 40px;
+	color: cccccc;
+}
+
+.row-fluid.custom .row1 .bb{
+	border-bottom: dashed #cccccc 1px;
 }
 </style>
 
 <div class="row-fluid custom round">
 	<div class="row">
-		<h5>教师课程</h5>
+		<h4>教师课程</h4>
 	</div>
-	<div class="row">
-		<table class="table">
+	<div class="row1">
+		<table  style="margin-top: 10px; margin-bottom: 15px; margin-left: -16px;"  cellpadding="4">
 			<thead>
-					<tr><th width=20%>课程名称</th><th  width=60%>课程描述</th><th width=20%>创建时间</th></tr>
+					<tr><td><h5>课程名称</h5></td><td  width=60%><h5>课程描述</h5></td><td width=20%><h5>创建时间</h5></td></tr>
 			</thead>
 			<tbody>
 				<c:forEach var="course" items="${page.content}">
 					<tr>
-						<td ><!--   -->
+						<td class="bb"><!--   -->
 							<c:choose>
 								<c:when test='${course.pwd == "" || course.pwd == null}'>
 									<a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> ${course.courseName }</a>
@@ -82,10 +93,10 @@
 								</c:otherwise>
 							</c:choose>
 						</td>
-						<td>
+						<td class="bb">
 							<div style="width: 420px;" id="content">${course.courseDesc}</div>
 						</td>
-						<td>
+						<td class="bb">
 							${course.courseDate}
 						</td>
 					</tr>

@@ -90,7 +90,7 @@ public class TeacherAnnoInfoPageController {
 	/* teacher front page */
 	@RequestMapping(value="/teacher/{teacher_id}/announcement/list")
 	public String annoList(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		
 		User user = userService.findOne(teacher_id);
 		Teacher teacher = teacherService.findOne(teacher_id);

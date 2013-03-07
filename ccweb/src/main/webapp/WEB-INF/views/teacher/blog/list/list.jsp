@@ -14,23 +14,35 @@
 	-moz-border-radius: 5px;
 }
 .row-fluid.custom .row {
-	margin: 0px 5px;
+	margin: 5px 25px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+
+.row-fluid.custom .row1 {
+	margin: 40px 40px;
+	color: cccccc;
+}
+
+.row-fluid.custom .row1 .bb{
+	border-bottom: dashed #cccccc 1px;
 }
 </style>
+
 <div class="row-fluid custom round">
 	<div class="row">
-		<h5>博客</h5>
+		<h4>博客</h4>
 	</div>
-	<div class="row ">
-	<table class="table">
+	<div class="row1 ">
+	<table style="margin-top: 10px;margin-left: -16px;"  cellpadding="4">
 		<thead>
-			<tr><th width="80%">标题</th><th>发表日期</th></tr>
+			<tr><td width="80%"><h5>标题</h5></td><td><h5>发表日期</h5></td></tr>
 		</thead>
 		<tbody>
 			<c:forEach var="blogPost" items="${page.content}">
 			<tr>
-				<td><a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
-				<td>
+				<td class="bb"><a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
+				<td class="bb">
 				<fmt:formatDate value="${blogPost.dateCreated}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>
 				

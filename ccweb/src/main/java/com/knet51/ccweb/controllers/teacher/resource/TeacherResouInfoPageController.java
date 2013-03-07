@@ -80,7 +80,7 @@ public class TeacherResouInfoPageController {
 	
 	@RequestMapping(value="/teacher/{teacher_id}/resource/list")
 	public String teacherResourceList(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		User user = userService.findOne(teacher_id);
 		Teacher teacher = teacherService.findOne(teacher_id);
 		UserInfo userInfo = new UserInfo(user);
