@@ -4,6 +4,19 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
+.nar {
+	background-color:#ccdfa8; 
+	width:100%; 
+	font-size:15px;
+	height: 20px; 
+	margin-bottom:10px;
+	padding-top: 10px;
+}
+ .cont {
+	width: 100%;
+	margin-left: 30px;
+	margin-bottom: 10px;
+}
 .row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
@@ -15,27 +28,33 @@
 	-moz-border-radius: 5px;
 }
 .row-fluid.custom .row {
-	margin: 0px 5px;
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
 }
-.nar {
-	background-color: #f3f3f3; 
-	width:100%; 
-	margin-bottom: 10px; 
-	 height: 40px; 
-	 padding: 1px; 
+
+.row-fluid.custom .row1 {
+	margin: 10px 40px;
+	color: cccccc;
 }
- .cont {
-	width: 100%;
-	margin-left: 30px;
-	margin-bottom: 10px;
+
+.row-fluid.custom .row1 .bb{
+	border-bottom: dashed #cccccc 1px;
 }
 </style>
-
+<script type="text/javascript">
+function courseOnclick(obj) {
+	var courseId = obj.id;
+	var id = courseId.substring(courseId.indexOf('_') + 1, courseId.length); // 这里indexOf('-')和lastIndexOf('-')相等
+	$(".fileName_" + id).slideToggle();
+	return false;
+}
+</script>
 <div  class="row-fluid custom round">
 	<div class="row">
-		<h5>课程详细</h5>
+		<h4>课程详细</h4>
 	</div>
-	<div class="row" style="margin-top: 10px;">
+	<div class="row1" style="margin-top: 10px;">
 		<div  style=" height: 180px; width: 100%">
 			<div style="width: 40%; height:150px; text-align:center;  float: left;border: 0px solid #cccccc;">
 				<c:choose>
@@ -49,18 +68,19 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div style="width: 60%; float: left; height:150px;border: 0px solid #cccccc; font-size: 13px;">
-				<div style=" float: left; margin-left: 80px; ">
-					<h5 style="width: 300px;" id="content">${course.courseName}</h5>
-					<h5>${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</h5>
-					<h5>类别：${course.courseType }</h5>
-					<h5>发布时间：${course.courseDate }</h5>
+			<div style="width: 60%; float: left; height:150px;border: 0px solid #cccccc;">
+				<div style="margin-left:60px;" >
+				<br/>
+					<span style="width: 300px; margin-top:60px;font-size: 20px;color: black;" id="content">${course.courseName}</span><br/>
+					<span style="font-size: 14px;color: black;">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
+					<span style="font-size: 14px;color: black;"> 类别：${course.courseType }</span><br/>
+					<span style="font-size: 14px;color: black;">发布时间：${course.courseDate }</span>
 				<!-- 	学员（0）&nbsp;&nbsp;评论（0）&nbsp;&nbsp; -->
 				</div>
 			</div>
 		</div>
 		<div  class="nar">
-			<h4 style="margin-left: 30px; ">课程介绍</h4>
+			<span style="margin-left: 30px;margin-top: -15px;" ><b>课程简介</b></span>
 		</div>
 		<div class="cont">
 				<c:choose>
@@ -74,7 +94,7 @@
 		</div>
 		
 		<div  class="nar">
-			<h4 style="margin-left: 30px; ">目标人群</h4>
+			<span style="margin-left: 30px; "><b>目标人群</b></span>
 		</div>
 		<div class="cont">
 			<c:choose>
@@ -88,7 +108,7 @@
 		</div>
 		
 		<div  class="nar">
-			<h4 style="margin-left: 30px; ">课程看点</h4>
+			<span style="margin-left: 30px; "><b>课程看点</b></span>
 		</div>
 		<div class="cont">
 			<c:choose>
@@ -102,7 +122,7 @@
 		</div>
 		
 		<div  class="nar">
-			<h4 style="margin-left: 30px; ">课程资料</h4>
+			<span style="margin-left: 30px; "><b>课程资料</b></span>
 		</div>
 		<div class="cont">
 			<c:choose>
@@ -113,12 +133,14 @@
 									<tr>
 										<td align="left">
 											<div >
-												<div style="font-size: 16px;  background-color: #f2f2f2; padding: 5px;" id="course_${status.count}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
+												<div  style="font-size: 12px; color:#FFFFFF; background-color: #8E8E8E;"  id="course_${status.count}" onclick="javascript:courseOnclick(this);"><span style="margin-left: 10px;">第${course.key}课时</span>
+												<img  style="margin-left: 550px;" src="<c:url  value="/resources/img/knet-05.png" ></c:url> ">
+												</div>
 												<c:forEach var="fileNames" items="${course.value}">
 												<c:if test="${fileNames.fileName!=null}">
 													<div  class="fileName_${status.count}"  style="background-color:#ffffff;">
 														<c:if test="${fileNames.fileName != null }">
-															<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${fileNames.fileName}</div>
+															<div style="width: 87%; float: left; margin-left: 10px; margin-top: 3px;">${fileNames.fileName}</div>
 															<div style="width:10%; float: left; text-align: center;">
 																<a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>
 																	<img src="<c:url  value="/resources/img/u173_normal.jpg" ></c:url> ">

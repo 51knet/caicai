@@ -139,7 +139,7 @@ public class TeacherCourseInfoPageController {
 	
 	@RequestMapping(value="/teacher/{teacher_id}/course/list")
 	public String getAllTeacherCourse(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		User user = userService.findOne(teacher_id);
 		Teacher teacher = teacherService.findOne(teacher_id);
 		UserInfo userInfo = new UserInfo(user);

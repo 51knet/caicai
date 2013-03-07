@@ -12,7 +12,7 @@
 	}
 </script>
  <style>
-	.row-fluid.custom {
+.row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
 	
@@ -29,8 +29,8 @@
 	background-color: #f7f7f7; 
 	width:100%; 
 	margin-bottom: 10px; 
-	 height: 40px; 
-	 padding: 1px; 
+	height: 40px; 
+	padding: 1px; 
 }
  .cont {
 	width: 100%;

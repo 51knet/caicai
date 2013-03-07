@@ -49,7 +49,6 @@
 		</div>
 	</c:if>
 </div>
-
 <div class="leftInfo">
 	<div class="top" >
 		<h4>个人信息</h4>
