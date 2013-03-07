@@ -43,6 +43,7 @@ body {
 	color:#555;
 	font-family:Arial,/*'Microsoft YaHei',*/Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
 	font-size:14px;
+	background-color: #929294;
 }
 h1, h2, h3, h4, h5, h6 {
 	font-weight:bold;
@@ -100,6 +101,10 @@ textarea {
 body.admin {
 	max-width: 1680px;
 	width: 100%;
+	background-image: url(/ccweb/resources/img/default/front_bg.png);
+	background-position: center top;
+	background-repeat: repeat-y;
+	background-color: #929294;
 }
 .admin .container-fluid {
 	padding-right: 0px;
@@ -113,12 +118,12 @@ body.admin {
 	max-width: 1024px;
 	width: 1024px;
 	margin: 0 auto;
-	background-color: white;
+	/*background-color: white;*/
 }
 .admin .left-panel {
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	background-color: #FAFAFB;
+	/*background-color: #FAFAFB;*/
 }
 /*END style-for-admin-pages*/

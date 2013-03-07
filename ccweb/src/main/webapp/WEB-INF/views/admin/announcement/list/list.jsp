@@ -23,7 +23,7 @@ $(document).ready(function() {
 
 </script>
 <style>
-	.row-fluid.custom {
+.row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
 	
@@ -33,23 +33,30 @@ $(document).ready(function() {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 }
-.row-fluid.custom .row {
-	margin: 0px 5px;
+.row-fluid .custom .row {
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+.row-fluid.custom .row1 {
+	margin: 20px 40px;
+
 }
 </style>
 
 
 <div class="row-fluid custom round">
-	<div  class="row" style="margin-top: 10px;">
-		<a href='<c:url value="/admin/teacher/announcement/list"></c:url>'><b>教师公告</b></a>
-		<hr>
+	<div  class="row" >
+		<!-- <h4><a href='<c:url value="/admin/teacher/announcement/list"></c:url>'>教师公告</a></h4> -->
+		<h4>公告管理</h4>
+	</div>
+	<div class="row1">
 		<div style="text-align: right;">
 			<a href='<c:url value="/admin/teacher/announcement/create"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
 				添加公告</a><br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead><tr>
 						<th  align="center">公告标签</th>
-						
 						<th  align="center" width="25%">发布时间</th>
 						<th  align="center" width="20%">操作</th>
 					</tr>
@@ -67,7 +74,7 @@ $(document).ready(function() {
 					</c:forEach>
 				</tbody>
 			</table>
-			<div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+			<div class="row1"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 			<br />
 		</div>
 		<script type="text/javascript">

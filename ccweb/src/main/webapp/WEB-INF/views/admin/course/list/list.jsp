@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <style>
-	.row-fluid.custom {
+.row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
 	
@@ -15,14 +15,20 @@
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 }
-.row-fluid.custom .row {
-	margin: 0px 5px;
+.row-fluid .custom .row {
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+.row-fluid.custom .row1 {
+	margin: 20px 40px;
 }
 </style>
 <div class="row-fluid custom round">
-	<div class="row" style="margin-top:10px;">
-		<a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>课程管理</b></a><hr>
-		
+	<div class="row" >
+		<h4>课程管理</h4>
+	</div>
+	<div class="row1">	
 		<div style="text-align: right;">
 	<!-- 
 		<div id="player"></div>
@@ -36,7 +42,7 @@
 				</script> -->
 			<!-- 	<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
 							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
-			<span style="margin-right: 330px;">
+			<span style="margin-right: 250px;">
 			 	<a href='<c:url value="/admin/teacher/course/list"></c:url>' style="margin-right: 10px;"> 全部课程</a> 
 				 <a href='<c:url value="/admin/teacher/course/list/unpub"></c:url>' style="margin-right: 10px;"> 未发布课程</a> 
 				<a href='<c:url value="/admin/teacher/course/list/publish"></c:url>'  style="margin-right: 10px;"> 已发布课程</a>
@@ -105,9 +111,7 @@
 			   		 </td></tr>
 				</tfoot> -->
 			</table>
-			<div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
-			<br/>
-			
+			<div class="row1"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 				
 			<div id="myModal" style="text-align: left;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-header">

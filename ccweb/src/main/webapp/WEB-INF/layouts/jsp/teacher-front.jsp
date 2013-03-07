@@ -18,7 +18,7 @@
 	}
 	
 	.container-fluid.wrapper {
-		background-image: url(/ccweb/resources/img/front_bg.png);
+		background-image: url(/ccweb/resources/img/default/front_bg.png);
 		background-position: center top;
 		background-repeat: repeat-y;
 		background-color: #929294;

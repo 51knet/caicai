@@ -1,24 +1,22 @@
 table.blue{
-	border:1px solid #cad9ea;
+	border:1px solid #b1cf75;
 	color:#666;
 }
 table.blue th {
-	background-image: url(th_bg1.gif);
-	background-repeat::repeat-x;
-	
-}
-table.blue th{
-	border:1px solid #cad9ea;
-	font-size: 13px;
-	
+	/*background-image: url(th_bg1.gif);
+	background-repeat:repeat-x;*/
+	background-color: #ccdfa8;
+	color: #666666;
+	border:1px solid #b1cf75;
+	font-size: 14px;
 }
 table.blue tr.a1{
-	background-color:#f5fafe;
+	background-color:#b1cf75;
 	
 }
 
 table.blue td{
-	border:1px dotted #cad9ea;
+	border:1px dotted #b1cf75;
 	font-size: 13px;
 }
 

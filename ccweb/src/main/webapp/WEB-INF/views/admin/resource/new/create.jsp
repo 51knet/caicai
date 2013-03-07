@@ -9,10 +9,7 @@
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/uploadify/js/jquery.uploadify.v2.0.1.js" />"></script>
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/uploadify/js/swfobject.js" />"></script>
 <script type="text/javascript">
-
-
  function addFile(){
- 	
  	var cont = document.getElementById("container");
  	var file = document.createElement("input");
  	file.type="file";
@@ -24,7 +21,6 @@
  	cont.appendChild(file);
  	cont.appendChild(btn);
  	cont.appendChild(br);
- 	
  	btn.onclick=function(){
  		cont.removeChild(file);
  		cont.removeChild(btn);
@@ -47,23 +43,23 @@
 	 return checkEmptyAjax("resource_type_form","resourceTypeAJAX");
 	 return false;
  }
-	$(document).ready(function() {
-		$("#typeNames").focus(function(){
-			$("#typeError").html("");
-		});
-		
-		$("form:first").submit(function(){
-			 var myFiles=$("#myFiles").val();
-			if(myFiles==""){
-				$("#myFilesError").html("上传文件不能为空");
-				return false;
-			}
-		});
-		
+$(document).ready(function() {
+	$("#typeNames").focus(function(){
+		$("#typeError").html("");
 	});
+	
+	$("form:first").submit(function(){
+		 var myFiles=$("#myFiles").val();
+		if(myFiles==""){
+			$("#myFilesError").html("上传文件不能为空");
+			return false;
+		}
+	});
+	
+});
 </script>
 <style>
-	.row-fluid.custom {
+.row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
 	
@@ -73,13 +69,20 @@
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 }
-.row-fluid.custom .row {
-	margin: 0px 5px;
+.row-fluid .custom .row {
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+.row-fluid.custom .row1 {
+	margin: 20px 40px;
 }
 </style>
 <div class="row-fluid custom round">
-	<div class="row" style="margin-top: 10px;">
-		<a href='<c:url value="/admin/teacher/resource/list"></c:url>'><b>资源管理</b></a>>>资源添加<hr>
+	<div class="row" >
+		<h4>资源管理>添加资源</h4>
+	</div>
+	<div class="row1">
 		<div style="text-align:center;">
 			<div style="width:560px; text-align:left;">
 				<form:form action="new/create" method="post" enctype="multipart/form-data" id="resource_form">  

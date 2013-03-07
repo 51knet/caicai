@@ -6,6 +6,14 @@
 <html>
 <head>
 	<jsp:include page="/WEB-INF/layouts/jsp/common/_html_head.jsp"></jsp:include>
+	<style>
+	.container-fluid.wrapper {
+		background-image: url(/ccweb/resources/img/front_bg.png);
+		background-position: center top;
+		background-repeat: repeat-y;
+		background-color: #929294;
+	}
+	</style>
 </head>
 <body class="admin">
 	<tiles:insertAttribute name="top-navbar" />
@@ -24,7 +32,7 @@
 					</div>
 				</div>
 				<!--/span-->
-				<div class="span9">
+				<div class="span9" style="background-color: #ffffff;">
 					<div class="right-panel">
 						<tiles:insertAttribute name="flash" />
 						<tiles:insertAttribute name="right" />

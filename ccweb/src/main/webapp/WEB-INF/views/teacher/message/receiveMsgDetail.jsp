@@ -25,7 +25,7 @@
 		});
 </script>
 <style>
-	.row-fluid.custom {
+.row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
 	
@@ -35,24 +35,35 @@
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 }
-.row-fluid.custom .row {
-	margin: 0px 5px;
+.row-fluid .custom .row {
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+.row-fluid.custom .row1 {
+	margin: 20px 40px;
 }
 </style>
 <div  class="row-fluid custom round">
-	<div class="row" style="margin-top: 10px;">
-		<a href='<c:url value="/admin/teacher/message/list"></c:url>' ><b>站内信</b></a><hr>
+	<div class="row" >
+		<h4>站内短信>详细信息</h4>
+	</div>
+	<div class="row1">
 		<div style="text-align: center;">
-		<table width="500" border="1" cellspacing="0" cellpadding="3">
+		<table border="0" cellspacing="0" cellpadding="8" width="100%">
 		  <tr>
-		    <td style="background-color:#f2f2f2;"  align="left" valign="top">
-		    		信件标题：${sendMsg.date }<br>
-		    		发件人：${sendMsg.user.name}<br> 
-		      		发送日期：${sendMsg.date }<br>
+		    <td width="70%"  align="left" valign="top" style="background-color: #ccdfa8; font-size: 16px;">
+		    		<b>标题：${sendMsg.title }</b>
+		    </td>
+		    <td align="right" align="left" valign="top" style="background-color: #ccdfa8; font-size: 14px;">
+		    	<b>${sendMsg.date }</b>
 		    </td>
 		  </tr>
 		  <tr>
-		    <td align="left" >${sendMsg.content }</td>
+		  	<td align="left" colspan="2">	<b>发件人：${sendMsg.user.name}</b></td>
+		  </tr>
+		  <tr>
+		    <td align="left" colspan="2">${sendMsg.content }</td>
 		  </tr>
 		</table><br> 
 			<a href="#myModal" role="button" class="btn btn-small" data-toggle="modal">点击回复</a>

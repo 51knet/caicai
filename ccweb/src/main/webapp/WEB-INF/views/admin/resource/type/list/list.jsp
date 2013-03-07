@@ -4,7 +4,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
-	.row-fluid.custom {
+.row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
 	
@@ -14,16 +14,23 @@
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 }
-.row-fluid.custom .row {
-	margin: 0px 5px;
+.row-fluid .custom .row {
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+.row-fluid.custom .row1 {
+	margin: 20px 40px;
 }
 </style>
 <div class="row-fluid custom round">
-	<div class="row" style="margin-top: 10px;">
-		<a href='<c:url value="/admin/teacher/resource/list"></c:url>'><b>资源管理</b></a>>>类别管理<hr>
+	<div class="row" >
+		<h4>资源管理>类别管理</h4>
+	</div>
+	<div class="row1">	
 		<div style="text-align: center;">
 			<!-- <a href='<c:url value="/admin/teacher/resource/type/add"></c:url>'>添加新类别</a>&nbsp;&nbsp;&nbsp;&nbsp;<br> -->
-			<table class="blue" id="mytab" cellpadding="7" width=60%  border=0>
+			<table class="blue" id="mytab" cellpadding="7" width=65%  border=0>
 				<thead><th>类别名称</th><th>详细操作</th></thead>
 				<tbody>
 					<c:forEach items="${list}" var="l">

@@ -12,7 +12,7 @@ $(document).ready(function() {
 });
 </script>
 <style>
-	.row-fluid.custom {
+.row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
 	
@@ -22,13 +22,20 @@ $(document).ready(function() {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 }
-.row-fluid.custom .row {
-	margin: 0px 5px;
+.row-fluid .custom .row {
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+.row-fluid.custom .row1 {
+	margin: 20px 40px;
 }
 </style>
 <div class="row-fluid custom round">
-	<div class="row" style="margin-top: 10px;">
-		<a href='<c:url value="/admin/teacher/resource/list"></c:url>' ><b>资源管理</b></a><hr>
+	<div class="row">
+		<h4>资源管理</h4>
+	</div>
+	<div class="row1">
 		<div style="text-align: right;">
 			<a  style="margin-bottom: 10px;" href='<c:url value="/admin/teacher/resource/new"></c:url>' class="btn">添加资源</a>
 			&nbsp;&nbsp;<a  style="margin-bottom: 10px;" href='<c:url value="/admin/teacher/resource/type/list"></c:url>'  class="btn">类别管理</a> <br>
@@ -54,7 +61,7 @@ $(document).ready(function() {
 				</c:forEach>
 				</tbody>
 			</table>
-			<div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+			<div class="row1"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 		</div>
 	</div>
 </div>
