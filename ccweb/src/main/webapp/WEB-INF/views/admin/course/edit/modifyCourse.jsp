@@ -9,12 +9,27 @@
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <style>
 <!--
-.cont {
-	width: 100%;
-	margin-left: 30px;
-	margin-bottom: 10px;
-}
+
 -->
+
+.row-fluid.custom {
+	margin-bottom: 20px;
+	padding: 0px 0px 10px;
+	
+}
+.round {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+.row-fluid .custom .row {
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+.row-fluid.custom .row1 {
+	margin: 20px 40px;
+}
 </style>
 <script type="text/javascript">
 	function deleLessonNum(lesson_id){
@@ -54,162 +69,164 @@
 		});
 	});
 </script>
-<div style="margin-top: 10px;">
-	<a href="#">课程资料</a>
-	<hr />
-	<div class="cont">
-		<c:choose>
-			<c:when test="${lessonListCount>0 }">
-				<c:forEach items="${lessonList }" var="lesson" varStatus="status">
-					<table style="width: 90%; border: 1px solid #dcdcdc; margin-bottom: 5px;">
-						<tbody>
-							<tr>
-								<td align="left">
-									<div style="font-size: 15px; background-color: #f2f2f2; padding: 3px;">
-										<div id="course_${lesson.lessonNum}" onclick="javascript:courseOnclick(this);">
-											<b>第${lesson.lessonNum}课时</b>
+<div  class="row-fluid custom round" >
+	<div class="row">
+		<h4>课程资料</h4>
+	</div>
+	<div class="row1">
+			<c:choose>
+				<c:when test="${lessonListCount>0 }">
+					<c:forEach items="${lessonList }" var="lesson" varStatus="status">
+						<table style="width: 100%; border: 1px solid #dcdcdc; margin-bottom: 5px;">
+							<tbody>
+								<tr>
+									<td align="left">
+										<div style="font-size: 15px; background-color: #f2f2f2; padding: 3px;">
+											<div id="course_${lesson.lessonNum}" onclick="javascript:courseOnclick(this);">
+												<b>第${lesson.lessonNum}课时</b>
+											</div>
+											<span style="float: right; margin-right: 20px; font-size: 13px; margin-top: -18px;"> <c:if test="${lesson.status != null }">
+													<a href="javascript:void(0)" onclick="deleLessonNum(${lesson.id })"><b>删除课时</b></a>  |</c:if> <a href="#" onclick="showAddResourceForm(${lesson.lessonNum})"><b>添加资源</b></a>
+											</span>
+											<div style="border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;" id="${lesson.lessonNum}_resourceForm">
+												<form style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/create"></c:url>' enctype="multipart/form-data">
+													<input type="hidden" name="lessonNum" value="${lesson.lessonNum }"> <input type="hidden" name="lessonId" value="${lesson.id}"> <input type="hidden" name="courseId"
+														value="${course.id}"> 资源名称：<input type="text" style="width: 207px;" name="resourceName">&nbsp;“如：第一讲：物种的起源”<br> 资源类别：<select name="type" style="width: 220px;">
+														<!-- <option >请选择</option>
+																				<c:forEach items="${type}" var="l">
+																					<option  value="${l.id}">${l.typeName}</option>
+																				</c:forEach> -->
+														<option value="1" selected>文档</option>
+														<option value="2">视频</option>
+													</select><br> 上传资源：<input type="file" name="resourceFile">&nbsp;不大于100M
+													<button type="reset" class="btn " style="margin-left: 5px; float: right;" onclick="closeResourceForm(${lesson.lessonNum})">取消</button>
+													<button type="submit" onclick="upLoadClick();" class="btn  btn-success" style="float: right;">上传</button>
+													&nbsp;&nbsp;
+												</form>
+											</div>
 										</div>
-										<span style="float: right; margin-right: 20px; font-size: 13px; margin-top: -18px;"> <c:if test="${lesson.status != null }">
-												<a href="javascript:void(0)" onclick="deleLessonNum(${lesson.id })"><b>删除课时</b></a>  |</c:if> <a href="#" onclick="showAddResourceForm(${lesson.lessonNum})"><b>添加资源</b></a>
-										</span>
-										<div style="border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;" id="${lesson.lessonNum}_resourceForm">
-											<form style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/create"></c:url>' enctype="multipart/form-data">
-												<input type="hidden" name="lessonNum" value="${lesson.lessonNum }"> <input type="hidden" name="lessonId" value="${lesson.id}"> <input type="hidden" name="courseId"
-													value="${course.id}"> 资源名称：<input type="text" style="width: 207px;" name="resourceName">&nbsp;“如：第一讲：物种的起源”<br> 资源类别：<select name="type" style="width: 220px;">
-													<!-- <option >请选择</option>
-																			<c:forEach items="${type}" var="l">
-																				<option  value="${l.id}">${l.typeName}</option>
-																			</c:forEach> -->
-													<option value="1" selected>文档</option>
-													<option value="2">视频</option>
-												</select><br> 上传资源：<input type="file" name="resourceFile">&nbsp;不大于100M
-												<button type="reset" class="btn " style="margin-left: 5px; float: right;" onclick="closeResourceForm(${lesson.lessonNum})">取消</button>
-												<button type="submit" onclick="upLoadClick();" class="btn  btn-success" style="float: right;">上传</button>
-												&nbsp;&nbsp;
-											</form>
-										</div>
-									</div>
-									<div style="display: block;" id="${lesson.lessonNum}_courseResourceShow">
-										<c:forEach items="${courseMap}" var="cm">
-											<c:if test="${cm.key == lesson.lessonNum }">
-												<c:forEach var="fileNames" items="${cm.value}" varStatus="resourceStatus">
-													<div style="font-size: 13px;" class="fileName_${lesson.lessonNum}">
-														<c:if test="${fileNames.fileName != null }">
-															<div id="${fileNames.id}_courseResourceShowDetail" style="width: 100%; margin-top: 5px; margin-bottom: 1px; border-bottom: 1px dotted #dcdcdc;">
-																<table style="width: 94%; margin-left: 20px;">
-																	<tbody>
-																		<tr>
-																			<td width="8%"><c:if test="${fileNames.resourceType.id ==1 }">
-																					<img src='<c:url value="/resources/resourceType/text.jpg"></c:url>' style="width: 40px; height: 40px;" />
-																				</c:if> <c:if test="${fileNames.resourceType.id ==2 }">
-																					<img src='<c:url value="/resources/resourceType/video.jpg"></c:url>' style="width: 40px; height: 40px;" />
-																				</c:if></td>
-																			<td align="left" width="60%"><a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'> <span style="margin-left: 0px;">${fileNames.fileName}</span>
-																			</a></td>
-																			<td align="right" width="30%"><span style="font-size: 13px;"> <a href='javascript:void(0)' onclick="editCourseResource(${fileNames.id})">修改</a> | <a style=""
-																					class="deleteResourcePostBtn" href="#deleteResourcePostModal" role="button" data-toggle="modal" data-target="#deleteResourcePostModal"> 删除</a><input type="hidden"
-																					value="${fileNames.id}">
-																			</span></td>
-																			<td><a href="#myModal_${resourceStatus.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> <!-- Modal -->
-																				<div id="myModal_${resourceStatus.index}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-																					<div class="modal-header">
-																						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-																						<h3 id="myModalLabel">${fileNames.fileName}</h3>
-																					</div>
-																					<div class="modal-body">
-																						<div id="myPlayer_${resourceStatus.index}"></div>
-																						<script type="text/javascript">
-																    	//TODO: fix me, the file name extension should be mp4
-																	    jwplayer("myPlayer_${resourceStatus.index}").setup({
-																	        file: '<c:url value="${fileNames.relativePath}"></c:url>',
-																	        //image: "/uploads/myPoster.jpg"
-																	        //TODO: each mp4 can have a preview image
-																	    });
-																	</script>
-
-																					</div>
-																					<div class="modal-footer">
-																						<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-																					</div>
-																				</div></td>
-																		</tr>
-																	</tbody>
-																</table>
+										<div style="display: block;" id="${lesson.lessonNum}_courseResourceShow">
+											<c:forEach items="${courseMap}" var="cm">
+												<c:if test="${cm.key == lesson.lessonNum }">
+													<c:forEach var="fileNames" items="${cm.value}" varStatus="resourceStatus">
+														<div style="font-size: 13px;" class="fileName_${lesson.lessonNum}">
+															<c:if test="${fileNames.fileName != null }">
+																<div id="${fileNames.id}_courseResourceShowDetail" style="width: 100%; margin-top: 5px; margin-bottom: 1px; border-bottom: 1px dotted #dcdcdc;">
+																	<table style="width: 94%; margin-left: 20px;">
+																		<tbody>
+																			<tr>
+																				<td width="8%"><c:if test="${fileNames.resourceType.id ==1 }">
+																						<img src='<c:url value="/resources/resourceType/text.jpg"></c:url>' style="width: 40px; height: 40px;" />
+																					</c:if> <c:if test="${fileNames.resourceType.id ==2 }">
+																						<img src='<c:url value="/resources/resourceType/video.jpg"></c:url>' style="width: 40px; height: 40px;" />
+																					</c:if></td>
+																				<td align="left" width="60%"><a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'> <span style="margin-left: 0px;">${fileNames.fileName}</span>
+																				</a></td>
+																				<td align="right" width="30%"><span style="font-size: 13px;"> <a href='javascript:void(0)' onclick="editCourseResource(${fileNames.id})">修改</a> | <a style=""
+																						class="deleteResourcePostBtn" href="#deleteResourcePostModal" role="button" data-toggle="modal" data-target="#deleteResourcePostModal"> 删除</a><input type="hidden"
+																						value="${fileNames.id}">
+																				</span></td>
+																				<td><a href="#myModal_${resourceStatus.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> <!-- Modal -->
+																					<div id="myModal_${resourceStatus.index}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																						<div class="modal-header">
+																							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+																							<h3 id="myModalLabel">${fileNames.fileName}</h3>
+																						</div>
+																						<div class="modal-body">
+																							<div id="myPlayer_${resourceStatus.index}"></div>
+																							<script type="text/javascript">
+																	    	//TODO: fix me, the file name extension should be mp4
+																		    jwplayer("myPlayer_${resourceStatus.index}").setup({
+																		        file: '<c:url value="${fileNames.relativePath}"></c:url>',
+																		        //image: "/uploads/myPoster.jpg"
+																		        //TODO: each mp4 can have a preview image
+																		    });
+																		</script>
+	
+																						</div>
+																						<div class="modal-footer">
+																							<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+																						</div>
+																					</div></td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															</c:if>
+	
+															<div id="${fileNames.id}_editCourseResourceForm" style="border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;">
+																<form name="resourceEditForm" style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/update"></c:url>' enctype="multipart/form-data">
+																	<input type="hidden" name="resourceId" value="${fileNames.id}"> <input type="hidden" name="courseId" value="${course.id}"> 资源名称：<input type="text" style="width: 207px;"
+																		id="${fileNames.id}_editResourceName" name="resourceName">&nbsp;“如：第一讲：物种的起源”<br> 资源类别：<select name="type" id="${fileNames.id}_editResourceType" style="width: 220px;">
+																		<option value="1">文档</option>
+																		<option value="2">视频</option>
+																	</select><br> 上传资源：<input type="file" name="resourceFile">&nbsp;不大于200M
+																	<button type="reset" class="btn " style="margin-left: 5px; float: right;" onclick="closeEditResourceForm(${fileNames.id})">取消</button>
+																	<button type="submit" class="btn  btn-success" style="float: right;">上传</button>
+																	&nbsp;&nbsp;
+																</form>
 															</div>
-														</c:if>
-
-														<div id="${fileNames.id}_editCourseResourceForm" style="border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;">
-															<form name="resourceEditForm" style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/update"></c:url>' enctype="multipart/form-data">
-																<input type="hidden" name="resourceId" value="${fileNames.id}"> <input type="hidden" name="courseId" value="${course.id}"> 资源名称：<input type="text" style="width: 207px;"
-																	id="${fileNames.id}_editResourceName" name="resourceName">&nbsp;“如：第一讲：物种的起源”<br> 资源类别：<select name="type" id="${fileNames.id}_editResourceType" style="width: 220px;">
-																	<option value="1">文档</option>
-																	<option value="2">视频</option>
-																</select><br> 上传资源：<input type="file" name="resourceFile">&nbsp;不大于200M
-																<button type="reset" class="btn " style="margin-left: 5px; float: right;" onclick="closeEditResourceForm(${fileNames.id})">取消</button>
-																<button type="submit" class="btn  btn-success" style="float: right;">上传</button>
-																&nbsp;&nbsp;
-															</form>
 														</div>
-													</div>
-												</c:forEach>
-											</c:if>
-										</c:forEach>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</c:forEach>
-			</c:when>
-			<c:otherwise></c:otherwise>
-		</c:choose>
-		<div style="font-size: 15px; text-align: right; padding: 5px; width: 675px; margin-top: 5px;">
-			<form action='<c:url value="/admin/teacher/course/edit/addlessonnum"></c:url>' method="post">
-				<input type="hidden" name="courseId" value="${course.id }">
-				<button type="submit" class="btn btn-success">添加新课时</button>
+													</c:forEach>
+												</c:if>
+											</c:forEach>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</c:forEach>
+				</c:when>
+				<c:otherwise></c:otherwise>
+			</c:choose>
+			<div style="font-size: 15px; text-align: right; padding: 5px; width: 675px; margin-top: 5px;">
+				<form action='<c:url value="/admin/teacher/course/edit/addlessonnum"></c:url>' method="post">
+					<input type="hidden" name="courseId" value="${course.id }">
+					<button type="submit" class="btn btn-success">添加新课时</button>
+				</form>
+			</div>
+	
+			<form action='<c:url value="/admin/teacher/course/edit/courselesson/destory"></c:url>' method="post" style="display: none;" id="deleLessonNumForm">
+				<input type="hidden" name="lessonId" id="courseLessonId"> <input type="hidden" name="courseId" value="${course.id }">
 			</form>
-		</div>
-
-		<form action='<c:url value="/admin/teacher/course/edit/courselesson/destory"></c:url>' method="post" style="display: none;" id="deleLessonNumForm">
-			<input type="hidden" name="lessonId" id="courseLessonId"> <input type="hidden" name="courseId" value="${course.id }">
-		</form>
-		<%-- <div class="modal hide fade" id="deleLessonNumForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<%-- <div class="modal hide fade" id="deleLessonNumForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h3 id="myModalLabel">请注意</h3>
+					</div>
+					<div class="modal-body">
+						<p>你确定删除吗？</p>
+					</div>
+					<div class="modal-footer">
+						<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+						<form action='<c:url value="/admin/teacher/course/edit/courselesson/destory"></c:url>' method="post" style="display: inline-block;">
+							<input type="hidden" name="lessonId" id="courseLessonId" >
+							<input type="hidden" name="courseId" value="${course.id }" >
+							<button class="btn btn-primary">确定</button>
+						</form>
+					</div>
+			</div> --%>
+	
+			<!-- delete resource) -->
+			<div class="modal hide fade" id="deleteResourcePostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<h3 id="myModalLabel">请注意</h3>
 				</div>
 				<div class="modal-body">
-					<p>你确定删除吗？</p>
+					<p>你确定删除该资源吗？</p>
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-					<form action='<c:url value="/admin/teacher/course/edit/courselesson/destory"></c:url>' method="post" style="display: inline-block;">
-						<input type="hidden" name="lessonId" id="courseLessonId" >
-						<input type="hidden" name="courseId" value="${course.id }" >
+					<form action='<c:url value="/admin/teacher/course/resource/destory"></c:url>' method="post" style="display: inline-block;">
+						<input id="c_resource_Id" type="hidden" name="resourceId" />
 						<button class="btn btn-primary">确定</button>
 					</form>
 				</div>
-		</div> --%>
-
-		<!-- delete resource) -->
-		<div class="modal hide fade" id="deleteResourcePostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3 id="myModalLabel">请注意</h3>
 			</div>
-			<div class="modal-body">
-				<p>你确定删除该资源吗？</p>
-			</div>
-			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-				<form action='<c:url value="/admin/teacher/course/resource/destory"></c:url>' method="post" style="display: inline-block;">
-					<input id="c_resource_Id" type="hidden" name="resourceId" />
-					<button class="btn btn-primary">确定</button>
-				</form>
-			</div>
-		</div>
 
 	</div>
+	
 </div>
 <script type="text/javascript">
 	function editCourseResource(resource_id){

@@ -17,22 +17,27 @@ function previewImages(file){
 .row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
+	
 }
-
 .round {
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 }
-
-.row-fluid.custom .row {
-	margin: 0px 5px;
+.row-fluid .custom .row {
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+.row-fluid.custom .row1 {
+	margin: 20px 40px;
 }
 </style>
 <div class="row-fluid custom round">
-	<div class="row" style="margin-top: 10px;">
-		<a href='<c:url value="/admin/teacher/course/list"></c:url>'><b>课程管理</b></a>>> <a href='<c:url value="/admin/teacher/course/new"></c:url>'><b>课程添加</b></a>
-		<hr>
+	<div class="row" >
+	<h4>课程管理>课程添加</h4> 
+	</div>	
+	<div class="row1">
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
 				<li <c:if test='${active == "first"}'> class="active" </c:if>><a href="#" data-toggle="tab">第一步：基本信息</a></li>
@@ -42,9 +47,8 @@ function previewImages(file){
 			
 			<div class="tab-content">
 				<div class="tab-pane <c:if test='${active == "first"}'>active</c:if>" id="first_tab">
-					<div class="row-fluid custom round">
-						<div>
-							<span> 封面预览 </span>
+						<div style="width: 560px; text-align: left;">
+							<span style="margin-left: 14px;">封面预览：</span> 
 							<div id="preview" style="margin-left:90px;margin-top: -12px;">
 								<img name="showimg" id="showimg" src="" style="display: none;" />
 							</div>
@@ -52,55 +56,47 @@ function previewImages(file){
 								<span> <img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width: 210px; height: 110px;" />
 								</span>
 							</div>
+							<form:form action="new/firststep" method="post" enctype="multipart/form-data" id="course_info_form" onsubmit="return checkPicture(this)">
+								<div class="modal-body"> 
+									上传封面：<input type="file" name="coverFile" style="margin-bottom: 10px; width: 350px;" onChange="previewImages(this);"/> <span style="font-size: 13px; color: red;">${errorMsg }</span>
+									<br><span style="color: red; font-size: 14px; margin-left: 70px;">只支持jpg、gif、bmp、png格式，建议封面宽度260px，高度150px</span>
+								</div>
+								<div class="control-group" id="courseName" >
+									<div class="controls" style="margin-left: 13px;">
+										课程名称：<input type="text" id="coursenames" name="courseName" placeholder="课程名称"> 
+										<span class="help-inline"><form:errors path="courseName" /></span>
+									</div>
+								</div>
+								<div class="modal-body" id="course">
+									课程类别：<select name="courseType" style="width: 380px;">
+										<option selected value="计算机科学与技术">计算机科学与技术</option>
+										<option value="生物">生物</option>
+										<option value="数学">数学</option>
+										<option value="化学">化学</option>
+										<option value="语文">语文</option>
+										<option value="历史">历史</option>
+										<option value="金融">金融</option>
+										<option value="英语">英语</option>
+										<option value="哲学">哲学</option>
+										<option value="其他">其他</option>
+									</select>
+									<span class="help-inline"></span>
+								</div>
+								<div class="control-group" id="courseDesc">
+									<div class="controls" style="margin-left: 13px;">
+									课程描述：
+									<div style="margin-left: 70px; margin-top: -20px;">
+										<textarea id="KEcourseDesc" name="courseDesc" rows="8" cols="5" style="width: 500px; height: 300px;"></textarea>
+										<span class="help-inline"></span>
+									</div>
+									</div>
+								</div>
+								<div class="modal-body" style="text-align: center;">
+									<button type="submit" class="btn btn-large btn-success">下一步</button>
+								</div>
+							</form:form>
 						</div>
-						<div class="row" style="margin-top: 10px;">
-							<div style="width: 560px; text-align: left;">
-								<form:form action="new/firststep" method="post" enctype="multipart/form-data" id="course_info_form" onsubmit="return checkPicture(this)">
-									<div class="modal-body"> 
-										上传封面：<input type="file" name="coverFile" style="margin-bottom: 10px; width: 350px;" onChange="previewImages(this);"/> <span style="font-size: 13px; color: red;">${errorMsg }</span>
-										<br><span style="color: red; font-size: 14px; margin-left: 70px;">只支持jpg、gif、bmp格式，建议封面宽度260px，高度150px</span>
-									</div>
-									<div class="control-group" id="courseName" >
-										<div class="controls" style="margin-left: 13px;">
-											课程名称：<input type="text" id="coursenames" name="courseName" placeholder="课程名称"> 
-											<span class="help-inline"><form:errors path="courseName" /></span>
-										</div>
-									</div>
-									<div class="modal-body" id="course">
-										课程类别：<select name="courseType" style="width: 380px;">
-											<option selected value="计算机科学与技术">计算机科学与技术</option>
-											<option value="生物">生物</option>
-											<option value="数学">数学</option>
-											<option value="化学">化学</option>
-											<option value="语文">语文</option>
-											<option value="历史">历史</option>
-											<option value="金融">金融</option>
-											<option value="英语">英语</option>
-											<option value="哲学">哲学</option>
-											<option value="其他">其他</option>
-										</select>
-									</div>
-									
-									
-									
-									<div class="control-group" id="courseDesc">
-										<div class="controls" style="margin-left: 13px;">
-										课程描述：
-										<div style="margin-left: 70px; margin-top: -10px;">
-											<textarea id="KEcourseDesc" name="courseDesc" rows="8" cols="5" style="width: 500px; height: 300px;"></textarea>
-											<span class="help-inline"></span>
-										</div>
-										</div>
-									</div>
-									<div class="modal-body" style="text-align: center;">
-										<button type="submit" class="btn btn-large btn-success">下一步</button>
-									</div>
-								</form:form>
-							</div>
-						</div>
-					</div>
 				</div>
-
 				<div class="tab-pane <c:if test='${active == "second"}'>active</c:if>" id="second_tab">
 					<form:form class="form-horizontal" action="new/secondstep" method="post" onsubmit="return checkPwd()" enctype="multipart/form-data">
 						<input type="hidden" name="courseId" value="${courseId }" />

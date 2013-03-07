@@ -55,17 +55,19 @@
 		    <td width="70%"  align="left" valign="top" style="background-color: #ccdfa8; font-size: 16px;">
 		    		<b>标题：${sendMsg.title }</b>
 		    </td>
-		    <td align="right" align="left" valign="top" style="background-color: #ccdfa8; font-size: 14px;">
-		    	<b>${sendMsg.date }</b>
+		  </tr>
+		  <tr  class="btline">
+		  	<td align="left"  width="30%">
+		  		<b>发件人：${sendMsg.user.name}</b><br>
+		  		<b>发送时间：${sendMsg.date }</b>
+		  	</td>
+		  </tr>
+		  <tr>
+		    <td align="left" colspan="2">
+		    	${sendMsg.content }
 		    </td>
 		  </tr>
-		  <tr>
-		  	<td align="left" colspan="2">	<b>发件人：${sendMsg.user.name}</b></td>
-		  </tr>
-		  <tr>
-		    <td align="left" colspan="2">${sendMsg.content }</td>
-		  </tr>
-		</table><br> 
+		</table><hr>
 			<a href="#myModal" role="button" class="btn btn-small" data-toggle="modal">点击回复</a>
 			<div id="myModal" style="text-align: left;"  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-header">

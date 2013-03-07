@@ -2,11 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<div style="margin-top: 10px;">
-<div style="vertical-align: middle;text-align: center;">
-	<c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url>
-	<img width="90px" height="90px" src="${avatar_url}" style="margin: 15px 0px;">
-  </div>
+<div style="background-image: url('<c:url value='/resources/img/default/admin_left_bg.png'></c:url>');">
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value="/admin/teacher/course/list"></c:url>'>全部课程</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/edit/${course.id}/modifycourse"></c:url>'>课程资料</a></li>

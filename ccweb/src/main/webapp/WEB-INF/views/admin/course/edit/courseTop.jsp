@@ -7,7 +7,11 @@
 .row-fluid.custom.teacherCourse {
 	text-align: left;
 	margin-top: 10px;
-	border:solid 1px #dcdcdc;
+	border:solid 0px #dcdcdc;
+	color:#cccccc;
+	background-image: url('<c:url value="/resources/img/default/course-topbg.png"></c:url>');
+	background-position: center top;
+	background-repeat: repeat-y; 
 }
 </style>
 <div class=" row-fluid custom teacherCourse">
