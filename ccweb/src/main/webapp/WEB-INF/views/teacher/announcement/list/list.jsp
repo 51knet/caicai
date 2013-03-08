@@ -33,7 +33,6 @@
 	background-color:#ccdfa8; 
 	width:100%; 
 	font-size: 14px;
-	color: #f7f7f7;
 }
 </style>
 

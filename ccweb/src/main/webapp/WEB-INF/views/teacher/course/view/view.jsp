@@ -133,30 +133,29 @@ function courseOnclick(obj) {
 									<tr>
 										<td align="left">
 											<div >
-												<div  style="font-size: 12px; color:#FFFFFF; background-color: #8E8E8E;"  id="course_${status.count}" onclick="javascript:courseOnclick(this);"><span style="margin-left: 10px;">第${course.key}课时</span>
-												<img  style="margin-left: 550px;" src="<c:url  value="/resources/img/knet-05.png" ></c:url> ">
+												<div  style="font-size: 12px; color:#FFFFFF; background-color: #8E8E8E;"  id="course_${status.index}" onclick="javascript:courseOnclick(this);"><span style="margin-left: 10px;">第${course.key}课时</span>
 												</div>
 												<c:forEach var="fileNames" items="${course.value}">
 												<c:if test="${fileNames.fileName!=null}">
-													<div  class="fileName_${status.count}"  style="background-color:#ffffff;">
+													<div  class="fileName_${status.index}"  style="background-color:#ffffff;">
 														<c:if test="${fileNames.fileName != null }">
 															<div style="width: 87%; float: left; margin-left: 10px; margin-top: 3px;">${fileNames.fileName}</div>
 															<div style="width:10%; float: left; text-align: center;">
 																<a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>
 																	<img src="<c:url  value="/resources/img/u173_normal.jpg" ></c:url> ">
 																</a>
-																<a href="#myModal_${status.count}" role="button" data-toggle="modal"><i class="icon-play"></i></a>
+																<a href="#myModal_${status.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a>
 																<!-- Modal -->
-																<div id="myModal_${status.count}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																<div id="myModal_${status.index}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 																  <div class="modal-header">
 																    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-																    <h3 id="myModalLabel">Modal header</h3>
+																    <h3 id="myModalLabel">${fileNames.fileName}</h3>
 																  </div>
 																  <div class="modal-body">
-																    <div id="myPlayer_${status.count}"></div>
+																    <div id="myPlayer_${status.index}"></div>
 																    <script type="text/javascript">
 																    	//TODO: fix me, the file name extension should be mp4
-																	    jwplayer("myPlayer_${status.count}").setup({
+																	    jwplayer("myPlayer_${status.index}").setup({
 																	        file: '<c:url value="${fileNames.relativePath}"></c:url>',
 																	        //image: "/uploads/myPoster.jpg"
 																	        //TODO: each mp4 can have a preview image

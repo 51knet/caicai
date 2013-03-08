@@ -37,7 +37,6 @@
 	<div class="row">
 		<h4>资源详细</h4>
 	</div>
-
 	<div class="row1">
 		<div  style="text-align:left;">
 		<label ><b style="font-size: 16px;margin-right: 10px;">${resource.fileName}}</b >发布时间:${resource.date}</label>
