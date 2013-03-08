@@ -28,25 +28,29 @@
 .row-fluid.custom .row1 .bb{
 	border-bottom: dashed #cccccc 1px;
 }
+.row-fluid.custom .row2 {
+	margin: 10px 40px;
+	border-bottom: solid #cccccc 1.5px;
+}
 </style>
 <div class="row-fluid custom round">
 	<div class="row">
 		<h4>资源详细</h4>
 	</div>
-
 	<div class="row1">
 		<div  style="text-align:left;">
-			<h5 >${resource.fileName}</h5>
-			<span style="font-size: 16px;color: black;">类别: ${resource.resourceType.typeName}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="margin-left:360px;font-size: 16px;color: black;">发布时间: ${resource.date}</span>&nbsp;&nbsp;&nbsp;&nbsp;<a href='<c:url value="/resource/download/${resource.id }"></c:url>'>下载</a>
+		<label ><b style="font-size: 16px;margin-right: 10px;">${resource.fileName}}</b >发布时间:${resource.date}</label>
+		<div >类别: <span style="font-size: 14px; color:#80b029"  > <b>${resource.resourceType.typeName}</b> </span>
+		<a  href='<c:url value="/resource/download/${resource.id }"></c:url>'>下载</a>
+		</div> 
 		</div>
-		<div class="bb"></div>
 		<div  style="margin-top:10px;text-align: center;">
 			<c:choose>
 				<c:when test="${resource.resourceDesc != null && resource.resourceDesc!=''}"> ${resource.resourceDesc} </c:when>
 				<c:otherwise>无描述</c:otherwise>
 			</c:choose>
 		</div>
-		<div class="bb"></div>
+		<div class="row2" style="width: 680px;margin-left: -2px;"><span>${comment.content} </span></div>
 	</div>
 
 </div>

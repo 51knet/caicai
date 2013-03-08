@@ -180,8 +180,8 @@ public class TeacherCourseInfoDetailController {
 				resource.setDate(date);
 				TeacherCourse teacherCourse = teacherCourseService.findOneById(Long.valueOf(course_id));
 				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
-				String path = session.getServletContext().getRealPath("/")+"resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId()+"/"+lessonNum;
-				String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId()+"/"+lessonNum;
+				String path = session.getServletContext().getRealPath("/")+"resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+lessonNum;
+				String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+lessonNum;
 				FileUtil.createRealPath(path, session);
 				File saveDest = new File(path + File.separator + fileName);
 				multipartFile.transferTo(saveDest);
@@ -238,13 +238,14 @@ public class TeacherCourseInfoDetailController {
 				resource.setDate(date);
 				TeacherCourse teacherCourse = teacherCourseService.findOneById(resource.getCourse_id());
 				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+File.separator+resource.getLessonNum();
+				String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+resource.getLessonNum();
 				FileUtil.createRealPath(path, session);
 				File saveDest = new File(path + File.separator + fileName);
 				multipartFile.transferTo(saveDest);
 				String savePath = path+File.separator+fileName;
 				resource.setSavePath(savePath);
 				resource.setSaveName(fileName);
-				
+				resource.setRelativePath(relativePath+"/"+fileName);
 			}
 			resource.setFileName(resourceName);
 			resource.setResourceType(resourceType);

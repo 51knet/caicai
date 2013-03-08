@@ -38,7 +38,7 @@
 	</div>
 	<div class="row1">
 		<div>
-			<label ><b style="font-size: 25px;margin-right: 10px;">${blogPost.title}</b >发表于: ${blogPost.dateCreated} </label> 
+			<label ><b style="font-size: 16px;margin-right: 10px;">${blogPost.title}</b >发表于: ${blogPost.dateCreated} </label> 
 			
 			<div >标签: <span style="font-size: 14px; color:#80b029"  > <b>${blogPost.blogCategory.name}</b> </span></div>  
 			<input type="hidden" value="${blogPost.id}" /> 
@@ -47,7 +47,7 @@
 		<div style="margin-top: 20px;">${blogPost.content}</div>
 		<div class="row" style="width: 680px;margin-left: -2px;"></div>
 		<div >
-			<div style="background-color:#ccdfa8;width: 680px;font-size: 16px; color:#FFFFFF">评论</div>
+			<div style="background-color:#ccdfa8;width: 680px;font-size: 16px;">评论</div>
 			<div style="margin-top:40px;">
 				<c:forEach var="comment" items="${blogCommentList}">
 				<div  ><span style="font-size: 14px; color:#80b029">${comment.author.user.name}</span><span style="margin-left: 500px;">${comment.dateCreated}</span></div>
@@ -63,7 +63,7 @@
 			</c:when>
 			<c:otherwise>
 			<div >
-				<div style="background-color:#ccdfa8;width: 680px;font-size: 16px; color:#FFFFFF;margin-left: -2px;">发表评论</div>
+				<div style="background-color:#ccdfa8;width: 680px;font-size: 16px;margin-left: -2px;">发表评论</div>
 				<div style="margin-top: 10px;font-size: 14px;color:#ccdfa8 ">${teacherInfo.user.name}</div>
 				<div style="margin-top: 10px;">
 				<form action='<c:url value="/teacher/${teacher_id}/blog/comment" />' method="post">

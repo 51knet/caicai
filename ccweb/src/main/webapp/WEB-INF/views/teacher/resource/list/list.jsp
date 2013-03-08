@@ -32,7 +32,6 @@
 	background-color:#ccdfa8; 
 	width:100%; 
 	font-size: 14px;
-	color: #f7f7f7;
 }
 </style>
 <div class="row-fluid custom round">
@@ -48,7 +47,9 @@
 				<tr><td align="left" class="bb"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${page.id}"></c:url>">${page.fileName}</a></td>
 				<td class="bb">
 					<c:choose>
-						<c:when test="${page.resourceDesc != null && page.resourceDesc !=''}">${page.resourceDesc}</c:when>
+						<c:when test="${page.resourceDesc != null && page.resourceDesc !=''}">
+						<div style="width: 120px;" id="content">${page.resourceDesc}</div>
+						</c:when>
 						<c:otherwise>无描述</c:otherwise>
 					</c:choose>
 				</td>
