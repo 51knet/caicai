@@ -93,8 +93,9 @@ public class BlogController {
 		model.addAttribute("teacher_id", teacher_id);
 		
 		BlogPost blogPost = blogService.findOne(blog_post_id);
+		List<BlogComment> blogCommentList=(List<BlogComment>) blogPost.getBlogComments();
 		model.addAttribute("blogPost", blogPost);
-		List<BlogComment> blogComment=blogC
+		model.addAttribute("blogCommentList", blogCommentList);
 		model.addAttribute("sumComment", blogPost.getBlogComments().size());
 		
 		return "teacher.blog.view";

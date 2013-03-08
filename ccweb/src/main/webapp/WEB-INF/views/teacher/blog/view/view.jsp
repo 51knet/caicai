@@ -49,8 +49,8 @@
 		<div >
 			<div style="background-color:#ccdfa8;width: 680px;font-size: 16px; color:#FFFFFF">评论</div>
 			<div style="margin-top:40px;">
-				<c:forEach var="comment" items="${blogPost.blogComments}">
-				<div  ><span style="font-size: 14px; color:#80b029">${teacherInfo.user.name}</span><span style="margin-left: 500px;">${comment.dateCreated}</span></div>
+				<c:forEach var="comment" items="${blogCommentList}">
+				<div  ><span style="font-size: 14px; color:#80b029">${comment.author.user.name}</span><span style="margin-left: 500px;">${comment.dateCreated}</span></div>
 					<div class="row2" style="width: 680px;margin-left: -2px;"><span>${comment.content} </span></div>
 				</c:forEach>
 				<div style="margin-left:600px;">共${sumComment}条评论</div>
@@ -64,12 +64,12 @@
 			<c:otherwise>
 			<div >
 				<div style="background-color:#ccdfa8;width: 680px;font-size: 16px; color:#FFFFFF;margin-left: -2px;">发表评论</div>
-				<div style="margin-top: 10px;">${teacherInfo.user.name}</div>
+				<div style="margin-top: 10px;font-size: 14px;color:#ccdfa8 ">${teacherInfo.user.name}</div>
 				<div style="margin-top: 10px;">
 				<form action='<c:url value="/teacher/${teacher_id}/blog/comment" />' method="post">
 					<input type="hidden" name="blogpost_id" value="${blogPost.id}">
 					<textarea name="content" rows="4" cols="120" style="width: 98%"></textarea>
-					<button class="btn btn-primary" type="submit">提交</button>
+					<button class="btn btn-primary" type="submit" style="margin-left: 585px;float: left;">发表评论</button>
 				</form>
 				</div>
 			</div>		

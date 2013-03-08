@@ -30,5 +30,4 @@ public interface BlogService {
 	Page<BlogPost> findAllBlogsIsGarbage(int pageNumber, int pageSize, Teacher teacher);
 	Page<BlogPost> findAllBlogsIsDraft(int pageNumber, int pageSize, Teacher teacher);
 	Page<BlogPost> findAllBlogsIsDraftNotGarbage(int pageNumber, int pageSize, Teacher teacher);
-	List<BlogComment> getBlogCommentByblogpost_id(Long blogpost_id);
 }
