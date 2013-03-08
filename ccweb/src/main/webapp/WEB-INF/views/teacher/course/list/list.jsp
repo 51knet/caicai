@@ -67,7 +67,7 @@
 	<div class="row1">
 		<table  style="margin-top: 15px;"  cellpadding="5">
 			<thead>
-					<tr class="nar"><td>课程名称</td><td  width=60%>课程描述</td><td width=20%>创建时间</td></tr>
+					<tr class="nar"><td><b>课程名称</b></td><td  width=60%><b>课程描述</b></td><td width=20%><b>创建时间</b></td></tr>
 			</thead>
 			<tbody>
 				<c:forEach var="course" items="${page.content}">

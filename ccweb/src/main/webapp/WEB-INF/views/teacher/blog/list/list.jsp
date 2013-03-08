@@ -41,7 +41,7 @@
 	<div class="row1 ">
 	<table style="margin-top: 15px;"  cellpadding="5">
 		<thead>
-			<tr class="nar"><td width="80%">标题</td><td>发表日期</td></tr>
+			<tr class="nar"><td width="80%"><b>标题</b></td><td><b>发表日期</b></td></tr>
 		</thead>
 		<tbody>
 			<c:forEach var="blogPost" items="${page.content}">

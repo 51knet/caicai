@@ -7,6 +7,9 @@
 .nar {
 	background-color: #ccdfa8; 
 	width:100%; 
+	font-size:14px;
+	height: 20px; 
+	padding-top: 10px;
 	margin-bottom: 10px;  
 	padding: 5px; 
 }
@@ -88,6 +91,8 @@ function courseOnclick(obj) {
 			</div>
 		</div>
 		<div  class="nar">
+			<span style="margin-left: 30px;padding-bottom: 10px;" ><b>课程简介</b></span>
+		</div>
 				<span class="content"><b>课程介绍</b></span>
 			</div>
 		<div class="cont">
@@ -102,6 +107,7 @@ function courseOnclick(obj) {
 		</div>
 		
 		<div  class="nar">
+			<span style="margin-left: 30px;"><b>目标人群</b></span>
 				<span class="content"><b>目标人群</b></span>
 		</div>
 		<div class="cont">
