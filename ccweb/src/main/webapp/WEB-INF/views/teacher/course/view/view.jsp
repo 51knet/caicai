@@ -7,9 +7,8 @@
 .nar {
 	background-color:#ccdfa8; 
 	width:100%; 
-	font-size:15px;
+	font-size:14px;
 	height: 20px; 
-	margin-bottom:10px;
 	padding-top: 10px;
 }
  .cont {
@@ -80,7 +79,7 @@ function courseOnclick(obj) {
 			</div>
 		</div>
 		<div  class="nar">
-			<span style="margin-left: 30px;margin-top: -15px;" ><b>课程简介</b></span>
+			<span style="margin-left: 30px;padding-bottom: 10px;" ><b>课程简介</b></span>
 		</div>
 		<div class="cont">
 				<c:choose>
@@ -94,7 +93,7 @@ function courseOnclick(obj) {
 		</div>
 		
 		<div  class="nar">
-			<span style="margin-left: 30px; "><b>目标人群</b></span>
+			<span style="margin-left: 30px;"><b>目标人群</b></span>
 		</div>
 		<div class="cont">
 			<c:choose>

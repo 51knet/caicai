@@ -41,7 +41,7 @@
 	</div>
 	<div class="row1">
 		<table  width="100%" style="margin-top: 15px;"  cellpadding="5" >
-		<tr class="nar"><td>文件名称</td><td>描述</td><td width=10%>类型</td><td width=20%>发布时间</td><td width=8%>下载</td></tr>
+		<tr class="nar"><td><b>文件名称</b></td><td><b>描述</b></td><td width=10%><b>类型</b></td><td width=20%><b>发布时间</b></td><td width=8%><b>下载</b></td></tr>
 			<tbody>
 			<c:forEach items="${page.content}" var="page">
 				<tr><td align="left" class="bb"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${page.id}"></c:url>">${page.fileName}</a></td>

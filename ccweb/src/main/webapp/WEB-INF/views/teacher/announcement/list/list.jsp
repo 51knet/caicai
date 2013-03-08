@@ -42,7 +42,7 @@
 	</div>
 	<div class="row1">
 		<table style="margin-top: 15px;"  cellpadding="5">
-			<tr class="nar" ><td>标题</td><td width="25%">发布时间</td></tr>
+			<tr class="nar" ><td><b>标题</b></td><td width="25%"><b>发布时间</b></td></tr>
 			<tbody>
 				<c:forEach items="${page.content}" var="page">
 					<tr><td align="left" class="bb" >
