@@ -157,14 +157,14 @@ function courseOnclick(obj) {
 																    <script type="text/javascript">
 																    	//TODO: fix me, the file name extension should be mp4
 																	    jwplayer("myPlayer_${status.count}").setup({
-																	        file: '<c:url value="/course/resource/download/${fileNames.id}"></c:url>',
+																	        file: '<c:url value="${fileNames.relativePath}"></c:url>',
 																	        //image: "/uploads/myPoster.jpg"
 																	        //TODO: each mp4 can have a preview image
 																	    });
 																	</script>
 																  </div>
 																  <div class="modal-footer">
-																    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+																     <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 																  </div>
 																</div>
 															</div>

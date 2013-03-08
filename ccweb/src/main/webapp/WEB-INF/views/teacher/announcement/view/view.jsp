@@ -28,6 +28,10 @@
 .row-fluid.custom .row1 .bb{
 	border-bottom: dashed #cccccc 1px;
 }
+.row-fluid.custom .row2 {
+	margin: 10px 40px;
+	border-bottom: solid #cccccc 1.5px;
+}
 </style>
 
 <div class="row-fluid custom round">
@@ -36,12 +40,10 @@
 	</div>
 	<div class="row1">
 		<div>
-			<div><span style="font-size: 16px;color: black;">${announcement.title}</span><span style="margin-left: 415px;font-size: 16px;color: black;">${announcement.date}</span></div>
+		<label ><b style="font-size: 16px;margin-right: 10px;">${announcement.title}</b >发表于: ${announcement.date}</label>
 		</div>
-		<div class="bb"></div>
-		<div  style="text-align: center;">${announcement.content}</div>
-		
-		<div class="bb"></div>
+		<div  style="text-align: center;margin-top: 20px;">${announcement.content}</div>
+		<div class="row2" style="width: 680px;margin-left: -2px;"><span>${comment.content} </span></div>
 	</div>
 
 </div>

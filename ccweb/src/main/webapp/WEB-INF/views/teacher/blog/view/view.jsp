@@ -38,7 +38,7 @@
 	</div>
 	<div class="row1">
 		<div>
-			<label ><b style="font-size: 25px;margin-right: 10px;">${blogPost.title}</b >发表于: ${blogPost.dateCreated} </label> 
+			<label ><b style="font-size: 16px;margin-right: 10px;">${blogPost.title}</b >发表于: ${blogPost.dateCreated} </label> 
 			
 			<div >标签: <span style="font-size: 14px; color:#80b029"  > <b>${blogPost.blogCategory.name}</b> </span></div>  
 			<input type="hidden" value="${blogPost.id}" /> 
