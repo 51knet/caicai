@@ -271,6 +271,7 @@ public class TeacherCourseInfoPageController {
 		teacherCourseService.updateTeacherCourse(course);
 		redirectAttributes.addFlashAttribute("courseId", course_id);
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		/*
 		List<MultipartFile> files = request.getFiles("resourceFile");
 		String resourceDesc = request.getParameter("resourceDesc");
 		String lessonNum = request.getParameter("resourceOrder");
@@ -298,10 +299,10 @@ public class TeacherCourseInfoPageController {
 				resource.setCourse_id(Long.valueOf(course_id));
 				courseResourceService.createCourseResource(resource);
 			}
-		}
+		}*/
 		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 	}
-	
+	/*
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/new/thirdstep",method=RequestMethod.POST)
 	public String addCourseThird(HttpSession session,Model model,
@@ -325,7 +326,7 @@ public class TeacherCourseInfoPageController {
 				String date = format.format(new Date());
 				resource.setDate(date);
 				TeacherCourse teacherCourse = teacherCourseService.findOneById(Long.valueOf(course_id));
-				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+lessonNum;
+				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId()+"/"+lessonNum;
 				FileUtil.createRealPath(path, session);
 				File saveDest = new File(path + File.separator + fileName);
 				multipartFile.transferTo(saveDest);
@@ -340,7 +341,7 @@ public class TeacherCourseInfoPageController {
 		}
 		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 	}
-	
+	*/
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/publish")
 	public String publishCourse(@PathVariable Long course_id,HttpSession session){

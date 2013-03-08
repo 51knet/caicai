@@ -5,16 +5,28 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
 .nar {
-	background-color:#ccdfa8; 
+	background-color: #ccdfa8; 
 	width:100%; 
 	font-size:14px;
 	height: 20px; 
 	padding-top: 10px;
+	margin-bottom: 10px;  
+	padding: 5px; 
 }
+.nar .content{
+	margin-left: 30px;
+	font-size: 15px;
+}
+
  .cont {
-	width: 100%;
+	width: 93%;
 	margin-left: 30px;
 	margin-bottom: 10px;
+}
+.cont .top{
+	font-size: 14px; 
+	 background-color: #cccccc; 
+	 padding: 3px;
 }
 .row-fluid.custom {
 	margin-bottom: 20px;
@@ -81,6 +93,8 @@ function courseOnclick(obj) {
 		<div  class="nar">
 			<span style="margin-left: 30px;padding-bottom: 10px;" ><b>课程简介</b></span>
 		</div>
+				<span class="content"><b>课程介绍</b></span>
+			</div>
 		<div class="cont">
 				<c:choose>
 				<c:when test="${course.courseDesc!=null}">
@@ -94,6 +108,7 @@ function courseOnclick(obj) {
 		
 		<div  class="nar">
 			<span style="margin-left: 30px;"><b>目标人群</b></span>
+				<span class="content"><b>目标人群</b></span>
 		</div>
 		<div class="cont">
 			<c:choose>
@@ -107,8 +122,8 @@ function courseOnclick(obj) {
 		</div>
 		
 		<div  class="nar">
-			<span style="margin-left: 30px; "><b>课程看点</b></span>
-		</div>
+				<span class="content"><b>课程看点</b></span>
+			</div>
 		<div class="cont">
 			<c:choose>
 				<c:when test="${course.courseCharacter!=null }">
@@ -121,8 +136,8 @@ function courseOnclick(obj) {
 		</div>
 		
 		<div  class="nar">
-			<span style="margin-left: 30px; "><b>课程资料</b></span>
-		</div>
+				<span class="content"><b>课程资料</b></span>
+			</div>
 		<div class="cont">
 			<c:choose>
 				<c:when test="${resourceCount>0 }">
@@ -132,11 +147,12 @@ function courseOnclick(obj) {
 									<tr>
 										<td align="left">
 											<div >
-												<div  style="font-size: 12px; color:#FFFFFF; background-color: #8E8E8E;"  id="course_${status.index}" onclick="javascript:courseOnclick(this);"><span style="margin-left: 10px;">第${course.key}课时</span>
+												<div  class="top"  id="course_${status.count}" onclick="javascript:courseOnclick(this);">
+													<span style="margin-left: 10px;"><b>第${course.key}课时</b></span>
 												</div>
 												<c:forEach var="fileNames" items="${course.value}">
 												<c:if test="${fileNames.fileName!=null}">
-													<div  class="fileName_${status.index}"  style="background-color:#ffffff;">
+													<div  class="fileName_${status.count}"  >
 														<c:if test="${fileNames.fileName != null }">
 															<div style="width: 87%; float: left; margin-left: 10px; margin-top: 3px;">${fileNames.fileName}</div>
 															<div style="width:10%; float: left; text-align: center;">
