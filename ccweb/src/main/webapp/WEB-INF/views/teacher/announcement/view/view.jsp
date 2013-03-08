@@ -22,7 +22,7 @@
 
 .row-fluid.custom .row1 {
 	margin: 10px 40px;
-	color: cccccc;
+	text-align: center;
 }
 
 .row-fluid.custom .row1 .bb{
@@ -39,11 +39,11 @@
 		<h4>公告详细</h4>
 	</div>
 	<div class="row1">
-		<div>
-		<label ><b style="font-size: 16px;margin-right: 10px;">${announcement.title}</b >发表于: ${announcement.date}</label>
+		<div >
+		<label ><b style="font-size: 20px;">${announcement.title}</b ><br/></label>
+		<label>发表于：${announcement.date}</label> 
 		</div>
-		<div  style="text-align: center;margin-top: 20px;">${announcement.content}</div>
-		<div class="row2" style="width: 680px;margin-left: -2px;"><span>${comment.content} </span></div>
+		<div  style=" text-align:left;  margin-top: 20px;">${announcement.content}</div>
 	</div>
 
 </div>

@@ -24,7 +24,7 @@
 
 .row-fluid.custom .row1 {
 	margin: 10px 40px;
-	color: cccccc;
+	text-align: center;
 }
 
 
@@ -38,12 +38,12 @@
 	</div>
 	<div class="row1">
 		<div>
-			<label ><b style="font-size: 16px;margin-right: 10px;">${blogPost.title}</b >发表于: ${blogPost.dateCreated} </label> 
-			<div >标签: <span style="font-size: 14px; color:#80b029"  > <b>${blogPost.blogCategory.name}</b> </span></div>  
+			<label ><b style="font-size: 16px; ">${blogPost.title}</b ></label> <br/>
+			<div >发表于： ${blogPost.dateCreated}&nbsp;&nbsp;&nbsp;&nbsp;标签： <span style="font-size: 14px; color:#80b029"  > <b>${blogPost.blogCategory.name}</b> </span></div>  
 			<input type="hidden" value="${blogPost.id}" /> 
 			<input type="hidden" value="${blogPost.title}" />
 		</div>
-		<div style="margin-top: 20px;">${blogPost.content}</div>
+		<div style="margin-top: 20px;text-align: left;">${blogPost.content}</div>
 		<div class="row" style="width: 680px;margin-left: -2px;"></div>
 		<div >
 			<div style="background-color:#ccdfa8;width: 680px; padding:5px;"><b>评论</b></div>

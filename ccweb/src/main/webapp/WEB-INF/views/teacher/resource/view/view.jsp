@@ -22,7 +22,7 @@
 
 .row-fluid.custom .row1 {
 	margin: 10px 40px;
-	color: cccccc;
+	text-align: center;
 }
 
 .row-fluid.custom .row1 .bb{
@@ -38,13 +38,13 @@
 		<h4>资源详细</h4>
 	</div>
 	<div class="row1">
-		<div  style="text-align:left;">
-		<label ><b style="font-size: 16px;margin-right: 10px;">${resource.fileName}}</b >发布时间:${resource.date}</label>
-		<div >类别: <span style="font-size: 14px; color:#80b029"  > <b>${resource.resourceType.typeName}</b> </span>
-		<a  href='<c:url value="/resource/download/${resource.id }"></c:url>'>下载</a>
+		<div >
+		<label ><b style="font-size: 16px;">${resource.fileName}</b ></label><br/>
+		<div style="margin-top: -10px;">发布时间：${resource.date} &nbsp;&nbsp;&nbsp;&nbsp;类别：<span style="font-size: 14px; color:#80b029"  > <b>${resource.resourceType.typeName}</b> </span>
+		&nbsp;&nbsp;&nbsp;&nbsp;<a  href='<c:url value="/resource/download/${resource.id }"></c:url>'>下载</a>
 		</div> 
 		</div>
-		<div  style="margin-top:10px;text-align: center;">
+		<div  style="margin-top:10px;text-align: left;">
 			<c:choose>
 				<c:when test="${resource.resourceDesc != null && resource.resourceDesc!=''}"> ${resource.resourceDesc} </c:when>
 				<c:otherwise>无描述</c:otherwise>
