@@ -1,5 +1,6 @@
 package com.knet51.ccweb.controllers.teacher.blog;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -92,7 +93,11 @@ public class BlogController {
 		model.addAttribute("teacher_id", teacher_id);
 		
 		BlogPost blogPost = blogService.findOne(blog_post_id);
+		List<BlogComment> blogCommentList=(List<BlogComment>) blogPost.getBlogComments();
 		model.addAttribute("blogPost", blogPost);
+		model.addAttribute("blogCommentList", blogCommentList);
+		model.addAttribute("sumComment", blogPost.getBlogComments().size());
+		
 		return "teacher.blog.view";
 	}
 	//@ModelAttribute("blogPosts")

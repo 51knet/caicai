@@ -17,11 +17,16 @@
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
+.row-fluid.custom .row2 {
+	margin: 10px 40px;
+	border-bottom: solid #cccccc 1.5px;
+}
 
 .row-fluid.custom .row1 {
 	margin: 10px 40px;
 	color: cccccc;
 }
+
 
 .row-fluid.custom .row1 .bb{
 	border-bottom: dashed #cccccc 1px;
@@ -34,34 +39,39 @@
 	<div class="row1">
 		<div>
 			<label ><b style="font-size: 25px;margin-right: 10px;">${blogPost.title}</b >发表于: ${blogPost.dateCreated} </label> 
-			<span> 
-			标签: ${blogPost.blogCategory.name}
+			
+			<div >标签: <span style="font-size: 14px; color:#80b029"  > <b>${blogPost.blogCategory.name}</b> </span></div>  
 			<input type="hidden" value="${blogPost.id}" /> 
 			<input type="hidden" value="${blogPost.title}" />
-			</span>
 		</div>
 		<div style="margin-top: 20px;">${blogPost.content}</div>
-		<div class="bb"></div>
-		<div >
-			<ul>
-				<c:forEach var="comment" items="${blogPost.blogComments}">
-					<li>${comment.content} - ${comment.dateCreated}</li>
-				</c:forEach>
-			</ul>
-		</div>
 		<div class="row" style="width: 680px;margin-left: -2px;"></div>
+		<div >
+			<div style="background-color:#ccdfa8;width: 680px;font-size: 16px; color:#FFFFFF">评论</div>
+			<div style="margin-top:40px;">
+				<c:forEach var="comment" items="${blogCommentList}">
+				<div  ><span style="font-size: 14px; color:#80b029">${comment.author.user.name}</span><span style="margin-left: 500px;">${comment.dateCreated}</span></div>
+					<div class="row2" style="width: 680px;margin-left: -2px;"><span>${comment.content} </span></div>
+				</c:forEach>
+				<div style="margin-left:600px;">共${sumComment}条评论</div>
+			</div>
+			
+		</div>
 		<c:choose>
 			<c:when test="${sessionUserInfo==null}">
 				<div class="span12"><b>请<a href="<c:url value="/" />">登录</a>评论</b></div>
 			</c:when>
 			<c:otherwise>
-			<div class="span12">
-				<b>发表评论</b>
+			<div >
+				<div style="background-color:#ccdfa8;width: 680px;font-size: 16px; color:#FFFFFF;margin-left: -2px;">发表评论</div>
+				<div style="margin-top: 10px;font-size: 14px;color:#ccdfa8 ">${teacherInfo.user.name}</div>
+				<div style="margin-top: 10px;">
 				<form action='<c:url value="/teacher/${teacher_id}/blog/comment" />' method="post">
 					<input type="hidden" name="blogpost_id" value="${blogPost.id}">
 					<textarea name="content" rows="4" cols="120" style="width: 98%"></textarea>
-					<button class="btn btn-primary" type="submit">提交</button>
+					<button class="btn btn-primary" type="submit" style="margin-left: 585px;float: left;">发表评论</button>
 				</form>
+				</div>
 			</div>		
 			</c:otherwise>
 		</c:choose>
