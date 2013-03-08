@@ -23,7 +23,6 @@
 
 .row-fluid.custom .row1 {
 	margin: 10px 40px;
-	color: cccccc;
 }
 
 .row-fluid.custom .row1 .bb{

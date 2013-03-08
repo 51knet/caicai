@@ -22,25 +22,45 @@
 	-moz-border-radius: 5px;
 }
 .row-fluid.custom .row {
-	margin: 0px 5px;
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+
+.row-fluid.custom .row1 {
+	margin: 10px 40px;
+}
+
+.row-fluid.custom .row1 .bb{
+	border-bottom: dashed #cccccc 1px;
+}
+.nar {
+	background-color:#ccdfa8; 
+	width:100%; 
+	font-size: 14px;
 }
 </style>
 
 <div class="row-fluid custom round">
-	<table class="table table-bordered">
-	<thead><tr><th colspan="4">粉丝名称</th></tr></thead>
-	<tbody>
-		<tr>
-			<td>	<c:forEach items="${fansList}" var="fans">
-			<div style="float: left; padding-right: 10px;"><a href='<c:url value="/teacher/${fans.id}"></c:url>'> ${fans.name}</a></div>
-		</c:forEach></td>
-		</tr>
-	
-	</tbody>		 
-		<tfoot>
-	    	<tr><td colspan="4" align="right">
-	        	<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
-	   		 </td></tr>
-		</tfoot>
-	</table>	 
+	<div class="row">
+		<h4>粉丝名称</h4>
+	</div>
+	<div class="row1">
+		<table width="100%"  cellpadding="5">
+			<tbody>
+				<tr class="bb">
+					<td align="left"  >
+					<c:forEach items="${fansList}" var="fans">
+						<div style="float: left; padding-right: 10px;"><a href='<c:url value="/teacher/${fans.id}"></c:url>'> ${fans.name}</a></div>
+					</c:forEach>
+					</td>
+				</tr>
+			</tbody>		 
+			<tfoot>
+		    	<tr><td >
+		        	<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+		   		 </td></tr>
+			</tfoot>
+		</table>
+	</div>	 
 </div>
