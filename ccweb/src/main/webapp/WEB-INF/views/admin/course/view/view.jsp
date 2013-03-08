@@ -42,6 +42,11 @@
 	margin-left: 30px;
 	margin-bottom: 10px;
 }
+.cont .top{
+	font-size: 14px; 
+	 background-color: #cccccc; 
+	 padding: 3px;
+}
 </style>
 
 <div  class="row-fluid custom round" >
@@ -136,7 +141,7 @@
 										<tr>
 											<td align="left">
 												<div >
-													<div style="font-size: 14px;  background-color: #8e8e8e; padding: 3px;" id="course_${status.index}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
+													<div class="top" id="course_${status.index}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
 													<c:forEach var="fileNames" items="${course.value}" varStatus="resourceStatus">
 														<c:if test="${fileNames.fileName!=null}">
 														<div  class="fileName_${resourceStatus.index}" >

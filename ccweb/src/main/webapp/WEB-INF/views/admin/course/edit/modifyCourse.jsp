@@ -30,6 +30,18 @@
 .row-fluid.custom .row1 {
 	margin: 20px 40px;
 }
+.resourceList{
+	font-size: 14px; 
+	background-color: #f2f2f2; 
+	padding: 3px;
+}
+
+.resourceList .addForm{
+	border: 1px solid #dcdcdc;
+	 background-color: #ffffff; 
+	 text-align: left; 
+	 padding: 5px;
+}
 </style>
 <script type="text/javascript">
 	function deleLessonNum(lesson_id){
@@ -81,14 +93,14 @@
 							<tbody>
 								<tr>
 									<td align="left">
-										<div style="font-size: 15px; background-color: #f2f2f2; padding: 3px;">
+										<div class="resourceList">
 											<div id="course_${lesson.lessonNum}" onclick="javascript:courseOnclick(this);">
 												<b>第${lesson.lessonNum}课时</b>
 											</div>
 											<span style="float: right; margin-right: 20px; font-size: 13px; margin-top: -18px;"> <c:if test="${lesson.status != null }">
 													<a href="javascript:void(0)" onclick="deleLessonNum(${lesson.id })"><b>删除课时</b></a>  |</c:if> <a href="#" onclick="showAddResourceForm(${lesson.lessonNum})"><b>添加资源</b></a>
 											</span>
-											<div style="border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;" id="${lesson.lessonNum}_resourceForm">
+											<div class="addForm" style=" display: none;" id="${lesson.lessonNum}_resourceForm">
 												<form style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/create"></c:url>' enctype="multipart/form-data">
 													<input type="hidden" name="lessonNum" value="${lesson.lessonNum }"> <input type="hidden" name="lessonId" value="${lesson.id}"> <input type="hidden" name="courseId"
 														value="${course.id}"> 资源名称：<input type="text" style="width: 207px;" name="resourceName">&nbsp;“如：第一讲：物种的起源”<br> 资源类别：<select name="type" style="width: 220px;">
@@ -115,17 +127,24 @@
 																	<table style="width: 94%; margin-left: 20px;">
 																		<tbody>
 																			<tr>
-																				<td width="8%"><c:if test="${fileNames.resourceType.id ==1 }">
+																				<td width="8%">
+																					<c:if test="${fileNames.resourceType.id ==1 }">
 																						<img src='<c:url value="/resources/resourceType/text.jpg"></c:url>' style="width: 40px; height: 40px;" />
-																					</c:if> <c:if test="${fileNames.resourceType.id ==2 }">
+																					</c:if> 
+																					<c:if test="${fileNames.resourceType.id ==2 }">
 																						<img src='<c:url value="/resources/resourceType/video.jpg"></c:url>' style="width: 40px; height: 40px;" />
-																					</c:if></td>
-																				<td align="left" width="60%"><a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'> <span style="margin-left: 0px;">${fileNames.fileName}</span>
-																				</a></td>
-																				<td align="right" width="30%"><span style="font-size: 13px;"> <a href='javascript:void(0)' onclick="editCourseResource(${fileNames.id})">修改</a> | <a style=""
-																						class="deleteResourcePostBtn" href="#deleteResourcePostModal" role="button" data-toggle="modal" data-target="#deleteResourcePostModal"> 删除</a><input type="hidden"
-																						value="${fileNames.id}">
-																				</span></td>
+																					</c:if>
+																				</td>
+																				<td align="left" width="60%">
+																					<a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'> <span style="margin-left: 0px;">${fileNames.fileName}</span>
+																					</a>
+																				</td>
+																				<td align="right" width="30%">
+																					<span style="font-size: 13px;"> <a href='javascript:void(0)' onclick="editCourseResource(${fileNames.id})">修改</a> | <a style=""
+																					class="deleteResourcePostBtn" href="#deleteResourcePostModal" role="button" data-toggle="modal" data-target="#deleteResourcePostModal"> 删除</a><input type="hidden"
+																					value="${fileNames.id}">
+																					</span>
+																				</td>
 																				<td><a href="#myModal_${resourceStatus.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> <!-- Modal -->
 																					<div id="myModal_${resourceStatus.index}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 																						<div class="modal-header">
@@ -135,14 +154,13 @@
 																						<div class="modal-body">
 																							<div id="myPlayer_${resourceStatus.index}"></div>
 																							<script type="text/javascript">
-																	    	//TODO: fix me, the file name extension should be mp4
-																		    jwplayer("myPlayer_${resourceStatus.index}").setup({
-																		        file: '<c:url value="${fileNames.relativePath}"></c:url>',
-																		        //image: "/uploads/myPoster.jpg"
-																		        //TODO: each mp4 can have a preview image
-																		    });
-																		</script>
-	
+																						    	//TODO: fix me, the file name extension should be mp4
+																							    jwplayer("myPlayer_${resourceStatus.index}").setup({
+																							        file: '<c:url value="${fileNames.relativePath}"></c:url>',
+																							        //image: "/uploads/myPoster.jpg"
+																							        //TODO: each mp4 can have a preview image
+																							    });
+																							</script>
 																						</div>
 																						<div class="modal-footer">
 																							<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
@@ -153,7 +171,6 @@
 																	</table>
 																</div>
 															</c:if>
-	
 															<div id="${fileNames.id}_editCourseResourceForm" style="border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;">
 																<form name="resourceEditForm" style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/update"></c:url>' enctype="multipart/form-data">
 																	<input type="hidden" name="resourceId" value="${fileNames.id}"> <input type="hidden" name="courseId" value="${course.id}"> 资源名称：<input type="text" style="width: 207px;"

@@ -13,9 +13,14 @@
 	padding-top: 10px;
 }
  .cont {
-	width: 100%;
+	width: 93%;
 	margin-left: 30px;
 	margin-bottom: 10px;
+}
+.cont .top{
+	font-size: 14px; 
+	 background-color: #cccccc; 
+	 padding: 3px;
 }
 .row-fluid.custom {
 	margin-bottom: 20px;
@@ -133,12 +138,13 @@ function courseOnclick(obj) {
 									<tr>
 										<td align="left">
 											<div >
-												<div  style="font-size: 12px; color:#FFFFFF; background-color: #8E8E8E;"  id="course_${status.count}" onclick="javascript:courseOnclick(this);"><span style="margin-left: 10px;">第${course.key}课时</span>
-												<img  style="margin-left: 550px;" src="<c:url  value="/resources/img/knet-05.png" ></c:url> ">
+												<div  style="font-size: 12px; color:#FFFFFF; background-color: #8E8E8E;"  id="course_${status.count}" onclick="javascript:courseOnclick(this);">
+													<span style="margin-left: 10px;">第${course.key}课时</span>
+													<img  style="margin-left: 550px;" src="<c:url  value="/resources/img/knet-05.png" ></c:url> ">
 												</div>
 												<c:forEach var="fileNames" items="${course.value}">
 												<c:if test="${fileNames.fileName!=null}">
-													<div  class="fileName_${status.count}"  style="background-color:#ffffff;">
+													<div  class="fileName_${status.count}"  >
 														<c:if test="${fileNames.fileName != null }">
 															<div style="width: 87%; float: left; margin-left: 10px; margin-top: 3px;">${fileNames.fileName}</div>
 															<div style="width:10%; float: left; text-align: center;">
