@@ -41,7 +41,7 @@
 		<div >
 		<label ><b style="font-size: 16px;">${resource.fileName}</b ></label><br/>
 		<div style="margin-top: -10px;">发布时间：${resource.date} &nbsp;&nbsp;&nbsp;&nbsp;类别：<span style="font-size: 14px; color:#80b029"  > <b>${resource.resourceType.typeName}</b> </span>
-		&nbsp;&nbsp;&nbsp;&nbsp;<a  href='<c:url value="/resource/download/${resource.id }"></c:url>'>下载</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;<a  href='<c:url value="/resource/download/${resource.id }"></c:url>'>下载<img src="<c:url  value="/resources/img/u173_normal.jpg" ></c:url> "></a>
 		</div> 
 		</div>
 		<div  style="margin-top:10px;text-align: left;">
@@ -49,8 +49,8 @@
 				<c:when test="${resource.resourceDesc != null && resource.resourceDesc!=''}"> ${resource.resourceDesc} </c:when>
 				<c:otherwise>无描述</c:otherwise>
 			</c:choose>
+			${comment.content}
 		</div>
-		<div class="row2" style="width: 680px;margin-left: -2px;"><span>${comment.content} </span></div>
 	</div>
 
 </div>
