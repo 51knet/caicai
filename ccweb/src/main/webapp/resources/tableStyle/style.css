@@ -20,7 +20,10 @@ table.blue td{
 	font-size: 13px;
 }
 
-
+.btline{
+	border-bottom:1px solid #cccccc;
+	width: 100%;
+}
 
 
 

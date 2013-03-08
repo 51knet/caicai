@@ -26,70 +26,65 @@ $(document).ready(function(){
 	});
 });
 </script>
-<div style="margin-top: 10px;">
-	<a href="#">基本信息</a>
-	<hr />
-	<form action="<c:url value="/admin/teacher/course/edit/basicinfomodify"></c:url>" method="post" id="basic_info_form" name="basic">
-		<div>
-			<div><input type="hidden" value="${course.id}" name="courseId"></div>
-			<div style="margin-left:20px;">
+
+<style>
+.row-fluid.custom {
+	margin-bottom: 20px;
+	padding: 0px 0px 10px;
+	
+}
+.round {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+.row-fluid .custom .row {
+	margin: 10px 40px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+}
+.row-fluid.custom .row1 {
+	margin: 20px 40px;
+}
+</style>
+<div class="row-fluid custom round">
+	<div class="row">
+		<h4>基本信息</h4>
+	</div>
+	<div class="row1">
+		<form action="<c:url value="/admin/teacher/course/edit/basicinfomodify"></c:url>" method="post" id="basic_info_form" name="basic">
+				<input type="hidden" value="${course.id}" name="courseId">
+
 				<div id="courseName" class="modal-body">
-					课程名称：<input type="text"  style="width: 450px;margin-left:5px;margin-top: 2px;" name="courseName" value="${course.courseName }" />
-					<span class="help-inline"><form:errors path="name"></form:errors></span>
+						课程名称：<input type="text"  style="width: 450px; " name="courseName" value="${course.courseName }" />
+						<span class="help-inline"><form:errors path="name"></form:errors></span>
 				</div>
 				<div class="modal-body">
-					课程类别：
-					<select name="courseType" style="width: 463px;margin-left: 2px;margin-top:2px;" id="courseType" title="${course.courseType}">
-							<option selected value="计算机科学与技术">计算机科学与技术</option>
-							<option value="生物">生物</option>
-							<option value="数学">数学</option>
-							<option value="化学">化学</option>
-							<option value="语文">语文</option>
-							<option value="金融">金融</option>
-							<option value="英语">英语</option>
-							<option value="哲学">哲学</option>
-							<option value="其他">其他</option>
-					</select>
-					<span class="help-inline"></span>
-				</div>
-				
-				<div class="control-group"  id="courseDesc" >
+							课程类别：<select name="courseType" style="width: 460px; " id="courseType" title="${course.courseType}">
+								<option selected value="计算机科学与技术">计算机科学与技术</option>
+								<option value="生物">生物</option>
+								<option value="数学">数学</option>
+								<option value="化学">化学</option>
+								<option value="语文">语文</option>
+								<option value="金融">金融</option>
+								<option value="英语">英语</option>
+								<option value="哲学">哲学</option>
+								<option value="其他">其他</option>
+						</select>
+						<span class="help-inline"></span>
+					</div>
+					<div class="control-group"  id="courseDesc" style="margin-left: 15px;">
 						课程介绍：
-						<div class="controls" style="margin-left: 85px; margin-top: -20px;">
-							<textarea  id="KEcourseDesc"  rows="5" name="courseDesc" cols="8" style="width:465px;height: 100px;margin-left: 5px;">${course.courseDesc}</textarea>
+						<div class="controls" style="margin-left: 70px; margin-top: -20px;">
+							<textarea  id="KEcourseDesc"  rows="5" name="courseDesc" cols="8" style="width:600px;height: 250px;margin-left: 5px;">${course.courseDesc}</textarea>
 							<span class="help-inline"></span>
 						</div>
 					</div>
-				<!-- <tr>
-					<td><h5>知识形式:</h5></td>
-					<td class="row-fluid custom basic"><select style="width: 250px;margin-top: 20px;">
-							<option value="volvo">在线视频</option>
-							<option value="saab">文档</option>
-							<option value="opel">数据</option>
-							<option value="audi">其它</option>
-					</select></td>
-				</tr>
-				<tr>
-					<td><h5>分类:</h5></td>
-					<td class="row-fluid custom basic">
-					<select style="width:200px;margin-top: 20px;">
-							<option value="volvo">课程资料</option>
-							<option value="saab">教学资源</option>
-							<option value="audi">其它</option>
-					</select>
-					<select style="width:200px;margin-left: 20px;margin-top: 20px;">
-							<option value="volvo">文学</option>
-							<option value="saab">计算机</option>
-							<option value="opel">数学</option>
-							<option value="audi">管理学</option>
-							<option value="audi">其它</option>
-					</select>
-					</td>
-				</tr> -->
-				<div style="text-align: left; margin-left: 80px; float: left; margin-top:10px;">
-					<button type="submit" class="btn btn-large btn-success">保存</button></td>
-				</div>
-			</div>
-		</div>
-	</form>
+					<div style="text-align: left; margin-left: 80px; float: left; ">
+						<button type="submit" class="btn btn-large btn-success">保存</button>
+					</div>
+
+		</form>
+	</div>
+	
 </div>

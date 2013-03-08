@@ -11,8 +11,6 @@ import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import com.knet51.ccweb.jpa.entities.resource.Resource;
-
 /**
  * A User.
  * 
@@ -37,6 +35,7 @@ public class User extends AbstractEntity {
 
 	private String email;
 	private String randomUrl;
+	private String forgotPsw;
 	private String name;
 	private String password;
 	private String gender;
@@ -189,6 +188,15 @@ public class User extends AbstractEntity {
 
 	public void setRandomUrl(String randomUrl) {
 		this.randomUrl = randomUrl;
+	}
+	
+	public String getForgotPsw() {
+		return forgotPsw;
+	}
+
+
+	public void setForgotPsw(String forgotPsw) {
+		this.forgotPsw = forgotPsw;
 	}
 
 	public Set<Announcement> getAnnouncement() {

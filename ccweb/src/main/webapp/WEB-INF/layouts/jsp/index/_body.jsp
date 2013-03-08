@@ -7,7 +7,6 @@ body {
 	max-width: 1600px;
 	width: 100%;
 	font-family: 'Microsoft YaHei';
-	overflow-y:hidden;
 }
 
 .container-fluid {
@@ -49,15 +48,16 @@ body {
 	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center no-repeat;
 }
 
+.span4.forgotPsw-panel {
+	height: 100%;
+	margin:0 auto;
+	text-align: center;
+	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center no-repeat;
+}
+
 .login-context {
 	width: 67.391%;
 	margin:0 auto;
-}
-
-.span4.register-context {
-	width: 350px;
-	height: 100%;
-	background: url(<c:url value='/resources/img/default/index/hr_bg.png' ></c:url>) center no-repeat;
 }
 
 .login-logo {
@@ -101,6 +101,17 @@ body {
 		$("#loginbtn").click(function() {
 			$(".login-panel").show(500);
 			$(".register-panel").hide(500);
+			return false;
+		});
+		$("#fogotPswbtn").click(function() {
+			$(".forgotPsw-panel").show(500);
+			$(".login-panel").hide(500);
+			$(".register-panel").hide(500);
+			return false;
+		});
+		$("#tologinbtn").click(function() {
+			$(".login-panel").show(500);
+			$(".forgotPsw-panel").hide(500);
 			return false;
 		});
 		
@@ -206,6 +217,9 @@ body {
 	$(function(){
 	    $("#emails").autoMailSuggest(defaultMailSuffix);
 	  });
+	$(function(){
+	    $("#emailForPsw").autoMailSuggest(defaultMailSuffix);
+	  });
 </script>
 
 <div class="row bg">
@@ -221,21 +235,25 @@ body {
 					<div class="controls">
 						<h4 style="text-align: left;">邮箱地址</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址" style="width: 327px;"> <span class="help-block" id="em"><form:errors path="email"></form:errors></span>
+							<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址" style="width: 96.17%;"> <span class="help-block" id="em"><form:errors path="email"></form:errors></span>
 							<div id="emailError" class="inputError"></div>
 						</div>
 					</div>
 					<div class="controls">
 						<h4 style="text-align: left;">登录密码</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="password" id="password" name="password" placeholder="请输入您的密码" style="width: 327px;"> <span class="help-block" id="pass"><form:errors path="password"></form:errors></span>
+							<input type="password" id="password" name="password" placeholder="请输入您的密码" style="width: 96.17%;"> <span class="help-block" id="pass"><form:errors path="password"></form:errors></span>
 							<div id="passwordErr" class="inputError"></div>
 						</div>
 					</div>
+					<h5 class="controls" style="text-align: left;">
+					<a id="fogotPswbtn" href="<c:url value='#'></c:url>"><font color="#555">忘记密码？</font></a>
+					</h5>
 					<label style="clear: right;"></label>
+					<div style="height:10px;"></div>
 					<button class="btn btn-large btn-block btn-primary" type="submit" style="font-family: 'Microsoft YaHei';">登录</button>
 				</form:form>
-				<div class="hr-bg"></div>
+				<div class="register-hr-bg"></div>
 				<a id="registerbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">快速注册</a>
 			</div>
 		</div>
@@ -248,21 +266,21 @@ body {
 					<div class="control">
 						<h4 style="text-align: left;">邮箱地址</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="text" id="emails" name="email" placeholder="请输入您的邮箱地址" style="width: 327px;"> <span class="help-block"><form:errors path="email"></form:errors></span>
+							<input type="text" id="emails" name="email" placeholder="请输入您的邮箱地址" style="width: 96.17%;"> <span class="help-block"><form:errors path="email"></form:errors></span>
 							<div id="checkEmails" class="inputError"></div>
 						</div>
 					</div>
 					<div class="control">
 						<h4 style="text-align: left;">密码</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="password" id="psw" name="psw" placeholder="请设置您的密码" style="width: 327px;"> <span class="help-block"><form:errors path="psw"></form:errors></span>
+							<input type="password" id="psw" name="psw" placeholder="请设置您的密码" style="width: 96.17%;"> <span class="help-block"><form:errors path="psw"></form:errors></span>
 							<div id="emptyPwd" class="inputError"></div>
 						</div>
 					</div>
 					<div class="control">
 						<h4 style="text-align: left;">密码确认</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="password" id="confirmpsw" name="confirmpsw" placeholder="请再次输入您的密码" style="width: 327px;"> <span class="help-block"><form:errors path="confirmpsw"></form:errors></span>
+							<input type="password" id="confirmpsw" name="confirmpsw" placeholder="请再次输入您的密码" style="width: 96.17%;"> <span class="help-block"><form:errors path="confirmpsw"></form:errors></span>
 							<div id="passwordError" class="inputError"></div>
 						</div>
 					</div>
@@ -278,6 +296,29 @@ body {
 				</form:form>
 				<div class="register-hr-bg"></div>
 				<a id="loginbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">用户登录</a>
+			</div>
+		</div>
+		
+		<div class="span4 forgotPsw-panel" style="display: none;">
+			<div class="login-context">
+				<div class="login-logo"></div>
+				<form:form class="form-horizontal" action="forgotPsw" id="forgotPsw_info_form" modelAttribute="forgotPswForm" method="post">
+					<h1 class="form-signin-heading" style="font-family: 'Microsoft YaHei'; font-size: 25pt;">密码找回</h1>
+					<div class="hr-bg"></div>
+					<div style="height: 10px"></div>
+					<div class="controls">
+						<h4 style="text-align: left;">您的注册邮箱地址</h4>
+						<div class="controls" style="text-align: left;">
+							<input type="text" id="emailForPsw" name="email" placeholder="请输入您已注册的邮箱地址" style="width: 96.17%;"> <span class="help-block" id="em"><form:errors path="email"></form:errors></span>
+							<div id="emailError" class="inputError"></div>
+						</div>
+					</div>
+					<label style="clear: right;"></label>
+					<div style="height:30px;"></div>
+					<button class="btn btn-large btn-block btn-primary" type="submit" style="font-family: 'Microsoft YaHei';">发送密码找回邮件</button>
+				</form:form>
+				<div class="hr-bg"></div>
+				<a id="tologinbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">返回登录</a>
 			</div>
 		</div>
 	</div>

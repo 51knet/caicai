@@ -62,6 +62,11 @@ public class UserServiceImpl implements UserService {
 		User usr = userDao.queryStringBySql("randomUrl", randomUrl);
 		return usr;
 	}
+	
+	public User findByForgotPsw(String forgotPsw) {
+		User usr = userDao.queryStringBySql("forgotPsw", forgotPsw);
+		return usr;
+	}
 
 	@Override
 	public User findByEmailAddress(String emailAddress) {
