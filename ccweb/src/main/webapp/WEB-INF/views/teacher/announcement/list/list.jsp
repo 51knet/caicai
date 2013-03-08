@@ -23,7 +23,6 @@
 
 .row-fluid.custom .row1 {
 	margin: 10px 40px;
-	color: cccccc;
 }
 
 .row-fluid.custom .row1 .bb{
@@ -45,7 +44,7 @@
 			<tr class="nar" ><th align="left"><b>标题</b></th><th width="25%" align="left"><b>发布时间</b></th></tr>
 			<tbody>
 				<c:forEach items="${page.content}" var="page">
-					<tr class="bb"><td align="left" >
+					<tr  class="bb"><td align="left" >
 						<div style="width: 540px;" id="content"><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/view/${page.id}"></c:url>">
 						${page.title}</a></div>
 					</td>
