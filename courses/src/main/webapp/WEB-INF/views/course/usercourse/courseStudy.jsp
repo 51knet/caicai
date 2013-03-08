@@ -48,7 +48,7 @@
 																						<script type="text/javascript">
 																    	//TODO: fix me, the file name extension should be mp4
 																	    jwplayer("myPlayer_${resourceStatus.index}").setup({
-																	        file: '<c:url value="${fileNames.relativePath}"></c:url>',
+																	        file: '<c:url value="${url}${fileNames.relativePath}"></c:url>',
 																	        //image: "/uploads/myPoster.jpg"
 																	        //TODO: each mp4 can have a preview image
 																	    });
