@@ -39,7 +39,6 @@
 	<div class="row1">
 		<div>
 			<label ><b style="font-size: 16px;margin-right: 10px;">${blogPost.title}</b >发表于: ${blogPost.dateCreated} </label> 
-			
 			<div >标签: <span style="font-size: 14px; color:#80b029"  > <b>${blogPost.blogCategory.name}</b> </span></div>  
 			<input type="hidden" value="${blogPost.id}" /> 
 			<input type="hidden" value="${blogPost.title}" />
@@ -48,14 +47,13 @@
 		<div class="row" style="width: 680px;margin-left: -2px;"></div>
 		<div >
 			<div style="background-color:#ccdfa8;width: 680px; padding:5px;"><b>评论</b></div>
-			<div style="margin-top:40px;">
+			<div style="margin-top:20px;">
 				<c:forEach var="comment" items="${blogCommentList}">
 				<div  ><span style="font-size: 14px; color:#80b029">${comment.author.user.name}</span><span style="margin-left: 500px;">${comment.dateCreated}</span></div>
 					<div class="row2" style="width: 680px;margin-left: -2px;"><span>${comment.content} </span></div>
 				</c:forEach>
 				<div style="margin-left:600px;">共${sumComment}条评论</div>
 			</div>
-			
 		</div>
 		<c:choose>
 			<c:when test="${sessionUserInfo==null}">

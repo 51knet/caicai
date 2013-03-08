@@ -65,14 +65,14 @@
 		<h4>教师课程</h4>
 	</div>
 	<div class="row1">
-		<table  style="margin-top: 15px;"  cellpadding="5">
+		<table  style="width: 100%"  cellpadding="5">
 			<thead>
-					<tr class="nar"><td><b>课程名称</b></td><td  width=60%><b>课程描述</b></td><td width=20%><b>创建时间</b></td></tr>
+					<tr class="nar"><th align="left"><b>课程名称</b></th><th align="left" width=60%><b>课程描述</b></th><th align="left"  width=20%><b>创建时间</b></th></tr>
 			</thead>
 			<tbody>
 				<c:forEach var="course" items="${page.content}">
-					<tr>
-						<td class="bb"><!--   -->
+					<tr class="bb">
+						<td><!--   -->
 							<c:choose>
 								<c:when test='${course.pwd == "" || course.pwd == null}'>
 									<a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> ${course.courseName }</a>
@@ -98,10 +98,10 @@
 								</c:otherwise>
 							</c:choose>
 						</td>
-						<td class="bb">
+						<td >
 							<div style="width: 420px;" id="content">${course.courseDesc}</div>
 						</td>
-						<td class="bb">
+						<td>
 							${course.courseDate}
 						</td>
 					</tr>
