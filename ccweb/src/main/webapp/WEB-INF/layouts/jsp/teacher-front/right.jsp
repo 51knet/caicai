@@ -30,6 +30,7 @@
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
 	background: #FAFAFB;
+
 }
 .round {
 	border-radius: 5px;
@@ -44,7 +45,7 @@
 
 .row-fluid.custom .row1 {
 	margin: 10px 40px;
-	color: cccccc;
+
 }
 
 .row-fluid.custom .row1 .bb{
@@ -78,7 +79,7 @@
 			</c:otherwise>
 		</c:choose>
 		<div style="text-align: right;">
-			<c:if test="${annoCount>3}"><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
+			<c:if test="${annoCount>3}"><br><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 		</div>
 </div>
 
@@ -111,7 +112,7 @@
 				</c:otherwise>
 			</c:choose>
 		<div style="text-align: right;">
-		<c:if test="${resourceCount>3}"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
+			<c:if test="${resourceCount>3}"><br><a href="<c:url value="/teacher/${teacherInfo.id}/resource/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 		</div>
 </div>
 
@@ -168,7 +169,8 @@
 				</c:otherwise>
 			</c:choose>
 		<div style="text-align: right;">
-		<c:if test="${courseCount>5}"><a href="<c:url value="/teacher/${teacherInfo.id}/course/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
+			<c:if test="${courseCount>5}">
+				<br><a href="<c:url value="/teacher/${teacherInfo.id}/course/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 		</div>
 		<form action="<c:url value="/teacher/course/view"></c:url>" id="showCourseDetail" method="post">
 			<input type="hidden"  name="teacherId" id="teacher_id" >

@@ -40,10 +40,11 @@ body {
 
 /*fonts*/
 body {
-	color:#555;
-	font-family:Arial,/*'Microsoft YaHei',*/Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
+	/*font-family:Arial,/*'Microsoft YaHei',Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;*/
+	font-family:'Microsoft YaHei',Arial;
 	font-size:14px;
 	background-color: #929294;
+	color: #444;
 }
 h1, h2, h3, h4, h5, h6 {
 	font-weight:bold;
@@ -75,10 +76,10 @@ textarea {
 	background-color: #ccdfa8; 
 	margin-bottom: 20px; 
 	height: 200px; 
-	color: #353535;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+
 }
 .leftInfo .top{
 	border-radius: 5px;
@@ -105,6 +106,7 @@ body.admin {
 	background-position: center top;
 	background-repeat: repeat-y;
 	background-color: #929294;
+	
 }
 .admin .container-fluid {
 	padding-right: 0px;
@@ -124,6 +126,6 @@ body.admin {
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	/*background-color: #FAFAFB;*/
+	/*background-color: #ccdfa8;*/
 }
 /*END style-for-admin-pages*/

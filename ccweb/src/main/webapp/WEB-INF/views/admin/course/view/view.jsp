@@ -31,7 +31,7 @@
 	margin: 20px 40px;
 }
 .nar {
-	background-color: #f7f7f7; 
+	background-color: #ccdfa8; 
 	width:100%; 
 	margin-bottom: 10px; 
 	height: 40px; 
@@ -64,7 +64,7 @@
 				</div>
 				<div style="width: 60%; float: left; height:150px;border: 0px solid #cccccc; font-size: 13px;">
 					<div style="width: 100%; float: left; ">
-						<h5 style="width: 300px;" id="content">${course.courseName}</h5>
+						<h4 style="width: 300px;" id="content">${course.courseName}</h4>
 						<h5>${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</h5>
 						<h5>类别：${course.courseType }</h5>
 						<h5>发布时间：${course.courseDate }</h5>
@@ -136,7 +136,7 @@
 										<tr>
 											<td align="left">
 												<div >
-													<div style="font-size: 16px;  background-color: #f7f7f7; padding: 5px;" id="course_${status.index}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
+													<div style="font-size: 14px;  background-color: #8e8e8e; padding: 3px;" id="course_${status.index}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
 													<c:forEach var="fileNames" items="${course.value}" varStatus="resourceStatus">
 														<c:if test="${fileNames.fileName!=null}">
 														<div  class="fileName_${resourceStatus.index}" >

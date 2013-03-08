@@ -7,7 +7,8 @@
 	text-align: center;
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
-	background: #FAFAFB;
+	background: #ccdfa8;
+	font-family:'Microsoft YaHei',Arial;
 }
 .round {
 	border-radius: 5px;
@@ -26,7 +27,7 @@
 		checkAjax('sendMsg_info_form','sendMsgInfoAJAX');
 	});
 	</script>
-<div class="row-fluid centralize round"  style=" background-color: #ccdfa8;">
+<div class="row-fluid centralize round" >
 	<div class="round header">
 		<h5></h5>
 	</div>
