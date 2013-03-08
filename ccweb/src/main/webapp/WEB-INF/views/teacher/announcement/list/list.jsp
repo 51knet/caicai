@@ -40,15 +40,15 @@
 		<h4>公告</h4>
 	</div>
 	<div class="row1">
-		<table style="margin-top: 15px;"  cellpadding="5">
+		<table  cellpadding="5">
 			<tr class="nar" ><td><b>标题</b></td><td width="25%"><b>发布时间</b></td></tr>
 			<tbody>
 				<c:forEach items="${page.content}" var="page">
-					<tr><td align="left" class="bb" >
+					<tr  class="bb"><td align="left" >
 						<div style="width: 540px;" id="content"><a href="<c:url value="/teacher/${teacherInfo.id}/announcement/view/${page.id}"></c:url>">
 						${page.title}</a></div>
 					</td>
-					<td class="bb">${page.date}</td>
+					<td >${page.date}</td>
 					</tr>
 				</c:forEach>
 			</tbody>		 
