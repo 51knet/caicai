@@ -33,9 +33,12 @@
 .nar {
 	background-color: #ccdfa8; 
 	width:100%; 
-	margin-bottom: 10px; 
-	height: 40px; 
-	padding: 1px; 
+	margin-bottom: 10px;  
+	padding: 5px; 
+}
+.nar .content{
+	margin-left: 30px;
+	font-size: 15px;
 }
  .cont {
 	width: 93%;
@@ -88,7 +91,7 @@
 				</div>
 			</div>
 			<div  class="nar">
-				<h4 style="margin-left: 30px; ">课程介绍</h4>
+				<span class="content"><b>课程介绍</b></span>
 			</div>
 			<div class="cont">
 					<c:choose>
@@ -102,7 +105,7 @@
 			</div>
 			
 			<div  class="nar">
-				<h4 style="margin-left: 30px; ">目标人群</h4>
+				<span class="content"><b>目标人群</b></span>
 			</div>
 			<div class="cont">
 				<c:choose>
@@ -116,7 +119,7 @@
 			</div>
 			
 			<div  class="nar">
-				<h4 style="margin-left: 30px; ">课程看点</h4>
+				<span class="content"><b>课程看点</b></span>
 			</div>
 			<div class="cont">
 				<c:choose>
@@ -130,7 +133,7 @@
 			</div>
 			
 			<div  class="nar">
-				<h4 style="margin-left: 30px; ">课程资料</h4>
+				<span class="content"><b>课程资料</b></span>
 			</div>
 			<div class="cont">
 				<c:choose>

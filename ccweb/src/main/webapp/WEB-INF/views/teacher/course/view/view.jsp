@@ -5,13 +5,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
 .nar {
-	background-color:#ccdfa8; 
+	background-color: #ccdfa8; 
 	width:100%; 
-	font-size:15px;
-	height: 20px; 
-	margin-bottom:10px;
-	padding-top: 10px;
+	margin-bottom: 10px;  
+	padding: 5px; 
 }
+.nar .content{
+	margin-left: 30px;
+	font-size: 15px;
+}
+
  .cont {
 	width: 93%;
 	margin-left: 30px;
@@ -85,8 +88,8 @@ function courseOnclick(obj) {
 			</div>
 		</div>
 		<div  class="nar">
-			<span style="margin-left: 30px;margin-top: -15px;" ><b>课程简介</b></span>
-		</div>
+				<span class="content"><b>课程介绍</b></span>
+			</div>
 		<div class="cont">
 				<c:choose>
 				<c:when test="${course.courseDesc!=null}">
@@ -99,7 +102,7 @@ function courseOnclick(obj) {
 		</div>
 		
 		<div  class="nar">
-			<span style="margin-left: 30px; "><b>目标人群</b></span>
+				<span class="content"><b>目标人群</b></span>
 		</div>
 		<div class="cont">
 			<c:choose>
@@ -113,8 +116,8 @@ function courseOnclick(obj) {
 		</div>
 		
 		<div  class="nar">
-			<span style="margin-left: 30px; "><b>课程看点</b></span>
-		</div>
+				<span class="content"><b>课程看点</b></span>
+			</div>
 		<div class="cont">
 			<c:choose>
 				<c:when test="${course.courseCharacter!=null }">
@@ -127,8 +130,8 @@ function courseOnclick(obj) {
 		</div>
 		
 		<div  class="nar">
-			<span style="margin-left: 30px; "><b>课程资料</b></span>
-		</div>
+				<span class="content"><b>课程资料</b></span>
+			</div>
 		<div class="cont">
 			<c:choose>
 				<c:when test="${resourceCount>0 }">
@@ -138,8 +141,8 @@ function courseOnclick(obj) {
 									<tr>
 										<td align="left">
 											<div >
-												<div  style="font-size: 12px; color:#FFFFFF; background-color: #8E8E8E;"  id="course_${status.count}" onclick="javascript:courseOnclick(this);">
-													<span style="margin-left: 10px;">第${course.key}课时</span>
+												<div  class="top"  id="course_${status.count}" onclick="javascript:courseOnclick(this);">
+													<span style="margin-left: 10px;"><b>第${course.key}课时</b></span>
 												</div>
 												<c:forEach var="fileNames" items="${course.value}">
 												<c:if test="${fileNames.fileName!=null}">
