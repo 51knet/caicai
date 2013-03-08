@@ -40,8 +40,8 @@
 		<h4>公告</h4>
 	</div>
 	<div class="row1">
-		<table  cellpadding="5">
-			<tr class="nar" ><td><b>标题</b></td><td width="25%"><b>发布时间</b></td></tr>
+		<table style=" width: 100%"  cellpadding="5" >
+			<tr class="nar" ><th align="left"><b>标题</b></th><th width="25%" align="left"><b>发布时间</b></th></tr>
 			<tbody>
 				<c:forEach items="${page.content}" var="page">
 					<tr  class="bb"><td align="left" >

@@ -91,10 +91,8 @@ function courseOnclick(obj) {
 			</div>
 		</div>
 		<div  class="nar">
-			<span style="margin-left: 30px;padding-bottom: 10px;" ><b>课程简介</b></span>
+			<span class="content"><b>课程介绍</b></span>
 		</div>
-				<span class="content"><b>课程介绍</b></span>
-			</div>
 		<div class="cont">
 				<c:choose>
 				<c:when test="${course.courseDesc!=null}">
@@ -108,7 +106,6 @@ function courseOnclick(obj) {
 		
 		<div  class="nar">
 			<span style="margin-left: 30px;"><b>目标人群</b></span>
-				<span class="content"><b>目标人群</b></span>
 		</div>
 		<div class="cont">
 			<c:choose>

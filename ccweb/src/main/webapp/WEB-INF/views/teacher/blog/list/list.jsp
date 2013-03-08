@@ -29,8 +29,8 @@
 }
 .nar {
 	background-color:#ccdfa8; 
-	width:100%; 
 	font-size: 14px;
+	width: 100%;
 }
 </style>
 
@@ -39,15 +39,13 @@
 		<h4>博客</h4>
 	</div>
 	<div class="row1 ">
-	<table style="margin-top: 15px;"  cellpadding="5">
-		<thead>
-			<tr class="nar"><td width="80%"><b>标题</b></td><td><b>发表日期</b></td></tr>
-		</thead>
+	<table style="width: 100%"  cellpadding="5" >
+			<tr class="nar"><td align="left"><b>标题</b></td><td width=22% align="left"><b>发表日期</b></td></tr>
 		<tbody>
 			<c:forEach var="blogPost" items="${page.content}">
-			<tr>
-				<td class="bb"><a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
-				<td class="bb">
+			<tr class="bb">
+				<td ><a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
+				<td>
 				<fmt:formatDate value="${blogPost.dateCreated}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>
 				
