@@ -143,13 +143,16 @@ background: #F7F7F7;
 	<c:choose>
 	<c:when test="${isEnterPrise=='null'}">
 	<h2>热门教师（Top 50）</h2>
-	  <c:if test="${fn:length(teacherLists)==0}">
-    <div class="item">
+	<c:choose>
+	<c:when test="${fn:length(teacherList)==0}">
+	<div class="item">
        <div class="row">
        	<h3>暂无教师数据</h3>
-       </div></div>
-    </c:if>
-   	<div class="row">
+       </div>
+       </div>
+	</c:when>
+	<c:otherwise>
+	<div class="row">
       	<c:forEach items="${teacherList}" var="t">
 			<div class="span2" style="width: 175px;height:260px;">
 			<c:choose>
@@ -175,6 +178,8 @@ background: #F7F7F7;
 			</div>
 		</c:forEach>
 	 </div>
+	</c:otherwise>
+	</c:choose>
 	</c:when>
 	<c:otherwise>
 	<h2>热门企业（Top 50）</h2>
@@ -212,7 +217,7 @@ background: #F7F7F7;
 	 </div>
 	</c:otherwise>
 	</c:choose>
-	 <div class="row" style="margin-top: 50px; "><jsp:include page="/WEB-INF/views/_shared/pagination.jsp" ></jsp:include></div>
+	 <div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp" ></jsp:include></div>
 </div>
 
 
