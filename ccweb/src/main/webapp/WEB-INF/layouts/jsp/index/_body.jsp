@@ -236,14 +236,14 @@ body {
 					<div class="controls">
 						<h4 style="text-align: left;">邮箱地址</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址" style="width: 96.17%;"> <span class="help-block" id="em"><form:errors path="email"></form:errors></span>
+							<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址" style="width: 96.17%;">
 							<div id="emailError" class="inputError"></div>
 						</div>
 					</div>
 					<div class="controls">
 						<h4 style="text-align: left;">登录密码</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="password" id="password" name="password" placeholder="请输入您的密码" style="width: 96.17%;"> <span class="help-block" id="pass"><form:errors path="password"></form:errors></span>
+							<input type="password" id="password" name="password" placeholder="请输入您的密码" style="width: 96.17%;">
 							<div id="passwordErr" class="inputError"></div>
 						</div>
 					</div>
@@ -267,21 +267,21 @@ body {
 					<div class="control">
 						<h4 style="text-align: left;">邮箱地址</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="text" id="emails" name="email" placeholder="请输入您的邮箱地址" style="width: 96.17%;"> <span class="help-block"><form:errors path="email"></form:errors></span>
+							<input type="text" id="emails" name="email" placeholder="请输入您的邮箱地址" style="width: 96.17%;">
 							<div id="checkEmails" class="inputError"></div>
 						</div>
 					</div>
 					<div class="control">
 						<h4 style="text-align: left;">密码</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="password" id="psw" name="psw" placeholder="请设置您的密码" style="width: 96.17%;"> <span class="help-block"><form:errors path="psw"></form:errors></span>
+							<input type="password" id="psw" name="psw" placeholder="请设置您的密码" style="width: 96.17%;">
 							<div id="emptyPwd" class="inputError"></div>
 						</div>
 					</div>
 					<div class="control">
 						<h4 style="text-align: left;">密码确认</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="password" id="confirmpsw" name="confirmpsw" placeholder="请再次输入您的密码" style="width: 96.17%;"> <span class="help-block"><form:errors path="confirmpsw"></form:errors></span>
+							<input type="password" id="confirmpsw" name="confirmpsw" placeholder="请再次输入您的密码" style="width: 96.17%;">
 							<div id="passwordError" class="inputError"></div>
 						</div>
 					</div>
@@ -310,7 +310,7 @@ body {
 					<div class="controls">
 						<h4 style="text-align: left;">您的注册邮箱地址</h4>
 						<div class="controls" style="text-align: left;">
-							<input type="text" id="emailForPsw" name="email" placeholder="请输入您已注册的邮箱地址" style="width: 96.17%;"> <span class="help-block" id="em"><form:errors path="email"></form:errors></span>
+							<input type="text" id="emailForPsw" name="email" placeholder="请输入您已注册的邮箱地址" style="width: 96.17%;">
 							<div id="emailError" class="inputError"></div>
 						</div>
 					</div>
