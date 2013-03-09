@@ -33,7 +33,6 @@
 			<ul class="nav nav-tabs">
 		    	<li <c:if test='${active == "avatar"}'>class="active"</c:if>><a href="#avatar_tab" data-toggle="tab">修改头像</a></li> 
 		    	<li <c:if test='${active == "psw"}'>class="active"</c:if>><a href="#security_tab" data-toggle="tab">账号安全</a></li> 
-		    	<li <c:if test='${active == "url"}'>class="active"</c:if>><a href="#p_url_tab" data-toggle="tab">个性域名</a></li> 
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane <c:if test='${active == "avatar"}'>active</c:if>" id="avatar_tab">
