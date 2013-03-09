@@ -27,16 +27,27 @@ body {
 
 /*logo*/
 #logo {
-	width: 129px;
-	height: 45px;
+	width: 145px;
+	height: 36px;
 	position: absolute;
 	text-indent: -999em;
 	background: url(../img/default/logo.png)  no-repeat;
-	left: 15%;
+	left: 300px;
 	top: 4px;
 	box-shadow: none;
 }
 
+/*courselogo*/
+#courselogo {
+	width: 145px;
+	height: 36px;
+	position: absolute;
+	text-indent: -999em;
+	background: url(../img/default/courselogo.png)  no-repeat;
+	right: 300px;
+	top: 10.5px;
+	box-shadow: none;
+}
 
 /*fonts*/
 body {
