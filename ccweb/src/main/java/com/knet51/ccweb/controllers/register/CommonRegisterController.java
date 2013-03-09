@@ -79,7 +79,6 @@ public class CommonRegisterController {
 		PrintWriter out=response.getWriter();
 		Integer count=userService.getCountByEmail(email);
 		String countString  = count.toString();
-		System.out.println(countString);
 		out.write(countString);
 		out.flush();
 		out.close();
