@@ -66,7 +66,7 @@
 				<form action='<c:url value="/teacher/${teacher_id}/blog/comment" />' method="post">
 					<input type="hidden" name="blogpost_id" value="${blogPost.id}">
 					<textarea name="content" rows="4" cols="120" style="width: 98%"></textarea>
-					<button class="btn btn-primary" type="submit" style="margin-left: 585px;float: left;">发表评论</button>
+					<button class="btn btn-success" type="submit" style="margin-left: 585px;float: left;">发表评论</button>
 				</form>
 				</div>
 			</div>		

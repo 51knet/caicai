@@ -73,7 +73,7 @@
 		        <div class="carousel-caption">
 		          <h1>Another example headline.</h1>
 		          <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-		          <a class="btn btn-large btn-primary" href="#">Learn more</a>
+		          <a class="btn btn-large btn-success" href="#">Learn more</a>
 		        </div>
 		      </div>
 		    </div>
@@ -83,7 +83,7 @@
 		        <div class="carousel-caption">
 		          <h1>Another example headline.</h1>
 		          <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-		          <a class="btn btn-large btn-primary" href="#">Learn more</a>
+		          <a class="btn btn-large btn-success" href="#">Learn more</a>
 		        </div>
 		      </div>
 		    </div>
@@ -93,7 +93,7 @@
 		        <div class="carousel-caption">
 		          <h1>One more for good measure.</h1>
 		          <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-		          <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+		          <a class="btn btn-large btn-success" href="#">Browse gallery</a>
 		        </div>
 		      </div>
 		    </div>

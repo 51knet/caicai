@@ -31,13 +31,13 @@
 			</tr>
 			<tr>
 				<td><input type="file" style="margin-left:12%;width:500px;margin-top: 10px;"></td>
-				<td style="margin-left:150px;float: left;"><button class="btn btn-large btn-success">上传</button></td>
+				<td style="margin-left:150px;float: left;"><button class="btn  btn-success">上传</button></td>
 			</tr>
 			<tr>
 				<td colspan="2" style="margin-left: 8%;float: left;margin-top: 20px;">限定图片mp4,avi,限定大小在100M</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="margin-left: 8%;float: left;margin-top: 40px;"><button class="btn btn-large btn-success" type="submit">保存</button></td>
+				<td colspan="2" style="margin-left: 8%;float: left;margin-top: 40px;"><button class="btn  btn-success" type="submit">保存</button></td>
 			</tr>
 		</table>
 	</form>

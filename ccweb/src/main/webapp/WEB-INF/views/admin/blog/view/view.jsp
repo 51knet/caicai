@@ -56,7 +56,7 @@
 		  <form action='<c:url value="/admin/blog/comment/new" />' method="post">
 			<input type="hidden" name="blogpost_id" value="${blogPost.id}">
 			<textarea name="content" rows="4" cols="120" style="width:98%"></textarea>
-			<button class="btn btn-primary" type="submit">提交</button>
+			<button class="btn btn-success" type="submit">提交</button>
 		  </form>
 	  </div>
 </div>
@@ -75,7 +75,7 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
     <form action='<c:url value="/admin/blog/destroy"></c:url>' method="post" style="display: inline-block;">
     	<input id="blog_post_id" type="hidden" name="blog_post_id" />
-    	<button class="btn btn-primary">确定</button>
+    	<button class="btn btn-success">确定</button>
     </form>
   </div>
 </div>

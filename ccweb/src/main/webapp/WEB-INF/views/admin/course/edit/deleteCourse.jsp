@@ -36,7 +36,7 @@
 			<div style="margin-left: 40px; color: red;">
 					<label>如果你删除了本课程，本课程将移入回收站。请确认后再删除。</label> 
 				<span class="row-fluid custom price power"><br>
-					<button class="btn btn-large btn-success">删除</button>
+					<button class="btn  btn-success">删除</button>
 				</span>
 			</div>
 		</form>

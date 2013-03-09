@@ -75,7 +75,7 @@ function courseCreate(){
 							<span class="help-inline"><form:errors path="courseDesc"></form:errors></span>
 						</div>
 						<div class="modal-body" style="text-align: center;">
-							<button type="submit" class="btn btn-primary" onclick="courseCreate();">添加</button>&nbsp;&nbsp;
+							<button type="submit" class="btn btn-success" onclick="courseCreate();">添加</button>&nbsp;&nbsp;
 							<button type="reset" class="btn">取消</button>
 						</div>
 					</form:form>

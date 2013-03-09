@@ -51,7 +51,7 @@
 			
 			<form class="navbar-form">
 				<input type="text" class="span6" placeholder="搜索教师、课程、学校">
-				<button type="submit" class="btn btn-primary">搜索</button>
+				<button type="submit" class="btn btn-success">搜索</button>
 			</form>
 		</div>
 	</div>

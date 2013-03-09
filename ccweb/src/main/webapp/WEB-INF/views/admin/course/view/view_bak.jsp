@@ -103,7 +103,7 @@
 					<a href='#' class="btn  btn-success">点击学习</a>
 				</div>
 				<div style="float: left; width: 40%; text-align: right;">
-					<a href='<c:url value="/admin/teacher/course/edit/${course.id }/publish"></c:url>'  class="btn btn-large  btn-success" style="width: 80px;float: right;"  >发布课程</a>
+					<a href='<c:url value="/admin/teacher/course/edit/${course.id }/publish"></c:url>'  class="btn   btn-success" style="width: 80px;float: right;"  >发布课程</a>
 				</div>
 				
 			</div>

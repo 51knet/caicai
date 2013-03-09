@@ -109,7 +109,7 @@
 						</c:if>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" onclick="return personalOnclick();" class="btn btn-large btn-success">保 存</button>
+								<button type="submit" onclick="return personalOnclick();" class="btn  btn-success">保 存</button>
 							</div>
 						</div>
 					</form>
@@ -160,7 +160,7 @@
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" onclick="reuturn:contactOnclick();"    class="btn btn-large btn-success">保 存</button>
+								<button type="submit" onclick="reuturn:contactOnclick();"    class="btn  btn-success">保 存</button>
 							</div>
 						</div>
 					</form>
@@ -212,8 +212,8 @@
 							</div>
 							<div class="control-group">
 								<div class="controls">
-									<button type="submit"  class="btn btn-large btn-success">保 存</button>
-									<button type="reset" onclick="closeEduAddForm()" class="btn btn-large">取消</button>
+									<button type="submit"  class="btn  btn-success">保 存</button>
+									<button type="reset" onclick="closeEduAddForm()" class="btn ">取消</button>
 								</div>
 							</div>
 						</form>
@@ -259,7 +259,7 @@
 								<br>
 							</c:otherwise>
 						</c:choose>
-						<button onclick="showEduAddForm()" class="btn btn-info">添加</button>
+						<button onclick="showEduAddForm()" class="btn btn-success">添加</button>
 					</div>
 		
 					<!-- edu Modal -->
@@ -275,7 +275,7 @@
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 							<form action='<c:url value="/admin/teacher/eduInfo/destory"></c:url>' method="post" style="display: inline-block;">
 								<input id="eduId" type="hidden" name="eduId" />
-								<button class="btn btn-primary">确定</button>
+								<button class="btn btn-success">确定</button>
 							</form>
 						</div>
 					</div>
@@ -328,8 +328,8 @@
 							</div>
 							<div class="control-group">
 								<div class="controls">
-									<button type="submit"  class="btn btn-large btn-success">保 存</button>
-									<button type="reset" onclick="closeWorkAddForm()" class="btn btn-large">取消</button>
+									<button type="submit"  class="btn  btn-success">保 存</button>
+									<button type="reset" onclick="closeWorkAddForm()" class="btn ">取消</button>
 								</div>
 							</div>
 						</form>
@@ -377,7 +377,7 @@
 							</c:otherwise>
 						</c:choose>
 		
-						<button onclick="showWorkAddForm()"  class="btn btn-info">添加</button>
+						<button onclick="showWorkAddForm()"  class="btn btn-success">添加</button>
 					</div>
 		
 					<!-- work Modal -->
@@ -393,7 +393,7 @@
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 							<form action='<c:url value="/admin/teacher/workInfo/destory"></c:url>' method="post" style="display: inline-block;">
 								<input id="workId" type="hidden" name="workId" />
-								<button class="btn btn-primary">确定</button>
+								<button class="btn btn-success">确定</button>
 							</form>
 						</div>
 					</div>
@@ -433,7 +433,7 @@
 								<br></span>
 							</c:otherwise>
 						</c:choose>
-						<button onclick="showThesisAddForm();" class="btn btn-info">添加</button>
+						<button onclick="showThesisAddForm();" class="btn btn-success">添加</button>
 					</div>
 					<div id="thesisNewInfoForm" style="display: none; padding-left: 20px;">
 						<form action="thesis/new" method="post" id="thesis_info_form" name="thesis">
@@ -446,7 +446,7 @@
 							</div>
 							<div class="control-group">
 								<div class="controls">
-									<button type="submit" class="btn btn-large btn-success">保 存</button>
+									<button type="submit" class="btn  btn-success">保 存</button>
 									<button class="btn" type="reset" onclick="hiddenThesisAddForm()">取消</button>
 								</div>
 							</div>
@@ -466,7 +466,7 @@
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 							<form action='<c:url value="/admin/teacher/thesis/destory"></c:url>' method="post" style="display: inline-block;">
 								<input id="thesisId" type="hidden" name="thesisId" />
-								<button class="btn btn-primary">确定</button>
+								<button class="btn btn-success">确定</button>
 							</form>
 						</div>
 					</div>
@@ -512,9 +512,9 @@
 								</div>
 								<div class="control-group">
 									<div class="controls">
-										<button type="submit"  class="btn btn-large btn-success">保存</button>
+										<button type="submit"  class="btn  btn-success">保存</button>
 										&nbsp;&nbsp;
-										<button class="btn  btn-large" type="reset" onclick="hiddenProjectAddForm()">取消</button>
+										<button class="btn  " type="reset" onclick="hiddenProjectAddForm()">取消</button>
 									</div>
 								</div>
 							</form>
@@ -554,7 +554,7 @@
 									<br></span>
 								</c:otherwise>
 							</c:choose>
-							<button onclick="showProjectAddForm()">添加</button>
+							<button onclick="showProjectAddForm()" class="btn btn-success">添加</button>
 						</div>
 					</div>
 		
@@ -571,7 +571,7 @@
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 							<form action='<c:url value="/admin/teacher/project/destory"></c:url>' method="post" style="display: inline-block;">
 								<input id="projectId" type="hidden" name="projectId" />
-								<button class="btn btn-primary">确定</button>
+								<button class="btn btn-success">确定</button>
 							</form>
 						</div>
 					</div>
@@ -616,8 +616,8 @@
 								</div>
 								<div class="control-group">
 									<div class="controls">
-										<button type="submit"  class="btn btn-large btn-success">保存</button>
-										<button class="btn  btn-large" type="reset" onclick="hiddenPatentAddForm()">取消</button>
+										<button type="submit"  class="btn  btn-success">保存</button>
+										<button class="btn  " type="reset" onclick="hiddenPatentAddForm()">取消</button>
 									</div>
 								</div>
 							</form>
@@ -657,7 +657,7 @@
 									<br></span>
 								</c:otherwise>
 							</c:choose>
-							<button onclick="showPatentAddForm()" class="btn btn-info">添加</button>
+							<button onclick="showPatentAddForm()" class="btn btn-success">添加</button>
 						</div>
 					</div>
 		
@@ -674,7 +674,7 @@
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 							<form action='<c:url value="/admin/teacher/patent/destory"></c:url>' method="post" style="display: inline-block;">
 								<input id="patentId" type="hidden" name="patentId" />
-								<button class="btn btn-primary">确定</button>
+								<button class="btn btn-success">确定</button>
 							</form>
 						</div>
 					</div>
@@ -706,8 +706,8 @@
 								</div>
 								<div class="control-group">
 									<div class="controls">
-										<button type="submit"  class="btn btn-large btn-success">保存</button>
-										<button class="btn  btn-large" type="reset" onclick="hiddenHonorAddForm()">取消</button>
+										<button type="submit"  class="btn  btn-success">保存</button>
+										<button class="btn  " type="reset" onclick="hiddenHonorAddForm()">取消</button>
 									</div>
 								</div>
 							</form>
@@ -743,7 +743,7 @@
 									<br></span>
 								</c:otherwise>
 							</c:choose>
-							<button onclick="showHonorAddForm()" class="btn btn-info">添加</button>
+							<button onclick="showHonorAddForm()" class="btn btn-success">添加</button>
 						</div>
 					</div>
 		
@@ -760,7 +760,7 @@
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 							<form action='<c:url value="/admin/teacher/honor/destory"></c:url>' method="post" style="display: inline-block;">
 								<input id="honorId" type="hidden" name="honorId" />
-								<button class="btn btn-primary">确定</button>
+								<button class="btn btn-success">确定</button>
 							</form>
 						</div>
 					</div>

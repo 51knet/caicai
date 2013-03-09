@@ -81,7 +81,7 @@ $(document).ready(function(){
 						</div>
 					</div>
 					<div style="text-align: left; margin-left: 80px; float: left; ">
-						<button type="submit" class="btn btn-large btn-success">保存</button>
+						<button type="submit" class="btn  btn-success">保存</button>
 					</div>
 
 		</form>
