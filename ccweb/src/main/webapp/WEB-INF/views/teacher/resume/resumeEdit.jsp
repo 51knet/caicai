@@ -206,7 +206,7 @@
 							-->
 							<div class="control-group"  id="educationDesc" >
 								<div class="controls">
-									<textarea  id="KEeducationDesc"  name="educationDesc" rows="6" cols="8" style="width: 670px; height: 300px;"></textarea>
+									<textarea  id="KEeducationDesc"  name="educationDesc" rows="6" cols="8" style="width: 600px; height: 300px;"></textarea>
 									<span class="help-inline"></span>
 								</div>
 							</div>
@@ -259,7 +259,7 @@
 								<br>
 							</c:otherwise>
 						</c:choose>
-						<button onclick="showEduAddForm()">添加</button>
+						<button onclick="showEduAddForm()" class="btn btn-info">添加</button>
 					</div>
 		
 					<!-- edu Modal -->
@@ -322,7 +322,7 @@
 							-->
 							<div class="control-group" id="workDesc">
 								<div class="controls">
-									<textarea  name="workDesc"   id="workDescs" rows="6" cols="8" style="width: 670px; height: 300px;"></textarea>
+									<textarea  name="workDesc"   id="workDescs" rows="6" cols="8" style="width: 600px; height: 300px;"></textarea>
 									<span class="help-inline"></span>
 								</div>
 							</div>
@@ -377,7 +377,7 @@
 							</c:otherwise>
 						</c:choose>
 		
-						<button onclick="showWorkAddForm()">添加</button>
+						<button onclick="showWorkAddForm()"  class="btn btn-info">添加</button>
 					</div>
 		
 					<!-- work Modal -->
@@ -433,14 +433,14 @@
 								<br></span>
 							</c:otherwise>
 						</c:choose>
-						<button onclick="showThesisAddForm();">添加</button>
+						<button onclick="showThesisAddForm();" class="btn btn-info">添加</button>
 					</div>
 					<div id="thesisNewInfoForm" style="display: none; padding-left: 20px;">
 						<form action="thesis/new" method="post" id="thesis_info_form" name="thesis">
 						<input type="hidden" name="thesisId">
 							<div class="control-group" id="content">
 								<div class="controls">
-									<textarea  name="content" id="contents" rows="6" cols="8" style="width: 670px; height: 300px;"></textarea>
+									<textarea  name="content" id="contents" rows="6" cols="8" style="width: 600px; height: 300px;"></textarea>
 									<span class="help-inline"></span>
 								</div>
 							</div>
@@ -506,7 +506,7 @@
 								-->
 								<div class="control-group" id="projectDesc">
 									<div class="controls">
-										<textarea  name="projectDesc" id="projectDescs"   rows="6" cols="8" style="width: 670px; height: 400px;"></textarea>
+										<textarea  name="projectDesc" id="projectDescs"   rows="6" cols="8" style="width: 600px; height: 300px;"></textarea>
 										<span class="help-inline"></span>
 									</div>
 								</div>
@@ -610,7 +610,7 @@
 								</div> -->
 								<div class="control-group"  id="patentDesc">
 									<div class="controls">
-										<textarea name="patentDesc" id="patentDescs" rows="6" cols="8" style="width: 670px; height: 400px;"></textarea>
+										<textarea name="patentDesc" id="patentDescs" rows="6" cols="8" style="width: 600px; height: 300px;"></textarea>
 										<span class="help-inline"></span>
 									</div>
 								</div>
@@ -657,7 +657,7 @@
 									<br></span>
 								</c:otherwise>
 							</c:choose>
-							<button onclick="showPatentAddForm()">添加</button>
+							<button onclick="showPatentAddForm()" class="btn btn-info">添加</button>
 						</div>
 					</div>
 		
@@ -700,7 +700,7 @@
 								</div> -->
 								<div class="control-group" id="honorDesc">
 									<div class="controls">
-										<textarea  name="honorDesc" id="honorDescs" rows="6" cols="8" style="width: 670px; height: 400px;"></textarea>
+										<textarea  name="honorDesc" id="honorDescs" rows="6" cols="8" style="width: 600px; height:300px;"></textarea>
 										<span class="help-inline"></span>
 									</div>
 								</div>
@@ -743,7 +743,7 @@
 									<br></span>
 								</c:otherwise>
 							</c:choose>
-							<button onclick="showHonorAddForm()">添加</button>
+							<button onclick="showHonorAddForm()" class="btn btn-info">添加</button>
 						</div>
 					</div>
 		
