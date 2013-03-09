@@ -80,14 +80,14 @@
 </div>
 <div class="container teacher" >
   <h2>热门教师（Top 50）</h2>
+  <div id="myTeacher" class="carousel slide">
+  <div class="carousel-inner" style="margin-bottom: -50px;">
     <c:if test="${fn:length(teacherLists)==0}">
     <div class="item">
        <div class="row">
        	<h3>暂无教师数据</h3>
        </div></div>
     </c:if>
-  <div id="myTeacher" class="carousel slide">
-  <div class="carousel-inner" style="margin-bottom: -50px;">
     <div class="item active">
 	      <div class="row">
 					<c:forEach items="${teacherLists}" var="t" begin="0" end="4">

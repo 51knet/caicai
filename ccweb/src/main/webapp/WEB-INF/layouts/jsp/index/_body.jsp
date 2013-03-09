@@ -92,126 +92,8 @@ body {
 </style>
 <style type="text/css" media="screen">@import url("<c:url value="/resources/js/jq-mail/jquery.autoMailSuggest.css"/>");</style>
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/jq-mail/jquery.autoMailSuggest.js"/>"></script>
+<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/jquery/loginCheck.js"/>"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#registerbtn").click(function() {
-			$(".login-panel").hide(500);
-			$(".register-panel").show(500);
-			return false;
-		});
-		$("#loginbtn").click(function() {
-			$(".login-panel").show(500);
-			$(".register-panel").hide(500);
-			return false;
-		});
-		$("#fogotPswbtn").click(function() {
-			$(".forgotPsw-panel").show(500);
-			$(".login-panel").hide(500);
-			$(".register-panel").hide(500);
-			return false;
-		});
-		$("#tologinbtn").click(function() {
-			$(".login-panel").show(500);
-			$(".forgotPsw-panel").hide(500);
-			return false;
-		});
-		
-		$("#psw").blur(function (){
-			var psw=$("#psw").val();
-			if(psw==""){
-				$("#emptyPwd").html("密码不能为空");
-				return false;
-			}
-		});
-		$("#confirmpsw").blur(function(){
-			var psw=$("#psw").val();
-			var confirmpsw=$("#confirmpsw").val();
-			if(confirmpsw==""){
-				$("#passwordError").html("确认密码不能为空");
-				return false;
-			}
-			if(psw!=confirmpsw){
-				$("#passwordError").html("两次输入的密码不一致,请重新输入");
-				return false;
-			}
-		});
-		$("#psw").focus(function(){
-			$("#emptyPwd").html("");
-			return false;
-		});
-		$("#confirmpsw").focus(function(){
-			$("#passwordError").html("");
-			return false;
-		});
-		$("#emails").focus(function(){
-			$("#checkEmails").html("");
-			return false;
-		});
-		$("#emails").blur(function(){
-			var email=$("#emails").val();
-			if(email==""){
-				$("#checkEmails").html("邮箱不能为空,请输入邮箱");
-				return false;
-			}
-			var reg = /^[_a-zA-Z\d\-\.]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+$/;//邮箱验证正则表达式。 
-			if(!reg.test(email)){                             //验证邮箱格式是否正确
-				$("#checkEmails").html("输入的邮箱格式不正确");
-				return false;
-			}
-			$.ajax({
-			  type: "post",
-			  url: "<c:url value='/register/email'/>",
-			  data: "email="+email,
-			  dataType:"text",
-			  success:function(num){
-					if(num=='1'){
-					$("#checkEmails").html("此邮箱地址已存在");
-					return false;
-					}else{
-						$("#checkEmails").html("");
-						return false;
-					}
-				}
-			});
-		});
-		$("#email").focus(function(){
-			$("#emailError").html("");
-			$("#em").html("");
-			return false;
-		});
-		$("#password").focus(function(){
-			$("#passwordErr").html("");
-			$("#pass").html("");
-			return false;
-		});
-		$("#password").blur(function(){
-			var email=$("#email").val();
-			var password=$("#password").val();
-			if(email==""){
-				$("#emailError").html("邮箱不能为空");
-				return false;
-			}
-			if(password==""){
-				$("#passwordErr").html("密码不能为空");
-				return false;
-			}
-			$.ajax({
-				  type: "post",
-				  url: "<c:url value='/checkEmailAndPassword'/>",
-				  data: "email="+email+"&password="+password,
-				  dataType:"text",
-				  success:function(number){
-					if(number == "0"){
-						$("#emailError").html("邮箱或密码输入错误");
-						$("#passwordErr").html("邮箱或密码输入错误");
-						return false;
-					}
-				  }
-				});
-			
-		});
-	});
-	
 	$(function(){
 	    $("#email").autoMailSuggest(defaultMailSuffix);
 	  });
@@ -237,7 +119,7 @@ body {
 						<h4 style="text-align: left;">邮箱地址</h4>
 						<div class="controls" style="text-align: left;">
 							<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址" style="width: 96.17%;">
-							<div id="emailError" class="inputError"></div>
+							<div id="emailErrors" class="inputError"></div>
 						</div>
 					</div>
 					<div class="controls">
