@@ -30,7 +30,7 @@
 	<c:otherwise>
 		<div class="row-fluid centralize">
 			<img width="150px" height="150px" src="${avatar_url}" style="margin: 15px 0px;">
-			<a href='<c:url value='/admin'></c:url>'><h4>${sessionUserInfo.name }</h4></a>
+			<a href='<c:url value='/teacher/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>
 		</div>		
 	</c:otherwise>
 </c:choose>

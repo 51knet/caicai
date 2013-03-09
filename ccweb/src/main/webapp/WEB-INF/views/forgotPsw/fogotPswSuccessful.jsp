@@ -9,7 +9,7 @@
 		<hr />
 		<p class="lead" style="font-family: 'Microsoft YaHei'">您的密码找回请求已接受，我们已向您的注册邮箱发送一封确认电子邮件，请点击邮件中的链接修改您的密码。</p>
 		<p>
-			<a class="btn btn-success btn-large" href="http://www.${hrefString}" style="font-family: 'Microsoft YaHei'">进入邮箱 »</a>
+			<a class="btn btn-success " href="http://www.${hrefString}" style="font-family: 'Microsoft YaHei'">进入邮箱 »</a>
 		</p>
 	</div>
 </div>

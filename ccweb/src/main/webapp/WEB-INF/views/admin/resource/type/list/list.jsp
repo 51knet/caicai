@@ -44,7 +44,7 @@
 					<form  method="post" action="new/create" class="form-inline pull-right">
 						<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 							<input type="text" name="typeName" placeholder="输入新建的分类">
-							<input type="submit" class="btn btn-primary" value="新建分类">
+							<input type="submit" class="btn btn-success" value="新建分类">
 						</form></td></tr>
 				</tfoot>
 			</table>

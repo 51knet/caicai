@@ -147,7 +147,7 @@
 														<span id="errorMsg" style="font-size: 14px; color: red"></span>
 													</form>
 													<div style="margin-left: 120px;">
-														<button class="btn btn-primary"  onclick="checkCoursePwd( ${course.id} , ${teacherInfo.id})">确定</button>&nbsp;&nbsp;
+														<button class="btn btn-success"  onclick="checkCoursePwd( ${course.id} , ${teacherInfo.id})">确定</button>&nbsp;&nbsp;
 														<button class="btn"  type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
 													</div>
 												</div>

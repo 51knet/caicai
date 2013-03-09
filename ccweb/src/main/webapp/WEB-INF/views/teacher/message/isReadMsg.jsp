@@ -80,7 +80,7 @@
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 	    <form action='<c:url value="/admin/teacher/message/deleOneReaded"></c:url>' method="post" style="display: inline-block;" >
 	    	<input id="mId" type="hidden" name="mId" />
-	    	<button class="btn btn-primary">确定</button>
+	    	<button class="btn btn-success">确定</button>
 	    </form>
 	  </div>
 </div>

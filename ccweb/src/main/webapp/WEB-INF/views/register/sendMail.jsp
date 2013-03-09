@@ -9,7 +9,7 @@
 		<hr />
 		<p class="lead" style="font-family: 'Microsoft YaHei'">对不起，您的账号尚未激活，请您至您的注册邮箱点击注册验证邮件中的链接进行激活，如果您没有收到验证邮件，请点击按钮重新发送验证邮件。</p>
 		<p>
-			<a class="btn btn-primary btn-large" href='<c:url value="/sendMail"></c:url>' style="font-family: 'Microsoft YaHei'">发送验证邮件</a>
+			<a class="btn btn-success " href='<c:url value="/sendMail"></c:url>' style="font-family: 'Microsoft YaHei'">发送验证邮件</a>
 		</p>
 	</div>
 </div>

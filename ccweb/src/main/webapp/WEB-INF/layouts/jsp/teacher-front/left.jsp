@@ -142,8 +142,8 @@
 		</div>
 		<div class="control-group" style="float: right; margin-right: 20px;">
 			<div class="controls">
-				<button type="submit"  class="btn btn-large btn-success">发送</button>
-				<button type="reset" data-dismiss="modal" class="btn btn-large">取消</button>
+				<button type="submit"  class="btn  btn-success">发送</button>
+				<button type="reset" data-dismiss="modal" class="btn ">取消</button>
 			</div>
 		</div>
 	</form>

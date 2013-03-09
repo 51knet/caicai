@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 				<div class="span12">
 					<div class="banner_front">
-						<a href="<c:url value='/' ></c:url>">
+						<a href="<c:url value='/admin' ></c:url>">
 							<img src="<c:url value='/resources/img/default/banner_new.png' ></c:url>" />
 						</a>
 					</div>

@@ -103,7 +103,7 @@ $(document).ready(function() {
 					<div id="container" style="margin-left:70px;"></div>
 					<br>
 					<label style="clear: right;"></label>
-					<button type="submit" class="btn btn-primary" onclick="typeNameOnclick();">添加</button>&nbsp;&nbsp;
+					<button type="submit" class="btn btn-success" onclick="typeNameOnclick();">添加</button>&nbsp;&nbsp;
 					<button type="reset" class="btn" >取消</button>
 				</form:form>
 			 </div>
@@ -119,7 +119,7 @@ $(document).ready(function() {
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" onclick="return resourceOnclick();" class="btn btn-primary">添加</button>&nbsp;&nbsp;
+								<button type="submit" onclick="return resourceOnclick();" class="btn btn-success">添加</button>&nbsp;&nbsp;
 								<button type="reset" class="btn" onclick="closeResourceTypeAdd()">取消</button>
 							</div>
 						</div>

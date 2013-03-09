@@ -219,7 +219,7 @@
 						<form action='<c:url value="/admin/teacher/course/edit/courselesson/destory"></c:url>' method="post" style="display: inline-block;">
 							<input type="hidden" name="lessonId" id="courseLessonId" >
 							<input type="hidden" name="courseId" value="${course.id }" >
-							<button class="btn btn-primary">确定</button>
+							<button class="btn btn-success">确定</button>
 						</form>
 					</div>
 			</div> --%>
@@ -237,7 +237,7 @@
 					<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 					<form action='<c:url value="/admin/teacher/course/resource/destory"></c:url>' method="post" style="display: inline-block;">
 						<input id="c_resource_Id" type="hidden" name="resourceId" />
-						<button class="btn btn-primary">确定</button>
+						<button class="btn btn-success">确定</button>
 					</form>
 				</div>
 			</div>

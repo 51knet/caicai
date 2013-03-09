@@ -134,7 +134,7 @@ body {
 					</h5>
 					<label style="clear: right;"></label>
 					<div style="height:10px;"></div>
-					<button class="btn btn-large btn-block btn-primary" type="submit" style="font-family: 'Microsoft YaHei';">登录</button>
+					<button class="btn btn-large btn-block btn-success" type="submit" style="font-family: 'Microsoft YaHei';">登录</button>
 				</form:form>
 				<div class="register-hr-bg"></div>
 				<a id="registerbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">快速注册</a>
@@ -175,7 +175,7 @@ body {
 						</div>
 					</div>
 					<label style="clear: right;"></label>
-					<button type="submit" class="btn btn-large btn-block btn-primary"  style="margin-top: 20px;font-family: 'Microsoft YaHei';">确认注册</button>
+					<button type="submit" class="btn btn-large btn-block btn-success"  style="margin-top: 20px;font-family: 'Microsoft YaHei';">确认注册</button>
 				</form:form>
 				<div class="register-hr-bg"></div>
 				<a id="loginbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">用户登录</a>
@@ -198,7 +198,7 @@ body {
 					</div>
 					<label style="clear: right;"></label>
 					<div style="height:30px;"></div>
-					<button class="btn btn-large btn-block btn-primary" type="submit" style="font-family: 'Microsoft YaHei';">发送密码找回邮件</button>
+					<button class="btn btn-large btn-block btn-success" type="submit" style="font-family: 'Microsoft YaHei';">发送密码找回邮件</button>
 				</form:form>
 				<div class="hr-bg"></div>
 				<a id="tologinbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">返回登录</a>

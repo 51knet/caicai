@@ -34,7 +34,7 @@
 	
 		
 		<label style="clear: right;"></label>
-		<button type="submit" class="btn btn-primary">OK</button>&nbsp;
+		<button type="submit" class="btn btn-success">OK</button>&nbsp;
 		<button type="submit" class="btn">Cancel</button>
 	</form:form>
 

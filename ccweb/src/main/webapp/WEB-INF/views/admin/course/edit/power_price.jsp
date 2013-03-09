@@ -90,7 +90,7 @@ $(document).ready(function(){
 			</div>
 			<div class="control-group" style="margin-left: 40px;">
 				<div class="controls">
-					<button type="submit" class="btn btn-large btn-success">保存</button>
+					<button type="submit" class="btn  btn-success">保存</button>
 				</div>
 			</div>
 		</form>

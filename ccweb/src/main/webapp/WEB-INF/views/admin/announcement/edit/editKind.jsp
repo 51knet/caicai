@@ -38,7 +38,7 @@
 				</textarea>
 				<span class="help-block"><form:errors path="content"></form:errors></span>
 				<label style="clear: right;"></label>
-				<button type="submit" class="btn btn-primary">保存</button>&nbsp;&nbsp;
+				<button type="submit" class="btn btn-success">保存</button>&nbsp;&nbsp;
 				<button type="reset" class="btn">取消</button>
 			</form>
 		</div>
