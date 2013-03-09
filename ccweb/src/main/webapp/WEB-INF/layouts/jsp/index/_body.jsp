@@ -90,7 +90,8 @@ body {
 	width: 20%;
 }
 </style>
-
+<style type="text/css" media="screen">@import url("<c:url value="/resources/js/jq-mail/jquery.autoMailSuggest.css"/>");</style>
+<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/jq-mail/jquery.autoMailSuggest.js"/>"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#registerbtn").click(function() {
