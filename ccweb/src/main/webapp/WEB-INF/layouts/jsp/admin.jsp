@@ -6,13 +6,8 @@
 <html>
 <head>
 	<jsp:include page="/WEB-INF/layouts/jsp/common/_html_head.jsp"></jsp:include>
-	<style>
-	.container-fluid.wrapper {
-		background-image: url(/ccweb/resources/img/front_bg.png);
-		background-position: center top;
-		background-repeat: repeat-y;
-		background-color: #929294;
-	}
+	<style type="text/css" media="screen">
+		@import url("<c:url value="/resources/css/admin-layout.css"/>");
 	</style>
 </head>
 <body class="admin">

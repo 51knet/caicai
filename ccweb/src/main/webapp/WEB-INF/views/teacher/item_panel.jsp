@@ -13,11 +13,6 @@
  	background-repeat:repeat-y;
 	vertical-align: middle;
 }
-.round {
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-}
 </style>
 <c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url>
 <c:choose>
@@ -39,7 +34,7 @@
 		</div>		
 	</c:otherwise>
 </c:choose>
-<div style="background-color: #ccdfa8;">
+<div class="left-menu-container">
 	<ul class="nav nav-tabs nav-stacked">
 		<!-- <li class="active"><a href='<c:url value="/admin"></c:url>' >个人中心</a></li> -->
 		<li><a href='<c:url value="/teacher/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>
@@ -51,7 +46,7 @@
 		<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
 		<!-- <li><a href='<c:url value="/admin/teacher/friendsRelated/list"></c:url>' >好友互动</a></li> -->
 		<li><a href='<c:url value="/admin/teacher/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
-		<li><a href='<c:url value="/admin/teacher/message/list"></c:url>' >站内短信</a></li>
+		<li><a href='<c:url value="/admin/teacher/message/list"></c:url>' >站内信</a></li>
 		<!-- 
 		<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.isEnterprise != null) }">
 		       <li><a href='<c:url value="/admin/teacher/downgradeRole"></c:url>' >升级成为教师用户</a></li>
@@ -62,3 +57,15 @@
 		 -->
 	</ul>
 </div>
+
+<html>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('ul > li > a').each(function(index){
+		if ($(this).attr('href') == (window.location.pathname+window.location.search)) {
+			$(this).parent().addClass('active');
+		}
+	});
+});
+</script>
+</html>
