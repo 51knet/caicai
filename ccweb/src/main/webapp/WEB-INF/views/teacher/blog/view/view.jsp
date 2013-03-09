@@ -12,6 +12,9 @@
 .row-fluid.custom .row > h4 {
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
+	padding-bottom: 4px;
+	margin: 10px 0px 0px 0px;
+	
 }
 .row-fluid.custom .row {
 	margin: 10px 40px;
@@ -25,7 +28,7 @@
 }
 </style>
 
-<div class="row-fluid custom">
+<div class="row-fluid custom round">
 	<div class="row">
 		<h4>阅读博文</h4>
 	</div>

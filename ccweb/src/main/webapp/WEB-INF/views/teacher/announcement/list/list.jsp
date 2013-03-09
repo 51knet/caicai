@@ -10,28 +10,25 @@
 	padding: 0px 0px 10px;
 	background: #FAFAFB;
 }
-.round {
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-}
-.row-fluid.custom .row {
-	margin: 10px 40px;
+
+.row-fluid.custom .row > h4 {
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
+	padding-bottom: 4px;
+	margin: 10px 0px 0px 0px;
 }
 
-.row-fluid.custom .row1 {
-	margin: 10px 40px;
+.row-fluid.custom .row {
+	margin: 10px 40px 0px 40px;
 }
 
-.row-fluid.custom .row1 .bb{
+.row-fluid.custom .row .bb{
 	border-bottom: dashed #cccccc 1px;
 }
-.nar {
+.titlebg{
 	background-color:#ccdfa8; 
-	width:100%; 
 	font-size: 14px;
+	width: 100%;
 }
 </style>
 
@@ -39,9 +36,9 @@
 	<div class="row">
 		<h4>公告</h4>
 	</div>
-	<div class="row1">
+	<div class="row">
 		<table style=" width: 100%"  cellpadding="5" >
-			<tr class="nar" ><th align="left"><b>标题</b></th><th width="25%" align="left"><b>发布时间</b></th></tr>
+			<tr class="titlebg" ><th align="left"><b>标题</b></th><th width="25%" align="left"><b>发布时间</b></th></tr>
 			<tbody>
 				<c:forEach items="${page.content}" var="page">
 					<tr  class="bb"><td align="left" >
