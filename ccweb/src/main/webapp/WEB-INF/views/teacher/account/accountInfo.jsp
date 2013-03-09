@@ -75,7 +75,7 @@
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" onclick="return changPwdOnclick();"  class="btn btn-large btn-success">修改密码</button>
+								<button type="submit" onclick="return changPwdOnclick();"  class="btn  btn-success">修改密码</button>
 							</div>
 						</div>
 					</form>
@@ -91,7 +91,7 @@
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" onclick="return selfurlOnclick();" class="btn btn-large btn-success">保存</button>
+								<button type="submit" onclick="return selfurlOnclick();" class="btn  btn-success">保存</button>
 							</div>
 						</div>
 					</form>

@@ -59,7 +59,7 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit"   onclick="return personalOnclick();"  class="btn btn-large btn-success">保 存</button>
+						<button type="submit"   onclick="return personalOnclick();"  class="btn  btn-success">保 存</button>
 					</div>
 				</div>
 			</form>
@@ -92,7 +92,7 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit" class="btn btn-large btn-success">保 存</button>
+						<button type="submit" class="btn  btn-success">保 存</button>
 					</div>
 				</div>
 			</form>

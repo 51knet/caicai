@@ -92,7 +92,7 @@ function previewImages(file){
 									</div>
 								</div>
 								<div class="modal-body" style="text-align: center;">
-									<button type="submit" class="btn btn-large btn-success">下一步</button>
+									<button type="submit" class="btn  btn-success">下一步</button>
 								</div>
 							</form:form>
 						</div>
@@ -116,7 +116,7 @@ function previewImages(file){
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" class="btn btn-large btn-success">完成</button>
+								<button type="submit" class="btn  btn-success">完成</button>
 							</div>
 						</div>
 					</form:form>
@@ -131,7 +131,7 @@ function previewImages(file){
 						<div style="margin-top: 20px;"></div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" class="btn btn-large btn-success">下一步</button>
+								<button type="submit" class="btn  btn-success">下一步</button>
 							</div>
 						</div>
 					</form:form>

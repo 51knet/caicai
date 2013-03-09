@@ -71,7 +71,7 @@ function previewImages(file){
 						<td style="color: red; font-size: 14px; padding-left: 98px;" colspan="2">只支持jpg、gif、bmp、png格式，建议封面宽度210px，高度110px</td>
 					</tr>
 					<tr>
-						<td colspan="2"><button class="btn btn-large btn-success" type="submit" style="margin-left: 100px;">保存</button></td>
+						<td colspan="2"><button class="btn  btn-success" type="submit" style="margin-left: 100px;">保存</button></td>
 					</tr>
 				</table>
 			</form>

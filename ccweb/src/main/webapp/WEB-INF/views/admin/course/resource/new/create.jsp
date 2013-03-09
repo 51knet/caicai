@@ -81,7 +81,7 @@
 						</div>
 						<div id="container" style="margin-left:70px;"></div>
 						<div class="modal-body" style="text-align: left;">
-							<button type="submit" class="btn btn-primary">添加</button>&nbsp;&nbsp;
+							<button type="submit" class="btn btn-success">添加</button>&nbsp;&nbsp;
 							<button type="reset" class="btn">取消</button>
 						</div>
 					</form:form>

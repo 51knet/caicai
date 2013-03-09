@@ -127,12 +127,12 @@
 						课程描述：<textarea name="courseDesc" id="descs" placeholder="课程描述" cols="5" rows="8" style="width:380px;"></textarea>
 						<span class="help-inline"><form:errors path="courseDesc"></form:errors></span>
 						<!-- 
-							<button type="submit" class="btn btn-primary">OK</button>&nbsp;&nbsp;
+							<button type="submit" class="btn btn-success">OK</button>&nbsp;&nbsp;
 							<button type="reset" class="btn" onclick="hidAnnoForm()">Cancel</button>
 						 -->
 					</div>
 					<div class="modal-footer">
-						<button class="btn btn-primary" type="submit">保存</button>
+						<button class="btn btn-success" type="submit">保存</button>
 						<button class="btn" type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
 						
 					</div>
@@ -154,7 +154,7 @@
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 	    <form action='<c:url value="/admin/teacher/course/destory"></c:url>' method="post" style="display: inline-block;" >
 	    	<input id="c_delete_id" type="hidden" name="cId" />
-	    	<button class="btn btn-primary">确定</button>
+	    	<button class="btn btn-success">确定</button>
 	    </form>
 	  </div>
 </div>
@@ -172,7 +172,7 @@
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 	    <form action='<c:url value="/admin/teacher/course/deleted"></c:url>' method="post" style="display: inline-block;" >
 	    	<input id="c_recycle_Id" type="hidden" name="cId" />
-	    	<button class="btn btn-primary">确定</button>
+	    	<button class="btn btn-success">确定</button>
 	    </form>
 	  </div>
 </div>
@@ -190,7 +190,7 @@
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 	    <form action='<c:url value="/admin/teacher/course/recover"></c:url>' method="post" style="display: inline-block;" >
 	    	<input id="c_recover_Id" type="hidden" name="cId" />
-	    	<button class="btn btn-primary">确定</button>
+	    	<button class="btn btn-success">确定</button>
 	    </form>
 	  </div>
 </div>

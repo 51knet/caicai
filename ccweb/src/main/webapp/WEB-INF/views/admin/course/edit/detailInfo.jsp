@@ -49,7 +49,7 @@
 						<tr>
 						<td colspan="2">
 						<br/>
-						<button class="btn btn-large btn-success" style="margin-left: 70px;float: left;" >保存</button></td></tr>
+						<button class="btn  btn-success" style="margin-left: 70px;float: left;" >保存</button></td></tr>
 					</table>
 				</div>
 			</form>

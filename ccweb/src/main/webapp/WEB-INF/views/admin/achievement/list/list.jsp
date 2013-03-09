@@ -95,7 +95,7 @@ $(document).ready(function(){
 					        </div>
 							<div class="control-group">
 								<div class="controls">
-									<button type="submit"  onclick="return thesisOnclick();" class="btn btn-primary">保 存</button>
+									<button type="submit"  onclick="return thesisOnclick();" class="btn btn-success">保 存</button>
 							   		<button class="btn" type="reset" onclick="hiddenThesisAddForm()">取消</button>
 								</div>
 						     </div>
@@ -143,7 +143,7 @@ $(document).ready(function(){
 								<tr><td  colspan="3">
 									<div class="control-group">
 										<div class="controls">
-											<button type="submit" onclick ="return projectOnclick();" class="btn btn-primary">保存</button>&nbsp;&nbsp;
+											<button type="submit" onclick ="return projectOnclick();" class="btn btn-success">保存</button>&nbsp;&nbsp;
 											<button class="btn" type="reset" onclick="hiddenProjectAddForm()">取消</button>
 										</div>
 						     		</div>
@@ -229,7 +229,7 @@ $(document).ready(function(){
 								<tr><td align="right" colspan="4">
 								<div class="control-group">
 									<div class="controls">
-										<button type="submit" onclick="return patentOnclick();" class="btn  btn-primary">保存</button>
+										<button type="submit" onclick="return patentOnclick();" class="btn  btn-success">保存</button>
 										<button class="btn" type="reset" onclick="hiddenPatentAddForm()">取消</button>
 									</div>
 								</div>
@@ -302,7 +302,7 @@ $(document).ready(function(){
 									</td>
 								</tr>
 								<tr><td align="right" colspan="2">
-									<button type="submit" onclick="return honorOnclick();"class="btn btn-primary">保存</button>
+									<button type="submit" onclick="return honorOnclick();"class="btn btn-success">保存</button>
 									<button class="btn" type="reset" onclick="hiddenHonorAddForm()">取消</button>
 								</td></tr>
 								</tbody>

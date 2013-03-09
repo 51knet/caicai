@@ -94,8 +94,8 @@
 					</div>
 					<div class="control-group" style="margin-left: 20px;">
 						<div class="controls"  style="text-align: right; margin-right: 10px;">
-							<button type="submit"  class="btn btn-large btn-success">保存</button>
-							<button type="reset" data-dismiss="modal" class="btn btn-large">取消</button>
+							<button type="submit"  class="btn  btn-success">保存</button>
+							<button type="reset" data-dismiss="modal" class="btn ">取消</button>
 						</div>
 					</div>
 				</form:form>
