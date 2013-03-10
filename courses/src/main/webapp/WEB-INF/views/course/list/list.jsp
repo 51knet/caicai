@@ -2,33 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<style>
-.navbar {
-	margin-bottom: 0px;
-}
-
-.container-fluid {
-	padding-right: 0px;
-	padding-left: 0px;
-}
-
-
-
-.container.course {
-	width: 990px;
-	max-width:990px;
-	text-align: left;
-}
-
-.container.course .row{
-	margin-left:0px;;
-}
-
-.container.course.detail {
-	width: 900px;
-	height: 110px;
-}
-</style>
 
 <script type="text/javascript">
 	function selectType() {
@@ -43,47 +16,52 @@
 		}
 	}
 </script>
-<div class="container course" style="margin-bottom: 10px; margin-top: 10px;">
-	<div class="container course row">
-	<div class="container course detail" style="background-color: #f7f7f7; height: 40px;">
-		<div style="padding: 5px;">
-			<select id="type" onchange="selectType()">
-				<option>全部课程</option>
-				<c:forEach items="${courseTypeList}" var="course">
-					<c:choose>
-						<c:when test="${courseType == course}">
-							<option selected>${course}</option>
-						</c:when>
-						<c:otherwise>
-							<option value="">${course}</option>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-			</select>
-		</div>
-	</div>
-	<h2>课程数（${courseCount }）</h2>
 
-	<c:forEach items="${courseList}" var="course">
-		<div class="container course detail" style="margin-bottom: 15px; border: 0px solid #cccccc;">
-			<table class="table table-bordered" style="width: 100%; height: 100%;" cellpadding="5">
-				<tr>
-					<td valign="bottom" width="22%" align="center">
+<div class="selete_filter">
+	<select id="type" onchange="selectType()">
+		<option>全部课程</option>
+		<c:forEach items="${courseTypeList}" var="course">
+			<c:choose>
+				<c:when test="${courseType == course}">
+					<option selected>${course}</option>
+				</c:when>
+				<c:otherwise>
+					<option value="">${course}</option>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</select>
+	<span>大学</span><span>中学</span><span>小学</span><span>其他</span>
+</div>
+<div class="container title"  >
+	 	 <table >
+	 	 	<tr>
+	 	 		<td width="20%" align="center"><h4>所有课程（${courseCount}）</h4></td>
+	 	 		<td></td>
+	 	 	</tr>
+	 	 </table>
+ </div>
+ <div class="container user-course">
+ 	<c:forEach items="${courseList}" var="course">
+			<table cellpadding="20" style="width: 100%; height: 100%;  margin-bottom: 10px; "  >
+				<tr class="bb">
+				<td  width="24%" align="right"  valign="top">
 						<c:choose>
 							<c:when test="${course.courseCover != null && course.courseCover != ''}">
-								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 200px; height: 100px;" />
+								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 162px; height: 120px;float: right;" />
 								</a>
 							</c:when>
 							<c:otherwise>
-								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 200px; height: 100px;" />
+								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 162px; height: 120px; float: right;" />
 								</a>
 							</c:otherwise>
 						</c:choose>
 					</td>
-					<td>
-						<div style="width:340px;" id="contentlimit">课程名称：${course.courseName}<br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
+					<td valign="top">
+						<div style="width:370px;" id="contentlimit">
+						<b style="font-size: 17px;">课程名称：${course.courseName}</b><br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
 					</td>
-					<td width="34%" align="left">
+					<td width="38%" align="left"  valign="top">
 						<div style="width: 100%;height: 100%;">
 							<div style="float: left; height: 100px; width: 120px;">
 								<c:choose>
@@ -104,20 +82,17 @@
 							</div>
 							</c:when>
 							<c:otherwise>
-							<div style="float: left; height: 100px; ">企业名称：${course.teacher.user.name } <br>
+							<div style="float: left; height: 100px; ">企业名称：${course.teacher.user.name } <br><br>
 								<a style="margin-top: 5px;" href='<c:url value="/teacher/${course.teacher.id}"></c:url>' class="btn  btn-success">查看发布的课程</a>
 							</div>
 							</c:otherwise>
 							</c:choose>
-							
 						</div>
 					</td>
 				</tr>
 			</table>
-		</div>
 	</c:forEach>
-	</div>
-</div>
+ </div>
 
 
 

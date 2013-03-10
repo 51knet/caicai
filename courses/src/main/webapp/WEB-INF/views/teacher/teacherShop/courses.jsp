@@ -45,18 +45,6 @@
 	}
 </script>
 <!-- 
-<div class="navbar">
-	<div class="navbar-inner">
-		<div class="container" style="text-align: center; margin-left: 80px; margin-right: 80px; padding: 10px 10px;">
-			
-			<form class="navbar-form">
-				<input type="text" class="span6" placeholder="搜索教师、课程、学校">
-				<button type="submit" class="btn btn-success">搜索</button>
-			</form>
-		</div>
-	</div>
-</div>
- -->
 <div class="container course" style="margin-bottom: 10px; margin-top: 10px;">
 	<div class="container course row">
 	<div class="container course" style="background-color: #f7f7f7; height: 40px;">
@@ -105,4 +93,56 @@
 		</div>
 	</c:forEach>
 	</div>
-</div>
+</div> -->
+<!-- 
+<div class="selete_filter">
+	<select id="type" onchange="selectType(${teacher.id })">
+		<option>全部课程</option>
+		<c:forEach items="${courseTypeList}" var="course">
+			<c:choose>
+				<c:when test="${courseType == course}">
+					<option selected>${course}</option>
+				</c:when>
+				<c:otherwise>
+					<option value="">${course}</option>
+				</c:otherwise>
+			</c:choose> 
+		</c:forEach>
+	</select>
+</div> -->
+<br>
+<div class="container title"  >
+ 	 <table >
+ 	 	<tr>
+ 	 		<td width="20%" align="center"><h4>所有课程（${courseCount}）</h4></td>
+ 	 		<td></td>
+ 	 	</tr>
+ 	 </table>
+ </div>
+<div class="container user-course" style="height: 500px;">
+ 	<c:forEach items="${teacherCourseList}" var="course">
+			<table cellpadding="20" style="width: 40%;   margin-bottom: 10px;  float: left; margin-left: 50px;"  >
+				<tr >
+				<td  width="24%" align="right"  valign="top">
+						<c:choose>
+							<c:when test="${course.courseCover != null && course.courseCover != ''}">
+								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 162px; height: 120px;float: right;" />
+								</a>
+							</c:when>
+							<c:otherwise>
+								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 162px; height: 120px; float: right;" />
+								</a>
+							</c:otherwise>
+						</c:choose>
+					</td>
+					<td valign="top">
+						<div style="width:200px;" id="contentlimit">
+						<b style="font-size: 17px;">${course.courseName}</b><br>
+						类别：${course.courseType }<br>
+						描述：${course.courseDesc }<br>
+						日期：${course.courseDate }</div>
+					</td>
+				</tr>
+			</table>
+	</c:forEach>
+ </div>
