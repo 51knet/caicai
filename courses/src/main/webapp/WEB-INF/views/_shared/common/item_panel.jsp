@@ -29,7 +29,6 @@ border-bottom-color: transparent;
 .left-menu-container {
 background-color: #ccdfa8;
 width: 148px;
-
 }
 .left-menu-container a{
 color: #666;

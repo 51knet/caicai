@@ -64,11 +64,11 @@ $(document).ready(function() {
 		<input type="hidden" name="teachercourseid"  value="${id}" />
 		</div>
 			<div class="control-group" id="commentDesc">
-			<textarea name="commentDesc"  placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width:380px;"></textarea>
+			<textarea name="commentDesc"  placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width:630px;height: 100px;"></textarea>
 			<span class="help-inline"></span>
 	        </div>
 				<div class="control-group" id="mark">
-				请选择分数:
+				<b >请选择分数:</b>
 				<input type="radio" name="mark" value="0" checked="checked">0
 				<input type="radio" name="mark" value="1">1
 				<input type="radio" name="mark" value="2">2

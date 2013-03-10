@@ -9,15 +9,7 @@
 	border-bottom: 1px dashed;
 	text-align:left;
 }
-.nar{
-	background-color: #adcc75;
-	height: 40px;
-	padding-top: 2px;
-	width: 100%;
-}
-.nar >h4{
-	margin-left: 88px;
-}
+
 .comments-container h5 {
 	padding:5px;
 	text-align: left;
@@ -46,7 +38,7 @@
 			<c:forEach var="usercourse" items="${listUserCourse}">
 				 <c:choose>
 				    <c:when test="${usercourse.userCourse.commentDesc!=null  }">
-				  <div  style="margin-left: 88px; margin-top: 10px;">
+				  <div  style="margin-left: 88px; margin-top: 10px; ">
 				  <span>
 				    	<c:choose >
 							<c:when test="${usercourse.photoUrl != null && usercourse.photoUrl != ''}">
@@ -60,7 +52,9 @@
 				    <span style="color:#80b029" >${usercourse.userName}&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				    <span>评分:${usercourse.userCourse.mark}&nbsp;&nbsp;&nbsp;&nbsp;
 				 	<fmt:formatDate value="${usercourse.userCourse.commentDate}" pattern="yyyy-MM-dd HH:mm"/></span><br/>
-				    <span style="margin-left:120px;">${usercourse.userCourse.commentDesc}</span>
+				    <div style="margin-left:120px; width: 560px;">
+				    <span >${usercourse.userCourse.commentDesc}</span>
+				    </div>
 				  </div>
 				   </c:when>
 				  </c:choose>

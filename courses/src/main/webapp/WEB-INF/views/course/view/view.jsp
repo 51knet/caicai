@@ -5,22 +5,20 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
 .container.course {
-	width: 1024px;
-	max-width:1024px;
 	text-align: left;
 }
 
 .container.course .row{
 	 margin-left: 0px;
 }
-
 .container.course.detail {
-	width: 1024px;
+	width: 100%;
 }
 
 .container.course.detail.desc{
 	margin-left: 75px;
 	padding: 15px;
+	width:600px;
 }
 .container.course.title{
 	height: 240px;
@@ -54,7 +52,7 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div style="margin-left: 80px;margin-top: 33px;float: left;">
+			<div style="margin-left: 80px;margin-top: 33px;">
 			<span style="font-size: 20px;color:#80b029" id="content">${course.courseName}</span><br/>
 					<span style="font-size: 14px;color:#80b029">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
 					<span style="font-size: 14px;color: black;"> 类别：${course.courseType }</span><br/>

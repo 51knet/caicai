@@ -6,7 +6,6 @@
 .container.course.title{
 	height: 240px;
 	width:1024px;
-	margin-bottom:30px;
 	background-image: url('<c:url value='/resources/img/default/carousel_bg.png'></c:url>');
 	background-repeat: repeat-x;
 	margin-top: 35px;
