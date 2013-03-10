@@ -16,36 +16,29 @@
 	padding: 0px 0px 10px;
 	background: #FAFAFB;
 }
-.round {
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-}
-.row-fluid.custom .row {
-	margin: 10px 40px;
+
+.row-fluid.custom .row > h4 {
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
+	padding-bottom: 4px;
+	margin: 10px 0px 0px 0px;
 }
 
-.row-fluid.custom .row1 {
-	margin: 10px 40px;
+.row-fluid.custom .row {
+	margin: 10px 40px 0px 40px;
 }
 
-.row-fluid.custom .row1 .bb{
+.row-fluid.custom .row .bb{
 	border-bottom: dashed #cccccc 1px;
 }
-.nar {
-	background-color:#ccdfa8; 
-	width:100%; 
-	font-size: 14px;
-}
+
 </style>
 
 <div class="row-fluid custom round">
 	<div class="row">
 		<h4>关注人名称</h4>
 	</div>
-	<div class="row1">
+	<div class="row">
 		<table width="100%"  cellpadding="5">
 			<tbody>
 				<tr class="bb">

@@ -20,7 +20,7 @@
 		<div class="row-fluid centralize">
 		    <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;height:90px;width:90px;margin:15px auto;">
 		    <div style="height: 35px;"></div>
-		    <div style="height: 20px;background-color:gray;padding:2px 2px;">
+		    <div style="height: 20px;background-color:gray;  padding:2px 2px;">
 		    	<a href='<c:url value="/admin/teacher/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
 		    </div>
 		    <div style="height: 35px;"></div>
@@ -29,7 +29,7 @@
 	</c:when>
 	<c:otherwise>
 		<div class="row-fluid centralize">
-			<img width="150px" height="150px" src="${avatar_url}" style="margin: 15px 0px;">
+			<img width="150px" height="150px" src="${avatar_url}" style="margin: 15px 0px;" >
 			<a href='<c:url value='/teacher/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>
 		</div>		
 	</c:otherwise>

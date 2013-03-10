@@ -6,14 +6,15 @@
 /*fonts*/
 body {
 	color:#555;
-	font-family:Arial,/*'Microsoft YaHei',*/Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
+	font-family:Arial,'Microsoft YaHei',Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
 	font-size:14px;
 }
 h1, h2, h3, h4, h5, h6 {
 	font-weight:bold;
-	letter-spacing:-0.05em;
+	letter-spacing:0.05em;
 	font-family:'Microsoft YaHei',Arial;
 }
+
 .navbar .nav a {
 	font-family:'Microsoft YaHei',Arial;
 }
