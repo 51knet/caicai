@@ -75,9 +75,9 @@
 <div class="container user-course" >
 	<br>
  	<c:forEach items="${teacherCourseList}" var="course">
-			<table cellpadding="20" style="width: 40%;   margin-bottom: 10px;  float: left; margin-left: 50px;"  >
+			<table cellpadding="20" style="width: 400px;   margin-bottom: 10px;  float: left; margin-left: 50px;"  >
 				<tr >
-				<td  width="24%" align="right"  valign="top">
+				<td  width="165" align="right"  valign="top">
 						<c:choose>
 							<c:when test="${course.courseCover != null && course.courseCover != ''}">
 								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 162px; height: 120px;float: right;" />

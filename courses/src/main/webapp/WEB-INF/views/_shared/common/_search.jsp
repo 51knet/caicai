@@ -5,7 +5,7 @@
 
  </style>
 <div class="container search-bar">
-       <table width="100%" >
+       <table width="100%" class="cont">
        		<tr>
        			<td width="30%"><img  src='<c:url value="/resources/img/default/logo.png"></c:url>'></td>
        			<td width="80%">

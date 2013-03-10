@@ -15,6 +15,10 @@
 	margin: 50px 0px 0px 0px;
 	width: 1024px;
 }
+.container.search-bar .cont {
+	margin-top: 10px;
+}
+
 /* Carousel base class
 -------------------------------------------------- */
 .carousel {
