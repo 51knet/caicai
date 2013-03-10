@@ -18,7 +18,7 @@
 .container.course.detail.desc{
 	margin-left: 75px;
 	padding: 15px;
-	width:600px;
+	width:700px;
 }
 .container.course.title{
 	height: 240px;

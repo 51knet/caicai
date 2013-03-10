@@ -19,6 +19,14 @@
 	 background-color: #cccccc; 
 	 padding: 3px;
 }
+.nar{
+	background-color: #adcc75;
+	height: 40px;
+	padding-top: 2px;
+}
+.nar >h4{
+	margin-left: 88px;
+}
 </style>
 <script type="text/javascript">
 	function courseOnclick(obj) {
