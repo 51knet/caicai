@@ -42,6 +42,7 @@
 	 	 </table>
  </div>
  <div class="container user-course">
+ <br>
  	<c:forEach items="${courseList}" var="course">
 			<table cellpadding="20" style="width: 100%; height: 100%;  margin-bottom: 10px; "  >
 				<tr class="bb">

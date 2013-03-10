@@ -46,6 +46,7 @@
 	</c:when>
 	<c:otherwise>
 	<div class="teacherInfo">
+	<br>
       	<c:forEach items="${teacherList}" var="t">
 			<div class="span3" >
 				<c:choose>
