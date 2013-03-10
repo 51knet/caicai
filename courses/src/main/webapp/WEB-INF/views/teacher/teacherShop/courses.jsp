@@ -42,8 +42,8 @@
     <span class="content" style="font-size: 18px;"><a href='<c:url value="${url}/teacher/${teacher.id}"></c:url>'> <b>${teacher.user.name }</b></a></span>
    	<br/><br/>
    	<span class="content">所在学校：${teacher.school }</span><br/> 
-    <span class="content">职称：${teacher.major }</span><br/>
-    <span class="content">专业：${teacher.college }</span><br/>
+   	<span class="content">所在学院：${teacher.college }</span><br/>
+    <span class="content">专业：${teacher.major }</span><br/>
    </div>
 </c:when>
 <c:otherwise>
