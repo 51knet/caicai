@@ -66,11 +66,11 @@
 	    	</c:when>
 			<c:otherwise>
 				<div >
-			    	<table class="table " style="width: 100%; height: 100%;" cellpadding="5">
+			    	<table cellpadding="20">
 						<tr>
-							<td valign="top"  align="left">
-								<h3>您尚未学习任何课程</h3>
-								<a href='<c:url value="/course/list/type?detail=all"></c:url>' class="btn btn-large btn-success">点击开始学习</a>
+							<td valign="top"  align="left" style="padding-left: 60px;">
+								<h4>您尚未学习任何课程</h4>
+								<a href='<c:url value="/course/list/type?detail=all"></c:url>' class="btn btn-large  btn-success">点击开始学习</a>
 							</td>
 						</tr>
 					</table>

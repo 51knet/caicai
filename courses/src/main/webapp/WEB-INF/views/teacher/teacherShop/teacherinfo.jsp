@@ -28,7 +28,7 @@
 <div class="container teacher">
 <c:choose>
 <c:when test="${teacher.isEnterprise == null}">
-    <div  class="nar" style=";">
+    <div  class="nar" >
 			<h4>讲师介绍</h4>
 		</div>
     <div class="container course detail">
