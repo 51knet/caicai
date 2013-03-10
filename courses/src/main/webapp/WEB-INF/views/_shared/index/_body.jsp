@@ -19,47 +19,44 @@
 <jsp:include page="/WEB-INF/views/_shared/index/_user_course.jsp"></jsp:include>
   	
 <div class="container marketing">
-  <h2>学习资源（${courseCount }）</h2>
-  <!-- Three columns of text below the carousel -->
+  <div class="container title">
+ 	 <table >
+ 	 	<tr>
+ 	 		<td width="16%" align="center"><h4>学习资源</h4></td>
+ 	 		<td><a  href='<c:url value="/course/list/type?detail=all"></c:url>' >全部课程</a></td>
+ 	 	</tr>
+ 	 </table>
+  </div>
   <div class="row" >
-    <!-- <div class="span4">
-      <a href="#"><img src="resources/img/topics/240x135_1.png" width="310px"></a> 
-      <h4>宇宙的形成</h4>
-      <h5>杜克大学</h5>
-      <p><span>更新至第二集</span></p>
-    </div>
-    <div class="span4">
-      <a href="#"><img src="resources/img/topics/240x135_2.png" width="324px"></a> 
-      <h4>药物和大脑111</h4>
-      <h5>加州科技大学</h5>
-      <p><span>更新至第四集</span></p>
-    </div>
-    <div class="span4">
-      <a href="#"><img src="resources/img/topics/240x135_3.png" width="324px"></a>
-      <h4>如何解释和争论</h4>
-      <h5>杜克大学</h5>
-      <p><span>更新至第八集</span></p>
-    </div>
-     -->
-    <c:forEach items="${courseList}" var="c"  begin="0" end="2">
+    <c:forEach items="${courseList}" var="c"  begin="0" end="5">
     	<div class="span4">
     		<div>
    				<c:choose>
 					<c:when test="${c.teacherCourse.courseCover != null && c.teacherCourse.courseCover != ''}">
-						<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'> <img src='<c:url value="${url }${c.teacherCourse.courseCover }"></c:url>' style="width: 310px; height: 100px;" />
-						</a>
+					<!-- <a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'> <img src='<c:url value="${url }${c.teacherCourse.courseCover }"></c:url>' style="width: 250px; height: 187px;" />
+						</a> -->	
+						<div style="width: 250px; height: 187px; background-image: url('<c:url value="${url }${c.teacherCourse.courseCover }"></c:url>');  
+								background-repeat:no-repeat;background-position:center;  ">
+							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 162px;"></div></a>
+		    				<div style="height:25px;background-color:grey;    color: #fff; padding: 4px;">
+		    					${c.teacherCourse.courseName} — ${c.teacherCourse.courseType }
+		   				 	</div>
+						</div>
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 310px; height: 100px;" />
-						</a>
+						<!-- <a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 250px; height: 187px;" />
+						</a> -->
+						<div style="width: 250px; height: 187px; background-image: url('<c:url value="/resources/img/logo.png"></c:url>');  background-repeat:no-repeat;background-position:center;">
+							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 162px;"></div></a>
+		    				<div style="height:25px;background-color:grey;   color: #fff; padding: 4px;">
+		    					&nbsp;&nbsp;&nbsp;${c.teacherCourse.courseName} — ${c.teacherCourse.courseType }
+		   				 	</div>
+						</div>
 					</c:otherwise>
 				</c:choose>
     		</div>
-    		<div style="padding: 3px;"><b>${c.teacherCourse.courseName}</b> — ${c.teacherCourse.courseType }</div>
-    		<div style="padding: 3px;">
-    			教师名称：<a href='<c:url value="/teacher/${c.teacherCourse.teacher.id}"></c:url>'>${c.teacherCourse.teacher.user.name}</a>
-    		</div>
-    		<div style="padding: 3px;">
+    		<div style="margin-top: 5px;">
+    			教师名称：<a href='<c:url value="/teacher/${c.teacherCourse.teacher.id}"></c:url>'>${c.teacherCourse.teacher.user.name}</a><br>
     			学习人数：${c.userCount}人&nbsp;&nbsp;&nbsp;课程评分：
     			<c:choose>
     				<c:when test="${c.courseMark !=null && c.courseMark>0 }">
@@ -69,171 +66,81 @@
     					0分
     				</c:otherwise>
     			</c:choose>
-    			&nbsp;&nbsp;&nbsp;<span style="color: red;"></span>
     		</div>
     	</div>
     </c:forEach>
   </div><!-- /.row -->
-  <div class="row" >
-  		<a class="view-all-courses-link btn" href='<c:url value="/course/list/type?detail=all"></c:url>' >全部课程</a>
-  </div>
 </div>
 <div class="container teacher" >
-  <h2>热门教师（Top 50）</h2>
-  <div id="myTeacher" class="carousel slide">
-  <div class="carousel-inner" style="margin-bottom: -50px;">
-    <c:if test="${fn:length(teacherLists)==0}">
-    <div class="item">
-       <div class="row">
-       	<h3>暂无教师数据</h3>
-       </div></div>
-    </c:if>
-    <div class="item active">
-	      <div class="row">
-					<c:forEach items="${teacherLists}" var="t" begin="0" end="4">
-						<div class="span2" style="width: 175px;height: 200px;">
-						<c:choose>
-						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-						</c:when>
-						<c:otherwise>
-						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
-						</c:otherwise>
-						</c:choose>
-						<div style="margin-top: 5px;">
-						姓名：
-						<c:choose>
-						<c:when test="${t.user.name==null||t.user.name==''}">
-						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
-						</c:when>
-						<c:otherwise>
-						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
-						</c:otherwise>
-						</c:choose>
-						</div>
-						<br/>
-						<div style="margin-top: 1px;">学校：${t.school}</div>
-						</div>
-					</c:forEach>
-				</div>
-    </div>
-    <c:if test="${fn:length(teacherLists) >5}">
-    <div class="item">
-       <div class="row">
-			<c:forEach items="${teacherLists}" var="t" begin="5" end="10">
-				<div class="span2" style="width: 175px;height: 200px;">
-						<c:choose>
-						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-						</c:when>
-						<c:otherwise>
-						<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-						</c:otherwise>
-						</c:choose>
-						<div style="margin-top: 5px;">
-						姓名：<c:choose>
-						<c:when test="${t.user.name==null||t.user.name==''}">
-						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
-						</c:when>
-						<c:otherwise>
-						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
-						</c:otherwise>
-						</c:choose>
-						</div>
-						<br/>
-						<div style="margin-top: 1px;">学校：${t.school}</div>
-				</div>
-			</c:forEach>
-		</div>
-    </div>
-    </c:if>
-  </div>
-  <div class="row">
-  		<a class="view-all-teachers-link btn" href='<c:url value="/teacher/list?isEnterPrise=null"></c:url>' >全部教师</a>  
-  </div>
-  <div style="display: none;">
-	  <a class="left carousel-control" href="#myTeacher" data-slide="prev">‹</a>
-	  <a class="right carousel-control" href="#myTeacher" data-slide="next">›</a>
-  </div>
-</div>
-
-</div>
-<div class="container teacher" >
-  <h2>热门企业（Top 50）</h2>
-  <c:if test="${fn:length(enterPriseList)==0}">
-		   <div class="item">
-		      <div class="row">
-		      <h3>暂无企业数据</h3>	
-		      </div></div>
-		   </c:if>
-  <div id="myUniversity" class="carousel slide">
-  <div class="carousel-inner" style="margin-bottom: -50px;">
-    <div class="item active">
-	      <div class="row">
-					<c:forEach items="${enterPriseList}" var="t" begin="0" end="4">
-						<div class="span2" style="width: 175px;height: 200px;">
-						<c:choose>
-						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-						</c:when>
-						<c:otherwise>
-						<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-						</c:otherwise>
-						</c:choose>
-						<div style="margin-top: 5px;">
-						姓名：<c:choose>
-						<c:when test="${t.user.name==null||t.user.name==''}">
-						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
-						</c:when>
-						<c:otherwise>
-						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
-						</c:otherwise>
-						</c:choose>
-						</div>
-						<br/>
-						<div style="margin-top: 1px;">学校：${t.school}</div>
-						</div>
-					</c:forEach>
-				</div>
-    </div>
-    <c:if test="${fn:length(enterPriseList) >5}">
-    <div class="item">
-       <div class="row">
-			<c:forEach items="${enterPriseList}" var="t" begin="5" end="10">
-				<div class="span2" style="width: 175px;height: 200px;">
+	  <div class="container title">
+		 <table >
+		 	<tr>
+		 		<td width="16%" align="center"><h4>热门教师 </h4></td>
+		 		<td><a  href='<c:url value="/teacher/list?isEnterPrise=null"></c:url>'  >全部教师</a></td>
+		 	</tr>
+		 </table>
+	 </div>
+  	<div class="bgimg">
+	    <c:if test="${fn:length(teacherLists)==0}">
+		       <div class="teacherInfo">
+		       	<h3>暂无教师数据</h3>
+		       </div>
+	 	 </c:if>
+	      <div class="teacherInfo">
+			<c:forEach items="${teacherLists}" var="t" begin="0" end="13">
+				<div class="span2">
 					<c:choose>
 						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
+							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 70px; height:70px;margin-bottom: 5px;" /></a>
 						</c:when>
 						<c:otherwise>
-						<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
+							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
 						</c:otherwise>
-						</c:choose>
-						<div style="margin-top: 5px;">
-						姓名：<c:choose>
+					</c:choose>
+					<div style="margin-top: 5px;">
+						<c:choose>
 						<c:when test="${t.user.name==null||t.user.name==''}">
-						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏</a>
 						</c:when>
 						<c:otherwise>
-						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a>
 						</c:otherwise>
 						</c:choose>
-						</div>
-						<br/>
-						<div style="margin-top: 1px;">学校：${t.school}</div>
+					</div>
 				</div>
 			</c:forEach>
 		</div>
-    </div>
-    </c:if>
-  </div>
-  <div class="row">
-  		<a class="view-all-teachers-link btn" href='<c:url value="/teacher/list?isEnterPrise=1"></c:url>' >全部企业</a>  
-  </div>
-  <div style="display: none;">
-	  <a class="left carousel-control" href="#myTeacher" data-slide="prev">‹</a>
-	  <a class="right carousel-control" href="#myTeacher" data-slide="next">›</a>
-  </div>
+	</div>
 </div>
 
+<div class="container teacher" >
+   <div class="container title">
+ 	 <table width="100%">
+ 	 	<tr>
+ 	 		<td width="16%" align="center"><h4>热门企业 </h4></td>
+ 	 		<td><a   href='<c:url value="/teacher/list?isEnterPrise=1"></c:url>'   >全部企业</a></td>
+ 	 	</tr>
+ 	 </table>
+  </div>
+	  <div class="bgimg">
+		  <c:if test="${fn:length(enterPriseList)==0}">
+		      <div class="teacherInfo">
+		     	 <h3>暂无企业数据</h3>	
+		      </div>
+		  </c:if>
+	      <div class="teacherInfo">
+			<c:forEach items="${enterPriseList}" var="enter" begin="0" end="9">
+				<div class="span1" >
+					<c:choose>
+					<c:when test="${enter.user.photo_url!=null||enter.user.photo_url!=''}">
+						<a href='<c:url value="/teacher/${enter.id}"></c:url>'><img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a>
+					</c:when>
+					<c:otherwise>
+						<a href='<c:url value="/teacher/${enter.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a>
+					</c:otherwise>
+					</c:choose>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
 </div>

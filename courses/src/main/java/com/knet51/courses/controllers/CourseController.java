@@ -353,9 +353,7 @@ public class CourseController {
 			} else {
 				userCourse.setCommentDesc(userCourseDesc);
 				userCourse.setMark(marks);
-				SimpleDateFormat format = new SimpleDateFormat(
-						"yyyy-MM-dd HH:mm:ss");
-				String date = format.format(new Date());
+				Date date = new Date();
 				userCourse.setCommentDate(date);
 				userCourseService.save(userCourse);
 				return "redirect:/course/study/comment/" + id;

@@ -72,7 +72,7 @@ public class HomeController {
 			}
 			br.close();
 		} catch (Exception e) {
-			url = "http://www.51knet.com/ccweb/";
+			url = "http://www.51knet.com";
 		}
 		//List<TeacherCourseBeans> tcBeanList = courseService.getAllTeacherCourseBeans();
 		//List<TeacherCourse> courseList = courseService.findAllCourses();

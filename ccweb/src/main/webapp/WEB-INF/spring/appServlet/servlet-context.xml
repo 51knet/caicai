@@ -50,6 +50,14 @@
 		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
 	</beans:bean>
 	 -->
+	 <beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<beans:property name="exceptionMappings">
+			<beans:props>
+				<beans:prop key="java.lang.Exception">error</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+
 	<beans:bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 	  <beans:property name="mediaTypes">
 	    <beans:map>

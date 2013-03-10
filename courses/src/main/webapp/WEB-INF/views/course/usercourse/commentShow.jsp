@@ -4,12 +4,26 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<style>
+.comments-container .content {
+	border-bottom: 1px dashed;
+	text-align:left;
+}
+
+.comments-container h5 {
+	padding:5px;
+	text-align: left;
+	padding-left: 88px;
+}
+</style>
 <div id="comment">
-		<div  align="left" style="background-color:#F7F7F7;height:40px; line-height:40px;clear:both;margin-top: 20px;"><h4 style=" float:left; margin-left: 40px;">用户评价</h4></div> 
-		<div style="margin-left:35px; margin-top: 10px;">
+		<div  class="nar">
+			<h4>用户评价</h4>
+		</div> 
+		<div class="comments-container">
     	<c:choose>
 			<c:when test="${sumPerson>0}">
-			<span style="line-height:40px">总评论人数:&nbsp;&nbsp;&nbsp;${sumPerson}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<h5>总评论人数:&nbsp;&nbsp;&nbsp;${sumPerson}
 			评论分数:
 			<c:choose>
     				<c:when test="${courseMark>0 }">
@@ -19,47 +33,40 @@
     					0分
     				</c:otherwise>
     			</c:choose>
-    			</span>
-    			<hr>
-				<table style="width: 100%">
+    			</h5>
+				<div >
 			<c:forEach var="usercourse" items="${listUserCourse}">
 				 <c:choose>
 				    <c:when test="${usercourse.userCourse.commentDesc!=null  }">
-				  <table>
-				  <tr>
-				    <td width="10%" rowspan="3" align="center" valign="top">
-				    	
+				  <div  style="margin-left: 88px; margin-top: 10px; ">
+				  <span>
 				    	<c:choose >
 							<c:when test="${usercourse.photoUrl != null && usercourse.photoUrl != ''}">
-								<img src='<c:url value="${url }${usercourse.photoUrl }"></c:url>'   style="width: 50px;height: 50px;" />
+								<img src='<c:url value="${url }${usercourse.photoUrl }"></c:url>'   style="width:100px;height: 100px;" />
 							</c:when>
 							<c:otherwise>
-								<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 50px;height: 50px;" />
+								<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height:100px;" />
 							</c:otherwise>
 						</c:choose>
-				    </td>
-				    <td align="left" style="width: 15%">${usercourse.userName}</td>
-				    <td align="left">评分:${usercourse.userCourse.mark}</td>
-				  </tr>
-				  <tr>
-				    <td colspan="2" align="left"><br>${usercourse.userCourse.commentDesc}</td>
-				  </tr>
-				  <tr>
-				    <td colspan="2" align="left"><br>${usercourse.userCourse.commentDate }</td>
-				  </tr>
-				  </table>
-				  <hr>
+				    </span>
+				    <span style="color:#80b029" >${usercourse.userName}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				    <span>评分:${usercourse.userCourse.mark}&nbsp;&nbsp;&nbsp;&nbsp;
+				 	<fmt:formatDate value="${usercourse.userCourse.commentDate}" pattern="yyyy-MM-dd HH:mm"/></span><br/>
+				    <div style="margin-left:120px; width: 560px;">
+				    <span >${usercourse.userCourse.commentDesc}</span>
+				    </div>
+				  </div>
 				   </c:when>
 				  </c:choose>
-				    	 
+				  <div class="content"></div>
 			</c:forEach>
-			 <tr><td>
+			 <div style="margin-left: 85px;">
        				 <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
-    			</td></tr>
-			</table>
+			 </div>
+			</div>
 			</c:when>
 			<c:otherwise>
-			<div style="margin-left: 5px;margin-top:16px">尚未有课程评论</div>
+			<div style="margin-left: 88px;margin-top:16px">尚未有课程评论</div>
 			</c:otherwise>
 			</c:choose>		
 		</div>

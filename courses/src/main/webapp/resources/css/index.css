@@ -5,24 +5,38 @@
 	margin: 0 auto;
 	padding-right: 0px;
 	padding-left: 0px;
-	
 }
 .container.search-bar {
+	background-image: url("/courses/resources/img/default/search_bg.png");
+	background-position:left top;
+	background-repeat: no-repeat;
+	height: 76px;
 	text-align: center;
-	margin: 45px 80px 0px 80px;
-	padding: 10px 10px;
+	margin: 40px 0px 0px 0px;
+	width: 1024px;
 }
+.container.search-bar .
 /* Carousel base class
 -------------------------------------------------- */
 .carousel {
   margin-bottom: 60px;
+ 
 }
-
+.carouselbg{
+  background-image: url("/courses/resources/img/default/carousel_bg.png");
+  height: 360px;
+  background-position: top center;
+  background-repeat: repeat-x;
+  padding-top: 10px;
+  text-align: center;
+}
 .carousel .container {
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
+   width: 697px;
+   
 }
 
 .carousel-control {
@@ -34,7 +48,8 @@
 }
 
 .carousel .item {
-  height: 300px;
+  height: 319px; 
+  margin-left: 150px;
 }
 #myCarousel .carousel img {
   min-width: 100%;
@@ -58,35 +73,70 @@
 .carousel-caption .btn {
   margin-top: 10px;
 }
+
 /* MARKETING CONTENT
 -------------------------------------------------- */
+.container.title{
+	background-color: #adcc75;
+ 	color: #353535;
+ 	font-family:Arial,'Microsoft YaHei';
+  	width: 1024px;
+
+}
+.container.title >table{
+	width: 90%;
+	margin-left: 38px;
+}
+
 .container.marketing {
   width: 1024px;
-  max-width:1024px;
-  min-width: 1024px;
+
 }
+
 .container.marketing .row {
   margin-left: 0px;
+  background-image: url("/courses/resources/img/default/course_bg.png");
+  background-position: top left;
+  background-repeat: repeat-x;
+  text-align: center;
 }
+.container.marketing .row .span4 {
+ width: 250px; 
+ margin-left:70px;
+ margin-top:30px;
+ margin-bottom:20px;
+  text-align: left;
+}
+
+
 .container.user-course
 {
   width: 1024px;
-  max-width:1024px; 
-  min-width: 1024px;
+  background-image: url("/courses/resources/img/default/course_bg.png");
+  background-position: top center;
+  background-repeat: repeat-x;
+	
 }
 .container.user-course .row {
-  margin-left: 0px;
+  margin-left: 60px;
+  text-align: center;
 }
-
+.row .span2{
+  margin:30px 30px;
+  width:130px;
+  height: 130px;
+ 
+}
 .row .span4 {
 width: 310px;
-margin: 12px 30px 24px 0px;
+margin: 20px 0px 20px 40px;
+/*
 -webkit-box-shadow: #999 0px 1px 2px 0px;
 box-shadow: #999 0px 1px 2px 0px;
 border-top-width: 1px;
 border-top-style: solid;
-border-top-color: #EEE;
-background: #F7F7F7;
+border-top-color: #EEE;*/
+
 }
 
 .container.university {
@@ -112,16 +162,36 @@ background: #F7F7F7;
 
 .container.teacher {
   width: 1024px;
-  max-width:1024px; 
 }
+
+ .selete_filter{
+ 	margin-top:20px;
+	margin-left:60px;
+	text-align: left;
+}
+.selete_filter >span{
+	font-weight: bold;
+	font-size: 15px;
+	margin-left: 20px;
+}
+
+.container.teacher .bgimg {
+  background-image: url("/courses/resources/img/default/course_front_bg.png");
+  background-position: top left;
+  background-repeat: repeat-x;
+  height: 340px;
+	
+}
+
 #myUniversity, #myTeacher {
   margin-bottom: 0px;
 }
-.container.teacher .row {
-  margin-left: 0px;
+.container.teacher .teacherInfo{
+ margin-left:50px;
+  width: 95%;
 }
-.container.teacher .row .span1{
-  background-position: center;
+.container.teacher .teacherInfo .span1{
+  /*background-position: center;
   background-repeat: no-repeat;
   background-image: url(../img/avatar/avatar40.png);
   height: 80px;
@@ -131,14 +201,39 @@ background: #F7F7F7;
   border-top-style: solid;
   border-top-color: #EEE;
   margin: 2px 2px;
-  margin-right: 24px;
-}
-.container.teacher .row .span2{
+  margin-right: 24px;*/
   background-position: center;
   background-repeat: no-repeat;
-  margin: 2px 2px;
-  margin-right: 24px;
+  margin:20px 30px;
+  width: 127px;
+  height: 83px;
+  text-align: center;
+padding-top: 20px;
 }
+.container.teacher .teacherInfo .span2{
+  background-position: center;
+  background-repeat: no-repeat;
+  margin:30px 20px;
+  width: 92px;
+  height: 110px;
+  background-color: #adcc75;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.container.teacher .teacherInfo .span3{
+   margin:30px 30px;
+  width:130px;
+  height: 130px;
+	text-align: center;
+	padding: 3px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	line-height: 25px;
+
+}
+
+
 .view-all-teachers-link, .view-all-courses-link {
 	display: block;
 	text-align: center;

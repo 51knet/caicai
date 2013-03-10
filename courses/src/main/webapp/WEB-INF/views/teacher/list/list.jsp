@@ -4,126 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib  prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <style>
-.navbar {
-	margin-bottom: 0px;
-}
-/* CUSTOMIZE THE NAVBAR
--------------------------------------------------- */
-    
-.container-fluid {
-	padding-right: 0px;
-	padding-left: 0px;
-}
-/* Carousel base class */
-.carousel {
-  margin-bottom: 60px;
-}
 
-.carousel .container {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.carousel-control {
-  background-color: transparent;
-  border: 0;
-  font-size: 120px;
-  margin-top: 0;
-  text-shadow: 0 1px 1px rgba(0,0,0,.4);
-}
-
-.carousel .item {
-  height: 300px;
-}
-#myCarousel .carousel img {
-  min-width: 100%;
-  height: 300px;
-}
-
-.carousel-caption {
-  background-color: transparent;
-  position: static;
-  max-width: 550px;
-  padding: 0 40px;
-  margin-bottom: 100px;
-}
-.carousel-caption h1,
-.carousel-caption .lead {
-  margin: 0;
-  line-height: 1.25;
-  color: #fff;
-  text-shadow: 0 1px 1px rgba(0,0,0,.4);
-}
-.carousel-caption .btn {
-  margin-top: 10px;
-}
-/* MARKETING CONTENT
--------------------------------------------------- */
-.container.marketing {
-  width: 1024px;
-  max-width:1024px;
-}
-.container.marketing .row {
-  margin-left: 0px;
-}
-.row .span4 {
-width: 310px;
-margin: 12px 30px 24px 0px;
--webkit-box-shadow: #999 0px 1px 2px 0px;
-box-shadow: #999 0px 1px 2px 0px;
-border-top-width: 1px;
-border-top-style: solid;
-border-top-color: #EEE;
-background: #F7F7F7;
-}
-
-.container.university {
-  width: 1024px;
-  max-width:1024px;
-  margin-bottom: 0px;
-}
-.container.university .row {
-  margin-left: 0px;
-}
-.container.university .row .span3{
-  background-image: url(resources/img/ust/ust_logo_160x60.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 80px;
-  -webkit-box-shadow: #999 0px 1px 2px 0px;
-  box-shadow: #999 0px 1px 2px 0px;
-  border-top-width: 1px;
-  border-top-style: solid;
-  border-top-color: #EEE;
-  margin: 2px 2px;
-}
-
-.container.teacher {
-  width: 1024px;
-  max-width:1024px; 
-}
-
-#myUniversity, #myTeacher {
-  margin-bottom: 0px;
-}
-.container.teacher .row {
-  margin-left: 0px;
-}
-.container.teacher .row .span1{
-  background-image: url(resources/img/avatar/avatar40.png );
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 80px;
-  -webkit-box-shadow: #999 0px 1px 2px 0px;
-  box-shadow: #999 0px 1px 2px 0px;
-  border-top-width: 1px;
-  border-top-style: solid;
-  border-top-color: #EEE;
-  margin: 2px 2px;
-  margin-right: 18px;
-}
 </style>
 
 <script type="text/javascript">
@@ -142,82 +23,110 @@ background: #F7F7F7;
 <div class="container teacher">
 	<c:choose>
 	<c:when test="${isEnterPrise=='null'}">
-	<h2>热门教师（Top 50）</h2>
+		<div class="selete_filter">
+			<select >
+				<option>全部教师</option>
+			</select>
+			<span>大学</span><span>中学</span><span>小学</span><span>其他</span>
+		</div>
+		<div class="container title"  >
+		 	 <table  >
+		 	 	<tr>
+		 	 		<td width="18%" align="center"><h4>热门教师（${fn:length(teacherList)}）</h4></td>
+		 	 		<td></td>
+		 	 	</tr>
+		 	 </table>
+  		</div>
+  	<div class="bgimg">
 	<c:choose>
 	<c:when test="${fn:length(teacherList)==0}">
-	<div class="item">
-       <div class="row">
+       <div class="teacherInfo">
        	<h3>暂无教师数据</h3>
        </div>
+	</c:when>
+	<c:otherwise>
+	<div class="teacherInfo">
+	<br>
+      	<c:forEach items="${teacherList}" var="t">
+			<div class="span3" >
+				<c:choose>
+					<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
+						<a href="/courses/teacher/${t.id }"><img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 122px; height:122px;" /></a>
+					</c:when>
+					<c:otherwise>
+						<a href="/courses/teacher/${t.id }"><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 122px; height:122px;" /></a>
+					</c:otherwise>
+				</c:choose>
+				<br/>
+				<c:choose>
+					<c:when test="${t.user.name==null||t.user.name==''}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏</a>
+					</c:when>
+					<c:otherwise>
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a>
+					</c:otherwise>
+				</c:choose>
+				<br/>
+				${t.school}
+			</div>
+		</c:forEach>
+	</div>
+	</c:otherwise>
+	</c:choose>
+	</div>
+	<!-- <div ><jsp:include page="/WEB-INF/views/_shared/pagination.jsp" ></jsp:include></div> -->
+	</c:when>
+	<c:otherwise>
+		<div class="selete_filter">
+			<select >
+				<option>全部企业</option>
+			</select>
+		</div>
+	<div class="container title"  >
+	 	 <table  >
+	 	 	<tr>
+	 	 		<td width="18%" align="center"><h4>热门企业（${fn:length(enterPriseList)}）</h4></td>
+	 	 		<td></td>
+	 	 	</tr>
+	 	 </table>
+  	</div>
+  	<div class="bgimg">
+	<c:choose>
+	<c:when  test="${fn:length(enterPriseList)==0}">
+       <div class="teacherInfo">
+       	<h3>暂无企业数据</h3>
        </div>
 	</c:when>
 	<c:otherwise>
-	<div class="row">
-      	<c:forEach items="${teacherList}" var="t">
-			<div class="span2" style="width: 175px;height:260px;">
-			<c:choose>
-			<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-			<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-			</c:when>
-			<c:otherwise>
-			<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-			</c:otherwise>
-			</c:choose>
-			<div>
-			姓名：<c:choose>
-			<c:when test="${t.user.name==null||t.user.name==''}">
-			<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
-			</c:when>
-			<c:otherwise>
-			<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
-			</c:otherwise>
-			</c:choose>
-			<br/>
-			<div style="margin-top: 5px;">学校：${t.school}</div>
-			</div>
-			</div>
-		</c:forEach>
-	 </div>
-	</c:otherwise>
-	</c:choose>
-	</c:when>
-	<c:otherwise>
-	<h2>热门企业（Top 50）</h2>
-  <c:if test="${fn:length(enterPriseList)==0}">
-		   <div class="item">
-		      <div class="row">
-		      <h3>暂无企业数据</h3>	
-		      </div></div>
-		   </c:if>
-   	<div class="row">
-      	<c:forEach items="${enterPriseList}" var="t" >
-				<div class="span2" style="width: 175px;height:260px;">
+	<div class="teacherInfo">
+	    <c:forEach items="${enterPriseList}" var="enter" >
+			<div class="span1" >
+				<c:choose>
+					<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
+						<a href="/courses/teacher/${enter.id }"><img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a>
+					</c:when>
+					<c:otherwise>
+					<a href="/courses/teacher/${enter.id }"><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a>
+					</c:otherwise>
+				</c:choose>
+					<div>
 					<c:choose>
-						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-						</c:when>
-						<c:otherwise>
-						<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" />
-						</c:otherwise>
-						</c:choose>
-						<div>
-						姓名：<c:choose>
-						<c:when test="${t.user.name==null||t.user.name==''}">
-						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
-						</c:when>
-						<c:otherwise>
-						<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
-						</c:otherwise>
-						</c:choose>
-						<br/>
-						<div style="margin-top: 5px;">学校：${t.school}</div>
-						</div>
-				</div>
-			</c:forEach>    	
-	 </div>
+					<c:when test="${enter.user.name==null||enter.user.name==''}">
+					<a href='<c:url value="${url}/teacher/${enter.id}"></c:url>'>无名氏</a>
+					</c:when>
+					<c:otherwise>
+					<a href='<c:url value="${url}/teacher/${enter.id}"></c:url>'>${enter.user.name }</a>
+					</c:otherwise>
+					</c:choose>				
+					</div>
+			</div>
+		</c:forEach> 
+	</div>
 	</c:otherwise>
 	</c:choose>
-	 <div class="row"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp" ></jsp:include></div>
+	</div>
+	</c:otherwise>
+</c:choose>
 </div>
 
 

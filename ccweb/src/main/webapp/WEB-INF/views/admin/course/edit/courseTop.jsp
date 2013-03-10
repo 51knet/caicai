@@ -18,10 +18,10 @@
     <div style="float: left; width: 25%;">
 	    <c:choose >
 			<c:when test="${course.courseCover != null && course.courseCover != ''}">
-				<img src='<c:url value="${course.courseCover}"> </c:url>'style="width: 210px;height:110px; float:left; margin-left:30px;margin-top: 20px;margin-bottom: 20px;"/>
+				<img src='<c:url value="${course.courseCover}"> </c:url>'style="width: 220px;height:165px; float:left; margin-left:30px;margin-top: 10px;"/>
 			</c:when>
 			<c:otherwise>
-				 <img src='<c:url value="/resources/img/knetlogo.png"></c:url>'style="width: 210px;height: 110px; float:left; margin-left:30px;margin-top: 20px;"/>
+				 <img src='<c:url value="/resources/img/knetlogo.png"></c:url>'style="width: 220px;height: 165px; float:left; margin-left:30px;margin-top: 10px;"/>
 			</c:otherwise>
 		</c:choose>
 	</div>

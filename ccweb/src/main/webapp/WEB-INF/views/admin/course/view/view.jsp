@@ -61,11 +61,11 @@
 				<div style="width: 40%; height:150px; text-align:center;  float: left;border: 0px solid #cccccc;">
 					<c:choose>
 						<c:when test="${course.courseCover != null && course.courseCover != ''}">
-							<a href='#'> <img src="/ccweb/${course.courseCover }" style="width: 240px; height: 120px;margin-top: 10px;" />
+							<a href='#'> <img src="/ccweb/${course.courseCover }" style="width: 220px; height: 165px;" />
 							</a>
 						</c:when>
 						<c:otherwise>
-							<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 240px; height: 120px;margin-top: 10px;" />
+							<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 220px; height: 165px;" />
 							</a>
 						</c:otherwise>
 					</c:choose>

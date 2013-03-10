@@ -81,7 +81,7 @@ public class TeacherResouDetailInfoController {
 				String date = format.format(new Date());
 				resource.setDate(date);
 				resource.setSaveName(fileName);
-				String savePath = path+File.separator+fileName;
+				String savePath = path+"/"+fileName;
 				resource.setSavePath(savePath);
 				resource.setStatus(GlobalDefs.STATUS_RESOURCE);
 				resource.setUser(user);

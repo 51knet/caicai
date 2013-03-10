@@ -32,31 +32,25 @@
 	background: #FAFAFB;
 
 }
-.round {
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-}
-.row-fluid.custom .row {
-	margin: 10px 40px;
+.row-fluid.custom .row > h4 {
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
+	padding-bottom: 4px;
+	margin: 20px 0px 0px 0px;
+}
+.row-fluid.custom .row {
+	margin: 0px 40px 0px 40px;
 }
 
-.row-fluid.custom .row1 {
-	margin: 10px 40px;
-
-}
-
-.row-fluid.custom .row1 .bb{
-	border-bottom: dashed #cccccc 1px;
+.row-fluid.custom .row .bb{
+	border-bottom: dashed  1px;
 }
 </style>
 <!-- ${teacherInfo.id} -->
 <div class="row-fluid custom round">
 	<div class="row"><h4>公告 </h4></div>
 	
-	<div class="row1">
+	<div class="row">
 		<c:choose>
 			<c:when test="${annoCount>0}">
 				<table cellpadding="4" width="100%" style="margin-top: 10px;">
@@ -89,7 +83,7 @@
 			<h4>教学资源</h4>
 		</div>
 		
-		<div class="row1">
+		<div class="row">
 			<c:choose>
 				<c:when test="${resourceCount !=0}">
 					<table  cellpadding="4" width="100%" style="margin-top: 10px;">
@@ -122,7 +116,7 @@
 			<h4>课程资料</h4>
 		</div>
 	
-		<div class="row1">
+		<div class="row">
 			<c:choose>
 				<c:when test="${courseCount !=0}">
 					<table cellpadding="4" width="100%" style="margin-top: 10px;">
@@ -183,7 +177,7 @@
 	<div class="row">
 		<h4>博文</h4>
 	</div>
-	<div class="row1">
+	<div class="row">
 	<table cellpadding="4" width="100%" style="margin-top: 10px;">
 		<tbody>
 			<c:forEach var="blogPost" items="${blogPosts}">
