@@ -26,6 +26,7 @@
  	 </table>
  </div>
 <div class="container user-course" >
+	<div style="margin-top: 20px;">
  	<c:forEach items="${teacherCourseList}" var="course">
 			<table cellpadding="20" style="width: 40%;   margin-bottom: 10px;  float: left; margin-left: 50px;"  >
 				<tr >
@@ -51,4 +52,5 @@
 				</tr>
 			</table>
 	</c:forEach>
+	</div>
  </div>

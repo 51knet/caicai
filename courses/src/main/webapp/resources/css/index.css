@@ -208,7 +208,7 @@ border-top-color: #EEE;*/
   width: 127px;
   height: 83px;
   text-align: center;
-
+padding-top: 20px;
 }
 .container.teacher .teacherInfo .span2{
   background-position: center;
@@ -222,7 +222,7 @@ border-top-color: #EEE;*/
 }
 
 .container.teacher .teacherInfo .span3{
-   margin:40px 30px;
+   margin:30px 30px;
   width:130px;
   height: 130px;
 	text-align: center;
@@ -230,6 +230,7 @@ border-top-color: #EEE;*/
 	background-color: #fff;
 	border: 1px solid #ccc;
 	line-height: 25px;
+
 }
 
 
