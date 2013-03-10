@@ -4,11 +4,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:choose>
 	<c:when test="${sessionScope.sessionUserInfo!= null}">
-		<br>
+		<div style="height: 5px;"></div>
 		<div class="container title"  >
 		 	 <table >
 		 	 	<tr>
-		 	 		<td width="18%" align="center"><h4>您的课程</h4></td>
+		 	 		<td width="16%" align="center"><h4>您的课程</h4></td>
 		 	 		<td></td>
 		 	 	</tr>
 		 	 </table>
@@ -16,9 +16,9 @@
 		<div class="container user-course">
 			<c:choose>
 				<c:when test="${userCourseCount>0}">
-				<div >
+				<div style="margin-left: 10px; margin-right: 10px;">
 			 	 <c:forEach items="${userCourse}" var="course"  begin="0" end="2">
-			    	<table cellpadding="20" style="width: 100%; height: 100%;  margin-bottom: 10px; "  >
+			    	<table cellpadding="18" style="width: 100%; height: 100%;  margin-bottom: 10px; "  >
 						<tr class="bb">
 							<td  width="24%" align="right"  valign="top">
 								<c:choose>
@@ -68,7 +68,7 @@
 				<div >
 			    	<table cellpadding="20">
 						<tr>
-							<td valign="top"  align="left" style="padding-left: 60px;">
+							<td valign="top"  align="left" style="padding-left: 80px;">
 								<h4>您尚未学习任何课程</h4>
 								<a href='<c:url value="/course/list/type?detail=all"></c:url>' class="btn btn-large  btn-success">点击开始学习</a>
 							</td>
