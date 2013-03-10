@@ -463,7 +463,7 @@ public class TeacherCourseInfoDetailController {
 				File saveDest = new File(path + File.separator + fileName);
 				multipartFile.transferTo(saveDest);
 				FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
-				String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+File.separator+"small"+"."+fileExtension;
+				String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+"/small"+"."+fileExtension;
 				teacherCourse.setCourseCover(savePath);
 			}      
 		}
