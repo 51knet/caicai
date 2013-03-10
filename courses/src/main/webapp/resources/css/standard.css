@@ -26,18 +26,20 @@ textarea {
 
 /*navbar*/
 .navbar.custom {
-	height: 40px;
+	height: 49px;
 	z-index: 2;
-	margin-bottom: 0px;
-	background: #4E4E4E url(../img/topbar/noise.png);
-	background: url(../img/topbar/noise.png), -moz-linear-gradient(#4E4E4E, #1C1C1C);
-	background: url(../img/topbar/noise.png), -webkit-linear-gradient(#4E4E4E, #1C1C1C);
-	background: url(../img/topbar/noise.png), -o-linear-gradient(#4E4E4E, #1C1C1C);
-	background: url(../img/topbar/noise.png), -ms-linear-gradient(#4E4E4E, #1C1C1C);
-	background: url(../img/topbar/noise.png), linear-gradient(#4E4E4E, #1C1C1C);
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.45);
+	background: url(../img/default/navbar.png) center;
 }
 
+/*logo*/
+#logo {
+	width: 145px;
+	height: 36px;
+	text-indent: -999em;
+	background: url(../img/default/logo.png) no-repeat;
+	top: 4px;
+	box-shadow: none;
+}
 
 #contentlimit{
 	overflow: hidden; 

@@ -3,8 +3,10 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="navbar custom navbar-inverse navbar-fixed-top">
-	<div class="container-fluid" style="text-align: center;height: 54px;">
-		<a id="logo" class="brand" href='<c:url value="/admin"></c:url>'></a>
+	<div class="container-fluid" style="text-align: center; height: 54px; width: 1024px; margin: 0 auto;">
+		<ul class="nav pull-left">
+			<li><a id="logo" href='<c:url value="/admin"></c:url>'></a></li>
+		</ul>
 		<c:if test="${sessionUserInfo != null}">
 			<ul class="nav pull-right">
 				<li style="margin-top: 5px;"><a href='<c:url value="/admin"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
@@ -26,7 +28,4 @@
 		</c:if>
 		<br>
 	</div>
-	<!-- /container-fluid -->
 </div>
-
-<!-- /navbar navbar-inverse navbar-fixed-top -->
