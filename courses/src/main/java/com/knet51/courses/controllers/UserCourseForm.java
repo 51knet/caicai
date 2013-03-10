@@ -1,13 +1,12 @@
 package com.knet51.courses.controllers;
-import javax.validation.constraints.Max;
+import java.util.Date;
 
 import org.hibernate.validator.constraints.NotEmpty;
 public class UserCourseForm {
 	private Long mark;
 	@NotEmpty
-	@Max(value = 10000, message="overflow 10000!!")
 	private String commentDesc;
-	private String commentDate;
+	private Date commentDate;
 
 	private Long teachercourseid;
 	/*@NotEmpty
@@ -37,10 +36,10 @@ public class UserCourseForm {
 	public void setCommentDesc(String commentDesc) {
 		this.commentDesc = commentDesc;
 	}
-	public String getCommentDate() {
+	public Date getCommentDate() {
 		return commentDate;
 	}
-	public void setCommentDate(String commentDate) {
+	public void setCommentDate(Date commentDate) {
 		this.commentDate = commentDate;
 	}
 	

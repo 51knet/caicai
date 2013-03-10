@@ -4,28 +4,71 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/js/emptyCheck-ajax.js" />"></script>
+<link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/themes/default/default.css"/>" />
+<link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>" />
+<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.js"/>"></script>
 <script type="text/javascript">
-function commentOnclick(){
-	checkAjaxs("usercourse_info_form","commentajax");
-	return false;
-};
+$(document).ready(function() {
+	var desc = KindEditor.create('textarea[name="commentDesc"]',{
+		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+		uploadJson : '${uploadJson}',
+		fileManagerJson : '${fileManagerJson}',
+		allowFileManager : true,
+		afterCreate : function() {
+			var self = this;
+			KindEditor.ctrl(document, 13, function() {
+				self.sync();
+				document.forms['anno_post'].submit();
+			});
+			KindEditor.ctrl(self.edit.doc, 13, function() {
+				self.sync();
+				document.forms['anno_post'].submit();
+			});
+		}
+	});
+	$("#usercourse_info_form").submit(function(){
+		desc.sync();
+		return checkEmptyAjax("usercourse_info_form","commentajax");
+	});
+	prettyPrint();
+});
 </script>
-
-	<div  align="left" style="width:100%;background-color:#F7F7F7; height: 40px; margin-bottom: 20px;">
-    	<h4 style="margin-left: 50px; float: left;">课程评论</h4>
-    </div>
-    <div style="text-align: left; margin-left: 50px"><font color='#ff0000'>${message}</font></div>
-    
-	<div class="row" style="margin-left: 50px;margin-bottom: 185px;">
+<style>
+.nar{
+	background-color: #adcc75;
+	height: 40px;
+	padding-top: 2px;
+}
+.nar >h4{
+	margin-left: 88px;
+}
+.comment{
+	background-image: url('<c:url value='/resources/img/default/course_front_bg.png'></c:url>');
+	width: 100%;
+	margin-bottom: 200px;
+	padding-top: 20px;
+	background-position: top center;
+	background-repeat:repeat-x;
+	background-color: #fff;
+	
+}
+</style>
+    <div class="nar">
+			<h4>课程评论</h4>
+		</div>
+	<div class="comment">
+    <div style="margin-left: 88px;"><font color='#ff0000' >${message}</font></div>
+	<div style="margin-left: 88px;">
 		<form id="usercourse_info_form" action="new" class="form-horizontal" method="post">
-		<div ><input type="hidden" name="teachercourseid"  value="${id}" /></div>
-		
+		<div>
+		<input type="hidden" name="teachercourseid"  value="${id}" />
+		</div>
 			<div class="control-group" id="commentDesc">
-			<textarea name="commentDesc"  placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width:380px;"></textarea>
+			<textarea name="commentDesc"  placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width:630px;height: 100px;"></textarea>
 			<span class="help-inline"></span>
 	        </div>
 				<div class="control-group" id="mark">
-				请选择分数:
+				<b >请选择分数:</b>
 				<input type="radio" name="mark" value="0" checked="checked">0
 				<input type="radio" name="mark" value="1">1
 				<input type="radio" name="mark" value="2">2
@@ -33,10 +76,10 @@ function commentOnclick(){
 				<input type="radio" name="mark" value="4">4
 				<input type="radio" name="mark" value="5">5
 				</div>
-				
-				<div class="control-group">
-						<button type="submit" onclick="javascript:commentOnclick();" class="btn  btn-success">发表评论</button>
+				<div style="padding-bottom: 20px;">
+						<button type="submit" class="btn btn-success" >发表评论</button>
 				</div>
 			</form>
+		</div>
 		</div>
 

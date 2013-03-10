@@ -6,13 +6,17 @@ function collectFormData(fields) {
 	}
 	return data;
 }
-function checkAjaxs(formID, actionName) {
-	$form = $('#' + formID);
+function checkEmptyAjax(formID, actionName) {
+	var flag = false;
+	var $form = $('#' + formID);
 	var action = actionName;
-	$form.bind('submit', function(e) {
-		var $inputs = $form.find('textarea');
-		var data = collectFormData($inputs);
-		$.post(action, data, function(response) {
+	var data=$form.serialize();
+	$.ajax({
+		type:"post",
+		url : action,
+		data : data,
+		async:false,
+		success : function(response) {
 			$form.find('.modal-body').removeClass('error');
 			$form.find('.help-inline').empty();
 			$form.find('.alert').remove();
@@ -23,14 +27,13 @@ function checkAjaxs(formID, actionName) {
 					$controlGroup.addClass('error');
 					$controlGroup.find('.help-inline').html(item.message);
 				}
-			}else{
-				$form.unbind('submit');
-				$form.submit();
+				flag = false;
+			} else {
+				flag = true;
 			}
-		}, 'json');
-
-		e.preventDefault();
-		return false;
-
+		}
 	});
+	// e.preventDefault();
+	return flag;
+	// });
 }

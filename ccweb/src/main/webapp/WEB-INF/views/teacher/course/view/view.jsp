@@ -4,15 +4,17 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
-.title {
+.nar {
 	background-color: #ccdfa8; 
 	width:100%; 
 	font-size:14px;
 	height: 20px; 
+	padding-top: 10px;
 	margin-bottom: 10px;  
 	padding: 5px; 
 }
-.title.content{
+.nar .content{
+	margin-left: 30px;
 	font-size: 15px;
 }
 
@@ -31,18 +33,25 @@
 	padding: 0px 0px 10px;
 	background: #FAFAFB;
 }
-
-.row-fluid.custom .row > h4 {
+.round {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+.row-fluid.custom .row {
+	margin: 10px 40px;
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
-	padding-bottom: 4px;
-	margin: 10px 0px 0px 0px;
 }
 
-.row-fluid.custom .row {
-	margin: 10px 40px 0px 40px;
+.row-fluid.custom .row1 {
+	margin: 10px 40px;
+	color: cccccc;
 }
 
+.row-fluid.custom .row1 .bb{
+	border-bottom: dashed #cccccc 1px;
+}
 </style>
 <script type="text/javascript">
 function courseOnclick(obj) {
@@ -56,16 +65,16 @@ function courseOnclick(obj) {
 	<div class="row">
 		<h4>课程详细</h4>
 	</div>
-	<div class="row" >
+	<div class="row1" style="margin-top: 10px;">
 		<div  style=" height: 180px; width: 100%">
 			<div style="width: 40%; height:150px; text-align:center;  float: left;border: 0px solid #cccccc;">
 				<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
-						<a href='#'> <img src="/ccweb/${course.courseCover }" style="width: 220px; height: 165px;" />
+						<a href='#'> <img src="/ccweb/${course.courseCover }" style="width: 240px; height: 120px;margin-top: 10px;" />
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 220px; height: 165px;" />
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 240px; height: 120px;margin-top: 10px;" />
 						</a>
 					</c:otherwise>
 				</c:choose>
@@ -81,7 +90,7 @@ function courseOnclick(obj) {
 				</div>
 			</div>
 		</div>
-		<div  class="title">
+		<div  class="nar">
 			<span class="content"><b>课程介绍</b></span>
 		</div>
 		<div class="cont">
@@ -95,8 +104,8 @@ function courseOnclick(obj) {
 			</c:choose>
 		</div>
 		
-		<div  class="title">
-			<span  class="content"><b>目标人群</b></span>
+		<div  class="nar">
+			<span style="margin-left: 30px;"><b>目标人群</b></span>
 		</div>
 		<div class="cont">
 			<c:choose>
@@ -109,7 +118,7 @@ function courseOnclick(obj) {
 			</c:choose>
 		</div>
 		
-		<div  class="title">
+		<div  class="nar">
 				<span class="content"><b>课程看点</b></span>
 			</div>
 		<div class="cont">
@@ -123,7 +132,7 @@ function courseOnclick(obj) {
 			</c:choose>
 		</div>
 		
-		<div  class="title">
+		<div  class="nar">
 				<span class="content"><b>课程资料</b></span>
 			</div>
 		<div class="cont">

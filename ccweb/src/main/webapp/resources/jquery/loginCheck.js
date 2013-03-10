@@ -42,8 +42,6 @@ $(function() {
 			return false;
 		}
 	});
-	
-	
 	$("#psw").focus(function(){
 		$("#emptyPwd").html("");
 		return false;
@@ -72,7 +70,7 @@ $(function() {
 		}
 		$.ajax({
 		  type: "post",
-		  url: "<c:url value='/register/email'/>",
+		  url: "register/email",
 		  data: "email="+email,
 		  dataType:"text",
 		  success:function(num){
@@ -89,7 +87,6 @@ $(function() {
 	
 	$("#email").focus(function(){
 		$("#emailErrors").html("");
-		$("#email").html("");
 		return false;
 	});
 	$("#email").blur(function(){
@@ -104,9 +101,41 @@ $(function() {
 			return false;
 		}
 	});
+	
+	$("#emailForPsw").blur(function(){
+		var email=$("#emailForPsw").val();
+		if(email==""){
+			$("#emailError").html("<font color='#ff0000'>邮箱不能为空</font>");
+			return false;
+		}
+		var reg = /^[_a-zA-Z\d\-\.]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+$/;//邮箱验证正则表达式。 
+		if(!reg.test(email)){                             //验证邮箱格式是否正确
+			$("#emailError").html("<font color='#ff0000'>输入的邮箱格式不正确</font>");
+			return false;
+		}
+		$.ajax({
+			  type: "post",
+			  url: "register/email",
+			  data: "email="+email,
+			  dataType:"text",
+			  success:function(num){
+					if(num=='0'){
+					$("#emailError").html("<font color='#ff0000'>此邮箱地址不存在</font>");
+					return false;
+					}else{
+						$("#emailError").html("");
+						return false;
+					}
+				}
+			});
+	});
+	
+	$("#emailForPsw").focus(function(){
+		$("#emailError").html("");
+		return false;
+	});
 	$("#password").focus(function(){
 		$("#passwordErr").html("");
-		$("#pass").html("");
 		return false;
 	});
 	
@@ -123,12 +152,12 @@ $(function() {
 		}
 		$.ajax({
 			  type: "post",
-			  url: "<c:url value='/checkEmailAndPassword'/>",
+			  url: "checkEmailAndPassword",
 			  data: "email="+email+"&password="+password,
 			  dataType:"text",
 			  success:function(number){
 				if(number == "0"){
-					$("#emailError").html("<font color='#ff0000'>邮箱或密码输入错误</font>");
+					$("#emailErrors").html("<font color='#ff0000'>邮箱或密码输入错误</font>");
 					$("#passwordErr").html("<font color='#ff0000'>邮箱或密码输入错误");
 					return false;
 				}
@@ -136,5 +165,9 @@ $(function() {
 			});
 		
 	});
+	
+	
+	
+	
 	
 });
