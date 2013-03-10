@@ -5,8 +5,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
 .container.course {
-	width: 990px;
-	max-width:990px;
+	width: 1024px;
+	max-width:1024px;
 	text-align: left;
 }
 
@@ -15,28 +15,28 @@
 }
 
 .container.course.detail {
-	width: 990px;
+	width: 1024px;
 }
 
 .container.course.detail.desc{
-	width: 950px;
-	margin-left: 90px;
+	margin-left: 75px;
+	padding: 15px;
 }
 .container.course.title{
 	height: 240px;
-	width:990px;
+	width:1024px;
 	margin-bottom:30px;
 	background-image: url('<c:url value='/resources/img/default/courseInfo.png'></c:url>');
 	background-repeat: repeat-x;
 	margin-top: 35px;
 }
 .nar{
-	background-color: #adcc75; 
-	width: 100%;
+	background-color: #adcc75;
 	height: 40px;
+	padding-top: 2px;
 }
-.nar.content{
-	font-size: 15px;
+.nar >h4{
+	margin-left: 88px;
 }
 </style>
 <div style="margin-top: 10px;">
@@ -87,7 +87,7 @@
 				${course.courseDesc}
 			</div>
 		<div  class="nar">
-			<span class="content" style="padding-left:55px;"><b>目标人群</b></span>
+			<h4>目标人群</h4>
 		</div>
 			<div class="container course detail desc">
 				<c:choose>
@@ -100,7 +100,7 @@
 			</c:choose>
 			</div>
 		<div  class="nar">
-			<span class="content" style="padding-left:55px;"><b>课程看点</b></span>
+			<h4>课程看点</h4>
 		</div>
 			<div class="container course detail desc">
 			<c:choose>

@@ -9,28 +9,23 @@
 }
 .container.courseResource.row {
 }
-.nar {
-	background-color: #ccdfa8; 
-	width:100%; 
-	font-size:14px;
-	height: 20px; 
-	margin-bottom: 10px;  
-	padding: 5px; 
-	margin-top: 10px;
-}
-.nar .content{
-	margin-left: 30px;
-	font-size: 15px;
-}
  .cont {
-	width: 93%;
 	margin-left:90px;
 	margin-bottom: 10px;
+	padding-top: 10px;
 }
 .cont .top{
 	font-size: 14px; 
 	 background-color: #cccccc; 
 	 padding: 3px;
+}
+.nar{
+	background-color: #adcc75;
+	height: 40px;
+	padding-top: 2px;
+}
+.nar >h4{
+	margin-left: 88px;
 }
 </style>
 <script type="text/javascript">
@@ -42,13 +37,13 @@
 	}
 </script>
 <div class="nar">
-			<span class="content" style="padding-left:55px;"><b>课程学习</b></span>
+			<h4>课程学习</h4>
 		</div>
 <div class="cont">
 		<c:choose>
 			<c:when test="${resourceCount>0 }">
 				<c:forEach var="course" items="${courseMap}" varStatus="i">
-						<table   style="width: 95%;  border: 2px solid #f1f1f1; ">
+						<table   style="width: 93%;  border: 2px solid #f1f1f1; ">
 							<tbody>
 								<tr>
 									<td align="left">
@@ -94,7 +89,7 @@
 					</c:forEach>
 			</c:when>
 			<c:otherwise>
-				<div  style="padding: 5px;">尚未添加资源</div>
+				<div>尚未添加资源</div>
 			</c:otherwise>
 		</c:choose>
 </div>

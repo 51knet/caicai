@@ -4,37 +4,65 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/js/emptyCheck-ajax.js" />"></script>
+<link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/themes/default/default.css"/>" />
+<link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>" />
+<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.js"/>"></script>
 <script type="text/javascript">
-function commentOnclick(){
-	checkAjaxs("usercourse_info_form","commentajax");
-	return false;
-};
+$(document).ready(function() {
+	var desc = KindEditor.create('textarea[name="commentDesc"]',{
+		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+		uploadJson : '${uploadJson}',
+		fileManagerJson : '${fileManagerJson}',
+		allowFileManager : true,
+		afterCreate : function() {
+			var self = this;
+			KindEditor.ctrl(document, 13, function() {
+				self.sync();
+				document.forms['anno_post'].submit();
+			});
+			KindEditor.ctrl(self.edit.doc, 13, function() {
+				self.sync();
+				document.forms['anno_post'].submit();
+			});
+		}
+	});
+	$("#usercourse_info_form").submit(function(){
+		desc.sync();
+		return checkEmptyAjax("usercourse_info_form","commentajax");
+	});
+	prettyPrint();
+});
 </script>
 <style>
-.nar {
-	background-color: #ccdfa8; 
-	width:100%; 
-	font-size:14px;
-	height: 20px; 
-	padding-top: 10px;
-	margin-bottom: 10px;  
-	padding: 5px; 
+.nar{
+	background-color: #adcc75;
+	height: 40px;
+	padding-top: 2px;
 }
-.nar .content{
-	margin-left: 30px;
-	font-size: 15px;
+.nar >h4{
+	margin-left: 88px;
 }
-
+.comment{
+	background-image: url('<c:url value='/resources/img/default/course_front_bg.png'></c:url>');
+	width: 100%;
+	margin-bottom: 200px;
+	padding-top: 20px;
+	background-position: top center;
+	background-repeat:repeat-x;
+	background-color: #fff;
+	
+}
 </style>
     <div class="nar">
-			<span class="content"><b>课程评论</b></span>
+			<h4>课程评论</h4>
 		</div>
-    <div style="text-align: left; margin-left: 50px"><font color='#ff0000'>${message}</font></div>
-    
-	<div class="row" style="margin-left: 50px;margin-bottom: 185px;">
+	<div class="comment">
+    <div style="margin-left: 88px;"><font color='#ff0000' >${message}</font></div>
+	<div style="margin-left: 88px;">
 		<form id="usercourse_info_form" action="new" class="form-horizontal" method="post">
-		<div ><input type="hidden" name="teachercourseid"  value="${id}" /></div>
-		
+		<div>
+		<input type="hidden" name="teachercourseid"  value="${id}" />
+		</div>
 			<div class="control-group" id="commentDesc">
 			<textarea name="commentDesc"  placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width:380px;"></textarea>
 			<span class="help-inline"></span>
@@ -49,8 +77,9 @@ function commentOnclick(){
 				<input type="radio" name="mark" value="5">5
 				</div>
 				<div style="padding-bottom: 20px;">
-						<button type="submit" onclick="javascript:commentOnclick();" class="btn btn-success" >发表评论</button>
+						<button type="submit" class="btn btn-success" >发表评论</button>
 				</div>
 			</form>
+		</div>
 		</div>
 

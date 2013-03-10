@@ -1,5 +1,7 @@
 package com.knet51.ccweb.jpa.entities.teacher;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -11,7 +13,7 @@ import com.knet51.ccweb.jpa.entities.User;
 public class UserCourse extends AbstractEntity {
 	private Long mark;
 	private String commentDesc;
-	private String commentDate;
+	private Date commentDate;
 	private Long userid;
 	private Long teachercourseid;
 	public Long getTeachercourseid() {
@@ -38,10 +40,11 @@ public class UserCourse extends AbstractEntity {
 	public void setCommentDesc(String commentDesc) {
 		this.commentDesc = commentDesc;
 	}
-	public String getCommentDate() {
+	
+	public Date getCommentDate() {
 		return commentDate;
 	}
-	public void setCommentDate(String commentDate) {
+	public void setCommentDate(Date commentDate) {
 		this.commentDate = commentDate;
 	}
 	public UserCourse(){

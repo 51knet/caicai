@@ -4,31 +4,32 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
-
 .container-fluid {
 	padding-right: 0px;
 	padding-left: 0px;
 }
 
 .container.teacher {
-	width: 990px;
-	max-width:990px;
+	width: 1024px;
+	max-width:1024px;
 	text-align: left;
 }
 
-.container.teacher .row{
+.nar{
+	background-color: #adcc75;
+	height: 40px;
+	padding-top: 2px;
+	margin-top: 20px;
 }
-.nar {
-	background-color: #ccdfa8; 
-	width:100%; 
-	font-size:14px;
-	height: 20px; 
-	padding-top: 10px;
-	margin-bottom: 10px;  
-	padding: 5px; 
+.nar >h4{
+	margin-left: 88px;
 }
-.nar .content{
-	margin-left: 30px;
+.container.course.detail{
+	margin-left: 46px;
+	padding: 15px;
+}
+.content{
+	margin-left: 20px;
 	font-size: 15px;
 }
 </style>
@@ -36,9 +37,9 @@
 <c:choose>
 <c:when test="${teacher.isEnterprise == null}">
     <div  class="nar">
-			<span class="content" style="padding-left:55px;"><b>讲师介绍</b></span>
+			<h4>讲师介绍</h4>
 		</div>
-    <div style="margin-left: 60px;">
+    <div class="container course detail">
 	    <c:choose >
 			<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
 			<a href='<c:url value="${url}/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:30px" />
@@ -49,18 +50,18 @@
 										</a>
 			</c:otherwise>
 		</c:choose>
-    <span style="margin-left: 20px;font-size: 16px;"><a href='<c:url value="${url}/teacher/${course.teacher.id}"></c:url>'> <b>${teacher.user.name }</b></a></span>
+    <span style="margin-left: 20px;font-size: 18px;"><a href='<c:url value="${url}/teacher/${course.teacher.id}"></c:url>'> <b>${teacher.user.name }</b></a></span>
    	<br/>
-   	<span style="margin-left: 20px;font-size: 14px;">所在学校：${teacher.school }</span><br/> 
-    <span style="margin-left: 20px;font-size: 14px;">职称：${teacher.major }</span><br/>
-    <span style="margin-left: 20px;font-size: 14px;">专业：${teacher.college }</span><br/>
+   	<span class="content">所在学校：${teacher.school }</span><br/> 
+    <span class="content">职称：${teacher.major }</span><br/>
+    <span class="content">专业：${teacher.college }</span><br/>
    </div>
 </c:when>
 <c:otherwise>
-     <div  class="nar">
-			<span class="content" style="padding-left:55px;"><b>企业介绍</b></span>
+     <div class="nar">
+			<h4>企业介绍</h4>
 		</div>
-    <div style="margin-left: 60px;">
+    <div class="container course detail">
 	    <c:choose>
 			<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
 				<a href='<c:url value="${url}/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:30px;" />
