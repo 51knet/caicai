@@ -3,9 +3,9 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="navbar custom navbar-inverse navbar-fixed-top">
-	<div class="container-fluid" style="text-align: center; height: 54px;">
-		<ul class="nav">
-			<li><a id="logo" class="brand" href='<c:url value="http://www.51knet.com/"></c:url>'></a></li>
+	<div class="container-fluid" style="text-align: center; height: 54px; width: 1024px; margin: 0 auto;">
+		<ul class="nav pull-left">
+			<li><a id="logo" href='<c:url value="http://www.51knet.com/"></c:url>'></a></li>
 			<li class="active" style="line-height: 29px;"><a href="/courses">主页</a></li>
 		</ul>
 		<ul class="nav pull-right" style="margin-top: -5px;">
