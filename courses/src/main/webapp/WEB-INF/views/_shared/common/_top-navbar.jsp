@@ -5,8 +5,8 @@
 <div class="navbar custom navbar-inverse navbar-fixed-top">
 	<div class="container-fluid" style="text-align: center; height: 54px;">
 		<ul class="nav">
-			<li><a id="logo" class="brand" href='<c:url value="/admin"></c:url>'></a></li>
-			<li class="active"><a href="/courses">主页</a></li>
+			<li><a id="logo" class="brand" href='<c:url value="http://www.51knet.com/"></c:url>'></a></li>
+			<li class="active" style="line-height: 29px;"><a href="/courses">主页</a></li>
 		</ul>
 		<ul class="nav pull-right" style="margin-top: -5px;">
 			<c:if test="${sessionUserInfo != null}">

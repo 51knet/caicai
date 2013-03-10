@@ -7,8 +7,8 @@
 		<ul class="nav pull-left">
 			<li><a id="logo" href='<c:url value="/"></c:url>'></a></li>
 		</ul>
-		<ul id="courselogo" class="nav pull-right">
-			<li><a href="http://www.51knet.com/courses"></a></li>
+		<ul class="nav pull-right">
+			<li><a id="courselogo" href="http://www.51knet.com/courses"></a></li>
 		</ul>
 	</div>
 </div>

@@ -42,7 +42,7 @@ body {
 	height: 36px;
 	text-indent: -999em;
 	background: url(../img/default/courselogo.png)  no-repeat;
-	top: 10.5px;
+	margin-top: 10.5px;
 	box-shadow: none;
 }
 
