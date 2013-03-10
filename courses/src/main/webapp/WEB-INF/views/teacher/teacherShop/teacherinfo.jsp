@@ -17,9 +17,8 @@
 
 .nar{
 	background-color: #adcc75;
-	height: 40px;
 	padding-top: 2px;
-	margin-top: 20px;
+	
 }
 .nar >h4{
 	margin-left: 88px;
@@ -36,13 +35,13 @@
 <div class="container teacher">
 <c:choose>
 <c:when test="${teacher.isEnterprise == null}">
-    <div  class="nar">
+    <div  class="nar" style=";">
 			<h4>讲师介绍</h4>
 		</div>
     <div class="container course detail">
 	    <c:choose >
 			<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
-			<a href='<c:url value="${url}/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:30px" />
+			<a href='<c:url value="${url}/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url}${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:30px" />
 										</a>
 			</c:when>
 			<c:otherwise>

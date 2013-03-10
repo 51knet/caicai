@@ -25,7 +25,7 @@
 .title.teacher{
 	width: 400px;
 	height: 120px;
-	margin-left: -90px;
+	margin-left: -100px;
 	margin-top: 40px;
 
 }
@@ -43,11 +43,11 @@
 					<td >
 						<c:choose>
 							<c:when test="${course.courseCover != null && course.courseCover != ''}">
-								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 240px; height: 180px;" />
+								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 200px; height: 150px;" />
 								</a>
 							</c:when>
 							<c:otherwise>
-								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width:240px; height: 180px;" />
+								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width:200px; height: 150px;" />
 								</a>
 							</c:otherwise>
 						</c:choose>
@@ -61,11 +61,11 @@
 							<div >
 								<c:choose>
 									<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-										<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 120px; height: 90px;" />
+										<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
 										</a>
 									</c:when>
 									<c:otherwise>
-										<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar90.png"></c:url>' style="width: 120px; height: 90px;" />
+										<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar90.png"></c:url>' style="width:100px; height:100px;" />
 										</a>
 									</c:otherwise>
 								</c:choose>
