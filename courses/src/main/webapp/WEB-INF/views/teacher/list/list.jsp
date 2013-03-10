@@ -98,23 +98,23 @@
 	</c:when>
 	<c:otherwise>
 	<div class="teacherInfo">
-	    <c:forEach items="${enterPriseList}" var="t" >
+	    <c:forEach items="${enterPriseList}" var="enter" >
 			<div class="span1" >
 				<c:choose>
 					<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<a href="/courses/teacher/${t.id }"><img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a>
+						<a href="/courses/teacher/${enter.id }"><img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a>
 					</c:when>
 					<c:otherwise>
-					<a href="/courses/teacher/${t.id }"><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a>
+					<a href="/courses/teacher/${enter.id }"><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a>
 					</c:otherwise>
 				</c:choose>
 					<div>
 					<c:choose>
-					<c:when test="${t.user.name==null||t.user.name==''}">
-					<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏</a>
+					<c:when test="${enter.user.name==null||enter.user.name==''}">
+					<a href='<c:url value="${url}/teacher/${enter.id}"></c:url>'>无名氏</a>
 					</c:when>
 					<c:otherwise>
-					<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a>
+					<a href='<c:url value="${url}/teacher/${enter.id}"></c:url>'>${enter.user.name }</a>
 					</c:otherwise>
 					</c:choose>				
 					</div>

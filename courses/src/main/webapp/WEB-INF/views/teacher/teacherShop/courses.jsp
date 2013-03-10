@@ -2,34 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<style>
-.navbar {
-	margin-bottom: 0px;
-}
-
-.container-fluid {
-	padding-right: 0px;
-	padding-left: 0px;
-}
-
-
-
-.container.course {
-	width: 990px;
-	max-width:990px;
-	text-align: left;
-}
-
-.container.course .row{
-	margin-left:0px;;
-}
-
-.container.course.detail {
-	width: 900px;
-	height: 110px;
-}
-</style>
-
 <script type="text/javascript">
 	function selectType(id) {
 		var sel = document.getElementById("type");
@@ -53,7 +25,7 @@
  	 	</tr>
  	 </table>
  </div>
-<div class="container user-course" style="height: 500px;">
+<div class="container user-course" >
  	<c:forEach items="${teacherCourseList}" var="course">
 			<table cellpadding="20" style="width: 40%;   margin-bottom: 10px;  float: left; margin-left: 50px;"  >
 				<tr >

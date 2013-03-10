@@ -129,14 +129,14 @@
 		      </div>
 		  </c:if>
 	      <div class="teacherInfo">
-			<c:forEach items="${enterPriseList}" var="t" begin="0" end="9">
+			<c:forEach items="${enterPriseList}" var="enter" begin="0" end="9">
 				<div class="span1" >
 					<c:choose>
-					<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a>
+					<c:when test="${enter.user.photo_url!=null||enter.user.photo_url!=''}">
+						<a href='<c:url value="/teacher/${enter.id}"></c:url>'><img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a>
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a>
+						<a href='<c:url value="/teacher/${enter.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a>
 					</c:otherwise>
 					</c:choose>
 				</div>
