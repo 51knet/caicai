@@ -20,7 +20,7 @@
   	
 <div class="container marketing">
   <div class="container title">
- 	 <table width="100%">
+ 	 <table >
  	 	<tr>
  	 		<td width="16%" align="center"><h4>学习资源</h4></td>
  	 		<td><a  href='<c:url value="/course/list/type?detail=all"></c:url>' >全部课程</a></td>
@@ -28,7 +28,7 @@
  	 </table>
   </div>
   <div class="row" >
-    <c:forEach items="${courseList}" var="c"  begin="0" end="2">
+    <c:forEach items="${courseList}" var="c"  begin="0" end="5">
     	<div class="span4">
     		<div>
    				<c:choose>
@@ -37,9 +37,9 @@
 						</a> -->	
 						<div style="width: 250px; height: 187px; background-image: url('<c:url value="${url }${c.teacherCourse.courseCover }"></c:url>');  
 								background-repeat:no-repeat;background-position:center;  ">
-							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 147px;"></div></a>
-		    				<div style="height:40px;background-color:#000;   filter:alpha(opacity=70); color: #fff;">
-		    					<h5 >&nbsp;&nbsp;&nbsp;${c.teacherCourse.courseName} — ${c.teacherCourse.courseType }</h5>
+							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 162px;"></div></a>
+		    				<div style="height:25px;background-color:grey;    color: #fff; padding: 4px;">
+		    					${c.teacherCourse.courseName} — ${c.teacherCourse.courseType }
 		   				 	</div>
 						</div>
 					</c:when>
@@ -47,9 +47,9 @@
 						<!-- <a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 250px; height: 187px;" />
 						</a> -->
 						<div style="width: 250px; height: 187px; background-image: url('<c:url value="/resources/img/logo.png"></c:url>');  background-repeat:no-repeat;background-position:center;">
-							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 147px;"></div></a>
-		    				<div style="height:40px;background-color:#000;   filter:alpha(opacity=70); color: #fff;">
-		    					<h5 >&nbsp;&nbsp;&nbsp;${c.teacherCourse.courseName} — ${c.teacherCourse.courseType }</h5>
+							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 162px;"></div></a>
+		    				<div style="height:25px;background-color:grey;   color: #fff; padding: 4px;">
+		    					&nbsp;&nbsp;&nbsp;${c.teacherCourse.courseName} — ${c.teacherCourse.courseType }
 		   				 	</div>
 						</div>
 					</c:otherwise>
@@ -72,86 +72,45 @@
   </div><!-- /.row -->
 </div>
 <div class="container teacher" >
-   <div class="container title">
- 	 <table width="100%">
- 	 	<tr>
- 	 		<td width="16%" align="center"><h4>热门教师 </h4></td>
- 	 		<td><a  href='<c:url value="/teacher/list?isEnterPrise=null"></c:url>'  >全部教师</a></td>
- 	 	</tr>
- 	 </table>
-  </div>
-  <div class="bgimg">
-	  <div id="myTeacher" class="carousel slide">
-	  <div class="carousel-inner" style="margin-bottom: -50px;">
+	  <div class="container title">
+		 <table >
+		 	<tr>
+		 		<td width="16%" align="center"><h4>热门教师 </h4></td>
+		 		<td><a  href='<c:url value="/teacher/list?isEnterPrise=null"></c:url>'  >全部教师</a></td>
+		 	</tr>
+		 </table>
+	 </div>
+  	<div class="bgimg">
 	    <c:if test="${fn:length(teacherLists)==0}">
-		    <div class="item">
-		       <div class="row">
+		       <div class="teacherInfo">
 		       	<h3>暂无教师数据</h3>
 		       </div>
-		    </div>
 	 	 </c:if>
-	    <div class="item active">
-		      <div class="row">
-					<c:forEach items="${teacherLists}" var="t" begin="0" end="11">
-						<div class="span2">
-							<c:choose>
-								<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-									<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 70px; height:70px;margin-bottom: 5px;" />
-								</c:when>
-								<c:otherwise>
-									<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
-								</c:otherwise>
-							</c:choose>
-							<div style="margin-top: 5px;">
-								<c:choose>
-								<c:when test="${t.user.name==null||t.user.name==''}">
-								<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
-								</c:when>
-								<c:otherwise>
-								<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
-								</c:otherwise>
-								</c:choose>
-							</div>
-						</div>
-					</c:forEach>
-			</div>
-	    </div>
-	    <c:if test="${fn:length(teacherLists) >12}">
-	    <div class="item">
-	       <div class="row">
-				<c:forEach items="${teacherLists}" var="t" begin="12" end="23">
-					<div class="span2" >
-							<c:choose>
-							<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-							<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 70px; height:70px;" />
-							</c:when>
-							<c:otherwise>
-							<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 70px; height:70px;" />
-							</c:otherwise>
-							</c:choose>
-							<div style="margin-top: 5px;">
-							<c:choose>
-							<c:when test="${t.user.name==null||t.user.name==''}">
-							<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>无名氏</a>
-							</c:when>
-							<c:otherwise>
-							<a href='<c:url value="${url}teacher/${t.id}"></c:url>'>${t.user.name }</a>
-							</c:otherwise>
-							</c:choose>
-							</div>
+	      <div class="teacherInfo">
+			<c:forEach items="${teacherLists}" var="t" begin="0" end="13">
+				<div class="span2">
+					<c:choose>
+						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
+							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 70px; height:70px;margin-bottom: 5px;" /></a>
+						</c:when>
+						<c:otherwise>
+							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
+						</c:otherwise>
+					</c:choose>
+					<div style="margin-top: 5px;">
+						<c:choose>
+						<c:when test="${t.user.name==null||t.user.name==''}">
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏</a>
+						</c:when>
+						<c:otherwise>
+						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a>
+						</c:otherwise>
+						</c:choose>
 					</div>
-				</c:forEach>
-			</div>
-	    </div>
-	    </c:if>
-	  </div>
-	
-	  <div style="display: none;">
-		  <a class="left carousel-control" href="#myTeacher" data-slide="prev">‹</a>
-		  <a class="right carousel-control" href="#myTeacher" data-slide="next">›</a>
-	  </div>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
-</div>
 </div>
 
 <div class="container teacher" >
@@ -163,54 +122,25 @@
  	 	</tr>
  	 </table>
   </div>
-  <div class="bgimg">
-	  <c:if test="${fn:length(enterPriseList)==0}">
-			   <div class="item">
-			      <div class="row">
-			      <h3>暂无企业数据</h3>	
-			      </div></div>
-	</c:if>
-	  <div id="myUniversity" class="carousel slide">
-	  <div class="carousel-inner" style="margin-bottom: -50px;">
-	    <div class="item active">
-		      <div class="row">
-					<c:forEach items="${enterPriseList}" var="t" begin="0" end="9">
-						<div class="span1" >
-							<c:choose>
-							<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-							<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 127px; height:83px;" />
-							</c:when>
-							<c:otherwise>
-							<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" />
-							</c:otherwise>
-							</c:choose>
-						</div>
-					</c:forEach>
+	  <div class="bgimg">
+		  <c:if test="${fn:length(enterPriseList)==0}">
+		      <div class="teacherInfo">
+		     	 <h3>暂无企业数据</h3>	
+		      </div>
+		  </c:if>
+	      <div class="teacherInfo">
+			<c:forEach items="${enterPriseList}" var="t" begin="0" end="9">
+				<div class="span1" >
+					<c:choose>
+					<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
+						<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a>
+					</c:when>
+					<c:otherwise>
+						<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a>
+					</c:otherwise>
+					</c:choose>
 				</div>
-	    </div>
-	    <c:if test="${fn:length(enterPriseList) >10}">
-	    <div class="item">
-	       <div class="row">
-				<c:forEach items="${enterPriseList}" var="t" begin="10" end="19">
-					<div class="span1">
-						<c:choose>
-							<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-							<img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 127px; height:83px;" />
-							</c:when>
-							<c:otherwise>
-							<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" />
-							</c:otherwise>
-							</c:choose>
-					</div>
-				</c:forEach>
-			</div>
-	    </div>
-	    </c:if>
-	  </div>
-	  <div style="display: none;">
-		  <a class="left carousel-control" href="#myTeacher" data-slide="prev">‹</a>
-		  <a class="right carousel-control" href="#myTeacher" data-slide="next">›</a>
-	  </div>
+			</c:forEach>
+		</div>
 	</div>
-</div>
 </div>

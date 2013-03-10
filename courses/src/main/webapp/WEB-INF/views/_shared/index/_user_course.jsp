@@ -2,10 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<br>
 <c:choose>
 	<c:when test="${sessionScope.sessionUserInfo!= null}">
 		<div class="container title"  >
-		 	 <table width="100%">
+		 	 <table >
 		 	 	<tr>
 		 	 		<td width="18%" align="center"><h4>您的课程</h4></td>
 		 	 		<td></td>
@@ -17,24 +18,25 @@
 				<c:when test="${userCourseCount>0}">
 				<div >
 			 	 <c:forEach items="${userCourse}" var="course"  begin="0" end="2">
-			    	<table class="table " style="width: 100%; height: 100%; margin-bottom: 10px;" cellpadding="5">
-						<tr>
-							<td valign="bottom" width="22%" align="center">
+			    	<table cellpadding="20" style="width: 100%; height: 100%;  margin-bottom: 10px; "  >
+						<tr class="bb">
+							<td  width="24%" align="right"  valign="top">
 								<c:choose>
 									<c:when test="${course.courseCover != null && course.courseCover != ''}">
-										<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 200px; height: 100px;" />
+										<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 162px; height: 120px;float: right;" />
 										</a>
 									</c:when>
 									<c:otherwise>
-										<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 200px; height: 100px;" />
+										<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 162px; height: 120px; float: right;" />
 										</a>
 									</c:otherwise>
 								</c:choose>
 							</td>
-							<td>
-								<div style="width:400px;" id="contentlimit">课程名称：${course.courseName}<br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
-							</td>				
-							<td width="35%" align="left">
+							<td valign="top">
+								<div style="width:370px;" id="contentlimit">
+								<b style="font-size: 17px;">课程名称：${course.courseName}</b><br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
+							</td>	
+							<td width="38%" align="left"  valign="top">
 								<div style="width: 100%;height: 100%;">
 									<div style="float: left; height: 100px; width: 140px; text-align: center;">
 										<c:choose>
@@ -48,7 +50,12 @@
 											</c:otherwise>
 										</c:choose>
 									</div>
-									教师名称：${course.teacher.user.name } <br>所在学校：${course.teacher.college }<br>
+									<c:if test="${course.teacher.isEnterprise == null}">
+										教师名称：${course.teacher.user.name } <br>所在学校：${course.teacher.college }<br>
+									</c:if>
+									<c:if test="${course.teacher.isEnterprise != null}">
+										企业名称：${course.teacher.user.name } <br><br>
+									</c:if>
 									<a style="margin-top: 10px;" href='<c:url value="/course/study/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
 								</div>
 							</td>

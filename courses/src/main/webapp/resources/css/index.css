@@ -5,7 +5,6 @@
 	margin: 0 auto;
 	padding-right: 0px;
 	padding-left: 0px;
-	
 }
 .container.search-bar {
 	background-image: url("/courses/resources/img/default/search_bg.png");
@@ -82,7 +81,11 @@
  	color: #353535;
  	font-family:Arial,'Microsoft YaHei';
   	width: 1024px;
-  	margin-top: 10px;
+
+}
+.container.title >table{
+	width: 90%;
+	margin-left: 38px;
 }
 
 .container.marketing {
@@ -92,13 +95,13 @@
 
 .container.marketing .row {
   margin-left: 0px;
-  background-image: url("/courses/resources/img/default/course_front_bg.png");
+  background-image: url("/courses/resources/img/default/course_bg.png");
   background-position: top left;
   background-repeat: repeat-x;
   text-align: center;
 }
 .container.marketing .row .span4 {
-	width: 250px; 
+ width: 250px; 
  margin-left:70px;
  margin-top:30px;
  margin-bottom:20px;
@@ -115,9 +118,15 @@
 	
 }
 .container.user-course .row {
-  margin-left: 0px;
+  margin-left: 60px;
+  text-align: center;
 }
-
+.row .span2{
+  margin:30px 30px;
+  width:130px;
+  height: 130px;
+ 
+}
 .row .span4 {
 width: 310px;
 margin: 20px 0px 20px 40px;
@@ -153,23 +162,35 @@ border-top-color: #EEE;*/
 
 .container.teacher {
   width: 1024px;
-  max-width:1024px; 
+}
+
+ .selete_filter{
+ 	margin-top:20px;
+	margin-left:60px;
+	text-align: left;
+}
+.selete_filter >span{
+	font-weight: bold;
+	font-size: 15px;
+	margin-left: 20px;
 }
 
 .container.teacher .bgimg {
   background-image: url("/courses/resources/img/default/course_front_bg.png");
   background-position: top left;
   background-repeat: repeat-x;
+  height: 340px;
+	
 }
 
 #myUniversity, #myTeacher {
   margin-bottom: 0px;
 }
-.container.teacher .row {
-	text-align:left;
-  width: 100%;
+.container.teacher .teacherInfo{
+ margin-left:40px;
+  width: 95%;
 }
-.container.teacher .row .span1{
+.container.teacher .teacherInfo .span1{
   /*background-position: center;
   background-repeat: no-repeat;
   background-image: url(../img/avatar/avatar40.png);
@@ -181,27 +202,37 @@ border-top-color: #EEE;*/
   border-top-color: #EEE;
   margin: 2px 2px;
   margin-right: 24px;*/
-   background-position: center;
+  background-position: center;
   background-repeat: no-repeat;
-  margin: 14px 2px;
-  margin-right: 43px;
+  margin:20px 30px;
   width: 127px;
   height: 83px;
-  background-color: #cccccc;
   text-align: center;
 
 }
-.container.teacher .row .span2{
+.container.teacher .teacherInfo .span2{
   background-position: center;
   background-repeat: no-repeat;
-  margin: 14px 2px;
-  margin-right: 50px;
+  margin:30px 20px;
   width: 92px;
   height: 110px;
   background-color: #adcc75;
   text-align: center;
   padding-top: 10px;
 }
+
+.container.teacher .teacherInfo .span3{
+   margin:40px 30px;
+  width:130px;
+  height: 130px;
+	text-align: center;
+	padding: 3px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	line-height: 25px;
+}
+
+
 .view-all-teachers-link, .view-all-courses-link {
 	display: block;
 	text-align: center;

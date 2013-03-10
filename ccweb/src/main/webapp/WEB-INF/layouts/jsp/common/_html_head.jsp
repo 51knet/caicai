@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-	<meta name="description" content="" />
+	<meta name="description" content="知识网---专注分享优质教育资源的智慧云平台" />
 	<meta name="author" content="" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="icon" type="image/png" href="<c:url value="/resources/img/icon.png" />" />

@@ -46,7 +46,7 @@ public class TeacherController {
 	 */
 	@RequestMapping(value="/teacher/list")
 	public String showAllTeacher(@RequestParam("isEnterPrise") String isEnterPrise,HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="50") int pageSize){
 		//List<Teacher> teacherList = teacherService.findAllTeacher();
 		List<Teacher> teacherList=null;
 		List<Teacher> enterPriseList=null;
