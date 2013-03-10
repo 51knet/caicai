@@ -11,8 +11,8 @@
 }
 
 .container.teacher {
-	width: 990px;
-	max-width:990px;
+	width: 1024px;
+	max-width:1024px;
 	text-align: left;
 }
 

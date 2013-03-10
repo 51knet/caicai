@@ -21,7 +21,7 @@
 		<div class="images">
 	    	<table >
 				<tr>
-				<td  width="24%" align="right"  valign="top" style="">
+				<td  width="30%" align="center"  valign="top" >
 						<c:choose>
 							<c:when test="${course.courseCover != null && course.courseCover != ''}">
 								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 200px; height: 150px;" />
@@ -33,13 +33,13 @@
 							</c:otherwise>
 						</c:choose>
 					</td>
-					<td valign="top">
-						<div style="width:370px;text-align: left;margin-left: 60px;" id="contentlimit">
+					<td align="left" valign="top">
+						<div style="width:260px;" id="contentlimit">
 						<h4>${course.courseName}</h4><h4>${course.courseType }</h4></div>
 					</td>
-					<td width="30%" align="left"  valign="top">
+					<td width="45%" align="left"  valign="top" style="line-height: 30px;">
 						<div style="width: 100%;height: 100%;">
-							<div style="float: left; height: 100px; width: 120px;margin-left: -100px;">
+							<div style="float: left; height: 100px; width: 120px;">
 								<c:choose>
 									<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
 										<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />

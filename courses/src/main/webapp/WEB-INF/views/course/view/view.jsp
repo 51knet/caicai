@@ -14,19 +14,18 @@
 .container.course.detail {
 	width: 100%;
 }
-
 .container.course.detail.desc{
 	margin-left: 75px;
 	padding: 15px;
-	width:700px;
+	width:800px;
 }
 .container.course.title{
 	height: 240px;
 	width:1024px;
-	margin-bottom:30px;
+	margin-bottom:35px;
 	background-image: url('<c:url value='/resources/img/default/courseInfo.png'></c:url>');
 	background-repeat: repeat-x;
-	margin-top: 35px;
+	margin-top: 30px;
 }
 .nar{
 	background-color: #adcc75;
@@ -52,8 +51,8 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div style="margin-left: 80px;margin-top: 33px;">
-			<span style="font-size: 20px;color:#80b029" id="content">${course.courseName}</span><br/>
+			<div style="margin-top: 33px;">
+					<span style="font-size: 20px;color:#80b029" id="content">${course.courseName}</span><br/>
 					<span style="font-size: 14px;color:#80b029">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
 					<span style="font-size: 14px;color: black;"> 类别：${course.courseType }</span><br/>
 					<span style="font-size: 14px;color: black;">课程评分：${course.courseDate }

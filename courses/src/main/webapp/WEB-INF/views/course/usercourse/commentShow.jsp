@@ -60,9 +60,9 @@
 				  </c:choose>
 				  <div class="content"></div>
 			</c:forEach>
-			 <span>
+			 <div style="margin-left: 85px;">
        				 <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
-    			</span>
+			 </div>
 			</div>
 			</c:when>
 			<c:otherwise>
