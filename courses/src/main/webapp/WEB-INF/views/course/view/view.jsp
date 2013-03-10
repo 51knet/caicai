@@ -20,69 +20,55 @@
 
 .container.course.detail.desc{
 	width: 950px;
-	margin-left: 50px;
-	margin-bottom: 10px;
+	margin-left: 90px;
+}
+.container.course.title{
+	height: 240px;
+	width:990px;
+	margin-bottom:30px;
+	background-image: url('<c:url value='/resources/img/default/courseInfo.png'></c:url>');
+	background-repeat: repeat-x;
+	margin-top: 35px;
+}
+.nar{
+	background-color: #adcc75; 
+	width: 100%;
+	height: 40px;
+}
+.nar.content{
+	font-size: 15px;
 }
 </style>
-
-
-
-<div class="container course" style=" margin-bottom: 20px;margin-top: 55px;">
-	<!-- <div class="container course detail" style="background-color: #f7f7f7; height: 60px;margin-bottom: 10px; vertical-align: middle;">
-		<h2>&nbsp;课程详细</h2>
-	</div> -->
-	<div class="container course row">
-		<div class="container course detail" style="margin-bottom: 20px; margin-top:10px; height: 180px;">
-			<!-- <table class="table table-bordered" style="width: 100%; height: 100%;" cellpadding="5">
-				<tr>
-					<td valign="bottom" width="22%" align="center">
-						<c:choose>
-							<c:when test="${course.courseCover != null && course.courseCover != ''}">
-								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="http://localhost:8080/ccweb/${course.courseCover }"></c:url>' style="width: 200px; height: 100px;" />
-								</a>
-							</c:when>
-							<c:otherwise>
-								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 200px; height: 100px;" />
-								</a>
-							</c:otherwise>
-						</c:choose>
-					</td>
-					<td>课程名称：${course.courseName}<br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }
-					</td>
-					<td width="35%" align="left">
-						<div style="width: 100%;height: 100%;">
-							<div style="float: left; height: 100px; ">教师名称：${course.teacher.user.name } <br>所在学校：${course.teacher.college }</div>
-						</div>
-					</td>
-				</tr>
-			</table> -->
-			<div style="width: 42%; height:150px; text-align:center;  float: left;border: 0px solid #cccccc;">
+<div style="margin-top: 10px;">
+	<div>
+		<div class="container course title">
+			<div style="width: 42%; text-align:center; float: left;">
 				<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 240px; height: 120px;margin-top: 10px;" />
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 240px; height: 180px;margin-top:30px;" />
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 240px; height: 120px;margin-top: 10px;" />
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 240px; height: 180px;margin-top: 10px;" />
 						</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div style="width: 55%; float: right; height:150px;border: 0px solid #cccccc; font-size: 13px;">
-				<h4>${course.courseName}</h4>
-				<h4>${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</h4>
-				<h5>类别：${course.courseType }&nbsp;&nbsp;&nbsp;&nbsp;课程评分：<span style="color: red;">
-    			<c:choose>
+			<div style="margin-left: 80px;margin-top: 33px;float: left;">
+			<span style="font-size: 20px;color:#80b029" id="content">${course.courseName}</span><br/>
+					<span style="font-size: 14px;color:#80b029">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
+					<span style="font-size: 14px;color: black;"> 类别：${course.courseType }</span><br/>
+					<span style="font-size: 14px;color: black;">课程评分：${course.courseDate }
+					<c:choose>
     				<c:when test="${courseMark>0 }">
     					<fmt:formatNumber type="number" value="${courseMark }" maxFractionDigits="0" />
     				</c:when>
     				<c:otherwise>
     					0
     				</c:otherwise>
-    			</c:choose></span>&nbsp;分</h5>
-				<h5>发布时间：${course.courseDate }</h5>
-				学员（${studentPerson}）&nbsp;&nbsp;
-				
+    				</c:choose></span>&nbsp;分<br/>
+    				<span style="font-size: 14px;color: black;">发布时间：${course.courseDate }</span><br/>
+    				<span style="font-size: 14px;color: black;">学员（${studentPerson}）</span>
 				<c:choose>
 				<c:when test="${courseMark!=-1.0 }">
 				评论（${sumPerson}）&nbsp;&nbsp;
@@ -90,23 +76,19 @@
 				<c:otherwise>
 				评论（0）&nbsp;&nbsp;
 				</c:otherwise>
-				</c:choose>
-				<a href='<c:url value="/course/study/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
+				</c:choose><br/>
+				<a  href='<c:url value="/course/study/view/${course.id}"></c:url>'><img style="margin-top: 15px;" src='<c:url value="/resources/img/default/studyButton.png"></c:url>'  /></a>
 			</div>
 		</div>
-		<div class="container course detail" style="background-color: #f7f7f7; margin-bottom: 10px; ">
-			<h4 style="margin-left: 50px;">课程介绍</h4>
+		<div class="nar">
+			<h4>课程介绍</h4>
 		</div>
-		<div class="container course detail">
 			<div class="container course detail desc">
 				${course.courseDesc}
 			</div>
+		<div  class="nar">
+			<span class="content" style="padding-left:55px;"><b>目标人群</b></span>
 		</div>
-		
-		<div class="container course detail" style="background-color: #f7f7f7; margin-bottom: 10px; ">
-			<h4 style="margin-left: 50px;">目标人群</h4>
-		</div>
-		<div class="container course detail">
 			<div class="container course detail desc">
 				<c:choose>
 				<c:when test="${course.targetPerson!=null}">
@@ -117,12 +99,9 @@
 				</c:otherwise>
 			</c:choose>
 			</div>
+		<div  class="nar">
+			<span class="content" style="padding-left:55px;"><b>课程看点</b></span>
 		</div>
-		
-		<div class="container course detail" style="background-color: #f7f7f7; margin-bottom: 10px; ">
-			<h4 style="margin-left: 50px;">课程看点</h4>
-		</div>
-		<div class="container course detail">
 			<div class="container course detail desc">
 			<c:choose>
 				<c:when test="${course.courseCharacter!=null }">
@@ -133,7 +112,6 @@
 				</c:otherwise>
 			</c:choose>
 			</div>
-		</div>
 	</div>
 </div>
 

@@ -10,10 +10,25 @@ function commentOnclick(){
 	return false;
 };
 </script>
+<style>
+.nar {
+	background-color: #ccdfa8; 
+	width:100%; 
+	font-size:14px;
+	height: 20px; 
+	padding-top: 10px;
+	margin-bottom: 10px;  
+	padding: 5px; 
+}
+.nar .content{
+	margin-left: 30px;
+	font-size: 15px;
+}
 
-	<div  align="left" style="width:100%;background-color:#F7F7F7; height: 40px; margin-bottom: 20px;">
-    	<h4 style="margin-left: 50px; float: left;">课程评论</h4>
-    </div>
+</style>
+    <div class="nar">
+			<span class="content"><b>课程评论</b></span>
+		</div>
     <div style="text-align: left; margin-left: 50px"><font color='#ff0000'>${message}</font></div>
     
 	<div class="row" style="margin-left: 50px;margin-bottom: 185px;">
@@ -33,9 +48,8 @@ function commentOnclick(){
 				<input type="radio" name="mark" value="4">4
 				<input type="radio" name="mark" value="5">5
 				</div>
-				
-				<div class="control-group">
-						<button type="submit" onclick="javascript:commentOnclick();" class="btn  btn-success">发表评论</button>
+				<div style="padding-bottom: 20px;">
+						<button type="submit" onclick="javascript:commentOnclick();" class="btn btn-success" >发表评论</button>
 				</div>
 			</form>
 		</div>

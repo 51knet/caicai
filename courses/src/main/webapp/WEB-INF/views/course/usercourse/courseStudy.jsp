@@ -9,7 +9,29 @@
 }
 .container.courseResource.row {
 }
-
+.nar {
+	background-color: #ccdfa8; 
+	width:100%; 
+	font-size:14px;
+	height: 20px; 
+	margin-bottom: 10px;  
+	padding: 5px; 
+	margin-top: 10px;
+}
+.nar .content{
+	margin-left: 30px;
+	font-size: 15px;
+}
+ .cont {
+	width: 93%;
+	margin-left:90px;
+	margin-bottom: 10px;
+}
+.cont .top{
+	font-size: 14px; 
+	 background-color: #cccccc; 
+	 padding: 3px;
+}
 </style>
 <script type="text/javascript">
 	function courseOnclick(obj) {
@@ -19,10 +41,10 @@
 		return false;
 	}
 </script>
-<div align="left" style="width:100%;background-color:#F7F7F7; height: 40px; margin-bottom: 15px;">
-    	<h4 style="margin-left: 40px; float: left;">课程学习</h4>
-</div>
-<div style="margin-left:38px; margin-top: 10px;">
+<div class="nar">
+			<span class="content" style="padding-left:55px;"><b>课程学习</b></span>
+		</div>
+<div class="cont">
 		<c:choose>
 			<c:when test="${resourceCount>0 }">
 				<c:forEach var="course" items="${courseMap}" varStatus="i">
@@ -31,7 +53,7 @@
 								<tr>
 									<td align="left">
 										<div >
-											<div style="font-size: 16px;  background-color: #f7f7f7; padding: 5px;" id="course_${i.count}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
+											<div class="top" id="course_${i.count}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
 												<c:forEach var="fileNames" items="${course.value}" varStatus="resourceStatus">
 												<c:if test="${fileNames.fileName!=null}">
 												<div class="fileName_${i.count}" >

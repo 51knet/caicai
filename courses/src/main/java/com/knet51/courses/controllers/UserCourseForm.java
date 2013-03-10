@@ -1,11 +1,8 @@
 package com.knet51.courses.controllers;
-import javax.validation.constraints.Max;
-
 import org.hibernate.validator.constraints.NotEmpty;
 public class UserCourseForm {
 	private Long mark;
 	@NotEmpty
-	@Max(value = 10000, message="overflow 10000!!")
 	private String commentDesc;
 	private String commentDate;
 
