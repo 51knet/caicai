@@ -61,8 +61,8 @@ public class HomeController {
 		String url = "";
 		BufferedReader br;
 		urlFilePath = session.getServletContext().getRealPath("/");
-		//urlFilePath += "resources\\url\\knet_url.property";
-		urlFilePath += "resources\\url\\localccweb_url.property";
+		urlFilePath += "resources\\url\\knet_url.property";
+		//urlFilePath += "resources\\url\\localccweb_url.property";
 		try {
 			br = new BufferedReader(new InputStreamReader(new FileInputStream(
 					urlFilePath), "utf-8"));
@@ -72,7 +72,7 @@ public class HomeController {
 			}
 			br.close();
 		} catch (Exception e) {
-			url = "http://www.51knet.com/ccweb/";
+			url = "http://www.51knet.com";
 		}
 		//List<TeacherCourseBeans> tcBeanList = courseService.getAllTeacherCourseBeans();
 		//List<TeacherCourse> courseList = courseService.findAllCourses();
