@@ -11,12 +11,8 @@
 	margin-top: 35px;
 }
 .images{
+	margin-top: 40px;
 	margin-left: 60px;
-	margin-top: 21px;
-}
-.courseName >h4{
-	text-align:left;
-	margin-left:40px;
 }
 </style>
 <div class="container course title" style="background-color: #f7f7f7; margin-top: 45px;">
@@ -25,7 +21,7 @@
 		<div class="images">
 	    	<table >
 				<tr>
-					<td width="15%">
+				<td  width="24%" align="right"  valign="top" style="">
 						<c:choose>
 							<c:when test="${course.courseCover != null && course.courseCover != ''}">
 								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 200px; height: 150px;" />
@@ -37,10 +33,13 @@
 							</c:otherwise>
 						</c:choose>
 					</td>
-					<td width="5%">
-						<div  class="courseName" id="contentlimit"><h4>${course.courseName}</h4><h4>${course.courseType }</h4></div>
-					</td>			
-							<td width="5%">
+					<td valign="top">
+						<div style="width:370px;text-align: left;margin-left: 60px;" id="contentlimit">
+						<h4>${course.courseName}</h4><h4>${course.courseType }</h4></div>
+					</td>
+					<td width="30%" align="left"  valign="top">
+						<div style="width: 100%;height: 100%;">
+							<div style="float: left; height: 100px; width: 120px;margin-left: -100px;">
 								<c:choose>
 									<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
 										<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
@@ -51,13 +50,37 @@
 										</a>
 									</c:otherwise>
 								</c:choose>
-							<td>
-							<td>
+							</div>
 							<h4>${course.teacher.user.name }</h4>
 								${course.teacher.college }<br/>
 							<a  href='<c:url value="/teacher/${course.teacher.id}"></c:url>' class="btn  btn-success">查看发布课程</a>
-							</td>
+						</div>
+					</td>
 				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			</table>
    		</div></c:when>
 		<c:otherwise>

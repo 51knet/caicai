@@ -36,7 +36,11 @@
 <div class="container teacher">
 <c:choose>
 <c:when test="${teacher.isEnterprise == null}">
+<<<<<<< HEAD
     <div class="nar">
+=======
+    <div  class="nar" >
+>>>>>>> 2908e375705639c66a69b9961f9ea685a5b818aa
 			<h4>讲师介绍</h4>
 		</div>
     <div class="container course detail">

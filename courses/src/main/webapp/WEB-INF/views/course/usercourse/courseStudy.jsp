@@ -43,7 +43,7 @@
 		<c:choose>
 			<c:when test="${resourceCount>0 }">
 				<c:forEach var="course" items="${courseMap}" varStatus="i">
-						<table   style="width: 93%;  border: 2px solid #f1f1f1; ">
+						<table   style="width: 89%;  border: 2px solid #f1f1f1; ">
 							<tbody>
 								<tr>
 									<td align="left">
