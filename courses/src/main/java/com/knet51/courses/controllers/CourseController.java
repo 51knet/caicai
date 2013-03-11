@@ -410,11 +410,18 @@ public class CourseController {
 		List<TeacherCourse> courseList = courseService.findAllCourses();
 		List<String> courseTypeList = courseService.courseTypeList();
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
-		if (searchParam.trim() != null && !searchParam.trim().equals("")) {
-			for (TeacherCourse c : courseList) {
-				if (c.getCourseName().contains(searchParam)
-						|| c.getTeacher().getUser().getName().contains(searchParam)) {
-					newCourseList.add(c);
+		String param = searchParam.trim();
+		if (param != null && !param.equals("")) {
+//			for (TeacherCourse c : courseList) {
+//				if (c.getCourseName().contains(param)
+//						|| c.getTeacher().getUser().getName().contains(param)) {
+//					newCourseList.add(c);
+//				}
+//			}
+			for(int i=0;i<courseList.size();i++){
+				if(courseList.get(i).getCourseName().contains(param) || 
+						courseList.get(i).getTeacher().getUser().getName().contains(param)){
+					newCourseList.add(courseList.get(i));
 				}
 			}
 			if(newCourseList.size()>0){
@@ -424,14 +431,14 @@ public class CourseController {
 				model.addAttribute("courseList", courseList);
 				model.addAttribute("courseCount", courseList.size());
 			}
-			model.addAttribute("searchParam", searchParam);
+			model.addAttribute("searchParam", param);
 			model.addAttribute("courseTypeList", courseTypeList);
 
 		} else {
 			model.addAttribute("courseList", courseList);
 			model.addAttribute("courseCount", courseList.size());
 			model.addAttribute("courseTypeList", courseTypeList);
-			model.addAttribute("searchParam", searchParam);
+			model.addAttribute("searchParam", param);
 		}
 		return "course.list";
 	}

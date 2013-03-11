@@ -5,7 +5,7 @@
 <div class="navbar custom navbar-inverse navbar-fixed-top">
 	<div class="container-fluid" style="text-align: center; height: 54px; width: 1024px; margin: 0 auto;">
 		<ul class="nav pull-left">
-			<li><a id="logo" href='<c:url value="http://www.51knet.com/"></c:url>'></a></li>
+			<li ><div style="width: 100px;">&nbsp;</div></li>
 			<li class="active" style="line-height: 29px;"><a href="/courses">主页</a></li>
 		</ul>
 		<ul class="nav pull-right" style="margin-top: -5px;">
