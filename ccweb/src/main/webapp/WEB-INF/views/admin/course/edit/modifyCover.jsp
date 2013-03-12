@@ -49,10 +49,10 @@ function previewImages(file){
 			<div id="courseCover" style="margin-top: -16px;">
 				<span> <c:choose>
 						<c:when test="${course.courseCover != null && course.courseCover != ''}">
-							<img src='<c:url value="${course.courseCover}"> </c:url>' style="width: 210px; height: 110px; margin-left: 100px;" />
+							<img src='<c:url value="${course.courseCover}"> </c:url>' style="width: 200px; height: 150px; margin-left: 100px;" />
 						</c:when>
 						<c:otherwise>
-							<img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width: 210px; height: 110px;" />
+							<img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width: 200px; height: 150px;" />
 						</c:otherwise>
 					</c:choose>
 				</span>

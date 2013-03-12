@@ -53,7 +53,7 @@ function previewImages(file){
 								<img name="showimg" id="showimg" src="" style="display: none;" />
 							</div>
 							<div id="courseCover" style="margin-left: 90px; margin-top: -15px;">
-								<span> <img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width: 210px; height: 110px;" />
+								<span> <img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width:200px; height: 150px;" />
 								</span>
 							</div>
 							<form:form action="new/firststep" method="post" enctype="multipart/form-data" id="course_info_form" onsubmit="return checkPicture(this)">
