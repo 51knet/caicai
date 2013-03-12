@@ -91,6 +91,11 @@
 	margin-left: 38px;
 }
 
+.container.title .count{
+	margin-right: 20px;
+	font-weight: bold;
+}
+
 .container.marketing {
   width: 1024px;
 
@@ -167,17 +172,6 @@ border-top-color: #EEE;*/
   width: 1024px;
 }
 
- .selete_filter{
- 	margin-top:20px;
-	margin-left:60px;
-	text-align: left;
-}
-.selete_filter >span{
-	font-weight: bold;
-	font-size: 15px;
-	margin-left: 20px;
-}
-
 .container.teacher .bgimg {
   background-image: url("/courses/resources/img/default/course_front_bg.png");
   background-position: top left;
@@ -186,9 +180,6 @@ border-top-color: #EEE;*/
 	
 }
 
-#myUniversity, #myTeacher {
-  margin-bottom: 0px;
-}
 .container.teacher .teacherInfo{
  margin-left:50px;
   width: 95%;
@@ -219,7 +210,8 @@ padding-top: 20px;
   margin:30px 20px;
   width: 92px;
   height: 110px;
-  background-color: #adcc75;
+  /*background-color: #adcc75;*/
+  background-color:#ccdfa8;
   text-align: center;
   padding-top: 10px;
 }
@@ -236,6 +228,21 @@ padding-top: 20px;
 
 }
 
+ .selete_filter{
+ 	margin-top:20px;
+	margin-left:60px;
+	text-align: left;
+}
+.selete_filter >span{
+	font-weight: bold;
+	font-size: 15px;
+	margin-left: 20px;
+}
+
+
+#myUniversity, #myTeacher {
+  margin-bottom: 0px;
+}
 
 .view-all-teachers-link, .view-all-courses-link {
 	display: block;

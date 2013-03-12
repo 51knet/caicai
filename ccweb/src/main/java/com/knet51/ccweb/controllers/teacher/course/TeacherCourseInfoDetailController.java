@@ -180,8 +180,8 @@ public class TeacherCourseInfoDetailController {
 				resource.setDate(date);
 				TeacherCourse teacherCourse = teacherCourseService.findOneById(Long.valueOf(course_id));
 				//String realPath = FileUtil.getPath("courseResource", userInfo.getId(), teacherCourse.getCourseName(), session);
-				String path = session.getServletContext().getRealPath("/")+"resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+lessonNum;
-				String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+lessonNum;
+				String path = session.getServletContext().getRealPath("/")+"resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId()+"/"+lessonNum;
+				String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId()+"/"+lessonNum;
 				FileUtil.createRealPath(path, session);
 				File saveDest = new File(path + File.separator + fileName);
 				multipartFile.transferTo(saveDest);
@@ -237,8 +237,8 @@ public class TeacherCourseInfoDetailController {
 				String date = format.format(new Date());
 				resource.setDate(date);
 				TeacherCourse teacherCourse = teacherCourseService.findOneById(resource.getCourse_id());
-				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+File.separator+resource.getLessonNum();
-				String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getCourseName()+"/"+resource.getLessonNum();
+				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId()+File.separator+resource.getLessonNum();
+				String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId()+"/"+resource.getLessonNum();
 				FileUtil.createRealPath(path, session);
 				File saveDest = new File(path + File.separator + fileName);
 				multipartFile.transferTo(saveDest);
@@ -456,14 +456,14 @@ public class TeacherCourseInfoDetailController {
 				//logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
 				String fileName = multipartFile.getOriginalFilename();
 				String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
-				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+courseName;
+				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId();
 				logger.debug("Upload Path:"+path); 
 				FileUtil.createRealPath(path, session);
 				String previewFile = path+File.separator+"small"+"."+fileExtension;
 				File saveDest = new File(path + File.separator + fileName);
 				multipartFile.transferTo(saveDest);
 				FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
-				String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+"/small"+"."+fileExtension;
+				String savePath = FileUtil.getSavePath("course", userInfo.getId(), teacherCourse.getId()+"", request)+"/small"+"."+fileExtension;
 				teacherCourse.setCourseCover(savePath);
 			}      
 		}

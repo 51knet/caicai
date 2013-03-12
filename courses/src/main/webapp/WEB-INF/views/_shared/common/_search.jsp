@@ -11,7 +11,7 @@
        			<td width="80%">
      				  <form class="navbar-form" action="<c:url value="/search"></c:url>" method="post">
 				         <input type="text" name="searchParam" class="span6" placeholder="搜索教师、企业、课程、" value="${searchParam }">
-				         &nbsp;<button type="submit" class="btn btn-success">搜索</button>
+				         &nbsp;&nbsp;<button type="submit" class="btn btn-success" style="margin-top: 3px;">搜索</button>
 				       </form>
        			</td>
        		</tr>
