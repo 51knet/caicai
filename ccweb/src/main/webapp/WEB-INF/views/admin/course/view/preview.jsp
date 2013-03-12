@@ -12,6 +12,9 @@
 	}
 </script>
 <style>
+body {
+	background-color:#FFFFFF;
+}
  .cont {
 	margin-left:90px;
 	margin-bottom: 10px;
@@ -204,9 +207,6 @@
 												<c:if test="${fileNames.fileName!=null}">
 												<div class="fileName_${i.count}" >
 													<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${fileNames.fileName}</div>
-													<div style="width:10%; float: left; text-align: center;"><img src="<c:url value="/resources/img/u173_normal.jpg" ></c:url> ">
-													<a href="#myModal_${resourceStatus.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> <!-- Modal -->
-													</div>
 												</div>
 												</c:if>
 												</c:forEach>
