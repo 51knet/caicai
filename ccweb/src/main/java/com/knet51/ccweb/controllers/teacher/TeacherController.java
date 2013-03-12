@@ -134,7 +134,7 @@ public class TeacherController {
 	 */
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/contactInfo")
-	public String contactInfo(@Valid TeacherContactInfoForm contactInfoForm,
+	public String contactInfo(@Valid TeacherContactInfoForm contactInfoForm,RedirectAttributes redirectAttr,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### contactInfo InfoController ####");
 		
@@ -157,6 +157,8 @@ public class TeacherController {
 			userInfo.setUser(user);
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+			String message = "联系信息保存成功";
+			redirectAttr.addFlashAttribute("message", message);
 		}
 		return "redirect:/admin/teacher/resume?active=contact";
 	}

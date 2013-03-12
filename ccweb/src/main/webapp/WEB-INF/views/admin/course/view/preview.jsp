@@ -44,7 +44,6 @@
 	margin-bottom:35px;
 	background-image: url('<c:url value='/resources/img/default/courseInfo.png'></c:url>');
 	background-repeat: repeat-x;
-	margin-top: 30px;
 }
 .nar{
 	background-color: #adcc75;
@@ -195,7 +194,7 @@
 		<c:choose>
 			<c:when test="${resourceCount>0 }">
 				<c:forEach var="course" items="${courseMap}" varStatus="i">
-						<table   style="width: 89%;">
+						<table   style="width: 89%;border: 2px solid #f1f1f1;">
 							<tbody>
 								<tr>
 									<td align="left">

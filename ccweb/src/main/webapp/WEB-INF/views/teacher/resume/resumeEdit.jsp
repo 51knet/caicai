@@ -117,6 +117,7 @@
 				</div>
 				<div class="tab-pane <c:if test='${active == "contact"}'>active</c:if>" id="contact_info_tab">
 					<form class="form-horizontal" action="contactInfo" method="post" id="teacher_contact_from">
+					<div style="margin-left: 155px;"><font color='#80B029' ><h4>${message}</h4></font></div>
 						<div class="control-group" id="address">
 							<label class="control-label" for="address">地址</label>
 							<div class="controls">
