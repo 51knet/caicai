@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.knet51.ccweb.beans.UserInfo;
@@ -95,7 +96,7 @@ public class TeacherController {
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/personalInfo")
 	public String personalInfo(@Valid TeacherPersonalInfoForm personalInfoForm,
-			BindingResult validResult, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+			BindingResult validResult, HttpSession session,RedirectAttributes redirectAttr, HttpServletRequest request, HttpServletResponse response) {
 		logger.info("#### Personal InfoController ####");
 		
 		if (validResult.hasErrors()) {
@@ -119,6 +120,8 @@ public class TeacherController {
 			userInfo.setUser(user);
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+			String message = "个人信息保存成功";
+			redirectAttr.addFlashAttribute("message", message);
 		}
 		return "redirect:/admin/teacher/resume?active=personal";
 	}

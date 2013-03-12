@@ -49,10 +49,10 @@ function previewImages(file){
 			<div id="courseCover" style="margin-top: -16px;">
 				<span> <c:choose>
 						<c:when test="${course.courseCover != null && course.courseCover != ''}">
-							<img src='<c:url value="${course.courseCover}"> </c:url>' style="width: 200px; height: 150px; margin-left: 100px;" />
+							<img src='<c:url value="${course.courseCover}"> </c:url>' style="width: 260px; height: 195px; margin-left: 100px;" />
 						</c:when>
 						<c:otherwise>
-							<img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width: 200px; height: 150px;" />
+							<img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width: 260px; height: 195px;" />
 						</c:otherwise>
 					</c:choose>
 				</span>
@@ -68,7 +68,7 @@ function previewImages(file){
 						<td align="left"><input type="file" style="width: 450px; margin-left: 40px;" size="50px" name="coverFile"  onChange="previewImages(this);"></td>
 					</tr>
 					<tr>
-						<td style="color: red; font-size: 14px; padding-left: 98px;" colspan="2">只支持jpg、gif、bmp、png格式，建议封面宽度210px，高度110px</td>
+						<td style="color: red; font-size: 14px; padding-left: 98px;" colspan="2">只支持jpg、gif、bmp、png格式，建议封面宽度260px，高度195px</td>
 					</tr>
 					<tr>
 						<td colspan="2"><button class="btn  btn-success" type="submit" style="margin-left: 100px;">保存</button></td>

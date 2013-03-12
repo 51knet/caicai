@@ -37,8 +37,8 @@
 	}
 </script>
 <div class="nar">
-			<h4>课程学习</h4>
-		</div>
+	<h4>课程学习</h4>
+</div>
 <div class="cont">
 		<c:choose>
 			<c:when test="${resourceCount>0 }">

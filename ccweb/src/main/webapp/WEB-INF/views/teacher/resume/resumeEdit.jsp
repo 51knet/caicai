@@ -47,6 +47,7 @@
 			<div class="tab-content">
 				<div class="tab-pane <c:if test='${active == "personal"}'>active</c:if>" id="personal_info_tab">
 					<form id="personal_info_form" action="personalInfo" class="form-horizontal" method="post">
+						<div style="margin-left: 155px;"><font color='#80B029' ><h4>${message}</h4></font></div>
 						<div class="control-group" id="name">
 							<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 							<div class="controls">
