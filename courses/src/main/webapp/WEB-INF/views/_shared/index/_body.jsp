@@ -15,7 +15,13 @@
   });
 }(window.jQuery);
 </script>
-
+<style>
+	.container.teacher .bgimg {
+		background-position: left top; 
+		background-repeat: repeat;
+		background-image: url('<c:url value="/courses/resources/img/default/index/white_bg.png"></c:url>');
+	}
+</style>
 <jsp:include page="/WEB-INF/views/_shared/index/_user_course.jsp"></jsp:include>
   	
 <div class="container marketing">
@@ -23,7 +29,9 @@
  	 <table >
  	 	<tr>
  	 		<td width="16%" align="center"><h4>学习资源</h4></td>
- 	 		<td><a  href='<c:url value="/course/list/type?detail=all"></c:url>' >全部课程</a></td>
+ 	 		<td align="right">
+ 	 			<span class="count">共${fn:length(courseList)}个课程</span>
+ 	 			<a  href='<c:url value="/course/list/type?detail=all"></c:url>' >全部课程</a></td>
  	 	</tr>
  	 </table>
   </div>
@@ -35,10 +43,10 @@
 					<c:when test="${c.teacherCourse.courseCover != null && c.teacherCourse.courseCover != ''}">
 					<!-- <a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'> <img src='<c:url value="${url }${c.teacherCourse.courseCover }"></c:url>' style="width: 250px; height: 187px;" />
 						</a> -->	
-						<div style="width: 250px; height: 187px; background-image: url('<c:url value="${url }${c.teacherCourse.courseCover }"></c:url>');  
+						<div style="width: 250px; height: 189px; background-image: url('<c:url value="${url }${c.teacherCourse.courseCover }"></c:url>');  
 								background-repeat:no-repeat;background-position:center;  ">
 							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 162px;"></div></a>
-		    				<div style="height:25px;background-color:grey;    color: #fff; padding: 4px;">
+		    				<div style="height:22px;background-color:#000; padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
 		    					${c.teacherCourse.courseName} — ${c.teacherCourse.courseType }
 		   				 	</div>
 						</div>
@@ -48,14 +56,14 @@
 						</a> -->
 						<div style="width: 250px; height: 187px; background-image: url('<c:url value="/resources/img/logo.png"></c:url>');  background-repeat:no-repeat;background-position:center;">
 							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 162px;"></div></a>
-		    				<div style="height:25px;background-color:grey;   color: #fff; padding: 4px;">
-		    					&nbsp;&nbsp;&nbsp;${c.teacherCourse.courseName} — ${c.teacherCourse.courseType }
+		    				<div style="height:25px;background-color:#000; padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
+		    					&nbsp;&nbsp;&nbsp;&nbsp;${c.teacherCourse.courseName} — ${c.teacherCourse.courseType }
 		   				 	</div>
 						</div>
 					</c:otherwise>
 				</c:choose>
     		</div>
-    		<div style="margin-top: 5px;">
+    		<div style="margin-top: 10px;">
     			教师名称：<a href='<c:url value="/teacher/${c.teacherCourse.teacher.id}"></c:url>'>${c.teacherCourse.teacher.user.name}</a><br>
     			学习人数：${c.userCount}人&nbsp;&nbsp;&nbsp;课程评分：
     			<c:choose>
@@ -76,7 +84,8 @@
 		 <table >
 		 	<tr>
 		 		<td width="16%" align="center"><h4>热门教师 </h4></td>
-		 		<td><a  href='<c:url value="/teacher/list?isEnterPrise=null"></c:url>'  >全部教师</a></td>
+		 		<td align="right"><span class="count">共${fn:length(teacherLists)}名教师</span>
+		 		<a  href='<c:url value="/teacher/list?isEnterPrise=null"></c:url>'  >全部教师</a></td>
 		 	</tr>
 		 </table>
 	 </div>
@@ -118,11 +127,13 @@
  	 <table width="100%">
  	 	<tr>
  	 		<td width="16%" align="center"><h4>热门企业 </h4></td>
- 	 		<td><a   href='<c:url value="/teacher/list?isEnterPrise=1"></c:url>'   >全部企业</a></td>
+ 	 		<td align="right">
+ 	 			<span class="count">共${fn:length(enterPriseList)}个企业</span>
+ 	 			<a  href='<c:url value="/teacher/list?isEnterPrise=1"></c:url>'   >全部企业</a></td>
  	 	</tr>
  	 </table>
   </div>
-	  <div class="bgimg">
+	  <div class="bgimg" style="background-position: left top; background-repeat: repeat;background-image: url('<c:url value="/courses/resources/img/default/index/white_bg.png"></c:url>');">
 		  <c:if test="${fn:length(enterPriseList)==0}">
 		      <div class="teacherInfo">
 		     	 <h3>暂无企业数据</h3>	

@@ -225,6 +225,7 @@ public class TeacherCourseInfoPageController {
 			course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
 			course.setTeacher(teacher);
 			course.setCourseType(courseInfoForm.getCourseType());
+			TeacherCourse newCourse = teacherCourseService.createTeacherCourse(course);
 			for(int i=0;i<files.size();i++){
 				MultipartFile multipartFile = files.get(i);
 				if(!multipartFile.isEmpty()){
@@ -235,7 +236,7 @@ public class TeacherCourseInfoPageController {
 						logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
 						String fileName = multipartFile.getOriginalFilename();
 						String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
-						String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+courseName;
+						String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+newCourse.getId();
 						logger.debug("Upload Path:"+path); 
 						FileUtil.createRealPath(path, session);
 						String previewFile = path+File.separator+"small"+"."+fileExtension;
@@ -243,14 +244,14 @@ public class TeacherCourseInfoPageController {
 						multipartFile.transferTo(saveDest);
 						//String saveName = FileUtil.saveFile(multipartFile.getInputStream(), fileName, path);
 						FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
-						String savePath = FileUtil.getSavePath("course", userInfo.getId(), courseName, request)+"/small"+"."+fileExtension;
+						String savePath = FileUtil.getSavePath("course", userInfo.getId(), newCourse.getId()+"", request)+"/small"+"."+fileExtension;
 						//String savePath = request.getContextPath()+"/course/"+userInfo.getId()+"/"+courseName+"/"+saveName;
-						course.setCourseCover(savePath);
+						newCourse.setCourseCover(savePath);
 					}
 				}
 			}
 			
-			TeacherCourse newCourse = teacherCourseService.createTeacherCourse(course);
+			teacherCourseService.createTeacherCourse(newCourse);
 			redirectAttributes.addFlashAttribute("courseId", newCourse.getId());
 			return "redirect:/admin/teacher/course/addcourse?active=second";
 		}
