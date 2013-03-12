@@ -50,7 +50,7 @@ body {
 
 .span4.login-panel {
 	height: 85%;
-	width: 21.56%;
+	width: 345px;
 	margin:0 auto;
 	text-align: center;
 	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center no-repeat;
@@ -58,7 +58,7 @@ body {
 
 .span4.register-panel {
 	height: 85%;
-	width: 21.56%;
+	width: 345px;
 	margin:0 auto;
 	text-align: center;
 	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center no-repeat;
@@ -66,7 +66,7 @@ body {
 
 .span4.forgotPsw-panel {
 	height: 85%;
-	width: 21.56%;
+	width: 345px;
 	margin:0 auto;
 	text-align: center;
 	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center no-repeat;
