@@ -27,7 +27,7 @@ textarea {
 
 /*navbar*/
 .navbar.custom {
-	height: 49px;
+	height: 40px;
 	z-index: 2;
 	background: url(../img/default/navbar.png) center;
 }
