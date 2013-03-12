@@ -53,29 +53,30 @@
 												<c:if test="${fileNames.fileName!=null}">
 												<div class="fileName_${i.count}" >
 													<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${fileNames.fileName}</div>
-													<div style="width:10%; float: left; text-align: center;"><a href='<c:url  value="/course/study/view/resource/${fileNames.id}"></c:url>'><img src="<c:url  value="/resources/img/courseResource/u173_normal.jpg" ></c:url> "></a>
-													<a href="#myModal_${resourceStatus.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> <!-- Modal -->
-																				<div id="myModal_${resourceStatus.index}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-																					<div class="modal-header">
-																						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-																						<h3 id="myModalLabel">${fileNames.fileName}</h3>
-																					</div>
-																					<div class="modal-body">
-																						<div id="myPlayer_${resourceStatus.index}"></div>
-																						<script type="text/javascript">
-																    	//TODO: fix me, the file name extension should be mp4
-																	    jwplayer("myPlayer_${resourceStatus.index}").setup({
-																	        file: '<c:url value="${url}${fileNames.relativePath}"></c:url>',
-																	        //image: "/uploads/myPoster.jpg"
-																	        //TODO: each mp4 can have a preview image
-																	    });
-																	</script>
-
-																					</div>
-																					<div class="modal-footer">
-																						<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-																					</div>
-																				</div>
+													<div style="width:10%; float: left; text-align: center;">
+														<!--  
+														<a href='<c:url  value="/course/study/view/resource/${fileNames.id}"></c:url>'><img src="<c:url  value="/resources/img/courseResource/u173_normal.jpg" ></c:url> "></a>
+														<a href="#myModal_${resourceStatus.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> 
+														<div id="myModal_${resourceStatus.index}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+															<div class="modal-header">
+																<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+																<h3 id="myModalLabel">${fileNames.fileName}</h3>
+															</div>
+															<div class="modal-body">
+																<div id="myPlayer_${resourceStatus.index}"></div>
+																<script type="text/javascript">
+															    	//TODO: fix me, the file name extension should be mp4
+																    jwplayer("myPlayer_${resourceStatus.index}").setup({
+																        file: '<c:url value="${url}${fileNames.relativePath}"></c:url>',
+																        //image: "/uploads/myPoster.jpg"
+																        //TODO: each mp4 can have a preview image
+																    });
+																</script>
+															</div>
+															<div class="modal-footer">
+																<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+															</div>
+														</div> -->
 													</div>
 													
 												</div>
