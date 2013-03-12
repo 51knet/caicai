@@ -4,7 +4,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:choose>
 	<c:when test="${sessionScope.sessionUserInfo!= null}">
-		<div style="height: 5px;"></div>
 		<div class="container title"  >
 		 	 <table >
 		 	 	<tr>
