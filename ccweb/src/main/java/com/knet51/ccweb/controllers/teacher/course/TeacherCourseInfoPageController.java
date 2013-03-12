@@ -33,6 +33,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.knet51.ccweb.beans.UserCourseBeans;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.controllers.teacher.TeacherPersonalInfoForm;
@@ -41,10 +42,12 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.CourseLesson;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
 import com.knet51.ccweb.jpa.services.CourseLessonService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
+import com.knet51.ccweb.jpa.services.UserCourseService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
@@ -69,6 +72,8 @@ public class TeacherCourseInfoPageController {
 	
 	@Autowired
 	private CourseLessonService courseLessonService;
+	@Autowired
+	private UserCourseService userCourseService;
 	
 	@RequestMapping(value="/admin/teacher/course/list")
 	public String teacherCourseInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
@@ -379,7 +384,9 @@ public class TeacherCourseInfoPageController {
 	}
 	
 	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/preview")
-	public String previewCourse(@PathVariable Long course_id,Model model,HttpSession session){
+	public String previewCourse(@PathVariable Long course_id,Model model,HttpSession session,
+			@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize){
 		TeacherCourse course= teacherCourseService.findOneById(Long.valueOf(course_id));
 		
 		if(course == null){
@@ -403,6 +410,40 @@ public class TeacherCourseInfoPageController {
 					.getResourceByLessonNumAndCourseId(LessonNum,Long.valueOf(course_id));
 			courseMap.put(LessonNum, courseList);
 		}
+		List<UserCourseBeans> list = new ArrayList<UserCourseBeans>();
+		Page<UserCourse> onePage = userCourseService
+				.findUserCourseByTeachercourseid(pageNumber, pageSize, course_id);
+		UserCourseBeans UserCourseUser;
+		for (int i = 0; i < onePage.getContent().size(); i++) {
+			UserCourseUser = new UserCourseBeans();
+			long userid = onePage.getContent().get(i).getUserid();
+			User user = userCourseService.findByUserId(userid);
+			UserCourse comm = onePage.getContent().get(i);
+			String userName = user.getName();
+			String photoUrl = user.getPhoto_url();
+			UserCourseUser.setUserCourse(comm);
+			UserCourseUser.setPhotoUrl(photoUrl);
+			UserCourseUser.setUserName(userName);
+			list.add(UserCourseUser);
+		}
+		Integer sumPerson = 0;
+		List<UserCourse> userCourseList = userCourseService
+				.findByTeachercourseid(course_id);
+		double courseMark = 0.0;
+		for (UserCourse userCourse : userCourseList) {
+			if (userCourse.getMark() != null) {
+				sumPerson=sumPerson+1;
+				courseMark = userCourseService.getMark(course_id);// 一个视频的评论平均分数
+			}
+		}
+		TeacherCourse teacherCourse = teacherCourseService.findOneById(course_id);
+		model.addAttribute("course", teacherCourse);
+		// model.addAttribute("listCount", listUserCourse.size());
+		model.addAttribute("listUserCourse", list);
+		// model.addAttribute("id", id);
+		model.addAttribute("page", onePage);
+		model.addAttribute("sumPerson", sumPerson);
+		model.addAttribute("courseMark", courseMark);
 		model.addAttribute("resourceCount", listResource.size());
 		model.addAttribute("courseMap", courseMap);
 		model.addAttribute("course", course);
