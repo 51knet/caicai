@@ -24,6 +24,7 @@
 				<li><a href='<c:url value="/signin"></c:url>'><h6>登录</h6></a><br></li>
 				<li><a href='<c:url value="/signup"></c:url>'><h6>注册</h6></a><br></li>
 			</c:if>
+			<li ><div style="width: 90px;">&nbsp;</div></li>
 		</ul>
 		<br>
 	</div>
