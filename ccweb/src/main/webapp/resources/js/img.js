@@ -1,7 +1,7 @@
 function previewImage(file)
 {
- 	var MAXWIDTH  = 200;
-  	var MAXHEIGHT = 150;
+ 	var MAXWIDTH  = 260;
+  	var MAXHEIGHT = 195;
   var div = document.getElementById('preview');
   if (file.files && file.files[0])
   {
