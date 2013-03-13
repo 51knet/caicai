@@ -8,7 +8,7 @@
 			<li><a id="logo" href='<c:url value="/"></c:url>'></a></li>
 		</ul>
 		<ul class="nav pull-right">
-			<li><a id="courselogo" href="http://www.51knet.com/courses"></a></li>
+			<li><a href="http://www.51knet.com/courses"><img class="courselogo" src="<c:url value='/resources/img/default/courselogo.png'></c:url>"></a></li>
 		</ul>
 	</div>
 </div>

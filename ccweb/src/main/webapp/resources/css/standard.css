@@ -37,13 +37,9 @@ body {
 }
 
 /*courselogo*/
-#courselogo {
-	width: 145px;
-	height: 36px;
-	text-indent: -999em;
-	background: url(../img/default/courselogo.png)  no-repeat;
-	margin-top: 10.5px;
-	box-shadow: none;
+.courselogo {
+	width: 80px;
+	margin-top: 5px;
 }
 
 /*fonts*/
