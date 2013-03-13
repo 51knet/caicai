@@ -9,6 +9,7 @@
 		</ul>
 		<ul class="nav pull-right">
 			<li><a href="http://www.51knet.com/courses"><img class="courselogo" src="<c:url value='/resources/img/default/courselogo.png'></c:url>"></a></li>
+			<li ><div style="width: 90px;"></div></li>
 		</ul>
 	</div>
 </div>
