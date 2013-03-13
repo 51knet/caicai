@@ -40,12 +40,11 @@ body {
 
 .span9.left {
 	width: 40%;
-	margin-top: 20px;
 }
 
 .span9.right {
 	width: 55%;
-	margin-top: 10px;
+	margin-top: -5px;
 }
 
 .span4.login-panel {

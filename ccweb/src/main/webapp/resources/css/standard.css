@@ -9,7 +9,7 @@ body {
 }
 /*top level navbar*/
 .navbar.custom {
-	height: 49px;
+	height: 39px;
 	z-index: 2;
 	background: url(../img/default/navbar.png) center;
 }
@@ -32,14 +32,14 @@ body {
 	position: absolute;
 	text-indent: -999em;
 	background: url(../img/default/logo.png)  no-repeat;
-	top: 4px;
+	top: 6px;
 	box-shadow: none;
 }
 
 /*courselogo*/
 .courselogo {
 	width: 80px;
-	margin-top: 5px;
+	margin-top: -5px;
 }
 
 /*fonts*/

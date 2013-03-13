@@ -3,7 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="navbar custom navbar-fixed-top">
-	<div class="container-fluid" style="text-align: center; height: 54px; width: 1024px; margin: 0 auto;">
+	<div class="container-fluid" style="text-align: center; height: 39px; width: 1024px; margin: 0 auto;">
 		<ul class="nav pull-left">
 			<li><a id="logo" href='<c:url value="/"></c:url>'></a></li>
 		</ul>
