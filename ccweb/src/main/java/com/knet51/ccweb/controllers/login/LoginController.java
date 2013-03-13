@@ -18,12 +18,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.register.CommonRegisterForm;
+import com.knet51.ccweb.controllers.teacher.TeacherPersonalInfoForm;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
+import com.knet51.ccweb.util.ajax.ValidationResponse;
 
 /**
  * Handles requests for the application home page.
@@ -84,10 +89,12 @@ public class LoginController {
 		session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
 		return "redirect:/";
 	}
-	@RequestMapping(value="/checkEmailAndPassword", method = RequestMethod.POST)
-	public void checkEmailAndPsw(@RequestParam("email") String email, @RequestParam("password") String password,HttpServletResponse response) throws Exception{
+	@RequestMapping(value="/checkLogin", method = RequestMethod.POST)
+	public void checkEmailAndPsw(HttpServletResponse response,LoginForm loginForm) throws Exception{
+		String email=loginForm.getEmail();
+		String passsword=loginForm.getPassword();
 		PrintWriter out=response.getWriter();
-		boolean value=service.login(email, password);
+		boolean value=service.login(email, passsword);
 		Integer num=1;
 		if(value==false){
 			num=0;
@@ -96,5 +103,9 @@ public class LoginController {
 		out.write(number);
 		out.flush();
 		out.close();
+	}
+	@RequestMapping(value = "/checkEmailAndPassword", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse processFormAjaxJson(@Valid LoginForm loginForm, BindingResult result,HttpSession session) {
+		return AjaxValidationEngine.process(result);
 	}
 }

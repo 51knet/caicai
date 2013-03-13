@@ -34,7 +34,7 @@ public class ForgotPswController {
 			return "home";
 		} else {
 			logger.debug("ForgotPswForm :" + forgotPswForm.toString());
-			String email = forgotPswForm.getEmail();
+			String email = forgotPswForm.getForgotemail();
 			boolean mailSuccess = false;
 			User findUser = userService.findByEmailAddress(email);
 			if (findUser != null) {

@@ -10,6 +10,7 @@ public class LoginForm {
 	private String email;
 	@NotEmpty 
 	private String password;
+
 	private int remeberMe = 0;
 	
 	public String getEmail() {

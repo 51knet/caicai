@@ -15,22 +15,21 @@ public class CommonRegisterForm {
 
 	@NotEmpty
 	@Email
-	private String email;
+	private String emails;
 	@NotEmpty
-	@Size(min=3, max=25)
 	private String psw;
 	@NotEmpty
-	@Size(min=3, max=25)
 	private String confirmpsw;
 	
 	private String userType;
 	
-	public String getEmail() {
-		return email;
+
+	public String getEmails() {
+		return emails;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmails(String emails) {
+		this.emails = emails;
 	}
 
 	public String getPsw() {

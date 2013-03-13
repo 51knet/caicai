@@ -3,6 +3,7 @@ package com.knet51.ccweb.controllers.register;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -14,9 +15,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
+import com.knet51.ccweb.util.ajax.ValidationResponse;
 import com.knet51.ccweb.util.mailSender.MailSender;
 
 /**
@@ -43,7 +47,7 @@ public class CommonRegisterController {
 			logger.info("commonRegisterForm Validation Failed " + validResult);
 			return "redirect:/";
 		} else {
-			String email = commonRegisterForm.getEmail();
+			String email = commonRegisterForm.getEmails();
 			String psw = commonRegisterForm.getPsw();
 			String type = commonRegisterForm.getUserType();
 			User findUser = userService.findByEmailAddress(email);
@@ -75,13 +79,18 @@ public class CommonRegisterController {
 		}
 	}
 	@RequestMapping(value="/register/email", method = RequestMethod.POST)
-	public void checkEmail(@RequestParam("email") String email,HttpServletResponse response) throws Exception{
+	public void checkEmail(HttpServletResponse response,CommonRegisterForm commonRegisterForm) throws Exception{
+		String email=commonRegisterForm.getEmails();
 		PrintWriter out=response.getWriter();
 		Integer count=userService.getCountByEmail(email);
 		String countString  = count.toString();
 		out.write(countString);
 		out.flush();
 		out.close();
+	}
+	@RequestMapping(value = "/registerEmailAndPwd", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse processFormAjaxJson(@Valid CommonRegisterForm commonRegisterForm, BindingResult result,HttpSession session) {
+		return AjaxValidationEngine.process(result);
 	}
 	
 	

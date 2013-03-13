@@ -1,15 +1,24 @@
 package com.knet51.ccweb.controllers.forgotPsw;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.knet51.ccweb.controllers.register.CommonRegisterForm;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
+import com.knet51.ccweb.util.ajax.ValidationResponse;
 
 @Controller
 public class ForgotPswValidateController {
@@ -31,5 +40,21 @@ public class ForgotPswValidateController {
 			return "home";
 		}
 	}
+	
+	@RequestMapping(value="/forgetPwdAjax", method = RequestMethod.POST)
+	public void checkEmail(HttpServletResponse response,ForgotPswForm forgotPswForm) throws Exception{
+		String email=forgotPswForm.getForgotemail();
+		PrintWriter out=response.getWriter();
+		Integer count=userService.getCountByEmail(email);
+		String countString  = count.toString();
+		out.write(countString);
+		out.flush();
+		out.close();
+	}
+	@RequestMapping(value = "/forgetPwdCheck", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse processFormAjaxJson(@Valid ForgotPswForm forgotPswForm, BindingResult result,HttpSession session) {
+		return AjaxValidationEngine.process(result);
+	}
+	
 
 }

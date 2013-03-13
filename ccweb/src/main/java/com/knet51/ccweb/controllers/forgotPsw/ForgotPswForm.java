@@ -7,13 +7,16 @@ public class ForgotPswForm {
 
 	
 	@NotEmpty @Email
-	private String email;
+	private String forgotemail;
+
+	public String getForgotemail() {
+		return forgotemail;
+	}
+
+	public void setForgotemail(String forgotemail) {
+		this.forgotemail = forgotemail;
+	}
 	
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 	
 }

@@ -123,14 +123,23 @@ body {
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/jquery/loginCheck.js"/>"></script>
 <script type="text/javascript">
 	$(function(){
-	    $("#email").autoMailSuggest(defaultMailSuffix);
+	    $("#em").autoMailSuggest(defaultMailSuffix);
 	  });
 	$(function(){
-	    $("#emails").autoMailSuggest(defaultMailSuffix);
+	    $("#es").autoMailSuggest(defaultMailSuffix);
 	  });
 	$(function(){
 	    $("#emailForPsw").autoMailSuggest(defaultMailSuffix);
 	  });
+	function checkEmailAndPwd(){
+		return checkEmailAndPass("sigin_info_form",'checkEmailAndPassword');
+	}
+	function registerOnclick(){
+		return reginsterLogin("register_info_form",'registerEmailAndPwd');
+	}
+	function forgetPwdOnclick(){
+		return forgetPwd("forgotPsw_info_form",'forgetPwdCheck');
+	}
 </script>
 
 <div class="row bg">
@@ -144,18 +153,18 @@ body {
 				<h1 class="form-signin-heading" style="font-family: 'Microsoft YaHei'; font-size: 25pt;">用户登录</h1>
 				<div class="hr-bg"></div>
 				<div style="height: 10px"></div>
-				<div class="controls">
+				<div class="controls" id="email">
 					<h5 style="text-align: left;">邮箱地址</h5>
 					<div class="controls" style="text-align: left;">
-						<input type="text" id="email" name="email" placeholder="请输入您的邮箱地址" style="width: 96.17%;">
-						<div id="emailErrors" class="inputError"></div>
+						<input type="text" id="em" name="email" placeholder="请输入您的邮箱地址" style="width: 96.17%;">
+						<span class="help-inline" id="emailErrors"></span>
 					</div>
 				</div>
-				<div class="controls">
+				<div class="controls" id="password">
 					<h5 style="text-align: left;">登录密码</h5>
 					<div class="controls" style="text-align: left;">
-						<input type="password" id="password" name="password" placeholder="请输入您的密码" style="width: 96.17%;">
-						<div id="passwordErr" class="inputError"></div>
+						<input type="password" id="ps" name="password" placeholder="请输入您的密码" style="width: 96.17%;">
+						<span class="help-inline" id="passwordErr"></span>
 					</div>
 				</div>
 				<div class="span9 left">
@@ -164,38 +173,40 @@ body {
 					</h5>
 				</div>
 				<div class="span9 right">
-					<button class="btn btn-large btn-block btn-primary" type="submit" style="font-family: 'Microsoft YaHei';">登录</button>
+					<button class="btn btn-large btn-block btn-primary" type="submit" onclick="return checkEmailAndPwd();" style="font-family: 'Microsoft YaHei';">登录</button>
 				</div>
 				<label style="clear: right;"></label>
 				<div style="height: 10px;"></div>
 			</form:form>
 			<div class="login-hr-bg"></div>
-			<a id="registerbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">快速注册</a>
+			<a id="registerbtn" class="btn btn-large btn-block btn-success"  style="font-family: 'Microsoft YaHei';">快速注册</a>
 		</div>
 	</div>
 	<div class="span4 register-panel" style="display: none;">
 		<div class="login-context">
 			<div style="margin-top: 105px"></div>
-			<form:form class="form-horizontal-register" style="margin-top: 10px;" action="register/common" modelAttribute="commonRegisterForm" method="post">
-				<div class="control">
+			<form:form class="form-horizontal-register" style="margin-top: 10px;" id="register_info_form" action="register/common" modelAttribute="commonRegisterForm" method="post">
+				<div class="control" id="emails">
 					<h5 style="text-align: left;">邮箱地址</h5>
 					<div class="controls" style="text-align: left;">
-						<input type="text" id="emails" name="email" placeholder="请输入您的邮箱地址" style="width: 96.17%;">
-						<div id="checkEmails" class="inputError"></div>
+						<input type="text" id="es" name="emails" placeholder="请输入您的邮箱地址" style="width: 96.17%;">
+						<!-- <div id="checkEmails" class="inputError"></div> -->
+						<span class="help-inline" id="emailsError"><form:errors path="emails"></form:errors></span>
 					</div>
 				</div>
-				<div class="control">
+				<div class="control" id="psw" style="margin-top: -15px;">
 					<h5 style="text-align: left;">密码</h5>
 					<div class="controls" style="text-align: left;">
-						<input type="password" id="psw" name="psw" placeholder="请设置您的密码" style="width: 96.17%;">
-						<div id="emptyPwd" class="inputError"></div>
+						<input type="password"  id="p" name="psw" placeholder="请设置您的密码" style="width: 96.17%;">
+						<!-- <div id="emptyPwd" class="inputError"></div> -->
+						<span class="help-inline" id="emptyPwd"><form:errors path="psw"></form:errors></span>
 					</div>
 				</div>
-				<div class="control">
+				<div class="control" id="confirmpsw" style="margin-top: -15px;">
 					<h5 style="text-align: left;">密码确认</h5>
 					<div class="controls" style="text-align: left;">
-						<input type="password" id="confirmpsw" name="confirmpsw" placeholder="请再次输入您的密码" style="width: 96.17%;">
-						<div id="passwordError" class="inputError"></div>
+						<input type="password" id="conf" name="confirmpsw" placeholder="请再次输入您的密码" style="width: 96.17%;">
+						<span class="help-inline" id="passwordError"><form:errors path="confirmpsw"></form:errors></span>
 					</div>
 				</div>
 				<div class="control">
@@ -207,7 +218,7 @@ body {
 					</div>
 				</div>
 				<label style="clear: right;"></label>
-				<button type="submit" class="btn btn-large btn-block btn-primary" style="margin-top: 15px; font-family: 'Microsoft YaHei';">确认注册</button>
+				<button type="submit" class="btn btn-large btn-block btn-primary" onclick="return registerOnclick();" style="margin-top: 15px; font-family: 'Microsoft YaHei';">确认注册</button>
 			</form:form>
 			<div class="register-hr-bg"></div>
 			<a id="loginbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">用户登录</a>
@@ -222,16 +233,17 @@ body {
 				<h1 class="form-signin-heading" style="font-family: 'Microsoft YaHei'; font-size: 25pt;">密码找回</h1>
 				<div class="hr-bg"></div>
 				<div style="height: 10px"></div>
-				<div class="controls">
+				<div class="controls" id="forgotemail">
 					<h5 style="text-align: left;">您的注册邮箱地址</h5>
 					<div class="controls" style="text-align: left;">
-						<input type="text" id="emailForPsw" name="email" placeholder="请输入您已注册的邮箱地址" style="width: 96.17%;">
-						<div id="emailError" class="inputError"></div>
+						<input type="text" id="emailForPsw" name="forgotemail" placeholder="请输入您已注册的邮箱地址" style="width: 96.17%;">
+						<!-- <div id="emailError" class="inputError"></div> -->
+						<span class="help-inline" id="emailError"><form:errors path="emailForPsw"></form:errors></span>
 					</div>
 				</div>
 				<label style="clear: right;"></label>
 				<div style="height: 30px;"></div>
-				<button class="btn btn-large btn-block btn-primary" type="submit" style="font-family: 'Microsoft YaHei';">发送密码找回邮件</button>
+				<button class="btn btn-large btn-block btn-primary" type="submit" onclick="return forgetPwdOnclick();" style="font-family: 'Microsoft YaHei';">发送密码找回邮件</button>
 			</form:form>
 			<div class="login-hr-bg"></div>
 			<a id="tologinbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">返回登录</a>

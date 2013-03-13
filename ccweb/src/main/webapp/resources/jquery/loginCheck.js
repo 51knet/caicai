@@ -1,3 +1,12 @@
+function collectFormData(fields) {
+	var data = {};
+	for ( var i = 0; i < fields.length; i++) {
+		var $item = $(fields[i]);
+		data[$item.attr('name')] = $item.val().trim();
+	}
+	return data;
+	
+}
 $(function() {
 	$("#registerbtn").click(function() {
 		$(".login-panel").hide(500);
@@ -21,153 +30,167 @@ $(function() {
 		return false;
 	});
 	
-	$("#psw").blur(function (){
-		var psw=$("#psw").val();
-		if(psw==""){
-			$("#emptyPwd").html("<font color='#ff0000'>密码不能为空</font>");
-			return false;
-		}
+	$("#es").focus(function(){
+		$("#emailsError").html("");
+		return false;
 	});
-	
-	
-	$("#confirmpsw").blur(function(){
-		var psw=$("#psw").val();
-		var confirmpsw=$("#confirmpsw").val();
-		if(confirmpsw==""){
-			$("#passwordError").html("<font color='#ff0000'>确认密码不能为空</font>");
-			return false;
-		}
+	$("#ps").focus(function(){
+		$("#passwordErr").html("");
+		return false;
+	});
+	$("#em").focus(function(){
+		$("#emailErrors").html("");
+		return false;
+	});
+	$("#conf").focus(function(){
+		$("#passwordError").html("");
+		return false;
+	});
+	$("#conf").blur(function(){
+		var psw=$("#p").val();
+		var confirmpsw=$("#conf").val();
 		if(psw!=confirmpsw){
 			$("#passwordError").html("<font color='#ff0000'>两次输入的密码不一致,请重新输入</font>");
 			return false;
 		}
 	});
-	$("#psw").focus(function(){
-		$("#emptyPwd").html("");
-		return false;
-	});
-	
-	$("#confirmpsw").focus(function(){
-		$("#passwordError").html("");
-		return false;
-	});
-	
-	$("#emails").focus(function(){
-		$("#checkEmails").html("");
-		return false;
-	});
-	
-	$("#emails").blur(function(){
-		var email=$("#emails").val();
-		if(email==""){
-			$("#checkEmails").html("<font color='#ff0000'>邮箱不能为空,请输入邮箱</font>");
-			return false;
-		}
-		var reg = /^[_a-zA-Z\d\-\.]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+$/;//邮箱验证正则表达式。 
-		if(!reg.test(email)){                             //验证邮箱格式是否正确
-			$("#checkEmails").html("<font color='#ff0000'>输入的邮箱格式不正确</font>");
-			return false;
-		}
-		$.ajax({
-		  type: "post",
-		  url: "register/email",
-		  data: "email="+email,
-		  dataType:"text",
-		  success:function(num){
-				if(num=='1'){
-				$("#checkEmails").html("<font color='#ff0000'>此邮箱地址已存在</font>");
-				return false;
-				}else{
-					$("#checkEmails").html("");
-					return false;
+});
+/**
+ * 验证用户登陆
+ * @param formID
+ * @param actionName
+ */
+function checkEmailAndPass(formID, actionName) {
+	$form = $('#' + formID);
+	var action = actionName;
+	$form.bind('submit', function(e) {
+		var $inputs = $form.find('input');
+		var dataValues = collectFormData($inputs);
+		$.post(action, dataValues, function(response) {
+			$form.find('.modal-body').removeClass('error');
+			$form.find('.help-inline').empty();
+			$form.find('.alert').remove();
+			if (response.status == 'FAIL') {
+				for ( var i = 0; i < response.errorMessageList.length; i++) {
+					var item = response.errorMessageList[i];
+					var $controlGroup = $('#' + item.fieldName);
+					$controlGroup.addClass('error');
+					$controlGroup.find('.help-inline').html("<font color='#ff0000'>"+item.message+"</font>");
 				}
+			} else{
+				$.ajax({
+					  type: "post",
+					  url: "checkLogin",
+					  data:dataValues,
+					  dataType:"text",
+					  success:function(number){
+						if(number == "0"){
+							$("#emailErrors").html("<font color='#ff0000'>邮箱或密码输入错误</font>");
+							$("#passwordErr").html("<font color='#ff0000'>邮箱或密码输入错误</font>");
+							return false;
+						}else{
+							$form.unbind('submit');
+							$form.submit();
+						}
+					  }
+					});
+				
 			}
-		});
-	});
-	
-	$("#email").focus(function(){
-		$("#emailErrors").html("");
+		}, 'json');
+		e.preventDefault();
 		return false;
+
 	});
-	$("#email").blur(function(){
-		var email=$("#email").val();
-		if(email==""){
-			$("#emailErrors").html("<font color='#ff0000'>邮箱不能为空</font>");
-			return false;
-		}
-		var reg = /^[_a-zA-Z\d\-\.]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+$/;//邮箱验证正则表达式。 
-		if(!reg.test(email)){                             //验证邮箱格式是否正确
-			$("#emailErrors").html("<font color='#ff0000'>输入的邮箱格式不正确</font>");
-			return false;
-		}
-	});
-	
-	$("#emailForPsw").blur(function(){
-		var email=$("#emailForPsw").val();
-		if(email==""){
-			$("#emailError").html("<font color='#ff0000'>邮箱不能为空</font>");
-			return false;
-		}
-		var reg = /^[_a-zA-Z\d\-\.]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+$/;//邮箱验证正则表达式。 
-		if(!reg.test(email)){                             //验证邮箱格式是否正确
-			$("#emailError").html("<font color='#ff0000'>输入的邮箱格式不正确</font>");
-			return false;
-		}
-		$.ajax({
-			  type: "post",
-			  url: "register/email",
-			  data: "email="+email,
-			  dataType:"text",
-			  success:function(num){
-					if(num=='0'){
-					$("#emailError").html("<font color='#ff0000'>此邮箱地址不存在</font>");
-					return false;
-					}else{
-						$("#emailError").html("");
-						return false;
+}
+/**
+ * 注册验证
+ * @param formID
+ * @param actionName
+ */
+function reginsterLogin(formID, actionName) {
+	$form = $('#' + formID);
+	var action = actionName;
+	$form.bind('submit', function(e) {
+		var $inputs = $form.find('input');
+		var datas = collectFormData($inputs);
+		$.post(action, datas, function(response) {
+			$form.find('.modal-body').removeClass('error');
+			$form.find('.help-inline').empty();
+			$form.find('.alert').remove();
+			if (response.status == 'FAIL') {
+				for ( var i = 0; i < response.errorMessageList.length; i++) {
+					var item = response.errorMessageList[i];
+					var $controlGroup = $('#' + item.fieldName);
+					$controlGroup.addClass('error');
+					$controlGroup.find('.help-inline').html("<font color='#ff0000'>"+item.message+"</font>");
+				}
+			} else{
+				$.ajax({
+					type: "post",
+					url: "register/email",
+					data:datas,
+					dataType:"text",
+					success:function(number){
+						if(number == "1"){
+							$("#emailsError").html("<font color='#ff0000'>邮箱已存在</font>");
+							return false;
+						}else{
+							$form.unbind('submit');
+							$form.submit();
+						}
 					}
-				}
-			});
-	});
-	
-	$("#emailForPsw").focus(function(){
-		$("#emailError").html("");
+				});
+				
+			}
+		}, 'json');
+		e.preventDefault();
 		return false;
-	});
-	$("#password").focus(function(){
-		$("#passwordErr").html("");
-		return false;
-	});
-	
-	$("#password").blur(function(){
-		var email=$("#email").val();
-		var password=$("#password").val();
-		/* if(email==""){
-			$("#emailError").html("<font color='#ff0000'>邮箱不能为空</font>");
-			return false;
-		} */
-		if(password==""){
-			$("#passwordErr").html("<font color='#ff0000'>密码不能为空</font>");
-			return false;
-		}
-		$.ajax({
-			  type: "post",
-			  url: "checkEmailAndPassword",
-			  data: "email="+email+"&password="+password,
-			  dataType:"text",
-			  success:function(number){
-				if(number == "0"){
-					$("#emailErrors").html("<font color='#ff0000'>邮箱或密码输入错误</font>");
-					$("#passwordErr").html("<font color='#ff0000'>邮箱或密码输入错误");
-					return false;
-				}
-			  }
-			});
 		
 	});
-	
-	
-	
-	
-	
-});
+}
+/***
+ * 发送邮件验证
+ * @param formID
+ * @param actionName
+ */
+function forgetPwd(formID, actionName) {
+	$form = $('#' + formID);
+	var action = actionName;
+	$form.bind('submit', function(e) {
+		var $inputs = $form.find('input');
+		var datas = collectFormData($inputs);
+		$.post(action, datas, function(response) {
+			$form.find('.modal-body').removeClass('error');
+			$form.find('.help-inline').empty();
+			$form.find('.alert').remove();
+			if (response.status == 'FAIL') {
+				for ( var i = 0; i < response.errorMessageList.length; i++) {
+					var item = response.errorMessageList[i];
+					var $controlGroup = $('#' + item.fieldName);
+					$controlGroup.addClass('error');
+					$controlGroup.find('.help-inline').html("<font color='#ff0000'>"+item.message+"</font>");
+				}
+			} else{
+				$.ajax({
+					type: "post",
+					url: "forgetPwdAjax",
+					data:datas,
+					dataType:"text",
+					success:function(number){
+						if(number == "0"){
+							$("#emailError").html("<font color='#ff0000'>邮箱不存在</font>");
+							return false;
+						}else{
+							$form.unbind('submit');
+							$form.submit();
+						}
+					}
+				});
+				
+			}
+		}, 'json');
+		e.preventDefault();
+		return false;
+		
+	});
+}
