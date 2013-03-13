@@ -51,6 +51,7 @@
 				<div id="flash_container"></div>
 				</div>
 				<div class="tab-pane <c:if test='${active == "psw"}'>active</c:if>" id="security_tab">
+				<div style="margin-left: 155px;"><font color='#80B029' ><h4>${message}</h4></font></div>
 					<form class="form-horizontal" action="changePsw" method="post" id="chanePsw_info_form">
 						<div class="control-group" id="ori_psw">
 							<label class="control-label" for="ori_psw">当前密码</label>

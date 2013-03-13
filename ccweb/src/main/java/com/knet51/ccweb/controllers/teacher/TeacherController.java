@@ -316,7 +316,7 @@ public class TeacherController {
 	@Transactional
 	@RequestMapping(value = "/admin/teacher/changePsw")
 	public String changePsw(@Valid TeacherPswForm pswForm,
-			BindingResult validResult, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+			BindingResult validResult, HttpSession session, HttpServletRequest request, HttpServletResponse response,RedirectAttributes redirectAttr) {
 		logger.info("#### changePsw InfoController ####");
 		
 		if (validResult.hasErrors()) {
@@ -336,6 +336,8 @@ public class TeacherController {
 				userInfo.setUser(user);
 				userInfo.setTeacher(teacher);
 				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+				String message = "密码修改成功";
+				redirectAttr.addFlashAttribute("message", message);
 			}else{
 				logger.info("original password is not correct. Nothing update.");
 			}
