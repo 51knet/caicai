@@ -32,6 +32,7 @@
 </style>
 <script type="text/javascript">
 function previewImages(file){
+	document.getElementById("courseCover").style.display="none";
 	previewImage(file);
 }
 </script>

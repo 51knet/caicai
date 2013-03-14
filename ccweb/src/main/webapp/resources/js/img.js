@@ -21,7 +21,6 @@ function previewImage(file)
   {
 	    var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
 	    file.select();
-	    document.getElementById("courseCover").style.display="none";
 	    var src = document.selection.createRange().text;
 	    div.innerHTML = '<img id=showimg>';
 	    var img = document.getElementById('showimg');
