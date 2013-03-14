@@ -110,7 +110,7 @@
 																				</c:forEach> -->
 														<option value="1" selected>文档</option>
 														<option value="2">视频</option>
-													</select><br> 上传资源：<input type="file" name="resourceFile">&nbsp;不大于100M
+													</select><br> 上传资源：<input type="file" name="resourceFile">&nbsp;不大于200M
 													<button type="reset" class="btn " style="margin-left: 5px; float: right;" onclick="closeResourceForm(${lesson.lessonNum})">取消</button>
 													<button type="submit" onclick="upLoadClick();" class="btn  btn-success" style="float: right;">上传</button>
 													&nbsp;&nbsp;

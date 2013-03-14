@@ -21,8 +21,6 @@
 </script>
 <jsp:include page="/WEB-INF/views/_shared/index/_user_course.jsp"></jsp:include>
 <div class="container teacher">
-	<c:choose>
-	<c:when test="${isEnterPrise=='null'}">
 		<div class="selete_filter">
 			<select >
 				<option>全部教师</option>
@@ -47,7 +45,7 @@
 	<c:otherwise>
 	<div class="teacherInfo">
 	<br>
-      	<c:forEach items="${teacherList}" var="t">
+      	<c:forEach items="${page.content}" var="t">
 			<div class="span3" >
 				<c:choose>
 					<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
@@ -57,77 +55,20 @@
 						<a href="/courses/teacher/${t.id }"><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 122px; height:122px;" /></a>
 					</c:otherwise>
 				</c:choose>
-				<br/>
 				<c:choose>
 					<c:when test="${t.user.name==null||t.user.name==''}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏</a>
+						<div id="contentlimite" style="width: 125px;"><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>尚未添加</a></div>
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a>
+						<div id="contentlimite" style="width: 125px;"><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a></div>
 					</c:otherwise>
 				</c:choose>
-				<br/>
-				${t.school}
+				<div id="contentlimite" style="width: 125px;">${t.college}</div>
 			</div>
 		</c:forEach>
 	</div>
 	</c:otherwise>
 	</c:choose>
+	<div  class="teacherInfo" style="float: left; margin-left: 80px;  margin-top: 10px;"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 	</div>
-	<!-- <div ><jsp:include page="/WEB-INF/views/_shared/pagination.jsp" ></jsp:include></div> -->
-	</c:when>
-	<c:otherwise>
-		<div class="selete_filter">
-			<select >
-				<option>全部企业</option>
-			</select>
-		</div>
-	<div class="container title"  >
-	 	 <table  >
-	 	 	<tr>
-	 	 		<td width="18%" align="center"><h4>热门企业（${fn:length(enterPriseList)}）</h4></td>
-	 	 		<td></td>
-	 	 	</tr>
-	 	 </table>
-  	</div>
-  	<div class="bgimg">
-	<c:choose>
-	<c:when  test="${fn:length(enterPriseList)==0}">
-       <div class="teacherInfo">
-       	<h3>暂无企业数据</h3>
-       </div>
-	</c:when>
-	<c:otherwise>
-	<div class="teacherInfo">
-	    <c:forEach items="${enterPriseList}" var="enter" >
-			<div class="span1" >
-				<c:choose>
-					<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<a href="/courses/teacher/${enter.id }"><img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a>
-					</c:when>
-					<c:otherwise>
-					<a href="/courses/teacher/${enter.id }"><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a>
-					</c:otherwise>
-				</c:choose>
-					<div>
-					<c:choose>
-					<c:when test="${enter.user.name==null||enter.user.name==''}">
-					<a href='<c:url value="${url}/teacher/${enter.id}"></c:url>'>无名氏</a>
-					</c:when>
-					<c:otherwise>
-					<a href='<c:url value="${url}/teacher/${enter.id}"></c:url>'>${enter.user.name }</a>
-					</c:otherwise>
-					</c:choose>				
-					</div>
-			</div>
-		</c:forEach> 
-	</div>
-	</c:otherwise>
-	</c:choose>
-	</div>
-	</c:otherwise>
-</c:choose>
 </div>
-
-
-

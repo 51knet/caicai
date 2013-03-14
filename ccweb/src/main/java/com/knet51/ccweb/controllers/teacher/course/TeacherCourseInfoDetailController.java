@@ -162,8 +162,8 @@ public class TeacherCourseInfoDetailController {
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
-				if(multipartFile.getSize()>1024*1024*100){
-					redirectAttributes.addFlashAttribute("fileMaxError", "上传文件不得大于100M");
+				if(multipartFile.getSize()>1024*1024*200){
+					redirectAttributes.addFlashAttribute("fileMaxError", "上传文件不得大于200M");
 					return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 				}
 				Long type = Long.parseLong(request.getParameter("type"));
@@ -223,8 +223,8 @@ public class TeacherCourseInfoDetailController {
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
-				if(multipartFile.getSize()>1024*1024*100){
-					redirectAttributes.addFlashAttribute("fileMaxError", "上传文件不得大于100M");
+				if(multipartFile.getSize()>1024*1024*200){
+					redirectAttributes.addFlashAttribute("fileMaxError", "上传文件不得大于200M");
 					return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 				}
 				File oldResource = new File(resource.getSavePath());

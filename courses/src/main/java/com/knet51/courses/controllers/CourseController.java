@@ -133,7 +133,6 @@ public class CourseController {
 		} else {
 			studentPerson=listUserCourse.size();
 			for (UserCourse userCourse : listUserCourse) {
-				
 				if (userCourse.getMark() != null) {
 					sumPerson = sumPerson+1;
 					courseMark = userCourseService.getMark(course_id);
@@ -412,12 +411,6 @@ public class CourseController {
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
 		String param = searchParam.trim();
 		if (param != null && !param.equals("")) {
-//			for (TeacherCourse c : courseList) {
-//				if (c.getCourseName().contains(param)
-//						|| c.getTeacher().getUser().getName().contains(param)) {
-//					newCourseList.add(c);
-//				}
-//			}
 			for(int i=0;i<courseList.size();i++){
 				if(courseList.get(i).getCourseName().contains(param) || 
 						courseList.get(i).getTeacher().getUser().getName().contains(param)){

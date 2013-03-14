@@ -45,22 +45,16 @@ public class TeacherController {
 	 * @return
 	 */
 	@RequestMapping(value="/teacher/list")
-	public String showAllTeacher(@RequestParam("isEnterPrise") String isEnterPrise,HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="50") int pageSize){
+	public String showAllTeacher(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		//List<Teacher> teacherList = teacherService.findAllTeacher();
-		List<Teacher> teacherList=null;
-		List<Teacher> enterPriseList=null;
-		Page<Teacher> teacherPage=teacherService.findAll(pageNumber, pageSize);
-		 if(isEnterPrise.equals("1")){
-			 enterPriseList = teacherService.findByisEnterprise(isEnterPrise);
-		}else if(isEnterPrise.equals("null")||isEnterPrise.isEmpty()){
-			teacherList=teacherService.findByIsEnterprise();
-		}
+		Page<Teacher> teacherPage = null;
+		List<Teacher> teacherList = null;
+		teacherList = teacherService.findTeacherByIsEnterprise();
+		teacherPage = teacherService.findAllTeacher(pageNumber, pageSize);
 		//List<Teacher> teacher = teacherPage.getContent();
-		 model.addAttribute("enterPriseList", enterPriseList);
-		model.addAttribute("isEnterPrise", isEnterPrise);
-		model.addAttribute("teacherList", teacherList);
 		model.addAttribute("page", teacherPage);
+		model.addAttribute("teacherList", teacherList);
 		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(currentUser != null){
 			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
@@ -74,6 +68,32 @@ public class TeacherController {
 			model.addAttribute("userCourseCount", userCourse.size());
 		}
 		return "teacher.list";
+	}
+	
+	@RequestMapping(value="/enterprise/list")
+	public String showAllEnterPrise(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		
+		Page<Teacher> enterprisePage = null;
+		List<Teacher> enterpriseList = null;
+		enterpriseList = teacherService.findEnterpriseByisEnterprise("1");
+		enterprisePage = teacherService.findAllEnterpriseByisEnterprise(pageNumber, pageSize, "1");
+
+		model.addAttribute("page", enterprisePage);
+		model.addAttribute("enterpriseList", enterpriseList);
+		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(currentUser != null){
+			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
+			List<TeacherCourse> userCourse = new ArrayList<TeacherCourse>();
+			for (int i = 0; i < userCourseList.size(); i++) {
+				TeacherCourse teacherCourse = courseService.findOneById(userCourseList.get(i).getTeachercourseid());
+				userCourse.add(teacherCourse);
+			}
+			
+			model.addAttribute("userCourse", userCourse);
+			model.addAttribute("userCourseCount", userCourse.size());
+		}
+		return "enterprise.list";
 	}
 	/**
 	 * show teacher's courses by teacher_id
