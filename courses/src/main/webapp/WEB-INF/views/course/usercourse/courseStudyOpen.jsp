@@ -54,7 +54,7 @@
 												<div class="fileName_${i.count}" >
 													<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${fileNames.fileName}</div>
 													<div style="width:10%; float: left; text-align: center;">
-														<!--  
+														  
 														<a href='<c:url  value="/course/study/view/resource/${fileNames.id}"></c:url>'><img src="<c:url  value="/resources/img/courseResource/u173_normal.jpg" ></c:url> "></a>
 														<a href="#myModal_${resourceStatus.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> 
 														<div id="myModal_${resourceStatus.index}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -76,7 +76,7 @@
 															<div class="modal-footer">
 																<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 															</div>
-														</div> -->
+														</div> 
 													</div>
 													
 												</div>
