@@ -24,6 +24,18 @@
 	margin: 20px 40px;
 }
 </style>
+<script type="text/javascript">
+$(function(){
+	var mes=$("#message").attr("title");
+	if(mes!=''){
+		alert("信息已保存");
+		return false;
+	}
+});
+</script>
+
+
+
 <div class="row-fluid custom round">
 	<div class="row">
 		<h4>完善简历</h4>
@@ -47,7 +59,7 @@
 			<div class="tab-content">
 				<div class="tab-pane <c:if test='${active == "personal"}'>active</c:if>" id="personal_info_tab">
 					<form id="personal_info_form" action="personalInfo" class="form-horizontal" method="post">
-						<div id="message" style="margin-left: 155px;" onload="return messages();" title="${message}" ><font color='#80B029' >${message}</font></div>
+						<div id="message" style="margin-left: 155px;" title="${message}"></div>
 						<div class="control-group" id="name">
 							<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 							<div class="controls">
@@ -117,7 +129,7 @@
 				</div>
 				<div class="tab-pane <c:if test='${active == "contact"}'>active</c:if>" id="contact_info_tab">
 					<form class="form-horizontal" action="contactInfo" method="post" id="teacher_contact_from">
-					<div style="margin-left: 155px;"><font color='#80B029' ><h4>${message}</h4></font></div>
+					<div style="margin-left: 155px;" id="message" title="${message}"></div>
 						<div class="control-group" id="address">
 							<label class="control-label" for="address">地址</label>
 							<div class="controls">
