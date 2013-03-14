@@ -39,7 +39,7 @@ public class TeacherServiceImpl implements TeacherService {
 		return teacherRepository.findAll();
 	}
 	@Override
-	public List<Teacher> findByIsEnterprise() {
+	public List<Teacher> findTeacherByIsEnterprise() {
 		List<Teacher> list=teacherRepository.findByIsEnterprise();
 		return list;
 	}
@@ -52,9 +52,25 @@ public class TeacherServiceImpl implements TeacherService {
 	}
 
 	@Override
-	public List<Teacher> findByisEnterprise(String isEnterprise) {
-		List<Teacher> list=teacherRepository.findByisEnterprise(isEnterprise);
+	public List<Teacher> findEnterpriseByisEnterprise(String isEnterprise) {
+		List<Teacher> list=teacherRepository.findEnterpriseByisEnterprise(isEnterprise);
+		System.out.println("======================="+list.size());
 		return list;
+	}
+
+	@Override
+	public Page<Teacher> findAllEnterpriseByisEnterprise(int pageNum, int pageSize,
+			String isEnterprise) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC,"id");
+		Page<Teacher> onePage = teacherRepository.findEnterpriseByIsEnterprise(isEnterprise, pageable);
+		return onePage;
+	}
+
+	@Override
+	public Page<Teacher> findAllTeacher(int pageNum, int pageSize) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC,"id");
+		Page<Teacher> onePage = teacherRepository.findTeacherByIsEnterpriseIsNull(pageable);
+		return onePage;
 	}
 
 }

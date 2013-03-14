@@ -4,7 +4,7 @@
 <div class="container search-bar">
        <table width="100%" class="cont">
        		<tr>
-       			<td width="30%"><img  src='<c:url value="/resources/img/default/logo.png"></c:url>'></td>
+       			<td width="30%"><a href="${url }"><img  src='<c:url value="/resources/img/default/logo.png"></c:url>'></a></td>
        			<td width="80%">
      				  <form class="navbar-form" action="<c:url value="/search"></c:url>" method="post">
 				         <input type="text" name="searchParam" class="span6" placeholder="搜索教师、企业、课程、" value="${searchParam }">

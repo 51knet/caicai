@@ -13,6 +13,9 @@ public interface TeacherService {
 	Teacher updateTeacher(Teacher usr);
 	List<Teacher> findAllTeacher();
 	Page<Teacher> findAll(int pageNum, int pageSize);
-	List<Teacher> findByIsEnterprise();
-	List<Teacher> findByisEnterprise(String isEnterprise);	
+	List<Teacher> findTeacherByIsEnterprise();
+	List<Teacher> findEnterpriseByisEnterprise(String isEnterprise);
+	
+	Page<Teacher> findAllEnterpriseByisEnterprise(int pageNum, int pageSize, String isEnterprise);
+	Page<Teacher> findAllTeacher(int pageNum, int pageSize);
 }

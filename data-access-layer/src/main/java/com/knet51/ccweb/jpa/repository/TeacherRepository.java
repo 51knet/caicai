@@ -17,5 +17,10 @@ import com.knet51.ccweb.jpa.entities.resource.Resource;
 public interface TeacherRepository  extends JpaRepository<Teacher, Long>, JpaSpecificationExecutor<Teacher>,TeacherRepositoryCustom{
 	Page<Teacher> findAll(Pageable pageable);
 	@Query("select t from Teacher t where t.isEnterprise = :isEnterprise")
-	List<Teacher> findByisEnterprise(@Param("isEnterprise") String isEnterprise);
+	List<Teacher> findEnterpriseByisEnterprise(@Param("isEnterprise") String isEnterprise);
+	
+	@Query("select t from Teacher t where t.isEnterprise = :isEnterprise")
+	Page<Teacher> findEnterpriseByIsEnterprise(@Param("isEnterprise") String isEnterprise, Pageable pageable);
+	
+	Page<Teacher> findTeacherByIsEnterpriseIsNull(Pageable pageable);
 }

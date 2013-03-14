@@ -44,7 +44,7 @@ public class TeacherAnnoInfoPageController {
 	
 	@RequestMapping(value="/admin/teacher/announcement/list")
 	public String teacherAnno(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
-								int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+								int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		logger.info("#### into TeacherAnno ####");
 			Long id = getId(session);
 			User user = userService.findOne(id);
