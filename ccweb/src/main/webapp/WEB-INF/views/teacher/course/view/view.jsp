@@ -66,8 +66,8 @@ function courseOnclick(obj) {
 		<h4>课程详细</h4>
 	</div>
 	<div class="row1" style="margin-top: 10px;">
-		<div  style=" height: 180px; width: 100%">
-			<div style="width: 40%; height:150px; text-align:center;  float: left;border: 0px solid #cccccc;">
+		<div  style=" height: 160px; width: 100%">
+			<div style="width: 40%; text-align:center;  float: left;border: 0px solid #cccccc;">
 				<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
 						<a href='#'> <img src="/ccweb/${course.courseCover }" style="width: 240px; height: 120px;margin-top: 10px;" />

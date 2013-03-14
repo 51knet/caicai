@@ -225,6 +225,31 @@ $(document).ready(function() {
 		honorEditor.sync();
 		return checkEmptyAjax("honor_info_Form","honorInfoAJAX");
 	});
+	var contentEditor = KindEditor.create('textarea[name="content"]',{
+		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+		uploadJson : '${uploadJson}',
+		fileManagerJson : '${fileManagerJson}',
+		allowFileManager : true,
+		afterCreate : function() {
+			var self = this;
+			KindEditor.ctrl(document, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+			KindEditor.ctrl(self.edit.doc, 13, function() {
+				self.sync();
+				document.forms['detail_form'].submit();
+			});
+		}
+	});
+	$("#sendMsg_info_form").submit(function(){
+		contentEditor.sync();
+		return checkEmptyAjax("sendMsg_info_form","sendMsgInfoAJAX");
+	});
+	
+	
+	
+	
 	$('.editHonorAjaxBtn').on('click', function() {
 		var honor_id = $(this).next().val();
 		$("#honorList").css("display","none");

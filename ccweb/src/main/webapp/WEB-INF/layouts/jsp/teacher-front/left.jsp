@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/resumeEdit.js" />"></script>
 <style>
 .row-fluid.centralize {
 	text-align: center;
@@ -24,7 +25,7 @@
 		$("#c").focus(function() {
 			$(".help-inline").html("");
 		});
-		checkAjax('sendMsg_info_form','sendMsgInfoAJAX');
+		//checkAjax('sendMsg_info_form','sendMsgInfoAJAX');
 	});
 	</script>
 <div class="row-fluid centralize round" >
@@ -136,7 +137,7 @@
 		<div class="control-group" id="content" style="padding-left: 20px;">
 			<div class="controls" >
 			信件内容：
-				<textarea  name="content" placeholder="信件内容" id="c" cols="5" rows="8" style="width:430px;"></textarea>
+				<textarea  id="KEContent" name="content" placeholder="信件内容" id="c" cols="5" rows="8" style="width:490px;"></textarea>
 				<span class="help-inline"></span>
 			</div>
 		</div>
