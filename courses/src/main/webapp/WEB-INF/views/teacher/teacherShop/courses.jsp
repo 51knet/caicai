@@ -28,7 +28,7 @@
 	}
 </style>
 <div class="container teacher">
-	<div class="detail">
+	<div class="detail" >
 		<c:choose>
 			<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
 			<a href='<c:url value="${url}/teacher/${teacher.id}"></c:url>'><img src='<c:url value="${url}${teacher.user.photo_url }"></c:url>' 
@@ -42,9 +42,11 @@
 	    <span class="content" style="font-size: 18px;"><a href='<c:url value="${url}/teacher/${teacher.id}"></c:url>'> <b>${teacher.user.name }</b></a></span>
 	   	<br/><br/>
 	   	<c:if test="${teacher.isEnterprise == null}">
-		   	<span class="content">所在学校：${teacher.school }</span><br/> 
-		   	<span class="content">所在学院：${teacher.college }</span><br/>
-		    <span class="content">所学专业：${teacher.major }</span>
+	   	<div style="width:200px;" id="contentlimit">
+		   	<span class="content">学校名称：${teacher.school }</span><br/> 
+		   	<span class="content">学院名称：${teacher.college }</span><br/>
+		    <span class="content">专业技术：${teacher.major }</span>
+		  </div>
 	    </c:if>
    </div>
 </div>
