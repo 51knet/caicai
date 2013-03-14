@@ -78,12 +78,12 @@
 							</div>
 							<c:choose>
 							<c:when test="${course.teacher.isEnterprise == null}">
-							<div style="float: left; height: 100px; ">教师名称：${course.teacher.user.name } <br>所在学校：${course.teacher.college }<br>专业：${course.teacher.major }<br>
+							<div style="float: left; height: 100px;width: 200px;"id="contentlimit" >教师名称：${course.teacher.user.name } <br>所在学校：${course.teacher.college }<br>专业：${course.teacher.major }<br>
 								<a style="margin-top: 5px;" href='<c:url value="/teacher/${course.teacher.id}"></c:url>' class="btn  btn-success">查看发布的课程</a>
 							</div>
 							</c:when>
 							<c:otherwise>
-							<div style="float: left; height: 100px; ">企业名称：${course.teacher.user.name } <br><br>
+							<div style="float: left; height: 100px; width: 200px;" id="contentlimit">企业名称：${course.teacher.user.name } <br><br>
 								<a style="margin-top: 5px;" href='<c:url value="/teacher/${course.teacher.id}"></c:url>' class="btn  btn-success">查看发布的课程</a>
 							</div>
 							</c:otherwise>

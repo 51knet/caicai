@@ -63,7 +63,7 @@
 					</c:otherwise>
 				</c:choose>
     		</div>
-    		<div style="margin-top: 10px;">
+    		<div style="margin-top: 10px;width:200px;"id="contentlimit">
     			教师名称：<a href='<c:url value="/teacher/${c.teacherCourse.teacher.id}"></c:url>'>${c.teacherCourse.teacher.user.name}</a><br>
     			学习人数：${c.userCount}人&nbsp;&nbsp;&nbsp;课程评分：
     			<c:choose>
@@ -144,10 +144,10 @@
 				<div class="span1" >
 					<c:choose>
 					<c:when test="${enter.user.photo_url!=null||enter.user.photo_url!=''}">
-						<a href='<c:url value="/teacher/${enter.id}"></c:url>'><img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a>
+						<img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" />
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/teacher/${enter.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a>
+						<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" />
 					</c:otherwise>
 					</c:choose>
 				</div>
