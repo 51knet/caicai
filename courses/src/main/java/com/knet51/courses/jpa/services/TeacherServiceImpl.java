@@ -54,7 +54,6 @@ public class TeacherServiceImpl implements TeacherService {
 	@Override
 	public List<Teacher> findEnterpriseByisEnterprise(String isEnterprise) {
 		List<Teacher> list=teacherRepository.findEnterpriseByisEnterprise(isEnterprise);
-		System.out.println("======================="+list.size());
 		return list;
 	}
 
