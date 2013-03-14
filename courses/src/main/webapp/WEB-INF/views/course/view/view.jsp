@@ -16,13 +16,13 @@
 }
 .container.course.detail.desc{
 	margin-left: 75px;
-	padding: 15px;
+	padding: 30px;
 	width:800px;
 }
 .container.course.title{
 	height: 240px;
 	width:1024px;
-	margin-bottom:35px;
+	margin-bottom:15px;
 	background-image: url('<c:url value='/resources/img/default/courseInfo.png'></c:url>');
 	background-repeat: repeat-x;
 	margin-top: 30px;
