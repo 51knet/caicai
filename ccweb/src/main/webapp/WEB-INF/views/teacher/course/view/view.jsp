@@ -151,8 +151,19 @@ function courseOnclick(obj) {
 												<c:if test="${fileNames.fileName!=null}">
 													<div  class="fileName_${status.count}"  >
 														<c:if test="${fileNames.fileName != null }">
-															<div style="width: 87%; float: left; margin-left: 10px; margin-top: 3px;">${fileNames.fileName}</div>
-															<div style="width:10%; float: left; text-align: center;">
+															<div style="width:7%;float: left; margin-left: 10px; margin-top: 3px;">
+																<c:if test="${fileNames.resourceType.id ==1 }">
+																	<img src='<c:url value="/resources/resourceType/text.jpg"></c:url>' style="width: 40px; height: 40px;" />
+																</c:if> 
+																<c:if test="${fileNames.resourceType.id ==2 }">
+																	<img src='<c:url value="/resources/resourceType/video.jpg"></c:url>' style="width: 40px; height: 40px;" />
+																</c:if>
+															</div>
+															<div style="width: 78%; float: left; margin-left: 8px; margin-top: 3px;">
+															<a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'> <span style="margin-left: 0px;">${fileNames.fileName}</span>
+															</a>
+															</div>
+															<div style="width:11%; float: left; text-align: center;">
 																<a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>
 																	<img src="<c:url  value="/resources/img/u173_normal.jpg" ></c:url> ">
 																</a>
