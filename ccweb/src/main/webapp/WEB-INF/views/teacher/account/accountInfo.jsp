@@ -46,12 +46,20 @@
 				var uc_api = encodeURIComponent("${basePath}avatar/${sessionUserInfo.id}");
 				var urlCameraFlash = "<c:url value="/resources/avatar/camera.swf" />"+"?nt=1&inajax=1&appid=1&input=1&uploadSize=1024&ucapi=" + uc_api;
 				$('#flash_container').html(AC_FL_RunContent("width","450","height","253","scale","exactfit","src",""+urlCameraFlash+"","id","mycamera","name","mycamera","quality","high","bgcolor","#ffffff","wmode","transparent","menu","false","swLiveConnect","true","allowScriptAccess","always"));
+				var mes=$("#message").attr("title");
+				if(mes!=''){
+					alert("信息已保存");
+					return false;
+				}
+				/* setTimeOut(function (){
+					document.getElementById("message").style.display="none";
+				},5000); */
 			});
 			</script>
 				<div id="flash_container"></div>
 				</div>
 				<div class="tab-pane <c:if test='${active == "psw"}'>active</c:if>" id="security_tab">
-				<div style="margin-left: 155px;"><font color='#80B029' ><h4>${message}</h4></font></div>
+				<div id="message" style="margin-left: 155px;" title="${message}"></div>
 					<form class="form-horizontal" action="changePsw" method="post" id="chanePsw_info_form">
 						<div class="control-group" id="ori_psw">
 							<label class="control-label" for="ori_psw">当前密码</label>
