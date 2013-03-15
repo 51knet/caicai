@@ -25,7 +25,7 @@
 			<select >
 				<option>全部教师</option>
 			</select>
-			<span>大学</span><span>中学</span><span>小学</span><span>其他</span>
+			<!-- <span>大学</span><span>中学</span><span>小学</span><span>其他</span> -->
 		</div>
 		<div class="container title"  >
 		 	 <table  >
