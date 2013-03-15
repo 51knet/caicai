@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/resumeEdit.js" />"></script>
 <style>
 .row-fluid.centralize {
 	text-align: center;
@@ -19,13 +18,34 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
+		var contentEditor = KindEditor.create('textarea[name="content"]',{
+			cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+			uploadJson : '${uploadJson}',
+			fileManagerJson : '${fileManagerJson}',
+			allowFileManager : true,
+			afterCreate : function() {
+				var self = this;
+				KindEditor.ctrl(document, 13, function() {
+					self.sync();
+					document.forms['detail_form'].submit();
+				});
+				KindEditor.ctrl(self.edit.doc, 13, function() {
+					self.sync();
+					document.forms['detail_form'].submit();
+				});
+			}
+		});
+		$("#sendMsg_info_form").submit(function(){
+			contentEditor.sync();
+			return checkEmptyAjax("sendMsg_info_form","sendMsgInfoAJAX");
+		});
+		prettyPrint();
 		$("#t").focus(function() {
 			$(".help-inline").html("");
 		});
 		$("#c").focus(function() {
 			$(".help-inline").html("");
 		});
-		//checkAjax('sendMsg_info_form','sendMsgInfoAJAX');
 	});
 	</script>
 <div class="row-fluid centralize round" >
