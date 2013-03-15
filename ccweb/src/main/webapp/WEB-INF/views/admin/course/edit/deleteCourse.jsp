@@ -31,7 +31,7 @@
 		<h4>取消课程</h4>
 	</div>
 	<div class="row1">
-		<form action="<c:url value="/admin/teacher/course/edit/deletecoursemodify"></c:url>">
+		<form id="deleteCourseForm" action="<c:url value="/admin/teacher/course/edit/deletecoursemodify"></c:url>">
 		<input type="hidden" name="courseId" value="${course.id}">
 			<div style="margin-left: 40px; color: red;">
 					<label>如果你删除了本课程，本课程将移入回收站。请确认后再删除。</label> 

@@ -25,7 +25,7 @@
 </style>
 <div class="row-fluid custom round">
 	<div class="row">
-		<h4>站内短信</h4>
+		<h4>站内信</h4>
 	</div>
 	<div class="row1">	
 		<div style="text-align: center; margin-bottom: 10px;">收到的站内信数量：${msgCount}件 &nbsp;&nbsp;&nbsp;：
