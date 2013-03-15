@@ -19,7 +19,7 @@
 	.container.teacher .bgimg {
 		background-position: left top; 
 		background-repeat: repeat;
-		background-image: url('<c:url value="/courses/resources/img/default/index/white_bg.png"></c:url>');
+		background-image: url('<c:url value="/resources/img/default/index/white_bg.png"></c:url>');
 	}
 </style>
 <jsp:include page="/WEB-INF/views/_shared/index/_user_course.jsp"></jsp:include>
@@ -85,7 +85,7 @@
 		 	<tr>
 		 		<td width="16%" align="center"><h4>热门教师 </h4></td>
 		 		<td align="right"><span class="count">共${fn:length(teacherLists)}名教师</span>
-		 		<a  href='<c:url value="/teacher/list?isEnterPrise=null"></c:url>'  >全部教师</a></td>
+		 		 <a  href='<c:url value="/teacher/list"></c:url>'  >全部教师</a></td>
 		 	</tr>
 		 </table>
 	 </div>
@@ -106,13 +106,13 @@
 							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
 						</c:otherwise>
 					</c:choose>
-					<div style="margin-top: 5px;">
+					<div style="margin-top: 3px; "> 
 						<c:choose>
 						<c:when test="${t.user.name==null||t.user.name==''}">
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>无名氏</a>
+						<span id="contentlimit" style="width:85px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>尚未添加</a></span>
 						</c:when>
 						<c:otherwise>
-						<a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a>
+						<span id="contentlimit" style="width:85px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a></span> 
 						</c:otherwise>
 						</c:choose>
 					</div>
@@ -129,7 +129,7 @@
  	 		<td width="16%" align="center"><h4>热门企业 </h4></td>
  	 		<td align="right">
  	 			<span class="count">共${fn:length(enterPriseList)}个企业</span>
- 	 			<a  href='<c:url value="/teacher/list?isEnterPrise=1"></c:url>'   >全部企业</a></td>
+ 	 		<a  href='<c:url value="/enterprise/list"></c:url>'   >全部企业</a></td>
  	 	</tr>
  	 </table>
   </div>
@@ -144,10 +144,10 @@
 				<div class="span1" >
 					<c:choose>
 					<c:when test="${enter.user.photo_url!=null||enter.user.photo_url!=''}">
-						<a href='<c:url value="/teacher/${enter.id}"></c:url>'><img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a> 
+					<img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /> 
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/teacher/${enter.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a>
+					<img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /> 
 					</c:otherwise>
 					</c:choose>
 				</div>
