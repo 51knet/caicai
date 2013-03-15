@@ -247,6 +247,11 @@ $(document).ready(function() {
 function personalOnclick(){
 	return checkEmptyAjaxs("personal_info_form","personalInfoAJAX");
 };
+
+function personalOnclick(){
+	return checkEmptyAjaxs("enterprise_info_form","enterpriseInfoAJAX");
+};
+
 function contactOnclick(){
 	return checkEmptyAjaxs("teacher_contact_from","teacherContactAjax");
 }

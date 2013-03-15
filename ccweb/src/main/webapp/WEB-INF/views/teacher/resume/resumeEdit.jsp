@@ -58,15 +58,15 @@ $(function(){
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane <c:if test='${active == "personal"}'>active</c:if>" id="personal_info_tab">
-					<form id="personal_info_form" action="personalInfo" class="form-horizontal" method="post">
-						<div id="message" style="margin-left: 155px;" title="${message}"></div>
-						<div class="control-group" id="name">
-							<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
-							<div class="controls">
-								<input type="text" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.name}"> <span class="help-inline"><form:errors path="name"></form:errors></span>
+					<c:if test="${sessionScope.sessionUserInfo.teacher.isEnterprise == null}">
+						<form id="personal_info_form" action="personalInfo" class="form-horizontal" method="post">
+							<div id="message" style="margin-left: 155px;" title="${message}"></div>
+							<div class="control-group" id="name">
+								<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
+								<div class="controls">
+									<input type="text" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.name}"> <span class="help-inline"><form:errors path="name"></form:errors></span>
+								</div>
 							</div>
-						</div>
-						<c:if test="${sessionScope.sessionUserInfo.teacher.isEnterprise == null}">
 							<div class="control-group" id="gender">
 								<label class="control-label" for="gender"><i class="icon-star"></i> 性别</label>
 								<div class="controls">
@@ -119,13 +119,29 @@ $(function(){
 									<span class="help-inline"><form:errors path="role"></form:errors></span>
 								</div>
 							</div>
-						</c:if>
 						<div class="control-group">
 							<div class="controls">
 								<button type="submit" onclick="return personalOnclick();" class="btn  btn-success">保 存</button>
 							</div>
 						</div>
 					</form>
+					</c:if>
+					<c:if  test="${sessionScope.sessionUserInfo.teacher.isEnterprise != null}">
+						<form id="enterprise_info_form" action="enterprisepersonalInfo" class="form-horizontal" method="post">
+							<div id="message" style="margin-left: 155px;" title="${message}"></div>
+							<div class="control-group" id="name">
+								<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
+								<div class="controls">
+									<input type="text" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.name}"> <span class="help-inline"><form:errors path="name"></form:errors></span>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="submit" onclick="return personalOnclick();" class="btn  btn-success">保 存</button>
+								</div>
+							</div>
+						</form>
+					</c:if>
 				</div>
 				<div class="tab-pane <c:if test='${active == "contact"}'>active</c:if>" id="contact_info_tab">
 					<form class="form-horizontal" action="contactInfo" method="post" id="teacher_contact_from">

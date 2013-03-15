@@ -107,10 +107,10 @@ public class TeacherController {
 			logger.info("### "+ personalInfoForm.getGender() +" ###");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			User user = userService.findOne(userInfo.getId());
-			user.setName(personalInfoForm.getName().trim());
-			user.setGender(personalInfoForm.getGender());
 			user = userService.updateUser(user);
 			Teacher teacher = new Teacher(user);
+			user.setName(personalInfoForm.getName().trim());
+			user.setGender(personalInfoForm.getGender());
 			teacher.setCollege(personalInfoForm.getCollege().trim());
 			teacher.setSchool(personalInfoForm.getSchool().trim());
 			teacher.setTitle(personalInfoForm.getTitle().trim());
@@ -120,6 +120,36 @@ public class TeacherController {
 			userInfo.setUser(user);
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+			
+			String message = "个人信息保存成功";
+			redirectAttr.addFlashAttribute("message", message);
+		}
+		return "redirect:/admin/teacher/resume?active=personal";
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/admin/teacher/enterprisepersonalInfo")
+	public String enterprisepersonalInfo(@Valid EnterprisePersonalInfoForm personalInfoForm,
+			BindingResult validResult, HttpSession session,RedirectAttributes redirectAttr, HttpServletRequest request, HttpServletResponse response) {
+		logger.info("#### Personal InfoController ####");
+		
+		if (validResult.hasErrors()) {
+			logger.info("detailInfoForm Validation Failed " + validResult);
+			
+		} else {
+			logger.info("### detailInfoForm Validation passed. ###");
+			
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			User user = userService.findOne(userInfo.getId());
+			user.setName(personalInfoForm.getName());
+			user = userService.updateUser(user);
+			Teacher teacher = new Teacher(user);
+			teacher.setIsEnterprise("1");
+			teacher = teacherService.updateTeacher(teacher);
+			userInfo.setUser(user);
+			userInfo.setTeacher(teacher);
+			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+			
 			String message = "个人信息保存成功";
 			redirectAttr.addFlashAttribute("message", message);
 		}
@@ -519,6 +549,12 @@ public class TeacherController {
 	public @ResponseBody ValidationResponse processFormAjaxJson(@Valid TeacherPersonalInfoForm personalInfoForm, BindingResult result,HttpSession session) {
 		return AjaxValidationEngine.process(result);
 	}
+	
+	@RequestMapping(value = "/admin/teacher/enterpriseInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse enterpriseFormAjaxJson(@Valid EnterprisePersonalInfoForm personalInfoForm, BindingResult result,HttpSession session) {
+		return AjaxValidationEngine.process(result);
+	}
+	
 	@RequestMapping(value = "/admin/teacher/teacherContactAjax", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse contactInfoFormAjaxJson(@Valid TeacherContactInfoForm teacherContactInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);

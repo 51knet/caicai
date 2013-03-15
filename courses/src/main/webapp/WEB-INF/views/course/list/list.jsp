@@ -59,8 +59,8 @@
 						</c:choose>
 					</td>
 					<td valign="top">
-						<div style="width:370px;" id="contentlimit">
-						<b style="font-size: 17px;">课程名称：${course.courseName}</b><br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
+						<div style="width:370px; margin-top: 5px;" id="contentlimit">
+						<b style="font-size: 17px;">课程名称：${course.courseName}</b><br><br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
 					</td>
 					<td width="38%" align="left"  valign="top">
 						<div style="width: 100%;height: 100%;">
