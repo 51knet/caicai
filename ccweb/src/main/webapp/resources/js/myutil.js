@@ -155,7 +155,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 		var reg = /^[a-zA-Z]+|[\d]+$/;
 		if(!reg.test(pwd)){
 			alert("只能输入数字或字母");
-			$("#pwd").val(" ");
+			$("#pwd").val("");
 			return false;
 		}
 		if(pwd.length>6){
