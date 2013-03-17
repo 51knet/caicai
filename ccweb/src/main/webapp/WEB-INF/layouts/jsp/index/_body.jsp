@@ -7,7 +7,6 @@ body {
 	max-width: 1024px;
 	width: 100%;
 	font-family: 'Microsoft YaHei';
-	overflow-y:hidden;
 }
 
 .container-fluid {
@@ -15,26 +14,16 @@ body {
 	padding-left: 0px;
 }
 
-.container-fluid .row-fluid {
-	background: url(<c:url value="/resources/img/default/top_bg.jpg" ></c:url>) repeat;
-}
-
 .container-fluid .row-fluid .row.bg {
 	margin: 0px auto;
-	height: 750px;
-	background: url(<c:url value='/resources/img/default/index/home_bg.png' ></c:url>) center -50px no-repeat;
-}
-
-.container-fluid .row-fluid .row.ad {
-	margin: 0px auto;
-	height: 750px;
-	background: url(<c:url value='/resources/img/default/index/home_ad.png' ></c:url>) center -120px no-repeat;
+	height: 600px;
+	background: url(<c:url value='/resources/img/default/index/home_bg.png' ></c:url>) center no-repeat;
 }
 
 .span8.left {
 	width: 62%;
-	height: 100%;
-	margin-top: 40px;
+	height: 50%;
+	margin-top: 250px;
 	background: url(<c:url value='/resources/img/default/index/ad_bg.png' ></c:url>) center no-repeat;
 }
 
@@ -50,7 +39,7 @@ body {
 .span4.login-panel {
 	height: 75%;
 	width: 345px;
-	margin:0 auto;
+	margin:50px auto;
 	text-align: center;
 	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center no-repeat;
 }
@@ -58,7 +47,7 @@ body {
 .span4.register-panel {
 	height: 75%;
 	width: 345px;
-	margin:0 auto;
+	margin:50px auto;
 	text-align: center;
 	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center no-repeat;
 }
@@ -66,20 +55,20 @@ body {
 .span4.forgotPsw-panel {
 	height: 75%;
 	width: 345px;
-	margin:0 auto;
+	margin:50px auto;
 	text-align: center;
 	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center no-repeat;
 }
 
 .login-context {
-	width: 67.391%;
+	width: 80%;
 	height: 100%;
 	margin:0 auto;
 }
 
 .login-logo {
 	height: 80px;
-	margin:70px 0 auto;
+	margin:0 auto;
 	text-align: center;
 }
 
@@ -183,7 +172,6 @@ body {
 	</div>
 	<div class="span4 register-panel" style="display: none;">
 		<div class="login-context">
-			<div style="margin-top: 75px"></div>
 			<form:form class="form-horizontal-register" style="margin-top: 10px;" id="register_info_form" action="register/common" modelAttribute="commonRegisterForm" method="post">
 				<div class="control" id="emails">
 					<h5 style="text-align: left;">邮箱地址</h5>
