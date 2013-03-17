@@ -25,7 +25,6 @@ import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
-import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
@@ -254,8 +253,6 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model, HttpSession session) {
-		logger.info("Welcome home! the client locale is " + locale.toString());
-
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 
@@ -265,7 +262,9 @@ public class HomeController {
 			return "redirect:/admin/teacher";
 		} else if(userInfo!=null&&userInfo.getRole().equals("student")) {
 			return "redirect:/admin/student";
-		} else {
+		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
+			return "redirect:/admin/enterprise";
+		}  else {
 		return "home";
 		}
 	}
@@ -278,11 +277,13 @@ public class HomeController {
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 
 		if (userInfo != null && userInfo.getRole().equals("user")) {
-			return "admin.user";
+			return "redirect:/admin/user/details?active=avatar";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
 			return "redirect:/admin/teacher";
-		}else if(userInfo!=null&&userInfo.getRole().equals("student")) {
+		} else if(userInfo!=null&&userInfo.getRole().equals("student")) {
 			return "redirect:/admin/student";
+		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
+			return "redirect:/admin/enterprise";
 		} else {
 			return "home";
 		}
@@ -307,8 +308,29 @@ public class HomeController {
 		}else {
 			return "home";
 		}
+	}
+	
+	@RequestMapping(value = "/admin/enterprise", method = RequestMethod.GET)
+	public String adminEnterprise(Locale locale, Model model, HttpSession session) {
+		logger.info("Welcome home! the client locale is " + locale.toString());
+
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+
+		if (userInfo != null && userInfo.getRole().equals("user")) {
+			return "redirect:/admin/user";
+		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
+			Teacher teacher = teacherService.findOne(userInfo.getId());
+			userInfo.setTeacher(teacher);
+			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+			// set default home page to set resume page;
+			return "redirect:/admin/teacher/resume?active=personal";
+		}else {
+			return "home";
+		}
 
 	}
+	
 	@RequestMapping(value = "/admin/student", method = RequestMethod.GET)
 	public String adminStudent(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());

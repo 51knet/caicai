@@ -5,9 +5,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div style="text-align: center;">
-	<a href="#" class="btn">aaaaa</a><hr />
-	<a href="#" class="btn">bbbbb</a><hr />
-	<a href="#" class="btn">ccccc</a><hr />
-	<a href="#" class="btn">ddddd</a><hr />
-	<a href='<c:url value="/admin/user/details"></c:url>' class="btn">详细资料</a>
+	<img src="<c:url value='/resources/img/teacher_home.jpg' ></c:url>" />
 </div>

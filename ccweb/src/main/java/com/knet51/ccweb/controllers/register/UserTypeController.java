@@ -33,7 +33,8 @@ public class UserTypeController {
 	public String userType(HttpServletRequest request, HttpSession session) {
 		String userType = request.getParameter("userType");
 		logger.info("### user type is " + userType + " ###");
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userService.findOne(userInfo.getId());
 		if (userType.equals("teacher")) {
 			Teacher teacher = new Teacher(user);
@@ -46,18 +47,18 @@ public class UserTypeController {
 		}
 		return "redirect:/admin";
 	}
-	
-	@RequestMapping(value = "/teacher/dispatcher", method = { RequestMethod.POST,
-			RequestMethod.GET })
+
+	@RequestMapping(value = "/teacher/dispatcher", method = {
+			RequestMethod.POST, RequestMethod.GET })
 	public String teacher(HttpServletRequest request, HttpSession session) {
-		String userType = "teacher";
-		logger.info("### user type is " + userType + " ###");
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		String userType;
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userService.findOne(userInfo.getId());
+		userType = userInfo.getRole();
+		logger.info("### user type is " + userType + " ###");
 		if (userType.equals("teacher")) {
 			Teacher teacher = new Teacher(user);
-			user.setRole("teacher");
-			user = userService.updateUser(user);
 			teacher = teacherService.createTeacher(teacher);
 			userInfo.setUser(user);
 			userInfo.setTeacher(teacher);
@@ -65,19 +66,19 @@ public class UserTypeController {
 		}
 		return "redirect:/admin";
 	}
-	
-	@RequestMapping(value = "/enterprise/dispatcher", method = { RequestMethod.POST,
-			RequestMethod.GET })
+
+	@RequestMapping(value = "/enterprise/dispatcher", method = {
+			RequestMethod.POST, RequestMethod.GET })
 	public String enterprise(HttpServletRequest request, HttpSession session) {
-		String userType = "teacher";
-		logger.info("### user type is " + userType + " ###");
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		String userType;
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userService.findOne(userInfo.getId());
-		// Temp solution for enterprise;
-		if (userType.equals("teacher")) {
+		userType = userInfo.getRole();
+		logger.info("### user type is " + userType + " ###");
+		if (userType.equals("enterprise")) {
+			// Temp solution for enterprise;
 			Teacher teacher = new Teacher(user);
-			user.setRole("teacher");
-			user = userService.updateUser(user);
 			teacher.setIsEnterprise("1");
 			teacher = teacherService.createTeacher(teacher);
 			userInfo.setUser(user);

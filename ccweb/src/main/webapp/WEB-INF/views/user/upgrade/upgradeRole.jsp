@@ -4,9 +4,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Welcome to user home page.</h1>
+<h1>Welcome to upgrade role page.</h1>
 <div style="text-align: center;">
-
-	Welcome to user home page.
 
 </div>
