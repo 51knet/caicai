@@ -46,14 +46,14 @@ $(function() {
 		$("#passwordError").html("");
 		return false;
 	});
-	$("#conf").blur(function(){
+	/*$("#conf").blur(function(){
 		var psw=$("#p").val();
 		var confirmpsw=$("#conf").val();
 		if(psw!=confirmpsw){
 			$("#passwordError").html("<font color='#ff0000'>两次输入的密码不一致,请重新输入</font>");
 			return false;
 		}
-	});
+	});*/
 });
 /**
  * 验证用户登陆
@@ -110,6 +110,12 @@ function checkEmailAndPass(formID, actionName) {
 function reginsterLogin(formID, actionName) {
 	$form = $('#' + formID);
 	var action = actionName;
+	var psw=$("#p").val();
+	var confirmpsw=$("#conf").val();
+	if(psw!=confirmpsw){
+		$("#passwordError").html("<font color='#ff0000'>两次输入的密码不一致,请重新输入</font>");
+		return false;
+	}
 	$form.bind('submit', function(e) {
 		var $inputs = $form.find('input');
 		var datas = collectFormData($inputs);
@@ -140,6 +146,8 @@ function reginsterLogin(formID, actionName) {
 						}
 					}
 				});
+				
+				
 				
 			}
 		}, 'json');
