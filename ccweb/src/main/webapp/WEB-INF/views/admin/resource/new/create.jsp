@@ -4,10 +4,8 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
-<link href=" <c:url value="/resources/js/uploadify/css/default.css" />" rel="stylesheet" type="text/css" />
-<link href="<c:url value="/resources/js/uploadify/css/uploadify.css" />" rel="stylesheet" type="text/css" />
-<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/uploadify/js/jquery.uploadify.v2.0.1.js" />"></script>
-<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/uploadify/js/swfobject.js" />"></script>
+<link href="<c:url value="/resources/js/uploadify3.2/uploadify.css" />" rel="stylesheet" type="text/css" />
+
 <script type="text/javascript">
  function addFile(){
  	var cont = document.getElementById("container");
@@ -127,102 +125,45 @@ $(document).ready(function() {
 			 </div> 
 		</div>
 		
-		<!-- test uploadify  -->
-		<!-- 
-		<div id="testUploadify" style="margin-top: 20px;">
-			<div id="fileQueue" style="height: 100px; padding-left: 10px; display: block;"></div>
-			<form id="course_form">
-				课时：<input type="text" name="rdesc" id="courseOrder"  /><br>
-			</form>
-			<input type="file" name="uploadify"  id="uploadify_test" />
-			<p>
-			<a href="javascript: $('#uploadify_test').uploadifySettings('scriptData',{'rdesc':$('#courseOrder').val()}); jQuery('#uploadify_test').uploadifyUpload()">开始上传</a>&nbsp;
-			<a href="javascript:jQuery('#uploadify_test').uploadifyClearQueue()">取消所有上传</a>
-			</p>
-			<script type="text/javascript">
-				$(document).ready(function() {
-					$("#uploadify_test").uploadify({
-						'uploader'       : '<c:url value="/resources/js/uploadify/uploadify.swf" />',
-						'script'        	    : '<c:url value="/admin/resource/new/new" />',
-						'cancelImg'     : '<c:url value="/resources/js/uploadify/images/cancel.png" />',
-					//	'scriptData'     : $("#course_form").serialize(),
-					//	'scriptData'		:{'courseOrder': $("#courseOrder").val()},
-						'folder'         	: 'uploads',
-						'queueID'        : 'fileQueue',
-						'method'			:'post',
-						'auto'           : false,
-						'multi'          : true,
-						'simUploadLimit' : 2,
-						'buttonText'	 : 'search',
-						'onComplete': function(event, queueID, fileObj,response,data) {//当上传完成后的回调函数，ajax方式哦~~
-							alert("-------");
-							alert(data.speed); 
-						}
-					});
-				});
+ 
+	 <!-- test uploadify 3.2 -->
+<!--  
+<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/uploadify3.2/jquery.uploadify.min.js" />"></script>
+		<script type="text/javascript">
+			$(function() {
+			    $('#file_upload').uploadify({
+			    	'auto'     : false,//关闭自动上传
+			    	'removeTimeout' : 1,//文件队列上传完成1秒后删除
+			        'swf'      : '<c:url value="/resources/js/uploadify3.2/uploadify.swf" />',
+			        'uploader' : '<c:url value="/admin/resource/new/new;jsessionid=${sessionScope.sessionUserInfo.id}" />',
+			      
+			        'method'   : 'post',//方法，服务端可以用$_POST数组获取数据
+					'buttonText' : '选择图片',//设置按钮文本
+			        'multi'    : true,//允许同时上传多张图片
+			        'uploadLimit' : 10,//一次最多只允许上传10张图片
+			        'fileTypeDesc' : 'Image Files',//只允许上传图像
+			        'fileTypeExts' : '*.gif; *.jpg; *.png',//限制允许上传的图片后缀
+			        'fileSizeLimit' : '20000KB',//限制上传的图片不得超过200KB 
+			        'onUploadSuccess' : function(file, data, response) {//每次成功上传后执行的回调函数，从服务端返回数据到前端
+						   alert(data);
+			        },
+			        'onQueueComplete' : function(queueData) {//上传队列全部完成后执行的回调函数
+			           // if(img_id_upload.length>0)
+			           // alert('成功上传的文件有：'+encodeURIComponent(img_id_upload));
+			        }  
+			        // Put your options here
+			    });
+			});
 			</script>
-		</div>
-		 -->
-		 
-		 
-		 
-		 <!--  test swfupload -->
-		 <script type="text/javascript"  charset="utf-8"   src="<c:url value="/resources/js/swfupload/swfupload.js" />"></script>
-  		 <script type="text/javascript"  charset="utf-8"   src="<c:url value="/resources/js/swfupload/handlers.js" />"></script>
-		 <script type="text/javascript">
-			var swfu;
-			window.onload = function () {
-				swfu = new SWFUpload({
-					upload_url: "FileUploadServlet",
-					
-					// File Upload Settings
-					file_size_limit : "50 MB",	// 1000MB
-					file_types : "*.*",//设置可上传的类型
-					file_types_description : "所有文件",
-					file_upload_limit : "10",
-									
-					file_queue_error_handler : fileQueueError,//选择文件后出错
-					file_dialog_complete_handler : fileDialogComplete,//选择好文件后提交
-					file_queued_handler : fileQueued,
-					upload_progress_handler : uploadProgress,
-					upload_error_handler : uploadError,
-					upload_success_handler : uploadSuccess,
-					upload_complete_handler : uploadComplete,
-	
-					// Button Settings
-					button_image_url : "images/SmallSpyGlassWithTransperancy_17x18.png",
-					button_placeholder_id : "spanButtonPlaceholder",
-					button_width: 100,
-					button_height: 18,
-					button_text : '<span class="button">添加附件</span>',
-					button_text_style : '.button { font-family: Helvetica, Arial, sans-serif; font-size: 12pt; } .buttonSmall { font-size: 10pt; }',
-					button_text_top_padding: 0,
-					button_text_left_padding: 18,
-					button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
-					button_cursor: SWFUpload.CURSOR.HAND,
-					
-					// Flash Settings
-					flash_url : "swfupload/swfupload.swf",
-	
-					custom_settings : {
-						upload_target : "divFileProgressContainer"
-					},
-					// Debug Settings
-					debug: false  //是否显示调试窗口
-				});
-			};
-			function startUploadFile(){
-				swfu.startUpload();
-			}
 
-		</script>
-		<!--
-		<span id="spanButtonPlaceholder"></span>
-		<div id="divFileProgressContainer" style="width:200;display:none;"></div>
-		<div id="thumbnails">
-				<table id="infoTable" border="0" width="50%" style="border: solid 1px #7FAAFF; background-color: #C5D9FF; padding: 2px;margin-top:8px;">
-				</table>
-		</div>
-		   -->
+
+	<input type="file" name="file_upload" id="file_upload" />
+
+	<p><a href="javascript:$('#file_upload').uploadify('settings', 'formData', {'rdesc':document.getElementById('id_file').value});$('#file_upload').uploadify('upload','*')">上传</a>
+	<a href="javascript:$('#file_upload').uploadify('cancel','*')">重置上传队列</a>
+	</p>
+	<input type="text"  name="rdesc" id="id_file">
+	 -->
+	 
 	</div>	
 </div>

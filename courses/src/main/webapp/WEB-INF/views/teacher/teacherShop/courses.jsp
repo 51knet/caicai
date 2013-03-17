@@ -75,23 +75,23 @@
 		<h4 style="margin-left: 70px;">尚未添加课程</h4>
 	</c:if>
  	<c:forEach items="${teacherCourseList}" var="course">
-			<table cellpadding="20" style="width: 400px;   margin-bottom: 10px;  float: left; margin-left: 50px;"  >
+			<table cellpadding="10" style="width: 430px;   margin-bottom: 10px;  float: left; margin-left: 50px;"  >
 				<tr >
-				<td  width="165" align="right"  valign="top">
+				<td   align="right"  valign="top">
 						<c:choose>
 							<c:when test="${course.courseCover != null && course.courseCover != ''}">
-								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 162px; height: 120px;float: right;" />
+								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 160px; height: 120px;float: right;" />
 								</a>
 							</c:when>
 							<c:otherwise>
-								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 162px; height: 120px; float: right;" />
+								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 160px; height: 120px; float: right;" />
 								</a>
 							</c:otherwise>
 						</c:choose>
 					</td>
 					<td valign="top">
-						<div style="width:200px;" id="contentlimit">
-						<b style="font-size: 17px;">${course.courseName}</b><br>
+						<div style="width:230px;" id="contentlimit">
+						<b style="font-size: 17px;">${course.courseName}</b><br><br>
 						类别：${course.courseType }<br>
 						描述：${course.courseDesc }<br>
 						日期：${course.courseDate }</div>

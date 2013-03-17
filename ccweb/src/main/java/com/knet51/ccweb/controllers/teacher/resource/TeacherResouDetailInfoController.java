@@ -1,6 +1,7 @@
 package com.knet51.ccweb.controllers.teacher.resource;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -92,11 +93,13 @@ public class TeacherResouDetailInfoController {
 	}
 	
 	@RequestMapping(value="/admin/resource/new/new",method=RequestMethod.POST)
-	public void newResouInfo(HttpSession session,Model model,HttpServletRequest httpRequest) throws Exception{
+	public void newResouInfo(HttpSession session,Model model,HttpServletRequest httpRequest,HttpServletResponse response) throws Exception{
 		logger.info("#####Into TeacherResouInfoAddPageController#####");
-		 MultipartHttpServletRequest request = (MultipartHttpServletRequest) httpRequest;
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		PrintWriter out = response.getWriter();
+		MultipartHttpServletRequest request = (MultipartHttpServletRequest) httpRequest;
+		//UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		String desc = request.getParameter("rdesc");
+
 		logger.info("============="+desc);
 		Map<String, MultipartFile> fileMap = request.getFileMap();
 		for (Map.Entry<String, MultipartFile> entry : fileMap.entrySet()) {
@@ -104,6 +107,9 @@ public class TeacherResouDetailInfoController {
 			String fileName = file.getOriginalFilename();
 			System.out.println("-------"+fileName);
 		}
+		out.print(desc);
+		out.flush();
+		out.close();
 		//String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/upload/";
 	
 	}
