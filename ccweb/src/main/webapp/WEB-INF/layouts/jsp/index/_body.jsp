@@ -4,10 +4,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
 body {
-	max-width: 1600px;
+	max-width: 1024px;
 	width: 100%;
 	font-family: 'Microsoft YaHei';
-	color: #FFFFFF;
+	overflow-y:hidden;
 }
 
 .container-fluid {
@@ -34,7 +34,7 @@ body {
 .span8.left {
 	width: 62%;
 	height: 100%;
-	margin-top: 80px;
+	margin-top: 40px;
 	background: url(<c:url value='/resources/img/default/index/ad_bg.png' ></c:url>) center no-repeat;
 }
 
@@ -48,7 +48,7 @@ body {
 }
 
 .span4.login-panel {
-	height: 85%;
+	height: 75%;
 	width: 345px;
 	margin:0 auto;
 	text-align: center;
@@ -56,7 +56,7 @@ body {
 }
 
 .span4.register-panel {
-	height: 85%;
+	height: 75%;
 	width: 345px;
 	margin:0 auto;
 	text-align: center;
@@ -64,7 +64,7 @@ body {
 }
 
 .span4.forgotPsw-panel {
-	height: 85%;
+	height: 75%;
 	width: 345px;
 	margin:0 auto;
 	text-align: center;
@@ -79,7 +79,7 @@ body {
 
 .login-logo {
 	height: 80px;
-	margin:100px 0 auto;
+	margin:70px 0 auto;
 	text-align: center;
 }
 
@@ -168,7 +168,7 @@ body {
 				</div>
 				<div class="span9 left">
 					<h5 class="controls" style="text-align: left;">
-						<a id="fogotPswbtn" href="<c:url value='#'></c:url>"><font color="#FFF">忘记密码？</font></a>
+						<a id="fogotPswbtn" href="<c:url value='#'></c:url>"><font color="#444">忘记密码？</font></a>
 					</h5>
 				</div>
 				<div class="span9 right">
@@ -183,7 +183,7 @@ body {
 	</div>
 	<div class="span4 register-panel" style="display: none;">
 		<div class="login-context">
-			<div style="margin-top: 105px"></div>
+			<div style="margin-top: 75px"></div>
 			<form:form class="form-horizontal-register" style="margin-top: 10px;" id="register_info_form" action="register/common" modelAttribute="commonRegisterForm" method="post">
 				<div class="control" id="emails">
 					<h5 style="text-align: left;">邮箱地址</h5>
@@ -242,7 +242,7 @@ body {
 				</div>
 				<label style="clear: right;"></label>
 				<div style="height: 30px;"></div>
-				<button class="btn btn-large btn-block btn-primary" type="submit" onclick="return forgetPwdOnclick();" style="font-family: 'Microsoft YaHei';">发送密码找回邮件</button>
+				<button class="btn btn-large btn-block btn-primary" type="submit" onclick="return forgetPwdOnclick();" style="font-family: 'Microsoft YaHei';">发送邮件，找回密码！</button>
 			</form:form>
 			<div class="login-hr-bg"></div>
 			<a id="tologinbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">返回登录</a>

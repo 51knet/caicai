@@ -7,12 +7,12 @@
 		<ul class="nav pull-left">
 			<li><a id="logo" href='<c:url value="/admin"></c:url>'></a></li>
 		</ul>
-		<c:if test="${sessionUserInfo != null}">
-			<ul class="nav pull-right">
-				<li><a href='<c:url value="/admin"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
-				<li id="fat-menu" class="dropdown">
-				<a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">
-					<img src="<c:url value='/resources/img/default/gear.png'></c:url>" style="margin-top: -5px;"></img>
+		<ul class="nav pull-right">
+			<li><a href="http://www.51knet.com/courses"><img class="courselogo" src="<c:url value='/resources/img/default/courselogo.png'></c:url>"> <img class="goto"
+					src="<c:url value='/resources/img/default/index/goto.png'></c:url>"></a></li>
+			<c:if test="${sessionUserInfo != null}">
+				<li id="fat-menu" class="dropdown"><a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"> <img src="<c:url value='/resources/img/default/gear.png'></c:url>"
+						style="margin-top: -5px;height:15px;"></img>
 				</a>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
 						<li><a href='<c:url value="/admin"></c:url>'>后台管理</a></li>
@@ -24,8 +24,11 @@
 						<li class="divider"></li>
 						<li><a href='<c:url value="/signout"></c:url>'>退出登录</a></li>
 					</ul></li>
-			</ul>
-		</c:if>
+			</c:if>
+			<c:if test="${sessionUserInfo == null}">
+				<li ><div style="width: 30px;"></div></li>
+			</c:if>
+		</ul>
 		<br>
 	</div>
 </div>

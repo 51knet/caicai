@@ -4,6 +4,7 @@ body {
 	/*padding-bottom: 40px;*/ /*since by default we use white background, but now we use images*/
 	min-width: 1024px;
 	max-width: 1024px;
+	height: 700px;
 	width: 1024px;
 	margin: 0 auto;
 }
@@ -30,6 +31,7 @@ body {
 	width: 145px;
 	height: 36px;
 	position: absolute;
+	margin-left: 50px;
 	text-indent: -999em;
 	background: url(../img/default/logo.png)  no-repeat;
 	top: 6px;
@@ -38,7 +40,12 @@ body {
 
 /*courselogo*/
 .courselogo {
-	width: 80px;
+	width: 60px;
+	margin-top: -5px;
+}
+
+.goto {
+	width: 30px;
 	margin-top: -5px;
 }
 

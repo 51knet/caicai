@@ -109,7 +109,12 @@ public class HomeController {
 		// we can achieve auto login through above code,
 		// comment it out for now since I am not quite clear how we should
 		// control the auto login
-		return "home";
+		UserInfo sessionUserInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(sessionUserInfo!=null){
+			return "redirect:/admin";
+		}else{
+			return "home";
+		}
 	}
 
 	@RequestMapping(value = "/user/{id}")
