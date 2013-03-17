@@ -127,7 +127,7 @@ $(document).ready(function() {
 		
  
 	 <!-- test uploadify 3.2 -->
-
+<!--  
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/uploadify3.2/jquery.uploadify.min.js" />"></script>
 		<script type="text/javascript">
 			$(function() {
@@ -163,7 +163,7 @@ $(document).ready(function() {
 	<a href="javascript:$('#file_upload').uploadify('cancel','*')">重置上传队列</a>
 	</p>
 	<input type="text"  name="rdesc" id="id_file">
-	 
+	 -->
 	 
 	</div>	
 </div>
