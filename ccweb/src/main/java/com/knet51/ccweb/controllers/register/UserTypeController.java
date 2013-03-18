@@ -31,21 +31,20 @@ public class UserTypeController {
 	@RequestMapping(value = "/user/dispatcher", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public String userType(HttpServletRequest request, HttpSession session) {
-		String userType = request.getParameter("userType");
-		logger.info("### user type is " + userType + " ###");
+		String userType;
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		User user = userService.findOne(userInfo.getId());
-		if (userType.equals("teacher")) {
-			Teacher teacher = new Teacher(user);
-			user.setRole("teacher");
-			user = userService.updateUser(user);
-			teacher = teacherService.createTeacher(teacher);
-			userInfo.setUser(user);
-			userInfo.setTeacher(teacher);
-			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+		userType = userInfo.getRole();
+		logger.info("### user type is " + userType + " ###");
+		if (userType.equals("user")) {
+			return "redirect:/admin";
+		} else if (userType.equals("teacher")) {
+			return "redirect:/teacher/dispatcher";
+		} else if (userType.equals("enterprise")) {
+			return "redirect:/enterprise/dispatcher";
+		} else {
+			return "home";
 		}
-		return "redirect:/admin";
 	}
 
 	@RequestMapping(value = "/teacher/dispatcher", method = {
@@ -63,8 +62,14 @@ public class UserTypeController {
 			userInfo.setUser(user);
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+			return "redirect:/admin";
+		} else if (userType.equals("user")) {
+			return "redirect:/user/dispatcher";
+		} else if (userType.equals("enterprise")) {
+			return "redirect:/enterprise/dispatcher";
+		} else {
+			return "home";
 		}
-		return "redirect:/admin";
 	}
 
 	@RequestMapping(value = "/enterprise/dispatcher", method = {
@@ -84,7 +89,13 @@ public class UserTypeController {
 			userInfo.setUser(user);
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+			return "redirect:/admin";
+		} else if (userType.equals("user")) {
+			return "redirect:/user/dispatcher";
+		} else if (userType.equals("teacher")) {
+			return "redirect:/teacher/dispatcher";
+		} else {
+			return "home";
 		}
-		return "redirect:/admin";
 	}
 }

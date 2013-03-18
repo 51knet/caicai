@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
 body {
-	max-width: 1024px;
+	max-width: 1150px;
 	width: 100%;
 	font-family: 'Microsoft YaHei';
 }
@@ -21,7 +21,7 @@ body {
 }
 
 .span8.left {
-	width: 62%;
+	width: 70%;
 	height: 50%;
 	margin-top: 250px;
 	background: url(<c:url value='/resources/img/default/index/ad_bg.png' ></c:url>) center no-repeat;
@@ -37,25 +37,25 @@ body {
 }
 
 .span4.login-panel {
-	height: 75%;
+	height: 78%;
 	width: 345px;
-	margin:50px auto;
+	margin: 40px -85px auto;
 	text-align: center;
 	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center no-repeat;
 }
 
 .span4.register-panel {
-	height: 75%;
+	height: 78%;
 	width: 345px;
-	margin:50px auto;
+	margin:40px -85px auto;
 	text-align: center;
 	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center no-repeat;
 }
 
 .span4.forgotPsw-panel {
-	height: 75%;
+	height: 78%;
 	width: 345px;
-	margin:50px auto;
+	margin:40px -85px auto;
 	text-align: center;
 	background: url(<c:url value='/resources/img/default/index/login_panel.png' ></c:url>) center no-repeat;
 }
@@ -68,13 +68,13 @@ body {
 
 .login-logo {
 	height: 80px;
-	margin:0 auto;
+	margin:5px auto;
 	text-align: center;
 }
 
 .form-horizontal {
 	margin: 0 auto;
-	height: 280px;
+	height: 295px;
 }
 
 .form-horizontal .controls {
@@ -83,7 +83,7 @@ body {
 
 .form-horizontal-register {
 	margin: 0 auto;
-	height: 385px
+	height: 315px
 }
 
 .hr-bg {
@@ -91,16 +91,13 @@ body {
 	background: url(<c:url value='/resources/img/default/index/hr.png' ></c:url>) center no-repeat;
 }
 .login-hr-bg {
-	height: 20px;
+	height: 15px;
 	background: url(<c:url value='/resources/img/default/index/hr.png' ></c:url>) center no-repeat;
 }
 .register-hr-bg {
-	height: 10px;
+	height: 8px;
 	margin-top: -5px;
 	background: url(<c:url value='/resources/img/default/index/hr.png' ></c:url>) center no-repeat;
-}
-.inputError{
-	height: 10px;
 }
 .radio.inline{
 	width: 20%;
@@ -140,19 +137,17 @@ body {
 			<form:form class="form-horizontal" action="signin" id="sigin_info_form" modelAttribute="loginForm" method="post">
 				<h1 class="form-signin-heading" style="font-family: 'Microsoft YaHei'; font-size: 25pt;">用户登录</h1>
 				<div class="hr-bg"></div>
-				<div style="height: 10px"></div>
 				<div class="controls" id="email">
 					<h5 style="text-align: left;">邮箱地址</h5>
 					<div class="controls" style="text-align: left;">
 						<input type="text" id="em" name="email" placeholder="请输入您的邮箱地址" style="width: 96.17%;">
-						<span class="help-inline" id="emailErrors"></span>
 					</div>
 				</div>
 				<div class="controls" id="password">
 					<h5 style="text-align: left;">登录密码</h5>
 					<div class="controls" style="text-align: left;">
 						<input type="password" id="ps" name="password" placeholder="请输入您的密码" style="width: 96.17%;">
-						<span class="help-inline" id="passwordErr"></span>
+						<span class="help-inline" id="passwordErr"><form:errors path="psw"></form:errors></span>
 					</div>
 				</div>
 				<div class="span9 left">
@@ -160,11 +155,7 @@ body {
 						<a id="fogotPswbtn" href="<c:url value='#'></c:url>"><font color="#444">忘记密码？</font></a>
 					</h5>
 				</div>
-				<div class="span9 right">
-					<button class="btn btn-large btn-block btn-primary" type="submit" onclick="return checkEmailAndPwd();" style="font-family: 'Microsoft YaHei';">登录</button>
-				</div>
-				<label style="clear: right;"></label>
-				<div style="height: 10px;"></div>
+				<button class="btn btn-large btn-block btn-primary" type="submit" onclick="return checkEmailAndPwd();" style="font-family: 'Microsoft YaHei';">登录</button>
 			</form:form>
 			<div class="login-hr-bg"></div>
 			<a id="registerbtn" class="btn btn-large btn-block btn-success"  style="font-family: 'Microsoft YaHei';">快速注册</a>
@@ -172,40 +163,40 @@ body {
 	</div>
 	<div class="span4 register-panel" style="display: none;">
 		<div class="login-context">
+			<div>
+				<img class="login-logo" src="<c:url value='/resources/img/default/index/login_logo.png' ></c:url>">
+			</div>
 			<form:form class="form-horizontal-register" style="margin-top: 10px;" id="register_info_form" action="register/common" modelAttribute="commonRegisterForm" method="post">
+				<h3 class="form-signin-heading" style="font-family: 'Microsoft YaHei'; font-size: 25pt;">快速注册</h3>
+				<div class="hr-bg"></div>
 				<div class="control" id="emails">
-					<h5 style="text-align: left;">邮箱地址</h5>
+					<h5 style="text-align: left; line-height: 5px; margin-top: 15px;">邮箱地址</h5>
 					<div class="controls" style="text-align: left;">
 						<input type="text" id="es" name="emails" placeholder="请输入您的邮箱地址" style="width: 96.17%;">
-						<!-- <div id="checkEmails" class="inputError"></div> -->
-						<span class="help-inline" id="emailsError"><form:errors path="emails"></form:errors></span>
 					</div>
 				</div>
 				<div class="control" id="psw" style="margin-top: -15px;">
-					<h5 style="text-align: left;">密码</h5>
+					<h5 style="text-align: left; line-height: 5px; margin-top: 15px;">密码</h5>
 					<div class="controls" style="text-align: left;">
 						<input type="password"  id="p" name="psw" placeholder="请设置您的密码" style="width: 96.17%;">
-						<!-- <div id="emptyPwd" class="inputError"></div> -->
-						<span class="help-inline" id="emptyPwd"><form:errors path="psw"></form:errors></span>
 					</div>
 				</div>
 				<div class="control" id="confirmpsw" style="margin-top: -15px;">
-					<h5 style="text-align: left;">密码确认</h5>
+					<h5 style="text-align: left; line-height: 5px; margin-top: 15px;">密码确认</h5>
 					<div class="controls" style="text-align: left;">
 						<input type="password" id="conf" name="confirmpsw" placeholder="请再次输入您的密码" style="width: 96.17%;">
-						<span class="help-inline" id="passwordError"><form:errors path="confirmpsw"></form:errors></span>
 					</div>
 				</div>
-				<div class="control">
-					<h5 style="text-align: left;">角色选择</h5>
-					<div class="controls" style="text-align: left;">
-						<label class="radio inline" style="font-family: 'Microsoft YaHei'; width: 30%;"> <input type="radio" name="userType" id="teacher" value="teacher" checked>教师用户
-						</label> <label class="radio inline" style="font-family: 'Microsoft YaHei'; width: 30%;"> <input type="radio" name="userType" id="enterprise" value="enterprise">企业用户
+				<div class="control" style="margin-top: -15px;">
+					<h5 style="text-align: left; line-height: 5px; margin-top: 15px;">角色选择</h5>
+					<div class="controls" style="text-align: left; margin-top: -5px;">
+						<label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 5pt; width: 20%;"> <input type="radio" name="userType" id="user" value="user" checked>普通用户</label>
+						<label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 5pt; width: 20%;"> <input type="radio" name="userType" id="teacher" value="teacher" >教师用户
+						</label> <label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 5pt; width: 20%;"> <input type="radio" name="userType" id="enterprise" value="enterprise">企业用户
 						</label>
 					</div>
 				</div>
-				<label style="clear: right;"></label>
-				<button type="submit" class="btn btn-large btn-block btn-primary" onclick="return registerOnclick();" style="margin-top: 15px; font-family: 'Microsoft YaHei';">确认注册</button>
+				<button type="submit" class="btn btn-large btn-block btn-primary" onclick="return registerOnclick();" style="font-family: 'Microsoft YaHei'; margin-top: 3px;">确认注册</button>
 			</form:form>
 			<div class="register-hr-bg"></div>
 			<a id="loginbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">用户登录</a>
@@ -224,7 +215,6 @@ body {
 					<h5 style="text-align: left;">您的注册邮箱地址</h5>
 					<div class="controls" style="text-align: left;">
 						<input type="text" id="emailForPsw" name="forgotemail" placeholder="请输入您已注册的邮箱地址" style="width: 96.17%;">
-						<!-- <div id="emailError" class="inputError"></div> -->
 						<span class="help-inline" id="emailError"><form:errors path="emailForPsw"></form:errors></span>
 					</div>
 				</div>
