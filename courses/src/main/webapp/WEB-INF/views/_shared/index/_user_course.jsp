@@ -21,11 +21,11 @@
 </style>
 <c:choose>
 	<c:when test="${sessionScope.sessionUserInfo!= null}">
-		<div class="carouselbg" style="text-align: left;">
+		<div class="carouselbg" style="text-align: left; margin-bottom: 8px;">
 			<c:choose>
 				<c:when test="${userCourseCount>0}">
 				<div style="margin-left: 10px; margin-right: 10px;">
-				<table cellpadding="14" style="width: 100%; "  >
+				<table cellpadding="15" style="width: 100%; "  >
 					<tr class="bb"><td colspan="3" align="left"><span class="user-title">我的课程</span></td></tr>
 			 		 <c:forEach items="${userCourse}" var="course"  begin="0" end="1">
 						<tr  >
@@ -83,7 +83,7 @@
 		</div>
 	</c:when>
 	<c:otherwise>
-		<div class="carouselbg">
+		<div class="carouselbg" style="height: 360px;">
 			<div id="myCarousel" class="carousel slide">
 				  <div class="carousel-inner" >
 				    <div class="item">
