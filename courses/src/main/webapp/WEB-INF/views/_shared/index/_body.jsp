@@ -41,23 +41,20 @@
     		<div>
    				<c:choose>
 					<c:when test="${c.teacherCourse.courseCover != null && c.teacherCourse.courseCover != ''}">
-					<!-- <a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'> <img src='<c:url value="${url }${c.teacherCourse.courseCover }"></c:url>' style="width: 250px; height: 187px;" />
-						</a> -->	
 						<div style="width: 250px; height: 189px; background-image: url('<c:url value="${url }${c.teacherCourse.courseCover }"></c:url>');  
 								background-repeat:no-repeat;background-position:center;  ">
-							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 162px;"></div></a>
-		    				<div style="height:22px;background-color:#000; padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
-		    					${c.teacherCourse.courseName} — ${c.teacherCourse.courseType }
+							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 160px;"></div></a>
+		    				<div id="contentlimit" style="height:24px;background-color:#000; width: 250px;  padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
+		    					${c.teacherCourse.courseName} 
 		   				 	</div>
 						</div>
 					</c:when>
 					<c:otherwise>
-						<!-- <a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 250px; height: 187px;" />
-						</a> -->
-						<div style="width: 250px; height: 187px; background-image: url('<c:url value="/resources/img/logo.png"></c:url>');  background-repeat:no-repeat;background-position:center;">
+						<div style="width: 250px; height: 187px; background-image: url('<c:url value="/resources/img/logo.png"></c:url>');  
+										background-repeat:no-repeat;background-position:center;">
 							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 162px;"></div></a>
 		    				<div style="height:25px;background-color:#000; padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
-		    					&nbsp;&nbsp;&nbsp;&nbsp;${c.teacherCourse.courseName} — ${c.teacherCourse.courseType }
+		    					${c.teacherCourse.courseName}
 		   				 	</div>
 						</div>
 					</c:otherwise>
@@ -100,19 +97,19 @@
 				<div class="span2">
 					<c:choose>
 						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 70px; height:70px;margin-bottom: 5px;" /></a>
+							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url }${t.user.photo_url }"></c:url>' style="width: 90px; height:90px;" /></a>
 						</c:when>
 						<c:otherwise>
-							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 175px; height:180px;margin-bottom: 10px;" /></a>
+							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 90px; height:90px;" /></a>
 						</c:otherwise>
 					</c:choose>
 					<div style="margin-top: 3px; "> 
 						<c:choose>
 						<c:when test="${t.user.name==null||t.user.name==''}">
-						<span id="contentlimit" style="width:85px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>尚未添加</a></span>
+						<span id="contentlimit" style="width:90px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>尚未添加</a></span>
 						</c:when>
 						<c:otherwise>
-						<span id="contentlimit" style="width:85px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a></span> 
+						<span id="contentlimit" style="width:90px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a></span> 
 						</c:otherwise>
 						</c:choose>
 					</div>
@@ -133,7 +130,7 @@
  	 	</tr>
  	 </table>
   </div>
-	  <div class="bgimg" style="background-position: left top; background-repeat: repeat;background-image: url('<c:url value="/courses/resources/img/default/index/white_bg.png"></c:url>');">
+	  <div class="bgimg">
 		  <c:if test="${fn:length(enterPriseList)==0}">
 		      <div class="teacherInfo">
 		     	 <h3>暂无企业数据</h3>	
