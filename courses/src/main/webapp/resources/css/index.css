@@ -198,22 +198,23 @@ border-top-color: #EEE;*/
   margin-right: 24px;*/
   background-position: center;
   background-repeat: no-repeat;
-  margin:20px 43px 20px 19px;
-  width: 127px;
-  height: 83px;
+  margin:30px 43px 20px 19px;
+  width: 131px;
+  height: 89px;
   text-align: center;
-padding-top: 20px;
+	padding: 2px;
+	border: 1px solid #ccc;
 }
 .container.teacher .teacherInfo .span2{
   background-position: center;
-  background-repeat: no-repeat;
   margin:30px 20px;
-  width: 92px;
-  height: 110px;
+  width: 96px;
+  height: 96px;
   /*background-color: #adcc75;*/
-  background-color:#ccdfa8;
+  /*background-color:#ccdfa8;*/
   text-align: center;
-  padding-top: 10px;
+  padding: 2px;
+  border: 1px solid #cccccc;
 }
 
 .container.teacher .teacherInfo .span3{
