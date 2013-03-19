@@ -11,7 +11,7 @@
 }
  .cont {
 	margin-left:90px;
-	margin-bottom: 10px;
+	margin-bottom: 43px;
 	padding-top: 20px;
 }
 .cont .top{
