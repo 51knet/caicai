@@ -38,9 +38,11 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 import com.knet51.ccweb.jpa.entities.teacher.CourseLesson;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
+import com.knet51.ccweb.jpa.entities.teacher.CourseType;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.services.CourseLessonService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
+import com.knet51.ccweb.jpa.services.CourseTypeService;
 import com.knet51.ccweb.jpa.services.ResourceTypeService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
@@ -62,6 +64,8 @@ public class TeacherCourseInfoDetailController {
 	private CourseLessonService lessonService;
 	@Autowired
 	private ResourceTypeService resourceTypeService;
+	@Autowired
+	private CourseTypeService courseTypeService;
 	
 	/**
 	 * update the teacher's course basic information
@@ -566,6 +570,25 @@ public class TeacherCourseInfoDetailController {
 		course.setPublish(GlobalDefs.PUBLISH_NUM_RECYCLE);
 		teacherCourseService.createTeacherCourse(course);
 		return "redirect:/admin/teacher/course/list";
+	}
+	
+	@RequestMapping(value="/admin/teacher/course/type/new/create",method=RequestMethod.POST)
+	public String createCourseType(@RequestParam("typeName") String typeName){
+		CourseType courseType = new CourseType();
+		courseType.setTypeName(typeName);
+		courseTypeService.createCourseType(courseType);
+		return "redirect:/admin/teacher/course/type/list";
+	}
+	
+	@RequestMapping(value="/admin/teacher/course/type/destory/{id}",method=RequestMethod.GET)
+	public String destoryCourseType(@PathVariable Long id,HttpSession session){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(!userInfo.getEmail().equals("tim@apple.com")){
+			return "redirect:/admin/teacher/course/list";
+		}else{
+			courseTypeService.destryCourseType(id);
+			return "redirect:/admin/teacher/course/type/list";
+		}
 	}
 	
 }

@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.teacher.CourseType;
 
 @Entity
 public class TeacherCourse extends AbstractEntity {
@@ -31,6 +31,15 @@ public class TeacherCourse extends AbstractEntity {
 	@ManyToOne
 	private Teacher teacher;
 	
+	@ManyToOne
+	private CourseType cType;
+	
+	public CourseType getcType() {
+		return cType;
+	}
+	public void setcType(CourseType cType) {
+		this.cType = cType;
+	}
 	public String getCourseName() {
 		return courseName;
 	}

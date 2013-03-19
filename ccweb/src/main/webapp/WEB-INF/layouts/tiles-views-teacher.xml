@@ -149,6 +149,12 @@
 		<put-attribute name="right" value="/WEB-INF/views/teacher/account/selfUrl.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="admin.teacher.course.type.list" extends="admin-layout">
+		<put-attribute name="title" value="课程" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/type/list/list.jsp"></put-attribute>
+	</definition>
+	
 	<!-- teacher message -->
 	
 	<definition name="admin.sendmessage" extends="frontPage-layout">

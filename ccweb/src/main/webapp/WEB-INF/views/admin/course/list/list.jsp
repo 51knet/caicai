@@ -29,7 +29,7 @@
 		<h4>课程管理</h4>
 	</div>
 	<div class="row1">	
-		<div style="text-align: right;">
+		<div style="text-align: left;">
 	<!-- 
 		<div id="player"></div>
 			    <script type="text/javascript">
@@ -42,13 +42,16 @@
 				</script> -->
 			<!-- 	<a style="margin-bottom: 10px; font-size: 14px;" href="#myModal" role="button"
 							class="btn" data-toggle="modal">添加新课程&nbsp;&nbsp;</a> -->
-			<span style="margin-right: 250px;">
+			<div >
 			 	<a href='<c:url value="/admin/teacher/course/list"></c:url>' style="margin-right: 10px;"> 全部课程</a> 
 				 <a href='<c:url value="/admin/teacher/course/list/unpub"></c:url>' style="margin-right: 10px;"> 未发布课程</a> 
 				<a href='<c:url value="/admin/teacher/course/list/publish"></c:url>'  style="margin-right: 10px;"> 已发布课程</a>
 				<a href='<c:url value="/admin/teacher/course/list/recycle"></c:url>'> 已删除课程</a>
-			</span>
-			<a  style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/course/addcourse"><c:param name="active" value="first" /></c:url>' class="btn">添加新课程</a>				
+				<c:if test='${sessionScope.sessionUserInfo.user.email  == "tim@apple.com"}'>
+					<a href='<c:url value="/admin/teacher/course/type/list"></c:url>'> 课程类别</a>
+				</c:if>	
+				<a  style=" font-size: 14px; float: right;" href='<c:url value="/admin/teacher/course/addcourse"><c:param name="active" value="first" /></c:url>' class="btn">添加新课程</a>
+			</div>
 			<br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>

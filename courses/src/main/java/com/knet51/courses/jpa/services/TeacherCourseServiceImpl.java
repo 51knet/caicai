@@ -133,11 +133,11 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		Sort sort = new Sort(Direction.DESC, "id");
 		List<TeacherCourse> teacherCourseList = courseRepository.findTeacherCourseByStatusAndPublish(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,sort);
 		for(int i=0;i<teacherCourseList.size();i++){
-			TeacherCourse teacherCourse = courseRepository.findOne(teacherCourseList.get(i).getId());
+			//TeacherCourse teacherCourse = courseRepository.findOne(teacherCourseList.get(i).getId());
 			Double avgMark = commentRepository.getMark(teacherCourseList.get(i).getId());
 			List<UserCourse> listComment=commentRepository.findByTeachercourseid(teacherCourseList.get(i).getId());
 			Integer userCount = listComment.size();
-			CourseBeans courseBeans = new CourseBeans(userCount, avgMark, teacherCourse);
+			CourseBeans courseBeans = new CourseBeans(userCount, avgMark, teacherCourseList.get(i));
 			courseBeansList.add(courseBeans);
 		}
 		return courseBeansList;
