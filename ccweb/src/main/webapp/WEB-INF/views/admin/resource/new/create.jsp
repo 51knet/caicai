@@ -127,7 +127,7 @@ $(document).ready(function() {
 		
  
 	 <!-- test uploadify 3.2 -->
-<!--  
+<!-- 
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/uploadify3.2/jquery.uploadify.min.js" />"></script>
 		<script type="text/javascript">
 			$(function() {
@@ -156,14 +156,14 @@ $(document).ready(function() {
 			});
 			</script>
 
-
+	<input type="hidden"  name="sessionid" id="sessionid" value="${sessionScope.sessionUserInfo.id}">
 	<input type="file" name="file_upload" id="file_upload" />
 
-	<p><a href="javascript:$('#file_upload').uploadify('settings', 'formData', {'rdesc':document.getElementById('id_file').value});$('#file_upload').uploadify('upload','*')">上传</a>
+	<p><a href="javascript:$('#file_upload').uploadify('settings', 'formData', {'rdesc':$('#id_file').val() , 'sessionid': $('#sessionid').val() }) ;$('#file_upload').uploadify('upload','*')">上传</a>
 	<a href="javascript:$('#file_upload').uploadify('cancel','*')">重置上传队列</a>
 	</p>
 	<input type="text"  name="rdesc" id="id_file">
-	 -->
+ -->
 	 
 	</div>	
 </div>

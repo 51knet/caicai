@@ -99,8 +99,8 @@ public class TeacherResouDetailInfoController {
 		MultipartHttpServletRequest request = (MultipartHttpServletRequest) httpRequest;
 		//UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		String desc = request.getParameter("rdesc");
-
-		logger.info("============="+desc);
+		String id = request.getParameter("sessionid");
+		logger.info("============="+desc+"====="+id);
 		Map<String, MultipartFile> fileMap = request.getFileMap();
 		for (Map.Entry<String, MultipartFile> entry : fileMap.entrySet()) {
 			MultipartFile file = entry.getValue();
