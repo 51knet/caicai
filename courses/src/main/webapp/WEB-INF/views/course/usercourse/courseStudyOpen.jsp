@@ -13,7 +13,7 @@
 
 .cont {
 	margin-left: 90px;
-	margin-bottom: 15px;
+	margin-bottom: 200px;
 	padding-top: 30px;
 }
 
@@ -32,7 +32,6 @@
 	border-bottom: solid #cccccc 1.5px;
 	padding-bottom: 10px;
 	padding-left:88px;
-	margin: 10px 0px 0px 0px;
 }
 </style>
 <script type="text/javascript">

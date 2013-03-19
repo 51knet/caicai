@@ -7,15 +7,15 @@
 .nar >h4{
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 	padding-left:88px;
-	margin: 10px 0px 0px 0px;
 }
 .nar_course.desc{
-	margin-left: 70px;
-	padding: 20px;
+	margin-left: 78px;
+	padding: 10px;
 }
 </style>
+<div style="margin-bottom: 200px;">
 		<div  class="nar">
 			<h4>课程介绍</h4>
 		</div>
@@ -56,6 +56,6 @@
 				</c:otherwise>
 			</c:choose>
 			</div>
-
+</div>
 
 

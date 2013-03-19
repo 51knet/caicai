@@ -18,7 +18,7 @@
 	margin-left:70px;
 	padding: 20px;
 	width:800px;
-	margin-bottom:70px;
+	margin-bottom:40px;
 }
 .container.course.title{
 	height: 240px;
@@ -26,13 +26,13 @@
 	margin-bottom:15px;
 	background-image: url('<c:url value='/resources/img/default/courseInfo.png'></c:url>');
 	background-repeat: repeat-x;
-	margin-top: 30px;
+	margin-top: 41px;
 }
 .container.course.content{
 	width: 25%; 
 	text-align:left; 
 	float: left;
-	margin-top: 28px;
+	margin-top: 32px;
 	margin-left: 60px;
 }
 .nar{
@@ -45,10 +45,9 @@
 	border-bottom: solid #cccccc 1.5px;
 	padding-bottom: 10px;
 	padding-left:88px;
-	margin: 10px 0px 0px 0px;
 }
 </style>
-<div style="margin-top: 10px;">
+<div>
 	<div>
 		<div class="container course title">
 			<div style="width: 42%; text-align:center; float: left;">
@@ -58,7 +57,7 @@
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 240px; height: 180px;margin-top: 10px;margin-left: 160px;" />
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 240px; height: 180px;margin-top: 30px;margin-left: 160px;" />
 						</a>
 					</c:otherwise>
 				</c:choose>
@@ -67,7 +66,7 @@
 					<span style="font-size: 25px;color:#80b029;" id="content">${course.courseName}</span><br/>
 					<span style="font-size: 18px;color:#80b029;">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
 					<span style="font-size: 14px;color: black;"> 类别：${course.courseType }</span><br/>
-					<span style="font-size: 14px;color: black;">课程评分：${course.courseDate }
+					<span style="font-size: 14px;color: black;">课程评分：
 					<c:choose>
     				<c:when test="${courseMark>0 }">
     					<fmt:formatNumber type="number" value="${courseMark }" maxFractionDigits="0" />
@@ -80,10 +79,10 @@
     				<span style="font-size: 14px;color: black;">学员（${studentPerson}）</span>
 				<c:choose>
 				<c:when test="${courseMark!=-1.0 }">
-				评论（${sumPerson}）&nbsp;&nbsp;
+				<span style="font-size: 14px;color: black;">评论（${sumPerson}）&nbsp;&nbsp;</span>
 				</c:when>
 				<c:otherwise>
-				评论（0）&nbsp;&nbsp;
+				<span style="font-size: 14px;color: black;">评论（0）&nbsp;&nbsp;</span>
 				</c:otherwise>
 				</c:choose><br/>
 				<a  href='<c:url value="/course/study/view/${course.id}"></c:url>'><img style="margin-top: 15px;" src='<c:url value="/resources/img/default/studyButton.png"></c:url>'  /></a>

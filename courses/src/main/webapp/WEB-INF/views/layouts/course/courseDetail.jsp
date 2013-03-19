@@ -15,7 +15,7 @@
 	margin-left: 60px;
 }
 </style>
-<div class="container course title" style="background-color: #f7f7f7; margin-top: 45px;">
+<div class="container course title" style="background-color: #f7f7f7; margin-top: 42px;">
 	<c:choose>
 		<c:when test="${course != null}">
 		<div class="images">

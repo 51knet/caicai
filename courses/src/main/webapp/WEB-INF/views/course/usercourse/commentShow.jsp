@@ -8,6 +8,8 @@
 .comments-container .content {
 	border-bottom: 1px dashed;
 	text-align:left;
+	margin-left:-1px;
+	width: 100%
 }
 
 .comments-container h5 {
@@ -52,7 +54,7 @@
 				    <span style="color:#80b029" >${usercourse.userName}&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				    <span>评分:${usercourse.userCourse.mark}&nbsp;&nbsp;&nbsp;&nbsp;
 				 	<fmt:formatDate value="${usercourse.userCourse.commentDate}" pattern="yyyy-MM-dd HH:mm"/></span><br/>
-				    <div style="margin-left:120px; width: 560px;">
+				    <div style="margin-left:110px; width: 560px;">
 				    <span >${usercourse.userCourse.commentDesc}</span>
 				    </div>
 				  </div>

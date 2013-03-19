@@ -46,14 +46,16 @@ $(document).ready(function() {
 	margin: 10px 0px 0px 0px;
 }
 .comment{
-	background-image: url('<c:url value='/resources/img/default/course_front_bg.png'></c:url>');
+	/* background-image: url('<c:url value='/resources/img/default/course_front_bg.png'></c:url>'); */
 	width: 100%;
 	margin-bottom: 200px;
-	padding-top: 20px;
+	padding-top: 15px;
 	background-position: top center;
-	background-repeat:repeat-x;
-	background-color: #ffffff;
-	
+}
+.radio.inline{
+	margin-bottom: 0px;
+	vertical-align: middle;
+	display: inline-block;
 }
 </style>
     <div class="nar">
@@ -70,14 +72,26 @@ $(document).ready(function() {
 			<textarea name="commentDesc"  placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width:630px;height: 100px;"></textarea>
 			<span class="help-inline"></span>
 	        </div>
-				<div class="control-group" id="mark">
+				<div class="control-group" id="mark" style="margin-top: -15px;">
 				<b >请选择分数:</b>
+				<label class="radio inline" style="width: 1%; font-family:Microsoft YaHei; font-size: 12pt;">
 				<input type="radio" name="mark" value="0" checked="checked">0
-				<input type="radio" name="mark" value="1">1
-				<input type="radio" name="mark" value="2">2
-				<input type="radio" name="mark" value="3">3
-				<input type="radio" name="mark" value="4">4
-				<input type="radio" name="mark" value="5">5
+				</label>
+				<label class="radio inline" style="width: 1%; font-family:Microsoft YaHei; font-size: 12pt;">
+				<input type="radio" name="mark" value="1" checked="checked">1
+				</label>
+				<label class="radio inline" style="width: 1%; font-family:Microsoft YaHei; font-size: 12pt;">
+				<input type="radio" name="mark" value="2" checked="checked">2
+				</label>
+				<label class="radio inline" style="width: 1%; font-family:Microsoft YaHei; font-size: 12pt;">
+				<input type="radio" name="mark" value="3" checked="checked">3
+				</label>
+				<label class="radio inline" style="width: 1%; font-family:Microsoft YaHei; font-size: 12pt;">
+				<input type="radio" name="mark" value="4" checked="checked">4
+				</label>
+				<label class="radio inline" style="width: 1%; font-family:Microsoft YaHei; font-size: 12pt;">
+				<input type="radio" name="mark" value="5" checked="checked">5
+				</label>
 				</div>
 				<div style="padding-bottom: 20px;">
 						<button type="submit" class="btn btn-success" >发表评论</button>
