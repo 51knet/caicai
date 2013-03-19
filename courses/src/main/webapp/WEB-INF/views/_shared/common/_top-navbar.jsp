@@ -21,8 +21,8 @@
 					</ul></li>
 			</c:if>
 			<c:if test="${sessionUserInfo == null}">
-				<li><a href='<c:url value="/signin"></c:url>'><h6>登录</h6></a><br></li>
-				<li><a href='<c:url value="/signup"></c:url>'><h6>注册</h6></a><br></li>
+				<li style="margin-top: -10px;"><a href='<c:url value="/signin"></c:url>'><h6>登录</h6></a><br></li>
+				<li style="margin-top: -10px;"><a href='<c:url value="/signup"></c:url>'><h6>注册</h6></a><br></li>
 			</c:if>
 			<li ><div style="width: 90px;"></div></li>
 		</ul>
