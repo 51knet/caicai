@@ -17,9 +17,6 @@
 				</a>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
 						<li><a href='<c:url value="/admin"></c:url>'>后台管理</a></li>
-						<li><a href='<c:url value="/teacher/${sessionUserInfo.id}"></c:url>'>我的主页</a></li>
-						<li><a href='<c:url value="/admin/teacher/resume?active=personal"></c:url>'>完善简历</a></li>
-						<li><a href='<c:url value="/admin/teacher/details?active=avatar"></c:url>'>账号设置</a></li>
 						<li class="divider"></li>
 						<li><a href='<c:url value="http://www.51knet.com/courses"></c:url>'>发现知识</a></li>
 						<li class="divider"></li>

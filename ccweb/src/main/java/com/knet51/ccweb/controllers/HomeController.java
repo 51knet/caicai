@@ -132,9 +132,9 @@ public class HomeController {
 				return "user.basic";
 			} else if (role.equals("teacher")) {
 				return "redirect:/teacher/" + id;
-			}else if(role.equals("student")) {
-				return "redirect:/student/"+ id;
-			}else {
+			} else if (role.equals("student")) {
+				return "redirect:/student/" + id;
+			} else {
 				return "404";
 			}
 		} catch (Exception e) {
