@@ -15,9 +15,10 @@
 	width: 100%;
 }
 .container.course.detail.desc{
-	margin-left: 75px;
-	padding: 30px;
+	margin-left:70px;
+	padding: 20px;
 	width:800px;
+	margin-bottom:70px;
 }
 .container.course.title{
 	height: 240px;
@@ -27,13 +28,24 @@
 	background-repeat: repeat-x;
 	margin-top: 30px;
 }
+.container.course.content{
+	width: 25%; 
+	text-align:left; 
+	float: left;
+	margin-top: 28px;
+	margin-left: 60px;
+}
 .nar{
-	background-color: #adcc75;
+	font-size:16px;
+	color:#adcc75;
 	height: 40px;
-	padding-top: 2px;
 }
 .nar >h4{
-	margin-left: 88px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+	padding-bottom: 10px;
+	padding-left:88px;
+	margin: 10px 0px 0px 0px;
 }
 </style>
 <div style="margin-top: 10px;">
@@ -42,18 +54,18 @@
 			<div style="width: 42%; text-align:center; float: left;">
 				<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 240px; height: 180px;margin-top:30px;" />
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 240px; height: 180px;margin-top:30px;margin-left: 160px;" />
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 240px; height: 180px;margin-top: 10px;" />
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 240px; height: 180px;margin-top: 10px;margin-left: 160px;" />
 						</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div style="margin-top: 33px;">
-					<span style="font-size: 20px;color:#80b029" id="content">${course.courseName}</span><br/>
-					<span style="font-size: 14px;color:#80b029">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
+			<div class="container course content">
+					<span style="font-size: 25px;color:#80b029;" id="content">${course.courseName}</span><br/>
+					<span style="font-size: 18px;color:#80b029;">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
 					<span style="font-size: 14px;color: black;"> 类别：${course.courseType }</span><br/>
 					<span style="font-size: 14px;color: black;">课程评分：${course.courseDate }
 					<c:choose>

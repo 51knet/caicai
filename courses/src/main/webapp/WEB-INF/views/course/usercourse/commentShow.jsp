@@ -42,10 +42,10 @@
 				  <span>
 				    	<c:choose >
 							<c:when test="${usercourse.photoUrl != null && usercourse.photoUrl != ''}">
-								<img src='<c:url value="${url }${usercourse.photoUrl }"></c:url>'   style="width:100px;height: 100px;" />
+								<img src='<c:url value="${url }${usercourse.photoUrl }"></c:url>'   style="width:60px;height: 60px;" />
 							</c:when>
 							<c:otherwise>
-								<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height:100px;" />
+								<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 60px;height:60px;" />
 							</c:otherwise>
 						</c:choose>
 				    </span>

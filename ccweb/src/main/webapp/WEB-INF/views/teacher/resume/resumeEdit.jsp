@@ -25,13 +25,25 @@
 }
 </style>
 <script type="text/javascript">
-$(function(){
-	var mes=$("#message").attr("title");
+/*   $(function(){
+	  var mes=$("#message").attr("title");
 	if(mes!=''){
 		alert("信息已保存");
 		return false;
-	}
-});
+	} 
+	
+}); */  
+	setTimeout(function(){
+ 		document.getElementById("message").style.display="none";
+	},2000);
+	setTimeout(function(){
+ 		document.getElementById("mess").style.display="none";
+	},2000);
+	setTimeout(function(){
+ 		document.getElementById("messages").style.display="none";
+	},2000);
+
+ 	  
 </script>
 
 
@@ -60,7 +72,7 @@ $(function(){
 				<div class="tab-pane <c:if test='${active == "personal"}'>active</c:if>" id="personal_info_tab">
 					<c:if test="${sessionScope.sessionUserInfo.teacher.isEnterprise == null}">
 						<form id="personal_info_form" action="personalInfo" class="form-horizontal" method="post">
-							<div id="message" style="margin-left: 155px;" title="${message}"></div>
+							<div id="message" style="margin-left: 155px;"><h4 style="color: #adcc75">${message}</h4></div>
 							<div class="control-group" id="name">
 								<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 								<div class="controls">
@@ -128,7 +140,7 @@ $(function(){
 					</c:if>
 					<c:if  test="${sessionScope.sessionUserInfo.teacher.isEnterprise != null}">
 						<form id="enterprise_info_form" action="enterprisepersonalInfo" class="form-horizontal" method="post">
-							<div id="message" style="margin-left: 155px;" title="${message}"></div>
+							<div id="messages"  style="margin-left: 155px;"><h4 style="color: #adcc75">${message}</h4></div>
 							<div class="control-group" id="name">
 								<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 								<div class="controls">
@@ -145,7 +157,7 @@ $(function(){
 				</div>
 				<div class="tab-pane <c:if test='${active == "contact"}'>active</c:if>" id="contact_info_tab">
 					<form class="form-horizontal" action="contactInfo" method="post" id="teacher_contact_from">
-					<div style="margin-left: 155px;" id="message" title="${message}"></div>
+					<div id="mess" style="margin-left: 155px;"><h4 style="color: #adcc75">${message}</h4></div>
 						<div class="control-group" id="address">
 							<label class="control-label" for="address">地址</label>
 							<div class="controls">

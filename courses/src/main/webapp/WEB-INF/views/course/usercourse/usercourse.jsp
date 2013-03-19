@@ -35,12 +35,15 @@ $(document).ready(function() {
 </script>
 <style>
 .nar{
-	background-color: #adcc75;
 	height: 40px;
 	padding-top: 2px;
 }
 .nar >h4{
-	margin-left: 88px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+	padding-bottom: 10px;
+	padding-left:88px;
+	margin: 10px 0px 0px 0px;
 }
 .comment{
 	background-image: url('<c:url value='/resources/img/default/course_front_bg.png'></c:url>');
@@ -49,7 +52,7 @@ $(document).ready(function() {
 	padding-top: 20px;
 	background-position: top center;
 	background-repeat:repeat-x;
-	background-color: #fff;
+	background-color: #ffffff;
 	
 }
 </style>

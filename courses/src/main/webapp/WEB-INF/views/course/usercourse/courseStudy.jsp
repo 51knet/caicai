@@ -11,21 +11,14 @@
 }
  .cont {
 	margin-left:90px;
-	margin-bottom: 15px;
-	padding-top: 30px;
+	margin-bottom: 90px;
+	padding-top: 20px;
 }
 .cont .top{
 	font-size: 14px; 
 	 background-color: #cccccc; 
 	 padding: 3px;
-}
-.nar{
-	background-color: #adcc75;
-	height: 40px;
-	padding-top: 2px;
-}
-.nar >h4{
-	margin-left: 88px;
+	 margin-bottom: 20px;
 }
 </style>
 <script type="text/javascript">
@@ -51,7 +44,7 @@
 									<div class="top" id="course_${status.index}" onclick="javascript:courseOnclick(this);">
 										<b>第${course.key}课时</b>
 									</div>
-									<c:forEach var="fileNames" items="${course.value}" varStatus="status">
+									<c:forEach var="fileNames" items="${course.value}" >
 										<c:if test="${fileNames.fileName!=null}">
 											<div class="fileName_${status.index}" style="width: 100%; margin-top: 5px; margin-bottom: 1px; border-bottom: 1px dotted #dcdcdc;">
 												<table style="width: 94%; margin-left: 20px;">
@@ -64,29 +57,6 @@
 																</c:if></td>
 															<td align="left" width="60%"><a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'> <span style="margin-left: 0px;">${fileNames.fileName}</span>
 															</a></td>
-															<%-- <td align="right" width="30%"><a href='<c:url  value="/course/study/view/resource/${fileNames.id}"></c:url>'><img
-																	src="<c:url  value="/resources/img/courseResource/u173_normal.jpg" ></c:url> "></a></td> --%>
-															<%-- <td><a href="#myModal_${status.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> <!-- Modal -->
-																<div id="myModal_${status.index}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-																	<div class="modal-header">
-																		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-																		<h3 id="myModalLabel">${fileNames.fileName}</h3>
-																	</div>
-																	<div class="modal-body">
-																		<div id="myPlayer_${status.index}"></div>
-																		<script type="text/javascript">
-																			//TODO: fix me, the file name extension should be mp4
-																			jwplayer("myPlayer_${status.index}").setup({
-																		        file: '<c:url value="${url}${fileNames.relativePath}"></c:url>',
-																		        //image: "/uploads/myPoster.jpg"
-																		        //TODO: each mp4 can have a preview image
-																		    });
-																		</script>
-																	</div>
-																	<div class="modal-footer">
-																		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-																	</div>
-																</div></td> --%>
 														</tr>
 													</tbody>
 												</table>

@@ -23,14 +23,16 @@
 	padding: 3px;
 }
 
-.nar {
-	background-color: #adcc75;
+.nar{
 	height: 40px;
 	padding-top: 2px;
 }
-
-.nar>h4 {
-	margin-left: 88px;
+.nar >h4{
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+	padding-bottom: 10px;
+	padding-left:88px;
+	margin: 10px 0px 0px 0px;
 }
 </style>
 <script type="text/javascript">
