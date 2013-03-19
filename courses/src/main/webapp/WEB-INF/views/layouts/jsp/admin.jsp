@@ -26,7 +26,7 @@
 .container.course.row{
      padding-left: 0px;
 	margin-left: 18%;
-	 margin-top: -205px;
+	 margin-top: -215px;
 	 text-align: left;
 }
 </style>
@@ -38,7 +38,7 @@
 			</div>
 			<!--/row-->
 			<tiles:insertAttribute name="breadcrumbs" />
-					<div class="container course" style="margin-top: 20px;">
+					<div class="container course" style="margin-top: 15px;">
 						<tiles:insertAttribute name="left" />
 					</div>
 				<!--/span-->

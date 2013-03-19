@@ -11,14 +11,13 @@
 }
  .cont {
 	margin-left:90px;
-	margin-bottom: 90px;
+	margin-bottom: 43px;
 	padding-top: 20px;
 }
 .cont .top{
 	font-size: 14px; 
 	 background-color: #cccccc; 
 	 padding: 3px;
-	 margin-bottom: 20px;
 }
 </style>
 <script type="text/javascript">
@@ -36,7 +35,7 @@
 		<c:choose>
 			<c:when test="${resourceCount>0 }">
 				<c:forEach var="course" items="${courseMap}" varStatus="status">
-				<table style="width: 89%; border: 2px solid #f1f1f1;">
+				<table style="width: 89%; border: 1px solid #f1f1f1;">
 					<tbody>
 						<tr>
 							<td align="left">
@@ -44,18 +43,19 @@
 									<div class="top" id="course_${status.index}" onclick="javascript:courseOnclick(this);">
 										<b>第${course.key}课时</b>
 									</div>
+									<div style="margin-top: 5px;">
 									<c:forEach var="fileNames" items="${course.value}" >
 										<c:if test="${fileNames.fileName!=null}">
-											<div class="fileName_${status.index}" style="width: 100%; margin-top: 5px; margin-bottom: 1px; border-bottom: 1px dotted #dcdcdc;">
+											<div class="fileName_${status.index}" style="width: 100%; margin-top:5px; margin-bottom: 1px; border-bottom: 1px dotted #dcdcdc;">
 												<table style="width: 94%; margin-left: 20px;">
 													<tbody>
 														<tr>
-															<td width="8%"><c:if test="${fileNames.resourceType.id ==1 }">
+															<td width="4%"><c:if test="${fileNames.resourceType.id ==1 }">
 																	<img src='<c:url value="/resources/resourceType/text.jpg"></c:url>' style="width: 40px; height: 40px;" />
 																</c:if> <c:if test="${fileNames.resourceType.id ==2}">
 																	<img src='<c:url value="/resources/resourceType/video.jpg"></c:url>' style="width: 40px; height: 40px;" />
 																</c:if></td>
-															<td align="left" width="60%"><a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'> <span style="margin-left: 0px;">${fileNames.fileName}</span>
+															<td align="left" width="60%"><a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'> <span>${fileNames.fileName}</span>
 															</a></td>
 														</tr>
 													</tbody>
@@ -63,6 +63,7 @@
 											</div>
 										</c:if>
 									</c:forEach>
+									</div>
 								</div>
 							</td>
 						</tr>
