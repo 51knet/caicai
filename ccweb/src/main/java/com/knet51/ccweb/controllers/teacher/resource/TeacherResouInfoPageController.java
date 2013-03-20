@@ -42,6 +42,14 @@ public class TeacherResouInfoPageController {
 	@Autowired
 	private TeacherService teacherService;
 	
+	/**
+	 * show a teacher's resources
+	 * @param session
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
 	@RequestMapping(value="/admin/teacher/resource/list")
 	public String teacherResouInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
@@ -53,31 +61,45 @@ public class TeacherResouInfoPageController {
 		model.addAttribute("page", onePage);
 		return "admin.teacher.resource.list";
 	}
+	
+	/**
+	 * show create resource page
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/admin/teacher/resource/new")
 	public String teacherResouAdd(HttpSession session,Model model ){
 		logger.info("#####Into TeacherResouInfoAdd#####");
-		List<ResourceType> listType = resourceTypeService.getAllType();
+		List<ResourceType> listType = resourceTypeService.getTypeByTypeStatus(GlobalDefs.STATUS_RESOURCETYPE);
 		model.addAttribute("type", listType);
 		return "admin.teacher.resource.new";
 	}
 	
+	/**
+	 * show the resource type list
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/admin/teacher/resource/type/list")
 	public String teacherResouType(Model model){
 		logger.info("#### Into TeacherResouType ####");
-		List<ResourceType> list = resourceTypeService.getAllType();
+		List<ResourceType> list = resourceTypeService.getTypeByTypeStatus(GlobalDefs.STATUS_RESOURCETYPE);
 		model.addAttribute("list", list);
 		return "admin.teacher.resource.type.list";
 	}
 	
 	
-	@RequestMapping(value="/admin/teacher/resource/type/add")
-	public String teacherResouTypeAdd(){
-		
-		return "admin.teacher.resource.type.add";
-	}
 	
 	/* teacher front page controller */
-	
+	/**
+	 * show the teacher's resource in front page
+	 * @param teacher_id
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
 	@RequestMapping(value="/teacher/{teacher_id}/resource/list")
 	public String teacherResourceList(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
@@ -93,6 +115,13 @@ public class TeacherResouInfoPageController {
 		return "teacher.resource.list";
 	}
 	
+	/**
+	 * show a resource detail information in front page
+	 * @param teacher_id
+	 * @param resource_id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/teacher/{teacher_id}/resource/view/{resource_id}")
 	public String teacherResourceDetail(@PathVariable Long teacher_id,@PathVariable Long resource_id,Model model){
 		User user = userService.findOne(teacher_id);

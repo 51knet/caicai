@@ -14,4 +14,6 @@ public interface ResourceTypeService {
 	void deleteById(Long id);
 	
 	List<ResourceType> getAllType(); 
+	
+	List<ResourceType> getTypeByTypeStatus(String typeStatus);
 }

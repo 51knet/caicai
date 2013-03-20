@@ -316,7 +316,7 @@ public class TeacherCourseInfoDetailController {
 		}
 		List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList;
-		List<ResourceType> listType = resourceTypeService.getAllType();
+		List<ResourceType> listType = resourceTypeService.getTypeByTypeStatus(GlobalDefs.STATUS_COURSE_RESOURCETYPE);
 		model.addAttribute("type", listType);
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String LessonNum = null;
