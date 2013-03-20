@@ -9,28 +9,9 @@
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.js"/>"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	var desc = KindEditor.create('textarea[name="commentDesc"]',{
-		cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
-		uploadJson : '${uploadJson}',
-		fileManagerJson : '${fileManagerJson}',
-		allowFileManager : true,
-		afterCreate : function() {
-			var self = this;
-			KindEditor.ctrl(document, 13, function() {
-				self.sync();
-				document.forms['anno_post'].submit();
-			});
-			KindEditor.ctrl(self.edit.doc, 13, function() {
-				self.sync();
-				document.forms['anno_post'].submit();
-			});
-		}
-	});
 	$("#usercourse_info_form").submit(function(){
-		desc.sync();
 		return checkEmptyAjax("usercourse_info_form","commentajax");
 	});
-	prettyPrint();
 });
 </script>
 <style>
@@ -62,14 +43,14 @@ $(document).ready(function() {
 			<h4>课程评论</h4>
 		</div>
 	<div class="comment">
-    <div style="margin-left: 88px;"><font color='#ff0000' >${message}</font></div>
-	<div style="margin-left: 88px;">
+    <div style="margin-left: 85px;"><font color='#ff0000' >${message}</font></div>
+	<div style="margin-left: 85px;">
 		<form id="usercourse_info_form" action="new" class="form-horizontal" method="post">
 		<div>
 		<input type="hidden" name="teachercourseid"  value="${id}" />
 		</div>
-			<div class="control-group" id="commentDesc">
-			<textarea name="commentDesc"  placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width:630px;height: 100px;"></textarea>
+			<div class="control-group" id="commentDesc" style="margin-top: 15px;">
+			<textarea name="commentDesc"  placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width:640px;height: 160px;"></textarea>
 			<span class="help-inline"></span>
 	        </div>
 				<div class="control-group" id="mark" style="margin-top: -15px;">
@@ -78,19 +59,19 @@ $(document).ready(function() {
 				<input type="radio" name="mark" value="0" checked="checked">0
 				</label>
 				<label class="radio inline" style="width: 1%; font-family:Microsoft YaHei; font-size: 12pt;">
-				<input type="radio" name="mark" value="1" checked="checked">1
+				<input type="radio" name="mark" value="1" >1
 				</label>
 				<label class="radio inline" style="width: 1%; font-family:Microsoft YaHei; font-size: 12pt;">
-				<input type="radio" name="mark" value="2" checked="checked">2
+				<input type="radio" name="mark" value="2" >2
 				</label>
 				<label class="radio inline" style="width: 1%; font-family:Microsoft YaHei; font-size: 12pt;">
-				<input type="radio" name="mark" value="3" checked="checked">3
+				<input type="radio" name="mark" value="3" >3
 				</label>
 				<label class="radio inline" style="width: 1%; font-family:Microsoft YaHei; font-size: 12pt;">
-				<input type="radio" name="mark" value="4" checked="checked">4
+				<input type="radio" name="mark" value="4" >4
 				</label>
 				<label class="radio inline" style="width: 1%; font-family:Microsoft YaHei; font-size: 12pt;">
-				<input type="radio" name="mark" value="5" checked="checked">5
+				<input type="radio" name="mark" value="5" >5
 				</label>
 				</div>
 				<div style="padding-bottom: 20px;">
