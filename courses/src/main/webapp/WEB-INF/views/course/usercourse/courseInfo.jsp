@@ -8,11 +8,12 @@
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 	padding-bottom: 5px;
-	padding-left:88px;
+	padding-left:30px;
 }
 .nar_course.desc{
-	margin-left: 78px;
+	margin-left: 25px;
 	padding: 10px;
+	width: 92%;
 }
 </style>
 <div style="margin-bottom: 200px;">
@@ -21,8 +22,8 @@
 		</div>
 			<div class="nar_course desc">
 				<c:choose>
-				<c:when test="${teacherCourse.courseDesc!=null}">
-					${teacherCourse.courseDesc}
+				<c:when test="${course.courseDesc!=null}">
+					${course.courseDesc}
 				</c:when>
 				
 				<c:otherwise>

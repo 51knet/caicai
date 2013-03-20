@@ -42,7 +42,7 @@ $(document).ready(function() {
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 	padding-bottom: 10px;
-	padding-left:88px;
+	padding-left:30px;
 	margin: 10px 0px 0px 0px;
 }
 .comment{
@@ -73,7 +73,7 @@ $(document).ready(function() {
 			<span class="help-inline"></span>
 	        </div>
 				<div class="control-group" id="mark" style="margin-top: -15px;">
-				<b >请选择分数:</b>
+				<label><b>请选择分数：</b></label>
 				<label class="radio inline" style="width: 1%; font-family:Microsoft YaHei; font-size: 12pt;">
 				<input type="radio" name="mark" value="0" checked="checked">0
 				</label>

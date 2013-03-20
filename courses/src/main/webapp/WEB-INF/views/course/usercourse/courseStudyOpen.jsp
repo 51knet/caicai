@@ -12,7 +12,7 @@
 }
 
 .cont {
-	margin-left: 90px;
+	margin-left: 30px;
 	margin-bottom: 200px;
 	padding-top: 30px;
 }
@@ -31,7 +31,7 @@
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 	padding-bottom: 10px;
-	padding-left:88px;
+	padding-left:30px;
 }
 </style>
 <script type="text/javascript">
