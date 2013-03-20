@@ -95,12 +95,19 @@ function previewImages(file){
 				<div class="tab-pane <c:if test='${active == "second"}'>active</c:if>" id="second_tab">
 					<form:form class="form-horizontal" action="new/secondstep" method="post" onsubmit="return checkPwd()" enctype="multipart/form-data">
 						<input type="hidden" name="courseId" value="${courseId }" />
-						<div id="password"><input type="radio" value="0" checked="checked" name="pass" style="margin-bottom: 20px;">公开<br/>
-						<input type="radio" value="1" name="pass">设置密码</div>
+						<div id="password">
+						<label class="radio inline" style="width: 38%; font-family:Microsoft YaHei; font-size: 12pt;">
+						<input type="radio" name="pass" value="0" checked="checked"style="margin-bottom: 20px;">公开
+						</label>
+						<br/>
+						<label class="radio inline" style="width: 38%; font-family:Microsoft YaHei; font-size: 12pt;">
+						<input type="radio" name="pass" value="1">设置密码
+						</label>
+						</div>
 						<div id="passwordInput">
 						<div class="modal-body" id="pwdform">
 							设置密码：<input type="text" id="pwd" name="pwd" style="width: 250px;" onblur="showCheckpwd();" onfocus="clearHtml();">
-							<label style="font-size: 16px;color: red;"> 只能输入数字或字母或者长度不能超过6个字符</label>
+							<span style="font-size: 16px;color: red;">输入数字或字母且者长度3-12字符之间</span>
 						<span id="pwdError"></span>
 						</div>
 						<div class="modal-body" id="checkpwdform" style="display: none;">
@@ -108,7 +115,14 @@ function previewImages(file){
 						</div>
 						</div>
 						<div class="modal-body" id="status">
-							发布到知识超市：<input type="radio" name="status" value="2" checked="checked">是&nbsp;&nbsp;<input type="radio" name="status" value="1">否
+							<span style="ont-family:Microsoft YaHei; font-size: 12pt;">发布到知识超市：
+						<label class="radio inline" style="width: 5%; font-family:Microsoft YaHei; font-size: 12pt;margin-left: 10px; margin-top: -8px;">
+						<input type="radio" name="status" value="0">是&nbsp;&nbsp;
+						</label>
+						<label class="radio inline" style="width:5%; font-family:Microsoft YaHei; font-size: 12pt;margin-top: -8px;">
+						<input type="radio" name="status" value="1">否
+						</label>
+						</span>
 						</div>
 						<div class="control-group">
 							<div class="controls">

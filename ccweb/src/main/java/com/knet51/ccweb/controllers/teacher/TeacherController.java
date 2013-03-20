@@ -26,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.login.LoginForm;
 import com.knet51.ccweb.controllers.teacher.achievement.TeacherHonorDetailInfoForm;
 import com.knet51.ccweb.controllers.teacher.achievement.TeacherPatentDetailInfoForm;
 import com.knet51.ccweb.controllers.teacher.achievement.TeacherProjectDetailInfoForm;
@@ -83,6 +84,24 @@ public class TeacherController {
 		}
 		model.addAttribute("active", active);
 		return "admin.teacher.details";
+	}
+	@RequestMapping(value="/admin/teacher/pswInfoCheck", method = RequestMethod.POST)
+	public void checkEmailAndPsw(HttpServletResponse response,HttpSession session,TeacherPswForm teacherPswForm) throws Exception{
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		PrintWriter out=response.getWriter();
+		String email=userInfo.getEmail();
+		User user=userService.findByEmailAddress(email);
+		String password=user.getPassword();
+		String oriPsw=teacherPswForm.getOri_psw();
+		Integer num=1;
+		if(!password.equals(oriPsw)){
+			num=0;
+		}
+		String number=num.toString();
+		out.write(number);
+		out.flush();
+		out.close();
 	}
 	/**
 	 * update the teacher's personalInfo
