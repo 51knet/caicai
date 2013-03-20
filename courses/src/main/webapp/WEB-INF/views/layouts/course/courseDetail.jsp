@@ -12,7 +12,7 @@
 }
 .images{
 	margin-top: 40px;
-	margin-left: 60px;
+	margin-left: 100px;
 }
 </style>
 <div class="container course title" style="background-color: #f7f7f7; margin-top: 42px;">
@@ -33,13 +33,13 @@
 							</c:otherwise>
 						</c:choose>
 					</td>
-					<td align="left" valign="top">
-						<div style="width:260px;" id="contentlimit">
+					<td align="left" valign="top" width="20%" >
+						<div style="margin-left: 20px; float: left;" id="contentlimit">
 						<h4>${course.courseName}</h4><h4>${course.courseType }</h4></div>
 					</td>
 					<td width="45%" align="left"  valign="top" style="line-height: 30px;">
-						<div style="width: 100%;height: 100%;">
-							<div style="float: left; height: 100px; width: 120px;">
+						<div>
+							<div style="margin-left:30px;margin-right:30px;float: left; height: 100px; width: 30%;">
 								<c:choose>
 									<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
 										<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />

@@ -29,11 +29,11 @@
 	margin-top: 41px;
 }
 .container.course.content{
-	width: 25%; 
+	width: 24%; 
 	text-align:left; 
 	float: left;
 	margin-top: 32px;
-	margin-left: 60px;
+	margin-left: 70px;
 }
 .nar{
 	font-size:16px;
@@ -49,8 +49,8 @@
 </style>
 <div>
 	<div>
-		<div class="container course title">
-			<div style="width: 42%; text-align:center; float: left;">
+		<div class="container course title" >
+			<div style="width: 42%; text-align:center;margin-left:75px; float: left;">
 				<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
 						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 240px; height: 180px;margin-top:30px;margin-left: 160px;" />
@@ -74,7 +74,7 @@
     				<c:otherwise>
     					0
     				</c:otherwise>
-    				</c:choose></span>&nbsp;分<br/>
+    				</c:choose>&nbsp;分</span><br/>
     				<span style="font-size: 14px;color: black;">发布时间：${course.courseDate }</span><br/>
     				<span style="font-size: 14px;color: black;">学员（${studentPerson}）</span>
 				<c:choose>
@@ -85,7 +85,7 @@
 				<span style="font-size: 14px;color: black;">评论（0）&nbsp;&nbsp;</span>
 				</c:otherwise>
 				</c:choose><br/>
-				<a  href='<c:url value="/course/study/view/${course.id}"></c:url>'><img style="margin-top: 15px;" src='<c:url value="/resources/img/default/studyButton.png"></c:url>'  /></a>
+				<a  href='<c:url value="/course/study/view/${course.id}"></c:url>'><img style="margin-top: 5px;" src='<c:url value="/resources/img/default/studyButton.png"></c:url>'  /></a>
 			</div>
 		</div>
 		<div class="nar">
