@@ -435,7 +435,12 @@ public class CourseController {
 		}
 		return "course.list";
 	}
-	
+	/**
+	 * show user's course list 
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/mycourses")
 	public String showUserCourse(HttpSession session,Model model){
 		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);

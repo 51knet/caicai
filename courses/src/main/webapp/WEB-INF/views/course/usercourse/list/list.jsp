@@ -46,7 +46,8 @@
 							</tr>
 						</table>
 				    </c:forEach>
-	    		</div></c:when>
+	    		</div>
+	    		</c:when>
 				<c:otherwise>
 					<div class="row" style="text-align:left; margin-left: 0px; margin-top: 10px;">
 				    	<table class="table table-bordered" style="width: 97%; height: 100%;" cellpadding="5">
