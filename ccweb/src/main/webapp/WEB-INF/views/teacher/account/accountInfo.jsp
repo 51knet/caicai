@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/loginCheck.js" />"></script>
 <style>
 .row-fluid.custom {
 	margin-bottom: 20px;
@@ -46,21 +46,21 @@
 				var uc_api = encodeURIComponent("${basePath}avatar/${sessionUserInfo.id}");
 				var urlCameraFlash = "<c:url value="/resources/avatar/camera.swf" />"+"?nt=1&inajax=1&appid=1&input=1&uploadSize=1024&ucapi=" + uc_api;
 				$('#flash_container').html(AC_FL_RunContent("width","450","height","253","scale","exactfit","src",""+urlCameraFlash+"","id","mycamera","name","mycamera","quality","high","bgcolor","#ffffff","wmode","transparent","menu","false","swLiveConnect","true","allowScriptAccess","always"));
-				var mes=$("#message").attr("title");
+				/* var mes=$("#message").attr("title");
 				if(mes!=''){
 					alert("信息已保存");
 					return false;
-				}
-				/* setTimeOut(function (){
-					document.getElementById("message").style.display="none";
-				},5000); */
+				} */
 			});
+			setTimeout(function(){
+		 		document.getElementById("message").style.display="none";
+			},2000);
 			</script>
 				<div id="flash_container"></div>
 				</div>
 				<div class="tab-pane <c:if test='${active == "psw"}'>active</c:if>" id="security_tab">
-				<div id="message" style="margin-left: 155px;" title="${message}"></div>
 					<form class="form-horizontal" action="changePsw" method="post" id="chanePsw_info_form">
+				    <div id="message" style="margin-left: 155px;"><h4 style="color: #adcc75">${message}</h4></div>
 						<div class="control-group" id="ori_psw">
 							<label class="control-label" for="ori_psw">当前密码</label>
 							<div class="controls">
@@ -114,9 +114,9 @@
 function selfurlOnclick(){
 	return checkEmptyAjax("selfurl_info_form","selfurlInfoAJAX");
 };
-function changPwdOnclick(){
-	return checkEmptyAjax("chanePsw_info_form","pswInfoAJAX");
-};
+ function changPwdOnclick(){
+	return modifyPwd("chanePsw_info_form","pswInfoAJAX");
+}; 
 $(document).ready(function(){
 	$("#alter_confirm_new_psw").focus(function(){
 		$("#errorPs").html("");
@@ -127,7 +127,7 @@ $(document).ready(function(){
 	$("#oriPsw").focus(function(){
 		$("#oriError").html("");
 	});
-	$("#oriPsw").blur(function(){
+/* 	$("#oriPsw").blur(function(){
 		var password=$("#oriPsw").val();
 		$.ajax({
 			type:"post",
@@ -143,8 +143,8 @@ $(document).ready(function(){
 			}
 		});
 		
-	});
-	$("#alter_confirm_new_psw").blur(function(){
+	}); */
+	/* $("#alter_confirm_new_psw").blur(function(){
 		var newPsw=$("#alter_new_psw").val().trim();
 		var confirmNewPsw=$("#alter_confirm_new_psw").val().trim();
 		if(newPsw!=confirmNewPsw){
@@ -152,7 +152,7 @@ $(document).ready(function(){
 			return false;
 		}
 		
-	});
+	}); */
 	
 });
 </script>

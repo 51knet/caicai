@@ -202,3 +202,56 @@ function forgetPwd(formID, actionName) {
 		
 	});
 }
+/**
+ * 密码修改
+ * @param formID
+ * @param actionName
+ */
+function modifyPwd(formID, actionName) {
+	$form = $('#' + formID);
+	var action = actionName;
+	var psw=$("#alter_new_psw").val();
+	var confirmpsw=$("#alter_confirm_new_psw").val();
+	if(psw!=confirmpsw){
+		$("#errorPs").html("<font color='#ff0000'>两次输入的密码不一致,请重新输入</font>");
+		return false;
+	}
+	$form.bind('submit', function(e) {
+		var $inputs = $form.find('input');
+		var datas = collectFormData($inputs);
+		$.post(action, datas, function(response) {
+			$form.find('.modal-body').removeClass('error');
+			$form.find('.help-inline').empty();
+			$form.find('.alert').remove();
+			if (response.status == 'FAIL') {
+				for ( var i = 0; i < response.errorMessageList.length; i++) {
+					var item = response.errorMessageList[i];
+					var $controlGroup = $('#' + item.fieldName);
+					$controlGroup.addClass('error');
+					$controlGroup.find('.help-inline').html("<font color='#ff0000'>"+item.message+"</font>");
+				}
+			} else{
+				$.ajax({
+					type: "post",
+					url: "pswInfoCheck",
+					data:datas,
+					dataType:"text",
+					success:function(num){
+						if(num=='0'){
+							$("#oriError").html("<font color='#ff0000'>" + "输入的密码不正确"
+									+ "</font>");
+							return false;
+						}else{
+							$form.unbind('submit');
+							$form.submit();
+						}
+					}
+				});
+				
+			}
+		}, 'json');
+		e.preventDefault();
+		return false;
+		
+	});
+}

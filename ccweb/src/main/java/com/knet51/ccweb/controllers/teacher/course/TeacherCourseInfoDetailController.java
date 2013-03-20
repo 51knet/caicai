@@ -366,7 +366,7 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/basicinfomodify",method=RequestMethod.POST)
-	public String modifyBasicMessage(HttpSession session,@RequestParam("courseId") Long id,Model model,
+	public String modifyBasicMessage(HttpSession session,@RequestParam("courseId") Long id,RedirectAttributes redirectAttr,Model model,
 			HttpServletRequest request,@Valid TeacherCourseInfoForm teacherCourseInfoForm,BindingResult validResult){
 		if (validResult.hasErrors()) {
 			logger.info("detailInfoForm Validation Failed " + validResult);
@@ -381,6 +381,7 @@ public class TeacherCourseInfoDetailController {
 			course.setCourseType(courseType);
 			course.setCourseDesc(courseDesc); 
 			teacherCourseService.updateTeacherCourse(course);
+			redirectAttr.addFlashAttribute("message", "保存成功");
 		}
 		model.addAttribute("course", course);
 	}
@@ -412,13 +413,14 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/detailinfomodify",method=RequestMethod.POST)
-	public String modifyDetailMessage(HttpSession session,@RequestParam("courseId") Long id,Model model,HttpServletRequest request){
+	public String modifyDetailMessage(HttpSession session,@RequestParam("courseId") Long id,Model model,RedirectAttributes redirectAttr,HttpServletRequest request){
 		String character=request.getParameter("courseCharacter");
 		String targetPerson=request.getParameter("targetPerson");
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		course.setCourseCharacter(character);
 		course.setTargetPerson(targetPerson);
 		model.addAttribute("course", course);
+		redirectAttr.addFlashAttribute("message", "保存成功");
 		return "redirect:/admin/teacher/course/edit/"+id+"/detailinfo";
 	}
 	/***
@@ -521,13 +523,14 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/powerpricemodify")
-	public String modifyPowerPrice(HttpSession session,@RequestParam("courseId") Long id,Model model,HttpServletRequest request){
+	public String modifyPowerPrice(HttpSession session,@RequestParam("courseId") Long id,Model model,RedirectAttributes redirectAttr,HttpServletRequest request){
 		Integer status=Integer.parseInt(request.getParameter("status"));
 		String pwd=request.getParameter("pwd");
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		course.setStatus(status);
 		course.setPwd(pwd.trim());
 		model.addAttribute("course", course);
+		redirectAttr.addFlashAttribute("message", "保存成功");
 		return "redirect:/admin/teacher/course/edit/"+id+"/powerprice";
 	}
 	/**

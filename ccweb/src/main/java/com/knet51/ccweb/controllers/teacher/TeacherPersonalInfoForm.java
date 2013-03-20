@@ -20,11 +20,8 @@ public class TeacherPersonalInfoForm {
 	private String school;
 	// private String university_province;
 	// private String university_city;
-	@Size(max=25)
 	private String title;
-	@Size(max=25)
 	private String major;
-	@Size(max=25)
 	private String role;
 
 	public String getName() {

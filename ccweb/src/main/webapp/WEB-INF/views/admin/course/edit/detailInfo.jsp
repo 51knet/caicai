@@ -26,12 +26,18 @@
 	margin: 20px 40px;
 }
 </style>
+<script type="text/javascript">
+setTimeout(function(){
+		document.getElementById("message").style.display="none";
+},2000);
+</script>
 <div class="row-fluid custom round">
 	<div class="row">
 		<h4>详细信息</h4>
 	</div>
 	<div class="row1">
 		<form action="<c:url value="/admin/teacher/course/edit/detailinfomodify"></c:url>" method="post" name="detail_form">
+				<div id="message" style="margin-left: 155px;"><h4 style="color: #adcc75">${message}</h4></div>
 				<input type="hidden" name="courseId" value="${course.id}">
 				<div>
 					<table >

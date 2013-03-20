@@ -1,6 +1,7 @@
 package com.knet51.ccweb.controllers.register;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.knet51.ccweb.util.validators.FieldMatch;
@@ -14,6 +15,7 @@ public class CommonRegisterForm {
 	@NotEmpty
 	@Email
 	private String emails;
+	@Length(min=3,max=12)
 	@NotEmpty
 	private String psw;
 	@NotEmpty
