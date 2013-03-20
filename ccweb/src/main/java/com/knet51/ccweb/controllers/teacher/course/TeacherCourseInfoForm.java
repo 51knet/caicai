@@ -11,7 +11,7 @@ public class TeacherCourseInfoForm {
 	@NotEmpty
 	private String courseDesc;
 	
-	private String courseType;
+	private Long courseType;
 	
 	public String getCourseName() {
 		return courseName;
@@ -25,10 +25,10 @@ public class TeacherCourseInfoForm {
 	public void setCourseDesc(String courseDesc) {
 		this.courseDesc = courseDesc;
 	}
-	public String getCourseType() {
+	public Long getCourseType() {
 		return courseType;
 	}
-	public void setCourseType(String courseType) {
+	public void setCourseType(Long courseType) {
 		this.courseType = courseType;
 	}
 	

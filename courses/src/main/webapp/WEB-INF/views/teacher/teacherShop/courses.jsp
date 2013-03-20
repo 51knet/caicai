@@ -92,7 +92,7 @@
 					<td valign="top">
 						<div style="width:230px;" id="contentlimit">
 						<b style="font-size: 17px;">${course.courseName}</b><br><br>
-						类别：${course.courseType }<br>
+						类别：${course.cType.typeName }<br>
 						描述：${course.courseDesc }<br>
 						日期：${course.courseDate }</div>
 					</td>

@@ -53,7 +53,8 @@ import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 public class TeacherCourseInfoDetailController {
 	private static Logger logger = 
 			LoggerFactory.getLogger(TeacherCourseInfoDetailController.class);
-	
+	public static final long MAX_RESOURCE_SIZE_200M = 200*1024*1024;
+	public static final long MAX_COVER_SIZE_2M = 2*1024*1024;
 	@Autowired
 	private TeacherCourseService teacherCourseService;
 	@Autowired
@@ -166,7 +167,7 @@ public class TeacherCourseInfoDetailController {
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
-				if(multipartFile.getSize()>1024*1024*200){
+				if(multipartFile.getSize()>MAX_RESOURCE_SIZE_200M){
 					redirectAttributes.addFlashAttribute("fileMaxError", "上传文件不得大于200M");
 					return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 				}
@@ -227,7 +228,7 @@ public class TeacherCourseInfoDetailController {
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
-				if(multipartFile.getSize()>1024*1024*200){
+				if(multipartFile.getSize()>MAX_RESOURCE_SIZE_200M){
 					redirectAttributes.addFlashAttribute("fileMaxError", "上传文件不得大于200M");
 					return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 				}
@@ -316,7 +317,7 @@ public class TeacherCourseInfoDetailController {
 		}
 		List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList;
-		List<ResourceType> listType = resourceTypeService.getAllType();
+		List<ResourceType> listType = resourceTypeService.getTypeByTypeStatus(GlobalDefs.STATUS_COURSE_RESOURCETYPE);
 		model.addAttribute("type", listType);
 		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 		String LessonNum = null;
@@ -357,6 +358,8 @@ public class TeacherCourseInfoDetailController {
 				return "redirect:/admin/teacher/course/list";
 			}
 		}
+		List<CourseType> cTypeList = courseTypeService.findAll();
+		model.addAttribute("typeList", cTypeList);
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.basicinfo";
 	}
@@ -374,11 +377,13 @@ public class TeacherCourseInfoDetailController {
 		}else{
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		String courseName=teacherCourseInfoForm.getCourseName();
-		String courseType=teacherCourseInfoForm.getCourseType();
+		Long courseType=teacherCourseInfoForm.getCourseType();
 		String courseDesc=teacherCourseInfoForm.getCourseDesc();
 		if(courseName!=null||courseType!=null||courseDesc!=null){
+			CourseType ctype = courseTypeService.findOneById(courseType);
 			course.setCourseName(courseName);
-			course.setCourseType(courseType);
+			course.setcType(ctype);
+			//course.setCourseType(ctype.getTypeName());
 			course.setCourseDesc(courseDesc); 
 			teacherCourseService.updateTeacherCourse(course);
 			redirectAttr.addFlashAttribute("message", "保存成功");
@@ -451,7 +456,8 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/moidfycover",method=RequestMethod.POST)
-	public String modifyCreateCover(HttpSession session,@RequestParam("courseId") Long id,MultipartHttpServletRequest request,Model model) throws Exception{
+	public String modifyCreateCover(HttpSession session,@RequestParam("courseId") Long id,MultipartHttpServletRequest request,
+			Model model,RedirectAttributes redirectAttributes) throws Exception{
 			List<MultipartFile> files = request.getFiles("coverFile");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		TeacherCourse teacherCourse=teacherCourseService.findOneById(id);
@@ -460,6 +466,10 @@ public class TeacherCourseInfoDetailController {
 			MultipartFile multipartFile = files.get(i);
 			if(!files.get(i).isEmpty()){
 				//logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
+				if(multipartFile.getSize()>MAX_COVER_SIZE_2M){
+					redirectAttributes.addFlashAttribute("errorMsg", "图片不得大于2M");
+					return "redirect:/admin/teacher/course/addcourse?active=first";
+				}else{
 				String fileName = multipartFile.getOriginalFilename();
 				String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
 				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId();
@@ -471,6 +481,7 @@ public class TeacherCourseInfoDetailController {
 				FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
 				String savePath = FileUtil.getSavePath("course", userInfo.getId(), teacherCourse.getId()+"", request)+"/small"+"."+fileExtension;
 				teacherCourse.setCourseCover(savePath);
+				}
 			}      
 		}
 		TeacherCourse course = teacherCourseService.updateTeacherCourse(teacherCourse);

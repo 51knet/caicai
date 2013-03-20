@@ -71,10 +71,10 @@
 					</c:choose>
 				</div>
 				<div style="width: 60%; float: left; height:150px;border: 0px solid #cccccc; font-size: 13px;">
-					<div style="width: 100%; float: left; ">
-						<h4 style="width: 300px;" id="content">${course.courseName}</h4>
+					<div style="width: 100%; float: left; width: ">
+						<h4 style="width: 400px;" id="content">${course.courseName}</h4>
 						<h5>${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</h5>
-						<h5>类别：${course.courseType }</h5>
+						<h5>类别：${course.cType.typeName }</h5>
 						<h5>发布时间：${course.courseDate }</h5>
 						<c:if test="${course.publish==2}">
 								<a href= '<c:url value="/admin/teacher/course/edit/${course.id }/preview"></c:url>'  class="btn  btn-success"  target="_blank" >预览</a>

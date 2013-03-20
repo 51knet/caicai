@@ -54,6 +54,16 @@ public class TeacherResouDetailInfoController {
 	@Autowired 
 	private CourseResourceService courseResourceService;
 	
+	/**
+	 *  create a new resource
+	 * @param session
+	 * @param model
+	 * @param desc
+	 * @param value
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/resource/new/create",method=RequestMethod.POST)
 	public String teacherResouInfo(HttpSession session,Model model,@RequestParam("desc") String desc,
@@ -128,7 +138,14 @@ public class TeacherResouDetailInfoController {
 //		return new ModelAndView("teacherResouAddDetail", (Map) model); 
 //				Map<String, MultipartFile> fileMap = request.getFileMap();
 //	}
-	
+	/**
+	 * destory a resource
+	 * @param session
+	 * @param model
+	 * @param resource_id
+	 * @return
+	 * @throws Exception
+	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/resource/destory",method=RequestMethod.POST)
 	public String teacherResouDele(HttpSession session,Model model, @RequestParam("resourceId")Long resource_id) throws Exception{
@@ -138,21 +155,7 @@ public class TeacherResouDetailInfoController {
 		return "redirect:/admin/teacher/resource/list";
 	}
 	
-	@Transactional
-	@RequestMapping(value="/admin/teacher/resource/type/new",  method = RequestMethod.POST)
-	public String teacherResouTypeAdd(@Valid TeacherResouTypeInfoForm teacherResouTypeInfo,
-			BindingResult validResult, HttpSession session,Model model){
-		String typeName = teacherResouTypeInfo.getTypeName();
-		if (validResult.hasErrors()) {
-			 logger.info("detailInfoForm Validation Failed " + validResult);
-			 return "redirect:/admin/teacher/resource/new";
-		} else {
-			ResourceType resourceType = new ResourceType();
-			resourceType.setTypeName(typeName);
-			resourceTypeService.save(resourceType);
-			return "redirect:/admin/teacher/resource/new";
-		}
-	}
+
 	@RequestMapping(value = "/admin/teacher/resource/resourceTypeAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse resourceTypeFormAjaxJson(@Valid  TeacherResouTypeInfoForm teacherResouTypeInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
@@ -165,6 +168,14 @@ public class TeacherResouDetailInfoController {
 		return "redirect:/admin/teacher/resource/type/list";
 	}
 	
+	/**
+	 * create a new resource type
+	 * @param teacherResouTypeInfo
+	 * @param validResult
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/resource/type/new/create",  method = RequestMethod.POST)
 	public String teacherResouTypeAddInfo(@Valid TeacherResouTypeInfoForm teacherResouTypeInfo,
@@ -176,11 +187,19 @@ public class TeacherResouDetailInfoController {
 		} else {
 			ResourceType resourceType = new ResourceType();
 			resourceType.setTypeName(typeName);
+			resourceType.setTypeStatus(GlobalDefs.STATUS_RESOURCETYPE);
 			resourceTypeService.save(resourceType);
 			return "redirect:/admin/teacher/resource/type/list";
 		}
 	}
-	
+	/**
+	 * download a resource
+	 * @param resource_id
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/resource/download/{resource_id}")
 	public String resourceDownLoad(@PathVariable Long resource_id,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		logger.info("-------Into resource DownLoad controller------");

@@ -69,17 +69,11 @@ function previewImages(file){
 									</div>
 								</div>
 								<div class="modal-body" id="course">
-									课程类别：<select name="courseType" style="width: 380px;">
-										<option selected value="计算机科学与技术">计算机科学与技术</option>
-										<option value="生物">生物</option>
-										<option value="数学">数学</option>
-										<option value="化学">化学</option>
-										<option value="语文">语文</option>
-										<option value="历史">历史</option>
-										<option value="金融">金融</option>
-										<option value="英语">英语</option>
-										<option value="哲学">哲学</option>
-										<option value="其他">其他</option>
+									课程类别：
+									<select name="courseType" style="width: 380px;">
+										<c:forEach items="${typeList}" var="l">
+											<option  value="${l.id}">${l.typeName}</option>
+										</c:forEach>
 									</select>
 									<span class="help-inline"></span>
 								</div>

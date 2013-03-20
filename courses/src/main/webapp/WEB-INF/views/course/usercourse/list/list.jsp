@@ -23,7 +23,7 @@
 									</c:choose>
 								</td>
 								<td>
-									<div style="width:400px;" id="contentlimit">课程名称：${course.courseName}<br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
+									<div style="width:400px;" id="contentlimit">课程名称：${course.courseName}<br>课程类别：${course.cType.typeName }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
 								</td>				
 								<td width="35%" align="left">
 									<div style="width: 100%;height: 100%;">

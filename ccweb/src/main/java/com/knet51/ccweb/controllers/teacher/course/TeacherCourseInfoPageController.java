@@ -200,6 +200,8 @@ public class TeacherCourseInfoPageController {
 		if (active == null || active.equals("")) {
 			active = "first";
 		}
+		List<CourseType> cTypeList = courseTypeService.findAll();
+		model.addAttribute("typeList", cTypeList);
 		model.addAttribute("active", active);
 
 		return "admin.teacher.course.add";
@@ -218,6 +220,7 @@ public class TeacherCourseInfoPageController {
 			List<MultipartFile> files = request.getFiles("coverFile");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Teacher teacher = teacherService.findOne(userInfo.getId());
+			CourseType cType = courseTypeService.findOneById(courseInfoForm.getCourseType());
 			TeacherCourse course = new TeacherCourse();
 			String courseName = courseInfoForm.getCourseName();
 			String courseDesc = courseInfoForm.getCourseDesc();
@@ -229,7 +232,8 @@ public class TeacherCourseInfoPageController {
 			course.setStatus(GlobalDefs.STATUS_CCWEB);
 			course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
 			course.setTeacher(teacher);
-			course.setCourseType(courseInfoForm.getCourseType());
+			course.setcType(cType);
+			//course.setCourseType(cType.getTypeName());
 			TeacherCourse newCourse = teacherCourseService.createTeacherCourse(course);
 			for(int i=0;i<files.size();i++){
 				MultipartFile multipartFile = files.get(i);

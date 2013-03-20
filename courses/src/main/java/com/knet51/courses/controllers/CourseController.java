@@ -34,9 +34,11 @@ import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
+import com.knet51.ccweb.jpa.entities.teacher.CourseType;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
 import com.knet51.courses.beans.UserCourseBeans;
+import com.knet51.courses.jpa.services.CourseTypeService;
 import com.knet51.courses.jpa.services.ResourceService;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
@@ -55,6 +57,8 @@ public class CourseController {
 	private UserCourseService userCourseService;
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private CourseTypeService courseTypeService;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(CourseController.class);
@@ -84,25 +88,26 @@ public class CourseController {
 			Model model) throws Exception {
 		courseType = new String(courseType.getBytes("iso-8859-1"), "utf-8");
 		List<TeacherCourse> courseList = courseService.findAllCourses();
-		List<String> courseTypeList = courseService.courseTypeList();
+		//List<String> courseTypeList = courseService.courseTypeList();
+		List<CourseType> typeList = courseTypeService.findAll();
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
 		if (courseType.trim() != null && !courseType.trim().equals("全部课程")
 				&& !courseType.trim().equals("all")) {
 			for (TeacherCourse c : courseList) {
-				if (courseType.equals(c.getCourseType())) {
+				if (courseType.equals(c.getcType().getTypeName())) {
 					newCourseList.add(c);
 				}
 			}
 			model.addAttribute("courseType", courseType);
 			model.addAttribute("courseList", newCourseList);
 			model.addAttribute("courseCount", newCourseList.size());
-			model.addAttribute("courseTypeList", courseTypeList);
+			model.addAttribute("courseTypeList", typeList);
 
 		} else {
 			model.addAttribute("courseList", courseList);
 			model.addAttribute("courseType", courseType);
 			model.addAttribute("courseCount", courseList.size());
-			model.addAttribute("courseTypeList", courseTypeList);
+			model.addAttribute("courseTypeList", typeList);
 		}
 		return "course.list";
 	}

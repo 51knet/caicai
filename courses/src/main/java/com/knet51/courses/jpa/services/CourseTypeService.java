@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.services;
+package com.knet51.courses.jpa.services;
 
 import java.util.List;
 

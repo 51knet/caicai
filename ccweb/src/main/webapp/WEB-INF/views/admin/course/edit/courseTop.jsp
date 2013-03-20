@@ -6,7 +6,6 @@
 <style>
 .row-fluid.custom.teacherCourse {
 	text-align: left;
-	margin-top: 10px;
 	border:solid 0px #dcdcdc;
 	color:#cccccc;
 	background-image: url('<c:url value="/resources/img/default/course-topbg.png"></c:url>');
@@ -25,10 +24,10 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<div style="float: left; width: 75%;">
+	<div style="float: left; width: 70%; margin-left: 20px;">
 		<div style="margin-top: 10px; float: left; width:80%;">
 			<h4><span>${course.courseName}</span></h4>
-			<h4><span>${course.courseType}</span></h4>
+			<h4><span>${course.cType.typeName}</span></h4>
 		</div>
 		<div  style="float: left; vertical-align: middle; width: 20%; text-align: center;">
 			<c:if test="${course.publish==2}">
