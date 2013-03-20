@@ -35,7 +35,7 @@
 					</td>
 					<td align="left" valign="top" width="20%" >
 						<div style="margin-left: 20px; float: left;" id="contentlimit">
-						<h4>${course.courseName}</h4><h4>${course.courseType }</h4></div>
+						<h4>${course.courseName}</h4><h4>${course.cType.typeName }</h4></div>
 					</td>
 					<td width="45%" align="left"  valign="top" style="line-height: 30px;">
 						<div>

@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.teacher.CourseType;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
 import com.knet51.courses.controllers.defs.GlobalDefs;
+import com.knet51.courses.jpa.services.CourseTypeService;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 import com.knet51.courses.jpa.services.UserCourseService;
@@ -31,7 +33,8 @@ public class TeacherController {
 	private TeacherCourseService courseService;
 	@Autowired
 	private TeacherService teacherService;
-	
+	@Autowired
+	private CourseTypeService courseTypeService;
 	@Autowired
 	private UserCourseService userCourseService;
 	
@@ -132,8 +135,9 @@ public class TeacherController {
 			Model model,@PathVariable Long teacher_id) throws Exception {
 		courseType = new String(courseType.getBytes("iso-8859-1"), "utf-8");
 		Teacher teacher=teacherService.findOne(teacher_id);
-		List<String> courseTypeList = courseService.getCourseTypeByTeacherId(teacher_id);
+		//List<String> courseTypeList = courseService.getCourseTypeByTeacherId(teacher_id);
 		List<TeacherCourse> courseList=courseService.getAllCourseByTeacherId(teacher_id);
+		List<CourseType> typeList = courseTypeService.findAll();
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
 		if (courseType.trim() != null && !courseType.trim().equals("全部课程")) {
 			for (TeacherCourse c : courseList) {
@@ -144,13 +148,13 @@ public class TeacherController {
 			model.addAttribute("courseType", courseType);
 			model.addAttribute("teacherCourseList", newCourseList);
 			model.addAttribute("courseCount", newCourseList.size());
-			model.addAttribute("courseTypeList", courseTypeList);
+			model.addAttribute("courseTypeList", typeList);
 			model.addAttribute("teacher", teacher);
 		} else {
 			model.addAttribute("teacherCourseList", courseList);
 			model.addAttribute("courseType", courseType);
 			model.addAttribute("courseCount", courseList.size());
-			model.addAttribute("courseTypeList", courseTypeList);
+			model.addAttribute("courseTypeList", typeList);
 			model.addAttribute("teacher", teacher);
 		}
 		return "teacher.teacherInfo";

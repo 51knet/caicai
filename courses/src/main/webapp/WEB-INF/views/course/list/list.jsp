@@ -20,13 +20,13 @@
 <div class="selete_filter">
 	<select id="type" onchange="selectType()">
 		<option>全部课程</option>
-		<c:forEach items="${courseTypeList}" var="course">
+		<c:forEach items="${courseTypeList}" var="ct">
 			<c:choose>
-				<c:when test="${courseType == course}">
-					<option selected>${course}</option>
+				<c:when test="${courseType == ct.typeName}">
+					<option  selected>${ct.typeName}</option>
 				</c:when>
 				<c:otherwise>
-					<option value="">${course}</option>
+					<option value="">${ct.typeName}</option>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
@@ -42,6 +42,10 @@
 	 	 </table>
  </div>
  <div class="container user-course">
+ <c:if test="${courseCount <=0}">
+  <br>
+ 	<h4 style="margin-left: 70px;">未搜索到课程</h4>
+ </c:if>
  <br>
  	<c:forEach items="${courseList}" var="course">
 			<table cellpadding="20" style="width: 100%; height: 100%;  margin-bottom: 10px; "  >
@@ -60,7 +64,7 @@
 					</td>
 					<td valign="top">
 						<div style="width:370px; margin-top: 10px;" id="contentlimit">
-						<b style="font-size: 17px;">课程名称：${course.courseName}</b><br><br>课程类别：${course.courseType }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
+						<b style="font-size: 17px;">课程名称：${course.courseName}</b><br><br>课程类别：${course.cType.typeName }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
 					</td>
 					<td width="38%" align="left"  valign="top">
 						<div style="width: 100%;height: 100%;">

@@ -64,7 +64,7 @@
 			<div class="container course content">
 					<span style="font-size: 25px;color:#80b029;" id="content">${course.courseName}</span><br/>
 					<span style="font-size: 18px;color:#80b029;">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
-					<span style="font-size: 14px;color: black;"> 类别：${course.courseType }</span><br/>
+					<span style="font-size: 14px;color: black;"> 类别：${course.cType.typeName }</span><br/>
 					<span style="font-size: 14px;color: black;">课程评分：
 					<c:choose>
     				<c:when test="${courseMark>0 }">

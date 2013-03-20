@@ -84,7 +84,7 @@ function courseOnclick(obj) {
 				<br/>
 					<span style="width: 300px; margin-top:60px;font-size: 20px;color: black;" id="content">${course.courseName}</span><br/>
 					<span style="font-size: 14px;color: black;">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
-					<span style="font-size: 14px;color: black;"> 类别：${course.courseType }</span><br/>
+					<span style="font-size: 14px;color: black;"> 类别：${course.cType.typeName }</span><br/>
 					<span style="font-size: 14px;color: black;">发布时间：${course.courseDate }</span>
 				<!-- 	学员（0）&nbsp;&nbsp;评论（0）&nbsp;&nbsp; -->
 				</div>

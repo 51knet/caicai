@@ -69,7 +69,7 @@
 			</c:when>
 			<c:otherwise>
 			<br>
-				无内容<hr>
+				无内容
 			</c:otherwise>
 		</c:choose>
 		<div style="text-align: right;">
@@ -102,7 +102,7 @@
 				</c:when>
 				<c:otherwise>
 				<br>
-				无内容<hr>
+				无内容
 				</c:otherwise>
 			</c:choose>
 		<div style="text-align: right;">
@@ -115,7 +115,6 @@
 		<div class="row">
 			<h4>课程资料</h4>
 		</div>
-	
 		<div class="row">
 			<c:choose>
 				<c:when test="${courseCount !=0}">
@@ -159,7 +158,7 @@
 				</c:when>
 				<c:otherwise>
 				<br>
-					无内容<hr>
+					无内容
 				</c:otherwise>
 			</c:choose>
 		<div style="text-align: right;">

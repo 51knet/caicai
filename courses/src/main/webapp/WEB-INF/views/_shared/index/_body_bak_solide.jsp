@@ -39,7 +39,7 @@
 								background-repeat:no-repeat;background-position:center;  ">
 							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 147px;"></div></a>
 		    				<div style="height:40px;background-color:#000;   filter:alpha(opacity=70); color: #fff;">
-		    					<h5 >&nbsp;&nbsp;&nbsp;${c.teacherCourse.courseName} — ${c.teacherCourse.courseType }</h5>
+		    					<h5 >&nbsp;&nbsp;&nbsp;${c.teacherCourse.courseName} — ${c.teacherCourse.cType.typeName }</h5>
 		   				 	</div>
 						</div>
 					</c:when>
@@ -49,7 +49,7 @@
 						<div style="width: 250px; height: 187px; background-image: url('<c:url value="/resources/img/logo.png"></c:url>');  background-repeat:no-repeat;background-position:center;">
 							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 147px;"></div></a>
 		    				<div style="height:40px;background-color:#000;   filter:alpha(opacity=70); color: #fff;">
-		    					<h5 >&nbsp;&nbsp;&nbsp;${c.teacherCourse.courseName} — ${c.teacherCourse.courseType }</h5>
+		    					<h5 >&nbsp;&nbsp;&nbsp;${c.teacherCourse.courseName} — ${c.teacherCourse.cType.typeName }</h5>
 		   				 	</div>
 						</div>
 					</c:otherwise>

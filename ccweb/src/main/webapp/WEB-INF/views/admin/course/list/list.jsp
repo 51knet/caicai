@@ -77,7 +77,7 @@
 								</c:if>
 							</div>
 						</td>
-						<td align="center">${page.courseType}</td>
+						<td align="center">${page.cType.typeName}</td>
 						<td align="center">
 							<c:if test="${page.publish ==2 }">未发布</c:if>
 							<c:if test="${page.publish ==3 }">已发布</c:if>

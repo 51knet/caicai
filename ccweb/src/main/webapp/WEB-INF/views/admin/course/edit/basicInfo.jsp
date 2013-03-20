@@ -60,16 +60,10 @@ $(document).ready(function(){
 						<span class="help-inline"><form:errors path="name"></form:errors></span>
 				</div>
 				<div class="modal-body">
-							课程类别：<select name="courseType" style="width: 460px; " id="courseType" title="${course.courseType}">
-								<option selected value="计算机科学与技术">计算机科学与技术</option>
-								<option value="生物">生物</option>
-								<option value="数学">数学</option>
-								<option value="化学">化学</option>
-								<option value="语文">语文</option>
-								<option value="金融">金融</option>
-								<option value="英语">英语</option>
-								<option value="哲学">哲学</option>
-								<option value="其他">其他</option>
+							课程类别：<select name="courseType" style="width: 460px; " id="courseType" title="${course.cType.id}">
+								<c:forEach items="${typeList }" var = "t">
+									<option value="${t.id }"> ${t.typeName }</option>
+								</c:forEach>
 						</select>
 						<span class="help-inline"></span>
 					</div>

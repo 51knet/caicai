@@ -357,6 +357,8 @@ public class TeacherCourseInfoDetailController {
 				return "redirect:/admin/teacher/course/list";
 			}
 		}
+		List<CourseType> cTypeList = courseTypeService.findAll();
+		model.addAttribute("typeList", cTypeList);
 		model.addAttribute("course", course);
 		return "admin.teacher.course.edit.basicinfo";
 	}
@@ -374,11 +376,13 @@ public class TeacherCourseInfoDetailController {
 		}else{
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		String courseName=teacherCourseInfoForm.getCourseName();
-		String courseType=teacherCourseInfoForm.getCourseType();
+		Long courseType=teacherCourseInfoForm.getCourseType();
 		String courseDesc=teacherCourseInfoForm.getCourseDesc();
 		if(courseName!=null||courseType!=null||courseDesc!=null){
+			CourseType ctype = courseTypeService.findOneById(courseType);
 			course.setCourseName(courseName);
-			course.setCourseType(courseType);
+			course.setcType(ctype);
+			//course.setCourseType(ctype.getTypeName());
 			course.setCourseDesc(courseDesc); 
 			teacherCourseService.updateTeacherCourse(course);
 		}
