@@ -26,7 +26,7 @@
     	<c:choose>
 			<c:when test="${sumPerson>0}">
 			<h5>总评论人数：&nbsp;&nbsp;&nbsp;${sumPerson}
-			评论分数：
+			评论分数:
 			<c:choose>
     				<c:when test="${courseMark>0 }">
     					<fmt:formatNumber type="number" value="${courseMark }" maxFractionDigits="0" />&nbsp;&nbsp;分
@@ -52,7 +52,7 @@
 						</c:choose>
 				    </span>
 				    <span style="color:#80b029" >${usercourse.userName}&nbsp;&nbsp;&nbsp;&nbsp;</span>
-				    <span>评分：${usercourse.userCourse.mark}&nbsp;&nbsp;&nbsp;&nbsp;
+				    <span>评分:${usercourse.userCourse.mark}&nbsp;&nbsp;&nbsp;&nbsp;
 				 	<fmt:formatDate value="${usercourse.userCourse.commentDate}" pattern="yyyy-MM-dd HH:mm"/></span><br/>
 				    <div style="margin-left:110px; width: 560px;">
 				    <span >${usercourse.userCourse.commentDesc}</span>
