@@ -107,7 +107,7 @@ function previewImages(file){
 						<div id="passwordInput">
 						<div class="modal-body" id="pwdform">
 							设置密码：<input type="text" id="pwd" name="pwd" style="width: 250px;" onblur="showCheckpwd();" onfocus="clearHtml();">
-							<span style="font-size: 16px;color: red;">输入数字或字母且者长度3-12字符之间</span>
+							<span style="font-size: 16px;color: red;">输入数字或字母且密码长度为3-12字符之间</span>
 						<span id="pwdError"></span>
 						</div>
 						<div class="modal-body" id="checkpwdform" style="display: none;">

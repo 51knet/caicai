@@ -15,16 +15,6 @@
 body {
 	background-color:#FFFFFF;
 }
- .cont {
-	margin-left:90px;
-	margin-bottom: 10px;
-	padding-top: 10px;
-}
-.cont .top{
-	font-size: 14px; 
-	 background-color: #cccccc; 
-	 padding: 3px;
-}
 .container.course {
 	text-align: left;
 }
@@ -32,38 +22,55 @@ body {
 .container.course .row{
 	 margin-left: 0px;
 }
-.container.course.detail{
-	margin-left: 46px;
-	padding: 15px;
+.container.course.detail {
+	width: 100%;
 }
 .container.course.detail.desc{
-	margin-left: 75px;
-	padding: 15px;
-	width:800px;
+	margin-left:70px;
+	padding: 20px;
+	width:83.5%;
 }
 .container.course.title{
 	height: 240px;
 	width:1024px;
-	margin-bottom:35px;
+	margin-bottom:15px;
 	background-image: url('<c:url value='/resources/img/default/courseInfo.png'></c:url>');
 	background-repeat: repeat-x;
+	margin-top: 2px;
+}
+.container.course.content{
+	width: 37%; 
+	text-align:left; 
+	float: left;
+	margin-top: 32px;
+	margin-left: 70px;
 }
 .nar{
-	background-color: #adcc75;
+	font-size:16px;
+	color:#adcc75;
 	height: 40px;
-	padding-top: 2px;
-	width: 1024px;
 }
 .nar >h4{
-	margin-left: 88px;
+	color: #80b029;
+	border-bottom: solid #cccccc 1.5px;
+	padding-bottom: 10px;
+	padding-left:88px;
 }
-.content{
-	margin-left: 20px;
-	font-size: 15px;
+ .cont {
+	margin-left:90px;
+	margin-bottom: 43px;
+	padding-top: 20px;
+}
+.cont .top{
+	font-size: 14px; 
+	 background-color: #cccccc; 
+	 padding: 3px;
 }
 .comments-container .content {
 	border-bottom: 1px dashed;
 	text-align:left;
+	margin-left:-1px;
+	width: 100%
 }
 
 .comments-container h5 {
@@ -75,23 +82,24 @@ body {
 <div>
 	<div>
 		<div  class="container course title">
-			<div style="width: 42%; text-align:center; float: left;">
+			<div style="width: 40%; text-align:center;float: left;">
 				<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 240px; height: 180px;margin-top:30px;" />
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 240px; height: 180px;margin-top:30px;margin-left: 160px;" />
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 240px; height: 180px;margin-top: 10px;" />
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 240px; height: 180px;margin-top: 30px;margin-left: 160px;" />
 						</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div style="margin-top: 33px;">
-					<span style="font-size: 20px;color:#80b029" id="content">${course.courseName}</span><br/>
-					<span style="font-size: 14px;color:#80b029">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
+			<div class="container course content">
+					<span style="font-size: 25px;color:#80b029;" id="content">${course.courseName}</span><br/>
+					<span style="font-size: 18px;color:#80b029;">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
 					<span style="font-size: 14px;color: black;"> 类别：${course.cType.typeName }</span><br/>
-					<span style="font-size: 14px;color: black;">课程评分：${course.courseDate }
+    				<span style="font-size: 14px;color: black;">发布时间：${course.courseDate }</span><br/>
+    				<span style="font-size: 14px;color: black;">评分：
 					<c:choose>
     				<c:when test="${courseMark>0 }">
     					<fmt:formatNumber type="number" value="${courseMark }" maxFractionDigits="0" />
@@ -99,22 +107,21 @@ body {
     				<c:otherwise>
     					0
     				</c:otherwise>
-    				</c:choose></span>&nbsp;分<br/>
-    				<span style="font-size: 14px;color: black;">发布时间：${course.courseDate }</span><br/>
-    				<span style="font-size: 14px;color: black;">学员（${studentPerson}）</span>
+    				</c:choose>&nbsp;分</span>
+    				<span style="font-size: 14px;color: black;">&nbsp;&nbsp学员：${studentPerson}&nbsp;&nbsp</span>
 				<c:choose>
 				<c:when test="${courseMark!=-1.0 }">
-				评论（${sumPerson}）&nbsp;&nbsp;
+				<span style="font-size: 14px;color: black;">&nbsp;&nbsp评论：${sumPerson}&nbsp;&nbsp;</span>
 				</c:when>
 				<c:otherwise>
-				评论（0）&nbsp;&nbsp;
+				<span style="font-size: 14px;color: black;">&nbsp;&nbsp评论：0&nbsp;&nbsp;</span>
 				</c:otherwise>
 				</c:choose><br/>
-			</div>
 			<div style="text-align: left;margin-top: 15px;">
 				<a href='#' class="btn  btn-success">点击学习</a>
 				<a href='<c:url value="/admin/teacher/course/edit/${course.id }/publish"></c:url>'  class="btn   btn-success"  >发布课程</a>
 				</div>
+			</div>
 		</div>
 		<div class="nar">
 			<h4>课程介绍</h4>
@@ -150,17 +157,17 @@ body {
 			</div>
 		
 		<c:choose>
-<c:when test="${course.teacher.isEnterprise == null}">
+	<c:when test="${course.teacher.isEnterprise == null}">
     <div  class="nar" >
 			<h4>讲师介绍</h4>
 		</div>
-    <div class="container course detail">
+    <div class="container course detail desc"  >
 	    <c:choose >
 			<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-			<img src='<c:url value="${url}${course.teacher.user.photo_url }"></c:url>' style="width: 112px;height:112px; float:left; margin-left:30px" />
+			<img src='<c:url value="${url}${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px" />
 			</c:when>
 			<c:otherwise>
-			 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 112px;height: 112px; float:left; margin-left:30px" />
+			 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:6px" />
 			</c:otherwise>
 		</c:choose>
     <span style="margin-left: 40px;font-size: 18px;"><b>${course.teacher.user.name }</b></span>
@@ -175,13 +182,13 @@ body {
      <div class="nar">
 			<h4>企业介绍</h4>
 		</div>
-    <div class="container course detail">
+    <div class="container course detail desc">
 	    <c:choose>
 			<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-				<img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:30px;" />
+				<img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px;" />
 			</c:when>
 			<c:otherwise>
-			 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:30px;" />
+			 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:6px;" />
 			</c:otherwise>
 		</c:choose>
 	<span style="margin-left: 20px;">
@@ -196,26 +203,42 @@ body {
 		<div class="cont">
 		<c:choose>
 			<c:when test="${resourceCount>0 }">
-				<c:forEach var="course" items="${courseMap}" varStatus="i">
-						<table   style="width: 89%;border: 2px solid #f1f1f1;">
-							<tbody>
-								<tr>
-									<td align="left">
-										<div >
-											<div class="top" id="course_${i.count}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
-												<c:forEach var="fileNames" items="${course.value}" varStatus="resourceStatus">
-												<c:if test="${fileNames.fileName!=null}">
-												<div class="fileName_${i.count}" >
-													<div style="width: 87%; float: left; margin-left: 5px; margin-top: 3px;">${fileNames.fileName}</div>
-												</div>
-												</c:if>
-												</c:forEach>
-										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</c:forEach>
+				<c:forEach var="course" items="${courseMap}" varStatus="status">
+				<table style="width: 89%; border: 1px solid #f1f1f1;">
+					<tbody>
+						<tr>
+							<td align="left">
+								<div>
+									<div class="top" id="course_${status.index}" onclick="javascript:courseOnclick(this);">
+										<b>第${course.key}课时</b>
+									</div>
+									<div style="margin-top: 5px;">
+									<c:forEach var="fileNames" items="${course.value}" >
+										<c:if test="${fileNames.fileName!=null}">
+											<div class="fileName_${status.index}" style="width: 100%; margin-top:5px; margin-bottom: 1px; border-bottom: 1px dotted #dcdcdc;">
+												<table style="width: 94%; margin-left: 20px;">
+													<tbody>
+														<tr>
+															<td width="4%"><c:if test="${fileNames.resourceType.id ==1 }">
+																	<img src='<c:url value="/resources/resourceType/text.jpg"></c:url>' style="width: 40px; height: 40px;" />
+																</c:if> <c:if test="${fileNames.resourceType.id ==2}">
+																	<img src='<c:url value="/resources/resourceType/video.jpg"></c:url>' style="width: 40px; height: 40px;" />
+																</c:if></td>
+															<td align="left" width="60%"><a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'> <span>${fileNames.fileName}</span>
+															</a></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</c:if>
+									</c:forEach>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</c:forEach>
 			</c:when>
 			<c:otherwise>
 				<div>尚未添加资源</div>

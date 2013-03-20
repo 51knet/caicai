@@ -85,7 +85,7 @@ setTimeout(function(){
 			<div id="passwordInput">
 			<div class="modal-body" id="pwdform">
 				修改密码：<input type="text" id="pwd" name="pwd" style="width: 250px;" value="${course.pwd}" title="${course.pwd}"  onblur="deleSpace();" onfocus="clearHtml();">
-				<span style="font-size: 16px;color: red;">输入数字或字母且者长度3-12字符之间</span>
+				<span style="font-size: 16px;color: red;">输入数字或字母且密码长度为3-12字符之间</span>
 			<span id="pwdError"></span>
 			</div>
 			<div class="modal-body" id="checkpwdform" >
