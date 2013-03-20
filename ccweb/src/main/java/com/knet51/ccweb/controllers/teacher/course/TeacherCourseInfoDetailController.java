@@ -53,7 +53,8 @@ import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 public class TeacherCourseInfoDetailController {
 	private static Logger logger = 
 			LoggerFactory.getLogger(TeacherCourseInfoDetailController.class);
-	
+	public static final long MAX_RESOURCE_SIZE_200M = 200*1024*1024;
+	public static final long MAX_COVER_SIZE_2M = 2*1024*1024;
 	@Autowired
 	private TeacherCourseService teacherCourseService;
 	@Autowired
@@ -166,7 +167,7 @@ public class TeacherCourseInfoDetailController {
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
-				if(multipartFile.getSize()>1024*1024*200){
+				if(multipartFile.getSize()>MAX_RESOURCE_SIZE_200M){
 					redirectAttributes.addFlashAttribute("fileMaxError", "上传文件不得大于200M");
 					return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 				}
@@ -227,7 +228,7 @@ public class TeacherCourseInfoDetailController {
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
-				if(multipartFile.getSize()>1024*1024*200){
+				if(multipartFile.getSize()>MAX_RESOURCE_SIZE_200M){
 					redirectAttributes.addFlashAttribute("fileMaxError", "上传文件不得大于200M");
 					return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 				}
@@ -453,7 +454,8 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/course/edit/moidfycover",method=RequestMethod.POST)
-	public String modifyCreateCover(HttpSession session,@RequestParam("courseId") Long id,MultipartHttpServletRequest request,Model model) throws Exception{
+	public String modifyCreateCover(HttpSession session,@RequestParam("courseId") Long id,MultipartHttpServletRequest request,
+			Model model,RedirectAttributes redirectAttributes) throws Exception{
 			List<MultipartFile> files = request.getFiles("coverFile");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		TeacherCourse teacherCourse=teacherCourseService.findOneById(id);
@@ -462,6 +464,10 @@ public class TeacherCourseInfoDetailController {
 			MultipartFile multipartFile = files.get(i);
 			if(!files.get(i).isEmpty()){
 				//logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
+				if(multipartFile.getSize()>MAX_COVER_SIZE_2M){
+					redirectAttributes.addFlashAttribute("errorMsg", "图片不得大于2M");
+					return "redirect:/admin/teacher/course/addcourse?active=first";
+				}else{
 				String fileName = multipartFile.getOriginalFilename();
 				String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
 				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId();
@@ -473,6 +479,7 @@ public class TeacherCourseInfoDetailController {
 				FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
 				String savePath = FileUtil.getSavePath("course", userInfo.getId(), teacherCourse.getId()+"", request)+"/small"+"."+fileExtension;
 				teacherCourse.setCourseCover(savePath);
+				}
 			}      
 		}
 		TeacherCourse course = teacherCourseService.updateTeacherCourse(teacherCourse);

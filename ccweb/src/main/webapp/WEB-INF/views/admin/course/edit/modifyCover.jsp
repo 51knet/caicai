@@ -66,10 +66,10 @@ function previewImages(file){
 				<table>
 					<tr>
 						<td>上传封面</td>
-						<td align="left"><input type="file" style="width: 450px; margin-left: 40px;" size="50px" name="coverFile"  onChange="previewImages(this);"></td>
+						<td align="left"><input type="file" style=" margin-left: 40px;" size="50px" name="coverFile"  onChange="previewImages(this);"><span style="color:red;">${errorMsg }</span></td>
 					</tr>
 					<tr>
-						<td style="color: red; font-size: 14px; padding-left: 98px;" colspan="2">只支持jpg、gif、bmp、png格式，建议封面宽度260px，高度195px</td>
+						<td style="color: red; font-size: 14px; padding-left: 98px;" colspan="2">只支持jpg、gif、bmp、png格式，建议封面宽度260px，高度195px，不大于2M</td>
 					</tr>
 					<tr>
 						<td colspan="2"><button class="btn  btn-success" type="submit" style="margin-left: 100px;">保存</button></td>
