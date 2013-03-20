@@ -13,7 +13,7 @@
 .nar_course.desc{
 	margin-left: 25px;
 	padding: 10px;
-	width: 50%;
+	width: 92%;
 }
 </style>
 <div style="margin-bottom: 200px;">
