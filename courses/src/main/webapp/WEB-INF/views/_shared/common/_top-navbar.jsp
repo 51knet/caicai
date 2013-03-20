@@ -10,7 +10,7 @@
 		</ul>
 		<ul class="nav pull-right">
 			<c:if test="${sessionUserInfo != null}">
-				<li style="margin-right: -12px;"><a href='<c:url value="/"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
+				<li style="margin-right: -12px;"><a href='<c:url value="/mycourses"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
 				<li id="fat-menu" class="dropdown" style="margin-right: -10px"><a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"> <img src="<c:url value='/resources/img/default/gear.png'></c:url>"
 						style="margin-top: -3px;height:15px;"></img>
 				</a>

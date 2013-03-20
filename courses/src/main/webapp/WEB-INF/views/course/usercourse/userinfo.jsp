@@ -37,11 +37,10 @@
 		</c:choose>
 	</div>
 	<div style="width:500px; margin-left: 100px; float: left;" >
-    <table>
-    <tr >
-    <td style="width:150px;"><h4>${userInfo.name }</h4></td><td>${userInfo.email }</td>
-    </tr>
-    </table>
-    
+	    <table>
+		    <tr >
+		    <td style="width:150px;"><h4>${userInfo.name }</h4></td><td>${userInfo.email }</td>
+		    </tr>
+	    </table>
   	</div>
 </div>
