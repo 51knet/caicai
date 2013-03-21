@@ -82,6 +82,15 @@
 		}
 	}
 	
+	function updateresourcebar(resourceid){
+		var bar = resourceid+"_update_bar";
+		var file = $("#"+resourceid+"_resource_file").val();
+		var img = "<img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  />"; 
+		if(file != "" && file  != null){
+			$("#"+bar).html(img);
+		}
+	}
+	
 	$(document).ready(function(){
 		$('.deleteResourcePostBtn').on('click', function() {
 			var resource_id = $(this).next().val();
@@ -110,7 +119,8 @@
 											</span>
 											<div class="addForm" style=" display: none;" id="${lesson.lessonNum}_resourceForm">
 												<div id="${lesson.lessonNum}_bar" style="margin-bottom: 3px;margin-left: 30px;"></div>
-												<form style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/create"></c:url>' enctype="multipart/form-data" onsubmit="return showprograssbar(${lesson.lessonNum})">
+												<form style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/create"></c:url>' 
+															enctype="multipart/form-data" onsubmit="return showprograssbar(${lesson.lessonNum})">
 													<input type="hidden" name="lessonNum" value="${lesson.lessonNum }"> 
 													<input type="hidden" name="lessonId" value="${lesson.id}"> 
 													<input type="hidden" name="courseId" value="${course.id}"> 
@@ -180,14 +190,17 @@
 																</div>
 															</c:if>
 															<div id="${fileNames.id}_editCourseResourceForm" style="border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;">
-																<form name="resourceEditForm" style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/update"></c:url>' enctype="multipart/form-data">
-																	<input type="hidden" name="resourceId" value="${fileNames.id}"> <input type="hidden" name="courseId" value="${course.id}"> 资源名称：<input type="text" style="width: 207px;"
-																		id="${fileNames.id}_editResourceName" name="resourceName">&nbsp;如：第一讲：物种的起源<br>
+																<div id="${fileNames.id}_update_bar" style="margin-bottom: 3px;margin-left: 30px;"></div>
+																<form name="resourceEditForm" style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/update"></c:url>'
+																		  enctype="multipart/form-data" onsubmit="return updateresourcebar(${fileNames.id})">
+																	<input type="hidden" name="resourceId" value="${fileNames.id}"> 
+																	<input type="hidden" name="courseId" value="${course.id}"> 
+																	资源名称：<input type="text" style="width: 207px;" id="${fileNames.id}_editResourceName" name="resourceName">&nbsp;如：第一讲：物种的起源<br>
 																	 资源类别：<select name="type" id="${fileNames.id}_editResourceType" style="width: 220px;">
 																		<option value="1">文档</option>
 																		<option value="2">视频</option>
 																	</select><br> 	
-																	上传资源：<input type="file" name="resourceFile">&nbsp;不大于200M
+																	上传资源：<input type="file" name="resourceFile" id="${fileNames.id}_resource_file">&nbsp;不大于200M
 																	<button type="reset" class="btn " style="margin-left: 5px; float: right;" onclick="closeEditResourceForm(${fileNames.id})">取消</button>
 																	<button type="submit" class="btn  btn-success" style="float: right;">上传</button>
 																	&nbsp;&nbsp;
