@@ -21,7 +21,7 @@
 	<definition name="admin.user.course.list" extends="admin-layout">
 		<put-attribute name="title" value="课程" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/list/list.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/course/list/list.jsp"></put-attribute>
 	</definition>
 	
 </tiles-definitions>

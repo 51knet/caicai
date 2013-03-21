@@ -16,4 +16,6 @@ public interface UserCourseService {
 	Double getMark(Long teacherCourseId);
 	public User findByUserId(Long id);
 	UserCourse update(UserCourse userCourse);
+	
+	Page<UserCourse> findByUserid(int pageNumber, int pageSize,Long user_id);
 }

@@ -11,7 +11,7 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 
 public interface TeacherCourseService {
-	
+	Page<TeacherCourse> findAllCourse(int pageNum, int pageSize);
 	TeacherCourse findOneById(Long id);
 	TeacherCourse createTeacherCourse(TeacherCourse teacherCourse);
 	TeacherCourse updateTeacherCourse(TeacherCourse teacherCourse);
@@ -22,7 +22,6 @@ public interface TeacherCourseService {
 	List<String> getAllSchool();
 	List<Teacher> getAllCourseTeacher(String schoolName);
 	Page<TeacherCourse> findTeacherCourseByTeacherAndPublish(int pageNum, int pageSize, Teacher teacher,Integer publish);
-	
 	Page<TeacherCourse> findTeacherCourseByTeacherAndPublishGreaterThan(int pageNum, int pageSize,Teacher teacher,Integer publish);
 	TeacherCourse getTeacherCourseByCourseName(String cousername,Long teacherId);
 }
