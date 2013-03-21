@@ -92,22 +92,22 @@ function previewImages(file){
 							</form:form>
 						</div>
 				</div>
-				<div class="tab-pane <c:if test='${active == "second"}'>active</c:if>" id="second_tab">
+				<div class="tab-pane <c:if test='${active == "second"}'>active</c:if>" id="second_tab" style="margin-left: 8px;">
 					<form:form class="form-horizontal" action="new/secondstep" method="post" onsubmit="return checkPwd()" enctype="multipart/form-data">
 						<input type="hidden" name="courseId" value="${courseId }" />
 						<div id="password">
-						<label class="radio inline" style="width: 38%; font-family:Microsoft YaHei; font-size: 12pt;">
+						<label class="radio inline" style="width: 38%; font-family:Microsoft YaHei;">
 						<input type="radio" name="pass" value="0" checked="checked"style="margin-bottom: 20px;">公开
 						</label>
 						<br/>
-						<label class="radio inline" style="width: 38%; font-family:Microsoft YaHei; font-size: 12pt;">
+						<label class="radio inline" style="width: 38%; font-family:Microsoft YaHei; ">
 						<input type="radio" name="pass" value="1">设置密码
 						</label>
 						</div>
 						<div id="passwordInput">
 						<div class="modal-body" id="pwdform">
 							设置密码：<input type="text" id="pwd" name="pwd" style="width: 250px;" onblur="showCheckpwd();" onfocus="clearHtml();">
-							<span style="font-size: 16px;color: red;">输入数字或字母且密码长度为3-12字符之间</span>
+							<span style="font-size: 16px;color: red;">输入数字或字母且密码长度为3-12字符</span>
 						<span id="pwdError"></span>
 						</div>
 						<div class="modal-body" id="checkpwdform" style="display: none;">
@@ -115,9 +115,9 @@ function previewImages(file){
 						</div>
 						</div>
 						<div class="modal-body" id="status">
-							<span style="ont-family:Microsoft YaHei; font-size: 12pt;">发布到知识超市：
+							<span style="ont-family:Microsoft YaHei;">发布到知识超市：
 						<label class="radio inline" style="width: 5%; font-family:Microsoft YaHei; font-size: 12pt;margin-left: 10px; margin-top: -8px;">
-						<input type="radio" name="status" value="0">是&nbsp;&nbsp;
+						<input type="radio" name="status" value="2" checked="checked">是&nbsp;&nbsp;
 						</label>
 						<label class="radio inline" style="width:5%; font-family:Microsoft YaHei; font-size: 12pt;margin-top: -8px;">
 						<input type="radio" name="status" value="1">否

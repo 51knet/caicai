@@ -74,31 +74,31 @@ setTimeout(function(){
 			<div id="message" style="margin-left: 155px;"><h4 style="color: #adcc75">${message}</h4></div>
 			<input type="hidden" name="courseId" value="${course.id }" />
 			<div id="statusValues" title="${course.pwd}">
-			<label class="radio inline" style="width: 38%; font-family:Microsoft YaHei; font-size: 12pt;">
-			<input type="radio" name="pass" value="0" checked="checked"style="margin-bottom: 20px;">公开
+			<label class="radio inline" style="width: 38%; font-family:Microsoft YaHei;">
+			<input type="radio" name="pass" value="0"style="margin-bottom: 20px;">公开
 			</label>
 			<br/>
-			<label class="radio inline" style="width: 38%; font-family:Microsoft YaHei; font-size: 12pt;">
+			<label class="radio inline" style="width: 38%; font-family:Microsoft YaHei;">
 			<input type="radio" name="pass" value="1">设置密码
 			</label>
 			</div>
-			<div id="passwordInput">
+			<div id="passwordInput" style="margin-left: 2px;">
 			<div class="modal-body" id="pwdform">
 				修改密码：<input type="text" id="pwd" name="pwd" style="width: 250px;" value="${course.pwd}" title="${course.pwd}"  onblur="deleSpace();" onfocus="clearHtml();">
-				<span style="font-size: 16px;color: red;">输入数字或字母且密码长度为3-12字符之间</span>
+				<span style="font-size: 16px;color: red;">输入数字或字母且密码长度为3-12字符</span>
 			<span id="pwdError"></span>
 			</div>
 			<div class="modal-body" id="checkpwdform" >
 				确认密码：<input type="text" id="checkpwd" name="checkpwd" style="width: 250px;"  value="${course.pwd}">
 			</div>
 			</div>
-			<div class="modal-body" id="status">
-				<span style="font-family:Microsoft YaHei; font-size: 12pt; margin-left:3px;">发布到知识超市：
-			<label class="radio inline" style="width: 5%; font-family:Microsoft YaHei; font-size: 12pt;margin-left: 10px; margin-top: -8px;">
-			<input type="radio" name="status" value="0">是&nbsp;&nbsp;
+			<div class="modal-body" id="status" title="${course.status}" >
+				<span style="font-family:Microsoft YaHei;  margin-left:3px;">发布到知识超市：
+			<label class="radio inline" style="width: 5%; font-family:Microsoft YaHei;margin-left: 10px; margin-top: -8px;">
+			<input type="radio" name="status" value="2">是&nbsp;&nbsp;
 			</label>
-			<label class="radio inline" style="width:5%; font-family:Microsoft YaHei; font-size: 12pt;margin-top: -8px;">
-			<input type="radio" name="status" value="1" checked="checked">否
+			<label class="radio inline" style="width:5%; font-family:Microsoft YaHei;margin-top: -8px;">
+			<input type="radio" name="status" value="1">否
 			</label>
 			</span>
 			</div>
