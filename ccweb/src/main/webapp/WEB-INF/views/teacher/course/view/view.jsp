@@ -19,8 +19,8 @@
 }
 
  .cont {
-	width: 93%;
-	margin-left: 30px;
+	width: 92.5%;
+	margin-left: 33px;
 	margin-bottom: 10px;
 }
 .cont .top{
@@ -70,23 +70,21 @@ function courseOnclick(obj) {
 			<div style="width: 40%; text-align:center;  float: left;border: 0px solid #cccccc;">
 				<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
-						<a href='#'> <img src="/ccweb/${course.courseCover }" style="width: 240px; height: 120px;margin-top: 10px;" />
+						<a href='#'> <img src="/ccweb/${course.courseCover }" style="width: 160px; height: 120px;margin-top: 10px;margin-left: 70px;" />
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 240px; height: 120px;margin-top: 10px;" />
+						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 160px; height: 120px;margin-top: 10px;margin-left: 70px;" />
 						</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
 			<div style="width: 60%; float: left; height:150px;border: 0px solid #cccccc;">
-				<div style="margin-left:60px;" >
-				<br/>
-					<span style="width: 300px; margin-top:60px;font-size: 20px;color: black;" id="content">${course.courseName}</span><br/>
+				<div style="margin-left:30px; margin-top: 10px;" >
+					<div style="width: 200px; font-size: 18px;color: black;" id="content">${course.courseName}</div>
 					<span style="font-size: 14px;color: black;">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
 					<span style="font-size: 14px;color: black;"> 类别：${course.cType.typeName }</span><br/>
 					<span style="font-size: 14px;color: black;">发布时间：${course.courseDate }</span>
-				<!-- 	学员（0）&nbsp;&nbsp;评论（0）&nbsp;&nbsp; -->
 				</div>
 			</div>
 		</div>

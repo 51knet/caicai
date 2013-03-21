@@ -71,10 +71,12 @@
 						<td>
 							<c:choose>
 								<c:when test='${course.pwd == "" || course.pwd == null}'>
-									<a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> ${course.courseName }</a>
+									<div style="width: 200px;" id="content"><a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> 
+									${course.courseName }
+									</a></div>
 								</c:when>
 								<c:otherwise>
-									<a href="#checkcourse" data-toggle="modal"> ${course.courseName }</a> 
+									<a href="#checkcourse" data-toggle="modal"> <div style="width:300px;" id="contentlimit">${course.courseName }</div></a> 
 									<div id="checkcourse" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 400px; height:180px; ">
 										<div class="modal-header">
 											<h4 id="myModalLabel">验证密码</h4>
@@ -85,7 +87,7 @@
 												输入密码：<input type="text" name="coursepwd" id="coursepwd" placeholder="密码">
 												<span id="errorMsg" style="font-size: 14px; color: red"></span>
 											</form>
-											<div style="margin-left: 120px;">
+											<div style="margin-left:120px;">
 												<button class="btn btn-success"  onclick="checkCoursePwd( ${course.id} , ${teacherInfo.id})">确定</button>&nbsp;&nbsp;
 												<button class="btn"  type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
 											</div>
@@ -95,7 +97,7 @@
 							</c:choose>
 						</td>
 						<td >
-							<div style="width: 420px;" id="content">${course.courseDesc}</div>
+							<div style="width: 200px;" id="content">${course.courseDesc}</div>
 						</td>
 						<td>
 							${course.courseDate}

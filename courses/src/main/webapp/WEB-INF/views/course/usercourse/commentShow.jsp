@@ -8,24 +8,25 @@
 .comments-container .content {
 	border-bottom: 1px dashed;
 	text-align:left;
-	margin-left:-1px;
-	width: 100%
+	margin-left:88px;
+	width: 78.5%;
 }
 
 .comments-container h5 {
 	padding:5px;
 	text-align: left;
-	padding-left: 88px;
+	padding-left:88px;
+	color: #80b029;
 }
 </style>
 <div id="comment">
-		<div  class="nar">
+		<div  class="nar" >
 			<h4>用户评价</h4>
 		</div> 
 		<div class="comments-container">
     	<c:choose>
 			<c:when test="${sumPerson>0}">
-			<h5>总评论人数：&nbsp;&nbsp;&nbsp;${sumPerson}
+			<h5>总评论人数：&nbsp;${sumPerson}人
 			评论分数:
 			<c:choose>
     				<c:when test="${courseMark>0 }">
@@ -40,21 +41,21 @@
 			<c:forEach var="usercourse" items="${listUserCourse}">
 				 <c:choose>
 				    <c:when test="${usercourse.userCourse.commentDesc!=null  }">
-				  <div  style="margin-left: 88px; margin-top: 10px; ">
+				  <div  style="margin-left: 88px; margin-top: -50px;">
 				  <span>
 				    	<c:choose >
 							<c:when test="${usercourse.photoUrl != null && usercourse.photoUrl != ''}">
-								<img src='<c:url value="${url }${usercourse.photoUrl }"></c:url>'   style="width:60px;height: 60px;" />
+								<img src='<c:url value="${url }${usercourse.photoUrl }"></c:url>'   style="width:75px;height: 75px;margin-top:55px;" />
 							</c:when>
 							<c:otherwise>
-								<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 60px;height:60px;" />
+								<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 75px;height:75px;margin-top:55px;" />
 							</c:otherwise>
 						</c:choose>
 				    </span>
-				    <span style="color:#80b029" >${usercourse.userName}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				  <span style="color:#80b029;margin-left:15px;" >${usercourse.userName}&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				    <span>评分:${usercourse.userCourse.mark}&nbsp;&nbsp;&nbsp;&nbsp;
 				 	<fmt:formatDate value="${usercourse.userCourse.commentDate}" pattern="yyyy-MM-dd HH:mm"/></span><br/>
-				    <div style="margin-left:110px; width: 560px;">
+				    <div style="margin-left:95px;width: 540px;margin-top: -40px;">
 				    <span >${usercourse.userCourse.commentDesc}</span>
 				    </div>
 				  </div>
