@@ -97,6 +97,13 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		return teacherCourse;
 	}
 
+	@Override
+	public Page<TeacherCourse> findAllCourse(int pageNum, int pageSize) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
+		Page<TeacherCourse> onePage = courseRepository.findAll(dateDesc);
+		return onePage;
+	}
+
 
 	
 

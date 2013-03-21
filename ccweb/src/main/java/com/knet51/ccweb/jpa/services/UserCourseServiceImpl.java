@@ -79,5 +79,13 @@ public class UserCourseServiceImpl implements UserCourseService {
 		userCourse=userCourseRepository.saveAndFlush(userCourse);
 		return userCourse;
 	}
+	@Override
+	public Page<UserCourse> findByUserid(int pageNumber, int pageSize,
+			Long user_id) {
+		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
+		Page<UserCourse> onePage = userCourseRepository.findByUserid(user_id, dateDesc);
+		return onePage;
+		
+	}
 	
 }
