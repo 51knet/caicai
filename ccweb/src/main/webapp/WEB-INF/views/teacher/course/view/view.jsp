@@ -171,6 +171,7 @@ function courseOnclick(obj) {
 																				</a>
 																				</td>
 																				<td>
+																				<c:if test="${fileNames.resourceType.id ==2 }">
 																				<a href="#myModal_${status.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a>
 																				 <!-- Modal -->
 																					<div id="myModal_${status.index}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -193,8 +194,7 @@ function courseOnclick(obj) {
 																							<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 																						</div>
 																					</div>
-																					
-																					
+																					</c:if>
 																					</td>
 																			</tr>
 																		</tbody>

@@ -55,8 +55,7 @@
 																</c:if> <c:if test="${fileNames.resourceType.id ==2}">
 																	<img src='<c:url value="/resources/resourceType/video.jpg"></c:url>' style="width: 40px; height: 40px;" />
 																</c:if></td>
-															<td align="left" width="60%"><a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'> <span>${fileNames.fileName}</span>
-															</a></td>
+															<td align="left" width="60%"> <span>${fileNames.fileName}</span></td>
 														</tr>
 													</tbody>
 												</table>
