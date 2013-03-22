@@ -45,7 +45,7 @@
 				  <span>
 				    	<c:choose >
 							<c:when test="${usercourse.photoUrl != null && usercourse.photoUrl != ''}">
-								<img src='<c:url value="${usercourse.photoUrl }"></c:url>'   style="width:90px;height: 90px;" />
+								<img src='<c:url value="${url}${usercourse.photoUrl }"></c:url>'   style="width:90px;height: 90px;" />
 							</c:when>
 							<c:otherwise>
 								<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 90px;height:90px;" />

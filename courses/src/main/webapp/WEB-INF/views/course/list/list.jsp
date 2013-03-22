@@ -71,7 +71,7 @@
 							<div style="float: left; height: 100px; width: 120px;">
 								<c:choose>
 									<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-										<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
+										<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
 										</a>
 									</c:when>
 									<c:otherwise>

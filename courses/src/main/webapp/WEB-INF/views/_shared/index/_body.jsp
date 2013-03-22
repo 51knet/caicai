@@ -97,7 +97,7 @@
 				<div class="span2">
 					<c:choose>
 						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${t.user.photo_url }"></c:url>' style="width: 90px; height:90px;" /></a>
+							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' style="width: 90px; height:90px;" /></a>
 						</c:when>
 						<c:otherwise>
 							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 90px; height:90px;" /></a>
