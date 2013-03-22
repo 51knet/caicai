@@ -127,17 +127,20 @@ public class TeacherController {
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			String photo_url=userInfo.getPhotoUrl();
 			String photoUrl=photo_url.substring(0,photo_url.lastIndexOf("/")+1);
+			String imgName= photo_url.substring(photo_url.lastIndexOf("/")+1, photo_url.length());
 			User user = userService.findOne(userInfo.getId());
 			user = userService.updateUser(user);
 			Teacher teacher = new Teacher(user);
 			user.setName(personalInfoForm.getName().trim());
 			user.setGender(personalInfoForm.getGender());
-			if(personalInfoForm.getGender().equals("女")){
-				String photoName="avatar91.png";
-				user.setPhoto_url(photoUrl+photoName);
-			}else{
-				String photoName="avatar90.png";
-				user.setPhoto_url(photoUrl+photoName);
+			if(imgName.equals("avatar91.png")||imgName.equals("avatar90.png")){
+				if(personalInfoForm.getGender().equals("女")){
+					String photoName="avatar91.png";
+					user.setPhoto_url(photoUrl+photoName);
+				}else{
+					String photoName="avatar90.png";
+					user.setPhoto_url(photoUrl+photoName);
+				}
 			}
 			teacher.setCollege(personalInfoForm.getCollege().trim());
 			teacher.setSchool(personalInfoForm.getSchool().trim());

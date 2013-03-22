@@ -41,21 +41,21 @@
 			<c:forEach var="usercourse" items="${listUserCourse}">
 				 <c:choose>
 				    <c:when test="${usercourse.userCourse.commentDesc!=null  }">
-				  <div  style="margin-left: 88px; margin-top: -50px;">
+				  <div  style="margin-left: 88px; margin-top: 10px;">
 				  <span>
 				    	<c:choose >
 							<c:when test="${usercourse.photoUrl != null && usercourse.photoUrl != ''}">
-								<img src='<c:url value="${url }${usercourse.photoUrl }"></c:url>'   style="width:75px;height: 75px;margin-top:55px;" />
+								<img src='<c:url value="${usercourse.photoUrl }"></c:url>'   style="width:90px;height: 90px;" />
 							</c:when>
 							<c:otherwise>
-								<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 75px;height:75px;margin-top:55px;" />
+								<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 90px;height:90px;" />
 							</c:otherwise>
 						</c:choose>
 				    </span>
 				  <span style="color:#80b029;margin-left:15px;" >${usercourse.userName}&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				    <span>评分:${usercourse.userCourse.mark}&nbsp;&nbsp;&nbsp;&nbsp;
 				 	<fmt:formatDate value="${usercourse.userCourse.commentDate}" pattern="yyyy-MM-dd HH:mm"/></span><br/>
-				    <div style="margin-left:95px;width: 540px;margin-top: -40px;">
+				    <div style="margin-left:110px;width: 540px;">
 				    <span >${usercourse.userCourse.commentDesc}</span>
 				    </div>
 				  </div>

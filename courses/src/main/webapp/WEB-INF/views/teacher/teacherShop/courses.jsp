@@ -32,7 +32,7 @@
 	   	<c:if test="${teacher.isEnterprise == null}">
 	   		<c:choose>
 				<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
-				<a href='<c:url value="${url}/teacher/${teacher.id}"></c:url>'><img src='<c:url value="${url}${teacher.user.photo_url }"></c:url>' 
+				<a href='<c:url value="${url}/teacher/${teacher.id}"></c:url>'><img src='<c:url value="${teacher.user.photo_url }"></c:url>' 
 						style="width: 112px;height:112px; float:left; margin-left:30px" /></a>
 				</c:when>
 				<c:otherwise>
