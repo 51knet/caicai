@@ -72,7 +72,9 @@
 															</a></td>
 															<td align="right" width="30%"><a href='<c:url  value="/course/study/view/resource/${fileNames.id}"></c:url>'><img
 																	src="<c:url  value="/resources/img/courseResource/u173_normal.jpg" ></c:url> "></a></td>
-															<td><a href="#myModal_${status.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> <!-- Modal -->
+															<td>
+															<c:if test="${fileNames.resourceType.id ==2 }">
+															<a href="#myModal_${status.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> <!-- Modal -->
 																<div id="myModal_${status.index}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 																	<div class="modal-header">
 																		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -92,7 +94,9 @@
 																	<div class="modal-footer">
 																		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 																	</div>
-																</div></td>
+																</div>
+																</c:if>
+																</td>
 														</tr>
 													</tbody>
 												</table>

@@ -40,7 +40,7 @@
 		<tr class="titlebg"><th align="left"><b>文件名称</b></th><th align="left"><b>描述</b></th><th align="left" width=10%><b>类型</b></th><th  align="left" width=20%><b>发布时间</b></th><th align="left" width=8%><b>下载</b></th></tr>
 			<tbody>
 			<c:forEach items="${page.content}" var="page">
-				<tr class="bb"><td align="left"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${page.id}"></c:url>">${page.fileName}</a></td>
+				<tr class="bb"><td align="left"><div style="width: 120px;" id="content"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${page.id}"></c:url>">${page.fileName}</a></div></td>
 				<td >
 					<c:choose>
 						<c:when test="${page.resourceDesc != null && page.resourceDesc !=''}">

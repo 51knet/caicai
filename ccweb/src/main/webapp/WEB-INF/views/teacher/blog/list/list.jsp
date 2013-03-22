@@ -28,6 +28,7 @@
 	font-size: 14px;
 	width: 100%;
 }
+
 </style>
 
 <div class="row-fluid custom round">
@@ -40,7 +41,9 @@
 		<tbody>
 			<c:forEach var="blogPost" items="${page.content}">
 			<tr class="bb">
-				<td ><a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>"> ${blogPost.title} </a></td>
+				<td><div style="width: 400px;" id="content"><a href="<c:url value="/teacher/${teacherInfo.id}/blog/view/${blogPost.id}"></c:url>">
+				 ${blogPost.title} </a></div>
+				 </td>
 				<td>
 				<fmt:formatDate value="${blogPost.dateCreated}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>

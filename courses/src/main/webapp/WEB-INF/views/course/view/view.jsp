@@ -75,13 +75,13 @@
     					0
     				</c:otherwise>
     				</c:choose>&nbsp;分</span>
-    				<span style="font-size: 14px;color: black;">&nbsp;&nbsp学员：${studentPerson}&nbsp;&nbsp</span>
+    				<span style="font-size: 14px;color: black;">&nbsp;&nbsp学员：${studentPerson}&nbsp;人</span>
 				<c:choose>
 				<c:when test="${courseMark!=-1.0 }">
-				<span style="font-size: 14px;color: black;">&nbsp;&nbsp评论：${sumPerson}&nbsp;&nbsp;</span>
+				<span style="font-size: 14px;color: black;">&nbsp;&nbsp评论：${sumPerson}&nbsp;条</span>
 				</c:when>
 				<c:otherwise>
-				<span style="font-size: 14px;color: black;">&nbsp;&nbsp评论：0&nbsp;&nbsp;</span>
+				<span style="font-size: 14px;color: black;">&nbsp;&nbsp评论：0&nbsp;条</span>
 				</c:otherwise>
 				</c:choose><br/>
 				<a  href='<c:url value="/course/study/view/${course.id}"></c:url>'><img style="margin-top: 5px;" src='<c:url value="/resources/img/default/studyButton.png"></c:url>'  /></a>

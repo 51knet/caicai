@@ -96,6 +96,8 @@
 			var resource_id = $(this).next().val();
 			$(' #c_resource_Id').val(resource_id);	
 		});
+	
+		
 	});
 </script>
 <div  class="row-fluid custom round" >
@@ -125,7 +127,7 @@
 													<input type="hidden" name="lessonId" value="${lesson.id}"> 
 													<input type="hidden" name="courseId" value="${course.id}"> 
 														资源名称：<input type="text" style="width: 207px;" name="resourceName">&nbsp;如：第一讲：物种的起源<br> 
-														资源类别：<select name="type" style="width: 220px;">
+														资源类别：<select name="type"  style="width: 220px;">
 														<option value="1" selected>文档</option>
 														<option value="2">视频</option>
 													</select><br> 上传资源：<input type="file" name="resourceFile" id="${lesson.lessonNum}_file">&nbsp;不大于200M
@@ -163,7 +165,9 @@
 																					value="${fileNames.id}">
 																					</span>
 																				</td>
-																				<td><a href="#myModal_${resourceStatus.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> <!-- Modal -->
+																				<td>
+																				<c:if test="${fileNames.resourceType.id ==2 }">
+																				<a href="#myModal_${resourceStatus.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> <!-- Modal -->
 																					<div id="myModal_${resourceStatus.index}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 																						<div class="modal-header">
 																							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -183,7 +187,9 @@
 																						<div class="modal-footer">
 																							<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 																						</div>
-																					</div></td>
+																					</div>
+																					</c:if> 
+																					</td>
 																			</tr>
 																		</tbody>
 																	</table>
