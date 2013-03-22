@@ -162,7 +162,7 @@ body {
     <div class="container course detail desc"  >
 	    <c:choose >
 			<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-			<img src='<c:url value="${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px" />
+			<img src='<c:url value="${course.teacher.user.photo_url}"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px" />
 			</c:when>
 			<c:otherwise>
 			 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:6px" />
