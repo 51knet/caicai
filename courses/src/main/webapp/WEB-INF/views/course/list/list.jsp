@@ -53,18 +53,21 @@
 				<td  width="24%" align="right"  valign="top">
 						<c:choose>
 							<c:when test="${course.courseCover != null && course.courseCover != ''}">
-								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 162px; height: 120px;float: right;" />
+								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 160px; height: 120px;float: right;" />
 								</a>
 							</c:when>
 							<c:otherwise>
-								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 162px; height: 120px; float: right;" />
+								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 160px; height: 120px; float: right;" />
 								</a>
 							</c:otherwise>
 						</c:choose>
 					</td>
 					<td valign="top">
 						<div style="width:370px; margin-top: 10px;" id="contentlimit">
-						<b style="font-size: 17px;">课程名称：${course.courseName}</b><br><br>课程类别：${course.cType.typeName }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
+						<b style="font-size: 17px;">课程名称：${course.courseName}</b><br><br>
+						课程类别：${course.cType.typeName }<br>
+						<!-- 课程描述：${course.courseDesc }<br> -->
+						发布时间：${course.courseDate }</div>
 					</td>
 					<td width="38%" align="left"  valign="top">
 						<div style="width: 100%;height: 100%;">

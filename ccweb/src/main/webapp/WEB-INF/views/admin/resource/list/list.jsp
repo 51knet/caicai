@@ -7,7 +7,7 @@
 $(document).ready(function() {	
 	$('.deleteResourcePostBtn').on('click', function() {
 		var resource_id = $(this).next().val();
-		$('#deleteResourcePostModal #resourceId').val(resource_id);	
+		$('#resourceId').val(resource_id);	
 	});
 });
 </script>
@@ -55,8 +55,7 @@ $(document).ready(function() {
 					</td>
 					<td align="center">${page.resourceType.typeName}</td>
 					<td align="center">
-					 <a class="deleteResourcePostBtn" href="#deleteResourcePostModal" role="button" data-toggle="modal" data-target="#deleteResourcePostModal">删除</a>
-					 <input type="hidden"  value="${page.id }" id="resourceId">
+					 <a class="deleteResourcePostBtn" href="#deleteResourcePostModal" role="button" data-toggle="modal" data-target="#deleteResourcePostModal">删除</a><input type="hidden"  value="${page.id }" >
 						| <a href='<c:url value="/resource/download/${page.id }"></c:url>'>下载</a></td></tr>
 				</c:forEach>
 				</tbody>
