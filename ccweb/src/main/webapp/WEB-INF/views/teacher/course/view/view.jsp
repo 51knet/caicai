@@ -70,7 +70,7 @@ function courseOnclick(obj) {
 			<div style="width: 40%; text-align:center;  float: left;border: 0px solid #cccccc;">
 				<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
-						<a href='#'> <img src="/ccweb/${course.courseCover }" style="width: 160px; height: 120px;margin-top: 10px;margin-left: 70px;" />
+						<a href='#'> <img src="${course.courseCover }" style="width: 160px; height: 120px;margin-top: 10px;margin-left: 70px;" />
 						</a>
 					</c:when>
 					<c:otherwise>

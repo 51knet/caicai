@@ -85,12 +85,10 @@ body {
 			<div style="width: 40%; text-align:center;float: left;">
 				<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 240px; height: 180px;margin-top:30px;margin-left: 160px;" />
-						</a>
+						<img src='<c:url value="${course.courseCover }"></c:url>' style="width: 240px; height: 180px;margin-top:30px;margin-left: 160px;" />
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 240px; height: 180px;margin-top: 30px;margin-left: 160px;" />
-						</a>
+						 <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 240px; height: 180px;margin-top: 30px;margin-left: 160px;" />
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -164,7 +162,7 @@ body {
     <div class="container course detail desc"  >
 	    <c:choose >
 			<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-			<img src='<c:url value="${url}${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px" />
+			<img src='<c:url value="${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px" />
 			</c:when>
 			<c:otherwise>
 			 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:6px" />
@@ -271,7 +269,7 @@ body {
 				  <span>
 				    	<c:choose >
 							<c:when test="${usercourse.photoUrl != null && usercourse.photoUrl != ''}">
-								<img src='<c:url value="${url }${usercourse.photoUrl }"></c:url>'   style="width:100px;height: 100px;" />
+								<img src='<c:url value="${usercourse.photoUrl }"></c:url>'   style="width:100px;height: 100px;" />
 							</c:when>
 							<c:otherwise>
 								<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height:100px;" />
