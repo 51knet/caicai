@@ -46,7 +46,10 @@ var processInterval=null;
  function showProcessBar(){
 	 //processInterval=setInterval(process, 100);
 	 var img = "<img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  />"; 
-	 $("#processbar").html(img);
+	 if($("#myFiles").val()!=null || $("#myFiles").val()!=""){
+		 $("#processbar").css("display","block");
+	 }
+	 
  }
  
  function process(){
@@ -110,7 +113,7 @@ $(document).ready(function() {
 			</div>
 		</div> -->	
 			<div style="width:560px; text-align:left;">
-				<div id="processbar" style="margin-bottom: 3px;"></div>
+				<div id="processbar" style="margin-bottom: 3px; display: none"><img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  /></div>
 				<form:form action="new/create" method="post" enctype="multipart/form-data" id="resource_form" onsubmit="return showProcessBar()" >  
 					资源描述：<input type="text" name="desc" placeholder="资源描述" />&nbsp;<span style="color:red; font-size:14px;">多文件上传添加统一描述</span>
 					<div class="control-group"  >

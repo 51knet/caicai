@@ -76,18 +76,18 @@
 	function showprocessbar(lessonid){
 		var bar = lessonid+"_bar";
 		var file =$("#"+lessonid+"_file").val();
-		var img = "<img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  />"; 
+		//var img = "<img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  />"; 
 		if(file != "" && file  != null){
-			$("#"+bar).html(img);
+			$("#"+bar).css("display","block");
 		}
 	}
 	
 	function updateresourcebar(resourceid){
 		var bar = resourceid+"_update_bar";
 		var file = $("#"+resourceid+"_resource_file").val();
-		var img = "<img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  />"; 
+		//var img = "<img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  />"; 
 		if(file != "" && file  != null){
-			$("#"+bar).html(img);
+			$("#"+bar).css("display","block");
 		}
 	}
 	
@@ -120,7 +120,7 @@
 													<a href="javascript:void(0)" onclick="deleLessonNum(${lesson.id })"><b>删除课时</b></a>  |</c:if> <a href="#" onclick="showAddResourceForm(${lesson.lessonNum})"><b>添加资源</b></a>
 											</span>
 											<div class="addForm" style=" display: none;" id="${lesson.lessonNum}_resourceForm">
-												<div id="${lesson.lessonNum}_bar" style="margin-bottom: 3px;margin-left: 30px;"></div>
+												<div id="${lesson.lessonNum}_bar" style="margin-bottom: 3px;margin-left: 30px; display: none;"><img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  /></div>
 												<form style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/create"></c:url>' 
 															enctype="multipart/form-data" onsubmit="return showprocessbar(${lesson.lessonNum})">
 													<input type="hidden" name="lessonNum" value="${lesson.lessonNum }"> 
@@ -160,9 +160,8 @@
 																					</a>
 																				</td>
 																				<td align="right" width="30%">
-																					<span style="font-size: 13px;"> <a href='javascript:void(0)' onclick="editCourseResource(${fileNames.id})">修改</a> | <a style=""
-																					class="deleteResourcePostBtn" href="#deleteResourcePostModal" role="button" data-toggle="modal" data-target="#deleteResourcePostModal"> 删除</a><input type="hidden"
-																					value="${fileNames.id}">
+																					<span style="font-size: 13px;"> <a href='javascript:void(0)' onclick="editCourseResource(${fileNames.id})">修改</a> |
+																					 <a class="deleteResourcePostBtn" href="#deleteResourcePostModal" role="button" data-toggle="modal" data-target="#deleteResourcePostModal"> 删除</a><input type="hidden" value="${fileNames.id}">
 																					</span>
 																				</td>
 																				<td>
@@ -196,9 +195,8 @@
 																</div>
 															</c:if>
 															<div id="${fileNames.id}_editCourseResourceForm" style="border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;">
-																<div id="${fileNames.id}_update_bar" style="margin-bottom: 3px;margin-left: 30px;"></div>
-																<form name="resourceEditForm" style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/update"></c:url>'
-																		  enctype="multipart/form-data" onsubmit="return updateresourcebar(${fileNames.id})">
+																<div id="${fileNames.id}_update_bar" style="margin-bottom: 3px;margin-left: 30px; display: none;"><img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  /></div>
+																<form name="resourceEditForm" style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/update"></c:url>' enctype="multipart/form-data" onsubmit="return updateresourcebar(${fileNames.id})">
 																	<input type="hidden" name="resourceId" value="${fileNames.id}"> 
 																	<input type="hidden" name="courseId" value="${course.id}"> 
 																	资源名称：<input type="text" style="width: 207px;" id="${fileNames.id}_editResourceName" name="resourceName">&nbsp;如：第一讲：物种的起源<br>
