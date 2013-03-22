@@ -73,7 +73,7 @@
 		return false;
 	}
 	
-	function showprograssbar(lessonid){
+	function showprocessbar(lessonid){
 		var bar = lessonid+"_bar";
 		var file =$("#"+lessonid+"_file").val();
 		var img = "<img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  />"; 
@@ -120,7 +120,7 @@
 											<div class="addForm" style=" display: none;" id="${lesson.lessonNum}_resourceForm">
 												<div id="${lesson.lessonNum}_bar" style="margin-bottom: 3px;margin-left: 30px;"></div>
 												<form style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/create"></c:url>' 
-															enctype="multipart/form-data" onsubmit="return showprograssbar(${lesson.lessonNum})">
+															enctype="multipart/form-data" onsubmit="return showprocessbar(${lesson.lessonNum})">
 													<input type="hidden" name="lessonNum" value="${lesson.lessonNum }"> 
 													<input type="hidden" name="lessonId" value="${lesson.id}"> 
 													<input type="hidden" name="courseId" value="${course.id}"> 

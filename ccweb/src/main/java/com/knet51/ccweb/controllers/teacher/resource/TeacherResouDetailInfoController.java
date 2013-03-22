@@ -1,6 +1,7 @@
 package com.knet51.ccweb.controllers.teacher.resource;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
@@ -66,11 +68,14 @@ public class TeacherResouDetailInfoController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/teacher/resource/new/create",method=RequestMethod.POST)
-	public String teacherResouInfo(HttpSession session,Model model,@RequestParam("desc") String desc,
-			@RequestParam("type") Long value, MultipartHttpServletRequest request) throws Exception{
-		logger.info("#####Into TeacherResouInfoAddPageController#####");
-		List<MultipartFile> files = request.getFiles("myFiles");
+	public String teacherResouInfo(@RequestParam("myFiles") CommonsMultipartFile file,HttpSession session,
+			Model model,@RequestParam("desc") String desc,@RequestParam("type") Long value, MultipartHttpServletRequest request) throws Exception{
+		logger.info("#####Into TeacherResouInfoAddPageController#####"+session.getId());
+		//session.setAttribute("file", file);
+		//logger.info("======="+file.getOriginalFilename());
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		//User user = userInfo.getUser();
+		List<MultipartFile> files = request.getFiles("myFiles");
 		User user = userInfo.getUser();
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
@@ -99,6 +104,28 @@ public class TeacherResouDetailInfoController {
 				courseResourceService.createCourseResource(resource);
 			}
 		}
+		/*
+		CourseResource resource = new CourseResource();		
+		String fileName = file.getOriginalFilename();
+		String name = fileName.substring(0, fileName.indexOf("."));
+		ResourceType resourceType = resourceTypeService.findOneById(value); 
+		//String realPath = FileUtil.getPath("upload", userInfo.getId(), resourceType.getTypeName(),session);
+		String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/upload/"+resourceType.getTypeName();
+		FileUtil.createRealPath(path, session);
+		File saveDest = new File(path + File.separator + fileName);
+		file.transferTo(saveDest);
+		resource.setResourceType(resourceType);
+		resource.setResourceDesc(desc);
+		resource.setFileName(name);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		String date = format.format(new Date());
+		resource.setDate(date);
+		resource.setSaveName(fileName);
+		String savePath = path+"/"+fileName;
+		resource.setSavePath(savePath);
+		resource.setStatus(GlobalDefs.STATUS_RESOURCE);
+		resource.setUser(user);
+		courseResourceService.createCourseResource(resource);*/
 		return "redirect:/admin/teacher/resource/list";
 	}
 	
@@ -122,6 +149,24 @@ public class TeacherResouDetailInfoController {
 		out.close();
 		//String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/upload/";
 	
+	}
+	
+	@RequestMapping(value="/resource/processbar",method=RequestMethod.POST)
+	public void process(HttpServletResponse response, HttpSession session) throws IOException{
+		logger.info("======================+processBar");
+		CommonsMultipartFile file = (CommonsMultipartFile) session.getAttribute("file");
+		long processPercent = 0;
+		long totalSize = file.getSize();
+		long readSize = file.getFileItem().getSize();
+		logger.info("totalSize==="+totalSize+"readSize====="+readSize);
+		if(totalSize != 0){
+			processPercent =  Math.round(readSize / totalSize) * 100;
+		}
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter writer = response.getWriter();
+		writer.print(processPercent);
+		writer.flush();
+		writer.close();
 	}
 
 //	@Override

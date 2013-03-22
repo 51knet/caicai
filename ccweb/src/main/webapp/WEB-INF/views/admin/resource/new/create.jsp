@@ -7,6 +7,7 @@
 <link href="<c:url value="/resources/js/uploadify3.2/uploadify.css" />" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
+var processInterval=null;
  function addFile(){
  	var cont = document.getElementById("container");
  	var file = document.createElement("input");
@@ -41,7 +42,28 @@
 	 return checkEmptyAjax("resource_type_form","resourceTypeAJAX");
 	 return false;
  }
+ 
+ function showProcessBar(){
+	 //processInterval=setInterval(process, 100);
+	 var img = "<img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  />"; 
+	 $("#processbar").html(img);
+ }
+ 
+ function process(){
+	 alert("======process");
+	 $.ajax({
+			url : '<c:url value="/resource/processbar"  />',
+			type : 'post',
+			dataType : 'text',
+			success : function(html) {
+				alert(html);
+				$("#bar").css("width",html+"%");
+			}
+		});
+ }
+ 
 $(document).ready(function() {
+	clearInterval(processInterval);
 	$("#typeNames").focus(function(){
 		$("#typeError").html("");
 	});
@@ -82,10 +104,15 @@ $(document).ready(function() {
 	</div>
 	<div class="row1">
 		<div style="text-align:center;">
+	<!-- <div class="container">
+			<div class="progress span5">
+				<div class="bar" id="bar" style="width: 0%; background-color: #000;"></div>
+			</div>
+		</div> -->	
 			<div style="width:560px; text-align:left;">
-				<form:form action="new/create" method="post" enctype="multipart/form-data" id="resource_form">  
+				<div id="processbar" style="margin-bottom: 3px;"></div>
+				<form:form action="new/create" method="post" enctype="multipart/form-data" id="resource_form" onsubmit="return showProcessBar()" >  
 					资源描述：<input type="text" name="desc" placeholder="资源描述" />&nbsp;<span style="color:red; font-size:14px;">多文件上传添加统一描述</span>
-					<!-- <span class="help-block"><form:errors path="desc"></form:errors></span>	 --><br>
 					<div class="control-group"  >
 							资源类型：<select name="type"  >
 							<c:forEach items="${type}" var="l">
