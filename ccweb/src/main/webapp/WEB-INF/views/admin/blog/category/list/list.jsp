@@ -34,7 +34,8 @@
 			<c:forEach var="blogCategory" items="${blogCategories}">
 			<tr> <!-- TODO: vertical-align:text-top; -->
 				<td>${blogCategory.id}</td>
-				<td><a href="<c:url value="/admin/blog/category/view/${blogCategory.id}"></c:url>"> ${blogCategory.name} </a></td>
+				<td style="display: none;"><a href="<c:url value="/admin/blog/category/view/${blogCategory.id}"></c:url>"> ${blogCategory.name} </a></td>
+				<td>${blogCategory.name}</td>
 				<td width="200px" style="display: none;">
 					<form class="form_rename_category" method="post" action="<c:url value="/admin/blog/category/rename"></c:url>" class="form-inline">
 						<input type="hidden" name="id" value="${blogCategory.id}">
