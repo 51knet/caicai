@@ -120,7 +120,7 @@ public class TeacherCourseInfoPageController {
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getTeacher().getId();
-			if(userInfo.getId()!=teacherId){
+			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
 		}
@@ -361,7 +361,7 @@ public class TeacherCourseInfoPageController {
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getTeacher().getId();
-			if(userInfo.getId()!=teacherId){
+			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
 		}
@@ -379,7 +379,7 @@ public class TeacherCourseInfoPageController {
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getTeacher().getId();
-			if(userInfo.getId()!=teacherId){
+			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
 		}
@@ -399,7 +399,7 @@ public class TeacherCourseInfoPageController {
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getTeacher().getId();
-			if(userInfo.getId()!=teacherId){
+			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
 		}
@@ -469,7 +469,7 @@ public class TeacherCourseInfoPageController {
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getTeacher().getId();
-			if(userInfo.getId()!=teacherId){
+			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
 		}

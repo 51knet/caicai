@@ -169,20 +169,6 @@ public class TeacherResouDetailInfoController {
 		writer.close();
 	}
 
-//	@Override
-//	public ModelAndView resolveException(HttpServletRequest request,
-//			HttpServletResponse response, Object obj, Exception e) {
-//		// TODO Auto-generated method stub
-//		Map<Object, Object> model = new HashMap<Object, Object>(); 
-//		if (e instanceof MaxUploadSizeExceededException){ 
-//				model.put("errors", "File size should be less then "+ 
-//						((MaxUploadSizeExceededException)e).getMaxUploadSize()+" byte."); 
-//		} else{ 
-//				model.put("errors", "Unexpected error: " + e.getMessage()); 
-//		} 
-//		return new ModelAndView("teacherResouAddDetail", (Map) model); 
-//				Map<String, MultipartFile> fileMap = request.getFileMap();
-//	}
 	/**
 	 * destory a resource
 	 * @param session

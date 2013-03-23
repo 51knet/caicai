@@ -108,7 +108,6 @@ public class ReceiveMsgInfoPageController {
 	@Transactional
 	@RequestMapping(value="/admin/teacher/message/deleOneReaded",method = RequestMethod.POST)
 	public String deleMsgFromReaded(@RequestParam("mId") Long mid,Model model){
-		//System.out.println("+++++++++++++++++++++"+mid);
 		receiveMsgService.del(Long.valueOf(mid));
 		return "redirect:/admin/teacher/message/isRead";
 	}
@@ -116,7 +115,6 @@ public class ReceiveMsgInfoPageController {
 	@Transactional
 	@RequestMapping(value="/admin/teacher/message/deleOne",method = RequestMethod.POST)
 	public String deleMsgFromUnReaded(@RequestParam("mId") Long mid,Model model){
-		//System.out.println("+++++++++++++++++++++"+mid);
 		receiveMsgService.del(Long.valueOf(mid));
 		return "redirect:/admin/teacher/message/list";
 	}
@@ -124,7 +122,6 @@ public class ReceiveMsgInfoPageController {
 	@Transactional
 	@RequestMapping(value="/admin/teacher/message/destory",method = RequestMethod.POST)
 	public String destory(@RequestParam("mId") Long mid,Model model){
-		//System.out.println("+++++++++++++++++++++"+mid);
 		receiveMsgService.destory(Long.valueOf(mid));
 		return "redirect:/admin/teacher/message/isDele";
 	}
