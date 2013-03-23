@@ -412,7 +412,8 @@ public class CourseController {
 			@RequestParam("searchParam") String searchParam, Model model)
 			throws Exception {
 		List<TeacherCourse> courseList = courseService.findAllCourses();
-		List<String> courseTypeList = courseService.courseTypeList();
+		//List<String> courseTypeList = courseService.courseTypeList();
+		List<CourseType> typeList = courseTypeService.findAll();
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
 		String param = searchParam.trim();
 		if (param != null && !param.equals("")) {
@@ -430,12 +431,12 @@ public class CourseController {
 				model.addAttribute("courseCount", courseList.size());
 			}
 			model.addAttribute("searchParam", param);
-			model.addAttribute("courseTypeList", courseTypeList);
+			model.addAttribute("courseTypeList", typeList);
 
 		} else {
 			model.addAttribute("courseList", courseList);
 			model.addAttribute("courseCount", courseList.size());
-			model.addAttribute("courseTypeList", courseTypeList);
+			model.addAttribute("courseTypeList", typeList);
 			model.addAttribute("searchParam", param);
 		}
 		return "course.list";
