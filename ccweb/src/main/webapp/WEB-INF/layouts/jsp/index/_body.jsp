@@ -95,7 +95,7 @@ body {
 	background: url(<c:url value='/resources/img/default/index/hr.png' ></c:url>) center no-repeat;
 }
 .register-hr-bg {
-	height: 20px;
+	height: 15px;
 	margin-top: -5px;
 	background: url(<c:url value='/resources/img/default/index/hr.png' ></c:url>) center no-repeat;
 }
@@ -196,7 +196,7 @@ body {
 						</label>
 					</div>
 				</div>
-				<button type="submit" class="btn btn-large btn-block btn-primary" onclick="return registerOnclick();" style="font-family: 'Microsoft YaHei'; margin-top: 3px;">确认注册</button>
+				<button type="submit" class="btn btn-large btn-block btn-primary" onclick="return registerOnclick();" style="font-family: 'Microsoft YaHei'; margin-top: 10px;">确认注册</button>
 			</form:form>
 			<div class="register-hr-bg"></div>
 			<a id="loginbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">用户登录</a>
