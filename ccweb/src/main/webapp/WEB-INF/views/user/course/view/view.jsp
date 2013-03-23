@@ -175,22 +175,24 @@ function courseOnclick(obj) {
 																				<td>
 																				<a href="#myModal_${status.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a>
 																				 <!-- Modal -->
-																					<div id="myModal_${status.index}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-																						<div class="modal-header">
-																							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-																							<h3 id="myModalLabel">${fileNames.fileName}</h3>
-																						</div>
-																						<div class="modal-body">
-																							<div id="myPlayer_${status.index}"></div>
-																							<script type="text/javascript">
-																						    	//TODO: fix me, the file name extension should be mp4
-																							    jwplayer("myPlayer_${status.index}").setup({
-																							        file: '<c:url value="${fileNames.relativePath}"></c:url>',
-																							        //image: "/uploads/myPoster.jpg"
-																							        //TODO: each mp4 can have a preview image
-																							    });
-																							</script>
-																						</div>
+																				   <div id="myModal_${status.index}" class="modal hide fade" style="width:670px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																					  <div class="modal-header">
+																					    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+																					    <h3 id="myModalLabel">${fileNames.fileName}</h3>
+																					  </div>
+																					  <div class="modal-body">
+																					    <video id="myPlayer_${resourceStatus.index}" class="video-js vjs-default-skin" controls width="640" height="320" 
+																						  poster="http://dummyimage.com/640x264/000000/51ff00.jpg&text=loading..." preload="auto" data-setup="{}">
+																						  <source type="video/mp4" src='<c:url value="${fileNames.relativePath}"></c:url>'></source>
+																						</video>
+						
+																						<script type="text/javascript">
+																							var myPlayer = _V_("myPlayer_${resourceStatus.index}");
+																							$("#myModal_${status.index}").on('hidden',function(){
+																								myPlayer.pause();
+																							});
+																						</script>
+																					  </div>
 																						<div class="modal-footer">
 																							<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
 																						</div>
