@@ -177,7 +177,7 @@ public class HomeController {
 			
 
 			Teacher teacher = teacherService.findOne(id);
-			Page<BlogPost> page = blogService.findAllBlogs(0, 5, teacher);
+			Page<BlogPost> page = blogService.findAllBlogsNotGarbageAndNotDraft(0, 5, teacher);
 			List<BlogPost> blogPosts = page.getContent();
 			model.addAttribute("blogPosts", blogPosts);
 			

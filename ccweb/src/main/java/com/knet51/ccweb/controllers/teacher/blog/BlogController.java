@@ -198,6 +198,7 @@ public class BlogController {
 		blogPost.setTitle(blogPostForm.getTitle());
 		blogPost.setContent(blogPostForm.getContent());
 		blogPost.setDateUpdated(new Date());
+		blogPost.setDraft(blogPostForm.isDraft());
 		
 		blogService.updateBlogPost(blogPost);
 		
