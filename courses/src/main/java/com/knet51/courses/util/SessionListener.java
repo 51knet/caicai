@@ -46,11 +46,35 @@ public class SessionListener implements Filter {
 		UserInfo sessionUserInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if (sessionUserInfo == null) {
-			System.out.println("=== none seesion ===");
-			ServletContext context = session.getServletContext().getContext(
-					"/ccweb");
+			ServletContext context = session.getServletContext()
+					.getContext("/");
+			ServletContext ccwebContext = session.getServletContext()
+					.getContext("/ccweb");
 			if (context != null) {
 				HttpSession spmsSession = (HttpSession) context
+						.getAttribute("ccwebSession");
+				if (spmsSession != null) {
+					userInfoObj = spmsSession
+							.getAttribute(GlobalDefs.SESSION_USER_INFO);
+					if (userInfoObj == null) {
+						session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
+					} else {
+						try {
+							BeanUtils.copyProperties(user, userInfoObj);
+							userInfo = new UserInfo(user);
+							session.setAttribute(GlobalDefs.SESSION_USER_INFO,
+									userInfo);
+						} catch (IllegalAccessException e) {
+							session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
+						} catch (InvocationTargetException e) {
+							session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
+						}
+					}
+				} else {
+					session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
+				}
+			} else if (ccwebContext != null) {
+				HttpSession spmsSession = (HttpSession) ccwebContext
 						.getAttribute("ccwebSession");
 				if (spmsSession != null) {
 					userInfoObj = spmsSession
@@ -76,9 +100,10 @@ public class SessionListener implements Filter {
 				session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
 			}
 		} else {
-			System.out.println("=== have seesion ===");
-			ServletContext context = session.getServletContext().getContext(
-					"/ccweb");
+			ServletContext context = session.getServletContext()
+					.getContext("/");
+			ServletContext ccwebContext = session.getServletContext()
+					.getContext("/ccweb");
 			if (context != null) {
 				HttpSession spmsSession = (HttpSession) context
 						.getAttribute("ccwebSession");
@@ -91,7 +116,34 @@ public class SessionListener implements Filter {
 						try {
 							BeanUtils.copyProperties(user, userInfoObj);
 							if (user.getId().equals(sessionUserInfo.getId())) {
-									
+
+							} else {
+								userInfo = new UserInfo(user);
+								session.setAttribute(
+										GlobalDefs.SESSION_USER_INFO, userInfo);
+							}
+						} catch (IllegalAccessException e) {
+							session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
+						} catch (InvocationTargetException e) {
+							session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
+						}
+					}
+				} else {
+					session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
+				}
+			} else if (ccwebContext != null) {
+				HttpSession spmsSession = (HttpSession) ccwebContext
+						.getAttribute("ccwebSession");
+				if (spmsSession != null) {
+					userInfoObj = spmsSession
+							.getAttribute(GlobalDefs.SESSION_USER_INFO);
+					if (userInfoObj == null) {
+						session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
+					} else {
+						try {
+							BeanUtils.copyProperties(user, userInfoObj);
+							if (user.getId().equals(sessionUserInfo.getId())) {
+
 							} else {
 								userInfo = new UserInfo(user);
 								session.setAttribute(
