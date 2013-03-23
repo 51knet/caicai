@@ -83,7 +83,7 @@ body {
 
 .form-horizontal-register {
 	margin: 0 auto;
-	height: 315px
+	height: 295px
 }
 
 .hr-bg {
@@ -95,7 +95,7 @@ body {
 	background: url(<c:url value='/resources/img/default/index/hr.png' ></c:url>) center no-repeat;
 }
 .register-hr-bg {
-	height: 8px;
+	height: 20px;
 	margin-top: -5px;
 	background: url(<c:url value='/resources/img/default/index/hr.png' ></c:url>) center no-repeat;
 }
@@ -167,7 +167,6 @@ body {
 				<img class="login-logo" src="<c:url value='/resources/img/default/index/login_logo.png' ></c:url>">
 			</div>
 			<form:form class="form-horizontal-register" style="margin-top: 10px;" id="register_info_form" action="register/common" modelAttribute="commonRegisterForm" method="post">
-				<h3 class="form-signin-heading" style="font-family: 'Microsoft YaHei'; font-size: 25pt;">快速注册</h3>
 				<div class="hr-bg"></div>
 				<div class="control" id="emails">
 					<h5 style="text-align: left; line-height: 5px; margin-top: 15px;">邮箱地址</h5>
@@ -185,9 +184,10 @@ body {
 					<h5 style="text-align: left; line-height: 5px; margin-top: 15px;">密码确认</h5>
 					<div class="controls" style="text-align: left;">
 						<input type="password" id="conf" name="confirmpsw" placeholder="请再次输入您的密码" style="width: 96.17%;">
+						<span class="help-inline" id="passwordError"><form:errors path="psw"></form:errors></span>
 					</div>
 				</div>
-				<div class="control" style="margin-top: -15px;">
+				<div class="control" style="margin-top: -10px;">
 					<h5 style="text-align: left; line-height: 5px; margin-top: 15px;">角色选择</h5>
 					<div class="controls" style="text-align: left; margin-top: -5px;">
 						<label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 8pt; width: 20%;"> <input type="radio" name="userType" id="user" value="user" checked>普通用户</label>
