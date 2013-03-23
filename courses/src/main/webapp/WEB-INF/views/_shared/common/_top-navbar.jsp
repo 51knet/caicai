@@ -17,12 +17,12 @@
 					<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
 						<li><a href='<c:url value="http://www.51knet.com/"></c:url>'>回到知识网首页</a></li>
 						<li class="divider"></li>
-						<li><a href='<c:url value="/signout"></c:url>'>退出登录</a></li>
+						<li><a href='<c:url value="http://www.51knet.com/signout"></c:url>'>退出登录</a></li>
 					</ul></li>
 			</c:if>
 			<c:if test="${sessionUserInfo == null}">
-				<li style="margin-top: -10px;"><a href='<c:url value="/signin"></c:url>'><h6>登录</h6></a><br></li>
-				<li style="margin-top: -10px;"><a href='<c:url value="/signup"></c:url>'><h6>注册</h6></a><br></li>
+				<li style="margin-top: -10px;"><a href='<c:url value="http://www.51knet.com/"></c:url>'><h6>登录</h6></a><br></li>
+				<li style="margin-top: -10px;"><a href='<c:url value="http://www.51knet.com/"></c:url>'><h6>注册</h6></a><br></li>
 			</c:if>
 			<li ><div style="width: 90px;"></div></li>
 		</ul>
