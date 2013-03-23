@@ -61,7 +61,7 @@
 				<div style="width: 40%; height:150px; text-align:center;  float: left;border: 0px solid #cccccc;">
 					<c:choose>
 						<c:when test="${course.courseCover != null && course.courseCover != ''}">
-							<a href='#'> <img src="${course.courseCover }" style="width: 220px; height: 165px;" />
+							<a href='#'> <img src='<c:url value="${course.courseCover}"> </c:url>'  style="width: 220px; height: 165px;" />
 							</a>
 						</c:when>
 						<c:otherwise>
