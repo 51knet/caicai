@@ -61,12 +61,11 @@
 				<div style="width: 40%; height:150px; text-align:center;  float: left;border: 0px solid #cccccc;">
 					<c:choose>
 						<c:when test="${course.courseCover != null && course.courseCover != ''}">
-							<a href='#'> <img src="${course.courseCover }" style="width: 220px; height: 165px;" />
+							<a href='#'><img src='<c:url value="${course.courseCover }" ></c:url>' style="width: 220px; height: 165px;" />
 							</a>
 						</c:when>
 						<c:otherwise>
-							<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 220px; height: 165px;" />
-							</a>
+							<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 220px; height: 165px;" /></a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -145,7 +144,7 @@
 											<td align="left">
 												<div >
 													<div class="top" id="course_${status.index}" onclick="javascript:courseOnclick(this);"><b>第${course.key}课时</b></div>
-													<c:forEach var="fileNames" items="${course.value}" >
+													<c:forEach var="fileNames" items="${course.value}" varStatus="resourceStatus">
 														<c:if test="${fileNames.fileName!=null}">
 														<div  class="fileName_${status.index}" >
 															<c:if test="${fileNames.fileName != null }">
@@ -156,22 +155,23 @@
 																	</a>
 																	<a href="#myModal_${status.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a>
 															<!-- Modal -->
-															<div id="myModal_${status.index}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+															<div id="myModal_${status.index}" class="modal hide fade" style="width:670px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 															  <div class="modal-header">
 															    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 															    <h3 id="myModalLabel">${fileNames.fileName}</h3>
 															  </div>
 															  <div class="modal-body">
-															    <div id="myPlayer_${status.index}"></div>
-															    <script type="text/javascript">
-															    	//TODO: fix me, the file name extension should be mp4
-																    jwplayer("myPlayer_${status.index}").setup({
-																        file: '<c:url value="${fileNames.relativePath}"></c:url>',
-																        //image: "/uploads/myPoster.jpg"
-																        //TODO: each mp4 can have a preview image
-																    });
-																</script>
+															    <video id="myPlayer_${resourceStatus.index}" class="video-js vjs-default-skin" controls width="640" height="320" 
+																  poster="http://dummyimage.com/640x264/000000/51ff00.jpg&text=loading..." preload="auto" data-setup="{}">
+																  <source type="video/mp4" src='<c:url value="${fileNames.relativePath}"></c:url>'></source>
+																</video>
 
+																<script type="text/javascript">
+																	var myPlayer = _V_("myPlayer_${resourceStatus.index}");
+																	$("#myModal_${status.index}").on('hidden',function(){
+																		myPlayer.pause();
+																	});
+																</script>
 															  </div>
 															  <div class="modal-footer">
 															    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
