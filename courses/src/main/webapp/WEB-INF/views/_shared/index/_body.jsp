@@ -62,7 +62,7 @@
     		</div>
     		<div style="margin-top: 10px;width:200px;"id="contentlimit">
     			教师名称：<a href='<c:url value="/teacher/${c.teacherCourse.teacher.id}"></c:url>'>${c.teacherCourse.teacher.user.name}</a><br>
-    			学习人数：${c.userCount}人&nbsp;&nbsp;&nbsp;课程评分：
+    			学习人数：${c.userCount}人 课程评分：
     			<c:choose>
     				<c:when test="${c.courseMark !=null && c.courseMark>0 }">
     					<fmt:formatNumber type="number" value="${c.courseMark }" maxFractionDigits="0" />分

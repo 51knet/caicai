@@ -43,7 +43,7 @@
 							</td>
 							<td valign="top">
 								<div style="width:370px; margin-top: 10px;" id="contentlimit">
-								<b style="font-size: 17px;">课程名称：${course.courseName}</b><br><br>课程类别：${course.cType.typeName }<br>课程描述：${course.courseDesc }<br>发布时间：${course.courseDate }</div>
+								<b style="font-size: 17px;">课程名称：${course.courseName}</b><br><br>课程类别：${course.cType.typeName }<br>发布时间：${course.courseDate }</div>
 							</td>	
 							<td width="38%" align="left"  valign="top">
 								<div style="width: 100%;height: 100%;">
