@@ -125,27 +125,21 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 		
 	function checkPicture(obj){
 		var imgflag = false;
-		//var nameflag = true;
-		//var descflag = true;
 		var fileValue = obj.coverFile.value;
 		var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length);
-		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp|| ".png"==temp){
-			imgflag=true;
+		if(temp ==null || temp ==""){
+			imgflag = true;
+			return imgflag;
 		}else{
-			alert("只支持gif、jpg、bmp、png格式的图片！！");
-			imgflag=false;
+			if(".gif"==temp || ".jpg"==temp || ".bmp"==temp|| ".png"==temp){
+				imgflag=true;
+			}else{
+				alert("只支持gif、jpg、bmp、png格式的图片！！");
+				imgflag=false;
+			}
+			return imgflag;
 		}
-		/*var nameValue = $.trim($("#names").val());
-		if(""==nameValue){
-			alert("课程名称不能为空！");
-			nameflag = false; 
-		}
-		var descValue = $.trim($("#descs").val());
-		if(""==descValue){
-			alert("课程描述不能为空！");
-			descflag = false; 
-		}*/
-		return imgflag;
+		
 	}
 
 	function showCheckpwd(){

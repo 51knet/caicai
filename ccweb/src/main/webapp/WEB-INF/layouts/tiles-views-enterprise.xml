@@ -19,10 +19,10 @@
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
 
-	<definition name="admin.enterprise" extends="admin-layout">
+	<definition name="admin.enterprise.teacher.list" extends="admin-layout">
 		<put-attribute name="title" value="教师中心" />
-		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/enterprise/home/home.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/enterprise/teacher/list/list.jsp"></put-attribute>
 	</definition>
 
 	<definition name="enterprise.basic" extends="frontPage-layout">

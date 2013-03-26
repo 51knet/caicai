@@ -62,18 +62,12 @@
 	
 	<!-- aop configuration -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-	<!-- 
+
 	 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
-        <property name="maxUploadSize" value="200000000" /> 
+      
     </bean>
      
-     <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
-        <property name="exceptionMappings">  
-            <props>  
-                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">teacherResouAddErrorPage</prop>  
-           </props>  
-        </property>  
-    </bean>  
-     -->
+ 
+
 	
 </beans>

@@ -20,7 +20,7 @@
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
-.row-fluid.custom .row1 {
+.row-fluid.custom .content{
 	margin: 20px 40px;
 
 }
@@ -29,18 +29,25 @@
 	<div  class="row">
 		<h4>公告管理>添加公告</h4>
 	</div>
-	<div class="row1">
-		<form action= "new"  method="post" name="anno_post" id="announcement_new_form">
+	<div class="content">
+		<form action= "new"  method="post" name="anno_post" id="announcement_new_form"  enctype="multipart/form-data"  onsubmit="return checkPicture(this)">
 			<div class="control-group" id="title">
-				<label class="control-label" for="title">公告标签</label>
+				<label class="control-label" for="title">公告标题</label>
 				<div class="controls">
 					<input type="text" name="title" placeholder="公告标签"> <span class="help-inline"></span>
 				</div>
 			</div>
 			<div class="control-group" id="content">
 				<div class="controls">
-					<textarea  cols="100" rows="20" style="width:670px;height:300px;"  name="content"  placeholder="公告内容"></textarea>
+					<textarea  style="width:670px;height:300px;"  name="content"  placeholder="公告内容"></textarea>
 					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group" >
+				<div class="controls">
+					轮换图片：<input type="file" name="coverFile" /><span style="font-size: 13px; color: red;">${errorMsg }</span>
+									<br><span style="color: red;  margin-left: 70px;">只支持jpg、gif、bmp、png格式，建议封面宽度260px，高度195px</span>
+					<span class="help-inline"></span><br>
 				</div>
 			</div>
 			<label style="clear: right;"></label>

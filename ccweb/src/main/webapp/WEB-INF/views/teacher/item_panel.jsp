@@ -53,6 +53,7 @@
 		<li><a href='<c:url value="/admin/teacher/announcement/list"></c:url>' >公告管理</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/list"></c:url>' >课程管理</a></li>
 		<li><a href='<c:url value="/admin/teacher/resource/list"></c:url>' >资源管理</a></li>
+		<c:if test="${sessionUserInfo.role == 'enterprise' }"><li><a href='<c:url value="/admin/enterprise/teacher/list"></c:url>' >教师管理</a></li></c:if>
 		<!-- <li><a href='<c:url value="/admin/teacher/achievement/list"></c:url>' >科研成果</a></li> -->
 		<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
 		<!-- <li><a href='<c:url value="/admin/teacher/friendsRelated/list"></c:url>' >好友互动</a></li> -->

@@ -49,15 +49,12 @@ public class TeacherAnnoInfoPageController {
 			Long id = getId(session);
 			User user = userService.findOne(id);
 			Page<Announcement> page = annoService.findAllAnnoByUser(pageNumber, pageSize, user);
-			List<Announcement> list = annoService.findAllByUid(id);
 			model.addAttribute("page", page);
-			model.addAttribute("list",list);
 			return "admin.teacher.announcement.list";
 	}
 	
 	@RequestMapping(value="/admin/teacher/announcement/edit/{anno_id}")
 	public String detailAnnoInfo(HttpSession session, Model model,@PathVariable Long anno_id){
-		//System.out.println(id);
 		Long user_id = getId(session);
 		User user = userService.findOne(user_id);
 		List<Announcement> annoList = annoService.findAnnoByUserAndId(user, anno_id);
@@ -70,8 +67,8 @@ public class TeacherAnnoInfoPageController {
 		}
 	}
 	@RequestMapping(value = "/admin/teacher/announcement/createAnnouncementAjax", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse announcementInfoFormAjaxJson(@Valid TeacherAnnoDetailInfoForm teacherAnnoDetailInfoForm, BindingResult result) {
-		//logger.info("------into workExp ajax");
+	public @ResponseBody ValidationResponse announcementInfoFormAjaxJson(@Valid TeacherAnnoDetailInfoForm 
+			teacherAnnoDetailInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
 	

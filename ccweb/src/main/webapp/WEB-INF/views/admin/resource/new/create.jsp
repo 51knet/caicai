@@ -43,14 +43,14 @@ var processInterval=null;
 	 return false;
  }
  
- //function showProcessBar(){
+ function showProcessBar(){
 	 //processInterval=setInterval(process, 100);
-	 //var img = "<img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  />"; 
-	// if($("#myFiles").val()!=null || $("#myFiles").val()!=""){
-		// $("#processbar").css("display","block");
-	// }
+	 var img = "<img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  />"; 
+	 if($("#myFiles").val()!=null || $("#myFiles").val()!=""){
+		 $("#processbar").css("display","block");
+	 }
 	 
- //}
+ }
  
  function process(){
 	 alert("======process");
@@ -97,7 +97,7 @@ $(document).ready(function() {
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
-.row-fluid.custom .row1 {
+.row-fluid.custom .content {
 	margin: 20px 40px;
 }
 </style>
@@ -105,7 +105,7 @@ $(document).ready(function() {
 	<div class="row" >
 		<h4>资源管理>添加资源</h4>
 	</div>
-	<div class="row1">
+	<div class="content">
 		<div style="text-align:center;">
 	<!-- <div class="container">
 			<div class="progress span5">
@@ -114,7 +114,7 @@ $(document).ready(function() {
 		</div> -->	
 			<div style="width:560px; text-align:left;">
 				<div id="processbar" style="margin-bottom: 3px; display: none"><img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  /></div>
-				<form:form action="new/create" method="post" enctype="multipart/form-data" id="resource_form" >  
+				<form:form action="new/create" method="post" enctype="multipart/form-data" id="resource_form" onsubmit="return showProcessBar()" >  
 					资源描述：<input type="text" name="desc" placeholder="资源描述" />&nbsp;<span style="color:red; font-size:14px;">多文件上传添加统一描述</span>
 					<div class="control-group"  >
 							资源类型：<select name="type"  >
@@ -128,7 +128,6 @@ $(document).ready(function() {
 					<span style="color:red;font-size:14px;">单次上传不大于200M</span>
 					<span style="color:red;font-size:14px;" id="myFilesError"></span>
 					<br>
-					<div id="container" style="margin-left:70px;"></div>
 					<br>
 					<label style="clear: right;"></label>
 					<button type="submit" class="btn btn-success" onclick="typeNameOnclick();">添加</button>&nbsp;&nbsp;
