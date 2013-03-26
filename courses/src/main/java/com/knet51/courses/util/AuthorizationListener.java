@@ -1,6 +1,9 @@
 package com.knet51.courses.util;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -10,6 +13,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +49,25 @@ public class AuthorizationListener implements Filter {
 		String path = req.getRequestURI();
 		String context = req.getContextPath();
 		String url = path.substring(context.length(), path.length());
+		HttpSession session = req.getSession();
+		String urlFilePath = "";
+		String k_url = "";
+		BufferedReader br;
+		urlFilePath = session.getServletContext().getRealPath("/");
+		urlFilePath += "resources\\url\\knet_url.property";
+		//urlFilePath += "resources\\url\\localccweb_url.property";
+		try {
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(
+					urlFilePath), "utf-8"));
+			String data = "";
+			while ((data = br.readLine()) != null) {
+				k_url = data;
+			}
+			br.close();
+		} catch (Exception e) {
+			k_url = "http://www.51knet.com";
+		}
+		session.setAttribute("url", k_url);
 		logger.debug("->"+url);
 		if (url.startsWith("/admin")) { // ok, for now we only protect admin stuff
 			if (! isLoggin(req)) { // not logged in

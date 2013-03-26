@@ -56,28 +56,7 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpSession session,
 			HttpServletRequest request) {
 		logger.info("###### into the HomeController ######");
-		
-		String urlFilePath = "";
-		String url = "";
-		BufferedReader br;
-		urlFilePath = session.getServletContext().getRealPath("/");
-		urlFilePath += "resources\\url\\knet_url.property";
-		//urlFilePath += "resources\\url\\localccweb_url.property";
-		try {
-			br = new BufferedReader(new InputStreamReader(new FileInputStream(
-					urlFilePath), "utf-8"));
-			String data = "";
-			while ((data = br.readLine()) != null) {
-				url = data;
-			}
-			br.close();
-		} catch (Exception e) {
-			url = "http://www.51knet.com";
-		}
-		//List<TeacherCourseBeans> tcBeanList = courseService.getAllTeacherCourseBeans();
-		//List<TeacherCourse> courseList = courseService.findAllCourses();
 		List<CourseBeans> cBeans = courseService.getAllCourseBeans();
-		//List<String> courseSchoolList = courseService.getAllSchool();
 		List<Teacher> teacherList = teacherService.findAllTeacher();
 		List<Teacher> teacherLists=new ArrayList<Teacher>();
 		List<Teacher> enterPriseList=new ArrayList<Teacher>();
@@ -90,11 +69,8 @@ public class HomeController {
 				model.addAttribute("teacherLists", teacherLists);
 			}
 		}
-		//model.addAttribute("schoolList", courseSchoolList);
 		model.addAttribute("courseList", cBeans);
 		model.addAttribute("courseCount", cBeans.size());
-		//model.addAttribute("teacherList", teacherList);
-		session.setAttribute("url", url);
 		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(currentUser != null){
 			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());

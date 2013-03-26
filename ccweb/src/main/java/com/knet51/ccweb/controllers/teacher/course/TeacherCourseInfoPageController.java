@@ -251,10 +251,8 @@ public class TeacherCourseInfoPageController {
 						String previewFile = path+File.separator+"small"+"."+fileExtension;
 						File saveDest = new File(path + File.separator + fileName);
 						multipartFile.transferTo(saveDest);
-						//String saveName = FileUtil.saveFile(multipartFile.getInputStream(), fileName, path);
 						FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
 						String savePath = FileUtil.getSavePath("course", userInfo.getId(), newCourse.getId()+"", request)+"/small"+"."+fileExtension;
-						//String savePath = request.getContextPath()+"/course/"+userInfo.getId()+"/"+courseName+"/"+saveName;
 						newCourse.setCourseCover(savePath);
 					}
 				}

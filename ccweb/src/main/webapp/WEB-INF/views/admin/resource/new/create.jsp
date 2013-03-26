@@ -43,14 +43,14 @@ var processInterval=null;
 	 return false;
  }
  
- function showProcessBar(){
+ //function showProcessBar(){
 	 //processInterval=setInterval(process, 100);
-	 var img = "<img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  />"; 
-	 if($("#myFiles").val()!=null || $("#myFiles").val()!=""){
-		 $("#processbar").css("display","block");
-	 }
+	 //var img = "<img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  />"; 
+	// if($("#myFiles").val()!=null || $("#myFiles").val()!=""){
+		// $("#processbar").css("display","block");
+	// }
 	 
- }
+ //}
  
  function process(){
 	 alert("======process");
@@ -114,7 +114,7 @@ $(document).ready(function() {
 		</div> -->	
 			<div style="width:560px; text-align:left;">
 				<div id="processbar" style="margin-bottom: 3px; display: none"><img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  /></div>
-				<form:form action="new/create" method="post" enctype="multipart/form-data" id="resource_form" onsubmit="return showProcessBar()" >  
+				<form:form action="new/create" method="post" enctype="multipart/form-data" id="resource_form" >  
 					资源描述：<input type="text" name="desc" placeholder="资源描述" />&nbsp;<span style="color:red; font-size:14px;">多文件上传添加统一描述</span>
 					<div class="control-group"  >
 							资源类型：<select name="type"  >

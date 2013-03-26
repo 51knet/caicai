@@ -44,8 +44,6 @@ public class AuthorizationListener implements Filter {
 		HttpServletResponse resp = ((HttpServletResponse)response); 
 		String path = req.getRequestURI();
 		String context = req.getContextPath();
-		//logger.info("+++++++++++++"+path);
-		//logger.info("-------------"+context);
 		String url = path.substring(context.length(), path.length());
 		logger.debug("->"+url);
 		if (url.startsWith("/admin")) { // ok, for now we only protect admin stuff
