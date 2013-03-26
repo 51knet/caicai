@@ -141,9 +141,10 @@ body {
 					<h5 style="text-align: left;">邮箱地址</h5>
 					<div class="controls" style="text-align: left;">
 						<input type="text" id="em" name="email" placeholder="请输入您的邮箱地址" style="width: 96.17%;">
+						<span class="help-inline"></span>
 					</div>
 				</div>
-				<div class="controls" id="password">
+				<div class="controls" id="password" style="margin-top: -20px;">
 					<h5 style="text-align: left;">登录密码</h5>
 					<div class="controls" style="text-align: left;">
 						<input type="password" id="ps" name="password" placeholder="请输入您的密码" style="width: 96.17%;">
@@ -168,27 +169,29 @@ body {
 			</div>
 			<form:form class="form-horizontal-register" style="margin-top: 10px;" id="register_info_form" action="register/common" modelAttribute="commonRegisterForm" method="post">
 				<div class="hr-bg"></div>
-				<div class="control" id="emails">
-					<h5 style="text-align: left; line-height: 5px; margin-top: 15px;">邮箱地址</h5>
+				<div class="control" id="emails" >
+					<h5 style="text-align: left; line-height: 5px; margin-top: 10px;">邮箱地址</h5>
 					<div class="controls" style="text-align: left;">
 						<input type="text" id="es" name="emails" placeholder="请输入您的邮箱地址" style="width: 96.17%;">
+						<span class="help-inline" ></span>
 					</div>
 				</div>
-				<div class="control" id="psw" style="margin-top: -15px;">
-					<h5 style="text-align: left; line-height: 5px; margin-top: 15px;">密码</h5>
+				<div class="control" id="psw" style="margin-top: -20px;">
+					<h5 style="text-align: left; line-height: 5px; margin-top: 10px;">密码</h5>
 					<div class="controls" style="text-align: left;">
 						<input type="password"  id="p" name="psw" placeholder="请设置您的密码" style="width: 96.17%;">
+						<span class="help-inline" ></span>
 					</div>
 				</div>
-				<div class="control" id="confirmpsw" style="margin-top: -15px;">
-					<h5 style="text-align: left; line-height: 5px; margin-top: 15px;">密码确认</h5>
+				<div class="control" id="confirmpsw" style="margin-top: -20px;">
+					<h5 style="text-align: left; line-height: 5px; margin-top: 10px;">密码确认</h5>
 					<div class="controls" style="text-align: left;">
 						<input type="password" id="conf" name="confirmpsw" placeholder="请再次输入您的密码" style="width: 96.17%;">
 						<span class="help-inline" id="passwordError"><form:errors path="psw"></form:errors></span>
 					</div>
 				</div>
-				<div class="control" style="margin-top: -10px;">
-					<h5 style="text-align: left; line-height: 5px; margin-top: 15px;">角色选择</h5>
+				<div class="control" style="margin-top: -20px;">
+					<h5 style="text-align: left; line-height: 5px; margin-top: 10px;">角色选择</h5>
 					<div class="controls" style="text-align: left; margin-top: -5px;">
 						<label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 8pt; width: 20%;"> <input type="radio" name="userType" id="user" value="user" checked>普通用户</label>
 						<label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 8pt; width: 20%;"> <input type="radio" name="userType" id="teacher" value="teacher" >教师用户
