@@ -13,11 +13,9 @@ $(document).ready(function() {
 		$(".help-inline").html("");
 	});
 	
-	checkAjax("anno_information","annoInfoAJAX");
-	
-	$('.deleteAnnoPostBtn').on('click', function() {
-		var anno_id = $(this).next().val();
-		$('#deleteAnnoPostModal #annoId').val(anno_id);	
+	$('.destoryEteacherPostBtn').on('click', function() {
+		var t_id = $(this).next().val();
+		$('#destoryEteacherPostModal #etid').val(t_id);	
 	});
 });
 
@@ -52,13 +50,13 @@ $(document).ready(function() {
 	</div>
 	<div class="content">
 		<div style="text-align: right;">
-			<a href='<c:url value="/admin/enterprise/teacher/create"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
+			<a href='<c:url value="/admin/enterprise/teacher/new"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
 				添加教师</a><br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead><tr>
 					<!-- <th> 图片</th> -->	
 						<th  align="center">教师照片</th>
-						<th  align="center" width="30%">教师简介</th>
+						<th  align="center" width="50%">教师简介</th>
 						<th  align="center" width="30%">操作</th>
 					</tr>
 				</thead>
@@ -66,23 +64,23 @@ $(document).ready(function() {
 					<c:forEach items="${page.content}" var="page">
 						<tr>
 							<td align="center"><img src='<c:url value="${page.photourl}" ></c:url>' style="width: 120px; height: 80px;" /></td> 
-							<td align="left" >${page.content}</td>
+							<td align="left" ><div style="width:320px;" id="content">${page.content}</div></td>
 							<td align="center">
-								 <a class="deleteAnnoPostBtn" href="#deleteAnnoPostModal" role="button" data-toggle="modal" data-target="#deleteAnnoPostModal">删除</a><input type="hidden" value="${page.id} ">  | 
-								 <a href='<c:url value="/admin/teacher/announcement/edit/${page.id}"></c:url>'>修改</a>	
+								 <a class="destoryEteacherPostBtn"  href="#destoryEteacherPostModal" role="button" data-toggle="modal" data-target="#destoryEteacherPostModal">删除</a><input type="hidden" value="${page.id} ">  | 
+								 <a href='<c:url value="/admin/enterprise/teacher/edit/${page.id}"></c:url>'>修改</a>	
 							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			<div class="row1"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 			<br />
 		</div>
 	</div>	
 </div>
 
 <!-- delete teacherForm -->
-<div class="modal hide fade" id="deleteAnnoPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal hide fade" id="destoryEteacherPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    <h3 id="myModalLabel">请注意</h3>
@@ -93,7 +91,7 @@ $(document).ready(function() {
 	  <div class="modal-footer">
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 	    <form action='<c:url value="/admin/enterprise/teacher/destory"></c:url>' method="post" style="display: inline-block;" >
-	    	<input id="annoId" type="hidden" name="eteacherid" />
+	    	<input id="etid" type="hidden" name="eteacherid" />
 	    	<button class="btn btn-success">确定</button>
 	    </form>
 	  </div>

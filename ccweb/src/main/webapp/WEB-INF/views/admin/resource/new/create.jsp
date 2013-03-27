@@ -125,8 +125,8 @@ $(document).ready(function() {
 					<!-- &nbsp;&nbsp;<a href="javascript:void(0)"  onclick="showResourceTypeAdd()" style="color:red; font-size:14px;">点击添加新类别</a> -->
 					</div>
 					上传资源：<input type="file" name="myFiles"  id="myFiles"/>&nbsp;&nbsp;<input  type="button" value="添加" onclick="addFile()"/>&nbsp;
-					<span style="color:red;font-size:14px;">单次上传不大于200M</span>
-					<span style="color:red;font-size:14px;" id="myFilesError"></span>
+					<span style="color:red;">单次上传不大于200M</span>
+					<span style="color:red;" id="myFilesError"></span>
 					<br>
 					<br>
 					<label style="clear: right;"></label>

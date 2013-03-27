@@ -48,4 +48,10 @@ public class EnterpriseTeacherServiceImpl implements EnterpriseTeacherService {
 		repository.delete(eTeacherid);
 	}
 
+	@Override
+	public EnterpriseTeacher findOneById(Long id) {
+		
+		return repository.findOne(id);
+	}
+
 }

@@ -18,12 +18,25 @@
 		<put-attribute name="right" value="/WEB-INF/views/enterprise/resume/resumeEdit.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
-
+	<!-- enterprise teacher admin layout  -->
 	<definition name="admin.enterprise.teacher.list" extends="admin-layout">
 		<put-attribute name="title" value="教师中心" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/enterprise/teacher/list/list.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.enterprise.teacher.new" extends="admin-layout">
+		<put-attribute name="title" value="教师中心" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/enterprise/teacher/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.enterprise.teacher.update" extends="admin-layout">
+		<put-attribute name="title" value="教师中心" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/enterprise/teacher/edit/edit.jsp"></put-attribute>
+	</definition>
+	
 
 	<definition name="enterprise.basic" extends="frontPage-layout">
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/enterprise-front/banner.jsp" />

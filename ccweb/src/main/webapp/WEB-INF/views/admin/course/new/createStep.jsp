@@ -13,6 +13,24 @@ function previewImages(file){
 	document.getElementById("courseCover").style.display="none";
 	previewImage(file);
 }
+
+function checkCoverPicture(obj){
+	var flag = false;
+	var fileValue = obj.coverFile.value;
+	var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length);
+	if(fileValue==null || fileValue==""){
+		alert("请添加课程封面");
+		flag=false;
+	}else{
+		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp || ".png" == temp){
+			flag=true;
+		}else{
+			alert("只支持gif、jpg、bmp、png格式的图片！！");
+			flag=false;
+		}
+	}
+	return flag;
+}
 </script>
 <style>
 .row-fluid.custom {
@@ -30,7 +48,7 @@ function previewImages(file){
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
-.row-fluid.custom .row1 {
+.row-fluid.custom .content {
 	margin: 20px 40px;
 }
 </style>
@@ -38,7 +56,7 @@ function previewImages(file){
 	<div class="row" >
 	<h4>课程管理>课程添加</h4> 
 	</div>	
-	<div class="row1">
+	<div class="content">
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
 				<li <c:if test='${active == "first"}'> class="active" </c:if>><a href="#" data-toggle="tab">第一步：基本信息</a></li>
@@ -57,7 +75,7 @@ function previewImages(file){
 								<span> <img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width:260px; height:195px;" />
 								</span>
 							</div>
-							<form:form action="new/firststep" method="post" enctype="multipart/form-data" id="course_info_form" onsubmit="return checkPicture(this)">
+							<form:form action="new/firststep" method="post" enctype="multipart/form-data" id="course_info_form" onsubmit="return checkCoverPicture(this)">
 								<div class="modal-body"> 
 									上传封面：<input type="file" name="coverFile" style="margin-bottom: 10px; width: 350px;" onChange="previewImages(this);"/> <span style="font-size: 13px; color: red;">${errorMsg }</span>
 									<br><span style="color: red;  margin-left: 70px;">只支持jpg、gif、bmp、png格式，建议封面宽度260px，高度195px</span>

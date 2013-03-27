@@ -11,4 +11,5 @@ public interface EnterpriseTeacherService {
 	EnterpriseTeacher createTeacher(EnterpriseTeacher eTeacher);
 	EnterpriseTeacher updateTeacher(EnterpriseTeacher eTeacher);
 	void destoryTeacher(Long eTeacherid);
+	EnterpriseTeacher findOneById(Long id);
 }

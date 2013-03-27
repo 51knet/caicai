@@ -68,10 +68,8 @@ public class TeacherAnnoDetailInfoController {
 		String role = userInfo.getRole();
 		if(validResult.hasErrors()){
 			logger.info("annoDetailInfoForm Validation Failed " + validResult);
-			if(role.equals("teacher")){
+			if(!role.equals("user")){
 				return "redirect:/admin/teacher/announcement/list";
-			}else if(role.equals("enterprise")){
-				return "redirect:/admin/enterprise/announcement/list";
 			}else{
 				return "redirect:/admin/user/announcement/list";
 			}
@@ -95,10 +93,8 @@ public class TeacherAnnoDetailInfoController {
 				if(!files.get(i).isEmpty()){
 					if(multipartFile.getSize()>MAX_FILE_SIZE_2M){
 						redirectAttributes.addFlashAttribute("errorMsg", "图片不得大于2M");
-						if(role.equals("teacher")){
+						if(!role.equals("user")){
 							return "redirect:/admin/teacher/announcement/list";
-						}else if(role.equals("enterprise")){
-							return "redirect:/admin/enterprise/announcement/list";
 						}else{
 							return "redirect:/admin/user/announcement/list";
 						}
@@ -119,10 +115,8 @@ public class TeacherAnnoDetailInfoController {
 				}
 			}
 			annoService.updateAnnouncement(ann);
-			if(role.equals("teacher")){
+			if(!role.equals("user")){
 				return "redirect:/admin/teacher/announcement/list";
-			}else if(role.equals("enterprise")){
-				return "redirect:/admin/enterprise/announcement/list";
 			}else{
 				return "redirect:/admin/user/announcement/list";
 			}
