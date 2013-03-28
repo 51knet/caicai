@@ -22,7 +22,7 @@ function checkTeacherPicture(obj){
 		alert("请添加教师头像");
 		flag=false;
 	}else{
-		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp){
+		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp || ".png" == temp){
 			flag=true;
 		}else{
 			alert("只支持gif、jpg、bmp格式的图片！！");

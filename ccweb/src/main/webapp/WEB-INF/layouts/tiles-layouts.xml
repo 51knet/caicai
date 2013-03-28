@@ -66,6 +66,16 @@
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
 	
+	<definition name="enterprise-frontPage-layout" template="/WEB-INF/layouts/jsp/enterprise-front.jsp">
+		<put-attribute name="title" value="My Front Page" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/enterprise-front/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/enterprise-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/enterprise-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/enterprise-front/right.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	
 
 
 </tiles-definitions>

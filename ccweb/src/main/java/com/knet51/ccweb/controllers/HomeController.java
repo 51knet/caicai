@@ -166,16 +166,7 @@ public class HomeController {
 				User sessionUser = sessionUserInfo.getUser();
 				isFollower = friendsRelateService.isTheFollower(id, sessionUser.getId());
 			}
-//			Announcement announcement = announcementService.findLatestByUid(id);
-//			if(announcement!=null) {
-//				String anno = announcement.getContent();
-//				String annoContent = (anno.length()>100) ? anno.substring(0, 100) : anno;
-//				model.addAttribute("annoContent", annoContent);
-//				model.addAttribute("annoId", announcement.getId());
-//			}
 			
-			
-
 			Teacher teacher = teacherService.findOne(id);
 			Page<BlogPost> page = blogService.findAllBlogsNotGarbageAndNotDraft(0, 5, teacher);
 			List<BlogPost> blogPosts = page.getContent();
@@ -191,35 +182,6 @@ public class HomeController {
 			model.addAttribute("resourceList", resourceList);
 			model.addAttribute("resourceCount", resourceCount);
 
-			Page<TeacherHonor> pageHonor = honorService.findAllHonorByTeacher(
-					0, 2, teacher);
-			List<TeacherHonor> honorList = pageHonor.getContent();
-			Integer honorCount = honorService.getAllHonorById(id).size();
-			model.addAttribute("honorList", honorList);
-			model.addAttribute("honorCount", honorCount);
-
-			Page<TeacherPatent> pagePatent = patentService
-					.findAllPatentByTeacher(0, 2, teacher);
-			List<TeacherPatent> patentList = pagePatent.getContent();
-			Integer patentCount = patentService.getAllPatentById(id).size();
-			model.addAttribute("patentList", patentList);
-			model.addAttribute("patentCount", patentCount);
-
-			Page<TeacherThesis> pageThesis = thesisService
-					.findAllThesisByTeacher(0, 2, teacher);
-			List<TeacherThesis> thesisList = pageThesis.getContent();
-			Integer thesisCount = thesisService.getAllThesisById(id).size();
-			model.addAttribute("thesisList", thesisList);
-			model.addAttribute("thesisCount", thesisCount);
-			
-
-			Page<TeacherProject> pageProject = projectService
-					.findAllProjectByTeacher(0, 2, teacher);
-			List<TeacherProject> projectList = pageProject.getContent();
-			Integer projectCount = projectService.getAllProjectById(id).size();
-			model.addAttribute("projectList", projectList);
-			model.addAttribute("projectCount", projectCount);
-
 			Page<TeacherCourse> pageCourse = courseService
 					.findTeacherCourseByTeacherAndPublish(0, 5, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 			List<TeacherCourse> courseList = pageCourse.getContent();
@@ -231,7 +193,6 @@ public class HomeController {
 			model.addAttribute("annoCount", annoList.size());
 
 			UserInfo userInfo = new UserInfo(user);
-			//userInfo.setAnnouncement(announcement);
 			userInfo.setTeacher(teacher);
 
 			Integer fansCount = friendsRelateService.getAllFans(id).size();
@@ -239,16 +200,10 @@ public class HomeController {
 
 			model.addAttribute("teacher_id", id);
 			model.addAttribute("teacherInfo", userInfo);
-			//model.addAttribute("announcement", announcement);
 		
-			model.addAttribute("role", userInfo.getTeacherRole());
-			
-			//FIXME: WTF?!!!  
-			// model.addAttribute("followValue",followValue);
+			model.addAttribute("role", userInfo.getTeacherRole());		
 			session.setAttribute("isFollower", isFollower);
-			// model.addAttribute("fansCount", fansCount);
 			session.setAttribute("fansCount", fansCount);
-			// model.addAttribute("hostCount", hostCount);
 			session.setAttribute("hostCount", hostCount);
 			return "teacher.basic";
 		} catch (Exception e) {
@@ -256,6 +211,7 @@ public class HomeController {
 			return "404";
 		}
 	}
+	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model, HttpSession session) {
 		UserInfo userInfo = (UserInfo) session

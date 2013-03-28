@@ -196,6 +196,12 @@
 	
 	<!-- enterprise front page -->
 	
+	<definition name="enterprise.basic" extends="enterprise-frontPage-layout">
+		<put-attribute name="title" value="企业主页" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/enterprise-front/banner.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/enterprise-front/right.jsp"></put-attribute>
+	</definition>
+	
 	<definition name="enterprise.resource.list" extends="frontPage-layout">
 		<put-attribute name="title" value="资源" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/enterprise-front/banner.jsp" />

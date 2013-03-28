@@ -38,7 +38,7 @@ $(document).ready(function() {
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
-.row-fluid.custom .row1 {
+.row-fluid.custom .content {
 	margin: 20px 40px;
 
 }
@@ -50,13 +50,13 @@ $(document).ready(function() {
 		<!-- <h4><a href='<c:url value="/admin/teacher/announcement/list"></c:url>'>教师公告</a></h4> -->
 		<h4>公告管理</h4>
 	</div>
-	<div class="row1">
+	<div class="content">
 		<div style="text-align: right;">
 			<a href='<c:url value="/admin/teacher/announcement/create"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
 				添加公告</a><br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead><tr>
-					<!-- <th> 图片</th> -->	
+						<th> 图片</th> 
 						<th  align="center">公告标题</th>
 						<th  align="center" width="25%">发布时间</th>
 						<th  align="center" width="20%">操作</th>
@@ -65,7 +65,7 @@ $(document).ready(function() {
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
-							<!-- <td align="center"><img src='<c:url value="${page.photourl}" ></c:url>' style="width: 120px; height: 80px;" /></td> -->
+							<td align="center"><img src='<c:url value="${page.photourl}" ></c:url>' style="width: 120px; height: 80px;" /></td> 
 							<td align="left" >${page.title}</td>
 							<td align="center">${page.date}</td>
 							<td align="center">
@@ -76,7 +76,7 @@ $(document).ready(function() {
 					</c:forEach>
 				</tbody>
 			</table>
-			<div class="row1"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 			<br />
 		</div>
 		<script type="text/javascript">
