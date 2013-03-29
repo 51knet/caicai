@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.knet51.ccweb.beans.CourseBeans;
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.teacher.CourseType;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 
 public interface TeacherCourseService {
@@ -24,4 +25,6 @@ public interface TeacherCourseService {
 	Page<TeacherCourse> findTeacherCourseByTeacherAndPublish(int pageNum, int pageSize, Teacher teacher,Integer publish);
 	Page<TeacherCourse> findTeacherCourseByTeacherAndPublishGreaterThan(int pageNum, int pageSize,Teacher teacher,Integer publish);
 	TeacherCourse getTeacherCourseByCourseName(String cousername,Long teacherId);
+	
+	Page<TeacherCourse> findTeacherCourseByTeacherAndPublishAndCType(int pageNum, int pageSize, Teacher teacher,Integer publish,CourseType cType);
 }

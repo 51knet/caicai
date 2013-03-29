@@ -165,7 +165,7 @@
 			<c:if test="${courseCount>5}">
 				<br><a href="<c:url value="/teacher/${teacherInfo.id}/course/list"></c:url>"> 查看所有>></a></c:if>&nbsp;&nbsp;</div>
 		</div>
-		<form action="<c:url value="/teacher/course/view"></c:url>" id="showCourseDetail" method="post">
+		<form action="<c:url value="/course/view"></c:url>" id="showCourseDetail" method="post">
 			<input type="hidden"  name="teacherId" id="teacher_id" >
 			<input type="hidden"  name="courseId" id="course_id">
 			<input type="hidden"  name="coursepwd" id="course_pwd">

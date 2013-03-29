@@ -55,7 +55,7 @@
 	margin-right:17px;
 	margin-left:7px;
 	margin-bottom:10px;
-	border:1px solid #ccc;
+	border:1px solid #dadada;
 	width: 210px;
 	padding:5px;
 	float: left;
@@ -110,7 +110,7 @@
 			<c:when test="${eTeacherCount !=0}">
 				<c:forEach items="${eTeacher }" var="et">
 					<div class="bro">
-						<div><img src='<c:url value="${et.photourl}" ></c:url>'   ></div>
+						<div><a href='<c:url value="/enterprise/${teacherInfo.id}/teacher/view/${et.id}"></c:url>' ><img src='<c:url value="${et.photourl}" ></c:url>'  ></a></div>
 						<div>${et.content }</div>
 					</div>
 				</c:forEach>
@@ -127,48 +127,47 @@
 <!-- enterprisecourse -->
 <div class="row-fluid custom round">
 		<div class="row">
-			<h4>课程资料 <span class="pull-right" ><a href='<c:url value='/enterprise/${teacherInfo.id}/course'></c:url>'>更多</a></span> </h4>
+			<h4>学习资源<span class="pull-right" ><a href='<c:url value='/enterprise/${teacherInfo.id}/course/list'></c:url>'>更多</a></span> </h4>
 		</div>
 		<div class="row">
 			<c:choose>
 				<c:when test="${courseCount !=0}">
-					<table cellpadding="4" width="100%" style="margin-top: 10px;">
-					<tbody>
-						<c:forEach var="course" items="${courseList}">
-							<tr>
-								<td width="80%" class="bb"><!--   -->
-									<c:choose>
-										<c:when test='${course.pwd == "" || course.pwd == null}'>
-											<a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> ${course.courseName }</a>
-										</c:when>
-										<c:otherwise>
-											<a href="#checkcourse" data-toggle="modal"> ${course.courseName }</a> 
-											<div id="checkcourse" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 400px; height:180px; ">
-												<div class="modal-header">
-													<h4 id="myModalLabel">验证密码</h4>
-												</div>
-												<div class="modal-body">
-													<form  method="post" id="checkpwd_form">
-														<input type="hidden" value="${course.id}" name="cid"> 
-														输入密码：<input type="text" name="coursepwd" id="coursepwd" placeholder="密码">
-														<span id="errorMsg" style="font-size: 14px; color: red"></span>
-													</form>
-													<div style="margin-left: 120px;">
-														<button class="btn btn-success"  onclick="checkCoursePwd( ${course.id} , ${teacherInfo.id})">确定</button>&nbsp;&nbsp;
-														<button class="btn"  type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
-													</div>
+					<c:forEach items="${courseList}" var="course">
+				    	<div class="bro">
+							<div style="width: 210px; height: 155px; background-image: url('<c:url value="${course.courseCover }"></c:url>');  
+									background-repeat:no-repeat;background-position:center;  ">
+								<c:choose>
+									<c:when test='${course.pwd == "" || course.pwd == null}'>
+										<a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> 	<div style="height: 125px;"></div></a>
+									</c:when>
+									<c:otherwise>
+										<a href="#checkcourse" data-toggle="modal"> 	<div style="height: 125px;"></div></a> 
+										<div id="checkcourse" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 400px; height:180px; ">
+											<div class="modal-header">
+												<h4 id="myModalLabel">验证密码</h4>
+											</div>
+											<div class="modal-body">
+												<form  method="post" id="checkpwd_form">
+													<input type="hidden" value="${course.id}" name="cid"> 
+													输入密码：<input type="text" name="coursepwd" id="coursepwd" placeholder="密码">
+													<span id="errorMsg" style="font-size: 14px; color: red"></span>
+												</form>
+												<div style="margin-left: 120px;">
+													<button class="btn btn-success"  onclick="checkCoursePwd( ${course.id} , ${teacherInfo.id})">确定</button>&nbsp;&nbsp;
+													<button class="btn"  type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
 												</div>
 											</div>
-										</c:otherwise>
-									</c:choose>
-								</td>
-								<td class="bb">
-									${course.courseDate}
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+										</div>
+									</c:otherwise>
+								</c:choose>
+			    				<div  style="height:24px;background-color:#000;  padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
+			    					<div  id="contentlimit" style="width: 240px;">
+			    							${course.courseName }
+			    					</div>
+			   				 	</div>
+							</div>
+				    	</div>
+				    </c:forEach>
 				</c:when>
 				<c:otherwise>
 				<br>
@@ -176,7 +175,7 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-		<form action="<c:url value="/teacher/course/view"></c:url>" id="showCourseDetail" method="post">
+		<form action="<c:url value="/course/view"></c:url>" id="showCourseDetail" method="post">
 			<input type="hidden"  name="teacherId" id="teacher_id" >
 			<input type="hidden"  name="courseId" id="course_id">
 			<input type="hidden"  name="coursepwd" id="course_pwd">

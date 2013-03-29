@@ -49,34 +49,36 @@
 .row-fluid.custom .row .bb{
 	border-bottom: dashed #cccccc 1px;
 }
-.titlebg{
-	background-color:#ccdfa8; 
-	font-size: 14px;
-	width: 100%;
+.row-fluid.custom .row .bro{
+	margin-top:10px;
+	margin-right:17px;
+	margin-left:7px;
+	margin-bottom:10px;
+	border:1px solid #ccc;
+	width: 210px;
+	padding:5px;
+	float: left;
 }
 </style>
 
 <div class="row-fluid custom round">
 	<div class="row">
-		<h4>课程资料</h4>
+		<h4>学习资源</h4>
 	</div>
 	<div class="row">
-		<table  style="width: 100%"  cellpadding="5">
-			<thead>
-					<tr class="titlebg"><th align="left" ><b>课程名称</b></th><th align="left" ><b>课程描述</b></th><th align="left"  width=20%><b>创建时间</b></th></tr>
-			</thead>
+		<table  style="width: 100%" >
 			<tbody>
-				<c:forEach var="course" items="${page.content}">
-					<tr class="bb">
-						<td>
+				<tr ><td>
+					<c:forEach var="course" items="${page.content}">
+						<div class="bro">
+						<div style="width: 210px; height: 155px; background-image: url('<c:url value="${course.courseCover }"></c:url>');  
+								background-repeat:no-repeat;background-position:center;  ">
 							<c:choose>
 								<c:when test='${course.pwd == "" || course.pwd == null}'>
-									<div style="width: 150px;" id="content"><a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> 
-									${course.courseName }
-									</a></div>
+									<a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> 	<div style="height: 125px;"></div></a>
 								</c:when>
 								<c:otherwise>
-									<a href="#checkcourse" data-toggle="modal"> <div style="width:150px;" id="contentlimit">${course.courseName }</div></a> 
+									<a href="#checkcourse" data-toggle="modal"> 	<div style="height: 125px;"></div></a> 
 									<div id="checkcourse" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 400px; height:180px; ">
 										<div class="modal-header">
 											<h4 id="myModalLabel">验证密码</h4>
@@ -87,7 +89,7 @@
 												输入密码：<input type="text" name="coursepwd" id="coursepwd" placeholder="密码">
 												<span id="errorMsg" style="font-size: 14px; color: red"></span>
 											</form>
-											<div style="margin-left:120px;">
+											<div style="margin-left: 120px;">
 												<button class="btn btn-success"  onclick="checkCoursePwd( ${course.id} , ${teacherInfo.id})">确定</button>&nbsp;&nbsp;
 												<button class="btn"  type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
 											</div>
@@ -95,18 +97,18 @@
 									</div>
 								</c:otherwise>
 							</c:choose>
-						</td>
-						<td >
-							<div style="width: 230px;" id="content">${course.courseDesc}</div>
-						</td>
-						<td>
-							${course.courseDate}
-						</td>
-					</tr>
-				</c:forEach>
+		    				<div  style="height:24px;background-color:#000;  padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
+		    					<div  id="contentlimit" style="width: 240px;">
+		    							${course.courseName }-${course.cType.typeName}
+		    					</div>
+		   				 	</div>
+						</div>
+			    		</div>
+					</c:forEach>
+					</td></tr>
 			</tbody>
 		<tfoot>
-	    <tr><td colspan="3">
+	    <tr><td >
 	        <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
 	   		 </td></tr>
 		</tfoot>

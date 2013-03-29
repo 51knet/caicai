@@ -21,7 +21,7 @@ function checkTeacherPicture(obj){
 	if(fileValue==null || fileValue==""){
 		flag=true;
 	}else{
-		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp){
+		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp || ".png" == temp){
 			flag=true;
 		}else{
 			alert("只支持gif、jpg、bmp格式的图片！！");

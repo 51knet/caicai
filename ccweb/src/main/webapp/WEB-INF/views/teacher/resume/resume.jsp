@@ -42,34 +42,34 @@
 					<h3>${teacherInfo.name}</h3>	
 					<address style="line-height: 30px;">
 						<c:choose>
-						<c:when test="${teacherInfo.address == null||teacherInfo.address == '' }">
+						<c:when test="${teacherInfo.teacher.college == null||teacherInfo.teacher.college == '' }">
 						</c:when>
 						<c:otherwise>
-						<abbr title="地址">联系地址:</abbr> ${teacherInfo.address} 
+						<abbr title="所属高校">所属高校：</abbr> ${teacherInfo.teacher.college} 
 						<br>
 						</c:otherwise>
 						</c:choose>
 						<c:choose>
-						<c:when test="${teacherInfo.fax == null||teacherInfo.fax == '' }">
+						<c:when test="${teacherInfo.teacher.school == null||teacherInfo.teacher.school == '' }">
 						</c:when>
 						<c:otherwise>
-						<abbr title="传真">传真:</abbr> ${teacherInfo.fax}
+						<abbr title="所属院系">所属院系：</abbr> ${teacherInfo.teacher.school}
 						<br>
 						</c:otherwise>
 						</c:choose>
 						<c:choose>
-						<c:when test="${teacherInfo.phone == null||teacherInfo.phone == '' }">
+						<c:when test="${teacherInfo.teacher.major == null||teacherInfo.teacher.major== '' }">
 						</c:when>
 						<c:otherwise>
-						<abbr title="电话">电话:</abbr> ${teacherInfo.phone} 
+						<abbr title="研究方向">研究方向：</abbr> ${teacherInfo.teacher.major} 
 						<br>
 						</c:otherwise>
 						</c:choose>
 						<c:choose>
-						<c:when test="${teacherInfo.email == null||teacherInfo.email == '' }">
+						<c:when test="${teacherInfo.teacher.title == null||teacherInfo.teacher.title == '' }">
 						</c:when>
 						<c:otherwise>
-						<abbr title="电邮">电子邮件:</abbr> <a href="mailto:#">${teacherInfo.email}</a>
+						<abbr title="职称职务">职称/职务：</abbr>${teacherInfo.teacher.title}
 						</c:otherwise>
 						</c:choose>
 					</address>

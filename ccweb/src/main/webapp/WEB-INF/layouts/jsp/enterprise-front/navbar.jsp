@@ -14,7 +14,7 @@
 	<div class="navbar-inner">
 		<ul class="nav">
 			<li><a href='<c:url value='/enterprise/${teacherInfo.id}'></c:url>'>首页</a></li>
-			<li><a href='<c:url value='/enterprise/${teacherInfo.id}/course'></c:url>'>学习资源</a></li>
+			<li><a href='<c:url value='/enterprise/${teacherInfo.id}/course/list'></c:url>'>学习资源</a></li>
 			<li><a href='<c:url value='/enterprise/${teacherInfo.id}/teacher/list'></c:url>'>知名老师</a></li>
 			<li><a href='<c:url value='/enterprise/${teacherInfo.id}/resume'></c:url>'>学校介绍</a></li>
 			<li><a href='<c:url value='/enterprise/${teacherInfo.id}/announcement/list'></c:url>'>公告专栏</a></li>

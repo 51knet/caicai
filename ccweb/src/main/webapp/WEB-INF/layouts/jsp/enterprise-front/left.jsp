@@ -84,7 +84,7 @@
 	</div>
 	<div  class="content">
 			<c:forEach items="${cTypeList }" var="cType">
-				${cType.typeName}<br>
+				<a href='<c:url value='/enterprise/${teacher_id}/course/type/${cType.id}'></c:url>'>${cType.typeName}</a><br>
 			</c:forEach>
 	</div>
 </div>

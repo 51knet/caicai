@@ -31,6 +31,7 @@ import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.CourseType;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
 import com.knet51.ccweb.jpa.services.EnterpriseTeacherService;
@@ -38,6 +39,7 @@ import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherHonorService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 
@@ -60,6 +62,8 @@ public class EnterpriseTeacherInfoPageController {
 	private TeacherService teacherService;
 	@Autowired
 	private CourseTypeService courseTypeService;
+	@Autowired
+	private TeacherHonorService honorService;
 	
 	/*  admin page controller */
 	
@@ -123,6 +127,15 @@ public class EnterpriseTeacherInfoPageController {
 	
 	/*   front page controller   */
 	
+	/**
+	 * enterprise home page
+	 * @param id
+	 * @param model
+	 * @param session
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value="/enterprise/{id}")
 	public String teacherFront(@PathVariable Long id, Model model,
 			HttpSession session, HttpServletResponse response)
@@ -140,12 +153,11 @@ public class EnterpriseTeacherInfoPageController {
 			
 			Page<Announcement> annoPage = announcementService.findAllAnnoByUser(0, 4, user);
 			model.addAttribute("annolist", annoPage.getContent());
-			model.addAttribute("annoCount", annoPage.getContent().size());
 			List<Announcement> annoList = announcementService.findAllByUid(id);
 			model.addAttribute("annoCount", annoList.size());
 
 			Page<TeacherCourse> pageCourse = courseService
-					.findTeacherCourseByTeacherAndPublish(0, 5, enterprise, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+					.findTeacherCourseByTeacherAndPublish(0, 6, enterprise, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 			List<TeacherCourse> courseList = pageCourse.getContent();
 			Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
 			model.addAttribute("courseList", courseList);
@@ -154,7 +166,7 @@ public class EnterpriseTeacherInfoPageController {
 			List<CourseType> cTypeList = courseTypeService.findAll();
 			model.addAttribute("cTypeList", cTypeList);
 			
-			Page<EnterpriseTeacher> eTeacher = enterpriseTeacherService.findTeacherByEnterprise(0, 3, user);
+			Page<EnterpriseTeacher> eTeacher = enterpriseTeacherService.findTeacherByEnterprise(0, 6, user);
 			List<EnterpriseTeacher> eTeacherList = enterpriseTeacherService.findTeacherByEnterprise(user); 
 			model.addAttribute("eTeacher", eTeacher.getContent());
 			model.addAttribute("eTeacherCount", eTeacherList.size());
@@ -177,5 +189,174 @@ public class EnterpriseTeacherInfoPageController {
 			e.printStackTrace();
 			return "404";
 		}
+	}
+	/**
+	 * show enterprise course list
+	 * @param id
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value="/enterprise/{id}/course/list")
+	public String getAllEnterpriseCourse(@PathVariable Long id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		User user = userService.findOne(id);
+		Teacher teacher = teacherService.findOne(id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", id);
+		Page<TeacherCourse> onePage = courseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		model.addAttribute("page", onePage);
+		
+		Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
+		model.addAttribute("courseCount", courseCount);
+		
+		List<CourseType> cTypeList = courseTypeService.findAll();
+		model.addAttribute("cTypeList", cTypeList);
+		
+		return "enterprise.course.list";
+	}
+	/**
+	 * filter the course by course type
+	 * @param teacher_id
+	 * @param type_id
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value="/enterprise/{enterprise_id}/course/type/{type_id}")
+	public String filterCourseByType(@PathVariable Long enterprise_id, @PathVariable Long type_id,Model model,
+			@RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		User user = userService.findOne(enterprise_id);
+		Teacher teacher = teacherService.findOne(enterprise_id);
+		CourseType cType = courseTypeService.findOneById(type_id);
+		UserInfo userInfo = new UserInfo(user);
+		logger.debug(userInfo.toString());
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", enterprise_id);
+		Page<TeacherCourse> onePage = courseService.findTeacherCourseByTeacherAndPublishAndCType(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,cType);
+		model.addAttribute("page", onePage);
+		
+		Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
+		model.addAttribute("courseCount", courseCount);
+		
+		List<CourseType> cTypeList = courseTypeService.findAll();
+		model.addAttribute("cTypeList", cTypeList);
+		return "enterprise.course.list";
+	}
+	/**
+	 * show the enterprise teacher list
+	 * @param enterprise_id
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value="/enterprise/{enterprise_id}/teacher/list")
+	public String showEnterpriseTeacher(@PathVariable Long enterprise_id,Model model,
+			@RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		User user = userService.findOne(enterprise_id);
+		UserInfo userInfo = new UserInfo(user);
+		Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
+		model.addAttribute("courseCount", courseCount);
+		List<CourseType> cTypeList = courseTypeService.findAll();
+		model.addAttribute("cTypeList", cTypeList);
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", enterprise_id);
+		Page<EnterpriseTeacher> onePage = enterpriseTeacherService.findTeacherByEnterprise(pageNumber, pageSize, user);
+		model.addAttribute("page", onePage);
+		return "enterprise.teacher.list";
+	}
+	/**
+	 * show enterprise teacher detail information
+	 * @param enterprise_id
+	 * @param et_id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/enterprise/{enterprise_id}/teacher/view/{et_id}")
+	public String showEnterpriseTeacherDetail(@PathVariable Long enterprise_id,@PathVariable Long et_id,Model model){
+		User user = userService.findOne(enterprise_id);
+		UserInfo userInfo = new UserInfo(user);
+		Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
+		model.addAttribute("courseCount", courseCount);
+		List<CourseType> cTypeList = courseTypeService.findAll();
+		model.addAttribute("cTypeList", cTypeList);
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", enterprise_id);
+		
+		EnterpriseTeacher enterpriseTeacher = enterpriseTeacherService.findOneById(et_id);
+		model.addAttribute("eTeacher", enterpriseTeacher);
+		return "enterprise.teacher.view";
+	}
+	/**
+	 * show the enterprise announcement list
+	 * @param enterprise_id
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value="/enterprise/{enterprise_id}/announcement/list")
+	public String showEnterpriseAnnoList(@PathVariable Long enterprise_id,Model model,
+			@RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		User user = userService.findOne(enterprise_id);
+		UserInfo userInfo = new UserInfo(user);
+		Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
+		model.addAttribute("courseCount", courseCount);
+		List<CourseType> cTypeList = courseTypeService.findAll();
+		model.addAttribute("cTypeList", cTypeList);
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", enterprise_id);
+		
+		Page<Announcement> annoPage = announcementService.findAllAnnoByUser(pageNumber, pageSize, user);
+		model.addAttribute("page", annoPage);
+		List<Announcement> annoList = announcementService.findAllByUid(enterprise_id);
+		model.addAttribute("annoCount", annoList.size());
+		return "enterprise.announcement.list";
+	}
+	/**
+	 * show enterprise announcement detail information
+	 * @param enterprise_id
+	 * @param anno_id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/enterprise/{enterprise_id}/announcement/view/{anno_id}")
+	public String showEnterpriseAnnoDetail(@PathVariable Long enterprise_id,@PathVariable Long anno_id,Model model){
+		User user = userService.findOne(enterprise_id);
+		UserInfo userInfo = new UserInfo(user);
+		Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
+		model.addAttribute("courseCount", courseCount);
+		List<CourseType> cTypeList = courseTypeService.findAll();
+		model.addAttribute("cTypeList", cTypeList);
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", enterprise_id);
+		
+		Announcement announcement = announcementService.findOneById(anno_id);
+		model.addAttribute("announcement", announcement);
+		
+		return "enterprise.announcement.view";
+	}
+	
+	@RequestMapping(value="/enterprise/{enterprise_id}/resume")
+	public String showEnterpriseResume(@PathVariable Long enterprise_id,Model model){
+		User user = userService.findOne(enterprise_id);
+		UserInfo userInfo = new UserInfo(user);
+		Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
+		model.addAttribute("courseCount", courseCount);
+		List<CourseType> cTypeList = courseTypeService.findAll();
+		model.addAttribute("cTypeList", cTypeList);
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", enterprise_id);
+		
+		List<TeacherHonor> honorList = honorService.getAllHonorById(enterprise_id);
+		model.addAttribute("honorList", honorList);
+		model.addAttribute("honorCount", honorList.size());
+		return "enterprise.resume";
 	}
 }

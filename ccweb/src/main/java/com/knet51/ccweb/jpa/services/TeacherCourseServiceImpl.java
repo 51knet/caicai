@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.beans.CourseBeans;
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.teacher.CourseType;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.repository.TeacherCourseRepository;
 import com.knet51.ccweb.jpa.repository.TeacherRepository;
@@ -101,6 +102,15 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	public Page<TeacherCourse> findAllCourse(int pageNum, int pageSize) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
 		Page<TeacherCourse> onePage = courseRepository.findAll(dateDesc);
+		return onePage;
+	}
+
+	@Override
+	public Page<TeacherCourse> findTeacherCourseByTeacherAndPublishAndCType(
+			int pageNum, int pageSize, Teacher teacher, Integer publish,
+			CourseType cType) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
+		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByTeacherAndPublishAndCType(teacher, publish, cType, dateDesc);
 		return onePage;
 	}
 

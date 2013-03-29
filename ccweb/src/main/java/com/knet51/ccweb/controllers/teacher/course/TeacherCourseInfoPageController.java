@@ -157,7 +157,7 @@ public class TeacherCourseInfoPageController {
 		return "teacher.course.list";
 	}
 	
-	@RequestMapping(value="/teacher/course/view",method=RequestMethod.POST)
+	@RequestMapping(value="/course/view",method=RequestMethod.POST)
 	public String detailCourse(@RequestParam("teacherId") Long teacher_id,@RequestParam("courseId") Long course_id,
 			@RequestParam("coursepwd") String pwd,Model model){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
@@ -182,11 +182,21 @@ public class TeacherCourseInfoPageController {
 						.getResourceByLessonNumAndCourseId(resourceOrder,course_id);
 				courseMap.put(resourceOrder, courseList);
 			}
+			List<CourseType> cTypeList = courseTypeService.findAll();
+			logger.info("==============="+cTypeList.size());
+			model.addAttribute("cTypeList", cTypeList);
+			Integer courseCount = teacherCourseService.getAllTeacherCourseByTeacheridAndPublish(teacher_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
+			model.addAttribute("courseCount", courseCount);
 			model.addAttribute("resourceCount", listResource.size());
 			model.addAttribute("courseMap", courseMap);
-			return "teacher.course.view";
+			if(user.getRole().equals("teacher")){
+				return "teacher.course.view";
+			}else{
+				return "enterprise.course.view";
+			}
+			
 		}
-		return "redirect:/teacher/"+teacher_id;
+		return "redirect:/";
 		
 		
 	}

@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.teacher.CourseType;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 
 @Transactional
@@ -26,4 +27,6 @@ public interface TeacherCourseRepository extends JpaRepository<TeacherCourse, Lo
 	List<TeacherCourse> findTeacherCourseByTeacherAndPublish(Teacher teacher,Integer publish);
 	@Query("select t from TeacherCourse t where t.courseName = :coursename and t.teacher.id= :teacherid and t.publish !='0'")
 	TeacherCourse getTeacherCourseByCourseName(@Param("coursename") String cousername,@Param("teacherid") Long teacherid);
+	
+	Page<TeacherCourse> findTeacherCourseByTeacherAndPublishAndCType(Teacher teacher,Integer publish,CourseType cType,Pageable pageable);
 }
