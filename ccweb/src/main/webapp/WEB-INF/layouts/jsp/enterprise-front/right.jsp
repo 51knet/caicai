@@ -73,7 +73,7 @@
 						<tr>
 							<td width="35%"  align="left" valign="top">
 								<c:forEach var="annophoto" items="${annolist}" begin="0" end="0">
-									<img src='<c:url value="${annophoto.photourl}" ></c:url>'  />
+									<a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
 								</c:forEach>
 							</td>
 							<td width="65%" align="left" valign="top">

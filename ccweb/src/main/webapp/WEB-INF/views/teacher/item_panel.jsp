@@ -49,12 +49,13 @@
 	<ul class="nav nav-tabs nav-stacked">
 		<!-- <li class="active"><a href='<c:url value="/admin"></c:url>' >个人中心</a></li> -->
 		<c:if test="${sessionUserInfo.role == 'enterprise' }">
-			<li><a href='<c:url value="/enterprise/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>
+			<li><a href='<c:url value="/enterprise/${sessionUserInfo.id}"></c:url>' >企业主页</a></li>
 		</c:if>
 		<c:if test="${sessionUserInfo.role == 'teacher' }">
 			<li><a href='<c:url value="/teacher/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>
 		</c:if>
-		<li><a href='<c:url value="/admin/teacher/resume"><c:param name="active" value="personal" /></c:url>' >我的简历</a></li>
+		<c:if test="${sessionUserInfo.role == 'enterprise' }"><li><a href='<c:url value="/admin/teacher/resume"><c:param name="active" value="personal" /></c:url>' >企业介绍</a></li></c:if>
+		<c:if test="${sessionUserInfo.role == 'teacher' }"><li><a href='<c:url value="/admin/teacher/resume"><c:param name="active" value="personal" /></c:url>' >我的简历</a></li></c:if>
 		<li><a href='<c:url value="/admin/teacher/announcement/list"></c:url>' >公告管理</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/list"></c:url>' >课程管理</a></li>
 		<li><a href='<c:url value="/admin/teacher/resource/list"></c:url>' >资源管理</a></li>
