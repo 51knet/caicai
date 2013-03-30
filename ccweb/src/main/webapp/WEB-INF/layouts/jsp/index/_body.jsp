@@ -102,6 +102,9 @@ body {
 .radio.inline{
 	width: 20%;
 }
+.help-inline{
+	margin-left:100px;
+}
 </style>
 <style type="text/css" media="screen">@import url("<c:url value="/resources/js/jq-mail/jquery.autoMailSuggest.css"/>");</style>
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/jq-mail/jquery.autoMailSuggest.js"/>"></script>
