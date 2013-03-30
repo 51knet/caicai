@@ -45,11 +45,11 @@ public class LoginController {
 			HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		if (result.hasErrors()) {
 			logger.info("LoginForm Validation Failed " + result);
-			return "home";
+			return "redirect:/";
 		} else {
 			logger.debug("loginForm :" + loginForm.toString());
-			String email = loginForm.getEmail();
-			String psw = loginForm.getPassword();
+			String email = loginForm.getEmail().trim();
+			String psw = loginForm.getPassword().trim();
 
 			boolean succeed = service.login(email, psw);
 			logger.info("Login result " + succeed);
@@ -75,7 +75,7 @@ public class LoginController {
 
 				return "redirect:/admin";
 			} else {
-				return "home";
+				return "redirect:/";
 			}
 		}
 	}
