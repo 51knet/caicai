@@ -81,7 +81,7 @@ textarea {
 /*banner_front*/
 .banner_front {
 	background-color: #ECECF0;
-	height: 224px;
+	/*height: 224px;*/
 }
 .leftInfo{
 	background-color: #ccdfa8; 

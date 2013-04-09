@@ -9,7 +9,6 @@
 		for ( var i = 0; i < opt.length; i++) {
 			if (opt[i].selected) {
 				var typeName = opt[i].innerHTML;
-				//alert(typeName);
 				window.location.href = '<c:url value="/teacher/'+id+'/course/type?detail='
 						+ typeName + '"></c:url>';
 			}
@@ -78,6 +77,7 @@
 			<table cellpadding="10" style="width: 430px;   margin-bottom: 10px;  float: left; margin-left: 50px;"  >
 				<tr >
 				<td   align="right"  valign="top">
+					<div style="width:160px;" >
 						<c:choose>
 							<c:when test="${course.courseCover != null && course.courseCover != ''}">
 								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 160px; height: 120px;float: right;" />
@@ -88,12 +88,12 @@
 								</a>
 							</c:otherwise>
 						</c:choose>
+						</div>
 					</td>
 					<td valign="top">
 						<div style="width:230px;" id="contentlimit">
 						<b style="font-size: 17px;">${course.courseName}</b><br><br>
 						类别：${course.cType.typeName }<br>
-						描述：${course.courseDesc }<br>
 						日期：${course.courseDate }</div>
 					</td>
 				</tr>

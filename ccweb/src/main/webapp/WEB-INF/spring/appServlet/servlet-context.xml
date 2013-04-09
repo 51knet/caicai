@@ -41,6 +41,7 @@
 				<beans:value>WEB-INF/layouts/tiles-views-teacher.xml</beans:value>
 				<beans:value>WEB-INF/layouts/tiles-views-enterprise.xml</beans:value>
 				<beans:value>WEB-INF/layouts/tiles-views-blog.xml</beans:value>
+				<beans:value>WEB-INF/layouts/tiles-views-faq.xml</beans:value>
 				<beans:value>WEB-INF/layouts/tiles-views-student.xml</beans:value>
 			</beans:list>
 		</beans:property>
