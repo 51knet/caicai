@@ -3,6 +3,7 @@ package com.knet51.ccweb.beans;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import com.knet51.ccweb.jpa.entities.Announcement;
+import com.knet51.ccweb.jpa.entities.Enterprise;
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
@@ -13,12 +14,14 @@ public class UserInfo {
 	private User user;
 	private Teacher teacher;
 	private Student student;
+	private Enterprise enterprise;
 	//private Announcement announcement;
 
 	public UserInfo(User user) {
 		this.user = user;
 		this.teacher = null;
 		this.student = null;
+		this.enterprise = null;
 		//this.announcement = null;
 	}
 
@@ -75,6 +78,14 @@ public class UserInfo {
 //		this.announcement = announcement;
 //	}
 	
+	public Enterprise getEnterprise() {
+		return enterprise;
+	}
+
+	public void setEnterprise(Enterprise enterprise) {
+		this.enterprise = enterprise;
+	}
+
 	public String getName(){
 		return this.user.getName();
 	}
