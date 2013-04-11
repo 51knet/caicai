@@ -40,7 +40,7 @@
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
-.row-fluid.custom .row1 {
+.row-fluid.custom .content {
 	margin: 20px 40px;
 }
 </style>
@@ -48,7 +48,7 @@
 	<div class="row" >
 		<h4>站内短信>详细信息</h4>
 	</div>
-	<div class="row1">
+	<div class="content">
 		<div style="text-align: center;">
 		<table border="0" cellspacing="0" cellpadding="8" width="100%">
 		  <tr>

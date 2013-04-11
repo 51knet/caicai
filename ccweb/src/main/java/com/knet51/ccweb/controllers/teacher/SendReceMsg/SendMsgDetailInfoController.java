@@ -67,7 +67,7 @@ public class SendMsgDetailInfoController {
 	 */
 	
 	@Transactional	
-	@RequestMapping(value="/admin/teacher/message/sendMsg",method = RequestMethod.POST)
+	@RequestMapping(value="/admin/message/sendMsg",method = RequestMethod.POST)
 	public String sendMsg(@RequestParam("receiveId") Long receiveId, @RequestParam("sendMsgId") Long sendMsgId , @RequestParam("urmId") Long urmId ,
 			@Valid SendMsgInfoForm sendMsgInfoForm,
 			BindingResult validResult, HttpSession session,Model model){
@@ -91,7 +91,7 @@ public class SendMsgDetailInfoController {
 			sendMsg.setDate(date);
 			sendMsg.setUser(sender);
 			sendMsgService.add(sendMsg, receiveId);
-			return "redirect:/admin/teacher/message/isRead";
+			return "redirect:/admin/message/isRead";
 		}	
 	}
 	

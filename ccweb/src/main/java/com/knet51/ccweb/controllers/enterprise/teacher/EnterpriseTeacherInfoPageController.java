@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.enterprise;
+package com.knet51.ccweb.controllers.enterprise.teacher;
 
 import java.io.IOException;
 import java.util.List;

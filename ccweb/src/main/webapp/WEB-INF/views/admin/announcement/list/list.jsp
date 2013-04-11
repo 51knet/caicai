@@ -52,11 +52,10 @@ $(document).ready(function() {
 	</div>
 	<div class="content">
 		<div style="text-align: right;">
-			<a href='<c:url value="/admin/teacher/announcement/create"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
+			<a href='<c:url value="/admin/announcement/create"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
 				添加公告</a><br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead><tr>
-						<th> 图片</th> 
 						<th  align="center">公告标题</th>
 						<th  align="center" width="25%">发布时间</th>
 						<th  align="center" width="20%">操作</th>
@@ -65,12 +64,11 @@ $(document).ready(function() {
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
-							<td align="center"><img src='<c:url value="${page.photourl}" ></c:url>' style="width: 120px; height: 80px;" /></td> 
 							<td align="left" >${page.title}</td>
 							<td align="center">${page.date}</td>
 							<td align="center">
 								 <a class="deleteAnnoPostBtn" href="#deleteAnnoPostModal" role="button" data-toggle="modal" data-target="#deleteAnnoPostModal">删除</a><input type="hidden" value="${page.id} ">  | 
-								 <a href='<c:url value="/admin/teacher/announcement/edit/${page.id}"></c:url>'>修改</a>	
+								 <a href='<c:url value="/admin/announcement/edit/${page.id}"></c:url>'>修改</a>	
 							</td>
 						</tr>
 					</c:forEach>
@@ -103,7 +101,7 @@ $(document).ready(function() {
 	  </div>
 	  <div class="modal-footer">
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-	    <form action='<c:url value="/admin/teacher/announcement/destory"></c:url>' method="post" style="display: inline-block;" >
+	    <form action='<c:url value="/admin/announcement/destory"></c:url>' method="post" style="display: inline-block;" >
 	    	<input id="annoId" type="hidden" name="annoId" />
 	    	<button class="btn btn-success">确定</button>
 	    </form>

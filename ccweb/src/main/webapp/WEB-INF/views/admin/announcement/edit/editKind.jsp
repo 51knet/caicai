@@ -19,7 +19,7 @@
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
-.row-fluid.custom .row1 {
+.row-fluid.custom .content {
 	margin: 20px 40px;
 }
 </style>
@@ -27,7 +27,7 @@
 	<div  class="row">
 		<h4>公告管理>修改公告</h4>
 	</div>
-	<div class="row1">
+	<div class="content">
 		<div style="text-align: left;">
 			<form action= "edit"  method="post" name="anno_post">
 				<input type="hidden" value="${anno.id }" name="id" />

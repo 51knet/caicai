@@ -56,7 +56,7 @@
 		</c:if>
 		<c:if test="${sessionUserInfo.role == 'enterprise' }"><li><a href='<c:url value="/admin/teacher/resume"><c:param name="active" value="personal" /></c:url>' >企业介绍</a></li></c:if>
 		<c:if test="${sessionUserInfo.role == 'teacher' }"><li><a href='<c:url value="/admin/teacher/resume"><c:param name="active" value="personal" /></c:url>' >我的简历</a></li></c:if>
-		<li><a href='<c:url value="/admin/teacher/announcement/list"></c:url>' >公告管理</a></li>
+		<li><a href='<c:url value="/admin/announcement/list"></c:url>' >公告管理</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/list"></c:url>' >课程管理</a></li>
 		<li><a href='<c:url value="/admin/teacher/resource/list"></c:url>' >资源管理</a></li>
 		<c:if test="${sessionUserInfo.role == 'enterprise' }"><li><a href='<c:url value="/admin/enterprise/teacher/list"></c:url>' >教师管理</a></li></c:if>
@@ -64,7 +64,7 @@
 		<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
 		<!-- <li><a href='<c:url value="/admin/teacher/friendsRelated/list"></c:url>' >好友互动</a></li> -->
 		<li><a href='<c:url value="/admin/teacher/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
-		<li><a href='<c:url value="/admin/teacher/message/list"></c:url>' >站内信</a></li>
+		<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li>
 		<!-- 
 		<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.isEnterprise != null) }">
 		       <li><a href='<c:url value="/admin/teacher/downgradeRole"></c:url>' >升级成为教师用户</a></li>

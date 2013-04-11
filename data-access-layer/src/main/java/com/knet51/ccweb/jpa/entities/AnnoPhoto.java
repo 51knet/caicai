@@ -1,13 +1,19 @@
 package com.knet51.ccweb.jpa.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-public class AnnoPhoto extends AbstractEntity  {
+public class AnnoPhoto  {
+	@Id
+	private Long id;
 	private Long userid;
 	private String photourl;
+	
 	@OneToOne
+	@PrimaryKeyJoinColumn(name = "id")
 	private Announcement announcement;
 	public Long getUserid() {
 		return userid;
@@ -30,6 +36,16 @@ public class AnnoPhoto extends AbstractEntity  {
 	public AnnoPhoto() {
 		super();
 	}
-	
+	public AnnoPhoto(Announcement announcement){
+		this.announcement = announcement;
+		setId(announcement.getId());
+		
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 }

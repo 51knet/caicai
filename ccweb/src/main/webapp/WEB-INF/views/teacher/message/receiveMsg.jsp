@@ -19,7 +19,7 @@
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
-.row-fluid.custom .row1 {
+.row-fluid.custom .content {
 	margin: 20px 40px;
 }
 </style>
@@ -27,11 +27,11 @@
 	<div class="row">
 		<h4>站内信</h4>
 	</div>
-	<div class="row1">	
+	<div class="content">	
 		<div style="text-align: center; margin-bottom: 10px;">收到的站内信数量：${msgCount}件 &nbsp;&nbsp;&nbsp;：
-			 	<a href='<c:url value="/admin/teacher/message/list"></c:url>'>未读信件数量${unReadCount}件</a>&nbsp;&nbsp;&nbsp;
-			 	<a href='<c:url value="/admin/teacher/message/isRead"></c:url>'>已读信件数量：${isReadCount}件</a>&nbsp;&nbsp;&nbsp;
-			 	<a href='<c:url value="/admin/teacher/message/isDele"></c:url>'>回收站：${isDeleCount}件</a>
+			 	<a href='<c:url value="/admin/message/list"></c:url>'>未读信件数量${unReadCount}件</a>&nbsp;&nbsp;&nbsp;
+			 	<a href='<c:url value="/admin/message/isRead"></c:url>'>已读信件数量：${isReadCount}件</a>&nbsp;&nbsp;&nbsp;
+			 	<a href='<c:url value="/admin/message/isDele"></c:url>'>回收站：${isDeleCount}件</a>
 		</div>
 		<div style="text-align: right;">
 			 <table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
@@ -39,7 +39,7 @@
 				 <tbody>
 			  		<c:forEach items="${page.content}" var = "page" >
 			  			<tr>
-			  				<td align="center"><a href='<c:url value="/admin/teacher/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>${page.sendMsg.title}</a> </td>
+			  				<td align="center"><a href='<c:url value="/admin/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>${page.sendMsg.title}</a> </td>
 			  				<td align="center">
 			  					<c:if test="${page.readed==1 }">
 			  						未读
@@ -57,14 +57,13 @@
 										<li><a href='<c:url value="/admin/teacher/message/deleOne?mid=${page.sendMsg.id}"></c:url>'>删除</a> </li>
 									</ul>
 								 </div> -->
-								 	  <a class="deleteMsgPostBtn" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">删除</a>
-									 <input type="hidden"  value="${page.sendMsg.id}" id="mId">
+								 	  <a class="deleteMsgPostBtn" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">删除</a><input type="hidden"  value="${page.sendMsg.id}" >
 			  				</td>
 			  			</tr>
 			  		</c:forEach>
 				  </tbody>
 			</table>
-			<div class="row1"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 		</div>
 		
 	</div>
@@ -81,8 +80,8 @@
 	  </div>
 	  <div class="modal-footer">
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-	    <form action='<c:url value="/admin/teacher/message/deleOne"></c:url>' method="post" style="display: inline-block;" >
-	    	<input id="mId" type="hidden" name="mId" />
+	    <form action='<c:url value="/admin/message/deleOne"></c:url>' method="post" style="display: inline-block;" >
+	    	<input id="meId" type="hidden" name="mId" />
 	    	<button class="btn btn-success">确定</button>
 	    </form>
 	  </div>
@@ -90,8 +89,8 @@
 <script type="text/javascript">
 $(document).ready(function() {	
 	$('.deleteMsgPostBtn').on('click', function() {
-		var m_id = $("#mId").val();
-		$('#deleteMsgPostModal #mId').val(m_id);	
+		var m_id =$(this).next().val();
+		$('#deleteMsgPostModal #meId').val(m_id);	
 	});
 });
 </script>		

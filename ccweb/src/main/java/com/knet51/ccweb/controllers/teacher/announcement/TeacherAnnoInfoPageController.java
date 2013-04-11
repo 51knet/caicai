@@ -42,7 +42,7 @@ public class TeacherAnnoInfoPageController {
 	@Autowired
 	private TeacherService teacherService;
 	
-	@RequestMapping(value="/admin/teacher/announcement/list")
+	@RequestMapping(value="/admin/announcement/list")
 	public String teacherAnno(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 								int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		logger.info("#### into TeacherAnno ####");
@@ -50,33 +50,33 @@ public class TeacherAnnoInfoPageController {
 			User user = userService.findOne(id);
 			Page<Announcement> page = annoService.findAllAnnoByUser(pageNumber, pageSize, user);
 			model.addAttribute("page", page);
-			return "admin.teacher.announcement.list";
+			return "admin.announcement.list";
 	}
 	
-	@RequestMapping(value="/admin/teacher/announcement/edit/{anno_id}")
+	@RequestMapping(value="/admin/announcement/edit/{anno_id}")
 	public String detailAnnoInfo(HttpSession session, Model model,@PathVariable Long anno_id){
-		Long user_id = getId(session);
-		User user = userService.findOne(user_id);
-		List<Announcement> annoList = annoService.findAnnoByUserAndId(user, anno_id);
-		if(annoList.size()>0){
-			Announcement anno = annoService.findOneById(Long.valueOf(anno_id));
-			model.addAttribute("anno", anno);
-			return "admin.teacher.announcement.edit";
+		Long currentuser_id = getId(session);
+		Announcement announcement = annoService.findOneById(anno_id);
+		Long user_id = announcement.getUser().getId();
+		if(!currentuser_id.equals(user_id)||announcement==null){
+			return "redirect:/admin/announcement/list";
 		}else{
-			return "redirect:/admin/teacher/announcement/list";
+			model.addAttribute("anno", announcement);
+			return "admin.announcement.edit";
 		}
 	}
-	@RequestMapping(value = "/admin/teacher/announcement/createAnnouncementAjax", method = RequestMethod.POST)
+	
+	@RequestMapping(value="/admin/announcement/create")
+	public String detailAnno(){
+		
+		return "admin.teacher.announcement.editKind";
+	}
+	@RequestMapping(value = "/admin/announcement/createAnnouncementAjax", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse announcementInfoFormAjaxJson(@Valid TeacherAnnoDetailInfoForm 
 			teacherAnnoDetailInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
 	
-	@RequestMapping(value="/admin/teacher/announcement/create")
-	public String detailAnno(){
-		
-		return "admin.teacher.announcement.editKind";
-	}
 	
 	public Long getId(HttpSession session){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);

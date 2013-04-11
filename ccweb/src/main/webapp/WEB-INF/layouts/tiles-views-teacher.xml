@@ -30,15 +30,15 @@
 		<put-attribute name="title" value="教师主页" />
 	</definition>
 	
-	<!-- teacher announcement admin layout-->
+	<!-- announcement admin layout-->
 
-	<definition name="admin.teacher.announcement.list" extends="admin-layout">
+	<definition name="admin.announcement.list" extends="admin-layout">
 		<put-attribute name="title" value="公告" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/list/list.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.announcement.edit" extends="admin-layout">
+	<definition name="admin.announcement.edit" extends="admin-layout">
 		<put-attribute name="title" value="公告" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/edit/editKind.jsp"></put-attribute>
@@ -163,25 +163,25 @@
 		<put-attribute name="right" value="/WEB-INF/views/teacher/message/sendMessage.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.message.detail" extends="admin-layout">
+	<definition name="admin.message.detail" extends="admin-layout">
 		<put-attribute name="title" value="私信" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/teacher/message/receiveMsg.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.message.send" extends="admin-layout">
+	<definition name="admin.message.send" extends="admin-layout">
 		<put-attribute name="title" value="私信" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/teacher/message/receiveMsgDetail.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.message.isReadDetail" extends="admin-layout">
+	<definition name="admin.message.isReadDetail" extends="admin-layout">
 		<put-attribute name="title" value="私信" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/teacher/message/isReadMsg.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.message.isDeleDetail" extends="admin-layout">
+	<definition name="admin.message.isDeleDetail" extends="admin-layout">
 		<put-attribute name="title" value="私信" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/teacher/message/isDeleMsg.jsp"></put-attribute>

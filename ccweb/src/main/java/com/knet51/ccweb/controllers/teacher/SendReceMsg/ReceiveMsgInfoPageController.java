@@ -42,7 +42,7 @@ public class ReceiveMsgInfoPageController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/admin/teacher/message/list")
+	@RequestMapping(value="/admin/message/list")
 	public String receiveMsgList(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		logger.info("####  Into ReceiveMsgList page  ####");
@@ -64,11 +64,11 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("isDeleCount",isDeleCount);
 		//model.addAttribute("unReadMsgList", unReadMsgList);
 		model.addAttribute("page", page);
-		return "admin.teacher.message.detail";
+		return "admin.message.detail";
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/message/detailOne")
+	@RequestMapping(value="/admin/message/detailOne")
 	public String receiveMsgDetailOne(@RequestParam("mid") Long mid, @RequestParam("urmid") Long urmId,Model model){
 		SendMsg sendMsg = sendMsgService.detail(mid);
 		receiveMsgService.isRead(urmId);
@@ -77,11 +77,11 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("sendMsg", sendMsg);
 		model.addAttribute("senderId", senderId);
 		model.addAttribute("urmId", urmId);
-		return "admin.teacher.message.send";
+		return "admin.message.send";
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/message/isRead")
+	@RequestMapping(value="/admin/message/isRead")
 	public String isReadMsg(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -102,32 +102,11 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("isDeleCount",isDeleCount);
 		//model.addAttribute("isReadMsgList", isReadMsgList);
 		model.addAttribute("page", page);
-		return "admin.teacher.message.isReadDetail";
+		return "admin.message.isReadDetail";
 	}
 	
 	@Transactional
-	@RequestMapping(value="/admin/teacher/message/deleOneReaded",method = RequestMethod.POST)
-	public String deleMsgFromReaded(@RequestParam("mId") Long mid,Model model){
-		receiveMsgService.del(Long.valueOf(mid));
-		return "redirect:/admin/teacher/message/isRead";
-	}
-	
-	@Transactional
-	@RequestMapping(value="/admin/teacher/message/deleOne",method = RequestMethod.POST)
-	public String deleMsgFromUnReaded(@RequestParam("mId") Long mid,Model model){
-		receiveMsgService.del(Long.valueOf(mid));
-		return "redirect:/admin/teacher/message/list";
-	}
-	
-	@Transactional
-	@RequestMapping(value="/admin/teacher/message/destory",method = RequestMethod.POST)
-	public String destory(@RequestParam("mId") Long mid,Model model){
-		receiveMsgService.destory(Long.valueOf(mid));
-		return "redirect:/admin/teacher/message/isDele";
-	}
-	
-	@Transactional
-	@RequestMapping(value="/admin/teacher/message/isDele")
+	@RequestMapping(value="/admin/message/isDele")
 	public String isDeleMsg(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -148,9 +127,33 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("isDeleCount",isDeleCount);
 		//model.addAttribute("isReadMsgList", isReadMsgList);
 		model.addAttribute("page", page);
-		return "admin.teacher.message.isDeleDetail";
+		return "admin.message.isDeleDetail";
 	}
-	@RequestMapping(value = "/admin/teacher/message/receiveMsgInfoAJAX", method = RequestMethod.POST)
+	
+	@Transactional
+	@RequestMapping(value="/admin/message/deleOneReaded",method = RequestMethod.POST)
+	public String deleMsgFromReaded(@RequestParam("mId") Long mid,Model model){
+		logger.info("===================deleReaded"+mid);
+		receiveMsgService.del(mid);
+		return "redirect:/admin/message/isRead";
+	}
+	
+	@Transactional
+	@RequestMapping(value="/admin/message/deleOne",method = RequestMethod.POST)
+	public String deleMsgFromUnReaded(@RequestParam("mId") Long mid,Model model){
+		logger.info("===================deleOne"+mid);
+		receiveMsgService.del(mid);
+		return "redirect:/admin/message/list";
+	}
+	
+	@Transactional
+	@RequestMapping(value="/admin/message/destory",method = RequestMethod.POST)
+	public String destory(@RequestParam("mId") Long mid,Model model){
+		receiveMsgService.destory(Long.valueOf(mid));
+		return "redirect:/admin/message/isDele";
+	}
+	
+	@RequestMapping(value = "/admin/message/receiveMsgInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse receiveMsgInfoFormAjaxJson(@Valid SendMsgInfoForm sendMsgInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}

@@ -28,10 +28,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.AnnoPhoto;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
+import com.knet51.ccweb.jpa.services.AnnoPhotoService;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
@@ -48,6 +50,9 @@ public class TeacherAnnoDetailInfoController {
 	private AnnouncementService annoService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private AnnoPhotoService annoPhotoService;
+	
 	/**
 	 * create a new announcement
 	 * @param annoDetailInfoForm
@@ -60,17 +65,22 @@ public class TeacherAnnoDetailInfoController {
 	 * @throws Exception
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/announcement/new", method = RequestMethod.POST)
+	@RequestMapping(value="/admin/announcement/new", method = RequestMethod.POST)
 	public String createNewAnno(@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm,MultipartHttpServletRequest request
-			,BindingResult validResult, HttpSession session,Model m,RedirectAttributes redirectAttributes) throws Exception{
+			,BindingResult validResult, HttpSession session,Model m,RedirectAttributes redirectAttributes) {
 		logger.info("####  TeacherAnnoDetailController  ####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		String role = userInfo.getRole();
 		if(validResult.hasErrors()){
-			logger.info("annoDetailInfoForm Validation Failed " + validResult);	
-			return "redirect:/admin/teacher/announcement/list";
+			logger.info("annoDetailInfoForm Validation Failed " + validResult);
+			if(!role.equals("user")){
+				return "redirect:/admin/announcement/list";
+			}else{
+				return "redirect:/admin";
+			}
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
+			List<MultipartFile> files = request.getFiles("coverFile");
 			Long user_id = userInfo.getId();
 			User user = userService.findOne(user_id);
 			String title = annoDetailInfoForm.getTitle();
@@ -82,8 +92,48 @@ public class TeacherAnnoDetailInfoController {
 			String date = format.format(new Date());
 			announcement.setDate(date); 
 			announcement.setUser(user);
-			annoService.createAnnouncement(announcement);
-			return "redirect:/admin/teacher/announcement/list";
+			Announcement ann = annoService.createAnnouncement(announcement);
+			try{
+				for(int i=0;i<files.size();i++){
+					MultipartFile multipartFile = files.get(i);
+					if(!files.get(i).isEmpty()){
+						if(multipartFile.getSize()>MAX_FILE_SIZE_2M){
+							redirectAttributes.addFlashAttribute("errorMsg", "图片不得大于2M");
+							if(!role.equals("user")){
+								return "redirect:/admin/announcement/list";
+							}else{
+								return "redirect:/admin";
+							}
+						}else{
+							AnnoPhoto annoPhoto = new AnnoPhoto(ann);
+							annoPhoto = annoPhotoService.createAnnoPhoto(annoPhoto);
+							logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
+							String fileName = multipartFile.getOriginalFilename();
+							String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
+							String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+user_id+"/announcement/"+ann.getId();
+							logger.debug("Upload Path:"+path); 
+							FileUtil.createRealPath(path, session);
+							String previewFile = path+File.separator+"small"+"."+fileExtension;
+							File saveDest = new File(path + File.separator + fileName);
+							multipartFile.transferTo(saveDest);
+							FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
+							String savePath = FileUtil.getSavePath("announcement", user_id, ann.getId()+"", request)+"/small"+"."+fileExtension;
+							annoPhoto.setPhotourl(savePath);
+							annoPhoto.setUserid(user_id);
+							annoPhotoService.updateAnnoPhoto(annoPhoto);
+						}
+					}
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			if(!role.equals("user")){
+				return "redirect:/admin/announcement/list";
+			}else{
+				return "redirect:/admin";
+			}
+			
 		}
 	}
 	/**
@@ -94,10 +144,10 @@ public class TeacherAnnoDetailInfoController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/announcement/destory", method = RequestMethod.POST)
+	@RequestMapping(value="/admin/announcement/destory", method = RequestMethod.POST)
 	public String teacherAnnoDele( @RequestParam("annoId") Long anno_id,HttpSession session, Model m){
 		annoService.deleAnnouncementById(Long.valueOf(anno_id));
-		return "redirect:/admin/teacher/announcement/list";
+		return "redirect:/admin/announcement/list";
 	}
 	/**
 	 * update a announcement
@@ -109,11 +159,13 @@ public class TeacherAnnoDetailInfoController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/announcement/edit/edit" , method = RequestMethod.POST)
+	@RequestMapping(value="/admin/announcement/edit/edit" , method = RequestMethod.POST)
 	public String teacherAnnoUpdate(@RequestParam("id") Long anno_id,@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm,
 			BindingResult validResult, HttpSession session,Model m){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Long user_id = userInfo.getId();
 		if(validResult.hasErrors()){
-			return "redirect:/admin/teacher/announcement/edit/"+anno_id;
+			return "redirect:/admin/"+user_id+"/announcement/edit/"+anno_id;
 		}else{	
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();
@@ -124,7 +176,7 @@ public class TeacherAnnoDetailInfoController {
 			String date = format.format(new Date());
 			announcement.setDate(date);  
 			annoService.updateAnnouncement(announcement);
-			return "redirect:/admin/teacher/announcement/list";
+			return "redirect:/admin/announcement/list";
 		}
 	}
 	
