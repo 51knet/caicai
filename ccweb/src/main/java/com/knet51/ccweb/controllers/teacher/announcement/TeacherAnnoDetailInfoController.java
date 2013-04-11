@@ -67,15 +67,10 @@ public class TeacherAnnoDetailInfoController {
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		String role = userInfo.getRole();
 		if(validResult.hasErrors()){
-			logger.info("annoDetailInfoForm Validation Failed " + validResult);
-			if(!role.equals("user")){
-				return "redirect:/admin/teacher/announcement/list";
-			}else{
-				return "redirect:/admin/user/announcement/list";
-			}
+			logger.info("annoDetailInfoForm Validation Failed " + validResult);	
+			return "redirect:/admin/teacher/announcement/list";
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
-			List<MultipartFile> files = request.getFiles("coverFile");
 			Long user_id = userInfo.getId();
 			User user = userService.findOne(user_id);
 			String title = annoDetailInfoForm.getTitle();
@@ -87,40 +82,8 @@ public class TeacherAnnoDetailInfoController {
 			String date = format.format(new Date());
 			announcement.setDate(date); 
 			announcement.setUser(user);
-			Announcement ann = annoService.createAnnouncement(announcement);
-			for(int i=0;i<files.size();i++){
-				MultipartFile multipartFile = files.get(i);
-				if(!files.get(i).isEmpty()){
-					if(multipartFile.getSize()>MAX_FILE_SIZE_2M){
-						redirectAttributes.addFlashAttribute("errorMsg", "图片不得大于2M");
-						if(!role.equals("user")){
-							return "redirect:/admin/teacher/announcement/list";
-						}else{
-							return "redirect:/admin/user/announcement/list";
-						}
-					}else{
-						logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
-						String fileName = multipartFile.getOriginalFilename();
-						String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
-						String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/announcement/"+ann.getId();
-						logger.debug("Upload Path:"+path); 
-						FileUtil.createRealPath(path, session);
-						String previewFile = path+File.separator+"small"+"."+fileExtension;
-						File saveDest = new File(path + File.separator + fileName);
-						multipartFile.transferTo(saveDest);
-						FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
-						String savePath = FileUtil.getSavePath("announcement", userInfo.getId(), ann.getId()+"", request)+"/small"+"."+fileExtension;
-						ann.setPhotourl(savePath);
-					}
-				}
-			}
-			annoService.updateAnnouncement(ann);
-			if(!role.equals("user")){
-				return "redirect:/admin/teacher/announcement/list";
-			}else{
-				return "redirect:/admin/user/announcement/list";
-			}
-			
+			annoService.createAnnouncement(announcement);
+			return "redirect:/admin/teacher/announcement/list";
 		}
 	}
 	/**

@@ -12,7 +12,7 @@ public class Announcement extends AbstractEntity {
 	private String content;
 	private Integer code;
 	private String date;
-	private String photourl;
+
 	
 	@ManyToOne
 	private User user;
@@ -55,12 +55,7 @@ public class Announcement extends AbstractEntity {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public String getPhotourl() {
-		return photourl;
-	}
-	public void setPhotourl(String photourl) {
-		this.photourl = photourl;
-	}
+
 	
 	
 	
