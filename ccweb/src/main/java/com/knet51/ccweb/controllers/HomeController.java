@@ -260,6 +260,8 @@ public class HomeController {
 
 		if (userInfo != null && userInfo.getRole().equals("user")) {
 			return "redirect:/admin/user";
+		} else if(userInfo != null && userInfo.getRole().equals("enterprise")){
+			return "redirect:/admin/enterprise";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
 			Teacher teacher = teacherService.findOne(userInfo.getId());
 			userInfo.setTeacher(teacher);
@@ -280,6 +282,8 @@ public class HomeController {
 
 		if (userInfo != null && userInfo.getRole().equals("user")) {
 			return "redirect:/admin/user";
+		} else if(userInfo != null && userInfo.getRole().equals("teacher")){
+			return "redirect:/admin/teacher";
 		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
 			Teacher teacher = teacherService.findOne(userInfo.getId());
 			userInfo.setTeacher(teacher);
