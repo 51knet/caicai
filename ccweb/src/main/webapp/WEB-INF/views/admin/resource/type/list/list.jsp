@@ -19,7 +19,7 @@
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
-.row-fluid.custom .row1 {
+.row-fluid.custom .content {
 	margin: 20px 40px;
 }
 </style>
@@ -27,7 +27,7 @@
 	<div class="row" >
 		<h4>资源管理>类别管理</h4>
 	</div>
-	<div class="row1">	
+	<div class="content">	
 		<div style="text-align: center;">
 			<!-- <a href='<c:url value="/admin/teacher/resource/type/add"></c:url>'>添加新类别</a>&nbsp;&nbsp;&nbsp;&nbsp;<br> -->
 			<table class="blue" id="mytab" cellpadding="7" width=65%  border=0>
@@ -35,12 +35,12 @@
 				<tbody>
 					<c:forEach items="${list}" var="l">
 						<tr><td align="left">${l.typeName}</td>
-						<td><a href='<c:url value="/admin/teacher/resource/type/destory/${l.id}" ></c:url>' > 删除</a></td></tr>
+						<td><a href='<c:url value="/admin/resource/type/destory/${l.id}" ></c:url>' > 删除</a></td></tr>
 					</c:forEach>
 				</tbody>
 				<tfoot>
 					<tr><td colspan="2" align="left"> 	
-					<a style="text-align: left;" href='<c:url value="/admin/teacher/resource/new"></c:url>' class="btn">添加资源</a>
+					<a style="text-align: left;" href='<c:url value="/admin/resource/new"></c:url>' class="btn">添加资源</a>
 					<form  method="post" action="new/create" class="form-inline pull-right">
 						<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 							<input type="text" name="typeName" placeholder="输入新建的分类">

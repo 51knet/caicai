@@ -50,16 +50,19 @@ public class TeacherResouInfoPageController {
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value="/admin/teacher/resource/list")
+	@RequestMapping(value="/admin/resource/list")
 	public String teacherResouInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
 		logger.info("#####Into TeacherResouInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long user_id = userInfo.getId();
-		User user = userService.findOne(user_id);
-		Page<CourseResource> onePage = resourceService.findAllResouByUserAndStatus(pageNumber, pageSize, user, GlobalDefs.STATUS_RESOURCE);
-		model.addAttribute("page", onePage);
-		return "admin.teacher.resource.list";
+		User user = userInfo.getUser();
+		if(user.getRole().equals("user")){
+			return "redirect:/admin";
+		}else{
+			Page<CourseResource> onePage = resourceService.findAllResouByUserAndStatus(pageNumber, pageSize, user, GlobalDefs.STATUS_RESOURCE);
+			model.addAttribute("page", onePage);
+			return "admin.resource.list";
+		}
 	}
 	
 	/**
@@ -68,12 +71,12 @@ public class TeacherResouInfoPageController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/admin/teacher/resource/new")
+	@RequestMapping(value="/admin/resource/new")
 	public String teacherResouAdd(HttpSession session,Model model ){
 		logger.info("#####Into TeacherResouInfoAdd#####");
 		List<ResourceType> listType = resourceTypeService.getTypeByTypeStatus(GlobalDefs.STATUS_RESOURCETYPE);
 		model.addAttribute("type", listType);
-		return "admin.teacher.resource.new";
+		return "admin.resource.new";
 	}
 	
 	/**
@@ -81,12 +84,12 @@ public class TeacherResouInfoPageController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/admin/teacher/resource/type/list")
+	@RequestMapping(value="/admin/resource/type/list")
 	public String teacherResouType(Model model){
 		logger.info("#### Into TeacherResouType ####");
 		List<ResourceType> list = resourceTypeService.getTypeByTypeStatus(GlobalDefs.STATUS_RESOURCETYPE);
 		model.addAttribute("list", list);
-		return "admin.teacher.resource.type.list";
+		return "admin.resource.type.list";
 	}
 	
 	

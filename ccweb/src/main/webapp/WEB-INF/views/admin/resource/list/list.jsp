@@ -27,7 +27,7 @@ $(document).ready(function() {
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
-.row-fluid.custom .row1 {
+.row-fluid.custom .content {
 	margin: 20px 40px;
 }
 </style>
@@ -35,10 +35,10 @@ $(document).ready(function() {
 	<div class="row">
 		<h4>资源管理</h4>
 	</div>
-	<div class="row1">
+	<div class="content">
 		<div style="text-align: right;">
-			<a  style="margin-bottom: 10px;" href='<c:url value="/admin/teacher/resource/new"></c:url>' class="btn">添加资源</a>
-			&nbsp;&nbsp;<a  style="margin-bottom: 10px;" href='<c:url value="/admin/teacher/resource/type/list"></c:url>'  class="btn">类别管理</a> <br>
+			<a  style="margin-bottom: 10px;" href='<c:url value="/admin/resource/new"></c:url>' class="btn">添加资源</a>
+			&nbsp;&nbsp;<a  style="margin-bottom: 10px;" href='<c:url value="/admin/resource/type/list"></c:url>'  class="btn">类别管理</a> <br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
 					<tr><th  align="center">文件名称</th><th align="center">发布时间</th><th align="center">文件描述</th><th align="center">文件类型</th><th align="center">操作</th></tr>
@@ -60,7 +60,7 @@ $(document).ready(function() {
 				</c:forEach>
 				</tbody>
 			</table>
-			<div class="row1"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 		</div>
 	</div>
 </div>
@@ -76,7 +76,7 @@ $(document).ready(function() {
 	  </div>
 	  <div class="modal-footer">
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-	    <form action='<c:url value="/admin/teacher/resource/destory"></c:url>' method="post" style="display: inline-block;" >
+	    <form action='<c:url value="/admin/resource/destory"></c:url>' method="post" style="display: inline-block;" >
 	    	<input id="resourceId" type="hidden" name="resourceId" />
 	    	<button class="btn btn-success">确定</button>
 	    </form>

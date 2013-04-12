@@ -52,7 +52,7 @@
 	
 	<!-- teacher resource admin layout-->
 
-	<definition name="admin.teacher.resource.list" extends="admin-layout">
+	<definition name="admin.resource.list" extends="admin-layout">
 		<put-attribute name="title" value="资源" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/resource/list/list.jsp"></put-attribute>
@@ -64,13 +64,13 @@
 		<put-attribute name="right" value="/WEB-INF/views/teacher/resource/resourceAddError.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.resource.type.list" extends="admin-layout">
+	<definition name="admin.resource.type.list" extends="admin-layout">
 		<put-attribute name="title" value="资源" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/resource/type/list/list.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.resource.new" extends="admin-layout">
+	<definition name="admin.resource.new" extends="admin-layout">
 		<put-attribute name="title" value="资源" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/resource/new/create.jsp"></put-attribute>

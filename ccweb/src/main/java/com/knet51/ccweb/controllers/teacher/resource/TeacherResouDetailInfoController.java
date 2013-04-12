@@ -67,7 +67,7 @@ public class TeacherResouDetailInfoController {
 	 * @throws Exception
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/resource/new/create",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/resource/new/create",method=RequestMethod.POST)
 	public String teacherResouInfo(@RequestParam("myFiles") CommonsMultipartFile file,HttpSession session,
 			Model model,@RequestParam("desc") String desc,@RequestParam("type") Long value, MultipartHttpServletRequest request) throws Exception{
 		logger.info("#####Into TeacherResouInfoAddPageController#####"+session.getId());
@@ -126,7 +126,7 @@ public class TeacherResouDetailInfoController {
 		resource.setStatus(GlobalDefs.STATUS_RESOURCE);
 		resource.setUser(user);
 		courseResourceService.createCourseResource(resource);*/
-		return "redirect:/admin/teacher/resource/list";
+		return "redirect:/admin/resource/list";
 	}
 	
 	@RequestMapping(value="/admin/resource/new/new",method=RequestMethod.POST)
@@ -178,25 +178,25 @@ public class TeacherResouDetailInfoController {
 	 * @throws Exception
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/resource/destory",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/resource/destory",method=RequestMethod.POST)
 	public String teacherResouDele(HttpSession session,Model model, @RequestParam("resourceId")Long resource_id) throws Exception{
 		logger.info("#####Into TeacherResouInfoDelePageController#####");
 		CourseResource resource = resourceService.findOneById(resource_id);
 		resourceService.delete(resource, GlobalDefs.STATUS_RESOURCE_DESTORY);
-		return "redirect:/admin/teacher/resource/list";
+		return "redirect:/admin/resource/list";
 	}
 	
 
-	@RequestMapping(value = "/admin/teacher/resource/resourceTypeAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/resource/resourceTypeAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse resourceTypeFormAjaxJson(@Valid  TeacherResouTypeInfoForm teacherResouTypeInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
 	@Transactional
-	@RequestMapping(value="/admin/teacher/resource/type/destory/{resourceType_id}")
+	@RequestMapping(value="/admin/resource/type/destory/{resourceType_id}")
 	public String teacherResouTypeDele(HttpSession session,Model model,@PathVariable Long resourceType_id) throws Exception{
 		logger.info("#####Into TeacherResouTypeDelePageController#####");
 		resourceTypeService.deleteById(resourceType_id);
-		return "redirect:/admin/teacher/resource/type/list";
+		return "redirect:/admin/resource/type/list";
 	}
 	
 	/**
@@ -208,7 +208,7 @@ public class TeacherResouDetailInfoController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/resource/type/new/create",  method = RequestMethod.POST)
+	@RequestMapping(value="/admin/resource/type/new/create",  method = RequestMethod.POST)
 	public String teacherResouTypeAddInfo(@Valid TeacherResouTypeInfoForm teacherResouTypeInfo,
 			BindingResult validResult, HttpSession session,Model model){
 		String typeName = teacherResouTypeInfo.getTypeName();
@@ -220,7 +220,7 @@ public class TeacherResouDetailInfoController {
 			resourceType.setTypeName(typeName);
 			resourceType.setTypeStatus(GlobalDefs.STATUS_RESOURCETYPE);
 			resourceTypeService.save(resourceType);
-			return "redirect:/admin/teacher/resource/type/list";
+			return "redirect:/admin/resource/type/list";
 		}
 	}
 	/**
