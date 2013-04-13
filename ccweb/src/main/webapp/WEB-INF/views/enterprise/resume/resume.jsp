@@ -23,11 +23,24 @@
 
 .row-fluid.custom .content {
 	margin: 20px 40px;
-	color: cccccc;
+	width:680px;
+	word-wrap:break-word;
+	
 }
 
 .row-fluid.custom .content .bb{
 	border-bottom: dashed #cccccc 1px;
+}
+
+
+.row-fluid.custom .content .limitTable{
+	margin-top: 10px; 
+	width:675px; 
+	table-layout:fixed
+}
+
+.row-fluid.custom .content .limittable ..limitTd{
+	word-wrap:break-word; word-break:break-all;
 }
 </style>
 <div class="row-fluid custom round">
@@ -87,13 +100,13 @@
 		<h4>公司发展</h4>
 	</div>
 	<div class="content">
-		<table   cellpadding="4" width="100%" style="margin-top: 10px;">
+		<table   cellpadding="4" class="limitTable">
 			<tbody>
 			<c:choose>
 				<c:when test="${honorCount>0}">
 					<c:forEach var="honor" items="${honorList}">
 						<tr>
-							<td>
+							<td class="limitTd">
 							${honor.desc}
 							</td>
 						</tr>

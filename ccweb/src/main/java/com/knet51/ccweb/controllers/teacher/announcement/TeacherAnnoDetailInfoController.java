@@ -147,6 +147,7 @@ public class TeacherAnnoDetailInfoController {
 	@RequestMapping(value="/admin/announcement/destory", method = RequestMethod.POST)
 	public String teacherAnnoDele( @RequestParam("annoId") Long anno_id,HttpSession session, Model m){
 		annoService.deleAnnouncementById(Long.valueOf(anno_id));
+		annoPhotoService.deleteAnnoPhotoById(anno_id);
 		return "redirect:/admin/announcement/list";
 	}
 	/**

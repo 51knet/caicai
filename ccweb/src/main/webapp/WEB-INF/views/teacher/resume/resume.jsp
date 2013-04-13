@@ -21,17 +21,29 @@
 	border-bottom: solid #cccccc 1.5px;
 }
 
-.row-fluid.custom .row1 {
+.row-fluid.custom .content {
 	margin: 20px 40px;
-	color: cccccc;
+	width:675px;
+	max-width:675px;
+	word-wrap:break-word;	
 }
 
-.row-fluid.custom .row1 .bb{
+.row-fluid.custom .content .bb{
 	border-bottom: dashed #cccccc 1px;
 }
+.row-fluid.custom .content .limitTable{
+	margin-top: 10px; 
+	width:675px; 
+	table-layout:fixed
+}
+
+.row-fluid.custom .content .limittable ..limitTd{
+	word-wrap:break-word; word-break:break-all;
+}
+
 </style>
 <div class="row-fluid custom round">
-	<div class="row1 ">
+	<div class="content ">
 		<table width="100%">
 			<tr>
 				<td align="left" width="25%">
@@ -80,7 +92,7 @@
 	<div class="row ">
 		<h4>联系方式</h4>
 	</div>
-	<div class="row1 ">
+	<div class="content ">
 		<address>
 			<c:choose>
 			<c:when test="${teacherInfo.address == null||teacherInfo.address == '' }">
@@ -119,7 +131,7 @@
 	<div class="row ">
 		<h4>教育背景</h4>
 	</div>
-	<div class="row1">
+	<div class="content">
 		<c:choose>
 			<c:when test="${eduCount>0 }">
 				<table  cellpadding="4" width="100%" style="margin-top: 10px;">
@@ -145,14 +157,14 @@
 	<div class="row">
 		<h4>工作经历</h4>
 	</div>
-	<div class="row1">
+	<div class="content">
 		<c:choose>
-			<c:when test="${eduCount>0 }">
-				<table  cellpadding="4" width="100%" style="margin-top: 10px;">
+			<c:when test="${workCount>0 }">
+				<table  cellpadding="4"    class="limitTable">
 					<tbody>
 						<c:forEach items="${workInfo}" var="workInfo">
 							<tr>
-								<td>
+								<td class="limitTd">
 								${workInfo.workDesc}
 								</td>
 							</tr>
@@ -169,14 +181,14 @@
 	<div class="row">
 		<h4>发表论文</h4>
 	</div>
-	<div class="row1">
-		<table  cellpadding="4" width="100%" style="margin-top: 10px;">
+	<div class="content">
+		<table  cellpadding="4"  class="limitTable">
 			<tbody>
 			<c:choose>
 				<c:when test="${thesisCount >0}">
 					<c:forEach var="thesis" items="${thesisList}">
 						<tr>
-							<td>
+							<td class="limitTd">
 								${thesis.content }
 							</td>
 						</tr>
@@ -193,14 +205,14 @@
 	<div class="row">
 		<h4>研究项目</h4>
 	</div>
-	<div class="row1">
-		<table   cellpadding="4" width="100%" style="margin-top: 10px;">
+	<div class="content">
+		<table   cellpadding="4" class="limitTable">
 			<tbody>
 			<c:choose>
 				<c:when test="${projectCount>0}">
 					<c:forEach var="project" items="${projectList}">
 						<tr>
-							<td>
+							<td class="limitTd">
 							${project.desc}
 							</td>
 						</tr>
@@ -217,14 +229,14 @@
 	<div class="row">
 		<h4>获得专利</h4>
 	</div>
-	<div class="row1">
-		<table   cellpadding="4" width="100%" style="margin-top: 10px;">
+	<div class="content">
+		<table   cellpadding="4" class="limitTable">
 			<tbody>
 			<c:choose>
 				<c:when test="${patentCount>0}">
 					<c:forEach var="patent" items="${patentList}">
 						<tr>
-							<td>
+							<td class="limitTd">
 							${patent.desc}
 							</td>
 						</tr>
@@ -241,14 +253,14 @@
 	<div class="row">
 		<h4>获得荣誉</h4>
 	</div>
-	<div class="row1">
-		<table   cellpadding="4" width="100%" style="margin-top: 10px;">
+	<div class="content">
+		<table   cellpadding="4" class="limitTable">
 			<tbody>
 			<c:choose>
 				<c:when test="${honorCount>0}">
 					<c:forEach var="honor" items="${honorList}">
 						<tr>
-							<td>
+							<td class="limitTd">
 							${honor.desc}
 							</td>
 						</tr>

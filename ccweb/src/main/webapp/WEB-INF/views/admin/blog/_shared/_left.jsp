@@ -41,10 +41,9 @@
 		<!-- <li class="active"><a href='<c:url value="/admin"></c:url>' >个人中心</a></li> -->
 		<li><a href='<c:url value="/teacher/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>
 		<li><a href='<c:url value="/admin/teacher/resume"><c:param name="active" value="personal" /></c:url>' >我的简历</a></li>
-		<li><a href='<c:url value="/admin/teacher/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
-		<li><a href='<c:url value="/admin/teacher/announcement/list"></c:url>' >公告管理</a></li>
+		<li><a href='<c:url value="/admin/announcement/list"></c:url>' >公告管理</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/list"></c:url>' >课程管理</a></li>
-		<li><a href='<c:url value="/admin/teacher/resource/list"></c:url>' >资源管理</a></li>
+		<li><a href='<c:url value="/admin/resource/list"></c:url>' >资源管理</a></li>
 		<!-- <li><a href='<c:url value="/admin/teacher/achievement/list"></c:url>' >科研成果</a></li> -->
 		<li class="active"><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
 		<li><ul class="submenu nav">
@@ -53,7 +52,8 @@
 			<li><a href="<c:url value="/admin/blog/list?type=garbage"></c:url>">回收站</a></li>
 		</ul></li>
 		<!-- <li><a href='<c:url value="/admin/teacher/friendsRelated/list"></c:url>' >好友互动</a></li> -->
-		<li><a href='<c:url value="/admin/teacher/message/list"></c:url>' >站内信</a></li>
+		<li><a href='<c:url value="/admin/teacher/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
+		<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li>
 		<!-- 
 		<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.isEnterprise != null) }">
 		       <li><a href='<c:url value="/admin/teacher/downgradeRole"></c:url>' >升级成为教师用户</a></li>

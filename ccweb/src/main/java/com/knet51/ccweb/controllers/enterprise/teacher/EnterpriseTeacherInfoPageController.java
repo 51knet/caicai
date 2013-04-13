@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.controllers.teacher.course.TeacherCourseInfoForm;
+import com.knet51.ccweb.jpa.entities.AnnoPhoto;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.EnterpriseTeacher;
 import com.knet51.ccweb.jpa.entities.Teacher;
@@ -32,6 +33,7 @@ import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
 import com.knet51.ccweb.jpa.entities.teacher.CourseType;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
+import com.knet51.ccweb.jpa.services.AnnoPhotoService;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
 import com.knet51.ccweb.jpa.services.EnterpriseTeacherService;
@@ -56,6 +58,8 @@ public class EnterpriseTeacherInfoPageController {
 	private FriendsRelateService friendsRelateService;
 	@Autowired
 	private AnnouncementService announcementService;
+	@Autowired
+	private AnnoPhotoService annoPhotoService;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -155,20 +159,22 @@ public class EnterpriseTeacherInfoPageController {
 			model.addAttribute("annolist", annoPage.getContent());
 			List<Announcement> annoList = announcementService.findAllByUid(id);
 			model.addAttribute("annoCount", annoList.size());
-
-			Page<TeacherCourse> pageCourse = courseService
-					.findTeacherCourseByTeacherAndPublish(0, 6, enterprise, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-			List<TeacherCourse> courseList = pageCourse.getContent();
-			Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
+			List<AnnoPhoto> annoPhoto = annoPhotoService.findAnnoPhotoByUserid(user.getId());
+			model.addAttribute("annoPhoto", annoPhoto);
+			
+//			Page<TeacherCourse> pageCourse = courseService
+//					.findTeacherCourseByTeacherAndPublish(0, 6, enterprise, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+//			List<TeacherCourse> courseList = pageCourse.getContent();
+			List<TeacherCourse> courseList = courseService.getAllTeacherCourseByTeacheridAndPublish(id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 			model.addAttribute("courseList", courseList);
-			model.addAttribute("courseCount", courseCount);
+			model.addAttribute("courseCount", courseList.size());
 			
 			List<CourseType> cTypeList = courseTypeService.findAll();
 			model.addAttribute("cTypeList", cTypeList);
 			
-			Page<EnterpriseTeacher> eTeacher = enterpriseTeacherService.findTeacherByEnterprise(0, 6, user);
+			//Page<EnterpriseTeacher> eTeacher = enterpriseTeacherService.findTeacherByEnterprise(0, 6, user);
 			List<EnterpriseTeacher> eTeacherList = enterpriseTeacherService.findTeacherByEnterprise(user); 
-			model.addAttribute("eTeacher", eTeacher.getContent());
+			model.addAttribute("eTeacher", eTeacherList);
 			model.addAttribute("eTeacherCount", eTeacherList.size());
 
 			UserInfo userInfo = new UserInfo(user);
@@ -211,8 +217,9 @@ public class EnterpriseTeacherInfoPageController {
 		Page<TeacherCourse> onePage = courseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("page", onePage);
 		
-		Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
-		model.addAttribute("courseCount", courseCount);
+		List<TeacherCourse> courseList = courseService.getAllTeacherCourseByTeacheridAndPublish(id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		model.addAttribute("courseList", courseList);
+		model.addAttribute("courseCount", courseList.size());
 		
 		List<CourseType> cTypeList = courseTypeService.findAll();
 		model.addAttribute("cTypeList", cTypeList);
@@ -241,8 +248,9 @@ public class EnterpriseTeacherInfoPageController {
 		Page<TeacherCourse> onePage = courseService.findTeacherCourseByTeacherAndPublishAndCType(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,cType);
 		model.addAttribute("page", onePage);
 		
-		Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
-		model.addAttribute("courseCount", courseCount);
+		List<TeacherCourse> courseList = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		model.addAttribute("courseList", courseList);
+		model.addAttribute("courseCount", courseList.size());
 		
 		List<CourseType> cTypeList = courseTypeService.findAll();
 		model.addAttribute("cTypeList", cTypeList);
@@ -261,8 +269,11 @@ public class EnterpriseTeacherInfoPageController {
 			@RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		User user = userService.findOne(enterprise_id);
 		UserInfo userInfo = new UserInfo(user);
-		Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
-		model.addAttribute("courseCount", courseCount);
+		
+		List<TeacherCourse> courseList = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		model.addAttribute("courseList", courseList);
+		model.addAttribute("courseCount", courseList.size());
+		
 		List<CourseType> cTypeList = courseTypeService.findAll();
 		model.addAttribute("cTypeList", cTypeList);
 		model.addAttribute("teacherInfo", userInfo);
@@ -306,8 +317,11 @@ public class EnterpriseTeacherInfoPageController {
 			@RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		User user = userService.findOne(enterprise_id);
 		UserInfo userInfo = new UserInfo(user);
-		Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
-		model.addAttribute("courseCount", courseCount);
+		
+		List<TeacherCourse> courseList = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		model.addAttribute("courseList", courseList);
+		model.addAttribute("courseCount", courseList.size());
+		
 		List<CourseType> cTypeList = courseTypeService.findAll();
 		model.addAttribute("cTypeList", cTypeList);
 		model.addAttribute("teacherInfo", userInfo);
@@ -330,8 +344,11 @@ public class EnterpriseTeacherInfoPageController {
 	public String showEnterpriseAnnoDetail(@PathVariable Long enterprise_id,@PathVariable Long anno_id,Model model){
 		User user = userService.findOne(enterprise_id);
 		UserInfo userInfo = new UserInfo(user);
-		Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
-		model.addAttribute("courseCount", courseCount);
+		
+		List<TeacherCourse> courseList = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		model.addAttribute("courseList", courseList);
+		model.addAttribute("courseCount", courseList.size());
+		
 		List<CourseType> cTypeList = courseTypeService.findAll();
 		model.addAttribute("cTypeList", cTypeList);
 		model.addAttribute("teacherInfo", userInfo);
@@ -347,8 +364,11 @@ public class EnterpriseTeacherInfoPageController {
 	public String showEnterpriseResume(@PathVariable Long enterprise_id,Model model){
 		User user = userService.findOne(enterprise_id);
 		UserInfo userInfo = new UserInfo(user);
-		Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
-		model.addAttribute("courseCount", courseCount);
+		
+		List<TeacherCourse> courseList = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		model.addAttribute("courseList", courseList);
+		model.addAttribute("courseCount", courseList.size());
+		
 		List<CourseType> cTypeList = courseTypeService.findAll();
 		model.addAttribute("cTypeList", cTypeList);
 		model.addAttribute("teacherInfo", userInfo);

@@ -72,7 +72,7 @@
 					<tbody>
 						<tr>
 							<td width="35%"  align="left" valign="top">
-								<c:forEach var="annophoto" items="${annolist}" begin="0" end="0">
+								<c:forEach var="annophoto" items="${annoPhoto}" begin="0" end="1">
 									<a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
 								</c:forEach>
 							</td>
@@ -108,7 +108,7 @@
 	<div class="row">
 		<c:choose>
 			<c:when test="${eTeacherCount !=0}">
-				<c:forEach items="${eTeacher }" var="et">
+				<c:forEach items="${eTeacher }" var="et" begin="0" end="5">
 					<div class="bro">
 						<div><a href='<c:url value="/enterprise/${teacherInfo.id}/teacher/view/${et.id}"></c:url>' ><img src='<c:url value="${et.photourl}" ></c:url>'  ></a></div>
 						<div>${et.content }</div>
@@ -132,7 +132,7 @@
 		<div class="row">
 			<c:choose>
 				<c:when test="${courseCount !=0}">
-					<c:forEach items="${courseList}" var="course">
+					<c:forEach items="${courseList}" var="course" begin="0" end="5">
 				    	<div class="bro">
 							<div style="width: 210px; height: 155px; background-image: url('<c:url value="${course.courseCover }"></c:url>');  
 									background-repeat:no-repeat;background-position:center;  ">
