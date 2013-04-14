@@ -5,7 +5,26 @@
 	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
+	<!-- announcement admin layout-->
 
+	<definition name="admin.announcement.list" extends="admin-layout">
+		<put-attribute name="title" value="公告" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/list/list.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.announcement.edit" extends="admin-layout">
+		<put-attribute name="title" value="公告" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/edit/editKind.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.teacher.announcement.editKind" extends="admin-layout">
+		<put-attribute name="title" value="公告" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/new/create.jsp"></put-attribute>
+	</definition>
+	
 	<definition name="admin.teacher.details" extends="admin-layout">
 		<put-attribute name="title" value="账号信息" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
@@ -28,26 +47,6 @@
 	<definition name="teacher.basic" extends="frontPage-layout">
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="title" value="教师主页" />
-	</definition>
-	
-	<!-- announcement admin layout-->
-
-	<definition name="admin.announcement.list" extends="admin-layout">
-		<put-attribute name="title" value="公告" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/list/list.jsp"></put-attribute>
-	</definition>
-
-	<definition name="admin.announcement.edit" extends="admin-layout">
-		<put-attribute name="title" value="公告" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/edit/editKind.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="admin.teacher.announcement.editKind" extends="admin-layout">
-		<put-attribute name="title" value="公告" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/new/create.jsp"></put-attribute>
 	</definition>
 	
 	<!-- teacher resource admin layout-->

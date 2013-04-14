@@ -9,4 +9,6 @@ public interface AnnoPhotoService {
 	AnnoPhoto createAnnoPhoto(AnnoPhoto annoPhoto);
 	AnnoPhoto updateAnnoPhoto(AnnoPhoto annoPhoto);
 	void deleteAnnoPhotoById(Long id);
+	
+	AnnoPhoto findOneByAnnoPhotoId(Long anno_id);
 }

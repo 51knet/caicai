@@ -34,4 +34,9 @@ public class AnnoPhotoServiceImpl implements AnnoPhotoService {
 		annoPhotoRepository.delete(id);
 	}
 
+	@Override
+	public AnnoPhoto findOneByAnnoPhotoId(Long anno_id) {
+		return annoPhotoRepository.findOne(anno_id);
+	}
+
 }

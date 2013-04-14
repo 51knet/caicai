@@ -80,6 +80,9 @@ public class TeacherCourseInfoPageController {
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		logger.info("#####Into TeacherCourseInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(!userInfo.getRole().equals("user")){
+			return "redirect:/admin";
+		}
 		Teacher teacher = teacherService.findOne(userInfo.getId());
 		Page<TeacherCourse> onePage =teacherCourseService.findTeacherCourseByTeacherAndPublishGreaterThan(pageNumber, pageSize, teacher,GlobalDefs.PUBLISH_NUM_DELETE);
 		//Page<TeacherCourse> page = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, publish)
@@ -92,6 +95,10 @@ public class TeacherCourseInfoPageController {
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		logger.info("##### Into teacherCoursePublished #####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(!userInfo.getRole().equals("user")){
+			return "redirect:/admin";
+		}
+		
 		Teacher teacher = teacherService.findOne(userInfo.getId());
 		Page<TeacherCourse> onePage = null;
 		if("publish".equals(publish)){

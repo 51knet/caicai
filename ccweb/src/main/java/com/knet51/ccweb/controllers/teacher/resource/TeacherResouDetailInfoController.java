@@ -71,10 +71,7 @@ public class TeacherResouDetailInfoController {
 	public String teacherResouInfo(@RequestParam("myFiles") CommonsMultipartFile file,HttpSession session,
 			Model model,@RequestParam("desc") String desc,@RequestParam("type") Long value, MultipartHttpServletRequest request) throws Exception{
 		logger.info("#####Into TeacherResouInfoAddPageController#####"+session.getId());
-		//session.setAttribute("file", file);
-		//logger.info("======="+file.getOriginalFilename());
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		//User user = userInfo.getUser();
 		List<MultipartFile> files = request.getFiles("myFiles");
 		User user = userInfo.getUser();
 		for(int i=0;i<files.size();i++){
@@ -104,28 +101,6 @@ public class TeacherResouDetailInfoController {
 				courseResourceService.createCourseResource(resource);
 			}
 		}
-		/*
-		CourseResource resource = new CourseResource();		
-		String fileName = file.getOriginalFilename();
-		String name = fileName.substring(0, fileName.indexOf("."));
-		ResourceType resourceType = resourceTypeService.findOneById(value); 
-		//String realPath = FileUtil.getPath("upload", userInfo.getId(), resourceType.getTypeName(),session);
-		String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/upload/"+resourceType.getTypeName();
-		FileUtil.createRealPath(path, session);
-		File saveDest = new File(path + File.separator + fileName);
-		file.transferTo(saveDest);
-		resource.setResourceType(resourceType);
-		resource.setResourceDesc(desc);
-		resource.setFileName(name);
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		String date = format.format(new Date());
-		resource.setDate(date);
-		resource.setSaveName(fileName);
-		String savePath = path+"/"+fileName;
-		resource.setSavePath(savePath);
-		resource.setStatus(GlobalDefs.STATUS_RESOURCE);
-		resource.setUser(user);
-		courseResourceService.createCourseResource(resource);*/
 		return "redirect:/admin/resource/list";
 	}
 	
@@ -147,8 +122,6 @@ public class TeacherResouDetailInfoController {
 		out.print(desc);
 		out.flush();
 		out.close();
-		//String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/upload/";
-	
 	}
 	
 	@RequestMapping(value="/resource/processbar",method=RequestMethod.POST)

@@ -99,11 +99,7 @@ public class TeacherAnnoDetailInfoController {
 					if(!files.get(i).isEmpty()){
 						if(multipartFile.getSize()>MAX_FILE_SIZE_2M){
 							redirectAttributes.addFlashAttribute("errorMsg", "图片不得大于2M");
-							if(!role.equals("user")){
-								return "redirect:/admin/announcement/list";
-							}else{
-								return "redirect:/admin";
-							}
+							return "redirect:/admin/announcement/new";
 						}else{
 							AnnoPhoto annoPhoto = new AnnoPhoto(ann);
 							annoPhoto = annoPhotoService.createAnnoPhoto(annoPhoto);
@@ -146,8 +142,11 @@ public class TeacherAnnoDetailInfoController {
 	@Transactional
 	@RequestMapping(value="/admin/announcement/destory", method = RequestMethod.POST)
 	public String teacherAnnoDele( @RequestParam("annoId") Long anno_id,HttpSession session, Model m){
+		AnnoPhoto photo = annoPhotoService.findOneByAnnoPhotoId(anno_id);
 		annoService.deleAnnouncementById(Long.valueOf(anno_id));
-		annoPhotoService.deleteAnnoPhotoById(anno_id);
+		if(photo != null){
+			annoPhotoService.deleteAnnoPhotoById(anno_id);
+		}
 		return "redirect:/admin/announcement/list";
 	}
 	/**
@@ -163,14 +162,18 @@ public class TeacherAnnoDetailInfoController {
 	@RequestMapping(value="/admin/announcement/edit/edit" , method = RequestMethod.POST)
 	public String teacherAnnoUpdate(@RequestParam("id") Long anno_id,@Valid TeacherAnnoDetailInfoForm annoDetailInfoForm,
 			BindingResult validResult, HttpSession session,Model m){
+		Announcement announcement = annoService.findOneById(anno_id);
+		Long anno_user_id = announcement.getUser().getId();
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long user_id = userInfo.getId();
+		if(!anno_user_id .equals(user_id)){
+			return "redirect:/admin";
+		}
 		if(validResult.hasErrors()){
-			return "redirect:/admin/"+user_id+"/announcement/edit/"+anno_id;
+			return "redirect:/admin/announcement/edit/"+anno_id;
 		}else{	
 			String title = annoDetailInfoForm.getTitle();
 			String content = annoDetailInfoForm.getContent();
-			Announcement announcement = annoService.findOneById(anno_id);
 			announcement.setTitle(title);
 			announcement.setContent(content);
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
