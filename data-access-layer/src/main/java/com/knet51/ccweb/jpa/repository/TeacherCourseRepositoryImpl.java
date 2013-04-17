@@ -4,7 +4,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 
 public class TeacherCourseRepositoryImpl implements
 		TeacherCourseRepositoryCustom {
@@ -19,7 +19,7 @@ public class TeacherCourseRepositoryImpl implements
 
 	@Override
 	public List<TeacherCourse> getAllCourseById(Long teacher_id) {
-		List<TeacherCourse> courseList = em.createQuery("select tc from TeacherCourse tc where teacher_id="+teacher_id).getResultList();
+		List<TeacherCourse> courseList = em.createQuery("select tc from TeacherCourse tc where tc.user.id="+teacher_id).getResultList();
 		return courseList;
 	}
 
@@ -64,7 +64,7 @@ public class TeacherCourseRepositoryImpl implements
 
 	@Override
 	public List<String> getCourseTypeByTeacherId(Long teacher_id) {
-		List<String> typeList = em.createQuery("select distinct c.courseType from TeacherCourse c where c.status=2 and c.publish=3 and c.teacher.id="+teacher_id).getResultList();
+		List<String> typeList = em.createQuery("select distinct c.courseType from TeacherCourse c where c.status=2 and c.publish=3 and c.user.id="+teacher_id).getResultList();
 		return typeList;
 	}
 }

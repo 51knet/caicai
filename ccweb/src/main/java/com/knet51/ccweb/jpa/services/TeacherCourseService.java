@@ -8,8 +8,9 @@ import org.springframework.data.repository.query.Param;
 
 import com.knet51.ccweb.beans.CourseBeans;
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.teacher.CourseType;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.courses.CourseType;
+import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 
 public interface TeacherCourseService {
 	Page<TeacherCourse> findAllCourse(int pageNum, int pageSize);
@@ -18,13 +19,13 @@ public interface TeacherCourseService {
 	TeacherCourse updateTeacherCourse(TeacherCourse teacherCourse);
 	List<TeacherCourse> getAllTeacherCourseByTeacheridAndPublish(Long teacher_id,Integer Publish);
 	void deleTeacherCourse(Long course_id);
-	Page<TeacherCourse> findAllCourseByTeacher(int pageNum, int pageSize, Teacher teacher);
+	Page<TeacherCourse> findAllCourseByUser(int pageNum, int pageSize, User user);
 	//List<CourseBeans> getAllCourseBeans();
 	List<String> getAllSchool();
 	List<Teacher> getAllCourseTeacher(String schoolName);
-	Page<TeacherCourse> findTeacherCourseByTeacherAndPublish(int pageNum, int pageSize, Teacher teacher,Integer publish);
-	Page<TeacherCourse> findTeacherCourseByTeacherAndPublishGreaterThan(int pageNum, int pageSize,Teacher teacher,Integer publish);
+	Page<TeacherCourse> findTeacherCourseByUserAndPublish(int pageNum, int pageSize, User user,Integer publish);
+	Page<TeacherCourse> findTeacherCourseByUserAndPublishGreaterThan(int pageNum, int pageSize,User user,Integer publish);
 	TeacherCourse getTeacherCourseByCourseName(String cousername,Long teacherId);
 	
-	Page<TeacherCourse> findTeacherCourseByTeacherAndPublishAndCType(int pageNum, int pageSize, Teacher teacher,Integer publish,CourseType cType);
+	Page<TeacherCourse> findTeacherCourseByUserAndPublishAndCType(int pageNum, int pageSize, User user,Integer publish,CourseType cType);
 }

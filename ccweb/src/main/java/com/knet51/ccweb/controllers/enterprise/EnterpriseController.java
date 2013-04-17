@@ -1,6 +1,13 @@
 package com.knet51.ccweb.controllers.enterprise;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +41,7 @@ import com.knet51.ccweb.controllers.teacher.TeacherSelfUrlForm;
 import com.knet51.ccweb.controllers.teacher.achievement.TeacherHonorDetailInfoForm;
 
 
+import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.WorkExp;
@@ -243,6 +251,24 @@ public class EnterpriseController {
 		return "redirect:/admin/enterprise/resume?active=honor";
 	}
 	
+	
+
+	@Transactional
+	@RequestMapping(value = "/admin/enterprise/resume")
+	public String resumePage(@RequestParam("active") String active,
+			Model model, HttpSession session) {
+	
+		if (active == null || active.equals("")) {
+			active = "personal";
+		}
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		List<TeacherHonor> honorList = honorService.getAllHonorById(userInfo.getId());
+		model.addAttribute("honorList", honorList);
+		model.addAttribute("honorCount", honorList.size());
+		model.addAttribute("active", active);
+		return "admin.enterprise.resume";
+	}
 	
 	
 	@RequestMapping(value = "/admin/enterprise/enterpriseInfoAJAX", method = RequestMethod.POST)

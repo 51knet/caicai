@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.knet51.ccweb.jpa.entities.teacher.CourseType;
+import com.knet51.ccweb.jpa.entities.courses.CourseType;
 import com.knet51.ccweb.jpa.repository.CourseTypeRepository;
 @Transactional
 @Service("couseTypeService")

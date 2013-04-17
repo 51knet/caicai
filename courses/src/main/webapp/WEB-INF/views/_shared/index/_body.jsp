@@ -61,7 +61,7 @@
 				</c:choose>
     		</div>
     		<div style="margin-top: 10px;width:200px;"id="contentlimit">
-    			教师名称：<a href='<c:url value="/teacher/${c.teacherCourse.teacher.id}"></c:url>'>${c.teacherCourse.teacher.user.name}</a><br>
+    			教师名称：<a href='<c:url value="/teacher/${c.teacherCourse.user.id}"></c:url>'>${c.teacherCourse.user.name}</a><br>
     			学习人数：${c.userCount}人 课程评分：
     			<c:choose>
     				<c:when test="${c.courseMark !=null && c.courseMark>0 }">

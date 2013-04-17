@@ -25,8 +25,8 @@ import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
-import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.CourseResource;
+import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
@@ -183,7 +183,7 @@ public class HomeController {
 			model.addAttribute("resourceCount", resourceCount);
 
 			Page<TeacherCourse> pageCourse = courseService
-					.findTeacherCourseByTeacherAndPublish(0, 5, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+					.findTeacherCourseByUserAndPublish(0, 5, user, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 			List<TeacherCourse> courseList = pageCourse.getContent();
 			Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
 			model.addAttribute("courseList", courseList);
@@ -289,7 +289,7 @@ public class HomeController {
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			// set default home page to set resume page;
-			return "redirect:/admin/teacher/resume?active=personal";
+			return "redirect:/admin/enterprise/resume?active=personal";
 		}else {
 			return "home";
 		}

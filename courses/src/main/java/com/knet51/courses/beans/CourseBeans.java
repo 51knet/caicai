@@ -1,6 +1,6 @@
 package com.knet51.courses.beans;
 
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 
 public class CourseBeans {
 	private Integer userCount;

@@ -13,10 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.beans.CourseBeans;
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.teacher.CourseType;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.courses.CourseType;
+import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 import com.knet51.ccweb.jpa.repository.TeacherCourseRepository;
 import com.knet51.ccweb.jpa.repository.TeacherRepository;
+import com.knet51.ccweb.jpa.repository.UserRepository;
 @Transactional
 @Service("teacherCourseService")
 public class TeacherCourseServiceImpl implements TeacherCourseService {
@@ -24,6 +26,8 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	private TeacherCourseRepository courseRepository;
 	@Autowired
 	private TeacherRepository teacherRepository;
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
 	public TeacherCourse findOneById(Long id) {	 
@@ -42,8 +46,8 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 
 	@Override
 	public List<TeacherCourse> getAllTeacherCourseByTeacheridAndPublish(Long teacher_id,Integer publish) {
-		Teacher teacher = teacherRepository.findOne(teacher_id);
-		return courseRepository.findTeacherCourseByTeacherAndPublish(teacher, publish);
+		User user = userRepository.findOne(teacher_id);
+		return courseRepository.findTeacherCourseByUserAndPublish(user, publish);
 	}
 
 	@Override
@@ -52,10 +56,10 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	}
 
 	@Override
-	public Page<TeacherCourse> findAllCourseByTeacher(int pageNum, int pageSize,
-			Teacher teacher) {
+	public Page<TeacherCourse> findAllCourseByUser(int pageNum, int pageSize,
+			User user) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByTeacher(teacher, dateDesc);
+		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUser(user, dateDesc);
 		return onePage;
 	}
 
@@ -77,18 +81,18 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	}
 
 	@Override
-	public Page<TeacherCourse> findTeacherCourseByTeacherAndPublish(
-			int pageNum, int pageSize, Teacher teacher, Integer publish) {
+	public Page<TeacherCourse> findTeacherCourseByUserAndPublish(
+			int pageNum, int pageSize, User user, Integer publish) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByTeacherAndPublish(teacher, publish, dateDesc);
+		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUserAndPublish(user, publish, dateDesc);
 		return onePage;
 	}
 
 	@Override
-	public Page<TeacherCourse> findTeacherCourseByTeacherAndPublishGreaterThan(
-			int pageNum, int pageSize, Teacher teacher, Integer publish) {
+	public Page<TeacherCourse> findTeacherCourseByUserAndPublishGreaterThan(
+			int pageNum, int pageSize,User user, Integer publish) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByTeacherAndPublishGreaterThan(teacher, publish, dateDesc);
+		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUserAndPublishGreaterThan(user, publish, dateDesc);
 		return onePage;
 	}
 
@@ -106,11 +110,11 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	}
 
 	@Override
-	public Page<TeacherCourse> findTeacherCourseByTeacherAndPublishAndCType(
-			int pageNum, int pageSize, Teacher teacher, Integer publish,
+	public Page<TeacherCourse> findTeacherCourseByUserAndPublishAndCType(
+			int pageNum, int pageSize, User user, Integer publish,
 			CourseType cType) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
-		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByTeacherAndPublishAndCType(teacher, publish, cType, dateDesc);
+		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUserAndPublishAndCType(user, publish, cType, dateDesc);
 		return onePage;
 	}
 

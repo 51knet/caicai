@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.entities.teacher;
+package com.knet51.ccweb.jpa.entities.courses;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,6 +1,7 @@
 package com.knet51.ccweb.jpa.services;
 import java.util.List;
-import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
+
+import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 
 public interface CourseResourceService {
 	

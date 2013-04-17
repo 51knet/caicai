@@ -68,7 +68,7 @@
 						<b style="font-size: 17px;">${course.courseName}</b><br>
 						课程类别：${course.cType.typeName }<br>
 						发布日期：${course.courseDate }<br>
-						教师名称：${course.teacher.user.name } <br>
+						发布人：${course.user.name } <br>
 						<a  href='<c:url value="/course/study/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
 					</div>
 				</td>

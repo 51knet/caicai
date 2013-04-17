@@ -2,8 +2,8 @@ package com.knet51.courses.jpa.services;
 
 import java.util.List;
 
-import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.CourseResource;
+import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 
 public interface ResourceService {
 	List<CourseResource> getResourceByCourseIdAndStatus(Long course_id,Integer status);

@@ -35,11 +35,11 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.courses.CourseLesson;
+import com.knet51.ccweb.jpa.entities.courses.CourseResource;
+import com.knet51.ccweb.jpa.entities.courses.CourseType;
+import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
-import com.knet51.ccweb.jpa.entities.teacher.CourseLesson;
-import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
-import com.knet51.ccweb.jpa.entities.teacher.CourseType;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
 import com.knet51.ccweb.jpa.services.CourseLessonService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
@@ -307,7 +307,7 @@ public class TeacherCourseInfoDetailController {
 			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long teacherId=course.getTeacher().getId();
+			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				//logger.info("----------current_user_id="+userInfo.getId()+"----------course_teacher_id"+teacherId);
 				return "redirect:/admin/teacher/course/list";
@@ -351,7 +351,7 @@ public class TeacherCourseInfoDetailController {
 			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long teacherId=course.getTeacher().getId();
+			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
@@ -402,7 +402,7 @@ public class TeacherCourseInfoDetailController {
 			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long teacherId=course.getTeacher().getId();
+			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
@@ -438,7 +438,7 @@ public class TeacherCourseInfoDetailController {
 			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long teacherId=course.getTeacher().getId();
+			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
@@ -498,7 +498,7 @@ public class TeacherCourseInfoDetailController {
 			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long teacherId=course.getTeacher().getId();
+			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
@@ -518,7 +518,7 @@ public class TeacherCourseInfoDetailController {
 			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long teacherId=course.getTeacher().getId();
+			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
@@ -554,7 +554,7 @@ public class TeacherCourseInfoDetailController {
 			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long teacherId=course.getTeacher().getId();
+			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
@@ -574,7 +574,7 @@ public class TeacherCourseInfoDetailController {
 			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long teacherId=course.getTeacher().getId();
+			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}

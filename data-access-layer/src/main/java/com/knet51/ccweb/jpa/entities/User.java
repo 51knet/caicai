@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -51,15 +53,7 @@ public class User extends AbstractEntity {
 	private String qq;
 	private String msn;
 	
-	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
-	private Set<Announcement> announcement = new HashSet<Announcement>();
 	
-	
-	@OneToMany(mappedBy="user",fetch=FetchType.LAZY)
-	private Set<ReceiveMsg>  receiveMsg= new HashSet<ReceiveMsg>();
-	
-	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
-	private  Set<SendMsg>  sendMsg= new HashSet<SendMsg>();
 	
 	private String photo_url;
 	public User(String email, String password,
@@ -199,16 +193,6 @@ public class User extends AbstractEntity {
 		this.forgotPsw = forgotPsw;
 	}
 
-	public Set<Announcement> getAnnouncement() {
-		return announcement;
-	}
-
-
-	public void setAnnouncement(Set<Announcement> announcement) {
-		this.announcement = announcement;
-	}
-
-	
 	public String getPhoto_url() {
 		return photo_url;
 	}
@@ -216,36 +200,13 @@ public class User extends AbstractEntity {
 		this.photo_url = photo_url;
 	}
 
-
 	public String getSelf_url() {
 		return self_url;
 	}
 
-
 	public void setSelf_url(String self_url) {
 		this.self_url = self_url;
 	}
-
-
-	public Set<ReceiveMsg> getReceiveMsg() {
-		return receiveMsg;
-	}
-
-
-	public void setReceiveMsg(Set<ReceiveMsg> receiveMsg) {
-		this.receiveMsg = receiveMsg;
-	}
-
-
-	public Set<SendMsg> getSendMsg() {
-		return sendMsg;
-	}
-
-
-	public void setSendMsg(Set<SendMsg> sendMsg) {
-		this.sendMsg = sendMsg;
-	}
-
 
 	public String getAddress() {
 		return address;
@@ -285,5 +246,5 @@ public class User extends AbstractEntity {
 	public void setMsn(String msn) {
 		this.msn = msn;
 	}
-	
+
 }

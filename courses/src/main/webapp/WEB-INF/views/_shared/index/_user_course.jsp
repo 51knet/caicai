@@ -59,11 +59,11 @@
 											</c:otherwise>
 										</c:choose>
 									</div>
-									<c:if test="${course.teacher.isEnterprise == null}">
-										教师名称：${course.teacher.user.name } <br>所在学校：${course.teacher.college }<br>专业技术：${course.teacher.major }<br>
+									<c:if test="${course.user.role == teacher}">
+										教师名称：${course.user.name } <br><br>
 									</c:if>
-									<c:if test="${course.teacher.isEnterprise != null}">
-										企业名称：${course.teacher.user.name } <br><br>
+									<c:if test="${course.user.role == enterprise}">
+										企业名称：${course.user.name } <br><br>
 									</c:if>
 									<a style="margin-top: 10px;" href='<c:url value="/course/study/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
 								</div>

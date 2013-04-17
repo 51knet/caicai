@@ -8,7 +8,8 @@ import javax.persistence.NoResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
+
+import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.repository.TeacherCourseResourceRepository;
 
 @Transactional

@@ -32,7 +32,7 @@
 </style>
 <div class="container teacher">
 <c:choose>
-<c:when test="${teacher.isEnterprise == null}">
+<c:when test="${teacher.user.role == 'teacher'}">
     <div  class="nar" >
 			<h4>讲师介绍</h4>
 		</div>
@@ -62,7 +62,7 @@
     <div class="container course detail">
 	    <c:choose>
 			<c:when test="${teacher.user.photo_url != null && teacher.user.photo_url != ''}">
-				<img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:10px;" />
+				<img src='<c:url value="${url }${teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:10px;" />
 			</c:when>
 			<c:otherwise>
 			<img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:10px;" />

@@ -39,11 +39,11 @@ import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.controllers.teacher.TeacherPersonalInfoForm;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.teacher.CourseLesson;
-import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
-import com.knet51.ccweb.jpa.entities.teacher.CourseType;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
-import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
+import com.knet51.ccweb.jpa.entities.courses.CourseLesson;
+import com.knet51.ccweb.jpa.entities.courses.CourseResource;
+import com.knet51.ccweb.jpa.entities.courses.CourseType;
+import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.ccweb.jpa.services.CourseLessonService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
@@ -83,8 +83,7 @@ public class TeacherCourseInfoPageController {
 		if(userInfo.getRole().equals("user")){
 			return "redirect:/admin";
 		}
-		Teacher teacher = teacherService.findOne(userInfo.getId());
-		Page<TeacherCourse> onePage =teacherCourseService.findTeacherCourseByTeacherAndPublishGreaterThan(pageNumber, pageSize, teacher,GlobalDefs.PUBLISH_NUM_DELETE);
+		Page<TeacherCourse> onePage =teacherCourseService.findTeacherCourseByUserAndPublishGreaterThan(pageNumber, pageSize,userInfo.getUser(),GlobalDefs.PUBLISH_NUM_DELETE);
 		//Page<TeacherCourse> page = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, publish)
 		model.addAttribute("page", onePage);
 		return "admin.teacher.course.list";
@@ -98,14 +97,13 @@ public class TeacherCourseInfoPageController {
 		if(userInfo.getRole().equals("user")){
 			return "redirect:/admin";
 		}else{
-			Teacher teacher = teacherService.findOne(userInfo.getId());
 			Page<TeacherCourse> onePage = null;
 			if("publish".equals(publish)){
-				onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+				onePage = teacherCourseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, userInfo.getUser(), GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 			}else if("unpub".equals(publish)){
-				onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN);
+				onePage = teacherCourseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, userInfo.getUser(), GlobalDefs.PUBLISH_NUM_ADMIN);
 			}else if("recycle".equals(publish)){
-				onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_RECYCLE);
+				onePage = teacherCourseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, userInfo.getUser(), GlobalDefs.PUBLISH_NUM_RECYCLE);
 			}
 			model.addAttribute("page", onePage);
 			return "admin.teacher.course.list";
@@ -127,7 +125,7 @@ public class TeacherCourseInfoPageController {
 			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long teacherId=course.getTeacher().getId();
+			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
@@ -160,7 +158,7 @@ public class TeacherCourseInfoPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", teacher_id);
-		Page<TeacherCourse> onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		Page<TeacherCourse> onePage = teacherCourseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, user, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("page", onePage);
 		return "teacher.course.list";
 	}
@@ -242,7 +240,6 @@ public class TeacherCourseInfoPageController {
 		}else{
 			List<MultipartFile> files = request.getFiles("coverFile");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Teacher teacher = teacherService.findOne(userInfo.getId());
 			CourseType cType = courseTypeService.findOneById(courseInfoForm.getCourseType());
 			TeacherCourse course = new TeacherCourse();
 			String courseName = courseInfoForm.getCourseName();
@@ -254,7 +251,7 @@ public class TeacherCourseInfoPageController {
 			course.setCourseDate(date);
 			course.setStatus(GlobalDefs.STATUS_CCWEB);
 			course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
-			course.setTeacher(teacher);
+			course.setUser(userInfo.getUser());
 			course.setcType(cType);
 			//course.setCourseType(cType.getTypeName());
 			TeacherCourse newCourse = teacherCourseService.createTeacherCourse(course);
@@ -381,7 +378,7 @@ public class TeacherCourseInfoPageController {
 			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long teacherId=course.getTeacher().getId();
+			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
@@ -399,7 +396,7 @@ public class TeacherCourseInfoPageController {
 			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long teacherId=course.getTeacher().getId();
+			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
@@ -414,16 +411,18 @@ public class TeacherCourseInfoPageController {
 			@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize){
 		TeacherCourse course= teacherCourseService.findOneById(Long.valueOf(course_id));
-		
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(course == null){
 			return "redirect:/admin/teacher/course/list";
 		}else{
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long teacherId=course.getTeacher().getId();
+			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}
 		}
+	
+		Teacher teacher = teacherService.findOne(userInfo.getId());
+		model.addAttribute("teacher", teacher);
 		
 		List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList;
@@ -462,8 +461,6 @@ public class TeacherCourseInfoPageController {
 				courseMark = userCourseService.getMark(course_id);// 一个视频的评论平均分数
 			}
 		}
-		TeacherCourse teacherCourse = teacherCourseService.findOneById(course_id);
-		model.addAttribute("course", teacherCourse);
 		// model.addAttribute("listCount", listUserCourse.size());
 		model.addAttribute("listUserCourse", list);
 		// model.addAttribute("id", id);
@@ -489,7 +486,7 @@ public class TeacherCourseInfoPageController {
 			return "redirect:/admin/teacher/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long teacherId=course.getTeacher().getId();
+			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/teacher/course/list";
 			}

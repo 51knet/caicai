@@ -314,7 +314,7 @@
 	<div id="testUploadify" style="margin-top: 20px;">
 		<div id="fileQueue" style="height: 100px; padding-left: 10px; display: block;"></div>
 		<form id="course_form">
-		<input type="hidden" name="tid" value="${course.teacher.id }"  />
+		<input type="hidden" name="tid" value="${course.user.id }"  />
 			课时：<input type="text" name="courseOrder" id="courseOrder"  /><br>
 		</form>
 			<input type="file" name="uploadify" id="uploadify_test" />

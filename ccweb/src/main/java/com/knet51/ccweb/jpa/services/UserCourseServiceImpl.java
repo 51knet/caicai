@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
+import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.ccweb.jpa.repository.UserCourseRepository;
 import com.knet51.ccweb.jpa.repository.UserRepository;
 @Transactional

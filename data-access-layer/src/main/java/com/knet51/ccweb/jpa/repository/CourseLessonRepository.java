@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.knet51.ccweb.jpa.entities.teacher.CourseLesson;
+import com.knet51.ccweb.jpa.entities.courses.CourseLesson;
 @Transactional
 public interface CourseLessonRepository extends JpaRepository<CourseLesson, Long>,JpaSpecificationExecutor<CourseLesson>,CourseLessonRepositoryCustom {
 //	@Query("select c from CourseLesson c where c.courseId =: cId and c.lessonNum = (select max(cl.lessonNum) from CourseLesson cl where cl.courseId =: cId)")

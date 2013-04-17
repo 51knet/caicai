@@ -71,7 +71,7 @@
  </div>
 <div class="container user-course" >
 	<c:if test="${courseCount <= 0}">
-		<h4 style="margin-left: 70px;">尚未添加课程</h4>
+		<h4 style="margin-left: 70px;">尚未发布课程</h4>
 	</c:if>
  	<c:forEach items="${teacherCourseList}" var="course">
 			<table cellpadding="10" style="width: 430px;   margin-bottom: 10px;  float: left; margin-left: 50px;"  >

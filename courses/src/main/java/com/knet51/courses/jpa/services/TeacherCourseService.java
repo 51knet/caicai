@@ -6,7 +6,8 @@ import java.util.Map;
 import org.springframework.data.domain.Page;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 import com.knet51.courses.beans.CourseBeans;
 import com.knet51.courses.beans.TeacherCourseBeans;
 
@@ -15,7 +16,7 @@ public interface TeacherCourseService {
 	TeacherCourse createTeacherCourse(TeacherCourse teacherCourse);
 	TeacherCourse updateTeacherCourse(TeacherCourse teacherCourse);
 	void deleTeacherCourse(Long teacher_id);
-	Page<TeacherCourse> findAllCourseByTeacher(int pageNum, int pageSize, Teacher teacher);
+	Page<TeacherCourse> findAllCourseByUser(int pageNum, int pageSize, User user);
 	Page<TeacherCourse> findAllCourse(int pageNum, int pageSize);
 	List<String> getAllSchool();
 	List<Teacher> getAllCourseTeacher(String schoolName);

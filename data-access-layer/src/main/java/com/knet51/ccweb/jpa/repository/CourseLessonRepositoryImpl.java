@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.knet51.ccweb.jpa.entities.teacher.CourseLesson;
+import com.knet51.ccweb.jpa.entities.courses.CourseLesson;
 
 public class CourseLessonRepositoryImpl implements CourseLessonRepositoryCustom {
 	

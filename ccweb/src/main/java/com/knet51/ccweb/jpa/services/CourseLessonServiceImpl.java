@@ -8,7 +8,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.knet51.ccweb.jpa.entities.teacher.CourseLesson;
+import com.knet51.ccweb.jpa.entities.courses.CourseLesson;
 import com.knet51.ccweb.jpa.repository.CourseLessonRepository;
 @Service("courseLessonService")
 @Transactional

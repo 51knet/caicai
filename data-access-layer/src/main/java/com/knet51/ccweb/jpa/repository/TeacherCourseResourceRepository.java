@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
+import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 
 @Transactional
 public interface TeacherCourseResourceRepository extends JpaRepository<CourseResource, Long>, JpaSpecificationExecutor<CourseResource>,TeacherCourseResourceRepositoryCustom{

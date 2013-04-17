@@ -47,9 +47,8 @@
 </c:choose>
 <div class="left-menu-container">
 	<ul class="nav nav-tabs nav-stacked">
-		<!-- <li class="active"><a href='<c:url value="/admin"></c:url>' >个人中心</a></li> -->
 		<li><a href='<c:url value="/enterprise/${sessionUserInfo.id}"></c:url>' >企业主页</a></li>
-		<c:if test="${sessionUserInfo.role == 'enterprise' }"><li><a href='<c:url value="/admin/teacher/resume"><c:param name="active" value="personal" /></c:url>' >企业介绍</a></li></c:if>
+		<li><a href='<c:url value="/admin/enterprise/resume"><c:param name="active" value="personal" /></c:url>' >企业介绍</a></li>
 		<li><a href='<c:url value="/admin/announcement/list"></c:url>' >公告管理</a></li>
 		<li><a href='<c:url value="/admin/teacher/course/list"></c:url>' >课程管理</a></li>
 		<li><a href='<c:url value="/admin/resource/list"></c:url>' >资源管理</a></li>
@@ -57,14 +56,6 @@
 		<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
 		<li><a href='<c:url value="/admin/enterprise/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
 		<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li>
-		<!-- 
-		<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.isEnterprise != null) }">
-		       <li><a href='<c:url value="/admin/teacher/downgradeRole"></c:url>' >升级成为教师用户</a></li>
-		</c:if>
-		<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.isEnterprise == null) || (sessionUserInfo.isEnterprise == '')}">
-		       <li><a href='<c:url value="/admin/teacher/upgradeRole"></c:url>' >升级成为企业用户</a></li>
-		</c:if>
-		 -->
 	</ul>
 </div>
 

@@ -29,9 +29,9 @@ import com.knet51.ccweb.jpa.entities.EnterpriseTeacher;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
-import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
-import com.knet51.ccweb.jpa.entities.teacher.CourseType;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.CourseResource;
+import com.knet51.ccweb.jpa.entities.courses.CourseType;
+import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.services.AnnoPhotoService;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
@@ -214,7 +214,7 @@ public class EnterpriseTeacherInfoPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", id);
-		Page<TeacherCourse> onePage = courseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		Page<TeacherCourse> onePage = courseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, user, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("page", onePage);
 		
 		List<TeacherCourse> courseList = courseService.getAllTeacherCourseByTeacheridAndPublish(id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
@@ -245,7 +245,7 @@ public class EnterpriseTeacherInfoPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", enterprise_id);
-		Page<TeacherCourse> onePage = courseService.findTeacherCourseByTeacherAndPublishAndCType(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,cType);
+		Page<TeacherCourse> onePage = courseService.findTeacherCourseByUserAndPublishAndCType(pageNumber, pageSize, user, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,cType);
 		model.addAttribute("page", onePage);
 		
 		List<TeacherCourse> courseList = courseService.getAllTeacherCourseByTeacheridAndPublish(enterprise_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);

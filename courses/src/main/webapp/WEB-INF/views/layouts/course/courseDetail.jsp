@@ -40,19 +40,19 @@
 					<td width="40%" align="left"  valign="top" style="line-height: 30px;">
 							<div style="float: left;padding-right: 15px;">
 								<c:choose>
-									<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-										<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
+									<c:when test="${course.user.photo_url != null && course.user.photo_url != ''}">
+										<a href='<c:url value="/teacher/${course.user.id}"></c:url>'><img src='<c:url value="${url }${course.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
 										</a>
 									</c:when>
 									<c:otherwise>
-										<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar90.png"></c:url>' style="width:100px; height:100px;" />
+										<a href='<c:url value="/teacher/${course.user.id}"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar90.png"></c:url>' style="width:100px; height:100px;" />
 										</a>
 									</c:otherwise>
 								</c:choose>
 							</div>
-							<h4 style="margin-top: -3px;">${course.teacher.user.name }</h4>
-							${course.teacher.college }<br/>
-							<a  href='<c:url value="/teacher/${course.teacher.id}"></c:url>' class="btn  btn-success">查看发布课程</a>
+							<h4 style="margin-top: -3px;">${course.user.name }</h4>
+						
+							<a  href='<c:url value="/teacher/${course.user.id}"></c:url>' class="btn  btn-success">查看发布课程</a>
 					</td>
 				</tr>
 			</table>

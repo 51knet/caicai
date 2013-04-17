@@ -73,27 +73,27 @@
 						<div style="width: 100%;height: 100%;">
 							<div style="float: left; height: 100px; width: 120px;">
 								<c:choose>
-									<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-										<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
+									<c:when test="${course.user.photo_url != null && course.user.photo_url != ''}">
+										<a href='<c:url value="/teacher/${course.user.id}"></c:url>'><img src='<c:url value="${url }${course.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
 										</a>
 									</c:when>
 									<c:otherwise>
-										<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar90.png"></c:url>' style="width: 100px; height: 100px;" />
+										<a href='<c:url value="/teacher/${course.user.id}"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar90.png"></c:url>' style="width: 100px; height: 100px;" />
 										</a>
 									</c:otherwise>
 								</c:choose>
 							</div>
 							<c:choose>
-							<c:when test="${course.teacher.isEnterprise == null}">
-							<div style="float: left; height: 100px;width: 200px;"id="contentlimit" >教师名称：${course.teacher.user.name } <br>所在学校：${course.teacher.college }<br>专业技术：${course.teacher.major }<br>
-								<a style="margin-top: 5px;" href='<c:url value="/teacher/${course.teacher.id}"></c:url>' class="btn  btn-success">查看发布的课程</a>
-							</div>
-							</c:when>
-							<c:otherwise>
-							<div style="float: left; height: 100px; width: 200px;" id="contentlimit">企业名称：${course.teacher.user.name } <br><br>
-								<a style="margin-top: 5px;" href='<c:url value="/teacher/${course.teacher.id}"></c:url>' class="btn  btn-success">查看发布的课程</a>
-							</div>
-							</c:otherwise>
+							<c:when test="${course.user.role == 'teacher'}">
+								<div style="float: left; height: 100px;width: 200px;"id="contentlimit" >教师名称：${course.user.name } 	<br><br>
+									<a style="margin-top: 5px;" href='<c:url value="/teacher/${course.user.id}"></c:url>' class="btn  btn-success">查看发布的课程</a>
+								</div>
+								</c:when>
+								<c:otherwise>
+								<div style="float: left; height: 100px; width: 200px;" id="contentlimit">企业名称：${course.user.name } <br><br>
+									<a style="margin-top: 5px;" href='<c:url value="/teacher/${course.user.id}"></c:url>' class="btn  btn-success">查看发布的课程</a>
+								</div>
+								</c:otherwise>
 							</c:choose>
 						</div>
 					</td>

@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.entities.teacher;
+package com.knet51.ccweb.jpa.entities.courses;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +8,8 @@ import javax.persistence.ManyToOne;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.teacher.CourseType;
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.courses.CourseType;
 
 @Entity
 public class TeacherCourse extends AbstractEntity {
@@ -29,7 +30,7 @@ public class TeacherCourse extends AbstractEntity {
 	private Integer publish; // 0:the course has been deleted; 1:just show it in teacher admin page; 2:show it in the admin page and front page.
 	private String pwd;      // Check the pwd when someone want to check the course.
 	@ManyToOne
-	private Teacher teacher;
+	private User user;
 	
 	@ManyToOne
 	private CourseType cType;
@@ -52,13 +53,13 @@ public class TeacherCourse extends AbstractEntity {
 	public void setCourseDesc(String courseDesc) {
 		this.courseDesc = courseDesc;
 	}
-	public Teacher getTeacher() {
-		return teacher;
-	}
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
-	}
 	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public String getCourseDate() {
 		return courseDate;
 	}

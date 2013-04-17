@@ -2,7 +2,7 @@ package com.knet51.ccweb.jpa.repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
+import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 public class UserCourseRepositoryImpl implements
 		UserCourseRepositoryCustom {
 	@PersistenceContext

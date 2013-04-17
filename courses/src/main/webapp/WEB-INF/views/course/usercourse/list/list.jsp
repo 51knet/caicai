@@ -29,8 +29,8 @@
 									<div style="width: 100%;height: 100%;">
 										<div style="float: left; height: 100px; width: 140px; text-align: center;">
 											<c:choose>
-												<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-													<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
+												<c:when test="${course.user.photo_url != null && course.user.photo_url != ''}">
+													<a href='<c:url value="/teacher/${course.user.id}"></c:url>'><img src='<c:url value="${url }${course.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
 													</a>
 												</c:when>
 												<c:otherwise>
@@ -39,7 +39,7 @@
 												</c:otherwise>
 											</c:choose>
 										</div>
-										教师名称：${course.teacher.user.name } <br>所在学校：${course.teacher.college }<br>
+										教师名称：${course.user.name } <br><br>
 										<a style="margin-top: 10px;" href='<c:url value="/course/study/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
 									</div>
 								</td>

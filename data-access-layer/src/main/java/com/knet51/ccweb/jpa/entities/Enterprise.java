@@ -12,7 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 
 @Entity
 @JsonIgnoreProperties(value={"course"})
@@ -25,9 +25,6 @@ public class Enterprise {
 	@OneToOne
 	@PrimaryKeyJoinColumn(name = "id")
 	private User user;
-
-	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
-	private Set<TeacherCourse> course = new HashSet<TeacherCourse>();
 
 	private String role;
 	private String title;
@@ -110,13 +107,6 @@ public class Enterprise {
 		this.major = major;
 	}
 
-	public Set<TeacherCourse> getCourse() {
-		return course;
-	}
-
-	public void setCourse(Set<TeacherCourse> course) {
-		this.course = course;
-	}
 
 	
 	public String getIsEnterprise() {

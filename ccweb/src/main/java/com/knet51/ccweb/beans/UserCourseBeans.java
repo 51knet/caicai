@@ -1,6 +1,6 @@
 package com.knet51.ccweb.beans;
 
-import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
+import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 
 
 public class UserCourseBeans {

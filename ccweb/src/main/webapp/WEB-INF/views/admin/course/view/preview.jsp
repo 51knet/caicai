@@ -14,6 +14,7 @@
 <style>
 body {
 	background-color:#FFFFFF;
+	background-image: url("");
 }
 .container.course {
 	text-align: left;
@@ -29,6 +30,10 @@ body {
 	margin-left:70px;
 	padding: 20px;
 	width:83.5%;
+}
+
+.container.course.detail.desc .content{
+	margin-left:40px;
 }
 .container.course.title{
 	height: 240px;
@@ -94,7 +99,7 @@ body {
 			</div>
 			<div class="container course content">
 					<span style="font-size: 25px;color:#80b029;" id="content">${course.courseName}</span><br/>
-					<span style="font-size: 18px;color:#80b029;">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
+					<span style="font-size: 18px;color:#80b029;">${course.user.name}</span><br/>
 					<span style="font-size: 14px;color: black;"> 类别：${course.cType.typeName }</span><br/>
     				<span style="font-size: 14px;color: black;">发布时间：${course.courseDate }</span><br/>
     				<span style="font-size: 14px;color: black;">评分：
@@ -155,25 +160,25 @@ body {
 			</div>
 		
 		<c:choose>
-	<c:when test="${course.teacher.isEnterprise == null}">
+	<c:when test="${course.user.role =='teacher'}">
     <div  class="nar" >
 			<h4>讲师介绍</h4>
 		</div>
     <div class="container course detail desc"  >
 	    <c:choose >
-			<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-			<img src='<c:url value="${course.teacher.user.photo_url}"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px" />
+			<c:when test="${course.user.photo_url != null && course.user.photo_url != ''}">
+			<img src='<c:url value="${course.user.photo_url}"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px" />
 			</c:when>
 			<c:otherwise>
 			 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:6px" />
 			</c:otherwise>
 		</c:choose>
-    <span style="margin-left: 40px;font-size: 18px;"><b>${course.teacher.user.name }</b></span>
+    <span  class="content" style="font-size: 18px;"><b>${course.user.name }</b></span>
    	<br/>
    	<br/>
-   	<span class="content">所在学校：${course.teacher.school }</span><br/> 
-   	<span class="content">所在学院：${course.teacher.college }</span><br/>
-    <span class="content">专业：${course.teacher.major }</span><br/>
+   	<span class="content">所在学校：${teacher.school }</span><br/> 
+   	<span class="content">所在学院：${teacher.college }</span><br/>
+    <span class="content">专业：${teacher.major }</span><br/>
    </div>
 </c:when>
 <c:otherwise>
@@ -182,15 +187,15 @@ body {
 		</div>
     <div class="container course detail desc">
 	    <c:choose>
-			<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-				<img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px;" />
+			<c:when test="${course.user.photo_url != null && course.user.photo_url != ''}">
+				<img src='<c:url value="${course.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px;" />
 			</c:when>
 			<c:otherwise>
 			 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:6px;" />
 			</c:otherwise>
 		</c:choose>
 	<span style="margin-left: 20px;">
-     ${course.teacher.user.name }
+     ${course.user.name }
   	</span>
 	</div>
 </c:otherwise>

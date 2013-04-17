@@ -2,7 +2,7 @@ package com.knet51.courses.jpa.services;
 
 import java.util.List;
 
-import com.knet51.ccweb.jpa.entities.teacher.CourseType;
+import com.knet51.ccweb.jpa.entities.courses.CourseType;
 
 
 public interface CourseTypeService {

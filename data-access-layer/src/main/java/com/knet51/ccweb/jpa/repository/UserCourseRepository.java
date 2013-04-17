@@ -9,7 +9,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
+
+import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 
 @Transactional
 @SuppressWarnings("unchecked")

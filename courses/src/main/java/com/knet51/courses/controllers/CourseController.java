@@ -33,10 +33,10 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.teacher.CourseResource;
-import com.knet51.ccweb.jpa.entities.teacher.CourseType;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherCourse;
-import com.knet51.ccweb.jpa.entities.teacher.UserCourse;
+import com.knet51.ccweb.jpa.entities.courses.CourseResource;
+import com.knet51.ccweb.jpa.entities.courses.CourseType;
+import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.courses.beans.UserCourseBeans;
 import com.knet51.courses.jpa.services.CourseTypeService;
 import com.knet51.courses.jpa.services.ResourceService;
@@ -125,7 +125,7 @@ public class CourseController {
 		TeacherCourse course = courseService.findOneById(course_id);
 		model.addAttribute("course", course);
 		/* lbx */
-		Teacher teacher = course.getTeacher();
+		Teacher teacher = teacherService.findOne(course.getUser().getId());
 		List<UserCourse> listUserCourse = userCourseService
 				.findByTeachercourseid(course_id);
 		double courseMark = 0.0;
@@ -419,7 +419,7 @@ public class CourseController {
 		if (param != null && !param.equals("")) {
 			for(int i=0;i<courseList.size();i++){
 				if(courseList.get(i).getCourseName().contains(param) || 
-						courseList.get(i).getTeacher().getUser().getName().contains(param)){
+						courseList.get(i).getUser().getName().contains(param)){
 					newCourseList.add(courseList.get(i));
 				}
 			}
