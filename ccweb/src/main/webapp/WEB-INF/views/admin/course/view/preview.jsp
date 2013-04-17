@@ -122,7 +122,7 @@ body {
 				</c:choose><br/>
 			<div style="text-align: left;margin-top: 15px;">
 				<a href='#' class="btn  btn-success">点击学习</a>
-				<a href='<c:url value="/admin/teacher/course/edit/${course.id }/publish"></c:url>'  class="btn   btn-success"  >发布课程</a>
+				<a href='<c:url value="/admin/course/edit/${course.id }/publish"></c:url>'  class="btn   btn-success"  >发布课程</a>
 				</div>
 			</div>
 		</div>

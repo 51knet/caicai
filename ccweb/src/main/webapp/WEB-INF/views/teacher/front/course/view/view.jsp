@@ -44,12 +44,12 @@
 	border-bottom: solid #cccccc 1.5px;
 }
 
-.row-fluid.custom .row1 {
+.row-fluid.custom .content {
 	margin: 10px 40px;
 	color: cccccc;
 }
 
-.row-fluid.custom .row1 .bb{
+.row-fluid.custom .content .bb{
 	border-bottom: dashed #cccccc 1px;
 }
 </style>
@@ -65,7 +65,7 @@ function courseOnclick(obj) {
 	<div class="row">
 		<h4>课程详细</h4>
 	</div>
-	<div class="row1" style="margin-top: 10px;">
+	<div class="content" style="margin-top: 10px;">
 		<div  style=" height: 160px; width: 100%">
 			<div style="width: 40%; text-align:center;  float: left;border: 0px solid #cccccc;">
 				<c:choose>
@@ -82,7 +82,7 @@ function courseOnclick(obj) {
 			<div style="width: 60%; float: left; height:150px;border: 0px solid #cccccc;">
 				<div style="margin-left:30px; margin-top: 10px;" >
 					<div style="width: 200px; font-size: 18px;color: black;" id="content">${course.courseName}</div>
-					<span style="font-size: 14px;color: black;">${course.teacher.user.name}&nbsp;&nbsp;&nbsp;&nbsp;${course.teacher.college }</span><br/>
+					<span style="font-size: 14px;color: black;">${course.user.name}</span><br/>
 					<span style="font-size: 14px;color: black;"> 类别：${course.cType.typeName }</span><br/>
 					<span style="font-size: 14px;color: black;">发布时间：${course.courseDate }</span>
 				</div>

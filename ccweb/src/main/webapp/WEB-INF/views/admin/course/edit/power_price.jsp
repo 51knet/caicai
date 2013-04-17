@@ -70,7 +70,7 @@ setTimeout(function(){
 		<h4>权限设置</h4>
 	</div>
 	<div class="row1">
-		<form class="form-horizontal" action="<c:url value="/admin/teacher/course/edit/powerpricemodify"></c:url>"   method="post" onsubmit="return checkPwd()">
+		<form class="form-horizontal" action="<c:url value="/admin/course/edit/powerpricemodify"></c:url>"   method="post" onsubmit="return checkPwd()">
 			<div id="message" style="margin-left: 155px;"><h4 style="color: #adcc75">${message}</h4></div>
 			<input type="hidden" name="courseId" value="${course.id }" />
 			<div id="statusValues" title="${course.pwd}">

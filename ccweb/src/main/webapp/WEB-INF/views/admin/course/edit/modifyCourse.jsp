@@ -47,7 +47,7 @@
 	function deleLessonNum(lesson_id){
 		$.ajax({
 			  type: "post",
-			  url: "<c:url value='/admin/teacher/course/edit/courselesson/checkFileName'/>",
+			  url: "<c:url value='/admin/course/edit/courselesson/checkFileName'/>",
 			  data: "lessonId="+lesson_id,
 			  dataType:"text",
 			  success:function(num){
@@ -121,7 +121,7 @@
 											</span>
 											<div class="addForm" style=" display: none;" id="${lesson.lessonNum}_resourceForm">
 												<div id="${lesson.lessonNum}_bar" style="margin-bottom: 3px;margin-left: 30px; display: none;"><img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  /></div>
-												<form style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/create"></c:url>' 
+												<form style="margin-left: 30px;" method="post" action='<c:url value="/admin/course/resource/create"></c:url>' 
 															enctype="multipart/form-data" onsubmit="return showprocessbar(${lesson.lessonNum})">
 													<input type="hidden" name="lessonNum" value="${lesson.lessonNum }"> 
 													<input type="hidden" name="lessonId" value="${lesson.id}"> 
@@ -198,7 +198,7 @@
 															</c:if>
 															<div id="${fileNames.id}_editCourseResourceForm" style="border: 1px solid #dcdcdc; background-color: #ffffff; text-align: left; padding: 5px; display: none;">
 																<div id="${fileNames.id}_update_bar" style="margin-bottom: 3px;margin-left: 30px; display: none;"><img src='<c:url value="/resources/img/jinduL.gif "></c:url>'  /></div>
-																<form name="resourceEditForm" style="margin-left: 30px;" method="post" action='<c:url value="/admin/teacher/course/resource/update"></c:url>' enctype="multipart/form-data" onsubmit="return updateresourcebar(${fileNames.id})">
+																<form name="resourceEditForm" style="margin-left: 30px;" method="post" action='<c:url value="/admin/course/resource/update"></c:url>' enctype="multipart/form-data" onsubmit="return updateresourcebar(${fileNames.id})">
 																	<input type="hidden" name="resourceId" value="${fileNames.id}"> 
 																	<input type="hidden" name="courseId" value="${course.id}"> 
 																	资源名称：<input type="text" style="width: 207px;" id="${fileNames.id}_editResourceName" name="resourceName">&nbsp;如：第一讲：物种的起源<br>
@@ -226,13 +226,13 @@
 				<c:otherwise></c:otherwise>
 			</c:choose>
 			<div style="font-size: 15px; text-align: right; padding: 5px; width: 675px; margin-top: 5px;">
-				<form action='<c:url value="/admin/teacher/course/edit/addlessonnum"></c:url>' method="post">
+				<form action='<c:url value="/admin/course/edit/addlessonnum"></c:url>' method="post">
 					<input type="hidden" name="courseId" value="${course.id }">
 					<button type="submit" class="btn btn-success">添加新课时</button>
 				</form>
 			</div>
 	
-			<form action='<c:url value="/admin/teacher/course/edit/courselesson/destory"></c:url>' method="post" style="display: none;" id="deleLessonNumForm">
+			<form action='<c:url value="/admin/course/edit/courselesson/destory"></c:url>' method="post" style="display: none;" id="deleLessonNumForm">
 				<input type="hidden" name="lessonId" id="courseLessonId"> <input type="hidden" name="courseId" value="${course.id }">
 			</form>
 			<%-- <div class="modal hide fade" id="deleLessonNumForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -245,7 +245,7 @@
 					</div>
 					<div class="modal-footer">
 						<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-						<form action='<c:url value="/admin/teacher/course/edit/courselesson/destory"></c:url>' method="post" style="display: inline-block;">
+						<form action='<c:url value="/admin/course/edit/courselesson/destory"></c:url>' method="post" style="display: inline-block;">
 							<input type="hidden" name="lessonId" id="courseLessonId" >
 							<input type="hidden" name="courseId" value="${course.id }" >
 							<button class="btn btn-success">确定</button>
@@ -264,7 +264,7 @@
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-					<form action='<c:url value="/admin/teacher/course/resource/destory"></c:url>' method="post" style="display: inline-block;">
+					<form action='<c:url value="/admin/course/resource/destory"></c:url>' method="post" style="display: inline-block;">
 						<input id="c_resource_Id" type="hidden" name="resourceId" />
 						<button class="btn btn-success">确定</button>
 					</form>
@@ -282,7 +282,7 @@
 		$("#"+edit_id).css("display","block");
 		$.ajax({
 			  type: "post",
-			  url: '<c:url value="/admin/teacher/course/resource/edit/ajax"></c:url>',
+			  url: '<c:url value="/admin/course/resource/edit/ajax"></c:url>',
 			  data: "resourceId="+resource_id,
 			  dataType:"json",
 			  success:function(msg){
@@ -326,7 +326,7 @@
 			$(document).ready(function() {
 				$("#uploadify_test").uploadify({
 					'uploader'       : '<c:url value="/resources/js/uploadify/uploadify.swf" />',
-					'script'        	    : '<c:url value="/admin/teacher/course/edit/'+${course.id}+'/resource/new" />',
+					'script'        	    : '<c:url value="/admin/course/edit/'+${course.id}+'/resource/new" />',
 					'cancelImg'     : '<c:url value="/resources/js/uploadify/images/cancel.png" />',
 				//	'scriptData'     : $("#course_form").serialize(),
 				//	'scriptData'		:{'courseOrder': $("#courseOrder").val()},

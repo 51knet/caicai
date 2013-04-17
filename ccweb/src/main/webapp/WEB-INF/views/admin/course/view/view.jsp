@@ -76,16 +76,16 @@
 						<h5>类别：${course.cType.typeName }</h5>
 						<h5>发布时间：${course.courseDate }</h5>
 						<c:if test="${course.publish==2}">
-								<a href= '<c:url value="/admin/teacher/course/edit/${course.id }/preview"></c:url>'  class="btn  btn-success"  target="_blank" >预览</a>
-								<a href='<c:url value="/admin/teacher/course/edit/${course.id }/publish"></c:url>'  class="btn  btn-success"  >发布</a>
+								<a href= '<c:url value="/admin/course/edit/${course.id }/preview"></c:url>'  class="btn  btn-success"  target="_blank" >预览</a>
+								<a href='<c:url value="/admin/course/edit/${course.id }/publish"></c:url>'  class="btn  btn-success"  >发布</a>
 						</c:if>
 						<c:if test="${course.publish==3}">
 								<c:if test="${course.status==1 }">
-									<a href= '<c:url value="/admin/teacher/course/edit/${course.id }/pubcourses"></c:url>'  class="btn  btn-success" >发布到知识超市</a>
+									<a href= '<c:url value="/admin/course/edit/${course.id }/pubcourses"></c:url>'  class="btn  btn-success" >发布到知识超市</a>
 								</c:if>	
-								<a href='<c:url value="/admin/teacher/course/edit/${course.id }/cancelpublish"></c:url>'  class="btn btn-success"  >取消发布</a>	
+								<a href='<c:url value="/admin/course/edit/${course.id }/cancelpublish"></c:url>'  class="btn btn-success"  >取消发布</a>	
 						</c:if>
-							<a href='<c:url value="/admin/teacher/course/edit/${course.id}/modifycourse"></c:url>'  class="btn  btn-success">修改</a>	
+							<a href='<c:url value="/admin/course/edit/${course.id}/modifycourse"></c:url>'  class="btn  btn-success">修改</a>	
 					</div>
 				</div>
 			</div>

@@ -34,10 +34,10 @@
 				<tbody>
 					<c:forEach items="${list}" var="l">
 						<tr><td align="left">${l.typeName}</td>
-						<td><a href='<c:url value="/admin/teacher/course/type/destory/${l.id}" ></c:url>' > 删除</a></td></tr>
+						<td><a href='<c:url value="/admin/course/type/destory/${l.id}" ></c:url>' > 删除</a></td></tr>
 					</c:forEach>
 					<tr><td colspan="2" > 	
-					<form  method="post" action="<c:url value='/admin/teacher/course/type/new/create'></c:url>"  class="form-inline pull-right">
+					<form  method="post" action="<c:url value='/admin/course/type/new/create'></c:url>"  class="form-inline pull-right">
 							<input type="text" name="typeName" placeholder="输入新建的分类">
 							<input type="submit" class="btn btn-success" value="新建分类">
 						</form></td></tr>

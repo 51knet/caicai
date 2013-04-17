@@ -77,14 +77,14 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/edit",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/course/edit/edit",method=RequestMethod.POST)
 	public String TeacherCourseUpdateInfo(@Valid TeacherCourseInfoForm courseInfoForm,
 			BindingResult validResult, HttpSession session,@RequestParam("id") Long course_id){
 		
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id);
+			return "redirect:/admin/course/edit/"+Long.valueOf(course_id);
 		}else{
 			TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
 			String courseName = courseInfoForm.getCourseName();
@@ -95,7 +95,7 @@ public class TeacherCourseInfoDetailController {
 			String date = format.format(new Date());
 			course.setCourseDate(date);
 			teacherCourseService.updateTeacherCourse(course);
-			return "redirect:/admin/teacher/course/list";
+			return "redirect:/admin/course/list";
 		}
 	
 	}
@@ -106,14 +106,14 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/destory",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/course/destory",method=RequestMethod.POST)
 	public String TeacherCourseDele( HttpSession session,@RequestParam("cId") Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 			//teacherCourseService.deleTeacherCourse(course_id);
 			TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
 			course.setPublish(GlobalDefs.PUBLISH_NUM_RECYCLE);
 			teacherCourseService.updateTeacherCourse(course);
-			return "redirect:/admin/teacher/course/list";
+			return "redirect:/admin/course/list";
 	}
 	/**
 	 * delete the course but it will still save in the DB
@@ -122,13 +122,13 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/deleted",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/course/deleted",method=RequestMethod.POST)
 	public String deleFromCourseRecycle( HttpSession session,@RequestParam("cId") Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 		TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
 		course.setPublish(GlobalDefs.PUBLISH_NUM_DELETE);
 		teacherCourseService.updateTeacherCourse(course);
-		return "redirect:/admin/teacher/course/list";
+		return "redirect:/admin/course/list";
 	}
 	/**
 	 * recover the course which is in recycle bin
@@ -137,14 +137,14 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/recover",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/course/recover",method=RequestMethod.POST)
 	public String courseRecoverUnpublish( HttpSession session,@RequestParam("cId") Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 			//teacherCourseService.deleTeacherCourse(course_id);
 			TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
 			course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
 			teacherCourseService.updateTeacherCourse(course);
-			return "redirect:/admin/teacher/course/list";
+			return "redirect:/admin/course/list";
 	}
 	
 	/**
@@ -157,7 +157,7 @@ public class TeacherCourseInfoDetailController {
 	 * @throws Exception
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/resource/create",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/course/resource/create",method=RequestMethod.POST)
 	public String TeacherCourseResourceAdd(HttpSession session,Model model,RedirectAttributes redirectAttributes,
 			MultipartHttpServletRequest request,@RequestParam("courseId") Long course_id) throws  Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -199,7 +199,7 @@ public class TeacherCourseInfoDetailController {
 				courseResourceService.createCourseResource(resource);
 			}
 		}
-		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
+		return "redirect:/admin/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 	}
 	
 	/**
@@ -212,7 +212,7 @@ public class TeacherCourseInfoDetailController {
 	 * @throws Exception
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/resource/update",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/course/resource/update",method=RequestMethod.POST)
 	public String ResourceEdit(HttpSession session,Model model,RedirectAttributes redirectAttributes,
 			MultipartHttpServletRequest request,@RequestParam("resourceId") Long resource_id,@RequestParam("courseId") Long course_id) throws  Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -226,7 +226,7 @@ public class TeacherCourseInfoDetailController {
 				MultipartFile multipartFile = files.get(i);
 				if(multipartFile.getSize()>MAX_RESOURCE_SIZE_200M){
 					redirectAttributes.addFlashAttribute("fileMaxError", "上传文件不得大于200M");
-					return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
+					return "redirect:/admin/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 				}
 				File oldResource = new File(resource.getSavePath());
 				if(oldResource != null){
@@ -252,7 +252,7 @@ public class TeacherCourseInfoDetailController {
 			resource.setResourceType(resourceType);
 			courseResourceService.createCourseResource(resource);
 		}
-		return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
+		return "redirect:/admin/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 	}
 	/**
 	 * destory the course resource
@@ -263,7 +263,7 @@ public class TeacherCourseInfoDetailController {
 	 * @throws Exception
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/resource/destory",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/course/resource/destory",method=RequestMethod.POST)
 	public String destoryTeacherCourseResource(HttpSession session,Model model,
 			@RequestParam("resourceId") Long resource_id) throws  Exception{
 		CourseResource resource = courseResourceService.findOneById(resource_id); 
@@ -272,7 +272,7 @@ public class TeacherCourseInfoDetailController {
 			oldResource.delete();
 		}
 		courseResourceService.deleCourseResource(resource_id);
-		return "redirect:/admin/teacher/course/edit/"+resource.getCourse_id()+"/modifycourse";
+		return "redirect:/admin/course/edit/"+resource.getCourse_id()+"/modifycourse";
 	}
 	
 	/**
@@ -299,7 +299,7 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{course_id}/modifycourse")
+	@RequestMapping(value="/admin/course/edit/{course_id}/modifycourse")
 	public String modifyCreateTeacherCourse(HttpSession session,@PathVariable Long course_id,Model model,HttpServletRequest request){
 		TeacherCourse course=teacherCourseService.findOneById(course_id);
 		if(course == null){
@@ -310,7 +310,7 @@ public class TeacherCourseInfoDetailController {
 			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				//logger.info("----------current_user_id="+userInfo.getId()+"----------course_teacher_id"+teacherId);
-				return "redirect:/admin/teacher/course/list";
+				return "redirect:/admin/course/list";
 			}
 		}
 		List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
@@ -344,7 +344,7 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/basicinfo")
+	@RequestMapping(value="/admin/course/edit/{id}/basicinfo")
 	public String basicMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		if(course == null){
@@ -353,7 +353,7 @@ public class TeacherCourseInfoDetailController {
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
-				return "redirect:/admin/teacher/course/list";
+				return "redirect:/admin/course/list";
 			}
 		}
 		List<CourseType> cTypeList = courseTypeService.findAll();
@@ -366,12 +366,12 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/basicinfomodify",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/course/edit/basicinfomodify",method=RequestMethod.POST)
 	public String modifyBasicMessage(HttpSession session,@RequestParam("courseId") Long id,RedirectAttributes redirectAttr,Model model,
 			HttpServletRequest request,@Valid TeacherCourseInfoForm teacherCourseInfoForm,BindingResult validResult){
 		if (validResult.hasErrors()) {
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/course/edit/{id}/basicinfo";
+			return "redirect:/admin/course/edit/{id}/basicinfo";
 		}else{
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		String courseName=teacherCourseInfoForm.getCourseName();
@@ -388,23 +388,23 @@ public class TeacherCourseInfoDetailController {
 		}
 		model.addAttribute("course", course);
 	}
-		return "redirect:/admin/teacher/course/edit/"+id+"/basicinfo";
+		return "redirect:/admin/course/edit/"+id+"/basicinfo";
 	}
 	/***
 	 * 详细信息
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/detailinfo")
+	@RequestMapping(value="/admin/course/edit/{id}/detailinfo")
 	public String detailMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		if(course == null){
-			return "redirect:/admin/teacher/course/list";
+			return "redirect:/admin/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
-				return "redirect:/admin/teacher/course/list";
+				return "redirect:/admin/course/list";
 			}
 		}
 		model.addAttribute("course", course);
@@ -415,7 +415,7 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/detailinfomodify",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/course/edit/detailinfomodify",method=RequestMethod.POST)
 	public String modifyDetailMessage(HttpSession session,@RequestParam("courseId") Long id,Model model,RedirectAttributes redirectAttr,HttpServletRequest request){
 		String character=request.getParameter("courseCharacter");
 		String targetPerson=request.getParameter("targetPerson");
@@ -424,23 +424,23 @@ public class TeacherCourseInfoDetailController {
 		course.setTargetPerson(targetPerson);
 		model.addAttribute("course", course);
 		redirectAttr.addFlashAttribute("message", "保存成功");
-		return "redirect:/admin/teacher/course/edit/"+id+"/detailinfo";
+		return "redirect:/admin/course/edit/"+id+"/detailinfo";
 	}
 	/***
 	 * 封面
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/cover")
+	@RequestMapping(value="/admin/course/edit/{id}/cover")
 	public String CreateCover(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		if(course == null){
-			return "redirect:/admin/teacher/course/list";
+			return "redirect:/admin/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
-				return "redirect:/admin/teacher/course/list";
+				return "redirect:/admin/course/list";
 			}
 		}
 		model.addAttribute("course", course);
@@ -453,7 +453,7 @@ public class TeacherCourseInfoDetailController {
 	 * @throws IOException 
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/moidfycover",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/course/edit/moidfycover",method=RequestMethod.POST)
 	public String modifyCreateCover(HttpSession session,@RequestParam("courseId") Long id,MultipartHttpServletRequest request,
 			Model model,RedirectAttributes redirectAttributes) throws Exception{
 			List<MultipartFile> files = request.getFiles("coverFile");
@@ -466,7 +466,7 @@ public class TeacherCourseInfoDetailController {
 				//logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
 				if(multipartFile.getSize()>MAX_COVER_SIZE_2M){
 					redirectAttributes.addFlashAttribute("errorMsg", "图片不得大于2M");
-					return "redirect:/admin/teacher/course/addcourse?active=first";
+					return "redirect:/admin/course/addcourse?active=first";
 				}else{
 				String fileName = multipartFile.getOriginalFilename();
 				String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
@@ -484,23 +484,23 @@ public class TeacherCourseInfoDetailController {
 		}
 		TeacherCourse course = teacherCourseService.updateTeacherCourse(teacherCourse);
 		model.addAttribute("course", course);
-		return "redirect:/admin/teacher/course/edit/"+id+"/cover";
+		return "redirect:/admin/course/edit/"+id+"/cover";
 		}
 	/**
 	 * 修改视频
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/watchvideo")
+	@RequestMapping(value="/admin/course/edit/{id}/watchvideo")
 	public String modifyWatchVideo(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		if(course == null){
-			return "redirect:/admin/teacher/course/list";
+			return "redirect:/admin/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
-				return "redirect:/admin/teacher/course/list";
+				return "redirect:/admin/course/list";
 			}
 		}
 		model.addAttribute("course", course);
@@ -511,7 +511,7 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/powerprice")
+	@RequestMapping(value="/admin/course/edit/{id}/powerprice")
 	public String powerPrice(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		if(course == null){
@@ -520,7 +520,7 @@ public class TeacherCourseInfoDetailController {
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
-				return "redirect:/admin/teacher/course/list";
+				return "redirect:/admin/course/list";
 			}
 		}
 		model.addAttribute("course", course);
@@ -531,7 +531,7 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/powerpricemodify")
+	@RequestMapping(value="/admin/course/edit/powerpricemodify")
 	public String modifyPowerPrice(HttpSession session,@RequestParam("courseId") Long id,Model model,RedirectAttributes redirectAttr,HttpServletRequest request){
 		Integer status=Integer.parseInt(request.getParameter("status"));
 		String pwd=request.getParameter("pwd");
@@ -540,14 +540,14 @@ public class TeacherCourseInfoDetailController {
 		course.setPwd(pwd.trim());
 		model.addAttribute("course", course);
 		redirectAttr.addFlashAttribute("message", "保存成功");
-		return "redirect:/admin/teacher/course/edit/"+id+"/powerprice";
+		return "redirect:/admin/course/edit/"+id+"/powerprice";
 	}
 	/**
 	 * 取消课程
 	 * @returndeleLessonNum
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/{id}/deletecourse")
+	@RequestMapping(value="/admin/course/edit/{id}/deletecourse")
 	public String modifyDeleteMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		if(course == null){
@@ -567,24 +567,24 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/teacher/course/edit/deletecoursemodify")
+	@RequestMapping(value="/admin/course/edit/deletecoursemodify")
 	public String deleteMessage(HttpSession session,@RequestParam("courseId") Long id,Model model){
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		if(course == null){
-			return "redirect:/admin/teacher/course/list";
+			return "redirect:/admin/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
-				return "redirect:/admin/teacher/course/list";
+				return "redirect:/admin/course/list";
 			}
 		}
 		course.setPublish(GlobalDefs.PUBLISH_NUM_RECYCLE);
 		teacherCourseService.createTeacherCourse(course);
-		return "redirect:/admin/teacher/course/list";
+		return "redirect:/admin/course/list";
 	}
 	
-	@RequestMapping(value="/admin/teacher/course/type/new/create",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/course/type/new/create",method=RequestMethod.POST)
 	public String createCourseType(@RequestParam("typeName") String typeName){
 		CourseType courseType = new CourseType();
 		courseType.setTypeName(typeName);
@@ -592,7 +592,7 @@ public class TeacherCourseInfoDetailController {
 		return "redirect:/admin/teacher/course/type/list";
 	}
 	
-	@RequestMapping(value="/admin/teacher/course/type/destory/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/admin/course/type/destory/{id}",method=RequestMethod.GET)
 	public String destoryCourseType(@PathVariable Long id,HttpSession session){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(!userInfo.getEmail().equals("tim@apple.com")){

@@ -57,7 +57,7 @@ setTimeout(function(){
 		<h4>基本信息</h4>
 	</div>
 	<div class="row1">
-		<form action="<c:url value="/admin/teacher/course/edit/basicinfomodify"></c:url>" method="post" id="basic_info_form" name="basic">
+		<form action="<c:url value="/admin/course/edit/basicinfomodify"></c:url>" method="post" id="basic_info_form" name="basic">
 				<div id="message" style="margin-left: 155px;"><h4 style="color: #adcc75">${message}</h4></div>
 				<input type="hidden" value="${course.id}" name="courseId">
 
