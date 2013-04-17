@@ -50,14 +50,14 @@
 
 <div class="row-fluid custom round">
 	<div class="row">
-		<h4>完善简历</h4>
+		<h4>完善企业介绍</h4>
 		<i class="icon-star"></i>
 		<i>必须填写项</i>
 	</div>
 	<div class="content">
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
-				<li <c:if test='${active == "personal"}'>class="active"</c:if>><a href="#personal_info_tab" data-toggle="tab">个人信息</a></li>
+				<li <c:if test='${active == "personal"}'>class="active"</c:if>><a href="#personal_info_tab" data-toggle="tab">企业信息</a></li>
 				<li <c:if test='${active == "contact"}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>
 				<li <c:if test='${active == "honor"}'>class="active"</c:if>><a href="#honor_tab" data-toggle="tab">企业背景</a></li>
 			</ul>
@@ -66,9 +66,9 @@
 					<form id="enterprise_info_form" action="enterprisepersonalInfo" class="form-horizontal" method="post">
 						<div id="messages"  style="margin-left: 155px;"><h4 style="color: #adcc75">${message}</h4></div>
 						<div class="control-group" id="name">
-							<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
+							<label class="control-label" for="name"><i class="icon-star"></i> 企业名称</label>
 							<div class="controls">
-								<input type="text" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.name}"> <span class="help-inline"><form:errors path="name"></form:errors></span>
+								<input type="text" name="name" placeholder="企业名称" value="${sessionScope.sessionUserInfo.name}"> <span class="help-inline"><form:errors path="name"></form:errors></span>
 							</div>
 						</div>
 						<div class="control-group">

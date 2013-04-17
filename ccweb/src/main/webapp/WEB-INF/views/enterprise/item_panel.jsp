@@ -53,7 +53,6 @@
 		<li><a href='<c:url value="/admin/course/list"></c:url>' >课程管理</a></li>
 		<li><a href='<c:url value="/admin/resource/list"></c:url>' >资源管理</a></li>
 		<li><a href='<c:url value="/admin/enterprise/teacher/list"></c:url>' >教师管理</a></li>
-		<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
 		<li><a href='<c:url value="/admin/enterprise/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
 		<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li>
 	</ul>
