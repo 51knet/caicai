@@ -24,4 +24,10 @@
 		<put-attribute name="right" value="/WEB-INF/views/user/course/list/list.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="admin.order.list" extends="admin-layout">
+		<put-attribute name="title" value="订单信息" />
+		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/order/orderInfo.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>
