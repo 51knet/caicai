@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.teacher;
+package com.knet51.ccweb.controllers.enterprise;
 
 import javax.validation.constraints.Size;
 

@@ -47,10 +47,6 @@
 				var urlCameraFlash = "<c:url value="/resources/avatar/camera.swf" />"+"?nt=1&inajax=1&appid=1&input=1&uploadSize=1024&ucapi=" + uc_api;
 				$('#flash_container').html(AC_FL_RunContent("width","450","height","253","scale","exactfit","src",""+urlCameraFlash+"","id","mycamera","name","mycamera","quality","high","bgcolor","#ffffff","wmode","transparent","menu","false","swLiveConnect","true","allowScriptAccess","always"));
 				var mes=$("#message").attr("title");
-				if(mes!=''){
-					alert("信息已保存");
-					return false;
-				}
 				/* setTimeOut(function (){
 					document.getElementById("message").style.display="none";
 				},5000); */

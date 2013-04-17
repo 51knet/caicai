@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<!--  message -->
+	
+	<definition name="admin.sendmessage" extends="frontPage-layout">
+		<put-attribute name="title" value="个人主页" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/sendMessage.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.message.detail" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/receiveMsg.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.message.send" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/receiveMsgDetail.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.message.isReadDetail" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/isReadMsg.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.message.isDeleDetail" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/isDeleMsg.jsp"></put-attribute>
+	</definition>
+	
+		<!-- teacher resource admin layout-->
+
+	<definition name="admin.resource.list" extends="admin-layout">
+		<put-attribute name="title" value="资源" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/resource/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacherResouAddErrorPage" extends="admin-layout">
+		<put-attribute name="title" value="资源" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/teacher/resource/resourceAddError.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.resource.type.list" extends="admin-layout">
+		<put-attribute name="title" value="资源" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/resource/type/list/list.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.resource.new" extends="admin-layout">
+		<put-attribute name="title" value="资源" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/resource/new/create.jsp"></put-attribute>
+	</definition>
+	
+		<!-- announcement admin layout-->
+
+	<definition name="admin.announcement.list" extends="admin-layout">
+		<put-attribute name="title" value="公告" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/list/list.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.announcement.edit" extends="admin-layout">
+		<put-attribute name="title" value="公告" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/edit/editKind.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.teacher.announcement.editKind" extends="admin-layout">
+		<put-attribute name="title" value="公告" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/new/create.jsp"></put-attribute>
+	</definition>
+
+</tiles-definitions>

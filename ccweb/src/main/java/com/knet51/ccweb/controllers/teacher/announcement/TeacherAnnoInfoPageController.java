@@ -48,9 +48,13 @@ public class TeacherAnnoInfoPageController {
 		logger.info("#### into TeacherAnno ####");
 			Long id = getId(session);
 			User user = userService.findOne(id);
-			Page<Announcement> page = annoService.findAllAnnoByUser(pageNumber, pageSize, user);
-			model.addAttribute("page", page);
-			return "admin.announcement.list";
+			if(user.getRole().equals("user")){
+				return "redirect:/admin";
+			}else{
+				Page<Announcement> page = annoService.findAllAnnoByUser(pageNumber, pageSize, user);
+				model.addAttribute("page", page);
+				return "admin.announcement.list";
+			}
 	}
 	
 	@RequestMapping(value="/admin/announcement/edit/{anno_id}")

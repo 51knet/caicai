@@ -20,7 +20,7 @@
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
-.row-fluid.custom .row1 {
+.row-fluid.custom .content {
 	margin: 20px 40px;
 }
 </style>
@@ -54,7 +54,7 @@
 		<i class="icon-star"></i>
 		<i>必须填写项</i>
 	</div>
-	<div class="row1">
+	<div class="content">
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
 				<li <c:if test='${active == "personal"}'>class="active"</c:if>><a href="#personal_info_tab" data-toggle="tab">个人信息</a></li>

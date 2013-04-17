@@ -80,7 +80,7 @@ public class TeacherCourseInfoPageController {
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		logger.info("#####Into TeacherCourseInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		if(!userInfo.getRole().equals("user")){
+		if(userInfo.getRole().equals("user")){
 			return "redirect:/admin";
 		}
 		Teacher teacher = teacherService.findOne(userInfo.getId());
@@ -95,21 +95,22 @@ public class TeacherCourseInfoPageController {
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		logger.info("##### Into teacherCoursePublished #####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		if(!userInfo.getRole().equals("user")){
+		if(userInfo.getRole().equals("user")){
 			return "redirect:/admin";
+		}else{
+			Teacher teacher = teacherService.findOne(userInfo.getId());
+			Page<TeacherCourse> onePage = null;
+			if("publish".equals(publish)){
+				onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+			}else if("unpub".equals(publish)){
+				onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN);
+			}else if("recycle".equals(publish)){
+				onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_RECYCLE);
+			}
+			model.addAttribute("page", onePage);
+			return "admin.teacher.course.list";
 		}
 		
-		Teacher teacher = teacherService.findOne(userInfo.getId());
-		Page<TeacherCourse> onePage = null;
-		if("publish".equals(publish)){
-			onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-		}else if("unpub".equals(publish)){
-			onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_ADMIN);
-		}else if("recycle".equals(publish)){
-			onePage = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, GlobalDefs.PUBLISH_NUM_RECYCLE);
-		}
-		model.addAttribute("page", onePage);
-		return "admin.teacher.course.list";
 	}
 	
 	@RequestMapping(value="/admin/teacher/course/new")
@@ -213,15 +214,20 @@ public class TeacherCourseInfoPageController {
 	
 	
 	@RequestMapping(value="/admin/teacher/course/addcourse")
-	public String addCoursePage(@RequestParam("active") String active,Model model){
-		if (active == null || active.equals("")) {
-			active = "first";
+	public String addCoursePage(@RequestParam("active") String active,Model model,HttpSession session){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(userInfo.getRole().equals("user")){
+			return "redirect:/admin";
+		}else{
+			if (active == null || active.equals("")) {
+				active = "first";
+			}
+			List<CourseType> cTypeList = courseTypeService.findAll();
+			model.addAttribute("typeList", cTypeList);
+			model.addAttribute("active", active);
+			return "admin.teacher.course.add";
 		}
-		List<CourseType> cTypeList = courseTypeService.findAll();
-		model.addAttribute("typeList", cTypeList);
-		model.addAttribute("active", active);
-
-		return "admin.teacher.course.add";
+		
 	}
 	
 	@Transactional
