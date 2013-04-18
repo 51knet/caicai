@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
+import com.knet51.ccweb.jpa.entities.Authentication;
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
@@ -32,6 +33,8 @@ import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
+import com.knet51.ccweb.jpa.services.AuthenticationService;
+import com.knet51.ccweb.jpa.services.AuthenticationServiceImpl;
 import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.ResourceService;
@@ -59,32 +62,25 @@ public class HomeController {
 	private TeacherService teacherService;
 	@Autowired
 	private ResourceService resourceService;
-
 	@Autowired
 	private TeacherHonorService honorService;
-
 	@Autowired
 	private TeacherProjectService projectService;
-
 	@Autowired
 	private TeacherPatentService patentService;
-
 	@Autowired
 	private TeacherThesisService thesisService;
 	@Autowired
-	private StudentService studentService;
-
-	@Autowired
 	private TeacherCourseService courseService;
-
 	@Autowired
 	private FriendsRelateService friendsRelateService;
-
 	@Autowired
 	private BlogService blogService;
-
 	@Autowired
 	private AnnouncementService announcementService;
+	@Autowired
+	private AuthenticationService authenticationService;
+	
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -224,6 +220,12 @@ public class HomeController {
 		} else if(userInfo!=null&&userInfo.getRole().equals("student")) {
 			return "redirect:/admin/student";
 		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
+			List<Authentication> authenticationList = authenticationService.findAllByUser(userInfo.getUser());
+			Authentication authentication = null;
+			if(authenticationList.size()>0 ){
+				authentication = authenticationList.get(0);
+			 }
+			session.setAttribute("authentication", authentication);
 			return "redirect:/admin/enterprise";
 		}  else {
 		return "home";
@@ -288,34 +290,22 @@ public class HomeController {
 			Teacher teacher = teacherService.findOne(userInfo.getId());
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-			// set default home page to set resume page;
-			return "redirect:/admin/enterprise/resume?active=personal";
+			
+			Authentication authentication = (Authentication) session.getAttribute("authentication");
+			if(authentication != null && authentication.getStatus().equals("pass")){
+				return "redirect:/admin/enterprise/resume?active=personal";
+			}else{
+				return "redirect:/admin/enterprise/authentication/list";
+			}
+			
+		
 		}else {
 			return "home";
 		}
 
 	}
 	
-	@RequestMapping(value = "/admin/student", method = RequestMethod.GET)
-	public String adminStudent(Locale locale, Model model, HttpSession session) {
-		logger.info("Welcome home! the client locale is " + locale.toString());
-		
-		UserInfo userInfo = (UserInfo) session
-				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		
-		if (userInfo != null && userInfo.getRole().equals("user")) {
-			return "redirect:/admin/user";
-		} else if (userInfo != null && userInfo.getRole().equals("student")) {
-			Student student=studentService.findOne(userInfo.getId());
-			userInfo.setStudent(student);
-			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-			// set default home page to set resume page;
-			return "redirect:/admin/student/resume?active=personal";
-		}else {
-			return "home";
-		}
-		
-	}
+
 
 	@RequestMapping(value = "/{selfUrl}")
 	public String commonRegister(@PathVariable String selfUrl,

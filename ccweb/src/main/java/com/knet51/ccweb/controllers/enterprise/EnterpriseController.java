@@ -117,7 +117,7 @@ public class EnterpriseController {
 
 	
 	@Transactional
-	@RequestMapping(value = "/admin/enterprise/enterprisepersonalInfo")
+	@RequestMapping(value = "/admin/enterprise/enterprisepersonalInfo", method = RequestMethod.POST)
 	public String enterprisepersonalInfo(@Valid EnterprisePersonalInfoForm personalInfoForm,
 			BindingResult validResult, HttpSession session,RedirectAttributes redirectAttr, HttpServletRequest request, HttpServletResponse response) {
 		logger.info("#### Personal InfoController ####");
@@ -155,7 +155,7 @@ public class EnterpriseController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value = "/admin/enterprise/changePsw")
+	@RequestMapping(value = "/admin/enterprise/changePsw" ,method = RequestMethod.POST)
 	public String changePsw(@Valid TeacherPswForm pswForm,
 			BindingResult validResult, HttpSession session, HttpServletRequest request, HttpServletResponse response,RedirectAttributes redirectAttr) {
 		logger.info("#### changePsw InfoController ####");
@@ -187,7 +187,7 @@ public class EnterpriseController {
 	}
 
 	@Transactional
-	@RequestMapping(value = "/admin/enterprsie/selfurl")
+	@RequestMapping(value = "/admin/enterprsie/selfurl" , method = RequestMethod.POST)
 	public String selfUrl(@Valid TeacherSelfUrlForm selfUrlForm,
 			BindingResult validResult, HttpSession session) {
 
@@ -218,7 +218,7 @@ public class EnterpriseController {
 	}
 	
 	
-	@RequestMapping(value="/admin/enterprise/honor/new")
+	@RequestMapping(value="/admin/enterprise/honor/new" , method = RequestMethod.POST)
 	public String addHonor(@RequestParam("honorId") Long honorId, @Valid TeacherHonorDetailInfoForm honorDetailForm, HttpSession session,
 			Model model,BindingResult validResult){
 		logger.info("#### Into enterprsieHonnerAddController ####");
