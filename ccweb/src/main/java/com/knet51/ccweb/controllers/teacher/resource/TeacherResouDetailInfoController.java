@@ -68,8 +68,8 @@ public class TeacherResouDetailInfoController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/resource/new/create",method=RequestMethod.POST)
-	public String teacherResouInfo(@RequestParam("myFiles") CommonsMultipartFile file,HttpSession session,
-			Model model,@RequestParam("desc") String desc,@RequestParam("type") Long value, MultipartHttpServletRequest request) throws Exception{
+	public String teacherResouInfo(HttpSession session,Model model,@RequestParam("desc") String desc,
+			@RequestParam("type") Long value, MultipartHttpServletRequest request) throws Exception{
 		logger.info("#####Into TeacherResouInfoAddPageController#####"+session.getId());
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("myFiles");
