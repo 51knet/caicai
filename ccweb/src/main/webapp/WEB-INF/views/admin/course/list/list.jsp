@@ -57,8 +57,9 @@
 				<thead>
 					<tr>
 						<th align="center" width="15%">课程标题</th>
-						<th align="center" width="20%">课程类别</th>
+						<th align="center" width="15%">课程类别</th>
 						<th align="center">课程状态</th>
+								<th align="center" width="15%">价格</th>
 						<th align="center" width="20%">发布时间</th>
 						<th align="center" width="18%">操作				
 						</th>
@@ -83,6 +84,11 @@
 							<c:if test="${page.publish ==3 }">已发布</c:if>
 							<c:if test="${page.publish ==1 }">已删除</c:if>
 						</td>
+							<td align="center">
+							<c:if test="${page.price == null || page.price == ''}">0</c:if>
+							<c:if test="${page.price != null || page.price != ''}">${page.price}</c:if>
+							 元
+							</td>
 						<td align="center">${page.courseDate}</td>
 						<td align="center">
 						 	<!-- <div class="btn-group"> 

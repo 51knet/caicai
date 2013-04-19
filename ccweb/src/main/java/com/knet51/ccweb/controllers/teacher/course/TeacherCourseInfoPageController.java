@@ -289,13 +289,14 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/course/new/secondstep",method=RequestMethod.POST)
 	public String addCourseSecond(HttpSession session,Model model,
 			MultipartHttpServletRequest request,@RequestParam("courseId") Long course_id,@RequestParam("pwd") String pwd, 
-			@RequestParam("status") Integer status,RedirectAttributes redirectAttributes)throws  Exception{
+			@RequestParam("status") Integer status,@RequestParam("price") Long price,RedirectAttributes redirectAttributes)throws  Exception{
 		if(course_id == null){
 			return "redirect:/admin/course/list";
 		}
 		TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
 		course.setPwd(pwd.trim());
 		course.setStatus(status);
+		course.setPrice(price);
 		teacherCourseService.updateTeacherCourse(course);
 		redirectAttributes.addFlashAttribute("courseId", course_id);
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);

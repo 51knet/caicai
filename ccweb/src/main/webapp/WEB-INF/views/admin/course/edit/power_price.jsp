@@ -92,6 +92,12 @@ setTimeout(function(){
 				确认密码：<input type="text" id="checkpwd" name="checkpwd" style="width: 250px;"  value="${course.pwd}">
 			</div>
 			</div>
+			<div class="modal-body"  id="price"  >
+				<span style="ont-family:Microsoft YaHei;">课程售价：
+					<input type="text" value="${course.price }"name="price" style="width: 150px;" onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}">￥
+					（<span style="font-size: 14px;color: red;">只支持输入数字</span>）
+				</span>
+			</div>
 			<div class="modal-body" id="status" title="${course.status}" >
 				<span style="font-family:Microsoft YaHei;  margin-left:3px;">发布到知识超市：
 			<label class="radio inline" style="width: 5%; font-family:Microsoft YaHei;margin-left: 10px; margin-top: -8px;">

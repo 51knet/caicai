@@ -531,13 +531,16 @@ public class TeacherCourseInfoDetailController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value="/admin/course/edit/powerpricemodify")
-	public String modifyPowerPrice(HttpSession session,@RequestParam("courseId") Long id,Model model,RedirectAttributes redirectAttr,HttpServletRequest request){
+	@RequestMapping(value="/admin/course/edit/powerpricemodify" ,method=RequestMethod.POST)
+	public String modifyPowerPrice(HttpSession session,@RequestParam("courseId") Long id,@RequestParam("price") Long price,
+			Model model,RedirectAttributes redirectAttr,HttpServletRequest request){
 		Integer status=Integer.parseInt(request.getParameter("status"));
 		String pwd=request.getParameter("pwd");
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		course.setStatus(status);
+		course.setPrice(price);
 		course.setPwd(pwd.trim());
+		teacherCourseService.updateTeacherCourse(course);
 		model.addAttribute("course", course);
 		redirectAttr.addFlashAttribute("message", "保存成功");
 		return "redirect:/admin/course/edit/"+id+"/powerprice";

@@ -60,7 +60,7 @@ function checkCoverPicture(obj){
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
 				<li <c:if test='${active == "first"}'> class="active" </c:if>><a href="#" data-toggle="tab">第一步：基本信息</a></li>
-				<li <c:if test='${active == "second"}'> class="active" </c:if>><a href="#" data-toggle="tab">第二部：权限设置</a></li>
+				<li <c:if test='${active == "second"}'> class="active" </c:if>><a href="#" data-toggle="tab">第二部：权限价格</a></li>
 				<%-- <li <c:if test='${active == "third"}'> class="active" </c:if>><a href="#" data-toggle="tab">第三部：计划</a></li> --%>
 			</ul>
 			
@@ -131,6 +131,12 @@ function checkCoverPicture(obj){
 						<div class="modal-body" id="checkpwdform" style="display: none;">
 							确认密码：<input type="text" id="checkpwd" name="checkpwd" style="width: 250px;" onblur="checkPwd()">
 						</div>
+						</div>
+						<div class="modal-body" >
+						<span style="ont-family:Microsoft YaHei;">课程售价：
+							<input type="text" id="price" name="price" style="width: 150px;" onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}">￥
+							（<span style="font-size: 14px;color: red;">只支持输入数字</span>）
+						</span>
 						</div>
 						<div class="modal-body" id="status">
 							<span style="ont-family:Microsoft YaHei;">发布到知识超市：
