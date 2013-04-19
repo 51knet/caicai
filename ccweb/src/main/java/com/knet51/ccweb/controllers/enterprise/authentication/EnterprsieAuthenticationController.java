@@ -61,8 +61,12 @@ public class EnterprsieAuthenticationController {
 	@RequestMapping(value="/admin/enterprise/authentication/new")
 	public String addEnterpriseAuthentication(HttpSession session, Model model){
 		logger.info("===== into addEnterpriseAuthentication page controller ");
-		
-		return "admin.enterprise.authentication.new";
+		Authentication authentication = (Authentication) session.getAttribute("authentication");
+		if(authentication != null && authentication.getStatus().equals("pass")){
+			return "redirect:/admin";
+		}else{
+			return "admin.enterprise.authentication.new";
+		}
 	}
 	
 	@RequestMapping(value="/admin/enterprise/authentication/new/create" ,method=RequestMethod.POST)
