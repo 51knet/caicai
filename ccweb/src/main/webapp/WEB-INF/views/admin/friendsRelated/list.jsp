@@ -9,8 +9,8 @@
 
 	
 	
-	<a href='<c:url value="/admin/teacher/resource/add"></c:url>'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href='<c:url value="/admin/teacher/resource/type"></c:url>'></a><br>
+	<a href='<c:url value="/admin/resource/add"></c:url>'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href='<c:url value="/admin/resource/type"></c:url>'></a><br>
 	<!-- 
 		<table width="500" border="1" cellspacing="0" cellpadding="5">
 			<tr><td>文件名称</td><td>发布时间</td><td>文件描述</td><td>文件类型</td><td>详细操作</td></tr>
@@ -19,13 +19,13 @@
 				<td align="center">${l.date}</td>
 				<td>${l.description}</td>
 				<td>${l.resourceType.typeName}</td>
-				<td><a href='<c:url value="/admin/teacher/resource/dele?id=${l.id }"></c:url>'> 删除</a> | <a href="${l.savePath}">下载</a></td></tr>
+				<td><a href='<c:url value="/admin/resource/dele?id=${l.id }"></c:url>'> 删除</a> | <a href="${l.savePath}">下载</a></td></tr>
 			</c:forEach>
 		</table>
 	 -->
 	<br/>
 	<a href="">发送好友互动人数：<span style="color:red;"><b>${count}人</b></span>&nbsp;&nbsp;</a>
 	<br><hr>
-	<!-- <a href='<c:url value="/admin/teacher/friendsRelated/add"></c:url>' >发送好友互动</a> -->
+	<!-- <a href='<c:url value="/admin/friendsRelated/add"></c:url>' >发送好友互动</a> -->
 
 </div>

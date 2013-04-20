@@ -50,7 +50,7 @@ $(document).ready(function() {
 	</div>
 	<div class="content">
 		<div style="text-align: right;">
-		<c:if test="${authentication.status != 'pass' && authentication.status != 'submit' }"> <a href='<c:url value="/admin/enterprise/authentication/new"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
+		<c:if test="${authentication.status != 'pass' && authentication.status != 'submit' }"> <a href='<c:url value="/admin/authentication/new"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
 				申请验证</a></c:if>
 			<br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>

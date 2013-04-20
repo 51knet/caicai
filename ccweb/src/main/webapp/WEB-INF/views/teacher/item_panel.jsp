@@ -21,7 +21,7 @@
 		    <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;height:120px;width:120px;margin:15px auto;">
 		    <div style="height: 35px;"></div>
 		    <div style="height: 20px;background-color:gray;  padding:2px 2px; margin-top: 80px;">
-		    	<a href='<c:url value="/admin/teacher/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
+		    	<a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
 		    </div>
 		    <div style="height: 35px;"></div>
 		   </div>
@@ -32,7 +32,7 @@
 		    <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;height:120px;width:120px;margin:15px auto;">
 		    <div style="height: 35px;"></div>
 		    <div style="height: 20px;background-color:gray;  padding:2px 2px;">
-		    	<a href='<c:url value="/admin/teacher/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
+		    	<a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
 		    </div>
 		    <div style="height: 35px;"></div>
 		   </div>
@@ -48,19 +48,19 @@
 <div class="left-menu-container">
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value="/teacher/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>
-		<li><a href='<c:url value="/admin/teacher/resume"><c:param name="active" value="personal" /></c:url>' >我的简历</a></li>
+		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' >我的简历</a></li>
 		<li><a href='<c:url value="/admin/announcement/list"></c:url>' >公告管理</a></li>
 		<li><a href='<c:url value="/admin/course/list"></c:url>' >课程管理</a></li>
 		<li><a href='<c:url value="/admin/resource/list"></c:url>' >资源管理</a></li>
 		<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
-		<li><a href='<c:url value="/admin/teacher/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
+		<li><a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
 		<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li>
 		<!-- 
 		<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.isEnterprise != null) }">
-		       <li><a href='<c:url value="/admin/teacher/downgradeRole"></c:url>' >升级成为教师用户</a></li>
+		       <li><a href='<c:url value="/admin/downgradeRole"></c:url>' >升级成为教师用户</a></li>
 		</c:if>
 		<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.isEnterprise == null) || (sessionUserInfo.isEnterprise == '')}">
-		       <li><a href='<c:url value="/admin/teacher/upgradeRole"></c:url>' >升级成为企业用户</a></li>
+		       <li><a href='<c:url value="/admin/upgradeRole"></c:url>' >升级成为企业用户</a></li>
 		</c:if>
 		 -->
 	</ul>

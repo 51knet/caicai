@@ -29,7 +29,7 @@
 	</div>
 	<div class="content">	
 		<div style="text-align: center;">
-			<!-- <a href='<c:url value="/admin/teacher/resource/type/add"></c:url>'>添加新类别</a>&nbsp;&nbsp;&nbsp;&nbsp;<br> -->
+			<!-- <a href='<c:url value="/admin/resource/type/add"></c:url>'>添加新类别</a>&nbsp;&nbsp;&nbsp;&nbsp;<br> -->
 			<table class="blue" id="mytab" cellpadding="7" width=65%  border=0>
 				<thead><th>类别名称</th><th>详细操作</th></thead>
 				<tbody>

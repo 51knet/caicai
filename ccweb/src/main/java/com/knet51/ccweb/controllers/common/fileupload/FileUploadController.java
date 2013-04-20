@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.fileupload;
+package com.knet51.ccweb.controllers.common.fileupload;
 
 import java.io.File;
 import java.text.SimpleDateFormat;

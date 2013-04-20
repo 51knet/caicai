@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Authentication;
 import com.knet51.ccweb.jpa.entities.Teacher;
@@ -197,117 +197,6 @@ public class FrontController {
 			return "teacher.basic";
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "404";
-		}
-	}
-	
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String admin(Locale locale, Model model, HttpSession session) {
-		UserInfo userInfo = (UserInfo) session
-				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-
-		if (userInfo != null && userInfo.getRole().equals("user")) {
-			return "redirect:/admin/user";
-		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
-			return "redirect:/admin/teacher";
-		} else if(userInfo!=null&&userInfo.getRole().equals("student")) {
-			return "redirect:/admin/student";
-		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
-			List<Authentication> authenticationList = authenticationService.findAllByUser(userInfo.getUser());
-			Authentication authentication = null;
-			if(authenticationList.size()>0 ){
-				authentication = authenticationList.get(0);
-			 }
-			session.setAttribute("authentication", authentication);
-			return "redirect:/admin/enterprise";
-		}  else {
-		return "home";
-		}
-	}
-
-	@RequestMapping(value = "/admin/user", method = RequestMethod.GET)
-	public String adminUser(Locale locale, Model model, HttpSession session) {
-		logger.info("Welcome home! the client locale is " + locale.toString());
-
-		UserInfo userInfo = (UserInfo) session
-				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-
-		if (userInfo != null && userInfo.getRole().equals("user")) {
-			return "redirect:/admin/user/details?active=avatar";
-		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
-			return "redirect:/admin/teacher";
-		} else if(userInfo!=null&&userInfo.getRole().equals("student")) {
-			return "redirect:/admin/student";
-		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
-			return "redirect:/admin/enterprise";
-		} else {
-			return "home";
-		}
-
-	}
-
-	@RequestMapping(value = "/admin/teacher", method = RequestMethod.GET)
-	public String adminTeacher(Locale locale, Model model, HttpSession session) {
-		logger.info("Welcome home! the client locale is " + locale.toString());
-
-		UserInfo userInfo = (UserInfo) session
-				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-
-		if (userInfo != null && userInfo.getRole().equals("user")) {
-			return "redirect:/admin/user";
-		} else if(userInfo != null && userInfo.getRole().equals("enterprise")){
-			return "redirect:/admin/enterprise";
-		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
-			Teacher teacher = teacherService.findOne(userInfo.getId());
-			userInfo.setTeacher(teacher);
-			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-			// set default home page to set resume page;
-			return "redirect:/admin/teacher/resume?active=personal";
-		}else {
-			return "home";
-		}
-	}
-	
-	@RequestMapping(value = "/admin/enterprise", method = RequestMethod.GET)
-	public String adminEnterprise(Locale locale, Model model, HttpSession session) {
-		logger.info("Welcome home! the client locale is " + locale.toString());
-
-		UserInfo userInfo = (UserInfo) session
-				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-
-		if (userInfo != null && userInfo.getRole().equals("user")) {
-			return "redirect:/admin/user";
-		} else if(userInfo != null && userInfo.getRole().equals("teacher")){
-			return "redirect:/admin/teacher";
-		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
-			Teacher teacher = teacherService.findOne(userInfo.getId());
-			userInfo.setTeacher(teacher);
-			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-			
-			Authentication authentication = (Authentication) session.getAttribute("authentication");
-			if(authentication != null && authentication.getStatus().equals("pass")){
-				return "redirect:/admin/enterprise/resume?active=personal";
-			}else{
-				return "redirect:/admin/enterprise/authentication/list";
-			}
-			
-		
-		}else {
-			return "home";
-		}
-
-	}
-	
-
-
-	@RequestMapping(value = "/{selfUrl}")
-	public String commonRegister(@PathVariable String selfUrl,
-			HttpSession session) {
-		User user = userService.findBySelfUrl(selfUrl);
-		if (user != null) {
-			Long id = user.getId();
-			return "redirect:/user/" + id.toString();
-		} else {
 			return "404";
 		}
 	}

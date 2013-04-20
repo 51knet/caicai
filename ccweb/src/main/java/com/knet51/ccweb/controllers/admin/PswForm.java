@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.admin.teacher;
+package com.knet51.ccweb.controllers.admin;
 
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -8,7 +8,7 @@ import com.knet51.ccweb.util.validators.FieldMatch;
     @FieldMatch(first = "new_psw", second = "confirm_new_psw", message = "The password fields must match"),
 })
 
-public class TeacherPswForm {
+public class PswForm {
 	@NotEmpty
 	private String ori_psw;
 	@NotEmpty

@@ -197,7 +197,7 @@
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-							<form action='<c:url value="/admin/teacher/honor/destory"></c:url>' method="post" style="display: inline-block;">
+							<form action='<c:url value="/admin/honor/destory"></c:url>' method="post" style="display: inline-block;">
 								<input id="honorId" type="hidden" name="honorId" />
 								<button class="btn btn-success">确定</button>
 							</form>

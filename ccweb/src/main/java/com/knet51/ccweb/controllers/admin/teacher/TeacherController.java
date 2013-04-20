@@ -1,7 +1,5 @@
 package com.knet51.ccweb.controllers.admin.teacher;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,12 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.admin.teacher.EnterprisePersonalInfoForm;
 import com.knet51.ccweb.controllers.admin.teacher.achievement.TeacherHonorDetailInfoForm;
 import com.knet51.ccweb.controllers.admin.teacher.achievement.TeacherPatentDetailInfoForm;
 import com.knet51.ccweb.controllers.admin.teacher.achievement.TeacherProjectDetailInfoForm;
 import com.knet51.ccweb.controllers.admin.teacher.achievement.TeacherThesisDetailInfoForm;
-import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
@@ -72,33 +69,6 @@ public class TeacherController {
 	@Autowired
 	private TeacherHonorService honorService;
 	
-	@Transactional
-	@RequestMapping(value = "/admin/teacher/details")
-	public String detailInfoPage(@RequestParam("active") String active,Model model,HttpSession session) {
-		if(active == null || active.equals("")){
-			active = "avatar";
-		}
-		model.addAttribute("active", active);
-		return "admin.teacher.details";
-	}
-	@RequestMapping(value="/admin/teacher/pswInfoCheck", method = RequestMethod.POST)
-	public void checkEmailAndPsw(HttpServletResponse response,HttpSession session,TeacherPswForm teacherPswForm) throws Exception{
-		UserInfo userInfo = (UserInfo) session
-				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		PrintWriter out=response.getWriter();
-		String email=userInfo.getEmail();
-		User user=userService.findByEmailAddress(email);
-		String password=user.getPassword();
-		String oriPsw=teacherPswForm.getOri_psw();
-		Integer num=1;
-		if(!password.equals(oriPsw)){
-			num=0;
-		}
-		String number=num.toString();
-		out.write(number);
-		out.flush();
-		out.close();
-	}
 	/**
 	 * update the teacher's personalInfo
 	 * @param personalInfoForm
@@ -109,7 +79,7 @@ public class TeacherController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value = "/admin/teacher/personalInfo")
+	@RequestMapping(value = "/admin/personalInfo")
 	public String personalInfo(@Valid TeacherPersonalInfoForm personalInfoForm,
 			BindingResult validResult, HttpSession session,RedirectAttributes redirectAttr, HttpServletRequest request, HttpServletResponse response) {
 		logger.info("#### Personal InfoController ####");
@@ -151,46 +121,11 @@ public class TeacherController {
 			String message = "个人信息保存成功";
 			redirectAttr.addFlashAttribute("message", message);
 		}
-		return "redirect:/admin/teacher/resume?active=personal";
+		return "redirect:/admin/resume?active=personal";
 	}
 	
 	@Transactional
-	@RequestMapping(value = "/admin/teacher/enterprisepersonalInfo")
-	public String enterprisepersonalInfo(@Valid EnterprisePersonalInfoForm personalInfoForm,
-			BindingResult validResult, HttpSession session,RedirectAttributes redirectAttr, HttpServletRequest request, HttpServletResponse response) {
-		logger.info("#### Personal InfoController ####");
-		
-		if (validResult.hasErrors()) {
-			logger.info("detailInfoForm Validation Failed " + validResult);
-			
-		} else {
-			logger.info("### detailInfoForm Validation passed. ###");
-			
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			User user = userService.findOne(userInfo.getId());
-			user.setName(personalInfoForm.getName());
-			user = userService.updateUser(user);
-			Teacher teacher = new Teacher(user);
-			teacher.setIsEnterprise("1");
-			teacher = teacherService.updateTeacher(teacher);
-			userInfo.setUser(user);
-			userInfo.setTeacher(teacher);
-			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-			
-			String message = "个人信息保存成功";
-			redirectAttr.addFlashAttribute("message", message);
-		}
-		return "redirect:/admin/teacher/resume?active=personal";
-	}
-	/**
-	 * update the teacher's contactInfo
-	 * @param contactInfoForm
-	 * @param validResult
-	 * @param session
-	 * @return
-	 */
-	@Transactional
-	@RequestMapping(value = "/admin/teacher/contactInfo")
+	@RequestMapping(value = "/admin/contactInfo")
 	public String contactInfo(@Valid TeacherContactInfoForm contactInfoForm,RedirectAttributes redirectAttr,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### contactInfo InfoController ####");
@@ -217,7 +152,7 @@ public class TeacherController {
 			String message = "联系信息保存成功";
 			redirectAttr.addFlashAttribute("message", message);
 		}
-		return "redirect:/admin/teacher/resume?active=contact";
+		return "redirect:/admin/resume?active=contact";
 	}
 	/**
 	 * update or create the teacher's educationInfo
@@ -228,7 +163,7 @@ public class TeacherController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value = "/admin/teacher/eduInfo" ,method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/eduInfo" ,method = RequestMethod.POST)
 	public String changeEduInfo(@RequestParam("eduId")Long edu_id,@Valid TeacherEduInfoForm eduInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### eduInfo InfoController ####");
@@ -257,7 +192,7 @@ public class TeacherController {
 			edu.setEducationDesc(eduInfoForm.getEducationDesc());
 			eduBackgroundService.createEduBackground(edu);
 		}
-		return "redirect:/admin/teacher/resume?active=edu";
+		return "redirect:/admin/resume?active=edu";
 	}
 	
 	/**
@@ -267,11 +202,11 @@ public class TeacherController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value = "/admin/teacher/eduInfo/destory",method=RequestMethod.POST)
+	@RequestMapping(value = "/admin/eduInfo/destory",method=RequestMethod.POST)
 	public String destoryEduInfo(@RequestParam("eduId") Long edu_id, HttpSession session) {
 		logger.info("#### eduInfo InfoController ####");
 		eduBackgroundService.destory(Long.valueOf(edu_id));
-		return "redirect:/admin/teacher/resume?active=edu";
+		return "redirect:/admin/resume?active=edu";
 		
 	}
 	
@@ -284,7 +219,7 @@ public class TeacherController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value = "/admin/teacher/workInfo",method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/workInfo",method = RequestMethod.POST)
 	public String changeWorkInfo(@RequestParam("workId")Long work_Id,@Valid TeacherWorkExpInfoForm workInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### workInfo Controller ####");
@@ -310,7 +245,7 @@ public class TeacherController {
 			work.setWorkDesc(workInfoForm.getWorkDesc());
 			workExpService.createWorkExp(work);
 		}
-		return "redirect:/admin/teacher/resume?active=work";
+		return "redirect:/admin/resume?active=work";
 	}
 	
 	/**
@@ -320,11 +255,11 @@ public class TeacherController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value = "/admin/teacher/workInfo/destory",method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/workInfo/destory",method = RequestMethod.POST)
 	public String destoryWorkInfo(@RequestParam("workId") Long work_id, HttpSession session) {
 		logger.info("#### eduInfo InfoController ####");
 		workExpService.destory(Long.valueOf(work_id));
-		return "redirect:/admin/teacher/resume?active=work";
+		return "redirect:/admin/resume?active=work";
 	}
 	/**
 	 * update or create the teacher's thesisInfo
@@ -335,7 +270,7 @@ public class TeacherController {
 	 * @return
 	 */
 	@Transactional
-	@RequestMapping(value = "/admin/teacher/thesisInfo",method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/thesisInfo",method = RequestMethod.POST)
 	public String changeThesisInfo(@RequestParam("thesisd")Long thesis_Id,@Valid TeacherThesisDetailInfoForm thesisDetailInfoForm,
 			BindingResult validResult, HttpSession session) {
 		logger.info("#### workInfo Controller ####");
@@ -358,7 +293,7 @@ public class TeacherController {
 			}
 			
 		}
-		return "redirect:/admin/teacher/resume?active=thesis";
+		return "redirect:/admin/resume?active=thesis";
 	}
 	
 	/**
@@ -370,40 +305,10 @@ public class TeacherController {
 	 * @param response
 	 * @return
 	 */
-	@Transactional
-	@RequestMapping(value = "/admin/teacher/changePsw")
-	public String changePsw(@Valid TeacherPswForm pswForm,
-			BindingResult validResult, HttpSession session, HttpServletRequest request, HttpServletResponse response,RedirectAttributes redirectAttr) {
-		logger.info("#### changePsw InfoController ####");
-		
-		if (validResult.hasErrors()) {
-			logger.info("changePsw Validation Failed " + validResult);
-			return "redirect:/admin/teacher/details?active=psw";
-		} else {
-			logger.info("### changePsw Validation passed. ###");
-
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			
-			User user = userService.findOne(userInfo.getId());
-			String password = user.getPassword();
-			if(password.equals(pswForm.getOri_psw())){
-				user.setPassword(pswForm.getNew_psw());
-				user = userService.updateUser(user);
-				Teacher teacher = teacherService.findOne(userInfo.getId());
-				userInfo.setUser(user);
-				userInfo.setTeacher(teacher);
-				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-				String message = "密码修改成功";
-				redirectAttr.addFlashAttribute("message", message);
-			}else{
-				logger.info("original password is not correct. Nothing update.");
-			}
-			return "redirect:/admin/teacher/details?active=psw";
-		}
-	}
+	
 
 	@Transactional
-	@RequestMapping(value = "/admin/teacher/selfurl")
+	@RequestMapping(value = "/admin/selfurl")
 	public String selfUrl(@Valid TeacherSelfUrlForm selfUrlForm,
 			BindingResult validResult, HttpSession session) {
 
@@ -411,7 +316,7 @@ public class TeacherController {
 
 		if (validResult.hasErrors()) {
 			logger.info("selfUrlForm Validation Failed " + validResult);
-			return "redirect:/admin/teacher/details?active=url";
+			return "redirect:/admin/details?active=url";
 		} else {
 			logger.info("### detailInfoForm Validation passed. ###");
 			String url = selfUrlForm.getUrl();
@@ -429,17 +334,17 @@ public class TeacherController {
 				userInfo.setUser(user);
 				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			}
-			return "redirect:/admin/teacher/details?active=url";
+			return "redirect:/admin/details?active=url";
 		}
 	}
 	
-	@RequestMapping(value="/admin/teacher/thesis/new")
+	@RequestMapping(value="/admin/thesis/new")
 	public String addThesis(@RequestParam("thesisId") Long thesis_id,@Valid TeacherThesisDetailInfoForm thesisDetailInfoForm, HttpSession session,
 			Model model, BindingResult validResult){
 		logger.info("#### workInfo Controller ####");
 		if (validResult.hasErrors()) {
 			logger.info("eduInfo Validation Failed " + validResult);
-			return "redirect:/admin/teacher/resume?active=thesis";
+			return "redirect:/admin/resume?active=thesis";
 		} else {
 			TeacherThesis thesis = null;
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -456,21 +361,21 @@ public class TeacherController {
 			}
 			
 		}
-		return "redirect:/admin/teacher/resume?active=thesis";
+		return "redirect:/admin/resume?active=thesis";
 	}	
 	
-	@RequestMapping(value="/admin/teacher/thesis/destory",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/thesis/destory",method=RequestMethod.POST)
 	public String deleThesis(@RequestParam("thesisId") Long thesis_id){
 		thesisService.deleteById(Long.valueOf(thesis_id));
-		return "redirect:/admin/teacher/resume?active=thesis";
+		return "redirect:/admin/resume?active=thesis";
 	}
 	
-	@RequestMapping(value="/admin/teacher/project/new")
+	@RequestMapping(value="/admin/project/new")
 	public String addProject(@RequestParam("projectId") Long projectId, @Valid TeacherProjectDetailInfoForm projectDetailForm, HttpSession session,
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherProjectAddController ####");
 		if(validResult.hasErrors()){
-			return "redirect:/admin/teacher/resume?active=project";
+			return "redirect:/admin/resume?active=project";
 		}else{
 			TeacherProject project=null;
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -491,22 +396,22 @@ public class TeacherController {
 				project.setDesc(projectDetailForm.getProjectDesc());
 				projectService.save(project, userInfo.getTeacher());
 			}
-			return "redirect:/admin/teacher/resume?active=project";
+			return "redirect:/admin/resume?active=project";
 		}
 	}
 	
-	@RequestMapping(value="/admin/teacher/project/destory",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/project/destory",method=RequestMethod.POST)
 	public String deleProject(@RequestParam("projectId") Long project_id){
 		projectService.deleteById(Long.valueOf(project_id));
-		return "redirect:/admin/teacher/resume?active=project";
+		return "redirect:/admin/resume?active=project";
 	}
 	
-	@RequestMapping(value="/admin/teacher/patent/new")
+	@RequestMapping(value="/admin/patent/new")
 	public String addPatent(@RequestParam("patentId")Long patentId,@Valid TeacherPatentDetailInfoForm patentDetailForm, HttpSession session,
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherPatentAddController ####");
 		if(validResult.hasErrors()){
-			return "redirect:/admin/teacher/resume?active=patent";
+			return "redirect:/admin/resume?active=patent";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			TeacherPatent patent = null;
@@ -528,22 +433,22 @@ public class TeacherController {
 				patentService.save(patent, userInfo.getTeacher());
 			}		
 					
-			return "redirect:/admin/teacher/resume?active=patent";
+			return "redirect:/admin/resume?active=patent";
 		}
 	}
 	
-	@RequestMapping(value="/admin/teacher/patent/destory",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/patent/destory",method=RequestMethod.POST)
 	public String delePatent(@RequestParam("patentId")Long patent_id){
 		patentService.deleteById(Long.valueOf(patent_id));
-		return "redirect:/admin/teacher/resume?active=patent";
+		return "redirect:/admin/resume?active=patent";
 	}
 	
-	@RequestMapping(value="/admin/teacher/honor/new")
+	@RequestMapping(value="/admin/honor/new")
 	public String addHonor(@RequestParam("honorId") Long honorId, @Valid TeacherHonorDetailInfoForm honorDetailForm, HttpSession session,
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherProjectAddController ####");
 		if(validResult.hasErrors()){
-			return "redirect:/admin/teacher/resume?active=honor";
+			return "redirect:/admin/resume?active=honor";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			
@@ -561,65 +466,55 @@ public class TeacherController {
 				honor.setDesc(honorDetailForm.getHonorDesc());
 				honorService.save(honor, userInfo.getTeacher());
 			}
-			return "redirect:/admin/teacher/resume?active=honor";
+			return "redirect:/admin/resume?active=honor";
 		}
 	}
 	
-	@RequestMapping(value="/admin/teacher/honor/destory",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/honor/destory",method=RequestMethod.POST)
 	public String deleHonor(@RequestParam("honorId")Long honor_id){
 		honorService.deleteById(Long.valueOf(honor_id));
-		return "redirect:/admin/teacher/resume?active=honor";
+		return "redirect:/admin/resume?active=honor";
 	}
 	
 	
-	@RequestMapping(value = "/admin/teacher/personalInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/personalInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse processFormAjaxJson(@Valid TeacherPersonalInfoForm personalInfoForm, BindingResult result,HttpSession session) {
 		return AjaxValidationEngine.process(result);
 	}
 	
-	@RequestMapping(value = "/admin/teacher/enterpriseInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse enterpriseFormAjaxJson(@Valid EnterprisePersonalInfoForm personalInfoForm, BindingResult result,HttpSession session) {
-		return AjaxValidationEngine.process(result);
-	}
-	
-	@RequestMapping(value = "/admin/teacher/teacherContactAjax", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/teacherContactAjax", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse contactInfoFormAjaxJson(@Valid TeacherContactInfoForm teacherContactInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
-	@RequestMapping(value = "/admin/teacher/eduInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/eduInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse eduInfoFormAjaxJson(@Valid TeacherEduInfoForm teacherEduInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
 	
-	@RequestMapping(value = "/admin/teacher/workExpInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/workExpInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse workExpInfoFormAjaxJson(@Valid TeacherWorkExpInfoForm workInfoForm, BindingResult result) {
 		//logger.info("------into workExp ajax");
 		return AjaxValidationEngine.process(result);
 	}
-	@RequestMapping(value = "/admin/teacher/selfurlInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/selfurlInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse selfurInfoFormAjaxJson(@Valid TeacherSelfUrlForm teacherSelfUrlForm, BindingResult result) {
 		//logger.info("------into selfur ajax");
 		return AjaxValidationEngine.process(result);
 	}
-	@RequestMapping(value = "/admin/teacher/pswInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse pswfurInfoFormAjaxJson(@Valid TeacherPswForm teacherPswForm, BindingResult result) {
-		//logger.info("------into psw ajax");
-		return AjaxValidationEngine.process(result);
-	}
 	
-	@RequestMapping(value = "/admin/teacher/thesisInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/thesisInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse thesisInfoFormAjaxJson(@Valid TeacherThesisDetailInfoForm teacherThesisDetailInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
-	@RequestMapping(value = "/admin/teacher/projectInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/projectInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse projectInfoFormAjaxJson(@Valid TeacherProjectDetailInfoForm teacherProjectDetailInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
-	@RequestMapping(value = "/admin/teacher/patentInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/patentInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse patentInfoFormAjaxJson(@Valid TeacherPatentDetailInfoForm teacherPatentDetailInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
-	@RequestMapping(value = "/admin/teacher/honorInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/honorInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse honorInfoFormAjaxJson(@Valid TeacherHonorDetailInfoForm teacherHonorDetailInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}

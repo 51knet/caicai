@@ -21,9 +21,8 @@
 		    <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;height:120px;width:120px;margin:15px auto;">
 		    <div style="height: 35px;"></div>
 		    <div style="height: 20px;background-color:gray;  padding:2px 2px;">
-		    	<a href='<c:url value="/admin/user/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
+		    	<a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
 		    </div>
-		    <div style="height: 35px;"></div>
 		   </div>
 		</div>	
 	</c:when>
@@ -32,9 +31,8 @@
 		    <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;height:120px;width:120px;margin:15px auto;">
 		    <div style="height: 35px;"></div>
 		    <div style="height: 20px;background-color:gray;  padding:2px 2px;">
-		    	<a href='<c:url value="/admin/user/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
+		    	<a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
 		    </div>
-		    <div style="height: 35px;"></div>
 		   </div>
 		</div>	
 	</c:when>
@@ -47,8 +45,8 @@
 </c:choose>
 <div class="left-menu-container">
 	<ul class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value="/admin/user/course/list"></c:url>' >我的学习</a></li>
-		<li><a href='<c:url value="/admin/user/details"><c:param name="active" value="avatar" /></c:url>'>账号信息</a></li>
+		<li><a href='<c:url value="/admin/course/list"></c:url>' >我的学习</a></li>
+		<li><a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>'>账号信息</a></li>
 	</ul>
 </div>
 

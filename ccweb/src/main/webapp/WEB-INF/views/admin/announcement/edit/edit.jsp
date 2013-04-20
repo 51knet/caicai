@@ -18,7 +18,7 @@
 	margin: 0px 5px;
 }
 </style>
-<a href='<c:url value="/admin/teacher/announcement/list"></c:url>' ><b>教师公告</b></a><hr>
+<a href='<c:url value="/admin/announcement/list"></c:url>' ><b>教师公告</b></a><hr>
 <div style="text-align: center;">
 	${sessionScope.userInfo.user["email"] }<br>
 <div style="text-align: center;">

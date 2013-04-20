@@ -41,8 +41,8 @@ function courseCreate(){
 </style>
 <div  class="row-fluid custom round">
 	<div class="row" style="margin-top: 10px;">
-		<a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>课程管理</b></a>>>
-		<a href='<c:url value="/admin/teacher/course/new"></c:url>'><b>课程添加</b></a><hr>
+		<a href='<c:url value="/admin/course/list"></c:url>' ><b>课程管理</b></a>>>
+		<a href='<c:url value="/admin/course/new"></c:url>'><b>课程添加</b></a><hr>
 		<div style="text-align: center;">
 			<div style="text-align:center;">
 				<div style="width:560px; text-align:left;" >

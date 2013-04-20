@@ -192,7 +192,7 @@ function checkCoverPicture(obj){
 			var coursename =$("#coursenames").val();
 				$.ajax({
 					   type: "post",
-					   url: "<c:url value='/admin/teacher/course/checkcoursename' />",
+					   url: "<c:url value='/admin/course/checkcoursename' />",
 					   data: "courseName="+coursename,
 					   dataType:"text",
 					   success: function(num){

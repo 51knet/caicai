@@ -32,7 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.courses.CourseLesson;
@@ -169,7 +169,7 @@ public class TeacherCourseInfoDetailController {
 				MultipartFile multipartFile = files.get(i);
 				if(multipartFile.getSize()>MAX_RESOURCE_SIZE_200M){
 					redirectAttributes.addFlashAttribute("fileMaxError", "上传文件不得大于200M");
-					return "redirect:/admin/teacher/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
+					return "redirect:/admin/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 				}
 				Long type = Long.parseLong(request.getParameter("type"));
 				ResourceType resourceType = resourceTypeService.findOneById(type);
@@ -304,7 +304,7 @@ public class TeacherCourseInfoDetailController {
 		TeacherCourse course=teacherCourseService.findOneById(course_id);
 		if(course == null){
 			//logger.info("------------url_courseId"+course_id+"--------select_course_id"+course.getId());
-			return "redirect:/admin/teacher/course/list";
+			return "redirect:/admin/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getUser().getId();
@@ -348,7 +348,7 @@ public class TeacherCourseInfoDetailController {
 	public String basicMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		if(course == null){
-			return "redirect:/admin/teacher/course/list";
+			return "redirect:/admin/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getUser().getId();
@@ -515,7 +515,7 @@ public class TeacherCourseInfoDetailController {
 	public String powerPrice(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		if(course == null){
-			return "redirect:/admin/teacher/course/list";
+			return "redirect:/admin/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getUser().getId();
@@ -554,12 +554,12 @@ public class TeacherCourseInfoDetailController {
 	public String modifyDeleteMessage(HttpSession session,@PathVariable Long id,Model model){
 		TeacherCourse course=teacherCourseService.findOneById(id);
 		if(course == null){
-			return "redirect:/admin/teacher/course/list";
+			return "redirect:/admin/course/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
-				return "redirect:/admin/teacher/course/list";
+				return "redirect:/admin/course/list";
 			}
 		}
 		model.addAttribute("course", course);
@@ -592,17 +592,17 @@ public class TeacherCourseInfoDetailController {
 		CourseType courseType = new CourseType();
 		courseType.setTypeName(typeName);
 		courseTypeService.createCourseType(courseType);
-		return "redirect:/admin/teacher/course/type/list";
+		return "redirect:/admin/course/type/list";
 	}
 	
 	@RequestMapping(value="/admin/course/type/destory/{id}",method=RequestMethod.GET)
 	public String destoryCourseType(@PathVariable Long id,HttpSession session){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(!userInfo.getEmail().equals("tim@apple.com")){
-			return "redirect:/admin/teacher/course/list";
+			return "redirect:/admin/course/list";
 		}else{
 			courseTypeService.destryCourseType(id);
-			return "redirect:/admin/teacher/course/type/list";
+			return "redirect:/admin/course/type/list";
 		}
 	}
 	

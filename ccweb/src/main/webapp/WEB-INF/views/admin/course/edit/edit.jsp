@@ -18,8 +18,8 @@
 	margin: 0px 5px;
 }
 </style>
-<a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>资源管理</b></a>>>
-<a href='<c:url value="/admin/teacher/course/edit/${course.id}"></c:url>'><b>课程修改</b></a><hr>
+<a href='<c:url value="/admin/course/list"></c:url>' ><b>资源管理</b></a>>>
+<a href='<c:url value="/admin/course/edit/${course.id}"></c:url>'><b>课程修改</b></a><hr>
 <div style="text-align: center;">
 	${sessionScope.userInfo.user["email"] }<br>
 <div style="text-align: center;">

@@ -28,7 +28,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.AnnoPhoto;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Authentication;
@@ -47,7 +47,7 @@ public class EnterprsieAuthenticationController {
 	@Autowired
 	private AuthenticationService authenticationService;
 	
-	@RequestMapping(value="/admin/enterprise/authentication/list")
+	@RequestMapping(value="/admin/authentication/list")
 	public String showEnterpriseAuthentication(HttpSession session, Model model,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		logger.info("===== into showEnterpriseAuthentication page controller ");
@@ -58,7 +58,7 @@ public class EnterprsieAuthenticationController {
 		return "admin.enterprise.authentication.list";
 	}
 	
-	@RequestMapping(value="/admin/enterprise/authentication/new")
+	@RequestMapping(value="/admin/authentication/new")
 	public String addEnterpriseAuthentication(HttpSession session, Model model){
 		logger.info("===== into addEnterpriseAuthentication page controller ");
 		Authentication authentication = (Authentication) session.getAttribute("authentication");
@@ -69,7 +69,7 @@ public class EnterprsieAuthenticationController {
 		}
 	}
 	
-	@RequestMapping(value="/admin/enterprise/authentication/new/create" ,method=RequestMethod.POST)
+	@RequestMapping(value="/admin/authentication/new/create" ,method=RequestMethod.POST)
 	public String addEnterpriseAuthenticationDetail(@Valid AuthenticationForm authenticationForm ,HttpSession session,
 			Model model,MultipartHttpServletRequest request,BindingResult validResult,RedirectAttributes redirectAttributes) throws Exception{
 		logger.info("===== into addAuthenticationDetailInfo page controller ");
@@ -77,7 +77,7 @@ public class EnterprsieAuthenticationController {
 		User user = userInfo.getUser();
 		if(validResult.hasErrors()){
 			logger.info("annoDetailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/enterprise/authentication/new";
+			return "redirect:/admin/authentication/new";
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
 			List<MultipartFile> files = request.getFiles("myFiles");
@@ -97,7 +97,7 @@ public class EnterprsieAuthenticationController {
 				if(!files.get(i).isEmpty()){
 					if(multipartFile.getSize()>MAX_FILE_SIZE_10M){
 						redirectAttributes.addFlashAttribute("errorMsg", "上传资料不得大于10M");
-						return "redirect:/admin/enterprise/authentication/new";
+						return "redirect:/admin/authentication/new";
 					}else{
 						String fileName = files.get(i).getOriginalFilename();
 						String path = session.getServletContext().getRealPath("/")+"resources/attached/"+userInfo.getId()+"/authentication/"+auth.getId();

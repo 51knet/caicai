@@ -54,7 +54,7 @@
 									<span class="caret"></span> </button>
 									<ul class="dropdown-menu">
 										<li>详细</li>
-										<li><a href='<c:url value="/admin/teacher/message/deleOne?mid=${page.sendMsg.id}"></c:url>'>删除</a> </li>
+										<li><a href='<c:url value="/admin/message/deleOne?mid=${page.sendMsg.id}"></c:url>'>删除</a> </li>
 									</ul>
 								 </div> -->
 								 	  <a class="deleteMsgPostBtn" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">删除</a><input type="hidden"  value="${page.sendMsg.id}" >

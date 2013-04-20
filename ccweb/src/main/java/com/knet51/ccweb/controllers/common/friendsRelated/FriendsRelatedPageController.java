@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.friendsRelated;
+package com.knet51.ccweb.controllers.common.friendsRelated;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
@@ -32,7 +32,7 @@ public class FriendsRelatedPageController {
 	@Autowired
 	private TeacherService teacherService;
 	
-	@RequestMapping(value="/admin/teacher/friendsRelated/list")
+	@RequestMapping(value="/admin/friendsRelated/list")
 	public String friendsRelatedDetail(HttpSession session, Model model){
 		logger.info("#### Into FriendsRelatedPageController ####");
 		Long id = getId(session);
@@ -41,7 +41,7 @@ public class FriendsRelatedPageController {
 		model.addAttribute("count", count);
 		return "admin.teacher.friendsRelated.list";
 	}
-	@RequestMapping(value="/admin/teacher/friendsRelated/add")
+	@RequestMapping(value="/admin/friendsRelated/add")
 	public String friendsRelatedAddPage(Model model,HttpServletRequest request,HttpSession session){
 		logger.info("#### Into FriendsRelatedAdd ####");
 		//Long id = getId(session);

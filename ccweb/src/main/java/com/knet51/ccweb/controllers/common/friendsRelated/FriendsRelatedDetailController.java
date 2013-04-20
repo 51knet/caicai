@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.friendsRelated;
+package com.knet51.ccweb.controllers.common.friendsRelated;
 
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.FriendsRelated;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;

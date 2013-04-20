@@ -19,8 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.admin.teacher.TeacherPswForm;
-import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.SendMsg;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.SendMsgService;
@@ -74,7 +73,7 @@ public class SendMsgDetailInfoController {
 		
 		logger.info("#### Into SendMsgInfoPageControllerPage ####");
 		if(validResult.hasErrors()){
-			return "redirect:/admin/teacher/message/detailOne?mid=" + sendMsgId+"&urmid="+urmId;
+			return "redirect:/admin/message/detailOne?mid=" + sendMsgId+"&urmid="+urmId;
 		}else{
 			//System.out.println(userId);
 			SendMsg sendMsg = new SendMsg();

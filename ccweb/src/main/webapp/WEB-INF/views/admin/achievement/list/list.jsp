@@ -74,10 +74,10 @@ $(document).ready(function(){
 												<span class="caret"></span> </button>
 												<ul class="dropdown-menu">
 													<li><a href='#'>修改</a></li>
-													<li><a href='<c:url value="/admin/teacher/achievement/thesis/destory/${thesis.id}"></c:url>'>删除</a></li>
+													<li><a href='<c:url value="/admin/achievement/thesis/destory/${thesis.id}"></c:url>'>删除</a></li>
 												</ul>
 											</div> -->
-											<a href='<c:url value="/admin/teacher/achievement/thesis/destory/${thesis.id}"></c:url>'>删除</a>
+											<a href='<c:url value="/admin/achievement/thesis/destory/${thesis.id}"></c:url>'>删除</a>
 										</td>
 									</tr>
 								</c:forEach>
@@ -177,7 +177,7 @@ $(document).ready(function(){
 														<li></li>
 													</ul>
 												</div> -->
-												<a href='<c:url value="/admin/teacher/achievement/project/destory/${project.id}"></c:url>'>删除</a>
+												<a href='<c:url value="/admin/achievement/project/destory/${project.id}"></c:url>'>删除</a>
 											</td>
 										</tr>
 									</c:forEach>
@@ -263,7 +263,7 @@ $(document).ready(function(){
 														<li></li>
 													</ul>
 												</div> -->
-												<a href='<c:url value="/admin/teacher/achievement/patent/destory/${patent.id}"></c:url>'>删除</a>
+												<a href='<c:url value="/admin/achievement/patent/destory/${patent.id}"></c:url>'>删除</a>
 											</td>
 										</tr>
 									</c:forEach>
@@ -331,7 +331,7 @@ $(document).ready(function(){
 															<li>
 														</ul>
 													</div> -->
-													<a href='<c:url value="/admin/teacher/achievement/honor/destory/${honor.id}"></c:url>'>删除</a></li>
+													<a href='<c:url value="/admin/achievement/honor/destory/${honor.id}"></c:url>'>删除</a></li>
 												</td>
 											</tr>
 										</c:forEach>

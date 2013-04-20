@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
@@ -46,7 +46,7 @@ import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherThesisService;
  * Handles requests for the application home page.
  */
 @Controller
-public class TeacherResumeController {
+public class ResumeController {
 
 	@Autowired
 	private TeacherService teacherService;
@@ -67,7 +67,7 @@ public class TeacherResumeController {
 	
 
 	@Transactional
-	@RequestMapping(value = "/admin/teacher/resume")
+	@RequestMapping(value = "/admin/resume")
 	public String resumePage(@RequestParam("active") String active,
 			Model model, HttpSession session) {
 		String universityFilePath = "";
@@ -122,7 +122,14 @@ public class TeacherResumeController {
 		List<TeacherHonor> honorList = honorService.getAllHonorById(userInfo.getId());
 		model.addAttribute("honorList", honorList);
 		model.addAttribute("honorCount", honorList.size());
-		return "admin.teacher.resume";
+
+		if (userInfo != null && userInfo.getRole().equals("teacher")) {
+			return "admin.teacher.resume";
+		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
+			return "admin.enterprise.resume";
+		} else {
+			return "redirect:/admin";
+		}
 	}
 	
 	// teacher front page
@@ -164,7 +171,7 @@ public class TeacherResumeController {
 		return "teacher.resume";
 	}
 
-	@RequestMapping(value="/admin/teacher/thesisInfo/edit/ajax",method = RequestMethod.POST)
+	@RequestMapping(value="/admin/thesisInfo/edit/ajax",method = RequestMethod.POST)
 	public void getThesisJson(@RequestParam ("thesisId") Long thesis_id,HttpServletResponse response,HttpSession session) throws Exception{
 		TeacherThesis teacherThesisInfo = thesisService.findOneById(Long.valueOf(thesis_id));
 		PrintWriter out = response.getWriter();
@@ -173,7 +180,7 @@ public class TeacherResumeController {
 		out.flush();
 		out.close();
 	}
-	@RequestMapping(value="/admin/teacher/projectInfo/edit/ajax",method = RequestMethod.POST)
+	@RequestMapping(value="/admin/projectInfo/edit/ajax",method = RequestMethod.POST)
 	public void getProjectJson(@RequestParam ("projectId") Long project_id,HttpServletResponse response,HttpSession session) throws Exception{
 		TeacherProject teacherProjectInfo = projectService.findOneById(Long.valueOf(project_id));
 		PrintWriter out = response.getWriter();
@@ -182,7 +189,7 @@ public class TeacherResumeController {
 		out.flush();
 		out.close();
 	}
-	@RequestMapping(value="/admin/teacher/patentInfo/edit/ajax",method = RequestMethod.POST)
+	@RequestMapping(value="/admin/patentInfo/edit/ajax",method = RequestMethod.POST)
 	public void getPatentJson(@RequestParam ("patentId") Long patent_id,HttpServletResponse response,HttpSession session) throws Exception{
 		TeacherPatent teacherPatentInfo = patentService.findOneById(Long.valueOf(patent_id));
 		PrintWriter out = response.getWriter();
@@ -191,7 +198,7 @@ public class TeacherResumeController {
 		out.flush();
 		out.close();
 	}
-	@RequestMapping(value="/admin/teacher/honorInfo/edit/ajax",method = RequestMethod.POST)
+	@RequestMapping(value="/admin/honorInfo/edit/ajax",method = RequestMethod.POST)
 	public void getTeacherHonorJson(@RequestParam ("honorId") Long honor_id,HttpServletResponse response,HttpSession session) throws Exception{
 		TeacherHonor honorInfo = honorService.findOneById(Long.valueOf(honor_id));
 		PrintWriter out = response.getWriter();
@@ -200,7 +207,7 @@ public class TeacherResumeController {
 		out.flush();
 		out.close();
 		}
-	@RequestMapping(value="/admin/teacher/eduInfo/edit/ajax",method = RequestMethod.POST)
+	@RequestMapping(value="/admin/eduInfo/edit/ajax",method = RequestMethod.POST)
 	public void getEduJson(@RequestParam ("eduId") Long edu_id,HttpServletResponse response,HttpSession session) throws Exception{
 		EduBackground eduInfo = eduBackgroundService.findOneById(Long.valueOf(edu_id));
 		PrintWriter out = response.getWriter();
@@ -211,7 +218,7 @@ public class TeacherResumeController {
 		
 	}
 	
-	@RequestMapping(value="/admin/teacher/workInfo/edit/ajax",method = RequestMethod.POST)
+	@RequestMapping(value="/admin/workInfo/edit/ajax",method = RequestMethod.POST)
 	public void getWorkJson(@RequestParam ("workId") Long work_id,HttpServletResponse response,HttpSession session) throws Exception{
 		WorkExp workInfo = workExpService.findOneById(Long.valueOf(work_id));
 		PrintWriter out = response.getWriter();

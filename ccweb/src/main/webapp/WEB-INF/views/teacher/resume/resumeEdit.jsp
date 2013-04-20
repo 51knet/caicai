@@ -318,7 +318,7 @@
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-							<form action='<c:url value="/admin/teacher/eduInfo/destory"></c:url>' method="post" style="display: inline-block;">
+							<form action='<c:url value="/admin/eduInfo/destory"></c:url>' method="post" style="display: inline-block;">
 								<input id="eduId" type="hidden" name="eduId" />
 								<button class="btn btn-success">确定</button>
 							</form>
@@ -436,7 +436,7 @@
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-							<form action='<c:url value="/admin/teacher/workInfo/destory"></c:url>' method="post" style="display: inline-block;">
+							<form action='<c:url value="/admin/workInfo/destory"></c:url>' method="post" style="display: inline-block;">
 								<input id="workId" type="hidden" name="workId" />
 								<button class="btn btn-success">确定</button>
 							</form>
@@ -509,7 +509,7 @@
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-							<form action='<c:url value="/admin/teacher/thesis/destory"></c:url>' method="post" style="display: inline-block;">
+							<form action='<c:url value="/admin/thesis/destory"></c:url>' method="post" style="display: inline-block;">
 								<input id="thesisId" type="hidden" name="thesisId" />
 								<button class="btn btn-success">确定</button>
 							</form>
@@ -614,7 +614,7 @@
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-							<form action='<c:url value="/admin/teacher/project/destory"></c:url>' method="post" style="display: inline-block;">
+							<form action='<c:url value="/admin/project/destory"></c:url>' method="post" style="display: inline-block;">
 								<input id="projectId" type="hidden" name="projectId" />
 								<button class="btn btn-success">确定</button>
 							</form>
@@ -717,7 +717,7 @@
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-							<form action='<c:url value="/admin/teacher/patent/destory"></c:url>' method="post" style="display: inline-block;">
+							<form action='<c:url value="/admin/patent/destory"></c:url>' method="post" style="display: inline-block;">
 								<input id="patentId" type="hidden" name="patentId" />
 								<button class="btn btn-success">确定</button>
 							</form>
@@ -803,7 +803,7 @@
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-							<form action='<c:url value="/admin/teacher/honor/destory"></c:url>' method="post" style="display: inline-block;">
+							<form action='<c:url value="/admin/honor/destory"></c:url>' method="post" style="display: inline-block;">
 								<input id="honorId" type="hidden" name="honorId" />
 								<button class="btn btn-success">确定</button>
 							</form>

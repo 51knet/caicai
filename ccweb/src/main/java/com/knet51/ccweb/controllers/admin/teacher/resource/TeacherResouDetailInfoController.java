@@ -32,7 +32,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.admin.teacher.TeacherWorkExpInfoForm;
-import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.resource.Resource;
@@ -187,7 +187,7 @@ public class TeacherResouDetailInfoController {
 		String typeName = teacherResouTypeInfo.getTypeName();
 		if (validResult.hasErrors()) {
 			 logger.info("detailInfoForm Validation Failed " + validResult);
-			 return "redirect:/admin/teacher/resource/type/list";
+			 return "redirect:/admin/resource/type/list";
 		} else {
 			ResourceType resourceType = new ResourceType();
 			resourceType.setTypeName(typeName);

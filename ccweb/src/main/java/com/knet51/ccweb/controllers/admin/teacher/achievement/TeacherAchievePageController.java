@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.admin.teacher.course.TeacherCourseInfoForm;
-import com.knet51.ccweb.controllers.defs.GlobalDefs;
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
@@ -59,7 +59,7 @@ public class TeacherAchievePageController {
 	@Autowired
 	private TeacherService teacherService;
 	
-	@RequestMapping(value="/admin/teacher/achievement/list")
+	@RequestMapping(value="/admin/achievement/list")
 	public String teacherAchievement(HttpSession session,Model model){
 		logger.info("#### Into teacher achievement page ####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -78,19 +78,19 @@ public class TeacherAchievePageController {
 		model.addAttribute("honorCount", honor.size());
 		return "admin.teacher.achievement.list";
 	}
-	@RequestMapping(value = "/admin/teacher/achievement/thesisInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/achievement/thesisInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse thesisInfoFormAjaxJson(@Valid TeacherThesisDetailInfoForm teacherThesisDetailInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
-	@RequestMapping(value = "/admin/teacher/achievement/projectInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/achievement/projectInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse projectInfoFormAjaxJson(@Valid TeacherProjectDetailInfoForm teacherProjectDetailInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
-	@RequestMapping(value = "/admin/teacher/achievement/patentInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/achievement/patentInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse patentInfoFormAjaxJson(@Valid TeacherPatentDetailInfoForm teacherPatentDetailInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
-	@RequestMapping(value = "/admin/teacher/achievement/honorInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/achievement/honorInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse honorInfoFormAjaxJson(@Valid TeacherHonorDetailInfoForm teacherHonorDetailInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}

@@ -20,8 +20,8 @@
 </style>
 <div  class="row-fluid custom round">
 	<div class="row" style="margin-top: 10px;">
-		<a href='<c:url value="/admin/teacher/course/list"></c:url>' ><b>课程管理</b></a>>>
-		<a href='<c:url value="/admin/teacher/course/view/${course.id}"></c:url>'><b>课程详细</b></a><hr>
+		<a href='<c:url value="/admin/course/list"></c:url>' ><b>课程管理</b></a>>>
+		<a href='<c:url value="/admin/course/view/${course.id}"></c:url>'><b>课程详细</b></a><hr>
 		<div style="text-align: center;">
 			<div style="text-align: center;">
 				<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
@@ -34,7 +34,7 @@
 				</table>
 				<br><hr>
 				<div class="row" style="text-align: right;">
-				<a style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/teacher/${course.id}/resource/new"></c:url>' class="btn">添加附件</a><br>
+				<a style="margin-bottom: 10px; font-size: 14px;" href='<c:url value="/admin/${course.id}/resource/new"></c:url>' class="btn">添加附件</a><br>
 				</div>
 				<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 					<thead><tr><th width="25%">资源名称</th><th width="10%">课时</th><th>资源描述</th><th width="20%">上传时间</th><th width="11%">操作</th></tr></thead>
@@ -46,7 +46,7 @@
 								<td align="left" >${resource.resourceDesc}</td>
 								<td align="center">${resource.date}</td>
 								<td align="center"><a href='<c:url value="/course/resource/download/${resource.id }"></c:url>'>下载</a> | 
-								<a href='<c:url value="/admin/teacher/${course.id}/resource/destory/${resource.id }"></c:url>'>删除</a>	</td>
+								<a href='<c:url value="/admin/${course.id}/resource/destory/${resource.id }"></c:url>'>删除</a>	</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -103,7 +103,7 @@
 					<a href='#' class="btn  btn-success">点击学习</a>
 				</div>
 				<div style="float: left; width: 40%; text-align: right;">
-					<a href='<c:url value="/admin/teacher/course/edit/${course.id }/publish"></c:url>'  class="btn   btn-success" style="width: 80px;float: right;"  >发布课程</a>
+					<a href='<c:url value="/admin/course/edit/${course.id }/publish"></c:url>'  class="btn   btn-success" style="width: 80px;float: right;"  >发布课程</a>
 				</div>
 				
 			</div>

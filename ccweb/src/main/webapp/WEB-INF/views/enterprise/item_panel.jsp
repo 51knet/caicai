@@ -21,7 +21,7 @@
 		    <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;height:120px;width:120px;margin:15px auto;">
 		    <div style="height: 35px;"></div>
 		    <div style="height: 20px;background-color:gray;  padding:2px 2px; margin-top: 80px;">
-		    	<a href='<c:url value="/admin/teacher/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
+		    	<a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
 		    </div>
 		   </div>
 		</div>	
@@ -31,7 +31,7 @@
 		    <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;height:120px;width:120px;margin:15px auto;">
 		    <div style="height: 35px;"></div>
 		    <div style="height: 20px;background-color:gray;  padding:2px 2px;">
-		    	<a href='<c:url value="/admin/teacher/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
+		    	<a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
 		    </div>
 		   </div>
 		</div>	
@@ -49,12 +49,12 @@
 		<div class="left-menu-container">
 			<ul class="nav nav-tabs nav-stacked">
 				<li><a href='<c:url value="/enterprise/${sessionUserInfo.id}"></c:url>' >企业主页</a></li>
-				<li><a href='<c:url value="/admin/enterprise/resume"><c:param name="active" value="personal" /></c:url>' >企业介绍</a></li>
+				<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' >企业介绍</a></li>
 				<li><a href='<c:url value="/admin/announcement/list"></c:url>' >公告管理</a></li>
 				<li><a href='<c:url value="/admin/course/list"></c:url>' >课程管理</a></li>
 				<li><a href='<c:url value="/admin/resource/list"></c:url>' >资源管理</a></li>
 				<li><a href='<c:url value="/admin/enterprise/teacher/list"></c:url>' >教师管理</a></li>
-				<li><a href='<c:url value="/admin/enterprise/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
+				<li><a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
 				<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li>
 			</ul>
 		</div>
@@ -63,13 +63,13 @@
 		<div class="left-menu-container">
 			<ul class="nav nav-tabs nav-stacked">
 				<li><a href='#' style="background-color: #ccc;" >企业主页</a></li>
-				<li><a href='<c:url value="/admin/enterprise/authentication/list"></c:url>' >企业验证</a></li>
+				<li><a href='<c:url value="/admin/authentication/list"></c:url>' >企业验证</a></li>
 				<li><a href='#'  style="background-color: #ccc;">企业介绍</a></li>
 				<li><a href='#' style="background-color: #ccc;" >公告管理</a></li>
 				<li><a href='#'  style="background-color: #ccc;">课程管理</a></li>
 				<li><a href='#'  style="background-color: #ccc;">资源管理</a></li>
 				<li><a href='#'  style="background-color: #ccc;">教师管理</a></li>
-				<li><a href='<c:url value="/admin/enterprise/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
+				<li><a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
 				<li><a href='#'  style="background-color: #ccc;">站内信</a></li>
 			</ul>
 		</div>

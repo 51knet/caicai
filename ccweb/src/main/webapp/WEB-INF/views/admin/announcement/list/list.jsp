@@ -47,7 +47,6 @@ $(document).ready(function() {
 
 <div class="row-fluid custom round">
 	<div  class="row" >
-		<!-- <h4><a href='<c:url value="/admin/teacher/announcement/list"></c:url>'>教师公告</a></h4> -->
 		<h4>公告管理</h4>
 	</div>
 	<div class="content">

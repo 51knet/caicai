@@ -127,7 +127,7 @@ $(document).ready(function(){
 		var password=$("#oriPsw").val();
 		$.ajax({
 			type:"post",
-			url:"<c:url value='/admin/user/pswInfoCheck'/>",
+			url:"<c:url value='/admin/pswInfoCheck'/>",
 			data:"oriPsw="+password,
 			dataType:"text",
 			success:function(num){
