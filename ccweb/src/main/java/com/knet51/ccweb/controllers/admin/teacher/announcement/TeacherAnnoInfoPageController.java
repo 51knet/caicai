@@ -53,7 +53,14 @@ public class TeacherAnnoInfoPageController {
 			}else{
 				Page<Announcement> page = annoService.findAllAnnoByUser(pageNumber, pageSize, user);
 				model.addAttribute("page", page);
-				return "admin.announcement.list";
+				if (user.getRole().equals("teacher")) {
+					return "admin.teacher.announement.list";
+				} else if (user.getRole().equals("enterprise")) {
+					return "admin.enterprise.announcement.list";
+				} else {
+					return "404";
+				}
+				//return "admin.announcement.list";
 			}
 	}
 	
@@ -63,17 +70,29 @@ public class TeacherAnnoInfoPageController {
 		Announcement announcement = annoService.findOneById(anno_id);
 		Long user_id = announcement.getUser().getId();
 		if(!currentuser_id.equals(user_id)||announcement==null){
-			return "redirect:/admin/announcement/list";
+			return "redirect:/admin";
 		}else{
 			model.addAttribute("anno", announcement);
-			return "admin.announcement.edit";
+			if (announcement.getUser().getRole().equals("teacher")) {
+				return "admin.teacher.announement.edit";
+			} else if (announcement.getUser().getRole().equals("enterprise")) {
+				return "admin.enterprise.announcement.edit";
+			} else {
+				return "404";
+			}
 		}
 	}
 	
 	@RequestMapping(value="/admin/announcement/create")
-	public String detailAnno(){
-		
-		return "admin.teacher.announcement.editKind";
+	public String detailAnno(HttpSession session){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if (userInfo.getUser().getRole().equals("teacher")) {
+			return "admin.teacher.announement.new";
+		} else if (userInfo.getUser().getRole().equals("enterprise")) {
+			return "admin.enterprise.announcement.new";
+		} else {
+			return "404";
+		}
 	}
 	@RequestMapping(value = "/admin/announcement/createAnnouncementAjax", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse announcementInfoFormAjaxJson(@Valid TeacherAnnoDetailInfoForm 

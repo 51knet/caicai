@@ -52,7 +52,7 @@ public class User extends AbstractEntity {
 	private String fax;
 	private String qq;
 	private String msn;
-	
+	private String isadmin;
 	
 	
 	private String photo_url;
@@ -119,6 +119,17 @@ public class User extends AbstractEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
+	public String getIsadmin() {
+		return isadmin;
+	}
+
+
+	public void setIsadmin(String isadmin) {
+		this.isadmin = isadmin;
+	}
+
 
 	public String getGender() {
 		return gender;

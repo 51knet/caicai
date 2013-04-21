@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 
 /**
@@ -51,9 +52,15 @@ public class AuthorizationListener implements Filter {
 				resp.sendRedirect(context); // alternative: redirect to a url with flush message...
 				return;
 			}
-		}else if(url.startsWith("/teacher")){
-			req.getRequestDispatcher(url).forward(req, resp);
-			return;
+			if(url.startsWith("/admin/caicai")){
+				UserInfo userInfo = (UserInfo) req.getSession().getAttribute(GlobalDefs.SESSION_USER_INFO);
+				String permission = userInfo.getUser().getIsadmin();
+				logger.info("------>"+permission);
+				if(permission == null || !permission.equals("yes")){
+					resp.sendRedirect(context); // alternative: redirect to a url with flush message...
+					return;
+				}
+			}
 		}
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
