@@ -45,12 +45,11 @@ $(document).ready(function() {
 
 <div class="row-fluid custom round">
 	<div  class="row" >
-		<!-- <h4><a href='<c:url value="/admin/announcement/list"></c:url>'>教师公告</a></h4> -->
 		<h4>教师管理</h4>
 	</div>
 	<div class="content">
 		<div style="text-align: right;">
-			<a href='<c:url value="/admin/enterprise/teacher/new"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
+			<a href='<c:url value="/admin/eteacher/new"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
 				添加教师</a><br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead><tr>
@@ -67,7 +66,7 @@ $(document).ready(function() {
 							<td align="left" ><div style="width:320px;" id="content">${page.content}</div></td>
 							<td align="center">
 								 <a class="destoryEteacherPostBtn"  href="#destoryEteacherPostModal" role="button" data-toggle="modal" data-target="#destoryEteacherPostModal">删除</a><input type="hidden" value="${page.id} ">  | 
-								 <a href='<c:url value="/admin/enterprise/teacher/edit/${page.id}"></c:url>'>修改</a>	
+								 <a href='<c:url value="/admin/eteacher/edit/${page.id}"></c:url>'>修改</a>	
 							</td>
 						</tr>
 					</c:forEach>
@@ -90,7 +89,7 @@ $(document).ready(function() {
 	  </div>
 	  <div class="modal-footer">
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-	    <form action='<c:url value="/admin/enterprise/teacher/destory"></c:url>' method="post" style="display: inline-block;" >
+	    <form action='<c:url value="/admin/eteacher/destory"></c:url>' method="post" style="display: inline-block;" >
 	    	<input id="etid" type="hidden" name="eteacherid" />
 	    	<button class="btn btn-success">确定</button>
 	    </form>
