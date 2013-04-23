@@ -18,26 +18,27 @@
 		<put-attribute name="right" value="/WEB-INF/views/enterprise/admin/resume/resumeEdit.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
+	
 	<!-- enterprise teacher admin layout  -->
 	<definition name="admin.enterprise.teacher.list" extends="admin-layout">
-		<put-attribute name="title" value="教师中心" />
+		<put-attribute name="title" value="企业教师" />
 		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/enterprise/admin/teacher/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.enterprise.teacher.new" extends="admin-layout">
-		<put-attribute name="title" value="教师中心" />
+		<put-attribute name="title" value="企业教师" />
 		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/enterprise/admin/teacher/new/create.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.enterprise.teacher.update" extends="admin-layout">
-		<put-attribute name="title" value="教师中心" />
+		<put-attribute name="title" value="企业教师" />
 		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/enterprise/admin/teacher/edit/edit.jsp"></put-attribute>
 	</definition>
 	
-
+<!--  enterprise basic -->
 	<definition name="enterprise.basic" extends="frontPage-layout">
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/enterprise-front/banner.jsp" />
 		<put-attribute name="title" value="教师主页" />
@@ -57,7 +58,7 @@
 		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/edit/editKind.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.enterprise.announcement.editKind" extends="admin-layout">
+	<definition name="admin.enterprise.announcement.new" extends="admin-layout">
 		<put-attribute name="title" value="公告" />
 		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/new/create.jsp"></put-attribute>
@@ -71,12 +72,6 @@
 		<put-attribute name="right" value="/WEB-INF/views/admin/resource/list/list.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="enterpriseResouAddErrorPage" extends="admin-layout">
-		<put-attribute name="title" value="资源" />
-		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/enterprise/resource/resourceAddError.jsp"></put-attribute>
-	</definition>
-
 	<definition name="admin.enterprise.resource.type.list" extends="admin-layout">
 		<put-attribute name="title" value="资源" />
 		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
@@ -133,7 +128,46 @@
 		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/course/resource/new/create.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.enterprise.course.type.list" extends="admin-layout">
+		<put-attribute name="title" value="课程" />
+		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/course/type/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<!-- enterprise  message -->
+	
+	<definition name="admin.enterprise.sendmessage" extends="frontPage-layout">
+		<put-attribute name="title" value="个人主页" />
+		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/sendMessage.jsp"></put-attribute>
+	</definition>
 
+	<definition name="admin.enterprise.message.detail" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/receiveMsg.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.enterprise.message.send" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/receiveMsgDetail.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.enterprise.message.isReadDetail" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/isReadMsg.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.enterprise.message.isDeleDetail" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/isDeleMsg.jsp"></put-attribute>
+	</definition>
+
+<!--  enterprise selfurl -->
 	<definition name="admin.enterprise.selfurl" extends="admin-layout">
 		<put-attribute name="title" value="账号信息" />
 		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
@@ -148,13 +182,30 @@
 		<put-attribute name="right" value="/WEB-INF/views/enterprise/admin/authentication/list/list.jsp"></put-attribute>
 	</definition>
 	
-	<!-- enterprise authentication -->
 	<definition name="admin.enterprise.authentication.new" extends="admin-layout">
 		<put-attribute name="title" value="申请验证" />
 		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/enterprise/admin/authentication/new/create.jsp"></put-attribute>
 	</definition>
+	<!-- enterprsie resource -->
 	
+	<definition name="admin.enterprise.resource.list" extends="admin-layout">
+		<put-attribute name="title" value="资源" />
+		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/resource/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.enterprise.resource.type.list" extends="admin-layout">
+		<put-attribute name="title" value="资源" />
+		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/resource/type/list/list.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.enterprise.resource.new" extends="admin-layout">
+		<put-attribute name="title" value="资源" />
+		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/resource/new/create.jsp"></put-attribute>
+	</definition>
 	
 	<!-- enterprise front page -->
 	
@@ -218,16 +269,16 @@
 		<put-attribute name="right" value="/WEB-INF/views/enterprise/front/course/view/view.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="enterprise.teacher.list" extends="enterprise-frontPage-layout">
+	<definition name="enterprise.enterprise.list" extends="enterprise-frontPage-layout">
 		<put-attribute name="title" value="知名教师" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/enterprise-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/enterprise/front/teacher/list/list.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/enterprise/front/enterprise/list/list.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="enterprise.teacher.view" extends="enterprise-frontPage-layout">
+	<definition name="enterprise.enterprise.view" extends="enterprise-frontPage-layout">
 		<put-attribute name="title" value="知名教师" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/enterprise-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/enterprise/front/teacher/view/view.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/enterprise/front/enterprise/view/view.jsp"></put-attribute>
 	</definition>
 				
 	

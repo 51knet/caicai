@@ -1,13 +1,14 @@
 package com.knet51.ccweb.controllers.admin.enterprise.authentication;
-
-import javax.validation.constraints.Size;
-
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class AuthenticationForm {
 	@NotEmpty
-	@Size(min=1,max=50)
 	private String title;
+	@NotEmpty
+	private String name;
+	@NotEmpty
+	private String phone;
+	
 	@NotEmpty
 	private String content;
 	public String getTitle() {
@@ -22,4 +23,18 @@ public class AuthenticationForm {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	
 }

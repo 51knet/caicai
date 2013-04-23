@@ -1,14 +1,8 @@
 package com.knet51.ccweb.jpa.entities;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -52,8 +46,8 @@ public class User extends AbstractEntity {
 	private String fax;
 	private String qq;
 	private String msn;
-	
-	
+	private String isadmin;
+	private String forbidden;
 	
 	private String photo_url;
 	public User(String email, String password,
@@ -81,6 +75,13 @@ public class User extends AbstractEntity {
 		this.level = 0;
 	}
 
+	public String getForbidden() {
+		return forbidden;
+	}
+
+	public void setForbidden(String forbidden) {
+		this.forbidden = forbidden;
+	}
 
 	public  User() {
 
@@ -119,6 +120,17 @@ public class User extends AbstractEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
+	public String getIsadmin() {
+		return isadmin;
+	}
+
+
+	public void setIsadmin(String isadmin) {
+		this.isadmin = isadmin;
+	}
+
 
 	public String getGender() {
 		return gender;

@@ -31,6 +31,9 @@ public class TeacherCourse extends AbstractEntity {
 	private String pwd;      // Check the pwd when someone want to check the course.
 	
 	private Long price;
+	
+	private String forbidden;
+	
 	@ManyToOne
 	private User user;
 	
@@ -42,6 +45,13 @@ public class TeacherCourse extends AbstractEntity {
 	}
 	public void setcType(CourseType cType) {
 		this.cType = cType;
+	}
+	
+	public String getForbidden() {
+		return forbidden;
+	}
+	public void setForbidden(String forbidden) {
+		this.forbidden = forbidden;
 	}
 	public String getCourseName() {
 		return courseName;

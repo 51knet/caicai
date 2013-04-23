@@ -1,6 +1,5 @@
 package com.knet51.ccweb.jpa.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.Table;
@@ -16,6 +15,16 @@ public class WorkExp extends AbstractEntity {
 	@Lob
 	private String workDesc;
 	private Long teacherid;
+	
+	private String forbidden;
+	
+	
+	public String getForbidden() {
+		return forbidden;
+	}
+	public void setForbidden(String forbidden) {
+		this.forbidden = forbidden;
+	}
 	public String getCompany() {
 		return company;
 	}

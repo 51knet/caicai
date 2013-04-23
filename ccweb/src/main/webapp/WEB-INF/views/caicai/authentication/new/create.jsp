@@ -10,17 +10,17 @@
 
 $(document).ready(function() {
 	
-	$("#authencation_form").submit(function(){
-		//this.sync();
-		return checkEmptyAjax("authencation_form","createAuthenticationAjax");
-	});
-	
 	$("form:first").submit(function(){
 		 var myFiles=$("#myFiles").val();
 		if(myFiles==""){
 			$("#myFilesError").html("上传文件不能为空");
 			return false;
 		}
+	});
+	
+	$("#authencation_form").submit(function(){
+		//this.sync();
+		return checkEmptyAjax("authencation_form","createAuthenticationAjax");
 	});
 	
 });
@@ -50,29 +50,13 @@ $(document).ready(function() {
 		<h4>申请信息>添加申请</h4>
 	</div>
 	<div class="content">
-		<form:form action="new/create" method="post" enctype="multipart/form-data"  id="authencation_form" >  
-			<div class="control-group" id="title">
-				<div class="controls">
-					申请标题：<input type="text" name="title" placeholder="申请标题"> <span class="help-inline"></span>
-				</div>
-			</div>
-			<div class="control-group" id="name">
-				<div class="controls">
-					企业名称：<input type="text" name="name" placeholder="企业名称"> <span class="help-inline"></span>
-				</div>
-			</div>
-			<div class="control-group" id="phone">
-				<div class="controls">
-					联系电话：<input type="text" name="phone" placeholder="联系电话"  /><span class="help-inline"></span>
-				</div>
-			</div>
-			<div class="control-group" id="content">
-				<div class="controls">
-					申请详情：<textarea style="width: 400px; height: 200px;" name="content" ></textarea><span class="help-inline"></span>
-				</div>
-			</div>
+		<form:form action="new/create" method="post" enctype="multipart/form-data" id="authencation_form" >  
+			申请标题：<input type="text" name="title" placeholder="申请标题" id="auth_title"  /><span class="help-inline"></span><br>
+			企业名称：<input type="text" name="name" placeholder="企业名称" id="auth_name"  /><span class="help-inline"></span><br>
+			联系电话：<input type="text" name="phone" placeholder="联系电话" id="auth_phone"  /><span class="help-inline"></span><br>
+			申请详情：<textarea style="width: 400px; height: 200px;" name="content" id="auth_content" ></textarea><span class="help-inline"></span><br>
 			上传资料：<input type="file" name="myFiles"  id="myFiles"/>
-			<span style="color:red;" id="myFilesError">上传资料不大于10M</span>${errorMsg }
+			<span style="color:red;">单次上传不大于10M</span>
 			<br><br>
 			<div class="pull-left" style="margin-left: 70px;">
 			<button type="submit" class="btn btn-success" >添加</button>&nbsp;&nbsp;

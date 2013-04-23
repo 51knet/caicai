@@ -44,7 +44,7 @@ public class ReceiveMsgInfoPageController {
 	
 	@RequestMapping(value="/admin/message/list")
 	public String receiveMsgList(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		logger.info("####  Into ReceiveMsgList page  ####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long user_id = userInfo.getId();
@@ -64,12 +64,19 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("isDeleCount",isDeleCount);
 		//model.addAttribute("unReadMsgList", unReadMsgList);
 		model.addAttribute("page", page);
-		return "admin.message.detail";
+		if (userInfo.getUser().getRole().equals("teacher")) {
+			return "admin.teacher.message.detail";
+		} else if (userInfo.getUser().getRole().equals("enterprise")) {
+			return "admin.enterprise.message.detail";
+		} else {
+			return "404";
+		}
 	}
 	
 	@Transactional
 	@RequestMapping(value="/admin/message/detailOne")
-	public String receiveMsgDetailOne(@RequestParam("mid") Long mid, @RequestParam("urmid") Long urmId,Model model){
+	public String receiveMsgDetailOne(@RequestParam("mid") Long mid, @RequestParam("urmid") Long urmId,Model model,HttpSession session){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		SendMsg sendMsg = sendMsgService.detail(mid);
 		receiveMsgService.isRead(urmId);
 		Long senderId = sendMsg.getUser().getId();
@@ -77,13 +84,19 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("sendMsg", sendMsg);
 		model.addAttribute("senderId", senderId);
 		model.addAttribute("urmId", urmId);
-		return "admin.message.send";
+		if (userInfo.getUser().getRole().equals("teacher")) {
+			return "admin.teacher.message.send";
+		} else if (userInfo.getUser().getRole().equals("enterprise")) {
+			return "admin.enterprise.message.send";
+		} else {
+			return "404";
+		}
 	}
 	
 	@Transactional
 	@RequestMapping(value="/admin/message/isRead")
 	public String isReadMsg(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long user_id = userInfo.getId();
 		User user = userService.findOne(user_id);
@@ -102,13 +115,19 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("isDeleCount",isDeleCount);
 		//model.addAttribute("isReadMsgList", isReadMsgList);
 		model.addAttribute("page", page);
-		return "admin.message.isReadDetail";
+		if (userInfo.getUser().getRole().equals("teacher")) {
+			return "admin.teacher.message.isReadDetail";
+		} else if (userInfo.getUser().getRole().equals("enterprise")) {
+			return "admin.enterprise.message.isReadDetail";
+		} else {
+			return "404";
+		}
 	}
 	
 	@Transactional
 	@RequestMapping(value="/admin/message/isDele")
 	public String isDeleMsg(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long user_id = userInfo.getId();
 		User user = userService.findOne(user_id);
@@ -127,7 +146,13 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("isDeleCount",isDeleCount);
 		//model.addAttribute("isReadMsgList", isReadMsgList);
 		model.addAttribute("page", page);
-		return "admin.message.isDeleDetail";
+		if (userInfo.getUser().getRole().equals("teacher")) {
+			return "admin.teacher.message.isDeleDetail";
+		} else if (userInfo.getUser().getRole().equals("enterprise")) {
+			return "admin.enterprise.message.isDeleDetail";
+		} else {
+			return "404";
+		}
 	}
 	
 	@Transactional

@@ -31,10 +31,10 @@ import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
-import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherHonorService;
-import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherPatentService;
-import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherProjectService;
-import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherThesisService;
+import com.knet51.ccweb.jpa.services.achievement.TeacherHonorService;
+import com.knet51.ccweb.jpa.services.achievement.TeacherPatentService;
+import com.knet51.ccweb.jpa.services.achievement.TeacherProjectService;
+import com.knet51.ccweb.jpa.services.achievement.TeacherThesisService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 

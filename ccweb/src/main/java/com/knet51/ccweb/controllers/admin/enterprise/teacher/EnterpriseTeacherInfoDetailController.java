@@ -48,14 +48,14 @@ public class EnterpriseTeacherInfoDetailController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/admin/enterprise/teacher/new/create",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/eteacher/new/create",method=RequestMethod.POST)
 	public String createTeacher(@Valid EnterpriseTeacherInfoForm enterpriseTeacherInfoForm,
 			BindingResult validResult, HttpSession session,MultipartHttpServletRequest request,Model model,
 			RedirectAttributes redirectAttributes) throws Exception{
 		logger.info("#### Into enterprise teacher Add Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/enterprise/teacher/list";
+			return "redirect:/admin/eteacher/list";
 		}else{
 			List<MultipartFile> files = request.getFiles("coverFile");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -68,36 +68,36 @@ public class EnterpriseTeacherInfoDetailController {
 				if(!multipartFile.isEmpty()){
 					if(multipartFile.getSize()>MAX_COVER_SIZE_2M){
 						redirectAttributes.addFlashAttribute("errorMsg", "图片不得大于2M");
-						return "redirect:/admin/enterprise/teacher/list";
+						return "redirect:/admin/eteacher/new";
 					}else{
 						logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
 						String fileName = multipartFile.getOriginalFilename();
 						String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
-						String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+newTeacher.getId();
+						String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/teacherList/"+newTeacher.getId();
 						logger.debug("Upload Path:"+path); 
 						FileUtil.createRealPath(path, session);
 						String previewFile = path+File.separator+"small"+"."+fileExtension;
 						File saveDest = new File(path + File.separator + fileName);
 						multipartFile.transferTo(saveDest);
 						FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
-						String savePath = FileUtil.getSavePath("course", userInfo.getId(), newTeacher.getId()+"", request)+"/small"+"."+fileExtension;
+						String savePath = FileUtil.getSavePath("teacherList", userInfo.getId(), newTeacher.getId()+"", request)+"/small"+"."+fileExtension;
 						newTeacher.setPhotourl(savePath);
 					}
 				}
 			}
 			enterpriseTeacherService.updateTeacher(newTeacher);
-			return "redirect:/admin/enterprise/teacher/list";
+			return "redirect:/admin/eteacher/list";
 		}
 	}
 	
-	@RequestMapping(value="/admin/enterprise/teacher/edit/update")
+	@RequestMapping(value="/admin/eteacher/edit/update")
 	public String editTeacherInfo(@RequestParam("eteacherid") Long id,@Valid EnterpriseTeacherInfoForm enterpriseTeacherInfoForm,
 			BindingResult validResult, HttpSession session,MultipartHttpServletRequest request,Model model,
 			RedirectAttributes redirectAttributes) throws Exception{
 		logger.info("#### Into enterprise teacher update Controller ####");
 		if(validResult.hasErrors()){
 			logger.info("detailInfoForm Validation Failed " + validResult);
-			return "redirect:/admin/enterprise/teacher/edit/"+id;
+			return "redirect:/admin/eteacher/edit/"+id;
 		}else{
 			List<MultipartFile> files = request.getFiles("coverFile");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -108,32 +108,32 @@ public class EnterpriseTeacherInfoDetailController {
 				if(!multipartFile.isEmpty()){
 					if(multipartFile.getSize()>MAX_COVER_SIZE_2M){
 						redirectAttributes.addFlashAttribute("errorMsg", "图片不得大于2M");
-						return "redirect:/admin/enterprise/teacher/edit/"+id;
+						return "redirect:/admin/eteacher/edit/"+id;
 					}else{
 						logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
 						String fileName = multipartFile.getOriginalFilename();
 						String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
-						String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+eTeacher.getId();
+						String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/teacherList/"+eTeacher.getId();
 						logger.debug("Upload Path:"+path); 
 						FileUtil.createRealPath(path, session);
 						String previewFile = path+File.separator+"small"+"."+fileExtension;
 						File saveDest = new File(path + File.separator + fileName);
 						multipartFile.transferTo(saveDest);
 						FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
-						String savePath = FileUtil.getSavePath("course", userInfo.getId(), eTeacher.getId()+"", request)+"/small"+"."+fileExtension;
+						String savePath = FileUtil.getSavePath("teacherList", userInfo.getId(), eTeacher.getId()+"", request)+"/small"+"."+fileExtension;
 						eTeacher.setPhotourl(savePath);
 					}
 				}
 			}
 			enterpriseTeacherService.updateTeacher(eTeacher);
-			return "redirect:/admin/enterprise/teacher/list";
+			return "redirect:/admin/eteacher/list";
 		}
 	}
 	
-	@RequestMapping(value="/admin/enterprise/teacher/destory",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/eteacher/destory",method=RequestMethod.POST)
 	public String destoryTeacher(@RequestParam("eteacherid") Long id,HttpSession session, Model m){
 		enterpriseTeacherService.destoryTeacher(id);
-		return "redirect:/admin/enterprise/teacher/list";
+		return "redirect:/admin/eteacher/list";
 	}
 	
 }

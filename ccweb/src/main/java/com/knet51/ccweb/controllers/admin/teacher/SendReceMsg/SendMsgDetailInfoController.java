@@ -36,34 +36,6 @@ public class SendMsgDetailInfoController {
 	
 	@Autowired
 	private UserService userService;
-	/*
-	@Transactional
-	@RequestMapping(value="/admin/message/sendMsgInfo",method = RequestMethod.POST)
-	public String messageList(@RequestParam("uid") Long receiverId,@Valid SendMsgInfoForm sendMsgInfoForm,
-			BindingResult validResult, HttpSession session,Model model){
-		
-		logger.info("#### Into SendMsgInfoPageControllerPage ####");
-		if(validResult.hasErrors()){
-			return "";
-		}else{
-			//System.out.println(userId);
-			SendMsg sendMsg = new SendMsg();
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			User user = userInfo.getUser();
-			String title = sendMsgInfoForm.getTitle();
-			String content = sendMsgInfoForm.getContent();
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String date = format.format(new Date());
-			sendMsg.setTitle(title);
-			sendMsg.setIsDelete(1);
-			sendMsg.setContent(content);
-			sendMsg.setDate(date);
-			sendMsg.setUser(user);
-			sendMsgService.add(sendMsg, receiverId);
-			return "redirect:/teacher/" + receiverId;
-		}	
-	}
-	 */
 	
 	@Transactional	
 	@RequestMapping(value="/admin/message/sendMsg",method = RequestMethod.POST)
@@ -93,6 +65,8 @@ public class SendMsgDetailInfoController {
 			return "redirect:/admin/message/isRead";
 		}	
 	}
+	
+	/* front page  */
 	
 	@Transactional
 	@RequestMapping(value="/teacher/message/sendMsgInfo",method = RequestMethod.POST)

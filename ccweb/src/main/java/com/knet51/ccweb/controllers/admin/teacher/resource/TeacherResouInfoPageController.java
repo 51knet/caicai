@@ -61,7 +61,13 @@ public class TeacherResouInfoPageController {
 		}else{
 			Page<CourseResource> onePage = resourceService.findAllResouByUserAndStatus(pageNumber, pageSize, user, GlobalDefs.STATUS_RESOURCE);
 			model.addAttribute("page", onePage);
-			return "admin.resource.list";
+			if (userInfo.getUser().getRole().equals("teacher")) {
+				return "admin.teacher.resource.list";
+			} else if (userInfo.getUser().getRole().equals("enterprise")) {
+				return "admin.enterprise.resource.list";
+			} else {
+				return "404";
+			}
 		}
 	}
 	
@@ -75,8 +81,15 @@ public class TeacherResouInfoPageController {
 	public String teacherResouAdd(HttpSession session,Model model ){
 		logger.info("#####Into TeacherResouInfoAdd#####");
 		List<ResourceType> listType = resourceTypeService.getTypeByTypeStatus(GlobalDefs.STATUS_RESOURCETYPE);
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		model.addAttribute("type", listType);
-		return "admin.resource.new";
+		if (userInfo.getUser().getRole().equals("teacher")) {
+			return "admin.teacher.resource.new";
+		} else if (userInfo.getUser().getRole().equals("enterprise")) {
+			return "admin.enterprise.resource.new";
+		} else {
+			return "404";
+		}
 	}
 	
 	/**
@@ -85,10 +98,18 @@ public class TeacherResouInfoPageController {
 	 * @return
 	 */
 	@RequestMapping(value="/admin/resource/type/list")
-	public String teacherResouType(Model model){
+	public String teacherResouType(Model model,HttpSession session){
 		logger.info("#### Into TeacherResouType ####");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<ResourceType> list = resourceTypeService.getTypeByTypeStatus(GlobalDefs.STATUS_RESOURCETYPE);
 		model.addAttribute("list", list);
-		return "admin.resource.type.list";
+		if (userInfo.getUser().getRole().equals("teacher")) {
+			return "admin.teacher.resource.type.list";
+		} else if (userInfo.getUser().getRole().equals("enterprise")) {
+			return "admin.enterprise.resource.type.list";
+		} else {
+			return "404";
+		}
 	}
+	
 }

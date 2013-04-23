@@ -10,9 +10,19 @@ public class EnterpriseTeacher extends AbstractEntity {
 	private String photourl;
 	@Lob
 	private String content;
+	private String forbidden;
 	
 	@ManyToOne
 	private User user;
+
+	
+	public String getForbidden() {
+		return forbidden;
+	}
+
+	public void setForbidden(String forbidden) {
+		this.forbidden = forbidden;
+	}
 
 	public String getPhotourl() {
 		return photourl;

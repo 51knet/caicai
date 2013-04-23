@@ -124,7 +124,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		List<TeacherCourse> list=new ArrayList<TeacherCourse>();
 		User user = userRepository.findOne(teacher_id);
 		try {
-			list=courseRepository.findTeacherCourseByUserAndStatusAndPublish(user, GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+			list=courseRepository.findTeacherCourseByUserAndStatusAndForbiddenIsNullAndPublish(user, GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -138,7 +138,6 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		Sort sort = new Sort(Direction.DESC, "id");
 		List<TeacherCourse> teacherCourseList = courseRepository.findTeacherCourseByStatusAndPublish(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,sort);
 		for(int i=0;i<teacherCourseList.size();i++){
-			//TeacherCourse teacherCourse = courseRepository.findOne(teacherCourseList.get(i).getId());
 			Double avgMark = commentRepository.getMark(teacherCourseList.get(i).getId());
 			List<UserCourse> listComment=commentRepository.findByTeachercourseid(teacherCourseList.get(i).getId());
 			Integer userCount = listComment.size();

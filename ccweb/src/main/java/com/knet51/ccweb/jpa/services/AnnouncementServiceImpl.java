@@ -59,14 +59,21 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	public Page<Announcement> findAllAnnoByUser(int pageNumber, int pageSize,
 			User user) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
-		Page<Announcement> onePage = annoRepository.findAnnoByUser(user, dateDesc);
+		Page<Announcement> onePage = annoRepository.findAnnoByUserAndForbiddenIsNull(user, dateDesc);
 		return onePage;
 	}
 
 	@Override
 	public List<Announcement> findAnnoByUserAndId(User user, Long id) {
-		List<Announcement> annoList = annoRepository.findAnnoByUserAndId(user, id);
+		List<Announcement> annoList = annoRepository.findAnnoByUserAndIdAndForbiddenIsNull(user, id);
 		return annoList;
+	}
+
+	@Override
+	public Page<Announcement> findAllAnno(int pageNumber, int pageSize) {
+		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id");
+		Page<Announcement> onePage = annoRepository.findAll(dateDesc);
+		return onePage;
 	}
 
 }

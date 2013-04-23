@@ -50,39 +50,39 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public Page<BlogPost> findAllBlogs(int pageNumber, int pageSize, Teacher teacher) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
-		Page<BlogPost> onePage = blogPostRepository.findByAuthor(teacher, dateDesc);
+		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndForbiddenIsNull(teacher, dateDesc);
 		return onePage;
 	}
 	@Override
 	public Page<BlogPost> findAllBlogsNotGarbage(int pageNumber, int pageSize, Teacher teacher) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
-		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbage(teacher, false, dateDesc);
+		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbageAndForbiddenIsNull(teacher, false, dateDesc);
 		return onePage;
 	}
 	@Override
 	public Page<BlogPost> findAllBlogsNotGarbageAndNotDraft(int pageNumber,
 			int pageSize, Teacher teacher) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
-		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbageAndDraft(teacher, false, false, dateDesc);
+		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbageAndDraftAndForbiddenIsNull(teacher, false, false, dateDesc);
 		return onePage;
 	}
 
 	@Override
 	public Page<BlogPost> findAllBlogsIsGarbage(int pageNumber, int pageSize, Teacher teacher) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
-		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbage(teacher, true, dateDesc);
+		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbageAndForbiddenIsNull(teacher, true, dateDesc);
 		return onePage;
 	}
 	@Override
 	public Page<BlogPost> findAllBlogsIsDraft(int pageNumber, int pageSize, Teacher teacher) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
-		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndDraft(teacher, true, dateDesc);
+		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndDraftAndForbiddenIsNull(teacher, true, dateDesc);
 		return onePage;
 	}
 	@Override
 	public Page<BlogPost> findAllBlogsIsDraftNotGarbage(int pageNumber, int pageSize, Teacher teacher) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
-		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbageAndDraft(teacher, false, true, dateDesc);
+		Page<BlogPost> onePage = blogPostRepository.findByAuthorAndGarbageAndDraftAndForbiddenIsNull(teacher, false, true, dateDesc);
 		return onePage;
 	}
 	@Override

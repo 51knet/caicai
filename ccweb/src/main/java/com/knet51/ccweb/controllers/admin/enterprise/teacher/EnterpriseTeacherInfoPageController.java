@@ -27,7 +27,7 @@ import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
-import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherHonorService;
+import com.knet51.ccweb.jpa.services.achievement.TeacherHonorService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 
@@ -65,7 +65,7 @@ public class EnterpriseTeacherInfoPageController {
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value="/admin/enterprise/teacher/list")
+	@RequestMapping(value="/admin/eteacher/list")
 	public String showAllTeachersInEnterprise(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		logger.info("======= into enterprise teacher controller");
@@ -78,7 +78,7 @@ public class EnterpriseTeacherInfoPageController {
 	 * just into the create enterprise teacher
 	 * @return
 	 */
-	@RequestMapping(value="/admin/enterprise/teacher/new")
+	@RequestMapping(value="/admin/eteacher/new")
 	public String createTeacherPage(){
 		logger.info("======= into create enterprise teacher page controller");
 		return "admin.enterprise.teacher.new";
@@ -91,12 +91,12 @@ public class EnterpriseTeacherInfoPageController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value="/admin/enterprise/teacher/edit/{id}")
+	@RequestMapping(value="/admin/eteacher/edit/{id}")
 	public String intoEditTeacherPage(@PathVariable Long id,Model model,HttpSession session){
 		EnterpriseTeacher teacher = enterpriseTeacherService.findOneById(id);
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(!userInfo.getId().equals(teacher.getUser().getId()) && teacher!=null){
-			return "redirect:/admin/enterprise/teacher/list";
+			return "redirect:/admin";
 		}
 		model.addAttribute("eTeacher", teacher);
 		return "admin.enterprise.teacher.update";
@@ -109,7 +109,7 @@ public class EnterpriseTeacherInfoPageController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value = "/admin/enterprise/teacher/teacherInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/eteacher/teacherInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse courseFormAjaxJson(@Valid EnterpriseTeacherInfoForm enterpriseTeacherInfoForm, BindingResult result,HttpSession session) {
 		return AjaxValidationEngine.process(result);
 	}

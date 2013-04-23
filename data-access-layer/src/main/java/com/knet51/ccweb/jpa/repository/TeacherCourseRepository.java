@@ -20,11 +20,12 @@ import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 public interface TeacherCourseRepository extends JpaRepository<TeacherCourse, Long>, JpaSpecificationExecutor<TeacherCourse>,TeacherCourseRepositoryCustom{
 	Page<TeacherCourse> findTeacherCourseByUser(User user,Pageable pageable);
 	Page<TeacherCourse> findAll(Pageable pageable);
-	Page<TeacherCourse> findTeacherCourseByUserAndPublishGreaterThan(User user,Integer publish,Pageable pageable);
+	Page<TeacherCourse> findTeacherCourseByUserAndForbiddenIsNullAndPublishGreaterThan(User user,Integer publish,Pageable pageable);
 	//List<String> getCourseType();
 	List<TeacherCourse> findTeacherCourseByStatusAndPublish(Integer status,Integer publish,Sort sort);
-	List<TeacherCourse> findTeacherCourseByUserAndStatusAndPublish(User user,Integer status,Integer publish);
-	Page<TeacherCourse> findTeacherCourseByUserAndPublish(User user,Integer publish,Pageable pageable);
+	List<TeacherCourse> findTeacherCourseByUserAndStatusAndForbiddenIsNullAndPublish(User user,Integer status,Integer publish);
+	Page<TeacherCourse> findTeacherCourseByUserAndPublishAndForbiddenIsNull(User user,Integer publish,Pageable pageable);
+	
 	List<TeacherCourse> findTeacherCourseByUserAndPublish(User user,Integer publish);
 	@Query("select t from TeacherCourse t where t.courseName = :coursename and t.user.id= :userid and t.publish !='0'")
 	TeacherCourse getTeacherCourseByCourseName(@Param("coursename") String cousername,@Param("userid") Long userid);

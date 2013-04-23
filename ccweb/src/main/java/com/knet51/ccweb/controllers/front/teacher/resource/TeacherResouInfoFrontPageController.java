@@ -41,19 +41,15 @@ public class TeacherResouInfoFrontPageController {
 	/* teacher front page controller */
 	/**
 	 * show the teacher's resource in front page
-	 * 
 	 * @param teacher_id
 	 * @param model
 	 * @param pageNumber
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value = "/teacher/{teacher_id}/resource/list")
-	public String teacherResourceList(
-			@PathVariable Long teacher_id,
-			Model model,
-			@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize) {
+	@RequestMapping(value="/teacher/{teacher_id}/resource/list")
+	public String teacherResourceList(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		User user = userService.findOne(teacher_id);
 		Teacher teacher = teacherService.findOne(teacher_id);
 		UserInfo userInfo = new UserInfo(user);
@@ -61,24 +57,20 @@ public class TeacherResouInfoFrontPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", teacher_id);
-		Page<CourseResource> onePage = resourceService
-				.findAllResouByUserAndStatus(pageNumber, pageSize, user,
-						GlobalDefs.STATUS_RESOURCE);
+		Page<CourseResource> onePage = resourceService.findAllResouByUserAndStatus(pageNumber, pageSize, user, GlobalDefs.STATUS_RESOURCE);
 		model.addAttribute("page", onePage);
 		return "teacher.resource.list";
 	}
-
+	
 	/**
 	 * show a resource detail information in front page
-	 * 
 	 * @param teacher_id
 	 * @param resource_id
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/teacher/{teacher_id}/resource/view/{resource_id}")
-	public String teacherResourceDetail(@PathVariable Long teacher_id,
-			@PathVariable Long resource_id, Model model) {
+	@RequestMapping(value="/teacher/{teacher_id}/resource/view/{resource_id}")
+	public String teacherResourceDetail(@PathVariable Long teacher_id,@PathVariable Long resource_id,Model model){
 		User user = userService.findOne(teacher_id);
 		Teacher teacher = teacherService.findOne(teacher_id);
 		UserInfo userInfo = new UserInfo(user);

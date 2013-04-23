@@ -85,7 +85,13 @@ public class TeacherCourseInfoPageController {
 		Page<TeacherCourse> onePage =teacherCourseService.findTeacherCourseByUserAndPublishGreaterThan(pageNumber, pageSize,userInfo.getUser(),GlobalDefs.PUBLISH_NUM_DELETE);
 		//Page<TeacherCourse> page = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, publish)
 		model.addAttribute("page", onePage);
-		return "admin.teacher.course.list";
+		if (userInfo.getUser().getRole().equals("teacher")) {
+			return "admin.teacher.course.list";
+		} else if (userInfo.getUser().getRole().equals("enterprise")) {
+			return "admin.enterprise.course.list";
+		} else {
+			return "404";
+		}
 	}
 	
 	@RequestMapping(value="/admin/course/list/{publish}")
@@ -105,13 +111,20 @@ public class TeacherCourseInfoPageController {
 				onePage = teacherCourseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, userInfo.getUser(), GlobalDefs.PUBLISH_NUM_RECYCLE);
 			}
 			model.addAttribute("page", onePage);
-			return "admin.teacher.course.list";
+			if (userInfo.getUser().getRole().equals("teacher")) {
+				return "admin.teacher.course.list";
+			} else if (userInfo.getUser().getRole().equals("enterprise")) {
+				return "admin.enterprise.course.list";
+			} else {
+				return "404";
+			}
 		}
 		
 	}
 	
 	@RequestMapping(value="/admin/course/new")
 	public String courseAdd(){
+		
 		return "admin.teacher.course.new";
 	}
 	
@@ -120,10 +133,10 @@ public class TeacherCourseInfoPageController {
 	@RequestMapping(value="/admin/course/view/{course_id}")
 	public String detailCourseInfo(@PathVariable Long course_id,Model model,HttpSession session){
 		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(course == null){
-			return "redirect:/admin/course/list";
+			return "redirect:/admin";
 		}else{
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/course/list";
@@ -144,7 +157,13 @@ public class TeacherCourseInfoPageController {
 		}
 		model.addAttribute("resourceCount", listResource.size());
 		model.addAttribute("courseMap", courseMap);
-		return "admin.teacher.course.view";
+		if (userInfo.getUser().getRole().equals("teacher")) {
+			return "admin.teacher.course.view";
+		} else if (userInfo.getUser().getRole().equals("enterprise")) {
+			return "admin.enterprise.course.view";
+		} else {
+			return "404";
+		}
 	}
 	
 	/*   new add course   */
@@ -161,7 +180,13 @@ public class TeacherCourseInfoPageController {
 			List<CourseType> cTypeList = courseTypeService.findAll();
 			model.addAttribute("typeList", cTypeList);
 			model.addAttribute("active", active);
-			return "admin.teacher.course.add";
+			if (userInfo.getUser().getRole().equals("teacher")) {
+				return "admin.teacher.course.add";
+			} else if (userInfo.getUser().getRole().equals("enterprise")) {
+				return "admin.enterprise.course.add";
+			} else {
+				return "404";
+			}
 		}
 	}
 	
@@ -408,7 +433,7 @@ public class TeacherCourseInfoPageController {
 		model.addAttribute("resourceCount", listResource.size());
 		model.addAttribute("courseMap", courseMap);
 		model.addAttribute("course", course);
-		return "admin.teacher.course.preview";
+		return "admin.course.preview";
 	}
 
 	/**
@@ -458,6 +483,54 @@ public class TeacherCourseInfoPageController {
 		courseLessonService.createCourseLesson(courselesson);
 		return "redirect:/admin/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 	}
+
+	/**
+	 * destory the lessonNum
+	 * @param lesson_id
+	 * @param course_id
+	 * @return
+	 */
+	@RequestMapping(value="/admin/course/edit/courselesson/destory",method=RequestMethod.POST)
+	public String deleteCoourseLesson(@RequestParam("lessonId") Long lesson_id,@RequestParam("courseId") Long course_id){
+		CourseLesson bigLesson = courseLessonService.findOne(lesson_id);
+		List<CourseLesson> courseLessonList = courseLessonService.findCourseLessonByCourseId(course_id);
+		if(Integer.parseInt(bigLesson.getLessonNum())>=2 && courseLessonList.size()>=2){
+			String smallLessonNum = Integer.parseInt(bigLesson.getLessonNum())-1+"";
+			List<CourseLesson> smallLessonList = courseLessonService.findCourseLessonByCourseIdAndLessonNum(course_id, smallLessonNum);
+			if(smallLessonList.size()>0){
+				smallLessonList.get(0).setStatus("max");
+				courseLessonService.createCourseLesson(smallLessonList.get(0));
+			}
+		}
+		courseLessonService.destory(Long.valueOf(lesson_id));
+		return "redirect:/admin/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
+	}
+	
+	/**
+	 * show all course type list
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/admin/course/type/list")
+	public String showCourseType(HttpSession session,Model model){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(!userInfo.getEmail().equals("tim@apple.com")){
+			return "redirect:/admin/course/list";
+		}else{
+			List<CourseType> list = courseTypeService.findAll();
+			model.addAttribute("list", list);
+			if (userInfo.getUser().getRole().equals("teacher")) {
+				return "admin.teacher.course.type.list";
+			} else if (userInfo.getUser().getRole().equals("enterprise")) {
+				return "admin.enterprise.course.type.list";
+			} else {
+				return "404";
+			}
+		}
+	}
+	
+	
 	
 	/**
 	 * 验证 课程 fileName是否为空
@@ -482,28 +555,6 @@ public class TeacherCourseInfoPageController {
 		out.flush();
 		out.close();
 	}
-	/**
-	 * destory the lessonNum
-	 * @param lesson_id
-	 * @param course_id
-	 * @return
-	 */
-	@RequestMapping(value="/admin/course/edit/courselesson/destory",method=RequestMethod.POST)
-	public String deleteCoourseLesson(@RequestParam("lessonId") Long lesson_id,@RequestParam("courseId") Long course_id){
-		CourseLesson bigLesson = courseLessonService.findOne(lesson_id);
-		List<CourseLesson> courseLessonList = courseLessonService.findCourseLessonByCourseId(course_id);
-		if(Integer.parseInt(bigLesson.getLessonNum())>=2 && courseLessonList.size()>=2){
-			String smallLessonNum = Integer.parseInt(bigLesson.getLessonNum())-1+"";
-			List<CourseLesson> smallLessonList = courseLessonService.findCourseLessonByCourseIdAndLessonNum(course_id, smallLessonNum);
-			if(smallLessonList.size()>0){
-				smallLessonList.get(0).setStatus("max");
-				courseLessonService.createCourseLesson(smallLessonList.get(0));
-			}
-		}
-		courseLessonService.destory(Long.valueOf(lesson_id));
-		return "redirect:/admin/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
-	}
-	
 
 	@RequestMapping(value = "/admin/course/courseInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse courseFormAjaxJson(@Valid TeacherCourseInfoForm teacherCourseInfoForm, BindingResult result,HttpSession session) {
@@ -562,21 +613,66 @@ public class TeacherCourseInfoPageController {
 		out.close();
 		return null;
 	}
-	/**
-	 * show all course type list
-	 * @param session
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value="/admin/course/type/list")
-	public String showCourseType(HttpSession session,Model model){
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		if(!userInfo.getEmail().equals("tim@apple.com")){
-			return "redirect:/admin/course/list";
-		}else{
-			List<CourseType> list = courseTypeService.findAll();
-			model.addAttribute("list", list);
-			return "admin.teacher.course.type.list";
+
+	
+	/*  course front page controller  */
+	
+	@RequestMapping(value="/teacher/{teacher_id}/course/list")
+	public String getAllTeacherCourse(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
+		Page<TeacherCourse> onePage = teacherCourseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, user, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		model.addAttribute("page", onePage);
+		return "teacher.course.list";
+	}
+	
+	@RequestMapping(value="/course/view",method=RequestMethod.POST)
+	public String detailCourse(@RequestParam("teacherId") Long teacher_id,@RequestParam("courseId") Long course_id,
+			@RequestParam("coursepwd") String pwd,Model model){
+		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		if(pwd.equals(course.getPwd()) || course.getPwd() == null || course.getPwd().trim() .equals("")){
+			Teacher teacher = teacherService.findOne(teacher_id);
+			User user = teacher.getUser();
+			UserInfo userInfo = new UserInfo(user);
+			userInfo.setTeacher(teacher);
+			logger.debug(userInfo.toString());
+			model.addAttribute("teacherInfo", userInfo);
+			model.addAttribute("teacher_id", teacher_id);
+			model.addAttribute("course", course);
+			List<CourseResource> listResource = 
+					courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
+			List<CourseResource> courseList;
+			Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
+			String resourceOrder = null;
+			for (CourseResource courseResource : listResource) {
+				resourceOrder = courseResource.getLessonNum();
+				courseList = new ArrayList<CourseResource>();
+				courseList = courseResourceService
+						.getResourceByLessonNumAndCourseId(resourceOrder,course_id);
+				courseMap.put(resourceOrder, courseList);
+			}
+			List<CourseType> cTypeList = courseTypeService.findAll();
+			logger.info("==============="+cTypeList.size());
+			model.addAttribute("cTypeList", cTypeList);
+			Integer courseCount = teacherCourseService.getAllTeacherCourseByTeacheridAndPublish(teacher_id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
+			model.addAttribute("courseCount", courseCount);
+			model.addAttribute("resourceCount", listResource.size());
+			model.addAttribute("courseMap", courseMap);
+			if(user.getRole().equals("teacher")){
+				return "teacher.course.view";
+			}else{
+				return "enterprise.course.view";
+			}
+			
 		}
+		return "redirect:/";
+		
+		
 	}
 }

@@ -29,7 +29,7 @@ public class EduBackgroundServiceImpl implements EduBackgroundService {
 
 	@Override
 	public List<EduBackground> findEduListByTeacherId(Long teacher_id) {
-		return eduBackgroundRepository.findEduBackgroundByTeacherid(teacher_id);
+		return eduBackgroundRepository.findEduBackgroundByTeacheridAndForbiddenIsNull(teacher_id);
 	}
 
 	@Override

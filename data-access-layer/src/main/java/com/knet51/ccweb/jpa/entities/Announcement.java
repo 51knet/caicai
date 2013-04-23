@@ -12,7 +12,7 @@ public class Announcement extends AbstractEntity {
 	private String content;
 	private Integer code;
 	private String date;
-
+	private String forbidden;
 	
 	@ManyToOne
 	private User user;
@@ -55,8 +55,10 @@ public class Announcement extends AbstractEntity {
 	public void setDate(String date) {
 		this.date = date;
 	}
-
-	
-	
-	
+	public String getForbidden() {
+		return forbidden;
+	}
+	public void setForbidden(String forbidden) {
+		this.forbidden = forbidden;
+	}
 }

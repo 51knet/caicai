@@ -1,6 +1,5 @@
 package com.knet51.ccweb.jpa.entities.teacher;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -15,7 +14,7 @@ public class TeacherThesis extends AbstractEntity {
 	@Lob
 	private String content;
 	private String date;
-	
+	private String forbidden;
 	@ManyToOne
 	private Teacher teacher;
 
@@ -40,6 +39,12 @@ public class TeacherThesis extends AbstractEntity {
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public String getForbidden() {
+		return forbidden;
+	}
+	public void setForbidden(String forbidden) {
+		this.forbidden = forbidden;
 	}
 	
 	

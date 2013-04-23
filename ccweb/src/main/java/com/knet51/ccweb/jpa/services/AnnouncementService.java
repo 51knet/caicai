@@ -26,4 +26,6 @@ public interface AnnouncementService {
 	void deleAnnouncementById(Long id);
 	
 	List<Announcement> findAnnoByUserAndId(User user,Long id);
+	
+	Page<Announcement> findAllAnno(int pageNum, int pageSize);
 }
