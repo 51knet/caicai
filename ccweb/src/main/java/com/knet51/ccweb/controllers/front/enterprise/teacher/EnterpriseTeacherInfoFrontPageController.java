@@ -1,10 +1,6 @@
 package com.knet51.ccweb.controllers.front.enterprise.teacher;
 
-import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
-import com.knet51.ccweb.jpa.entities.AnnoPhoto;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.EnterpriseTeacher;
 import com.knet51.ccweb.jpa.entities.Teacher;
@@ -59,74 +54,6 @@ public class EnterpriseTeacherInfoFrontPageController {
 	private CourseTypeService courseTypeService;
 	@Autowired
 	private TeacherHonorService honorService;
-
-	@RequestMapping(value = "/enterprise/{id}")
-	public String teacherFront(@PathVariable Long id, Model model,
-			HttpSession session, HttpServletResponse response)
-			throws IOException {
-		logger.info("#### Into enterprise front page ####");
-		try {
-			User user = userService.findOne(id);
-			Teacher enterprise = teacherService.findOne(id);
-			UserInfo sessionUserInfo = (UserInfo) session
-					.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			boolean isFollower = false;
-			if (sessionUserInfo != null) { // this is only valid when user
-											// logged in and see teacher home
-											// page
-				User sessionUser = sessionUserInfo.getUser();
-				isFollower = friendsRelateService.isTheFollower(id,
-						sessionUser.getId());
-			}
-
-			Page<Announcement> annoPage = announcementService
-					.findAllAnnoByUser(0, 4, user);
-			model.addAttribute("annolist", annoPage.getContent());
-			List<Announcement> annoList = announcementService.findAllByUid(id);
-			model.addAttribute("annoCount", annoList.size());
-			List<AnnoPhoto> annoPhoto = annoPhotoService
-					.findAnnoPhotoByUserid(user.getId());
-			model.addAttribute("annoPhoto", annoPhoto);
-
-			// Page<TeacherCourse> pageCourse = courseService
-			// .findTeacherCourseByTeacherAndPublish(0, 6, enterprise,
-			// GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-			// List<TeacherCourse> courseList = pageCourse.getContent();
-			List<TeacherCourse> courseList = courseService
-					.getAllTeacherCourseByTeacheridAndPublish(id,
-							GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-			model.addAttribute("courseList", courseList);
-			model.addAttribute("courseCount", courseList.size());
-
-			List<CourseType> cTypeList = courseTypeService.findAll();
-			model.addAttribute("cTypeList", cTypeList);
-
-			// Page<EnterpriseTeacher> eTeacher =
-			// enterpriseTeacherService.findTeacherByEnterprise(0, 6, user);
-			List<EnterpriseTeacher> eTeacherList = enterpriseTeacherService
-					.findTeacherByEnterprise(user);
-			model.addAttribute("eTeacher", eTeacherList);
-			model.addAttribute("eTeacherCount", eTeacherList.size());
-
-			UserInfo userInfo = new UserInfo(user);
-			userInfo.setTeacher(enterprise);
-
-			Integer fansCount = friendsRelateService.getAllFans(id).size();
-			Integer hostCount = friendsRelateService.getAllHost(id).size();
-
-			model.addAttribute("teacher_id", id);
-			model.addAttribute("teacherInfo", userInfo);
-
-			model.addAttribute("role", userInfo.getTeacherRole());
-			session.setAttribute("isFollower", isFollower);
-			session.setAttribute("fansCount", fansCount);
-			session.setAttribute("hostCount", hostCount);
-			return "enterprise.basic";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "404";
-		}
-	}
 
 	/**
 	 * show enterprise course list

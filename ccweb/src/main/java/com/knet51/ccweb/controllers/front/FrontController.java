@@ -20,15 +20,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.AnnoPhoto;
 import com.knet51.ccweb.jpa.entities.Announcement;
+import com.knet51.ccweb.jpa.entities.EnterpriseTeacher;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
+import com.knet51.ccweb.jpa.entities.courses.CourseType;
 import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.services.AnnoPhotoService;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
 import com.knet51.ccweb.jpa.services.BlogService;
+import com.knet51.ccweb.jpa.services.CourseTypeService;
+import com.knet51.ccweb.jpa.services.EnterpriseTeacherService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
@@ -72,8 +78,13 @@ public class FrontController {
 	private AnnouncementService announcementService;
 	@Autowired
 	private AuthenticationService authenticationService;
+	@Autowired
+	private EnterpriseTeacherService enterpriseTeacherService;
+	@Autowired
+	private CourseTypeService courseTypeService;
+	@Autowired
+	private AnnoPhotoService annoPhotoService;
 	
-
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -192,6 +203,74 @@ public class FrontController {
 			session.setAttribute("fansCount", fansCount);
 			session.setAttribute("hostCount", hostCount);
 			return "teacher.basic";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "404";
+		}
+	}
+	
+	@RequestMapping(value = "/enterprise/{id}")
+	public String enterpriseFront(@PathVariable Long id, Model model,
+			HttpSession session, HttpServletResponse response)
+			throws IOException {
+		logger.info("#### Into enterprise front page ####");
+		try {
+			User user = userService.findOne(id);
+			Teacher enterprise = teacherService.findOne(id);
+			UserInfo sessionUserInfo = (UserInfo) session
+					.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			boolean isFollower = false;
+			if (sessionUserInfo != null) { // this is only valid when user
+											// logged in and see teacher home
+											// page
+				User sessionUser = sessionUserInfo.getUser();
+				isFollower = friendsRelateService.isTheFollower(id,
+						sessionUser.getId());
+			}
+
+			Page<Announcement> annoPage = announcementService
+					.findAllAnnoByUser(0, 4, user);
+			model.addAttribute("annolist", annoPage.getContent());
+			List<Announcement> annoList = announcementService.findAllByUid(id);
+			model.addAttribute("annoCount", annoList.size());
+			List<AnnoPhoto> annoPhoto = annoPhotoService
+					.findAnnoPhotoByUserid(user.getId());
+			model.addAttribute("annoPhoto", annoPhoto);
+
+			// Page<TeacherCourse> pageCourse = courseService
+			// .findTeacherCourseByTeacherAndPublish(0, 6, enterprise,
+			// GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+			// List<TeacherCourse> courseList = pageCourse.getContent();
+			List<TeacherCourse> courseList = courseService
+					.getAllTeacherCourseByTeacheridAndPublish(id,
+							GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+			model.addAttribute("courseList", courseList);
+			model.addAttribute("courseCount", courseList.size());
+
+			List<CourseType> cTypeList = courseTypeService.findAll();
+			model.addAttribute("cTypeList", cTypeList);
+
+			// Page<EnterpriseTeacher> eTeacher =
+			// enterpriseTeacherService.findTeacherByEnterprise(0, 6, user);
+			List<EnterpriseTeacher> eTeacherList = enterpriseTeacherService
+					.findTeacherByEnterprise(user);
+			model.addAttribute("eTeacher", eTeacherList);
+			model.addAttribute("eTeacherCount", eTeacherList.size());
+
+			UserInfo userInfo = new UserInfo(user);
+			userInfo.setTeacher(enterprise);
+
+			Integer fansCount = friendsRelateService.getAllFans(id).size();
+			Integer hostCount = friendsRelateService.getAllHost(id).size();
+
+			model.addAttribute("teacher_id", id);
+			model.addAttribute("teacherInfo", userInfo);
+
+			model.addAttribute("role", userInfo.getTeacherRole());
+			session.setAttribute("isFollower", isFollower);
+			session.setAttribute("fansCount", fansCount);
+			session.setAttribute("hostCount", hostCount);
+			return "enterprise.basic";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "404";
