@@ -1,6 +1,5 @@
 package com.knet51.ccweb.jpa.entities.teacher;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -24,6 +23,14 @@ public class TeacherPatent  extends AbstractEntity {
 	private String detailDesc;
 	@ManyToOne
 	private Teacher teacher;
+	
+	
+	public String getDetailDesc() {
+		return detailDesc;
+	}
+	public void setDetailDesc(String detailDesc) {
+		this.detailDesc = detailDesc;
+	}
 	public String getInventer() {
 		return inventer;
 	}

@@ -22,12 +22,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.admin.teacher.announcement.TeacherAnnoDetailInfoForm;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.AnnoPhoto;
 import com.knet51.ccweb.jpa.entities.Announcement;
@@ -36,6 +38,8 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
+import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
+import com.knet51.ccweb.util.ajax.ValidationResponse;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 
 @Controller
@@ -91,6 +95,8 @@ public class EnterprsieAuthenticationController {
 			authentication.setUser(user);
 			authentication.setStatus("submit");
 			Authentication auth = authenticationService.createAuthentication(authentication);
+			auth.getUser().setName(authenticationForm.getName());
+			auth.getUser().setFix_phone(authenticationForm.getPhone());
 			for(int i=0;i<files.size();i++){
 				MultipartFile multipartFile = files.get(i);
 				logger.info("=====++++++"+multipartFile.getOriginalFilename());
@@ -107,10 +113,10 @@ public class EnterprsieAuthenticationController {
 						String savePath = path+"/"+fileName;
 						auth.setFileName(fileName);
 						auth.setResourceurl(savePath);
-						authenticationService.updateAuthentication(auth);
 					}
 				}
 			}
+			authenticationService.updateAuthentication(auth);
 			return "redirect:/admin";
 		}
 		
@@ -133,4 +139,11 @@ public class EnterprsieAuthenticationController {
 		FileUtil.downLoad(request, response, savePath, fileName);
 		return null;
 	}
+	
+	@RequestMapping(value = "/admin/authentication/createAuthenticationAjax", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse authenticationInfoFormAjaxJson(@Valid AuthenticationForm authenticationForm, BindingResult result) {
+		logger.info("================= into authencation ajax controller");
+		return AjaxValidationEngine.process(result);
+	}
+	
 }

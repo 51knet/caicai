@@ -13,6 +13,8 @@ import com.knet51.ccweb.jpa.entities.User;
 @Transactional
 public interface AnnouncementRepository  extends JpaRepository<Announcement, Long>, JpaSpecificationExecutor<Announcement>{
 	
-	Page<Announcement> findAnnoByUser(User user, Pageable pageable);
-	List<Announcement> findAnnoByUserAndId(User user, Long id);
+	Page<Announcement> findAnnoByUserAndForbiddenIsNull(User user, Pageable pageable);
+	List<Announcement> findAnnoByUserAndIdAndForbiddenIsNull(User user, Long id);
+	
+	Page<Announcement> findAll(Pageable pageable);
 }

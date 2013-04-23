@@ -1,22 +1,12 @@
 package com.knet51.ccweb.jpa.entities;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
-import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
 
 @Entity
 @JsonIgnoreProperties(value={"course"})
@@ -38,13 +28,21 @@ public class Teacher {
 	private String teaching_subject;
 	private String major;
 	private String isEnterprise;
-
+	private String forbidden;
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getForbidden() {
+		return forbidden;
+	}
+
+	public void setForbidden(String forbidden) {
+		this.forbidden = forbidden;
 	}
 
 	protected Teacher() {

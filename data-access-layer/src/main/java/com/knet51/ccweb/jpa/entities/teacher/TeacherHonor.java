@@ -1,6 +1,5 @@
 package com.knet51.ccweb.jpa.entities.teacher;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -20,6 +19,23 @@ public class TeacherHonor extends AbstractEntity {
 	private String detailDesc;
 	@ManyToOne
 	private Teacher teacher;
+	
+	private String forbidden;
+	
+	
+	
+	public String getDetailDesc() {
+		return detailDesc;
+	}
+	public void setDetailDesc(String detailDesc) {
+		this.detailDesc = detailDesc;
+	}
+	public String getForbidden() {
+		return forbidden;
+	}
+	public void setForbidden(String forbidden) {
+		this.forbidden = forbidden;
+	}
 	public String getName() {
 		return name;
 	}

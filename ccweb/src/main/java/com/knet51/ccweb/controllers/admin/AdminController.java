@@ -64,7 +64,9 @@ public class AdminController {
 			}
 			session.setAttribute("authentication", authentication);
 			return "redirect:/admin/enterprise";
-		} else {
+		} 
+		
+		else {
 			return "home";
 		}
 	}

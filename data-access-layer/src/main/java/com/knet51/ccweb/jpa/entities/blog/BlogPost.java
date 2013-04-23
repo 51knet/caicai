@@ -33,6 +33,8 @@ public class BlogPost extends AbstractEntity {
 	@NotEmpty
 	private String title;
 	
+	private String forbidden;
+	
 	@Lob
 	@NotEmpty
 	private String content;
@@ -80,6 +82,15 @@ public class BlogPost extends AbstractEntity {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	public String getForbidden() {
+		return forbidden;
+	}
+
+	public void setForbidden(String forbidden) {
+		this.forbidden = forbidden;
+	}
+
 	public String getContent() {
 		return content;
 	}

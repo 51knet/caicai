@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.services.teacherAchievement;
+package com.knet51.ccweb.jpa.services.achievement;
 
 import java.util.List;
 import org.springframework.data.domain.Page;

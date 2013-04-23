@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -13,11 +14,9 @@ $(document).ready(function() {
 		$(".help-inline").html("");
 	});
 	
-	checkAjax("anno_information","annoInfoAJAX");
-	
-	$('.deleteAnnoPostBtn').on('click', function() {
-		var anno_id = $(this).next().val();
-		$('#deleteAnnoPostModal #annoId').val(anno_id);	
+	$('.destoryEteacherPostBtn').on('click', function() {
+		var t_id = $(this).next().val();
+		$('#destoryEteacherPostModal #etid').val(t_id);	
 	});
 });
 
@@ -38,7 +37,7 @@ $(document).ready(function() {
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
-.row-fluid.custom .content {
+.row-fluid.custom .content{
 	margin: 20px 40px;
 
 }
@@ -47,27 +46,39 @@ $(document).ready(function() {
 
 <div class="row-fluid custom round">
 	<div  class="row" >
-		<h4>公告管理</h4>
+		<h4>申请信息</h4>
 	</div>
 	<div class="content">
 		<div style="text-align: right;">
-			<a href='<c:url value="/admin/announcement/create"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
-				添加公告</a><br>
+		<c:if test="${authentication.status != 'pass' && authentication.status != 'submit' }"> <a href='<c:url value="/admin/authentication/new"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
+				申请验证</a></c:if>
+			<br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead><tr>
-						<th  align="center">公告标题</th>
-						<th  align="center" width="25%">发布时间</th>
-						<th  align="center" width="20%">操作</th>
+						<th  align="center" width="20%">申请标题</th>
+						<th  align="center" width="15%">状态</th>
+						<th  align="center" >拒绝原因</th>
+						<th  align="center" width="20%">申请时间</th>
+						<th align="center">下载</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
-							<td align="left" >${page.title}-${page.forbidden}</td>
-							<td align="center">${page.date}</td>
-							<td align="center">
-								 <a class="deleteAnnoPostBtn" href="#deleteAnnoPostModal" role="button" data-toggle="modal" data-target="#deleteAnnoPostModal">删除</a><input type="hidden" value="${page.id} ">  | 
-								 <a href='<c:url value="/admin/announcement/edit/${page.id}"></c:url>'>修改</a>	
+							<td align="center">${page.title}</td> 
+							<td align="center" >
+								<c:if test="${page.status=='pass' }"><a href='<c:url value="/admin"></c:url>' >通过,点击刷新 </a></c:if>
+								<c:if test="${page.status=='submit' }">审核中</c:if>
+								<c:if test="${page.status=='refuse' }">未通过</c:if>
+							</td>
+							<td align="center" >
+								${page.reason }
+							</td>
+							<td>
+								<fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd HH:mm" />
+							</td>
+							<td align="center" >
+								<a href='<c:url value="/authentication/download/${page.id }"></c:url>'>下载</a>
 							</td>
 						</tr>
 					</c:forEach>
@@ -76,32 +87,22 @@ $(document).ready(function() {
 			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 			<br />
 		</div>
-		<script type="text/javascript">
-			function ApplyStyle(s){
-				document.getElementById("mytab").className=s.innerText;
-			}
-		</script>
-		<!-- <table><tr><td>
-			点击链接切换样式：<a href="javascript:;" onclick="ApplyStyle(this)">t1</a>&nbsp;
-			<a href="javascript:;" onclick="ApplyStyle(this)">t2</a>&nbsp;
-			<a href="javascript:;" onclick="ApplyStyle(this)">t3</a>
-		</td></tr></table> -->
 	</div>	
 </div>
 
-<!-- delete annoForm -->
-<div class="modal hide fade" id="deleteAnnoPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- delete teacherForm -->
+<div class="modal hide fade" id="destoryEteacherPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    <h3 id="myModalLabel">请注意</h3>
 	  </div>
 	  <div class="modal-body">
-	    <p>你确定删除该公告吗？</p>
+	    <p>你确定删除该教师吗？</p>
 	  </div>
 	  <div class="modal-footer">
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-	    <form action='<c:url value="/admin/announcement/destory"></c:url>' method="post" style="display: inline-block;" >
-	    	<input id="annoId" type="hidden" name="annoId" />
+	    <form action='<c:url value="/admin/enterprise/teacher/destory"></c:url>' method="post" style="display: inline-block;" >
+	    	<input id="etid" type="hidden" name="eteacherid" />
 	    	<button class="btn btn-success">确定</button>
 	    </form>
 	  </div>

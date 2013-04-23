@@ -84,7 +84,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	public Page<TeacherCourse> findTeacherCourseByUserAndPublish(
 			int pageNum, int pageSize, User user, Integer publish) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUserAndPublish(user, publish, dateDesc);
+		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUserAndPublishAndForbiddenIsNull(user, publish, dateDesc);
 		return onePage;
 	}
 
@@ -92,7 +92,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	public Page<TeacherCourse> findTeacherCourseByUserAndPublishGreaterThan(
 			int pageNum, int pageSize,User user, Integer publish) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUserAndPublishGreaterThan(user, publish, dateDesc);
+		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUserAndForbiddenIsNullAndPublishGreaterThan(user, publish, dateDesc);
 		return onePage;
 	}
 

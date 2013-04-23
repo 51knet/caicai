@@ -1,6 +1,5 @@
 package com.knet51.ccweb.jpa.entities.courses;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -24,6 +23,9 @@ public class CourseResource extends AbstractEntity {
 	private Long courseLessonId;
 	private Integer status;
 	private String relativePath;
+	
+	private String forbidden;
+	
 	@Expose
 	@ManyToOne
 	private ResourceType resourceType;
@@ -113,7 +115,11 @@ public class CourseResource extends AbstractEntity {
 	public CourseResource() {
 		super();
 	}
-	
-	
+	public String getForbidden() {
+		return forbidden;
+	}
+	public void setForbidden(String forbidden) {
+		this.forbidden = forbidden;
+	}
 	
 }
