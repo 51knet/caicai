@@ -29,7 +29,7 @@ import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
-import com.knet51.ccweb.jpa.services.teacherAchievement.TeacherHonorService;
+import com.knet51.ccweb.jpa.services.achievement.TeacherHonorService;
 
 @Controller
 public class EnterpriseTeacherInfoFrontPageController {
