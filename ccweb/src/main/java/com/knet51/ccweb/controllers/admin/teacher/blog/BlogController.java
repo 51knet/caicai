@@ -23,7 +23,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogCategory;
 import com.knet51.ccweb.jpa.entities.blog.BlogComment;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
@@ -64,39 +63,6 @@ public class BlogController {
 		}
 		model.addAttribute("page", page);
 		return "admin.blog.list";
-	}
-	@RequestMapping(value= "/teacher/{teacher_id}/blog/list", method=RequestMethod.GET)
-	public String list(@PathVariable Long teacher_id, @RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize, Model model) {
-		User user = userService.findOne(teacher_id);
-		Teacher teacher = teacherService.findOne(teacher_id);
-		UserInfo userInfo = new UserInfo(user);
-		userInfo.setTeacher(teacher);
-		logger.debug(userInfo.toString());
-		model.addAttribute("teacherInfo", userInfo);
-		model.addAttribute("teacher_id", teacher_id);
-		
-		//Page<BlogPost> page = blogService.findAllBlogs(pageNumber, pageSize, teacher);
-		Page<BlogPost> page = blogService.findAllBlogsNotGarbageAndNotDraft(pageNumber, pageSize, teacher);
-		model.addAttribute("page", page);
-		return "teacher.blog.list";
-	}
-	@RequestMapping(value= "/teacher/{teacher_id}/blog/view/{blog_post_id}", method=RequestMethod.GET)
-	public String view(@PathVariable Long teacher_id, @PathVariable Long blog_post_id, Model model) {
-		User user = userService.findOne(teacher_id);
-		Teacher teacher = teacherService.findOne(teacher_id);
-		UserInfo userInfo = new UserInfo(user);
-		userInfo.setTeacher(teacher);
-		logger.debug(userInfo.toString());
-		model.addAttribute("teacherInfo", userInfo);
-		model.addAttribute("teacher_id", teacher_id);
-		
-		BlogPost blogPost = blogService.findOne(blog_post_id);
-		List<BlogComment> blogCommentList=(List<BlogComment>) blogPost.getBlogComments();
-		model.addAttribute("blogPost", blogPost);
-		model.addAttribute("blogCommentList", blogCommentList);
-		model.addAttribute("sumComment", blogPost.getBlogComments().size());
-		
-		return "teacher.blog.view";
 	}
 	//@ModelAttribute("blogPosts")
 	public List<BlogPost> populateBlogPostList(HttpSession session) {
@@ -156,23 +122,6 @@ public class BlogController {
 		blogService.createBlogComment(blogComment);
 		
 		return "redirect:/admin/blog/view/"+blogpost_id;
-	}
-	@RequestMapping(value= "/teacher/{teacher_id}/blog/comment", method=RequestMethod.POST)
-	public String view(@PathVariable Long teacher_id, @Valid BlogComment blogComment, BindingResult result, @RequestParam("blogpost_id") Long blogpost_id, Model model, HttpSession session) {
-		BlogPost blogPost = blogService.findOne(blogpost_id);
-		if (result.hasErrors()) {
-			logger.info("Validation Failed " + result);
-			model.addAttribute("blogPost", blogPost);
-			return "teacher.blog.view";
-		}
-		
-		Teacher teacher = teacherService.findOne(getUserId(session));
-		blogComment.setAuthor(teacher);
-		blogComment.setBlogPost(blogPost);
-		blogService.createBlogComment(blogComment);
-		
-		return "redirect:/teacher/"+teacher_id+"/blog/view/"+blogpost_id;
-		
 	}
 	
 	@RequestMapping(value= "/admin/blog/edit/{blog_post_id}", method=RequestMethod.GET)

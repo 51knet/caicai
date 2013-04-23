@@ -269,16 +269,16 @@
 		<put-attribute name="right" value="/WEB-INF/views/enterprise/front/course/view/view.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="enterprise.enterprise.list" extends="enterprise-frontPage-layout">
+	<definition name="enterprise.teacher.list" extends="enterprise-frontPage-layout">
 		<put-attribute name="title" value="知名教师" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/enterprise-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/enterprise/front/enterprise/list/list.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/enterprise/front/teacher/list/list.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="enterprise.enterprise.view" extends="enterprise-frontPage-layout">
+	<definition name="enterprise.teacher.view" extends="enterprise-frontPage-layout">
 		<put-attribute name="title" value="知名教师" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/enterprise-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/enterprise/front/enterprise/view/view.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/enterprise/front/teacher/view/view.jsp"></put-attribute>
 	</definition>
 				
 	
