@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
-import com.knet51.ccweb.jpa.entities.Authentication;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
@@ -106,31 +105,29 @@ public class FrontController {
 		}
 	}
 
-	@RequestMapping(value = "/user/{id}")
-	public String userFront(@PathVariable String id, HttpSession session,
+	@RequestMapping(value = "/id/{id}")
+	public String userFront(@PathVariable Long id, HttpSession session,
 			Model model) {
 		User user;
 		UserInfo userInfo;
 		try {
-			user = userService.findOne(Long.parseLong(id));
+			user = userService.findOne(id);
 			userInfo = new UserInfo(user);
 			model.addAttribute("userInfoModel", userInfo);
 
 			String role = user.getRole();
 			if (role.equals("user")) {
-				return "user.basic";
+				return "404";
 			} else if (role.equals("teacher")) {
 				return "redirect:/teacher/" + id;
-			} else if (role.equals("student")) {
-				return "redirect:/student/" + id;
+			} else if (role.equals("enterprise")) {
+				return "redirect:/enterprise/" + id;
 			} else {
 				return "404";
 			}
 		} catch (Exception e) {
-			// TODO: refining exception;
 			return "404";
 		}
-
 	}
 	/**
 	 * show the teacher's front page

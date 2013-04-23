@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,8 +25,6 @@ import com.google.gson.GsonBuilder;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.EduBackground;
-import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.WorkExp;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
@@ -132,45 +129,6 @@ public class ResumeController {
 		}
 	}
 	
-	// teacher front page
-	@RequestMapping(value = "/teacher/{teacher_id}/resume", method = RequestMethod.GET)
-	public String list(@PathVariable Long teacher_id, Model model) {
-		User user = userService.findOne(teacher_id);
-		Teacher teacher = teacherService.findOne(teacher_id);
-		UserInfo userInfo = new UserInfo(user);
-		userInfo.setTeacher(teacher);
-		model.addAttribute("teacherInfo", userInfo);
-		model.addAttribute("teacher_id", teacher_id);
-		List<EduBackground> eduInfo = eduBackgroundService
-				.findEduListByTeacherId(teacher_id);
-		if (eduInfo != null) {
-			model.addAttribute("eduInfo", eduInfo);
-			model.addAttribute("eduCount", eduInfo.size());
-		}
-		List<WorkExp> workInfo = workExpService.findWorkList(teacher_id);
-		if (workInfo != null) {
-			model.addAttribute("workInfo", workInfo);
-			model.addAttribute("workCount", workInfo.size());
-		}
-		
-		List<TeacherThesis> thesisList = thesisService.getAllThesisById(teacher_id);
-		model.addAttribute("thesisList", thesisList);
-		model.addAttribute("thesisCount", thesisList.size());
-		
-		List<TeacherProject> projectList = projectService.getAllProjectById(teacher_id);
-		model.addAttribute("projectList", projectList);
-		model.addAttribute("projectCount", projectList.size());
-		
-		List<TeacherPatent> patentList = patentService.getAllPatentById(teacher_id);
-		model.addAttribute("patentList", patentList);
-		model.addAttribute("patentCount", patentList.size());
-		
-		List<TeacherHonor> honorList = honorService.getAllHonorById(teacher_id);
-		model.addAttribute("honorList", honorList);
-		model.addAttribute("honorCount", honorList.size());
-		return "teacher.resume";
-	}
-
 	@RequestMapping(value="/admin/thesisInfo/edit/ajax",method = RequestMethod.POST)
 	public void getThesisJson(@RequestParam ("thesisId") Long thesis_id,HttpServletResponse response,HttpSession session) throws Exception{
 		TeacherThesis teacherThesisInfo = thesisService.findOneById(Long.valueOf(thesis_id));
