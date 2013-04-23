@@ -84,7 +84,7 @@ public class FrontController {
 	private CourseTypeService courseTypeService;
 	@Autowired
 	private AnnoPhotoService annoPhotoService;
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -108,10 +108,11 @@ public class FrontController {
 		// we can achieve auto login through above code,
 		// comment it out for now since I am not quite clear how we should
 		// control the auto login
-		UserInfo sessionUserInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		if(sessionUserInfo!=null){
+		UserInfo sessionUserInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if (sessionUserInfo != null) {
 			return "redirect:/admin";
-		}else{
+		} else {
 			return "home";
 		}
 	}
@@ -140,8 +141,10 @@ public class FrontController {
 			return "404";
 		}
 	}
+
 	/**
 	 * show the teacher's front page
+	 * 
 	 * @param id
 	 * @param model
 	 * @param session
@@ -157,58 +160,76 @@ public class FrontController {
 		logger.info("#### Into teacher front page ####");
 		try {
 			User user = userService.findOne(id);
-			UserInfo sessionUserInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			boolean isFollower = false;
-			if (sessionUserInfo!=null) { // this is only valid when user logged in and see teacher home page
-				User sessionUser = sessionUserInfo.getUser();
-				isFollower = friendsRelateService.isTheFollower(id, sessionUser.getId());
+			if (user.getRole().equals("teacher")) {
+				UserInfo sessionUserInfo = (UserInfo) session
+						.getAttribute(GlobalDefs.SESSION_USER_INFO);
+				boolean isFollower = false;
+				if (sessionUserInfo != null) { // this is only valid when user
+												// logged in and see teacher
+												// home
+												// page
+					User sessionUser = sessionUserInfo.getUser();
+					isFollower = friendsRelateService.isTheFollower(id,
+							sessionUser.getId());
+				}
+
+				Teacher teacher = teacherService.findOne(id);
+				Page<BlogPost> page = blogService
+						.findAllBlogsNotGarbageAndNotDraft(0, 5, teacher);
+				List<BlogPost> blogPosts = page.getContent();
+				model.addAttribute("blogPosts", blogPosts);
+
+				Page<Announcement> annoPage = announcementService
+						.findAllAnnoByUser(0, 4, user);
+				model.addAttribute("annolist", annoPage.getContent());
+				model.addAttribute("annoCount", annoPage.getContent().size());
+
+				Page<CourseResource> pageResource = resourceService
+						.findAllResouByUserAndStatus(0, 5, user,
+								GlobalDefs.STATUS_RESOURCE);
+				List<CourseResource> resourceList = pageResource.getContent();
+				Integer resourceCount = resourceService.listAllByUser(user)
+						.size();
+				model.addAttribute("resourceList", resourceList);
+				model.addAttribute("resourceCount", resourceCount);
+
+				Page<TeacherCourse> pageCourse = courseService
+						.findTeacherCourseByUserAndPublish(0, 5, user,
+								GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+				List<TeacherCourse> courseList = pageCourse.getContent();
+				Integer courseCount = courseService
+						.getAllTeacherCourseByTeacheridAndPublish(id,
+								GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
+				model.addAttribute("courseList", courseList);
+				model.addAttribute("courseCount", courseCount);
+
+				List<Announcement> annoList = announcementService
+						.findAllByUid(id);
+				model.addAttribute("annoCount", annoList.size());
+
+				UserInfo userInfo = new UserInfo(user);
+				userInfo.setTeacher(teacher);
+
+				Integer fansCount = friendsRelateService.getAllFans(id).size();
+				Integer hostCount = friendsRelateService.getAllHost(id).size();
+
+				model.addAttribute("teacher_id", id);
+				model.addAttribute("teacherInfo", userInfo);
+
+				model.addAttribute("role", userInfo.getTeacherRole());
+				session.setAttribute("isFollower", isFollower);
+				session.setAttribute("fansCount", fansCount);
+				session.setAttribute("hostCount", hostCount);
+				return "teacher.basic";
+			} else {
+				return "redirect:/id/" + id;
 			}
-			
-			Teacher teacher = teacherService.findOne(id);
-			Page<BlogPost> page = blogService.findAllBlogsNotGarbageAndNotDraft(0, 5, teacher);
-			List<BlogPost> blogPosts = page.getContent();
-			model.addAttribute("blogPosts", blogPosts);
-			
-			Page<Announcement> annoPage = announcementService.findAllAnnoByUser(0, 4, user);
-			model.addAttribute("annolist", annoPage.getContent());
-			model.addAttribute("annoCount", annoPage.getContent().size());
-			
-			Page<CourseResource> pageResource = resourceService.findAllResouByUserAndStatus(0, 5, user, GlobalDefs.STATUS_RESOURCE);
-			List<CourseResource> resourceList = pageResource.getContent();
-			Integer resourceCount = resourceService.listAllByUser(user).size();
-			model.addAttribute("resourceList", resourceList);
-			model.addAttribute("resourceCount", resourceCount);
-
-			Page<TeacherCourse> pageCourse = courseService
-					.findTeacherCourseByUserAndPublish(0, 5, user, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-			List<TeacherCourse> courseList = pageCourse.getContent();
-			Integer courseCount = courseService.getAllTeacherCourseByTeacheridAndPublish(id, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
-			model.addAttribute("courseList", courseList);
-			model.addAttribute("courseCount", courseCount);
-			
-			List<Announcement> annoList = announcementService.findAllByUid(id);
-			model.addAttribute("annoCount", annoList.size());
-
-			UserInfo userInfo = new UserInfo(user);
-			userInfo.setTeacher(teacher);
-
-			Integer fansCount = friendsRelateService.getAllFans(id).size();
-			Integer hostCount = friendsRelateService.getAllHost(id).size();
-
-			model.addAttribute("teacher_id", id);
-			model.addAttribute("teacherInfo", userInfo);
-		
-			model.addAttribute("role", userInfo.getTeacherRole());		
-			session.setAttribute("isFollower", isFollower);
-			session.setAttribute("fansCount", fansCount);
-			session.setAttribute("hostCount", hostCount);
-			return "teacher.basic";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "404";
 		}
 	}
-	
+
 	@RequestMapping(value = "/enterprise/{id}")
 	public String enterpriseFront(@PathVariable Long id, Model model,
 			HttpSession session, HttpServletResponse response)
@@ -216,61 +237,67 @@ public class FrontController {
 		logger.info("#### Into enterprise front page ####");
 		try {
 			User user = userService.findOne(id);
-			Teacher enterprise = teacherService.findOne(id);
-			UserInfo sessionUserInfo = (UserInfo) session
-					.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			boolean isFollower = false;
-			if (sessionUserInfo != null) { // this is only valid when user
-											// logged in and see teacher home
-											// page
-				User sessionUser = sessionUserInfo.getUser();
-				isFollower = friendsRelateService.isTheFollower(id,
-						sessionUser.getId());
+			if (user.getRole().equals("enterprise")) {
+				Teacher enterprise = teacherService.findOne(id);
+				UserInfo sessionUserInfo = (UserInfo) session
+						.getAttribute(GlobalDefs.SESSION_USER_INFO);
+				boolean isFollower = false;
+				if (sessionUserInfo != null) { // this is only valid when user
+												// logged in and see teacher
+												// home
+												// page
+					User sessionUser = sessionUserInfo.getUser();
+					isFollower = friendsRelateService.isTheFollower(id,
+							sessionUser.getId());
+				}
+
+				Page<Announcement> annoPage = announcementService
+						.findAllAnnoByUser(0, 4, user);
+				model.addAttribute("annolist", annoPage.getContent());
+				List<Announcement> annoList = announcementService
+						.findAllByUid(id);
+				model.addAttribute("annoCount", annoList.size());
+				List<AnnoPhoto> annoPhoto = annoPhotoService
+						.findAnnoPhotoByUserid(user.getId());
+				model.addAttribute("annoPhoto", annoPhoto);
+
+				// Page<TeacherCourse> pageCourse = courseService
+				// .findTeacherCourseByTeacherAndPublish(0, 6, enterprise,
+				// GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+				// List<TeacherCourse> courseList = pageCourse.getContent();
+				List<TeacherCourse> courseList = courseService
+						.getAllTeacherCourseByTeacheridAndPublish(id,
+								GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+				model.addAttribute("courseList", courseList);
+				model.addAttribute("courseCount", courseList.size());
+
+				List<CourseType> cTypeList = courseTypeService.findAll();
+				model.addAttribute("cTypeList", cTypeList);
+
+				// Page<EnterpriseTeacher> eTeacher =
+				// enterpriseTeacherService.findTeacherByEnterprise(0, 6, user);
+				List<EnterpriseTeacher> eTeacherList = enterpriseTeacherService
+						.findTeacherByEnterprise(user);
+				model.addAttribute("eTeacher", eTeacherList);
+				model.addAttribute("eTeacherCount", eTeacherList.size());
+
+				UserInfo userInfo = new UserInfo(user);
+				userInfo.setTeacher(enterprise);
+
+				Integer fansCount = friendsRelateService.getAllFans(id).size();
+				Integer hostCount = friendsRelateService.getAllHost(id).size();
+
+				model.addAttribute("teacher_id", id);
+				model.addAttribute("teacherInfo", userInfo);
+
+				model.addAttribute("role", userInfo.getTeacherRole());
+				session.setAttribute("isFollower", isFollower);
+				session.setAttribute("fansCount", fansCount);
+				session.setAttribute("hostCount", hostCount);
+				return "enterprise.basic";
+			} else {
+				return "redirect:/id/" + id;
 			}
-
-			Page<Announcement> annoPage = announcementService
-					.findAllAnnoByUser(0, 4, user);
-			model.addAttribute("annolist", annoPage.getContent());
-			List<Announcement> annoList = announcementService.findAllByUid(id);
-			model.addAttribute("annoCount", annoList.size());
-			List<AnnoPhoto> annoPhoto = annoPhotoService
-					.findAnnoPhotoByUserid(user.getId());
-			model.addAttribute("annoPhoto", annoPhoto);
-
-			// Page<TeacherCourse> pageCourse = courseService
-			// .findTeacherCourseByTeacherAndPublish(0, 6, enterprise,
-			// GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-			// List<TeacherCourse> courseList = pageCourse.getContent();
-			List<TeacherCourse> courseList = courseService
-					.getAllTeacherCourseByTeacheridAndPublish(id,
-							GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-			model.addAttribute("courseList", courseList);
-			model.addAttribute("courseCount", courseList.size());
-
-			List<CourseType> cTypeList = courseTypeService.findAll();
-			model.addAttribute("cTypeList", cTypeList);
-
-			// Page<EnterpriseTeacher> eTeacher =
-			// enterpriseTeacherService.findTeacherByEnterprise(0, 6, user);
-			List<EnterpriseTeacher> eTeacherList = enterpriseTeacherService
-					.findTeacherByEnterprise(user);
-			model.addAttribute("eTeacher", eTeacherList);
-			model.addAttribute("eTeacherCount", eTeacherList.size());
-
-			UserInfo userInfo = new UserInfo(user);
-			userInfo.setTeacher(enterprise);
-
-			Integer fansCount = friendsRelateService.getAllFans(id).size();
-			Integer hostCount = friendsRelateService.getAllHost(id).size();
-
-			model.addAttribute("teacher_id", id);
-			model.addAttribute("teacherInfo", userInfo);
-
-			model.addAttribute("role", userInfo.getTeacherRole());
-			session.setAttribute("isFollower", isFollower);
-			session.setAttribute("fansCount", fansCount);
-			session.setAttribute("hostCount", hostCount);
-			return "enterprise.basic";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "404";
