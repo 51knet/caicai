@@ -63,7 +63,7 @@ $(document).ready(function() {
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
-							<td align="left" >${page.title}-${page.forbidden}</td>
+							<td align="left" >${page.title}</td>
 							<td align="center">${page.date}</td>
 							<td align="center">
 								 <a class="deleteAnnoPostBtn" href="#deleteAnnoPostModal" role="button" data-toggle="modal" data-target="#deleteAnnoPostModal">删除</a><input type="hidden" value="${page.id} ">  | 
