@@ -1,5 +1,4 @@
 package com.knet51.ccweb.controllers.admin.teacher.announcement;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -18,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.admin.teacher.TeacherContactInfoForm;
-import com.knet51.ccweb.controllers.admin.teacher.TeacherWorkExpInfoForm;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Teacher;

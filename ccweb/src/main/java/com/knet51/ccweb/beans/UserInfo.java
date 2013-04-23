@@ -2,7 +2,6 @@ package com.knet51.ccweb.beans;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Enterprise;
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;

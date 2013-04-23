@@ -1,6 +1,5 @@
 package com.knet51.ccweb.controllers.admin.teacher;
 
-import javax.persistence.Column;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;

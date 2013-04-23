@@ -1,8 +1,6 @@
 package com.knet51.ccweb.controllers.admin.enterprise.authentication;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -25,18 +23,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.admin.teacher.announcement.TeacherAnnoDetailInfoForm;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
-import com.knet51.ccweb.jpa.entities.AnnoPhoto;
-import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Authentication;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.courses.CourseResource;
-import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;

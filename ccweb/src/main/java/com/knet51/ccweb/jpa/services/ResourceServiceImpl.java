@@ -14,9 +14,7 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.dao.ResourceDao;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
-import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.repository.ResourceRepository;
-import com.knet51.ccweb.jpa.repository.TeacherCourseRepository;
 import com.knet51.ccweb.jpa.repository.TeacherCourseResourceRepository;
 
 @Transactional

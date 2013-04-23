@@ -1,7 +1,6 @@
 package com.knet51.ccweb.controllers.admin.teacher.course;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,16 +24,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.gson.Gson;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
-import com.knet51.ccweb.jpa.entities.EduBackground;
-import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.courses.CourseLesson;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
@@ -459,7 +454,6 @@ public class TeacherCourseInfoDetailController {
 			List<MultipartFile> files = request.getFiles("coverFile");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		TeacherCourse teacherCourse=teacherCourseService.findOneById(id);
-		String courseName = teacherCourse.getCourseName();
 		for(int i=0;i<files.size();i++){
 			MultipartFile multipartFile = files.get(i);
 			if(!files.get(i).isEmpty()){

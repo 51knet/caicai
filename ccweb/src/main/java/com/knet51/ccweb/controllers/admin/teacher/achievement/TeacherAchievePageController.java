@@ -19,12 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.admin.teacher.course.TeacherCourseInfoForm;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
-import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;

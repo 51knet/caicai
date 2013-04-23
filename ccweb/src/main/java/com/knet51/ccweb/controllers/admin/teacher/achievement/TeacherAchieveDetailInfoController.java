@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;

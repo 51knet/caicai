@@ -1,7 +1,6 @@
 package com.knet51.ccweb.controllers.admin.teacher.announcement;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -16,14 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
@@ -31,8 +28,6 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.AnnoPhoto;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.courses.CourseResource;
-import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 import com.knet51.ccweb.jpa.services.AnnoPhotoService;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.UserService;

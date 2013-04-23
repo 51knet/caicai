@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
-import com.knet51.ccweb.jpa.entities.resource.Resource;
 
 public interface ResourceService {
 	

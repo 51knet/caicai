@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;

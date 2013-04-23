@@ -1,6 +1,5 @@
 package com.knet51.ccweb.jpa.services;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.knet51.ccweb.beans.CourseBeans;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;

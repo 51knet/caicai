@@ -3,14 +3,11 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +18,6 @@ import com.knet51.ccweb.jpa.repository.UserRepository;
 @Transactional
 @Service("userCourseService")
 public class UserCourseServiceImpl implements UserCourseService {
-	private static final Logger logger = LoggerFactory
-			.getLogger(UserCourseServiceImpl.class);
 	@Autowired
 	private UserCourseRepository userCourseRepository;
 	
@@ -30,7 +25,6 @@ public class UserCourseServiceImpl implements UserCourseService {
 	private UserRepository userRepository;
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public Page<UserCourse> findUserCourseByTeachercourseid(int pageNumber, int pageSize,
 			Long teacherCourse_id) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 

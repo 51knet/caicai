@@ -72,8 +72,6 @@ public class FriendsRelatedPageController {
 	
 		Teacher teacher = teacherService.findOne(teacher_id);
 		
-		UserInfo userInf = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		
 		List<UserInfo> fansInfoList = relateService.getAllFansInfo(teacher_id);
 		
 //		int followValue=relateService.getFollowById(teacher_id,userInf.getId());
@@ -101,8 +99,6 @@ public class FriendsRelatedPageController {
 		User user = userService.findOne(teacher_id);
 		logger.info("###### into teacher find host controller ###########");
 		Teacher teacher = teacherService.findOne(teacher_id);
-		
-		UserInfo userInf = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		
 		List<UserInfo> hostInfoList = relateService.getAllHostInfo(teacher_id);
 		

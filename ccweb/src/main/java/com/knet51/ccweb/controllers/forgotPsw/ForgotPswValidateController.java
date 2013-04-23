@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.knet51.ccweb.controllers.register.CommonRegisterForm;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;

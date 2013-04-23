@@ -10,16 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
-import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
-import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.ResourceTypeService;

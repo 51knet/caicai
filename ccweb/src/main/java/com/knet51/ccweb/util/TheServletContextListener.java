@@ -4,16 +4,11 @@ import java.util.List;
 import java.util.Random;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
@@ -27,7 +22,6 @@ import com.knet51.ccweb.jpa.services.UserService;
  * 
  */
 public class TheServletContextListener implements ServletContextListener {
-	private static final Logger logger = LoggerFactory.getLogger(TheServletContextListener.class);
 	
 	@Autowired
 	private UserService userService;
@@ -61,28 +55,28 @@ public class TheServletContextListener implements ServletContextListener {
 //		setupTestData();		
 //		em.getTransaction().commit();
 	}
-
+	@SuppressWarnings("unused")
 	private void clearTestDataInDB() {
 		destroyAllPosts();
 		destroyTeachers();
 		destroyAllUsers();
 		destroyBlogCategory();
 	}
-
+	
 	private void destroyAllUsers() {
 		List<User> users = em.createQuery("select c from User c", User.class).getResultList();
 		 for (User user : users) {
 			em.remove(user);
 		}
 	}
-
+	
 	private void destroyBlogCategory() {
 		List<BlogCategory> blogCategories = em.createQuery("select c from BlogCategory c", BlogCategory.class).getResultList();
 		 for (BlogCategory category : blogCategories) {
 			em.remove(category);
 		}
 	}
-
+	
 	private void destroyTeachers() {
 		List<Teacher> teachers = em.createQuery("select c from Teacher c", Teacher.class).getResultList();
 		 for (Teacher teacher : teachers) {
@@ -103,7 +97,7 @@ public class TheServletContextListener implements ServletContextListener {
 			em.remove(blogPost);
 		}
 	}
-
+	@SuppressWarnings("unused")
 	private void setupTestData() {
 		createTeacherAndBlogPosts("steve@apple.com","steve");
 		createTeacherAndBlogPosts("tim@apple.com", "tim");

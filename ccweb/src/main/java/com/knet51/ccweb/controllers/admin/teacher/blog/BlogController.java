@@ -1,9 +1,7 @@
 package com.knet51.ccweb.controllers.admin.teacher.blog;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;

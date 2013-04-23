@@ -2,7 +2,6 @@ package com.knet51.ccweb.jpa.services;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;

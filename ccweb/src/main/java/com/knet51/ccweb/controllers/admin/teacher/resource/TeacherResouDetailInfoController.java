@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,11 +30,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.admin.teacher.TeacherWorkExpInfoForm;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
-import com.knet51.ccweb.jpa.entities.resource.Resource;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.ResourceService;
@@ -43,7 +40,6 @@ import com.knet51.ccweb.jpa.services.ResourceTypeService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
-import com.knet51.ccweb.util.fileUpLoad.SavePathUtil;
 
 @Controller
 public class TeacherResouDetailInfoController {
