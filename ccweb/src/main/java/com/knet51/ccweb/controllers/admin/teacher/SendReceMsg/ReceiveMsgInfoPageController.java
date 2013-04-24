@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.admin.teacher.sendReceMsg;
+package com.knet51.ccweb.controllers.admin.teacher.SendReceMsg;
 
 import java.util.List;
 
