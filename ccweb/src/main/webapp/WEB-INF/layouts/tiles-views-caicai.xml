@@ -5,351 +5,57 @@
 	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-	
-	<definition name="admin.teacher.details" extends="admin-layout">
-		<put-attribute name="title" value="账号信息" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/account/accountInfo.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="admin.teacher.resume" extends="admin-layout">
-		<put-attribute name="title" value="完善简历" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/resume/resumeEdit.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
-	</definition>
-
-	<definition name="admin.teacher" extends="admin-layout">
+	<definition name="admin.caicai.detail" extends="admin-layout">
 		<put-attribute name="title" value="教师中心" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/home/home.jsp"></put-attribute>
-	</definition>
-
-	<definition name="teacher.basic" extends="frontPage-layout">
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="title" value="教师主页" />
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/alluser/alluser.jsp"></put-attribute>
 	</definition>
 	
-	<!--  teacher announcement -->
-		<definition name="admin.teacher.announement.list" extends="admin-layout">
+	<definition name="admin.caicai.authentication" extends="admin-layout">
+		<put-attribute name="title" value="企业验证" />
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/authentication/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<!--  caicai announcement -->
+	<definition name="admin.caicai.announement.list" extends="admin-layout">
 		<put-attribute name="title" value="公告" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/list/list.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/announcement/list/list.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.announement.edit" extends="admin-layout">
-		<put-attribute name="title" value="公告" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/edit/editKind.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="admin.teacher.announement.new" extends="admin-layout">
-		<put-attribute name="title" value="公告" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/announcement/new/create.jsp"></put-attribute>
-	</definition>
-			
-	<!-- teacher achievement admin layout-->
+	<!-- caicai course admin layout-->
 
-	<definition name="admin.teacher.achievement.list" extends="admin-layout">
-		<put-attribute name="title" value="个人成果" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/achievement/list/list.jsp"></put-attribute>
-	</definition>
-	
-	<!-- teacher friendsRelated admin layout-->
-
-	<definition name="admin.teacher.friendsRelated.list" extends="admin-layout">
-		<put-attribute name="title" value="好友" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/friendsRelated/list.jsp"></put-attribute>
-	</definition>
-
-	<definition name="admin.teacher.friendRelated.addPage" extends="admin-layout">
-		<put-attribute name="title" value="好友" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/fans/friendsRelatedAdd.jsp"></put-attribute>
-	</definition>
-	
-	<!-- teacher course admin layout-->
-
-	<definition name="admin.teacher.course.list" extends="admin-layout">
+	<definition name="admin.caicai.course.list" extends="admin-layout">
 		<put-attribute name="title" value="课程" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/list/list.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/course/list/list.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.teacher.course.new" extends="admin-layout">
+	<definition name="admin.caicai.course.view" extends="admin-layout">
 		<put-attribute name="title" value="课程" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/new/create.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/course/view/view.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.teacher.course.add" extends="admin-layout">
-		<put-attribute name="title" value="课程" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/new/createStep.jsp"></put-attribute>
-	</definition>
+	<!-- caicai resource admin layout-->
 
-	<definition name="admin.teacher.course.view" extends="admin-layout">
-		<put-attribute name="title" value="课程" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/view/view.jsp"></put-attribute>
-	</definition>
-
-	<definition name="admin.teacher.course.edit" extends="admin-layout">
-		<put-attribute name="title" value="课程" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/edit.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="admin.course.preview" extends="homepage-layout">
-		<put-attribute name="title" value="课程预览" />
-		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
-		<put-attribute name="body" value="/WEB-INF/views/admin/course/view/preview.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
-	</definition>
-
-	<definition name="admin.teacher.course.resource.new" extends="admin-layout">
-		<put-attribute name="title" value="课程" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/resource/new/create.jsp"></put-attribute>
-	</definition>
-	<definition name="admin.teacher.course.edit.modifycourse" extends="admin-layout">
-		<put-attribute name="title" value="添加课程资料"></put-attribute>
-		<put-attribute name="breadcrumbs" value=" " />
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/modifyCourse.jsp" />
-	</definition>
-	
-	<definition name="admin.teacher.course.edit.basicinfo" extends="admin-layout">
-		<put-attribute name="title" value="基本信息"></put-attribute>
-		<put-attribute name="breadcrumbs" value=" " />
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/basicInfo.jsp" />
-	</definition>
-	
-	<definition name="admin.teacher.course.edit.detailinfo" extends="admin-layout">
-		<put-attribute name="title" value="详细信息"></put-attribute>
-		<put-attribute name="breadcrumbs" value=" " />
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/detailInfo.jsp" />
-	</definition>
-	
-	<definition name="admin.teacher.course.edit.cover" extends="admin-layout">
-		<put-attribute name="title" value="添加封面"></put-attribute>
-		<put-attribute name="breadcrumbs" value=" " />
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/modifyCover.jsp" />
-	</definition>
-	
-	<definition name="admin.teacher.course.edit.watchvideo" extends="admin-layout">
-		<put-attribute name="title" value="试看视频"></put-attribute>
-		<put-attribute name="breadcrumbs" value=" " />
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/watchVideo.jsp" />
-	</definition>
-	
-	<definition name="admin.teacher.course.edit.powerprice" extends="admin-layout">
-		<put-attribute name="title" value="权限设置"></put-attribute>
-		<put-attribute name="breadcrumbs" value=" " />
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/power_price.jsp" />
-	</definition>
-	
-	<definition name="admin.teacher.course.edit.deletecourse" extends="admin-layout">
-		<put-attribute name="title" value="取消课程"></put-attribute>
-		<put-attribute name="breadcrumbs" value=" " />
-		<put-attribute name="banner" value="/WEB-INF/views/admin/course/edit/courseTop.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/admin/course/edit/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/edit/deleteCourse.jsp" />
-	</definition>
-	<definition name="admin.teacher.course.type.list" extends="admin-layout">
-		<put-attribute name="title" value="课程" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/course/type/list/list.jsp"></put-attribute>
-	</definition>
-	
-	<!--  upgradeRole -->
-	<definition name="admin.teacher.upgradeRole" extends="admin-layout">
-		<put-attribute name="title" value="升级成为企业用户" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/upgrade/upgradeRole.jsp"></put-attribute>
-	</definition>
-	
-	<!-- teacher selfurl -->
-	<definition name="admin.teacher.selfurl" extends="admin-layout">
-		<put-attribute name="title" value="账号信息" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/account/selfUrl.jsp"></put-attribute>
-	</definition>
-	
-	<!-- teacher resource admin layout-->
-
-	<definition name="admin.teacher.resource.list" extends="admin-layout">
+	<definition name="admin.caicai.resource.list" extends="admin-layout">
 		<put-attribute name="title" value="资源" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/resource/list/list.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/resource/list/list.jsp"></put-attribute>
 	</definition>
-	
-	<definition name="teacherResouAddErrorPage" extends="admin-layout">
+
+	<definition name="admin.caicai.resource.type.list" extends="admin-layout">
 		<put-attribute name="title" value="资源" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/resource/resourceAddError.jsp"></put-attribute>
-	</definition>
-
-	<definition name="admin.teacher.resource.type.list" extends="admin-layout">
-		<put-attribute name="title" value="资源" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/resource/type/list/list.jsp"></put-attribute>
-	</definition>
-
-	<definition name="admin.teacher.resource.new" extends="admin-layout">
-		<put-attribute name="title" value="资源" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/resource/new/create.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/resource/type/list/list.jsp"></put-attribute>
 	</definition>
 	
-		<!-- teacher  message -->
-	
-	<definition name="admin.teacher.sendmessage" extends="frontPage-layout">
-		<put-attribute name="title" value="个人主页" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/message/sendMessage.jsp"></put-attribute>
+	<definition name="admin.caicai.blog.list" extends="admin-layout">
+		<put-attribute name="title" value="博文" />
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/resource/list/list.jsp"></put-attribute>
 	</definition>
-
-	<definition name="admin.teacher.message.detail" extends="admin-layout">
-		<put-attribute name="title" value="私信" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/message/receiveMsg.jsp"></put-attribute>
-	</definition>
-
-	<definition name="admin.teacher.message.send" extends="admin-layout">
-		<put-attribute name="title" value="私信" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/message/receiveMsgDetail.jsp"></put-attribute>
-	</definition>
-
-	<definition name="admin.teacher.message.isReadDetail" extends="admin-layout">
-		<put-attribute name="title" value="私信" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/message/isReadMsg.jsp"></put-attribute>
-	</definition>
-
-	<definition name="admin.teacher.message.isDeleDetail" extends="admin-layout">
-		<put-attribute name="title" value="私信" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/message/isDeleMsg.jsp"></put-attribute>
-	</definition>
-	
-	
-	<!-- teacher front page -->
-	
-	<definition name="teacher.resource.list" extends="frontPage-layout">
-		<put-attribute name="title" value="资源" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/front/resource/list/list.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="teacher.resource.detail" extends="frontPage-layout">
-		<put-attribute name="title" value="资源" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/front/resource/view/view.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="teacher.announcement.list" extends="frontPage-layout">
-		<put-attribute name="title" value="公告" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/front/announcement/list/list.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="teacher.announcement.detail" extends="frontPage-layout">
-		<put-attribute name="title" value="公告" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/front/announcement/view/view.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="teacher.fans.list" extends="frontPage-layout">
-		<put-attribute name="title" value="好友" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/front/fans/list/list.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="teacher.host.list" extends="frontPage-layout">
-		<put-attribute name="title" value="关注列表" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/front/host/list/list.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="teacher.resume" extends="frontPage-layout">
-		<put-attribute name="title" value="简历" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/front/resume/resume.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="teacher.achievement.thesis.list" extends="frontPage-layout">
-		<put-attribute name="title" value="教师论文" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/thesis/list/list.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="teacher.achievement.project.list" extends="frontPage-layout">
-		<put-attribute name="title" value="教师项目" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/project/list/list.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="teacher.achievement.patent.list" extends="frontPage-layout">
-		<put-attribute name="title" value="教师专利" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/patent/list/list.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="teacher.achievement.honor.list" extends="frontPage-layout">
-		<put-attribute name="title" value="荣誉奖项" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/honor/list/list.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="teacher.achievement.list" extends="frontPage-layout">
-		<put-attribute name="title" value="科研成果" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/list/list.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="teacher.course.list" extends="frontPage-layout">
-		<put-attribute name="title" value="教师课程" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/front/course/list/list.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="teacher.course.view" extends="frontPage-layout">
-		<put-attribute name="title" value="教师课程" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/front/course/view/view.jsp"></put-attribute>
-	</definition>
-	
-	<!-- This is my test page to test the Knowledge market. by ZM   -->
-	
-	<definition name="admin.teacher.allCourse.list" extends="admin-layout">
-		<put-attribute name="title" value="课程" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/allCourse/list/list.jsp"></put-attribute>
-	</definition>
-	<definition name="admin.teacher.course.all.list" extends="admin-layout">
-	<put-attribute name="title" value="课程" />
-	<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-	<put-attribute name="right" value="/WEB-INF/views/admin/allCourse/all/list/list.jsp"></put-attribute>
-	</definition>
-	
-	
-	
-	
 
 </tiles-definitions>

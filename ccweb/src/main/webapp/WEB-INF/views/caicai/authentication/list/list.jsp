@@ -50,35 +50,38 @@ $(document).ready(function() {
 	</div>
 	<div class="content">
 		<div style="text-align: right;">
-		<c:if test="${authentication.status != 'pass' && authentication.status != 'submit' }"> <a href='<c:url value="/admin/authentication/new"></c:url>' style="margin-bottom: 10px; font-size: 14px;"class="btn">
-				申请验证</a></c:if>
 			<br>
-			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
+			<table class="blue" id="mytab" cellpadding="4" width=100%  border=0>
 				<thead><tr>
-						<th  align="center" width="20%">申请标题</th>
-						<th  align="center" width="15%">状态</th>
+						<th  align="center" >标题</th>
+						<th  align="center" >申请人</th>
+						<th  align="center" >电话</th>
+						<th  align="center">申请状态</th>
 						<th  align="center" >拒绝原因</th>
-						<th  align="center" width="20%">申请时间</th>
-						<th align="center">下载</th>
+						<th  align="center" width="20%" >申请时间</th>
+						<th align="center">操作</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
 							<td align="center">${page.title}</td> 
+							<td align="center">${page.user.name}</td> 
+							<td align="center">${page.user.fix_phone}</td> 
 							<td align="center" >
-								<c:if test="${page.status=='pass' }"><a href='<c:url value="/admin"></c:url>' >通过,点击刷新 </a></c:if>
+								<c:if test="${page.status=='pass' }">通过</c:if>
 								<c:if test="${page.status=='submit' }">审核中</c:if>
 								<c:if test="${page.status=='refuse' }">未通过</c:if>
 							</td>
 							<td align="center" >
 								${page.reason }
 							</td>
-							<td>
+							<td  align="center">
 								<fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd HH:mm" />
 							</td>
 							<td align="center" >
-								<a href='<c:url value="/authentication/download/${page.id }"></c:url>'>下载</a>
+								<a href='<c:url value="/admin/caicai/authentication/pass/${page.id }"></c:url>'>通过</a> | 
+								<a href='<c:url value="/authentication/authentication/refuse/${page.id }"></c:url>'>未通过</a>
 							</td>
 						</tr>
 					</c:forEach>

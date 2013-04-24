@@ -2,6 +2,8 @@ package com.knet51.ccweb.jpa.services;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.knet51.ccweb.jpa.entities.User;
 
 public interface UserService {
@@ -23,4 +25,6 @@ public interface UserService {
 	boolean usableUrl(String url);
 	User findBySelfUrl(String url);
 	int getCountByEmail(String email);
+	
+	Page<User> findUserByRole(String role, int pageNumber, int pageSize);
 }

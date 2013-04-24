@@ -38,8 +38,8 @@
 </c:choose>
 	<div class="left-menu-container">
 		<ul class="nav nav-tabs nav-stacked">
-			<li><a href='<c:url value="/admin/caicai/enterprise/authentication"></c:url>' >企业申请</a></li>
-			<li><a href='<c:url value="/admin/caicai/user"><c:param name="role" value="teacher" /></c:url>' >用户管理</a></li>
+			<li><a href='<c:url value="/admin/caicai/authentication"></c:url>' >企业申请</a></li>
+			<li><a href='<c:url value="/admin/caicai/detail/user "></c:url>' >用户管理</a></li>
 			<li><a href='<c:url value="/admin/caicai/announcement/list"></c:url>' >公告管理</a></li>
 			<li><a href='<c:url value="/admin/caicai/course/list"></c:url>' >课程管理</a></li>
 			<li><a href='<c:url value="/admin/caicai/resource/list"></c:url>' >资源管理</a></li>
@@ -50,7 +50,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$('ul > li > a').each(function(index){
-		if ($(this).attr('href') == (window.location.pathname+window.location.search)) {
+		if ($(this).attr('href') == (window.location.pathname+window.location.search) ) {
 			$(this).parent().addClass('active');
 		}
 	});

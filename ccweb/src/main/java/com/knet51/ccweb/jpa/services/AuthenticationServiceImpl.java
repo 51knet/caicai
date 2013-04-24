@@ -57,4 +57,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		return onePage;
 	}
 
+	@Override
+	public Page<Authentication> findAll(int pageNumber, int pageSize) {
+		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id");
+		Page<Authentication> onePage = authenticationRepository.findAll(pageable);
+		return onePage;
+	}
+
 }

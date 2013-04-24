@@ -151,7 +151,7 @@ body {
 					<h5 style="text-align: left;">登录密码</h5>
 					<div class="controls" style="text-align: left;">
 						<input type="password" id="ps" name="password" placeholder="请输入您的密码" style="width: 96.17%;">
-						<span class="help-inline" id="passwordErr"><form:errors path="psw"></form:errors></span>
+						<span class="help-inline"  id="passwordErr"><form:errors path="psw"></form:errors></span>
 					</div>
 				</div>
 				<div class="span9 left">

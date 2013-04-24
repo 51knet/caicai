@@ -16,4 +16,6 @@ public interface AuthenticationService {
 	Authentication findOneById(Long id);
 	void destoryById(Long id);
 	Authentication updateAuthentication(Authentication authentication);
+	
+	Page<Authentication> findAll(int pageNumber, int pageSize);
 }

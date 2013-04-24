@@ -19,7 +19,7 @@
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
-.row-fluid.custom .row1 {
+.row-fluid.custom .content{
 	margin: 20px 40px;
 
 }
@@ -28,7 +28,7 @@
 	<div class="row">
 		<h4>账号信息</h4><i class="icon-star"></i><i>必须填写项</i>
 	</div>
-	<div class="row1">
+	<div class="content">
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
 		    	<li <c:if test='${active == "avatar"}'>class="active"</c:if>><a href="#avatar_tab" data-toggle="tab">修改头像</a></li> 

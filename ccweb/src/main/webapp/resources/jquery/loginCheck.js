@@ -85,8 +85,7 @@ function checkEmailAndPass(formID, actionName) {
 					  dataType:"text",
 					  success:function(number){
 						if(number == "0"){
-							$("#emailErrors").html("<font color='#ff0000'>邮箱或密码输入错误</font>");
-							$("#passwordErr").html("<font color='#ff0000'>邮箱或密码输入错误</font>");
+							$("#passwordErr").html("<font color='#ff0000'>邮箱密码错误,或账号禁用</font>");
 							return false;
 						}else{
 							$form.unbind('submit');
