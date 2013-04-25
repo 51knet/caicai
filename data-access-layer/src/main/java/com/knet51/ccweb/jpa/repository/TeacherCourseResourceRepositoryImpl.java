@@ -14,7 +14,7 @@ public class TeacherCourseResourceRepositoryImpl implements TeacherCourseResourc
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CourseResource> getResourceByCourseIdAndStatus(Long course_id,Integer status) {
-		List<CourseResource> list = em.createQuery("from CourseResource where course_id="+course_id+"and status="+status).getResultList();
+		List<CourseResource> list = em.createQuery("from CourseResource where forbidden = null and course_id="+course_id+"and status="+status).getResultList();
 		return list;
 	}
 	@Override

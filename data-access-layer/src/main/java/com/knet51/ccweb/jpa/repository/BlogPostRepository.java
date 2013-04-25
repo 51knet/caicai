@@ -1,5 +1,7 @@
 package com.knet51.ccweb.jpa.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,4 +18,6 @@ public interface BlogPostRepository extends JpaRepository<BlogPost, Long>, JpaSp
 	Page<BlogPost> findByAuthorAndDraftAndForbiddenIsNull(Teacher teacher, boolean b, Pageable dateDesc);
 	Page<BlogPost> findByAuthorAndGarbageAndDraftAndForbiddenIsNull(Teacher teacher,boolean garbage, boolean draft, Pageable pageable);
 	
+	// for the super admin
+	List<BlogPost> findByAuthorAndGarbageAndDraft(Teacher teacher,boolean garbage, boolean draft);
 }

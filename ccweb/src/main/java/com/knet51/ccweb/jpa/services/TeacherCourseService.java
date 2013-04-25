@@ -3,6 +3,8 @@ package com.knet51.ccweb.jpa.services;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
@@ -24,4 +26,8 @@ public interface TeacherCourseService {
 	TeacherCourse getTeacherCourseByCourseName(String cousername,Long teacherId);
 	
 	Page<TeacherCourse> findTeacherCourseByUserAndPublishAndCType(int pageNum, int pageSize, User user,Integer publish,CourseType cType);
+	
+	/*  for super Admin */
+	List<TeacherCourse> findCourseByUserAndPublishGreaterThanForSuperAdmin(User user,Integer publish);
+	Page<TeacherCourse> findCourseByUserAndPublishGreaterThanForSuperAdmin(User user,Integer publish,int pageNum, int pageSize);
 }

@@ -41,7 +41,7 @@ public class ResourceServiceImpl implements ResourceService {
 	
 	@Override
 	public List<CourseResource> listAllByUser(User user) {
-		return courseResourceRepository.findResourceByUserAndStatus(user, GlobalDefs.STATUS_RESOURCE);
+		return courseResourceRepository.findResourceByUserAndStatusAndForbiddenIsNull(user, GlobalDefs.STATUS_RESOURCE);
 	}
 
 
@@ -53,8 +53,28 @@ public class ResourceServiceImpl implements ResourceService {
 	@Override
 	public Page<CourseResource> findAllResouByUserAndStatus(int pageNumber, int pageSize, User user,Integer status) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
+		Page<CourseResource> onePage = courseResourceRepository.findResourceByUserAndStatusAndForbiddenIsNull(user, status, dateDesc);
+		return onePage;
+	}
+
+	@Override
+	public List<CourseResource> findAllByUserAndStatusForSuperAdmin(User user,
+			Integer status) {
+		return courseResourceRepository.findResourceByUserAndStatus(user, status);
+	}
+
+	@Override
+	public Page<CourseResource> findAllByUserAndStatusForSuperAdmin(
+			int pageNum, int pageSize, User user, Integer status) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
 		Page<CourseResource> onePage = courseResourceRepository.findResourceByUserAndStatus(user, status, dateDesc);
 		return onePage;
+	}
+
+	@Override
+	public CourseResource UpdateResource(CourseResource resource) {
+		
+		return courseResourceRepository.saveAndFlush(resource);
 	}
 
 }

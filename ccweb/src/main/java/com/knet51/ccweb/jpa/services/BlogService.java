@@ -19,6 +19,7 @@ public interface BlogService {
 	Page<BlogPost> findAllBlogs(int pageNumber, int pageSize, Teacher teacher);
 	Page<BlogPost> findAllBlogsNotGarbage(int pageNumber, int pageSize, Teacher teacher);
 	Page<BlogPost> findAllBlogsNotGarbageAndNotDraft(int pageNumber, int pageSize, Teacher teacher);
+	List<BlogPost> findAllBlogsNotGarbageAndNotDraft(Teacher teacher);
 	List<BlogCategory> findBlogCategories(Teacher teacher);
 	BlogCategory findBlogCategory(Long category_id);
 	List<BlogPost> findBlogPosts(Long teacher_id);

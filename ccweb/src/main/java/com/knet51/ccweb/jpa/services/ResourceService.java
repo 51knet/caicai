@@ -14,6 +14,12 @@ public interface ResourceService {
 	
 	CourseResource findOneById(Long id);
 	
+	CourseResource UpdateResource(CourseResource resource);
+	
 	Page<CourseResource> findAllResouByUserAndStatus(int pageNum, int pageSize, User user,Integer status);
 	
+	/* super admin */
+	List<CourseResource> findAllByUserAndStatusForSuperAdmin(User user, Integer status);
+	
+	Page<CourseResource> findAllByUserAndStatusForSuperAdmin(int pageNum, int pageSize, User user,Integer status);
 }

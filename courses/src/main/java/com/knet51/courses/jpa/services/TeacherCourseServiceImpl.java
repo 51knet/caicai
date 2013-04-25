@@ -136,7 +136,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	public List<CourseBeans> getAllCourseBeans() {
 		List<CourseBeans> courseBeansList = new ArrayList<CourseBeans>();
 		Sort sort = new Sort(Direction.DESC, "id");
-		List<TeacherCourse> teacherCourseList = courseRepository.findTeacherCourseByStatusAndPublish(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,sort);
+		List<TeacherCourse> teacherCourseList = courseRepository.findTeacherCourseByStatusAndPublishAndForbiddenIsNull(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,sort);
 		for(int i=0;i<teacherCourseList.size();i++){
 			Double avgMark = commentRepository.getMark(teacherCourseList.get(i).getId());
 			List<UserCourse> listComment=commentRepository.findByTeachercourseid(teacherCourseList.get(i).getId());
@@ -180,7 +180,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	@Override
 	public List<TeacherCourse> findAllCourses() {
 		Sort sort = new Sort(Direction.DESC, "id");
-		List<TeacherCourse> courseList = courseRepository.findTeacherCourseByStatusAndPublish(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,sort);
+		List<TeacherCourse> courseList = courseRepository.findTeacherCourseByStatusAndPublishAndForbiddenIsNull(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,sort);
 		return courseList;
 	}
 

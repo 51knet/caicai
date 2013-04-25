@@ -22,7 +22,7 @@ public interface TeacherCourseRepository extends JpaRepository<TeacherCourse, Lo
 	Page<TeacherCourse> findAll(Pageable pageable);
 	Page<TeacherCourse> findTeacherCourseByUserAndForbiddenIsNullAndPublishGreaterThan(User user,Integer publish,Pageable pageable);
 	//List<String> getCourseType();
-	List<TeacherCourse> findTeacherCourseByStatusAndPublish(Integer status,Integer publish,Sort sort);
+	List<TeacherCourse> findTeacherCourseByStatusAndPublishAndForbiddenIsNull(Integer status,Integer publish,Sort sort);
 	List<TeacherCourse> findTeacherCourseByUserAndStatusAndForbiddenIsNullAndPublish(User user,Integer status,Integer publish);
 	Page<TeacherCourse> findTeacherCourseByUserAndPublishAndForbiddenIsNull(User user,Integer publish,Pageable pageable);
 	
@@ -31,4 +31,8 @@ public interface TeacherCourseRepository extends JpaRepository<TeacherCourse, Lo
 	TeacherCourse getTeacherCourseByCourseName(@Param("coursename") String cousername,@Param("userid") Long userid);
 	
 	Page<TeacherCourse> findTeacherCourseByUserAndPublishAndCType(User user,Integer publish,CourseType cType,Pageable pageable);
+	
+	/* use in super admin */
+	Page<TeacherCourse> findTeacherCourseByUserAndPublishGreaterThan(User user,Integer publish,Pageable pageable);
+	List<TeacherCourse> findTeacherCourseByUserAndPublishGreaterThan(User user,Integer publish);
 }

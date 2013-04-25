@@ -139,6 +139,12 @@ public class BlogServiceImpl implements BlogService {
 		return blogCategoryRepository.save(blogCategory);
 	}
 
+	@Override
+	public List<BlogPost> findAllBlogsNotGarbageAndNotDraft(Teacher teacher) {
+		
+		return blogPostRepository.findByAuthorAndGarbageAndDraft(teacher, false, false);
+	}
+
 
 	
 

@@ -14,6 +14,9 @@ import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 @Transactional
 public interface TeacherCourseResourceRepository extends JpaRepository<CourseResource, Long>, JpaSpecificationExecutor<CourseResource>,TeacherCourseResourceRepositoryCustom{
 	//Page<CourseResource> findTeacherCourseResourceByCourse(TeacherCourse course,Pageable pageable);
+	Page<CourseResource> findResourceByUserAndStatusAndForbiddenIsNull(User user,Integer status, Pageable pageable);
+	List<CourseResource> findResourceByUserAndStatusAndForbiddenIsNull(User user,Integer status);
+	/* for super admin */
 	Page<CourseResource> findResourceByUserAndStatus(User user,Integer status, Pageable pageable);
 	List<CourseResource> findResourceByUserAndStatus(User user,Integer status);
 }

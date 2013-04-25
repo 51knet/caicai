@@ -80,8 +80,11 @@ $(document).ready(function() {
 								<fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd HH:mm" />
 							</td>
 							<td align="center" >
+								<c:if test="${page.status == 'submit' ||page.status == 'refuse' }">
 								<a href='<c:url value="/admin/caicai/authentication/pass/${page.id }"></c:url>'>通过</a> | 
-								<a href='<c:url value="/authentication/authentication/refuse/${page.id }"></c:url>'>未通过</a>
+								<a href='<c:url value="/admin/caicai/authentication/refuse/${page.id }"></c:url>'>未通过</a>
+								</c:if>
+								<c:if  test="${page.status == 'pass'  }">已通过</c:if>
 							</td>
 						</tr>
 					</c:forEach>

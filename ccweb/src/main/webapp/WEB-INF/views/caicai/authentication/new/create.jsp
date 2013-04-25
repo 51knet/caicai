@@ -9,18 +9,9 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-	
-	$("form:first").submit(function(){
-		 var myFiles=$("#myFiles").val();
-		if(myFiles==""){
-			$("#myFilesError").html("上传文件不能为空");
-			return false;
-		}
-	});
-	
 	$("#authencation_form").submit(function(){
 		//this.sync();
-		return checkEmptyAjax("authencation_form","createAuthenticationAjax");
+		return checkEmptyAjax('authencation_form','<c:url value="/admin/caicai/authentication/refuseAjax"></c:url>');
 	});
 	
 });
@@ -47,17 +38,16 @@ $(document).ready(function() {
 </style>
 <div class="row-fluid custom round">
 	<div class="row" >
-		<h4>申请信息>添加申请</h4>
+		<h4>申请信息>拒绝原因</h4>
 	</div>
 	<div class="content">
-		<form:form action="new/create" method="post" enctype="multipart/form-data" id="authencation_form" >  
-			申请标题：<input type="text" name="title" placeholder="申请标题" id="auth_title"  /><span class="help-inline"></span><br>
-			企业名称：<input type="text" name="name" placeholder="企业名称" id="auth_name"  /><span class="help-inline"></span><br>
-			联系电话：<input type="text" name="phone" placeholder="联系电话" id="auth_phone"  /><span class="help-inline"></span><br>
-			申请详情：<textarea style="width: 400px; height: 200px;" name="content" id="auth_content" ></textarea><span class="help-inline"></span><br>
-			上传资料：<input type="file" name="myFiles"  id="myFiles"/>
-			<span style="color:red;">单次上传不大于10M</span>
-			<br><br>
+		<form:form action='new' method="post"  id="authencation_form" > 
+			<input type="hidden" value="${authentication.id }" name="auth_id" /> 
+			<div class="control-group" id="reason">
+				<div class="controls">
+					拒绝原因：<textarea style="width: 400px; height: 200px;" name="reason" ></textarea><span class="help-inline"></span>
+				</div>
+			</div>
 			<div class="pull-left" style="margin-left: 70px;">
 			<button type="submit" class="btn btn-success" >添加</button>&nbsp;&nbsp;
 			<button type="reset" class="btn" >取消</button>

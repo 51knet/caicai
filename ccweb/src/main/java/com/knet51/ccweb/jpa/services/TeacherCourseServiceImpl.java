@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
@@ -115,6 +116,22 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUserAndPublishAndCType(user, publish, cType, dateDesc);
 		return onePage;
 	}
+
+	@Override
+	public List<TeacherCourse> findCourseByUserAndPublishGreaterThanForSuperAdmin(
+			User user, Integer publish) {
+		return courseRepository.findTeacherCourseByUserAndPublishGreaterThan(user, publish);
+	}
+
+	@Override
+	public Page<TeacherCourse> findCourseByUserAndPublishGreaterThanForSuperAdmin(
+			User user, Integer publish, int pageNum, int pageSize) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
+		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUserAndPublishGreaterThan(user, publish, dateDesc);
+		return onePage;
+	}
+
+	
 
 
 	

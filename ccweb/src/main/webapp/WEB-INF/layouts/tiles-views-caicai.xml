@@ -5,16 +5,25 @@
 	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
+
+	<!-- show all user  -->
 	<definition name="admin.caicai.detail" extends="admin-layout">
 		<put-attribute name="title" value="教师中心" />
 		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/caicai/alluser/alluser.jsp"></put-attribute>
 	</definition>
 	
+	<!-- handler the authentication  -->
 	<definition name="admin.caicai.authentication" extends="admin-layout">
 		<put-attribute name="title" value="企业验证" />
 		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/caicai/authentication/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.caicai.authentication.refuse" extends="admin-layout">
+		<put-attribute name="title" value="企业验证" />
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/authentication/new/create.jsp"></put-attribute>
 	</definition>
 	
 	<!--  caicai announcement -->
