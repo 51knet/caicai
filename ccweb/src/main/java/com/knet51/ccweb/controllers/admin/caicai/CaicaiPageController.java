@@ -21,6 +21,8 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Authentication;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.blog.BlogPost;
+import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
@@ -155,5 +157,27 @@ public class CaicaiPageController {
 		Page<TeacherCourse> page = courseService.findCourseByPublishGreaterThanForSuperAdmin(GlobalDefs.PUBLISH_NUM_DELETE, pageNumber, pageSize);
 		model.addAttribute("page", page);
 		return "admin.caicai.course.list";
+	}
+	
+	/*  operate blog page controller  */
+	
+	@RequestMapping(value="/admin/caicai/blog/list")
+	public String showAllBlog(Model model, HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize) {
+		logger.info("====== into caicai blog controller =====");
+		Page<BlogPost> page = blogService.findAllBlogsNotGarbageAndNotDraftForSuperAdmin(pageNumber, pageSize);
+		model.addAttribute("page", page);
+		return "admin.caicai.blog.list";
+	}
+	
+	/*  operate resource page controller  */
+	
+	@RequestMapping(value="/admin/caicai/resource/list")
+	public String showAllResource(Model model, HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize) {
+		logger.info("====== into caicai resource controller =====");
+		Page<CourseResource> page = resourceService.findAllByStatusForSuperAdmin(pageNumber, pageSize);
+		model.addAttribute("page", page);
+		return "admin.caicai.resource.list";
 	}
 }

@@ -72,9 +72,21 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
-	public CourseResource UpdateResource(CourseResource resource) {
+	public CourseResource updateResource(CourseResource resource) {
 		
 		return courseResourceRepository.saveAndFlush(resource);
+	}
+
+	@Override
+	public List<CourseResource> findAllByStatusForSuperAdmin() {
+		return courseResourceRepository.findResourceByStatus(GlobalDefs.STATUS_RESOURCE);
+	}
+
+	@Override
+	public Page<CourseResource> findAllByStatusForSuperAdmin(int pageNum,int pageSize) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
+		Page<CourseResource> onePage = courseResourceRepository.findResourceByStatus(GlobalDefs.STATUS_RESOURCE, dateDesc);
+		return onePage;
 	}
 
 }

@@ -30,5 +30,5 @@ public interface TeacherCourseService {
 	List<TeacherCourse> findCourseByUserAndPublishGreaterThanForSuperAdmin(User user,Integer publish);
 	Page<TeacherCourse> findCourseByUserAndPublishGreaterThanForSuperAdmin(User user,Integer publish,int pageNum, int pageSize);
 	Page<TeacherCourse> findCourseByPublishGreaterThanForSuperAdmin(Integer publish,int pageNum, int pageSize);
-	List<TeacherCourse> findAll();
+	List<TeacherCourse> findAllForAdmin();
 }

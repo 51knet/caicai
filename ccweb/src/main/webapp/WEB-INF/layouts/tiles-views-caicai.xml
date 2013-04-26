@@ -64,7 +64,7 @@
 	<definition name="admin.caicai.blog.list" extends="admin-layout">
 		<put-attribute name="title" value="博文" />
 		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/caicai/resource/list/list.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/blog/list/list.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>

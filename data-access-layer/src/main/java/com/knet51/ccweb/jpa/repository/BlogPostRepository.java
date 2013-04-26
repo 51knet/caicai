@@ -20,4 +20,6 @@ public interface BlogPostRepository extends JpaRepository<BlogPost, Long>, JpaSp
 	
 	// for the super admin
 	List<BlogPost> findByAuthorAndGarbageAndDraft(Teacher teacher,boolean garbage, boolean draft);
+	List<BlogPost> findAllByGarbageAndDraft(boolean garbage, boolean draft);
+	Page<BlogPost> findAllByGarbageAndDraft(boolean garbage, boolean draft,Pageable pageable);
 }

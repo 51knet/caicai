@@ -31,4 +31,7 @@ public interface BlogService {
 	Page<BlogPost> findAllBlogsIsGarbage(int pageNumber, int pageSize, Teacher teacher);
 	Page<BlogPost> findAllBlogsIsDraft(int pageNumber, int pageSize, Teacher teacher);
 	Page<BlogPost> findAllBlogsIsDraftNotGarbage(int pageNumber, int pageSize, Teacher teacher);
+	/* use for super admin  */
+	Page<BlogPost> findAllBlogsNotGarbageAndNotDraftForSuperAdmin(int pageNumber, int pageSize);
+	List<BlogPost> findAllBlogsNotGarbageAndNotDraftForSuperAdmin();
 }

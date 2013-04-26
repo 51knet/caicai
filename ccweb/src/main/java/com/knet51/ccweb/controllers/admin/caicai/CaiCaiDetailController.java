@@ -92,7 +92,7 @@ public class CaiCaiDetailController {
 			if(resourceList.size()>0){
 				for (int i = 0; i <resourceList.size(); i++) {
 					resourceList.get(i).setForbidden(null);
-					resourceService.UpdateResource(resourceList.get(i));
+					resourceService.updateResource(resourceList.get(i));
 				}
 			}
 			user.setForbidden(null);
@@ -139,7 +139,7 @@ public class CaiCaiDetailController {
 			if(resourceList.size()>0){
 				for (int i = 0; i <resourceList.size(); i++) {
 					resourceList.get(i).setForbidden("yes");
-					resourceService.UpdateResource(resourceList.get(i));
+					resourceService.updateResource(resourceList.get(i));
 				}
 			}
 			user.setForbidden("yes");
@@ -257,13 +257,14 @@ public class CaiCaiDetailController {
 			}
 			model.addAttribute("annoList", newAnnoList);
 			model.addAttribute("annoListCount",newAnnoList.size());
+			model.addAttribute("searchParam", title);
 			return "admin.caicai.announcement.list";
 		}else{
 			return "redirect:/admin/caicai/announcement/list";
 		}
 	}
 	
-/* oprate announcement detail controller   */
+	/* oprate announcement detail controller   */
 	
 	/**
 	 * free a announcement
@@ -290,7 +291,7 @@ public class CaiCaiDetailController {
 		return "redirect:/admin/caicai/course/list";
 	}
 	/**
-	 * search a announcement by searchparam
+	 * search a course by courseName
 	 * @param searchParam
 	 * @param model
 	 * @return
@@ -298,7 +299,7 @@ public class CaiCaiDetailController {
 	@RequestMapping(value="/admin/caicai/course/search", method = RequestMethod.POST)
 	public String searchCourseByName(@RequestParam("searchParam") String searchParam,Model model){
 		String name = searchParam.trim();
-		List<TeacherCourse> courseList = courseService.findAll();
+		List<TeacherCourse> courseList = courseService.findAllForAdmin();
 		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
 		if(name != null && !name.equals("")){
 			for (int i = 0; i <courseList.size() ; i++) {
@@ -308,9 +309,114 @@ public class CaiCaiDetailController {
 			}
 			model.addAttribute("courseList", newCourseList);
 			model.addAttribute("courseListCount",newCourseList.size());
+			model.addAttribute("searchParam", name);
 			return "admin.caicai.course.list";
 		}else{
 			return "redirect:/admin/caicai/course/list";
+		}
+	}
+	
+	/* oprate blog detail controller   */
+	
+	/**
+	 * free a announcement
+	 * @param anno_id
+	 * @return
+	 */
+	@RequestMapping(value="/admin/caicai/blog/{blog_id}/free")
+	public String freeBlog(@PathVariable Long blog_id){
+		BlogPost blogPost = blogService.findOne(blog_id);
+		blogPost.setForbidden(null);
+		blogService.updateBlogPost(blogPost);
+		return "redirect:/admin/caicai/blog/list";
+	}
+	/**
+	 * forbid a announcement
+	 * @param anno_id
+	 * @return
+	 */
+	@RequestMapping(value="/admin/caicai/blog/{blog_id}/forbid")
+	public String forbidblog(@PathVariable Long blog_id){
+		BlogPost blogPost = blogService.findOne(blog_id);
+		blogPost.setForbidden("yes");
+		blogService.updateBlogPost(blogPost);
+		return "redirect:/admin/caicai/blog/list";
+	}
+	/**
+	 * search a course by courseName
+	 * @param searchParam
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/admin/caicai/blog/search", method = RequestMethod.POST)
+	public String searchBlogByTitle(@RequestParam("searchParam") String searchParam,Model model){
+		String title = searchParam.trim();
+		List<BlogPost> blogList = blogService.findAllBlogsNotGarbageAndNotDraftForSuperAdmin();
+		List<BlogPost> newBlogList = new ArrayList<BlogPost>();
+		if(title != null && !title.equals("")){
+			for (int i = 0; i <blogList.size() ; i++) {
+				if(blogList.get(i).getTitle().contains(title)){
+					newBlogList.add(blogList.get(i));
+				}
+			}
+			model.addAttribute("blogList", newBlogList);
+			model.addAttribute("blogListCount",newBlogList.size());
+			model.addAttribute("searchParam", title);
+			return "admin.caicai.blog.list";
+		}else{
+			return "redirect:/admin/caicai/blog/list";
+		}
+	}
+	
+/* oprate resource detail controller   */
+	
+	/**
+	 * free a announcement
+	 * @param anno_id
+	 * @return
+	 */
+	@RequestMapping(value="/admin/caicai/resource/{resource_id}/free")
+	public String freeResource(@PathVariable Long resource_id){
+		CourseResource resource = resourceService.findOneById(resource_id);
+		resource.setForbidden(null);
+		resourceService.updateResource(resource);
+		return "redirect:/admin/caicai/resource/list";
+	}
+	/**
+	 * forbid a announcement
+	 * @param anno_id
+	 * @return
+	 */
+	@RequestMapping(value="/admin/caicai/resource/{resource_id}/forbid")
+	public String forbidResource(@PathVariable Long resource_id){
+		CourseResource resource = resourceService.findOneById(resource_id);
+		resource.setForbidden("yes");
+		resourceService.updateResource(resource);
+		return "redirect:/admin/caicai/resource/list";
+	}
+	/**
+	 * search a course by courseName
+	 * @param searchParam
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/admin/caicai/resource/search", method = RequestMethod.POST)
+	public String searchResourceByFileName(@RequestParam("searchParam") String searchParam,Model model){
+		String fileName = searchParam.trim();
+		List<CourseResource> resourceList = resourceService.findAllByStatusForSuperAdmin();
+		List<CourseResource> newResourceList = new ArrayList<CourseResource>();
+		if(fileName != null && !fileName.equals("")){
+			for (int i = 0; i <resourceList.size() ; i++) {
+				if(resourceList.get(i).getFileName().contains(fileName)){
+					newResourceList.add(resourceList.get(i));
+				}
+			}
+			model.addAttribute("resourceList", newResourceList);
+			model.addAttribute("searchParam", fileName);
+			model.addAttribute("resourceListCount",newResourceList.size());
+			return "admin.caicai.resource.list";
+		}else{
+			return "redirect:/admin/caicai/resource/list";
 		}
 	}
 	

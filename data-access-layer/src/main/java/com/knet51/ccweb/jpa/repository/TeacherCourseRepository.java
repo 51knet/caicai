@@ -36,4 +36,5 @@ public interface TeacherCourseRepository extends JpaRepository<TeacherCourse, Lo
 	Page<TeacherCourse> findTeacherCourseByUserAndPublishGreaterThan(User user,Integer publish,Pageable pageable);
 	List<TeacherCourse> findTeacherCourseByUserAndPublishGreaterThan(User user,Integer publish);
 	Page<TeacherCourse> findAllByPublishGreaterThan(Integer publish,Pageable pageable);
+	List<TeacherCourse> findAllByPublishGreaterThan(Integer publish);
 }

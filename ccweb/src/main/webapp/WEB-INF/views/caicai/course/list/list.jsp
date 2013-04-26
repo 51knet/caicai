@@ -101,8 +101,8 @@ $(document).ready(function() {
 									</td>
 									<td align="center">${page.courseDate}</td>
 									<td align="center">
-										<c:if test="${user.forbidden=='yes' }">已禁用</c:if>
-										<c:if test="${user.forbidden== null }">未禁用</c:if>
+										<c:if test="${page.forbidden=='yes' }">已禁用</c:if>
+										<c:if test="${page.forbidden== null }">未禁用</c:if>
 									</td>
 									<td align="center">
 										<c:if test="${page.forbidden=='yes' }"><a href='<c:url value="/admin/caicai/course/${page.id}/free"></c:url>' >解禁</a></c:if>

@@ -145,6 +145,19 @@ public class BlogServiceImpl implements BlogService {
 		return blogPostRepository.findByAuthorAndGarbageAndDraft(teacher, false, false);
 	}
 
+	@Override
+	public Page<BlogPost> findAllBlogsNotGarbageAndNotDraftForSuperAdmin(
+			int pageNumber, int pageSize) {
+		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
+		return blogPostRepository.findAllByGarbageAndDraft(false, false, dateDesc);
+	}
+
+	@Override
+	public List<BlogPost> findAllBlogsNotGarbageAndNotDraftForSuperAdmin() {
+		// TODO Auto-generated method stub
+		return blogPostRepository.findAllByGarbageAndDraft(false, false);
+	}
+
 
 	
 

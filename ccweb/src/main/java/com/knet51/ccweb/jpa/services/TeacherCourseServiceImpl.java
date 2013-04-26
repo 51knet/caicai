@@ -140,8 +140,8 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	}
 
 	@Override
-	public List<TeacherCourse> findAll() {
-		return courseRepository.findAll();
+	public List<TeacherCourse> findAllForAdmin() {
+		return courseRepository.findAllByPublishGreaterThan(GlobalDefs.PUBLISH_NUM_DELETE);
 	}
 
 	

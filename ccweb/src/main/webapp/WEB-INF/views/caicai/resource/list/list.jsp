@@ -40,11 +40,11 @@ $(document).ready(function() {
 
 <div class="row-fluid custom round">
 	<div  class="row" >
-		<h4>公告管理</h4>
+		<h4>资源管理</h4>
 	</div>
 	<div class="content">
 		<div style="padding-bottom: 10px; text-align: right;">  
-			<form class="navbar-form" action="<c:url value="/admin/caicai/announcement/search"></c:url>" method="post">
+			<form class="navbar-form" action="<c:url value="/admin/caicai/resource/search"></c:url>" method="post">
 					 <input type="text" name="searchParam" class="span5" placeholder="输入公告标题搜索"  value="${searchParam }">
 					 <button type="submit" class="btn" style=" margin-top:4px;font-family:Arial,'Microsoft YaHei'; color: #808080; ">标题搜索</button>
 			</form>
@@ -52,7 +52,7 @@ $(document).ready(function() {
 		<div style="text-align: right;">
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead><tr>
-						<th  align="center">公告标题</th>
+						<th  align="center">文件名称</th>
 						<th  align="center">发布人</th>
 						<th  align="center" width="20%">发布时间</th>
 						<th  align="center" >状态</th>
@@ -61,22 +61,22 @@ $(document).ready(function() {
 				</thead>
 				<tbody>
 					<c:choose>
-						<c:when test="${annoListCount >=0 }">
-							<c:if test="${annoListCount == 0 }">
+						<c:when test="${resourceListCount >=0 }">
+							<c:if test="${resourceListCount == 0 }">
 								<tr><td colspan="5" align="left">未搜索到</td></tr>
 							</c:if>
-							<c:forEach items="${annoList }" var = "anno">
+							<c:forEach items="${resourceList }" var = "resource">
 								<tr>
-									<td align="left" >${anno.title}</td>
-									<td align="left" >${anno.user.name}</td>
-									<td align="center">${anno.date}</td>
+									<td align="left" >${resource.fileName}</td>
+									<td align="left" >${resource.user.name}</td>
+									<td align="center">${resource.date}</td>
 									<td align="center">
-										<c:if test="${anno.forbidden=='yes' }">已禁用</c:if>
-										<c:if test="${anno.forbidden== null }">未禁用</c:if>
+										<c:if test="${resource.forbidden=='yes' }">已禁用</c:if>
+										<c:if test="${resource.forbidden== null }">未禁用</c:if>
 									</td>
 									<td align="center">
-										<c:if test="${anno.forbidden=='yes' }"><a href='<c:url value="/admin/caicai/announcement/${anno.id}/free"></c:url>' >解禁</a></c:if>
-										<c:if test="${anno.forbidden== null }"><a href='<c:url value="/admin/caicai/announcement/${anno.id}/forbid"></c:url>' >禁用</a></c:if>
+										<c:if test="${resource.forbidden=='yes' }"><a href='<c:url value="/admin/caicai/resource/${resource.id}/free"></c:url>' >解禁</a></c:if>
+										<c:if test="${resource.forbidden== null }"><a href='<c:url value="/admin/caicai/resource/${resource.id}/forbid"></c:url>' >禁用</a></c:if>
 									</td>
 								</tr>
 							</c:forEach>
@@ -84,7 +84,7 @@ $(document).ready(function() {
 						<c:otherwise>
 							<c:forEach items="${page.content}" var="page">
 								<tr>
-									<td align="left" >${page.title}</td>
+									<td align="left" >${page.fileName}</td>
 									<td align="left" >${page.user.name}</td>
 									<td align="center">${page.date}</td>
 									<td align="center">
@@ -92,8 +92,8 @@ $(document).ready(function() {
 										<c:if test="${page.forbidden== null }">未禁用</c:if>
 									</td>
 									<td align="center">
-										<c:if test="${page.forbidden=='yes' }"><a href='<c:url value="/admin/caicai/announcement/${page.id}/free"></c:url>' >解禁</a></c:if>
-										<c:if test="${page.forbidden== null }"><a href='<c:url value="/admin/caicai/announcement/${page.id}/forbid"></c:url>' >禁用</a></c:if>
+										<c:if test="${page.forbidden=='yes' }"><a href='<c:url value="/admin/caicai/resource/${page.id}/free"></c:url>' >解禁</a></c:if>
+										<c:if test="${page.forbidden== null }"><a href='<c:url value="/admin/caicai/resource/${page.id}/forbid"></c:url>' >禁用</a></c:if>
 									</td>
 								</tr>
 							</c:forEach>

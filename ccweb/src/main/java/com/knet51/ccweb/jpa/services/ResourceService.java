@@ -14,12 +14,13 @@ public interface ResourceService {
 	
 	CourseResource findOneById(Long id);
 	
-	CourseResource UpdateResource(CourseResource resource);
+	CourseResource updateResource(CourseResource resource);
 	
 	Page<CourseResource> findAllResouByUserAndStatus(int pageNum, int pageSize, User user,Integer status);
 	
 	/* super admin */
 	List<CourseResource> findAllByUserAndStatusForSuperAdmin(User user, Integer status);
-	
 	Page<CourseResource> findAllByUserAndStatusForSuperAdmin(int pageNum, int pageSize, User user,Integer status);
+	List<CourseResource> findAllByStatusForSuperAdmin();
+	Page<CourseResource> findAllByStatusForSuperAdmin(int pageNum, int pageSize);
 }
