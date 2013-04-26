@@ -27,7 +27,7 @@
 	</definition>
 	
 	<!--  caicai announcement -->
-	<definition name="admin.caicai.announement.list" extends="admin-layout">
+	<definition name="admin.caicai.announcement.list" extends="admin-layout">
 		<put-attribute name="title" value="公告" />
 		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/caicai/announcement/list/list.jsp"></put-attribute>

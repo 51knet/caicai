@@ -17,11 +17,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.admin.teacher.announcement.TeacherAnnoDetailInfoForm;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Authentication;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
+import com.knet51.ccweb.jpa.services.BlogService;
+import com.knet51.ccweb.jpa.services.CourseResourceService;
+import com.knet51.ccweb.jpa.services.ResourceService;
+import com.knet51.ccweb.jpa.services.TeacherCourseService;
+import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
@@ -36,6 +43,18 @@ public class CaicaiPageController {
 	private AuthenticationService authenticationService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private TeacherCourseService courseService;
+	@Autowired
+	private CourseResourceService courseResourceService;
+	@Autowired
+	private ResourceService resourceService;
+	@Autowired
+	private AnnouncementService announcementService;
+	@Autowired
+	private BlogService blogService;
+	@Autowired
+	private TeacherService teacherService;
 	
 	
 	@RequestMapping(value="/admin/caicai")
@@ -43,6 +62,8 @@ public class CaicaiPageController {
 		
 		return "redirect:/admin/caicai/authentication";
 	}
+	
+	/*   authentication page and ajax controller  */
 	
 	/**
 	 * show all the authentication
@@ -62,6 +83,32 @@ public class CaicaiPageController {
 	}
 	
 	/**
+	 * show add refuse reason page for authentication
+	 * @param auth_id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/admin/caicai/authentication/refuse/{auth_id}")
+	public String showRefuseAuthenReasonPage(@PathVariable Long auth_id,Model model){
+		Authentication authentication = authenticationService.findOneById(auth_id);
+		model.addAttribute("authentication", authentication);
+		return "admin.caicai.authentication.refuse";
+	}
+	/**
+	 * authentication refuse reason's ajax method
+	 * @param refuseForm
+	 * @param result
+	 * @return
+	 */
+	@RequestMapping(value = "/admin/caicai/authentication/refuseAjax", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse authenticationRefuseInfoFormAjaxJson(@Valid AuthenticationRefuseForm refuseForm, BindingResult result) {
+		logger.info("==== into refuse ajax controller ");
+		return AjaxValidationEngine.process(result);
+	}
+	
+	/*  operate user page controller   */
+	
+	/**
 	 * show user by role
 	 * @param role
 	 * @param model
@@ -74,7 +121,7 @@ public class CaicaiPageController {
 	public String showAllUser(@PathVariable String role,
 			Model model, HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize) {
-		logger.info("====== into caicai page controller ====="+role);
+		logger.info("====== into caicai role controller ====="+role);
 		UserInfo userInfo;
 		userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -88,22 +135,25 @@ public class CaicaiPageController {
 		return "admin.caicai.detail";
 	}
 	
-	/**
-	 * show add refuse reason page for authentication
-	 * @param auth_id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value="/admin/caicai/authentication/refuse/{auth_id}")
-	public String showRefuseAuthenReasonPage(@PathVariable Long auth_id,Model model){
-		Authentication authentication = authenticationService.findOneById(auth_id);
-		model.addAttribute("authentication", authentication);
-		return "admin.caicai.authentication.refuse";
+	/*  operate announcement page controller  */
+	
+	@RequestMapping(value="/admin/caicai/announcement/list")
+	public String showAllAnnouncement(Model model, HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize) {
+		logger.info("====== into caicai announcement controller =====");
+		Page<Announcement> page = announcementService.findAllAnnoForSuperAdmin(pageNumber, pageSize);
+		model.addAttribute("page", page);
+		return "admin.caicai.announcement.list";
 	}
 	
-	@RequestMapping(value = "/admin/caicai/authentication/refuseAjax", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse authenticationRefuseInfoFormAjaxJson(@Valid AuthenticationRefuseForm refuseForm, BindingResult result) {
-		logger.info("==== into refuse ajax controller ");
-		return AjaxValidationEngine.process(result);
+	/*  operate announcement page controller  */
+	
+	@RequestMapping(value="/admin/caicai/course/list")
+	public String showAllCourse(Model model, HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize) {
+		logger.info("====== into caicai announcement controller =====");
+		Page<TeacherCourse> page = courseService.findCourseByPublishGreaterThanForSuperAdmin(GlobalDefs.PUBLISH_NUM_DELETE, pageNumber, pageSize);
+		model.addAttribute("page", page);
+		return "admin.caicai.course.list";
 	}
 }

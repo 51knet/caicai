@@ -3,7 +3,6 @@ package com.knet51.courses.jpa.services;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
 

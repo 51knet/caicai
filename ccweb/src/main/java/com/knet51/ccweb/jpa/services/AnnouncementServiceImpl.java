@@ -70,10 +70,15 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 	}
 
 	@Override
-	public Page<Announcement> findAllAnno(int pageNumber, int pageSize) {
+	public Page<Announcement> findAllAnnoForSuperAdmin(int pageNumber, int pageSize) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id");
 		Page<Announcement> onePage = annoRepository.findAll(dateDesc);
 		return onePage;
+	}
+
+	@Override
+	public List<Announcement> findAllForSuperAdmin() {
+		return annoRepository.findAll();
 	}
 
 }

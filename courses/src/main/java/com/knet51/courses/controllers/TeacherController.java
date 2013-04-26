@@ -51,6 +51,7 @@ public class TeacherController {
 	public String showAllTeacher(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		//List<Teacher> teacherList = teacherService.findAllTeacher();
+		logger.info("==== into teacher list controller =====");
 		Page<Teacher> teacherPage = null;
 		List<Teacher> teacherList = null;
 		teacherList = teacherService.findTeacherByIsEnterprise();

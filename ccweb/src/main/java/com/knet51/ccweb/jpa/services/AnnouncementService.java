@@ -27,5 +27,6 @@ public interface AnnouncementService {
 	
 	List<Announcement> findAnnoByUserAndId(User user,Long id);
 	
-	Page<Announcement> findAllAnno(int pageNum, int pageSize);
+	Page<Announcement> findAllAnnoForSuperAdmin(int pageNum, int pageSize);
+	List<Announcement> findAllForSuperAdmin();
 }

@@ -1,12 +1,8 @@
 package com.knet51.courses.controllers;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -422,16 +418,11 @@ public class CourseController {
 						courseList.get(i).getUser().getName().contains(param)){
 					newCourseList.add(courseList.get(i));
 				}
-			}
-			if(newCourseList.size()>0){
 				model.addAttribute("courseList", newCourseList);
 				model.addAttribute("courseCount", newCourseList.size());
-			}else{
-				model.addAttribute("courseList", courseList);
-				model.addAttribute("courseCount", courseList.size());
+				model.addAttribute("searchParam", param);
+				model.addAttribute("courseTypeList", typeList);
 			}
-			model.addAttribute("searchParam", param);
-			model.addAttribute("courseTypeList", typeList);
 
 		} else {
 			model.addAttribute("courseList", courseList);

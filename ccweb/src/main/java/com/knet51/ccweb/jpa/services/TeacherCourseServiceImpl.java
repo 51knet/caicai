@@ -131,6 +131,19 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 		return onePage;
 	}
 
+	@Override
+	public Page<TeacherCourse> findCourseByPublishGreaterThanForSuperAdmin(
+			Integer publish, int pageNum, int pageSize) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
+		Page<TeacherCourse> onePage = courseRepository.findAllByPublishGreaterThan(publish, dateDesc);
+		return onePage;
+	}
+
+	@Override
+	public List<TeacherCourse> findAll() {
+		return courseRepository.findAll();
+	}
+
 	
 
 
