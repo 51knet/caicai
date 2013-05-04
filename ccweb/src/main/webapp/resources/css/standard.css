@@ -54,7 +54,7 @@ body {
 	/*font-family:Arial,/*'Microsoft YaHei',Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;*/
 	font-family:'Microsoft YaHei',Arial;
 	font-size:14px;
-	background: url(../img/default/index/bg.png);
+	/*background: url(../img/default/index/bg.png);*/
 	color: #444;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -92,9 +92,9 @@ textarea {
 
 }
 .leftInfo .top{
-	border-radius: 5px;
+	/*border-radius: 5px;
 	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
+	-moz-border-radius: 5px;*/
 	height: 40px; 
 	text-align: center; 
 	padding-top:1px; 
@@ -107,6 +107,33 @@ textarea {
 	margin-top: 10px; 
 	padding-bottom:10px;
 	line-height: 25px;
+}
+
+.eleftInfo{
+	background-color: #ccdfa8; 
+	margin-bottom: 20px; 
+	background: #fff5e0;
+	border: 1px solid #f77605;
+	/*border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;*/
+
+}
+.eleftInfo .top{
+	height: 40px; 
+	text-align: center; 
+	padding-top:1px; 
+	color: #f2e690;
+	background-color: #f77605;
+}
+.eleftInfo .content{
+	text-align: left; 
+	margin-left: 40px; 
+	margin-right: 40px; 
+	margin-top: 10px; 
+	padding-bottom:10px;
+	line-height: 25px;
+	color: #80b029;
 }
 
 /*START style-for-admin-pages*/

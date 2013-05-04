@@ -7,8 +7,10 @@
 	text-align: center;
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
-	background: #ccdfa8;
+	background: #fff5e0;
 	font-family:'Microsoft YaHei',Arial;
+	border: 1px solid #f77605;
+	color: #f77605;
 }
 .round {
 	border-radius: 5px;
@@ -48,11 +50,11 @@
 		});
 	});
 	</script>
-<div class="row-fluid centralize round" >
+<div class="row-fluid centralize " >
 	<div class="row-fluid">
 		<c:url var="avatar_url" value="${teacherInfo.avatar}"></c:url>
 		<img width="150px" height="150px" src="${avatar_url}" style="margin: 10px 5px;">
-		<br>${teacherInfo.name}
+		<br><b>${teacherInfo.name}</b>
 	</div>
 	<!--
 	<div class="row-fluid">
@@ -69,7 +71,7 @@
 		</div>
 	</c:if>
 </div>
-<div class="leftInfo">
+<div class="eleftInfo">
 	<div class="top" >
 		<h4>学校信息</h4>
 	</div>
@@ -78,13 +80,13 @@
 	</div>
 </div>
 
-<div   class="leftInfo">
+<div   class="eleftInfo">
 	<div class="top"  >
 		<h4>课程分类</h4>
 	</div>
 	<div  class="content">
-			<c:forEach items="${cTypeList }" var="cType">
-				<a href='<c:url value='/enterprise/${teacher_id}/course/type/${cType.id}'></c:url>'>${cType.typeName}</a><br>
+			<c:forEach items="${cTypeList }" var="cType" begin="0" end="6">
+				<a href='<c:url value='/enterprise/${teacher_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029;">${cType.typeName}</span></a><br>
 			</c:forEach>
 	</div>
 </div>

@@ -3,7 +3,7 @@
 				<div class="span12">
 					<div class="banner_front">
 						<a href="<c:url value='/admin' ></c:url>">
-							<img src="<c:url value='/resources/img/default/banner/e-banner.png' ></c:url>" />
+							<img src="<c:url value='/resources/img/default/banner/e-banner-1.png' ></c:url>" />
 						</a>
 					</div>
 					<!--/.banner -->

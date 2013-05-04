@@ -10,6 +10,7 @@
 	body {
 		max-width: 1600px;
 		width: 100%;
+		background-color: #ffffff;
 	}
 	
 	.container-fluid {
@@ -18,10 +19,11 @@
 	}
 	
 	.container-fluid.wrapper {
-		background-image: url(/ccweb/resources/img/default/front_bg.png);
+		<!--background-image: url(/ccweb/resources/img/default/front_bg.png);-->
 		background-position: center top;
 		background-repeat: repeat-y;
-		background-color: #929294;
+		<!--background-color: #929294;-->
+		background-color: #ffffff;
 	}
 	.container-fluid.custom {
 		min-width: 1024px;
@@ -40,6 +42,15 @@
 			</div>
 			<div class="row-fluid">
 				<tiles:insertAttribute name="navbar" />
+			</div>
+			<div class="row-fluid content-panel" style="margin-top: -20px;">
+				<div class="span3"  style="width:210px;" >
+					<tiles:insertAttribute name="ctype" />
+				</div>
+				<!--/span-->
+				<div class="span9"  style="width:792px;">
+					<tiles:insertAttribute name="detailinfo" />
+				</div>
 			</div>
 			<div class="row-fluid content-panel">
 				<div class="span3" style="width:180px;">

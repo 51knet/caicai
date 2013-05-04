@@ -3,14 +3,22 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
-.navbar .navbar-inner .nav{
+.navbar .navbar-bg .navbar-inner .nav{
 	margin-left: 30px;
 }
-.navbar .navbar-inner .nav >li{
+
+.navbar .navbar-bg{
+	background-image: url('<c:url value='/resources/img/default/index/enavibg.png' ></c:url>');
+	background-position: left top;
+	background-repeat: repeat-x;
+	background-color: #000;
+}
+.navbar .navbar-bg .navbar-inner .nav >li{
 	margin-left: 15px;
 }
 </style>
-<div class="navbar">
+<div class="navbar" >
+	<div class="navbar navbar-bg">
 	<div class="navbar-inner">
 		<ul class="nav">
 			<li><a href='<c:url value='/enterprise/${teacherInfo.id}'></c:url>'>首页</a></li>
@@ -23,5 +31,6 @@
 			</c:if> 
 			<li><a href='<c:url value='/enterprise/${teacherInfo.id}/blog/list'></c:url>'>博文</a></li>--%>
 		</ul>
+	</div>
 	</div>
 </div>

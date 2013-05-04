@@ -212,6 +212,8 @@
 	<definition name="enterprise.basic" extends="enterprise-frontPage-layout">
 		<put-attribute name="title" value="企业主页" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/enterprise-front/banner.jsp" />
+		<put-attribute name="ctype" value="/WEB-INF/views/enterprise/front/course/type/list/list.jsp" />
+		<put-attribute name="detailinfo" value="/WEB-INF/views/enterprise/front/announcement/demo/list/list.jsp" />
 		<put-attribute name="right" value="/WEB-INF/layouts/jsp/enterprise-front/right.jsp"></put-attribute>
 	</definition>
 	

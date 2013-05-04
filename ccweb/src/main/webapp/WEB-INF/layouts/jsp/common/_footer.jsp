@@ -10,6 +10,7 @@
 			<a href='<c:url value="#"></c:url>' ><font color="#444444">法律声明</font></a>
 	</h5>
 	<div>
-		<font color="#444444">沪ICP备20110827 CopyRight © 2011-2012</font>
+		<font color="#444444">沪ICP备20110827 CopyRight © 2011-2012</font><br>
+		<script language="javascript" type="text/javascript" src="http://quote.51.la/?id=15757115&amp;mb=2"></script>
 	</div>
 </div>

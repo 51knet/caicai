@@ -29,14 +29,15 @@
 .row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
-	background: #FAFAFB;
+	/*background: #FAFAFB;*/
 
 }
 .row-fluid.custom .row > h4 {
 	color: #80b029;
-	border-bottom: solid #cccccc 1.5px;
+	border-bottom: solid #f77605 1.5px;
 	padding-bottom: 4px;
-	margin: 20px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	padding:0px 10px 5px 10px;
 }
 .row-fluid.custom .row > h4 >span {
 	font-size: 14px;
@@ -44,7 +45,11 @@
 }
 
 .row-fluid.custom .row {
-	margin: 0px 40px 0px 40px;
+	margin: 0px 10px 0px 10px;
+}
+
+.row-fluid.custom .row .border {
+	border: solid 1px #f77605;
 }
 
 .row-fluid.custom .row .bb{
@@ -52,17 +57,18 @@
 }
 .row-fluid.custom .row .bro{
 	margin-top:10px;
-	margin-right:17px;
-	margin-left:7px;
+	margin-right:12px;
+	margin-left:12px;
 	margin-bottom:10px;
-	border:1px solid #dadada;
-	width: 210px;
+	border:1px dotted #dadada;
+	width: 230px;
 	padding:5px;
 	float: left;
 }
 
 </style>
 <!-- enterprise  announcement -->
+<!-- 
 <div class="row-fluid custom round">
 	<div class="row"><h4>公告 <span class="pull-right" ><a href='<c:url value='/enterprise/${teacherInfo.id}/announcement/list'></c:url>'>更多</a></span> </h4></div>
 	<div class="row">
@@ -71,17 +77,17 @@
 				<table cellpadding="4" width="100%" style="margin-top: 10px;">
 					<tbody>
 						<tr>
-							<td width="35%"  align="left" valign="top">
+							<td width="40%"  align="left" valign="top" style="background-color:#59abda; height:220px;">
 								<c:forEach var="annophoto" items="${annoPhoto}" begin="0" end="1">
 									<a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
 								</c:forEach>
 							</td>
-							<td width="65%" align="left" valign="top">
+							<td width="60%" align="left" valign="top">
 								<table cellpadding="3" width="100%" >
 									<c:forEach var="anno" items="${annolist}" begin="0" end="2">
 										<tr  class="bb">
-											<td  width="70%"  align="left" valign="top">
-												<div style="width: 320px" id="content"><a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a></div>
+											<td    align="left" valign="top">
+												<div style="width: 280px" id="content"><a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a></div>
 											</td>
 											<td  align="left" valign="top">
 												${anno.date}
@@ -101,11 +107,12 @@
 		</c:choose>
 		</div>
 </div>
-
+ -->
+ 
 <!-- enterprise's teacher -->
 <div class="row-fluid custom round">
 	<div class="row"><h4>知名教师<span class="pull-right" ><a href='<c:url value='/enterprise/${teacherInfo.id}/teacher/list'></c:url>'>更多</a></span> </h4></div>
-	<div class="row">
+	<div class="row" style="	border: solid 1px #f77605;" >
 		<c:choose>
 			<c:when test="${eTeacherCount !=0}">
 				<c:forEach items="${eTeacher }" var="et" begin="0" end="5">
@@ -129,12 +136,12 @@
 		<div class="row">
 			<h4>学习资源<span class="pull-right" ><a href='<c:url value='/enterprise/${teacherInfo.id}/course/list'></c:url>'>更多</a></span> </h4>
 		</div>
-		<div class="row">
+		<div class="row"  style="border: solid 1px #f77605;">
 			<c:choose>
 				<c:when test="${courseCount !=0}">
 					<c:forEach items="${courseList}" var="course" begin="0" end="5">
 				    	<div class="bro">
-							<div style="width: 210px; height: 155px; background-image: url('<c:url value="${course.courseCover }"></c:url>');  
+							<div style="width: 230px; height: 155px; background-image: url('<c:url value="${course.courseCover }"></c:url>');  
 									background-repeat:no-repeat;background-position:center;  ">
 								<c:choose>
 									<c:when test='${course.pwd == "" || course.pwd == null}'>
