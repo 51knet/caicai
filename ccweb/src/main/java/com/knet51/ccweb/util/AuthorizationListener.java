@@ -67,6 +67,10 @@ public class AuthorizationListener implements Filter {
 	}
 
 	private boolean isLoggin(HttpServletRequest req) {
+		UserInfo userInfo = (UserInfo) req.getSession().getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(userInfo!=null && userInfo.getUser().getForbidden()!=null){
+			req.getSession().invalidate();
+		}
 		return req.getSession().getAttribute(GlobalDefs.SESSION_USER_INFO) != null;
 	}
 

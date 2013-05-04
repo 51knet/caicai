@@ -72,10 +72,15 @@ public class LoginController {
 				
 				User user = service.findByEmailAddress(email);
 				String randomUrl = user.getRandomUrl();
+				String forbidden = user.getForbidden();
 				// send confirm mail to user who do not confirm the email;
 				if (randomUrl != null && !(randomUrl.equals("pass"))) {
 					session.setAttribute("nonValidatedUser", user);
 					return "mail.send";
+				}
+				//
+				if(forbidden !=null && forbidden.equals("yes")){
+					return "redirect:/";
 				}
 				// confirmed users;
 				UserInfo userInfo = new UserInfo(user);
