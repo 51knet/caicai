@@ -82,6 +82,7 @@ public class EnterprsieAuthenticationController {
 			String content = authenticationForm.getContent();
 			Authentication authentication = new Authentication();
 			authentication.setTitle(title);
+			authentication.setEmail(authenticationForm.getEmail());
 			authentication.setContent(content);
 			authentication.setDate(new Date());
 			authentication.setUser(user);

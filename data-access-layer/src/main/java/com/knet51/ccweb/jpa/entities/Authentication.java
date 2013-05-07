@@ -14,6 +14,7 @@ public class Authentication extends AbstractEntity {
 	private String fileName;
 	private String status;
 	private String reason;
+	private String email;
 	@ManyToOne
 	private User user;
 	public Date getDate() {
@@ -67,6 +68,12 @@ public class Authentication extends AbstractEntity {
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

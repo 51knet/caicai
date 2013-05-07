@@ -63,7 +63,12 @@ $(document).ready(function() {
 			</div>
 			<div class="control-group" id="phone">
 				<div class="controls">
-					联系电话：<input type="text" name="phone" placeholder="联系电话"  /><span class="help-inline"></span>
+					联系电话：<input type="text" name="phone" placeholder="联系电话"  onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}"  /><span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group" id="email">
+				<div class="controls">
+					申请邮箱：<input type="text" name="email" placeholder="申请邮箱"  /><span class="help-inline"></span>
 				</div>
 			</div>
 			<div class="control-group" id="content">

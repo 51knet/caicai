@@ -200,7 +200,7 @@ public class CaiCaiDetailController {
 	 * @param refuseForm
 	 * @return
 	 */
-	@RequestMapping(value="/admin/caicai/authentication/refuse/new" ,method = RequestMethod.POST)
+	@RequestMapping(value="/admin/caicai/authentication/view/refuse" ,method = RequestMethod.POST)
 	public String refuseAuthenticationReason(@RequestParam("auth_id") Long auth_id, Model model
 			,@Valid AuthenticationRefuseForm refuseForm ){
 		logger.info("====== into pass authentication controller   =====");

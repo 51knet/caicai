@@ -90,11 +90,11 @@ public class CaicaiPageController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/admin/caicai/authentication/refuse/{auth_id}")
+	@RequestMapping(value="/admin/caicai/authentication/view/{auth_id}")
 	public String showRefuseAuthenReasonPage(@PathVariable Long auth_id,Model model){
 		Authentication authentication = authenticationService.findOneById(auth_id);
 		model.addAttribute("authentication", authentication);
-		return "admin.caicai.authentication.refuse";
+		return "admin.caicai.authentication.detail";
 	}
 	/**
 	 * authentication refuse reason's ajax method

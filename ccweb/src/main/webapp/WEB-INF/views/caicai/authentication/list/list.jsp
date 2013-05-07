@@ -6,19 +6,6 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-	$("#t").focus(function() {
-		$(".help-inline").html("");
-	});
-	$("#c").focus(function() {
-		$(".help-inline").html("");
-	});
-	
-	$('.destoryEteacherPostBtn').on('click', function() {
-		var t_id = $(this).next().val();
-		$('#destoryEteacherPostModal #etid').val(t_id);	
-	});
-});
 
 </script>
 <style>
@@ -59,13 +46,12 @@ $(document).ready(function() {
 						<th  align="center">申请状态</th>
 						<th  align="center" >拒绝原因</th>
 						<th  align="center" width="20%" >申请时间</th>
-						<th align="center">操作</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
-							<td align="center">${page.title}</td> 
+							<td align="center"><a href='<c:url value="/admin/caicai/authentication/view/${page.id }"></c:url>'>${page.title}</a></td> 
 							<td align="center">${page.user.name}</td> 
 							<td align="center">${page.user.fix_phone}</td> 
 							<td align="center" >
@@ -79,14 +65,6 @@ $(document).ready(function() {
 							<td  align="center">
 								<fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd HH:mm" />
 							</td>
-							<td align="center" >
-								<c:if test="${page.status == 'submit'}">
-								<a href='<c:url value="/admin/caicai/authentication/pass/${page.id }"></c:url>'>通过</a> | 
-								<a href='<c:url value="/admin/caicai/authentication/refuse/${page.id }"></c:url>'>拒绝</a>
-								</c:if>
-								<c:if  test="${page.status == 'pass'  }">已通过</c:if>
-								<c:if  test="${page.status == 'refuse' }">已拒绝</c:if>
-							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -95,22 +73,4 @@ $(document).ready(function() {
 			<br />
 		</div>
 	</div>	
-</div>
-
-<!-- delete teacherForm -->
-<div class="modal hide fade" id="destoryEteacherPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    <h3 id="myModalLabel">请注意</h3>
-	  </div>
-	  <div class="modal-body">
-	    <p>你确定删除该教师吗？</p>
-	  </div>
-	  <div class="modal-footer">
-	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-	    <form action='<c:url value="/admin/enterprise/teacher/destory"></c:url>' method="post" style="display: inline-block;" >
-	    	<input id="etid" type="hidden" name="eteacherid" />
-	    	<button class="btn btn-success">确定</button>
-	    </form>
-	  </div>
 </div>
