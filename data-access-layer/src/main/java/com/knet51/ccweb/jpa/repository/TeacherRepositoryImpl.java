@@ -5,7 +5,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 public class TeacherRepositoryImpl implements TeacherRepositoryCustom{
 	@PersistenceContext
 	private EntityManager em;

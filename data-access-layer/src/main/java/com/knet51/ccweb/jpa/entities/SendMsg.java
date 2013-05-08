@@ -3,14 +3,12 @@ package com.knet51.ccweb.jpa.entities;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class SendMsg extends AbstractEntity {

@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class FileUtil {
-	private static final int WIDTH = 260;
-	private static final int HEIGHT = 195;
+	//private static final int WIDTH = 260;
+	//private static final int HEIGHT = 195;
 	public static String saveFile(InputStream inputStream,String fileOriginalName,String realPath) throws Exception{
 		
 		String fileName = fileOriginalName;
@@ -57,7 +57,7 @@ public class FileUtil {
 		return savePath;
 	}
 	
-	public static void getPreviewImage(File sourceImage,File destImage,String format) throws Exception{
+	public static void getPreviewImage(File sourceImage,File destImage,String format, int WIDTH, int HEIGHT) throws Exception{
 		BufferedImage simage = ImageIO.read(sourceImage);
 		int x = simage.getWidth();
 		int y = simage.getHeight();

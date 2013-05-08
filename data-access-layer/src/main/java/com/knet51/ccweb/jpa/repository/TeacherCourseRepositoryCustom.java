@@ -2,7 +2,6 @@ package com.knet51.ccweb.jpa.repository;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;

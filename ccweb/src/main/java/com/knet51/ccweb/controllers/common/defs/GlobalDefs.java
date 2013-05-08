@@ -19,4 +19,10 @@ public final class GlobalDefs {
 	public static final String STATUS_RESOURCETYPE = "rt";// just show the type in resource page
 	public static final String STATUS_COURSE_RESOURCETYPE ="crt"; // just show the type in course resource page
 	
+	
+	public static final int COURSE_COVER_WIDTH = 260;// course cover width
+	public static final int COURSE_COVER_HEIGHT = 190;
+	
+	public static final int TEACHER_PHOTO_WIDTH = 100;//enterprises' teacher photo width;
+	public static final int TEACHER_PHOTO_HEIGHT = 100;
 }

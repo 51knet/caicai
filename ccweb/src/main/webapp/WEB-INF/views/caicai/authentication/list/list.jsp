@@ -30,7 +30,6 @@
 }
 </style>
 
-
 <div class="row-fluid custom round">
 	<div  class="row" >
 		<h4>申请信息</h4>

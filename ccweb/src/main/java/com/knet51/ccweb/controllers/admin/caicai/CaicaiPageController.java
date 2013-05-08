@@ -1,5 +1,7 @@
 package com.knet51.ccweb.controllers.admin.caicai;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -19,12 +21,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
+import com.knet51.ccweb.jpa.entities.AuthenResource;
 import com.knet51.ccweb.jpa.entities.Authentication;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
+import com.knet51.ccweb.jpa.services.AuthenResourceService;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
 import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
@@ -37,9 +41,9 @@ import com.knet51.ccweb.util.ajax.ValidationResponse;
 
 
 @Controller
-public class CaicaiPageController {
+public class CaiCaiPageController {
 	private static final Logger logger = LoggerFactory
-			.getLogger(CaicaiPageController.class);
+			.getLogger(CaiCaiPageController.class);
 	
 	@Autowired
 	private AuthenticationService authenticationService;
@@ -57,6 +61,9 @@ public class CaicaiPageController {
 	private BlogService blogService;
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private AuthenResourceService authenResourceService;
+	
 	
 	
 	@RequestMapping(value="/admin/caicai")
@@ -93,7 +100,9 @@ public class CaicaiPageController {
 	@RequestMapping(value="/admin/caicai/authentication/view/{auth_id}")
 	public String showRefuseAuthenReasonPage(@PathVariable Long auth_id,Model model){
 		Authentication authentication = authenticationService.findOneById(auth_id);
+		List<AuthenResource> aResourceList = authenResourceService.findAllByAuthen(authentication);
 		model.addAttribute("authentication", authentication);
+		model.addAttribute("aResourceList", aResourceList);
 		return "admin.caicai.authentication.detail";
 	}
 	/**

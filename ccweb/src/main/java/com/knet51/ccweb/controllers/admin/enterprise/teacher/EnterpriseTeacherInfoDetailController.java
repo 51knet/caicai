@@ -76,7 +76,7 @@ public class EnterpriseTeacherInfoDetailController {
 						String previewFile = path+File.separator+"small"+"."+fileExtension;
 						File saveDest = new File(path + File.separator + fileName);
 						multipartFile.transferTo(saveDest);
-						FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
+						FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension,GlobalDefs.TEACHER_PHOTO_WIDTH,GlobalDefs.TEACHER_PHOTO_HEIGHT);
 						String savePath = FileUtil.getSavePath("teacherList", userInfo.getId(), newTeacher.getId()+"", request)+"/small"+"."+fileExtension;
 						newTeacher.setPhotourl(savePath);
 					}
@@ -116,7 +116,7 @@ public class EnterpriseTeacherInfoDetailController {
 						String previewFile = path+File.separator+"small"+"."+fileExtension;
 						File saveDest = new File(path + File.separator + fileName);
 						multipartFile.transferTo(saveDest);
-						FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension);
+						FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension,GlobalDefs.TEACHER_PHOTO_WIDTH,GlobalDefs.TEACHER_PHOTO_HEIGHT);
 						String savePath = FileUtil.getSavePath("teacherList", userInfo.getId(), eTeacher.getId()+"", request)+"/small"+"."+fileExtension;
 						eTeacher.setPhotourl(savePath);
 					}

@@ -50,7 +50,7 @@ function closeReasonForm(){
 	<div class="content">
 		<table class="blue" id="mytab" cellpadding="4" width=100%  border=0>
 			<tbody>
-				<tr><td align="center">标题</td><td align="left">${authentication.title}</td></tr> 
+				<tr><td align="center" width="20%">标题</td><td align="left">${authentication.title}</td></tr> 
 				<tr><td align="center">申请人</td><td align="left">${authentication.user.name}</td> </tr>
 				<tr><td align="center">电话</td><td align="left">${authentication.user.fix_phone}</td></tr> 
 				<tr><td align="center">邮箱</td><td align="left">${authentication.email}</td></tr> 
@@ -60,7 +60,14 @@ function closeReasonForm(){
 						<c:if test="${authentication.status=='refuse' }">未通过</c:if>
 					</td></tr>
 				<tr><td align="center">申请时间</td><td  align="left"><fmt:formatDate value="${authentication.date}" pattern="yyyy-MM-dd HH:mm" /></td></tr>
-					<tr><td align="center">具体内容</td><td  align="left">${authentication.content}</td></tr>
+				<tr><td align="center">具体内容</td><td  align="left">${authentication.content}</td></tr>
+				<tr><td align="center">下载资料</td>
+						<td align="center">
+						<c:forEach items="${aResourceList }" var="resourceList">
+							<div style="margin-right: 20px; float: left;"><a href='<c:url value="/admin/authentication/download/${resourceList.id }"></c:url>'>${resourceList.saveName}</a></div>
+						</c:forEach>
+						</td>
+				</tr>
 				<tr><td align="center" colspan="2"><a href='<c:url value="/admin/caicai/authentication/pass/${authentication.id }" ></c:url>' style="margin-right: 20px;">通过</a>
 			<a href="javascript:void(0)" onclick="showReasonForm()">拒绝</a></td></tr>
 			</tbody>

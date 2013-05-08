@@ -27,8 +27,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.AuthenResource;
 import com.knet51.ccweb.jpa.entities.Authentication;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.services.AuthenResourceService;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
@@ -42,6 +44,8 @@ public class EnterprsieAuthenticationController {
 	
 	@Autowired
 	private AuthenticationService authenticationService;
+	@Autowired
+	private AuthenResourceService authenResourceService;
 	
 	@RequestMapping(value="/admin/authentication/list")
 	public String showEnterpriseAuthentication(HttpSession session, Model model,@RequestParam(value="pageNumber",defaultValue="0") 
@@ -76,8 +80,6 @@ public class EnterprsieAuthenticationController {
 			return "redirect:/admin/authentication/new";
 		}else{
 			logger.info("####  TeacherAnnoDetailController passed.  ####");
-			List<MultipartFile> files = request.getFiles("myFiles");
-			
 			String title = authenticationForm.getTitle();
 			String content = authenticationForm.getContent();
 			Authentication authentication = new Authentication();
@@ -90,6 +92,9 @@ public class EnterprsieAuthenticationController {
 			Authentication auth = authenticationService.createAuthentication(authentication);
 			auth.getUser().setName(authenticationForm.getName());
 			auth.getUser().setFix_phone(authenticationForm.getPhone());
+			authenticationService.updateAuthentication(auth);
+			
+			List<MultipartFile> files = request.getFiles("myFiles");
 			for(int i=0;i<files.size();i++){
 				MultipartFile multipartFile = files.get(i);
 				logger.info("=====++++++"+multipartFile.getOriginalFilename());
@@ -98,18 +103,21 @@ public class EnterprsieAuthenticationController {
 						redirectAttributes.addFlashAttribute("errorMsg", "上传资料不得大于10M");
 						return "redirect:/admin/authentication/new";
 					}else{
+						AuthenResource authenResource = new AuthenResource();
 						String fileName = files.get(i).getOriginalFilename();
 						String path = session.getServletContext().getRealPath("/")+"resources/attached/"+userInfo.getId()+"/authentication/"+auth.getId();
 						FileUtil.createRealPath(path, session);
 						File saveDest = new File(path + File.separator + fileName);
 						multipartFile.transferTo(saveDest);
 						String savePath = path+"/"+fileName;
-						auth.setFileName(fileName);
-						auth.setResourceurl(savePath);
+						authenResource.setAuthentication(auth);
+						authenResource.setSaveName(fileName);
+						authenResource.setSavePath(savePath);
+						authenResourceService.createAuthenResource(authenResource);
 					}
 				}
 			}
-			authenticationService.updateAuthentication(auth);
+			
 			return "redirect:/admin";
 		}
 		
@@ -123,12 +131,12 @@ public class EnterprsieAuthenticationController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/authentication/download/{id}")
+	@RequestMapping(value="/admin/authentication/download/{id}",method=RequestMethod.GET)
 	public String resourceDownLoad(@PathVariable Long id,HttpServletRequest request,HttpServletResponse response) throws Exception{
-		logger.info("-------Into resource DownLoad controller------");
-		Authentication authentication = authenticationService.findOneById(id);
-		String savePath = authentication.getResourceurl();
-		String fileName = authentication.getFileName();
+		logger.info("-------Into authentication resource DownLoad controller------");
+		AuthenResource authenResource = authenResourceService.findOneById(id);
+		String savePath = authenResource.getSavePath();
+		String fileName = authenResource.getSaveName();
 		FileUtil.downLoad(request, response, savePath, fileName);
 		return null;
 	}

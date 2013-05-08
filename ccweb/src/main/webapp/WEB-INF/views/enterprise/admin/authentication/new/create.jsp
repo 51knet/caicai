@@ -16,8 +16,9 @@ $(document).ready(function() {
 	});
 	
 	$("form:first").submit(function(){
-		 var myFiles=$("#myFiles").val();
-		if(myFiles==""){
+		 var codeFiles=$("#codeFiles").val();
+		 var linceFiles=$("#linceFiles").val();
+		if(!(codeFiles!="" && linceFiles!="")){
 			$("#myFilesError").html("上传文件不能为空");
 			return false;
 		}
@@ -76,7 +77,8 @@ $(document).ready(function() {
 					申请详情：<textarea style="width: 400px; height: 200px;" name="content" ></textarea><span class="help-inline"></span>
 				</div>
 			</div>
-			上传资料：<input type="file" name="myFiles"  id="myFiles"/>
+			上传组织机构代码：<input type="file" name="myFiles"  id="codeFiles"/><br><br>
+			上传营业执照：<input type="file" name="myFiles"  id="linceFiles"/><br>
 			<span style="color:red;" id="myFilesError">上传资料不大于10M</span>${errorMsg }
 			<br><br>
 			<div class="pull-left" style="margin-left: 70px;">
