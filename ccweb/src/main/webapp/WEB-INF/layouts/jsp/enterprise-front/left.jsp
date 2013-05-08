@@ -17,6 +17,7 @@
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 }
+
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -51,6 +52,17 @@
 	});
 	</script>
 <div class="row-fluid centralize " >
+	<div class="row-fluid" style="	color: #f2e690;background-color: #f77605;">
+		<h4>课程搜索</h4>
+	</div>
+	<div class="row-fluid" >
+		<form class="pull-left offset1" style="margin-top: 20px;"> 
+			<input type="text" style="width: 145px;" placeholder="输入课程名"><br>
+			<button type="submit" class="btn pull-right">搜索</button>
+		</form>
+	</div>
+</div>
+<div class="row-fluid centralize " >
 	<div class="row-fluid">
 		<c:url var="avatar_url" value="${teacherInfo.avatar}"></c:url>
 		<img width="150px" height="150px" src="${avatar_url}" style="margin: 10px 5px;">
@@ -82,12 +94,23 @@
 
 <div   class="eleftInfo">
 	<div class="top"  >
-		<h4>课程分类</h4>
+		<h4>课程排行</h4>
 	</div>
 	<div  class="content">
-			<c:forEach items="${cTypeList }" var="cType" begin="0" end="6">
+			<!--<c:forEach items="${cTypeList }" var="cType" begin="0" end="6">
 				<a href='<c:url value='/enterprise/${teacher_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029;">${cType.typeName}</span></a><br>
-			</c:forEach>
+			</c:forEach>-->
+			<c:choose>
+				<c:when test="${courseCount !=0}">
+					<c:forEach items="${courseList}" var="course" begin="0" end="5">
+				    	<div  id="contentlimit" style="width: 140px;">${course.courseName }</div>
+				    </c:forEach>
+				</c:when>
+				<c:otherwise>
+				<br>
+					无内容
+				</c:otherwise>
+			</c:choose>
 	</div>
 </div>
 

@@ -3,6 +3,9 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
+.navbar{
+	width: 100%px;
+}
 .navbar .navbar-bg .navbar-inner .nav{
 	margin-left: 30px;
 }
@@ -11,12 +14,13 @@
 	background-image: url('<c:url value='/resources/img/default/index/enavibg.png' ></c:url>');
 	background-position: left top;
 	background-repeat: repeat-x;
-	background-color: #000;
+
 }
 .navbar .navbar-bg .navbar-inner .nav >li{
 	margin-left: 15px;
 }
 </style>
+
 <div class="navbar" >
 	<div class="navbar navbar-bg">
 	<div class="navbar-inner">
@@ -34,3 +38,7 @@
 	</div>
 	</div>
 </div>
+
+ <div class="navbar">
+ 	
+ </div>

@@ -57,8 +57,8 @@
 }
 .row-fluid.custom .row .bro{
 	margin-top:10px;
-	margin-right:12px;
-	margin-left:12px;
+	
+	margin-left:10px;
 	margin-bottom:10px;
 	border:1px dotted #dadada;
 	width: 230px;
@@ -68,10 +68,11 @@
 
 </style>
 <!-- enterprise  announcement -->
-<!-- 
+
 <div class="row-fluid custom round">
-	<div class="row"><h4>公告 <span class="pull-right" ><a href='<c:url value='/enterprise/${teacherInfo.id}/announcement/list'></c:url>'>更多</a></span> </h4></div>
+	<!-- <div class="row"><h4>公告 <span class="pull-right" ><a href='<c:url value='/enterprise/${teacherInfo.id}/announcement/list'></c:url>'>更多</a></span> </h4></div> -->
 	<div class="row">
+		<!-- 
 		<c:choose>
 			<c:when test="${annoCount>0}">
 				<table cellpadding="4" width="100%" style="margin-top: 10px;">
@@ -104,10 +105,43 @@
 			<br>
 				无内容
 			</c:otherwise>
-		</c:choose>
+		</c:choose> -->
+			<c:choose>
+				<c:when test="${annoCount>0}">
+					<table cellpadding="4" width="100%" >
+						<tbody>
+							<tr>
+								<td width="50%"  align="left" valign="top" style="background-color:#59abda; height:220px;">
+									<c:forEach var="annophoto" items="${annoPhoto}" begin="0" end="1">
+										<a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
+									</c:forEach>
+								</td>
+								<td width="40%" align="left" valign="top">
+									<table cellpadding="3" width="100%" >
+										<c:forEach var="anno" items="${annolist}" begin="0" end="2">
+											<tr  class="bb">
+												<td align="left" valign="top">
+													<div style="width: 160px" id="content"><a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a></div>
+												</td>
+												<td align="left" valign="top">
+													${anno.date}
+												</td>
+											</tr>
+										</c:forEach>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</c:when>
+				<c:otherwise>
+				<br>
+					无内容
+				</c:otherwise>
+			</c:choose>
 		</div>
 </div>
- -->
+
  
 <!-- enterprise's teacher -->
 <div class="row-fluid custom round">
@@ -148,7 +182,7 @@
 										<a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> 	<div style="height: 125px;"></div></a>
 									</c:when>
 									<c:otherwise>
-										<a href="#checkcourse" data-toggle="modal"> 	<div style="height: 125px;"></div></a> 
+										<a href="#checkcourse" data-toggle="modal"> <div style="height: 125px;"></div></a> 
 										<div id="checkcourse" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 400px; height:180px; ">
 											<div class="modal-header">
 												<h4 id="myModalLabel">验证密码</h4>

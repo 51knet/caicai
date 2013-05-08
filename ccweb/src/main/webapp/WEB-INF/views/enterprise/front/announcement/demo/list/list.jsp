@@ -39,7 +39,6 @@
 									<a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
 								</c:forEach>
 							</td>
-						
 							<td width="40%" align="left" valign="top">
 								<table cellpadding="3" width="100%" >
 									<c:forEach var="anno" items="${annolist}" begin="0" end="2">

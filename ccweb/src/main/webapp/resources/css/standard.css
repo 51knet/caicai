@@ -110,7 +110,6 @@ textarea {
 }
 
 .eleftInfo{
-	background-color: #ccdfa8; 
 	margin-bottom: 20px; 
 	background: #fff5e0;
 	border: 1px solid #f77605;
@@ -128,8 +127,8 @@ textarea {
 }
 .eleftInfo .content{
 	text-align: left; 
-	margin-left: 40px; 
-	margin-right: 40px; 
+	margin-left: 20px; 
+	margin-right: 20px; 
 	margin-top: 10px; 
 	padding-bottom:10px;
 	line-height: 25px;

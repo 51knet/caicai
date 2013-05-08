@@ -43,12 +43,21 @@
 			<div class="row-fluid">
 				<tiles:insertAttribute name="navbar" />
 			</div>
-			<div class="container-fluid" >
-				<div class="span2" style="width:190px;">
+			<!-- 
+			<div class="row-fluid content-panel" style="margin-top: -20px;">
+				<div class="span3"  style="width:210px;" >
+					<tiles:insertAttribute name="ctype" />
+				</div>
+				<div class="span9"  style="width:792px;">
+					<tiles:insertAttribute name="detailinfo" />
+				</div>
+			</div> -->
+			<div class="row-fluid content-panel">
+				<div class="span3" style="width:180px;">
 					<tiles:insertAttribute name="left" />
 				</div>
 				<!--/span-->
-				<div class="span10" style="width:785px;" >
+				<div class="span9"  style="width:822px;">
 					<tiles:insertAttribute name="right" />
 				</div>
 				<!--/span-->
