@@ -8,7 +8,6 @@
 </script>
 <style>
 	.ctype{
-		
 		background: #fff5e0;
 		text-align: left;
 	}

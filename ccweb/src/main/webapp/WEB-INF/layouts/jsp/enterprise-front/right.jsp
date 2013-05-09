@@ -55,13 +55,21 @@
 .row-fluid.custom .row .bb{
 	border-bottom: dashed  1px;
 }
-.row-fluid.custom .row .bro{
+.row-fluid.custom .row .course{
 	margin-top:10px;
-	
 	margin-left:10px;
 	margin-bottom:10px;
 	border:1px dotted #dadada;
 	width: 230px;
+	padding:5px;
+	float: left;
+}
+.row-fluid.custom .row .teacher{
+	margin-top:10px;
+	margin-left:10px;
+	margin-bottom:10px;
+	border:1px dotted #dadada;
+	width: 100px;
 	padding:5px;
 	float: left;
 }
@@ -146,11 +154,11 @@
 <!-- enterprise's teacher -->
 <div class="row-fluid custom round">
 	<div class="row"><h4>知名教师<span class="pull-right" ><a href='<c:url value='/enterprise/${teacherInfo.id}/teacher/list'></c:url>'>更多</a></span> </h4></div>
-	<div class="row" style="	border: solid 1px #f77605;" >
+	<div class="row" style="border: solid 1px #f77605;" >
 		<c:choose>
 			<c:when test="${eTeacherCount !=0}">
 				<c:forEach items="${eTeacher }" var="et" begin="0" end="5">
-					<div class="bro">
+					<div class="teacher">
 						<div><a href='<c:url value="/enterprise/${teacherInfo.id}/teacher/view/${et.id}"></c:url>' ><img src='<c:url value="${et.photourl}" ></c:url>'  ></a></div>
 						<div>${et.content }</div>
 					</div>
@@ -174,7 +182,7 @@
 			<c:choose>
 				<c:when test="${courseCount !=0}">
 					<c:forEach items="${courseList}" var="course" begin="0" end="5">
-				    	<div class="bro">
+				    	<div class="course">
 							<div style="width: 230px; height: 155px; background-image: url('<c:url value="${course.courseCover }"></c:url>');  
 									background-repeat:no-repeat;background-position:center;  ">
 								<c:choose>
