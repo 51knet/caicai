@@ -56,16 +56,16 @@
 		<h4>课程搜索</h4>
 	</div>
 	<div class="row-fluid" >
-		<form class="pull-left offset1" style="margin-top: 20px;"> 
+		<form class="" style="padding: 15px 0px 15px 0px;"> 
 			<input type="text" style="width: 145px;" placeholder="输入课程名"><br>
-			<button type="submit" class="btn pull-right">搜索</button>
+			<button type="submit" class="btn pull-right " style="margin-right: 20px;">搜索</button>
 		</form>
 	</div>
 </div>
 <div class="row-fluid centralize " >
 	<div class="row-fluid">
 		<c:url var="avatar_url" value="${teacherInfo.avatar}"></c:url>
-		<img width="150px" height="150px" src="${avatar_url}" style="margin: 10px 5px;">
+		<img src="${avatar_url}" style="margin: 10px 5px; width: 140px;height: 140px;">
 		<br><b>${teacherInfo.name}</b>
 	</div>
 	<!--

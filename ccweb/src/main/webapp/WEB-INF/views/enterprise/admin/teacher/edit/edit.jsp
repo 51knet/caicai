@@ -64,7 +64,7 @@ function checkTeacherPicture(obj){
 						<img name="showimg" id="showimg" src="" style="display: none;" />
 					</div>
 					<div id="courseCover" style="margin-top: -16px;">
-							<img src='<c:url value="${eTeacher.photourl}"> </c:url>' style="width: 260px; height: 195px; margin-left: 100px;" />
+							<img src='<c:url value="${eTeacher.photourl}"> </c:url>' style="width: 190px; height: 190px; margin-left: 100px;" />
 					</div>
 					<form:form action="update" method="post" enctype="multipart/form-data" id="teacher_info_form" onsubmit="return checkTeacherPicture(this)">
 						<input type="hidden" value="${eTeacher.id }" name="eteacherid">

@@ -8,12 +8,7 @@
 .row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
-	background: #FAFAFB;
-}
-.round {
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
+	/*background: #FAFAFB;*/
 }
 .row-fluid.custom .row {
 	margin: 20px 40px;
@@ -39,11 +34,11 @@
 	table-layout:fixed
 }
 
-.row-fluid.custom .content .limittable ..limitTd{
+.row-fluid.custom .content .limittable .limitTd{
 	word-wrap:break-word; word-break:break-all;
 }
 </style>
-<div class="row-fluid custom round">
+<div class="row-fluid custom" style="border: solid 1px #f77605;">
 	<div class="content ">
 		<table width="100%">
 			<tr>
@@ -74,7 +69,7 @@
 			<c:when test="${teacherInfo.fax == null||teacherInfo.fax == '' }">
 			</c:when>
 			<c:otherwise>
-			<abbr title="传真">传真：</abbr> ${teacherInfo.fax}
+			<abbr title="传真">联系传真：</abbr> ${teacherInfo.fax}
 			<br>
 			</c:otherwise>
 			</c:choose>
@@ -82,7 +77,7 @@
 			<c:when test="${teacherInfo.phone == null||teacherInfo.phone == '' }">
 			</c:when>
 			<c:otherwise>
-			<abbr title="电话">电话：</abbr> ${teacherInfo.phone} 
+			<abbr title="电话">联系电话：</abbr> ${teacherInfo.phone} 
 			<br>
 			</c:otherwise>
 			</c:choose>
@@ -90,7 +85,7 @@
 			<c:when test="${teacherInfo.email == null||teacherInfo.email == '' }">
 			</c:when>
 			<c:otherwise>
-			<abbr title="电邮">电子邮件：</abbr> <a href="mailto:#">${teacherInfo.email}</a>
+			<abbr title="电邮">电子邮件：</abbr> <a href="mailto:${teacherInfo.email}">${teacherInfo.email}</a>
 			</c:otherwise>
 			</c:choose>
 		</address>

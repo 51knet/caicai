@@ -7,37 +7,39 @@
 .row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
-	background: #FAFAFB;
+	/*background: #FAFAFB;*/
 }
-
 .row-fluid.custom .row > h4 {
 	color: #80b029;
-	border-bottom: solid #cccccc 1.5px;
+	border-bottom: solid #f77605 1.5px;
 	padding-bottom: 4px;
-	margin: 10px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	padding:0px 10px 5px 10px;
 }
 
 .row-fluid.custom .row {
-	margin: 10px 40px 0px 40px;
+	margin: 0px 10px 0px 10px;
+}
+.row-fluid.custom .row .photo{
+	margin: 10px 0px 0px 0px;
+	text-align: center;
 }
 .row-fluid.custom .row .content{
-	margin-top: 20px;
-}
-.row-fluid.custom .row .bb{
-	border-bottom: dashed #cccccc 1px;
+	margin: 10px 20px 10px 20px;
+	text-align: left;
 }
 </style>
 
-<div class="row-fluid custom round">
+<div class="row-fluid custom">
 	<div class="row">
 		<h4>公告详细</h4>
 	</div>
-	<div class="row">
-		<div >
+	<div class="row"  style="border: solid 1px #f77605;">
+		<div class="content">
 			<label><h4>${announcement.title}</h4></label>
 			<label>发表于：${announcement.date}</label> 
 		</div>
-		<div  class="content">${announcement.content}</div>
+		<div class="content">${announcement.content}</div>
 	</div>
 
 </div>

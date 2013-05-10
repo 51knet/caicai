@@ -62,7 +62,7 @@ $(document).ready(function() {
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
-							<td align="center"><img src='<c:url value="${page.photourl}" ></c:url>' style="width: 120px; height: 80px;" /></td> 
+							<td align="center"><img src='<c:url value="${page.photourl}" ></c:url>' style="width: 80px; height: 80px;" /></td> 
 							<td align="left" ><div style="width:320px;" id="content">${page.content}</div></td>
 							<td align="center">
 								 <a class="destoryEteacherPostBtn"  href="#destoryEteacherPostModal" role="button" data-toggle="modal" data-target="#destoryEteacherPostModal">删除</a><input type="hidden" value="${page.id} ">  | 

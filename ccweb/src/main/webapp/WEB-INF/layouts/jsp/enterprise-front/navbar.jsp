@@ -3,7 +3,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
-	
 	.ctype{
 		background: #fff5e0;
 		text-align: left;
@@ -23,7 +22,7 @@
 		background-repeat: repeat-x;
 		height: 50px;
 	}
-	
+	h5{	font-family:'Microsoft YaHei',Arial; font-size: 14px; letter-spacing: 1px; font-weight: normal;}
 	ul#simple-menu{list-style-type:none;width:100%;position:relative;height:38px;margin:0;padding:0px 0 0 0;}
 	ul#simple-menu li{display:block;float:left;margin:0 0 0 1px;height:38px;}
 	ul#simple-menu li a{display:block;float:left;color:#fdf2ee; text-decoration:none; padding:0 20px 0 20px;height:38px;}

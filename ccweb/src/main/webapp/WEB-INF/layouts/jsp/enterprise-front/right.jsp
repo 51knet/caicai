@@ -48,10 +48,6 @@
 	margin: 0px 10px 0px 10px;
 }
 
-.row-fluid.custom .row .border {
-	border: solid 1px #f77605;
-}
-
 .row-fluid.custom .row .bb{
 	border-bottom: dashed  1px;
 }
@@ -66,7 +62,7 @@
 }
 .row-fluid.custom .row .teacher{
 	margin-top:10px;
-	margin-left:10px;
+	margin-left:13px;
 	margin-bottom:10px;
 	border:1px dotted #dadada;
 	width: 100px;
@@ -119,17 +115,18 @@
 					<table cellpadding="4" width="100%" >
 						<tbody>
 							<tr>
-								<td width="50%"  align="left" valign="top" style="background-color:#59abda; height:220px;">
+								<td   align="left" valign="top" style="background-color:#59abda; height:220px;">
 									<c:forEach var="annophoto" items="${annoPhoto}" begin="0" end="1">
 										<a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
 									</c:forEach>
 								</td>
-								<td width="40%" align="left" valign="top">
-									<table cellpadding="3" width="100%" >
+								<td width="2%">&nbsp;</td>
+								<td width="40%" align="left" valign="top" style="background-color:#a7c676; height:220px; color: #fff;">
+									<table cellpadding="7" width="100%" >
 										<c:forEach var="anno" items="${annolist}" begin="0" end="2">
 											<tr  class="bb">
 												<td align="left" valign="top">
-													<div style="width: 160px" id="content"><a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a></div>
+													<div style="width: 140px" id="content"><a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a></div>
 												</td>
 												<td align="left" valign="top">
 													${anno.date}

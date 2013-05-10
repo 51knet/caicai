@@ -88,24 +88,27 @@ public class TeacherCourseInfoFrontPageController {
 			List<CourseResource> listResource = courseResourceService
 					.getAllCourseResourceByCourseIdAndStatus(course_id,
 							GlobalDefs.STATUS_COURSE_RESOURCE);
-			List<CourseResource> courseList;
+			List<CourseResource> resourceList;
 			Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
 			String resourceOrder = null;
 			for (CourseResource courseResource : listResource) {
 				resourceOrder = courseResource.getLessonNum();
-				courseList = new ArrayList<CourseResource>();
-				courseList = courseResourceService
+				resourceList = new ArrayList<CourseResource>();
+				resourceList = courseResourceService
 						.getResourceByLessonNumAndCourseId(resourceOrder,
 								course_id);
-				courseMap.put(resourceOrder, courseList);
+				courseMap.put(resourceOrder, resourceList);
 			}
 			List<CourseType> cTypeList = courseTypeService.findAll();
 			logger.info("===============" + cTypeList.size());
 			model.addAttribute("cTypeList", cTypeList);
-			Integer courseCount = teacherCourseService
+			
+			List<TeacherCourse> courseList = teacherCourseService
 					.getAllTeacherCourseByTeacheridAndPublish(teacher_id,
-							GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
-			model.addAttribute("courseCount", courseCount);
+							GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+			model.addAttribute("courseList", courseList);
+			model.addAttribute("courseCount", courseList.size());
+			
 			model.addAttribute("resourceCount", listResource.size());
 			model.addAttribute("courseMap", courseMap);
 			if (user.getRole().equals("teacher")) {

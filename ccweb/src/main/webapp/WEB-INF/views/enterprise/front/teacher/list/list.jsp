@@ -10,70 +10,52 @@
 .row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
-	background: #FAFAFB;
-}
+	/*background: #FAFAFB;*/
 
+}
 .row-fluid.custom .row > h4 {
 	color: #80b029;
-	border-bottom: solid #cccccc 1.5px;
+	border-bottom: solid #f77605 1.5px;
 	padding-bottom: 4px;
-	margin: 10px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	padding:0px 10px 5px 10px;
 }
 
 .row-fluid.custom .row {
-	margin: 10px 40px 0px 40px;
+	margin: 0px 10px 0px 10px;
 }
 
 .row-fluid.custom .row .bb{
-	border-bottom: dashed #cccccc 1px;
+	border-bottom: dashed  1px;
 }
-.row-fluid.custom .row .bro{
+.row-fluid.custom .row .teacher{
 	margin-top:10px;
-	margin-right:17px;
-	margin-left:7px;
+	margin-left:13px;
 	margin-bottom:10px;
-	border:1px solid #ccc;
-	width: 210px;
+	border:1px dotted #dadada;
+	width: 100px;
 	padding:5px;
 	float: left;
 }
 </style>
 
 <div class="row-fluid custom round">
-	<div class="row">
-		<h4>知名教师</h4>
+	<div class="row"><h4>知名教师 </h4></div>
+	<div class="row" style="border: solid 1px #f77605;" >
+		<c:choose>
+			<c:when test="${eTeacherCount !=0}">
+				<c:forEach items="${page.content }" var="et">
+					<div class="teacher">
+						<div><a href='<c:url value="/enterprise/${teacherInfo.id}/teacher/view/${et.id}"></c:url>' ><img src='<c:url value="${et.photourl}" ></c:url>'  ></a></div>
+						<div>${et.content }</div>
+					</div>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+			<br>
+				无内容<br>
+			</c:otherwise>
+		</c:choose>
 	</div>
-	<div class="row">
-		<table  style="width: 100%" >
-			<tbody>
-				<tr ><td>
-					<c:choose>
-						<c:when test="${eTeacherCount !=0}">
-							<c:forEach items="${page.content }" var="et">
-								<div class="bro">
-									<div><a href='<c:url value="/enterprise/${teacherInfo.id}/teacher/view/${et.id}"></c:url>' ><img src='<c:url value="${et.photourl}" ></c:url>'  ></a></div>
-									<div>${et.content }</div>
-								</div>
-							</c:forEach>
-						</c:when>
-						<c:otherwise>
-						<br>
-							无内容<br><br>
-						</c:otherwise>
-					</c:choose>
-				</td></tr>
-			</tbody>
-		<tfoot>
-	    <tr><td >
-	        <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
-	   		 </td></tr>
-		</tfoot>
-		</table>
-		
-		<form action="<c:url value="/course/view"></c:url>" id="showCourseDetail" method="post">
-			<input type="hidden"  name="teacherId" id="teacher_id" >
-			<input type="hidden"  name="courseId" id="course_id">
-			<input type="hidden"  name="coursepwd" id="course_pwd">
-		</form>
-	</div>
+	<div style="margin: 10px 0px 0px 10px;"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 </div>

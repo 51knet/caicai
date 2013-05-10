@@ -182,12 +182,15 @@ public class EnterpriseTeacherInfoFrontPageController {
 			@PathVariable Long et_id, Model model) {
 		User user = userService.findOne(enterprise_id);
 		UserInfo userInfo = new UserInfo(user);
-		Integer courseCount = courseService
-				.getAllTeacherCourseByTeacheridAndPublish(enterprise_id,
-						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
-		model.addAttribute("courseCount", courseCount);
+		
 		List<CourseType> cTypeList = courseTypeService.findAll();
 		model.addAttribute("cTypeList", cTypeList);
+		List<TeacherCourse> courseList = courseService
+				.getAllTeacherCourseByTeacheridAndPublish(enterprise_id,
+						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		model.addAttribute("courseList", courseList);
+		model.addAttribute("courseCount", courseList.size());
+		
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", enterprise_id);
 

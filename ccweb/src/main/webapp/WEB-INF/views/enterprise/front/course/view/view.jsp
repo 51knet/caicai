@@ -4,219 +4,154 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
-.nar {
-	background-color: #ccdfa8; 
-	width:100%; 
-	font-size:14px;
-	height: 20px; 
-	padding-top: 10px;
-	margin-bottom: 10px;  
-	padding: 5px; 
-}
-.nar .content{
-	margin-left: 30px;
-	font-size: 15px;
-}
-
- .cont {
-	width: 92.5%;
-	margin-left: 33px;
-	margin-bottom: 10px;
-}
-.cont .top{
-	font-size: 14px; 
-	 background-color: #cccccc; 
-	 padding: 3px;
-}
 .row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
-	background: #FAFAFB;
+	/*background: #FAFAFB;*/
+
 }
-.round {
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-}
-.row-fluid.custom .row {
-	margin: 10px 40px;
+.row-fluid.custom .row > h4 {
 	color: #80b029;
-	border-bottom: solid #cccccc 1.5px;
+	border-bottom: solid #f77605 1.5px;
+	padding-bottom: 4px;
+	margin: 0px 0px 0px 0px;
+	padding:0px 10px 5px 10px;
 }
 
-.row-fluid.custom .content {
-	margin: 10px 40px;
-	color: cccccc;
+.row-fluid.custom .row {
+	margin: 0px 10px 0px 10px;
+	text-align: center;
 }
 
+.row-fluid.custom .row .content {
+	width: 80%;
+	padding:0px 0px 0px 100px;
+}
+.row-fluid.custom .row .content .detail{
+	width: 45%;
+	float: left;
+	margin: 20px 0px 20px 0px;
+	text-align: left;
+	line-height: 24px;
+}
 .row-fluid.custom .content .bb{
 	border-bottom: dashed #cccccc 1px;
 }
+
+
+.tabbable .tab-content {
+	border: solid 1px #f77605;
+	margin-top: -20px;
+}
+
+.tabbable .tab-content .tab-pane .title{
+	padding:0px 20px 0px 20px;
+}
+.tabbable .tab-content .tab-pane .content{
+	padding:0px 20px 10px 20px;
+	text-align: left;
+	margin:10px 10px;
+}
+.tabbable .tab-content .tab-pane .title >h4{
+	color: #80b029;
+	border-bottom: solid #f77605 1.5px;
+	padding: 0px 0px 4px 10px;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0px;
+}
 </style>
 <script type="text/javascript">
-function courseOnclick(obj) {
-	var courseId = obj.id;
-	var id = courseId.substring(courseId.indexOf('_') + 1, courseId.length); // 这里indexOf('-')和lastIndexOf('-')相等
-	$(".fileName_" + id).slideToggle();
-	return false;
-}
 </script>
-<div  class="row-fluid custom round">
-	<div class="row">
-		<h4>课程详细</h4>
-	</div>
-	<div class="content" style="margin-top: 10px;">
-		<div  style=" height: 160px; width: 100%">
-			<div style="width: 40%; text-align:center;  float: left;border: 0px solid #cccccc;">
+<div  class="row-fluid custom ">
+	<div class="row" style="border: solid 1px #f77605;" >
+		<div class="content" >
+			<div class="detail" style="text-align: center;">
 				<c:choose>
 					<c:when test="${course.courseCover != null && course.courseCover != ''}">
-						<a href='#'> <img src="<c:url value='${course.courseCover }'></c:url>" style="width: 160px; height: 120px;margin-top: 10px;margin-left: 70px;" />
+						<a href='#'> <img src="<c:url value='${course.courseCover }'></c:url>" style="width: 200px; height: 150px;" />
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 160px; height: 120px;margin-top: 10px;margin-left: 70px;" />
+						<a href='#'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 200px; height: 150px;" />
 						</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div style="width: 60%; float: left; height:150px;border: 0px solid #cccccc;">
-				<div style="margin-left:30px; margin-top: 10px;" >
-					<div style="width: 200px; font-size: 18px;color: black;" id="content">${course.courseName}</div>
-					<span style="font-size: 14px;color: black;">${course.user.name}<br/>
-					<span style="font-size: 14px;color: black;"> 类别：${course.cType.typeName }</span><br/>
-					<span style="font-size: 14px;color: black;">发布时间：${course.courseDate }</span>
+			<div class="detail" >
+				<div style="width: 200px; font-size: 18px; color: #80b029;" id="content">${course.courseName}</div>
+				${course.user.name}<br>
+				 课程类别：${course.cType.typeName }<br>
+				发布时间：${course.courseDate }<br>
+				课程售价：<c:choose>
+									<c:when test="${course.price == null || course.price== ''  }">
+										0 元
+									</c:when>
+									<c:otherwise>
+										${course.price } 元
+									</c:otherwise>
+								</c:choose> <br>
+				<a href="#" style="margin-right: 5px;"><img src='<c:url value="/resources/img/default/front/epre.png"></c:url>'  /></a>
+				<a href="#"><img src='<c:url value="/resources/img/default/front/ebuy.png"></c:url>'  /></a>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-top: 30px;">
+		<div class="tabbable">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#course_info_tab" data-toggle="tab">课程介绍</a></li>
+				<li><a href="#purchase_info_tab" data-toggle="tab">购买记录</a></li>
+				<li><a href="#comment_tab" data-toggle="tab">评价详情</a></li>
+			</ul>
+			<div class="tab-content" >
+				<div class="tab-pane active " id="course_info_tab">
+					<div class="title">
+						<h4>课程详情</h4>
+					</div>
+					<div class="content">
+						<c:choose>
+							<c:when test="${course.courseDesc!=null}">
+								${course.courseDesc}
+							</c:when>
+							<c:otherwise>
+								尚未添加课程介绍
+							</c:otherwise>
+						</c:choose>
+					</div>
+						<div class="title">
+						<h4>目标人群</h4>
+					</div>
+					<div class="content">
+						<c:choose>
+							<c:when test="${course.targetPerson!=null}">
+								${course.targetPerson}
+							</c:when>
+							<c:otherwise>
+								尚未添加
+							</c:otherwise>
+						</c:choose>
+					</div>
+						<div class="title">
+						<h4>课程看点</h4>
+					</div>
+					<div class="content">
+						<c:choose>
+							<c:when test="${course.courseCharacter!=null }">
+								${course.courseCharacter}
+							</c:when>
+							<c:otherwise>
+								尚未添加
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</div>
+				<div class="tab-pane " id="purchase_info_tab">
+					<div class="content">尚未有人购买</div>
+				</div>
+				<div class="tab-pane " id="comment_tab">
+					<div class="content">尚未评价</div>
 				</div>
 			</div>
-		</div>
-		<div  class="nar">
-			<span class="content"><b>课程介绍</b></span>
-		</div>
-		<div class="cont">
-				<c:choose>
-				<c:when test="${course.courseDesc!=null}">
-					${course.courseDesc}
-				</c:when>
-				<c:otherwise>
-					尚未添加课程介绍
-				</c:otherwise>
-			</c:choose>
-		</div>
-		
-		<div  class="nar">
-			<span style="margin-left: 30px;"><b>目标人群</b></span>
-		</div>
-		<div class="cont">
-			<c:choose>
-				<c:when test="${course.targetPerson!=null}">
-					${course.targetPerson}
-				</c:when>
-				<c:otherwise>
-					尚未添加目标人群
-				</c:otherwise>
-			</c:choose>
-		</div>
-		
-		<div  class="nar">
-				<span class="content"><b>课程看点</b></span>
-			</div>
-		<div class="cont">
-			<c:choose>
-				<c:when test="${course.courseCharacter!=null }">
-					${course.courseCharacter}
-				</c:when>
-				<c:otherwise>
-					尚未添加课程看点
-				</c:otherwise>
-			</c:choose>
-		</div>
-		
-		<div  class="nar">
-				<span class="content"><b>课程资料</b></span>
-			</div>
-		<div class="cont">
-			<c:choose>
-				<c:when test="${resourceCount>0 }">
-					<c:forEach var="course" items="${courseMap}" varStatus="status">
-							<table   style="width: 95%;  border: 2px solid #f2f2f2; margin-bottom: 5px;">
-								<tbody>
-									<tr>
-										<td align="left">
-											<div >
-												<div  class="top"  id="course_${status.index}" onclick="javascript:courseOnclick(this);">
-													<span style="margin-left: 10px;"><b>第${course.key}课时</b></span>
-												</div>
-												<c:forEach var="fileNames" items="${course.value}">
-												<c:if test="${fileNames.fileName!=null}">
-													<div  class="fileName_${status.index}"  >
-														<c:if test="${fileNames.fileName != null }">
-															<div id="${fileNames.id}_courseResourceShowDetail" style="width: 100%; margin-top: 5px; margin-bottom: 1px; border-bottom: 1px dotted #dcdcdc;">
-																	<table style="width: 94%; margin-left: 20px;">
-																		<tbody>
-																			<tr>
-																				<td width="8%">
-																					<c:if test="${fileNames.resourceType.id ==1 }">
-																						<img src='<c:url value="/resources/resourceType/text.jpg"></c:url>' style="width: 40px; height: 40px;" />
-																					</c:if> 
-																					<c:if test="${fileNames.resourceType.id ==2}">
-																						<img src='<c:url value="/resources/resourceType/video.jpg"></c:url>' style="width: 40px; height: 40px;" />
-																					</c:if>
-																				</td>
-																				<td align="left" width="60%">
-																					<a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'> <span style="margin-left: 0px;">${fileNames.fileName}</span>
-																					</a>
-																				</td>
-																				<td align="right" width="30%">
-																				<a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'>
-																				<img src="<c:url  value="/resources/img/u173_normal.jpg" ></c:url> ">
-																				</a>
-																				</td>
-																				<td>
-																				<c:if test="${fileNames.resourceType.id ==2 }">
-																				<a href="#myModal_${status.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a>
-																				 <!-- Modal -->
-																					<div id="myModal_${status.index}" class="modal hide fade" style="width:670px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-																					  <div class="modal-header">
-																					    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-																					    <h3 id="myModalLabel">${fileNames.fileName}</h3>
-																					  </div>
-																					  <div class="modal-body">
-																					    <video id="myPlayer_${resourceStatus.index}" class="video-js vjs-default-skin" controls width="640" height="320" 
-																						  poster="http://dummyimage.com/640x264/000000/51ff00.jpg&text=loading..." preload="auto" data-setup="{}">
-																						  <source type="video/mp4" src='<c:url value="${fileNames.relativePath}"></c:url>'></source>
-																						</video>
-						
-																						<script type="text/javascript">
-																							var myPlayer = _V_("myPlayer_${resourceStatus.index}");
-																							$("#myModal_${status.index}").on('hidden',function(){
-																								myPlayer.pause();
-																							});
-																						</script>
-																					  </div>
-																						<div class="modal-footer">
-																							<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-																						</div>
-																					</div>
-																					</c:if>
-																					</td>
-																			</tr>
-																		</tbody>
-																	</table>
-																</div>
-														</c:if>
-													</div>
-												</c:if>
-											</c:forEach>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</c:forEach>
-				</c:when>
-				<c:otherwise>
-					尚未添加资源
-				</c:otherwise>
-			</c:choose>
 		</div>
 	</div>
 </div>

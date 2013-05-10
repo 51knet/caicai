@@ -7,23 +7,26 @@
 .row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
-	background: #FAFAFB;
+	/*background: #FAFAFB;*/
 }
 
 .row-fluid.custom .row > h4 {
 	color: #80b029;
-	border-bottom: solid #cccccc 1.5px;
+	border-bottom: solid #f77605 1.5px;
 	padding-bottom: 4px;
-	margin: 10px 0px 0px 0px;
-	text-align: left;
+	margin: 0px 0px 0px 0px;
+	padding:0px 10px 5px 10px;
 }
 
 .row-fluid.custom .row {
-	margin: 10px 40px 0px 40px;
+	margin: 0px 10px 0px 10px;
+}
+.row-fluid.custom .row .photo{
+	margin: 10px 0px 0px 0px;
 	text-align: center;
 }
 .row-fluid.custom .row .content{
-	margin-top: 20px;
+	margin: 10px 20px 10px 20px;
 	text-align: left;
 }
 
@@ -33,9 +36,9 @@
 	<div class="row">
 		<h4>教师详细</h4>
 	</div>
-	<div class="row">
-		<div >
-			<label><img src='<c:url value="${eTeacher.photourl}" ></c:url>'  ></label>
+	<div class="row"  style="border: solid 1px #f77605;">
+		<div class="photo" >
+			<img src='<c:url value="${eTeacher.photourl}" ></c:url>'  style="width: 150px; height: 150px;">
 		</div>
 		<div  class="content">${eTeacher.content }</div>
 	</div>
