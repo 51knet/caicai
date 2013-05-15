@@ -23,6 +23,7 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.AuthenResource;
 import com.knet51.ccweb.jpa.entities.Authentication;
+import com.knet51.ccweb.jpa.entities.Recharge;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
@@ -32,6 +33,7 @@ import com.knet51.ccweb.jpa.services.AuthenResourceService;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
 import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
+import com.knet51.ccweb.jpa.services.RechargeService;
 import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
@@ -63,6 +65,8 @@ public class CaiCaiPageController {
 	private TeacherService teacherService;
 	@Autowired
 	private AuthenResourceService authenResourceService;
+	@Autowired
+	private RechargeService rechargeService;
 	
 	
 	
@@ -188,5 +192,28 @@ public class CaiCaiPageController {
 		Page<CourseResource> page = resourceService.findAllByStatusForSuperAdmin(pageNumber, pageSize);
 		model.addAttribute("page", page);
 		return "admin.caicai.resource.list";
+	}
+	
+	/*  operate recharge card  page controller  */
+	
+	@RequestMapping(value="/admin/caicai/recharge/list")
+	public String showAllRechargecard(Model model, HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		logger.info("====== into caicai recharge list controller =====");
+		Page<Recharge> page = rechargeService.findAll(pageNumber, pageSize);
+		model.addAttribute("page", page);
+		return "admin.caicai.recharge.list";
+	}
+	
+	@RequestMapping(value="/admin/caicai/recharge/create")
+	public String createNewRechargecard(){
+		logger.info("====== into caicai create recharge page controller =====");
+		
+		return "admin.caicai.recharge.create";
+	}
+	@RequestMapping(value = "/admin/caicai/recharge/createAjax")
+	public @ResponseBody ValidationResponse rechargeCardFormAjaxJson(@Valid RechargeCardForm rechargeCardForm, BindingResult result) {
+		logger.info("==== into recharge card ajax controller ====="+result);
+		return AjaxValidationEngine.process(result);
 	}
 }

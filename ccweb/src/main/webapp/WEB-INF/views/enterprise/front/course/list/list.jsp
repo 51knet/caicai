@@ -71,7 +71,7 @@
 		<div class="row"  style="border: solid 1px #f77605;">
 			<c:choose>
 				<c:when test="${courseCount !=0}">
-					<c:forEach items="${page.content}" var="page" begin="0" end="5">
+					<c:forEach items="${page.content}" var="page" >
 				    	<div class="course">
 							<div style="width: 230px; height: 155px; background-image: url('<c:url value="${page.courseCover }"></c:url>');  
 									background-repeat:no-repeat;background-position:center;  ">

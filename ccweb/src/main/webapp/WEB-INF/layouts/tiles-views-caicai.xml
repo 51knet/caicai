@@ -61,10 +61,24 @@
 		<put-attribute name="right" value="/WEB-INF/views/caicai/resource/type/list/list.jsp"></put-attribute>
 	</definition>
 	
+	<!-- caicai blog admin layout-->
 	<definition name="admin.caicai.blog.list" extends="admin-layout">
 		<put-attribute name="title" value="博文" />
 		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/caicai/blog/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<!-- caicai recharge admin layout -->
+	<definition name="admin.caicai.recharge.list" extends="admin-layout">
+		<put-attribute name="title" value="充值卡" />
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/recharge/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.caicai.recharge.create" extends="admin-layout">
+		<put-attribute name="title" value="充值卡" />
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/recharge/new/create.jsp"></put-attribute>
 	</definition>
 
 </tiles-definitions>

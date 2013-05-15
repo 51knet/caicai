@@ -1,16 +1,20 @@
 package com.knet51.ccweb.controllers.admin.caicai;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Authentication;
+import com.knet51.ccweb.jpa.entities.Recharge;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
@@ -28,6 +33,7 @@ import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
 import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
+import com.knet51.ccweb.jpa.services.RechargeService;
 import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
@@ -53,6 +59,8 @@ public class CaiCaiDetailController {
 	private BlogService blogService;
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private RechargeService rechargeService;
 	
 	/*   operate user controller  detail controller */
 	
@@ -202,13 +210,18 @@ public class CaiCaiDetailController {
 	 */
 	@RequestMapping(value="/admin/caicai/authentication/view/refuse" ,method = RequestMethod.POST)
 	public String refuseAuthenticationReason(@RequestParam("auth_id") Long auth_id, Model model
-			,@Valid AuthenticationRefuseForm refuseForm ){
+			,@Valid AuthenticationRefuseForm refuseForm,BindingResult validResult ){
 		logger.info("====== into pass authentication controller   =====");
-		Authentication authentication = authenticationService.findOneById(auth_id);
-		authentication.setReason(refuseForm.getReason());
-		authentication.setStatus("refuse");
-		authenticationService.updateAuthentication(authentication);
-		return "redirect:/admin/caicai/";
+		if(validResult.hasErrors()){
+			logger.info("refuseForm Validation Failed " + validResult);
+			return "redirect:/admin/caicai/authentication/view/"+auth_id;
+		}else{
+			Authentication authentication = authenticationService.findOneById(auth_id);
+			authentication.setReason(refuseForm.getReason());
+			authentication.setStatus("refuse");
+			authenticationService.updateAuthentication(authentication);
+			return "redirect:/admin/caicai/";
+		}
 	}
 	
 	
@@ -417,6 +430,41 @@ public class CaiCaiDetailController {
 			return "admin.caicai.resource.list";
 		}else{
 			return "redirect:/admin/caicai/resource/list";
+		}
+	}
+	
+	/**
+	 * create a rechargeCard id
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/admin/caicai/recharge/createCardId",method = RequestMethod.POST)
+	public void createCardId(HttpServletResponse response) throws Exception{
+		logger.info("==== into createCardId controller ====");
+		Random random = new Random();
+		StringBuffer sb = new StringBuffer();
+		for(int i=0;i<16;i++){
+			sb.append(random.nextInt(9));
+		}
+		PrintWriter out = response.getWriter();
+		out.write(sb.toString());
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="/admin/caicai/recharge/new" ,method = RequestMethod.POST)
+	public String createRechargeCard(@Valid RechargeCardForm cardForm,BindingResult validResult){
+		logger.info("==== into create recharge controller ====");
+		if(validResult.hasErrors()){
+			logger.info("RechargeCardForm Validation Failed " + validResult);
+			return "redirect:/admin/caicai/recharge/create";
+		}else{
+			Recharge recharge = new Recharge();
+			recharge.setCardid(cardForm.getCardid());
+			recharge.setPrice(Long.parseLong(cardForm.getPrice()));
+			recharge.setDate(new Date());
+			rechargeService.createRecharge(recharge);
+			return "redirect:/admin/caicai/recharge/list";
 		}
 	}
 	
