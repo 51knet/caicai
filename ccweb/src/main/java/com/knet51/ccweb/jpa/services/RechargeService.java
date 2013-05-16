@@ -12,5 +12,5 @@ public interface RechargeService {
 	Recharge updateRecharge(Recharge recharge);
 	void deleteRechargeById(Long id);
 	Page<Recharge> findAll(int pageNumber,int pageSize);
-	
+	Recharge findOneByCardid(String cardid);
 }

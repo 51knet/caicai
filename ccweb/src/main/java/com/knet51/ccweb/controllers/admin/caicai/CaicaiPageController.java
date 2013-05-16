@@ -24,6 +24,7 @@ import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.AuthenResource;
 import com.knet51.ccweb.jpa.entities.Authentication;
 import com.knet51.ccweb.jpa.entities.Recharge;
+import com.knet51.ccweb.jpa.entities.RechargeHistory;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
@@ -33,6 +34,7 @@ import com.knet51.ccweb.jpa.services.AuthenResourceService;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
 import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
+import com.knet51.ccweb.jpa.services.RechargeHistoryService;
 import com.knet51.ccweb.jpa.services.RechargeService;
 import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
@@ -67,6 +69,9 @@ public class CaiCaiPageController {
 	private AuthenResourceService authenResourceService;
 	@Autowired
 	private RechargeService rechargeService;
+	
+	@Autowired
+	private RechargeHistoryService rechargeHistoryService;
 	
 	
 	
@@ -211,9 +216,20 @@ public class CaiCaiPageController {
 		
 		return "admin.caicai.recharge.create";
 	}
+	
 	@RequestMapping(value = "/admin/caicai/recharge/createAjax")
 	public @ResponseBody ValidationResponse rechargeCardFormAjaxJson(@Valid RechargeCardForm rechargeCardForm, BindingResult result) {
 		logger.info("==== into recharge card ajax controller ====="+result);
 		return AjaxValidationEngine.process(result);
 	}
+	
+	@RequestMapping(value="/admin/caicai/recharge/history/list")
+	public String showAllRechargeHistory(Model model, HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		logger.info("====== into show all recharge history page controller =====");
+		Page<RechargeHistory> page = rechargeHistoryService.findAll(pageNumber, pageSize);
+		model.addAttribute("page", page);
+		return "admin.caicai.recharge.history.list";
+	}
+	
 }

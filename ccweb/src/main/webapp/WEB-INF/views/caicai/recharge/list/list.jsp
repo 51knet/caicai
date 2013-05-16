@@ -7,12 +7,7 @@
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#t").focus(function() {
-		$(".help-inline").html("");
-	});
-	$("#c").focus(function() {
-		$(".help-inline").html("");
-	});
+
 });
 
 </script>
@@ -45,7 +40,7 @@ $(document).ready(function() {
 	</div>
 	<div class="content">
 		<div style="padding-bottom: 10px; text-align: right;">  
-		<a href='<c:url value="/admin/caicai/recharge/create"></c:url>' class="btn pull-left">创建充值卡</a>
+		<a href='<c:url value="/admin/caicai/recharge/create"></c:url>' class="btn pull-left" style="margin-right: 10px;">创建充值卡</a><a href='<c:url value="/admin/caicai/recharge/history/list"></c:url>' class="btn pull-left">充值历史</a>
 			<form class="navbar-form" action="<c:url value="/admin/caicai/recharge/search"></c:url>" method="post">
 				<input type="text" name="searchParam" class="span5" placeholder="输入充值卡id搜索"  value="${searchParam }">
 				<button type="submit" class="btn" style=" margin-top:4px;font-family:Arial,'Microsoft YaHei'; color: #808080; ">id搜索</button>
@@ -62,17 +57,15 @@ $(document).ready(function() {
 				</thead>
 				<tbody>
 					<c:choose>
-						<c:when test="${rechargeListCount >=0 }">
-							<c:if test="${rechargeListCount == 0 }">
+						<c:when test="${recharge!=null }">
+							<c:if test="${recharge==null}">
 								<tr><td colspan="5" align="left">未搜索到</td></tr>
-							</c:if>
-							<c:forEach items="${rechargeList }" var = "recharge">
+							</c:if>						
 								<tr>
 									<td align="center" >${recharge.cardid}</td>
 									<td align="center" >${recharge.price} 元</td>
 									<td align="center"><fmt:formatDate value="${recharge.date}" pattern="yyyy-MM-dd HH:mm" /></td>
 								</tr>
-							</c:forEach>
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${page.content}" var="page">

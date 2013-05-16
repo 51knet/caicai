@@ -451,7 +451,12 @@ public class CaiCaiDetailController {
 		out.flush();
 		out.close();
 	}
-	
+	/**
+	 * create a new recharge card
+	 * @param cardForm
+	 * @param validResult
+	 * @return
+	 */
 	@RequestMapping(value="/admin/caicai/recharge/new" ,method = RequestMethod.POST)
 	public String createRechargeCard(@Valid RechargeCardForm cardForm,BindingResult validResult){
 		logger.info("==== into create recharge controller ====");
@@ -464,6 +469,20 @@ public class CaiCaiDetailController {
 			recharge.setPrice(Long.parseLong(cardForm.getPrice()));
 			recharge.setDate(new Date());
 			rechargeService.createRecharge(recharge);
+			return "redirect:/admin/caicai/recharge/list";
+		}
+	}
+	
+	@RequestMapping(value="/admin/caicai/recharge/search", method = RequestMethod.POST)
+	public String searchRechargeCardByCardid(@RequestParam("searchParam") String searchParam,Model model){
+		String cardid = searchParam.trim();
+		Recharge recharge = null;
+		if(cardid != null && !cardid.equals("")){
+			recharge = rechargeService.findOneByCardid(cardid);
+			model.addAttribute("recharge", recharge);
+			model.addAttribute("searchParam", cardid);
+			return "admin.caicai.recharge.list";
+		}else{
 			return "redirect:/admin/caicai/recharge/list";
 		}
 	}

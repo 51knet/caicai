@@ -44,4 +44,9 @@ public class RechargeServiceImpl implements RechargeService {
 		return page;
 	}
 
+	@Override
+	public Recharge findOneByCardid(String cardid) {
+		return rechargeRepository.findRechargeByCardid(cardid);
+	}
+
 }
