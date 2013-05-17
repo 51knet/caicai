@@ -18,9 +18,11 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Recharge;
 import com.knet51.ccweb.jpa.entities.RechargeHistory;
+import com.knet51.ccweb.jpa.entities.WithdrawsApply;
 import com.knet51.ccweb.jpa.services.RechargeHistoryService;
 import com.knet51.ccweb.jpa.services.RechargeService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.WithdrawsApplyService;
 
 @Controller
 public class EnterpriseDetailController {
@@ -33,8 +35,17 @@ public class EnterpriseDetailController {
 	private RechargeHistoryService rechargeHistoryService;
 	@Autowired
 	private RechargeService rechargeService;
+	@Autowired
+	private WithdrawsApplyService withdrawsApplyService;
 	
-	@RequestMapping(value="admin/recharge/new", method = RequestMethod.POST)
+	/**
+	 * create recharge card
+	 * @param cardForm
+	 * @param validResult
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/admin/recharge/new", method = RequestMethod.POST)
 	public String createRechargeHistory(@Valid EnterpriseRechargeCardForm cardForm,BindingResult validResult,HttpSession session){
 		logger.info("=== into create rechargeHistory controller ===");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -56,6 +67,23 @@ public class EnterpriseDetailController {
 				return "redirect:/admin/recharge/create";
 			}
 		}
+	}
+	
+	@RequestMapping(value="/admin/withdraws/create" ,method = RequestMethod.POST)
+	public String createWithdrawsApply(@Valid WithdrawsApplyForm withdrawsApplyForm, BindingResult validResult, HttpSession session){
+		logger.info("=== into create rechargeHistory controller ===");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(validResult.hasErrors()){
+			logger.info("withdrawsApplyForm Validation Failed " + validResult);
+		}else{
+			WithdrawsApply withdrawsApply = new WithdrawsApply();
+			withdrawsApply.setContent(withdrawsApplyForm.getContent());
+			withdrawsApply.setSum(Double.parseDouble(withdrawsApplyForm.getSum()));
+			withdrawsApply.setDate(new Date());
+			withdrawsApply.setUser(userInfo.getUser());
+			withdrawsApplyService.createWithdrawsApply(withdrawsApply);
+		}
+		return "redirect:/admin/withdraws/list";
 	}
 	
 }

@@ -6,7 +6,11 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
-
+$(document).ready(function() {
+	$("#withdraws_form").submit(function(){
+		return checkEmptyAjax("withdraws_form","<c:url value='/admin/withdraws/createWithdrawsAjax'></c:url>");
+	});
+});
 </script>
 <style>
 .row-fluid.custom {
@@ -28,28 +32,26 @@
 
 <div class="row-fluid custom round">
 	<div  class="row" >
-		<h4>账户管理</h4>
+		<h4>账户管理>申请提现</h4>
 	</div>
 	<div class="content">
 		<div style="text-align: right;">
-			<a href='<c:url value="/admin/withdraws/list"></c:url>' style="margin-bottom: 10px; margin-right: 5px;"class="btn">
-				申请提现</a> <a href='<c:url value="/admin/recharge/create"></c:url>' style="margin-bottom: 10px;"class="btn">账户充值</a><br>
 			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
 					<tr>
-						<th  align="center">充值卡号</th>
-						<th  align="center" width="30%">充值卡金额</th>
-						<th  align="center" width="30%">充值时间</th>
+						<th  align="center" width="20%">申请金额</th>
+						<th  align="center" width="20%">申请日期</th>
+						<th  align="center">申请原因</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr>
-							<td align="center" >${page.cardid}</td>
-							<td align="center">${page.price} 元</td>
+							<td align="center" >${page.sum} 元</td>
 							<td align="center">
 								<fmt:formatDate value="${page.date }" pattern="yyyy-MM-dd HH:mm" />
 							</td>
+							<td align="left">${page.content }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -58,5 +60,23 @@
 			<br />
 		</div>
 	</div>	
+	<div class="content">
+		<form action="create" method="post"  id="withdraws_form" >  
+			<div class="control-group" id="sum">
+				<div class="controls">
+					申请金额：<input type="text" name="sum" placeholder="申请金额" onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}"> 元 <span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group" id="content">
+				<div class="controls">
+					申请原因：<textarea style="width: 400px; height: 100px;" name="content" placeholder="申请原因"></textarea><span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="pull-left" style="margin-left: 70px;">
+				<button type="submit" class="btn btn-success" >申请</button>&nbsp;&nbsp;
+				<button type="reset" class="btn" >取消</button>
+			</div>
+		</form>
+	</div>
 </div>
 

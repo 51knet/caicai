@@ -31,11 +31,13 @@ import com.knet51.ccweb.jpa.entities.Recharge;
 import com.knet51.ccweb.jpa.entities.RechargeHistory;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.WithdrawsApply;
 import com.knet51.ccweb.jpa.services.EduBackgroundService;
 import com.knet51.ccweb.jpa.services.RechargeHistoryService;
 import com.knet51.ccweb.jpa.services.RechargeService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.WithdrawsApplyService;
 import com.knet51.ccweb.jpa.services.WorkExpService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherHonorService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherPatentService;
@@ -63,6 +65,8 @@ public class EnterprisePageController {
 	private RechargeHistoryService rechargeHistoryService;
 	@Autowired
 	private RechargeService rechargeService;
+	@Autowired
+	private WithdrawsApplyService withdrawsApplyService;
 	
 	@Transactional
 	@RequestMapping(value = "/admin/enterprisepersonalInfo", method = RequestMethod.POST)
@@ -231,6 +235,37 @@ public class EnterprisePageController {
 	 */
 	@RequestMapping(value = "/admin/recharge/createRechargeAjax", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse rechargeFormAjaxJson(@Valid EnterpriseRechargeCardForm cardForm, BindingResult result,HttpSession session) {
+		return AjaxValidationEngine.process(result);
+	}
+	
+	/**
+	 * show user withdraws list
+	 * @param session
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value="/admin/withdraws/list")
+	public String showMyWithdrawsList(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+		logger.info("=== into withdraws page controller ===");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Page<WithdrawsApply> page = withdrawsApplyService.findAllByUser(pageNumber, pageSize, userInfo.getUser());
+		model.addAttribute("page", page);
+		return "admin.enterprise.withdraws.list";
+	}
+	
+	/**
+	 * withdrawsApply form ajax check
+	 * @param cardForm
+	 * @param result
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "/admin/withdraws/createWithdrawsAjax")
+	public @ResponseBody ValidationResponse withdrawsApplyFormAjaxJson(@Valid WithdrawsApplyForm applyForm, BindingResult result,HttpSession session) {
+		logger.info("hehehehehehehhee");
 		return AjaxValidationEngine.process(result);
 	}
 }

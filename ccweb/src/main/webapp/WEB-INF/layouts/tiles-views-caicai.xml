@@ -86,5 +86,11 @@
 		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/caicai/recharge/history/list/list.jsp"></put-attribute>
 	</definition>
+	<!-- caicai withdraws admin layout -->
+	<definition name="admin.caicai.withdraws.list" extends="admin-layout">
+		<put-attribute name="title" value="充值卡" />
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/withdraws/list/list.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

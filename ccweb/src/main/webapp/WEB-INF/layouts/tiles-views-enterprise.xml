@@ -220,6 +220,13 @@
 		<put-attribute name="right" value="/WEB-INF/views/enterprise/admin/account/recharge/new/create.jsp"></put-attribute>
 	</definition>
 	
+	<!-- enterprise withdraws apply -->
+	<definition name="admin.enterprise.withdraws.list" extends="admin-layout">
+		<put-attribute name="title" value="账户管理" />
+		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/enterprise/admin/withdrawsapply/list/list.jsp"></put-attribute>
+	</definition>
+	
 	
 	<!-- enterprise front page -->
 	

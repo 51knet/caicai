@@ -26,6 +26,7 @@ import com.knet51.ccweb.jpa.entities.Authentication;
 import com.knet51.ccweb.jpa.entities.Recharge;
 import com.knet51.ccweb.jpa.entities.RechargeHistory;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.WithdrawsApply;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
@@ -40,6 +41,7 @@ import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.TeacherCourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.WithdrawsApplyService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 
@@ -69,9 +71,10 @@ public class CaiCaiPageController {
 	private AuthenResourceService authenResourceService;
 	@Autowired
 	private RechargeService rechargeService;
-	
 	@Autowired
 	private RechargeHistoryService rechargeHistoryService;
+	@Autowired
+	private WithdrawsApplyService withdrawsApplyService;	
 	
 	
 	
@@ -223,6 +226,14 @@ public class CaiCaiPageController {
 		return AjaxValidationEngine.process(result);
 	}
 	
+	/**
+	 * show all recharge history
+	 * @param model
+	 * @param session
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
 	@RequestMapping(value="/admin/caicai/recharge/history/list")
 	public String showAllRechargeHistory(Model model, HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
@@ -230,6 +241,23 @@ public class CaiCaiPageController {
 		Page<RechargeHistory> page = rechargeHistoryService.findAll(pageNumber, pageSize);
 		model.addAttribute("page", page);
 		return "admin.caicai.recharge.history.list";
+	}
+	
+	/**
+	 * show all withdraws
+	 * @param session
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value="/admin/caicai/withdraws/list")
+	public String showAllWithdrawsList(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+		logger.info("=== into withdraws page controller ===");
+		Page<WithdrawsApply> page = withdrawsApplyService.findAll(pageNumber, pageSize);
+		model.addAttribute("page", page);
+		return "admin.caicai.withdraws.list";
 	}
 	
 }
