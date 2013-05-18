@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.admin.teacher.SendReceMsg;
+package com.knet51.ccweb.controllers.admin.teacher.sendReceMsg;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
