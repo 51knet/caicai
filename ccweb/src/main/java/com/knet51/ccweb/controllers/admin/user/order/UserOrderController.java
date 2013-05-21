@@ -1,8 +1,5 @@
 package com.knet51.ccweb.controllers.admin.user.order;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,22 +25,13 @@ public class UserOrderController {
 	private OrderService orderService;
 	
 	
-	@RequestMapping(value="/admin/orderList")
+	@RequestMapping(value="/admin/order/list")
 	public String orderList(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
-		Order userOrder = new Order();
-		userOrder.setUser(user);
-		userOrder.setDescription("for test");
-		orderService.createOrder(userOrder);
-		List<Order> orderList = new ArrayList<Order>();
 		Page<Order> myOrder = orderService.findAllbyUser(pageNumber, pageSize, user);
-		for (Order order : myOrder) {
-			orderList.add(order);
-		}
-		model.addAttribute("orderList", orderList);
 		model.addAttribute("page", myOrder);
-		return "admin.order.list";
+		return "admin."+user.getRole()+".order.list";
 	}
 }

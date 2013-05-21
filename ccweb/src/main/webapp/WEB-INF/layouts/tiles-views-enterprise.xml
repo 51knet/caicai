@@ -310,5 +310,11 @@
 		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/enterprise/upgrade/upgradeRole.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.enterprise.order.list" extends="admin-layout">
+		<put-attribute name="title" value="订单信息" />
+		<put-attribute name="left" value="/WEB-INF/views/enterprise/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/order/orderInfo.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

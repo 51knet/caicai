@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 
 @Entity
-@Table(name = "UserOrder")
+@Table(name = "userOrder")
 public class Order extends AbstractEntity{
 
 	@ManyToOne

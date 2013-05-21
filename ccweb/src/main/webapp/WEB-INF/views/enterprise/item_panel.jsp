@@ -56,6 +56,7 @@
 				<li><a href='<c:url value="/admin/eteacher/list"></c:url>' >教师管理</a></li>
 				<li><a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
 				<li><a href='<c:url value="/admin/account/list"></c:url>' >账户管理</a></li>
+				<li><a href='<c:url value="/admin/order/list"></c:url>' >订单管理</a></li>
 				<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li>
 			</ul>
 		</div>
@@ -71,6 +72,8 @@
 				<li><a href='#'  style="background-color: #ccc;">资源管理</a></li>
 				<li><a href='#'  style="background-color: #ccc;">教师管理</a></li>
 				<li><a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
+				<li><a href='#'  style="background-color: #ccc;">账户管理</a></li>
+				<li><a href='#'  style="background-color: #ccc;">订单管理</a></li>
 				<li><a href='#'  style="background-color: #ccc;">站内信</a></li>
 			</ul>
 		</div>
