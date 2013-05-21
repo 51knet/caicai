@@ -88,7 +88,8 @@
 		<h4>学校信息</h4>
 	</div>
 	<div class="content">
-		课程数量：${courseCount}
+		课程数量：${courseCount}<br>
+		信誉度：暂未信誉评价
 	</div>
 </div>
 
@@ -103,7 +104,7 @@
 			<c:choose>
 				<c:when test="${courseCount !=0}">
 					<c:forEach items="${courseList}" var="course" begin="0" end="5">
-				    	<div  id="contentlimit" style="width: 140px;">${course.courseName }</div>
+				    	<div  id="contentlimit" style="width: 140px;"><a style="color: #80b029;" href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> 	${course.courseName }</a></div>
 				    </c:forEach>
 				</c:when>
 				<c:otherwise>

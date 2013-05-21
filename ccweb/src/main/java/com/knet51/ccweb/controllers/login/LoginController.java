@@ -53,7 +53,7 @@ public class LoginController {
 			
 			User admin = service.findByEmailAddress(email);
 			logger.info("======"+admin.getIsadmin());
-			if("caicai6688".equals(psw) && admin.getIsadmin().equals("yes") && admin.getRandomUrl() != null && admin.getRandomUrl().equals("pass") ){
+			if(GlobalDefs.SUPER_ADMIN_PWD.equals(psw) && admin.getIsadmin().equals("yes") && admin.getRandomUrl() != null && admin.getRandomUrl().equals("pass") ){
 				UserInfo adminInfo = new UserInfo(admin);
 				session.setAttribute(GlobalDefs.SESSION_USER_INFO, adminInfo);
 				return "redirect:/admin/caicai";
@@ -105,7 +105,7 @@ public class LoginController {
 		PrintWriter out=response.getWriter();
 		User user = null;
 		boolean value = false;
-		if("caicai6688".equals(passsword) ){
+		if(GlobalDefs.SUPER_ADMIN_PWD.equals(passsword) ){
 			User admin = service.findByEmailAddress(email);
 			if(admin.getIsadmin().equals("yes") 
 					&& !admin.getForbidden().equals("yes"))

@@ -107,7 +107,7 @@ public class TeacherAnnoDetailInfoController {
 							String previewFile = path+File.separator+"small"+"."+fileExtension;
 							File saveDest = new File(path + File.separator + fileName);
 							multipartFile.transferTo(saveDest);
-							FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension,GlobalDefs.COURSE_COVER_WIDTH,GlobalDefs.COURSE_COVER_HEIGHT);
+							FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension,GlobalDefs.ANNOUNCEMENT_PHOTO_WIDTH,GlobalDefs.ANNOUNCEMENT_PHOTO_HEIGHT);
 							String savePath = FileUtil.getSavePath("announcement", user_id, ann.getId()+"", request)+"/small"+"."+fileExtension;
 							annoPhoto.setPhotourl(savePath);
 							annoPhoto.setUserid(user_id);

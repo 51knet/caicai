@@ -25,4 +25,11 @@ public final class GlobalDefs {
 	
 	public static final int TEACHER_PHOTO_WIDTH = 100;//enterprises' teacher photo width;
 	public static final int TEACHER_PHOTO_HEIGHT = 100;
+	
+	// announcement photo's width and height
+	public static final int ANNOUNCEMENT_PHOTO_WIDTH = 440;
+	public static final int ANNOUNCEMENT_PHOTO_HEIGHT = 220;
+	
+	//super admin's pwd
+	public static final String SUPER_ADMIN_PWD = "caicai6688";
 }

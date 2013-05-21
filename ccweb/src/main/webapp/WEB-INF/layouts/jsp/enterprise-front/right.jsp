@@ -3,25 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <script type="text/javascript">
-	function checkCoursePwd(cid,tid){
-		$("#errorMsg").html("");
-		var pwd = $("#coursepwd").val();
-		$.post('<c:url value="/checkCoursePwd" />', $("#checkpwd_form").serialize(), function(flag){
-				if('true'==flag){
-					$("#course_id").val(cid);
-					$("#teacher_id").val(tid);
-					$("#course_pwd").val(pwd);
-					$("#showCourseDetail").submit();
-				}else{
-					$("#errorMsg").html("密码错误！");
-					return false;
-				}			
-		}, "text");
-	}
-	
-	function requestCourseDetail(cid,tid){
+	function requestCourseDetail(cid,eid){
 		$("#course_id").val(cid);
-		$("#teacher_id").val(tid);
+		$("#enterprise_id").val(eid);
 		$("#showCourseDetail").submit();
 	}
 </script>
@@ -115,8 +99,8 @@
 					<table cellpadding="4" width="100%" >
 						<tbody>
 							<tr>
-								<td   align="left" valign="top" style="background-color:#59abda; height:220px;">
-									<c:forEach var="annophoto" items="${annoPhoto}" begin="0" end="1">
+								<td   align="left" valign="top" style="background-color:#59abda; height:220px; width: 440px;">
+									<c:forEach var="annophoto" items="${annoPhoto}" begin="0" end="0">
 										<a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
 									</c:forEach>
 								</td>
@@ -182,30 +166,7 @@
 				    	<div class="course">
 							<div style="width: 230px; height: 155px; background-image: url('<c:url value="${course.courseCover }"></c:url>');  
 									background-repeat:no-repeat;background-position:center;  ">
-								<c:choose>
-									<c:when test='${course.pwd == "" || course.pwd == null}'>
-										<a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> 	<div style="height: 125px;"></div></a>
-									</c:when>
-									<c:otherwise>
-										<a href="#checkcourse" data-toggle="modal"> <div style="height: 125px;"></div></a> 
-										<div id="checkcourse" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 400px; height:180px; ">
-											<div class="modal-header">
-												<h4 id="myModalLabel">验证密码</h4>
-											</div>
-											<div class="modal-body">
-												<form  method="post" id="checkpwd_form">
-													<input type="hidden" value="${course.id}" name="cid"> 
-													输入密码：<input type="text" name="coursepwd" id="coursepwd" placeholder="密码">
-													<span id="errorMsg" style="font-size: 14px; color: red"></span>
-												</form>
-												<div style="margin-left: 120px;">
-													<button class="btn btn-success"  onclick="checkCoursePwd( ${course.id} , ${teacherInfo.id})">确定</button>&nbsp;&nbsp;
-													<button class="btn"  type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
-												</div>
-											</div>
-										</div>
-									</c:otherwise>
-								</c:choose>
+								<a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> 	<div style="height: 125px;"></div></a>
 			    				<div  style="height:24px;background-color:#000;  padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
 			    					<div  id="contentlimit" style="width: 240px;">
 			    							${course.courseName }
@@ -221,8 +182,8 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-		<form action="<c:url value="/course/view"></c:url>" id="showCourseDetail" method="post">
-			<input type="hidden"  name="teacherId" id="teacher_id" >
+		<form action="<c:url value="/enterprise/course/view"></c:url>" id="showCourseDetail" method="post">
+			<input type="hidden"  name="enterpriseId" id="enterprise_id" >
 			<input type="hidden"  name="courseId" id="course_id">
 			<input type="hidden"  name="coursepwd" id="course_pwd">
 		</form>
