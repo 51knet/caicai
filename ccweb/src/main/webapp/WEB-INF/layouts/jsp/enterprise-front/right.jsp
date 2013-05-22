@@ -9,6 +9,25 @@
 		$("#showCourseDetail").submit();
 	}
 </script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.8.0.js" />"></script>
+	<script type="text/javascript">
+		var n = 0;
+		$(document).ready(function(){
+			count=$(".cont a").length;
+			$(".item a").click(function(){
+				$(this).addClass("seld").siblings().removeClass("seld");	
+				var _index=$(this).index();
+				$(".cont>a").eq(_index).fadeIn(300).siblings().fadeOut(300);
+			});
+			t = setInterval("showAuto()", 2000);
+			$(".box").hover(function(){clearInterval(t)}, function(){t = setInterval("showAuto()", 2000);});
+		})
+		function showAuto()
+		{
+			n = n >=(count - 1)?0: ++n;
+			$(".item a").eq(n).trigger('click');
+		}	
+	</script>
 <style>
 .row-fluid.custom {
 	margin-bottom: 20px;
@@ -54,7 +73,14 @@
 	float: left;
 }
 
+.box{position:relative;width:440px;margin:0px auto;}
+.cont{height:220px;overflow:hidden; width:440px;}
+.item{background:rgba(0,0,0,0.5);color:#fff;font-size:80px;position:absolute;left:0;bottom:0;width:100%;text-align:right;line-height:40px;height:40px;}
+.item>a{margin-right:10px;cursor:pointer;text-shadow:0 0 3px rgba(0,0,0,0.8); text-decoration:  none;}
+.item>a.seld{color:#06C;}
+.item>a.hide{display:none;}
 </style>
+
 <!-- enterprise  announcement -->
 
 <div class="row-fluid custom round">
@@ -100,9 +126,26 @@
 						<tbody>
 							<tr>
 								<td   align="left" valign="top" style="background-color:#59abda; height:220px; width: 440px;">
-									<c:forEach var="annophoto" items="${annoPhoto}" begin="0" end="0">
+									<!--<c:forEach var="annophoto" items="${annoPhoto}" begin="0" end="0">
 										<a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
-									</c:forEach>
+									</c:forEach>-->
+										<div class="box">
+									    	<div class="cont">
+										    	<c:forEach var="annophoto" items="${annoPhoto}" begin="0" end="2">
+										            <a ><img src="<c:url value="${annophoto.photourl}"></c:url>"></img></a>
+										        </c:forEach>
+									          <!--  <a class="hide"><img src="<c:url value='/resources/img/ayu.png'></c:url>"></img></a>
+									          <a class="hide"><img src="<c:url value='/resources/img/ayu.png'></c:url>"></img></a> --> 
+									        </div>
+									        <div class="item">
+									       		<c:forEach var="annophoto" items="${annoPhoto}" begin="0" end="2">
+									            	<a class="seld">·</a>
+									           </c:forEach>
+									        	<!-- <a class="seld">·</a>
+									            <a>·</a>
+									            <a>·</a> -->
+									        </div>
+									    </div>
 								</td>
 								<td width="2%">&nbsp;</td>
 								<td width="40%" align="left" valign="top" style="background-color:#a7c676; height:220px; color: #fff;">

@@ -58,6 +58,7 @@
 	<div class="row-fluid" >
 		<form class="" style="padding: 15px 0px 15px 0px;"> 
 			<input type="text" style="width: 145px;" placeholder="输入课程名"><br>
+			价格：<input type="text" style="width: 35px;" > 至 <input type="text" style="width: 35px;" >
 			<button type="submit" class="btn pull-right " style="margin-right: 20px;">搜索</button>
 		</form>
 	</div>

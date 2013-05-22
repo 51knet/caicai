@@ -47,7 +47,7 @@
 				<div class="control-group" >
 					<div class="controls">
 						轮换图片：<input type="file" name="coverFile" /><span style="font-size: 13px; color: red;">${errorMsg }</span>
-										<br><span style="color: red;  margin-left: 70px;">只支持jpg、gif、bmp、png格式，建议封面宽度260px，高度195px</span>
+										<br><span style="color: red;  margin-left: 70px;">只支持jpg、gif、bmp、png格式，建议封面宽度440px，高度220px</span>
 						<span class="help-inline"></span><br>
 					</div>
 				</div>
