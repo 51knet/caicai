@@ -19,8 +19,8 @@ import com.knet51.ccweb.jpa.repository.TeacherCourseRepository;
 import com.knet51.ccweb.jpa.repository.TeacherRepository;
 import com.knet51.ccweb.jpa.repository.UserRepository;
 @Transactional
-@Service("teacherCourseService")
-public class TeacherCourseServiceImpl implements TeacherCourseService {
+@Service("courseService")
+public class CourseServiceImpl implements CourseService {
 	@Autowired
 	private TeacherCourseRepository courseRepository;
 	@Autowired

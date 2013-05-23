@@ -26,7 +26,7 @@ import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
 import com.knet51.ccweb.jpa.services.EnterpriseTeacherService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
-import com.knet51.ccweb.jpa.services.TeacherCourseService;
+import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherHonorService;
@@ -39,7 +39,7 @@ public class EnterpriseTeacherInfoFrontPageController {
 	@Autowired
 	private EnterpriseTeacherService enterpriseTeacherService;
 	@Autowired
-	private TeacherCourseService courseService;
+	private CourseService courseService;
 	@Autowired
 	private FriendsRelateService friendsRelateService;
 	@Autowired

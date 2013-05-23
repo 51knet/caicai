@@ -38,7 +38,7 @@ import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.RechargeHistoryService;
 import com.knet51.ccweb.jpa.services.RechargeService;
 import com.knet51.ccweb.jpa.services.ResourceService;
-import com.knet51.ccweb.jpa.services.TeacherCourseService;
+import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.WithdrawsApplyService;
@@ -56,7 +56,7 @@ public class CaiCaiPageController {
 	@Autowired
 	private UserService userService;
 	@Autowired
-	private TeacherCourseService courseService;
+	private CourseService courseService;
 	@Autowired
 	private CourseResourceService courseResourceService;
 	@Autowired

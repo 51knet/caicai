@@ -25,7 +25,7 @@ import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 import com.knet51.ccweb.jpa.services.CourseLessonService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
-import com.knet51.ccweb.jpa.services.TeacherCourseService;
+import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserCourseService;
 import com.knet51.ccweb.jpa.services.UserService;
@@ -36,7 +36,7 @@ public class TeacherCourseInfoFrontPageController {
 			.getLogger(TeacherCourseInfoFrontPageController.class);
 	public static final long MAX_FILE_SIZE_2M = 2 * 1024 * 1024;
 	@Autowired
-	private TeacherCourseService teacherCourseService;
+	private CourseService teacherCourseService;
 	@Autowired
 	private TeacherService teacherService;
 	@Autowired

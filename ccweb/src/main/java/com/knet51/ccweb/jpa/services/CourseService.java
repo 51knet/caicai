@@ -9,7 +9,7 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
 import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 
-public interface TeacherCourseService {
+public interface CourseService {
 	Page<TeacherCourse> findAllCourse(int pageNum, int pageSize);
 	TeacherCourse findOneById(Long id);
 	TeacherCourse createTeacherCourse(TeacherCourse teacherCourse);

@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.admin.teacher.course;
+package com.knet51.ccweb.controllers.admin.course;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -39,19 +39,19 @@ import com.knet51.ccweb.jpa.services.CourseLessonService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
 import com.knet51.ccweb.jpa.services.ResourceTypeService;
-import com.knet51.ccweb.jpa.services.TeacherCourseService;
+import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 
 
 @Controller
-public class TeacherCourseInfoDetailController {
+public class CourseInfoDetailController {
 	private static Logger logger = 
-			LoggerFactory.getLogger(TeacherCourseInfoDetailController.class);
+			LoggerFactory.getLogger(CourseInfoDetailController.class);
 	public static final long MAX_RESOURCE_SIZE_200M = 200*1024*1024;
 	public static final long MAX_COVER_SIZE_2M = 2*1024*1024;
 	@Autowired
-	private TeacherCourseService teacherCourseService;
+	private CourseService courseService;
 	@Autowired
 	private CourseResourceService courseResourceService; 
 	@Autowired
@@ -73,7 +73,7 @@ public class TeacherCourseInfoDetailController {
 	 */
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/edit",method=RequestMethod.POST)
-	public String TeacherCourseUpdateInfo(@Valid TeacherCourseInfoForm courseInfoForm,
+	public String TeacherCourseUpdateInfo(@Valid CourseInfoForm courseInfoForm,
 			BindingResult validResult, HttpSession session,@RequestParam("id") Long course_id){
 		
 		logger.info("#### Into TeacherCourseAdd Controller ####");
@@ -81,7 +81,7 @@ public class TeacherCourseInfoDetailController {
 			logger.info("detailInfoForm Validation Failed " + validResult);
 			return "redirect:/admin/course/edit/"+Long.valueOf(course_id);
 		}else{
-			TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
+			TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
 			String courseName = courseInfoForm.getCourseName();
 			String courseDesc = courseInfoForm.getCourseDesc();
 			course.setCourseName(courseName);
@@ -89,7 +89,7 @@ public class TeacherCourseInfoDetailController {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			String date = format.format(new Date());
 			course.setCourseDate(date);
-			teacherCourseService.updateTeacherCourse(course);
+			courseService.updateTeacherCourse(course);
 			return "redirect:/admin/course/list";
 		}
 	
@@ -105,9 +105,9 @@ public class TeacherCourseInfoDetailController {
 	public String TeacherCourseDele( HttpSession session,@RequestParam("cId") Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 			//teacherCourseService.deleTeacherCourse(course_id);
-			TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
+			TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
 			course.setPublish(GlobalDefs.PUBLISH_NUM_RECYCLE);
-			teacherCourseService.updateTeacherCourse(course);
+			courseService.updateTeacherCourse(course);
 			return "redirect:/admin/course/list";
 	}
 	/**
@@ -120,9 +120,9 @@ public class TeacherCourseInfoDetailController {
 	@RequestMapping(value="/admin/course/deleted",method=RequestMethod.POST)
 	public String deleFromCourseRecycle( HttpSession session,@RequestParam("cId") Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
-		TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
+		TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
 		course.setPublish(GlobalDefs.PUBLISH_NUM_DELETE);
-		teacherCourseService.updateTeacherCourse(course);
+		courseService.updateTeacherCourse(course);
 		return "redirect:/admin/course/list";
 	}
 	/**
@@ -136,9 +136,9 @@ public class TeacherCourseInfoDetailController {
 	public String courseRecoverUnpublish( HttpSession session,@RequestParam("cId") Long course_id){
 		logger.info("#### Into TeacherCourseAdd Controller ####");
 			//teacherCourseService.deleTeacherCourse(course_id);
-			TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
+			TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
 			course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
-			teacherCourseService.updateTeacherCourse(course);
+			courseService.updateTeacherCourse(course);
 			return "redirect:/admin/course/list";
 	}
 	
@@ -176,7 +176,7 @@ public class TeacherCourseInfoDetailController {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String date = format.format(new Date());
 				resource.setDate(date);
-				TeacherCourse teacherCourse = teacherCourseService.findOneById(Long.valueOf(course_id));
+				TeacherCourse teacherCourse = courseService.findOneById(Long.valueOf(course_id));
 				String path = session.getServletContext().getRealPath("/")+"resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId()+"/"+lessonNum;
 				String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId()+"/"+lessonNum;
 				FileUtil.createRealPath(path, session);
@@ -232,7 +232,7 @@ public class TeacherCourseInfoDetailController {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String date = format.format(new Date());
 				resource.setDate(date);
-				TeacherCourse teacherCourse = teacherCourseService.findOneById(resource.getCourse_id());
+				TeacherCourse teacherCourse = courseService.findOneById(resource.getCourse_id());
 				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId()+File.separator+resource.getLessonNum();
 				String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+teacherCourse.getId()+"/"+resource.getLessonNum();
 				FileUtil.createRealPath(path, session);
@@ -296,7 +296,7 @@ public class TeacherCourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/{course_id}/modifycourse")
 	public String modifyCreateTeacherCourse(HttpSession session,@PathVariable Long course_id,Model model,HttpServletRequest request){
-		TeacherCourse course=teacherCourseService.findOneById(course_id);
+		TeacherCourse course=courseService.findOneById(course_id);
 		if(course == null){
 			//logger.info("------------url_courseId"+course_id+"--------select_course_id"+course.getId());
 			return "redirect:/admin/course/list";
@@ -341,7 +341,7 @@ public class TeacherCourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/{id}/basicinfo")
 	public String basicMessage(HttpSession session,@PathVariable Long id,Model model){
-		TeacherCourse course=teacherCourseService.findOneById(id);
+		TeacherCourse course=courseService.findOneById(id);
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
@@ -363,12 +363,12 @@ public class TeacherCourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/basicinfomodify",method=RequestMethod.POST)
 	public String modifyBasicMessage(HttpSession session,@RequestParam("courseId") Long id,RedirectAttributes redirectAttr,Model model,
-			HttpServletRequest request,@Valid TeacherCourseInfoForm teacherCourseInfoForm,BindingResult validResult){
+			HttpServletRequest request,@Valid CourseInfoForm teacherCourseInfoForm,BindingResult validResult){
 		if (validResult.hasErrors()) {
 			logger.info("detailInfoForm Validation Failed " + validResult);
 			return "redirect:/admin/course/edit/{id}/basicinfo";
 		}else{
-		TeacherCourse course=teacherCourseService.findOneById(id);
+		TeacherCourse course=courseService.findOneById(id);
 		String courseName=teacherCourseInfoForm.getCourseName();
 		Long courseType=teacherCourseInfoForm.getCourseType();
 		String courseDesc=teacherCourseInfoForm.getCourseDesc();
@@ -378,7 +378,7 @@ public class TeacherCourseInfoDetailController {
 			course.setcType(ctype);
 			//course.setCourseType(ctype.getTypeName());
 			course.setCourseDesc(courseDesc); 
-			teacherCourseService.updateTeacherCourse(course);
+			courseService.updateTeacherCourse(course);
 			redirectAttr.addFlashAttribute("message", "保存成功");
 		}
 		model.addAttribute("course", course);
@@ -392,7 +392,7 @@ public class TeacherCourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/{id}/detailinfo")
 	public String detailMessage(HttpSession session,@PathVariable Long id,Model model){
-		TeacherCourse course=teacherCourseService.findOneById(id);
+		TeacherCourse course=courseService.findOneById(id);
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
@@ -414,7 +414,7 @@ public class TeacherCourseInfoDetailController {
 	public String modifyDetailMessage(HttpSession session,@RequestParam("courseId") Long id,Model model,RedirectAttributes redirectAttr,HttpServletRequest request){
 		String character=request.getParameter("courseCharacter");
 		String targetPerson=request.getParameter("targetPerson");
-		TeacherCourse course=teacherCourseService.findOneById(id);
+		TeacherCourse course=courseService.findOneById(id);
 		course.setCourseCharacter(character);
 		course.setTargetPerson(targetPerson);
 		model.addAttribute("course", course);
@@ -428,7 +428,7 @@ public class TeacherCourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/{id}/cover")
 	public String CreateCover(HttpSession session,@PathVariable Long id,Model model){
-		TeacherCourse course=teacherCourseService.findOneById(id);
+		TeacherCourse course=courseService.findOneById(id);
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
@@ -453,7 +453,7 @@ public class TeacherCourseInfoDetailController {
 			Model model,RedirectAttributes redirectAttributes) throws Exception{
 			List<MultipartFile> files = request.getFiles("coverFile");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		TeacherCourse teacherCourse=teacherCourseService.findOneById(id);
+		TeacherCourse teacherCourse=courseService.findOneById(id);
 		for(int i=0;i<files.size();i++){
 			MultipartFile multipartFile = files.get(i);
 			if(!files.get(i).isEmpty()){
@@ -476,7 +476,7 @@ public class TeacherCourseInfoDetailController {
 				}
 			}      
 		}
-		TeacherCourse course = teacherCourseService.updateTeacherCourse(teacherCourse);
+		TeacherCourse course = courseService.updateTeacherCourse(teacherCourse);
 		model.addAttribute("course", course);
 		return "redirect:/admin/course/edit/"+id+"/cover";
 		}
@@ -487,7 +487,7 @@ public class TeacherCourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/{id}/watchvideo")
 	public String modifyWatchVideo(HttpSession session,@PathVariable Long id,Model model){
-		TeacherCourse course=teacherCourseService.findOneById(id);
+		TeacherCourse course=courseService.findOneById(id);
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
@@ -507,7 +507,7 @@ public class TeacherCourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/{id}/powerprice")
 	public String powerPrice(HttpSession session,@PathVariable Long id,Model model){
-		TeacherCourse course=teacherCourseService.findOneById(id);
+		TeacherCourse course=courseService.findOneById(id);
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
@@ -530,11 +530,11 @@ public class TeacherCourseInfoDetailController {
 			Model model,RedirectAttributes redirectAttr,HttpServletRequest request){
 		Integer status=Integer.parseInt(request.getParameter("status"));
 		String pwd=request.getParameter("pwd");
-		TeacherCourse course=teacherCourseService.findOneById(id);
+		TeacherCourse course=courseService.findOneById(id);
 		course.setStatus(status);
 		course.setPrice(price);
 		course.setPwd(pwd.trim());
-		teacherCourseService.updateTeacherCourse(course);
+		courseService.updateTeacherCourse(course);
 		model.addAttribute("course", course);
 		redirectAttr.addFlashAttribute("message", "保存成功");
 		return "redirect:/admin/course/edit/"+id+"/powerprice";
@@ -546,7 +546,7 @@ public class TeacherCourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/{id}/deletecourse")
 	public String modifyDeleteMessage(HttpSession session,@PathVariable Long id,Model model){
-		TeacherCourse course=teacherCourseService.findOneById(id);
+		TeacherCourse course=courseService.findOneById(id);
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
@@ -566,7 +566,7 @@ public class TeacherCourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/deletecoursemodify")
 	public String deleteMessage(HttpSession session,@RequestParam("courseId") Long id,Model model){
-		TeacherCourse course=teacherCourseService.findOneById(id);
+		TeacherCourse course=courseService.findOneById(id);
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
@@ -577,7 +577,7 @@ public class TeacherCourseInfoDetailController {
 			}
 		}
 		course.setPublish(GlobalDefs.PUBLISH_NUM_RECYCLE);
-		teacherCourseService.createTeacherCourse(course);
+		courseService.createTeacherCourse(course);
 		return "redirect:/admin/course/list";
 	}
 	

@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.Enterprise;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.services.EnterpriseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 
@@ -27,7 +29,9 @@ public class UserTypeController {
 	private UserService userService;
 	@Autowired
 	private TeacherService teacherService;
-
+	@Autowired
+	private EnterpriseService enterpriseService;
+	
 	@RequestMapping(value = "/user/dispatcher", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public String userType(HttpServletRequest request, HttpSession session) {
@@ -82,18 +86,17 @@ public class UserTypeController {
 		userType = userInfo.getRole();
 		logger.info("### user type is " + userType + " ###");
 		if (userType.equals("enterprise")) {
-			// Temp solution for enterprise;
-			Teacher teacher = new Teacher(user);
-			teacher.setIsEnterprise("1");
-			teacher = teacherService.createTeacher(teacher);
+			Enterprise enterprise = new Enterprise(user);
+			enterprise.setIsEnterprise("1");
+			enterprise = enterpriseService.createEnterprise(enterprise);
 			userInfo.setUser(user);
-			userInfo.setTeacher(teacher);
+			userInfo.setEnterprise(enterprise);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			return "redirect:/admin";
 		} else if (userType.equals("user")) {
 			return "redirect:/user/dispatcher";
-		} else if (userType.equals("teacher")) {
-			return "redirect:/teacher/dispatcher";
+		} else if (userType.equals("enterprise")) {
+			return "redirect:/enterprise/dispatcher";
 		} else {
 			return "home";
 		}

@@ -21,7 +21,7 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
 import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
-import com.knet51.ccweb.jpa.services.TeacherCourseService;
+import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.UserService;
 
 @Controller
@@ -29,7 +29,7 @@ public class EnterpriseCourseFrontPageController {
 	private static Logger logger = LoggerFactory
 			.getLogger(EnterpriseCourseFrontPageController.class);
 	@Autowired
-	private TeacherCourseService courseService;
+	private CourseService courseService;
 	@Autowired
 	private UserService userService;
 	@Autowired

@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.admin.teacher.course;
+package com.knet51.ccweb.controllers.admin.course;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -46,7 +46,7 @@ import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.ccweb.jpa.services.CourseLessonService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
-import com.knet51.ccweb.jpa.services.TeacherCourseService;
+import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserCourseService;
 import com.knet51.ccweb.jpa.services.UserService;
@@ -55,12 +55,12 @@ import com.knet51.ccweb.util.ajax.ValidationResponse;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 
 @Controller
-public class TeacherCourseInfoPageController {
+public class CourseInfoPageController {
 	private static final Logger logger = 
-			LoggerFactory.getLogger(TeacherCourseInfoPageController.class);
+			LoggerFactory.getLogger(CourseInfoPageController.class);
 	public static final long MAX_FILE_SIZE_2M = 2*1024*1024;
 	@Autowired
-	private  TeacherCourseService teacherCourseService;
+	private  CourseService teacherCourseService;
 	@Autowired
 	private TeacherService teacherService;
 	@Autowired
@@ -192,7 +192,7 @@ public class TeacherCourseInfoPageController {
 	
 	@Transactional
 	@RequestMapping(value="/admin/course/new/firststep",method=RequestMethod.POST)
-	public String TeacherCourseAddInfo(@Valid TeacherCourseInfoForm courseInfoForm,
+	public String TeacherCourseAddInfo(@Valid CourseInfoForm courseInfoForm,
 			BindingResult validResult, HttpSession session,MultipartHttpServletRequest request,Model model,
 			RedirectAttributes redirectAttributes) throws Exception{
 		logger.info("#### Into TeacherCourseAdd Controller ####");
@@ -560,7 +560,7 @@ public class TeacherCourseInfoPageController {
 	}
 
 	@RequestMapping(value = "/admin/course/courseInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse courseFormAjaxJson(@Valid TeacherCourseInfoForm teacherCourseInfoForm, BindingResult result,HttpSession session) {
+	public @ResponseBody ValidationResponse courseFormAjaxJson(@Valid CourseInfoForm teacherCourseInfoForm, BindingResult result,HttpSession session) {
 		return AjaxValidationEngine.process(result);
 	}
 	

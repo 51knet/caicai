@@ -16,7 +16,7 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
-import com.knet51.ccweb.jpa.services.TeacherCourseService;
+import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.UserCourseService;
 import com.knet51.ccweb.jpa.services.UserService;
 
@@ -29,7 +29,7 @@ public class UserCourseController {
 	@Autowired
 	private UserService userService;
 	@Autowired
-	private TeacherCourseService courseService;
+	private CourseService courseService;
 	@Autowired
 	private UserCourseService userCourseService;
 	
