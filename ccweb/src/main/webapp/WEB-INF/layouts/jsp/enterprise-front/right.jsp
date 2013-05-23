@@ -167,8 +167,31 @@
 					</table>
 				</c:when>
 				<c:otherwise>
-				<br>
-					无内容
+					<table cellpadding="4" width="100%" >
+						<tbody>
+							<tr>
+								<td   align="left" valign="top" style="background-color:#59abda; height:220px; width: 440px; color: #fff;">
+										<table cellpadding="7" width="100%" >
+											<tr  >
+												<td align="left" valign="top">
+													尚未添加内容
+												</td>
+											</tr>
+									</table>
+								</td>
+								<td width="2%">&nbsp;</td>
+								<td width="40%" align="left" valign="top" style="background-color:#a7c676; height:220px; color: #fff;">
+									<table cellpadding="7" width="100%" >
+											<tr  >
+												<td align="left" valign="top">
+													尚未添加内容
+												</td>
+											</tr>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</c:otherwise>
 			</c:choose>
 		</div>
