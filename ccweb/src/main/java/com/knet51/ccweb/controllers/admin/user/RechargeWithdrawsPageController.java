@@ -45,7 +45,7 @@ public class RechargeWithdrawsPageController {
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Page<RechargeHistory> page = rechargeHistoryService.findAllByUser(pageNumber, pageSize, userInfo.getUser());
 		model.addAttribute("page", page);
-		return "admin."+userInfo.getRole()+".enterprise.account.list";
+		return "admin."+userInfo.getRole()+".account.list";
 	}
 	
 	/**
