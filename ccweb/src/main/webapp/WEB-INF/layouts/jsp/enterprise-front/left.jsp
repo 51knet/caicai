@@ -56,7 +56,7 @@
 		<h4>课程搜索</h4>
 	</div>
 	<div class="row-fluid" >
-		<form class="" style="padding: 15px 0px 15px 0px;" action="searchCourse" method="get"> 
+		<form class="" style="padding: 15px 0px 15px 0px;" action="<c:url value='/enterprise/searchCourse'></c:url>" method="post"> 
 			<input type="hidden" name="userid" value="${teacher_id }">
 			<input type="text" name="courseName" style="width: 145px;" placeholder="输入课程名"><br>
 			价格：<input type="text" style="width: 35px;" name="minPrice" > 至 <input type="text" name="maxPrice" style="width: 35px;" >

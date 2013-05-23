@@ -1,5 +1,6 @@
 package com.knet51.ccweb.controllers.front.enterprise;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -142,16 +143,45 @@ public class EnterpriseCourseFrontPageController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/enterprise/searchCourse")
+	@RequestMapping(value="/enterprise/searchCourse" ,method = RequestMethod.POST)
 	public String findCourse(@RequestParam("courseName") String courseName,@RequestParam("minPrice") Long min_price,
-			@RequestParam("maxPrice")Long max_price,@RequestParam("teacher_id")Long user_id,Model model){
+			@RequestParam("maxPrice")Long max_price,@RequestParam("userid")Long user_id,Model model){
+		logger.info("=== into enterprise search course conroller ===");
 		String cName = courseName.trim();
 		User user = userService.findOne(user_id);
+		UserInfo userInfo = new UserInfo(user);
+		int min  =  0;
+		int max =  99999;
+		if(min_price != null){
+			min = min_price.intValue();
+		}
+		if(max_price !=null){
+			max = max_price.intValue();
+		}
 		List<TeacherCourse> courseList = courseService
 				.getAllTeacherCourseByUseridAndPublish(user_id,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-		List<TeacherCourse> newCourseList = null;
-		if(cName !=null ){}
-		return "enterprise.course.list";
+		logger.info("---- cName="+cName+"---- min="+min+"---- max="+max);
+		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
+		for (int i = 0; i < courseList.size(); i++) {
+			if(cName !=null && !cName.equals("")){
+				if(courseList.get(i).getCourseName().contains(cName) && courseList.get(i).getPrice().intValue()>=min && 
+						courseList.get(i).getPrice().intValue()<= max){
+					newCourseList.add(courseList.get(i));
+				}
+			}else{
+				if(courseList.get(i).getPrice().intValue()>=min && courseList.get(i).getPrice().intValue()<= max){
+					newCourseList.add(courseList.get(i));
+				}
+			}
+		}
+		model.addAttribute("newCourselist", newCourseList);
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", user_id);
+		model.addAttribute("courseCount", courseList.size());
+		model.addAttribute("courseList", courseList);
+		List<CourseType> cTypeList = courseTypeService.findAll();
+		model.addAttribute("cTypeList", cTypeList);
+		return "enterprise.search.course.list";
 	}
 	
 }

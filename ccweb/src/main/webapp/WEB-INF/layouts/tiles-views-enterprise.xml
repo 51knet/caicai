@@ -292,6 +292,12 @@
 		<put-attribute name="right" value="/WEB-INF/views/enterprise/front/course/view/view.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="enterprise.search.course.list" extends="enterprise-frontPage-layout">
+		<put-attribute name="title" value="学习资源" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/enterprise-front/banner.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/enterprise/front/course/search/list.jsp"></put-attribute>
+	</definition>
+	
 	<definition name="enterprise.teacher.list" extends="enterprise-frontPage-layout">
 		<put-attribute name="title" value="知名教师" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/enterprise-front/banner.jsp" />

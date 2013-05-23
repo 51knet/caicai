@@ -255,6 +255,9 @@ public class TeacherCourseInfoPageController {
 		if(course_id == null){
 			return "redirect:/admin/course/list";
 		}
+		if(price ==null){
+			price = (long) 0;
+		}
 		TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
 		course.setPwd(pwd.trim());
 		course.setStatus(status);
