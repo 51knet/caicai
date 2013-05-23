@@ -26,9 +26,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Authentication;
+import com.knet51.ccweb.jpa.entities.Enterprise;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
+import com.knet51.ccweb.jpa.services.EnterpriseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
@@ -44,6 +46,8 @@ public class AdminController {
 	private UserService userService;
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private EnterpriseService enterpriseService;
 	@Autowired
 	private AuthenticationService authenticationService;
 
@@ -125,8 +129,8 @@ public class AdminController {
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
 			return "redirect:/admin/teacher";
 		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
-			Teacher teacher = teacherService.findOne(userInfo.getId());
-			userInfo.setTeacher(teacher);
+			Enterprise enterprise = enterpriseService.findOne(userInfo.getId());
+			userInfo.setEnterprise(enterprise);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 
 			Authentication authentication = (Authentication) session
@@ -213,8 +217,8 @@ public class AdminController {
 					Teacher teacher = teacherService.findOne(userInfo.getId());
 					userInfo.setTeacher(teacher);
 				} else if (role.equals("enterprise")) {
-					Teacher teacher = teacherService.findOne(userInfo.getId());
-					userInfo.setTeacher(teacher);
+					Enterprise enterprise = enterpriseService.findOne(userInfo.getId());
+					userInfo.setEnterprise(enterprise);
 				}
 				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 				String message = "密码修改成功";

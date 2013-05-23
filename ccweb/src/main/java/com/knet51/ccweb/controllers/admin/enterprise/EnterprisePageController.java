@@ -29,20 +29,15 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 
 import com.knet51.ccweb.jpa.entities.Recharge;
 import com.knet51.ccweb.jpa.entities.RechargeHistory;
-import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.Enterprise;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.WithdrawsApply;
-import com.knet51.ccweb.jpa.services.EduBackgroundService;
 import com.knet51.ccweb.jpa.services.RechargeHistoryService;
 import com.knet51.ccweb.jpa.services.RechargeService;
-import com.knet51.ccweb.jpa.services.TeacherService;
+import com.knet51.ccweb.jpa.services.EnterpriseService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.WithdrawsApplyService;
-import com.knet51.ccweb.jpa.services.WorkExpService;
-import com.knet51.ccweb.jpa.services.achievement.TeacherHonorService;
-import com.knet51.ccweb.jpa.services.achievement.TeacherPatentService;
-import com.knet51.ccweb.jpa.services.achievement.TeacherProjectService;
-import com.knet51.ccweb.jpa.services.achievement.TeacherThesisService;
+import com.knet51.ccweb.jpa.services.achievement.EnterpriseIntroService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 
@@ -56,11 +51,11 @@ public class EnterprisePageController {
 			.getLogger(EnterprisePageController.class);
 
 	@Autowired
-	private TeacherService teacherService;
+	private EnterpriseService enterpriseService;
 	@Autowired
 	private UserService userService;
 	@Autowired
-	private TeacherHonorService honorService;
+	private EnterpriseIntroService introService;
 	@Autowired
 	private RechargeHistoryService rechargeHistoryService;
 	@Autowired
@@ -84,11 +79,11 @@ public class EnterprisePageController {
 			User user = userService.findOne(userInfo.getId());
 			user.setName(personalInfoForm.getName());
 			user = userService.updateUser(user);
-			Teacher teacher = new Teacher(user);
-			teacher.setIsEnterprise("1");
-			teacher = teacherService.updateTeacher(teacher);
+			Enterprise enterprise = new Enterprise(user);
+			enterprise.setIsEnterprise("1");
+			enterprise = enterpriseService.updateEnterprise(enterprise);
 			userInfo.setUser(user);
-			userInfo.setTeacher(teacher);
+			userInfo.setEnterprise(enterprise);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			
 			String message = "个人信息保存成功";
@@ -97,89 +92,6 @@ public class EnterprisePageController {
 		return "redirect:/admin/resume?active=personal";
 	}
 	
-//	@Transactional
-//	@RequestMapping(value = "/admin/enterprsie/selfurl" , method = RequestMethod.POST)
-//	public String selfUrl(@Valid TeacherSelfUrlForm selfUrlForm,
-//			BindingResult validResult, HttpSession session) {
-//
-//		logger.info("### in self url controller ###");
-//
-//		if (validResult.hasErrors()) {
-//			logger.info("selfUrlForm Validation Failed " + validResult);
-//			return "redirect:/admin/enterprise/details?active=url";
-//		} else {
-//			logger.info("### detailInfoForm Validation passed. ###");
-//			String url = selfUrlForm.getUrl();
-//			boolean usableUrl = false;
-//			try {
-//				usableUrl = userService.usableUrl(url);
-//			} catch (Exception e) {
-//				usableUrl = false;
-//			}
-//			if (usableUrl) {
-//				UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-//				User user = userService.findOne(userInfo.getId());
-//				user.setSelf_url(url);
-//				user = userService.updateUser(user);
-//				userInfo.setUser(user);
-//				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-//			}
-//			return "redirect:/admin/enterprise/details?active=url";
-//		}
-//	}
-//	
-//	
-//	@RequestMapping(value="/admin/enterprise/honor/new" , method = RequestMethod.POST)
-//	public String addHonor(@RequestParam("honorId") Long honorId, @Valid TeacherHonorDetailInfoForm honorDetailForm, HttpSession session,
-//			Model model,BindingResult validResult){
-//		logger.info("#### Into enterprsieHonnerAddController ####");
-//		if(validResult.hasErrors()){
-//			return "redirect:/admin/enterprise/resume?active=honor";
-//		}else{
-//			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-//			
-//			TeacherHonor honor = null;
-//			if(honorId!=null){
-//				honor=honorService.findOneById(honorId);
-//				honor.setName(honorDetailForm.getHonorName());
-//				honor.setReason(honorDetailForm.getReason());
-//				honor.setDesc(honorDetailForm.getHonorDesc());
-//				honorService.update(honor);
-//			}else{
-//				honor=new TeacherHonor();
-//				honor.setName(honorDetailForm.getHonorName());
-//				honor.setReason(honorDetailForm.getReason());
-//				honor.setDesc(honorDetailForm.getHonorDesc());
-//				honorService.save(honor, userInfo.getTeacher());
-//			}
-//			return "redirect:/admin/enterprise/resume?active=honor";
-//		}
-//	}
-//	
-//	@RequestMapping(value="/admin/enterprise/honor/destory",method=RequestMethod.POST)
-//	public String deleHonor(@RequestParam("honorId")Long honor_id){
-//		honorService.deleteById(Long.valueOf(honor_id));
-//		return "redirect:/admin/enterprise/resume?active=honor";
-//	}
-//	
-//	
-//
-//	@Transactional
-//	@RequestMapping(value = "/admin/enterprise/resume")
-//	public String resumePage(@RequestParam("active") String active,
-//			Model model, HttpSession session) {
-//	
-//		if (active == null || active.equals("")) {
-//			active = "personal";
-//		}
-//		UserInfo userInfo = (UserInfo) session
-//				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-//		List<TeacherHonor> honorList = honorService.getAllHonorById(userInfo.getId());
-//		model.addAttribute("honorList", honorList);
-//		model.addAttribute("honorCount", honorList.size());
-//		model.addAttribute("active", active);
-//		return "admin.enterprise.resume";
-//	}
 	/**
 	 * show enterprise account info
 	 * @param session
