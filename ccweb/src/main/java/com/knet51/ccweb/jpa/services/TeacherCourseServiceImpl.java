@@ -44,7 +44,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	}
 
 	@Override
-	public List<TeacherCourse> getAllTeacherCourseByTeacheridAndPublish(Long teacher_id,Integer publish) {
+	public List<TeacherCourse> getAllTeacherCourseByUseridAndPublish(Long teacher_id,Integer publish) {
 		User user = userRepository.findOne(teacher_id);
 		return courseRepository.findTeacherCourseByUserAndPublish(user, publish);
 	}

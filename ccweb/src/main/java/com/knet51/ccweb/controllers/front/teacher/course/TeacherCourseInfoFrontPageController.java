@@ -104,7 +104,7 @@ public class TeacherCourseInfoFrontPageController {
 			model.addAttribute("cTypeList", cTypeList);
 			
 			List<TeacherCourse> courseList = teacherCourseService
-					.getAllTeacherCourseByTeacheridAndPublish(teacher_id,
+					.getAllTeacherCourseByUseridAndPublish(teacher_id,
 							GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 			model.addAttribute("courseList", courseList);
 			model.addAttribute("courseCount", courseList.size());

@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.admin.enterprise.EnterprisePersonalInfoForm;
+import com.knet51.ccweb.controllers.admin.user.WithdrawsApplyForm;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 
 
@@ -180,31 +181,7 @@ public class EnterprisePageController {
 //		model.addAttribute("active", active);
 //		return "admin.enterprise.resume";
 //	}
-	/**
-	 * show enterprise account info
-	 * @param session
-	 * @param model
-	 * @param pageNumber
-	 * @param pageSize
-	 * @return
-	 */
-	@RequestMapping(value="/admin/account/list")
-	public String showAccountList(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
-		logger.info("======= into enterprise account controller");
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Page<RechargeHistory> page = rechargeHistoryService.findAllByUser(pageNumber, pageSize, userInfo.getUser());
-		model.addAttribute("page", page);
-		return "admin.enterprise.account.list";
-	}
-	/**
-	 * into create recharge page
-	 * @return
-	 */
-	@RequestMapping(value="/admin/recharge/create")
-	public String rechargeAccount(){
-		return "admin.enterprise.account.recharge.new";
-	}
+	
 	
 	@RequestMapping(value = "/admin/enterpriseInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse enterpriseFormAjaxJson(@Valid EnterprisePersonalInfoForm personalInfoForm, BindingResult result,HttpSession session) {
@@ -238,23 +215,6 @@ public class EnterprisePageController {
 		return AjaxValidationEngine.process(result);
 	}
 	
-	/**
-	 * show user withdraws list
-	 * @param session
-	 * @param model
-	 * @param pageNumber
-	 * @param pageSize
-	 * @return
-	 */
-	@RequestMapping(value="/admin/withdraws/list")
-	public String showMyWithdrawsList(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
-		logger.info("=== into withdraws page controller ===");
-		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Page<WithdrawsApply> page = withdrawsApplyService.findAllByUser(pageNumber, pageSize, userInfo.getUser());
-		model.addAttribute("page", page);
-		return "admin.enterprise.withdraws.list";
-	}
 	
 	/**
 	 * withdrawsApply form ajax check
@@ -263,9 +223,9 @@ public class EnterprisePageController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value = "/admin/withdraws/createWithdrawsAjax")
+	@RequestMapping(value = "/admin/withdraws/createWithdrawsAjax", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse withdrawsApplyFormAjaxJson(@Valid WithdrawsApplyForm applyForm, BindingResult result,HttpSession session) {
-		logger.info("hehehehehehehhee");
 		return AjaxValidationEngine.process(result);
 	}
+	
 }

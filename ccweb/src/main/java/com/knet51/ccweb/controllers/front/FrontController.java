@@ -198,7 +198,7 @@ public class FrontController {
 								GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 				List<TeacherCourse> courseList = pageCourse.getContent();
 				Integer courseCount = courseService
-						.getAllTeacherCourseByTeacheridAndPublish(id,
+						.getAllTeacherCourseByUseridAndPublish(id,
 								GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
 				model.addAttribute("courseList", courseList);
 				model.addAttribute("courseCount", courseCount);
@@ -266,7 +266,7 @@ public class FrontController {
 				// GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 				// List<TeacherCourse> courseList = pageCourse.getContent();
 				List<TeacherCourse> courseList = courseService
-						.getAllTeacherCourseByTeacheridAndPublish(id,
+						.getAllTeacherCourseByUseridAndPublish(id,
 								GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 				model.addAttribute("courseList", courseList);
 				model.addAttribute("courseCount", courseList.size());
