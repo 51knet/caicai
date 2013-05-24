@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
-import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
 import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
@@ -35,26 +34,54 @@ public class EnterpriseCourseFrontPageController {
 	@Autowired
 	private CourseTypeService courseTypeService;
 	
-	@RequestMapping(value = "/enterprise/course/view", method = RequestMethod.POST)
-	public String detailCourse(@RequestParam("enterpriseId") Long enterprise_id,
-			@RequestParam("courseId") Long course_id,
-			@RequestParam("coursepwd") String pwd, Model model) {
+//	/**
+//	 * show course detail info in enterprise front page
+//	 * @param user_id
+//	 * @param course_id
+//	 * @param pwd
+//	 * @param model
+//	 * @return
+//	 */
+//	@RequestMapping(value = "/enterprise/course/view", method = RequestMethod.POST)
+//	public String detailCourse(@RequestParam("enterpriseId") Long user_id,
+//			@RequestParam("courseId") Long course_id,
+//			@RequestParam("coursepwd") String pwd, Model model) {
+//			TeacherCourse course = courseService.findOneById(course_id);
+//			User user = userService.findOne(user_id);
+//			UserInfo userInfo = new UserInfo(user);
+//			logger.debug(userInfo.toString());
+//			model.addAttribute("userInfo", userInfo);
+//			model.addAttribute("user_id", user_id);
+//			model.addAttribute("course", course);
+//			List<CourseType> cTypeList = courseTypeService.findAll();
+//			model.addAttribute("cTypeList", cTypeList);
+//			
+//			List<TeacherCourse> courseList = courseService
+//					.getAllTeacherCourseByUseridAndPublish(user_id,
+//							GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+//			model.addAttribute("courseList", courseList);
+//			model.addAttribute("courseCount", courseList.size());
+//			return "enterprise.course.view";
+//	}
+	
+	@RequestMapping(value="/enterprise/{user_id}/course/view/{course_id}")
+	public String showCourseDetainInfo(	@PathVariable Long user_id, @PathVariable Long course_id, Model model){
 		TeacherCourse course = courseService.findOneById(course_id);
-			User user = userService.findOne(enterprise_id);
-			UserInfo userInfo = new UserInfo(user);
-			logger.debug(userInfo.toString());
-			model.addAttribute("teacherInfo", userInfo);
-			model.addAttribute("teacher_id", enterprise_id);
-			model.addAttribute("course", course);
-			List<CourseType> cTypeList = courseTypeService.findAll();
-			logger.info("===============" + cTypeList.size());
-			model.addAttribute("cTypeList", cTypeList);
-			List<TeacherCourse> courseList = courseService
-					.getAllTeacherCourseByUseridAndPublish(enterprise_id,
-							GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-			model.addAttribute("courseList", courseList);
-			model.addAttribute("courseCount", courseList.size());
-			return "enterprise.course.view";
+		User user = userService.findOne(user_id);
+		UserInfo userInfo = new UserInfo(user);
+		logger.debug(userInfo.toString());
+		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("user_id", user_id);
+		model.addAttribute("course", course);
+		List<CourseType> cTypeList = courseTypeService.findAll();
+		model.addAttribute("cTypeList", cTypeList);
+		
+		List<TeacherCourse> courseList = courseService
+				.getAllTeacherCourseByUseridAndPublish(user_id,
+						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+		model.addAttribute("courseList", courseList);
+		model.addAttribute("courseCount", courseList.size());
+		return "enterprise.course.view";
 	}
 	
 	/**
@@ -66,24 +93,24 @@ public class EnterpriseCourseFrontPageController {
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value = "/enterprise/{id}/course/list")
+	@RequestMapping(value = "/enterprise/{user_id}/course/list")
 	public String getAllEnterpriseCourse(
-			@PathVariable Long id,
+			@PathVariable Long user_id,
 			Model model,
 			@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize) {
-		User user = userService.findOne(id);
+		User user = userService.findOne(user_id);
 		UserInfo userInfo = new UserInfo(user);
 		logger.debug(userInfo.toString());
-		model.addAttribute("teacherInfo", userInfo);
-		model.addAttribute("teacher_id", id);
+		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("user_id", user_id);
 		Page<TeacherCourse> onePage = courseService
 				.findTeacherCourseByUserAndPublish(pageNumber, pageSize, user,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("page", onePage);
 
 		List<TeacherCourse> courseList = courseService
-				.getAllTeacherCourseByUseridAndPublish(id,
+				.getAllTeacherCourseByUseridAndPublish(user_id,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("courseList", courseList);
 		model.addAttribute("courseCount", courseList.size());
@@ -104,20 +131,20 @@ public class EnterpriseCourseFrontPageController {
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value = "/enterprise/{enterprise_id}/course/type/{type_id}")
+	@RequestMapping(value = "/enterprise/{user_id}/course/type/{type_id}")
 	public String filterCourseByType(
-			@PathVariable Long enterprise_id,
+			@PathVariable Long user_id,
 			@PathVariable Long type_id,
 			Model model,
 			@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize) {
-		User user = userService.findOne(enterprise_id);
+		User user = userService.findOne(user_id);
 		// Teacher teacher = teacherService.findOne(enterprise_id);
 		CourseType cType = courseTypeService.findOneById(type_id);
 		UserInfo userInfo = new UserInfo(user);
 		logger.debug(userInfo.toString());
-		model.addAttribute("teacherInfo", userInfo);
-		model.addAttribute("teacher_id", enterprise_id);
+		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("user_id", user_id);
 		Page<TeacherCourse> onePage = courseService
 				.findTeacherCourseByUserAndPublishAndCType(pageNumber,
 						pageSize, user, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,
@@ -125,7 +152,7 @@ public class EnterpriseCourseFrontPageController {
 		model.addAttribute("page", onePage);
 
 		List<TeacherCourse> courseList = courseService
-				.getAllTeacherCourseByUseridAndPublish(enterprise_id,
+				.getAllTeacherCourseByUseridAndPublish(user_id,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("courseList", courseList);
 		model.addAttribute("courseCount", courseList.size());
@@ -175,8 +202,8 @@ public class EnterpriseCourseFrontPageController {
 			}
 		}
 		model.addAttribute("newCourselist", newCourseList);
-		model.addAttribute("teacherInfo", userInfo);
-		model.addAttribute("teacher_id", user_id);
+		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("user_id", user_id);
 		model.addAttribute("courseCount", courseList.size());
 		model.addAttribute("courseList", courseList);
 		List<CourseType> cTypeList = courseTypeService.findAll();

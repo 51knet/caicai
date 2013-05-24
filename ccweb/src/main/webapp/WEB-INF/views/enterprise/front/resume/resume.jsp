@@ -43,11 +43,12 @@
 		<table width="100%">
 			<tr>
 				<td align="left" width="25%">
-					<c:url var="avatar_url" value="${teacherInfo.avatar}"></c:url>
+					<c:url var="avatar_url" value="${userInfo.avatar}"></c:url>
 					<img width="150px" height="150px" src="${avatar_url}" style="margin-top: 10px;">
 				</td>
+				<td width="5%"></td>
 				<td align="left">
-					<h3>${teacherInfo.name}</h3>	
+					<h3>${userInfo.name}</h3>	
 				</td>
 			</tr>
 		</table>
@@ -58,34 +59,34 @@
 	<div class="content ">
 		<address>
 			<c:choose>
-			<c:when test="${teacherInfo.address == null||teacherInfo.address == '' }">
+			<c:when test="${userInfo.address == null||userInfo.address == '' }">
 			</c:when>
 			<c:otherwise>
-			<abbr title="地址">联系地址：</abbr> ${teacherInfo.address} 
+			<abbr title="地址">联系地址：</abbr> ${userInfo.address} 
 			<br>
 			</c:otherwise>
 			</c:choose>
 			<c:choose>
-			<c:when test="${teacherInfo.fax == null||teacherInfo.fax == '' }">
+			<c:when test="${userInfo.fax == null||userInfo.fax == '' }">
 			</c:when>
 			<c:otherwise>
-			<abbr title="传真">联系传真：</abbr> ${teacherInfo.fax}
+			<abbr title="传真">联系传真：</abbr> ${userInfo.fax}
 			<br>
 			</c:otherwise>
 			</c:choose>
 			<c:choose>
-			<c:when test="${teacherInfo.phone == null||teacherInfo.phone == '' }">
+			<c:when test="${userInfo.phone == null||userInfo.phone == '' }">
 			</c:when>
 			<c:otherwise>
-			<abbr title="电话">联系电话：</abbr> ${teacherInfo.phone} 
+			<abbr title="电话">联系电话：</abbr> ${userInfo.phone} 
 			<br>
 			</c:otherwise>
 			</c:choose>
 			<c:choose>
-			<c:when test="${teacherInfo.email == null||teacherInfo.email == '' }">
+			<c:when test="${userInfo.email == null||userInfo.email == '' }">
 			</c:when>
 			<c:otherwise>
-			<abbr title="电邮">电子邮件：</abbr> <a href="mailto:${teacherInfo.email}">${teacherInfo.email}</a>
+			<abbr title="电邮">电子邮件：</abbr> <a href="mailto:${userInfo.email}">${userInfo.email}</a>
 			</c:otherwise>
 			</c:choose>
 		</address>

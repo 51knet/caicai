@@ -22,32 +22,32 @@
 <div class="ctype">
 	<div class="content">
 		<c:forEach items="${cTypeList }" var="cType" begin="0" end="2">
-			<a href='<c:url value='/enterprise/${teacher_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029; margin-right: 5px;">${cType.typeName}</span></a>
+			<a href='<c:url value='/enterprise/${user_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029; margin-right: 5px;">${cType.typeName}</span></a>
 		</c:forEach>
 	</div>	
 		<div class="content">
 		<c:forEach items="${cTypeList }" var="cType" begin="3" end="5">
-			<a href='<c:url value='/enterprise/${teacher_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029; margin-right: 5px;">${cType.typeName}</span></a>
+			<a href='<c:url value='/enterprise/${user_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029; margin-right: 5px;">${cType.typeName}</span></a>
 		</c:forEach>
 	</div>	
 		<div class="content">
 		<c:forEach items="${cTypeList }" var="cType" begin="6" end="8">
-			<a href='<c:url value='/enterprise/${teacher_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029; margin-right: 5px;">${cType.typeName}</span></a>
+			<a href='<c:url value='/enterprise/${user_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029; margin-right: 5px;">${cType.typeName}</span></a>
 		</c:forEach>
 	</div>	
 	<div class="content">
 		<c:forEach items="${cTypeList }" var="cType" begin="9" end="12">
-			<a href='<c:url value='/enterprise/${teacher_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029; margin-right: 5px;">${cType.typeName}</span></a>
+			<a href='<c:url value='/enterprise/${user_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029; margin-right: 5px;">${cType.typeName}</span></a>
 		</c:forEach>
 	</div>	
 	<div class="content">
 		<c:forEach items="${cTypeList }" var="cType" begin="13" end="16">
-			<a href='<c:url value='/enterprise/${teacher_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029; margin-right: 5px;">${cType.typeName}</span></a>
+			<a href='<c:url value='/enterprise/${user_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029; margin-right: 5px;">${cType.typeName}</span></a>
 		</c:forEach>
 	</div>	
 	<div class="content">
 		<c:forEach items="${cTypeList }" var="cType" begin="17" end="20">
-			<a href='<c:url value='/enterprise/${teacher_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029; margin-right: 5px;">${cType.typeName}</span></a>
+			<a href='<c:url value='/enterprise/${user_id}/course/type/${cType.id}'></c:url>'><span style="color:#80b029; margin-right: 5px;">${cType.typeName}</span></a>
 		</c:forEach>
 	</div>	
 </div>

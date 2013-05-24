@@ -230,15 +230,15 @@ public class FrontController {
 		}
 	}
 
-	@RequestMapping(value = "/enterprise/{id}")
-	public String enterpriseFront(@PathVariable Long id, Model model,
+	@RequestMapping(value = "/enterprise/{user_id}")
+	public String enterpriseFront(@PathVariable Long user_id, Model model,
 			HttpSession session, HttpServletResponse response)
 			throws IOException {
 		logger.info("#### Into enterprise front page ####");
 		try {
-			User user = userService.findOne(id);
+			User user = userService.findOne(user_id);
 			if (user.getRole().equals("enterprise")) {
-				Teacher enterprise = teacherService.findOne(id);
+				Teacher enterprise = teacherService.findOne(user_id);
 				UserInfo sessionUserInfo = (UserInfo) session
 						.getAttribute(GlobalDefs.SESSION_USER_INFO);
 				boolean isFollower = false;
@@ -247,15 +247,14 @@ public class FrontController {
 												// home
 												// page
 					User sessionUser = sessionUserInfo.getUser();
-					isFollower = friendsRelateService.isTheFollower(id,
-							sessionUser.getId());
+					isFollower = friendsRelateService.isTheFollower(user_id,sessionUser.getId());
 				}
 
 				Page<Announcement> annoPage = announcementService
 						.findAllAnnoByUser(0, 4, user);
 				model.addAttribute("annolist", annoPage.getContent());
 				List<Announcement> annoList = announcementService
-						.findAllByUid(id);
+						.findAllByUid(user_id);
 				model.addAttribute("annoCount", annoList.size());
 				List<AnnoPhoto> annoPhoto = annoPhotoService
 						.findAnnoPhotoByUserid(user.getId());
@@ -266,7 +265,7 @@ public class FrontController {
 				// GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 				// List<TeacherCourse> courseList = pageCourse.getContent();
 				List<TeacherCourse> courseList = courseService
-						.getAllTeacherCourseByUseridAndPublish(id,
+						.getAllTeacherCourseByUseridAndPublish(user_id,
 								GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 				model.addAttribute("courseList", courseList);
 				model.addAttribute("courseCount", courseList.size());
@@ -284,11 +283,11 @@ public class FrontController {
 				UserInfo userInfo = new UserInfo(user);
 				userInfo.setTeacher(enterprise);
 
-				Integer fansCount = friendsRelateService.getAllFans(id).size();
-				Integer hostCount = friendsRelateService.getAllHost(id).size();
+				Integer fansCount = friendsRelateService.getAllFans(user_id).size();
+				Integer hostCount = friendsRelateService.getAllHost(user_id).size();
 
-				model.addAttribute("teacher_id", id);
-				model.addAttribute("teacherInfo", userInfo);
+				model.addAttribute("userInfo", userInfo);
+				model.addAttribute("user_id", user_id);
 
 				model.addAttribute("role", userInfo.getTeacherRole());
 				session.setAttribute("isFollower", isFollower);
@@ -296,7 +295,7 @@ public class FrontController {
 				session.setAttribute("hostCount", hostCount);
 				return "enterprise.basic";
 			} else {
-				return "redirect:/id/" + id;
+				return "redirect:/id/" + user_id;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

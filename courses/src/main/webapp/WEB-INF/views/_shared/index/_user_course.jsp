@@ -32,12 +32,12 @@
 							<td  width="24%" align="right"  valign="top">
 								<c:choose>
 									<c:when test="${course.courseCover != null && course.courseCover != ''}">
-										<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 160px; height: 120px;float: right;" />
-										</a>
+									<c:if test="${course.user.role == 'teacher' }"><a href='<c:url value="/course/view/${course.id}"></c:url>'><img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 160px; height: 120px;float: right;" /></a></c:if>
+   									<c:if test="${course.user.role == 'enterprise' }"><a href='<c:url value="${url}/enterprise/${course.user.id}/course/view/${course.id}"></c:url>'><img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 160px; height: 120px;float: right;" /></a></c:if>
 									</c:when>
 									<c:otherwise>
-										<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 160px; height: 120px; float: right;" />
-										</a>
+										<c:if test="${course.user.role == 'teacher' }"><a href='<c:url value="/course/view/${course.id}"></c:url>'><img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 160px; height: 120px; float: right;" /></a></c:if>
+										<c:if test="${course.user.role == 'enterprise' }"><a href='<c:url value="${url}/enterprise/${course.user.id}/course/view/${course.id }"></c:url>'><img src='<c:url value="/resources/img/logo.png"></c:url>' style="width: 160px; height: 120px; float: right;" /></a></c:if>
 									</c:otherwise>
 								</c:choose>
 							</td>
@@ -49,20 +49,24 @@
 								<div style="width: 100%;height: 100%;">
 									<div style="float: left; height: 100px; width: 140px; text-align: center;">
 										<c:choose>
-											<c:when test="${course.teacher.user.photo_url != null && course.teacher.user.photo_url != ''}">
-												<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'><img src='<c:url value="${url }${course.teacher.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
-												</a>
+											<c:when test="${course.user.photo_url != null && course.user.photo_url != ''}">
+												<c:if test="${course.user.role == 'teacher' }"><a href='<c:url value="/teacher/${course.user.id}"></c:url>'><img src='<c:url value="${url }${course.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
+												</a> </c:if>
+												<c:if test="${course.user.role == 'enterprise' }"><a href='<c:url value="${url }/enterprise/${course.user.id}"></c:url>'><img src='<c:url value="${url }${course.user.photo_url }"></c:url>' style="width: 100px; height: 100px;" />
+												</a> </c:if>
 											</c:when>
 											<c:otherwise>
-												<a href='<c:url value="/teacher/${course.teacher.id}"></c:url>'> <img src='<c:url value="/resources/img/avatar/avatar90.png"></c:url>' style="width: 100px; height: 100px;" />
-												</a>
+												<c:if test="${course.user.role == 'teacher' }"><a href='<c:url value="/teacher/${course.user.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar90.png"></c:url>' style="width: 100px; height: 100px;" />
+												</a></c:if>
+												<c:if test="${course.user.role == 'enterprise' }"><a href='<c:url value="${url }/enterprise/${course.user.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar90.png"></c:url>' style="width: 100px; height: 100px;" />
+												</a></c:if>
 											</c:otherwise>
 										</c:choose>
 									</div>
-									<c:if test="${course.user.role == teacher}">
+									<c:if test="${course.user.role == 'teacher'}">
 										教师名称：${course.user.name } <br><br>
 									</c:if>
-									<c:if test="${course.user.role == enterprise}">
+									<c:if test="${course.user.role == 'enterprise'}">
 										企业名称：${course.user.name } <br><br>
 									</c:if>
 									<a style="margin-top: 10px;" href='<c:url value="/course/study/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>

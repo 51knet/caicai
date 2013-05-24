@@ -61,7 +61,9 @@
 				</c:choose>
     		</div>
     		<div style="margin-top: 10px;width:200px;"id="contentlimit">
-    			教师名称：<a href='<c:url value="/teacher/${c.teacherCourse.user.id}"></c:url>'>${c.teacherCourse.user.name}</a><br>
+    			<c:if test="${c.teacherCourse.user.role == 'teacher' }">教师名称：<a href='<c:url value="/teacher/${c.teacherCourse.user.id}"></c:url>'>${c.teacherCourse.user.name}</a></c:if>
+   				<c:if test="${c.teacherCourse.user.role == 'enterprise' }">企业名称：<a href='<c:url value="${url}/enterprise/${c.teacherCourse.user.id}"></c:url>'>${c.teacherCourse.user.name}</a></c:if>
+    			<br>
     			学习人数：${c.userCount}人 课程评分：
     			<c:choose>
     				<c:when test="${c.courseMark !=null && c.courseMark>0 }">
@@ -141,10 +143,10 @@
 				<div class="span1" >
 					<c:choose>
 					<c:when test="${enter.user.photo_url!=null||enter.user.photo_url!=''}">
-						<a href='<c:url value="/teacher/${enter.id}"></c:url>'><img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a> 
+						<a href='<c:url value="${url }/enterprise/${enter.id}"></c:url>'><img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a> 
 					</c:when>
 					<c:otherwise>
-						<a href='<c:url value="/teacher/${enter.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a> 
+						<a href='<c:url value="${url }/enterprise/${enter.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a> 
 					</c:otherwise>
 					</c:choose>
 				</div>

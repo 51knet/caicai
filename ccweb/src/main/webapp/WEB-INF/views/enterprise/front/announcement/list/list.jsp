@@ -42,7 +42,7 @@
 			<tbody>
 				<c:forEach items="${page.content}" var="page">
 					<tr  class="bb"><td align="left" >
-						<div style="width: 500px;" id="content"><a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${page.id}"></c:url>">
+						<div style="width: 500px;" id="content"><a href="<c:url value="/enterprise/${userInfo.id}/announcement/view/${page.id}"></c:url>">
 						${page.title}</a></div>
 					</td>
 					<td >${page.date}</td>

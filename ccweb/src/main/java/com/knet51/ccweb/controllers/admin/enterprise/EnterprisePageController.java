@@ -59,36 +59,7 @@ public class EnterprisePageController {
 	private RechargeService rechargeService;
 	@Autowired
 	private WithdrawsApplyService withdrawsApplyService;
-	
-	@Transactional
-	@RequestMapping(value = "/admin/enterprisepersonalInfo", method = RequestMethod.POST)
-	public String enterprisepersonalInfo(@Valid EnterprisePersonalInfoForm personalInfoForm,
-			BindingResult validResult, HttpSession session,RedirectAttributes redirectAttr, HttpServletRequest request, HttpServletResponse response) {
-		logger.info("#### Personal InfoController ####");
-		
-		if (validResult.hasErrors()) {
-			logger.info("detailInfoForm Validation Failed " + validResult);
-			
-		} else {
-			logger.info("### detailInfoForm Validation passed. ###");
-			
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			User user = userService.findOne(userInfo.getId());
-			user.setName(personalInfoForm.getName());
-			user = userService.updateUser(user);
-			Enterprise enterprise = new Enterprise(user);
-			enterprise.setIsEnterprise("1");
-			enterprise = enterpriseService.updateEnterprise(enterprise);
-			userInfo.setUser(user);
-			userInfo.setEnterprise(enterprise);
-			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-			
-			String message = "个人信息保存成功";
-			redirectAttr.addFlashAttribute("message", message);
-		}
-		return "redirect:/admin/resume?active=personal";
-	}
-	
+
 	@RequestMapping(value = "/admin/enterpriseInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse enterpriseFormAjaxJson(@Valid EnterprisePersonalInfoForm personalInfoForm, BindingResult result,HttpSession session) {
 		return AjaxValidationEngine.process(result);

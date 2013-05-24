@@ -84,7 +84,7 @@
 <!-- enterprise  announcement -->
 
 <div class="row-fluid custom round">
-	<!-- <div class="row"><h4>公告 <span class="pull-right" ><a href='<c:url value='/enterprise/${teacherInfo.id}/announcement/list'></c:url>'>更多</a></span> </h4></div> -->
+	<!-- <div class="row"><h4>公告 <span class="pull-right" ><a href='<c:url value='/enterprise/${userInfo.id}/announcement/list'></c:url>'>更多</a></span> </h4></div> -->
 	<div class="row">
 		<!-- 
 		<c:choose>
@@ -94,7 +94,7 @@
 						<tr>
 							<td width="40%"  align="left" valign="top" style="background-color:#59abda; height:220px;">
 								<c:forEach var="annophoto" items="${annoPhoto}" begin="0" end="1">
-									<a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
+									<a href="<c:url value="/enterprise/${userInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
 								</c:forEach>
 							</td>
 							<td width="60%" align="left" valign="top">
@@ -102,7 +102,7 @@
 									<c:forEach var="anno" items="${annolist}" begin="0" end="2">
 										<tr  class="bb">
 											<td    align="left" valign="top">
-												<div style="width: 280px" id="content"><a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a></div>
+												<div style="width: 280px" id="content"><a href="<c:url value="/enterprise/${userInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a></div>
 											</td>
 											<td  align="left" valign="top">
 												${anno.date}
@@ -127,7 +127,7 @@
 							<tr>
 								<td   align="left" valign="top" style="background-color:#59abda; height:220px; width: 440px;">
 									<!--<c:forEach var="annophoto" items="${annoPhoto}" begin="0" end="0">
-										<a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
+										<a href="<c:url value="/enterprise/${userInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
 									</c:forEach>-->
 										<div class="box">
 									    	<div class="cont">
@@ -153,7 +153,7 @@
 										<c:forEach var="anno" items="${annolist}" begin="0" end="2">
 											<tr  class="bb">
 												<td align="left" valign="top">
-													<div style="width: 140px" id="content"><a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a></div>
+													<div style="width: 140px" id="content"><a href="<c:url value="/enterprise/${userInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a></div>
 												</td>
 												<td align="left" valign="top">
 													${anno.date}
@@ -200,13 +200,13 @@
  
 <!-- enterprise's teacher -->
 <div class="row-fluid custom round">
-	<div class="row"><h4>知名教师<span class="pull-right" ><a href='<c:url value='/enterprise/${teacherInfo.id}/teacher/list'></c:url>'>更多</a></span> </h4></div>
+	<div class="row"><h4>知名教师<span class="pull-right" ><a href='<c:url value='/enterprise/${userInfo.id}/teacher/list'></c:url>'>更多</a></span> </h4></div>
 	<div class="row" style="border: solid 1px #f77605;" >
 		<c:choose>
 			<c:when test="${eTeacherCount !=0}">
 				<c:forEach items="${eTeacher }" var="et" begin="0" end="5">
 					<div class="teacher">
-						<div><a href='<c:url value="/enterprise/${teacherInfo.id}/teacher/view/${et.id}"></c:url>' ><img src='<c:url value="${et.photourl}" ></c:url>'  ></a></div>
+						<div><a href='<c:url value="/enterprise/${userInfo.id}/teacher/view/${et.id}"></c:url>' ><img src='<c:url value="${et.photourl}" ></c:url>'  ></a></div>
 						<div>${et.content }</div>
 					</div>
 				</c:forEach>
@@ -223,7 +223,7 @@
 <!-- enterprisecourse -->
 <div class="row-fluid custom round">
 		<div class="row">
-			<h4>学习资源<span class="pull-right" ><a href='<c:url value='/enterprise/${teacherInfo.id}/course/list'></c:url>'>更多</a></span> </h4>
+			<h4>学习资源<span class="pull-right" ><a href='<c:url value='/enterprise/${userInfo.id}/course/list'></c:url>'>更多</a></span> </h4>
 		</div>
 		<div class="row"  style="border: solid 1px #f77605;">
 			<c:choose>
@@ -232,7 +232,8 @@
 				    	<div class="course">
 							<div style="width: 230px; height: 155px; background-image: url('<c:url value="${course.courseCover }"></c:url>');  
 									background-repeat:no-repeat;background-position:center;  ">
-								<a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> 	<div style="height: 125px;"></div></a>
+								<!-- <a href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${userInfo.id})"> 	<div style="height: 125px;"></div></a> -->
+								<a href='<c:url value='/enterprise/${userInfo.id}/course/view/${course.id }'></c:url>'> 	<div style="height: 125px;"></div></a>
 			    				<div  style="height:24px;background-color:#000;  padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
 			    					<div  id="contentlimit" style="width: 240px;">
 			    							${course.courseName }

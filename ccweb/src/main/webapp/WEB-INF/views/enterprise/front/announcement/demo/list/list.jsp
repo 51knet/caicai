@@ -36,7 +36,7 @@
 						<tr>
 							<td width="50%"  align="left" valign="top" style="background-color:#59abda; height:220px;">
 								<c:forEach var="annophoto" items="${annoPhoto}" begin="0" end="1">
-									<a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
+									<a href="<c:url value="/enterprise/${userInfo.id}/announcement/view/${annophoto.id}"></c:url>"><img src='<c:url value="${annophoto.photourl}" ></c:url>'  /></a>
 								</c:forEach>
 							</td>
 							<td width="40%" align="left" valign="top">
@@ -44,7 +44,7 @@
 									<c:forEach var="anno" items="${annolist}" begin="0" end="2">
 										<tr  class="bb">
 											<td    align="left" valign="top">
-												<div style="width: 160px" id="content"><a href="<c:url value="/enterprise/${teacherInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a></div>
+												<div style="width: 160px" id="content"><a href="<c:url value="/enterprise/${userInfo.id}/announcement/view/${anno.id}"></c:url>">${anno.title}</a></div>
 											</td>
 											<td  align="left" valign="top">
 												${anno.date}

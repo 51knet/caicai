@@ -46,7 +46,7 @@
 			<c:when test="${eTeacherCount !=0}">
 				<c:forEach items="${page.content }" var="et">
 					<div class="teacher">
-						<div><a href='<c:url value="/enterprise/${teacherInfo.id}/teacher/view/${et.id}"></c:url>' ><img src='<c:url value="${et.photourl}" ></c:url>'  ></a></div>
+						<div><a href='<c:url value="/enterprise/${userInfo.id}/teacher/view/${et.id}"></c:url>' ><img src='<c:url value="${et.photourl}" ></c:url>'  ></a></div>
 						<div>${et.content }</div>
 					</div>
 				</c:forEach>

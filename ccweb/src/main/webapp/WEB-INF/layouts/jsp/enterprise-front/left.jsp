@@ -57,7 +57,7 @@
 	</div>
 	<div class="row-fluid" >
 		<form class="" style="padding: 15px 0px 15px 0px;" action="<c:url value='/enterprise/searchCourse'></c:url>" method="post"> 
-			<input type="hidden" name="userid" value="${teacher_id }">
+			<input type="hidden" name="userid" value="${user_id }">
 			<input type="text" name="courseName" style="width: 145px;" placeholder="输入课程名"><br>
 			价格：<input type="text" style="width: 35px;" name="minPrice" > 至 <input type="text" name="maxPrice" style="width: 35px;" >
 			<button type="submit" class="btn pull-right " style="margin-right: 20px;">搜索</button>
@@ -66,21 +66,21 @@
 </div>
 <div class="row-fluid centralize " >
 	<div class="row-fluid">
-		<c:url var="avatar_url" value="${teacherInfo.avatar}"></c:url>
+		<c:url var="avatar_url" value="${userInfo.avatar}"></c:url>
 		<img src="${avatar_url}" style="margin: 10px 5px; width: 140px;height: 140px;">
-		<br><b>${teacherInfo.name}</b>
+		<br><b>${userInfo.name}</b>
 	</div>
 	<!--
 	<div class="row-fluid">
-		<a href='<c:url value='/teacher/${teacherInfo.id}/fans/list'></c:url>'<c:url value='/teacher/${teacherInfo.id}'></c:url>'' >${sessionScope.fansCount } 粉丝</a> | <a
-			href='<c:url value='/teacher/${teacherInfo.id}/host/list'></c:url>'>${sessionScope.hostCount } 关注</a>
+		<a href='<c:url value='/teacher/${userInfo.id}/fans/list'></c:url>'<c:url value='/teacher/${userInfo.id}'></c:url>'' >${sessionScope.fansCount } 粉丝</a> | <a
+			href='<c:url value='/teacher/${userInfo.id}/host/list'></c:url>'>${sessionScope.hostCount } 关注</a>
 	</div>-->
-	<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.id != teacher_id) }">
+	<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.id !=user_id) }">
 		<div class="row-fluid">
 			<c:if test="${! sessionScope.isFollower}">
-				<a href='<c:url value='/addrelation?uid=${teacherInfo.id}'></c:url>' id="attention" class="btn btn-success btn-small">+关注</a>
+				<a href='<c:url value='/addrelation?uid=${userInfo.id}'></c:url>' id="attention" class="btn btn-success btn-small">+关注</a>
 			</c:if>
-			<!-- <a href='<c:url value='/sendmessage?uid=${teacherInfo.id}'></c:url>' class="btn btn-small">发私信</a>  -->
+			<!-- <a href='<c:url value='/sendmessage?uid=${userInfo.id}'></c:url>' class="btn btn-small">发私信</a>  -->
 			<a href="#myModal" role="button" class="btn btn-small" data-toggle="modal">发私信</a>
 		</div>
 	</c:if>
@@ -106,7 +106,9 @@
 			<c:choose>
 				<c:when test="${courseCount !=0}">
 					<c:forEach items="${courseList}" var="course" begin="0" end="5">
-				    	<div  id="contentlimit" style="width: 140px;"><a style="color: #80b029;" href="javascript:void(0)"  onclick="requestCourseDetail( ${course.id} , ${teacherInfo.id})"> 	${course.courseName }</a></div>
+				    	<div  id="contentlimit" style="width: 140px;">
+				    		<a style="color: #80b029;" href='<c:url value='/enterprise/${userInfo.id}/course/view/${course.id }'></c:url>'>${course.courseName }</a>
+				    	</div>
 				    </c:forEach>
 				</c:when>
 				<c:otherwise>
@@ -126,7 +128,7 @@
 	</div>
 	<form action='<c:url value='/teacher/message/sendMsgInfo'></c:url>' method="post" id="sendMsg_info_form">
 		<div class="modal-body" >
-			<input type="hidden" value="${teacherInfo.id}" name="uid"> 
+			<input type="hidden" value="${userInfo.id}" name="uid"> 
 		</div>
 		<div class="control-group" id="title" style="padding-left: 20px;">
 			<div class="controls">

@@ -47,10 +47,10 @@
 			<div class="span1" >
 				<c:choose>
 					<c:when test="${enter.user.photo_url!=null||enter.user.photo_url!=''}">
-						<a href="/courses/teacher/${enter.id }"><img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a>
+						<a href="${url }/enterprise/${enter.id }"><img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a>
 					</c:when>
 					<c:otherwise>
-					<a href="/courses/teacher/${enter.id }"><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a>
+					<a href="${url }/enterprise/${enter.id }"><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a>
 					</c:otherwise>
 				</c:choose>
 					<div>

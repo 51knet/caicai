@@ -58,7 +58,7 @@
 				    	<div class="course">
 							<div style="width: 230px; height: 155px; background-image: url('<c:url value="${page.courseCover }"></c:url>');  
 									background-repeat:no-repeat;background-position:center;  ">
-								<a href="javascript:void(0)"  onclick="requestCourseDetail( ${page.id} , ${teacherInfo.id})"> 	<div style="height: 125px;"></div></a>
+								<a href='<c:url value='/enterprise/${userInfo.id}/course/view/${page.id }'></c:url>'> 	<div style="height: 125px;"></div></a>
 			    				<div  style="height:24px;background-color:#000;  padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
 			    					<div  id="contentlimit" style="width: 240px;">
 			    							${page.courseName } — ${page.cType.typeName }

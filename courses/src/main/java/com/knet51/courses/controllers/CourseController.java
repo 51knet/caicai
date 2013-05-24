@@ -454,4 +454,9 @@ public class CourseController {
 		}
 		return "user.courses.list";
 	}
+	
+	@RequestMapping(value="/course/pay/view/{course_id}")
+	public String showPayPage(@PathVariable Long course_id){
+		return "course.pay.view";
+	}
 }

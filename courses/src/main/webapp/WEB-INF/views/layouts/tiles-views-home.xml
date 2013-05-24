@@ -89,4 +89,11 @@
 		<put-attribute name="right_bottom" value="/WEB-INF/views/course/usercourse/commentShow.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
+	
+	<definition name="course.pay.view" extends="index-layout">
+		<put-attribute name="title" value="课程列表" />
+			<put-attribute name="search" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/course/pay/view.jsp"></put-attribute>
+		<put-attribute name="footer" value="" />
+	</definition>
 </tiles-definitions>
