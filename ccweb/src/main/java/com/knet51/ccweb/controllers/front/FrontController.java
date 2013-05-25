@@ -22,6 +22,7 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.AnnoPhoto;
 import com.knet51.ccweb.jpa.entities.Announcement;
+import com.knet51.ccweb.jpa.entities.Enterprise;
 import com.knet51.ccweb.jpa.entities.EnterpriseTeacher;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
@@ -34,6 +35,7 @@ import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
 import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
+import com.knet51.ccweb.jpa.services.EnterpriseService;
 import com.knet51.ccweb.jpa.services.EnterpriseTeacherService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.ResourceService;
@@ -58,6 +60,8 @@ public class FrontController {
 
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private EnterpriseService enterpirseService;
 	@Autowired
 	private ResourceService resourceService;
 	@Autowired
@@ -238,12 +242,12 @@ public class FrontController {
 		try {
 			User user = userService.findOne(user_id);
 			if (user.getRole().equals("enterprise")) {
-				Teacher enterprise = teacherService.findOne(user_id);
+				Enterprise enterprise = enterpirseService.findOne(user_id);
 				UserInfo sessionUserInfo = (UserInfo) session
 						.getAttribute(GlobalDefs.SESSION_USER_INFO);
 				boolean isFollower = false;
 				if (sessionUserInfo != null) { // this is only valid when user
-												// logged in and see teacher
+												// logged in and see enterprise
 												// home
 												// page
 					User sessionUser = sessionUserInfo.getUser();
@@ -260,10 +264,10 @@ public class FrontController {
 						.findAnnoPhotoByUserid(user.getId());
 				model.addAttribute("annoPhoto", annoPhoto);
 
-				// Page<TeacherCourse> pageCourse = courseService
-				// .findTeacherCourseByTeacherAndPublish(0, 6, enterprise,
+				// Page<EnterpriseCourse> pageCourse = courseService
+				// .findEnterpriseCourseByEnterpriseAndPublish(0, 6, enterprise,
 				// GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-				// List<TeacherCourse> courseList = pageCourse.getContent();
+				// List<EnterpriseCourse> courseList = pageCourse.getContent();
 				List<Course> courseList = courseService
 						.getAllTeacherCourseByUseridAndPublish(user_id,
 								GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
@@ -273,15 +277,15 @@ public class FrontController {
 				List<CourseType> cTypeList = courseTypeService.findAll();
 				model.addAttribute("cTypeList", cTypeList);
 
-				// Page<EnterpriseTeacher> eTeacher =
-				// enterpriseTeacherService.findTeacherByEnterprise(0, 6, user);
+				// Page<EnterpriseEnterprise> eEnterprise =
+				// enterpriseEnterpriseService.findEnterpriseByEnterprise(0, 6, user);
 				List<EnterpriseTeacher> eTeacherList = enterpriseTeacherService
 						.findTeacherByEnterprise(user);
 				model.addAttribute("eTeacher", eTeacherList);
 				model.addAttribute("eTeacherCount", eTeacherList.size());
 
 				UserInfo userInfo = new UserInfo(user);
-				userInfo.setTeacher(enterprise);
+				userInfo.setEnterprise(enterprise);
 
 				Integer fansCount = friendsRelateService.getAllFans(user_id).size();
 				Integer hostCount = friendsRelateService.getAllHost(user_id).size();
@@ -289,7 +293,7 @@ public class FrontController {
 				model.addAttribute("userInfo", userInfo);
 				model.addAttribute("user_id", user_id);
 
-				model.addAttribute("role", userInfo.getTeacherRole());
+				model.addAttribute("role", userInfo.getRole());
 				session.setAttribute("isFollower", isFollower);
 				session.setAttribute("fansCount", fansCount);
 				session.setAttribute("hostCount", hostCount);
