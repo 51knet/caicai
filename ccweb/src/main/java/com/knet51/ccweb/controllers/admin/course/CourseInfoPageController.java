@@ -60,7 +60,7 @@ public class CourseInfoPageController {
 			LoggerFactory.getLogger(CourseInfoPageController.class);
 	public static final long MAX_FILE_SIZE_2M = 2*1024*1024;
 	@Autowired
-	private  CourseService teacherCourseService;
+	private  CourseService courseService;
 	@Autowired
 	private TeacherService teacherService;
 	@Autowired
@@ -82,7 +82,7 @@ public class CourseInfoPageController {
 		if(userInfo.getRole().equals("user")){
 			return "redirect:/admin";
 		}
-		Page<TeacherCourse> onePage =teacherCourseService.findTeacherCourseByUserAndPublishGreaterThan(pageNumber, pageSize,userInfo.getUser(),GlobalDefs.PUBLISH_NUM_DELETE);
+		Page<TeacherCourse> onePage =courseService.findTeacherCourseByUserAndPublishGreaterThan(pageNumber, pageSize,userInfo.getUser(),GlobalDefs.PUBLISH_NUM_DELETE);
 		//Page<TeacherCourse> page = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, publish)
 		model.addAttribute("page", onePage);
 		if (userInfo.getUser().getRole().equals("teacher")) {
@@ -104,11 +104,11 @@ public class CourseInfoPageController {
 		}else{
 			Page<TeacherCourse> onePage = null;
 			if("publish".equals(publish)){
-				onePage = teacherCourseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, userInfo.getUser(), GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+				onePage = courseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, userInfo.getUser(), GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 			}else if("unpub".equals(publish)){
-				onePage = teacherCourseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, userInfo.getUser(), GlobalDefs.PUBLISH_NUM_ADMIN);
+				onePage = courseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, userInfo.getUser(), GlobalDefs.PUBLISH_NUM_ADMIN);
 			}else if("recycle".equals(publish)){
-				onePage = teacherCourseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, userInfo.getUser(), GlobalDefs.PUBLISH_NUM_RECYCLE);
+				onePage = courseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, userInfo.getUser(), GlobalDefs.PUBLISH_NUM_RECYCLE);
 			}
 			model.addAttribute("page", onePage);
 			if (userInfo.getUser().getRole().equals("teacher")) {
@@ -132,7 +132,7 @@ public class CourseInfoPageController {
 	
 	@RequestMapping(value="/admin/course/view/{course_id}")
 	public String detailCourseInfo(@PathVariable Long course_id,Model model,HttpSession session){
-		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		TeacherCourse course = courseService.findOneById(course_id);
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(course == null){
 			return "redirect:/admin";
@@ -216,7 +216,7 @@ public class CourseInfoPageController {
 			course.setUser(userInfo.getUser());
 			course.setcType(cType);
 			//course.setCourseType(cType.getTypeName());
-			TeacherCourse newCourse = teacherCourseService.createTeacherCourse(course);
+			TeacherCourse newCourse = courseService.createTeacherCourse(course);
 			for(int i=0;i<files.size();i++){
 				MultipartFile multipartFile = files.get(i);
 				if(!multipartFile.isEmpty()){
@@ -240,7 +240,7 @@ public class CourseInfoPageController {
 				}
 			}
 			
-			teacherCourseService.createTeacherCourse(newCourse);
+			courseService.createTeacherCourse(newCourse);
 			redirectAttributes.addFlashAttribute("courseId", newCourse.getId());
 			return "redirect:/admin/course/addcourse?active=second";
 		}
@@ -258,11 +258,11 @@ public class CourseInfoPageController {
 		if(price ==null){
 			price = (long) 0;
 		}
-		TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
+		TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
 		course.setPwd(pwd.trim());
 		course.setStatus(status);
 		course.setPrice(price);
-		teacherCourseService.updateTeacherCourse(course);
+		courseService.updateTeacherCourse(course);
 		redirectAttributes.addFlashAttribute("courseId", course_id);
 //		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		/*
@@ -339,7 +339,7 @@ public class CourseInfoPageController {
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/{course_id}/publish")
 	public String publishCourse(@PathVariable Long course_id,HttpSession session){
-		TeacherCourse course= teacherCourseService.findOneById(Long.valueOf(course_id));
+		TeacherCourse course= courseService.findOneById(Long.valueOf(course_id));
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
@@ -350,14 +350,14 @@ public class CourseInfoPageController {
 			}
 		}
 		course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-		teacherCourseService.updateTeacherCourse(course);
+		courseService.updateTeacherCourse(course);
 		return "redirect:/admin/course/list";
 	}
 	
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/{course_id}/cancelpublish")
 	public String cancelPublish(@PathVariable Long course_id,HttpSession session){
-		TeacherCourse course= teacherCourseService.findOneById(Long.valueOf(course_id));
+		TeacherCourse course= courseService.findOneById(Long.valueOf(course_id));
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
@@ -368,7 +368,7 @@ public class CourseInfoPageController {
 			}
 		}
 		course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN);
-		teacherCourseService.updateTeacherCourse(course);
+		courseService.updateTeacherCourse(course);
 		return "redirect:/admin/course/list";
 	}
 	
@@ -376,7 +376,7 @@ public class CourseInfoPageController {
 	public String previewCourse(@PathVariable Long course_id,Model model,HttpSession session,
 			@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize){
-		TeacherCourse course= teacherCourseService.findOneById(Long.valueOf(course_id));
+		TeacherCourse course= courseService.findOneById(Long.valueOf(course_id));
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(course == null){
 			return "redirect:/admin/course/list";
@@ -447,7 +447,7 @@ public class CourseInfoPageController {
 	 */
 	@RequestMapping(value="/admin/course/edit/{course_id}/pubcourses")
 	public String publishToCourses(@PathVariable Long course_id,Model model,HttpSession session){
-		TeacherCourse course = teacherCourseService.findOneById(Long.valueOf(course_id));
+		TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
@@ -458,7 +458,7 @@ public class CourseInfoPageController {
 			}
 		}
 		course.setStatus(GlobalDefs.STATUS_CCWEB_COURSES);
-		teacherCourseService.updateTeacherCourse(course);
+		courseService.updateTeacherCourse(course);
 		return "redirect:/admin/course/view/"+Long.valueOf(course_id);
 	}
 
@@ -568,7 +568,7 @@ public class CourseInfoPageController {
 	public void checkCourseName(@RequestParam("courseName") String courseName,HttpServletResponse response,HttpSession session) throws Exception{
 		PrintWriter out=response.getWriter();
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		TeacherCourse teacherCourse=teacherCourseService.getTeacherCourseByCourseName(courseName,userInfo.getId());
+		TeacherCourse teacherCourse=courseService.getTeacherCourseByCourseName(courseName,userInfo.getId());
 		Integer number=0;
 		if(teacherCourse!=null){
 			number=1;
@@ -604,7 +604,7 @@ public class CourseInfoPageController {
 	public String checkCoursePwd(@RequestParam("cid") Long course_id,@RequestParam("coursepwd") String pwd,HttpServletRequest request,HttpServletResponse response ) throws IOException{
 		logger.info("==== into the ajax checkCoursePwd controller ====");
 		PrintWriter out = response.getWriter();
-		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		TeacherCourse course = courseService.findOneById(course_id);
 		String flag;
 		if(!pwd.equals(course.getPwd())){
 			flag = "false";
