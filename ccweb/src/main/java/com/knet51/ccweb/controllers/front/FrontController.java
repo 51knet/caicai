@@ -28,7 +28,7 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.services.AnnoPhotoService;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
@@ -193,10 +193,10 @@ public class FrontController {
 				model.addAttribute("resourceList", resourceList);
 				model.addAttribute("resourceCount", resourceCount);
 
-				Page<TeacherCourse> pageCourse = courseService
+				Page<Course> pageCourse = courseService
 						.findTeacherCourseByUserAndPublish(0, 5, user,
 								GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-				List<TeacherCourse> courseList = pageCourse.getContent();
+				List<Course> courseList = pageCourse.getContent();
 				Integer courseCount = courseService
 						.getAllTeacherCourseByUseridAndPublish(id,
 								GlobalDefs.PUBLISH_NUM_ADMIN_FRONT).size();
@@ -264,7 +264,7 @@ public class FrontController {
 				// .findTeacherCourseByTeacherAndPublish(0, 6, enterprise,
 				// GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 				// List<TeacherCourse> courseList = pageCourse.getContent();
-				List<TeacherCourse> courseList = courseService
+				List<Course> courseList = courseService
 						.getAllTeacherCourseByUseridAndPublish(user_id,
 								GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 				model.addAttribute("courseList", courseList);

@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 import com.google.gson.annotations.Expose;
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.User;
 
 @Entity
 public class TeacherHonor extends AbstractEntity {
@@ -18,7 +19,7 @@ public class TeacherHonor extends AbstractEntity {
 	@Lob
 	private String detailDesc;
 	@ManyToOne
-	private Teacher teacher;
+	private User user;
 	
 	private String forbidden;
 	
@@ -48,11 +49,11 @@ public class TeacherHonor extends AbstractEntity {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	public Teacher getTeacher() {
-		return teacher;
+	public User getUser() {
+		return user;
 	}
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public String getDesc() {
 		return detailDesc;

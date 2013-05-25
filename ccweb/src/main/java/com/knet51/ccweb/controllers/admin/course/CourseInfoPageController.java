@@ -41,7 +41,7 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseLesson;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.ccweb.jpa.services.CourseLessonService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
@@ -82,7 +82,7 @@ public class CourseInfoPageController {
 		if(userInfo.getRole().equals("user")){
 			return "redirect:/admin";
 		}
-		Page<TeacherCourse> onePage =courseService.findTeacherCourseByUserAndPublishGreaterThan(pageNumber, pageSize,userInfo.getUser(),GlobalDefs.PUBLISH_NUM_DELETE);
+		Page<Course> onePage =courseService.findTeacherCourseByUserAndPublishGreaterThan(pageNumber, pageSize,userInfo.getUser(),GlobalDefs.PUBLISH_NUM_DELETE);
 		//Page<TeacherCourse> page = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, publish)
 		model.addAttribute("page", onePage);
 		if (userInfo.getUser().getRole().equals("teacher")) {
@@ -102,7 +102,7 @@ public class CourseInfoPageController {
 		if(userInfo.getRole().equals("user")){
 			return "redirect:/admin";
 		}else{
-			Page<TeacherCourse> onePage = null;
+			Page<Course> onePage = null;
 			if("publish".equals(publish)){
 				onePage = courseService.findTeacherCourseByUserAndPublish(pageNumber, pageSize, userInfo.getUser(), GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 			}else if("unpub".equals(publish)){
@@ -132,7 +132,7 @@ public class CourseInfoPageController {
 	
 	@RequestMapping(value="/admin/course/view/{course_id}")
 	public String detailCourseInfo(@PathVariable Long course_id,Model model,HttpSession session){
-		TeacherCourse course = courseService.findOneById(course_id);
+		Course course = courseService.findOneById(course_id);
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(course == null){
 			return "redirect:/admin";
@@ -203,7 +203,7 @@ public class CourseInfoPageController {
 			List<MultipartFile> files = request.getFiles("coverFile");
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			CourseType cType = courseTypeService.findOneById(courseInfoForm.getCourseType());
-			TeacherCourse course = new TeacherCourse();
+			Course course = new Course();
 			String courseName = courseInfoForm.getCourseName();
 			String courseDesc = courseInfoForm.getCourseDesc();
 			course.setCourseName(courseName);
@@ -216,7 +216,7 @@ public class CourseInfoPageController {
 			course.setUser(userInfo.getUser());
 			course.setcType(cType);
 			//course.setCourseType(cType.getTypeName());
-			TeacherCourse newCourse = courseService.createTeacherCourse(course);
+			Course newCourse = courseService.createTeacherCourse(course);
 			for(int i=0;i<files.size();i++){
 				MultipartFile multipartFile = files.get(i);
 				if(!multipartFile.isEmpty()){
@@ -258,7 +258,7 @@ public class CourseInfoPageController {
 		if(price ==null){
 			price = (long) 0;
 		}
-		TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
+		Course course = courseService.findOneById(Long.valueOf(course_id));
 		course.setPwd(pwd.trim());
 		course.setStatus(status);
 		course.setPrice(price);
@@ -339,7 +339,7 @@ public class CourseInfoPageController {
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/{course_id}/publish")
 	public String publishCourse(@PathVariable Long course_id,HttpSession session){
-		TeacherCourse course= courseService.findOneById(Long.valueOf(course_id));
+		Course course= courseService.findOneById(Long.valueOf(course_id));
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
@@ -357,7 +357,7 @@ public class CourseInfoPageController {
 	@Transactional
 	@RequestMapping(value="/admin/course/edit/{course_id}/cancelpublish")
 	public String cancelPublish(@PathVariable Long course_id,HttpSession session){
-		TeacherCourse course= courseService.findOneById(Long.valueOf(course_id));
+		Course course= courseService.findOneById(Long.valueOf(course_id));
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
@@ -376,7 +376,7 @@ public class CourseInfoPageController {
 	public String previewCourse(@PathVariable Long course_id,Model model,HttpSession session,
 			@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "5") int pageSize){
-		TeacherCourse course= courseService.findOneById(Long.valueOf(course_id));
+		Course course= courseService.findOneById(Long.valueOf(course_id));
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(course == null){
 			return "redirect:/admin/course/list";
@@ -447,7 +447,7 @@ public class CourseInfoPageController {
 	 */
 	@RequestMapping(value="/admin/course/edit/{course_id}/pubcourses")
 	public String publishToCourses(@PathVariable Long course_id,Model model,HttpSession session){
-		TeacherCourse course = courseService.findOneById(Long.valueOf(course_id));
+		Course course = courseService.findOneById(Long.valueOf(course_id));
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
@@ -568,9 +568,9 @@ public class CourseInfoPageController {
 	public void checkCourseName(@RequestParam("courseName") String courseName,HttpServletResponse response,HttpSession session) throws Exception{
 		PrintWriter out=response.getWriter();
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		TeacherCourse teacherCourse=courseService.getTeacherCourseByCourseName(courseName,userInfo.getId());
+		Course course=courseService.getTeacherCourseByCourseName(courseName,userInfo.getId());
 		Integer number=0;
-		if(teacherCourse!=null){
+		if(course!=null){
 			number=1;
 		}
 		String num=number.toString();
@@ -604,7 +604,7 @@ public class CourseInfoPageController {
 	public String checkCoursePwd(@RequestParam("cid") Long course_id,@RequestParam("coursepwd") String pwd,HttpServletRequest request,HttpServletResponse response ) throws IOException{
 		logger.info("==== into the ajax checkCoursePwd controller ====");
 		PrintWriter out = response.getWriter();
-		TeacherCourse course = courseService.findOneById(course_id);
+		Course course = courseService.findOneById(course_id);
 		String flag;
 		if(!pwd.equals(course.getPwd())){
 			flag = "false";

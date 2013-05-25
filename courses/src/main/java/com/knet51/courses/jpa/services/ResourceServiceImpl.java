@@ -9,20 +9,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
-import com.knet51.ccweb.jpa.repository.TeacherCourseResourceRepository;
+import com.knet51.ccweb.jpa.repository.CourseResourceRepository;
 import com.knet51.courses.controllers.defs.GlobalDefs;
 @Transactional
 @Service("courseService")
 public class ResourceServiceImpl implements ResourceService {
 
 	@Autowired
-	private TeacherCourseResourceRepository teacherCourseResourceRepository;
+	private CourseResourceRepository courseResourceRepository;
 
 	@Override
 	public List<CourseResource> getResourceByCourseIdAndStatus(Long course_id,Integer status) {
 		List<CourseResource> list= new ArrayList<CourseResource>();
 			 try {
-				 list=teacherCourseResourceRepository.getResourceByCourseIdAndStatus(course_id,GlobalDefs.STATUS_COURSE_RESOURCE);
+				 list=courseResourceRepository.getResourceByCourseIdAndStatus(course_id,GlobalDefs.STATUS_COURSE_RESOURCE);
 			 } catch (Exception e) {
 				 e.printStackTrace();
 			 } 
@@ -30,7 +30,7 @@ public class ResourceServiceImpl implements ResourceService {
 		 }
 	@Override
 	public CourseResource findById(Long id) {
-		CourseResource courseResource=teacherCourseResourceRepository.findOne(id);
+		CourseResource courseResource=courseResourceRepository.findOne(id);
 		return courseResource;
 	}
 	@Override
@@ -38,7 +38,7 @@ public class ResourceServiceImpl implements ResourceService {
 			String LessonNum, Long course_id) {
 		List<CourseResource> courseResourceList= new ArrayList<CourseResource>(); 
 		try {
-			courseResourceList=teacherCourseResourceRepository.getResourceByLessonNumAndCourseId(LessonNum,course_id);
+			courseResourceList=courseResourceRepository.getResourceByLessonNumAndCourseId(LessonNum,course_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 

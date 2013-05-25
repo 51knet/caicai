@@ -29,7 +29,7 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.WithdrawsApply;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.AuthenResourceService;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
@@ -175,7 +175,7 @@ public class CaiCaiPageController {
 	public String showAllCourse(Model model, HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize) {
 		logger.info("====== into caicai announcement controller =====");
-		Page<TeacherCourse> page = courseService.findCourseByPublishGreaterThanForSuperAdmin(GlobalDefs.PUBLISH_NUM_DELETE, pageNumber, pageSize);
+		Page<Course> page = courseService.findCourseByPublishGreaterThanForSuperAdmin(GlobalDefs.PUBLISH_NUM_DELETE, pageNumber, pageSize);
 		model.addAttribute("page", page);
 		return "admin.caicai.course.list";
 	}

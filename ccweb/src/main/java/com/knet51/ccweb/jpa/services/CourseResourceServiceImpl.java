@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
-import com.knet51.ccweb.jpa.repository.TeacherCourseResourceRepository;
+import com.knet51.ccweb.jpa.repository.CourseResourceRepository;
 
 @Transactional
 @Service("courseResourceService")
 public class CourseResourceServiceImpl implements CourseResourceService {
 	
 	@Autowired
-	private TeacherCourseResourceRepository resourceRepository;
+	private CourseResourceRepository resourceRepository;
 	
 	
 	@Override

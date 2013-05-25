@@ -28,7 +28,7 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
 import com.knet51.ccweb.jpa.services.BlogService;
@@ -89,7 +89,7 @@ public class CaiCaiDetailController {
 					announcementService.updateAnnouncement(annoList.get(i));
 				}
 			}
-			List<TeacherCourse> courseList = courseService.findCourseByUserAndPublishGreaterThanForSuperAdmin(user, GlobalDefs.PUBLISH_NUM_DELETE);
+			List<Course> courseList = courseService.findCourseByUserAndPublishGreaterThanForSuperAdmin(user, GlobalDefs.PUBLISH_NUM_DELETE);
 			if(courseList.size()>0){
 				for (int i = 0; i <courseList.size(); i++) {
 					courseList.get(i).setForbidden(null);
@@ -136,7 +136,7 @@ public class CaiCaiDetailController {
 					announcementService.updateAnnouncement(annoList.get(i));
 				}
 			}
-			List<TeacherCourse> courseList = courseService.findCourseByUserAndPublishGreaterThanForSuperAdmin(user, GlobalDefs.PUBLISH_NUM_DELETE);
+			List<Course> courseList = courseService.findCourseByUserAndPublishGreaterThanForSuperAdmin(user, GlobalDefs.PUBLISH_NUM_DELETE);
 			if(courseList.size()>0){
 				for (int i = 0; i <courseList.size(); i++) {
 					courseList.get(i).setForbidden("yes");
@@ -286,7 +286,7 @@ public class CaiCaiDetailController {
 	 */
 	@RequestMapping(value="/admin/caicai/course/{course_id}/free")
 	public String freeCourse(@PathVariable Long course_id){
-		TeacherCourse course = courseService.findOneById(course_id);
+		Course course = courseService.findOneById(course_id);
 		course.setForbidden(null);
 		courseService.updateTeacherCourse(course);
 		return "redirect:/admin/caicai/course/list";
@@ -298,7 +298,7 @@ public class CaiCaiDetailController {
 	 */
 	@RequestMapping(value="/admin/caicai/course/{course_id}/forbid")
 	public String forbidcourse(@PathVariable Long course_id){
-		TeacherCourse course = courseService.findOneById(course_id);
+		Course course = courseService.findOneById(course_id);
 		course.setForbidden("yes");
 		courseService.updateTeacherCourse(course);
 		return "redirect:/admin/caicai/course/list";
@@ -312,8 +312,8 @@ public class CaiCaiDetailController {
 	@RequestMapping(value="/admin/caicai/course/search", method = RequestMethod.POST)
 	public String searchCourseByName(@RequestParam("searchParam") String searchParam,Model model){
 		String name = searchParam.trim();
-		List<TeacherCourse> courseList = courseService.findAllForAdmin();
-		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
+		List<Course> courseList = courseService.findAllForAdmin();
+		List<Course> newCourseList = new ArrayList<Course>();
 		if(name != null && !name.equals("")){
 			for (int i = 0; i <courseList.size() ; i++) {
 				if(courseList.get(i).getCourseName().contains(name)){

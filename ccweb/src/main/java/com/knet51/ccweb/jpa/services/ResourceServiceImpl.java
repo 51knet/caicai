@@ -15,7 +15,7 @@ import com.knet51.ccweb.jpa.dao.ResourceDao;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.repository.ResourceRepository;
-import com.knet51.ccweb.jpa.repository.TeacherCourseResourceRepository;
+import com.knet51.ccweb.jpa.repository.CourseResourceRepository;
 
 @Transactional
 @Service("resourceService")
@@ -28,7 +28,7 @@ public class ResourceServiceImpl implements ResourceService {
 	private ResourceRepository resourceRepository;
 	
 	@Autowired
-	private TeacherCourseResourceRepository courseResourceRepository;
+	private CourseResourceRepository courseResourceRepository;
 
 
 	

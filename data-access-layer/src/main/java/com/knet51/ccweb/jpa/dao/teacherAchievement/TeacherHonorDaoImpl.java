@@ -42,7 +42,7 @@ public class TeacherHonorDaoImpl implements TeacherHonorDao {
 	@Override
 	public List<TeacherHonor> getAllHonorById(Long Id) {
 		@SuppressWarnings("unchecked")
-		List<TeacherHonor> list = em.createQuery("from TeacherHonor where teacher_id="+Id).getResultList();
+		List<TeacherHonor> list = em.createQuery("from TeacherHonor where user_id="+Id).getResultList();
 		return list;
 	}
 

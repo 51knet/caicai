@@ -43,7 +43,8 @@
 					<c:when test="${c.teacherCourse.courseCover != null && c.teacherCourse.courseCover != ''}">
 						<div style="width: 250px; height: 189px; background-image: url('<c:url value="${url }${c.teacherCourse.courseCover }"></c:url>');  
 								background-repeat:no-repeat;background-position:center;  ">
-							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 160px;"></div></a>
+							<c:if test="${c.teacherCourse.user.role == 'teacher' }"><a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 160px;"></div></a></c:if>
+							<c:if test="${c.teacherCourse.user.role == 'enterprise' }"><a href='<c:url value="${url}/enterprise/${c.teacherCourse.user.id}/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 160px;"></div></a></c:if>
 		    				<div  style="height:24px;background-color:#000;  padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
 		    					<div  id="contentlimit" style="width: 240px;">${c.teacherCourse.courseName} </div>
 		   				 	</div>
@@ -52,7 +53,8 @@
 					<c:otherwise>
 						<div style="width: 250px; height: 187px; background-image: url('<c:url value="/resources/img/logo.png"></c:url>');  
 										background-repeat:no-repeat;background-position:center;">
-							<a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 162px;"></div></a>
+							<c:if test="${c.teacherCourse.user.role == 'teacher' }"><a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 160px;"></div></a></c:if>
+							<c:if test="${c.teacherCourse.user.role == 'enterprise' }"><a href='<c:url value="${url}/enterprise/${c.teacherCourse.user.id}/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 160px;"></div></a></c:if>
 		    				<div style="height:25px;background-color:#000; padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
 		    					${c.teacherCourse.courseName}
 		   				 	</div>

@@ -4,22 +4,22 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 
-public class TeacherCourseRepositoryImpl implements
-		TeacherCourseRepositoryCustom {
+public class CourseRepositoryImpl implements
+		CourseRepositoryCustom {
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
-	public TeacherCourse updateTeacherCourseDetail(TeacherCourse teacherCourse) {
-		em.merge(teacherCourse);
-		return teacherCourse;
+	public Course updateTeacherCourseDetail(Course course) {
+		em.merge(course);
+		return course;
 	}
 
 	@Override
-	public List<TeacherCourse> getAllCourseById(Long teacher_id) {
-		List<TeacherCourse> courseList = em.createQuery("select tc from TeacherCourse tc where tc.user.id="+teacher_id).getResultList();
+	public List<Course> getAllCourseById(Long teacher_id) {
+		List<Course> courseList = em.createQuery("select tc from Course tc where tc.user.id="+teacher_id).getResultList();
 		return courseList;
 	}
 
@@ -57,14 +57,14 @@ public class TeacherCourseRepositoryImpl implements
 
 	@Override
 	public List<String> getCourseType() {
-		List<String> typeList = em.createQuery("select distinct c.courseType from TeacherCourse c where c.status=2 and c.publish=3").getResultList();
+		List<String> typeList = em.createQuery("select distinct c.courseType from Course c where c.status=2 and c.publish=3").getResultList();
 	
 		return typeList;
 	}
 
 	@Override
 	public List<String> getCourseTypeByTeacherId(Long teacher_id) {
-		List<String> typeList = em.createQuery("select distinct c.courseType from TeacherCourse c where c.status=2 and c.publish=3 and c.user.id="+teacher_id).getResultList();
+		List<String> typeList = em.createQuery("select distinct c.courseType from Course c where c.status=2 and c.publish=3 and c.user.id="+teacher_id).getResultList();
 		return typeList;
 	}
 }

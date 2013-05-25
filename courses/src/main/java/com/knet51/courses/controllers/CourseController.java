@@ -31,7 +31,7 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.courses.beans.UserCourseBeans;
 import com.knet51.courses.jpa.services.CourseTypeService;
@@ -83,13 +83,13 @@ public class CourseController {
 	public String showCourseByType(@RequestParam("detail") String courseType,
 			Model model) throws Exception {
 		courseType = new String(courseType.getBytes("iso-8859-1"), "utf-8");
-		List<TeacherCourse> courseList = courseService.findAllCourses();
+		List<Course> courseList = courseService.findAllCourses();
 		//List<String> courseTypeList = courseService.courseTypeList();
 		List<CourseType> typeList = courseTypeService.findAll();
-		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
+		List<Course> newCourseList = new ArrayList<Course>();
 		if (courseType.trim() != null && !courseType.trim().equals("全部课程")
 				&& !courseType.trim().equals("all")) {
-			for (TeacherCourse c : courseList) {
+			for (Course c : courseList) {
 				if (courseType.equals(c.getcType().getTypeName())) {
 					newCourseList.add(c);
 				}
@@ -118,7 +118,7 @@ public class CourseController {
 		// UserInfo userInfo = (UserInfo)
 		// session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		/* zm */
-		TeacherCourse course = courseService.findOneById(course_id);
+		Course course = courseService.findOneById(course_id);
 		model.addAttribute("course", course);
 		/* lbx */
 		Teacher teacher = teacherService.findOne(course.getUser().getId());
@@ -231,8 +231,8 @@ public class CourseController {
 		}
 		model.addAttribute("courseMap", courseMap);
 		/* zm */
-		TeacherCourse teacherCourse = courseService.findOneById(id);
-		model.addAttribute("course", teacherCourse);
+		Course course = courseService.findOneById(id);
+		model.addAttribute("course", course);
 		model.addAttribute("resourceCount", listResource.size());
 		return "course.study.view";
 	}
@@ -250,8 +250,8 @@ public class CourseController {
 	@RequestMapping(value = "/course/study/courseinfo/{id}")
 	public String coursesByTeacherCourseId(Model model, HttpSession session,
 			@PathVariable Long id) {
-		TeacherCourse teacherCourse = courseService.findOneById(id);
-		model.addAttribute("course", teacherCourse);
+		Course course = courseService.findOneById(id);
+		model.addAttribute("course", course);
 		return "course.study.courseinfo";
 	}
 
@@ -299,8 +299,8 @@ public class CourseController {
 				courseMark = userCourseService.getMark(id);// 一个视频的评论平均分数
 			}
 		}
-		TeacherCourse teacherCourse = courseService.findOneById(id);
-		model.addAttribute("course", teacherCourse);
+		Course course = courseService.findOneById(id);
+		model.addAttribute("course", course);
 		// model.addAttribute("listCount", listUserCourse.size());
 		model.addAttribute("listUserCourse", list);
 		// model.addAttribute("id", id);
@@ -407,10 +407,10 @@ public class CourseController {
 	public String searchCourseOrTeacher(
 			@RequestParam("searchParam") String searchParam, Model model)
 			throws Exception {
-		List<TeacherCourse> courseList = courseService.findAllCourses();
+		List<Course> courseList = courseService.findAllCourses();
 		//List<String> courseTypeList = courseService.courseTypeList();
 		List<CourseType> typeList = courseTypeService.findAll();
-		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
+		List<Course> newCourseList = new ArrayList<Course>();
 		String param = searchParam.trim();
 		if (param != null && !param.equals("")) {
 			for(int i=0;i<courseList.size();i++){
@@ -443,10 +443,10 @@ public class CourseController {
 		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(currentUser != null){
 			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
-			List<TeacherCourse> userCourse = new ArrayList<TeacherCourse>();
+			List<Course> userCourse = new ArrayList<Course>();
 			for (int i = 0; i < userCourseList.size(); i++) {
-				TeacherCourse teacherCourse = courseService.findOneById(userCourseList.get(i).getTeachercourseid());
-				userCourse.add(teacherCourse);
+				Course course = courseService.findOneById(userCourseList.get(i).getTeachercourseid());
+				userCourse.add(course);
 			}
 			model.addAttribute("userInfo", currentUser.getUser());
 			model.addAttribute("userCourse", userCourse);

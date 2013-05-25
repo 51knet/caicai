@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 
-public interface TeacherCourseResourceRepositoryCustom {
+public interface CourseResourceRepositoryCustom {
 	
 	List<CourseResource> getResourceByCourseIdAndStatus(Long course_id,Integer status);
 	List<CourseResource> getResourceByLessonNumAndCourseId(String lessonNum,Long course_id);

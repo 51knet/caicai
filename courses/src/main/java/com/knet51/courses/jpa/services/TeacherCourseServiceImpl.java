@@ -16,10 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.ccweb.jpa.repository.UserCourseRepository;
-import com.knet51.ccweb.jpa.repository.TeacherCourseRepository;
+import com.knet51.ccweb.jpa.repository.CourseRepository;
 import com.knet51.ccweb.jpa.repository.TeacherRepository;
 import com.knet51.ccweb.jpa.repository.UserRepository;
 import com.knet51.courses.beans.CourseBeans;
@@ -34,7 +34,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	private TeacherRepository teacherRepository;
 	
 	@Autowired
-	private TeacherCourseRepository courseRepository;
+	private CourseRepository courseRepository;
 	
 	@Autowired
 	private UserCourseRepository commentRepository;
@@ -53,11 +53,11 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	}
 
 	@Override
-	public Map<Teacher, List<TeacherCourse>> tcmap() {
-		Map<Teacher,List<TeacherCourse>> tcmap = new HashMap<Teacher,List<TeacherCourse>>();
+	public Map<Teacher, List<Course>> tcmap() {
+		Map<Teacher,List<Course>> tcmap = new HashMap<Teacher,List<Course>>();
 		List<Teacher> teacherList = teacherRepository.findAll();
 		for(int i=0;i<teacherList.size();i++){
-			List<TeacherCourse> courseList = courseRepository.getAllCourseById(teacherList.get(i).getId());
+			List<Course> courseList = courseRepository.getAllCourseById(teacherList.get(i).getId());
 			if(courseList.size()>0){
 				tcmap.put(teacherList.get(i), courseList);
 			}
@@ -68,7 +68,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	@Override
 	public List<TeacherCourseBeans> getAllTeacherCourseBeans() {
 		List<TeacherCourseBeans> tcBeansList = new ArrayList<TeacherCourseBeans>();
-		List<TeacherCourse> courseList = courseRepository.findAll();
+		List<Course> courseList = courseRepository.findAll();
 		for(int i=0;i<courseList.size();i++){
 			Teacher teacher = teacherRepository.findOne(courseList.get(i).getUser().getId());
 			TeacherCourseBeans tcBeans = new TeacherCourseBeans(teacher, courseList.get(i));
@@ -78,18 +78,18 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	}
 
 	@Override
-	public TeacherCourse findOneById(Long id) {	 
+	public Course findOneById(Long id) {	 
 		return courseRepository.findOne(id);
 	}
 
 	@Override
-	public TeacherCourse createTeacherCourse(TeacherCourse teacherCourse) {
-		return courseRepository.save(teacherCourse);
+	public Course createTeacherCourse(Course course) {
+		return courseRepository.save(course);
 	}
 
 	@Override
-	public TeacherCourse updateTeacherCourse(TeacherCourse teacherCourse) {
-		return courseRepository.updateTeacherCourseDetail(teacherCourse);
+	public Course updateTeacherCourse(Course course) {
+		return courseRepository.updateTeacherCourseDetail(course);
 	}
 
 	@Override
@@ -98,16 +98,16 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	}
 
 	@Override
-	public Page<TeacherCourse> findAllCourseByUser(int pageNum,
+	public Page<Course> findAllCourseByUser(int pageNum,
 			int pageSize,User user) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUser(user, dateDesc);
+		Page<Course> onePage = courseRepository.findTeacherCourseByUser(user, dateDesc);
 		return onePage;
 	}
 	@Override
-	public Page<TeacherCourse> findAllCourse(int pageNum,int pageSize) {
+	public Page<Course> findAllCourse(int pageNum,int pageSize) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = courseRepository.findAll(dateDesc);
+		Page<Course> onePage = courseRepository.findAll(dateDesc);
 		return onePage;
 	}
 	
@@ -120,8 +120,8 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	 * 查询通过教师ID教师课程
 	 */
 	@Override
-	public List<TeacherCourse> getAllCourseByTeacherId(Long teacher_id) {
-		List<TeacherCourse> list=new ArrayList<TeacherCourse>();
+	public List<Course> getAllCourseByTeacherId(Long teacher_id) {
+		List<Course> list=new ArrayList<Course>();
 		User user = userRepository.findOne(teacher_id);
 		try {
 			list=courseRepository.findTeacherCourseByUserAndStatusAndForbiddenIsNullAndPublish(user, GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
@@ -136,7 +136,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	public List<CourseBeans> getAllCourseBeans() {
 		List<CourseBeans> courseBeansList = new ArrayList<CourseBeans>();
 		Sort sort = new Sort(Direction.DESC, "id");
-		List<TeacherCourse> teacherCourseList = courseRepository.findTeacherCourseByStatusAndPublishAndForbiddenIsNull(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,sort);
+		List<Course> teacherCourseList = courseRepository.findTeacherCourseByStatusAndPublishAndForbiddenIsNull(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,sort);
 		for(int i=0;i<teacherCourseList.size();i++){
 			Double avgMark = commentRepository.getMark(teacherCourseList.get(i).getId());
 			List<UserCourse> listComment=commentRepository.findByTeachercourseid(teacherCourseList.get(i).getId());
@@ -149,13 +149,13 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 
 	@Override
 	public CourseBeans getCourseBeansById(Long course_id) {
-		TeacherCourse teacherCourse = courseRepository.findOne(course_id);
+		Course course = courseRepository.findOne(course_id);
 		Double avgMark = commentRepository.getMark(course_id);
 		List<UserCourse> listComment=commentRepository.findByTeachercourseid(course_id);
 		Integer userCount = listComment.size();
 		CourseBeans courseBeans = new CourseBeans();
 		courseBeans.setCourseMark(avgMark);
-		courseBeans.setTeacherCourse(teacherCourse);
+		courseBeans.setTeacherCourse(course);
 		courseBeans.setUserCount(userCount);
 		return courseBeans;
 	}
@@ -166,11 +166,11 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	}
 
 	@Override
-	public List<TeacherCourse> getCourseByUserId(Long user_id) {
+	public List<Course> getCourseByUserId(Long user_id) {
 		List<UserCourse> commentList = commentRepository.findUserCourseByUserid(user_id);
-		List<TeacherCourse> courseList = new ArrayList<TeacherCourse>();
+		List<Course> courseList = new ArrayList<Course>();
 		for(int i=0;i<commentList.size();i++){
-			TeacherCourse course = new TeacherCourse();
+			Course course = new Course();
 			course = courseRepository.findOne(commentList.get(i).getTeachercourseid());
 			courseList.add(course);
 		}
@@ -178,9 +178,9 @@ public class TeacherCourseServiceImpl implements TeacherCourseService {
 	}
 
 	@Override
-	public List<TeacherCourse> findAllCourses() {
+	public List<Course> findAllCourses() {
 		Sort sort = new Sort(Direction.DESC, "id");
-		List<TeacherCourse> courseList = courseRepository.findTeacherCourseByStatusAndPublishAndForbiddenIsNull(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,sort);
+		List<Course> courseList = courseRepository.findTeacherCourseByStatusAndPublishAndForbiddenIsNull(GlobalDefs.STATUS_CCWEB_COURSES,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,sort);
 		return courseList;
 	}
 

@@ -21,7 +21,7 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.services.CourseLessonService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
@@ -63,7 +63,7 @@ public class TeacherCourseInfoFrontPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("teacherInfo", userInfo);
 		model.addAttribute("teacher_id", teacher_id);
-		Page<TeacherCourse> onePage = teacherCourseService
+		Page<Course> onePage = teacherCourseService
 				.findTeacherCourseByUserAndPublish(pageNumber, pageSize, user,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("page", onePage);
@@ -74,7 +74,7 @@ public class TeacherCourseInfoFrontPageController {
 	public String detailCourse(@RequestParam("teacherId") Long teacher_id,
 			@RequestParam("courseId") Long course_id,
 			@RequestParam("coursepwd") String pwd, Model model) {
-		TeacherCourse course = teacherCourseService.findOneById(course_id);
+		Course course = teacherCourseService.findOneById(course_id);
 		if (pwd.equals(course.getPwd()) || course.getPwd() == null
 				|| course.getPwd().trim().equals("")) {
 			Teacher teacher = teacherService.findOne(teacher_id);
@@ -103,7 +103,7 @@ public class TeacherCourseInfoFrontPageController {
 			logger.info("===============" + cTypeList.size());
 			model.addAttribute("cTypeList", cTypeList);
 			
-			List<TeacherCourse> courseList = teacherCourseService
+			List<Course> courseList = teacherCourseService
 					.getAllTeacherCourseByUseridAndPublish(teacher_id,
 							GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 			model.addAttribute("courseList", courseList);

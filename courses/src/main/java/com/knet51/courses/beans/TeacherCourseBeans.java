@@ -1,12 +1,12 @@
 package com.knet51.courses.beans;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 
 public class TeacherCourseBeans {
 	
 	private Teacher teacher;
-	private TeacherCourse teacherCourse;
+	private Course course;
 	
 	public Teacher getTeacher() {
 		return teacher;
@@ -14,16 +14,16 @@ public class TeacherCourseBeans {
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
 	}
-	public TeacherCourse getTeacherCourse() {
-		return teacherCourse;
+	public Course getTeacherCourse() {
+		return course;
 	}
-	public void setTeacherCourse(TeacherCourse teacherCourse) {
-		this.teacherCourse = teacherCourse;
+	public void setTeacherCourse(Course course) {
+		this.course = course;
 	}
-	public TeacherCourseBeans(Teacher teacher, TeacherCourse teacherCourse) {
+	public TeacherCourseBeans(Teacher teacher, Course course) {
 		super();
 		this.teacher = teacher;
-		this.teacherCourse = teacherCourse;
+		this.course = course;
 	}
 	public TeacherCourseBeans() {
 		super();

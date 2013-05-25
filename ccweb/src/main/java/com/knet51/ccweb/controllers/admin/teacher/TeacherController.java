@@ -464,7 +464,7 @@ public class TeacherController {
 				honor.setName(honorDetailForm.getHonorName());
 				honor.setReason(honorDetailForm.getReason());
 				honor.setDesc(honorDetailForm.getHonorDesc());
-				honorService.save(honor, userInfo.getTeacher());
+				honorService.save(honor, userInfo.getUser());
 			}
 			return "redirect:/admin/resume?active=honor";
 		}

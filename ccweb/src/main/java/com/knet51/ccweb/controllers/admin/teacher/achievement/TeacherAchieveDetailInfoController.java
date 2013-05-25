@@ -126,12 +126,10 @@ public class TeacherAchieveDetailInfoController {
 			return "redirect:/admin/achievement/list";
 		}else{
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Long id = userInfo.getUser().getId();
-			Teacher teacher= teacherService.findOne(id);
 			TeacherHonor honor = new TeacherHonor();
 			honor.setName(honorDetailForm.getHonorName());
 			honor.setReason(honorDetailForm.getReason());
-			honorService.save(honor, teacher);
+			honorService.save(honor, userInfo.getUser());
 			return "redirect:/admin/achievement/list";
 		}
 	}

@@ -7,26 +7,26 @@ import org.springframework.data.domain.Page;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.courses.beans.CourseBeans;
 import com.knet51.courses.beans.TeacherCourseBeans;
 
 public interface TeacherCourseService {
-	TeacherCourse findOneById(Long id);
-	TeacherCourse createTeacherCourse(TeacherCourse teacherCourse);
-	TeacherCourse updateTeacherCourse(TeacherCourse teacherCourse);
+	Course findOneById(Long id);
+	Course createTeacherCourse(Course course);
+	Course updateTeacherCourse(Course course);
 	void deleTeacherCourse(Long teacher_id);
-	Page<TeacherCourse> findAllCourseByUser(int pageNum, int pageSize, User user);
-	Page<TeacherCourse> findAllCourse(int pageNum, int pageSize);
+	Page<Course> findAllCourseByUser(int pageNum, int pageSize, User user);
+	Page<Course> findAllCourse(int pageNum, int pageSize);
 	List<String> getAllSchool();
 	List<Teacher> getAllCourseTeacher(String schoolName);
-	Map<Teacher,List<TeacherCourse>> tcmap();
+	Map<Teacher,List<Course>> tcmap();
 	List<TeacherCourseBeans> getAllTeacherCourseBeans();
-	List<TeacherCourse> findAllCourses();
-	List<TeacherCourse> getAllCourseByTeacherId(Long teacher_id);
+	List<Course> findAllCourses();
+	List<Course> getAllCourseByTeacherId(Long teacher_id);
 	List<String> courseTypeList();
 	List<CourseBeans> getAllCourseBeans();
 	CourseBeans getCourseBeansById(Long course_id);
 	List<String> getCourseTypeByTeacherId(Long teacher_id);
-	List<TeacherCourse> getCourseByUserId(Long user_id);
+	List<Course> getCourseByUserId(Long user_id);
 }

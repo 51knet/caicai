@@ -8,7 +8,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 
 @Entity
 @Table(name = "userOrder")
@@ -20,7 +20,7 @@ public class Order extends AbstractEntity{
 	
 	@ManyToOne
 	@JoinColumn(name="course_id")
-	private TeacherCourse course;
+	private Course course;
 	
 	private Date startTime;
 	private Date endTime;
@@ -34,10 +34,10 @@ public class Order extends AbstractEntity{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public TeacherCourse getCourse() {
+	public Course getCourse() {
 		return course;
 	}
-	public void setCourse(TeacherCourse course) {
+	public void setCourse(Course course) {
 		this.course = course;
 	}
 	public Date getStartTime() {

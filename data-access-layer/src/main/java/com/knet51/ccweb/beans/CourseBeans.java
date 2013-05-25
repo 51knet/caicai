@@ -1,12 +1,12 @@
 package com.knet51.ccweb.beans;
 
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 
 public class CourseBeans {
 	private Teacher teacher;
 	//private String teacherName;
-	private TeacherCourse course;
+	private Course course;
 
 //	public String getTeacherName() {
 //		return teacherName;
@@ -14,10 +14,10 @@ public class CourseBeans {
 //	public void setTeacherName(String teacherName) {
 //		this.teacherName = teacherName;
 //	}
-	public TeacherCourse getCourse() {
+	public Course getCourse() {
 		return course;
 	}
-	public void setCourse(TeacherCourse course) {
+	public void setCourse(Course course) {
 		this.course = course;
 	}
 	
@@ -30,7 +30,7 @@ public class CourseBeans {
 	
 	
 	public CourseBeans(Teacher teacher, /*String schoolName,  String teacherName,*/
-			TeacherCourse course) {
+			Course course) {
 		super();
 		//this.schoolName = schoolName;
 		//this.teacherName = teacherName;

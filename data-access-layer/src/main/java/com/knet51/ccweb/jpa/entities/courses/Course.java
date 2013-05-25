@@ -12,7 +12,7 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
 
 @Entity
-public class TeacherCourse extends AbstractEntity {
+public class Course extends AbstractEntity {
 	
 	private String courseName;
 	@Lob
@@ -113,7 +113,7 @@ public class TeacherCourse extends AbstractEntity {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	public TeacherCourse() {
+	public Course() {
 		super();
 	}
 	

@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 
-public class TeacherCourseResourceRepositoryImpl implements TeacherCourseResourceRepositoryCustom {
+public class CourseResourceRepositoryImpl implements CourseResourceRepositoryCustom {
 	@PersistenceContext
 	private EntityManager em;
 	

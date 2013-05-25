@@ -4,12 +4,12 @@ import java.util.List;
 
 
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 
-public interface TeacherCourseRepositoryCustom {
+public interface CourseRepositoryCustom {
 	
-	TeacherCourse updateTeacherCourseDetail(TeacherCourse teacherCourse);
-	List<TeacherCourse> getAllCourseById(Long teacher_id);
+	Course updateTeacherCourseDetail(Course course);
+	List<Course> getAllCourseById(Long teacher_id);
 	
 	//List<CourseBeans> listAllCourseBeans();
 	List<String> getSchool();

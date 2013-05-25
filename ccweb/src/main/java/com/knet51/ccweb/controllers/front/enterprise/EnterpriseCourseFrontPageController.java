@@ -18,7 +18,7 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
 import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.UserService;
@@ -66,7 +66,7 @@ public class EnterpriseCourseFrontPageController {
 	
 	@RequestMapping(value="/enterprise/{user_id}/course/view/{course_id}")
 	public String showCourseDetainInfo(	@PathVariable Long user_id, @PathVariable Long course_id, Model model){
-		TeacherCourse course = courseService.findOneById(course_id);
+		Course course = courseService.findOneById(course_id);
 		User user = userService.findOne(user_id);
 		UserInfo userInfo = new UserInfo(user);
 		logger.debug(userInfo.toString());
@@ -76,7 +76,7 @@ public class EnterpriseCourseFrontPageController {
 		List<CourseType> cTypeList = courseTypeService.findAll();
 		model.addAttribute("cTypeList", cTypeList);
 		
-		List<TeacherCourse> courseList = courseService
+		List<Course> courseList = courseService
 				.getAllTeacherCourseByUseridAndPublish(user_id,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("courseList", courseList);
@@ -104,12 +104,12 @@ public class EnterpriseCourseFrontPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("userInfo", userInfo);
 		model.addAttribute("user_id", user_id);
-		Page<TeacherCourse> onePage = courseService
+		Page<Course> onePage = courseService
 				.findTeacherCourseByUserAndPublish(pageNumber, pageSize, user,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("page", onePage);
 
-		List<TeacherCourse> courseList = courseService
+		List<Course> courseList = courseService
 				.getAllTeacherCourseByUseridAndPublish(user_id,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("courseList", courseList);
@@ -145,13 +145,13 @@ public class EnterpriseCourseFrontPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("userInfo", userInfo);
 		model.addAttribute("user_id", user_id);
-		Page<TeacherCourse> onePage = courseService
+		Page<Course> onePage = courseService
 				.findTeacherCourseByUserAndPublishAndCType(pageNumber,
 						pageSize, user, GlobalDefs.PUBLISH_NUM_ADMIN_FRONT,
 						cType);
 		model.addAttribute("page", onePage);
 
-		List<TeacherCourse> courseList = courseService
+		List<Course> courseList = courseService
 				.getAllTeacherCourseByUseridAndPublish(user_id,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("courseList", courseList);
@@ -185,10 +185,10 @@ public class EnterpriseCourseFrontPageController {
 		if(max_price !=null){
 			max = max_price.intValue();
 		}
-		List<TeacherCourse> courseList = courseService
+		List<Course> courseList = courseService
 				.getAllTeacherCourseByUseridAndPublish(user_id,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		logger.info("---- cName="+cName+"---- min="+min+"---- max="+max);
-		List<TeacherCourse> newCourseList = new ArrayList<TeacherCourse>();
+		List<Course> newCourseList = new ArrayList<Course>();
 		for (int i = 0; i < courseList.size(); i++) {
 			if(cName !=null && !cName.equals("")){
 				if(courseList.get(i).getCourseName().contains(cName) && courseList.get(i).getPrice().intValue()>=min && 

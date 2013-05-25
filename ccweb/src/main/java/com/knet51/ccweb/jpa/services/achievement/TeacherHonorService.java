@@ -2,12 +2,12 @@ package com.knet51.ccweb.jpa.services.achievement;
 
 import java.util.List;
 import org.springframework.data.domain.Page;
-import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 
 public interface TeacherHonorService {
 	
-	TeacherHonor save(TeacherHonor teacherHonor,Teacher teacher);
+	TeacherHonor save(TeacherHonor teacherHonor,User user);
 
 	TeacherHonor update(TeacherHonor teacherHonor);
 
@@ -17,6 +17,6 @@ public interface TeacherHonorService {
 	
 	List<TeacherHonor> getAllHonorById(Long Id); 
 	
-	Page<TeacherHonor> findAllHonorByTeacher(int pageNum, int pageSize, Teacher teacher);
+	Page<TeacherHonor> findAllHonorByUser(int pageNum, int pageSize, User user);
 
 }

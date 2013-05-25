@@ -18,7 +18,7 @@ import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.EnterpriseTeacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.services.AnnoPhotoService;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
@@ -70,7 +70,7 @@ public class EnterpriseTeacherInfoFrontPageController {
 			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize) {
 		User user = userService.findOne(user_id);
 		UserInfo userInfo = new UserInfo(user);
-		List<TeacherCourse> courseList = courseService
+		List<Course> courseList = courseService
 				.getAllTeacherCourseByUseridAndPublish(user_id,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("courseList", courseList);
@@ -104,7 +104,7 @@ public class EnterpriseTeacherInfoFrontPageController {
 		
 		List<CourseType> cTypeList = courseTypeService.findAll();
 		model.addAttribute("cTypeList", cTypeList);
-		List<TeacherCourse> courseList = courseService
+		List<Course> courseList = courseService
 				.getAllTeacherCourseByUseridAndPublish(user_id,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("courseList", courseList);
@@ -137,7 +137,7 @@ public class EnterpriseTeacherInfoFrontPageController {
 		User user = userService.findOne(user_id);
 		UserInfo userInfo = new UserInfo(user);
 
-		List<TeacherCourse> courseList = courseService
+		List<Course> courseList = courseService
 				.getAllTeacherCourseByUseridAndPublish(user_id,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("courseList", courseList);
@@ -171,7 +171,7 @@ public class EnterpriseTeacherInfoFrontPageController {
 		User user = userService.findOne(user_id);
 		UserInfo userInfo = new UserInfo(user);
 
-		List<TeacherCourse> courseList = courseService
+		List<Course> courseList = courseService
 				.getAllTeacherCourseByUseridAndPublish(user_id,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("courseList", courseList);
@@ -194,7 +194,7 @@ public class EnterpriseTeacherInfoFrontPageController {
 		User user = userService.findOne(user_id);
 		UserInfo userInfo = new UserInfo(user);
 
-		List<TeacherCourse> courseList = courseService
+		List<Course> courseList = courseService
 				.getAllTeacherCourseByUseridAndPublish(user_id,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("courseList", courseList);

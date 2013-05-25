@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.UserCourseService;
@@ -38,10 +38,10 @@ public class UserCourseController {
 	public String userCourses(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		List<TeacherCourse> userCourseList = new ArrayList<TeacherCourse>();
+		List<Course> userCourseList = new ArrayList<Course>();
 		Page<UserCourse> mycourse = userCourseService.findByUserid(pageNumber, pageSize, userInfo.getId());
 		for (int i = 0; i < mycourse.getContent().size(); i++) {
-			TeacherCourse course = courseService.findOneById(mycourse.getContent().get(i).getTeachercourseid());
+			Course course = courseService.findOneById(mycourse.getContent().get(i).getTeachercourseid());
 			userCourseList.add(course);
 		}
 		model.addAttribute("courseList", userCourseList);

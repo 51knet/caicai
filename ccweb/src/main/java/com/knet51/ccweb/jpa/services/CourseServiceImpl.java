@@ -14,37 +14,37 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
-import com.knet51.ccweb.jpa.repository.TeacherCourseRepository;
+import com.knet51.ccweb.jpa.entities.courses.Course;
+import com.knet51.ccweb.jpa.repository.CourseRepository;
 import com.knet51.ccweb.jpa.repository.TeacherRepository;
 import com.knet51.ccweb.jpa.repository.UserRepository;
 @Transactional
 @Service("courseService")
 public class CourseServiceImpl implements CourseService {
 	@Autowired
-	private TeacherCourseRepository courseRepository;
+	private CourseRepository courseRepository;
 	@Autowired
 	private TeacherRepository teacherRepository;
 	@Autowired
 	private UserRepository userRepository;
 
 	@Override
-	public TeacherCourse findOneById(Long id) {	 
+	public Course findOneById(Long id) {	 
 		return courseRepository.findOne(id);
 	}
 
 	@Override
-	public TeacherCourse createTeacherCourse(TeacherCourse teacherCourse) {
-		return courseRepository.save(teacherCourse);
+	public Course createTeacherCourse(Course course) {
+		return courseRepository.save(course);
 	}
 
 	@Override
-	public TeacherCourse updateTeacherCourse(TeacherCourse teacherCourse) {
-		return courseRepository.updateTeacherCourseDetail(teacherCourse);
+	public Course updateTeacherCourse(Course course) {
+		return courseRepository.updateTeacherCourseDetail(course);
 	}
 
 	@Override
-	public List<TeacherCourse> getAllTeacherCourseByUseridAndPublish(Long teacher_id,Integer publish) {
+	public List<Course> getAllTeacherCourseByUseridAndPublish(Long teacher_id,Integer publish) {
 		User user = userRepository.findOne(teacher_id);
 		return courseRepository.findTeacherCourseByUserAndPublish(user, publish);
 	}
@@ -55,10 +55,10 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public Page<TeacherCourse> findAllCourseByUser(int pageNum, int pageSize,
+	public Page<Course> findAllCourseByUser(int pageNum, int pageSize,
 			User user) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUser(user, dateDesc);
+		Page<Course> onePage = courseRepository.findTeacherCourseByUser(user, dateDesc);
 		return onePage;
 	}
 
@@ -80,67 +80,67 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public Page<TeacherCourse> findTeacherCourseByUserAndPublish(
+	public Page<Course> findTeacherCourseByUserAndPublish(
 			int pageNum, int pageSize, User user, Integer publish) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUserAndPublishAndForbiddenIsNull(user, publish, dateDesc);
+		Page<Course> onePage = courseRepository.findTeacherCourseByUserAndPublishAndForbiddenIsNull(user, publish, dateDesc);
 		return onePage;
 	}
 
 	@Override
-	public Page<TeacherCourse> findTeacherCourseByUserAndPublishGreaterThan(
+	public Page<Course> findTeacherCourseByUserAndPublishGreaterThan(
 			int pageNum, int pageSize,User user, Integer publish) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUserAndForbiddenIsNullAndPublishGreaterThan(user, publish, dateDesc);
+		Page<Course> onePage = courseRepository.findTeacherCourseByUserAndForbiddenIsNullAndPublishGreaterThan(user, publish, dateDesc);
 		return onePage;
 	}
 
 	@Override
-	public TeacherCourse getTeacherCourseByCourseName(String cousername,Long teacherId) {
-		TeacherCourse teacherCourse=courseRepository.getTeacherCourseByCourseName(cousername,teacherId);
-		return teacherCourse;
+	public Course getTeacherCourseByCourseName(String cousername,Long teacherId) {
+		Course course=courseRepository.getTeacherCourseByCourseName(cousername,teacherId);
+		return course;
 	}
 
 	@Override
-	public Page<TeacherCourse> findAllCourse(int pageNum, int pageSize) {
+	public Page<Course> findAllCourse(int pageNum, int pageSize) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = courseRepository.findAll(dateDesc);
+		Page<Course> onePage = courseRepository.findAll(dateDesc);
 		return onePage;
 	}
 
 	@Override
-	public Page<TeacherCourse> findTeacherCourseByUserAndPublishAndCType(
+	public Page<Course> findTeacherCourseByUserAndPublishAndCType(
 			int pageNum, int pageSize, User user, Integer publish,
 			CourseType cType) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
-		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUserAndPublishAndCType(user, publish, cType, dateDesc);
+		Page<Course> onePage = courseRepository.findTeacherCourseByUserAndPublishAndCType(user, publish, cType, dateDesc);
 		return onePage;
 	}
 
 	@Override
-	public List<TeacherCourse> findCourseByUserAndPublishGreaterThanForSuperAdmin(
+	public List<Course> findCourseByUserAndPublishGreaterThanForSuperAdmin(
 			User user, Integer publish) {
 		return courseRepository.findTeacherCourseByUserAndPublishGreaterThan(user, publish);
 	}
 
 	@Override
-	public Page<TeacherCourse> findCourseByUserAndPublishGreaterThanForSuperAdmin(
+	public Page<Course> findCourseByUserAndPublishGreaterThanForSuperAdmin(
 			User user, Integer publish, int pageNum, int pageSize) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = courseRepository.findTeacherCourseByUserAndPublishGreaterThan(user, publish, dateDesc);
+		Page<Course> onePage = courseRepository.findTeacherCourseByUserAndPublishGreaterThan(user, publish, dateDesc);
 		return onePage;
 	}
 
 	@Override
-	public Page<TeacherCourse> findCourseByPublishGreaterThanForSuperAdmin(
+	public Page<Course> findCourseByPublishGreaterThanForSuperAdmin(
 			Integer publish, int pageNum, int pageSize) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<TeacherCourse> onePage = courseRepository.findAllByPublishGreaterThan(publish, dateDesc);
+		Page<Course> onePage = courseRepository.findAllByPublishGreaterThan(publish, dateDesc);
 		return onePage;
 	}
 
 	@Override
-	public List<TeacherCourse> findAllForAdmin() {
+	public List<Course> findAllForAdmin() {
 		return courseRepository.findAllByPublishGreaterThan(GlobalDefs.PUBLISH_NUM_DELETE);
 	}
 

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.entities.courses.TeacherCourse;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.courses.beans.CourseBeans;
 import com.knet51.courses.controllers.defs.GlobalDefs;
@@ -67,10 +67,10 @@ public class HomeController {
 		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(currentUser != null){
 			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
-			List<TeacherCourse> userCourse = new ArrayList<TeacherCourse>();
+			List<Course> userCourse = new ArrayList<Course>();
 			for (int i = 0; i < userCourseList.size(); i++) {
-				TeacherCourse teacherCourse = courseService.findOneById(userCourseList.get(i).getTeachercourseid());
-				userCourse.add(teacherCourse);
+				Course course = courseService.findOneById(userCourseList.get(i).getTeachercourseid());
+				userCourse.add(course);
 			}
 			
 			model.addAttribute("userCourse", userCourse);

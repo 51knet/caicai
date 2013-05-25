@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.dao.teacherAchievement.TeacherHonorDao;
-import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.repository.teacherAchievement.HonorRepository;
 @Transactional
@@ -25,8 +25,8 @@ public class TeacherHonorServiceImpl implements TeacherHonorService {
 	private HonorRepository honorRepository;
 	
 	@Override
-	public TeacherHonor save(TeacherHonor teacherHonor,Teacher teacher) {
-		teacherHonor.setTeacher(teacher);
+	public TeacherHonor save(TeacherHonor teacherHonor,User user) {
+		teacherHonor.setUser(user);
 		return honorDao.save(teacherHonor);
 	}
 
@@ -51,10 +51,10 @@ public class TeacherHonorServiceImpl implements TeacherHonorService {
 	}
 
 	@Override
-	public Page<TeacherHonor> findAllHonorByTeacher(int pageNum, int pageSize,
-			Teacher teacher) {
+	public Page<TeacherHonor> findAllHonorByUser(int pageNum, int pageSize,
+			User user) {
 		Pageable dateDesc =  new PageRequest(pageNum, pageSize, Direction.DESC, "id");
-		Page<TeacherHonor> onePage = honorRepository.findHonorByTeacher(teacher, dateDesc);
+		Page<TeacherHonor> onePage = honorRepository.findHonorByUser(user, dateDesc);
 		return onePage;
 	}
 
