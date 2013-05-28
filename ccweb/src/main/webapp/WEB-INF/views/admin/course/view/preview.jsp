@@ -158,27 +158,26 @@ body {
 				</c:otherwise>
 			</c:choose>
 			</div>
-		
-		<c:choose>
-	<c:when test="${course.user.role =='teacher'}">
+<c:choose>
+	<c:when test="${sessionsessionUserInfo.user.role == teacher}">
     <div  class="nar" >
 			<h4>讲师介绍</h4>
 		</div>
     <div class="container course detail desc"  >
 	    <c:choose >
-			<c:when test="${course.user.photo_url != null && course.user.photo_url != ''}">
-			<img src='<c:url value="${course.user.photo_url}"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px" />
+			<c:when test="${sessionUserInfo.user.photo_url != null && sessionUserInfo.user.photo_url != ''}">
+			<img src='<c:url value="${sessionUserInfo.user.photo_url}"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px" />
 			</c:when>
 			<c:otherwise>
 			 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:6px" />
 			</c:otherwise>
 		</c:choose>
-    <span  class="content" style="font-size: 18px;"><b>${course.user.name }</b></span>
+    <span  class="content" style="font-size: 18px;"><b>${sessionUserInfo.user.name }</b></span>
    	<br/>
    	<br/>
-   	<span class="content">所在学校：${teacher.school }</span><br/> 
-   	<span class="content">所在学院：${teacher.college }</span><br/>
-    <span class="content">专业：${teacher.major }</span><br/>
+   	<span class="content">所在学校：${sessionUserInfo.teacher.school }</span><br/> 
+   	<span class="content">所在学院：${sessionUserInfo.teacher.college }</span><br/>
+    <span class="content">专业：${sessionUserInfo.teacher.major }</span><br/>
    </div>
 </c:when>
 <c:otherwise>
@@ -187,15 +186,15 @@ body {
 		</div>
     <div class="container course detail desc">
 	    <c:choose>
-			<c:when test="${course.user.photo_url != null && course.user.photo_url != ''}">
-				<img src='<c:url value="${course.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px;" />
+			<c:when test="${sessionUserInfo.user.photo_url != null && sessionUserInfo.user.photo_url != ''}">
+				<img src='<c:url value="${sessionUserInfo.user.photo_url }"></c:url>' style="width: 100px;height:100px; float:left; margin-left:6px;" />
 			</c:when>
 			<c:otherwise>
 			 <img src='<c:url value="/resources/img/avatar/avatar256.png"></c:url>' style="width: 100px;height: 100px; float:left; margin-left:6px;" />
 			</c:otherwise>
 		</c:choose>
 	<span style="margin-left: 20px;">
-     ${course.user.name }
+     ${sessionUserInfo.user.name }
   	</span>
 	</div>
 </c:otherwise>

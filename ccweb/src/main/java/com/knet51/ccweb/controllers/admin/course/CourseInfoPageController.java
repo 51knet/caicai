@@ -372,6 +372,15 @@ public class CourseInfoPageController {
 		return "redirect:/admin/course/list";
 	}
 	
+	/**
+	 * show course preview page
+	 * @param course_id
+	 * @param model
+	 * @param session
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
 	@RequestMapping(value="/admin/course/edit/{course_id}/preview")
 	public String previewCourse(@PathVariable Long course_id,Model model,HttpSession session,
 			@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
@@ -386,9 +395,6 @@ public class CourseInfoPageController {
 				return "redirect:/admin/course/list";
 			}
 		}
-	
-		Teacher teacher = teacherService.findOne(userInfo.getId());
-		model.addAttribute("teacher", teacher);
 		
 		List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList;

@@ -111,12 +111,7 @@ public class TeacherCourseInfoFrontPageController {
 			
 			model.addAttribute("resourceCount", listResource.size());
 			model.addAttribute("courseMap", courseMap);
-			if (user.getRole().equals("teacher")) {
-				return "teacher.course.view";
-			} else {
-				return "enterprise.course.view";
-			}
-
+			return "teacher.course.view";
 		}
 		return "redirect:/";
 	}

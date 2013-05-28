@@ -580,6 +580,11 @@ public class CourseInfoDetailController {
 		return "redirect:/admin/course/list";
 	}
 	
+	/**
+	 * create a course type
+	 * @param typeName
+	 * @return
+	 */
 	@RequestMapping(value="/admin/course/type/new/create",method=RequestMethod.POST)
 	public String createCourseType(@RequestParam("typeName") String typeName){
 		CourseType courseType = new CourseType();
@@ -588,6 +593,12 @@ public class CourseInfoDetailController {
 		return "redirect:/admin/course/type/list";
 	}
 	
+	/**
+	 * destory a course type
+	 * @param id
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="/admin/course/type/destory/{id}",method=RequestMethod.GET)
 	public String destoryCourseType(@PathVariable Long id,HttpSession session){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
