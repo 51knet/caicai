@@ -6,6 +6,6 @@ import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 
 public interface ResourceService {
 	List<CourseResource> getResourceByCourseIdAndStatus(Long course_id,Integer status);
-	List<CourseResource> getResourceByLessonNumAndCourseId(String LessonNum,Long course_id);
+	List<CourseResource> getResourceByLessonNumAndCourseId(int LessonNum,Long course_id);
 	CourseResource findById(Long id);
 }

@@ -46,7 +46,7 @@ public class AuthorizationListener implements Filter {
 		String path = req.getRequestURI();
 		String context = req.getContextPath();
 		String url = path.substring(context.length(), path.length());
-		logger.debug("->"+url);
+		logger.debug("->"+url+"---context="+context);
 		if (url.startsWith("/admin")) { // ok, for now we only protect admin stuff
 			if (! isLoggin(req)) { // not logged in
 				resp.sendRedirect(context); // alternative: redirect to a url with flush message...

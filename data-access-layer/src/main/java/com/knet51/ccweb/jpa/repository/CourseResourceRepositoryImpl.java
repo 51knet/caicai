@@ -18,14 +18,14 @@ public class CourseResourceRepositoryImpl implements CourseResourceRepositoryCus
 		return list;
 	}
 	@Override
-	public String getMaxLessonNumByCourseId(Long course_id) {
-		String resourceOrder = (String) em.createQuery("select max(lessonNum) from CourseResource where course_id="+course_id).getSingleResult();
+	public int getMaxLessonNumByCourseId(Long course_id) {
+		int resourceOrder = (Integer) em.createQuery("select max(lessonNum) from CourseResource where course_id="+course_id).getSingleResult();
 		return resourceOrder;
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<CourseResource> getResourceByLessonNumAndCourseId(String lessonNum,
+	public List<CourseResource> getResourceByLessonNumAndCourseId(int lessonNum,
 			Long course_id) {
 		List<CourseResource> courseResourceList =  em.createQuery("from CourseResource where lessonNum in("+lessonNum+") and course_id="+course_id).getResultList();
 		return courseResourceList;

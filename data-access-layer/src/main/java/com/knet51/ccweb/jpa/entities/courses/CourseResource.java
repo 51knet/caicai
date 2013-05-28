@@ -17,7 +17,7 @@ public class CourseResource extends AbstractEntity {
 	private String savePath;
 	@Lob
 	private String resourceDesc;
-	private String lessonNum; //lesson 0ne,lesson two and so on....
+	private int lessonNum; //lesson 0ne,lesson two and so on....
 	private String date;
 	private Long course_id;
 	private Long courseLessonId;
@@ -89,10 +89,10 @@ public class CourseResource extends AbstractEntity {
 	public void setResourceType(ResourceType resourceType) {
 		this.resourceType = resourceType;
 	}
-	public String getLessonNum() {
+	public int getLessonNum() {
 		return lessonNum;
 	}
-	public void setLessonNum(String lessonNum) {
+	public void setLessonNum(int lessonNum) {
 		this.lessonNum = lessonNum;
 	}
 	public void setResourceDesc(String resourceDesc) {

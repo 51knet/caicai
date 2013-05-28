@@ -174,8 +174,8 @@ public class CourseController {
 				.getResourceByCourseIdAndStatus(course_id,
 						GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList;
-		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
-		String lessonNum = null;
+		Map<Integer, List<CourseResource>> courseMap = new TreeMap<Integer, List<CourseResource>>();
+		int lessonNum = 0;
 		for (CourseResource courseResource : listResource) {
 			lessonNum = courseResource.getLessonNum();
 			courseList = new ArrayList<CourseResource>();
@@ -192,7 +192,6 @@ public class CourseController {
 
 	/**
 	 * 通过ID查询出一条课程详细资料 author:lbx 判断session是否为空
-	 * 
 	 * @param model
 	 * @param session
 	 * @param teacherCourse_id
@@ -203,11 +202,14 @@ public class CourseController {
 	@RequestMapping(value = "/course/study/view/{id}")
 	public String listCourseByTeacherCourseId(Model model, HttpSession session,
 			@PathVariable Long id) {
-
+		Course course = courseService.findOneById(id);
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if (userInfo == null) {
 			return "redirect:/signin";
+		}
+		if(course.getPrice().intValue()>0){
+			return "redirect:/course/pay/view/"+id;
 		}
 		UserCourse userCourse = userCourseService
 				.findByTeachercourseidAndUserid(id, userInfo.getId());
@@ -221,8 +223,8 @@ public class CourseController {
 				.getResourceByCourseIdAndStatus(id,
 						GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList = new ArrayList<CourseResource>();
-		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
-		String resourceOrder = null;
+		Map<Integer, List<CourseResource>> courseMap = new TreeMap<Integer, List<CourseResource>>();
+		int resourceOrder = 0;
 		for (CourseResource courseResource : listResource) {
 			resourceOrder = courseResource.getLessonNum();
 			courseList = courseResourceService
@@ -231,7 +233,6 @@ public class CourseController {
 		}
 		model.addAttribute("courseMap", courseMap);
 		/* zm */
-		Course course = courseService.findOneById(id);
 		model.addAttribute("course", course);
 		model.addAttribute("resourceCount", listResource.size());
 		return "course.study.view";
@@ -454,7 +455,11 @@ public class CourseController {
 		}
 		return "user.courses.list";
 	}
-	
+	/**
+	 * show pay page
+	 * @param course_id
+	 * @return
+	 */
 	@RequestMapping(value="/course/pay/view/{course_id}")
 	public String showPayPage(@PathVariable Long course_id){
 		return "course.pay.view";

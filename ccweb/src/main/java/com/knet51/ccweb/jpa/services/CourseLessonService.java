@@ -11,5 +11,5 @@ public interface CourseLessonService {
 	CourseLesson createCourseLesson(CourseLesson courseLesson);
 	void destory(Long id);
 	List<CourseLesson> findCourseLessonByCourseId(Long course_id);
-	List<CourseLesson> findCourseLessonByCourseIdAndLessonNum(Long course_id,String lessonNum);
+	List<CourseLesson> findCourseLessonByCourseIdAndLessonNum(Long course_id,int lessonNum);
 }

@@ -84,11 +84,9 @@
 							<c:if test="${page.publish ==3 }">已发布</c:if>
 							<c:if test="${page.publish ==1 }">已删除</c:if>
 						</td>
-							<td align="center">
-							<c:if test="${page.price == null || page.price == ''}">0</c:if>
-							<c:if test="${page.price != null || page.price != ''}">${page.price}</c:if>
-							 元
-							</td>
+						<td align="center">
+							${page.price}  元
+						</td>
 						<td align="center">${page.courseDate}</td>
 						<td align="center">
 						 	<!-- <div class="btn-group"> 

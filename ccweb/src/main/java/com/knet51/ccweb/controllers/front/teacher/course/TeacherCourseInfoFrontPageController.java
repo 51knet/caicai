@@ -89,8 +89,8 @@ public class TeacherCourseInfoFrontPageController {
 					.getAllCourseResourceByCourseIdAndStatus(course_id,
 							GlobalDefs.STATUS_COURSE_RESOURCE);
 			List<CourseResource> resourceList;
-			Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
-			String resourceOrder = null;
+			Map<Integer, List<CourseResource>> courseMap = new TreeMap<Integer, List<CourseResource>>();
+			int resourceOrder = 0;
 			for (CourseResource courseResource : listResource) {
 				resourceOrder = courseResource.getLessonNum();
 				resourceList = new ArrayList<CourseResource>();

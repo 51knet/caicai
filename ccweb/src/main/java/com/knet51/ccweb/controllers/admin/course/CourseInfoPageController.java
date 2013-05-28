@@ -146,8 +146,8 @@ public class CourseInfoPageController {
 
 		List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id,GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList;
-		Map<String, List<CourseResource> > courseMap = new TreeMap<String, List<CourseResource> >();
-		String lessonNum = null;
+		Map<Integer, List<CourseResource> > courseMap = new TreeMap<Integer, List<CourseResource> >();
+		Integer lessonNum = 0;
 		for (CourseResource courseResource : listResource) {
 			courseList = new ArrayList<CourseResource>();
 			lessonNum = courseResource.getLessonNum();
@@ -392,8 +392,8 @@ public class CourseInfoPageController {
 		
 		List<CourseResource> listResource = courseResourceService.getAllCourseResourceByCourseIdAndStatus(course_id, GlobalDefs.STATUS_COURSE_RESOURCE);
 		List<CourseResource> courseList;
-		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
-		String LessonNum = null;
+		Map<Integer, List<CourseResource>> courseMap = new TreeMap<Integer, List<CourseResource>>();
+		int LessonNum = 0;
 		for (CourseResource courseResource : listResource) {
 			LessonNum = courseResource.getLessonNum();
 			courseList= new ArrayList<CourseResource>();
@@ -471,14 +471,14 @@ public class CourseInfoPageController {
 	@RequestMapping(value="/admin/course/edit/addlessonnum",method=RequestMethod.POST)
 	public String addNewLessonNum(@RequestParam("courseId") Long course_id,Model model){
 		List<CourseLesson> lessonList = courseLessonService.getMaxLessonNumByCourseId(Long.valueOf(course_id));
-		String lessonNum = "0";
+		int lessonNum = 0;
 		if(lessonList.size()>0){
 			lessonNum = lessonList.get(0).getLessonNum();
 			lessonList.get(0).setStatus(null);
 			courseLessonService.createCourseLesson(lessonList.get(0));
 		}
-		String newLessonNum = "";
-		newLessonNum = Integer.parseInt(lessonNum)+1+"";
+		int newLessonNum = 0;
+		newLessonNum = lessonNum+1;
 		CourseLesson courselesson = new CourseLesson();
 		courselesson.setLessonNum(newLessonNum);
 		courselesson.setCourseId(Long.valueOf(course_id));
@@ -497,8 +497,8 @@ public class CourseInfoPageController {
 	public String deleteCoourseLesson(@RequestParam("lessonId") Long lesson_id,@RequestParam("courseId") Long course_id){
 		CourseLesson bigLesson = courseLessonService.findOne(lesson_id);
 		List<CourseLesson> courseLessonList = courseLessonService.findCourseLessonByCourseId(course_id);
-		if(Integer.parseInt(bigLesson.getLessonNum())>=2 && courseLessonList.size()>=2){
-			String smallLessonNum = Integer.parseInt(bigLesson.getLessonNum())-1+"";
+		if(bigLesson.getLessonNum()>=2 && courseLessonList.size()>=2){
+			int smallLessonNum = bigLesson.getLessonNum()-1;
 			List<CourseLesson> smallLessonList = courseLessonService.findCourseLessonByCourseIdAndLessonNum(course_id, smallLessonNum);
 			if(smallLessonList.size()>0){
 				smallLessonList.get(0).setStatus("max");

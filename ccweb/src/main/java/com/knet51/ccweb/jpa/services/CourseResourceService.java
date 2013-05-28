@@ -9,9 +9,9 @@ public interface CourseResourceService {
 	CourseResource createCourseResource(CourseResource CourseResource);
 	CourseResource updateCourseResource(CourseResource CourseResource);
 	List<CourseResource> getAllCourseResourceByCourseIdAndStatus(Long course_id,Integer status);
-	List<CourseResource> getResourceByLessonNumAndCourseId(String lessonNum,Long course_id);
+	List<CourseResource> getResourceByLessonNumAndCourseId(int lessonNum,Long course_id);
 	void deleCourseResource(Long resource_id);
-	String getMaxLessonNumByCourseId(Long course_id);
+	int getMaxLessonNumByCourseId(Long course_id);
 	
 	//Page<CourseResource> findAllCourseResourceByCourse(int pageNum, int pageSize, TeacherCourse course);
 	

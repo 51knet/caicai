@@ -47,18 +47,18 @@ public class CourseResourceServiceImpl implements CourseResourceService {
 	
 
 	@Override
-	public String getMaxLessonNumByCourseId(Long course_id) {
-		String LessonNum = "";
+	public int getMaxLessonNumByCourseId(Long course_id) {
+		int LessonNum = 0;
 		try {
 			LessonNum = resourceRepository.getMaxLessonNumByCourseId(course_id);
 		} catch (NoResultException e) {
 			e.printStackTrace();
 		}
-		return LessonNum == null? "0":LessonNum;
+		return LessonNum == 0? 0:LessonNum;
 	}
 
 	public List<CourseResource> getResourceByLessonNumAndCourseId(
-			String lessonNum, Long course_id) {
+			int lessonNum, Long course_id) {
 		List<CourseResource>  courseResourceList= new ArrayList<CourseResource>(); 
 		try {
 			courseResourceList=resourceRepository.getResourceByLessonNumAndCourseId(lessonNum,course_id);

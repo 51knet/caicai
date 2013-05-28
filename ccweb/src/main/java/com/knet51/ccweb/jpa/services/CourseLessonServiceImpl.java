@@ -51,7 +51,7 @@ public class CourseLessonServiceImpl implements CourseLessonService {
 
 	@Override
 	public List<CourseLesson> findCourseLessonByCourseIdAndLessonNum(
-			Long course_id, String lessonNum) {
+			Long course_id, int lessonNum) {
 		List<CourseLesson> lessonList = lessonRepository.findCourseLessonByCourseIdAndLessonNum(course_id, lessonNum);
 		return lessonList;
 	}

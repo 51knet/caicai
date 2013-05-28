@@ -35,7 +35,7 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 	@Override
 	public List<CourseResource> getResourceByLessonNumAndCourseId(
-			String LessonNum, Long course_id) {
+			int LessonNum, Long course_id) {
 		List<CourseResource> courseResourceList= new ArrayList<CourseResource>(); 
 		try {
 			courseResourceList=courseResourceRepository.getResourceByLessonNumAndCourseId(LessonNum,course_id);

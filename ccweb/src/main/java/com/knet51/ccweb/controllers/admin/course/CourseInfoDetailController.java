@@ -154,10 +154,9 @@ public class CourseInfoDetailController {
 	@Transactional
 	@RequestMapping(value="/admin/course/resource/create",method=RequestMethod.POST)
 	public String TeacherCourseResourceAdd(HttpSession session,Model model,RedirectAttributes redirectAttributes,
-			MultipartHttpServletRequest request,@RequestParam("courseId") Long course_id) throws  Exception{
+			MultipartHttpServletRequest request,@RequestParam("courseId") Long course_id,@RequestParam("lessonNum") Integer lessonNum) throws  Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("resourceFile");
-		String lessonNum = request.getParameter("lessonNum");
 		String resourceName = request.getParameter("resourceName");
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
@@ -312,8 +311,8 @@ public class CourseInfoDetailController {
 		List<CourseResource> courseList;
 		List<ResourceType> listType = resourceTypeService.getTypeByTypeStatus(GlobalDefs.STATUS_COURSE_RESOURCETYPE);
 		model.addAttribute("type", listType);
-		Map<String, List<CourseResource>> courseMap = new TreeMap<String, List<CourseResource>>();
-		String LessonNum = null;
+		Map<Integer, List<CourseResource>> courseMap = new TreeMap<Integer, List<CourseResource>>();
+		int LessonNum =0;
 		for (CourseResource courseResource : listResource) {
 			courseList = new ArrayList<CourseResource>();
 			LessonNum = courseResource.getLessonNum();

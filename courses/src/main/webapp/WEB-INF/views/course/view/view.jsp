@@ -85,14 +85,7 @@
 				</c:otherwise>
 				</c:choose><br/>
 				<span style="font-size: 14px;color: black;">售价： ${course.price } 元</span><br/>
-				<c:choose>
-					<c:when test="${course.price != 0 }">
-						<a  href='<c:url value="/course/pay/view/${course.id}"></c:url>'><img style="margin-top: 5px;" src='<c:url value="/resources/img/default/studyButton.png"></c:url>'  /></a>
-					</c:when>
-					<c:otherwise>
-						<a  href='<c:url value="/course/study/view/${course.id}"></c:url>'><img style="margin-top: 5px;" src='<c:url value="/resources/img/default/studyButton.png"></c:url>'  /></a>
-					</c:otherwise>
-				</c:choose>
+				<a  href='<c:url value="/course/study/view/${course.id}"></c:url>'><img style="margin-top: 5px;" src='<c:url value="/resources/img/default/studyButton.png"></c:url>'  /></a>
 			</div>
 		</div>
 		<div class="nar">
