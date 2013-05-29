@@ -36,7 +36,7 @@
 						<th align="center" width="30%">课程标题</th>
 						<th align="center" width="15%">课程类别</th>
 						<th align="center">课程状态</th>
-						<th align="center">教师名称</th>
+						<th align="center">授课人</th>
 						<th align="center" width="20%">发布时间</th>
 					</tr>
 				</thead>
@@ -49,7 +49,7 @@
 									${course.courseName}
 								</c:if>
 								<c:if test="${course.publish >1 }">
-									<a href='<c:url value="#"></c:url>'>${course.courseName}</a>
+									<a href='<c:url value="/admin/mycourse/view/${course.id }"></c:url>'>${course.courseName}</a>
 								</c:if>
 							</div>
 						</td>
@@ -59,7 +59,7 @@
 							<c:if test="${course.publish ==3 }">已上架</c:if>
 							<c:if test="${course.publish ==1 }">已下架</c:if>
 						</td>
-						<td align="center"> ${course.teacher.user.name }</td>
+						<td align="center"> ${course.user.name }</td>
 						<td align="center">${course.courseDate}</td></tr>
 					</c:forEach>
 				</tbody>

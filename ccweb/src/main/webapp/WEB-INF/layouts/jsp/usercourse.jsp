@@ -5,8 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<jsp:include page="/WEB-INF/views/_shared/common/_html_head.jsp"></jsp:include>
-</head>
+<jsp:include page="/WEB-INF/layouts/jsp/common/_html_head.jsp"></jsp:include>
 <style>
 .navbar {
 	margin-bottom: 0px;
@@ -26,14 +25,15 @@
 .container.course.row{
      padding-left: 0px;
 	 margin-left: 18%;
-	 margin-top: -215px;
+	 margin-top: -180px;
 	 text-align: left;
 }
 </style>
+</head>
 <body >
 	<tiles:insertAttribute name="top-navbar" />
 	<div class="container-fluid">
-			<div class="container course" >
+			<div class="container course" style="margin-top: -43px;">
 				<tiles:insertAttribute name="banner" />
 			</div>
 			<!--/row-->

@@ -90,7 +90,7 @@
 						<a  href='<c:url value="/course/pay/view/${course.id}"></c:url>'><img src='<c:url value="/resources/img/default/front/ebuy.png"></c:url>'  /></a>
 					</c:when>
 					<c:otherwise>
-						<a  href='<c:url value="/course/study/view/${course.id}"></c:url>'><img src='<c:url value="/resources/img/default/front/ebuy.png"></c:url>'   /></a>
+						<a  href='<c:url value="/course/study/buy/${course.id}"></c:url>'><img src='<c:url value="/resources/img/default/front/ebuy.png"></c:url>'   /></a>
 					</c:otherwise>
 				</c:choose>
 			</div>

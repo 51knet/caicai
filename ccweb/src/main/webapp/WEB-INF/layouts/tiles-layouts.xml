@@ -89,6 +89,16 @@
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
 	
+	<definition name="usercourse-layout" template="/WEB-INF/layouts/jsp/usercourse.jsp">
+		<put-attribute name="title" value="我的课程" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="banner" value="" /> 
+		<put-attribute name="breadcrumbs" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/user/course/study/item_panel.jsp" />
+		<put-attribute name="right" value="" />
+		<put-attribute name="right_bottom" value="" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
 
 
 </tiles-definitions>

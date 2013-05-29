@@ -18,7 +18,7 @@
 		<put-attribute name="right" value="/WEB-INF/views/user/home/home.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.user.course.list" extends="admin-layout">
+	<definition name="admin.user.mycourse.list" extends="admin-layout">
 		<put-attribute name="title" value="课程" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/user/course/list/list.jsp"></put-attribute>
@@ -28,6 +28,13 @@
 		<put-attribute name="title" value="订单信息" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/user/order/orderInfo.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="course.study.view" extends="usercourse-layout">
+		<put-attribute name="title" value="课程学习" />
+		<put-attribute name="banner" value="/WEB-INF/views/user/course/study/courseDetail.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/user/course/study/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/course/study/resource/list/list.jsp" />
 	</definition>
 	
 </tiles-definitions>
