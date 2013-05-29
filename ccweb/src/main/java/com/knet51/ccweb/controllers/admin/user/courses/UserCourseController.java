@@ -111,7 +111,7 @@ public class UserCourseController {
 	}
 	
 	/**
-	 * buy the course in enterprise front page
+	 * show the course detail info from admin page
 	 * @param course_id
 	 * @param model
 	 * @param session
