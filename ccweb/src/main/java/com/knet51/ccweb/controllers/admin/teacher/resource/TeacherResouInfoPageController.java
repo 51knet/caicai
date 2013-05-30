@@ -56,11 +56,17 @@ public class TeacherResouInfoPageController {
 		if(user.getRole().equals("user")){
 			return "redirect:/admin";
 		}else{
-			Page<CourseResource> onePage = resourceService.findAllResouByUserAndStatus(pageNumber, pageSize, user, GlobalDefs.STATUS_RESOURCE);
-			model.addAttribute("page", onePage);
+			try {
+				Page<CourseResource> onePage = resourceService.findAllResouByUserAndStatus(pageNumber, pageSize, user, GlobalDefs.STATUS_RESOURCE);
+				model.addAttribute("page", onePage);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			if (userInfo.getUser().getRole().equals("teacher")) {
+				logger.info("----- teacher resource----");
 				return "admin.teacher.resource.list";
 			} else if (userInfo.getUser().getRole().equals("enterprise")) {
+				logger.info("----- enterprise resource ----");
 				return "admin.enterprise.resource.list";
 			} else {
 				return "404";

@@ -46,8 +46,8 @@ color: #666;
 <div class="left-menu-container">
 	<ul  class="nav nav-tabs nav-stacked" style="width:150px;">
 		<li><a href='<c:url value="/admin/mycourse/view/${course.id}"></c:url>'><font style="size: 22px">课程学习</font></a></li>
-		<li><a href='<c:url value="/course/study/courseinfo/${course.id}"></c:url>'><font style="size: 22px">课程信息</font></a></li>
-		<li><a href='<c:url value="/course/study/comment/${course.id}"></c:url>'><font style="size: 22px">用户评价</font></a></li>
+		<li><a href='<c:url value="/admin/mycourse/courseinfo/${course.id}"></c:url>'><font style="size: 22px">课程信息</font></a></li>
+		<li><a href='<c:url value="/admin/mycourse/comment/${course.id}"></c:url>'><font style="size: 22px">用户评价</font></a></li>
 		<li><a href='<c:url value="/"></c:url>'><font style="size: 22px">返回首页</font></a></li>
 	</ul>
 </div>

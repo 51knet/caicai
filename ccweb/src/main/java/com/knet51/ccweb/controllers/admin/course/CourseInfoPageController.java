@@ -566,7 +566,7 @@ public class CourseInfoPageController {
 	}
 
 	@RequestMapping(value = "/admin/course/courseInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse courseFormAjaxJson(@Valid CourseInfoForm teacherCourseInfoForm, BindingResult result,HttpSession session) {
+	public @ResponseBody ValidationResponse courseFormAjaxJson(@Valid CourseInfoForm courseInfoForm, BindingResult result,HttpSession session) {
 		return AjaxValidationEngine.process(result);
 	}
 	

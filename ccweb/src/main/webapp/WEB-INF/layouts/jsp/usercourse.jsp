@@ -7,6 +7,10 @@
 <head>
 <jsp:include page="/WEB-INF/layouts/jsp/common/_html_head.jsp"></jsp:include>
 <style>
+body {
+	background-position: center top;
+	background-repeat: repeat-y;
+	}
 .navbar {
 	margin-bottom: 0px;
 }
