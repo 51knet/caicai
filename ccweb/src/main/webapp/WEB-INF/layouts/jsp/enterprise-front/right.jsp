@@ -212,8 +212,7 @@
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
-			<br>
-				无内容<br><br>
+				<div  style="padding:10px;">暂无内容</div>
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -244,8 +243,7 @@
 				    </c:forEach>
 				</c:when>
 				<c:otherwise>
-				<br>
-					无内容<br>
+				<div  style="padding:10px;">暂无内容</div>
 				</c:otherwise>
 			</c:choose>
 		</div>

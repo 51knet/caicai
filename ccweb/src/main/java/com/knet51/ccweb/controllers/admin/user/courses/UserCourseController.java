@@ -64,7 +64,7 @@ public class UserCourseController {
 	 */
 	@RequestMapping(value="/admin/mycourse/list")
 	public String userCourses(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="2") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<Course> userCourseList = new ArrayList<Course>();
 		Page<UserCourse> mycourse = userCourseService.findByUserid(pageNumber, pageSize, userInfo.getId());

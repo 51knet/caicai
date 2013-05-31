@@ -19,8 +19,10 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
 import com.knet51.ccweb.jpa.entities.courses.Course;
+import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
 import com.knet51.ccweb.jpa.services.CourseService;
+import com.knet51.ccweb.jpa.services.UserCourseService;
 import com.knet51.ccweb.jpa.services.UserService;
 
 @Controller
@@ -33,6 +35,8 @@ public class EnterpriseCourseFrontPageController {
 	private UserService userService;
 	@Autowired
 	private CourseTypeService courseTypeService;
+	@Autowired
+	private UserCourseService userCourseService;
 	
 //	/**
 //	 * show course detail info in enterprise front page
@@ -81,6 +85,11 @@ public class EnterpriseCourseFrontPageController {
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("courseList", courseList);
 		model.addAttribute("courseCount", courseList.size());
+		
+		List<UserCourse> userCourseList = userCourseService.findByTeachercourseid(course_id);
+		model.addAttribute("userCourseList", userCourseList);
+		model.addAttribute("userCourseCount", userCourseList.size());
+		
 		return "enterprise.course.view";
 	}
 	

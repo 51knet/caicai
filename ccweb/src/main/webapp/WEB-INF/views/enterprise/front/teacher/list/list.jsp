@@ -43,7 +43,7 @@
 	<div class="row"><h4>知名教师 </h4></div>
 	<div class="row" style="border: solid 1px #f77605;" >
 		<c:choose>
-			<c:when test="${eTeacherCount !=0}">
+			<c:when test="${eTeacherCount > 0}">
 				<c:forEach items="${page.content }" var="et">
 					<div class="teacher">
 						<div><a href='<c:url value="/enterprise/${userInfo.id}/teacher/view/${et.id}"></c:url>' ><img src='<c:url value="${et.photourl}" ></c:url>'  ></a></div>
@@ -52,10 +52,18 @@
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
-			<br>
-				无内容<br>
+			<div style="padding:10px;">暂无内容</div>
 			</c:otherwise>
 		</c:choose>
 	</div>
 	<div style="margin: 10px 0px 0px 10px;"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 </div>
+<!-- 
+nothing....
+<c:forEach var="x" begin="1" end="9" varStatus="xstatus"> 
+	<c:forEach var="y" begin="1" end="${x }" varStatus="ystatus">
+		${x } * ${y } = ${x*y } ；
+		<c:if test="${ystatus.count ==x }"><br /></c:if>
+	</c:forEach>
+</c:forEach> 
+ -->

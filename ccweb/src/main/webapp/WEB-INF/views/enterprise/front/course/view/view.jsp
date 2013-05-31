@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
 .row-fluid.custom {
 	margin-bottom: 20px;
@@ -61,8 +62,7 @@
 	letter-spacing: 0px;
 }
 </style>
-<script type="text/javascript">
-</script>
+
 <div  class="row-fluid custom ">
 	<div class="row" style="border: solid 1px #f77605;" >
 		<div class="content" >
@@ -114,7 +114,7 @@
 								${course.courseDesc}
 							</c:when>
 							<c:otherwise>
-								尚未添加课程介绍
+								暂无内容课程介绍
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -127,7 +127,7 @@
 								${course.targetPerson}
 							</c:when>
 							<c:otherwise>
-								尚未添加
+								暂无内容
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -140,7 +140,7 @@
 								${course.courseCharacter}
 							</c:when>
 							<c:otherwise>
-								尚未添加
+								暂无内容
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -149,7 +149,29 @@
 					<div class="content">尚未有人购买</div>
 				</div>
 				<div class="tab-pane " id="comment_tab">
-					<div class="content">尚未评价</div>
+					<div class="content">
+						<c:choose>
+							<c:when test="${userCourseCount>0 }">
+								<table cellpadding="5"  class="blue">
+									<thead>
+										<tr><th>序列</th><th>评论内容</th><th>时间</th></tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${userCourseList }" var="userCourse" varStatus="i" >
+											<tr>
+												<td  width="10%" align="center">${i.index+1 }</td>
+												<td align="left">${userCourse.commentDesc }</td>
+												<td width="25%" align="center"><fmt:formatDate value="${userCourse.commentDate }" pattern="yyyy-MM-dd HH:mm"/></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</c:when>
+							<c:otherwise>
+								暂无内容
+							</c:otherwise>
+						</c:choose>
+					</div>
 				</div>
 			</div>
 		</div>

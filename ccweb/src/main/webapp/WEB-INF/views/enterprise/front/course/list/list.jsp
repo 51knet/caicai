@@ -33,9 +33,6 @@
 	margin: 0px 10px 0px 10px;
 }
 
-.row-fluid.custom .row .bb{
-	border-bottom: dashed  1px;
-}
 .row-fluid.custom .row .course{
 	margin-top:10px;
 	margin-left:10px;
@@ -69,17 +66,16 @@
 				    </c:forEach>
 				</c:when>
 				<c:otherwise>
-				<br>
-					无内容<br>
+					<div style="padding: 10px;">暂无内容</div>
 				</c:otherwise>
 			</c:choose>
 		</div>
 		<div style="margin: 10px 0px 0px 10px;"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
-		<form action="<c:url value="/enterprise/course/view"></c:url>" id="showCourseDetail" method="post">
+		<!--<form action="<c:url value="/enterprise/course/view"></c:url>" id="showCourseDetail" method="post">
 			<input type="hidden"  name="enterpriseId" id="enterprise_id" >
 			<input type="hidden"  name="courseId" id="course_id">
 			<input type="hidden"  name="coursepwd" id="course_pwd">
-		</form>
+		</form>-->
 </div>
 
 

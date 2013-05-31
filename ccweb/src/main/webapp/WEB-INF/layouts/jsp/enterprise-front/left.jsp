@@ -112,7 +112,6 @@
 				    </c:forEach>
 				</c:when>
 				<c:otherwise>
-				<br>
 					无内容
 				</c:otherwise>
 			</c:choose>

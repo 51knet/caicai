@@ -82,7 +82,10 @@ public class EnterpriseTeacherInfoFrontPageController {
 		model.addAttribute("user_id", user_id);
 		Page<EnterpriseTeacher> onePage = enterpriseTeacherService
 				.findTeacherByEnterprise(pageNumber, pageSize, user);
+		List<EnterpriseTeacher> eTeacherList = enterpriseTeacherService
+				.findTeacherByEnterprise(user);
 		model.addAttribute("page", onePage);
+		model.addAttribute("eTeacherCount", eTeacherList.size());
 		return "enterprise.teacher.list";
 	}
 
