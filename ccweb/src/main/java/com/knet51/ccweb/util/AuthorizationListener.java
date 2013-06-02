@@ -49,7 +49,7 @@ public class AuthorizationListener implements Filter {
 		logger.debug("->"+url+"---context="+context);
 		if (url.startsWith("/admin")) { // ok, for now we only protect admin stuff
 			if (! isLoggin(req)) { // not logged in
-				resp.sendRedirect(context); // alternative: redirect to a url with flush message...
+				resp.sendRedirect("/"); // alternative: redirect to a url with flush message...
 				return;
 			}
 			if(url.startsWith("/admin/caicai")){

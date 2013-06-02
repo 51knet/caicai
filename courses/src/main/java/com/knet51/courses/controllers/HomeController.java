@@ -1,15 +1,18 @@
 package com.knet51.courses.controllers;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.courses.beans.CourseBeans;
@@ -24,23 +28,28 @@ import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 import com.knet51.courses.jpa.services.UserCourseService;
+import com.knet51.courses.jpa.services.UserService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	private TeacherCourseService courseService;
-	
+
 	@Autowired
 	private TeacherService teacherService;
-	
+
 	@Autowired
 	private UserCourseService userCourseService;
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	private UserService service;
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(HomeController.class);
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -51,38 +60,63 @@ public class HomeController {
 		logger.info("###### into the HomeController ######");
 		List<CourseBeans> cBeans = courseService.getAllCourseBeans();
 		List<Teacher> teacherList = teacherService.findAllTeacher();
-		List<Teacher> teacherLists=new ArrayList<Teacher>();
-		List<Teacher> enterPriseList=new ArrayList<Teacher>();
+		List<Teacher> teacherLists = new ArrayList<Teacher>();
+		List<Teacher> enterPriseList = new ArrayList<Teacher>();
+		String email;
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (int i = 0; i < cookies.length; i++) {
+				Cookie c = cookies[i];
+				if (c.getName().equalsIgnoreCase(GlobalDefs.COOKIE_IDENTITY)) {
+					email = new String(Base64.decode(c.getValue().getBytes()),
+							Charset.forName("US-ASCII"));
+					if(email != null && !email.equals("")){
+						User user = service.getValidEmail(email);
+						if (user != null) {
+							UserInfo userInfo = new UserInfo(user);
+							session.setAttribute(GlobalDefs.SESSION_USER_INFO,
+									userInfo);
+						}
+					}else{
+						session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
+					}
+				}
+			}
+		}
 		for (Teacher teacher : teacherList) {
-			if(teacher.getIsEnterprise()!=null){
+			if (teacher.getIsEnterprise() != null) {
 				enterPriseList.add(teacher);
 				model.addAttribute("enterPriseList", enterPriseList);
-			}else{
+			} else {
 				teacherLists.add(teacher);
 				model.addAttribute("teacherLists", teacherLists);
 			}
 		}
 		model.addAttribute("courseList", cBeans);
 		model.addAttribute("courseCount", cBeans.size());
-		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		if(currentUser != null){
-			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
+		UserInfo currentUser = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if (currentUser != null) {
+			List<UserCourse> userCourseList = userCourseService
+					.findUserCourseByUserid(currentUser.getId());
 			List<Course> userCourse = new ArrayList<Course>();
 			for (int i = 0; i < userCourseList.size(); i++) {
-				Course course = courseService.findOneById(userCourseList.get(i).getTeachercourseid());
+				Course course = courseService.findOneById(userCourseList.get(i)
+						.getTeachercourseid());
 				userCourse.add(course);
 			}
-			
+
 			model.addAttribute("userCourse", userCourse);
 			model.addAttribute("userCourseCount", userCourse.size());
 		}
-		
+
 		return "home";
 	}
+
 	@RequestMapping(value = "/course/study", method = RequestMethod.GET)
 	public String adminStudent(Locale locale, Model model, HttpSession session) {
 		logger.info("Welcome home! the client locale is " + locale.toString());
-		
+
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if (userInfo != null) {
@@ -90,6 +124,6 @@ public class HomeController {
 		} else {
 			return "redirect:/signin";
 		}
-		
+
 	}
 }

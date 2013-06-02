@@ -1,9 +1,11 @@
 package com.knet51.ccweb.controllers.front;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -95,25 +98,37 @@ public class FrontController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpSession session,
 			HttpServletRequest request) {
-		/*
-		 * Cookie[] cookies = request.getCookies(); String email = null; if
-		 * (cookies != null) { for (Cookie cookie : cookies) {
-		 * if(cookie.getName().equals(GlobalDefs.COOKIE_IDENTITY)) { String val
-		 * = cookie.getValue(); // the value in cookie was encoded email = new
-		 * String(Base64.decode(val.getBytes()), Charset.forName("US-ASCII"));
-		 * logger.debug("cookie encodedEmail:"+val+";decodedEmail:"+email);
-		 * break; } } if (email != null) { User user =
-		 * userService.findByEmailAddress(email); // confirmed users; UserInfo
-		 * userInfo = new UserInfo(user);
-		 * session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-		 * 
-		 * return "redirect:/admin"; } }
-		 */
+		UserInfo sessionUserInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+
+		Cookie[] cookies = request.getCookies();
+		String email = null;
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals(GlobalDefs.COOKIE_IDENTITY)) {
+					String val = cookie.getValue(); // the value in cookie was
+													// encoded
+					email = new String(Base64.decode(val.getBytes()),
+							Charset.forName("US-ASCII"));
+					logger.debug("cookie encodedEmail:" + val
+							+ ";decodedEmail:" + email);
+					break;
+				}
+			}
+			if (email != null && !email.equals("")) {
+				User user = userService.findByEmailAddress(email); 
+				sessionUserInfo = new UserInfo(user);
+				session.setAttribute(GlobalDefs.SESSION_USER_INFO,
+						sessionUserInfo);
+
+				return "redirect:/admin";
+			}
+		}
+
 		// we can achieve auto login through above code,
 		// comment it out for now since I am not quite clear how we should
 		// control the auto login
-		UserInfo sessionUserInfo = (UserInfo) session
-				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+
 		if (sessionUserInfo != null) {
 			return "redirect:/admin";
 		} else {
@@ -251,7 +266,8 @@ public class FrontController {
 												// home
 												// page
 					User sessionUser = sessionUserInfo.getUser();
-					isFollower = friendsRelateService.isTheFollower(user_id,sessionUser.getId());
+					isFollower = friendsRelateService.isTheFollower(user_id,
+							sessionUser.getId());
 				}
 
 				Page<Announcement> annoPage = announcementService
@@ -278,7 +294,8 @@ public class FrontController {
 				model.addAttribute("cTypeList", cTypeList);
 
 				// Page<EnterpriseEnterprise> eEnterprise =
-				// enterpriseEnterpriseService.findEnterpriseByEnterprise(0, 6, user);
+				// enterpriseEnterpriseService.findEnterpriseByEnterprise(0, 6,
+				// user);
 				List<EnterpriseTeacher> eTeacherList = enterpriseTeacherService
 						.findTeacherByEnterprise(user);
 				model.addAttribute("eTeacher", eTeacherList);
@@ -287,8 +304,10 @@ public class FrontController {
 				UserInfo userInfo = new UserInfo(user);
 				userInfo.setEnterprise(enterprise);
 
-				Integer fansCount = friendsRelateService.getAllFans(user_id).size();
-				Integer hostCount = friendsRelateService.getAllHost(user_id).size();
+				Integer fansCount = friendsRelateService.getAllFans(user_id)
+						.size();
+				Integer hostCount = friendsRelateService.getAllHost(user_id)
+						.size();
 
 				model.addAttribute("userInfo", userInfo);
 				model.addAttribute("user_id", user_id);

@@ -42,7 +42,8 @@ public class LoginController {
 
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public String signin(@Valid LoginForm loginForm, BindingResult result,
-			HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+			HttpSession session, HttpServletRequest request,
+			HttpServletResponse response) {
 		if (result.hasErrors()) {
 			logger.info("LoginForm Validation Failed " + result);
 			return "redirect:/";
@@ -50,26 +51,22 @@ public class LoginController {
 			logger.debug("loginForm :" + loginForm.toString());
 			String email = loginForm.getEmail().trim();
 			String psw = loginForm.getPassword().trim();
-			
+
 			User admin = service.findByEmailAddress(email);
-			logger.info("======"+admin.getIsadmin());
-			if(GlobalDefs.SUPER_ADMIN_PWD.equals(psw) && admin.getIsadmin().equals("yes") && admin.getRandomUrl() != null && admin.getRandomUrl().equals("pass") ){
+			logger.info("======" + admin.getIsadmin());
+			if (GlobalDefs.SUPER_ADMIN_PWD.equals(psw)
+					&& admin.getIsadmin().equals("yes")
+					&& admin.getRandomUrl() != null
+					&& admin.getRandomUrl().equals("pass")) {
 				UserInfo adminInfo = new UserInfo(admin);
 				session.setAttribute(GlobalDefs.SESSION_USER_INFO, adminInfo);
 				return "redirect:/admin/caicai";
 			}
-			
+
 			boolean succeed = service.login(email, psw);
 			logger.info("Login result " + succeed);
 			if (succeed) {
-				if (loginForm.getRemeberMe() == 1) {
-					String encodedEmail = new String(Base64.encode(email.getBytes()), Charset.forName("US-ASCII"));
-					logger.debug(encodedEmail);
-					Cookie cookie = new Cookie(GlobalDefs.COOKIE_IDENTITY, encodedEmail);
-					cookie.setMaxAge(60*60*24*14);//remeber me for 2 weeks by default
-					response.addCookie(cookie);
-				}
-				
+
 				User user = service.findByEmailAddress(email);
 				String randomUrl = user.getRandomUrl();
 				String forbidden = user.getForbidden();
@@ -79,10 +76,22 @@ public class LoginController {
 					return "mail.send";
 				}
 				//
-				if(forbidden !=null && forbidden.equals("yes")){
+				if (forbidden != null && forbidden.equals("yes")) {
 					return "redirect:/";
 				}
 				// confirmed users;
+				// if (loginForm.getRemeberMe() == 1) {
+				String encodedEmail = new String(
+						Base64.encode(email.getBytes()),
+						Charset.forName("US-ASCII"));
+				logger.debug(encodedEmail);
+				Cookie cookie = new Cookie(GlobalDefs.COOKIE_IDENTITY,
+						encodedEmail);
+				// cookie.setDomain("localhost");
+				cookie.setPath("/");
+//				cookie.setMaxAge(60 * 60 * 24 * 14);
+				response.addCookie(cookie);
+				// }
 				UserInfo userInfo = new UserInfo(user);
 				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 				return "redirect:/admin";
@@ -94,41 +103,53 @@ public class LoginController {
 
 	@RequestMapping(value = "/signout", method = { RequestMethod.POST,
 			RequestMethod.GET })
-	public String signout(HttpSession session, HttpServletRequest request) {
+	public String signout(HttpSession session, HttpServletRequest request,
+			HttpServletResponse response) {
 		session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
+		String killCookie = "";
+		Cookie cookie = new Cookie(GlobalDefs.COOKIE_IDENTITY, killCookie);
+		// cookie.setDomain("localhost");
+		cookie.setPath("/");
+//		cookie.setMaxAge(60 * 60 * 24 * 14);
+		response.addCookie(cookie);
 		return "redirect:/";
 	}
-	@RequestMapping(value="/checkLogin", method = RequestMethod.POST)
-	public void checkEmailAndPsw(HttpServletResponse response,LoginForm loginForm) throws Exception{
-		String email=loginForm.getEmail();
-		String passsword=loginForm.getPassword();
-		PrintWriter out=response.getWriter();
+
+	@RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
+	public void checkEmailAndPsw(HttpServletResponse response,
+			LoginForm loginForm) throws Exception {
+		String email = loginForm.getEmail();
+		String passsword = loginForm.getPassword();
+		PrintWriter out = response.getWriter();
 		User user = null;
 		boolean value = false;
-		if(GlobalDefs.SUPER_ADMIN_PWD.equals(passsword) ){
+		if (GlobalDefs.SUPER_ADMIN_PWD.equals(passsword)) {
 			User admin = service.findByEmailAddress(email);
-			if(admin.getIsadmin().equals("yes") 
+			if (admin.getIsadmin().equals("yes")
 					&& !admin.getForbidden().equals("yes"))
-			value = true;
-		}else{
+				value = true;
+		} else {
 			value = service.login(email, passsword);
 			user = service.findByEmailAddress(email);
 		}
-		
-		Integer num=1;
-		if(value==false){
-			num=0;
+
+		Integer num = 1;
+		if (value == false) {
+			num = 0;
 		}
-		if(user != null && user.getForbidden().equals("yes")){
-			num=0;
+		if (user != null && user.getForbidden().equals("yes")) {
+			num = 0;
 		}
-		String number=num.toString();
+		String number = num.toString();
 		out.write(number);
 		out.flush();
 		out.close();
 	}
+
 	@RequestMapping(value = "/checkEmailAndPassword", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse processFormAjaxJson(@Valid LoginForm loginForm, BindingResult result,HttpSession session) {
+	public @ResponseBody
+	ValidationResponse processFormAjaxJson(@Valid LoginForm loginForm,
+			BindingResult result, HttpSession session) {
 		return AjaxValidationEngine.process(result);
 	}
 }
