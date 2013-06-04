@@ -5,7 +5,7 @@
 <div class="navbar custom navbar-fixed-top">
 	<div class="container-fluid" style="text-align: center; height: 39px; width: 1024px; margin: 0 auto;">
 		<ul class="nav pull-left">
-			<li><a id="logo" href='<c:url value="/admin"></c:url>'></a></li>
+			<li><a id="logo" href='<c:url value="/"></c:url>'></a></li>
 		</ul>
 		<ul class="nav pull-right">
 			<li><a href="http://www.51knet.com/courses"><img class="courselogo" src="<c:url value='/resources/img/default/courselogo.png'></c:url>"> <img class="goto"
