@@ -247,6 +247,24 @@
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/message/isDeleMsg.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.teacher.account.list" extends="admin-layout">
+		<put-attribute name="title" value="账户管理" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/account/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.teacher.account.recharge.new" extends="admin-layout">
+		<put-attribute name="title" value="账户管理" />
+			<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/account/recharge/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.teacher.withdraws.list" extends="admin-layout">
+		<put-attribute name="title" value="账户管理" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/withdrawsapply/list/list.jsp"></put-attribute>
+	</definition>
 
 
 	<!-- teacher front page -->

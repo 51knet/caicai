@@ -1,8 +1,8 @@
-package com.knet51.ccweb.controllers.admin.enterprise;
+package com.knet51.ccweb.controllers.admin.user;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class EnterpriseRechargeCardForm {
+public class RechargeCardForm {
 	@NotEmpty
 	private String cardid;
 

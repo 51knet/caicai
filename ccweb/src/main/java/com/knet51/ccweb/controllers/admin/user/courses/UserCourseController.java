@@ -141,7 +141,15 @@ public class UserCourseController {
 		model.addAttribute("course", course);
 		return "course.study.info.view";
 	}
-	
+	/**
+	 * show a course's comment list
+	 * @param course_id
+	 * @param model
+	 * @param session
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
 	@RequestMapping(value="/admin/mycourse/comment/{course_id}")
 	public String showCommentInfo(@PathVariable Long course_id,Model model,HttpSession session,
 			@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
@@ -198,7 +206,7 @@ public class UserCourseController {
 	
 	
 	/**
-	 * 增加评论内容
+	 * 增加课程评论内容
 	 * 
 	 * @param UserCourseInfoForm
 	 * @param id
@@ -254,7 +262,7 @@ public class UserCourseController {
 	}
 	
 	/**
-	 * 验证输入框是否为空
+	 * 验证评论框是否为空
 	 * 
 	 * @param UserCourseInfoForm
 	 * @param result
@@ -266,4 +274,63 @@ public class UserCourseController {
 		logger.info("==== into commentajax controller ===");
 		return AjaxValidationEngine.process(result);
 	}
+	
+	
+
+	/**
+	 * show pay view
+	 * @param course_id
+	 * @return
+	 */
+	@RequestMapping(value="/course/pay/view/{course_id}")
+	public String showPayPage(@PathVariable Long course_id){
+		
+		return "course.pay.view";
+	}
+	
+	/**
+	 * buy the course in enterprise front page
+	 * @param course_id
+	 * @param model
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/course/study/buy/{course_id}")
+	public String BuyCourseDetail(@PathVariable Long course_id,Model model,HttpSession session){
+		Course course = courseService.findOneById(course_id);
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if (userInfo == null) {
+			return "redirect:/admin";
+		}
+		if(course.getPrice().intValue()>0){
+			return "redirect:/course/pay/view/"+course_id;
+		}
+		UserCourse userCourse = userCourseService
+				.findByTeachercourseidAndUserid(course_id, userInfo.getId());
+		if (userCourse==null) {
+			userCourse = new UserCourse();
+			userCourse.setTeachercourseid(course_id);
+			userCourse.setUserid(userInfo.getId());
+			userCourseService.save(userCourse);
+		}
+		List<CourseResource> listResource = courseResourceService
+				.getAllCourseResourceByCourseIdAndStatus(course_id,
+						GlobalDefs.STATUS_COURSE_RESOURCE);
+		List<CourseResource> courseList = new ArrayList<CourseResource>();
+		Map<Integer, List<CourseResource>> courseMap = new TreeMap<Integer, List<CourseResource>>();
+		int resourceOrder = 0;
+		for (CourseResource courseResource : listResource) {
+			resourceOrder = courseResource.getLessonNum();
+			courseList = courseResourceService
+					.getResourceByLessonNumAndCourseId(resourceOrder, course_id);
+			courseMap.put(resourceOrder, courseList);
+		}
+		model.addAttribute("courseMap", courseMap);
+		model.addAttribute("course", course);
+		model.addAttribute("resourceCount", listResource.size());
+		return "course.study.view";
+	}
+	
+
 }

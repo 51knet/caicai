@@ -43,7 +43,7 @@
 <script type="text/javascript">
 		$(document).ready(function() {
 			$("#recharge_new_form").submit(function(){
-				return checkEmptyAjax("recharge_new_form","createRechargeAjax");
+				return checkEmptyAjax("recharge_new_form","<c:url value='/admin/recharge/createRechargeAjax' />");
 			})
 	    });
 		

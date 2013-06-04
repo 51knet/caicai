@@ -65,44 +65,4 @@ public class EnterprisePageController {
 		return AjaxValidationEngine.process(result);
 	}
 	
-	/**
-	 * check the cardid if it exist in DB
-	 * @param cardid
-	 * @param response
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/admin/recharge/checkCardid")
-	public void checkCardid(@RequestParam("cardid") String cardid,HttpServletResponse response) throws Exception{
-		logger.info("==== into checkCardid controller ==="+cardid);
-		PrintWriter writer = response.getWriter();
-		Recharge recharge = rechargeService.findOneByCardid(cardid);
-		writer.print(recharge!=null?"yes":"no");
-		writer.flush();
-		writer.close();
-	}
-	/**
-	 * cardForm ajax check
-	 * @param cardForm
-	 * @param result
-	 * @param session
-	 * @return
-	 */
-	@RequestMapping(value = "/admin/recharge/createRechargeAjax", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse rechargeFormAjaxJson(@Valid EnterpriseRechargeCardForm cardForm, BindingResult result,HttpSession session) {
-		return AjaxValidationEngine.process(result);
-	}
-	
-	
-	/**
-	 * withdrawsApply form ajax check
-	 * @param cardForm
-	 * @param result
-	 * @param session
-	 * @return
-	 */
-	@RequestMapping(value = "/admin/withdraws/createWithdrawsAjax", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse withdrawsApplyFormAjaxJson(@Valid WithdrawsApplyForm applyForm, BindingResult result,HttpSession session) {
-		return AjaxValidationEngine.process(result);
-	}
-	
 }

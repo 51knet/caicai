@@ -124,7 +124,7 @@ public class UserInfo {
 	public String getSchool(){
 		return this.teacher.getSchool();
 	}
-	
+	 
 	public String getIsEnterprise(){
 		return this.teacher.getIsEnterprise();
 	}
