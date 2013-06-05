@@ -126,7 +126,7 @@ function checkField(fieldObj, msgObj, re, nullMsg, errorMsg) {
 	function checkPicture(obj){
 		var imgflag = false;
 		var fileValue = obj.coverFile.value;
-		var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length);
+		var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length).toLowerCase();
 		if(temp ==null || temp ==""){
 			imgflag = true;
 			return imgflag;

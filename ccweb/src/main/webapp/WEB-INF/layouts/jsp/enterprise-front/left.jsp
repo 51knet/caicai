@@ -58,8 +58,8 @@
 	<div class="row-fluid" >
 		<form class="" style="padding: 15px 0px 15px 0px;" action="<c:url value='/enterprise/searchCourse'></c:url>" method="post"> 
 			<input type="hidden" name="userid" value="${user_id }">
-			<input type="text" name="courseName" style="width: 145px;" placeholder="输入课程名"><br>
-			价格：<input type="text" style="width: 35px;" name="minPrice" > 至 <input type="text" name="maxPrice" style="width: 35px;" >
+			<input type="text" name="courseName" value="${courseName }" style="width: 145px;" placeholder="输入课程名"><br>
+			价格：<input type="text" style="width: 35px;" name="minPrice" value="${minPrice }" > 至 <input type="text" name="maxPrice" value="${maxPrice }" style="width: 35px;" >
 			<button type="submit" class="btn pull-right " style="margin-right: 20px;">搜索</button>
 		</form>
 	</div>

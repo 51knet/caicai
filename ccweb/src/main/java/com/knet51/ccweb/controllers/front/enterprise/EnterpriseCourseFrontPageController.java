@@ -196,16 +196,12 @@ public class EnterpriseCourseFrontPageController {
 		}
 		List<Course> courseList = courseService
 				.getAllTeacherCourseByUseridAndPublish(user_id,GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-		logger.info("---- cName="+cName+"---- min="+min+"---- max="+max);
 		List<Course> newCourseList = new ArrayList<Course>();
 		for (int i = 0; i < courseList.size(); i++) {
-			if(cName !=null && !cName.equals("")){
-				if(courseList.get(i).getCourseName().contains(cName) && courseList.get(i).getPrice().intValue()>=min && 
-						courseList.get(i).getPrice().intValue()<= max){
+			if(courseList.get(i).getPrice().intValue()>=min && courseList.get(i).getPrice().intValue()<= max){
+				if(cName !=null && !cName.equals("") && courseList.get(i).getCourseName().contains(cName)){
 					newCourseList.add(courseList.get(i));
-				}
-			}else{
-				if(courseList.get(i).getPrice().intValue()>=min && courseList.get(i).getPrice().intValue()<= max){
+				}else{
 					newCourseList.add(courseList.get(i));
 				}
 			}
@@ -215,6 +211,7 @@ public class EnterpriseCourseFrontPageController {
 		model.addAttribute("user_id", user_id);
 		model.addAttribute("courseCount", courseList.size());
 		model.addAttribute("courseList", courseList);
+		
 		List<CourseType> cTypeList = courseTypeService.findAll();
 		model.addAttribute("cTypeList", cTypeList);
 		return "enterprise.search.course.list";

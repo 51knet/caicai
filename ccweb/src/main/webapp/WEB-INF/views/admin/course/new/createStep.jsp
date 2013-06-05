@@ -17,7 +17,7 @@ function previewImages(file){
 function checkCoverPicture(obj){
 	var flag = false;
 	var fileValue = obj.coverFile.value;
-	var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length);
+	var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length).toLowerCase();
 	if(fileValue==null || fileValue==""){
 		alert("请添加课程封面");
 		flag=false;
