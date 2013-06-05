@@ -26,7 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
-import com.knet51.ccweb.jpa.entities.Order;
+import com.knet51.ccweb.jpa.entities.UserOrder;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
@@ -314,24 +314,26 @@ public class UserCourseController {
 		if (userInfo != null) {
 			user = userService.findByEmailAddress(userInfo.getEmail());
 			password = user.getPassword();
-			if (password.equals(enterPassword)) {
-				UserCourse userCourse = userCourseService
-						.findByTeachercourseidAndUserid(course_id, userInfo.getId());
-				if (userCourse == null) {
+			UserCourse userCourse = userCourseService
+					.findByTeachercourseidAndUserid(course_id,
+							userInfo.getId());
+			
+			if (userCourse == null) {
+				if (password.equals(enterPassword)) {
 					userCourse = new UserCourse();
 					userCourse.setTeachercourseid(course_id);
 					userCourse.setUserid(userInfo.getId());
 					userCourseService.save(userCourse);
+					UserOrder userOrder = new UserOrder(user, course_id.toString());
+					userOrder.setStatus("完成");
+					orderService.createOrder(userOrder);
+					paySuccessful = true;
 				}
-				
-				Order userOrder = new Order(user,course_id.toString());
-				userOrder.setStatus("完成");
-				orderService.createOrder(userOrder);
-				model.addAttribute("paySuccessful", paySuccessful);
+			}else{
 				paySuccessful = true;
 			}
 		}
-
+		model.addAttribute("paySuccessful", paySuccessful);
 		return "course.pay.view";
 	}
 

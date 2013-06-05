@@ -98,9 +98,11 @@ body {
 		<h3>${courseId}</h3>
 	</div>
 	<c:if test="${ paySuccessful }">
+	${ paySuccessful }
 		支付成功
 	</c:if>
 	<c:if test="${ !paySuccessful }">
+	${ paySuccessful }
 	<form  method="post">
 		<input type=text id="password" name="password" /> 
 		<input type=submit>

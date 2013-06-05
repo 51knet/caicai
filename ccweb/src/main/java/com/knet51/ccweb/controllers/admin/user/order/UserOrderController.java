@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
-import com.knet51.ccweb.jpa.entities.Order;
+import com.knet51.ccweb.jpa.entities.UserOrder;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.OrderService;
 
@@ -30,7 +30,7 @@ public class UserOrderController {
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
-		Page<Order> myOrder = orderService.findAllbyUser(pageNumber, pageSize, user);
+		Page<UserOrder> myOrder = orderService.findOrderByUser(pageNumber, pageSize, user);
 		model.addAttribute("page", myOrder);
 		return "admin."+user.getRole()+".order.list";
 	}

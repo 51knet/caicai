@@ -1,11 +1,11 @@
 package com.knet51.ccweb.beans;
 
-import com.knet51.ccweb.jpa.entities.Order;
+import com.knet51.ccweb.jpa.entities.UserOrder;
 import com.knet51.ccweb.jpa.entities.User;
 
 public class OrderBeans {
 	private User user;
-	private Order order;
+	private UserOrder order;
 
 	public OrderBeans() {
 		super();
@@ -19,11 +19,11 @@ public class OrderBeans {
 		this.user = user;
 	}
 
-	public Order getOrder() {
+	public UserOrder getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(UserOrder order) {
 		this.order = order;
 	}
 

@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.knet51.ccweb.jpa.entities.Order;
+import com.knet51.ccweb.jpa.entities.UserOrder;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.repository.OrderRepository;
 
@@ -19,33 +19,33 @@ public class OrderServiceImpl implements OrderService {
 	private OrderRepository orderRepository;
 
 	@Override
-	public Order findOne(Long id) {
+	public UserOrder findOne(Long id) {
 		return orderRepository.findOne(id);
 	}
 
 	@Override
-	public Order createOrder(Order order) {
+	public UserOrder createOrder(UserOrder order) {
 		// TODO Auto-generated method stub
 		return orderRepository.save(order);
 	}
 
 	@Override
-	public Order updateOrder(Order order) {
+	public UserOrder updateOrder(UserOrder order) {
 		// TODO Auto-generated method stub
 		return orderRepository.save(order);
 	}
 
 	@Override
-	public Page<Order> listAll(int pageNumber, int pageSize) {
+	public Page<UserOrder> findAll(int pageNumber, int pageSize) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
-		Page<Order> onePage = orderRepository.findAll(dateDesc);
+		Page<UserOrder> onePage = orderRepository.findAll(dateDesc);
 		return onePage;
 	}
 
 	@Override
-	public Page<Order> findAllbyUser(int pageNumber, int pageSize, User user) {
-		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
-		Page<Order> onePage = orderRepository.findByUser(user, dateDesc);
+	public Page<UserOrder> findOrderByUser(int pageNumber, int pageSize, User user) {
+		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
+		Page<UserOrder> onePage = orderRepository.findOrderByUser(user, pageable);
 		return onePage;
 	}
 	

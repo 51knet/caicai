@@ -3,17 +3,16 @@ package com.knet51.ccweb.jpa.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "userOrder")
-public class Order extends AbstractEntity{
+public class UserOrder extends AbstractEntity{
 
 	@ManyToOne
-	@JoinColumn(name="user_id")
+//	@JoinColumn(name="user_id")
 	private User user;
 	
 	private String courseId;
@@ -24,7 +23,7 @@ public class Order extends AbstractEntity{
 	@Lob
 	private String description;
 	
-	public Order(User user, String courseId) {
+	public UserOrder(User user, String courseId) {
 		this.user = user;
 		this.courseId = courseId;
 	}
