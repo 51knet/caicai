@@ -63,4 +63,9 @@ public class UserOrder extends AbstractEntity{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public UserOrder() {
+		super();
+	}
+	
+	
 }
