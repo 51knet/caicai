@@ -31,33 +31,53 @@
 	<div class="content">
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
+				<li <c:if test='${active == "photo"}'>class="active"</c:if>><a href="#photo_tab" data-toggle="tab">默认头像</a></li> 
 		    	<li <c:if test='${active == "avatar"}'>class="active"</c:if>><a href="#avatar_tab" data-toggle="tab">修改头像</a></li> 
 		    	<li <c:if test='${active == "psw"}'>class="active"</c:if>><a href="#security_tab" data-toggle="tab">账号安全</a></li> 
 			</ul>
 			<div class="tab-content">
-				<div class="tab-pane <c:if test='${active == "avatar"}'>active</c:if>" id="avatar_tab">
-		<%
-		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
-		request.setAttribute("basePath", basePath);
-		%>
-			<script src="<c:url value="/resources/avatar/common.js?B6k" />" type="text/javascript"></script>	
-			<script type="text/javascript">
-			$(document).ready(function(){
-				var uc_api = encodeURIComponent("${basePath}avatar/${sessionUserInfo.id}");
-				var urlCameraFlash = "<c:url value="/resources/avatar/camera.swf" />"+"?nt=1&inajax=1&appid=1&input=1&uploadSize=1024&ucapi=" + uc_api;
-				$('#flash_container').html(AC_FL_RunContent("width","450","height","253","scale","exactfit","src",""+urlCameraFlash+"","id","mycamera","name","mycamera","quality","high","bgcolor","#ffffff","wmode","transparent","menu","false","swLiveConnect","true","allowScriptAccess","always"));
-				/* var mes=$("#message").attr("title");
-				if(mes!=''){
-					alert("信息已保存");
-					return false;
-				} */
-			});
-			setTimeout(function(){
-		 		document.getElementById("message").style.display="none";
-			},2000);
-			</script>
-				<div id="flash_container"></div>
+				<div class="tab-pane <c:if test='${active == "photo"}'>active</c:if>" id="photo_tab">
+					<form class="form-horizontal" action="photo" method="post" id="photo_form">
+						<div class="control-group" id="mark" >
+							<label><b>请选择默认头像：</b></label>
+							<c:forEach begin="1" end="3" var="x">
+								<label class="radio inline" >
+									<img  src='<c:url value="/resources/img/avatar/p${x }.jpg"></c:url>'  style="width:120px;height: 120px;"><br>
+									<input type="radio" name="photo" value="${x }"  style="margin-left: 50px; margin-top: 10px;" <c:if test="${x==1 }"> checked="checked"</c:if> >
+								</label>
+							</c:forEach>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit"  class="btn  btn-success">保存</button>
+							</div>
+						</div>
+					</form>
 				</div>
+				<div class="tab-pane <c:if test='${active == "avatar"}'>active</c:if>" id="avatar_tab">
+					<%
+					String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
+					request.setAttribute("basePath", basePath);
+					%>
+					<script src="<c:url value="/resources/avatar/common.js?B6k" />" type="text/javascript"></script>	
+					<script type="text/javascript">
+					$(document).ready(function(){
+						var uc_api = encodeURIComponent("${basePath}avatar/${sessionUserInfo.id}");
+						var urlCameraFlash = "<c:url value="/resources/avatar/camera.swf" />"+"?nt=1&inajax=1&appid=1&input=1&uploadSize=1024&ucapi=" + uc_api;
+						$('#flash_container').html(AC_FL_RunContent("width","450","height","253","scale","exactfit","src",""+urlCameraFlash+"","id","mycamera","name","mycamera","quality","high","bgcolor","#ffffff","wmode","transparent","menu","false","swLiveConnect","true","allowScriptAccess","always"));
+						/* var mes=$("#message").attr("title");
+						if(mes!=''){
+							alert("信息已保存");
+							return false;
+						} */
+					});
+					setTimeout(function(){
+				 		document.getElementById("message").style.display="none";
+					},2000);
+					</script>
+					<div id="flash_container"></div>
+				</div>
+				
 				<div class="tab-pane <c:if test='${active == "psw"}'>active</c:if>" id="security_tab">
 					<form class="form-horizontal" action="changePsw" method="post" id="chanePsw_info_form">
 				    <div id="message" style="margin-left: 155px;"><h4 style="color: #adcc75">${message}</h4></div>
@@ -89,6 +109,7 @@
 						</div>
 					</form>
 				</div>
+				
 				<div class="tab-pane <c:if test='${active == "url"}'>active</c:if>" id="p_url_tab">
 					<form class="form-horizontal" action="selfurl" method="post" id="selfurl_info_form">
 						<div class="control-group" id="url">

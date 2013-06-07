@@ -55,7 +55,7 @@
 		<li><a href='<c:url value="/admin/blog/list"></c:url>' >我的博文</a></li>
 		<li><a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
 		<li><a href='<c:url value="/admin/account/list"></c:url>' >账户管理</a></li>
-		<li><a href='<c:url value="/admin/order/list"></c:url>' >订单管理</a></li>
+		<!-- <li><a href='<c:url value="/admin/order/list"></c:url>' >订单管理</a></li> -->
 		<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li>
 		<!-- 
 		<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.isEnterprise != null) }">

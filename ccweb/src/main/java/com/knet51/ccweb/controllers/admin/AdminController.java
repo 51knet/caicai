@@ -229,6 +229,19 @@ public class AdminController {
 			return "redirect:/admin/details?active=psw";
 		}
 	}
+	
+	@RequestMapping(value="/admin/photo" , method = RequestMethod.POST)
+	public String updateUserPhoto(@RequestParam("photo") String photo,HttpSession session){
+		logger.info("#### update user photo Controller ####");
+		String photo_url = "/resources/img/avatar/p"+photo+".jpg";
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		User user = userInfo.getUser();
+		user.setPhoto_url(photo_url);
+		userService.updateUser(user);
+		userInfo.setUser(user);
+		return "redirect:/admin/details?active=photo";
+	}
 
 	@RequestMapping(value = "/admin/pswInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody

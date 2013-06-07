@@ -1,5 +1,7 @@
 package com.knet51.ccweb.controllers.admin.teacher.announcement;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -40,13 +42,21 @@ public class TeacherAnnoInfoPageController {
 	
 	@RequestMapping(value="/admin/announcement/list")
 	public String teacherAnno(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
-								int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+								int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		logger.info("#### into TeacherAnno ####");
-			Long id = getId(session);
+			Long id = getUserId(session);
 			User user = userService.findOne(id);
 			if(user.getRole().equals("user")){
 				return "redirect:/admin";
 			}else{
+				if(pageNumber<0){
+					pageNumber = 0;
+				}
+				List<Announcement> annoList = annoService.findAllByUid(id);
+				int maxNumber = annoList.size() % pageSize == 0?annoList.size()/pageSize-1:annoList.size()/pageSize;
+				if(pageNumber>maxNumber){
+					pageNumber = maxNumber;
+				}
 				Page<Announcement> page = annoService.findAllAnnoByUser(pageNumber, pageSize, user);
 				model.addAttribute("page", page);
 				if (user.getRole().equals("teacher")) {
@@ -62,7 +72,7 @@ public class TeacherAnnoInfoPageController {
 	
 	@RequestMapping(value="/admin/announcement/edit/{anno_id}")
 	public String detailAnnoInfo(HttpSession session, Model model,@PathVariable Long anno_id){
-		Long currentuser_id = getId(session);
+		Long currentuser_id = getUserId(session);
 		Announcement announcement = annoService.findOneById(anno_id);
 		Long user_id = announcement.getUser().getId();
 		if(!currentuser_id.equals(user_id)||announcement==null){
@@ -97,7 +107,7 @@ public class TeacherAnnoInfoPageController {
 	}
 	
 	
-	public Long getId(HttpSession session){
+	public Long getUserId(HttpSession session){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long id = userInfo.getUser().getId();
 		return id;

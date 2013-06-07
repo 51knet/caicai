@@ -36,6 +36,7 @@ import com.google.gson.GsonBuilder;
 import com.knet51.ccweb.beans.UserCourseBeans;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseLesson;
@@ -82,6 +83,16 @@ public class CourseInfoPageController {
 		if(userInfo.getRole().equals("user")){
 			return "redirect:/admin";
 		}
+		
+		if(pageNumber<0){
+			pageNumber = 0;
+		}
+		List<Course> courseList = courseService.findCourseByUserAndPublishGreaterThanForSuperAdmin(userInfo.getUser(), GlobalDefs.PUBLISH_NUM_DELETE);
+		int maxNumber = courseList.size() % pageSize == 0?courseList.size()/pageSize-1:courseList.size()/pageSize;
+		if(pageNumber>maxNumber){
+			pageNumber = maxNumber;
+		}
+		
 		Page<Course> onePage =courseService.findTeacherCourseByUserAndPublishGreaterThan(pageNumber, pageSize,userInfo.getUser(),GlobalDefs.PUBLISH_NUM_DELETE);
 		//Page<TeacherCourse> page = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, publish)
 		model.addAttribute("page", onePage);
