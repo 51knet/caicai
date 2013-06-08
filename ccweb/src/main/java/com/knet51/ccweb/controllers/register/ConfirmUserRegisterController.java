@@ -1,5 +1,7 @@
 package com.knet51.ccweb.controllers.register;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -39,6 +41,7 @@ public class ConfirmUserRegisterController {
 
 			logger.info("#### into result not null #### " + result.getName());
 			result.setRandomUrl("pass");
+			result.setRegister_date(new Date());
 			userService.updateUser(result);
 
 			UserInfo userInfo = new UserInfo(result);

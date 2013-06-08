@@ -107,11 +107,13 @@
 					<form class="form-horizontal" action="photo" method="post" id="photo_form">
 						<div class="control-group" id="mark" >
 							<label><b>请选择默认头像：</b></label>
-							<c:forEach begin="1" end="3" var="x">
-								<label class="radio inline" >
-									<img  src='<c:url value="/resources/img/avatar/p${x }.jpg"></c:url>'  style="width:120px;height: 120px;"><br>
-									<input type="radio" name="photo" value="${x }"  style="margin-left: 50px; margin-top: 10px;" <c:if test="${x==1 }"> checked="checked"</c:if> >
+							<c:forEach begin="1" end="9" var="x">
+								<div style="float: left; margin-right: 10px; ">
+									<label class="radio inline" >
+									<img  src='<c:url value="/resources/img/avatar/p${x }.jpg"></c:url>'  style="width:120px;height: 120px; border: 1px solid #ccc;"><br>
+									<input type="radio" name="photo" value="${x }"  style=" margin-top: 5px; margin-left: 50px; " <c:if test="${x==1 }"> checked="checked"</c:if> >
 								</label>
+								</div>
 							</c:forEach>
 						</div>
 						<div class="control-group">

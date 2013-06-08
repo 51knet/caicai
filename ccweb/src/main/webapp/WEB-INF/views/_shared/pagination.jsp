@@ -12,15 +12,6 @@
 		<s:eval expression="page.hasNextPage()" var="hasNextPage"></s:eval>
 		<s:eval expression="page.isFirstPage()" var="isFirstPage"></s:eval>
 		<ul>
-		<!-- 
-			<c:choose>
-				<c:when test="${isFirstPage }">
-					<li><a href='${current_url}?pageNumber=${page.number}'>首页</a></li>
-				</c:when>
-				<c:otherwise>
-					<li><a href='${current_url}?pageNumber=0'>首页</a></li>
-				</c:otherwise>
-			</c:choose> -->
 			<c:choose>
 				<c:when test="${hasPreviousPage}">
 					<li><a href='${current_url}?pageNumber=${prev}'>上一页</a></li>
@@ -30,9 +21,6 @@
 				</c:otherwise>
 			</c:choose>
 			<li><a href="#" class="active">${page.number+1}/${page.totalPages}</a></li> 
-			<!-- <c:forEach var="x" begin="${page.number}" end="${page.number+2 }">
-				<li><a <c:if test="${x ==page.number}"> class="active"</c:if> href='${current_url}?pageNumber=${x}'>${x+1}</a></li>
-			</c:forEach> -->
 			<c:choose>
 				<c:when test="${hasNextPage}">
 					<li><a href='${current_url}?pageNumber=${next}'>下一页</a></li>
