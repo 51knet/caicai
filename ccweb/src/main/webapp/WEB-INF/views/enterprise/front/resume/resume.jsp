@@ -4,11 +4,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript">
-	function requestCourseDetail(cid,eid){
-		$("#course_id").val(cid);
-		$("#enterprise_id").val(eid);
-		$("#showCourseDetail").submit();
-	}
 </script>
 <style>
 .row-fluid.custom {
@@ -55,10 +50,10 @@
 </style>
 
 <div class="row-fluid custom round">
-	<div class="row">
-		<h4>学校介绍 </h4>
-	</div>
 	<div class="row"  style="border: solid 1px #f77605;">
+		<div class="title">
+			<h4>学校介绍 </h4>
+		</div>
 		<div class="content ">
 			<table width="100%">
 				<tr>

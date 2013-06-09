@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.AnnoPhoto;
+import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
+import com.knet51.ccweb.jpa.services.AnnoPhotoService;
+import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
 import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.UserCourseService;
@@ -37,6 +41,10 @@ public class EnterpriseCourseFrontPageController {
 	private CourseTypeService courseTypeService;
 	@Autowired
 	private UserCourseService userCourseService;
+	@Autowired
+	private AnnouncementService announcementService;
+	@Autowired
+	private AnnoPhotoService annoPhotoService;
 	
 //	/**
 //	 * show course detail info in enterprise front page
@@ -113,6 +121,17 @@ public class EnterpriseCourseFrontPageController {
 		logger.debug(userInfo.toString());
 		model.addAttribute("userInfo", userInfo);
 		model.addAttribute("user_id", user_id);
+		Page<Announcement> annoPage = announcementService
+				.findAllAnnoByUser(0, 4, user);
+		model.addAttribute("annolist", annoPage.getContent());
+		List<Announcement> annoList = announcementService
+				.findAllByUid(user_id);
+		model.addAttribute("annoCount", annoList.size());
+		List<AnnoPhoto> annoPhoto = annoPhotoService
+				.findAnnoPhotoByUserid(user.getId());
+		model.addAttribute("annoPhoto", annoPhoto);
+		
+		
 		Page<Course> onePage = courseService
 				.findTeacherCourseByUserAndPublish(pageNumber, pageSize, user,
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);

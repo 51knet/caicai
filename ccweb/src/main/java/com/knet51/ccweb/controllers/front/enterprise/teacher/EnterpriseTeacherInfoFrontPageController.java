@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.AnnoPhoto;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.EnterpriseTeacher;
 import com.knet51.ccweb.jpa.entities.User;
@@ -75,6 +76,15 @@ public class EnterpriseTeacherInfoFrontPageController {
 						GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
 		model.addAttribute("courseList", courseList);
 		model.addAttribute("courseCount", courseList.size());
+		Page<Announcement> annoPage = announcementService
+				.findAllAnnoByUser(0, 4, user);
+		model.addAttribute("annolist", annoPage.getContent());
+		List<Announcement> annoList = announcementService
+				.findAllByUid(user_id);
+		model.addAttribute("annoCount", annoList.size());
+		List<AnnoPhoto> annoPhoto = annoPhotoService
+				.findAnnoPhotoByUserid(user.getId());
+		model.addAttribute("annoPhoto", annoPhoto);
 
 		List<CourseType> cTypeList = courseTypeService.findAll();
 		model.addAttribute("cTypeList", cTypeList);
