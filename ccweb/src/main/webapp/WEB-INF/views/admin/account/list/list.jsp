@@ -34,7 +34,7 @@
 		<div style="text-align: right;">
 			<a href='<c:url value="/admin/withdraws/list"></c:url>' style="margin-bottom: 10px; margin-right: 5px;"class="btn">
 				申请提现</a> <a href='<c:url value="/admin/recharge/create"></c:url>' style="margin-bottom: 10px;"class="btn">账户充值</a><br>
-			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
+			<table <c:if test="${sessionUserInfo== user }"> class="blue" </c:if> <c:if test="${sessionUserInfo != user }"> class="yellow" </c:if>  id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
 					<tr>
 						<th  align="center">充值卡号</th>

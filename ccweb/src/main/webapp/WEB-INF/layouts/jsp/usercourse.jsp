@@ -10,6 +10,7 @@
 body {
 	background-position: center top;
 	background-repeat: repeat-y;
+	background-color: #edf1e0;
 	}
 .navbar {
 	margin-bottom: 0px;

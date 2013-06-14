@@ -8,19 +8,16 @@
 	<jsp:include page="/WEB-INF/layouts/jsp/common/_html_head.jsp"></jsp:include>
 	<style type="text/css" media="screen">
 		@import url("<c:url value="/resources/css/admin-layout.css"/>");
-		body {
-		background-image: url("<c:url value='/resources/img/default/front_bg.png'/>");
-		background-position: top center;
-		background-repeat: repeat-y;
-		background-color: #929294;
+		body{
+			background-color: #edf1e0;
 		}
 	</style>
 </head>
-<body class="admin">
+<body class="admin" >
 	<tiles:insertAttribute name="top-navbar" />
 	<!-- /top-navbar -->
-	<div class="container-fluid block-with-bg">
-		<div class="container-fluid content-centered">
+	<div class="container-fluid"  >
+		<div class="container-fluid content-centered" >
 			<div class="row-fluid">
 				<tiles:insertAttribute name="banner" />
 			</div>
@@ -33,7 +30,7 @@
 					</div>
 				</div>
 				<!--/span-->
-				<div class="span9" style="background-color: #ffffff;">
+				<div class="span9" style="background-color: #fff; border: 1.5px solid #eed593;">
 					<div class="right-panel">
 						<tiles:insertAttribute name="flash" />
 						<tiles:insertAttribute name="right" />

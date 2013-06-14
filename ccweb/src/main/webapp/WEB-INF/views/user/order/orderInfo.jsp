@@ -32,7 +32,7 @@
 	</div>
 	<div class="content">
 		<div style="text-align: right;">
-			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
+			<table <c:if test="${sessionUserInfo== user }"> class="blue" </c:if> <c:if test="${sessionUserInfo != user }"> class="yellow" </c:if>  id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
 					<tr>
 						<th  align="center">订单号</th>

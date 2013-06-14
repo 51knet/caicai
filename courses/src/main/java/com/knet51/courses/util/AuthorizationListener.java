@@ -54,8 +54,8 @@ public class AuthorizationListener implements Filter {
 		String k_url = "";
 		BufferedReader br;
 		urlFilePath = session.getServletContext().getRealPath("/");
-		urlFilePath += "resources\\url\\knet_url.property";
-//		urlFilePath += "resources\\url\\localccweb_url.property";
+		//		urlFilePath += "resources\\url\\knet_url.property";
+		urlFilePath += "resources\\url\\localccweb_url.property";
 		try {
 			br = new BufferedReader(new InputStreamReader(new FileInputStream(
 					urlFilePath), "utf-8"));

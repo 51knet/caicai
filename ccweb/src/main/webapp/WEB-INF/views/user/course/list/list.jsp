@@ -5,6 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <style>
+
 .row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
@@ -20,7 +21,7 @@
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
-.row-fluid.custom .row1 {
+.row-fluid.custom .content {
 	margin: 20px 40px;
 }
 </style>
@@ -28,9 +29,9 @@
 	<div class="row" >
 		<h4>我的课程</h4>
 	</div>
-	<div class="row1">	
+	<div class="content">	
 		<div style="text-align: left;">
-			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
+			<table class="yellow" id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
 					<tr>
 						<th align="center" width="30%">课程标题</th>
@@ -55,16 +56,15 @@
 						</td>
 						<td align="center">${course.cType.typeName}</td>
 						<td align="center">
-							<c:if test="${course.publish ==2 }">已下架</c:if>
 							<c:if test="${course.publish ==3 }">已上架</c:if>
-							<c:if test="${course.publish ==1 }">已下架</c:if>
+							<c:if test="${course.publish <3 }">已下架</c:if>
 						</td>
 						<td align="center"> ${course.user.name }</td>
 						<td align="center">${course.courseDate}</td></tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			<div class="row1"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 		</div>
 	</div>
 </div>

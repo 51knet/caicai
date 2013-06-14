@@ -29,23 +29,24 @@ table.blue td{
 
 
 
-table.t2{
-	border:1px solid #9db3c5;
+table.yellow{
+	border:1px solid #f2cc81;
 	color:#666;
 	font-size: 13px;
 }
-table.t2 th {
-	background-image: url(th_bg2.gif);
-	background-repeat::repeat-x;
+table.yellow th {
+	/*background-image: url(th_bg2.gif);
+	background-repeat::repeat-x;*/
 	color:#fff;
-	border:1px solid #a7d1fd;
-	
+	border:1px solid #f2cc81;
+	background-color: #f2cc81;
+	font-size: 14px;
 }
-table.t2 td{
-	border:1px dotted #a7d1fd;
+table.yellow td{
+	border:1px dotted #f2cc81;
 }
 
-table.t2 tr.a1{
+table.yellow tr.a1{
 	background-color:#e8f3fd;
 	font-size: 13px;
 }

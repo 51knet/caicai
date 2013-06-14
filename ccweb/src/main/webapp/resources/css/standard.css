@@ -140,19 +140,16 @@ textarea {
 body.admin {
 	max-width: 1680px;
 	width: 100%;
-	background-image: url(/ccweb/resources/img/default/front_bg.png);
+	/*background-image: url(/ccweb/resources/img/default/front_bg.png);*/
+	/*background-color: #929294;*/
 	background-position: center top;
 	background-repeat: repeat-y;
-	background-color: #929294;
-	
 }
 .admin .container-fluid {
 	padding-right: 0px;
 	padding-left: 0px;
 }
-.admin .container-fluid.block-with-bg {
-	background: url(/ccweb/resources/img/admin_bg.jpg) repeat;
-}
+
 .admin .container-fluid.content-centered {
 	min-width: 1024px;
 	max-width: 1024px;
@@ -166,4 +163,5 @@ body.admin {
 	-moz-border-radius: 5px;
 	/*background-color: #ccdfa8;*/
 }
+
 /*END style-for-admin-pages*/

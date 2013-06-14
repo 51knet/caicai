@@ -69,7 +69,7 @@
 									<c:if test="${course.user.role == 'enterprise'}">
 										企业名称：${course.user.name } <br><br>
 									</c:if>
-									<a style="margin-top: 10px;" href='<c:url value="/course/study/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
+									<a style="margin-top: 10px;" href='<c:url value="${url }/admin/mycourse/view/${course.id}"></c:url>' class="btn  btn-success">点击学习</a>
 								</div>
 							</td>
 						</tr>

@@ -78,8 +78,6 @@ public class UserCourseController {
 		Page<UserCourse> mycourse = userCourseService.findByUserid(pageNumber,
 				pageSize, userInfo.getId());
 		for (int i = 0; i < mycourse.getContent().size(); i++) {
-			logger.info("====== show usercourse id"
-					+ mycourse.getContent().get(i).getTeachercourseid());
 			Course course = courseService.findOneById(mycourse.getContent()
 					.get(i).getTeachercourseid());
 			userCourseList.add(course);

@@ -6,43 +6,43 @@
 
 <tiles-definitions>
 
-	<definition name="admin.user.details" extends="admin-layout">
+	<definition name="admin.user.details" extends="user-admin-layout">
 		<put-attribute name="title" value="账号信息" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/user/account/accountInfo.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.user" extends="admin-layout">
+	<definition name="admin.user" extends="user-admin-layout">
 		<put-attribute name="title" value="用户中心" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/user/home/home.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.user.mycourse.list" extends="admin-layout">
+	<definition name="admin.user.mycourse.list" extends="user-admin-layout">
 		<put-attribute name="title" value="课程" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/user/course/list/list.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.user.order.list" extends="admin-layout">
+	<definition name="admin.user.order.list" extends="user-admin-layout">
 		<put-attribute name="title" value="订单信息" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/user/order/orderInfo.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.user.account.list" extends="admin-layout">
+	<definition name="admin.user.account.list" extends="user-admin-layout">
 		<put-attribute name="title" value="账户管理" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/account/list/list.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.user.account.recharge.new" extends="admin-layout">
+	<definition name="admin.user.account.recharge.new" extends="user-admin-layout">
 		<put-attribute name="title" value="账户管理" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/account/recharge/new/create.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.user.withdraws.list" extends="admin-layout">
+	<definition name="admin.user.withdraws.list" extends="user-admin-layout">
 		<put-attribute name="title" value="账户管理" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/withdrawsapply/list/list.jsp"></put-attribute>
