@@ -28,29 +28,10 @@
 
 <div class="row-fluid custom round">
 	<div  class="row" >
-		<h4>订单管理</h4>
+		<h4>订单详情</h4>
 	</div>
 	<div class="content">
-		<div style="text-align: right;">
-			<table <c:if test="${sessionUserInfo== user }"> class="blue" </c:if> <c:if test="${sessionUserInfo != user }"> class="yellow" </c:if>  id="mytab" cellpadding="7" width=100%  border=0>
-				<thead>
-					<tr>
-						<th  align="center">订单号</th>
-						<th  align="center">订单状态</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${page.content}" var="page">
-						<tr>
-							<td align="center">${page.id}</td>
-							<td align="center">${page.status}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
-			<br />
-		</div>
+		订单详情
 	</div>	
 </div>
 

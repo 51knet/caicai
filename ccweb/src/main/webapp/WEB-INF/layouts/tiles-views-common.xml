@@ -51,4 +51,11 @@
 		<put-attribute name="footer" value="" />
 	</definition>
 	
+	<definition name="admin.order.detail" extends="homepage-layout">
+		<put-attribute name="title" value="支付页面" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/order/orderDetail.jsp"></put-attribute>
+		<put-attribute name="footer" value="" />
+	</definition>
+	
 </tiles-definitions>

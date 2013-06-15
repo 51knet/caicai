@@ -369,7 +369,7 @@
 	<definition name="admin.teacher.order.list" extends="admin-layout">
 		<put-attribute name="title" value="订单信息" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/user/order/orderInfo.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/order/orderList.jsp"></put-attribute>
 	</definition>
 
 

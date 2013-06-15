@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,5 +34,12 @@ public class UserOrderController {
 		Page<UserOrder> myOrder = orderService.findOrderByUser(pageNumber, pageSize, user);
 		model.addAttribute("page", myOrder);
 		return "admin."+user.getRole()+".order.list";
+	}
+	
+	@RequestMapping(value="/admin/order/view/{orderId}")
+	public String orderDetail(HttpSession session,Model model ,@PathVariable Long orderId){
+		UserOrder userOder = orderService.findOne(orderId);
+		model.addAttribute("userOrder", userOder);
+		return "admin.order.detail";
 	}
 }

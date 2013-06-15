@@ -87,7 +87,7 @@
 				<a href="#" style="margin-right: 5px;"><img src='<c:url value="/resources/img/default/front/epre.png"></c:url>'  /></a>
 				<c:choose>
 					<c:when test="${course.price != 0 }">
-						<a  href='<c:url value="/course/pay/view/${course.id}"></c:url>'><img src='<c:url value="/resources/img/default/front/ebuy.png"></c:url>'  /></a>
+						<a  href='<c:url value="/course/cart/view/${course.id}"></c:url>'><img src='<c:url value="/resources/img/default/front/ebuy.png"></c:url>'  /></a>
 					</c:when>
 					<c:otherwise>
 						<a  href='<c:url value="/course/study/buy/${course.id}"></c:url>'><img src='<c:url value="/resources/img/default/front/ebuy.png"></c:url>'   /></a>
