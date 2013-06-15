@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -26,7 +25,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
-import com.knet51.ccweb.jpa.entities.UserOrder;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
@@ -291,48 +289,6 @@ public class UserCourseController {
 			@Valid UserCourseForm userCourseForm, BindingResult result) {
 		logger.info("==== into commentajax controller ===");
 		return AjaxValidationEngine.process(result);
-	}
-
-	/**
-	 * show pay view
-	 * 
-	 * @param course_id
-	 * @return
-	 */
-	@RequestMapping(value = "/course/pay/view/{course_id}")
-	public String showPayPage(@PathVariable Long course_id, Model model,
-			HttpSession session, HttpServletRequest request) {
-		boolean paySuccessful = false;
-		String password = "";
-		String enterPassword = request.getParameter("password");
-		model.addAttribute("courseId", course_id);
-		UserInfo userInfo = (UserInfo) session
-				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		User user;
-		if (userInfo != null) {
-			user = userService.findByEmailAddress(userInfo.getEmail());
-			password = user.getPassword();
-			UserCourse userCourse = userCourseService
-					.findByTeachercourseidAndUserid(course_id,
-							userInfo.getId());
-			
-			if (userCourse == null) {
-				if (password.equals(enterPassword)) {
-					userCourse = new UserCourse();
-					userCourse.setTeachercourseid(course_id);
-					userCourse.setUserid(userInfo.getId());
-					userCourseService.save(userCourse);
-					UserOrder userOrder = new UserOrder(user, course_id.toString());
-					userOrder.setStatus("完成");
-					orderService.createOrder(userOrder);
-					paySuccessful = true;
-				}
-			}else{
-				paySuccessful = true;
-			}
-		}
-		model.addAttribute("paySuccessful", paySuccessful);
-		return "course.pay.view";
 	}
 
 	/**
