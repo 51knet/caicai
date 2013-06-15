@@ -93,6 +93,7 @@ body {
 		<h4>支付页面</h4>
 	</div>
 	<div class="container course detail desc">支付页面</div>
+	<div>这里是支付的页面，也就是毛妹子切的“支付宝页面，目前model没有传啥东西过来，需要的话去@RequestMapping(value = "/course/pay/view/{course_id}")”加一下</div>
 	<div>
 		<h3>${sessionUserInfo.name}</h3>
 		<h3>${courseId}</h3>

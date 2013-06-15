@@ -40,7 +40,21 @@
 	<definition name="course.pay.view" extends="homepage-layout">
 		<put-attribute name="title" value="支付页面" />
 		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
-		<put-attribute name="body" value="/WEB-INF/views/_shared/pay.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/pay/pay.jsp"></put-attribute>
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<definition name="course.cart.view" extends="homepage-layout">
+		<put-attribute name="title" value="支付页面" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pay/cart.jsp"></put-attribute>
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<definition name="admin.order.detail" extends="homepage-layout">
+		<put-attribute name="title" value="支付页面" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/order/orderDetail.jsp"></put-attribute>
 		<put-attribute name="footer" value="" />
 	</definition>
 	

@@ -1,0 +1,99 @@
+package com.knet51.ccweb.controllers.admin.user.courses;
+
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.UserOrder;
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.courses.UserCourse;
+import com.knet51.ccweb.jpa.services.CourseResourceService;
+import com.knet51.ccweb.jpa.services.CourseService;
+import com.knet51.ccweb.jpa.services.OrderService;
+import com.knet51.ccweb.jpa.services.UserCourseService;
+import com.knet51.ccweb.jpa.services.UserService;
+
+@Controller
+public class UserPayController {
+
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private CourseService courseService;
+	@Autowired
+	private UserCourseService userCourseService;
+	@Autowired
+	private CourseResourceService courseResourceService;
+	@Autowired
+	private OrderService orderService;
+
+	@RequestMapping(value = "/course/pay/view/{order_id}")
+	public String payPage(@PathVariable Long order_id, Model model,
+			HttpSession session, HttpServletRequest request) {
+		boolean paySuccessful = false;
+		UserOrder userOrder = orderService.findOne(order_id);
+		Long course_id = Long.valueOf(userOrder.getCourseId());
+		String password = "";
+		String enterPassword = request.getParameter("password");
+		model.addAttribute("courseId", course_id);
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		User user;
+		if (userInfo != null) {
+			user = userService.findByEmailAddress(userInfo.getEmail());
+			password = user.getPassword();
+			UserCourse userCourse = userCourseService
+					.findByTeachercourseidAndUserid(course_id,
+							userInfo.getId());
+			if (userCourse == null) {
+				if (password.equals(enterPassword)) {
+					userCourse = new UserCourse();
+					userCourse.setTeachercourseid(course_id);
+					userCourse.setUserid(userInfo.getId());
+					userCourseService.save(userCourse);
+					userOrder.setStatus("完成");
+					userOrder = orderService.updateOrder(userOrder);
+					paySuccessful = true;
+				}
+			}else{
+				paySuccessful = true;
+			}
+		}
+		model.addAttribute("paySuccessful", paySuccessful);
+		return "course.pay.view";
+	}
+
+	@RequestMapping(value = "/course/cart/view/{course_id}")
+	public String cartPage(@PathVariable Long course_id, Model model,
+			HttpSession session, HttpServletRequest request) {
+		model.addAttribute("courseId", course_id);
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		User user;
+		if (userInfo != null) {
+			user = userService.findByEmailAddress(userInfo.getEmail());
+			UserCourse userCourse = userCourseService
+					.findByTeachercourseidAndUserid(course_id,
+							userInfo.getId());
+			if (userCourse == null) {
+					UserOrder userOrder = new UserOrder(user, course_id.toString());
+					userOrder.setStatus("未支付");
+					userOrder = orderService.createOrder(userOrder);
+					model.addAttribute("orderId", userOrder.getId().toString());
+					return "course.cart.view";
+			}else{
+				return "redirect:/";
+			}
+		}else{
+			return "redirect:/";
+		}
+	}
+}
