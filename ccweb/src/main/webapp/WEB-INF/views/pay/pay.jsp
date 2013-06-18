@@ -8,109 +8,68 @@
 </script>
 <style>
 body {
-	background-color: #FFFFFF;
+	background-color: #edf1e0;
+	margin: 0 auto;
+}
+.container{
+	margin: 40px 0px 20px 0px;
+}
+.container .content{
+	margin: 50px 10px 0px 10px;
+	background-color: #FFF;
+	padding:20px 20px 20px 20px;
+	border: 1px solid #e28f03;
+	border-bottom: 2px solid #e28f03;
+}
+.container .content >table{
+	width:100%;
+
+}
+.container .content >table .content{
+	font-size: 15px;
+	color: #929292;
+}
+.container .content >table >thead >tr >th >img{
+	width: 100px; height: 100px; float: left;
+}
+.container .title{
+	margin: 30px 30px 0px 30px;
+	border-bottom: 1px solid #e28f03;
 }
 
-.container.course {
-	text-align: left;
+.container .sub{
+	margin: 30px 30px 0px 30px;
 }
 
-.container.course .row {
-	margin-left: 0px;
-}
-
-.container.course.detail {
-	width: 100%;
-}
-
-.container.course.detail.desc {
-	margin-left: 70px;
-	padding: 20px;
-	width: 83.5%;
-}
-
-.container.course.detail.desc .content {
-	margin-left: 40px;
-}
-
-.container.course.title {
-	height: 240px;
-	width: 1024px;
-	margin-bottom: 15px;
-	background-image: url('<c:url value='/ resources/ img/ default/ courseInfo.png '></c:url>');
-	background-repeat: repeat-x;
-	margin-top: 2px;
-}
-
-.container.course.content {
-	width: 37%;
-	text-align: left;
-	float: left;
-	margin-top: 32px;
-	margin-left: 70px;
-}
-
-.nar {
-	font-size: 16px;
-	color: #adcc75;
-	height: 40px;
-}
-
-.nar>h4 {
-	color: #80b029;
-	border-bottom: solid #cccccc 1.5px;
-	padding-bottom: 10px;
-	padding-left: 88px;
-}
-
-.cont {
-	margin-left: 90px;
-	margin-bottom: 43px;
-	padding-top: 20px;
-}
-
-.cont .top {
-	font-size: 14px;
-	background-color: #cccccc;
-	padding: 3px;
-}
-
-.comments-container .content {
-	border-bottom: 1px dashed;
-	text-align: left;
-	margin-left: -1px;
-	width: 100%
-}
-
-.comments-container h5 {
-	padding: 5px;
-	text-align: left;
-	padding-left: 88px;
-}
 </style>
-<div>
-	<div class="nar">
-		<h4>支付页面</h4>
+<div class="container">
+	<img src='<c:url value="/resources/img/pay/pay2.png"></c:url>' /><br>
+	<div class="content">
+		<table cellpadding="10" >
+			<thead>
+				<tr >
+					<th  width="20%"><img src="<c:url value='${seller.photo_url }'></c:url>" style="float: right;"  /> </th>
+					<th align="left" valign="bottom" width="10%" style="font-size: 17px; color: #e28f03"> ${seller.name }</th>
+					<th  align="left" valign="bottom" width="60%"  style="font-size: 22px;" >课程名称：${course.courseName }</th>
+					<th  align="center" valign="bottom"  >&nbsp; </th>
+					<th align="center" valign="bottom" width="10%"><span style="font-size: 17px; color: #e28f03">${course.price }</span> 元</th>
+				</tr>
+			</thead>
+		</table>
 	</div>
-	<div class="container course detail desc">支付页面</div>
-	<div>这里是支付的页面，也就是毛妹子切的“支付宝页面，目前model没有传啥东西过来，需要的话去@RequestMapping(value = "/course/pay/view/{course_id}")”加一下</div>
-	<div>
-		<h3>${sessionUserInfo.name}</h3>
-		<h3>${courseId}</h3>
+	<div class="title">
+			输入登录密码进行验证
 	</div>
-	<c:if test="${ paySuccessful }">
-	${ paySuccessful }
-		支付成功
-	</c:if>
-	<c:if test="${ !paySuccessful }">
-	${ paySuccessful }
-	<form  method="post">
-		<input type=text id="password" name="password" /> 
-		<input type=submit>
-	</form>
-	</c:if>
-	
+	<div class="sub">
+		<c:if test="${ !paySuccessful }">
+			<form class="form-inline"  method="post">
+				<input type=text id="password" name="password" /> 
+				<input type="submit" class="btn btn-success" value="提交" />
+			</form>
+		</c:if>
+		<c:if test="${paySuccessful }">
+			<a href='<c:url value="/admin/mycourse/view/${course.id }"></c:url>' > 购买成功，点击开始学习</a>
+		</c:if>
+	</div>
+
 </div>
-
-
-

@@ -52,7 +52,7 @@
 			<li><a href="<c:url value="/admin/blog/list?type=garbage"></c:url>">回收站</a></li>
 		</ul></li>
 		<!-- <li><a href='<c:url value="/admin/friendsRelated/list"></c:url>' >好友互动</a></li> -->
-		<li><a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >账号信息</a></li>
+		<li><a href='<c:url value="/admin/details"><c:param name="active" value="photo" /></c:url>' >账号信息</a></li>
 		<li><a href='<c:url value="/admin/account/list"></c:url>' >账户管理</a></li>
 		<!-- <li><a href='<c:url value="/admin/order/list"></c:url>' >订单管理</a></li> -->
 		<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li>

@@ -9,11 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.UserOrder;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.CourseService;
@@ -35,12 +37,16 @@ public class UserPayController {
 	@Autowired
 	private OrderService orderService;
 
-	@RequestMapping(value = "/course/pay/view/{order_id}")
+	@RequestMapping(value = "/course/pay/view/{order_id}", method = RequestMethod.POST)
 	public String payPage(@PathVariable Long order_id, Model model,
 			HttpSession session, HttpServletRequest request) {
 		boolean paySuccessful = false;
 		UserOrder userOrder = orderService.findOne(order_id);
 		Long course_id = Long.valueOf(userOrder.getCourseId());
+		Course course = courseService.findOneById(course_id);
+		User seller = course.getUser();
+		model.addAttribute("course", course);
+		model.addAttribute("seller", seller);
 		String password = "";
 		String enterPassword = request.getParameter("password");
 		model.addAttribute("courseId", course_id);
@@ -75,6 +81,8 @@ public class UserPayController {
 	public String cartPage(@PathVariable Long course_id, Model model,
 			HttpSession session, HttpServletRequest request) {
 		model.addAttribute("courseId", course_id);
+		Course course = courseService.findOneById(course_id);
+		User seller = course.getUser();
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user;
@@ -87,6 +95,8 @@ public class UserPayController {
 					UserOrder userOrder = new UserOrder(user, course_id.toString());
 					userOrder.setStatus("未支付");
 					userOrder = orderService.createOrder(userOrder);
+					model.addAttribute("course", course);
+					model.addAttribute("seller", seller);
 					model.addAttribute("orderId", userOrder.getId().toString());
 					return "course.cart.view";
 			}else{

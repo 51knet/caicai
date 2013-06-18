@@ -302,39 +302,39 @@ public class UserCourseController {
 	@RequestMapping(value = "/course/study/buy/{course_id}")
 	public String BuyCourseDetail(@PathVariable Long course_id, Model model,
 			HttpSession session) {
-		Course course = courseService.findOneById(course_id);
+//		Course course = courseService.findOneById(course_id);
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if (userInfo == null) {
 			return "redirect:/";
 		}
-		if (course.getPrice().intValue() > 0) {
-			return "redirect:/course/pay/view/" + course_id;
-		}
-		UserCourse userCourse = userCourseService
-				.findByTeachercourseidAndUserid(course_id, userInfo.getId());
-		if (userCourse == null) {
-			userCourse = new UserCourse();
-			userCourse.setTeachercourseid(course_id);
-			userCourse.setUserid(userInfo.getId());
-			userCourseService.save(userCourse);
-		}
-		List<CourseResource> listResource = courseResourceService
-				.getAllCourseResourceByCourseIdAndStatus(course_id,
-						GlobalDefs.STATUS_COURSE_RESOURCE);
-		List<CourseResource> courseList = new ArrayList<CourseResource>();
-		Map<Integer, List<CourseResource>> courseMap = new TreeMap<Integer, List<CourseResource>>();
-		int resourceOrder = 0;
-		for (CourseResource courseResource : listResource) {
-			resourceOrder = courseResource.getLessonNum();
-			courseList = courseResourceService
-					.getResourceByLessonNumAndCourseId(resourceOrder, course_id);
-			courseMap.put(resourceOrder, courseList);
-		}
-		model.addAttribute("courseMap", courseMap);
-		model.addAttribute("course", course);
-		model.addAttribute("resourceCount", listResource.size());
-		return "course.study.view";
+//		if (course.getPrice().intValue() > 0) {
+//			return "redirect:/course/pay/view/" + course_id;
+//		}
+//		UserCourse userCourse = userCourseService
+//				.findByTeachercourseidAndUserid(course_id, userInfo.getId());
+//		if (userCourse == null) {
+//			userCourse = new UserCourse();
+//			userCourse.setTeachercourseid(course_id);
+//			userCourse.setUserid(userInfo.getId());
+//			userCourseService.save(userCourse);
+//		}
+//		List<CourseResource> listResource = courseResourceService
+//				.getAllCourseResourceByCourseIdAndStatus(course_id,
+//						GlobalDefs.STATUS_COURSE_RESOURCE);
+//		List<CourseResource> courseList = new ArrayList<CourseResource>();
+//		Map<Integer, List<CourseResource>> courseMap = new TreeMap<Integer, List<CourseResource>>();
+//		int resourceOrder = 0;
+//		for (CourseResource courseResource : listResource) {
+//			resourceOrder = courseResource.getLessonNum();
+//			courseList = courseResourceService
+//					.getResourceByLessonNumAndCourseId(resourceOrder, course_id);
+//			courseMap.put(resourceOrder, courseList);
+//		}
+//		model.addAttribute("courseMap", courseMap);
+//		model.addAttribute("course", course);
+//		model.addAttribute("resourceCount", listResource.size());
+		return "redirect:/course/cart/view/" + course_id;
 	}
 
 }

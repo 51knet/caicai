@@ -48,6 +48,7 @@ public class User extends AbstractEntity {
 	private String msn;
 	private String isadmin;
 	private String forbidden;
+	private Long banner_id;
 	
 	private String photo_url;
 	public User(String email, String password,
@@ -108,6 +109,17 @@ public class User extends AbstractEntity {
 	public String getName() {
 		return name;
 	}
+	
+
+	public Long getBanner_id() {
+		return banner_id;
+	}
+
+
+	public void setBanner_id(Long banner_id) {
+		this.banner_id = banner_id;
+	}
+
 
 	public void setName(String name) {
 		this.name = name;

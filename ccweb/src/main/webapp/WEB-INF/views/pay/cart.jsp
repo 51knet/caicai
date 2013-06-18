@@ -8,89 +8,73 @@
 </script>
 <style>
 body {
-	background-color: #FFFFFF;
+	background-color: #edf1e0;
+	margin: 0 auto;
 }
-
-.container.course {
-	text-align: left;
+.container{
+	margin: 40px 0px 20px 0px;
 }
-
-.container.course .row {
-	margin-left: 0px;
+.container .content{
+	margin: 50px 10px 0px 10px;
 }
-
-.container.course.detail {
+.container .content >table{
 	width: 100%;
 }
-
-.container.course.detail.desc {
-	margin-left: 70px;
-	padding: 20px;
-	width: 83.5%;
+.container .content >table .content{
+	font-size: 15px;
+	color: #929292;
 }
-
-.container.course.detail.desc .content {
-	margin-left: 40px;
-}
-
-.container.course.title {
-	height: 240px;
-	width: 1024px;
-	margin-bottom: 15px;
-	background-image: url('<c:url value='/ resources/ img/ default/ courseInfo.png '></c:url>');
-	background-repeat: repeat-x;
-	margin-top: 2px;
-}
-
-.container.course.content {
-	width: 37%;
-	text-align: left;
+.container .content >table >thead >tr >th .seller{
+	font-size: 17px;
+	color: #000;
 	float: left;
-	margin-top: 32px;
-	margin-left: 70px;
+	margin:80px 0px 0px 10px;
 }
-
-.nar {
+.container .content >table >thead >tr >th{
+	background-image: url('<c:url value="/resources/img/pay/payline.png"></c:url>');
+	background-position: bottom center;
+	background-repeat: no-repeat;
+}
+.container .content >table >thead >tr >th >img{
+	width: 100px; height: 100px; float: left;
+}
+.container .content >table >tbody .bline{
+	border-bottom: 2px solid #f3dbb5;
 	font-size: 16px;
-	color: #adcc75;
-	height: 40px;
 }
-
-.nar>h4 {
-	color: #80b029;
-	border-bottom: solid #cccccc 1.5px;
-	padding-bottom: 10px;
-	padding-left: 88px;
-}
-
-.cont {
-	margin-left: 90px;
-	margin-bottom: 43px;
-	padding-top: 20px;
-}
-
-.cont .top {
-	font-size: 14px;
-	background-color: #cccccc;
-	padding: 3px;
-}
-
-.comments-container .content {
-	border-bottom: 1px dashed;
-	text-align: left;
-	margin-left: -1px;
-	width: 100%
-}
-
-.comments-container h5 {
-	padding: 5px;
-	text-align: left;
-	padding-left: 88px;
+.container .sub{
+	float: right;
+	margin: 10px 0px 0px 0px;
 }
 </style>
-	<div class="nar">
-		<h4>支付页面,包括课程信息啥的，具体看毛妹子给的页面。这个页面是从/course/cart/view/{course_id}这个controller里面跳过来的，完了以后跳/course/pay/{order_id}这个controller就行。model里面放了courseId和orderId。</h4>
+<div class="container">
+	<img src='<c:url value="/resources/img/pay/pay1.png"></c:url>' /><br>
+	<div class="content">
+		<table cellpadding="10" >
+			<thead>
+				<tr >
+					<th align="left" valign="bottom" width="25%"><img src="<c:url value='${seller.photo_url }'></c:url>"  /> <div class="seller">${seller.name }</div></th>
+					<th class="content"  align="center" valign="bottom" width="25%">课程名称</th>
+					<th class="content" align="center" valign="bottom"  width="25%">课程类别</th>
+					<th class="content" align="center" valign="bottom">价格</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="bline">
+					<td valign="top">	<img src="<c:url value='${course.courseCover }'></c:url>" style="width: 150px; height: 100px;" /></td>
+					<td valign="top">${course.courseName }</td>
+					<td valign="top">${ course.cType.typeName}</td>
+					<td valign="top">${course.price }</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
+	<div class="sub">
+		<form  method="post" action='<c:url value="/course/pay/view/${orderId}" ></c:url>'>
+			<input type="submit" class="btn btn-success"  value="确认提交"/>
+		</form>
+	</div>
+</div>
 
 
 
