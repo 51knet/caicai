@@ -43,7 +43,12 @@ body {
 
 </style>
 <div class="container">
-	<img src='<c:url value="/resources/img/pay/pay2.png"></c:url>' /><br>
+	<c:if test="${ !paySuccessful }">
+		<img src='<c:url value="/resources/img/pay/pay2.png"></c:url>' /><br>
+	</c:if>
+	<c:if test="${paySuccessful }">
+		<img src='<c:url value="/resources/img/pay/pay3.png"></c:url>' /><br>
+	</c:if>
 	<div class="content">
 		<table cellpadding="10" >
 			<thead>
