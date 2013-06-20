@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script type="text/javascript" src="<c:url value="/resources/jquery/loginCheck.js" />"></script>
 <style>
 .row-fluid.custom {
@@ -51,6 +52,7 @@
 						<th  align="center" width="15%">角色</th>
 						<th  align="center" >电话</th>
 						<th  align="center" >邮箱</th>
+						<th  align="center" >注册时间</th>
 						<th  align="center" width="20%">操作</th>
 					</tr>
 				</thead>
@@ -73,6 +75,9 @@
 									</td>
 									<td align="center" >
 										<a href="mailto:${user.email }">${user.email }</a>
+									</td>
+									<td align="center" >
+										${user.register_date}
 									</td>
 									<td align="center" >
 										<c:if test="${user.forbidden=='yes' }"><a href='<c:url value="/admin/caicai/detail/${user.id}/free"></c:url>' >解禁</a></c:if>

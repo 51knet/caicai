@@ -45,8 +45,8 @@ $(document).ready(function() {
 	<div class="content">
 		<div style="padding-bottom: 10px; text-align: right;">  
 			<form class="navbar-form" action="<c:url value="/admin/caicai/resource/search"></c:url>" method="post">
-					 <input type="text" name="searchParam" class="span5" placeholder="输入公告标题搜索"  value="${searchParam }">
-					 <button type="submit" class="btn" style=" margin-top:4px;font-family:Arial,'Microsoft YaHei'; color: #808080; ">标题搜索</button>
+					 <input type="text" name="searchParam" class="span5" placeholder="输入文件名搜索"  value="${searchParam }">
+					 <button type="submit" class="btn" style=" margin-top:4px;font-family:Arial,'Microsoft YaHei'; color: #808080; ">文件名搜索</button>
 			</form>
 		</div>
 		<div style="text-align: right;">
