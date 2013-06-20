@@ -102,6 +102,9 @@
 										<a href="mailto:${page.email }">${page.email }</a>
 									</td>
 									<td align="center" >
+										${page.register_date}
+									</td>
+									<td align="center" >
 										<c:if test="${page.forbidden=='yes' }"><a href='<c:url value="/admin/caicai/detail/${page.id}/free"></c:url>' >解禁</a></c:if>
 										<c:if test="${page.forbidden== null }"><a href='<c:url value="/admin/caicai/detail/${page.id}/forbid"></c:url>' >禁用</a></c:if>
 									</td>
