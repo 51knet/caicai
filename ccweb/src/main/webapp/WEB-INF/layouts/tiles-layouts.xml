@@ -89,7 +89,7 @@
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
 	
-	<definition name="usercourse-layout" template="/WEB-INF/layouts/jsp/usercourse.jsp">
+	<definition name="usercourse-layout" template="/WEB-INF/layouts/jsp/user-course.jsp">
 		<put-attribute name="title" value="我的课程" />
 		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
 		<put-attribute name="banner" value="" /> 

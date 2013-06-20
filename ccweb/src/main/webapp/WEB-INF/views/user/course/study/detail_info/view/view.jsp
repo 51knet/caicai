@@ -7,33 +7,34 @@
 .nar >h4{
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
-	padding-bottom: 5px;
-	padding-left:30px;
+	padding-bottom: 10px;
+	padding-left:20px;
+	margin: 10px 30px 0px 30px;
 }
-.nar_course.desc{
-	margin-left: 25px;
-	padding: 10px;
-	width: 92%;
+.cont{
+	margin: 10px 30px 0px 30px;
+	padding:0px 20px 10px 20px;
+	width: 100%;
 }
 </style>
-<div style="margin-bottom: 200px;">
+<div >
 		<div  class="nar">
 			<h4>课程介绍</h4>
 		</div>
-			<div class="nar_course desc">
-				<c:choose>
-				<c:when test="${course.courseDesc!=null}">
-					${course.courseDesc}
-				</c:when>
-				<c:otherwise>
-					<div>尚未添加</div>
-				</c:otherwise>
-			</c:choose>
-			</div>
-			<div  class="nar">
+		<div class="cont">
+			<c:choose>
+			<c:when test="${course.courseDesc!=null}">
+				${course.courseDesc}
+			</c:when>
+			<c:otherwise>
+				<div>尚未添加</div>
+			</c:otherwise>
+		</c:choose>
+		</div>
+		<div  class="nar">
 			<h4>目标人群</h4>
 		</div>
-			<div class="nar_course desc">
+			<div class="cont">
 				<c:choose>
 				<c:when test="${course.targetPerson!=null}">
 					${course.targetPerson}
@@ -46,7 +47,7 @@
 		<div  class="nar">
 			<h4>课程看点</h4>
 		</div>
-			<div class="nar_course desc">
+			<div class="cont">
 			<c:choose>
 				<c:when test="${course.courseCharacter!=null }">
 					${course.courseCharacter}

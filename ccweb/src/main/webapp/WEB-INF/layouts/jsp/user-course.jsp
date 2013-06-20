@@ -23,14 +23,11 @@ body {
 .container.course {
 	width: 990px;
 	max-width:990px;
-	
 	text-align: center;
 }
 
 .container.course.row{
-     padding-left: 0px;
-	 margin-left: 18%;
-	 margin-top: -180px;
+
 	 text-align: left;
 }
 </style>
@@ -38,31 +35,32 @@ body {
 <body >
 	<tiles:insertAttribute name="top-navbar" />
 	<div class="container-fluid">
-			<div class="container course" style="margin-top: -43px;">
+			<div class="container course">
 				<tiles:insertAttribute name="banner" />
 			</div>
 			<!--/row-->
 			<tiles:insertAttribute name="breadcrumbs" />
-					<div class="container course" style="margin-top: 15px;">
-						<tiles:insertAttribute name="left" />
-					</div>
+				<div class="span2"  style="margin-top: 15px;">
+					<tiles:insertAttribute name="left" />
+				</div>
 				<!--/span-->
-				<div class="container course" >
+				<div class="span10"  style="margin-top: 15px; background-color: #fff; border: 1.5px solid #eed593; width: 810px;" >
 					<div class="container course row"  style="width: 810px;">
 						<tiles:insertAttribute name="right" />
 					</div>
-					<div class="container course row"  style="width: 810px;">
+					<div class="container course row"  style="width: 810px; " >
 						<tiles:insertAttribute name="right_bottom" />
 					</div>
-				</div>	
+				</div>
 				<!--/span-->
 			<!--/row-->
 
 			<br>
 
-			<footer><tiles:insertAttribute name="footer" /></footer>
+			
 
 	</div>
+	<footer><tiles:insertAttribute name="footer" /></footer>
 	<!--/.fluid-container-->
 </body>
 </html>

@@ -13,30 +13,27 @@ $(document).ready(function() {
 });
 </script>
 <style>
+
 .nav-tabs.nav-stacked > li > a {
-border: 1px solid #DDD;
--webkit-border-radius: 0;
--moz-border-radius: 0;
-border-radius: 0;
 text-align: center;
 font-size: medium;
 font-family: 'Microsoft YaHei',Arial;
+color: #df9a1b;
 }
 .nav-tabs > li > a:hover {
-color: #FFF;
+color: #8aa942;
 text-decoration: none;
-background-color: #80B029;
+background-color: #c7daa3;
 }
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
-color: #FFF;
-cursor: default;
+.nav-tabs > .active > a , .nav-tabs > .active > a:hover {
 text-decoration: none;
-background-color: #80B029;
-border: 1px solid #DDD;
-border-bottom-color: transparent;
+background-color: #c7daa3;
+color: #8aa942;
+
 }
+
 .left-menu-container {
-background-color: #ccdfa8;
+background-color: #fff;
 width: 148px;
 }
 .left-menu-container a{

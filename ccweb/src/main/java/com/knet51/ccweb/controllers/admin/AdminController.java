@@ -83,7 +83,7 @@ public class AdminController {
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 
 		if (userInfo != null && userInfo.getRole().equals("user")) {
-			return "redirect:/admin/details?active=avatar";
+			return "redirect:/admin/details?active=photo";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
 			return "redirect:/admin/teacher";
 		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
@@ -231,7 +231,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/banner" , method = RequestMethod.POST)
-	public String updateUserPhoto(@RequestParam("banner") Long banner_id,HttpSession session){
+	public String updateUserBanner(@RequestParam("banner") Long banner_id,HttpSession session){
 		logger.info("#### update user photo Controller ####");
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -240,6 +240,19 @@ public class AdminController {
 		userService.updateUser(user);
 		userInfo.setUser(user);
 		return "redirect:/admin/details?active=banner";
+	}
+	
+	@RequestMapping(value="/admin/photo" , method = RequestMethod.POST)
+	public String updateUserPhoto(@RequestParam("photo") String photo,HttpSession session){
+		logger.info("#### update user photo Controller ####");
+		 String photo_url = "/resources/img/avatar/p"+photo+".jpg";
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		User user = userInfo.getUser();
+		user.setPhoto_url(photo_url);
+		userService.updateUser(user);
+		userInfo.setUser(user);
+		return "redirect:/admin/details?active=photo";
 	}
 	
 	

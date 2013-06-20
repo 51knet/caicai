@@ -3,41 +3,33 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
-.container.course.title{
-	height: 240px;
-	width:1024px;
-	background-image: url('<c:url value='/resources/img/default/carousel_bg.png'></c:url>');
-	background-repeat: repeat-x;
-	margin-top: 35px;
+.container.course.top{
+	height: 200px;
+	background-color:#fff;
+	background-image: url('<c:url value="/resources/img/default/user-course-top-bg.png"></c:url>');
+	background-position: top center;
+	background-repeat: no-repeat;
+	text-align: center;
 }
-.images{
-	margin-top: 40px;
-	margin-left: 100px;
+.container.course.top .content{
+	margin: 20px 20px 0px 20px;
 }
+
 </style>
-<div class="container course title" style="background-color: #f7f7f7; margin-top: 42px;">
+<div class="container course top" >
 	<c:choose>
 		<c:when test="${course != null}">
-		<div class="images">
-	    	<table >
+		<div class="content">
+	    	<table width="100%"  cellpadding="10">
 				<tr>
-				<td  width="30%" align="center"  valign="top" >
-						<c:choose>
-							<c:when test="${course.courseCover != null && course.courseCover != ''}">
-								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 200px; height: 150px;" />
-								</a>
-							</c:when>
-							<c:otherwise>
-								<a href='<c:url value="/course/view/${course.id}"></c:url>'> <img src='<c:url value="/resources/img/logo.png"></c:url>' style="width:200px; height: 150px;" />
-								</a>
-							</c:otherwise>
-						</c:choose>
+					<td  width="30%" align="center"  valign="top" >
+					 <img src='<c:url value="${url }${course.courseCover }"></c:url>' style="width: 200px; height: 150px;" />
 					</td>
 					<td align="left" valign="top" >
-						<div style="margin-left: 20px; float: left;width: 195px;margin-top: -13px;">
+						<div style=" float: left;width: 195px;">
 						<h4>${course.courseName}</h4><h4>${course.cType.typeName }</h4></div>
 					</td>
-					<td width="40%" align="left"  valign="top" style="line-height: 30px;">
+					<td width="30%" align="left"  valign="top" style="line-height: 30px;">
 							<div style="float: left;padding-right: 15px;">
 								<c:choose>
 									<c:when test="${course.user.photo_url != null && course.user.photo_url != ''}">
@@ -50,8 +42,7 @@
 									</c:otherwise>
 								</c:choose>
 							</div>
-							<h4 style="margin-top: -3px;">${course.user.name }</h4>
-						
+							<h4 >${course.user.name }</h4>
 							<a  href='<c:url value="/teacher/${course.user.id}"></c:url>' class="btn  btn-success">查看发布课程</a>
 					</td>
 				</tr>

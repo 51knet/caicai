@@ -8,18 +8,17 @@
 .comments-container .content {
 	border-bottom: 1px dashed;
 	text-align:left;
-	margin-left:88px;
+	margin-left:60px;
 	width: 78.5%;
 }
 
-.comments-container h5 {
+.comments-container >h5 {
 	padding:5px;
 	text-align: left;
-	padding-left:88px;
+	padding-left:75px;
 	color: #80b029;
 }
 </style>
-<div id="comment">
 		<div  class="nar" >
 			<h4>用户评价</h4>
 		</div> 
@@ -52,7 +51,7 @@
 							</c:otherwise>
 						</c:choose>
 				    </span>
-				  	<span style="color:#80b029;margin-left:15px;" >${usercourse.userName} </span>
+				  	<span style="color:#80b029;margin-left:15px; margin-right: 10px;" >${usercourse.userName} </span>
 				    <span style="margin-right: 10px;">评分:${usercourse.userCourse.mark}</span>
 				 	<span  style="margin-right: 10px;"><fmt:formatDate value="${usercourse.userCourse.commentDate}" pattern="yyyy-MM-dd HH:mm"/></span><br/>
 				    
@@ -63,16 +62,14 @@
 				   </c:when>
 				  </c:choose>
 			</c:forEach>
-			 <div style="margin-left: 85px;">
+			 <div style="margin-left: 80px;">
        				 <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
 			 </div>
 			</div>
 			</c:when>
 			<c:otherwise>
-			<div style="margin-left: 88px;margin-top:16px">尚未有课程评论</div>
+			<div style="margin-left: 80px;"><h5>尚未有课程评论</h5></div>
 			</c:otherwise>
 			</c:choose>		
 		</div>
-    
-		
-</div>
+

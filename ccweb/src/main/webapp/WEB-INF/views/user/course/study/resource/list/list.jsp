@@ -3,18 +3,11 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
-.container.courseResource {
-	text-align: left;
-}
-
-.container.courseResource.row {
-	
-}
 
 .cont {
-	margin-left: 30px;
-	margin-bottom: 200px;
-	padding-top: 30px;
+	margin: 0px 30px 0px 30px;
+	padding:0px 20px 10px 20px;
+	width: 100%;
 }
 
 .cont .top {
@@ -24,14 +17,14 @@
 }
 
 .nar{
-	height: 40px;
-	padding-top: 2px;
+	height: 40px;	
 }
 .nar >h4{
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 	padding-bottom: 10px;
-	padding-left:30px;
+	padding-left:20px;
+	margin: 10px 30px 0px 30px;
 }
 </style>
 <script type="text/javascript">
@@ -49,7 +42,7 @@
 	<c:choose>
 		<c:when test="${resourceCount>0 }">
 			<c:forEach var="course" items="${courseMap}" varStatus="status">
-				<table style="width: 89%; border: 2px solid #f1f1f1;">
+				<table style="width: 87%; border: 2px solid #f1f1f1;">
 					<tbody>
 						<tr>
 							<td align="left">
@@ -63,40 +56,43 @@
 												<table style="width: 94%; margin-left: 20px;">
 													<tbody>
 														<tr>
-															<td width="8%"><c:if test="${fileNames.resourceType.id ==1 }">
+															<td width="8%">
+																<c:if test="${fileNames.resourceType.id ==1 }">
 																	<img src='<c:url value="/resources/resourceType/text.jpg"></c:url>' style="width: 40px; height: 40px;" />
-																</c:if> <c:if test="${fileNames.resourceType.id ==2}">
+																</c:if> 
+																<c:if test="${fileNames.resourceType.id ==2}">
 																	<img src='<c:url value="/resources/resourceType/video.jpg"></c:url>' style="width: 40px; height: 40px;" />
-																</c:if></td>
+																</c:if>
+															</td>
 															<td align="left" width="60%"><a href='<c:url value="/course/resource/download/${fileNames.id}"></c:url>'> <span style="margin-left: 0px;">${fileNames.fileName}</span>
 															</a></td>
 															<td align="right" width="30%"><a href='<c:url  value="/course/study/view/resource/${fileNames.id}"></c:url>'><img
-																	src="<c:url  value="/resources/img/courseResource/u173_normal.jpg" ></c:url> "></a></td>
+																	src="<c:url  value="/resources/img/default/u173_normal.jpg" ></c:url> "></a></td>
 															<td>
 															<c:if test="${fileNames.resourceType.id ==2 }">
-															<a href="#myModal_${status.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> <!-- Modal -->
-																	<div id="myModal_${status.index}" class="modal hide fade" style="width:670px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-															  <div class="modal-header">
-															    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-															    <h3 id="myModalLabel">${fileNames.fileName}</h3>
-															  </div>
-															  <div class="modal-body">
-															    <video id="myPlayer_${resourceStatus.index}" class="video-js vjs-default-skin" controls width="640" height="320" 
-																  poster="http://dummyimage.com/640x264/000000/51ff00.jpg&text=loading..." preload="auto" data-setup="{}">
-																  <source type="video/mp4" src='<c:url value="${url}${fileNames.relativePath}"></c:url>'></source>
-																</video>
-
-																<script type="text/javascript">
-																	var myPlayer = _V_("myPlayer_${resourceStatus.index}");
-																	$("#myModal_${status.index}").on('hidden',function(){
-																		myPlayer.pause();
-																	});
-																</script>
-															  </div>
-																	<div class="modal-footer">
-																		<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+																<a href="#myModal_${status.index}" role="button" data-toggle="modal"><i class="icon-play"></i></a> <!-- Modal -->
+																		<div id="myModal_${status.index}" class="modal hide fade" style="width:670px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																  <div class="modal-header">
+																    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+																    <h3 id="myModalLabel">${fileNames.fileName}</h3>
+																  </div>
+																  <div class="modal-body">
+																    <video id="myPlayer_${resourceStatus.index}" class="video-js vjs-default-skin" controls width="640" height="320" 
+																	  poster="http://dummyimage.com/640x264/000000/51ff00.jpg&text=loading..." preload="auto" data-setup="{}">
+																	  <source type="video/mp4" src='<c:url value="${url}${fileNames.relativePath}"></c:url>'></source>
+																	</video>
+	
+																	<script type="text/javascript">
+																		var myPlayer = _V_("myPlayer_${resourceStatus.index}");
+																		$("#myModal_${status.index}").on('hidden',function(){
+																			myPlayer.pause();
+																		});
+																	</script>
+																  </div>
+																		<div class="modal-footer">
+																			<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+																		</div>
 																	</div>
-																</div>
 																</c:if>
 																</td>
 														</tr>

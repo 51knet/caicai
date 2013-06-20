@@ -33,6 +33,7 @@
 			<ul class="nav nav-tabs">
 				<li <c:if test='${active == "photo"}'>class="active"</c:if>><a href="#photo_tab" data-toggle="tab">默认头像</a></li> 
 		    	<li <c:if test='${active == "avatar"}'>class="active"</c:if>><a href="#avatar_tab" data-toggle="tab">修改头像</a></li> 
+		    	<li <c:if test='${active == "banner"}'>class="active"</c:if>><a href="#banner_tab" data-toggle="tab">修改顶图</a></li> 
 		    	<li <c:if test='${active == "psw"}'>class="active"</c:if>><a href="#security_tab" data-toggle="tab">账号安全</a></li>
 			</ul>
 			<div class="tab-content">
@@ -123,6 +124,28 @@
 						</div>
 					</form>
 				</div>
+				
+				<div class="tab-pane <c:if test='${active == "banner"}'>active</c:if>" id="banner_tab">
+					<form class="form-horizontal" action="banner" method="post" id="banner_form">
+						<div class="control-group" >
+							<label><b>请选择顶图：</b></label>
+							<c:forEach begin="1" end="12" var="x">
+								<div style="float: left; margin-right: 10px; ">
+									<label class="radio inline" >
+									<img  src='<c:url value="/resources/img/banner/b${x }.png"></c:url>'  style="width:300px;height: 74px; border: 1px solid #ccc;"><br>
+									<input type="radio" name="banner" value="${x }"  style=" margin-top: 5px; margin-left: 140px; " <c:if test="${x==1 }"> checked="checked"</c:if> >
+								</label>
+								</div>
+							</c:forEach>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit"  class="btn  btn-success">保存</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				
 			</div>
 		</div>
 	</div>

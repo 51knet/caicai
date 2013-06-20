@@ -23,12 +23,11 @@ $(document).ready(function() {
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 	padding-bottom: 10px;
-	padding-left:30px;
-	margin: 10px 0px 0px 0px;
+	padding-left:20px;
+	margin: 10px 30px 0px 30px;
 }
 .comment{
 	width: 100%;
-	margin-bottom: 200px;
 	padding-top: 15px;
 	background-position: top center;
 }

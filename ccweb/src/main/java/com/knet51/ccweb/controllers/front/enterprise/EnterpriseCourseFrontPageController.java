@@ -187,6 +187,16 @@ public class EnterpriseCourseFrontPageController {
 
 		List<CourseType> cTypeList = courseTypeService.findAll();
 		model.addAttribute("cTypeList", cTypeList);
+		
+		Page<Announcement> annoPage = announcementService
+				.findAllAnnoByUser(0, 4, user);
+		model.addAttribute("annolist", annoPage.getContent());
+		List<Announcement> annoList = announcementService
+				.findAllByUid(user_id);
+		model.addAttribute("annoCount", annoList.size());
+		List<AnnoPhoto> annoPhoto = annoPhotoService
+				.findAnnoPhotoByUserid(user.getId());
+		model.addAttribute("annoPhoto", annoPhoto);
 		return "enterprise.course.list";
 	}
 	/**
