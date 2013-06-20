@@ -49,9 +49,10 @@
 	padding:0px 20px 0px 20px;
 }
 .tabbable .tab-content .tab-pane .content{
-	padding:0px 20px 10px 20px;
+	padding:0px 20px 0px 20px;
 	text-align: left;
 	margin:10px 10px;
+	width: 700px;
 }
 .tabbable .tab-content .tab-pane .title >h4{
 	color: #80b029;
@@ -152,16 +153,17 @@
 					<div class="content">
 						<c:choose>
 							<c:when test="${userCourseCount>0 }">
-								<table cellpadding="5" width="100%" >
+								<table cellpadding="5" style="width: 100%;" >
 									<thead>
-										<tr><th>序列</th><th>评论内容</th><th>时间</th></tr>
+										<tr style="border-bottom: solid #f77605 1.5px;"><th>评价人</th><th>评论内容</th><th>时间</th></tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${userCourseList }" var="userCourse" varStatus="i" >
-											<tr>
-												<td  width="10%" align="center">${i.index+1 }</td>
-												<td align="left" width="65%"> ${userCourse.commentDesc }</td>
-												<td width="25%" align="center"><fmt:formatDate value="${userCourse.commentDate }" pattern="yyyy-MM-dd HH:mm"/></td>
+										<c:forEach items="${CourseComment }" var="comment" varStatus="i" >
+											<tr style="border-bottom: solid #ccc 1px;">
+												<!-- <td  width="10%" align="center">${i.index+1 }</td> -->
+												<td align="center" width="10%">${comment.userName }</td>
+												<td align="left" width="65%"> ${comment.userCourse.commentDesc }</td>
+												<td width="25%" align="center"><fmt:formatDate value="${comment.userCourse.commentDate }" pattern="yyyy-MM-dd HH:mm"/></td>
 											</tr>
 										</c:forEach>
 									</tbody>

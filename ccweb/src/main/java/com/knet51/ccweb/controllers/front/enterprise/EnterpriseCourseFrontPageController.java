@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.knet51.ccweb.beans.UserCourseBeans;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.AnnoPhoto;
@@ -97,6 +98,25 @@ public class EnterpriseCourseFrontPageController {
 		List<UserCourse> userCourseList = userCourseService.findByTeachercourseid(course_id);
 		model.addAttribute("userCourseList", userCourseList);
 		model.addAttribute("userCourseCount", userCourseList.size());
+		
+		List<UserCourseBeans> CourseComment = new ArrayList<UserCourseBeans>();
+		Page<UserCourse> onePage = userCourseService
+				.findUserCourseByTeachercourseid(0, 20,
+						course_id);
+		UserCourseBeans UserCourseBeans;
+		for (int i = 0; i < onePage.getContent().size(); i++) {
+			UserCourseBeans = new UserCourseBeans();
+			long userid = onePage.getContent().get(i).getUserid();
+			User buyer = userCourseService.findByUserId(userid);
+			UserCourse comm = onePage.getContent().get(i);
+			String userName = buyer.getName();
+			String photoUrl = buyer.getPhoto_url();
+			UserCourseBeans.setUserCourse(comm);
+			UserCourseBeans.setPhotoUrl(photoUrl);
+			UserCourseBeans.setUserName(userName);
+			CourseComment.add(UserCourseBeans);
+		}
+		model.addAttribute("CourseComment", CourseComment);
 		
 		return "enterprise.course.view";
 	}
