@@ -3,6 +3,8 @@ package com.knet51.ccweb.controllers.front.enterprise;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +80,7 @@ public class EnterpriseCourseFrontPageController {
 //	}
 	
 	@RequestMapping(value="/enterprise/{user_id}/course/view/{course_id}")
-	public String showCourseDetainInfo(	@PathVariable Long user_id, @PathVariable Long course_id, Model model){
+	public String showCourseDetainInfo(	@PathVariable Long user_id, @PathVariable Long course_id, Model model,HttpSession session){
 		Course course = courseService.findOneById(course_id);
 		User user = userService.findOne(user_id);
 		UserInfo userInfo = new UserInfo(user);
@@ -118,6 +120,17 @@ public class EnterpriseCourseFrontPageController {
 		}
 		model.addAttribute("CourseComment", CourseComment);
 		
+		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		String buyFlag = "buy";
+		if(currentUser != null){
+			List<UserCourse> currentUserCourse =  userCourseService.findUserCourseByUserid(currentUser.getId());
+			for (int i = 0; i < currentUserCourse.size(); i++) {
+				if(course_id.equals(currentUserCourse.get(i).getTeachercourseid()) ){
+					buyFlag = "bought";
+				}
+			}
+		}
+		model.addAttribute("buyFlag", buyFlag);
 		return "enterprise.course.view";
 	}
 	
