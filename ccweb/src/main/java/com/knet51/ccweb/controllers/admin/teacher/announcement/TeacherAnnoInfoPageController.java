@@ -49,14 +49,6 @@ public class TeacherAnnoInfoPageController {
 			if(user.getRole().equals("user")){
 				return "redirect:/admin";
 			}else{
-				if(pageNumber<0){
-					pageNumber = 0;
-				}
-				List<Announcement> annoList = annoService.findAllByUid(id);
-				int maxNumber = annoList.size() % pageSize == 0?annoList.size()/pageSize-1:annoList.size()/pageSize;
-				if(pageNumber>maxNumber){
-					pageNumber = maxNumber;
-				}
 				Page<Announcement> page = annoService.findAllAnnoByUser(pageNumber, pageSize, user);
 				model.addAttribute("page", page);
 				if (user.getRole().equals("teacher")) {

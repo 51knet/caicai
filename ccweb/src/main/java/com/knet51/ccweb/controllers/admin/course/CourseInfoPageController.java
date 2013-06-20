@@ -84,15 +84,6 @@ public class CourseInfoPageController {
 			return "redirect:/admin";
 		}
 		
-		if(pageNumber<0){
-			pageNumber = 0;
-		}
-		List<Course> courseList = courseService.findCourseByUserAndPublishGreaterThanForSuperAdmin(userInfo.getUser(), GlobalDefs.PUBLISH_NUM_DELETE);
-		int maxNumber = courseList.size() % pageSize == 0?courseList.size()/pageSize-1:courseList.size()/pageSize;
-		if(pageNumber>maxNumber){
-			pageNumber = maxNumber;
-		}
-		
 		Page<Course> onePage =courseService.findTeacherCourseByUserAndPublishGreaterThan(pageNumber, pageSize,userInfo.getUser(),GlobalDefs.PUBLISH_NUM_DELETE);
 		//Page<TeacherCourse> page = teacherCourseService.findTeacherCourseByTeacherAndPublish(pageNumber, pageSize, teacher, publish)
 		model.addAttribute("page", onePage);
