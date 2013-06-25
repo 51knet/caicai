@@ -49,8 +49,10 @@
 		<table   class="content"  cellpadding="5" >
 			<!-- <tr class="titlebg" ><th align="left"><b>标题</b></th><th width="25%" align="left"><b>发布时间</b></th></tr> -->
 			<tbody>
-				<c:forEach items="${page.content}" var="page">
-					<tr  class="bb"><td align="left" >
+				<c:forEach items="${page.content}" var="page" varStatus="i">
+					<tr  class="bb">
+					<td align="center">${i.index+1}</td>
+					<td align="left" >
 						<div style="width: 450px;" id="content"><a href="<c:url value="/enterprise/${userInfo.id}/announcement/view/${page.id}"></c:url>">
 						${page.title}</a></div>
 					</td>

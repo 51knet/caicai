@@ -14,16 +14,19 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.UserOrder;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.courses.Course;
+import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.OrderService;
 
 
 @Controller
 public class UserOrderController {
 	
-	public static final long MAX_FILE_SIZE_2M = 2*1024*1024;
-	
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private CourseService courseService;
 	
 	
 	@RequestMapping(value="/admin/order/list")
@@ -38,8 +41,13 @@ public class UserOrderController {
 	
 	@RequestMapping(value="/admin/order/view/{orderId}")
 	public String orderDetail(HttpSession session,Model model ,@PathVariable Long orderId){
-		UserOrder userOder = orderService.findOne(orderId);
-		model.addAttribute("userOrder", userOder);
+		UserOrder userOrder = orderService.findOne(orderId);
+		Long course_id = Long.parseLong(userOrder.getCourseId());
+		Course course = courseService.findOneById(course_id);
+		User seller = course.getUser();
+		model.addAttribute("course", course);
+		model.addAttribute("seller", seller);
+		model.addAttribute("order", userOrder);
 		return "admin.order.detail";
 	}
 }
