@@ -1,6 +1,8 @@
 package com.knet51.ccweb.controllers.admin.user.courses;
 
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -66,6 +68,7 @@ public class UserPayController {
 					userCourse.setUserid(userInfo.getId());
 					userCourseService.save(userCourse);
 					userOrder.setStatus("完成");
+					userOrder.setEndTime(new Date());
 					userOrder = orderService.updateOrder(userOrder);
 					paySuccessful = true;
 				}
@@ -94,6 +97,7 @@ public class UserPayController {
 			if (userCourse == null) {
 					UserOrder userOrder = new UserOrder(user, course_id.toString());
 					userOrder.setStatus("未支付");
+					userOrder.setStartTime(new Date());
 					userOrder = orderService.createOrder(userOrder);
 					model.addAttribute("course", course);
 					model.addAttribute("seller", seller);
