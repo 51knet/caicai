@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.admin.teacher;
+package com.knet51.ccweb.controllers.admin.teacher.resume;
 
 
 import org.hibernate.validator.constraints.NotEmpty;

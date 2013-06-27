@@ -1,9 +1,9 @@
-package com.knet51.ccweb.controllers.admin.teacher;
+package com.knet51.ccweb.controllers.admin.teacher.resume;
 
 import javax.validation.constraints.Size;
 
 
-public class TeacherContactInfoForm {
+public class ContactInfoForm {
 	@Size(max=25)
 	private String address;
 	@Size(max=25)

@@ -43,7 +43,7 @@ import com.knet51.ccweb.jpa.services.achievement.TeacherThesisService;
  * Handles requests for the application home page.
  */
 @Controller
-public class ResumeController {
+public class ResumePageController {
 
 	@Autowired
 	private TeacherService teacherService;
@@ -88,10 +88,12 @@ public class ResumeController {
 		if (active == null || active.equals("")) {
 			active = "personal";
 		}
+		model.addAttribute("active", active);
+		model.addAttribute("universityList", universityList);
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<EduBackground> eduInfo = eduBackgroundService
-			.findEduListByTeacherId(userInfo.getId());
+				.findEduListByTeacherId(userInfo.getId());
 		if (eduInfo != null) {
 			model.addAttribute("eduInfo", eduInfo);
 			model.addAttribute("eduCount", eduInfo.size());
@@ -101,32 +103,26 @@ public class ResumeController {
 			model.addAttribute("workInfo", workInfo);
 			model.addAttribute("workCount", workInfo.size());
 		}
-		model.addAttribute("active", active);
-		model.addAttribute("universityList", universityList);
-		
-		List<TeacherThesis> thesisList = thesisService.getAllThesisById(userInfo.getId());
-		model.addAttribute("thesisList", thesisList);
-		model.addAttribute("thesisCount", thesisList.size());
-		
-		List<TeacherProject> projectList = projectService.getAllProjectById(userInfo.getId());
-		model.addAttribute("projectList", projectList);
-		model.addAttribute("projectCount", projectList.size());
-		
-		List<TeacherPatent> patentList = patentService.getAllPatentById(userInfo.getId());
-		model.addAttribute("patentList", patentList);
-		model.addAttribute("patentCount", patentList.size());
-		
-		List<TeacherHonor> honorList = honorService.getAllHonorById(userInfo.getId());
-		model.addAttribute("honorList", honorList);
-		model.addAttribute("honorCount", honorList.size());
-
-		if (userInfo != null && userInfo.getRole().equals("teacher")) {
-			return "admin.teacher.resume";
-		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
-			return "admin.enterprise.resume";
-		} else {
-			return "redirect:/admin";
+		if(userInfo != null && !userInfo.getRole().equals("user")){
+			
+			List<TeacherThesis> thesisList = thesisService.getAllThesisById(userInfo.getId());
+			model.addAttribute("thesisList", thesisList);
+			model.addAttribute("thesisCount", thesisList.size());
+			
+			List<TeacherProject> projectList = projectService.getAllProjectById(userInfo.getId());
+			model.addAttribute("projectList", projectList);
+			model.addAttribute("projectCount", projectList.size());
+			
+			List<TeacherPatent> patentList = patentService.getAllPatentById(userInfo.getId());
+			model.addAttribute("patentList", patentList);
+			model.addAttribute("patentCount", patentList.size());
+			
+			List<TeacherHonor> honorList = honorService.getAllHonorById(userInfo.getId());
+			model.addAttribute("honorList", honorList);
+			model.addAttribute("honorCount", honorList.size());
 		}
+
+		return "admin."+userInfo.getRole()+".resume";		
 	}
 	
 	@RequestMapping(value="/admin/thesisInfo/edit/ajax",method = RequestMethod.POST)

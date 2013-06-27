@@ -11,6 +11,12 @@
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/user/account/accountInfo.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.user.resume" extends="user-admin-layout">
+		<put-attribute name="title" value="个人信息" />
+		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/resume/resumeEdit.jsp"></put-attribute>
+	</definition>
 
 	<definition name="admin.user" extends="user-admin-layout">
 		<put-attribute name="title" value="用户中心" />
@@ -68,6 +74,16 @@
 		<put-attribute name="left" value="/WEB-INF/views/user/course/study/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/user/course/study/comment/new/create.jsp" />
 		<put-attribute name="right_bottom" value="/WEB-INF/views/user/course/study/comment/list/list.jsp" />
+	</definition>
+	
+	<!-- user front -->
+	
+	<definition name="user.basic" extends="frontPage-layout">
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/user-front/banner.jsp" />
+		<put-attribute name="title" value="个人主页" />
+			<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/user-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/user-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/user-front/right.jsp" />
 	</definition>
 	
 </tiles-definitions>

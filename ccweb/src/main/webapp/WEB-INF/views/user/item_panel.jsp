@@ -59,7 +59,9 @@ color: #8aa942;
 </c:choose>
 <div class="left-menu-container" >
 	<ul class="nav nav-tabs nav-stacked">
+		<li><a href='<c:url value="/user/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>
 		<li><a href='<c:url value="/admin/mycourse/list"></c:url>' >我的学习</a></li>
+		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' >个人信息</a></li>
 		<li><a href='<c:url value="/admin/details"><c:param name="active" value="photo" /></c:url>'>账号信息</a></li>
 		<li><a href='<c:url value="/admin/account/list"></c:url>' >账户管理</a></li>
 		<li><a href='<c:url value="/admin/order/list"></c:url>' >订单管理</a></li> 

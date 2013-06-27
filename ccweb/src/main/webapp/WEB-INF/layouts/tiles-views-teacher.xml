@@ -25,11 +25,6 @@
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/home.jsp"></put-attribute>
 	</definition>
 
-	<definition name="teacher.basic" extends="frontPage-layout">
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="title" value="教师主页" />
-	</definition>
-
 	<!-- teacher announcement -->
 	<definition name="admin.teacher.announement.list" extends="admin-layout">
 		<put-attribute name="title" value="公告" />
@@ -268,6 +263,11 @@
 
 
 	<!-- teacher front page -->
+	
+	<definition name="teacher.basic" extends="frontPage-layout">
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
+		<put-attribute name="title" value="教师主页" />
+	</definition>
 
 	<definition name="teacher.resource.list" extends="frontPage-layout">
 		<put-attribute name="title" value="资源" />

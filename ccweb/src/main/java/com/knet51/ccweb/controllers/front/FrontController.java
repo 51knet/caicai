@@ -148,7 +148,7 @@ public class FrontController {
 
 			String role = user.getRole();
 			if (role.equals("user")) {
-				return "404";
+				return "redirect:/user/" + id;
 			} else if (role.equals("teacher")) {
 				return "redirect:/teacher/" + id;
 			} else if (role.equals("enterprise")) {
@@ -317,6 +317,49 @@ public class FrontController {
 				session.setAttribute("fansCount", fansCount);
 				session.setAttribute("hostCount", hostCount);
 				return "enterprise.basic";
+			} else {
+				return "redirect:/id/" + user_id;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "404";
+		}
+	}
+	
+	@RequestMapping(value = "/user/{user_id}")
+	public String userFront(@PathVariable Long user_id, Model model,
+			HttpSession session, HttpServletResponse response)
+			throws IOException {
+		logger.info("#### Into enterprise front page ####");
+		try {
+			User user = userService.findOne(user_id);
+			if (user.getRole().equals("user")) {
+				UserInfo sessionUserInfo = (UserInfo) session
+						.getAttribute(GlobalDefs.SESSION_USER_INFO);
+				boolean isFollower = false;
+				if (sessionUserInfo != null) { // this is only valid when user
+												// logged in and see 
+												// home
+												// page
+					User sessionUser = sessionUserInfo.getUser();
+					isFollower = friendsRelateService.isTheFollower(user_id,
+							sessionUser.getId());
+				}
+						
+				UserInfo userInfo = new UserInfo(user);
+				Integer fansCount = friendsRelateService.getAllFans(user_id)
+						.size();
+				Integer hostCount = friendsRelateService.getAllHost(user_id)
+						.size();
+
+				model.addAttribute("userInfo", userInfo);
+				model.addAttribute("user_id", user_id);
+
+				model.addAttribute("role", userInfo.getRole());
+				session.setAttribute("isFollower", isFollower);
+				session.setAttribute("fansCount", fansCount);
+				session.setAttribute("hostCount", hostCount);
+				return "user.basic";
 			} else {
 				return "redirect:/id/" + user_id;
 			}
