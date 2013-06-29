@@ -68,7 +68,7 @@ body {
 	<div class="sub">
 		<c:if test="${ !paySuccessful }">
 			<form class="form-inline"  method="post">
-				<input type=text id="password" name="password" /> 
+				<input type="password" id="password" name="password" /> 
 				<input type="submit" class="btn btn-success" value="提交" />
 			</form>
 		</c:if>

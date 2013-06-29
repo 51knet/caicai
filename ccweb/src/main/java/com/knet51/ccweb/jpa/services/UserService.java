@@ -27,4 +27,7 @@ public interface UserService {
 	int getCountByEmail(String email);
 	
 	Page<User> findUserByRole(String role, int pageNumber, int pageSize);
+	
+	User findUserBy3pp(String vendor, String name);
+	
 }

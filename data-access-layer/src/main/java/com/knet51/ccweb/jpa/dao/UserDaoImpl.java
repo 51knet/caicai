@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User queryStringBySql(String col, String value) {
 		User usr;
-		
+
 		TypedQuery<User> query = em.createQuery("select c from User c where c."
 				+ col + " = :" + col, User.class);
 		query.setParameter(col, value);
@@ -68,7 +68,8 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User getSingleResultByParamsMap(Map<String, String> paramsMap) {
-		StringBuilder queryString = new StringBuilder("select c from User c where ");
+		StringBuilder queryString = new StringBuilder(
+				"select c from User c where ");
 		for (String key : paramsMap.keySet()) {
 			queryString.append("c.");
 			queryString.append(key);
@@ -76,9 +77,10 @@ public class UserDaoImpl implements UserDao {
 			queryString.append(key);
 			queryString.append(" and ");
 		}
-		queryString.delete(queryString.length()-5, queryString.length());
-		
-		TypedQuery<User> query = em.createQuery(queryString.toString(), User.class);
+		queryString.delete(queryString.length() - 5, queryString.length());
+
+		TypedQuery<User> query = em.createQuery(queryString.toString(),
+				User.class);
 		for (String key : paramsMap.keySet()) {
 			query.setParameter(key, paramsMap.get(key));
 		}
@@ -87,41 +89,33 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<User> list() {
-		return em.createQuery("select c from User c", User.class).getResultList();
+		return em.createQuery("select c from User c", User.class)
+				.getResultList();
 	}
 
-//	@Override
-//	public UserBeans getUserName(Long id) {
-//		UserBeans userBean = new UserBeans();
-//		Query q = em.createQuery("select u.name from User u where u.id=:id");
-//		q.setParameter("id", id);
-//		List list = q.getResultList();
-//		Object o =  list.get(0);
-//		String userName = o.toString();
-//		userBean.setId(id);
-//		userBean.setName(userName);
-//		return userBean;
-//	}
+	// @Override
+	// public UserBeans getUserName(Long id) {
+	// UserBeans userBean = new UserBeans();
+	// Query q = em.createQuery("select u.name from User u where u.id=:id");
+	// q.setParameter("id", id);
+	// List list = q.getResultList();
+	// Object o = list.get(0);
+	// String userName = o.toString();
+	// userBean.setId(id);
+	// userBean.setName(userName);
+	// return userBean;
+	// }
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public int getcountByEmail(String email) {
-		List<User> list= em.createQuery("select u.email from User u where u.email='"+email+"'").getResultList();
-		if(list.size()>0){
+		List<User> list = em.createQuery(
+				"select u.email from User u where u.email='" + email + "'")
+				.getResultList();
+		if (list.size() > 0) {
 			return 1;
 		}
 		return 0;
 	}
-
-	// public User findByEmailAddress(EmailAddress emailAddress) {
-	//
-	// TypedQuery<User> query =
-	// em.createQuery("select c from User c where c.emailAddress = :email",
-	// User.class);
-	// query.setParameter("email", emailAddress);
-	//
-	// return query.getSingleResult();
-	// }
-	
 
 }

@@ -85,7 +85,6 @@ body {
 	margin: 0 auto;
 	height: 295px
 }
-
 .hr-bg {
 	height: 5px;
 	background: url(<c:url value='/resources/img/default/index/hr.png' ></c:url>) center no-repeat;
@@ -96,7 +95,6 @@ body {
 }
 .register-hr-bg {
 	height: 15px;
-	margin-top: -5px;
 	background: url(<c:url value='/resources/img/default/index/hr.png' ></c:url>) center no-repeat;
 }
 .radio.inline{
@@ -104,6 +102,18 @@ body {
 }
 .help-inline{
 	margin-left:100px;
+	margin-top: -15px;
+}
+.help-inline-third{
+	margin-left:100px;
+	margin-top: -15px;
+}
+function login(o) {
+	alert(o.screen_name);
+	window.location.href='/enterThirdParty?acc='+o.screen_name;
+}
+function logout() {
+	window.location.href="/signout";
 }
 </style>
 <style type="text/css" media="screen">@import url("<c:url value="/resources/js/jq-mail/jquery.autoMailSuggest.css"/>");</style>
@@ -125,9 +135,18 @@ body {
 	function registerOnclick(){
 		return reginsterLogin("register_info_form",'registerEmailAndPwd');
 	}
+	function registerThirdPartyOnclick(){
+		return thirdPartyRegister('register_thirdParty_form','registerThirdParty');
+	}
 	function forgetPwdOnclick(){
 		return forgetPwd("forgotPsw_info_form",'forgetPwdCheck');
 	}
+	$(document).ready(function() { 
+		var thirdPartyName=$("#thirdPartyName").val();
+		if(thirdPartyName!=""){
+			$('#myModal').modal('show');
+		}
+	}); 
 </script>
 
 <div class="row bg">
@@ -158,6 +177,9 @@ body {
 					<h5 class="controls" style="text-align: left;">
 						<a id="fogotPswbtn" href="<c:url value='#'></c:url>"><font color="#444444">忘记密码？</font></a>
 					</h5>
+				</div>
+				<div class="pull-right">
+					<wb:login-button type="3,2" onlogin="login" onlogout="logout" ></wb:login-button>
 				</div>
 				<button class="btn btn-large btn-block btn-primary" type="submit" onclick="return checkEmailAndPwd();" style="font-family: 'Microsoft YaHei';">登录</button>
 			</form:form>
@@ -232,4 +254,49 @@ body {
 			<a id="tologinbtn" class="btn btn-large btn-block btn-success" style="font-family: 'Microsoft YaHei';">返回登录</a>
 		</div>
 	</div>
+</div>
+
+<!-- quick register modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form:form style="margin-top: 10px; margin:auto;" id="register_thirdParty_form" action="register/thirdParty" modelAttribute="thirdPartyRegisterForm" method="post">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">绑定账号</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control" id="emails">
+				<h5 style="text-align: left; line-height: 5px; margin-top: 10px;">邮箱地址</h5>
+				<div class="controls" style="text-align: left;">
+					<input type="text" id="es" name="emails" placeholder="请输入您的邮箱地址" style="width: 96.17%;"> <span class="help-inline-third"></span>
+				</div>
+			</div>
+			<div class="control" id="psw" style="margin-top: -20px;">
+				<h5 style="text-align: left; line-height: 5px; margin-top: 10px;">密码</h5>
+				<div class="controls" style="text-align: left;">
+					<input type="password" id="p" name="psw" placeholder="请设置您的密码" style="width: 96.17%;"> <span class="help-inline-third"></span>
+				</div>
+			</div>
+			<div class="control" id="confirmpsw" style="margin-top: -20px;">
+				<h5 style="text-align: left; line-height: 5px; margin-top: 10px;">密码确认</h5>
+				<div class="controls" style="text-align: left;">
+					<input type="password" id="conf" name="confirmpsw" placeholder="请再次输入您的密码" style="width: 96.17%;"> <span class="help-inline-third" id="passwordError"><form:errors path="psw"></form:errors></span>
+				</div>
+			</div>
+			<div class="control" style="margin-top: -20px;">
+				<h5 style="text-align: left; line-height: 5px; margin-top: 10px;">角色选择</h5>
+				<div class="controls" style="text-align: left; margin-top: -5px;">
+					<label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 8pt; width: 20%;"> <input type="radio" name="userType" id="user" value="user" checked>普通用户
+					</label> <label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 8pt; width: 20%;"> <input type="radio" name="userType" id="teacher" value="teacher">教师用户
+					</label> <label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 8pt; width: 20%;"> <input type="radio" name="userType" id="enterprise" value="enterprise">企业用户
+					</label>
+				</div>
+			</div>
+			<input id="thirdParty" name="thirdParty" value="${thirdParty}" style="display:none"/>
+			<input id="thirdPartyName" name="thirdPartyName" value="${thirdPartyName}" style="display:none"/>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" onclick="return registerThirdPartyOnclick();">确定</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+		</div>
+	</form:form>
 </div>

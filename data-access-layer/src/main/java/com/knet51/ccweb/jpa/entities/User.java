@@ -49,6 +49,8 @@ public class User extends AbstractEntity {
 	private String isadmin;
 	private String forbidden;
 	private Long banner_id;
+	private String thirdParty;
+	private String thirdPartyName;
 	
 	private String photo_url;
 	public User(String email, String password,
@@ -271,4 +273,22 @@ public class User extends AbstractEntity {
 		this.msn = msn;
 	}
 
+
+	public String getThirdParty() {
+		return thirdParty;
+	}
+
+
+	public void setThirdParty(String thirdParty) {
+		this.thirdParty = thirdParty;
+	}
+
+	public String getThirdPartyName() {
+		return thirdPartyName;
+	}
+
+
+	public void setThirdPartyName(String thirdPartyName) {
+		this.thirdPartyName = thirdPartyName;
+	}
 }

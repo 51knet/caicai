@@ -14,9 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
@@ -89,7 +91,7 @@ public class LoginController {
 						encodedEmail);
 				// cookie.setDomain("localhost");
 				cookie.setPath("/");
-//				cookie.setMaxAge(60 * 60 * 24 * 14);
+				// cookie.setMaxAge(60 * 60 * 24 * 14);
 				response.addCookie(cookie);
 				// }
 				UserInfo userInfo = new UserInfo(user);
@@ -110,7 +112,7 @@ public class LoginController {
 		Cookie cookie = new Cookie(GlobalDefs.COOKIE_IDENTITY, killCookie);
 		// cookie.setDomain("localhost");
 		cookie.setPath("/");
-//		cookie.setMaxAge(60 * 60 * 24 * 14);
+		// cookie.setMaxAge(60 * 60 * 24 * 14);
 		response.addCookie(cookie);
 		return "redirect:/";
 	}
@@ -151,5 +153,45 @@ public class LoginController {
 	ValidationResponse processFormAjaxJson(@Valid LoginForm loginForm,
 			BindingResult result, HttpSession session) {
 		return AjaxValidationEngine.process(result);
+	}
+
+	@RequestMapping(value = "/enterThirdParty", method = RequestMethod.GET)
+	public String thirdPartyEnter(@RequestParam(value = "acc") String acc,
+			Model model,  HttpSession session,
+			HttpServletRequest request, HttpServletResponse response) {
+		logger.info("#### enter 3pp usr ####");
+		User user;
+		user = service.findUserBy3pp("sina", acc);
+		if (user != null) {
+			if(user.getEmail()!=null && !user.getEmail().trim().equals("")){
+				login(user, session, response);
+				return "redirect:/";
+			}else{
+				model.addAttribute("thirdParty", "sina");
+				model.addAttribute("thirdPartyName", acc);
+				return "home";
+			}
+		} else {
+			user = new User();
+			user.setThirdParty("sina");
+			user.setThirdPartyName(acc);
+			user = service.createUser(user);
+			model.addAttribute("thirdParty", "sina");
+			model.addAttribute("thirdPartyName", acc);
+			return "home";
+		}
+	}
+	
+	private void login(User user, HttpSession session,
+			HttpServletResponse response) {
+		UserInfo userInfo = new UserInfo(user);
+		String email = user.getEmail();
+		session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+		String encodedEmail = new String(Base64.encode(email.getBytes()),
+				Charset.forName("US-ASCII"));
+		logger.debug(encodedEmail);
+		Cookie cookie = new Cookie(GlobalDefs.COOKIE_IDENTITY, encodedEmail);
+		cookie.setPath("/");
+		response.addCookie(cookie);
 	}
 }

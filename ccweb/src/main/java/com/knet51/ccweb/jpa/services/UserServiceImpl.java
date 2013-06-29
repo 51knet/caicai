@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao userDao;
-	
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 		User usr = userDao.queryStringBySql("randomUrl", randomUrl);
 		return usr;
 	}
-	
+
 	public User findByForgotPsw(String forgotPsw) {
 		User usr = userDao.queryStringBySql("forgotPsw", forgotPsw);
 		return usr;
@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int getCountByEmail(String email) {
-		int count =userDao.getcountByEmail(email);
+		int count = userDao.getcountByEmail(email);
 		return count;
 	}
 
@@ -120,10 +120,27 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Page<User> findUserByRole(String role,int pageNumber, int pageSize) {
-		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id");
-		Page<User>  onePage = userRepository.findUserByRole(role, pageable);
+	public Page<User> findUserByRole(String role, int pageNumber, int pageSize) {
+		Pageable pageable = new PageRequest(pageNumber, pageSize,
+				Direction.DESC, "id");
+		Page<User> onePage = userRepository.findUserByRole(role, pageable);
 		return onePage;
+	}
+
+	@Override
+	public User findUserBy3pp(String vendor, String name) {
+		String queryString = "select c from User c where c.thirdParty='"
+				+ vendor;
+		queryString += "' and ";
+		queryString += "c.thirdPartyName='" + name;
+		queryString += "'";
+		User usr = null;
+		try {
+			usr = userDao.getSingleResultByQuery(queryString);
+		} catch (Exception e) {
+			usr = null;
+		}
+		return usr;
 	}
 
 }
