@@ -7,7 +7,6 @@ import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 
-@JsonIgnoreProperties(value={"teacherRole","studentRole"})
 public class UserInfo {
 
 	private User user;

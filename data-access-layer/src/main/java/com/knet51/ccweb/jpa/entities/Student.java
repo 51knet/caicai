@@ -13,12 +13,12 @@ public class Student {
 	@OneToOne
 	@PrimaryKeyJoinColumn(name = "id")
 	private User user;
-
 	private String role;
+	private String teacher;
 	private String college;
-	private String junior_high_school;
-	private String senior_high_school;
-	private String primary_school;
+	private String graduateTime;
+	private String classNum;
+	private String major;
 	protected Student() {
 
 	}
@@ -43,16 +43,6 @@ public class Student {
 		this.user = user;
 	}
 
-	
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	public String getCollege() {
 		return college;
 	}
@@ -60,37 +50,36 @@ public class Student {
 	public void setCollege(String college) {
 		this.college = college;
 	}
-
-	public String getJunior_high_school() {
-		return junior_high_school;
+	public String getRole() {
+		return role;
 	}
-
-	public void setJunior_high_school(String junior_high_school) {
-		this.junior_high_school = junior_high_school;
+	public void setRole(String role) {
+		this.role = role;
 	}
-
-	public String getSenior_high_school() {
-		return senior_high_school;
+	public String getTeacher() {
+		return teacher;
 	}
-
-	public void setSenior_high_school(String senior_high_school) {
-		this.senior_high_school = senior_high_school;
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
 	}
-
-	public String getPrimary_school() {
-		return primary_school;
+	public String getGraduateTime() {
+		return graduateTime;
 	}
-
-	public void setPrimary_school(String primary_school) {
-		this.primary_school = primary_school;
+	public void setGraduateTime(String graduateTime) {
+		this.graduateTime = graduateTime;
 	}
-
-	@Override
-	public String toString() {
-		return "Student [id=" + id + ", user=" + user + ", role=" + role
-				+ ", college=" + college + ", junior_high_school="
-				+ junior_high_school + ", senior_high_school="
-				+ senior_high_school + ", primary_school=" + primary_school
-				+ "]";
+	public String getClassNum() {
+		return classNum;
 	}
+	public void setClassNum(String classNum) {
+		this.classNum = classNum;
+	}
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
+	}
+	
+	
 }

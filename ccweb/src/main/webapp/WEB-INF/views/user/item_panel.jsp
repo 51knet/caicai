@@ -39,32 +39,39 @@ color: #8aa942;
 
 </style>
 <c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url>
-<c:choose>
-	<c:when test='${sessionUserInfo.avatar == "/resources/img/avatar/avatar90.png" || sessionUserInfo.avatar == "/resources/img/avatar/avatar91.png" }'>
-		<div class="row-fluid centralize">
-		    <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;height:120px;width:120px;margin:15px auto;">
-		    <div style="height: 35px;"></div>
-		    <div style="height: 20px;background-color:gray;  padding:2px 2px;">
-		    	<a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
-		    </div>
+<div class="row-fluid centralize">
+	<c:choose>
+		<c:when test='${sessionUserInfo.avatar == "/resources/img/avatar/avatar90.png" || sessionUserInfo.avatar == "/resources/img/avatar/avatar91.png" }'>
+			    <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;height:120px;width:120px;margin:15px auto;">
+			    <div style="height: 35px;"></div>
+			    <div style="height: 20px;background-color:gray;  padding:2px 2px;">
+			    	<a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
+			    </div>
 		   </div>
-		</div>	
-	</c:when>
-	<c:otherwise>
-		<div class="row-fluid centralize">
-			<img width="150px" height="150px" src="${avatar_url}" style="margin: 15px 0px;" >
-			<a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>
-		</div>		
-	</c:otherwise>
-</c:choose>
+		</c:when>
+		<c:otherwise>
+				<img width="150px" height="150px" src="${avatar_url}" style="margin: 15px 0px;" >
+				<a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	
+		</c:otherwise>
+	</c:choose>
+	<div class="row-fluid">
+		<a href='<c:url value='/user/${userInfo.id}/fans/list'></c:url>'<c:url value='/user/${userInfo.id}'></c:url>'' >${sessionScope.fansCount } 粉丝</a> | <a
+			href='<c:url value='/user/${userInfo.id}/host/list'></c:url>'>${sessionScope.hostCount } 关注</a>
+	</div>
+</div>
 <div class="left-menu-container" >
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value="/user/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>
-		<li><a href='<c:url value="/admin/mycourse/list"></c:url>' >我的学习</a></li>
 		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' >个人信息</a></li>
 		<li><a href='<c:url value="/admin/details"><c:param name="active" value="photo" /></c:url>'>账号信息</a></li>
 		<li><a href='<c:url value="/admin/account/list"></c:url>' >账户管理</a></li>
 		<li><a href='<c:url value="/admin/order/list"></c:url>' >订单管理</a></li> 
+	</ul>
+</div>
+<hr>
+<div class="left-menu-container" >
+	<ul class="nav nav-tabs nav-stacked">
+		<li><a href='<c:url value="/admin/mycourse/list"></c:url>' >我的学习</a></li>
 	</ul>
 </div>
 

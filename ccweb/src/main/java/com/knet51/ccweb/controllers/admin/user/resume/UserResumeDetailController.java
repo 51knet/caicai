@@ -21,6 +21,7 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.EduBackgroundService;
+import com.knet51.ccweb.jpa.services.StudentService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.WorkExpService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
@@ -39,6 +40,8 @@ public class UserResumeDetailController {
 	private EduBackgroundService eduBackgroundService;
 	@Autowired
 	private WorkExpService workExpService;
+	@Autowired
+	private StudentService studentService;
 	
 	/**
 	 * update the teacher's personalInfo
@@ -81,13 +84,16 @@ public class UserResumeDetailController {
 			
 			Student student = new Student(user);
 			student.setCollege(personalInfoForm.getCollege());
-			student.setJunior_high_school(personalInfoForm.getJunior_high_school());
-			student.setPrimary_school(personalInfoForm.getPrimary_school());
-			student.setSenior_high_school(personalInfoForm.getSenior_high_school());
+			student.setClassNum(personalInfoForm.getClassNum());
+			student.setGraduateTime(personalInfoForm.getGraduateTime());
+			student.setMajor(personalInfoForm.getMajor());
+			student.setTeacher(personalInfoForm.getTeacher());
+			student = studentService.createStudent(student);
 			User newUser = userService.updateUser(user);
 			userInfo.setUser(newUser);
 			userInfo.setStudent(student);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+			System.out.println("---------------"+userInfo.getStudent().getMajor());
 			
 			String message = "个人信息保存成功";
 			redirectAttr.addFlashAttribute("message", message);

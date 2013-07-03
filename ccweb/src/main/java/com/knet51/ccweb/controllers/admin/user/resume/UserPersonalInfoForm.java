@@ -14,9 +14,10 @@ public class UserPersonalInfoForm {
 	private String college;
 	// private String university_province;
 	// private String university_city;
-	private String senior_high_school;
-	private String junior_high_school;
-	private String primary_school;
+	private String classNum;
+	private String graduateTime;
+	private String teacher;
+	private String major;
 
 	public String getName() {
 		return name;
@@ -42,31 +43,38 @@ public class UserPersonalInfoForm {
 		this.college = college;
 	}
 
-
-	public String getSenior_high_school() {
-		return senior_high_school;
+	public String getClassNum() {
+		return classNum;
 	}
 
-	public void setSenior_high_school(String senior_high_school) {
-		this.senior_high_school = senior_high_school;
+	public void setClassNum(String classNum) {
+		this.classNum = classNum;
 	}
 
-	public String getJunior_high_school() {
-		return junior_high_school;
+	public String getGraduateTime() {
+		return graduateTime;
 	}
 
-	public void setJunior_high_school(String junior_high_school) {
-		this.junior_high_school = junior_high_school;
+	public void setGraduateTime(String graduateTime) {
+		this.graduateTime = graduateTime;
 	}
 
-	public String getPrimary_school() {
-		return primary_school;
+	public String getTeacher() {
+		return teacher;
 	}
 
-	public void setPrimary_school(String primary_school) {
-		this.primary_school = primary_school;
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
 	}
 
-	
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
+
+
 
 }

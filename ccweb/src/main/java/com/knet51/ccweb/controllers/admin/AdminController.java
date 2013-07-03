@@ -31,6 +31,7 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
 import com.knet51.ccweb.jpa.services.EnterpriseService;
+import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
@@ -50,11 +51,17 @@ public class AdminController {
 	private EnterpriseService enterpriseService;
 	@Autowired
 	private AuthenticationService authenticationService;
+	@Autowired
+	private FriendsRelateService friendsRelateService;
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model, HttpSession session) {
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Integer fansCount = friendsRelateService.getAllFans(userInfo.getId()).size();
+		Integer hostCount = friendsRelateService.getAllHost(userInfo.getId()).size();
+		session.setAttribute("fansCount", fansCount);
+		session.setAttribute("hostCount", hostCount);
 		if (userInfo != null && userInfo.getRole().equals("user")) {
 			return "redirect:/admin/user";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {

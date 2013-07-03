@@ -229,13 +229,13 @@ public class FrontController {
 				UserInfo userInfo = new UserInfo(user);
 				userInfo.setTeacher(teacher);
 
-				Integer fansCount = friendsRelateService.getAllFans(id).size();
-				Integer hostCount = friendsRelateService.getAllHost(id).size();
-
 				model.addAttribute("teacher_id", id);
 				model.addAttribute("teacherInfo", userInfo);
 
 				model.addAttribute("role", userInfo.getTeacherRole());
+				
+				Integer fansCount = friendsRelateService.getAllFans(id).size();
+				Integer hostCount = friendsRelateService.getAllHost(id).size();
 				session.setAttribute("isFollower", isFollower);
 				session.setAttribute("fansCount", fansCount);
 				session.setAttribute("hostCount", hostCount);

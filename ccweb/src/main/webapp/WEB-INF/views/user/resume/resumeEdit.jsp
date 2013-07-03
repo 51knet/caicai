@@ -70,45 +70,45 @@
 							<div class="control-group" id="name">
 								<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
 								<div class="controls">
-									<input type="text" name="name" placeholder="姓名" value="${sessionScope.sessionUserInfo.name}"> <span class="help-inline"><form:errors path="name"></form:errors></span>
+									<input type="text" name="name" placeholder="姓名" value="${sessionUserInfo.name}"> <span class="help-inline"><form:errors path="name"></form:errors></span>
 								</div>
 							</div>
 							<div class="control-group" id="gender">
 								<label class="control-label" for="gender"><i class="icon-star"></i> 性别</label>
 								<div class="controls">
 									<label class="radio"> 
-									<input type="radio" name="gender" id="genderMale" value="男" <c:if test='${sessionScope.sessionUserInfo.gender != "女"}'>checked</c:if>>男
+									<input type="radio" name="gender" id="genderMale" value="男" <c:if test='${sessionUserInfo.gender != "女"}'>checked</c:if>>男
 									</label> 
 									<label class="radio"> 
-									<input type="radio" name="gender" id="genderFemale" value="女" <c:if test='${sessionScope.sessionUserInfo.gender == "女"}'>checked</c:if>>女
+									<input type="radio" name="gender" id="genderFemale" value="女" <c:if test='${sessionUserInfo.gender == "女"}'>checked</c:if>>女
 									</label>
 								</div>
 							</div>
 							<div class="control-group" id="college">
-								<label class="control-label" for="college">所属大学</label>
+								<label class="control-label" for="college">毕业大学</label>
 								<div class="controls">
-									<input type="text" name="college"   placeholder="所属大学" value="${sessionScope.sessionUserInfo.student.primary_school}" style="margin: 0 auto;" data-provide="typeahead" data-items="8"
+									<input type="text" name="college"   placeholder="所属大学" value="${sessionUserInfo.student.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="8"
 										data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'> <span class="help-inline"><form:errors path="college" /></span>
 								</div>
 							</div>
-							<div class="control-group" id="senior_high_school">
-								<label class="control-label" for="senior_high_school">所属高中</label>
+							<div class="control-group" id="major">
+								<label class="control-label" for="major">所属专业</label>
 								<div class="controls">
-									<input type="text" name="senior_high_school"   placeholder="所属高中" value="${sessionScope.sessionUserInfo.student.senior_high_school}" > <span class="help-inline"><form:errors path="senior_high_school" /></span>
+									<input type="text" name="major"   placeholder="所属专业" value="${sessionUserInfo.student.major}" > <span class="help-inline"><form:errors path="major" /></span>
 								</div>
 							</div>
-							<div class="control-group" id="junior_high_school">
-								<label class="control-label" for="junior_high_school">所属初中</label>
+							<div class="control-group" id="teacher">
+								<label class="control-label" for="teacher">大学导师</label>
 								<div class="controls">
-									<input type="text" name="junior_high_school" value="${sessionScope.sessionUserInfo.student.junior_high_school}" placeholder="研究方向">
-									<span class="help-inline"><form:errors path="junior_high_school"></form:errors></span>
+									<input type="text" name="teacher" value="${sessionUserInfo.student.teacher}" placeholder="大学导师">
+									<span class="help-inline"><form:errors path="teacher"></form:errors></span>
 								</div>
 							</div>
-							<div class="control-group" id="primary_school">
-								<label class="control-label" for="primary_school">所属小学</label>
+							<div class="control-group" id="graduateTime">
+								<label class="control-label" for="graduateTime">毕业年份</label>
 								<div class="controls">
-									<input type="text" name="primary_school" value="${sessionScope.sessionUserInfo.student.primary_school}" placeholder="职称/职务">
-									<span class="help-inline"><form:errors path="primary_school"></form:errors></span>
+									<input type="text" name="graduateTime" value="${sessionUserInfo.student.graduateTime}" placeholder="毕业年份">
+									<span class="help-inline"><form:errors path="graduateTime"></form:errors></span><span style="font-size: 14px; color: red;">示例：2010-01-01</span>
 								</div>
 							</div>
 					
@@ -125,42 +125,42 @@
 						<div class="control-group" id="address">
 							<label class="control-label" for="address">地址</label>
 							<div class="controls">
-								<input type="text"  name="address" placeholder="地址" value="${sessionScope.sessionUserInfo.user.address}">
+								<input type="text"  name="address" placeholder="地址" value="${sessionUserInfo.user.address}">
 								<span class="help-inline"><form:errors path="address"></form:errors></span>
 							</div>
 						</div>
 						<div class="control-group" id="cellphone">
 							<label class="control-label" for="cellphone">手机</label>
 							<div class="controls">
-								<input type="text"  name="cellphone" placeholder="手机号码" value="${sessionScope.sessionUserInfo.user.cell_phone}">
+								<input type="text"  name="cellphone" placeholder="手机号码" value="${sessionUserInfo.user.cell_phone}">
 								<span class="help-inline"><form:errors path="cellphone"></form:errors></span>
 							</div>
 						</div>
 						<div class="control-group" id="phone">
 							<label class="control-label" for="phone">固话</label>
 							<div class="controls">
-								<input type="text"  name="phone" placeholder="固定电话" value="${sessionScope.sessionUserInfo.user.fix_phone}">
+								<input type="text"  name="phone" placeholder="固定电话" value="${sessionUserInfo.user.fix_phone}">
 								<span class="help-inline"><form:errors path="phone"></form:errors></span>
 							</div>
 						</div>
 						<div class="control-group" id="fax">
 							<label class="control-label" for="fax">传真</label>
 							<div class="controls">
-								<input type="text"  name="fax" placeholder="传真号码" value="${sessionScope.sessionUserInfo.user.fax}">
+								<input type="text"  name="fax" placeholder="传真号码" value="${sessionUserInfo.user.fax}">
 								<span class="help-inline"><form:errors path="fax"></form:errors></span>
 							</div>
 						</div>
 						<div class="control-group" id="qq">
 							<label class="control-label" for="qq">QQ</label>
 							<div class="controls">
-								<input type="text" name="qq" placeholder="QQ" value="${sessionScope.sessionUserInfo.user.qq}">
+								<input type="text" name="qq" placeholder="QQ" value="${sessionUserInfo.user.qq}">
 								<span class="help-inline"><form:errors path="qq"></form:errors></span>
 							</div>
 						</div>
 						<div class="control-group" id="msn">
 							<label class="control-label" for="msn">MSN</label>
 							<div class="controls">
-								<input type="text"  name="msn" placeholder="MSN" value="${sessionScope.sessionUserInfo.user.msn}">
+								<input type="text"  name="msn" placeholder="MSN" value="${sessionUserInfo.user.msn}">
 								<span class="help-inline"><form:errors path="msn"></form:errors></span>
 							</div>
 						</div>
