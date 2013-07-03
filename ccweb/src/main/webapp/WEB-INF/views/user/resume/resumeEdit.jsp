@@ -65,7 +65,7 @@
 			<div class="tab-content">
 				<div class="tab-pane <c:if test='${active == "personal"}'>active</c:if>" id="personal_info_tab">
 				
-						<form id="personal_info_form" action="personalInfo" class="form-horizontal" method="post">
+						<form id="personal_info_form" action="user/personalInfo" class="form-horizontal" method="post">
 							<div id="message" style="margin-left: 155px;"><h4 style="color: #adcc75">${message}</h4></div>
 							<div class="control-group" id="name">
 								<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
@@ -85,46 +85,36 @@
 								</div>
 							</div>
 							<div class="control-group" id="college">
-								<label class="control-label" for="college"><i class="icon-star"></i> 所属高校</label>
+								<label class="control-label" for="college">所属大学</label>
 								<div class="controls">
-									<input type="text" name="college"   placeholder="所属高校" value="${sessionScope.sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="8"
+									<input type="text" name="college"   placeholder="所属大学" value="${sessionScope.sessionUserInfo.student.primary_school}" style="margin: 0 auto;" data-provide="typeahead" data-items="8"
 										data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'> <span class="help-inline"><form:errors path="college" /></span>
 								</div>
 							</div>
-							<div class="control-group" id="school">
-								<label class="control-label" for="school"><i class="icon-star"></i> 所属院系</label>
+							<div class="control-group" id="senior_high_school">
+								<label class="control-label" for="senior_high_school">所属高中</label>
 								<div class="controls">
-									<input type="text" name="school"   placeholder="所属院系" value="${sessionScope.sessionUserInfo.teacher.school}" style="margin: 0 auto;" data-provide="typeahead" data-items="4"
-										data-source='["计算机学院","财金学院","女子学院"]'> <span class="help-inline"><form:errors path="school" /></span>
-								</div>
-								<!--  
-								<div class="controls">
-									<select class="span3" name="college">
-										<option>计算机学院</option>
-										<option>财金学院</option>
-										<option>女子学院</option>
-									</select>
-								</div>
-								-->
-							</div>
-							<div class="control-group" id="major">
-								<label class="control-label" for="major">研究方向</label>
-								<div class="controls">
-									<input type="text" name="major" value="${sessionScope.sessionUserInfo.teacher.major}" placeholder="研究方向">
-									<span class="help-inline"><form:errors path="major"></form:errors></span>
+									<input type="text" name="senior_high_school"   placeholder="所属高中" value="${sessionScope.sessionUserInfo.student.senior_high_school}" > <span class="help-inline"><form:errors path="senior_high_school" /></span>
 								</div>
 							</div>
-							<div class="control-group" id="title">
-								<label class="control-label" for="title">职称/职务</label>
+							<div class="control-group" id="junior_high_school">
+								<label class="control-label" for="junior_high_school">所属初中</label>
 								<div class="controls">
-									<input type="text" name="title" value="${sessionScope.sessionUserInfo.teacher.title}" placeholder="职称/职务">
-									<span class="help-inline"><form:errors path="title"></form:errors></span>
+									<input type="text" name="junior_high_school" value="${sessionScope.sessionUserInfo.student.junior_high_school}" placeholder="研究方向">
+									<span class="help-inline"><form:errors path="junior_high_school"></form:errors></span>
+								</div>
+							</div>
+							<div class="control-group" id="primary_school">
+								<label class="control-label" for="primary_school">所属小学</label>
+								<div class="controls">
+									<input type="text" name="primary_school" value="${sessionScope.sessionUserInfo.student.primary_school}" placeholder="职称/职务">
+									<span class="help-inline"><form:errors path="primary_school"></form:errors></span>
 								</div>
 							</div>
 					
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" onclick="return personalOnclick();" class="btn  btn-success">保 存</button>
+								<button type="submit" onclick="return userPersonalOnclick();" class="btn  btn-success">保 存</button>
 							</div>
 						</div>
 					</form>

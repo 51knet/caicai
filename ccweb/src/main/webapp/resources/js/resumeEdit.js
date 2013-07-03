@@ -248,6 +248,10 @@ function personalOnclick(){
 	return checkEmptyAjaxs("personal_info_form","personalInfoAJAX");
 };
 
+function userPersonalOnclick(){
+	return checkEmptyAjaxs("personal_info_form","user/personalInfoAJAX");
+};
+
 function personalOnclick(){
 	return checkEmptyAjaxs("enterprise_info_form","enterpriseInfoAJAX");
 };
