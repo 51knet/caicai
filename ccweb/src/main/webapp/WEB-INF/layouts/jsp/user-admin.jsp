@@ -11,6 +11,10 @@
 		body{
 			background-color: #edf1e0;
 		}
+		
+		.border{
+			background-color: #fff; border: 1.5px solid #eed593;
+		}
 	</style>
 </head>
 <body class="admin" >
@@ -24,20 +28,27 @@
 			<!--/row-->
 			<tiles:insertAttribute name="breadcrumbs" />
 			<div class="row-fluid content-panel">
-				<div class="span3">
+				<div class="span2">
 					<div class="left-panel">
 						<tiles:insertAttribute name="left" />
 					</div>
 				</div>
 				<!--/span-->
-				<div class="span9" style="background-color: #fff; border: 1.5px solid #eed593;">
+				<div class="span8 border" >
 					<div class="right-panel">
 						<tiles:insertAttribute name="flash" />
+						<tiles:insertAttribute name="mid" />
+					</div>
+				</div>
+				
+				<div class="span2">
+					<div class="right-panel">
 						<tiles:insertAttribute name="right" />
 					</div>
 				</div>
 				<!--/span-->
 			</div>
+
 			<!--/row-->
 
 			<hr>

@@ -38,7 +38,7 @@
 						<th align="center" width="15%">课程类别</th>
 						<th align="center">课程状态</th>
 						<th align="center">授课人</th>
-						<th align="center" width="20%">发布时间</th>
+						<th align="center" width="25%">发布时间</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,13 +68,3 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-$(document).ready(function() {
-	$("#names").focus(function() {
-		$(".help-inline").html("");
-	});
-	$("#descs").focus(function() {
-		$(".help-inline").html("");
-	});
-});
-</script>

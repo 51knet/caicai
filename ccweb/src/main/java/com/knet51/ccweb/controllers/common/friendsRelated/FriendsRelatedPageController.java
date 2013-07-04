@@ -63,6 +63,34 @@ public class FriendsRelatedPageController {
 		return id;
 	}
 	
+	/**
+	 * show sessionUser's fans list
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/admin/fans/list")
+	public String showFansList(HttpSession session,Model model){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		List<User> fansInfoList = relateService.getAllFansInfo(userInfo.getId());
+		model.addAttribute("fansList", fansInfoList);
+		
+		
+		return "admin."+userInfo.getRole()+".fans.list";
+	}
+	
+	@RequestMapping(value="/admin/host/list")
+	public String showHostList(HttpSession session,Model model){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		List<User> hostsInfoList = relateService.getAllHostInfo(userInfo.getId());
+		model.addAttribute("hostList", hostsInfoList);
+		
+		
+		return "admin."+userInfo.getRole()+".host.list";
+	}
+	
+	
+	
 	/* teacher front page */
 	
 	// find the fans
@@ -72,7 +100,7 @@ public class FriendsRelatedPageController {
 	
 		Teacher teacher = teacherService.findOne(teacher_id);
 		
-		List<UserInfo> fansInfoList = relateService.getAllFansInfo(teacher_id);
+		List<User> fansInfoList = relateService.getAllFansInfo(teacher_id);
 		
 //		int followValue=relateService.getFollowById(teacher_id,userInf.getId());
 		
@@ -100,7 +128,7 @@ public class FriendsRelatedPageController {
 		logger.info("###### into teacher find host controller ###########");
 		Teacher teacher = teacherService.findOne(teacher_id);
 		
-		List<UserInfo> hostInfoList = relateService.getAllHostInfo(teacher_id);
+		List<User> hostInfoList = relateService.getAllHostInfo(teacher_id);
 		
 //		int followValue=relateService.getFollowById(teacher_id,userInf.getId());
 		

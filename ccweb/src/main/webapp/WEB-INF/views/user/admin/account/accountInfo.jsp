@@ -111,8 +111,8 @@
 							<c:forEach begin="1" end="9" var="x">
 								<div style="float: left; margin-right: 10px; ">
 									<label class="radio inline" >
-									<img  src='<c:url value="/resources/img/avatar/p${x }.jpg"></c:url>'  style="width:120px;height: 120px; border: 1px solid #ccc;"><br>
-									<input type="radio" name="photo" value="${x }"  style=" margin-top: 5px; margin-left: 50px; " <c:if test="${x==1 }"> checked="checked"</c:if> >
+									<img  src='<c:url value="/resources/img/avatar/p${x }.jpg"></c:url>'  style="width:100px;height: 100px; border: 1px solid #ccc;"><br>
+									<input type="radio" name="photo" value="${x }"  style=" margin-top: 5px; margin-left: 40px; " <c:if test="${x==1 }"> checked="checked"</c:if> >
 								</label>
 								</div>
 							</c:forEach>
@@ -132,8 +132,8 @@
 							<c:forEach begin="1" end="12" var="x">
 								<div style="float: left; margin-right: 10px; ">
 									<label class="radio inline" >
-									<img  src='<c:url value="/resources/img/banner/b${x }.png"></c:url>'  style="width:300px;height: 74px; border: 1px solid #ccc;"><br>
-									<input type="radio" name="banner" value="${x }"  style=" margin-top: 5px; margin-left: 140px; " <c:if test="${x==1 }"> checked="checked"</c:if> >
+									<img  src='<c:url value="/resources/img/banner/b${x }.png"></c:url>'  style="width:260px;height: 75px; border: 1px solid #ccc;"><br>
+									<input type="radio" name="banner" value="${x }"  style=" margin-top: 5px; margin-left: 130px; " <c:if test="${x==1 }"> checked="checked"</c:if> >
 								</label>
 								</div>
 							</c:forEach>

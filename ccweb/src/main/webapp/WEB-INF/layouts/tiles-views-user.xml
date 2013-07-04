@@ -9,71 +9,83 @@
 	<definition name="admin.user.details" extends="user-admin-layout">
 		<put-attribute name="title" value="账号信息" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/user/account/accountInfo.jsp"></put-attribute>
+		<put-attribute name="mid" value="/WEB-INF/views/user/admin/account/accountInfo.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.user.resume" extends="user-admin-layout">
 		<put-attribute name="title" value="个人信息" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/user/resume/resumeEdit.jsp"></put-attribute>
+		<put-attribute name="mid" value="/WEB-INF/views/user/admin/resume/resumeEdit.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.user" extends="user-admin-layout">
 		<put-attribute name="title" value="用户中心" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/user/home/home.jsp"></put-attribute>
+		<put-attribute name="mid" value="/WEB-INF/views/user/home/home.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.user.mycourse.list" extends="user-admin-layout">
 		<put-attribute name="title" value="课程" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/user/course/list/list.jsp"></put-attribute>
+		<put-attribute name="mid" value="/WEB-INF/views/user/admin/course/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.user.order.list" extends="user-admin-layout">
 		<put-attribute name="title" value="订单信息" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/order/orderList.jsp"></put-attribute>
+		<put-attribute name="mid" value="/WEB-INF/views/admin/order/orderList.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.user.account.list" extends="user-admin-layout">
 		<put-attribute name="title" value="账户管理" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/account/list/list.jsp"></put-attribute>
+		<put-attribute name="mid" value="/WEB-INF/views/admin/account/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.user.account.recharge.new" extends="user-admin-layout">
 		<put-attribute name="title" value="账户管理" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/account/recharge/new/create.jsp"></put-attribute>
+		<put-attribute name="mid" value="/WEB-INF/views/admin/account/recharge/new/create.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.user.withdraws.list" extends="user-admin-layout">
 		<put-attribute name="title" value="账户管理" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/withdrawsapply/list/list.jsp"></put-attribute>
+		<put-attribute name="mid" value="/WEB-INF/views/admin/withdrawsapply/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.fans.list" extends="user-admin-layout">
+		<put-attribute name="title" value="粉丝信息" />
+		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
+		<put-attribute name="mid" value="/WEB-INF/views/user/admin/fans/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.host.list" extends="user-admin-layout">
+		<put-attribute name="title" value="粉丝信息" />
+		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
+		<put-attribute name="mid" value="/WEB-INF/views/user/admin/host/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="course.study.view" extends="usercourse-layout">
 		<put-attribute name="title" value="课程学习" />
-		<put-attribute name="banner" value="/WEB-INF/views/user/course/study/courseDetail.jsp" />
-		<put-attribute name="left" value="/WEB-INF/views/user/course/study/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/user/course/study/resource/list/list.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/user/admin/course/study/courseDetail.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/course/study/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/course/study/resource/list/list.jsp" />
 	</definition>
 	
 	<definition name="course.study.info.view" extends="usercourse-layout">
 		<put-attribute name="title" value="课程学习" />
-		<put-attribute name="banner" value="/WEB-INF/views/user/course/study/courseDetail.jsp" />
-		<put-attribute name="left" value="/WEB-INF/views/user/course/study/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/user/course/study/detail_info/view/view.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/user/admin/course/study/courseDetail.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/course/study/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/course/study/detail_info/view/view.jsp" />
 	</definition>
 	
 	<definition name="course.study.comment.view" extends="usercourse-layout">
 		<put-attribute name="title" value="课程学习" />
-		<put-attribute name="banner" value="/WEB-INF/views/user/course/study/courseDetail.jsp" />
-		<put-attribute name="left" value="/WEB-INF/views/user/course/study/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/user/course/study/comment/new/create.jsp" />
-		<put-attribute name="right_bottom" value="/WEB-INF/views/user/course/study/comment/list/list.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/user/admin/course/study/courseDetail.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/course/study/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/course/study/comment/new/create.jsp" />
+		<put-attribute name="right_bottom" value="/WEB-INF/views/user/admin/course/study/comment/list/list.jsp" />
 	</definition>
 	
 	<!-- user front -->

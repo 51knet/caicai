@@ -62,28 +62,24 @@ public class FriendsRelateServiceImpl implements FriendsRelateService {
 	}
 	/* get the fans infor */
 	@Override
-	public List<UserInfo> getAllFansInfo(Long user_id) {
+	public List<User> getAllFansInfo(Long user_id) {
 		List<FriendsRelated> fansList = friendsRelatedDao.getAllFollow(user_id);
-		List<UserInfo> fansInfoList = new ArrayList<UserInfo>();
+		List<User> fansInfoList = new ArrayList<User>();
 		for(int i=0;i<fansList.size();i++){
-			UserInfo userInfo = new UserInfo();
 			User user = userDao.findById(fansList.get(i).getFollow_id());
-			userInfo.setUser(user);
-			fansInfoList.add(userInfo);
+			fansInfoList.add(user);
 		}
 		return fansInfoList;
 	}
 	
 	/* get the host infor */
 	@Override
-	public List<UserInfo> getAllHostInfo(Long user_id) {
+	public List<User> getAllHostInfo(Long user_id) {
 		List<FriendsRelated> hostList = friendsRelatedDao.getAllHost(user_id);
-		List<UserInfo> hostInfoList = new ArrayList<UserInfo>();
+		List<User> hostInfoList = new ArrayList<User>();
 		for(int i=0;i<hostList.size();i++){
-			UserInfo userInfo = new UserInfo();
 			User user = userDao.findById(hostList.get(i).getHost_id());
-			userInfo.setUser(user);
-			hostInfoList.add(userInfo);
+			hostInfoList.add(user);
 		}
 		return hostInfoList;
 	}

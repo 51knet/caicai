@@ -13,7 +13,6 @@
  	background-position:top center;
  	background-repeat:repeat-y;
 	vertical-align: middle;
-	 border: 1.5px solid #eed593;
 }
 .left-menu-container {
 background-color: #fff;
@@ -36,10 +35,12 @@ background-color: #c7daa3;
 color: #8aa942;
 
 }
-
+	.border{
+			background-color: #fff; border: 1.5px solid #eed593;
+		}
 </style>
 <c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url>
-<div class="row-fluid centralize">
+<div class="row-fluid centralize border">
 	<c:choose>
 		<c:when test='${sessionUserInfo.avatar == "/resources/img/avatar/avatar90.png" || sessionUserInfo.avatar == "/resources/img/avatar/avatar91.png" }'>
 			    <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;height:120px;width:120px;margin:15px auto;">
@@ -50,16 +51,16 @@ color: #8aa942;
 		   </div>
 		</c:when>
 		<c:otherwise>
-				<img width="150px" height="150px" src="${avatar_url}" style="margin: 15px 0px;" >
+				<img src="${avatar_url}" style="margin: 15px 0px; width: 130px; " >
 				<a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	
 		</c:otherwise>
 	</c:choose>
 	<div class="row-fluid">
-		<a href='<c:url value='/user/${userInfo.id}/fans/list'></c:url>'<c:url value='/user/${userInfo.id}'></c:url>'' >${sessionScope.fansCount } 粉丝</a> | <a
-			href='<c:url value='/user/${userInfo.id}/host/list'></c:url>'>${sessionScope.hostCount } 关注</a>
+		<a href='<c:url value='/admin/fans/list'></c:url>'<c:url value='/user/${userInfo.id}'></c:url>'' >${sessionScope.fansCount } 粉丝</a> | <a
+			href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.hostCount } 关注</a>
 	</div>
 </div>
-<div class="left-menu-container" >
+<div class="left-menu-container " >
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value="/user/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>
 		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' >个人信息</a></li>
