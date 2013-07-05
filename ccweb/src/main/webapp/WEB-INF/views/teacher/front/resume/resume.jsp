@@ -50,6 +50,7 @@
 					<c:url var="avatar_url" value="${teacherInfo.avatar}"></c:url>
 					<img width="150px" height="150px" src="${avatar_url}" style="margin-top: 10px;">
 				</td>
+				<td width="3%"></td>
 				<td align="left">
 					<h3>${teacherInfo.name}</h3>	
 					<address style="line-height: 30px;">
