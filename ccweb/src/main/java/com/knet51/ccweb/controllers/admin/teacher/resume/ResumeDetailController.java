@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.admin.teacher.TeacherController;
 import com.knet51.ccweb.controllers.admin.teacher.achievement.TeacherHonorDetailInfoForm;
 import com.knet51.ccweb.controllers.admin.teacher.achievement.TeacherPatentDetailInfoForm;
 import com.knet51.ccweb.controllers.admin.teacher.achievement.TeacherProjectDetailInfoForm;

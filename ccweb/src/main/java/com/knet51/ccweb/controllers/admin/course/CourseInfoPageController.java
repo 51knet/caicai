@@ -36,8 +36,6 @@ import com.google.gson.GsonBuilder;
 import com.knet51.ccweb.beans.UserCourseBeans;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
-import com.knet51.ccweb.jpa.entities.Announcement;
-import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseLesson;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;

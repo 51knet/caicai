@@ -1,7 +1,5 @@
 package com.knet51.ccweb.controllers.admin.teacher.announcement;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
