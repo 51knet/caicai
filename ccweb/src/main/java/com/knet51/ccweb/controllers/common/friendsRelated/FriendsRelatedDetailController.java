@@ -27,17 +27,18 @@ public class FriendsRelatedDetailController {
 	private FriendsRelateService friendsRelateService; 
 	
 	@RequestMapping(value="/addrelation")
-	public String askFriendsRelated(@RequestParam("uid") Long id,HttpSession session){
+	public String askFriendsRelated(@RequestParam("uid") Long host_id,HttpSession session){
 		logger.info("#### Into FriendsRelated addDetailPage ####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long user_id = userInfo.getId();
-		User user = userService.findOne(user_id);
+		//User user = userService.findOne(user_id);
+		User host = userService.findOne(host_id);
 		FriendsRelated friendsReiated = new FriendsRelated();
-		friendsReiated.setHost_id(id);
-		friendsReiated.setFollow_id(user.getId());
-		friendsReiated.setType(1);
+		friendsReiated.setHost_id(host_id);
+		friendsReiated.setFollow_id(user_id);
+		friendsReiated.setGroup(host.getRole());
 		friendsRelateService.save(friendsReiated);
-		return "redirect:/teacher/" + id;
+		return "redirect:/teacher/" + host_id;
 	}
 	
 }
