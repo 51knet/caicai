@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 public class FriendsRelated extends AbstractEntity {
 	private Long host_id; 
 	private Long follow_id; 
-	private int type;
+	private String group;
 	public Long getHost_id() {
 		return host_id;
 	}
@@ -19,11 +19,12 @@ public class FriendsRelated extends AbstractEntity {
 	public void setFollow_id(Long follow_id) {
 		this.follow_id = follow_id;
 	}
-	public int getType() {
-		return type;
+
+	public String getGroup() {
+		return group;
 	}
-	public void setType(int type) {
-		this.type = type;
+	public void setGroup(String group) {
+		this.group = group;
 	}
 	public FriendsRelated() {
 		super();
