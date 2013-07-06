@@ -27,11 +27,13 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Authentication;
 import com.knet51.ccweb.jpa.entities.Enterprise;
+import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
 import com.knet51.ccweb.jpa.services.EnterpriseService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
+import com.knet51.ccweb.jpa.services.StudentService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
@@ -45,6 +47,8 @@ public class AdminController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private StudentService studentService;
 	@Autowired
 	private TeacherService teacherService;
 	@Autowired
@@ -90,6 +94,9 @@ public class AdminController {
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 
 		if (userInfo != null && userInfo.getRole().equals("user")) {
+			Student student = studentService.findOne(userInfo.getId());
+			userInfo.setStudent(student);
+			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			return "redirect:/admin/details?active=photo";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
 			return "redirect:/admin/teacher";
