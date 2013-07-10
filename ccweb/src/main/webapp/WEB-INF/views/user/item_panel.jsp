@@ -56,13 +56,13 @@ color: #8aa942;
 		</c:otherwise>
 	</c:choose>
 	<div class="row-fluid">
-		<a href='<c:url value='/admin/fans/list'></c:url>'<c:url value='/user/${userInfo.id}'></c:url>'' >${sessionScope.fansCount } 粉丝</a> | <a
-			href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.hostCount } 关注</a>
+		<a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.fansCount } 粉丝</a> | 
+		<a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.hostCount } 关注</a>
 	</div>
 </div>
 <div class="left-menu-container " >
 	<ul class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value="/user/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>
+		<li><a href='<c:url value="/admin/home/${sessionUserInfo.id}"></c:url>' >首页</a></li>
 		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' >个人信息</a></li>
 		<li><a href='<c:url value="/admin/details"><c:param name="active" value="photo" /></c:url>'>账号信息</a></li>
 		<li><a href='<c:url value="/admin/account/list"></c:url>' >账户管理</a></li>

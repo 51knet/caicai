@@ -61,9 +61,15 @@
 	</definition>
 	
 	<definition name="admin.user.host.list" extends="user-admin-layout">
-		<put-attribute name="title" value="粉丝信息" />
+		<put-attribute name="title" value="关注人信息" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
 		<put-attribute name="mid" value="/WEB-INF/views/user/admin/host/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.home" extends="user-admin-layout">
+		<put-attribute name="title" value="首页" />
+		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
+		<put-attribute name="mid" value="/WEB-INF/views/user/admin/home/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="course.study.view" extends="usercourse-layout">

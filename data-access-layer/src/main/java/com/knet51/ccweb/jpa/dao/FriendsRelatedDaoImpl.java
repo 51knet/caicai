@@ -40,7 +40,7 @@ public class FriendsRelatedDaoImpl implements FriendsRelatedDao {
 	@Override
 	public List<FriendsRelated> getAllFollow(Long hostId) {
 		@SuppressWarnings("unchecked")
-		List<FriendsRelated> follow = em.createQuery("from FriendsRelated where type=1 and  host_id="+hostId).getResultList();
+		List<FriendsRelated> follow = em.createQuery("from FriendsRelated where host_id="+hostId).getResultList();
 		return follow;
 	}
 	
@@ -48,10 +48,7 @@ public class FriendsRelatedDaoImpl implements FriendsRelatedDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<FriendsRelated> getAllHost(Long followId) {
-		List<FriendsRelated> host = em.createQuery("from FriendsRelated where type=1 and follow_id="+followId).getResultList();
-		for (int i = 0; i < host.size(); i++) {
-			//System.out.println("++++++++++"+host.get(i).getHost_id()+"++++++++++++++++");
-		}
+		List<FriendsRelated> host = em.createQuery("from FriendsRelated where follow_id="+followId).getResultList();
 		return host;
 	}
 	/**

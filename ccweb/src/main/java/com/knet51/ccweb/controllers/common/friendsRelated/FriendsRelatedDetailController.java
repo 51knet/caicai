@@ -36,7 +36,7 @@ public class FriendsRelatedDetailController {
 		FriendsRelated friendsReiated = new FriendsRelated();
 		friendsReiated.setHost_id(host_id);
 		friendsReiated.setFollow_id(user_id);
-		friendsReiated.setGroup(host.getRole());
+		friendsReiated.setGroups(host.getRole());
 		friendsRelateService.save(friendsReiated);
 		return "redirect:/teacher/" + host_id;
 	}

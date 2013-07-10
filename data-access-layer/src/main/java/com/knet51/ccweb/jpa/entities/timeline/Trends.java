@@ -8,20 +8,22 @@ import javax.persistence.Entity;
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
 
 @Entity
-public class Trends extends AbstractEntity {
+public class Trends extends AbstractEntity  {
 
 	private Long userId; // user's id, DO NOT create any foreign key
-	private Long itemId; // save the items' id such as:courseid,resourcesId and so on;
-	private String variety;//save the items' such as:course,resources and so on;
-	private String title;
-	private String coverUrl;
 	private String email;
 	private String context; // limited to 400 chars
 	private String name;
+	private String photo_url;
 	private String gender;
 	private String role;
 	private String forbidden;
 	private Date publishDate;
+	
+	private Long itemId; // save the items' id such as:courseid,resourcesId and so on;
+	private String variety;//save the items' such as:course,resources and so on;
+	private String title;
+	private String coverUrl;
 	public Long getUserId() {
 		return userId;
 	}
@@ -95,4 +97,13 @@ public class Trends extends AbstractEntity {
 	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
 	}
+	
+	
+	public String getPhoto_url() {
+		return photo_url;
+	}
+	public void setPhoto_url(String photo_url) {
+		this.photo_url = photo_url;
+	}
+
 }
