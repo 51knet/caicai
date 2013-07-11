@@ -212,7 +212,7 @@
 							-->
 							<div class="control-group"  id="educationDesc" >
 								<div class="controls">
-									<textarea  id="KEeducationDesc"  name="educationDesc" rows="6" cols="8" style="width: 600px; height: 300px;"></textarea>
+									<textarea  id="KEeducationDesc"  name="educationDesc" rows="6" cols="8" style="width: 550px; height: 300px;"></textarea>
 									<span class="help-inline"></span>
 								</div>
 							</div>
@@ -328,7 +328,7 @@
 							-->
 							<div class="control-group" id="workDesc">
 								<div class="controls">
-									<textarea  name="workDesc"   id="workDescs" rows="6" cols="8" style="width: 600px; height: 300px;"></textarea>
+									<textarea  name="workDesc"   id="workDescs" rows="6" cols="8" style="width: 550px; height: 300px;"></textarea>
 									<span class="help-inline"></span>
 								</div>
 							</div>

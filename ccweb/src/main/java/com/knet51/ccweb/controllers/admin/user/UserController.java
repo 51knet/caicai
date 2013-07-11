@@ -1,13 +1,11 @@
 package com.knet51.ccweb.controllers.admin.user;
 
-import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -22,10 +20,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.admin.teacher.announcement.TeacherAnnoDetailInfoController;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Comment;
 import com.knet51.ccweb.jpa.entities.timeline.Trends;
@@ -42,7 +40,7 @@ import com.knet51.ccweb.jpa.services.UserService;
 public class UserController {
 	
 	private static Logger logger = 
-			LoggerFactory.getLogger(UserController .class);
+			LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -96,17 +94,67 @@ public class UserController {
 		}
 	}
 	
+	/**
+	 * rturn trend comment ajax
+	 * @param trend_id
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/showTrendsComment",method=RequestMethod.POST)
-	public void showTrendsComment(HttpServletResponse response, @RequestParam("trendId") Long trend_id) throws Exception{
-		PrintWriter out = response.getWriter();
-		Gson g = new Gson();
-		List<Comment> cList = commentService.findTopSixByTrendId(trend_id);
+	public @ResponseBody List<Comment> showTrendsComment(@RequestParam("trendId") Long trend_id  ) throws Exception{
 		logger.info("======= into show Trend comment controller =====");
-		out.print(g.toJson(cList));
-		logger.info("---"+g.toJson(cList));
-		out.flush();
-		out.close();
+		List<Comment> cList = commentService.findAllByTrendId(trend_id);
+		return cList;
 		
 	}
+	/**
+	 * create comment in admin page,just for testing
+	 * @param trend_id
+	 * @param session
+	 * @param trendsForm
+	 * @param validResult
+	 * @return
+	 */
+	@RequestMapping(value="/comment" , method=RequestMethod.POST)
+	public String createComment(@RequestParam("trendId") Long trend_id, HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult){
+		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(validResult.hasErrors()){
+			return "redirect:/admin/home/"+userInfo.getId();
+		}else{
+		Comment comment = new Comment();
+		comment.setContext(trendsForm.getContents());
+		comment.setName(userInfo.getName());
+		comment.setTrendId(trend_id);
+		comment.setUserId(userInfo.getId());
+		comment.setPhoto_url(userInfo.getAvatar());
+		commentService.createComment(comment);
+		return "redirect:/admin/home/"+userInfo.getId(); 
+		}
+	}
 	
+	/**
+	 * create comment in front page
+	 * @param trend_id
+	 * @param session
+	 * @param trendsForm
+	 * @param validResult
+	 * @return
+	 */
+	@RequestMapping(value="/front/comment" , method=RequestMethod.POST)
+	public String createFrontComment(@RequestParam("trendId") Long trend_id, HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult){
+		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(validResult.hasErrors()){
+			return "redirect:/admin/home/"+userInfo.getId();
+		}else{
+		Trends trends = trendsService.findOneById(trend_id);
+		Comment comment = new Comment();
+		comment.setContext(trendsForm.getContents());
+		comment.setName(userInfo.getName());
+		comment.setTrendId(trend_id);
+		comment.setUserId(userInfo.getId());
+		comment.setPhoto_url(userInfo.getAvatar());
+		commentService.createComment(comment);
+		return "redirect:/id/"+trends.getUserId(); 
+		}
+	}
 }

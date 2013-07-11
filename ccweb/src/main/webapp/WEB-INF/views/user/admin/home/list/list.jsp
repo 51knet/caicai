@@ -41,6 +41,7 @@
 		   data: "trendId="+index,
 		   dataType:"json",
 		   success: function(msg){
+			//   alert(msg);
 		     var  t = "<table width='100%' cellpadding='5'>";
 		     for( var i=0;i<msg.length;i++){
 		    	 t+="<tr><td  align='left' valign= 'top'>评论人："+msg[i].name+"</td></tr><tr  class='bb'><td  align='left' valign= 'top'>"+msg[i].context+"</td></tr>";
@@ -86,9 +87,9 @@
 					</table>
 					<div id="${trend.id}_comment_div" style="display: none; margin: 0px 10px;">
 						<form style="margin-top: 10px;" method="post" action='<c:url value="/comment"></c:url>'>
-							<input type="hidden" name="trend_id" value="${trend.id}">
+							<input type="hidden" name="trendId" value="${trend.id}">
 							<textarea rows="5" cols="" style="width:100%; " name="contents"  ></textarea><br>
-							<div class="offset8">
+							<div class="offset9">
 								<button class="btn btn-success offset" type="submit">发布</button> <button class="btn btn-success " type="reset" onclick="closeCommentDiv(${trend.id})">取消</button>
 							</div>
 						</form>

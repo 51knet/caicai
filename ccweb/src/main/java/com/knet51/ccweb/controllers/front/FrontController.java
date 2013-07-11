@@ -33,10 +33,12 @@ import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
 import com.knet51.ccweb.jpa.entities.courses.Course;
+import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.services.AnnoPhotoService;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.AuthenticationService;
 import com.knet51.ccweb.jpa.services.BlogService;
+import com.knet51.ccweb.jpa.services.CommentService;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
 import com.knet51.ccweb.jpa.services.EnterpriseService;
 import com.knet51.ccweb.jpa.services.EnterpriseTeacherService;
@@ -44,6 +46,7 @@ import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
+import com.knet51.ccweb.jpa.services.TrendsService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherHonorService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherPatentService;
@@ -91,6 +94,10 @@ public class FrontController {
 	private CourseTypeService courseTypeService;
 	@Autowired
 	private AnnoPhotoService annoPhotoService;
+	@Autowired
+	private TrendsService trendsService;
+	@Autowired
+	private CommentService commentService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -359,6 +366,9 @@ public class FrontController {
 				session.setAttribute("isFollower", isFollower);
 				session.setAttribute("fansCount", fansCount);
 				session.setAttribute("hostCount", hostCount);
+				List<Trends> myTrends = trendsService.showAllTrendsByUserId(user_id);
+				model.addAttribute("myTrend", myTrends);
+				
 				return "user.basic";
 			} else {
 				return "redirect:/id/" + user_id;

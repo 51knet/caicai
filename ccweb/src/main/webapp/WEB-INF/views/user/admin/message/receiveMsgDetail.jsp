@@ -52,7 +52,7 @@
 		<div style="text-align: center;">
 		<table border="0" cellspacing="0" cellpadding="8" width="100%">
 		  <tr>
-		    <td width="70%"  align="left" valign="top" style="background-color: #ccdfa8; font-size: 16px;">
+		    <td width="70%"  align="left" valign="top" style="background-color: #f2cc81; font-size: 16px;">
 		    		<b>标题：${sendMsg.title }</b>
 		    </td>
 		  </tr>
@@ -74,7 +74,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<h3 id="myModalLabel">发送信件</h3>
 				</div>
-				<form:form action="sendMsg" method="post" id="receiveMsg_info_form">
+				<form action="<c:url value='/admin/message/sendMsg'></c:url>"  method="post" id="receiveMsg_info_form">
 					<input type="hidden" value="${sendMsg.user.id }" name="receiveId">
 					<input type="hidden" value="${sendMsg.id }" name="sendMsgId" >
 					<input type="hidden" value="${urmId }" name="urmId" >
@@ -98,7 +98,7 @@
 							<button type="reset" data-dismiss="modal" class="btn ">取消</button>
 						</div>
 					</div>
-				</form:form>
+				</form>
 			</div>
 		</div>
 	</div>

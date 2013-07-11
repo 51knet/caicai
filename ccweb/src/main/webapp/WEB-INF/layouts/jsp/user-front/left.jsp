@@ -92,7 +92,7 @@
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		<h3 id="myModalLabel">发送信件</h3>
 	</div>
-	<form action='<c:url value='/user/message/sendMsgInfo'></c:url>' method="post" id="sendMsg_info_form">
+	<form action='<c:url value='/message/sendMsgInfo'></c:url>' method="post" id="sendMsg_info_form">
 		<div class="modal-body" >
 			<input type="hidden" value="${userInfo.id}" name="uid"> 
 		</div>

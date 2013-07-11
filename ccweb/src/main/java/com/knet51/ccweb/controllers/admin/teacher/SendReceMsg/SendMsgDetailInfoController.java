@@ -69,7 +69,7 @@ public class SendMsgDetailInfoController {
 	/* front page  */
 	
 	@Transactional
-	@RequestMapping(value="/teacher/message/sendMsgInfo",method = RequestMethod.POST)
+	@RequestMapping(value="/message/sendMsgInfo",method = RequestMethod.POST)
 	public String frontMessageList(@RequestParam("uid") Long receiverId,@Valid SendMsgInfoForm sendMsgInfoForm,
 			BindingResult validResult, HttpSession session,Model model){
 		
@@ -91,11 +91,16 @@ public class SendMsgDetailInfoController {
 			sendMsg.setDate(date);
 			sendMsg.setUser(user);
 			sendMsgService.add(sendMsg, receiverId);
-			return "redirect:/teacher/" + receiverId;
+			return "redirect:/id/" + receiverId;
 		}	
 	}
 	@RequestMapping(value = "/teacher/sendMsgInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse sendMsgInfoFormAjaxJson(@Valid SendMsgInfoForm sendMsgInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	
+	@RequestMapping(value = "/user/sendMsgInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse userSendMsgInfoFormAjaxJson(@Valid SendMsgInfoForm sendMsgInfoForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
 	

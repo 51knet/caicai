@@ -68,7 +68,9 @@ public class ReceiveMsgInfoPageController {
 			return "admin.teacher.message.detail";
 		} else if (userInfo.getUser().getRole().equals("enterprise")) {
 			return "admin.enterprise.message.detail";
-		} else {
+		} else if (userInfo.getUser().getRole().equals("user")) {
+			return "admin.user.message.detail";
+		}else {
 			return "404";
 		}
 	}
@@ -88,7 +90,9 @@ public class ReceiveMsgInfoPageController {
 			return "admin.teacher.message.send";
 		} else if (userInfo.getUser().getRole().equals("enterprise")) {
 			return "admin.enterprise.message.send";
-		} else {
+		} else if (userInfo.getUser().getRole().equals("user")) {
+			return "admin.user.message.send";
+		}else {
 			return "404";
 		}
 	}
@@ -119,7 +123,9 @@ public class ReceiveMsgInfoPageController {
 			return "admin.teacher.message.isReadDetail";
 		} else if (userInfo.getUser().getRole().equals("enterprise")) {
 			return "admin.enterprise.message.isReadDetail";
-		} else {
+		} else if (userInfo.getUser().getRole().equals("user")) {
+			return "admin.user.message.isReadDetail";
+		}else {
 			return "404";
 		}
 	}
@@ -150,7 +156,9 @@ public class ReceiveMsgInfoPageController {
 			return "admin.teacher.message.isDeleDetail";
 		} else if (userInfo.getUser().getRole().equals("enterprise")) {
 			return "admin.enterprise.message.isDeleDetail";
-		} else {
+		} else if (userInfo.getUser().getRole().equals("user")) {
+			return "admin.user.message.isDeleDetaill";
+		}else {
 			return "404";
 		}
 	}
