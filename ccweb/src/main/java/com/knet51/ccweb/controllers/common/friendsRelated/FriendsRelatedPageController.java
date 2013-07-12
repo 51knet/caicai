@@ -93,7 +93,7 @@ public class FriendsRelatedPageController {
 	
 	/* teacher front page */
 	
-	// find the fans
+	// find the teacher fans
 	@RequestMapping(value="/teacher/{teacher_id}/fans/list")
 	public String findFans(@PathVariable Long teacher_id, Model model,HttpSession  session){
 		User user = userService.findOne(teacher_id);
@@ -120,7 +120,7 @@ public class FriendsRelatedPageController {
 		return "teacher.fans.list";
 	}
 	
-	// find the host
+	// find the teacher host
 	
 	@RequestMapping(value="/teacher/{teacher_id}/host/list")
 	public String findHost(@PathVariable Long teacher_id, Model model,HttpSession  session){

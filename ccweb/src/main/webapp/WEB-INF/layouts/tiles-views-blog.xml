@@ -43,10 +43,12 @@
 	<!-- BlogPost Front Pages-->
 	<definition name="teacher.blog.list" extends="frontPage-layout">
 		<put-attribute name="title" value="教师博文" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/front/blog/list/list.jsp"></put-attribute>
 	</definition>
 	<definition name="teacher.blog.view" extends="frontPage-layout">
 		<put-attribute name="title" value="教师博文" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/front/blog/view/view.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

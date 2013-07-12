@@ -35,7 +35,7 @@
 		</div>
 		<div style="text-align: right;">
 			 <table class="yellow" id="mytab" cellpadding="7" width=100%  border=0>
-				 <thead><tr><th width="25%" align="center">标题</th><th width="20%" align="center">是否已读</th><th width="25%" align="center">发送时间</th><th width="20%" align="center">发件人</th><th width="10%" align="center">操作</th></tr></thead>
+				 <thead><tr><th width="25%" align="center">标题</th><th width="20%" align="center">是否已读</th><th width="25%" align="center">发送时间</th><th width="20%" align="center">发件人</th></tr></thead>
 				 <tbody>
 			  		<c:forEach items="${page.content}" var = "page" >
 			  			<tr>
@@ -47,7 +47,7 @@
 			  				</td>
 			  				<td align="center">${page.sendMsg.date}</td>
 			  				<td align="center">${page.sendMsg.user.name}</td>
-			  				<td align="center"><!-- 
+			  			<!-- <td align="center"><!-- 
 			  					<div class="btn-group"> 
 									<button class="btn">更多</button>  
 									<button class="btn dropdown-toggle" data-toggle="dropdown">   
@@ -56,9 +56,9 @@
 										<li>详细</li>
 										<li><a href='<c:url value="/admin/message/deleOne?mid=${page.sendMsg.id}"></c:url>'>删除</a> </li>
 									</ul>
-								 </div> -->
-								 	  <a class="deleteMsgPostBtn" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">删除</a><input type="hidden"  value="${page.sendMsg.id}" >
-			  				</td>
+								 </div> 
+								 	  <a class="deleteMsgPostBtn" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">删除</a><input type="hidden"  value="${page.sendMsg.id}" > 
+			  				</td> -->
 			  			</tr>
 			  		</c:forEach>
 				  </tbody>

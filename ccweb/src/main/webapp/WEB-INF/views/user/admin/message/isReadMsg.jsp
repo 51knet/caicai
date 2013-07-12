@@ -55,7 +55,7 @@
 							
 						</ul>
 						</div> --> 
-							 <a class="deleteMsgPostBtn" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">删除</a><input type="hidden"  value="${page.sendMsg.id}" >
+							  <a class="deleteMsgPostBtn" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">删除</a><input type="hidden"  value="${page.id}" > 
 							</td>
 						</tr>
 					</c:forEach>
@@ -77,7 +77,7 @@
 	  </div>
 	  <div class="modal-footer">
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-	    <form action='<c:url value="/admin/message/deleOneReaded"></c:url>' method="post" style="display: inline-block;" >
+	    <form action='<c:url value="/admin/message/deleOne"></c:url>' method="post" style="display: inline-block;" >
 	    	<input id="meId" type="hidden" name="mId" />
 	    	<button class="btn btn-success">确定</button>
 	    </form>
@@ -86,7 +86,7 @@
 <script type="text/javascript">
 $(document).ready(function() {	
 	$('.deleteMsgPostBtn').on('click', function() {
-		var m_id = $(this).next().val();
+		var m_id =$(this).next().val();
 		$('#deleteMsgPostModal #meId').val(m_id);	
 	});
 });

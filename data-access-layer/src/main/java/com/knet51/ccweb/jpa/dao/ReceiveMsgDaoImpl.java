@@ -32,7 +32,8 @@ public class ReceiveMsgDaoImpl implements ReceiveMsgDao {
 	@Override
 	public void destory(Long mId) {
 		ReceiveMsg receiveMsg = em.find(ReceiveMsg.class, mId);
-		em.remove(receiveMsg);
+		receiveMsg.setReaded(4);
+		em.merge(receiveMsg);
 	}
 
 	@Override

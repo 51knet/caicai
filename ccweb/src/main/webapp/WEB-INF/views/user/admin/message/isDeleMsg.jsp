@@ -54,7 +54,7 @@
 									</ul>
 								 </div> -->
 								
-								  <a class="deleteMsgPostBtn" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">彻底删除</a> <input type="hidden"  value="${page.sendMsg.id}" >
+								  <a class="deleteMsgPostBtn" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">彻底删除</a> <input type="hidden"  value="${page.id}" >
 			  				</td>
 			  			</tr>
 			  		</c:forEach>
