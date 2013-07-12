@@ -147,4 +147,54 @@ public class FriendsRelatedPageController {
 		model.addAttribute("hostList", hostInfoList);
 		return "teacher.host.list";
 	}
+	
+	/*     show user fans and host list     */
+	@RequestMapping(value="/user/{user_id}/fans/list")
+	public String findUserFans(@PathVariable Long user_id, Model model,HttpSession  session){
+		User user = userService.findOne(user_id);
+	
+		
+		List<User> fansInfoList = relateService.getAllFansInfo(user_id);
+		
+		
+		UserInfo userInfo = new UserInfo(user);
+		
+//		Integer fansCount = relateService.getAllFans(teacher_id).size();
+//		Integer hostCount =  relateService.getAllHost(teacher_id).size();
+		
+		model.addAttribute("user_id", user_id);
+		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("role", userInfo.getRole());
+//		model.addAttribute("followValue",followValue);
+//		model.addAttribute("fansCount", fansCount);
+//		model.addAttribute("hostCount", hostCount);
+		model.addAttribute("fansList", fansInfoList);
+		return "user.fans.list";
+	}
+	
+	// find the user host
+	
+	@RequestMapping(value="/user/{user_id}/host/list")
+	public String findUserHost(@PathVariable Long user_id, Model model,HttpSession  session){
+		User user = userService.findOne(user_id);
+		logger.info("###### into user find host controller ###########");
+		
+		List<User> hostInfoList = relateService.getAllHostInfo(user_id);
+		
+//		int followValue=relateService.getFollowById(teacher_id,userInf.getId());
+		
+		UserInfo userInfo = new UserInfo(user);
+		
+//		Integer fansCount = relateService.getAllFans(teacher_id).size();
+//		Integer hostCount =  relateService.getAllHost(teacher_id).size();
+		
+		model.addAttribute("user_id", user_id);
+		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("role", userInfo.getRole());
+//		model.addAttribute("followValue",followValue);
+//		model.addAttribute("fansCount", fansCount);
+//		model.addAttribute("hostCount", hostCount);
+		model.addAttribute("hostList", hostInfoList);
+		return "user.host.list";
+	}
 }

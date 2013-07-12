@@ -58,8 +58,8 @@
 		<h4>${userInfo.name }</h4></a>
 	</div>
 	<div class="row-fluid">
-		<a href='<c:url value='/user/${userInfo.id}/fans/list'></c:url>'<c:url value='/user/${userInfo.id}'></c:url>'' >${sessionScope.fansCount } 粉丝</a> | <a
-			href='<c:url value='/user/${userInfo.id}/host/list'></c:url>'>${sessionScope.hostCount } 关注</a>
+		<a href='<c:url value='/user/${userInfo.id}/fans/list'></c:url>'>${sessionScope.fansCount } 粉丝</a> | 
+		<a href='<c:url value='/user/${userInfo.id}/host/list'></c:url>'>${sessionScope.hostCount } 关注</a>
 	</div>
 	<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.id != user_id) }">
 		<div class="row-fluid">
