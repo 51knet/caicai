@@ -9,9 +9,11 @@ import com.knet51.ccweb.jpa.entities.timeline.Trends;
 public interface TrendsService {
 	Trends createTrends(Trends trends);
 	void deleteTrendsById(Long trend_id);
-	List<Trends> showAllTrendsByUserId(Long u_id);
+	List<Trends> showTrendsByUserId(Long u_id);
 	
-	Page<Trends> showAllTrendsByUserId(int pageNum, int pageSize, Long u_id);
+	Page<Trends> showTrendsByUserId(int pageNum, int pageSize, Long u_id);
 	
 	Trends findOneById(Long trend_id);
+	
+	List<Trends> showAllTrendsByUserId(Long u_id);
 }
