@@ -62,7 +62,7 @@ color: #8aa942;
 </div>
 <div class="left-menu-container " >
 	<ul class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value="/admin/trend"></c:url>' >首页</a></li>
+		<li><a href='<c:url value="/admin/trend"></c:url>' >好友动态</a></li>
 		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' >个人信息</a></li>
 		<li><a href='<c:url value="/admin/details"><c:param name="active" value="photo" /></c:url>'>账号信息</a></li>
 		<li><a href='<c:url value="/admin/account/list"></c:url>' >账户管理</a></li>
