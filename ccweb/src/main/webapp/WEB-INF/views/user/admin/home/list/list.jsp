@@ -34,6 +34,7 @@
 
     function	showCommentDiv(index){
 	  var id =  index+"_comment_div";
+	  $("#"+id+">table").empty();
 	  $("#"+id).css("display","block");
 	  $.ajax({
 		   type: "POST",

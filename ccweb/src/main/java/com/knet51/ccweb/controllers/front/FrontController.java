@@ -366,7 +366,7 @@ public class FrontController {
 				session.setAttribute("isFollower", isFollower);
 				session.setAttribute("fansCount", fansCount);
 				session.setAttribute("hostCount", hostCount);
-				List<Trends> myTrends = trendsService.showAllTrendsByUserId(user_id);
+				List<Trends> myTrends = trendsService.showTrendsByUserId(user_id);
 				model.addAttribute("myTrend", myTrends);
 				
 				return "user.basic";

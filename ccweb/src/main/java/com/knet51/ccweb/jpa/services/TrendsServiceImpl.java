@@ -30,9 +30,9 @@ public class TrendsServiceImpl implements TrendsService {
 	}
 
 	@Override
-	public List<Trends> showAllTrendsByUserId(Long u_id) {
+	public List<Trends> showTrendsByUserId(Long u_id) {
 		Sort sort = new Sort(Direction.DESC, "id"); 
-		return trendsRepository.findAllByUserId(u_id , sort);
+		return trendsRepository.findByUserId(u_id , sort);
 	}
 
 
@@ -42,12 +42,15 @@ public class TrendsServiceImpl implements TrendsService {
 	}
 
 	@Override
-	public Page<Trends> showAllTrendsByUserId(int pageNum, int pageSize,
-			Long u_id) {
+	public Page<Trends> showTrendsByUserId(int pageNum, int pageSize, Long u_id) {
 		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
 		
 		return trendsRepository.findAllByUserId(u_id, pageable);
 	}
 
+	@Override
+	public List<Trends> showAllTrendsByUserId(Long u_id) {
+		return trendsRepository.findAllByUserid(u_id);
+	}
 
 }
