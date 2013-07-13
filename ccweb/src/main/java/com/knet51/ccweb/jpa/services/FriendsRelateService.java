@@ -2,7 +2,6 @@ package com.knet51.ccweb.jpa.services;
 
 import java.util.List;
 
-import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.FriendsRelated;
 import com.knet51.ccweb.jpa.entities.User;
 

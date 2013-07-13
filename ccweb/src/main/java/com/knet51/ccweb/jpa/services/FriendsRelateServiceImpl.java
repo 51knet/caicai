@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.dao.FriendsRelatedDao;
 import com.knet51.ccweb.jpa.dao.UserDao;
 import com.knet51.ccweb.jpa.entities.FriendsRelated;

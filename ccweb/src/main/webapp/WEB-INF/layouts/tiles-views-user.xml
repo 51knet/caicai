@@ -66,10 +66,10 @@
 		<put-attribute name="mid" value="/WEB-INF/views/user/admin/host/list/list.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.user.home" extends="user-admin-layout">
+	<definition name="admin.user.trend" extends="user-admin-layout">
 		<put-attribute name="title" value="首页" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
-		<put-attribute name="mid" value="/WEB-INF/views/user/admin/home/list/list.jsp"></put-attribute>
+		<put-attribute name="mid" value="/WEB-INF/views/user/admin/trend/list/list.jsp"></put-attribute>
 	</definition>
 	<!--  user msg -->
 	<definition name="admin.user.message.detail" extends="user-admin-layout">

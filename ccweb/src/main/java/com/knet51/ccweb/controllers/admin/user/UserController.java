@@ -49,12 +49,12 @@ public class UserController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/admin/home")
+	@RequestMapping(value="/admin/trend")
 	public String showAllTrends(HttpSession session, Model model){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<Trends> myTrends = trendsService.showAllTrendsByUserId(userInfo.getId());
 		model.addAttribute("myTrend", myTrends);
-		return "admin.user.home";
+		return "admin.user.trend";
 	}
 	/**
 	 * create a new trends by user
@@ -63,11 +63,11 @@ public class UserController {
 	 * @param validResult
 	 * @return
 	 */
-	@RequestMapping(value="/admin/mytrends", method = RequestMethod.POST)
+	@RequestMapping(value="/admin/trend/publish", method = RequestMethod.POST)
 	public String createMyTrends(HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
-			return "redirect:/admin/home/";
+			return "redirect:/admin/trend";
 		}else{
 			Trends myTrends = new Trends();
 			myTrends.setUserId(userInfo.getId());
@@ -78,7 +78,7 @@ public class UserController {
 			myTrends.setPhoto_url(userInfo.getAvatar());
 			myTrends.setPublishDate(new Date());
 			trendsService.createTrends(myTrends);
-			return "redirect:/admin/home/";
+			return "redirect:/admin/trend";
 		}
 	}
 	
@@ -107,7 +107,7 @@ public class UserController {
 	public String createComment(@RequestParam("trendId") Long trend_id, HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
-			return "redirect:/admin/home/"+userInfo.getId();
+			return "redirect:/admin/trend";
 		}else{
 		Comment comment = new Comment();
 		comment.setContext(trendsForm.getContents());
@@ -116,7 +116,7 @@ public class UserController {
 		comment.setUserId(userInfo.getId());
 		comment.setPhoto_url(userInfo.getAvatar());
 		commentService.createComment(comment);
-		return "redirect:/admin/home/"; 
+		return "redirect:/admin/trend"; 
 		}
 	}
 	
@@ -132,7 +132,7 @@ public class UserController {
 	public String createFrontComment(@RequestParam("trendId") Long trend_id, HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
-			return "redirect:/admin/home/";
+			return "redirect:/admin/trend";
 		}else{
 		Trends trends = trendsService.findOneById(trend_id);
 		Comment comment = new Comment();

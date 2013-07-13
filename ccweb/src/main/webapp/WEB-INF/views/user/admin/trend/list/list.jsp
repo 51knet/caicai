@@ -64,7 +64,7 @@
 </script>
 <div class="row-fluid custom round">
 	<div style="margin: 0 auto; width: 100%; text-align: center;">
-		<form style="margin-top: 10px;" method="post" action='<c:url value="/admin/mytrends"></c:url>'>
+		<form style="margin-top: 10px;" method="post" action='<c:url value="/admin/trend/publish"></c:url>'>
 			<textarea rows="10" cols="" style="width: 90%; " name="contents"  ></textarea><br>
 			<div class="offset8">
 				<button class="btn btn-success offset" type="submit">发布</button> <button class="btn btn-success " type="reset">取消</button>
