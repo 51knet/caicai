@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +17,6 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Comment;
 import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.services.CommentService;
-import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.TrendsService;
 import com.knet51.ccweb.jpa.services.UserService;
 
@@ -30,13 +27,8 @@ import com.knet51.ccweb.jpa.services.UserService;
 @Controller
 public class UserController {
 	
-	private static Logger logger = 
-			LoggerFactory.getLogger(UserController.class);
-	
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private FriendsRelateService relateService;
 	@Autowired
 	private TrendsService trendsService;
 	@Autowired
@@ -102,7 +94,6 @@ public class UserController {
 	 */
 	@RequestMapping(value="/showTrendsComment",method=RequestMethod.POST)
 	public @ResponseBody List<Comment> showTrendsComment(@RequestParam("trendId") Long trend_id  ) throws Exception{
-		logger.info("======= into show Trend comment controller =====");
 		List<Comment> cList = commentService.findAllByTrendId(trend_id);
 		return cList;
 		
