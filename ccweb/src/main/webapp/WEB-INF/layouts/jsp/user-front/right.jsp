@@ -6,6 +6,7 @@
     function	showCommentDiv(index){
 	  var id =  index+"_comment_div";
 	  $("#"+id).css("display","block");
+	  $("#"+id+">table").empty();
 	  $.ajax({
 		   type: "POST",
 		   url: '<c:url value="/showTrendsComment"></c:url>',

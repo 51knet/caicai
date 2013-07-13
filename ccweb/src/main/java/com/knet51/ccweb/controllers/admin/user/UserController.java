@@ -58,13 +58,10 @@ public class UserController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/admin/home/{user_id}")
-	public String showAllTrends(@PathVariable Long user_id,HttpSession session, Model model){
+	@RequestMapping(value="/admin/home")
+	public String showAllTrends(HttpSession session, Model model){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		if(!userInfo.getId().equals(user_id)){
-			return "redirect:/admin";
-		}
-		List<Trends> myTrends = trendsService.showAllTrendsByUserId(user_id);
+		List<Trends> myTrends = trendsService.showAllTrendsByUserId(userInfo.getId());
 		model.addAttribute("myTrend", myTrends);
 		return "admin.user.home";
 	}
