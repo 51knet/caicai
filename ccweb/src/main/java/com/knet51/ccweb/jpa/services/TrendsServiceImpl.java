@@ -53,4 +53,9 @@ public class TrendsServiceImpl implements TrendsService {
 		return trendsRepository.findAllByUserid(u_id);
 	}
 
+	@Override
+	public List<Trends> showAllTeacherTrendsByUserId(Long u_id) {
+		return trendsRepository.findTeacherAllByUserid(u_id);
+	}
+
 }

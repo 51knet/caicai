@@ -52,9 +52,20 @@ public class UserController {
 	@RequestMapping(value="/admin/trend")
 	public String showAllTrends(HttpSession session, Model model){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		List<Trends> myTrends = trendsService.showAllTrendsByUserId(userInfo.getId());
-		model.addAttribute("myTrend", myTrends);
-		return "admin.user.trend";
+		String role = userInfo.getRole();
+		if(role != null && role.equals("user")){
+			List<Trends> myTrends = trendsService.showAllTrendsByUserId(userInfo.getId());
+			model.addAttribute("myTrend", myTrends);
+			return "admin.user.trend";
+		}
+		else if(role != null && role.equals("teacher")){
+			List<Trends> myTrends = trendsService.showAllTeacherTrendsByUserId(userInfo.getId());
+			model.addAttribute("myTrend", myTrends);
+			return "admin.user.trend";
+		}
+		else{
+			return "redirect:/admin";
+		}
 	}
 	/**
 	 * create a new trends by user
@@ -77,6 +88,7 @@ public class UserController {
 			myTrends.setEmail(userInfo.getEmail());
 			myTrends.setPhoto_url(userInfo.getAvatar());
 			myTrends.setPublishDate(new Date());
+			myTrends.setRole(userInfo.getRole());
 			trendsService.createTrends(myTrends);
 			return "redirect:/admin/trend";
 		}

@@ -16,4 +16,6 @@ public interface TrendsService {
 	Trends findOneById(Long trend_id);
 	
 	List<Trends> showAllTrendsByUserId(Long u_id);
+	
+	List<Trends> showAllTeacherTrendsByUserId(Long u_id);
 }
