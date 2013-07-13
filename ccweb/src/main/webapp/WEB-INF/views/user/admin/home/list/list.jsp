@@ -45,7 +45,7 @@
 			//   alert(msg);
 		     var  t = "<table width='100%' cellpadding='5'>";
 		     for( var i=0;i<msg.length;i++){
-		    	 t+="<tr><td  align='left' valign= 'top'>评论人："+msg[i].name+"</td></tr><tr  class='bb'><td  align='left' valign= 'top'>"+msg[i].context+"</td></tr>";
+		    	 t+="<tr><td  align='left' valign= 'top'>  <img src='/ccweb"+msg[i].photo_url+"  ' style='width:40px' />&nbsp;&nbsp;评论人："+msg[i].name+"</td></tr><tr  class='bb'><td  align='left' valign= 'top'>"+msg[i].context+"</td></tr>";
 		     }
 		     $("#"+id).append(t);
 		   }
