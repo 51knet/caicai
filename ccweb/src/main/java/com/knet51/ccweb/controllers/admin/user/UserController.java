@@ -67,7 +67,7 @@ public class UserController {
 	public String createMyTrends(HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
-			return "redirect:/admin/home/"+userInfo.getId();
+			return "redirect:/admin/home/";
 		}else{
 			Trends myTrends = new Trends();
 			myTrends.setUserId(userInfo.getId());
@@ -78,7 +78,7 @@ public class UserController {
 			myTrends.setPhoto_url(userInfo.getAvatar());
 			myTrends.setPublishDate(new Date());
 			trendsService.createTrends(myTrends);
-			return "redirect:/admin/home/"+userInfo.getId();
+			return "redirect:/admin/home/";
 		}
 	}
 	
@@ -116,7 +116,7 @@ public class UserController {
 		comment.setUserId(userInfo.getId());
 		comment.setPhoto_url(userInfo.getAvatar());
 		commentService.createComment(comment);
-		return "redirect:/admin/home/"+userInfo.getId(); 
+		return "redirect:/admin/home/"; 
 		}
 	}
 	
@@ -132,7 +132,7 @@ public class UserController {
 	public String createFrontComment(@RequestParam("trendId") Long trend_id, HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
-			return "redirect:/admin/home/"+userInfo.getId();
+			return "redirect:/admin/home/";
 		}else{
 		Trends trends = trendsService.findOneById(trend_id);
 		Comment comment = new Comment();
