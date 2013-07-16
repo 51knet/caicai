@@ -16,8 +16,9 @@
 			//   alert(msg);
 		     var  t = "<table width='100%' cellpadding='5'>";
 		     for( var i=0;i<msg.length;i++){
-		    	 t+="<tr><td  align='left' valign= 'top'>评论人："+msg[i].name+"</td></tr><tr  class='bb'><td  align='left' valign= 'top'>"+msg[i].context+"</td></tr>";
+		    	 t+="<tr><td  align='left' valign= 'top'>  <img src='/ccweb"+msg[i].photo_url+"  ' style='width:40px' />&nbsp;&nbsp;"+msg[i].name+"</td></tr><tr  class='bb'><td  align='left' valign= 'top'>"+msg[i].context+"</td></tr>";
 		     }
+		     $("#"+id).append(t);
 		     $("#"+id).append(t);
 		   }
 		});
@@ -54,7 +55,7 @@
 .row-fluid.custom .content {
 	margin: 20px 40px;
 }
-.border_ccc{
+.border_green{
 	border: 1px solid #80b029;
 }
 .bb{
@@ -68,13 +69,15 @@
 </div>
 	<div class="content">	
 			<c:forEach items="${myTrend}" var="trend">
-				<div style="margin: 10px 0px;" class="border_ccc">
+				<div style="margin: 10px 0px;" class="border_green">
 					<table width="100%" cellpadding="5">
 						<tr>
 							<td align="left" valign="top">${trend.context }</td>
 						</tr>
 						<tr >
-							<td align="right" valign="top"><a href="javascript:void(0)" onclick="showCommentDiv(${trend.id})">评论</a>
+							<td align="right" valign="top">
+								<c:if test="${sessionUserInfo == null }"><a href='<c:url value='/'></c:url>' >请登录后评论</a></c:if>
+								<c:if test="${sessionUserInfo != null }"><a href="javascript:void(0)" onclick="showCommentDiv(${trend.id})">评论</a></c:if>
 								<c:if test="${sessionUserInfo.id ==trend.userId }">
 								|	<a href="javascript:void(0)" onclick="deleteTrends(${trend.id} ,${trend.userId} )">删除</a>
 								</c:if>

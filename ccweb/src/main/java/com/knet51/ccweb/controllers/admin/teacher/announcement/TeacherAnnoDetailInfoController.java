@@ -28,8 +28,10 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.AnnoPhoto;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.services.AnnoPhotoService;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
+import com.knet51.ccweb.jpa.services.TrendsService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
@@ -47,6 +49,8 @@ public class TeacherAnnoDetailInfoController {
 	private UserService userService;
 	@Autowired
 	private AnnoPhotoService annoPhotoService;
+	@Autowired
+	private TrendsService trendsService;
 	
 	/**
 	 * create a new announcement
@@ -88,6 +92,21 @@ public class TeacherAnnoDetailInfoController {
 			announcement.setDate(date); 
 			announcement.setUser(user);
 			Announcement ann = annoService.createAnnouncement(announcement);
+			
+			Trends trends = new Trends();
+			trends.setEmail(userInfo.getEmail());
+			trends.setGender(userInfo.getGender());
+			trends.setUserId(userInfo.getId());
+			trends.setName(userInfo.getName());
+			trends.setPhoto_url(userInfo.getAvatar());
+			trends.setRole(userInfo.getRole());
+			
+			trends.setTitle(ann.getTitle());
+			trends.setPublishDate(new Date());
+			trends.setItemId(ann.getId());
+			trends.setVariety("announcement");
+			trendsService.createTrends(trends);
+			
 			try{
 				for(int i=0;i<files.size();i++){
 					MultipartFile multipartFile = files.get(i);

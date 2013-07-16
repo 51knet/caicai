@@ -42,11 +42,13 @@ import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
+import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.services.CourseLessonService;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.CourseTypeService;
 import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
+import com.knet51.ccweb.jpa.services.TrendsService;
 import com.knet51.ccweb.jpa.services.UserCourseService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
@@ -72,6 +74,8 @@ public class CourseInfoPageController {
 	private UserCourseService userCourseService;
 	@Autowired
 	private CourseTypeService courseTypeService;
+	@Autowired
+	private TrendsService trendsService;
 	
 	@RequestMapping(value="/admin/course/list")
 	public String teacherCourseInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
@@ -340,17 +344,33 @@ public class CourseInfoPageController {
 	@RequestMapping(value="/admin/course/edit/{course_id}/publish")
 	public String publishCourse(@PathVariable Long course_id,HttpSession session){
 		Course course= courseService.findOneById(Long.valueOf(course_id));
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(course == null){
 			return "redirect:/admin/course/list";
 		}else{
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			
 			Long teacherId=course.getUser().getId();
 			if(!userInfo.getId().equals(teacherId)){
 				return "redirect:/admin/course/list";
 			}
 		}
 		course.setPublish(GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
-		courseService.updateTeacherCourse(course);
+		Course newCourse = courseService.updateTeacherCourse(course);
+		Trends trends = new Trends();
+		trends.setCoverUrl(newCourse.getCourseCover());
+		trends.setEmail(userInfo.getEmail());
+		trends.setGender(userInfo.getGender());
+		trends.setUserId(userInfo.getId());
+		trends.setName(userInfo.getName());
+		trends.setPhoto_url(userInfo.getAvatar());
+		trends.setRole(userInfo.getRole());
+
+		trends.setTitle(newCourse.getCourseName());
+		trends.setPublishDate(new Date());
+		trends.setItemId(newCourse.getId());
+		trends.setVariety("course");
+		
+		trendsService.createTrends(trends);
 		return "redirect:/admin/course/list";
 	}
 	

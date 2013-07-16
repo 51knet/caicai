@@ -34,9 +34,11 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
+import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.ResourceTypeService;
+import com.knet51.ccweb.jpa.services.TrendsService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
@@ -51,6 +53,8 @@ public class TeacherResouDetailInfoController {
 	private ResourceTypeService resourceTypeService;
 	@Autowired 
 	private CourseResourceService courseResourceService;
+	@Autowired
+	private TrendsService trendsService;
 	
 	/**
 	 *  create a new resource
@@ -94,7 +98,21 @@ public class TeacherResouDetailInfoController {
 				resource.setSavePath(savePath);
 				resource.setStatus(GlobalDefs.STATUS_RESOURCE);
 				resource.setUser(user);
-				courseResourceService.createCourseResource(resource);
+				CourseResource newResource =  courseResourceService.createCourseResource(resource);
+				
+				Trends trends = new Trends();
+				trends.setEmail(userInfo.getEmail());
+				trends.setGender(userInfo.getGender());
+				trends.setUserId(userInfo.getId());
+				trends.setName(userInfo.getName());
+				trends.setPhoto_url(userInfo.getAvatar());
+				trends.setRole(userInfo.getRole());
+				
+				trends.setTitle(newResource.getFileName());
+				trends.setPublishDate(new Date());
+				trends.setItemId(newResource.getId());
+				trends.setVariety("courseresource");
+				trendsService.createTrends(trends);
 			}
 		}
 		return "redirect:/admin/resource/list";
