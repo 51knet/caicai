@@ -1,5 +1,6 @@
 package com.knet51.ccweb.controllers.admin.user;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.knet51.ccweb.beans.TrendsBeans;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Comment;
@@ -47,13 +50,37 @@ public class UserController {
 		String role = userInfo.getRole();
 		if(role != null && role.equals("user")){
 			List<Trends> myTrends = trendsService.showAllTrendsByUserId(userInfo.getId());
-			model.addAttribute("myTrend", myTrends);
+			//model.addAttribute("myTrend", myTrends);
+			
+			List<TrendsBeans> trendsBeansList = new ArrayList<TrendsBeans>();
+			List<Comment> comment = new ArrayList<Comment>();
+			for (Trends trends : myTrends) {
+				TrendsBeans trendsBeans = new TrendsBeans();
+				comment = commentService.findAllByTrendId(trends.getId());
+				trendsBeans.setCommentList(comment);
+				trendsBeans.setTrend(trends);
+				trendsBeans.setCommentCount((long)comment.size());
+				trendsBeansList.add(trendsBeans);
+			}
+			
+			model.addAttribute("myTrend", trendsBeansList);
 			return "admin.user.trend";
 		}
 		else if(role != null && role.equals("teacher")){
 			List<Trends> myTrends = trendsService.showAllTeacherTrendsByUserId(userInfo.getId());
-			model.addAttribute("myTrend", myTrends);
-			return "admin.user.trend";
+			List<TrendsBeans> trendsBeansList = new ArrayList<TrendsBeans>();
+			List<Comment> comment = new ArrayList<Comment>();
+			for (Trends trends : myTrends) {
+				TrendsBeans trendsBeans = new TrendsBeans();
+				comment = commentService.findAllByTrendId(trends.getId());
+				trendsBeans.setCommentList(comment);
+				trendsBeans.setTrend(trends);
+				trendsBeans.setCommentCount((long)comment.size());
+				trendsBeansList.add(trendsBeans);
+			}
+			
+			model.addAttribute("myTrend", trendsBeansList);
+			return "admin.teacher.trend";
 		}
 		else{
 			return "redirect:/admin";
