@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,8 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public List<Comment> findAllByTrendId(Long trend_id) {
-		return commentRepository.findAllByTrendId(trend_id);
+		Sort sort = new Sort(Direction.ASC, "id");
+		return commentRepository.findAllByTrendId(trend_id,sort);
 	}
 
 	@Override

@@ -75,13 +75,8 @@
     }
 </script>
 <div class="row-fluid custom round">
-	<div style="margin: 0 auto; width: 100%; text-align: center;">
-		<form style="margin-top: 10px;" method="post" action='<c:url value="/admin/trend/publish"></c:url>'>
-			<textarea rows="2" cols="" style="width: 90%; " name="contents"  ></textarea><br>
-			<div class="offset9">
-				<button class="btn btn-success offset" type="submit">发布</button> 
-			</div>
-		</form>
+	<div class="row" >
+		<h4>好友动态</h4>
 	</div>
 	<div class="content">	
 			<c:forEach items="${myTrend}" var="trendBeans">
@@ -144,17 +139,9 @@
 						</form>
 						
 						<c:forEach items="${trendBeans.commentList}" var="comment">
-							<table width='98%' cellpadding='0' style="margin-bottom: 10px;">
-								<c:if test="${comment.hostId == null }">
-									<tr><td  align='left' valign= 'top'>  <img src='<c:url value="${comment.photo_url }"></c:url>'  style="width:40px;"><a href='<c:url value="/id/${comment.userId }"></c:url>'> ${comment.name }</a>：${comment.context }</td></tr>
-									<tr  class='bb'><td  align='right' valign= 'top'> <a href="#">回复</a> </td></tr>
-								</c:if>
-								<c:if test="${comment.hostId != null}">
-									<tr ><td  align='left' valign= 'top'>
-										<img src='<c:url value="${comment.photo_url }"></c:url>'  style="width:40px;"> <a href='<c:url value="/id/${comment.userId }"></c:url>'> ${comment.name }</a> 回复了 
-										<a href='<c:url value="/id/${comment.hostId }"></c:url>'>${comment.hostName}</a> ：${comment.context }</td></tr>
-									<tr  class='bb'><td  align='right' valign= 'top'><a href="#">回复</a></td></tr>
-								</c:if>
+							<table width='100%' cellpadding='5'>
+								<tr><td  align='left' valign= 'top'>  <img src='<c:url value="${comment.photo_url }"></c:url>'  style="width:40px;"> ${comment.name }</td></tr>
+								<tr  class='bb'><td  align='left' valign= 'top'>${comment.context }</td></tr>
 							</table>
 						</c:forEach>
 					</div>

@@ -20,8 +20,8 @@ public interface TrendsRepository extends JpaRepository<Trends, Long>, JpaSpecif
 	List<Trends> findByUserId(Long user_id, Sort sort);
 	
 	@Query("SELECT u FROM Trends u where u.userId IN (SELECT c.host_id FROM FriendsRelated c where c.follow_id=:uid) or u.userId=:uid order by id desc")
-	List<Trends> findAllByUserid(@Param("uid") Long uid);
+	List<Trends> findAllByUserId(@Param("uid") Long uid);
 
 	@Query("SELECT u FROM Trends u where u.userId IN (SELECT c.host_id FROM FriendsRelated c where c.follow_id=:uid) or u.userId=:uid and u.role='teacher' order by id desc")
-	List<Trends> findTeacherAllByUserid(@Param("uid") Long uid);
+	List<Trends> findTeacherAllByUserId(@Param("uid") Long uid);
 }

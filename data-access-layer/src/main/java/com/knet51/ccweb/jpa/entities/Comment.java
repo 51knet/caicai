@@ -10,6 +10,10 @@ public class Comment extends AbstractEntity {
 	@Lob
 	private String context;
 	private Long trendId;
+	
+	private Long hostId;
+	private String hostName;
+	
 	public Long getUserId() {
 		return userId;
 	}
@@ -43,7 +47,19 @@ public class Comment extends AbstractEntity {
 	public Comment() {
 		super();
 	}
-	
+	public Long getHostId() {
+		return hostId;
+	}
+	public void setHostId(Long hostId) {
+		this.hostId = hostId;
+	}
+	public String getHostName() {
+		return hostName;
+	}
+	public void setHostName(String hostName) {
+		this.hostName = hostName;
+	}
+
 	
 
 }

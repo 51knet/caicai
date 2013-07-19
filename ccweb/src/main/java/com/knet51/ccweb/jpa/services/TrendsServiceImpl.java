@@ -50,12 +50,12 @@ public class TrendsServiceImpl implements TrendsService {
 
 	@Override
 	public List<Trends> showAllTrendsByUserId(Long u_id) {
-		return trendsRepository.findAllByUserid(u_id);
+		return trendsRepository.findAllByUserId(u_id);
 	}
 
 	@Override
 	public List<Trends> showAllTeacherTrendsByUserId(Long u_id) {
-		return trendsRepository.findTeacherAllByUserid(u_id);
+		return trendsRepository.findTeacherAllByUserId(u_id);
 	}
 
 }
