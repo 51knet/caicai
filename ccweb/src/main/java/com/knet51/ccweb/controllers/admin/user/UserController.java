@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,7 @@ import com.knet51.ccweb.beans.TrendsBeans;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Comment;
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.services.CommentService;
 import com.knet51.ccweb.jpa.services.TrendsService;
@@ -175,6 +177,18 @@ public class UserController {
 		comment.setPublishDate(new Date());
 		commentService.createComment(comment);
 		return "redirect:/id/"+trends.getUserId(); 
+		}
+	}
+	
+	@RequestMapping(value = "/trend/{varity}/{uid}")
+	public String trendDispatcher(@PathVariable String varity,
+			@PathVariable Long uid, HttpSession session) {
+		User user = userService.findOne(uid);
+		if (user == null) {
+			return "404";
+		} else {
+			return "redirect:/" + user.getRole() + "/" + uid + "/" + varity
+					+ "/list";
 		}
 	}
 }
