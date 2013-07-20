@@ -101,7 +101,7 @@
 							   <td align="left" valign="top"><span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></td>
 						</tr>
 					</c:if>
-					<c:if test="${trendBeans.trend.variety == 'courseresource' }">
+					<c:if test="${trendBeans.trend.variety == 'resource' }">
 						<tr  class="bb">
 							   <td align="left" valign="top"><span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></td>
 						</tr>

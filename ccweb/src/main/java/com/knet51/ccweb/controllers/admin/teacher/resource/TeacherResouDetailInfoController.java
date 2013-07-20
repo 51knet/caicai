@@ -111,7 +111,7 @@ public class TeacherResouDetailInfoController {
 				trends.setTitle(newResource.getFileName());
 				trends.setPublishDate(new Date());
 				trends.setItemId(newResource.getId());
-				trends.setVariety("courseresource");
+				trends.setVariety("resource");
 				trendsService.createTrends(trends);
 			}
 		}
