@@ -42,7 +42,7 @@ public class TrendsBeans {
 	public TrendsBeans() {
 		super();
 		varityMap.put("announcement", "一篇公告");
-		varityMap.put("courseresource", "一份资源");
+		varityMap.put("resource", "一份资源");
 		varityMap.put("course", "一节课程");
 	}
 	
