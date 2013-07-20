@@ -1,5 +1,7 @@
 package com.knet51.ccweb.jpa.entities;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 @Entity
@@ -13,6 +15,7 @@ public class Comment extends AbstractEntity {
 	
 	private Long hostId;
 	private String hostName;
+	private Date publishDate;
 	
 	public Long getUserId() {
 		return userId;
@@ -58,6 +61,12 @@ public class Comment extends AbstractEntity {
 	}
 	public void setHostName(String hostName) {
 		this.hostName = hostName;
+	}
+	public Date getPublishDate() {
+		return publishDate;
+	}
+	public void setPublishDate(Date publishDate) {
+		this.publishDate = publishDate;
 	}
 
 	

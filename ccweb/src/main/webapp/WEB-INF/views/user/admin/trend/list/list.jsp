@@ -87,38 +87,26 @@
 			<c:forEach items="${myTrend}" var="trendBeans">
 				<div style="margin: 10px 0px;" class="border" >
 					<table width="100%" cellpadding="5" >	
-					<c:if test="${trendBeans.trend.variety == null }">
 						<tr>
-							  <td rowspan="3" align="left" valign="top" width="10%"><img src=' <c:url value="${trendBeans.trend.photo_url }"></c:url>'  class="photo_width"></td>
+							  <td rowspan="3" align="left" valign="top" width="10%"><a href='<c:url value="/id/${trendBeans.trend.userId }"></c:url>' ><img src=' <c:url value="${trendBeans.trend.photo_url }"></c:url>'  class="photo_width"></a></td>
 							   <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.userId }"></c:url>' > ${trendBeans.trend.name}</a></td>
 						 </tr>
+					<c:if test="${trendBeans.trend.variety == null }">
 						<tr  class="bb">
 							   <td align="left" valign="top">${trendBeans.trend.context }<br><span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></td>
 						</tr>
 					</c:if>
 					<c:if test="${trendBeans.trend.variety == 'announcement' }">
-						<tr>
-							  <td rowspan="3" align="left" valign="top" width="10%"><img src=' <c:url value="${trendBeans.trend.photo_url }"></c:url>'  class="photo_width"></td>
-							   <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.userId }"></c:url>' > ${trendBeans.trend.name}</a> 发布了一篇公告：<a href="javascript:void(0)">${trendBeans.trend.title }</a></td>
-						 </tr>
 						<tr  class="bb">
 							   <td align="left" valign="top"><span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></td>
 						</tr>
 					</c:if>
 					<c:if test="${trendBeans.trend.variety == 'courseresource' }">
-						<tr>
-							  <td rowspan="3" align="left" valign="top" width="10%"><img src=' <c:url value="${trendBeans.trend.photo_url }"></c:url>'  class="photo_width"></td>
-							   <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.userId }"></c:url>' > ${trendBeans.trend.name}</a> 上传了一个资源：<a href="javascript:void(0)">${trendBeans.trend.title }</a></td>
-						 </tr>
 						<tr  class="bb">
 							   <td align="left" valign="top"><span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></td>
 						</tr>
 					</c:if>
 					<c:if test="${trendBeans.trend.variety == 'course' }">
-						<tr>
-							 <td rowspan="3" align="left" valign="top" width="10%"><img src=' <c:url value="${trendBeans.trend.photo_url }"></c:url>'  class="photo_width"></td>
-							 <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.userId }"></c:url>' > ${trendBeans.trend.name}</a> 发布了一门课程：<a href="javascript:void(0)">${trendBeans.trend.title }</a></td>
-						</tr>
 						<tr  class="bb">
 						  <td align="left" valign="top">
 						  	<img src=' <c:url value="${trendBeans.trend.coverUrl}"></c:url>'  class="coursecover_width"><br>
@@ -146,12 +134,14 @@
 						<c:forEach items="${trendBeans.commentList}" var="comment">
 							<table width='98%' cellpadding='0' style="margin-bottom: 10px;">
 								<c:if test="${comment.hostId == null }">
-									<tr><td  align='left' valign= 'top'>  <img src='<c:url value="${comment.photo_url }"></c:url>'  style="width:40px;"><a href='<c:url value="/id/${comment.userId }"></c:url>'> ${comment.name }</a>：${comment.context }</td></tr>
+									<tr><td  align='left' valign= 'top'> <a href='<c:url value="/id/${comment.userId }"></c:url>'> <img src='<c:url value="${comment.photo_url }"></c:url>'  style="width:40px;"></a><a href='<c:url value="/id/${comment.userId }"></c:url>'> ${comment.name }</a>：${comment.context }<br>
+										<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
+									</td></tr>
 									<tr  class='bb'><td  align='right' valign= 'top'> <a href="#">回复</a> </td></tr>
 								</c:if>
 								<c:if test="${comment.hostId != null}">
 									<tr ><td  align='left' valign= 'top'>
-										<img src='<c:url value="${comment.photo_url }"></c:url>'  style="width:40px;"> <a href='<c:url value="/id/${comment.userId }"></c:url>'> ${comment.name }</a> 回复了 
+										<a href='<c:url value="/id/${comment.userId }"></c:url>'><img src='<c:url value="${comment.photo_url }"></c:url>'  style="width:40px;"></a> <a href='<c:url value="/id/${comment.userId }"></c:url>'> ${comment.name }</a> 回复了 
 										<a href='<c:url value="/id/${comment.hostId }"></c:url>'>${comment.hostName}</a> ：${comment.context }</td></tr>
 									<tr  class='bb'><td  align='right' valign= 'top'><a href="#">回复</a></td></tr>
 								</c:if>

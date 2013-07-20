@@ -145,6 +145,7 @@ public class UserController {
 		comment.setTrendId(trend_id);
 		comment.setUserId(userInfo.getId());
 		comment.setPhoto_url(userInfo.getAvatar());
+		comment.setPublishDate(new Date());
 		commentService.createComment(comment);
 		return "redirect:/admin/trend"; 
 		}
@@ -171,6 +172,7 @@ public class UserController {
 		comment.setTrendId(trend_id);
 		comment.setUserId(userInfo.getId());
 		comment.setPhoto_url(userInfo.getAvatar());
+		comment.setPublishDate(new Date());
 		commentService.createComment(comment);
 		return "redirect:/id/"+trends.getUserId(); 
 		}
