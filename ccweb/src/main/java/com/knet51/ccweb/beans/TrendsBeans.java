@@ -1,5 +1,6 @@
 package com.knet51.ccweb.beans;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,7 @@ public class TrendsBeans {
 	private List<Comment> commentList;
 	private Long commentCount;
 	private String varityDescription;
-	private static Map<String, String> varityMap;
+	private static Map<String, String> varityMap = new HashMap<String, String>();
 
 	public Trends getTrend() {
 		return trend;
