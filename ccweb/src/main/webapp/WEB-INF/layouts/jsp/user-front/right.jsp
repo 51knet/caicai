@@ -16,9 +16,8 @@
 			//   alert(msg);
 		     var  t = "<table width='100%' cellpadding='5'>";
 		     for( var i=0;i<msg.length;i++){
-		    	 t+="<tr><td  align='left' valign= 'top'>  <img src='/ccweb"+msg[i].photo_url+"  ' style='width:40px' />&nbsp;&nbsp;"+msg[i].name+"</td></tr><tr  class='bb'><td  align='left' valign= 'top'>"+msg[i].context+"</td></tr>";
+		    	 t+="<tr><td  align='left' valign= 'top'>  <img src='/ccweb"+msg[i].user.photo_url+"  ' style='width:40px' />&nbsp;&nbsp;"+msg[i].user.name+"</td></tr><tr  class='bb'><td  align='left' valign= 'top'>"+msg[i].context+"</td></tr>";
 		     }
-		     $("#"+id).append(t);
 		     $("#"+id).append(t);
 		   }
 		});
@@ -79,7 +78,7 @@
 								<c:if test="${sessionUserInfo == null }"><a href='<c:url value='/'></c:url>' >请登录后评论</a></c:if>
 								<c:if test="${sessionUserInfo != null }"><a href="javascript:void(0)" onclick="showCommentDiv(${trend.id})">评论</a></c:if>
 								<c:if test="${sessionUserInfo.id ==trend.userId }">
-								|	<a href="javascript:void(0)" onclick="deleteTrends(${trend.id} ,${trend.userId} )">删除</a>
+								|	<a href="javascript:void(0)" onclick="deleteTrends(${trend.id} ,${trend.user.id} )">删除</a>
 								</c:if>
 							</td>
 						</tr>

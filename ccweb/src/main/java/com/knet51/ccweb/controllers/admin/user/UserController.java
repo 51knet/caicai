@@ -22,6 +22,7 @@ import com.knet51.ccweb.jpa.entities.Comment;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.services.CommentService;
+import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.TrendsService;
 import com.knet51.ccweb.jpa.services.UserService;
 
@@ -38,6 +39,8 @@ public class UserController {
 	private TrendsService trendsService;
 	@Autowired
 	private CommentService commentService;
+	@Autowired
+	private FriendsRelateService friendsRelateService;
 	
 	/**
 	 * big time line
@@ -101,16 +104,13 @@ public class UserController {
 		if(validResult.hasErrors()){
 			return "redirect:/admin/trend";
 		}else{
-			Trends myTrends = new Trends();
-			myTrends.setUserId(userInfo.getId());
-			myTrends.setName(userInfo.getName());
-			myTrends.setGender(userInfo.getGender());
-			myTrends.setContext(trendsForm.getContents());
-			myTrends.setEmail(userInfo.getEmail());
-			myTrends.setPhoto_url(userInfo.getAvatar());
-			myTrends.setPublishDate(new Date());
-			myTrends.setRole(userInfo.getRole());
-			trendsService.createTrends(myTrends);
+			Trends newTrends = new Trends();
+			newTrends.setUser(userInfo.getUser());
+			
+			newTrends.setContext(trendsForm.getContents());
+			newTrends.setPublishDate(new Date());
+			
+			trendsService.createTrends(newTrends);
 			return "redirect:/admin/trend";
 		}
 	}
@@ -142,11 +142,12 @@ public class UserController {
 			return "redirect:/admin/trend";
 		}else{
 		Comment comment = new Comment();
+		
+		comment.setUser(userInfo.getUser());
+		
 		comment.setContext(trendsForm.getContents());
-		comment.setName(userInfo.getName());
 		comment.setTrendId(trend_id);
-		comment.setUserId(userInfo.getId());
-		comment.setPhoto_url(userInfo.getAvatar());
+		
 		comment.setPublishDate(new Date());
 		commentService.createComment(comment);
 		return "redirect:/admin/trend"; 
@@ -169,24 +170,32 @@ public class UserController {
 		}else{
 		Trends trends = trendsService.findOneById(trend_id);
 		Comment comment = new Comment();
-		comment.setContext(trendsForm.getContents());
-		comment.setName(userInfo.getName());
+		
+		comment.setUser(userInfo.getUser());
+		
 		comment.setTrendId(trend_id);
-		comment.setUserId(userInfo.getId());
-		comment.setPhoto_url(userInfo.getAvatar());
+		comment.setContext(trendsForm.getContents());
 		comment.setPublishDate(new Date());
 		commentService.createComment(comment);
-		return "redirect:/id/"+trends.getUserId(); 
+		return "redirect:/id/"+trends.getUser().getId(); 
 		}
 	}
 	
 	@RequestMapping(value = "/trend/{varity}/{uid}")
 	public String trendDispatcher(@PathVariable String varity,
-			@PathVariable Long uid, HttpSession session) {
+			@PathVariable Long uid, HttpSession session,Model model) {
 		User user = userService.findOne(uid);
 		if (user == null) {
 			return "404";
 		} else {
+			UserInfo sessionUserInfo = (UserInfo) session
+					.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			boolean isFollower = false;
+			if (sessionUserInfo != null) { 
+				User sessionUser = sessionUserInfo.getUser();
+				isFollower = friendsRelateService.isTheFollower(uid,sessionUser.getId());
+				session.setAttribute("isFollower", isFollower);
+			}
 			return "redirect:/" + user.getRole() + "/" + uid + "/" + varity
 					+ "/list";
 		}

@@ -4,37 +4,19 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 @Entity
 public class Comment extends AbstractEntity {
-	private Long userId;
-	private String name;
-	private String photo_url;
+	@ManyToOne
+	private User user;
 	@Lob
 	private String context;
 	private Long trendId;
-	
-	private Long hostId;
-	private String hostName;
+	@ManyToOne
+	private User host;
 	private Date publishDate;
 	
-	public Long getUserId() {
-		return userId;
-	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPhoto_url() {
-		return photo_url;
-	}
-	public void setPhoto_url(String photo_url) {
-		this.photo_url = photo_url;
-	}
+
 	public String getContext() {
 		return context;
 	}
@@ -50,23 +32,24 @@ public class Comment extends AbstractEntity {
 	public Comment() {
 		super();
 	}
-	public Long getHostId() {
-		return hostId;
-	}
-	public void setHostId(Long hostId) {
-		this.hostId = hostId;
-	}
-	public String getHostName() {
-		return hostName;
-	}
-	public void setHostName(String hostName) {
-		this.hostName = hostName;
-	}
 	public Date getPublishDate() {
 		return publishDate;
 	}
 	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public User getHost() {
+		return host;
+	}
+	public void setHost(User host) {
+		this.host = host;
 	}
 
 	

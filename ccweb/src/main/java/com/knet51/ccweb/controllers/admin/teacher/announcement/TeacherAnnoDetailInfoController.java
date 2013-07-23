@@ -94,12 +94,7 @@ public class TeacherAnnoDetailInfoController {
 			Announcement ann = annoService.createAnnouncement(announcement);
 			
 			Trends trends = new Trends();
-			trends.setEmail(userInfo.getEmail());
-			trends.setGender(userInfo.getGender());
-			trends.setUserId(userInfo.getId());
-			trends.setName(userInfo.getName());
-			trends.setPhoto_url(userInfo.getAvatar());
-			trends.setRole(userInfo.getRole());
+			trends.setUser(userInfo.getUser());
 			
 			trends.setTitle(ann.getTitle());
 			trends.setPublishDate(new Date());

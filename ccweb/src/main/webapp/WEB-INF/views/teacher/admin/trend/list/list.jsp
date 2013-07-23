@@ -78,77 +78,7 @@
 	<div class="row" >
 		<h4>好友动态</h4>
 	</div>
-	<div class="content">	
-			<c:forEach items="${myTrend}" var="trendBeans">
-				<div style="margin: 10px 0px;" class="border" >
-					<table width="100%" cellpadding="5" >	
-					<c:if test="${trendBeans.trend.variety == null }">
-						<tr>
-							  <td rowspan="3" align="left" valign="top" width="10%"><img src=' <c:url value="${trendBeans.trend.photo_url }"></c:url>'  class="photo_width"></td>
-							   <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.userId }"></c:url>' > ${trendBeans.trend.name}</a></td>
-						 </tr>
-						<tr  class="bb">
-							   <td align="left" valign="top">${trendBeans.trend.context }<br><span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></td>
-						</tr>
-					</c:if>
-					<c:if test="${trendBeans.trend.variety == 'announcement' }">
-						<tr>
-							  <td rowspan="3" align="left" valign="top" width="10%"><img src=' <c:url value="${trendBeans.trend.photo_url }"></c:url>'  class="photo_width"></td>
-							   <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.userId }"></c:url>' > ${trendBeans.trend.name}</a> 发布了一篇公告：<a href="javascript:void(0)">${trendBeans.trend.title }</a></td>
-						 </tr>
-						<tr  class="bb">
-							   <td align="left" valign="top"><span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></td>
-						</tr>
-					</c:if>
-					<c:if test="${trendBeans.trend.variety == 'courseresource' }">
-						<tr>
-							  <td rowspan="3" align="left" valign="top" width="10%"><img src=' <c:url value="${trendBeans.trend.photo_url }"></c:url>'  class="photo_width"></td>
-							   <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.userId }"></c:url>' > ${trendBeans.trend.name}</a> 上传了一个资源：<a href="javascript:void(0)">${trendBeans.trend.title }</a></td>
-						 </tr>
-						<tr  class="bb">
-							   <td align="left" valign="top"><span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></td>
-						</tr>
-					</c:if>
-					<c:if test="${trendBeans.trend.variety == 'course' }">
-						<tr>
-							 <td rowspan="3" align="left" valign="top" width="10%"><img src=' <c:url value="${trendBeans.trend.photo_url }"></c:url>'  class="photo_width"></td>
-							 <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.userId }"></c:url>' > ${trendBeans.trend.name}</a> 发布了一门课程：<a href="javascript:void(0)">${trendBeans.trend.title }</a></td>
-						</tr>
-						<tr  class="bb">
-						  <td align="left" valign="top">
-						  	<img src=' <c:url value="${trendBeans.trend.coverUrl}"></c:url>'  class="coursecover_width"><br>
-						  	<span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
-						  </td>
-						</tr>
-					</c:if>
-					<tr >
-						<td align="right" valign="top"><a href="javascript:void(0)" onclick="showCommentDiv(${trendBeans.trend.id})">评论(${trendBeans.commentCount})</a>
-							<c:if test="${sessionUserInfo.id ==trendBeans.trend.userId }">
-							|	<a href="javascript:void(0)" onclick="deleteTrends(${trendBeans.trend.id} ,${trendBeans.trend.userId} )">删除</a>
-							</c:if>
-						</td>
-					</tr>		
-					</table>
-					<div id="${trendBeans.trend.id}_comment_div" style="display: none; margin: 0px 10px;">
-						<form style="margin-top: 10px;" method="post" action='<c:url value="/comment"></c:url>'>
-							<input type="hidden" name="trendId" value="${trendBeans.trend.id}">
-							<textarea rows="1" cols="" style="width:100%; " name="contents"  ></textarea><br>
-							<div class="offset9">
-								<button class="btn btn-success offset" type="submit">发布</button> <button class="btn btn-success " type="reset" onclick="closeCommentDiv(${trendBeans.trend.id})">取消</button>
-							</div>
-						</form>
-						
-						<c:forEach items="${trendBeans.commentList}" var="comment">
-							<table width='100%' cellpadding='5'>
-								<tr><td  align='left' valign= 'top'>  <img src='<c:url value="${comment.photo_url }"></c:url>'  style="width:40px;"> ${comment.name }</td></tr>
-								<tr  class='bb'><td  align='left' valign= 'top'>${comment.context }</td></tr>
-							</table>
-						</c:forEach>
-					</div>
-				</div>
-			</c:forEach>
-			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
-	</div>
+	<jsp:include page="/WEB-INF/views/_shared/trend/trend.jsp"></jsp:include>
 </div>
 
 

@@ -358,12 +358,7 @@ public class CourseInfoPageController {
 		Course newCourse = courseService.updateTeacherCourse(course);
 		Trends trends = new Trends();
 		trends.setCoverUrl(newCourse.getCourseCover());
-		trends.setEmail(userInfo.getEmail());
-		trends.setGender(userInfo.getGender());
-		trends.setUserId(userInfo.getId());
-		trends.setName(userInfo.getName());
-		trends.setPhoto_url(userInfo.getAvatar());
-		trends.setRole(userInfo.getRole());
+		trends.setUser(userInfo.getUser());
 
 		trends.setTitle(newCourse.getCourseName());
 		trends.setPublishDate(new Date());

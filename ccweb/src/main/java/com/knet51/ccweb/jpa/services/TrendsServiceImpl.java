@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.repository.TrendsRepository;
 
@@ -30,9 +31,9 @@ public class TrendsServiceImpl implements TrendsService {
 	}
 
 	@Override
-	public List<Trends> showTrendsByUserId(Long u_id) {
+	public List<Trends> showTrendsByUser(User user) {
 		Sort sort = new Sort(Direction.DESC, "id"); 
-		return trendsRepository.findByUserId(u_id , sort);
+		return trendsRepository.findByUser(user , sort);
 	}
 
 
@@ -50,12 +51,12 @@ public class TrendsServiceImpl implements TrendsService {
 
 	@Override
 	public List<Trends> showAllTrendsByUserId(Long u_id) {
-		return trendsRepository.findAllByUserId(u_id);
+		return trendsRepository.findAllByUser(u_id);
 	}
 
 	@Override
 	public List<Trends> showAllTeacherTrendsByUserId(Long u_id) {
-		return trendsRepository.findTeacherAllByUserId(u_id);
+		return trendsRepository.findTeacherAllByUser(u_id);
 	}
 
 }

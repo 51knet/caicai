@@ -10,18 +10,19 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.timeline.Trends;
 
 public interface TrendsRepository extends JpaRepository<Trends, Long>, JpaSpecificationExecutor<Trends> {
 	Page<Trends> findAllByUserId(Long user_id, Pageable pageable);
 	
-	List<Trends> findByUserId(Long user_id );
+	List<Trends> findByUser(User user);
 	
-	List<Trends> findByUserId(Long user_id, Sort sort);
+	List<Trends> findByUser(User user, Sort sort);
 	
-	@Query("SELECT u FROM Trends u where u.userId IN (SELECT c.host_id FROM FriendsRelated c where c.follow_id=:uid) or u.userId=:uid order by id desc")
-	List<Trends> findAllByUserId(@Param("uid") Long uid);
+	@Query("SELECT u FROM Trends u where u.user.id IN (SELECT c.host_id FROM FriendsRelated c where c.follow_id=:uid) or u.user.id=:uid order by id desc")
+	List<Trends> findAllByUser(@Param("uid") Long uid);
 
-	@Query("SELECT u FROM Trends u where u.role='teacher' and u.userId IN (SELECT c.host_id FROM FriendsRelated c where c.follow_id=:uid) or u.userId=:uid order by id desc")
-	List<Trends> findTeacherAllByUserId(@Param("uid") Long uid);
+	@Query("SELECT u FROM Trends u where u.user.role='teacher' and u.user.id IN (SELECT c.host_id FROM FriendsRelated c where c.follow_id=:uid) or u.user.id=:uid order by id desc")
+	List<Trends> findTeacherAllByUser(@Param("uid") Long uid);
 }

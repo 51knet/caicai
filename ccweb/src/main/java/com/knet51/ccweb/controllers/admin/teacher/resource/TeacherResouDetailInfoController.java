@@ -101,12 +101,7 @@ public class TeacherResouDetailInfoController {
 				CourseResource newResource =  courseResourceService.createCourseResource(resource);
 				
 				Trends trends = new Trends();
-				trends.setEmail(userInfo.getEmail());
-				trends.setGender(userInfo.getGender());
-				trends.setUserId(userInfo.getId());
-				trends.setName(userInfo.getName());
-				trends.setPhoto_url(userInfo.getAvatar());
-				trends.setRole(userInfo.getRole());
+				trends.setUser(userInfo.getUser());
 				
 				trends.setTitle(newResource.getFileName());
 				trends.setPublishDate(new Date());
