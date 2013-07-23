@@ -195,6 +195,13 @@ public class UserController {
 				User sessionUser = sessionUserInfo.getUser();
 				isFollower = friendsRelateService.isTheFollower(uid,sessionUser.getId());
 				session.setAttribute("isFollower", isFollower);
+				
+				Integer fansCount = friendsRelateService.getAllFans(uid)
+						.size();
+				Integer hostCount = friendsRelateService.getAllHost(uid)
+						.size();
+				session.setAttribute("fansCount", fansCount);
+				session.setAttribute("hostCount", hostCount);
 			}
 			return "redirect:/" + user.getRole() + "/" + uid + "/" + varity
 					+ "/list";

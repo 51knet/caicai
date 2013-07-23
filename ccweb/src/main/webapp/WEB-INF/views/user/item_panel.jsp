@@ -56,8 +56,8 @@ color: #8aa942;
 		</c:otherwise>
 	</c:choose>
 	<div class="row-fluid">
-		<a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.fansCount } 粉丝</a> | 
-		<a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.hostCount } 关注</a>
+		<a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount } 粉丝</a> | 
+		<a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount } 关注</a>
 	</div>
 </div>
 <div class="left-menu-container " >

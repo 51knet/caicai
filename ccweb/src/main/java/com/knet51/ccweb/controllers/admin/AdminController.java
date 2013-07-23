@@ -62,10 +62,10 @@ public class AdminController {
 	public String admin(Locale locale, Model model, HttpSession session) {
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Integer fansCount = friendsRelateService.getAllFans(userInfo.getId()).size();
-		Integer hostCount = friendsRelateService.getAllHost(userInfo.getId()).size();
-		session.setAttribute("fansCount", fansCount);
-		session.setAttribute("hostCount", hostCount);
+		Integer admin_fansCount = friendsRelateService.getAllFans(userInfo.getId()).size();
+		Integer admin_hostCount = friendsRelateService.getAllHost(userInfo.getId()).size();
+		session.setAttribute("admin_fansCount", admin_fansCount);
+		session.setAttribute("admin_hostCount", admin_hostCount);
 		if (userInfo != null && userInfo.getRole().equals("user")) {
 			return "redirect:/admin/user";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {

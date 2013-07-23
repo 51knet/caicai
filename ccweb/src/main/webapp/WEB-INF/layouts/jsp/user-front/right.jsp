@@ -77,7 +77,7 @@
 							<td align="right" valign="top">
 								<c:if test="${sessionUserInfo == null }"><a href='<c:url value='/'></c:url>' >请登录后评论</a></c:if>
 								<c:if test="${sessionUserInfo != null }"><a href="javascript:void(0)" onclick="showCommentDiv(${trend.id})">评论</a></c:if>
-								<c:if test="${sessionUserInfo.id ==trend.userId }">
+								<c:if test="${sessionUserInfo.id ==trend.user.id }">
 								|	<a href="javascript:void(0)" onclick="deleteTrends(${trend.id} ,${trend.user.id} )">删除</a>
 								</c:if>
 							</td>
