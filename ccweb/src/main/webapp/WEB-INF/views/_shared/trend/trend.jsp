@@ -10,7 +10,12 @@
     function	showCommentDiv(index){
 	  var id =  index+"_comment_div";
 	 // $("#"+id+">table").empty();
-	  $("#"+id).css("display","block");
+
+	  if($("#"+id).css("display") == "block"){
+		  $("#"+id).css("display","none");
+	  }else{
+		  $("#"+id).css("display","block");
+	  }
 	 /* $.ajax({
 		   type: "POST",
 		   url: '<c:url value="/showTrendsComment"></c:url>',
@@ -26,15 +31,16 @@
 		   }
 		});*/
 	}
-	
-    function deleteTrends(trend_id, user_id){
-		alert(trend_id+"---"+user_id);
-	}
+
     
-    function closeCommentDiv(index){
-    	  var id =  index+"_comment_div";
-    	  $("#"+id).css("display","none");
-    	 // $("#"+id+">table").empty();
+    function showReply(index){
+    	var id =  index+"_reply_div";
+    	//alert(id);
+   	  if($("#"+id).css("display") == "block"){
+   		  $("#"+id).css("display","none");
+   	  }else{
+   		  $("#"+id).css("display","block");
+   	  }
     }
 </script>
 <div class="row-fluid custom round">
@@ -78,25 +84,39 @@
 						<form style="margin-top: 10px;" method="post" action='<c:url value="/comment"></c:url>'>
 							<input type="hidden" name="trendId" value="${trendBeans.trend.id}">
 							<textarea rows="1" cols="" style="width:100%; " name="contents"  ></textarea><br>
-							<div class="offset9">
-								<button class="btn btn-success offset" type="submit">发布</button> <button class="btn btn-success " type="reset" onclick="closeCommentDiv(${trendBeans.trend.id})">取消</button>
+							<div class="offset10">
+								<button class="btn btn-success " type="submit">发布</button>
 							</div>
 						</form>
 						
 						<c:forEach items="${trendBeans.commentList}" var="comment">
 							<table width='98%' cellpadding='0' style="margin-bottom: 10px;">
-								<c:if test="${comment.hostId == null }">
+								<c:if test="${comment.host == null }">
 									<tr><td  align='left' valign= 'top'> <a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a><a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a>：${comment.context }<br>
 										<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
+										<a href="javascript:void(0)" onclick="showReply(${comment.id })">回复</a>
 									</td></tr>
-									<tr  class='bb'><td  align='right' valign= 'top'> <a href="#">回复</a> </td></tr>
 								</c:if>
 								<c:if test="${comment.host != null}">
 									<tr ><td  align='left' valign= 'top'>
 										<a href='<c:url value="/id/${comment.user.id }"></c:url>'><img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a> <a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a> 回复了 
-										<a href='<c:url value="/id/${comment.host.id }"></c:url>'>${comment.host.name}</a> ：${comment.context }</td></tr>
-									<tr  class='bb'><td  align='right' valign= 'top'><a href="#">回复</a></td></tr>
+										<a href='<c:url value="/id/${comment.host.id }"></c:url>'>${comment.host.name}</a> ：${comment.context }<br>
+										<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
+										<a href="javascript:void(0)" onclick="showReply(${comment.id })">回复</a>
+									</td></tr>
 								</c:if>
+								<tr  class='bb'><td  align='right' valign= 'top'>
+									<div style="display: none; margin-top: 10px;" id="${comment.id }_reply_div">
+										<form  method="post" action='<c:url value="/reply"></c:url>'  >
+											<input type="hidden" name="hostId" value="${comment.user.id }" >
+											<input type="hidden" name="trendId" value="${trendBeans.trend.id}" >
+											<textarea rows="1" cols="" style="width:100%; " name="contents"  ></textarea><br>
+											<div class="offset10">
+												<button class="btn btn-success offset" type="submit">发布</button> 
+											</div>
+										</form>
+									</div>
+								</td></tr>
 							</table>
 						</c:forEach>
 					</div>

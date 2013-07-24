@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.TrendsBeans;
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.admin.AdminController;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Comment;
 import com.knet51.ccweb.jpa.entities.User;
@@ -32,6 +36,8 @@ import com.knet51.ccweb.jpa.services.UserService;
  */
 @Controller
 public class UserController {
+	private static final Logger logger = LoggerFactory
+			.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
@@ -178,6 +184,25 @@ public class UserController {
 		comment.setPublishDate(new Date());
 		commentService.createComment(comment);
 		return "redirect:/id/"+trends.getUser().getId(); 
+		}
+	}
+	
+	@RequestMapping(value="/reply" ,method = RequestMethod.POST)
+	public String createReply(@RequestParam("hostId") Long host_id,@RequestParam("trendId") Long trend_id,
+			HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult){
+		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(validResult.hasErrors()){
+			return "redirect:/admin/trend";
+		}else{
+		User host = userService.findOne(host_id);
+		Comment comment = new Comment();
+		comment.setUser(userInfo.getUser());
+		comment.setTrendId(trend_id);
+		comment.setHost(host);
+		comment.setContext(trendsForm.getContents());
+		comment.setPublishDate(new Date());
+		commentService.createComment(comment);
+		return "redirect:/admin/trend"; 
 		}
 	}
 	

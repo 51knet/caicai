@@ -67,7 +67,7 @@
 	</definition>
 	
 	<definition name="admin.user.trend" extends="user-admin-layout">
-		<put-attribute name="title" value="首页" />
+		<put-attribute name="title" value="好友动态" />
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
 		<put-attribute name="mid" value="/WEB-INF/views/user/admin/trend/list/list.jsp"></put-attribute>
 	</definition>
