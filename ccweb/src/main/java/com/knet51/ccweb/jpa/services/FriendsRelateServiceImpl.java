@@ -17,7 +17,7 @@ import com.knet51.ccweb.jpa.entities.User;
 public class FriendsRelateServiceImpl implements FriendsRelateService {
 	@Autowired
 	private FriendsRelatedDao friendsRelatedDao;
-	
+
 	@Autowired
 	private UserDao userDao;
 
@@ -50,35 +50,64 @@ public class FriendsRelateServiceImpl implements FriendsRelateService {
 	public List<FriendsRelated> getAllHost(Long followId) {
 		return friendsRelatedDao.getAllHost(followId);
 	}
-	
+
 	/**
 	 * 判断followId是否存在以此来验证是否对其关注
 	 */
 	@Override
-	public boolean isTheFollower(Long followId,Long hostId) {
-		int followValue=friendsRelatedDao.getFollowById(hostId,followId);
-		return (followValue!=0);
+	public boolean isTheFollower(Long followId, Long hostId) {
+		int followValue = friendsRelatedDao.getFollowById(hostId, followId);
+		return (followValue != 0);
 	}
+
 	/* get the fans infor */
 	@Override
 	public List<User> getAllFansInfo(Long user_id) {
 		List<FriendsRelated> fansList = friendsRelatedDao.getAllFollow(user_id);
 		List<User> fansInfoList = new ArrayList<User>();
-		for(int i=0;i<fansList.size();i++){
+		for (int i = 0; i < fansList.size(); i++) {
 			User user = userDao.findById(fansList.get(i).getFollow_id());
 			fansInfoList.add(user);
 		}
 		return fansInfoList;
 	}
-	
+
+	@Override
+	public List<User> getAllFansInfo(Long user_id, String role) {
+		List<FriendsRelated> fansList = friendsRelatedDao.getAllFollow(user_id);
+		List<User> fansInfoList = new ArrayList<User>();
+		for (int i = 0; i < fansList.size(); i++) {
+			User user = userDao.findById(fansList.get(i).getFollow_id());
+			if (user != null && user.getRole() != null
+					&& user.getRole().equals(role)) {
+				fansInfoList.add(user);
+			}
+		}
+		return fansInfoList;
+	}
+
 	/* get the host infor */
 	@Override
 	public List<User> getAllHostInfo(Long user_id) {
 		List<FriendsRelated> hostList = friendsRelatedDao.getAllHost(user_id);
 		List<User> hostInfoList = new ArrayList<User>();
-		for(int i=0;i<hostList.size();i++){
+		for (int i = 0; i < hostList.size(); i++) {
 			User user = userDao.findById(hostList.get(i).getHost_id());
 			hostInfoList.add(user);
+		}
+		return hostInfoList;
+	}
+
+	@Override
+	public List<User> getAllHostInfo(Long user_id, String role) {
+		List<FriendsRelated> hostList = friendsRelatedDao.getAllHost(user_id);
+		List<User> hostInfoList = new ArrayList<User>();
+		for (int i = 0; i < hostList.size(); i++) {
+			User user = userDao.findById(hostList.get(i).getHost_id());
+			if (user != null && user.getRole() != null
+					&& user.getRole().equals(role)) {
+				hostInfoList.add(user);
+			}
 		}
 		return hostInfoList;
 	}

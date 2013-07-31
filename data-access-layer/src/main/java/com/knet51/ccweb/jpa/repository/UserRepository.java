@@ -1,5 +1,7 @@
 package com.knet51.ccweb.jpa.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +22,6 @@ public interface UserRepository extends JpaRepository<User, Long>,
 	User getValidEmail(@Param("inputemail") String email);
 	
 	Page<User> findUserByRole(String Role, Pageable pageable);
+	
+	List<User> findUserByRole(String Role);
 }
