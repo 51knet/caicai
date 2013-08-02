@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public List<Comment> findAllByTrendId(Long trend_id) {
-		Sort sort = new Sort(Direction.ASC, "id");
+		Sort sort = new Sort(Direction.DESC, "id");
 		return commentRepository.findAllByTrendId(trend_id,sort);
 	}
 

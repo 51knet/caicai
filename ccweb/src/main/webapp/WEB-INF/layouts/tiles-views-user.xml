@@ -71,6 +71,14 @@
 		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
 		<put-attribute name="mid" value="/WEB-INF/views/user/admin/trend/list/list.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.user.trend.detail" extends="user-admin-layout">
+		<put-attribute name="title" value="好友动态" />
+		<put-attribute name="left" value="/WEB-INF/views/user/item_panel.jsp"></put-attribute>
+		<put-attribute name="mid" value="/WEB-INF/views/user/admin/trend/view/view.jsp"></put-attribute>
+	</definition>
+	
+	
 	<!--  user msg -->
 	<definition name="admin.user.message.detail" extends="user-admin-layout">
 		<put-attribute name="title" value="私信" />

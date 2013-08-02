@@ -75,10 +75,7 @@
     }
 </script>
 <div class="row-fluid custom round">
-	<div class="row" >
-		<h4>好友动态</h4>
-	</div>
-	<jsp:include page="/WEB-INF/views/_shared/trend/admin/list/trend.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/_shared/trend/admin/view/view.jsp"></jsp:include>
 </div>
 
 

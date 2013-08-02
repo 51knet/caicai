@@ -42,36 +42,36 @@
    		  $("#"+id).css("display","block");
    	  }
     }
+    
+    function postReplyForm(){
+    	//alert("form");
+    }
 </script>
 <div class="row-fluid custom round">
 	<div class="content">	
-			<c:forEach items="${myTrend}" var="trendBeans">
+			<c:forEach items="${trend}" var="trendBeans">
 				<div style="margin: 10px 0px;" class="border" >
 					<table width="100%" cellpadding="5" >	
 						<tr>
-							  <td rowspan="3" align="left" valign="top" width="10%"><a href='<c:url value="/id/${trendBeans.trend.user.id }"></c:url>' ><img src=' <c:url value="${trendBeans.trend.user.photo_url }"></c:url>'  class="photo_width"></a></td>
+							  <td rowspan="3" align="left" valign="top" width="10%"><a href='<c:url value="/id/${trendBeans.trend.user.id }"></c:url>' >
+							  <img src=' <c:url value="${trendBeans.trend.user.photo_url }"></c:url>'  class="photo_width"></a></td>
 							   <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.user.id }"></c:url>' > ${trendBeans.trend.user.name}</a></td>
 						 </tr>
 					<c:if test="${trendBeans.trend.variety == null }">
 						<tr  class="bb">
-							   <td align="left" valign="top">${trendBeans.trend.context }<br><span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></td>
-						</tr>
+							   <td align="left" valign="top">${trendBeans.trend.context }<br>
 					</c:if>
 					<c:if test="${trendBeans.trend.variety == 'course' }">
 						<tr  class="bb">
 						  <td align="left" valign="top">发布了 ${trendBeans.varityDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a><br>
-						  	<img src=' <c:url value="${trendBeans.trend.coverUrl}"></c:url>'  class="coursecover_width"><br>
-						  	<span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
-						  </td>
-						</tr>
+						  	<img src=' <c:url value="${trendBeans.trend.coverUrl}"></c:url>'  class="coursecover_width"><br>					
 					</c:if>
 					<c:if test="${trendBeans.trend.variety != 'course' && trendBeans.trend.variety != null}">
 						<tr  class="bb">
-						  <td align="left" valign="top">发布了 ${trendBeans.varityDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a><br>
-						  	<span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
-						  </td>
-						</tr>
+						  <td align="left" valign="top">发布了 ${trendBeans.varityDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a><br>						  
 					</c:if>
+						<span class="date"><a href='<c:url value="/admin/trend/view/${trendBeans.trend.id}"></c:url>'><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></a></span></td>
+					</tr>
 					<tr >
 						<td align="right" valign="top"><a href="javascript:void(0)" onclick="showCommentDiv(${trendBeans.trend.id})">评论(${trendBeans.commentCount})</a>
 							<c:if test="${sessionUserInfo.id ==trendBeans.trend.user.id }">
@@ -80,19 +80,20 @@
 						</td>
 					</tr>		
 					</table>
-					<div id="${trendBeans.trend.id}_comment_div" style="display: none; margin: 0px 10px;">
+					<div id="${trendBeans.trend.id}_comment_div" style='display: <c:if test="${ show == trendBeans.trend.id }"> block</c:if><c:if test="${show != trendBeans.trend.id}"> none</c:if> ; margin: 0px 10px;'>
 						<form style="margin-top: 10px;" method="post" action='<c:url value="/comment"></c:url>'>
 							<input type="hidden" name="trendId" value="${trendBeans.trend.id}">
-							<textarea rows="1" cols="" style="width:100%; " name="contents"  ></textarea><br>
+							<textarea rows="1" cols=""  style="width:100%; " name="contents"  ></textarea><br>
 							<div class="offset10">
 								<button class="btn btn-success " type="submit">发布</button>
 							</div>
 						</form>
-						
+
 						<c:forEach items="${trendBeans.commentList}" var="comment">
 							<table width='98%' cellpadding='0' style="margin-bottom: 10px;">
 								<c:if test="${comment.host == null }">
-									<tr><td  align='left' valign= 'top'> <a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a><a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a>：${comment.context }<br>
+									<tr><td  align='left' valign= 'top'> <a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a>
+									<a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a>：${comment.context }<br>
 										<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
 										<a href="javascript:void(0)" onclick="showReply(${comment.id })">回复</a>
 									</td></tr>
@@ -112,7 +113,8 @@
 											<input type="hidden" name="trendId" value="${trendBeans.trend.id}" >
 											<textarea rows="1" cols="" style="width:100%; " name="contents"  ></textarea><br>
 											<div class="offset10">
-												<button class="btn btn-success offset" type="submit">发布</button> 
+												 <button class="btn btn-success offset"  onclick="postReplyForm()">发布</button>
+												<!--<a href="javascript:void(0)" class="btn btn-success offset"  onclick="postReplyForm()">发布</a>   -->
 											</div>
 										</form>
 									</div>

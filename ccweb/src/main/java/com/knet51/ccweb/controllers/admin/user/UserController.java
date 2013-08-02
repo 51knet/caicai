@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.TrendsBeans;
 import com.knet51.ccweb.beans.UserInfo;
@@ -74,7 +76,7 @@ public class UserController {
 				trendsBeansList.add(trendsBeans);
 			}
 			
-			model.addAttribute("myTrend", trendsBeansList);
+			model.addAttribute("trend", trendsBeansList);
 			return "admin.user.trend";
 		}
 		else if(role != null && role.equals("teacher")){
@@ -90,7 +92,7 @@ public class UserController {
 				trendsBeansList.add(trendsBeans);
 			}
 			
-			model.addAttribute("myTrend", trendsBeansList);
+			model.addAttribute("trend", trendsBeansList);
 			return "admin.teacher.trend";
 		}
 		else{
@@ -142,7 +144,8 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/comment" , method=RequestMethod.POST)
-	public String createComment(@RequestParam("trendId") Long trend_id, HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult){
+	public String createComment(@RequestParam("trendId") Long trend_id, HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult,
+			RedirectAttributes redirectAttributes){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
 			return "redirect:/admin/trend";
@@ -155,7 +158,10 @@ public class UserController {
 		comment.setTrendId(trend_id);
 		
 		comment.setPublishDate(new Date());
-		commentService.createComment(comment);
+		Comment newComment = commentService.createComment(comment);
+		if(newComment != null){
+			redirectAttributes.addFlashAttribute("show",trend_id);
+		}
 		return "redirect:/admin/trend"; 
 		}
 	}
@@ -189,7 +195,7 @@ public class UserController {
 	
 	@RequestMapping(value="/reply" ,method = RequestMethod.POST)
 	public String createReply(@RequestParam("hostId") Long host_id,@RequestParam("trendId") Long trend_id,
-			HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult){
+			HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult,RedirectAttributes redirectAttributes){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
 			return "redirect:/admin/trend";
@@ -201,7 +207,10 @@ public class UserController {
 		comment.setHost(host);
 		comment.setContext(trendsForm.getContents());
 		comment.setPublishDate(new Date());
-		commentService.createComment(comment);
+		Comment newComment =commentService.createComment(comment);
+		if(newComment != null){
+			redirectAttributes.addFlashAttribute("show",trend_id);
+		}
 		return "redirect:/admin/trend"; 
 		}
 	}
@@ -230,6 +239,31 @@ public class UserController {
 			}
 			return "redirect:/" + user.getRole() + "/" + uid + "/" + varity
 					+ "/list";
+		}
+	}
+	
+	@RequestMapping(value = "/admin/trend/view/{trend_id}")
+	public String showTrendDetail(@PathVariable Long trend_id,HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
+		Trends trends = trendsService.findOneById(trend_id);
+		TrendsBeans trendsBeans = new TrendsBeans();
+		Page<Comment> comment = commentService.findAllByTrendId(trend_id, pageNumber, pageSize);
+		int commentCount = commentService.findAllByTrendId(trend_id).size();
+		trendsBeans.setCommentList(comment.getContent());
+		trendsBeans.setTrend(trends);
+		trendsBeans.setCommentCount((long)commentCount);
+		model.addAttribute("trendBeans", trendsBeans);
+		model.addAttribute("page", comment);
+		
+		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		String role = userInfo.getRole();
+		
+		if(role != null && role.equals("user")){
+			return "admin.user.trend.detail";
+		}else if(role != null && role.equals("teacher")){
+			return "admin.teacher.trend.detail";
+		}else{
+			return "redirect:/admin";
 		}
 	}
 }

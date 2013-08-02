@@ -83,7 +83,7 @@
 			</div>
 		</form>
 	</div>
-	<jsp:include page="/WEB-INF/views/_shared/trend/trend.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/_shared/trend/admin/list/trend.jsp"></jsp:include>
 	<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 </div>
 
