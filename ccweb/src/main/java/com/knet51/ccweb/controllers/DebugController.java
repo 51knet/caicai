@@ -32,6 +32,7 @@ import com.knet51.ccweb.jpa.services.UserService;
 //import org.springframework.web.bind.annotation.PathVariable;
 //import com.knet51.ccweb.jpa.entities.Student;
 //import com.knet51.ccweb.jpa.services.StudentService;
+import com.knet51.ccweb.jpa.services.promotion.UserRecommendService;
 
 /**
  * Handles requests for the application home page.
@@ -50,6 +51,9 @@ public class DebugController {
 	@Autowired
 	@Qualifier("blogServiceImpl")
 	private BlogService blogService;
+	
+	@Autowired
+	private UserRecommendService userRecommendService;
 
 	@Transactional
 	@RequestMapping(value = "/debug", method = RequestMethod.GET)
@@ -166,5 +170,14 @@ public class DebugController {
 			BlogPost post = new BlogPost(teacher, blogCategory, "title"+i, teacher.toString()+i);
 			em.persist(post);	
 		}		
+	}
+	
+	@Transactional
+	@RequestMapping(value = "/debug/recommanduser", method = RequestMethod.GET)
+	public String recommanduser(Locale locale, Model model, HttpSession session) {
+		logger.info("===== debug recommand user =====");
+		List<User> userList = userRecommendService.getRecommendTeachersFromMyTeacher((long)3);
+		logger.info("====="+userList.size()+"=====");
+		return "debug";
 	}
 }
