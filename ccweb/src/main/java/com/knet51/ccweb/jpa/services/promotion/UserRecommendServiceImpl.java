@@ -150,6 +150,12 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 				count);
 		return userList;
 	}
+	
+	private List<User> getRecommendUsersFromFriends(Long id, int count) {
+		List<User> userList = getRandomUsersFriends("user", "user", id,
+				count);
+		return userList;
+	}
 
 	private List<Course> getRandomCourses() {
 		List<Course> courseList = courseService.findAllPublish();
@@ -207,6 +213,18 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		} else {
 			courseList.addAll(getRandomCourses(count - courseList.size()));
 			return courseList;
+		}
+	}
+
+	@Override
+	public List<User> getRecommendUser(Long user_id, int count) {
+		List<User> userList = new ArrayList<User>();
+		userList.addAll(getRecommendUsersFromFriends(user_id, count));
+		if (userList != null && userList.size() >= count) {
+			return userList.subList(0, count - 1);
+		} else {
+			userList.addAll(getRandomUsers("user", count - userList.size()));
+			return userList;
 		}
 	}
 
