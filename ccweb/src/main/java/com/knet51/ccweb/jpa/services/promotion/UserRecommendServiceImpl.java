@@ -120,15 +120,13 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		}
 	}
 
-	@Override
-	public List<User> getRandomUsers(String role) {
+	private List<User> getRandomUsers(String role) {
 		List<User> userList = userService.findUserByRole(role);
 		Collections.shuffle(userList);
 		return userList;
 	}
 
-	@Override
-	public List<User> getRandomUsers(String role, int count) {
+	private List<User> getRandomUsers(String role, int count) {
 		if (count > 0) {
 			List<User> userList = getRandomUsers(role);
 			if (userList.size() > count) {
@@ -141,41 +139,25 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		}
 	}
 
-	@Override
-	public List<User> getRecommendTeachersFromMyTeacher(Long id) {
-		List<User> userList = getRandomUsersFriends("teacher", "teacher", id);
-		return userList;
-	}
-
-	@Override
-	public List<User> getRecommendTeachersFromMyTeacher(Long id, int count) {
+	private List<User> getRecommendTeachersFromMyTeacher(Long id, int count) {
 		List<User> userList = getRandomUsersFriends("teacher", "teacher", id,
 				count);
 		return userList;
 	}
 
-	@Override
-	public List<User> getRecommendTeachersFromFriendsTeacher(Long id) {
-		List<User> userList = getRandomUsersFriends("user", "teacher", id);
-		return userList;
-	}
-
-	@Override
-	public List<User> getRecommendTeachersFromFriendsTeacher(Long id, int count) {
+	private List<User> getRecommendTeachersFromFriendsTeacher(Long id, int count) {
 		List<User> userList = getRandomUsersFriends("user", "teacher", id,
 				count);
 		return userList;
 	}
 
-	@Override
-	public List<Course> getRandomCourses() {
+	private List<Course> getRandomCourses() {
 		List<Course> courseList = courseService.findAllPublish();
 		Collections.shuffle(courseList);
 		return courseList;
 	}
 
-	@Override
-	public List<Course> getRandomCourses(int count) {
+	private List<Course> getRandomCourses(int count) {
 		if (count > 0) {
 			List<Course> courseList = getRandomCourses();
 			if (courseList.size() > count) {
@@ -188,24 +170,44 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		}
 	}
 
-	@Override
-	public List<Course> getRecommendTeachersCourses(Long id) {
-		return getRandomTeacherCourses(id);
-	}
-
-	@Override
-	public List<Course> getRecommendTeachersCourses(Long id, int count) {
+	private List<Course> getRecommendTeachersCourses(Long id, int count) {
 		return getRandomTeacherCourses(id, count);
 	}
 
-	@Override
-	public List<Course> getRecommendUsersCourses(Long id) {
-		return getRandomUserCourses(id);
+	private List<Course> getRecommendUsersCourses(Long id, int count) {
+		return getRandomUserCourses(id, count);
 	}
 
 	@Override
-	public List<Course> getRecommendUsersCourses(Long id, int count) {
-		return getRandomUserCourses(id, count);
+	public List<User> getRecommendTeacher(Long id, int count) {
+		List<User> userList = new ArrayList<User>();
+		Set<User> userSet = new HashSet<User>();
+		userSet.addAll(getRecommendTeachersFromMyTeacher(id, count));
+		userSet.addAll(getRecommendTeachersFromFriendsTeacher(id, count));
+		userList.addAll(userSet);
+		Collections.shuffle(userList);
+		if (userList != null && userList.size() >= count) {
+			return userList.subList(0, count - 1);
+		} else {
+			userList.addAll(getRandomUsers("teacher", count - userList.size()));
+			return userList;
+		}
+	}
+
+	@Override
+	public List<Course> getRecommendCourses(Long id, int count) {
+		List<Course> courseList = new ArrayList<Course>();
+		Set<Course> courseSet = new HashSet<Course>();
+		courseSet.addAll(getRecommendTeachersCourses(id, count));
+		courseSet.addAll(getRecommendUsersCourses(id, count));
+		courseList.addAll(courseSet);
+		Collections.shuffle(courseList);
+		if (courseList != null && courseList.size() >= count) {
+			return courseList.subList(0, count - 1);
+		} else {
+			courseList.addAll(getRandomCourses(count - courseList.size()));
+			return courseList;
+		}
 	}
 
 }
