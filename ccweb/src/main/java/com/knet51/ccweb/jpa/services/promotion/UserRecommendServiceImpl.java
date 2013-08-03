@@ -179,11 +179,11 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 	}
 
 	@Override
-	public List<User> getRecommendTeacher(Long id, int count) {
+	public List<User> getRecommendTeacher(Long user_id, int count) {
 		List<User> userList = new ArrayList<User>();
 		Set<User> userSet = new HashSet<User>();
-		userSet.addAll(getRecommendTeachersFromMyTeacher(id, count));
-		userSet.addAll(getRecommendTeachersFromFriendsTeacher(id, count));
+		userSet.addAll(getRecommendTeachersFromMyTeacher(user_id, count));
+		userSet.addAll(getRecommendTeachersFromFriendsTeacher(user_id, count));
 		userList.addAll(userSet);
 		Collections.shuffle(userList);
 		if (userList != null && userList.size() >= count) {
@@ -195,11 +195,11 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 	}
 
 	@Override
-	public List<Course> getRecommendCourses(Long id, int count) {
+	public List<Course> getRecommendCourses(Long user_id, int count) {
 		List<Course> courseList = new ArrayList<Course>();
 		Set<Course> courseSet = new HashSet<Course>();
-		courseSet.addAll(getRecommendTeachersCourses(id, count));
-		courseSet.addAll(getRecommendUsersCourses(id, count));
+		courseSet.addAll(getRecommendTeachersCourses(user_id, count));
+		courseSet.addAll(getRecommendUsersCourses(user_id, count));
 		courseList.addAll(courseSet);
 		Collections.shuffle(courseList);
 		if (courseList != null && courseList.size() >= count) {
