@@ -176,8 +176,11 @@ public class DebugController {
 	@RequestMapping(value = "/debug/recommanduser", method = RequestMethod.GET)
 	public String recommanduser(Locale locale, Model model, HttpSession session) {
 		logger.info("===== debug recommand user =====");
-		List<User> userList = userRecommendService.getRecommendTeachersFromMyTeacher((long)3);
-		logger.info("====="+userList.size()+"=====");
+		List<User> userList;
+		userList = userRecommendService.getRandomUsers("teacher");
+		logger.info("Random user ====="+userList.size()+"=====");
+		userList = userRecommendService.getRecommendTeachersFromMyTeacher((long)3,10);
+		logger.info("Recommend Teacher ===== "+userList==null?"null":"not null"+" =====");
 		return "debug";
 	}
 }

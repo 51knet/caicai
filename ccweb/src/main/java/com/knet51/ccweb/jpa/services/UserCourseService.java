@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 
 public interface UserCourseService {
@@ -17,4 +18,6 @@ public interface UserCourseService {
 	UserCourse update(UserCourse userCourse);
 	
 	Page<UserCourse> findByUserid(int pageNumber, int pageSize,Long user_id);
+	
+	List<Course> findAllCourseByUserId(Long id);
 }

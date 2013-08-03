@@ -2,6 +2,7 @@ package com.knet51.ccweb.jpa.services.promotion;
 
 import java.util.List;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 
 public interface UserRecommendService {
 
@@ -17,13 +18,16 @@ public interface UserRecommendService {
 
 	public List<User> getRecommendTeachersFromFriendsTeacher(Long id, int count);
 
-	// key logic, first role "friendRole" means the friends of yours who are in
-	// friendRole, the second role "targetRole" means the friends of your
-	// friends list, which get from the first time search, in that targetRole.
-	public List<User> getRandomUsersFriends(String friendRole,
-			String targetRole, Long id);
+	public List<Course> getRandomCourses();
+	
+	public List<Course> getRandomCourses(int count);
+	
+	public List<Course> getRecommendTeachersCourses(Long id);
 
-	public List<User> getRandomUsersFriends(String friendRole,
-			String targetRole, Long id, int count);
+	public List<Course> getRecommendTeachersCourses(Long id, int count);
+	
+	public List<Course> getRecommendUsersCourses(Long id);
 
+	public List<Course> getRecommendUsersCourses(Long id, int count);
+	
 }

@@ -10,16 +10,115 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.courses.Course;
+import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
+import com.knet51.ccweb.jpa.services.UserCourseService;
 import com.knet51.ccweb.jpa.services.UserService;
+
 @Transactional
 @Service("UserRecommendService")
-public class UserRecommendServiceImpl implements UserRecommendService{
+public class UserRecommendServiceImpl implements UserRecommendService {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
 	private FriendsRelateService friendsService;
+	@Autowired
+	private CourseService courseService;
+	@Autowired
+	private UserCourseService userCourseService;
+
+	// key logic, first role "friendRole" means the friends of yours who are in
+	// friendRole, the second role "targetRole" means the friends of your
+	// friends list, which get from the first time search, in that targetRole.
+	private List<User> getRandomUsersFriends(String friendRole,
+			String targetRole, Long id) {
+		List<User> userList = new ArrayList<User>();
+		List<User> hostList = friendsService.getAllHostInfo(id, friendRole);
+		Set<User> userSet = new HashSet<User>();
+		for (User user : hostList) {
+			userSet.addAll(friendsService.getAllHostInfo(user.getId(),
+					targetRole));
+			userSet.addAll(friendsService.getAllFansInfo(user.getId(),
+					targetRole));
+		}
+		userList.addAll(userSet);
+		Collections.shuffle(userList);
+		return userList;
+	}
+
+	private List<User> getRandomUsersFriends(String friendRole,
+			String targetRole, Long id, int count) {
+		List<User> userList = new ArrayList<User>();
+		if (count > 0) {
+			userList = getRandomUsersFriends(friendRole, targetRole, id);
+			if (userList.size() > count) {
+				return userList.subList(0, count - 1);
+			} else {
+				return userList;
+			}
+		} else {
+			return null;
+		}
+	}
+
+	private List<Course> getRandomTeacherCourses(Long id) {
+		List<Course> courseList = new ArrayList<Course>();
+		List<User> hostList = friendsService.getAllHostInfo(id, "teacher");
+
+		for (User user : hostList) {
+			courseList.addAll(courseService
+					.getAllTeacherCourseByUseridAndPublish(user.getId(),
+							GlobalDefs.PUBLISH_NUM_ADMIN_FRONT));
+		}
+		Collections.shuffle(courseList);
+		return courseList;
+	}
+
+	private List<Course> getRandomTeacherCourses(Long id, int count) {
+		List<Course> courseList = new ArrayList<Course>();
+		if (count > 0) {
+			courseList = getRandomTeacherCourses(id);
+			if (courseList.size() > count) {
+				return courseList.subList(0, count - 1);
+			} else {
+				return courseList;
+			}
+		} else {
+			return null;
+		}
+	}
+
+	private List<Course> getRandomUserCourses(Long id) {
+		List<Course> courseList = new ArrayList<Course>();
+		Set<Course> userCourseSet = new HashSet<Course>();
+		List<User> hostList = friendsService.getAllHostInfo(id, "user");
+
+		for (User user : hostList) {
+			userCourseSet.addAll(userCourseService.findAllCourseByUserId(user
+					.getId()));
+		}
+		courseList.addAll(userCourseSet);
+		Collections.shuffle(courseList);
+		return courseList;
+	}
+
+	private List<Course> getRandomUserCourses(Long id, int count) {
+		List<Course> courseList = new ArrayList<Course>();
+		if (count > 0) {
+			courseList = getRandomUserCourses(id);
+			if (courseList.size() > count) {
+				return courseList.subList(0, count - 1);
+			} else {
+				return courseList;
+			}
+		} else {
+			return null;
+		}
+	}
 
 	@Override
 	public List<User> getRandomUsers(String role) {
@@ -32,7 +131,11 @@ public class UserRecommendServiceImpl implements UserRecommendService{
 	public List<User> getRandomUsers(String role, int count) {
 		if (count > 0) {
 			List<User> userList = getRandomUsers(role);
-			return userList.subList(0, count);
+			if (userList.size() > count) {
+				return userList.subList(0, count - 1);
+			} else {
+				return userList;
+			}
 		} else {
 			return null;
 		}
@@ -65,32 +168,44 @@ public class UserRecommendServiceImpl implements UserRecommendService{
 	}
 
 	@Override
-	public List<User> getRandomUsersFriends(String friendRole,
-			String targetRole, Long id) {
-		List<User> userList = new ArrayList<User>();
-		List<User> hostList = friendsService.getAllHostInfo(id, friendRole);
-		Set<User> userSet = new HashSet<User>();
-		for (User user : hostList) {
-			userSet.addAll(friendsService.getAllHostInfo(user.getId(),
-					targetRole));
-			userSet.addAll(friendsService.getAllFansInfo(user.getId(),
-					targetRole));
-		}
-		userList.addAll(userSet);
-		Collections.shuffle(userList);
-		return userList;
+	public List<Course> getRandomCourses() {
+		List<Course> courseList = courseService.findAllPublish();
+		Collections.shuffle(courseList);
+		return courseList;
 	}
 
 	@Override
-	public List<User> getRandomUsersFriends(String friendRole,
-			String targetRole, Long id, int count) {
-		List<User> userList = new ArrayList<User>();
+	public List<Course> getRandomCourses(int count) {
 		if (count > 0) {
-			userList = getRandomUsersFriends(friendRole, targetRole, id);
-			return userList.subList(0, count);
+			List<Course> courseList = getRandomCourses();
+			if (courseList.size() > count) {
+				return courseList.subList(0, count - 1);
+			} else {
+				return courseList;
+			}
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public List<Course> getRecommendTeachersCourses(Long id) {
+		return getRandomTeacherCourses(id);
+	}
+
+	@Override
+	public List<Course> getRecommendTeachersCourses(Long id, int count) {
+		return getRandomTeacherCourses(id, count);
+	}
+
+	@Override
+	public List<Course> getRecommendUsersCourses(Long id) {
+		return getRandomUserCourses(id);
+	}
+
+	@Override
+	public List<Course> getRecommendUsersCourses(Long id, int count) {
+		return getRandomUserCourses(id, count);
 	}
 
 }
