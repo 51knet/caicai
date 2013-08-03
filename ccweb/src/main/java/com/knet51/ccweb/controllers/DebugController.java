@@ -27,6 +27,7 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogCategory;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.services.BlogService;
 import com.knet51.ccweb.jpa.services.UserService;
 //import org.springframework.web.bind.annotation.PathVariable;
@@ -172,4 +173,16 @@ public class DebugController {
 		}		
 	}
 	
+	@Transactional
+	@RequestMapping(value = "/debug/recommanduser", method = RequestMethod.GET)
+	public String recommanduser(Locale locale, Model model, HttpSession session) {
+		logger.info("===== debug recommand user =====");
+		List<User> userList;
+		userList = userRecommendService.getRecommendTeacher((long) 3, 10);
+		logger.info("Recommend Teacher ===== "+userList==null?"null":"not null"+" =====");
+		List<Course> courseList;
+		courseList = userRecommendService.getRecommendCourses((long) 3, 2);
+		logger.info("Recommend Teacher ===== "+courseList==null?"null":"not null"+" =====");
+		return "debug";
+	}
 }
