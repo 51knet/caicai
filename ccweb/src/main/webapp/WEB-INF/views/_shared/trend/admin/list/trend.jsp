@@ -8,43 +8,70 @@
 <script type="text/javascript">
 
     function	showCommentDiv(index){
-	  var id =  index+"_comment_div";
-	 // $("#"+id+">table").empty();
-
-	  if($("#"+id).css("display") == "block"){
-		  $("#"+id).css("display","none");
-	  }else{
-		  $("#"+id).css("display","block");
-	  }
-	 /* $.ajax({
-		   type: "POST",
-		   url: '<c:url value="/showTrendsComment"></c:url>',
-		   data: "trendId="+index,
-		   dataType:"json",
-		   success: function(msg){
-			//   alert(msg);
-		     var  t = "<table width='100%' cellpadding='5'>";
-		     for( var i=0;i<msg.length;i++){
-		    	 t+="<tr><td  align='left' valign= 'top'>  <img src='/ccweb"+msg[i].photo_url+"  ' style='width:40px' />&nbsp;&nbsp;"+msg[i].name+"</td></tr><tr  class='bb'><td  align='left' valign= 'top'>"+msg[i].context+"</td></tr>";
-		     }
-		     $("#"+id).append(t);
-		   }
-		});*/
+		  var id =  index+"_comment_div";
+		 // $("#"+id+">table").empty();
+	
+		  if($("#"+id).css("display") == "block"){
+			  $("#"+id).css("display","none");
+		  }else{
+			  $("#"+id).css("display","block");
+		  }
+		 /* $.ajax({
+			   type: "POST",
+			   url: '<c:url value="/showTrendsComment"></c:url>',
+			   data: "trendId="+index,
+			   dataType:"json",
+			   success: function(msg){
+				//   alert(msg);
+			     var  t = "<table width='100%' cellpadding='5'>";
+			     for( var i=0;i<msg.length;i++){
+			    	 t+="<tr><td  align='left' valign= 'top'>  <img src='/ccweb"+msg[i].photo_url+"  ' style='width:40px' />&nbsp;&nbsp;"+msg[i].name+"</td></tr><tr  class='bb'><td  align='left' valign= 'top'>"+msg[i].context+"</td></tr>";
+			     }
+			     $("#"+id).append(t);
+			   }
+			});*/
 	}
 
     
     function showReply(index){
-    	var id =  index+"_reply_div";
-    	//alert(id);
-   	  if($("#"+id).css("display") == "block"){
-   		  $("#"+id).css("display","none");
-   	  }else{
-   		  $("#"+id).css("display","block");
-   	  }
+    	 var id =  index+"_reply_div";
+	    	alert(id);
+	   	  if($("#"+id).css("display") == "block"){
+	   		  $("#"+id).css("display","none");
+	   	  }else{
+	   		  $("#"+id).css("display","block");
+	   	  }
     }
     
+    function   formatDate(now)   {   
+        var   year=now.getYear();
+        var   month=now.getMonth()+1;   
+        var   date=now.getDate();   
+        var   hour=now.getHours();   
+        var   minute=now.getMinutes();     
+        return   year+"-"+month+"-"+date+"   "+hour+":"+minute;   
+      } 
+    
     function postReplyForm(){
-    	//alert("form");
+    	alert("form");
+    }
+    
+    function postCommentForm(index){
+    	var id =  index+"_comment_form";
+    	var showId = index+"_ajax_comment_div";
+		$.post('<c:url value="/ajaxcomment" />', $("#"+id).serialize(), function(msg){
+			var d = new Date(msg.publishDate);
+			alert(d.getYear());
+			alert(d);
+			var date = formatDate(d);
+			alert(date);
+			 var  t = "<table width='100%' cellpadding='5'>";
+		     t+="<tr><td  align='left' valign= 'top'>  <img src='/ccweb"+msg.user.photo_url+"  ' style='width:40px' />&nbsp;&nbsp;"+msg.user.name+"："+msg.context+"</td></tr>";
+		     t+="<tr  class='bb'><td  align='left' valign= 'top'><span class='date'>"+date+"</span>";
+		     t+="<a href='javascript:void(0)' onclick='showReply("+msg.id+")'>回复</a></td></tr></table>";
+		     $("#"+showId).append(t); 
+		}, "json");
+		$("#"+id +" textarea").html("");
     }
 </script>
 <div class="row-fluid custom round">
@@ -81,14 +108,17 @@
 					</tr>		
 					</table>
 					<div id="${trendBeans.trend.id}_comment_div" style='display: <c:if test="${ show == trendBeans.trend.id }"> block</c:if><c:if test="${show != trendBeans.trend.id}"> none</c:if> ; margin: 0px 10px;'>
-						<form style="margin-top: 10px;" method="post" action='<c:url value="/comment"></c:url>'>
+						<form style="margin-top: 10px;" method="post" action='<c:url value="/comment"  ></c:url>'  id="${trendBeans.trend.id}_comment_form">
 							<input type="hidden" name="trendId" value="${trendBeans.trend.id}">
-							<textarea rows="1" cols=""  style="width:100%; " name="contents"  ></textarea><br>
+							<textarea rows="2" cols=""  style="width:100%; " name="contents"  ></textarea><br>
 							<div class="offset10">
-								<button class="btn btn-success " type="submit">发布</button>
+								<!--<button class="btn btn-success " type="submit">发布</button> -->
+								<a href="javascript:void(0)" class="btn btn-success offset"  onclick="postCommentForm(${trendBeans.trend.id})">发布</a>  
 							</div>
 						</form>
-
+						<div id="${trendBeans.trend.id}_ajax_comment_div">
+						
+						</div>
 						<c:forEach items="${trendBeans.commentList}" var="comment">
 							<table width='98%' cellpadding='0' style="margin-bottom: 10px;">
 								<tr><td  align='left' valign= 'top'>
@@ -102,7 +132,7 @@
 								</c:if>
 								<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
 										<a href="javascript:void(0)" onclick="showReply(${comment.id })">回复</a>
-									</td></tr>
+								</td></tr>
 								<tr  class='bb'><td  align='right' valign= 'top'>
 									<div style="display: none; margin-top: 10px;" id="${comment.id }_reply_div">
 										<form  method="post" action='<c:url value="/reply"></c:url>'  >

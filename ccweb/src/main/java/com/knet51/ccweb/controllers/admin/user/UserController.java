@@ -3,6 +3,8 @@ package com.knet51.ccweb.controllers.admin.user;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -26,11 +28,13 @@ import com.knet51.ccweb.controllers.admin.AdminController;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Comment;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.services.CommentService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.TrendsService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.promotion.UserRecommendService;
 
 
 /**
@@ -49,6 +53,8 @@ public class UserController {
 	private CommentService commentService;
 	@Autowired
 	private FriendsRelateService friendsRelateService;
+	@Autowired
+	private UserRecommendService recommendService;
 	
 	/**
 	 * big time line
@@ -61,6 +67,14 @@ public class UserController {
 	public String showAllTrends(HttpSession session, Model model){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		String role = userInfo.getRole();
+		List<User> recommendTeacher = recommendService.getRecommendTeacher(userInfo.getId(), 3);
+		List<User> recommendUser = recommendService.getRecommendUser(userInfo.getId(), 3);
+		List<Course> recommendCourse = recommendService.getRecommendCourses(userInfo.getId(), 3);
+		
+		model.addAttribute("recommendTeacher", recommendTeacher);
+		model.addAttribute("recommendUser", recommendUser);
+		model.addAttribute("recommendCourse", recommendCourse);
+		
 		if(role != null && role.equals("user")){
 			List<Trends> myTrends = trendsService.showAllTrendsByUserId(userInfo.getId());
 			//model.addAttribute("myTrend", myTrends);
@@ -163,6 +177,26 @@ public class UserController {
 			redirectAttributes.addFlashAttribute("show",trend_id);
 		}
 		return "redirect:/admin/trend"; 
+		}
+	}
+	
+	@RequestMapping(value="/ajaxcomment" , method = RequestMethod.POST)
+	public @ResponseBody Comment ajaxCteateComment(@RequestParam("trendId") Long trend_id, HttpSession session,HttpServletResponse response,
+			@Valid MyTrendsForm trendsForm,BindingResult validResult){
+		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Comment comment = new Comment();
+		if(validResult.hasErrors()){
+			return null;
+		}else{
+		comment.setUser(userInfo.getUser());
+		
+		comment.setContext(trendsForm.getContents());
+		comment.setTrendId(trend_id);
+		
+		comment.setPublishDate(new Date());
+		Comment newComment = commentService.createComment(comment);
+	
+		return newComment; 
 		}
 	}
 	

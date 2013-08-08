@@ -25,13 +25,27 @@ background-color: #fff;
 </style>
 <!--<c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url> -->
 <div class="row-fluid centralize border" style="height: 400px;">
-	<div class="row-fluid">
 	<br>
-		推荐朋友
+	<a href='<c:url value="/admin/trend"></c:url>' >换一换</a><hr>
+	<div class="row-fluid">
+		推荐好友<br>
+		<c:forEach items="${recommendUser }" var="recommendUser">
+			${recommendUser.name }-
+		</c:forEach>
 	</div>
 	<hr>
 	<div class="row-fluid">
-		推荐课程
+		推荐教师<br>
+		<c:forEach items="${recommendTeacher }" var="recommendTeacher">
+			${recommendTeacher.name }- 
+		</c:forEach>
+	</div>
+	<hr>
+	<div class="row-fluid">
+		推荐课程<br>
+		<c:forEach items="${recommendCourse}" var="recommendCourse">
+			${recommendCourse.courseName }- 
+		</c:forEach>
 	</div>
 </div>
 
