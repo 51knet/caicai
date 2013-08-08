@@ -23,7 +23,7 @@ background-color: #fff;
 		background-color: #fff; border: 1.5px solid #eed593;
 	}
 </style>
-<c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url>
+<!--<c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url> -->
 <div class="row-fluid centralize border" style="height: 400px;">
 	<div class="row-fluid">
 	<br>

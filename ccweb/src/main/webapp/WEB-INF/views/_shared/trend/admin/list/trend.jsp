@@ -91,21 +91,18 @@
 
 						<c:forEach items="${trendBeans.commentList}" var="comment">
 							<table width='98%' cellpadding='0' style="margin-bottom: 10px;">
+								<tr><td  align='left' valign= 'top'>
+									<a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a>
+									<a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a>
 								<c:if test="${comment.host == null }">
-									<tr><td  align='left' valign= 'top'> <a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a>
-									<a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a>：${comment.context }<br>
-										<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
-										<a href="javascript:void(0)" onclick="showReply(${comment.id })">回复</a>
-									</td></tr>
+									：${comment.context }<br>
 								</c:if>
 								<c:if test="${comment.host != null}">
-									<tr ><td  align='left' valign= 'top'>
-										<a href='<c:url value="/id/${comment.user.id }"></c:url>'><img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a> <a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a> 回复了 
-										<a href='<c:url value="/id/${comment.host.id }"></c:url>'>${comment.host.name}</a> ：${comment.context }<br>
-										<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
+									回复了 <a href='<c:url value="/id/${comment.host.id }"></c:url>'>${comment.host.name}</a> ：${comment.context }<br>
+								</c:if>
+								<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
 										<a href="javascript:void(0)" onclick="showReply(${comment.id })">回复</a>
 									</td></tr>
-								</c:if>
 								<tr  class='bb'><td  align='right' valign= 'top'>
 									<div style="display: none; margin-top: 10px;" id="${comment.id }_reply_div">
 										<form  method="post" action='<c:url value="/reply"></c:url>'  >
