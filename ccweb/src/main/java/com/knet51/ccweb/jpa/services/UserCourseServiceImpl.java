@@ -1,4 +1,5 @@
 package com.knet51.ccweb.jpa.services;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.ccweb.jpa.repository.UserCourseRepository;
 import com.knet51.ccweb.jpa.repository.UserRepository;
@@ -24,6 +26,9 @@ public class UserCourseServiceImpl implements UserCourseService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private CourseService courseService;
+	
 	@Override
 	public Page<UserCourse> findUserCourseByTeachercourseid(int pageNumber, int pageSize,
 			Long teacherCourse_id) {
@@ -80,6 +85,17 @@ public class UserCourseServiceImpl implements UserCourseService {
 		Page<UserCourse> onePage = userCourseRepository.findByUserid(user_id, dateDesc);
 		return onePage;
 		
+	}
+	@Override
+	public List<Course> findAllCourseByUserId(Long id) {
+		Course course;
+		List<Course> courseList = new ArrayList<Course>();
+		List<UserCourse> userCourseList = findUserCourseByUserid(id);
+		for(UserCourse userCourse : userCourseList){
+			course = courseService.findOneById(userCourse.getTeachercourseid());
+			courseList.add(course);
+		}
+		return courseList;
 	}
 	
 }

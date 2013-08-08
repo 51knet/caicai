@@ -18,6 +18,7 @@ import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.repository.CourseRepository;
 import com.knet51.ccweb.jpa.repository.TeacherRepository;
 import com.knet51.ccweb.jpa.repository.UserRepository;
+
 @Transactional
 @Service("courseService")
 public class CourseServiceImpl implements CourseService {
@@ -29,7 +30,7 @@ public class CourseServiceImpl implements CourseService {
 	private UserRepository userRepository;
 
 	@Override
-	public Course findOneById(Long id) {	 
+	public Course findOneById(Long id) {
 		return courseRepository.findOne(id);
 	}
 
@@ -44,9 +45,11 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public List<Course> getAllTeacherCourseByUseridAndPublish(Long teacher_id,Integer publish) {
+	public List<Course> getAllTeacherCourseByUseridAndPublish(Long teacher_id,
+			Integer publish) {
 		User user = userRepository.findOne(teacher_id);
-		return courseRepository.findTeacherCourseByUserAndPublish(user, publish);
+		return courseRepository
+				.findTeacherCourseByUserAndPublish(user, publish);
 	}
 
 	@Override
@@ -55,19 +58,20 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public Page<Course> findAllCourseByUser(int pageNum, int pageSize,
-			User user) {
-		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<Course> onePage = courseRepository.findTeacherCourseByUser(user, dateDesc);
+	public Page<Course> findAllCourseByUser(int pageNum, int pageSize, User user) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC,
+				"id");
+		Page<Course> onePage = courseRepository.findTeacherCourseByUser(user,
+				dateDesc);
 		return onePage;
 	}
 
-//	@Override
-//	public List<CourseBeans> getAllCourseBeans() {
-//		// FIXME this is stupid to depend the CourseBeans on this layer  
-//		//return teacherCourseRepository.listAllCourseBeans(teacher_id);
-//		return Collections.emptyList();
-//	}
+	// @Override
+	// public List<CourseBeans> getAllCourseBeans() {
+	// // FIXME this is stupid to depend the CourseBeans on this layer
+	// //return teacherCourseRepository.listAllCourseBeans(teacher_id);
+	// return Collections.emptyList();
+	// }
 
 	@Override
 	public List<String> getAllSchool() {
@@ -80,73 +84,91 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public Page<Course> findTeacherCourseByUserAndPublish(
-			int pageNum, int pageSize, User user, Integer publish) {
-		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<Course> onePage = courseRepository.findTeacherCourseByUserAndPublishAndForbiddenIsNull(user, publish, dateDesc);
+	public Page<Course> findTeacherCourseByUserAndPublish(int pageNum,
+			int pageSize, User user, Integer publish) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC,
+				"id");
+		Page<Course> onePage = courseRepository
+				.findTeacherCourseByUserAndPublishAndForbiddenIsNull(user,
+						publish, dateDesc);
 		return onePage;
 	}
 
 	@Override
 	public Page<Course> findTeacherCourseByUserAndPublishGreaterThan(
-			int pageNum, int pageSize,User user, Integer publish) {
-		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<Course> onePage = courseRepository.findTeacherCourseByUserAndForbiddenIsNullAndPublishGreaterThan(user, publish, dateDesc);
+			int pageNum, int pageSize, User user, Integer publish) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC,
+				"id");
+		Page<Course> onePage = courseRepository
+				.findTeacherCourseByUserAndForbiddenIsNullAndPublishGreaterThan(
+						user, publish, dateDesc);
 		return onePage;
 	}
 
 	@Override
-	public Course getTeacherCourseByCourseName(String cousername,Long teacherId) {
-		Course course=courseRepository.getTeacherCourseByCourseName(cousername,teacherId);
+	public Course getTeacherCourseByCourseName(String cousername, Long teacherId) {
+		Course course = courseRepository.getTeacherCourseByCourseName(
+				cousername, teacherId);
 		return course;
 	}
 
 	@Override
 	public Page<Course> findAllCourse(int pageNum, int pageSize) {
-		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC,
+				"id");
 		Page<Course> onePage = courseRepository.findAll(dateDesc);
 		return onePage;
 	}
 
 	@Override
-	public Page<Course> findTeacherCourseByUserAndPublishAndCType(
-			int pageNum, int pageSize, User user, Integer publish,
-			CourseType cType) {
-		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
-		Page<Course> onePage = courseRepository.findTeacherCourseByUserAndPublishAndCType(user, publish, cType, dateDesc);
+	public Page<Course> findTeacherCourseByUserAndPublishAndCType(int pageNum,
+			int pageSize, User user, Integer publish, CourseType cType) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC,
+				"id");
+		Page<Course> onePage = courseRepository
+				.findTeacherCourseByUserAndPublishAndCType(user, publish,
+						cType, dateDesc);
 		return onePage;
 	}
 
 	@Override
 	public List<Course> findCourseByUserAndPublishGreaterThanForSuperAdmin(
 			User user, Integer publish) {
-		return courseRepository.findTeacherCourseByUserAndPublishGreaterThan(user, publish);
+		return courseRepository.findTeacherCourseByUserAndPublishGreaterThan(
+				user, publish);
 	}
 
 	@Override
 	public Page<Course> findCourseByUserAndPublishGreaterThanForSuperAdmin(
 			User user, Integer publish, int pageNum, int pageSize) {
-		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<Course> onePage = courseRepository.findTeacherCourseByUserAndPublishGreaterThan(user, publish, dateDesc);
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC,
+				"id");
+		Page<Course> onePage = courseRepository
+				.findTeacherCourseByUserAndPublishGreaterThan(user, publish,
+						dateDesc);
 		return onePage;
 	}
 
 	@Override
 	public Page<Course> findCourseByPublishGreaterThanForSuperAdmin(
 			Integer publish, int pageNum, int pageSize) {
-		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id"); 
-		Page<Course> onePage = courseRepository.findAllByPublishGreaterThan(publish, dateDesc);
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC,
+				"id");
+		Page<Course> onePage = courseRepository.findAllByPublishGreaterThan(
+				publish, dateDesc);
 		return onePage;
 	}
 
 	@Override
 	public List<Course> findAllForAdmin() {
-		return courseRepository.findAllByPublishGreaterThan(GlobalDefs.PUBLISH_NUM_DELETE);
+		return courseRepository
+				.findAllByPublishGreaterThan(GlobalDefs.PUBLISH_NUM_DELETE);
 	}
 
-	
-
-
-	
+	@Override
+	public List<Course> findAllPublish() {
+		return courseRepository
+				.findAllByPublishGreaterThan(GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+	}
 
 }

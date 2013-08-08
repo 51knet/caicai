@@ -26,6 +26,8 @@ public interface CourseService {
 	
 	Page<Course> findTeacherCourseByUserAndPublishAndCType(int pageNum, int pageSize, User user,Integer publish,CourseType cType);
 	
+	List<Course> findAllPublish();
+	
 	/*  for super Admin */
 	List<Course> findCourseByUserAndPublishGreaterThanForSuperAdmin(User user,Integer publish);
 	Page<Course> findCourseByUserAndPublishGreaterThanForSuperAdmin(User user,Integer publish,int pageNum, int pageSize);
