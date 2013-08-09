@@ -66,6 +66,9 @@
 			<c:if test="${! sessionScope.isFollower}">
 				<a href='<c:url value='/addrelation?uid=${userInfo.id}'></c:url>' id="attention" class="btn btn-success btn-small">+关注</a>
 			</c:if>
+			<c:if test="${sessionScope.isFollower}">
+				<a href='<c:url value='/delerelation?uid=${userInfo.id}'></c:url>' id="attention" class="btn  btn-small">取消关注</a>
+			</c:if>
 			<!-- <a href='<c:url value='/sendmessage?uid=${userInfo.id}'></c:url>' class="btn btn-small">发私信</a>  -->
 			<a href="#myModal" role="button" class="btn btn-small" data-toggle="modal">发私信</a>
 		</div>
