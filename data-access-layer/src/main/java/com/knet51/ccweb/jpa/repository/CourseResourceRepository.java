@@ -16,6 +16,7 @@ public interface CourseResourceRepository extends JpaRepository<CourseResource, 
 	//Page<CourseResource> findTeacherCourseResourceByCourse(TeacherCourse course,Pageable pageable);
 	Page<CourseResource> findResourceByUserAndStatusAndForbiddenIsNull(User user,Integer status, Pageable pageable);
 	List<CourseResource> findResourceByUserAndStatusAndForbiddenIsNull(User user,Integer status);
+	
 	/* for super admin */
 	Page<CourseResource> findResourceByUserAndStatus(User user,Integer status, Pageable pageable);
 	List<CourseResource> findResourceByUserAndStatus(User user,Integer status);

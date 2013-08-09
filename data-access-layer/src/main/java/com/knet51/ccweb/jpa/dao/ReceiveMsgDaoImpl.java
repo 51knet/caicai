@@ -44,7 +44,7 @@ public class ReceiveMsgDaoImpl implements ReceiveMsgDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ReceiveMsg> list(Long userId) {
-		return em.createQuery("from ReceiveMsg where  user_id="+userId).getResultList();
+		return em.createQuery("from ReceiveMsg where readed<4 and user_id="+userId).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")

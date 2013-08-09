@@ -17,6 +17,7 @@ public interface ResourceService {
 	CourseResource updateResource(CourseResource resource);
 	
 	Page<CourseResource> findAllResouByUserAndStatus(int pageNum, int pageSize, User user,Integer status);
+	List<CourseResource> findAllResouByUserAndStatus(User user, Integer status);
 	
 	/* super admin */
 	List<CourseResource> findAllByUserAndStatusForSuperAdmin(User user, Integer status);

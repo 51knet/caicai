@@ -89,4 +89,11 @@ public class ResourceServiceImpl implements ResourceService {
 		return onePage;
 	}
 
+	@Override
+	public List<CourseResource> findAllResouByUserAndStatus(User user,
+			Integer status) {
+		
+		return courseResourceRepository.findResourceByUserAndStatus(user, status);
+	}
+
 }

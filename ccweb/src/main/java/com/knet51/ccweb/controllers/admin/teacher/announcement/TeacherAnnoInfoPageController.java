@@ -1,5 +1,7 @@
 package com.knet51.ccweb.controllers.admin.teacher.announcement;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -23,6 +25,7 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.MyUtil;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 
@@ -47,7 +50,9 @@ public class TeacherAnnoInfoPageController {
 			if(user.getRole().equals("user")){
 				return "redirect:/admin";
 			}else{
-				Page<Announcement> page = annoService.findAllAnnoByUser(pageNumber, pageSize, user);
+				List<Announcement> list = annoService.findAllByUid(id);
+				int pageNum = MyUtil.getPageNumber(pageNumber, list.size(),pageSize);
+				Page<Announcement> page = annoService.findAllAnnoByUser(pageNum, pageSize, user);
 				model.addAttribute("page", page);
 				if (user.getRole().equals("teacher")) {
 					return "admin.teacher.announement.list";

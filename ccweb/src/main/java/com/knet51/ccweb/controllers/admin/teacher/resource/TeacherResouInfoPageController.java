@@ -22,6 +22,7 @@ import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.ResourceTypeService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.MyUtil;
 
 @Controller
 public class TeacherResouInfoPageController {
@@ -49,7 +50,7 @@ public class TeacherResouInfoPageController {
 	 */
 	@RequestMapping(value="/admin/resource/list")
 	public String teacherResouInfo(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		logger.info("#####Into TeacherResouInfoPageController#####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
@@ -57,7 +58,10 @@ public class TeacherResouInfoPageController {
 			return "redirect:/admin";
 		}else{
 			try {
-				Page<CourseResource> onePage = resourceService.findAllResouByUserAndStatus(pageNumber, pageSize, user, GlobalDefs.STATUS_RESOURCE);
+				List<CourseResource> list = resourceService.listAllByUser(user);
+				int pageNum = MyUtil.getPageNumber(pageNumber, list.size(), pageSize);
+				
+				Page<CourseResource> onePage = resourceService.findAllResouByUserAndStatus(pageNum, pageSize, user, GlobalDefs.STATUS_RESOURCE);
 				model.addAttribute("page", onePage);
 			} catch (Exception e) {
 				e.printStackTrace();
