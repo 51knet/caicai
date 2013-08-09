@@ -41,4 +41,12 @@ public class FriendsRelatedDetailController {
 		return "redirect:/teacher/" + host_id;
 	}
 	
+	@RequestMapping(value="/delerelation")
+	public String deleFriendsRelated(@RequestParam("uid") Long host_id,HttpSession session){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		FriendsRelated related = friendsRelateService.findOneByHostIdAndFollowId(host_id, userInfo.getId());
+		friendsRelateService.deleteById(related.getId());
+		return "redirect:/teacher/" + host_id;
+	}
+	
 }

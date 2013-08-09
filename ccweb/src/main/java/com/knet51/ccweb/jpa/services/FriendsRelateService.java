@@ -12,6 +12,8 @@ public interface FriendsRelateService {
 	FriendsRelated update(FriendsRelated friendsRelated);
 
 	FriendsRelated findOneById(Long id);
+	
+	FriendsRelated findOneByHostIdAndFollowId(Long host_id,Long follow_id);
 
 	void deleteById(Long id);
 	

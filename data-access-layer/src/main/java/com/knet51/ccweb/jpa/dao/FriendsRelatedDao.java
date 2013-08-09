@@ -16,4 +16,6 @@ public interface FriendsRelatedDao {
 	
 	List<FriendsRelated> getAllHost(Long followId);
 	int getFollowById(Long hostId,Long followId);
+	
+	FriendsRelated findOneByFollowIdAndHostId(Long hostId,Long followId);
 }

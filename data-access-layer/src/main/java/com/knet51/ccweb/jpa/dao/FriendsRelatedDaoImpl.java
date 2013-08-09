@@ -66,6 +66,12 @@ public class FriendsRelatedDaoImpl implements FriendsRelatedDao {
 		}
 		return followValue;
 	}
+
+	@Override
+	public FriendsRelated findOneByFollowIdAndHostId(Long hostId, Long followId) {
+		List<FriendsRelated> list=em.createQuery("from FriendsRelated where follow_id="+followId+" and host_id ="+hostId).getResultList();
+		return list.get(0);
+	}
 	
 	
 

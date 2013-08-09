@@ -112,4 +112,11 @@ public class FriendsRelateServiceImpl implements FriendsRelateService {
 		return hostInfoList;
 	}
 
+	@Override
+	public FriendsRelated findOneByHostIdAndFollowId(Long host_id,
+			Long follow_id) {
+		// TODO Auto-generated method stub
+		return friendsRelatedDao.findOneByFollowIdAndHostId(host_id, follow_id);
+	}
+
 }
