@@ -56,7 +56,7 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		if (count > 0) {
 			userList = getRandomUsersFriends(friendRole, targetRole, id);
 			if (userList.size() > count) {
-				return userList.subList(0, count - 1);
+				return userList.subList(0, count);
 			} else {
 				return userList;
 			}
@@ -83,7 +83,7 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		if (count > 0) {
 			courseList = getRandomTeacherCourses(id);
 			if (courseList.size() > count) {
-				return courseList.subList(0, count - 1);
+				return courseList.subList(0, count);
 			} else {
 				return courseList;
 			}
@@ -111,7 +111,7 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		if (count > 0) {
 			courseList = getRandomUserCourses(id);
 			if (courseList.size() > count) {
-				return courseList.subList(0, count - 1);
+				return courseList.subList(0, count);
 			} else {
 				return courseList;
 			}
@@ -130,7 +130,7 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		if (count > 0) {
 			List<User> userList = getRandomUsers(role);
 			if (userList.size() > count) {
-				return userList.subList(0, count - 1);
+				return userList.subList(0, count);
 			} else {
 				return userList;
 			}
@@ -167,7 +167,7 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		if (count > 0) {
 			List<Course> courseList = getRandomCourses();
 			if (courseList.size() > count) {
-				return courseList.subList(0, count - 1);
+				return courseList.subList(0, count);
 			} else {
 				return courseList;
 			}
@@ -190,10 +190,15 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		Set<User> userSet = new HashSet<User>();
 		userSet.addAll(getRecommendTeachersFromMyTeacher(user_id, count));
 		userSet.addAll(getRecommendTeachersFromFriendsTeacher(user_id, count));
+		
+		for(User user : userSet){
+			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! "+user.getId());
+		}
+		
 		userList.addAll(userSet);
 		Collections.shuffle(userList);
 		if (userList != null && userList.size() >= count) {
-			return userList.subList(0, count - 1);
+			return userList.subList(0, count);
 		} else {
 			userList.addAll(getRandomUsers("teacher", count - userList.size()));
 			return userList;
@@ -209,7 +214,7 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		courseList.addAll(courseSet);
 		Collections.shuffle(courseList);
 		if (courseList != null && courseList.size() >= count) {
-			return courseList.subList(0, count - 1);
+			return courseList.subList(0, count);
 		} else {
 			courseList.addAll(getRandomCourses(count - courseList.size()));
 			return courseList;
@@ -221,7 +226,7 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		List<User> userList = new ArrayList<User>();
 		userList.addAll(getRecommendUsersFromFriends(user_id, count));
 		if (userList != null && userList.size() >= count) {
-			return userList.subList(0, count - 1);
+			return userList.subList(0, count);
 		} else {
 			userList.addAll(getRandomUsers("user", count - userList.size()));
 			return userList;
