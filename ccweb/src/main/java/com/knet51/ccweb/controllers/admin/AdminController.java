@@ -184,7 +184,13 @@ public class AdminController {
 			return "404";
 		}
 	}
-	
+	/**
+	 * for user pcenter url
+	 * @param active
+	 * @param model
+	 * @param session
+	 * @return
+	 */
 	@Transactional
 	@RequestMapping(value = "/pcenter/details")
 	public String userDetailInfoPage(@RequestParam("active") String active,
@@ -225,6 +231,13 @@ public class AdminController {
 		out.close();
 	}
 	
+	/**
+	 * check user's psw in pcenter url
+	 * @param response
+	 * @param session
+	 * @param oriPsw
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/pcenter/pswInfoCheck", method = RequestMethod.POST)
 	public void checkUserEmailAndPsw(HttpServletResponse response,
 			HttpSession session, @RequestParam("oriPsw") String oriPsw) throws Exception {
@@ -320,6 +333,12 @@ public class AdminController {
 		return AjaxValidationEngine.process(result);
 	}
 	
+	/**
+	 * validate the psw ajaxmethod in pcenter url
+	 * @param pswForm
+	 * @param result
+	 * @return
+	 */
 	@RequestMapping(value = "/pcenter/pswInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody
 	ValidationResponse userPswfurInfoFormAjaxJson(@Valid PswForm pswForm,
