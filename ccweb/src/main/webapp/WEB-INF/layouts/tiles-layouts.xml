@@ -95,6 +95,17 @@
 		<put-attribute name="breadcrumbs" value="/WEB-INF/layouts/jsp/index/breadcrumbs.jsp" />
 		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/left.jsp" />
 		<put-attribute name="flash" value="/WEB-INF/layouts/jsp/admin-layout/flash.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/admin-layout/right.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	
+	<definition name="user-admin-trend-layout" template="/WEB-INF/layouts/jsp/user-admin-trend.jsp">
+		<put-attribute name="title" value="My Blog" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
+		<put-attribute name="breadcrumbs" value="/WEB-INF/layouts/jsp/index/breadcrumbs.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/left.jsp" />
+		<put-attribute name="flash" value="/WEB-INF/layouts/jsp/admin-layout/flash.jsp" />
 		<put-attribute name="mid" value="/WEB-INF/layouts/jsp/admin-layout/right.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/user/recommend/list/list.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />

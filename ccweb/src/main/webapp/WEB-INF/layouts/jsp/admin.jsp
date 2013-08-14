@@ -14,6 +14,9 @@
 		background-repeat: repeat-y;
 		background-color: #929294;
 		}
+		.bg_white{
+			background-color: #ffffff;
+		}
 	</style>
 </head>
 <body class="admin">
@@ -33,7 +36,7 @@
 					</div>
 				</div>
 				<!--/span-->
-				<div class="span9" style="background-color: #ffffff;">
+				<div class="span9 bg_white" >
 					<div class="right-panel">
 						<tiles:insertAttribute name="flash" />
 						<tiles:insertAttribute name="right" />

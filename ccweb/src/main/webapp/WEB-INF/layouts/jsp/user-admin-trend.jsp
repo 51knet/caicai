@@ -34,9 +34,15 @@
 					</div>
 				</div>
 				<!--/span-->
-				<div class="span10 border" >
+				<div class="span8 border" >
 					<div class="right-panel">
 						<tiles:insertAttribute name="flash" />
+						<tiles:insertAttribute name="mid" />
+					</div>
+				</div>
+				
+				<div class="span2">
+					<div class="right-panel">
 						<tiles:insertAttribute name="right" />
 					</div>
 				</div>

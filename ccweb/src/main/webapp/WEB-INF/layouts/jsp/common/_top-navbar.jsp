@@ -16,7 +16,18 @@
 						style="margin-top: -3px;height:15px;"></img>
 				</a>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-						<li><a href='<c:url value="/admin"></c:url>'>后台管理</a></li>
+						<li><a href='<c:url value="/admin/trend"></c:url>'>后台管理</a></li>
+						<li class="divider"></li>
+						<li>
+							<c:if test="${sessionUserInfo.role != 'user'}">
+								<a href='<c:url value="/admin/details?active=photo"></c:url>'>个人中心</a>
+							</c:if>
+							<c:if test="${sessionUserInfo.role == 'user'}">
+								<a href='<c:url value="/pcenter/details?active=photo"></c:url>'>个人中心</a>
+							</c:if>
+						</li>
+						<li class="divider"></li>
+						<li><a href='<c:url value="/acenter"></c:url>'>账户中心</a></li>
 						<li class="divider"></li>
 						<li><a href='<c:url value="http://www.51knet.com/courses"></c:url>'>发现知识</a></li>
 						<li class="divider"></li>

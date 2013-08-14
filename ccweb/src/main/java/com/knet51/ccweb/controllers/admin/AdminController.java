@@ -97,7 +97,7 @@ public class AdminController {
 			Student student = studentService.findOne(userInfo.getId());
 			userInfo.setStudent(student);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-			return "redirect:/admin/details?active=photo";
+			return "redirect:/admin/trend";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
 			return "redirect:/admin/teacher";
 		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
@@ -124,7 +124,7 @@ public class AdminController {
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			// set default home page to set resume page;
-			return "redirect:/admin/resume?active=personal";
+			return "redirect:/admin/trend";
 		} else {
 			return "home";
 		}
@@ -151,7 +151,7 @@ public class AdminController {
 					.getAttribute("authentication");
 			if (authentication != null
 					&& authentication.getStatus().equals("pass")) {
-				return "redirect:/admin/resume?active=personal";
+				return "redirect:/admin/trend";
 			} else {
 				return "redirect:/admin/authentication/list";
 			}
@@ -184,6 +184,26 @@ public class AdminController {
 			return "404";
 		}
 	}
+	
+	@Transactional
+	@RequestMapping(value = "/pcenter/details")
+	public String userDetailInfoPage(@RequestParam("active") String active,
+			Model model, HttpSession session) {
+		UserInfo userInfo;
+		userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		model.addAttribute("userInfoModel", userInfo);
+		String role = userInfo.getRole();
+		if (active == null || active.equals("")) {
+			active = "avatar";
+		}
+		model.addAttribute("active", active);
+		if (role.equals("user")) {
+			return "admin.user.details";
+		} else {
+			return "404";
+		}
+	}
 
 	@RequestMapping(value = "/admin/pswInfoCheck", method = RequestMethod.POST)
 	public void checkEmailAndPsw(HttpServletResponse response,
@@ -196,6 +216,26 @@ public class AdminController {
 		String password = user.getPassword();
 		String oriPsw = pswForm.getOri_psw();
 		Integer num = 1;
+		if (!password.equals(oriPsw)) {
+			num = 0;
+		}
+		String number = num.toString();
+		out.write(number);
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value = "/pcenter/pswInfoCheck", method = RequestMethod.POST)
+	public void checkUserEmailAndPsw(HttpServletResponse response,
+			HttpSession session, @RequestParam("oriPsw") String oriPsw) throws Exception {
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		PrintWriter out = response.getWriter();
+		String email = userInfo.getEmail();
+		User user = userService.findByEmailAddress(email);
+		String password = user.getPassword();
+		Integer num = 1;
+		logger.info("-------"+oriPsw);
 		if (!password.equals(oriPsw)) {
 			num = 0;
 		}
@@ -240,6 +280,7 @@ public class AdminController {
 			} else {
 				logger.info("original password is not correct. Nothing update.");
 			}
+			
 			return "redirect:/admin/details?active=psw";
 		}
 	}
@@ -274,6 +315,14 @@ public class AdminController {
 	@RequestMapping(value = "/admin/pswInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody
 	ValidationResponse pswfurInfoFormAjaxJson(@Valid PswForm pswForm,
+			BindingResult result) {
+		// logger.info("------into psw ajax");
+		return AjaxValidationEngine.process(result);
+	}
+	
+	@RequestMapping(value = "/pcenter/pswInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody
+	ValidationResponse userPswfurInfoFormAjaxJson(@Valid PswForm pswForm,
 			BindingResult result) {
 		// logger.info("------into psw ajax");
 		return AjaxValidationEngine.process(result);

@@ -1,4 +1,4 @@
-package com.knet51.ccweb.controllers.admin.user;
+package com.knet51.ccweb.controllers.admin.user.acenter;
 
 import java.io.PrintWriter;
 import java.util.Date;
