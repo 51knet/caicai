@@ -21,8 +21,8 @@ public class TeacherWorkExpInfoForm {
 	//@Size(max=25)
 	private String endTimeName;
 	@NotEmpty
-
 	private String workDesc;
+	
 	public String getCompany() {
 		return company;
 	}

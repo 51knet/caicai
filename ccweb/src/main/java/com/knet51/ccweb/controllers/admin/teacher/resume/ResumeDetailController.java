@@ -154,15 +154,16 @@ public class ResumeDetailController {
 	/**
 	 * update or create the teacher's educationInfo
 	 * @param edu_id
-	 * @param eduInfoForm
+	 * @param teacherEduInfoForm
 	 * @param validResult
 	 * @param session
 	 * @return
 	 */
 	@Transactional
 	@RequestMapping(value = "/admin/eduInfo" ,method = RequestMethod.POST)
-	public String changeEduInfo(@RequestParam("eduId")Long edu_id,@Valid TeacherEduInfoForm eduInfoForm,
+	public String changeEduInfo(@RequestParam("eduId")Long edu_id,@Valid TeacherEduInfoForm teacherEduInfoForm,
 			BindingResult validResult, HttpSession session) {
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		logger.info("#### eduInfo InfoController ####");
 		
 		if (validResult.hasErrors()) {
@@ -170,24 +171,25 @@ public class ResumeDetailController {
 			
 		} else {
 			EduBackground edu;
-			if(edu_id!=null){
-				logger.info("### eduInfo Validation passed. ###");
-				edu = eduBackgroundService.findOneById(Long.valueOf(edu_id));
-		
-			}else{
-				logger.info("### eduInfo Validation passed. ###");
-				UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-				//EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
-				edu = new EduBackground();
-				edu.setTeacherid(userInfo.getId());
+			logger.info("### eduInfo Validation passed. ###");
+			try {
+				if(edu_id!=null){
+					edu = eduBackgroundService.findOneById(Long.valueOf(edu_id));
+				}else{
+					//EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
+					edu = new EduBackground();
+					edu.setTeacherid(userInfo.getId());
+				}
+				edu.setCollege(teacherEduInfoForm.getCollegeName());
+				edu.setSchool(teacherEduInfoForm.getSchoolName());
+				edu.setDegree(teacherEduInfoForm.getDegree());
+				edu.setStartTime(teacherEduInfoForm.getStartTime());
+				edu.setEndTime(teacherEduInfoForm.getEndTime());
+				edu.setEducationDesc(teacherEduInfoForm.getEducationDesc());
+				eduBackgroundService.createEduBackground(edu);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			edu.setCollege(eduInfoForm.getCollegeName());
-			edu.setSchool(eduInfoForm.getSchoolName());
-			edu.setDegree(eduInfoForm.getDegree());
-			edu.setStartTime(eduInfoForm.getStartTime());
-			edu.setEndTime(eduInfoForm.getEndTime());
-			edu.setEducationDesc(eduInfoForm.getEducationDesc());
-			eduBackgroundService.createEduBackground(edu);
 		}
 		return "redirect:/admin/resume?active=edu";
 	}

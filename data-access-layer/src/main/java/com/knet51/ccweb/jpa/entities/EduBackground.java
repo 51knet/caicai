@@ -14,6 +14,8 @@ public class EduBackground extends AbstractEntity {
 	
 	private String degree;
 	
+	private String major;
+	
 	private String startTime;
 	
 	private String endTime;
@@ -21,6 +23,12 @@ public class EduBackground extends AbstractEntity {
 	private String educationDesc;
 	
 	private Long teacherid;
+	
+	private String level; // nursery,primary,middle,high,bachelor,master
+	
+	private String classNum;
+	
+	private String teacher;
 
 	private String forbidden;
 	
@@ -72,6 +80,30 @@ public class EduBackground extends AbstractEntity {
 	}
 	public void setEducationDesc(String educationDesc) {
 		this.educationDesc = educationDesc;
+	}
+	public String getLevel() {
+		return level;
+	}
+	public void setLevel(String level) {
+		this.level = level;
+	}
+	public String getClassNum() {
+		return classNum;
+	}
+	public void setClassNum(String classNum) {
+		this.classNum = classNum;
+	}
+	public String getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
+	}
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
 	}
 	public EduBackground() {
 		super();

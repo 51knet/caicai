@@ -41,6 +41,7 @@ public class RechargeWithdrawsController {
 	private RechargeService rechargeService;
 	@Autowired
 	private WithdrawsApplyService withdrawsApplyService;
+	
 	/**
 	 * show  account info
 	 * @param session
@@ -51,6 +52,16 @@ public class RechargeWithdrawsController {
 	 */
 	@RequestMapping(value="/admin/account/list")
 	public String showAccountList(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		logger.info("======= into enterprise account controller");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Page<RechargeHistory> page = rechargeHistoryService.findAllByUser(pageNumber, pageSize, userInfo.getUser());
+		model.addAttribute("page", page);
+		return "admin."+userInfo.getUser().getRole()+".account.list";
+	}
+	
+	@RequestMapping(value="/acenter")
+	public String showAccountCenter(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		logger.info("======= into enterprise account controller");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);

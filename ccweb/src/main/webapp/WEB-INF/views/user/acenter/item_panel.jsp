@@ -62,10 +62,9 @@ color: #8aa942;
 </div>
 <div class="left-menu-container " >
 	<ul class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value="/admin/trend"></c:url>' >好友动态</a></li>
-		<li><a href='<c:url value="/pcenter/details"><c:param name="active" value="photo" /></c:url>' >个人中心</a></li>
-		<li><a href='<c:url value="/acenter"></c:url>'>账户中心</a></li>
-		<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li> 
+		<li><a href='<c:url value="/admin/account/list"></c:url>' >账户管理</a></li>
+		<li><a href='<c:url value="/admin/order/list"></c:url>' >订单管理</a></li>
+		<li><a href='<c:url value="/admin/trend"></c:url>' >返回</a></li>
 	</ul>
 </div>
 <hr>

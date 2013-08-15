@@ -1,7 +1,7 @@
 package com.knet51.ccweb.controllers.admin.teacher.resume;
 
-
 import org.hibernate.validator.constraints.NotEmpty;
+
 
 
 public class TeacherEduInfoForm {
@@ -14,6 +14,7 @@ public class TeacherEduInfoForm {
 	//@NotEmpty
 	//@Size(max=25)
 	private String degree;
+
 	//@NotEmpty
 	//@Size(max=25)
 	private String startTime;
@@ -21,7 +22,6 @@ public class TeacherEduInfoForm {
 	//@Size(max=25)
 	private String endTime;
 	@NotEmpty
-
 	private String educationDesc;
 
 	
@@ -64,7 +64,5 @@ public class TeacherEduInfoForm {
 	public TeacherEduInfoForm() {
 		super();
 	}
-	
-	
 
 }
