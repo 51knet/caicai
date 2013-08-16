@@ -3,7 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/js/resumeEdit.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/userResumeEdit.js" />"></script>
 <style>
 .row-fluid.custom {
 	margin-bottom: 20px;
@@ -59,8 +59,8 @@
 			<ul class="nav nav-tabs">
 				<li <c:if test='${active == "personal"}'>class="active"</c:if>><a href="#personal_info_tab" data-toggle="tab">个人信息</a></li>
 				<li <c:if test='${active == "contact"}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>
-					<li <c:if test='${active == "edu"}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
-					<li <c:if test='${active == "work"}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
+					<li <c:if test='${active == "edu"}'>class="active"</c:if>><a href="#user_edu_bg_tab" data-toggle="tab">教育背景</a></li>
+					<li <c:if test='${active == "work"}'>class="active"</c:if>><a href="#user_work_exp_tab" data-toggle="tab">工作经历</a></li>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane <c:if test='${active == "personal"}'>active</c:if>" id="personal_info_tab">
@@ -173,7 +173,7 @@
 				</div>
 		
 				<!-- Edu Info -->
-				<div class="tab-pane  <c:if test='${active == "edu"}'>active</c:if>" id="edu_bg_tab">
+				<div class="tab-pane  <c:if test='${active == "edu"}'>active</c:if>" id="user_edu_bg_tab">
 					<div id="eduForm" style="display: none;  border: 0px solid; padding-left: 20px;">
 						<form action="eduInfo" method="post" id="edu_info_form" name="edu" >
 							<input type="hidden" name="eduId">
@@ -289,88 +289,65 @@
 				</div>
 		
 				<!-- work exp  -->
-				<div class="tab-pane <c:if test='${active == "work"}'>active</c:if>" id="work_exp_tab">
+				<div class="tab-pane <c:if test='${active == "work"}'>active</c:if>" id="user_work_exp_tab">
 		
-					<div id="workForm" style="display: none; padding-left: 20px;">
-						<form  action="workInfo" method="post" id="workExpForm" name="work">
-							<input type="hidden" name="workId">
-							<!--  
+					<div id="userworkForm" style="display: none; ">
+						<form  action="user/workInfo" method="post" id="userworkExpForm" name="userwork" class="form-horizontal">
+						<input type="hidden" name="workId">
 							<div class="control-group" id="company">
-								<label class="control-label" for="company">单位</label>
+								<label class="control-label" for="company">所在公司</label>
 								<div class="controls">
 									<input type="text" name="company" placeholder="单位"> <span class="help-inline"><form:errors path="company" /></span>
 								</div>
 							</div>
-							<div class="control-group" id="department">
-								<label class="control-label" for="department">部门</label>
-								<div class="controls">
-									<input type="text" name="department" placeholder="部门"> <span class="help-inline"><form:errors path="department" /></span>
-								</div>
-							</div>
 							<div class="control-group" id="position">
-								<label class="control-label" for="position">职位</label>
+								<label class="control-label" for="position">所处职位</label>
 								<div class="controls">
 									<input type="text" name="position" placeholder="职位"> <span class="help-inline"><form:errors path="position" /></span>
 								</div>
 							</div>
-							<div class="control-group" id="startTimeName">
-								<label class="control-label" for="startTimeName">开始时间</label>
+							<div class="control-group" id="startTime">
+								<label class="control-label" for="startTime">入职时间</label>
 								<div class="controls">
-									<input type="text" name="startTimeName" placeholder="开始时间"> <span class="help-inline"><form:errors path="startTime" /></span>
+									<input type="text" name="startTime" placeholder="入职时间"> <span class="help-inline"><form:errors path="startTime" /></span>
 								</div>
 							</div>
-							<div class="control-group" id="endTimeName">
-								<label class="control-label" for="endTimeName">结束时间</label>
+							<div class="control-group" id="endTime">
+								<label class="control-label" for="endTime">离职时间</label>
 								<div class="controls">
-									<input type="text" name="endTimeName" placeholder="结束时间"> <span class="help-inline"><form:errors path="endTime" /></span>
-								</div>
-							</div>
-							-->
-							<div class="control-group" id="workDesc">
-								<div class="controls">
-									<textarea  name="workDesc"   id="workDescs" rows="6" cols="8" style="width: 550px; height: 300px;"></textarea>
-									<span class="help-inline"></span>
+									<input type="text" name="endTime" placeholder="离职时间"> <span class="help-inline"><form:errors path="endTime" /></span>
 								</div>
 							</div>
 							<div class="control-group">
 								<div class="controls">
 									<button type="submit"  class="btn  btn-success">保 存</button>
-									<button type="reset" onclick="closeWorkAddForm()" class="btn ">取消</button>
+									<button type="reset" onclick="closeuserWorkAddForm()" class="btn ">取消</button>
 								</div>
 							</div>
 						</form>
 					</div>
 		
-					<div id="workList" style="display: block">
+					<div id="userworkList" style="display: block">
 						<c:choose>
 							<c:when test="${(workCount >0)}">
 								<table class="table">
 									<thead>
 										<tr>
-											<!-- 
-											<th>单位</th>
-											<th>部门</th>
-											<th>职位</th>
-											<th>起止时间</th> -->
-											<th colspan="2">详细内容</th>
+											<th>公司名称</th>
+											<th>公司职位</th>
+											<th>起止时间</th> 
+											<th>操作</th> 
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${workInfo}" var="workInfo">
 											<tr>
-												<td colspan="2">${workInfo.workDesc}</td>
-											</tr>
-											<tr>
-												
-												<!-- <td align="center">${workInfo.company}</td>
-												<td align="center">${workInfo.department}</td>
+												<td align="center">${workInfo.company}</td>
 												<td align="center">${workInfo.position}</td>
-												<td align="center" width="25%">${workInfo.startTime} - ${workInfo.endTime}</td> -->
-												<td width="85%">&nbsp;</td>
+												<td align="center" width="25%">${workInfo.startTime} - ${workInfo.endTime}</td> 
 												<td width="15%">
-													<a class="deleteWorkPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteWorkPostModal">删除</a> |
-													<a href='javascript:void(0)' class="editWorkAjaxBtn">修改</a>
-													<input type="hidden" value="${workInfo.id} ">
+													<a class="deleteuserWorkPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteuserWorkPostModal">删除</a><input type="hidden" value="${workInfo.id} "> |
+													<a href='javascript:void(0)' class="edituserWorkAjaxBtn">修改</a><input type="hidden" value="${workInfo.id} ">
 												</td>
 											</tr>
 										</c:forEach>
@@ -383,11 +360,11 @@
 							</c:otherwise>
 						</c:choose>
 		
-						<button onclick="showWorkAddForm()"  class="btn btn-success">添加</button>
+						<button onclick="showuserWorkAddForm()"  class="btn btn-success">添加</button>
 					</div>
 		
 					<!-- work Modal -->
-					<div class="modal hide fade" id="deleteWorkPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal hide fade" id="deleteuserWorkPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 							<h3 id="myModalLabel">请注意</h3>
@@ -397,8 +374,8 @@
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-							<form action='<c:url value="/admin/workInfo/destory"></c:url>' method="post" style="display: inline-block;">
-								<input id="workId" type="hidden" name="workId" />
+							<form action='<c:url value="/admin/user/workInfo/destory"></c:url>' method="post" style="display: inline-block;">
+								<input id="userworkId" type="hidden" name="userWorkId" />
 								<button class="btn btn-success">确定</button>
 							</form>
 						</div>

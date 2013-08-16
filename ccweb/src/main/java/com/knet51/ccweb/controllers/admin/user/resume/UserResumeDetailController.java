@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -20,12 +21,15 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.WorkExp;
 import com.knet51.ccweb.jpa.services.EduBackgroundService;
 import com.knet51.ccweb.jpa.services.StudentService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.WorkExpService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
+import com.knet51.ccweb.controllers.admin.teacher.resume.TeacherEduInfoForm;
+import com.knet51.ccweb.controllers.admin.teacher.resume.TeacherWorkExpInfoForm;
 import com.knet51.ccweb.controllers.admin.user.resume.UserPersonalInfoForm;
 
 @Controller
@@ -101,8 +105,68 @@ public class UserResumeDetailController {
 		return "redirect:/admin/resume?active=personal";
 	}
 	
+	/**
+	 * update or create the user's workExpInfo
+	 * @param work_Id
+	 * @param workInfoForm
+	 * @param validResult
+	 * @param session
+	 * @return
+	 */
+	@Transactional
+	@RequestMapping(value = "/admin/user/workInfo",method = RequestMethod.POST)
+	public String changeUserWorkInfo(@Valid UserWorkExpInfoForm workInfoForm,
+			BindingResult validResult, HttpSession session,@RequestParam("workId")Long work_Id) {
+		logger.info("#### workInfo Controller ####");
+		if (validResult.hasErrors()) {
+			logger.info("eduInfo Validation Failed " + validResult);
+			
+		} else {
+			logger.info("### workInfo Validation passed. ###");
+			WorkExp work = null;
+			if(work_Id!=null){
+				work = workExpService.findOneById(Long.valueOf(work_Id));
+			}else{
+				UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+				work = new WorkExp();
+				work.setTeacherid(userInfo.getId());
+			}
+			work.setCompany(workInfoForm.getCompany());
+			work.setPosition(workInfoForm.getPosition());
+			work.setStartTime(workInfoForm.getStartTime());
+			work.setEndTime(workInfoForm.getEndTime());
+			workExpService.createWorkExp(work);
+		}
+		return "redirect:/admin/resume?active=work";
+	}
+	
+	/**
+	 * delete the teacher's workExpInfo
+	 * @param work_id
+	 * @param session
+	 * @return
+	 */
+	@Transactional
+	@RequestMapping(value = "/admin/user/workInfo/destory",method = RequestMethod.POST)
+	public String destoryUserWorkInfo(@RequestParam("userWorkId") Long work_id, HttpSession session) {
+		logger.info("#### delete user workExp InfoController ####"+work_id);
+		workExpService.destory(Long.valueOf(work_id));
+		return "redirect:/admin/resume?active=work";
+	}
+	
 	@RequestMapping(value = "/admin/user/personalInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse UserPersonalFormAjaxJson(@Valid UserPersonalInfoForm personalInfoForm, BindingResult result,HttpSession session) {
+		return AjaxValidationEngine.process(result);
+	}
+	
+	@RequestMapping(value = "/admin/user/eduInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse eduInfoFormAjaxJson(@Valid UserEduInfoForm eduInfoForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	
+	@RequestMapping(value = "/admin/user/workExpInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse workExpInfoFormAjaxJson(@Valid UserWorkExpInfoForm workInfoForm, BindingResult result) {
+		//logger.info("------into workExp ajax");
 		return AjaxValidationEngine.process(result);
 	}
 }

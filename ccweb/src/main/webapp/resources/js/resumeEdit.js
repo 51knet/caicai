@@ -71,12 +71,12 @@ $(document).ready(function() {
 			  dataType:"json",
 			  success:function(msg){
 					document.work.workId.value = msg.id;
-				  /*	document.work.company.value=msg.company;
+					document.work.company.value=msg.company;
 				  	document.work.department.value=msg.department;
 				  	document.work.position.value=msg.position;
 				  	document.work.startTimeName.value=msg.startTime;
-				  	document.work.endTimeName.value=msg.endTime;*/
-					//alert(msg.workDesc);
+				  	document.work.endTimeName.value=msg.endTime;
+					alert(msg.workDesc);
 				  	workDescEditor.html(msg.workDesc);
 			  }
 		});

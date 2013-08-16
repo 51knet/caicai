@@ -333,38 +333,6 @@
 					<div id="workForm" style="display: none; padding-left: 20px;">
 						<form  action="workInfo" method="post" id="workExpForm" name="work">
 							<input type="hidden" name="workId">
-							<!--  
-							<div class="control-group" id="company">
-								<label class="control-label" for="company">单位</label>
-								<div class="controls">
-									<input type="text" name="company" placeholder="单位"> <span class="help-inline"><form:errors path="company" /></span>
-								</div>
-							</div>
-							<div class="control-group" id="department">
-								<label class="control-label" for="department">部门</label>
-								<div class="controls">
-									<input type="text" name="department" placeholder="部门"> <span class="help-inline"><form:errors path="department" /></span>
-								</div>
-							</div>
-							<div class="control-group" id="position">
-								<label class="control-label" for="position">职位</label>
-								<div class="controls">
-									<input type="text" name="position" placeholder="职位"> <span class="help-inline"><form:errors path="position" /></span>
-								</div>
-							</div>
-							<div class="control-group" id="startTimeName">
-								<label class="control-label" for="startTimeName">开始时间</label>
-								<div class="controls">
-									<input type="text" name="startTimeName" placeholder="开始时间"> <span class="help-inline"><form:errors path="startTime" /></span>
-								</div>
-							</div>
-							<div class="control-group" id="endTimeName">
-								<label class="control-label" for="endTimeName">结束时间</label>
-								<div class="controls">
-									<input type="text" name="endTimeName" placeholder="结束时间"> <span class="help-inline"><form:errors path="endTime" /></span>
-								</div>
-							</div>
-							-->
 							<div class="control-group" id="workDesc">
 								<div class="controls">
 									<textarea  name="workDesc"   id="workDescs" rows="6" cols="8" style="width: 600px; height: 300px;"></textarea>

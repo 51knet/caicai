@@ -293,8 +293,7 @@
 		
 					<div id="workForm" style="display: none; padding-left: 20px;">
 						<form  action="workInfo" method="post" id="workExpForm" name="work">
-							<input type="hidden" name="workId">
-							<!--  
+							<input type="hidden" name="workId"> 
 							<div class="control-group" id="company">
 								<label class="control-label" for="company">单位</label>
 								<div class="controls">
@@ -325,13 +324,6 @@
 									<input type="text" name="endTimeName" placeholder="结束时间"> <span class="help-inline"><form:errors path="endTime" /></span>
 								</div>
 							</div>
-							-->
-							<div class="control-group" id="workDesc">
-								<div class="controls">
-									<textarea  name="workDesc"   id="workDescs" rows="6" cols="8" style="width: 550px; height: 300px;"></textarea>
-									<span class="help-inline"></span>
-								</div>
-							</div>
 							<div class="control-group">
 								<div class="controls">
 									<button type="submit"  class="btn  btn-success">保 存</button>
@@ -347,25 +339,21 @@
 								<table class="table">
 									<thead>
 										<tr>
-											<!-- 
+
 											<th>单位</th>
 											<th>部门</th>
 											<th>职位</th>
-											<th>起止时间</th> -->
+											<th>起止时间</th> 
 											<th colspan="2">详细内容</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${workInfo}" var="workInfo">
 											<tr>
-												<td colspan="2">${workInfo.workDesc}</td>
-											</tr>
-											<tr>
-												
-												<!-- <td align="center">${workInfo.company}</td>
+												<td align="center">${workInfo.company}</td>
 												<td align="center">${workInfo.department}</td>
 												<td align="center">${workInfo.position}</td>
-												<td align="center" width="25%">${workInfo.startTime} - ${workInfo.endTime}</td> -->
+												<td align="center" width="25%">${workInfo.startTime} - ${workInfo.endTime}</td> 
 												<td width="85%">&nbsp;</td>
 												<td width="15%">
 													<a class="deleteWorkPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteWorkPostModal">删除</a> |
