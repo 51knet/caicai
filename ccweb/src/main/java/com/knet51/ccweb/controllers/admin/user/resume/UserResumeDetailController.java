@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.WorkExp;
@@ -28,8 +29,6 @@ import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.WorkExpService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
-import com.knet51.ccweb.controllers.admin.teacher.resume.TeacherEduInfoForm;
-import com.knet51.ccweb.controllers.admin.teacher.resume.TeacherWorkExpInfoForm;
 import com.knet51.ccweb.controllers.admin.user.resume.UserPersonalInfoForm;
 
 @Controller
@@ -154,19 +153,94 @@ public class UserResumeDetailController {
 		return "redirect:/admin/resume?active=work";
 	}
 	
+	@RequestMapping(value = "/admin/user/lowEduInfo" ,method = RequestMethod.POST)
+	public String changeUserLowEduInfo(@RequestParam("loweduId")Long edu_id,@RequestParam("level")String level,@Valid UserLowEduInfoForm eduInfoForm,
+			BindingResult validResult, HttpSession session) {
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		logger.info("#### userLowEduInfo Controller ####");
+		
+		if (validResult.hasErrors()) {
+			logger.info("eduInfo Validation Failed " + validResult);
+			
+		} else {
+			EduBackground edu;
+			logger.info("### eduInfo Validation passed. ###");
+			try {
+				if(edu_id!=null){
+					edu = eduBackgroundService.findOneById(Long.valueOf(edu_id));
+				}else{
+					//EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
+					edu = new EduBackground();
+					edu.setTeacherid(userInfo.getId());
+				}
+				edu.setClassNum(eduInfoForm.getLowClassNum());
+				edu.setSchool(eduInfoForm.getLowSchoolName());
+				edu.setTeacherNam(eduInfoForm.getLowTeacherName());
+				edu.setStartTime(eduInfoForm.getLowStartTime());
+				edu.setLevel(level);
+				eduBackgroundService.createEduBackground(edu);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return "redirect:/admin/resume?active=edu";
+	}
+	
+	@RequestMapping(value = "/admin/user/highEduInfo" ,method = RequestMethod.POST)
+	public String changeUserHighEduInfo(@RequestParam("higheduId")Long edu_id,@RequestParam("level")String level,@Valid UserHighEduInfoForm eduInfoForm,
+			BindingResult validResult, HttpSession session) {
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		logger.info("#### userLowEduInfo Controller ####");
+		
+		if (validResult.hasErrors()) {
+			logger.info("eduInfo Validation Failed " + validResult);
+			
+		} else {
+			EduBackground edu;
+			logger.info("### eduInfo Validation passed. ###");
+			try {
+				if(edu_id!=null){
+					edu = eduBackgroundService.findOneById(Long.valueOf(edu_id));
+				}else{
+					//EduBackground eduInfo = eduBackgroundService.findEduInfoByteacherId(userInfo.getId());
+					edu = new EduBackground();
+					edu.setTeacherid(userInfo.getId());
+				}
+				edu.setClassNum(eduInfoForm.getHighClassNum());
+				edu.setSchool(eduInfoForm.getHighSchoolName());
+				edu.setTeacherNam(eduInfoForm.getHighTeacherName());
+				edu.setStartTime(eduInfoForm.getHighStartTime());
+				edu.setCollege(eduInfoForm.getHighCollegeName());
+				edu.setMajor(eduInfoForm.getHighMajor());
+				edu.setLevel(level);
+				eduBackgroundService.createEduBackground(edu);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return "redirect:/admin/resume?active=edu";
+	}
+	
+	
 	@RequestMapping(value = "/admin/user/personalInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse UserPersonalFormAjaxJson(@Valid UserPersonalInfoForm personalInfoForm, BindingResult result,HttpSession session) {
 		return AjaxValidationEngine.process(result);
 	}
 	
-	@RequestMapping(value = "/admin/user/eduInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse eduInfoFormAjaxJson(@Valid UserEduInfoForm eduInfoForm, BindingResult result) {
+	@RequestMapping(value = "/admin/user/highEduInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse userHigheduInfoFormAjaxJson(@Valid UserHighEduInfoForm highEduInfoForm, BindingResult result) {
+		logger.info("--- into highEduAjax ----");
+		return AjaxValidationEngine.process(result);
+	}
+	
+	@RequestMapping(value = "/admin/user/lowEduInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse userLoweduInfoFormAjaxJson(@Valid UserLowEduInfoForm lowEduInfoForm, BindingResult result) {
+		logger.info("====="+lowEduInfoForm.getLowTeacherName()+lowEduInfoForm.getLowClassNum());
 		return AjaxValidationEngine.process(result);
 	}
 	
 	@RequestMapping(value = "/admin/user/workExpInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse workExpInfoFormAjaxJson(@Valid UserWorkExpInfoForm workInfoForm, BindingResult result) {
-		//logger.info("------into workExp ajax");
 		return AjaxValidationEngine.process(result);
 	}
 }

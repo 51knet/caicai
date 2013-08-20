@@ -28,7 +28,7 @@ public class EduBackground extends AbstractEntity {
 	
 	private String classNum;
 	
-	private String teacher;
+	private String teacherNam;
 
 	private String forbidden;
 	
@@ -93,11 +93,12 @@ public class EduBackground extends AbstractEntity {
 	public void setClassNum(String classNum) {
 		this.classNum = classNum;
 	}
-	public String getTeacher() {
-		return teacher;
+
+	public String getTeacherNam() {
+		return teacherNam;
 	}
-	public void setTeacher(String teacher) {
-		this.teacher = teacher;
+	public void setTeacherNam(String teacherNam) {
+		this.teacherNam = teacherNam;
 	}
 	public String getMajor() {
 		return major;

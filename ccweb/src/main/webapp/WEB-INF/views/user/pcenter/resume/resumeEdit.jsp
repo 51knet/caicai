@@ -166,7 +166,7 @@
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button type="submit" onclick="reuturn:contactOnclick();"    class="btn  btn-success">保 存</button>
+								<button type="submit" onclick="return contactOnclick();"    class="btn  btn-success">保 存</button>
 							</div>
 						</div>
 					</form>
@@ -174,85 +174,131 @@
 		
 				<!-- Edu Info -->
 				<div class="tab-pane  <c:if test='${active == "edu"}'>active</c:if>" id="user_edu_bg_tab">
-					<div id="eduForm" style="display: none;  border: 0px solid; padding-left: 20px;">
-						<form action="eduInfo" method="post" id="edu_info_form" name="edu" >
-							<input type="hidden" name="eduId">
-							<!-- 
-							<div class="control-group" id="schoolName">
-								<label class="control-label" for="schoolName">学校</label>
+					<div id="usereduDiv" style="display: none;  border: 0px solid; padding-left: 20px;">
+						请选择教育等级：<a href="javascript:void(0)" onclick="showUserLowEduForm()">初等教育</a> 
+						<a href="javascript:void(0)" onclick="showUserHighEduForm()">高等教育</a><br><br>
+						
+						<form style="display: none" action="user/lowEduInfo" method="post" id="user_lowedu_info_form" name="lowedu"  class="form-horizontal" >
+							<input type="hidden" name="loweduId">
+							<div class="control-group offset2"  >
+								<label class="radio inline" >
+									<input type="radio" name="level" value="1" checked="checked" >幼儿园
+								</label>
+								<label class="radio inline" >
+									<input type="radio" name="level" value="2" >小学
+								</label>
+								<label class="radio inline" >
+									<input type="radio" name="level" value="3" >初中
+								</label>
+								<label class="radio inline" >
+									<input type="radio" name="level" value="4" >高中
+								</label>
+							</div>
+							<div class="control-group" id="lowSchoolName">
+								<label class="control-label" for="lowSchoolName">学校</label>
 								<div class="controls">
-									<input type="text" name="schoolName"  placeholder="学校" data-provide="typeahead" data-items="8"
-										data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'> <span class="help-inline"></span>
+									<input type="text" name="lowSchoolName"  placeholder="学校" > <span class="help-inline"></span>
 								</div>
 							</div>
-							<div class="control-group" id="collegeName">
-								<label class="control-label" for="collegeName">学院</label>
+							<div class="control-group" id="lowClassNum">
+								<label class="control-label" for="lowClassNum">班级</label>
 								<div class="controls">
-									<input type="text" name="collegeName"   value="" placeholder="学院"> <span class="help-inline"></span>
+									<input type="text"  name="lowClassNum"  placeholder="专业"> <span class="help-inline"></span>
 								</div>
 							</div>
-							<div class="control-group" id="degree">
-								<label class="control-label" for="degree">学历</label>
+							<div class="control-group" id="lowTeacherName">
+								<label class="control-label" for="lowTeacherName">教师名称</label>
 								<div class="controls">
-									<input type="text"  name="degree"  placeholder="学历"> <span class="help-inline"></span>
+									<input type="text"  name="lowTeacherName"  placeholder="教师名称"> <span class="help-inline"></span>
 								</div>
 							</div>
-							<div class="control-group" id="startTime">
-								<label class="control-label" for="startTime">开始时间</label>
+							<div class="control-group" id="lowStartTime">
+								<label class="control-label" for="lowStartTime">入学时间</label>
 								<div class="controls">
-									<input type="text"  name="startTime"  placeholder="开始时间"> <span class="help-inline"></span>
-								</div>
-							</div>
-							<div class="control-group" id="endTime">
-								<label class="control-label" for="endTime">结束时间</label>
-								<div class="controls">
-									<input type="text"  name="endTime"  placeholder="结束时间"> <span class="help-inline"></span>
-								</div>
-							</div>
-							-->
-							<div class="control-group"  id="educationDesc" >
-								<div class="controls">
-									<textarea  id="KEeducationDesc"  name="educationDesc" rows="6" cols="8" style="width: 550px; height: 300px;"></textarea>
-									<span class="help-inline"></span>
+									<input type="text"  name="lowStartTime"  placeholder="入学时间"> <span class="help-inline"></span>
 								</div>
 							</div>
 							<div class="control-group">
 								<div class="controls">
 									<button type="submit"  class="btn  btn-success">保 存</button>
-									<button type="reset" onclick="closeEduAddForm()" class="btn ">取消</button>
+									<button type="reset" onclick="closeuserEduAddForm()" class="btn ">取消</button>
+								</div>
+							</div>
+						</form>
+						<form style="display: none" action="user/highEduInfo" method="post" id="user_highedu_info_form" name="highedu"  class="form-horizontal" >
+							<input type="hidden" name="higheduId">
+							<div class="control-group offset2"   >
+								<label class="radio inline" >
+									<input type="radio" name="level" value="5" checked="checked" >本科
+								</label>
+								<label class="radio inline" >
+									<input type="radio" name="level" value="6" >研究生
+								</label>
+							</div>
+							<div class="control-group" id="highSchoolName">
+								<label class="control-label" for="highSchoolName">学校</label>
+								<div class="controls">
+									<input type="text" name="highSchoolName"  placeholder="学校" > <span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group" id="highCollegeName">
+								<label class="control-label" for="highCollegeName">学院</label>
+								<div class="controls">
+									<input type="text" name="highCollegeName"   value="" placeholder="学院"> <span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group" id="highMajor">
+								<label class="control-label" for="highMajor">专业</label>
+								<div class="controls">
+									<input type="text"  name="highMajor"  placeholder="专业"> <span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group" id="highClassNum">
+								<label class="control-label" for="highClassNum">班级</label>
+								<div class="controls">
+									<input type="text"  name="highClassNum"  placeholder="专业"> <span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group" id="highTeacherName">
+								<label class="control-label" for="highTeacherName">导师</label>
+								<div class="controls">
+									<input type="text"  name="highTeacherName"  placeholder="专业导师"> <span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group" id="highStartTime">
+								<label class="control-label" for="highStartTime">入学时间</label>
+								<div class="controls">
+									<input type="text"  name="highStartTime"  placeholder="入学时间"> <span class="help-inline"></span>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<button type="submit"  class="btn  btn-success">保 存</button>
+									<button type="reset" onclick="closeuserEduAddForm()" class="btn ">取消</button>
 								</div>
 							</div>
 						</form>
 					</div>
 		
-					<div id="eduList" style="display: block">
+					<div id="usereduList" style="display: block">
 						<c:choose>
 							<c:when test="${eduCount>0 }">
-								<table class="table">
+								<table class="yellow" width="100%" cellpadding="5">
+									<tbody>
 									<thead>
 										<tr>
-											<th colspan="2">详细内容</th>
-											<!-- <th>学院</th>
-											<th>学历</th>
-											<th>起止时间</th>
-											<th>操作</th> -->
+											<th colspan="5">初等教育</th> 
 										</tr>
 									</thead>
-									<tbody>
 										<c:forEach items="${eduInfo}" var="eduInfo">
 											<tr>
-												<td colspan="2" >${eduInfo.educationDesc}</td>
-											</tr>
-											<tr>
-											<!-- 
 												<td align="center">${eduInfo.school}</td>
 												<td align="center">${eduInfo.college}</td>
 												<td align="center">${eduInfo.degree}</td>
-												<td align="center" width="25%">${eduInfo.startTime} - ${eduInfo.endTime}</td> -->
-												<td width="85%"></td>
-												<td  width="15%">
+												<td align="center" width="25%">${eduInfo.startTime}</td> 
+												<td  width="15%" align="center" >
 													<a class="deleteEduPostBtn" href="#deleteEduPostModal" role="button" data-toggle="modal" data-target="#deleteEduPostModal">删除</a> |
-													<a class="editEduAjaxBtn" href="javascript:void(0)">修改</a><input type="hidden" value="${eduInfo.id }" id="eduInfo_id">
+													<a class="edituserEduAjaxBtn" href="javascript:void(0)">修改</a><input type="hidden" value="${eduInfo.id }" id="eduInfo_id">
 												</td>
 											</tr>
 										</c:forEach>
@@ -265,7 +311,7 @@
 								<br>
 							</c:otherwise>
 						</c:choose>
-						<button onclick="showEduAddForm()" class="btn btn-success">添加</button>
+						<button onclick="showuserEduAddForm()" class="btn btn-success">添加</button>
 					</div>
 		
 					<!-- edu Modal -->
@@ -330,7 +376,7 @@
 					<div id="userworkList" style="display: block">
 						<c:choose>
 							<c:when test="${(workCount >0)}">
-								<table class="table">
+								<table class="yellow" width="100%" cellpadding="5">
 									<thead>
 										<tr>
 											<th>公司名称</th>
@@ -345,7 +391,7 @@
 												<td align="center">${workInfo.company}</td>
 												<td align="center">${workInfo.position}</td>
 												<td align="center" width="25%">${workInfo.startTime} - ${workInfo.endTime}</td> 
-												<td width="15%">
+												<td align="center" width="15%">
 													<a class="deleteuserWorkPostBtn" href="#deleteWorkPostModal" role="button" data-toggle="modal" data-target="#deleteuserWorkPostModal">删除</a><input type="hidden" value="${workInfo.id} "> |
 													<a href='javascript:void(0)' class="edituserWorkAjaxBtn">修改</a><input type="hidden" value="${workInfo.id} ">
 												</td>
@@ -359,7 +405,7 @@
 								<br></span>
 							</c:otherwise>
 						</c:choose>
-		
+						<br>
 						<button onclick="showuserWorkAddForm()"  class="btn btn-success">添加</button>
 					</div>
 		
