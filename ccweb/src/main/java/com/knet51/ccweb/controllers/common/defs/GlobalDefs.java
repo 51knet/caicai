@@ -1,5 +1,8 @@
 package com.knet51.ccweb.controllers.common.defs;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public final class GlobalDefs {
 	public static final String SESSION_USER_INFO = "sessionUserInfo";
 	public static final String COOKIE_IDENTITY = "identity";
@@ -32,4 +35,15 @@ public final class GlobalDefs {
 	
 	//super admin's pwd
 	public static final String SUPER_ADMIN_PWD = "caicai6688";
+	
+	public static Map<String,String> getUserEduExpMap(){
+		Map<String,String> map = new HashMap<String, String>();
+		map.put("1", "幼儿园");
+		map.put("2", "小学");
+		map.put("3", "初中");
+		map.put("4", "高中");
+		map.put("5", "本科");
+		map.put("6", "研究生");
+		return map;
+	}
 }

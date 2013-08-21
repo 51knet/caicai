@@ -18,5 +18,7 @@ public interface TrendsService {
 	
 	List<Trends> showAllTrendsByUserId(Long u_id);
 	
+	List<Trends> showAllTrendsByUserIdAndRole(Long u_id,String role);
+	
 	List<Trends> showAllTeacherTrendsByUserId(Long u_id);
 }

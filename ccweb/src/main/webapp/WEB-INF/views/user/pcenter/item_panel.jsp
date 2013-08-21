@@ -64,7 +64,7 @@ color: #8aa942;
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' >个人信息</a></li>
 		<li><a href='<c:url value="/pcenter/details"><c:param name="active" value="photo" /></c:url>'>账号信息</a></li>
-		<li><a href='<c:url value="/admin/trend"></c:url>' >返回</a></li>
+		<li><a href='<c:url value="/admin/trend?role="></c:url>' >返回</a></li>
 	</ul>
 </div>
 <hr>

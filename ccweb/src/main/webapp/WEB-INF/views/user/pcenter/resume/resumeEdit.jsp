@@ -178,7 +178,7 @@
 						请选择教育等级：<a href="javascript:void(0)" onclick="showUserLowEduForm()">初等教育</a> 
 						<a href="javascript:void(0)" onclick="showUserHighEduForm()">高等教育</a><br><br>
 						
-						<form style="display: none" action="user/lowEduInfo" method="post" id="user_lowedu_info_form" name="lowedu"  class="form-horizontal" >
+						<form style="display: block" action="user/lowEduInfo" method="post" id="user_lowedu_info_form" name="lowedu"  class="form-horizontal" >
 							<input type="hidden" name="loweduId">
 							<div class="control-group offset2"  >
 								<label class="radio inline" >
@@ -284,18 +284,30 @@
 						<c:choose>
 							<c:when test="${eduCount>0 }">
 								<table class="yellow" width="100%" cellpadding="5">
-									<tbody>
 									<thead>
 										<tr>
-											<th colspan="5">初等教育</th> 
+											<th>教育程度</th>
+											<th>学校</th>
+											<th>学院</th> 
+											<th>专业</th> 
+											<th>班级</th>
+											<th>教师</th>
+											<th>入学时间</th> 
+											<th>操作</th> 
 										</tr>
 									</thead>
+									<tbody>
 										<c:forEach items="${eduInfo}" var="eduInfo">
 											<tr>
+												<td align="center"><c:forEach items="${levelmap}" var="map">
+													<c:if test="${map.key == eduInfo.level }">${map.value }</c:if>
+												</c:forEach></td>
 												<td align="center">${eduInfo.school}</td>
-												<td align="center">${eduInfo.college}</td>
-												<td align="center">${eduInfo.degree}</td>
-												<td align="center" width="25%">${eduInfo.startTime}</td> 
+												<td align="center">${eduInfo.college}<c:if test="${eduInfo.college == null }"> 无</c:if></td>
+												<td align="center">${eduInfo.major}<c:if test="${eduInfo.major == null}"> 无</c:if></td>
+												<td align="center">${eduInfo.classNum}</td>
+												<td align="center">${eduInfo.teacherNam}</td>
+												<td align="center" >${eduInfo.startTime}</td> 
 												<td  width="15%" align="center" >
 													<a class="deleteEduPostBtn" href="#deleteEduPostModal" role="button" data-toggle="modal" data-target="#deleteEduPostModal">删除</a> |
 													<a class="edituserEduAjaxBtn" href="javascript:void(0)">修改</a><input type="hidden" value="${eduInfo.id }" id="eduInfo_id">
@@ -311,6 +323,7 @@
 								<br>
 							</c:otherwise>
 						</c:choose>
+						<br>
 						<button onclick="showuserEduAddForm()" class="btn btn-success">添加</button>
 					</div>
 		

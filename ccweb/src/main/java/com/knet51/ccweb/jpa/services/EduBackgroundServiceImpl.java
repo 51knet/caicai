@@ -3,6 +3,8 @@ package com.knet51.ccweb.jpa.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +31,8 @@ public class EduBackgroundServiceImpl implements EduBackgroundService {
 
 	@Override
 	public List<EduBackground> findEduListByTeacherId(Long teacher_id) {
-		return eduBackgroundRepository.findEduBackgroundByTeacheridAndForbiddenIsNull(teacher_id);
+		Sort sort = new Sort(Direction.ASC, "level"); 
+		return eduBackgroundRepository.findEduBackgroundByTeacheridAndForbiddenIsNull(teacher_id ,sort);
 	}
 
 	@Override

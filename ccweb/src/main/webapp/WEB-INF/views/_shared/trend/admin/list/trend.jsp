@@ -61,13 +61,10 @@
     	var showId = index+"_ajax_comment_div";
 		$.post('<c:url value="/ajaxcomment" />', $("#"+id).serialize(), function(msg){
 			var d = new Date(msg.publishDate);
-			alert(d.getYear());
-			alert(d);
 			var date = formatDate(d);
-			alert(date);
 			 var  t = "<table width='100%' cellpadding='5'>";
 		     t+="<tr><td  align='left' valign= 'top'>  <img src='/ccweb"+msg.user.photo_url+"  ' style='width:40px' />&nbsp;&nbsp;"+msg.user.name+"："+msg.context+"</td></tr>";
-		     t+="<tr  class='bb'><td  align='left' valign= 'top'><span class='date'>"+date+"</span>";
+		  //   t+="<tr  class='bb'><td  align='left' valign= 'top'><span class='date'>"+date+"</span>";
 		     t+="<a href='javascript:void(0)' onclick='showReply("+msg.id+")'>回复</a></td></tr></table>";
 		     $("#"+showId).append(t); 
 		}, "json");
@@ -110,6 +107,7 @@
 					<div id="${trendBeans.trend.id}_comment_div" style='display: <c:if test="${ show == trendBeans.trend.id }"> block</c:if><c:if test="${show != trendBeans.trend.id}"> none</c:if> ; margin: 0px 10px;'>
 						<form style="margin-top: 10px;" method="post" action='<c:url value="/comment"  ></c:url>'  id="${trendBeans.trend.id}_comment_form">
 							<input type="hidden" name="trendId" value="${trendBeans.trend.id}">
+							<input type="hidden" name="trendRole" value="${trendRole }">
 							<textarea rows="2" cols=""  style="width:100%; " name="contents"  ></textarea><br>
 							<div class="offset10">
 								<!--<button class="btn btn-success " type="submit">发布</button> -->
@@ -138,6 +136,7 @@
 										<form  method="post" action='<c:url value="/reply"></c:url>'  >
 											<input type="hidden" name="hostId" value="${comment.user.id }" >
 											<input type="hidden" name="trendId" value="${trendBeans.trend.id}" >
+												<input type="hidden" name="trendRole" value="${trendRole }">
 											<textarea rows="1" cols="" style="width:100%; " name="contents"  ></textarea><br>
 											<div class="offset10">
 												 <button class="btn btn-success offset"  onclick="postReplyForm()">发布</button>
@@ -151,6 +150,9 @@
 					</div>
 				</div>
 			</c:forEach>
+			<c:if test="${trendCount <= 0 }">
+				<h3>尚无该角色动态</h3>
+			</c:if>
 			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 	</div>
 </div>

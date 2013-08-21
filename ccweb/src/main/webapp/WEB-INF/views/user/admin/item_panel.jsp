@@ -56,15 +56,16 @@ color: #8aa942;
 		</c:otherwise>
 	</c:choose>
 	<div class="row-fluid">
-		<a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount } 粉丝</a> | 
-		<a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount } 关注</a>
+		<a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }同学</a> | 
+		<a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }粉丝</a> | 
+		<a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }关注</a>
 	</div>
 </div>
 <div class="left-menu-container " >
 	<ul class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value="/admin/trend"></c:url>' >好友动态</a></li>
-		<li><a href='<c:url value="/pcenter/details"><c:param name="active" value="photo" /></c:url>' >个人中心</a></li>
-		<li><a href='<c:url value="/acenter"></c:url>'>账户中心</a></li>
+		<li><a href='<c:url value="/admin/trend?role="></c:url>' >所有动态</a></li>
+		<li><a href='<c:url value="/admin/trend?role=teacher"></c:url>' >教师动态</a></li>
+		<li><a href='<c:url value="/admin/trend?role=user"></c:url>' >学生动态</a></li>
 		<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li> 
 	</ul>
 </div>

@@ -97,7 +97,7 @@ public class AdminController {
 			Student student = studentService.findOne(userInfo.getId());
 			userInfo.setStudent(student);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-			return "redirect:/admin/trend";
+			return "redirect:/admin/trend?role=";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
 			return "redirect:/admin/teacher";
 		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {
@@ -124,7 +124,7 @@ public class AdminController {
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			// set default home page to set resume page;
-			return "redirect:/admin/trend";
+			return "redirect:/admin/trend?role=";
 		} else {
 			return "home";
 		}
@@ -151,7 +151,7 @@ public class AdminController {
 					.getAttribute("authentication");
 			if (authentication != null
 					&& authentication.getStatus().equals("pass")) {
-				return "redirect:/admin/trend";
+				return "redirect:/admin/trend?role=";
 			} else {
 				return "redirect:/admin/authentication/list";
 			}

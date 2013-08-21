@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -90,6 +91,8 @@ public class ResumePageController {
 		}
 		model.addAttribute("active", active);
 		model.addAttribute("universityList", universityList);
+		Map<String,String> map = GlobalDefs.getUserEduExpMap();
+		model.addAttribute("levelmap", map);
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<EduBackground> eduInfo = eduBackgroundService

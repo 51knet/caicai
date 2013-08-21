@@ -77,6 +77,7 @@
 <div class="row-fluid custom round">
 	<div style="margin: 0 auto; width: 100%; text-align: center;">
 		<form style="margin-top: 10px;" method="post" action='<c:url value="/admin/trend/publish"></c:url>'>
+		<input type="hidden" name="trendRole" value="${trendRole }">
 			<textarea rows="2" cols="" style="width: 90%; " name="contents"  ></textarea><br>
 			<div class="offset9">
 				<button class="btn btn-success offset" type="submit">发布</button> 

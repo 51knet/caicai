@@ -64,7 +64,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/admin/trend")
-	public String showAllTrends(HttpSession session, Model model){
+	public String showAllTrends(HttpSession session, Model model,@RequestParam("role") String trendRole){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		String role = userInfo.getRole();
 		List<User> recommendTeacher = recommendService.getRecommendTeacher(userInfo.getId(), 3);
@@ -76,21 +76,28 @@ public class UserController {
 		model.addAttribute("recommendCourse", recommendCourse);
 		
 		if(role != null && role.equals("user")){
-			List<Trends> myTrends = trendsService.showAllTrendsByUserId(userInfo.getId());
-			//model.addAttribute("myTrend", myTrends);
-			
 			List<TrendsBeans> trendsBeansList = new ArrayList<TrendsBeans>();
-			List<Comment> comment = new ArrayList<Comment>();
-			for (Trends trends : myTrends) {
-				TrendsBeans trendsBeans = new TrendsBeans();
-				comment = commentService.findAllByTrendId(trends.getId());
-				trendsBeans.setCommentList(comment);
-				trendsBeans.setTrend(trends);
-				trendsBeans.setCommentCount((long)comment.size());
-				trendsBeansList.add(trendsBeans);
+			List<Trends> myTrends = null;
+			if(trendRole.equals("teacher") || trendRole .equals("user")){
+				myTrends = trendsService.showAllTrendsByUserIdAndRole(userInfo.getId(), trendRole);
+			}else{
+				myTrends = trendsService.showAllTrendsByUserId(userInfo.getId());
 			}
 			
+			if(myTrends.size()>0){
+				List<Comment> comment = new ArrayList<Comment>();
+				for (Trends trends : myTrends) {
+					TrendsBeans trendsBeans = new TrendsBeans();
+					comment = commentService.findAllByTrendId(trends.getId());
+					trendsBeans.setCommentList(comment);
+					trendsBeans.setTrend(trends);
+					trendsBeans.setCommentCount((long)comment.size());
+					trendsBeansList.add(trendsBeans);
+				}
+			}
+			model.addAttribute("trendRole", trendRole);
 			model.addAttribute("trend", trendsBeansList);
+			model.addAttribute("trendCount", trendsBeansList.size());
 			return "admin.user.trend";
 		}
 		else if(role != null && role.equals("teacher")){
@@ -107,6 +114,7 @@ public class UserController {
 			}
 			
 			model.addAttribute("trend", trendsBeansList);
+			model.addAttribute("trendCount", trendsBeansList.size());
 			return "admin.teacher.trend";
 		}
 		else{
@@ -121,10 +129,10 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/admin/trend/publish", method = RequestMethod.POST)
-	public String createMyTrends(HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult){
+	public String createMyTrends(HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult,@RequestParam("trendRole") String trendRole){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
-			return "redirect:/admin/trend";
+			return "redirect:/admin/trend?role="+trendRole;
 		}else{
 			Trends newTrends = new Trends();
 			newTrends.setUser(userInfo.getUser());
@@ -133,7 +141,7 @@ public class UserController {
 			newTrends.setPublishDate(new Date());
 			
 			trendsService.createTrends(newTrends);
-			return "redirect:/admin/trend";
+			return "redirect:/admin/trend?role="+trendRole;
 		}
 	}
 	
@@ -159,10 +167,10 @@ public class UserController {
 	 */
 	@RequestMapping(value="/comment" , method=RequestMethod.POST)
 	public String createComment(@RequestParam("trendId") Long trend_id, HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult,
-			RedirectAttributes redirectAttributes){
+			RedirectAttributes redirectAttributes,@RequestParam("trendRole") String trendRole){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
-			return "redirect:/admin/trend";
+			return "redirect:/admin/trend?role="+trendRole;
 		}else{
 		Comment comment = new Comment();
 		
@@ -176,7 +184,7 @@ public class UserController {
 		if(newComment != null){
 			redirectAttributes.addFlashAttribute("show",trend_id);
 		}
-		return "redirect:/admin/trend"; 
+		return "redirect:/admin/trend?role="+trendRole; 
 		}
 	}
 	
@@ -212,7 +220,7 @@ public class UserController {
 	public String createFrontComment(@RequestParam("trendId") Long trend_id, HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
-			return "redirect:/admin/trend";
+			return "redirect:/admin/trend?role=";
 		}else{
 		Trends trends = trendsService.findOneById(trend_id);
 		Comment comment = new Comment();
@@ -228,11 +236,11 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/reply" ,method = RequestMethod.POST)
-	public String createReply(@RequestParam("hostId") Long host_id,@RequestParam("trendId") Long trend_id,
+	public String createReply(@RequestParam("hostId") Long host_id,@RequestParam("trendId") Long trend_id,@RequestParam("trendRole") String trendRole,
 			HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult,RedirectAttributes redirectAttributes){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
-			return "redirect:/admin/trend";
+			return "redirect:/admin/trend?role="+trendRole;
 		}else{
 		User host = userService.findOne(host_id);
 		Comment comment = new Comment();
@@ -245,7 +253,7 @@ public class UserController {
 		if(newComment != null){
 			redirectAttributes.addFlashAttribute("show",trend_id);
 		}
-		return "redirect:/admin/trend"; 
+		return "redirect:/admin/trend?role="+trendRole; 
 		}
 	}
 	
