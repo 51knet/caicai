@@ -8,6 +8,12 @@
 			<li><a id="logo" href='<c:url value="/"></c:url>'></a></li>
 		</ul>
 		<ul class="nav pull-right">
+			<li>
+				<form class="navbar-form" style="margin-right:50px;" action="<c:url value="/searchUser"></c:url>"  method="post">
+		         <input type="text" name="searchParam" class="span6" placeholder="输入姓名搜索"  value="${searchParam }">
+		         &nbsp;&nbsp;<button type="submit" class="btn" style="margin-top: 4px; font-family:Arial,'Microsoft YaHei'; color: #808080; ">搜 索</button>
+		       </form>
+			</li>
 			<li><a href="http://www.51knet.com/courses"><img class="courselogo" src="<c:url value='/resources/img/default/courselogo.png'></c:url>"> <img class="goto"
 					src="<c:url value='/resources/img/default/index/goto.png'></c:url>"></a></li>
 			<c:if test="${sessionUserInfo != null}">

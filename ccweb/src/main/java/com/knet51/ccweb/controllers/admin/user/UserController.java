@@ -121,6 +121,12 @@ public class UserController {
 			return "redirect:/admin";
 		}
 	}
+	
+	@RequestMapping(value="/admin/trend/{role}/{varity}")
+	public String showTrends(@PathVariable String role, @PathVariable String varity){
+		logger.info("------show role and varity="+role+"  "+varity);
+		return "";
+	}
 	/**
 	 * create a new trends by user
 	 * @param session

@@ -53,7 +53,7 @@
       } 
     
     function postReplyForm(){
-    	alert("form");
+    	//alert("form");
     }
     
     function postCommentForm(index){

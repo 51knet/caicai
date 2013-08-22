@@ -30,4 +30,6 @@ public interface UserService {
 	List<User> findUserByRole(String role);
 	User findUserBy3pp(String vendor, String name);
 	
+	List<User> findUserByName(String name);
+	
 }
