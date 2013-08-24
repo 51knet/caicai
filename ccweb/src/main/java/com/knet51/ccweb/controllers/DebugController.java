@@ -180,9 +180,15 @@ public class DebugController {
 		List<User> userList;
 		userList = userRecommendService.getRecommendTeacher((long) 3, 10);
 		logger.info("Recommend Teacher ===== "+userList==null?"null":"not null"+" =====");
+		for(User user : userList){
+			logger.info(" === user detail id is "+user.getId());
+		}
 		List<Course> courseList;
 		courseList = userRecommendService.getRecommendCourses((long) 3, 2);
 		logger.info("Recommend Teacher ===== "+courseList==null?"null":"not null"+" =====");
+		for(Course user : courseList){
+			logger.info(" === user detail id is "+user.getId());
+		}
 		return "debug";
 	}
 }
