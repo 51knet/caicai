@@ -26,7 +26,7 @@ background-color: #fff;
 <!--<c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url> -->
 <div class="row-fluid centralize border" style="height: 400px;">
 	<br>
-	<a href='<c:url value="/admin/trend?role=${trendRole }"></c:url>' >换一换</a><hr>
+	<a href='<c:url value="/admin/trend/${trendRole }/${trendVariety}"></c:url>' >换一换</a><hr>
 	<div class="row-fluid">
 		推荐好友<br>
 		<c:forEach items="${recommendUser }" var="recommendUser">

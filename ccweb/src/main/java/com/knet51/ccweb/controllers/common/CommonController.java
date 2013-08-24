@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.jpa.entities.User;
@@ -19,7 +20,7 @@ public class CommonController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/searchUser")
+	@RequestMapping(value="/searchUser",method=RequestMethod.POST)
 	public String findUserByName(@RequestParam("searchParam") String searchParam,Model model){
 		List<User> userList = userService.findAllUsers();
 		List<User> newList = new ArrayList<User>();

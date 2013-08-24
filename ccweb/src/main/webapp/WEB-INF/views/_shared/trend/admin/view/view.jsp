@@ -35,12 +35,12 @@
 			</c:if>
 			<c:if test="${trendBeans.trend.variety == 'course' }">
 				<tr  class="bb">
-				  <td align="left" valign="top">发布了 ${trendBeans.varityDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a><br>
+				  <td align="left" valign="top">发布了 ${trendBeans.varietyDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a><br>
 				  	<img src=' <c:url value="${trendBeans.trend.coverUrl}"></c:url>'  class="coursecover_width"><br>					
 			</c:if>
 			<c:if test="${trendBeans.trend.variety != 'course' && trendBeans.trend.variety != null}">
 				<tr  class="bb">
-				  <td align="left" valign="top">发布了 ${trendBeans.varityDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a><br>						  
+				  <td align="left" valign="top">发布了 ${trendBeans.varietyDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a><br>						  
 			</c:if>
 				<span class="date"><a href="/admin/trend/view/${trendBeans.trend.id}"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></a></span></td>
 			</tr>

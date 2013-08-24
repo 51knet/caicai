@@ -11,15 +11,15 @@ public class TrendsBeans {
 	private Trends trend;
 	private List<Comment> commentList;
 	private Long commentCount;
-	private String varityDescription;
-	private static Map<String, String> varityMap = new HashMap<String, String>();
+	private String varietyDescription;
+	private static Map<String, String> varietyMap = new HashMap<String, String>();
 
 	public Trends getTrend() {
 		return trend;
 	}
 	public void setTrend(Trends trend) {
 		this.trend = trend;
-		this.varityDescription = parseVarity(trend);
+		this.varietyDescription = parseVariety(trend);
 	}
 	public List<Comment> getCommentList() {
 		return commentList;
@@ -34,22 +34,22 @@ public class TrendsBeans {
 	public void setCommentCount(Long commentCount) {
 		this.commentCount = commentCount;
 	}
-	public String getVarityDescription() {
-		return varityDescription;
+	public String getVarietyDescription() {
+		return varietyDescription;
 	}
-	public void setVarityDescription(String varityDescription) {
-		this.varityDescription = varityDescription;
+	public void setVarityDescription(String varietyDescription) {
+		this.varietyDescription = varietyDescription;
 	}
 	public TrendsBeans() {
 		super();
-		varityMap.put("announcement", "一篇公告");
-		varityMap.put("resource", "一份资源");
-		varityMap.put("course", "一节课程");
+		varietyMap.put("announcement", "一篇公告");
+		varietyMap.put("resource", "一份资源");
+		varietyMap.put("course", "一节课程");
 	}
 	
-	private String parseVarity(Trends trend){
-		String varity = trend.getVariety();
-		return varityMap.get(varity);
+	private String parseVariety(Trends trend){
+		String variety = trend.getVariety();
+		return varietyMap.get(variety);
 	}
 	
 }

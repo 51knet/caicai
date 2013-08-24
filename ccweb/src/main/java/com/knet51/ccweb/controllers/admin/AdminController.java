@@ -97,7 +97,7 @@ public class AdminController {
 			Student student = studentService.findOne(userInfo.getId());
 			userInfo.setStudent(student);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-			return "redirect:/admin/trend?role=";
+			return "redirect:/admin/trend/all/all";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
 			return "redirect:/admin/teacher";
 		} else if (userInfo != null && userInfo.getRole().equals("enterprise")) {

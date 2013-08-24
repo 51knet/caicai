@@ -64,7 +64,7 @@ color: #8aa942;
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value="/admin/account/list"></c:url>' >账户管理</a></li>
 		<li><a href='<c:url value="/admin/order/list"></c:url>' >订单管理</a></li>
-		<li><a href='<c:url value="/admin/trend?role="></c:url>' >返回</a></li>
+		<li><a href='<c:url value="/admin/trend/all/all"></c:url>' >返回</a></li>
 	</ul>
 </div>
 <hr>

@@ -63,9 +63,9 @@ color: #8aa942;
 </div>
 <div class="left-menu-container " >
 	<ul class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value="/admin/trend?role="></c:url>' >所有动态</a></li>
-		<li><a href='<c:url value="/admin/trend?role=teacher"></c:url>' >教师动态</a></li>
-		<li><a href='<c:url value="/admin/trend?role=user"></c:url>' >学生动态</a></li>
+		<li><a href='<c:url value="/admin/trend/all/all"></c:url>' >所有动态</a></li>
+		<li><a href='<c:url value="/admin/trend/teacher/all"></c:url>' >教师动态</a></li>
+		<li><a href='<c:url value="/admin/trend/user/all"></c:url>' >学生动态</a></li>
 		<!-- <li><a href='<c:url value="/admin/trend/all/all"></c:url>' >test</a></li> -->
 		<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li> 
 	</ul>
