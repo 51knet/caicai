@@ -9,7 +9,7 @@
 	<style type="text/css" media="screen">
 		@import url("<c:url value="/resources/css/admin-layout.css"/>");
 		body{
-			background-color: #edf1e0;
+			 background-color: #fff; 
 		}
 		
 		.border{

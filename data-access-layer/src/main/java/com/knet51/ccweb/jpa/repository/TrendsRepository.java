@@ -26,10 +26,10 @@ public interface TrendsRepository extends JpaRepository<Trends, Long>, JpaSpecif
 	@Query("SELECT u FROM Trends u where u.user.id IN (SELECT c.host_id FROM FriendsRelated c where c.follow_id=:uid)  and u.user.role =:role order by u.id desc")
 	List<Trends> findAllByUserAndRole(@Param("uid") Long uid,@Param("role") String role);
 	
-	@Query("SELECT u FROM Trends u where u.user.id IN (SELECT c.host_id FROM FriendsRelated c where c.follow_id=:uid)  and u.variety =:variety order by u.id desc")
+	@Query("SELECT u FROM Trends u where u.variety =:variety and u.user.id IN (SELECT c.host_id FROM FriendsRelated c where c.follow_id=:uid)   order by u.id desc")
 	List<Trends> findAllByUserAndVariety(@Param("uid") Long uid,@Param("variety") String variety);
 	
-	@Query("SELECT u FROM Trends u where u.user.id IN (SELECT c.host_id FROM FriendsRelated c where c.follow_id=:uid)  and u.user.role =:role and u.variety =:variety order by u.id desc")
+	@Query("SELECT u FROM Trends u where u.user.role =:role and u.variety =:variety and u.user.id IN (SELECT c.host_id FROM FriendsRelated c where c.follow_id=:uid)  order by u.id desc")
 	List<Trends> findAllByUserAndRoleAndVariety(@Param("uid") Long uid,@Param("role") String role,@Param("variety") String variety);
 
 	@Query("SELECT u FROM Trends u where u.user.role='teacher' and u.user.id IN (SELECT c.host_id FROM FriendsRelated c where c.follow_id=:uid) or u.user.id=:uid order by u.id desc")

@@ -45,6 +45,7 @@ public class TrendsBeans {
 		varietyMap.put("announcement", "一篇公告");
 		varietyMap.put("resource", "一份资源");
 		varietyMap.put("course", "一节课程");
+		varietyMap.put("shuoshuo", "一个说说");
 	}
 	
 	private String parseVariety(Trends trend){

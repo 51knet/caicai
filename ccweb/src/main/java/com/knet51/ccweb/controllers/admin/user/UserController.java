@@ -129,7 +129,7 @@ public class UserController {
 			
 			newTrends.setContext(trendsForm.getContents());
 			newTrends.setPublishDate(new Date());
-			
+			newTrends.setVariety("shuoshuo");
 			trendsService.createTrends(newTrends);
 			return "redirect:/admin/trend/"+trendRole+"/"+trendVariety;
 		}
