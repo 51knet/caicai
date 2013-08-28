@@ -25,12 +25,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.Knowledge;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.CourseService;
+import com.knet51.ccweb.jpa.services.KnowledgeService;
 import com.knet51.ccweb.jpa.services.OrderService;
 import com.knet51.ccweb.jpa.services.UserCourseService;
 import com.knet51.ccweb.jpa.services.UserService;
@@ -54,6 +56,9 @@ public class UserCourseController {
 	private CourseResourceService courseResourceService;
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private KnowledgeService knowledgeService;
 
 	/**
 	 * show user course list
@@ -108,6 +113,10 @@ public class UserCourseController {
 		if (userCourse == null) {
 			return "redirect:/admin";
 		}
+		
+		String knowledgeFlag = getKnowledgeFlag(userInfo.getId(), course_id);
+		model.addAttribute("knowledgeFlag", knowledgeFlag);
+		
 		List<CourseResource> listResource = courseResourceService
 				.getAllCourseResourceByCourseIdAndStatus(course_id,
 						GlobalDefs.STATUS_COURSE_RESOURCE);
@@ -148,9 +157,53 @@ public class UserCourseController {
 		if (userCourse == null) {
 			return "redirect:/admin";
 		}
+		
+		String knowledgeFlag = getKnowledgeFlag(userInfo.getId(), course_id);
+		model.addAttribute("knowledgeFlag", knowledgeFlag);
+		
 		Course course = courseService.findOneById(course_id);
 		model.addAttribute("course", course);
 		return "course.study.info.view";
+	}
+	
+	/**
+	 * into add knowledge store page
+	 * @param course_id
+	 * @param model
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "/admin/mycourse/knowledge/{course_id}")
+	public String addKnowledgePage(@PathVariable Long course_id,Model model,
+			HttpSession session){
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if (userInfo == null) {
+			return "redirect:/admin";
+		}
+		UserCourse userCourse = userCourseService
+				.findByTeachercourseidAndUserid(course_id, userInfo.getId());
+		if (userCourse == null) {
+			return "redirect:/admin";
+		}
+		String knowledgeFlag = getKnowledgeFlag(userInfo.getId(), course_id);
+		model.addAttribute("knowledgeFlag", knowledgeFlag);
+		model.addAttribute("course_id", course_id);
+		Course course = courseService.findOneById(course_id);
+		model.addAttribute("course", course);
+		return "course.study.knowledge.new";
+	}
+	
+	@RequestMapping(value="/admin/mycourse/knowledge/new", method=RequestMethod.POST)
+	public String addKnowledge(@RequestParam("course_id") Long course_id,Model model,
+			HttpSession session){
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Knowledge knowledge = new Knowledge();
+		knowledge.setCourseid(course_id);
+		knowledge.setUserid(userInfo.getId());
+		knowledgeService.create(knowledge);
+		return "redirect:/admin/mycourse/view/"+course_id;
 	}
 
 	/**
@@ -180,7 +233,10 @@ public class UserCourseController {
 		if (vaildUserCourse == null) {
 			return "redirect:/admin";
 		}
-
+		
+		String knowledgeFlag = getKnowledgeFlag(userInfo.getId(), course_id);
+		model.addAttribute("knowledgeFlag", knowledgeFlag);
+		
 		List<UserCourseBeans> list = new ArrayList<UserCourseBeans>();
 		Page<UserCourse> onePage = userCourseService
 				.findUserCourseByTeachercourseid(pageNumber, pageSize,
@@ -335,6 +391,12 @@ public class UserCourseController {
 //		model.addAttribute("course", course);
 //		model.addAttribute("resourceCount", listResource.size());
 		return "redirect:/course/cart/view/" + course_id;
+	}
+	
+	private String getKnowledgeFlag(Long user_id,Long course_id){
+		Knowledge knowledge = knowledgeService.findOneByUseridAndCourseid(user_id, course_id);
+		String knowledgeFlag = knowledge != null ? "yes":"none";
+		return knowledgeFlag;
 	}
 
 }

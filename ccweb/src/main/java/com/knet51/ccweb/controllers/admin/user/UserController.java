@@ -27,11 +27,14 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.admin.AdminController;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Comment;
+import com.knet51.ccweb.jpa.entities.Knowledge;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.services.CommentService;
+import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
+import com.knet51.ccweb.jpa.services.KnowledgeService;
 import com.knet51.ccweb.jpa.services.TrendsService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.promotion.UserRecommendService;
@@ -55,6 +58,10 @@ public class UserController {
 	private FriendsRelateService friendsRelateService;
 	@Autowired
 	private UserRecommendService recommendService;
+	@Autowired
+	private KnowledgeService knowledgeService;
+	@Autowired
+	private CourseService courseService;
 	
 	/**
 	 * big time line
@@ -177,7 +184,15 @@ public class UserController {
 		return "redirect:/admin/trend/all/all"; 
 		}
 	}
-	
+	/**
+	 * ajax Comment
+	 * @param trend_id
+	 * @param session
+	 * @param response
+	 * @param trendsForm
+	 * @param validResult
+	 * @return
+	 */
 	@RequestMapping(value="/ajaxcomment" , method = RequestMethod.POST)
 	public @ResponseBody Comment ajaxCreateComment(@RequestParam("trendId") Long trend_id, HttpSession session,HttpServletResponse response,
 			@Valid MyTrendsForm trendsForm,BindingResult validResult){
@@ -197,7 +212,16 @@ public class UserController {
 		return newComment; 
 		}
 	}
-	
+	/**
+	 * ajax Reply
+	 * @param host_id
+	 * @param trend_id
+	 * @param session
+	 * @param response
+	 * @param trendsForm
+	 * @param validResult
+	 * @return
+	 */
 	@RequestMapping(value="/ajaxreply" , method = RequestMethod.POST)
 	public @ResponseBody Comment ajaxCreateReply(@RequestParam("hostId") Long host_id,@RequestParam("trendId") Long trend_id, HttpSession session,HttpServletResponse response,
 			@Valid MyTrendsForm trendsForm,BindingResult validResult){
@@ -266,6 +290,14 @@ public class UserController {
 		}
 	}
 	
+	/**
+	 * show detail variety in trend jsp
+	 * @param variety
+	 * @param uid
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/trend/{variety}/{uid}")
 	public String trendDispatcher(@PathVariable String variety,
 			@PathVariable Long uid, HttpSession session,Model model) {
@@ -292,7 +324,15 @@ public class UserController {
 					+ "/list";
 		}
 	}
-	
+	/**
+	 * show detail trends' comments
+	 * @param trend_id
+	 * @param session
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
 	@RequestMapping(value = "/admin/trend/view/{trend_id}")
 	public String showTrendDetail(@PathVariable Long trend_id,HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
@@ -317,4 +357,38 @@ public class UserController {
 			return "redirect:/admin";
 		}
 	}
+	
+	/**
+	 * show my knowledge store
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/admin/myknowledge/list")
+	public String showKnowledgeByUser(HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="9") int pageSize){
+		
+		try {
+			UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Page<Knowledge> myKnowledgePage = knowledgeService.findAllByUserid(pageNumber, pageSize, userInfo.getId());
+			Course course = null;
+			List<Course> courseList = new ArrayList<Course>();
+			for(int i=0;i< myKnowledgePage.getContent().size();i++){
+				course = courseService.findOneById(myKnowledgePage.getContent().get(i).getCourseid());
+				if(course != null){
+					courseList.add(course);
+				}
+			}
+			
+			model.addAttribute("courseList", courseList);
+			model.addAttribute("page",myKnowledgePage);
+			model.addAttribute("courseCount", courseList.size());
+			return "admin."+userInfo.getRole()+".knowledge.list";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/admin";
+	}
+	
+	
 }

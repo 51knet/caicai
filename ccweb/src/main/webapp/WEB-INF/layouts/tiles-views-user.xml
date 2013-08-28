@@ -66,6 +66,12 @@
 		<put-attribute name="right" value="/WEB-INF/views/user/admin/host/list/list.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="admin.user.knowledge.list" extends="user-admin-layout">
+		<put-attribute name="title" value="知识库" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/knowledge/list/list.jsp"></put-attribute>
+	</definition>
+	
 	<definition name="admin.user.trend" extends="user-admin-trend-layout">
 		<put-attribute name="title" value="好友动态" />
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
@@ -116,6 +122,13 @@
 		<put-attribute name="banner" value="/WEB-INF/views/user/admin/course/study/courseDetail.jsp" />
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/course/study/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/user/admin/course/study/detail_info/view/view.jsp" />
+	</definition>
+	
+	<definition name="course.study.knowledge.new" extends="usercourse-layout">
+		<put-attribute name="title" value="课程学习" />
+		<put-attribute name="banner" value="/WEB-INF/views/user/admin/course/study/courseDetail.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/course/study/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/course/study/knowledge/new/create.jsp" />
 	</definition>
 	
 	<definition name="course.study.comment.view" extends="usercourse-layout">

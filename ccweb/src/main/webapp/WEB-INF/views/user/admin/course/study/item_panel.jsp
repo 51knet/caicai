@@ -45,6 +45,9 @@ color: #666;
 		<li><a href='<c:url value="/admin/mycourse/view/${course.id}"></c:url>'><font style="size: 22px">课程学习</font></a></li>
 		<li><a href='<c:url value="/admin/mycourse/courseinfo/${course.id}"></c:url>'><font style="size: 22px">课程信息</font></a></li>
 		<li><a href='<c:url value="/admin/mycourse/comment/${course.id}"></c:url>'><font style="size: 22px">用户评价</font></a></li>
+		<c:if test="${knowledgeFlag == 'none' }">
+			<li><a href='<c:url value="/admin/mycourse/knowledge/${course.id}"></c:url>'><font style="size: 22px">加入知识库</font></a></li>
+		</c:if>
 		<li><a href='<c:url value="/"></c:url>'><font style="size: 22px">返回首页</font></a></li>
 	</ul>
 </div>
