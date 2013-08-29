@@ -9,11 +9,20 @@
 	<style type="text/css" media="screen">
 		@import url("<c:url value="/resources/css/admin-layout.css"/>");
 		body{
-			 background-color: #fff; 
+			background-image: url("<c:url value='/resources/img/default/admin-user-bg.png'/>");
+			background-position: center top;
+			background-repeat: no-repeat;
 		}
 		
 		.border{
-			background-color: #fff; border: 1.5px solid #eed593;
+			/*border: 1.5px solid #eed593;*/
+			border: 1.5px solid #9db84d;
+		}
+		.border-green-all{
+			border: 1.5px solid #9db84d;
+		}
+		.border-green-right{
+			 border-right:1px solid #9db84d;
 		}
 	</style>
 </head>
@@ -34,7 +43,7 @@
 					</div>
 				</div>
 				<!--/span-->
-				<div class="span10 border" >
+				<div class="span10 border" style="background-color: #fff;" >
 					<div class="right-panel">
 						<tiles:insertAttribute name="flash" />
 						<tiles:insertAttribute name="right" />

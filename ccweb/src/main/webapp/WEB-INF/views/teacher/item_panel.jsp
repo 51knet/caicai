@@ -48,7 +48,7 @@
 <div class="left-menu-container">
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value="/teacher/${sessionUserInfo.id}"></c:url>' >个人主页</a></li>
-		<li><a href='<c:url value="/admin/trend?role="></c:url>' >好友动态</a></li>
+		<li><a href='<c:url value="/admin/trend/all/all"></c:url>' >好友动态</a></li>
 		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' >我的简历</a></li>
 		<li><a href='<c:url value="/admin/announcement/list"></c:url>' >公告管理</a></li>
 		<li><a href='<c:url value="/admin/course/list"></c:url>' >课程管理</a></li>

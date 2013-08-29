@@ -17,6 +17,12 @@
 		.bg_white{
 			background-color: #ffffff;
 		}
+			.border-green-all{
+			border: 1.5px solid #9db84d;
+		}
+		.border-green-right{
+			 border-right:1px solid #9db84d;
+		}
 	</style>
 </head>
 <body class="admin">

@@ -12,30 +12,90 @@
  	background-repeat:repeat-y;
 	vertical-align: middle;
 }
+.row-fluid.centralize.right .row{
+	background-image: url("<c:url value='/resources/img/default/blackline.png'></c:url>");
+	background-position: center center;
+	background-repeat: repeat-x;
+	height: 20px;
+	width: 100%;
+	margin: 10px 1px ;
+	text-align: center;
+}
+.row-fluid.centralize.right .row >div{
+	color: #666;
+	font-weight: bold;
+	font-size: 14px;
+	width: 80px;
+	height:100%;
+	background-color: #fff;
+	margin-left: 70px;
+}
+
+.row-fluid.centralize.right .avator_width{
+	width: 50px;
+}
+
+.row-fluid.centralize.right .courseCover{
+ width:120px;
+ border: 1px dashed #ccc;
+}
+
+.row-fluid .content{
+	margin: 10px 10px;
+}
 </style>
 <!--<c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url> -->
-<div class="row-fluid centralize right border-green-all" style="height: 400px;">
-	<br>
-	<a href='<c:url value="/admin/trend/${trendRole }/${trendVariety}"></c:url>' >换一换</a><hr>
+<div class="row-fluid centralize right border-green-all" ><br>
+	<a href='<c:url value="/admin/trend/${trendRole }/${trendVariety}"></c:url>' >换一换</a>
+	<div class="row">
+		<div>推荐好友</div>
+	</div>
 	<div class="row-fluid">
-		推荐好友<br>
 		<c:forEach items="${recommendUser }" var="recommendUser">
-			${recommendUser.name }-
+			<table width="70%"  cellpadding="5" style="margin: 5px 0px 5px 30px; ">			  
+				   <tr>
+				    <td rowspan="2" width="33%"><a href='<c:url value="/id/${recommendUser.id }"></c:url>' ><img src=' <c:url value="${recommendUser.photo_url }"></c:url>'  class="avator_width"></a></td>
+				    <td  width="33%">${recommendUser.name }</td>
+				    <td  width="33%"><a href='<c:url value="/id/${recommendUser.id }"></c:url>' ><img src="<c:url value='/resources/img/default/focus.png'></c:url>" ></a></td>
+				  </tr>
+				  <tr>
+				    <td ></td>
+				    <td></td>
+				  </tr>
+			</table>
 		</c:forEach>
 	</div>
-	<hr>
+	
+	<div class="row">
+		<div>推荐教师</div>
+	</div>
 	<div class="row-fluid">
-		推荐教师<br>
 		<c:forEach items="${recommendTeacher }" var="recommendTeacher">
-			${recommendTeacher.name }- 
+			<table width="70%"  cellpadding="5" style="margin: 5px 0px 5px 30px; ">			  
+				   <tr>
+				    <td rowspan="2" width="33%"><a href='<c:url value="/id/${recommendTeacher.id }"></c:url>' ><img src=' <c:url value="${recommendTeacher.photo_url }"></c:url>'  class="avator_width"></a></td>
+				    <td  width="33%">${recommendTeacher.name }</td>
+				    <td  width="33%"><a href='<c:url value="/id/${recommendTeacher.id }"></c:url>' ><img src="<c:url value='/resources/img/default/focus.png'></c:url>" ></a></td>
+				  </tr>
+				  <tr>
+				    <td ></td>
+				    <td></td>
+				  </tr>
+			</table>
 		</c:forEach>
 	</div>
-	<hr>
+
+	<div class="row">
+		<div>推荐课程</div>
+	</div>
 	<div class="row-fluid">
-		推荐课程<br>
 		<c:forEach items="${recommendCourse}" var="recommendCourse">
-			${recommendCourse.courseName }- 
+			<div class="content">
+				<a href="<c:url value="/trend/course/${recommendCourse.user.id}"></c:url>" ><img src="<c:url value='${recommendCourse.courseCover}'></c:url>" class="courseCover"></a><br>
+				${recommendCourse.courseName }
+			</div>
 		</c:forEach>
+	
 	</div>
 </div>
 

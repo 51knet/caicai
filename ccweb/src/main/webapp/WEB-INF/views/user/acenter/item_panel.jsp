@@ -3,75 +3,92 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
-.row-fluid.centralize {
+.row-fluid.centralize.left {
 	text-align: center;
 	margin-bottom: 20px;
-	padding: 0px 0px 10px;
- 	/*background-image:url('<c:url value='/resources/img/default/admin_left_bg.png'></c:url>');*/
- 	/*background-color:#ccdfa8;*/
- 	background-color:#fff;
+ 	background-image:url('<c:url value='/resources/img/default/item-lefttop-bg.png'></c:url>');
+ /*	background-color:#ebf4df; */
  	background-position:top center;
- 	background-repeat:repeat-y;
+ 	background-repeat:repeat;
 	vertical-align: middle;
+	height: 148px;
 }
 .left-menu-container {
-background-color: #fff;
+background-color: #ebf4df;
 
 }
+
 .nav-tabs.nav-stacked > li > a {
-text-align: center;
-font-size: medium;
-font-family: 'Microsoft YaHei',Arial;
-color: #df9a1b;
+text-align: left;
+font-size: 15px;
+color: #adc877;
+font-weight: bold;
+border:0px;
+padding:13px 25px;
+text-decoration: none;
 }
 .nav-tabs > li > a:hover {
 color: #8aa942;
 text-decoration: none;
-background-color: #c7daa3;
-}
-.nav-tabs > .active > a , .nav-tabs > .active > a:hover {
-text-decoration: none;
-background-color: #c7daa3;
-color: #8aa942;
+background-color: #cee0ca;
+font-weight: bold;
 
 }
-	.border{
-			background-color: #fff; border: 1.5px solid #eed593;
-		}
+.nav-tabs > .active > a , .nav-tabs > .active > a:hover {
+color: #8aa942;
+
+text-decoration: none;
+background-color: #cee0ca;
+font-weight: bold;
+}
+
+.border-green-all{
+		border: 1.5px solid #9db84d;
+}
+.border-green-right{
+	 border-right:1px solid #9db84d;
+}
+
 </style>
 <c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url>
-<div class="row-fluid centralize border">
-	<c:choose>
-		<c:when test='${sessionUserInfo.avatar == "/resources/img/avatar/avatar90.png" || sessionUserInfo.avatar == "/resources/img/avatar/avatar91.png" }'>
-			    <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;height:120px;width:120px;margin:15px auto;">
-			    <div style="height: 35px;"></div>
-			    <div style="height: 20px;background-color:gray;  padding:2px 2px;">
-			    	<a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a>
-			    </div>
-		   </div>
-		</c:when>
-		<c:otherwise>
-				<img src="${avatar_url}" style="margin: 15px 0px; width: 130px; " >
-				<a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	
-		</c:otherwise>
-	</c:choose>
+<div class="row-fluid centralize left ">
+	<div class="row-fluid" style="border-bottom: 1.5px solid #9db84d;">
+		<c:choose>
+			<c:when test='${sessionUserInfo.avatar == "/resources/img/avatar/avatar90.png" || sessionUserInfo.avatar == "/resources/img/avatar/avatar91.png" }'>
+				    <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;width:60px;margin:10px auto;">
+				    <div style="height: 35px;"></div>
+				    <div style="height: 20px;background-color:gray;  padding:5px 5px;">
+				    	<!-- <a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a> -->
+				    </div>
+			   </div>
+			</c:when>
+			<c:otherwise>
+				<table width="100%" cellpadding="5">
+					<tr>
+						<td align="center" valign="top" width="50%"><img src="${avatar_url}" style="margin: 10px 10px; width: 70px; " ></td>
+						<td  align="left" valign="top"><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	</td>
+					</tr>
+				</table>
+			</c:otherwise>
+		</c:choose>
+	</div>
 	<div class="row-fluid">
-		<a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount } 粉丝</a> | 
-		<a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount } 关注</a>
+		<!-- <a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }同学</a> | 
+		<a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }粉丝</a> | 
+		<a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }关注</a> -->
+		<div class="row-fluid border-green-right" style="width: 32%; float: left; ">同学<br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
+		<div class="row-fluid border-green-right"  style="width: 32%; float: left;  ">粉丝<br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
+		<div class="row-fluid"  style="width: 32%; float: left; ">关注<br><a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }</a></div>
 	</div>
 </div>
-<div class="left-menu-container " >
+
+<div class="left-menu-container border-green-all" >
 	<ul class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value="/admin/account/list"></c:url>' >账户管理</a></li>
-		<li><a href='<c:url value="/admin/order/list"></c:url>' >订单管理</a></li>
+		<li><a href='<c:url value="/admin/account/list"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">账户管理</a></li>
+		<li><a href='<c:url value="/admin/order/list"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">订单管理</a></li>
 		<li><a href='<c:url value="/admin/trend/all/all"></c:url>' >返回</a></li>
 	</ul>
-</div>
-<hr>
-<div class="left-menu-container" >
-	<ul class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value="/admin/mycourse/list"></c:url>' >我的学习</a></li>
-	</ul>
+
 </div>
 
 <html>

@@ -78,7 +78,9 @@
 	<div class="row" >
 		<h4>好友动态</h4>
 	</div>
+	<div class="content">
 	<jsp:include page="/WEB-INF/views/_shared/trend/admin/list/trend.jsp"></jsp:include>
+	</div>
 </div>
 
 

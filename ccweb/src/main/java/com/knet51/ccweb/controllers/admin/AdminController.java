@@ -124,7 +124,7 @@ public class AdminController {
 			userInfo.setTeacher(teacher);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			// set default home page to set resume page;
-			return "redirect:/admin/trend?role=";
+			return "redirect:/admin/trend/all/all";
 		} else {
 			return "home";
 		}
@@ -151,7 +151,7 @@ public class AdminController {
 					.getAttribute("authentication");
 			if (authentication != null
 					&& authentication.getStatus().equals("pass")) {
-				return "redirect:/admin/trend?role=";
+				return "redirect:/admin/trend/all/all";
 			} else {
 				return "redirect:/admin/authentication/list";
 			}

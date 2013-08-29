@@ -17,9 +17,8 @@
 	-moz-border-radius: 5px;
 }
 .row-fluid .custom .row {
-	margin: 10px 40px;
+	margin: 10px 20px;
 	color: #80b029;
-	border-bottom: solid #cccccc 1.5px;
 }
 .row-fluid.custom .content {
 	margin: 20px 40px;
@@ -65,14 +64,16 @@
 		<form method="post" action='<c:url value="/admin/trend/publish"></c:url>'>
 		<input type="hidden" name="trendRole" value="${trendRole }">
 		<input type="hidden" name="trendVariety" value="${trendVariety }">
-			<textarea rows="4" style="width: 100%;" class="border-green-all" name="contents"  ></textarea><br>
+			<textarea  style="width: 100%; height: 100px;" class="border-green-all" name="contents"  ></textarea><br>
 			<div class="offset10">
 				<button class="btn btn-success " type="submit">发布</button> 
 			</div>
 		</form>
 	</div>
-	<jsp:include page="/WEB-INF/views/_shared/trend/admin/list/trend.jsp"></jsp:include>
-	<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+	<div class="row-fluid" >
+		<jsp:include page="/WEB-INF/views/_shared/trend/admin/list/trend.jsp"></jsp:include>
+		<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+	</div>
 </div>
 
 

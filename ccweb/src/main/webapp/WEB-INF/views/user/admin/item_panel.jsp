@@ -6,16 +6,35 @@
 .row-fluid.centralize.left {
 	text-align: center;
 	margin-bottom: 20px;
-	padding: 0px 0px 10px;
- 	/*background-image:url('<c:url value='/resources/img/default/admin_left_bg.png'></c:url>');*/
- 	background-color:#ebf4df;
+ 	background-image:url('<c:url value='/resources/img/default/item-lefttop-bg.png'></c:url>');
+ /*	background-color:#ebf4df; */
  	background-position:top center;
- 	background-repeat:repeat-y;
+ 	background-repeat:repeat;
 	vertical-align: middle;
+	height: 148px;
 }
 .left-menu-container {
 background-color: #ebf4df;
 
+}
+
+.left-menu-container >div{
+	background-image: url("<c:url value='/resources/img/default/blackline.png'></c:url>");
+	background-position: center center;
+	background-repeat: repeat-x;
+	height: 20px;
+	width: 100%;
+	margin: 10px 1px ;
+	text-align: center;
+}
+.left-menu-container >div >div{
+	color: #666;
+	font-weight: bold;
+	font-size: 16px;
+	width: 50px;
+	height:100%;
+	background-color: #ebf4df;
+	margin-left: 20px;
 }
 
 .nav-tabs.nav-stacked > li > a {
@@ -41,6 +60,8 @@ text-decoration: none;
 background-color: #cee0ca;
 font-weight: bold;
 }
+
+
 
 </style>
 <c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url>
@@ -69,24 +90,29 @@ font-weight: bold;
 		<!-- <a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }同学</a> | 
 		<a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }粉丝</a> | 
 		<a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }关注</a> -->
-		<div class="row-fluid border-green-right" style="width: 32%; float: left; padding:5px 0px;">同学<br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
-		<div class="row-fluid border-green-right"  style="width: 32%; float: left; padding:5px 0px; ">粉丝<br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
-		<div class="row-fluid"  style="width: 32%; float: left; padding:5px 0px;">关注<br><a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }</a></div>
+		<div class="row-fluid border-green-right" style="width: 32%; float: left; ">同学<br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
+		<div class="row-fluid border-green-right"  style="width: 32%; float: left;  ">粉丝<br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
+		<div class="row-fluid"  style="width: 32%; float: left; ">关注<br><a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }</a></div>
 	</div>
 </div>
 
 <div class="left-menu-container border-green-all" >
+	<div>
+		<div>分组</div>
+	</div>
 	<ul class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value="/admin/trend/all/all"></c:url>' >所有动态</a></li>
-		<li><a href='<c:url value="/admin/trend/teacher/all"></c:url>' >教师动态</a></li>
-		<li><a href='<c:url value="/admin/trend/user/all"></c:url>' >学生动态</a></li>
+		<li><a href='<c:url value="/admin/trend/all/all"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">所有动态</a></li>
+		<li><a href='<c:url value="/admin/trend/teacher/all"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">教师动态</a></li>
+		<li><a href='<c:url value="/admin/trend/user/all"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">学生动态</a></li>
 		<!-- <li><a href='<c:url value="/admin/trend/all/all"></c:url>' >test</a></li> -->
-		<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li> 
+		<li><a href='<c:url value="/admin/message/list"></c:url>' ><img src="<c:url value='/resources/img/default/msg.png'></c:url>" style="margin-right: 10px;">站内信</a></li> 
 	</ul>
-
+	<div>
+		<div>应用</div>
+	</div>
 	<ul class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value="/admin/mycourse/list"></c:url>' >我的学习</a></li>
-		<li><a href='<c:url value="/admin/myknowledge/list"></c:url>' >知识库</a></li>
+		<li><a href='<c:url value="/admin/mycourse/list"></c:url>' ><img src="<c:url value='/resources/img/default/mycourse.png'></c:url>" style="margin-right: 10px;">我的学习</a></li>
+		<li><a href='<c:url value="/admin/myknowledge/list"></c:url>' ><img src="<c:url value='/resources/img/default/knowledge.png'></c:url>" style="margin-right: 10px;">知识库</a></li>
 	</ul>
 </div>
 
