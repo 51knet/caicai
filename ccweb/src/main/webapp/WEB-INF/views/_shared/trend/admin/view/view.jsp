@@ -5,6 +5,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
+<style>
+	.border-white-all{
+		border: 1px solid #fff;
+	}
+	.bb{
+		/*border-bottom: 1px solid #f2cc81;*/
+		border-bottom: 1px solid #ddd;
+	}
+</style>
 <script type="text/javascript">
 
    function showReply(index){
@@ -20,31 +29,31 @@
     	//alert("form");
     }
 </script>
-<div class="row-fluid custom round">
+<div class="row-fluid border-white-all custom" style="background-color: #fff;">
 	<div class="content">	
-		<div  class="border" >
+		
 			<table width="100%" cellpadding="5" >	
 				<tr>
 					  <td rowspan="3" align="left" valign="top" width="10%"><a href='<c:url value="/id/${trendBeans.trend.user.id }"></c:url>' >
 					  <img src=' <c:url value="${trendBeans.trend.user.photo_url }"></c:url>'  class="photo_width"></a></td>
 					   <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.user.id }"></c:url>' > ${trendBeans.trend.user.name}</a></td>
 				 </tr>
-			<c:if test="${trendBeans.trend.variety == null }">
-				<tr  class="bb">
+			<c:if test="${trendBeans.trend.variety == '' }">
+				<tr  >
 					   <td align="left" valign="top">${trendBeans.trend.context }<br>
 			</c:if>
 			<c:if test="${trendBeans.trend.variety == 'course' }">
-				<tr  class="bb">
+				<tr  >
 				  <td align="left" valign="top">发布了 ${trendBeans.varietyDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a><br>
 				  	<img src=' <c:url value="${trendBeans.trend.coverUrl}"></c:url>'  class="coursecover_width"><br>					
 			</c:if>
 			<c:if test="${trendBeans.trend.variety != 'course' && trendBeans.trend.variety != null}">
-				<tr  class="bb">
-				  <td align="left" valign="top">发布了 ${trendBeans.varietyDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a><br>						  
+				<tr  >
+				  <td align="left" valign="top">发布了 ${trendBeans.varietyDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a>${trendBeans.trend.context }<br>						  						  
 			</c:if>
 				<span class="date"><a href="/admin/trend/view/${trendBeans.trend.id}"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></a></span></td>
 			</tr>
-			<tr >
+			<tr class="bb">
 				<td align="right" valign="top"><a href="javascript:void(0)" onclick="showCommentDiv(${trendBeans.trend.id})">评论(${trendBeans.commentCount})</a>
 					<c:if test="${sessionUserInfo.id ==trendBeans.trend.user.id }">
 					|	<a href="javascript:void(0)" onclick="deleteTrends(${trendBeans.trend.id} ,${trendBeans.trend.user.id} )">删除</a>
@@ -52,10 +61,10 @@
 				</td>
 			</tr>		
 			</table>
-			<div id="${trendBeans.trend.id}_comment_div" style='display: block ; margin: 0px 10px;'>
+			<div id="${trendBeans.trend.id}_comment_div" style="display: block ; margin: 0px 10px; " class="border-ccc-all">
 				<form style="margin-top: 10px;" method="post" action='<c:url value="/comment"></c:url>'>
 					<input type="hidden" name="trendId" value="${trendBeans.trend.id}">
-					<textarea rows="1" cols=""  style="width:100%; " name="contents"  ></textarea><br>
+					<textarea rows="2" cols=""  style="width:100%; " name="contents"  ></textarea><br>
 					<div class="offset10">
 						<button class="btn btn-success " type="submit">发布</button>
 					</div>
@@ -94,7 +103,6 @@
 					</table>
 				</c:forEach>
 			</div>
-		</div>
 		<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 	</div>
 </div>

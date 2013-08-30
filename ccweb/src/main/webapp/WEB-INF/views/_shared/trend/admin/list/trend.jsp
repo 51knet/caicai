@@ -106,8 +106,8 @@ text-decoration: none;
 		$.post('<c:url value="/ajaxcomment" />', $("#"+id).serialize(), function(msg){
 			var d = new Date(msg.publishDate);
 			var date = formatDate(d);
-			 var  t = "<table width='100%' cellpadding='5'>";
-		     t+="<tr><td  align='left' valign= 'top'><img src='/ccweb"+msg.user.photo_url+"  ' style='width:40px' />&nbsp;&nbsp;<a href='/ccweb/id/"+msg.user.id+" '>"+msg.user.name+"</a>："+msg.context+"</td></tr>";
+			 var  t = "<table width='98%' cellpadding='0' style='margin-bottom:10px'>";
+		     t+="<tr><td  align='left' valign= 'top'><img style='width:40px' src='/ccweb"+msg.user.photo_url+"  '  />&nbsp;&nbsp;<a href='/ccweb/id/"+msg.user.id+" '>"+msg.user.name+"</a>："+msg.context+"</td></tr>";
 		  //   t+="<tr  class='bb'><td  align='left' valign= 'top'><span class='date'>"+date+"</span>";
 		  //   t+="<tr  class='bb'><td  align='left' valign= 'top'><a href='javascript:void(0)' onclick='showReply("+msg.id+")'>回复</a></td></tr></table>";
 		     $("#"+showId).append(t); 
@@ -121,7 +121,7 @@ text-decoration: none;
     	var replydiv =  index+"_reply_div";
     	var showId = trendid+"_ajax_comment_div";
 		$.post('<c:url value="/ajaxreply" />', $("#"+id).serialize(), function(msg){
-			 var  t = "<table width='100%' cellpadding='5'>";
+			 var  t = "<table width='98%' cellpadding='0' style='margin-bottom:10px'>";
 		     t+="<tr class='bb'><td  align='left' valign= 'top'><img src='/ccweb"+msg.user.photo_url+"  ' style='width:40px' />&nbsp;&nbsp;<a href='/ccweb/id/"+msg.user.id+" '>"+msg.user.name+"</a> 回复了 <a href='/ccweb/id/"+msg.host.id+" '>"+msg.host.name+"</a>："+msg.context+"</td></tr>";
 		  //   t+="<tr  class='bb'><td  align='left' valign= 'top'><span class='date'>"+date+"</span>";
 		    t+="</table>";

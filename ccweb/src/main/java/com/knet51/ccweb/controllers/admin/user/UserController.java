@@ -336,6 +336,7 @@ public class UserController {
 	@RequestMapping(value = "/admin/trend/view/{trend_id}")
 	public String showTrendDetail(@PathVariable Long trend_id,HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
+		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Trends trends = trendsService.findOneById(trend_id);
 		TrendsBeans trendsBeans = new TrendsBeans();
 		Page<Comment> comment = commentService.findAllByTrendId(trend_id, pageNumber, pageSize);
@@ -346,7 +347,14 @@ public class UserController {
 		model.addAttribute("trendBeans", trendsBeans);
 		model.addAttribute("page", comment);
 		
-		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		List<User> recommendTeacher = recommendService.getRecommendTeacher(userInfo.getId(), 3);
+		List<User> recommendUser = recommendService.getRecommendUser(userInfo.getId(), 3);
+		List<Course> recommendCourse = recommendService.getRecommendCourses(userInfo.getId(), 3);
+		
+		model.addAttribute("recommendTeacher", recommendTeacher);
+		model.addAttribute("recommendUser", recommendUser);
+		model.addAttribute("recommendCourse", recommendCourse);
+		
 		String role = userInfo.getRole();
 		
 		if(role != null && role.equals("user")){

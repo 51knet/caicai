@@ -141,12 +141,12 @@
 	
 	<!-- user front -->
 	
-	<definition name="user.basic" extends="frontPage-layout">
+	<definition name="user.basic" extends="user-frontPage-layout">
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/user-front/banner.jsp" />
 		<put-attribute name="title" value="个人主页" />
 		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/user-front/navbar.jsp" />
-		<put-attribute name="left" value="/WEB-INF/layouts/jsp/user-front/left.jsp" />
-		<put-attribute name="right" value="/WEB-INF/layouts/jsp/user-front/right.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/user-front/right.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/recommend/list/list.jsp" />
 	</definition>
 	
 	<definition name="user.fans.list" extends="frontPage-layout">

@@ -60,6 +60,7 @@ font-weight: bold;
 				    <div style="height: 20px;background-color:gray;  padding:5px 5px;">
 				    	<!-- <a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a> -->
 				    </div>
+				    <a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>
 			   </div>
 			</c:when>
 			<c:otherwise>

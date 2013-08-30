@@ -2,6 +2,7 @@ package com.knet51.ccweb.controllers.front;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -21,10 +22,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.knet51.ccweb.beans.TrendsBeans;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.AnnoPhoto;
 import com.knet51.ccweb.jpa.entities.Announcement;
+import com.knet51.ccweb.jpa.entities.Comment;
 import com.knet51.ccweb.jpa.entities.Enterprise;
 import com.knet51.ccweb.jpa.entities.EnterpriseTeacher;
 import com.knet51.ccweb.jpa.entities.Teacher;
@@ -52,6 +55,7 @@ import com.knet51.ccweb.jpa.services.achievement.TeacherHonorService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherPatentService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherProjectService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherThesisService;
+import com.knet51.ccweb.jpa.services.promotion.UserRecommendService;
 
 /**
  * Handles requests for the application home page.
@@ -98,6 +102,8 @@ public class FrontController {
 	private TrendsService trendsService;
 	@Autowired
 	private CommentService commentService;
+	@Autowired
+	private UserRecommendService recommendService;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -348,6 +354,13 @@ public class FrontController {
 												// logged in and see 
 												// home
 												// page
+					List<User> recommendTeacher = recommendService.getRecommendTeacher(sessionUserInfo.getId(), 3);
+					List<User> recommendUser = recommendService.getRecommendUser(sessionUserInfo.getId(), 3);
+					List<Course> recommendCourse = recommendService.getRecommendCourses(sessionUserInfo.getId(), 3);
+					
+					model.addAttribute("recommendTeacher", recommendTeacher);
+					model.addAttribute("recommendUser", recommendUser);
+					model.addAttribute("recommendCourse", recommendCourse);
 					User sessionUser = sessionUserInfo.getUser();
 					isFollower = friendsRelateService.isTheFollower(user_id,
 							sessionUser.getId());
@@ -366,8 +379,22 @@ public class FrontController {
 				session.setAttribute("isFollower", isFollower);
 				session.setAttribute("fansCount", fansCount);
 				session.setAttribute("hostCount", hostCount);
+				
+				
+				List<TrendsBeans> trendsBeansList = new ArrayList<TrendsBeans>();
 				List<Trends> myTrends = trendsService.showTrendsByUser(user);
-				model.addAttribute("myTrend", myTrends);
+				if(myTrends.size()>0){
+					List<Comment> comment = new ArrayList<Comment>();
+					for (Trends trends : myTrends) {
+						TrendsBeans trendsBeans = new TrendsBeans();
+						comment = commentService.findAllByTrendId(trends.getId());
+						trendsBeans.setCommentList(comment);
+						trendsBeans.setTrend(trends);
+						trendsBeans.setCommentCount((long)comment.size());
+						trendsBeansList.add(trendsBeans);
+					}
+				}
+				model.addAttribute("trend", trendsBeansList);
 				
 				return "user.basic";
 			} else {

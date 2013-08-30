@@ -69,12 +69,13 @@ font-weight: bold;
 	<div class="row-fluid" style="border-bottom: 1.5px solid #9db84d;">
 		<c:choose>
 			<c:when test='${sessionUserInfo.avatar == "/resources/img/avatar/avatar90.png" || sessionUserInfo.avatar == "/resources/img/avatar/avatar91.png" }'>
-				    <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;width:60px;margin:10px auto;">
+				 <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;width:60px;margin:10px auto;">
 				    <div style="height: 35px;"></div>
 				    <div style="height: 20px;background-color:gray;  padding:5px 5px;">
 				    	<!-- <a href='<c:url value="/admin/details"><c:param name="active" value="avatar" /></c:url>' >上传头像</a> -->
 				    </div>
 			   </div>
+			  <a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>
 			</c:when>
 			<c:otherwise>
 				<table width="100%" cellpadding="5">
