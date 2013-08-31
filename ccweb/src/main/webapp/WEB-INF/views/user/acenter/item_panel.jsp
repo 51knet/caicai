@@ -77,7 +77,7 @@ font-weight: bold;
 		<!-- <a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }同学</a> | 
 		<a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }粉丝</a> | 
 		<a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }关注</a> -->
-		<div class="row-fluid border-green-right" style="width: 32%; float: left; ">同学<br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
+		<div class="row-fluid border-green-right" style="width: 32%; float: left; ">同学<br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_matesCount }</a></div>
 		<div class="row-fluid border-green-right"  style="width: 32%; float: left;  ">粉丝<br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
 		<div class="row-fluid"  style="width: 32%; float: left; ">关注<br><a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }</a></div>
 	</div>

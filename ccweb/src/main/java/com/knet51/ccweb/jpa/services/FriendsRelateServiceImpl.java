@@ -1,7 +1,9 @@
 package com.knet51.ccweb.jpa.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -117,6 +119,31 @@ public class FriendsRelateServiceImpl implements FriendsRelateService {
 			Long follow_id) {
 		// TODO Auto-generated method stub
 		return friendsRelatedDao.findOneByFollowIdAndHostId(host_id, follow_id);
+	}
+
+	@Override
+	public List<User> getAllMatesInfo(Long user_id) {
+		List<User> studentFans = getAllFansInfo(user_id, "user");
+		List<User> stedentHosts = getAllHostInfo(user_id, "user");
+		List<User> matesList = new ArrayList<User>();
+		boolean flag = studentFans.size() > stedentHosts.size()?true:false;
+		Set<User> matesSet = new HashSet<User>();
+		if(flag){
+			matesSet.addAll(studentFans);
+			for(User user : stedentHosts){
+				if(matesSet.add(user)==false){
+					matesList.add(user);
+				}
+			}
+		}else{
+			matesSet.addAll(stedentHosts);
+			for(User user : studentFans){
+				if(matesSet.add(user)==false){
+					matesList.add(user);
+				}
+			}
+		}
+		return matesList;
 	}
 
 }

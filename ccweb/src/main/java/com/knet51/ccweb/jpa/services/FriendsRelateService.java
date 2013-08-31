@@ -36,4 +36,6 @@ public interface FriendsRelateService {
 	List<User> getAllHostInfo(Long user_id);
 	
 	List<User> getAllHostInfo(Long user_id, String role);
+	
+	List<User> getAllMatesInfo(Long user_id);
 }
