@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -24,7 +22,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.beans.TrendsBeans;
 import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.controllers.admin.AdminController;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Comment;
 import com.knet51.ccweb.jpa.entities.Knowledge;
@@ -45,8 +42,6 @@ import com.knet51.ccweb.jpa.services.promotion.UserRecommendService;
  */
 @Controller
 public class UserController {
-	private static final Logger logger = LoggerFactory
-			.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
