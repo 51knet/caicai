@@ -125,8 +125,9 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		Collections.shuffle(userList);
 		return userList;
 	}
-
-	private List<User> getRandomUsers(String role, int count) {
+	
+	@Override
+	public List<User> getRandomUsers(String role, int count) {
 		if (count > 0) {
 			List<User> userList = getRandomUsers(role);
 			if (userList.size() > count) {
@@ -162,8 +163,8 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		Collections.shuffle(courseList);
 		return courseList;
 	}
-
-	private List<Course> getRandomCourses(int count) {
+	@Override
+	public List<Course> getRandomCourses(int count) {
 		if (count > 0) {
 			List<Course> courseList = getRandomCourses();
 			if (courseList.size() > count) {

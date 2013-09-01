@@ -11,5 +11,9 @@ public interface UserRecommendService {
 	public List<User> getRecommendUser(Long user_id, int count);
 
 	public List<Course> getRecommendCourses(Long user_id, int count);
+	
+	List<User> getRandomUsers(String role,int count);
+	
+	List<Course> getRandomCourses(int count);
 
 }

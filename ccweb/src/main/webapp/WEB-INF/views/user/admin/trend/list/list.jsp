@@ -26,6 +26,13 @@
 .border_ccc{
 	border: 1px solid #ccc;
 }
+.trend_button{
+	font-family:'Microsoft YaHei',Arial; 
+	background-color: #a6c575; 
+	color: #fff; font-weight: bold; 
+	font-size: 14px; 
+	width: 80px;
+}
 </style>
 <script type="text/javascript">
 
@@ -65,8 +72,8 @@
 		<input type="hidden" name="trendRole" value="${trendRole }">
 		<input type="hidden" name="trendVariety" value="${trendVariety }">
 			<textarea  style="width: 100%; height: 100px;" class="border-green-all" name="contents"  ></textarea><br>
-			<div class="offset10">
-				<button class="btn btn-success " type="submit">发布</button> 
+			<div class="offset9">
+				<button class="btn btn-success trend_button"  type="submit">发 布</button> 
 			</div>
 		</form>
 	</div>

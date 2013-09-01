@@ -80,8 +80,8 @@ font-weight: bold;
 			<c:otherwise>
 				<table width="100%" cellpadding="5">
 					<tr>
-						<td align="center" valign="top" width="50%"><img src="${avatar_url}" style="margin: 10px 10px; width: 70px; " ></td>
-						<td  align="left" valign="top"><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	</td>
+						<td align="center" valign="top" width="50%"><img src="${avatar_url}" style="margin: 10px 10px; width: 60px; " ></td>
+						<td  align="left" valign="top" width="50%"><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	</td>
 					</tr>
 				</table>
 			</c:otherwise>
@@ -91,9 +91,9 @@ font-weight: bold;
 		<!-- <a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }同学</a> | 
 		<a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }粉丝</a> | 
 		<a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }关注</a> -->
-		<div class="row-fluid border-green-right" style="width: 32%; float: left; ">同学<br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
-		<div class="row-fluid border-green-right"  style="width: 32%; float: left;  ">粉丝<br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
-		<div class="row-fluid"  style="width: 32%; float: left; ">关注<br><a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }</a></div>
+		<div class="row-fluid border-green-right" style="width: 32%; float: left; "><img src="<c:url value='/resources/img/default/mates.png'></c:url>"><br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
+		<div class="row-fluid border-green-right"  style="width: 32%; float: left;  "><img src="<c:url value='/resources/img/default/fans.png'></c:url>"><br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
+		<div class="row-fluid"  style="width: 32%; float: left; "><img src="<c:url value='/resources/img/default/follows.png'></c:url>"><br><a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }</a></div>
 	</div>
 </div>
 
