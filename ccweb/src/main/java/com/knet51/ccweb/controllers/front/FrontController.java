@@ -343,28 +343,37 @@ public class FrontController {
 	public String userFront(@PathVariable Long user_id, Model model,
 			HttpSession session, HttpServletResponse response)
 			throws IOException {
-		logger.info("#### Into enterprise front page ####");
+		logger.info("#### Into user front page ####");
 		try {
 			User user = userService.findOne(user_id);
 			if (user.getRole().equals("user")) {
 				UserInfo sessionUserInfo = (UserInfo) session
 						.getAttribute(GlobalDefs.SESSION_USER_INFO);
 				boolean isFollower = false;
+				// page
+				List<User> recommendTeacher = null;
+				List<User> recommendUser = null;
+				List<Course> recommendCourse = null;
 				if (sessionUserInfo != null) { // this is only valid when user
 												// logged in and see 
 												// home
 												// page
-					List<User> recommendTeacher = recommendService.getRecommendTeacher(sessionUserInfo.getId(), 3);
-					List<User> recommendUser = recommendService.getRecommendUser(sessionUserInfo.getId(), 3);
-					List<Course> recommendCourse = recommendService.getRecommendCourses(sessionUserInfo.getId(), 3);
-					
-					model.addAttribute("recommendTeacher", recommendTeacher);
-					model.addAttribute("recommendUser", recommendUser);
-					model.addAttribute("recommendCourse", recommendCourse);
+					recommendTeacher = recommendService.getRecommendTeacher(sessionUserInfo.getId(), 3);
+					recommendUser = recommendService.getRecommendUser(sessionUserInfo.getId(), 3);
+					recommendCourse = recommendService.getRecommendCourses(sessionUserInfo.getId(), 3);
+			
 					User sessionUser = sessionUserInfo.getUser();
 					isFollower = friendsRelateService.isTheFollower(user_id,
 							sessionUser.getId());
+				}else{
+					recommendTeacher = recommendService.getRandomUsers("teacher", 3);
+					recommendUser = recommendService.getRandomUsers("user", 3);
+					recommendCourse = recommendService.getRandomCourses(3);
 				}
+				
+				model.addAttribute("recommendTeacher", recommendTeacher);
+				model.addAttribute("recommendUser", recommendUser);
+				model.addAttribute("recommendCourse", recommendCourse);
 						
 				UserInfo userInfo = new UserInfo(user);
 				Integer fansCount = friendsRelateService.getAllFans(user_id)

@@ -46,7 +46,12 @@
 </style>
 <!--<c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url> -->
 <div class="row-fluid centralize right border-green-all" ><br>
-	<a href='<c:url value="/admin/trend/${trendRole }/${trendVariety}"></c:url>' >换一换</a>
+	<c:if test="${view != 'view' }">
+		<a href='<c:url value="/admin/trend/${trendRole }/${trendVariety}"></c:url>' >换一换</a>
+	</c:if>
+	<c:if test="${view == 'view' }">
+		<a href='<c:url value="/admin/trend/view/${trendBeans.trend.id}"></c:url>' >换一换</a>
+	</c:if>
 	<div class="row">
 		<div>推荐好友</div>
 	</div>

@@ -9,7 +9,20 @@
 .navbar .navbar-inner .nav >li{
 	margin-left: 15px;
 }
+.navbars{
+	background-image: url("<c:url value='/resources/img/default/user-navbar-bg.png'></c:url>");
+	background-position: left top;
+	background-repeat: no-repeat;
+	height: 50px;
+	margin-bottom: 20px;
+}
+.navbars >div{
+	float: left;
+	margin:12px 25px 0px 35px;
+}
 </style>
-<div class="navbar">
-<div style="height: 0px;"></div>
+<div class="navbars">
+	<div><a href='<c:url value='/user/${userInfo.id}'></c:url>'><img src="<c:url value='/resources/img/default/front-home.png'></c:url>" ></a></div>
+	<div><a href='<c:url value='/user/${userInfo.id}'></c:url>'><img src="<c:url value='/resources/img/default/front-resume.png'></c:url>" ></a></div>
+	<div><a href='<c:url value='/user/${userInfo.id}'></c:url>'><img src="<c:url value='/resources/img/default/front-friend.png'></c:url>" ></a></div>
 </div>

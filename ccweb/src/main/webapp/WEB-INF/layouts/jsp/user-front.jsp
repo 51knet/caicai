@@ -36,18 +36,17 @@
 			<div class="row-fluid">
 				<tiles:insertAttribute name="banner" />
 			</div>
-			<div class="row-fluid">
-				<tiles:insertAttribute name="navbar" />
-			</div>
+				
 			<!--/row-->
 			<tiles:insertAttribute name="breadcrumbs" />
 			<div class="row-fluid content-panel" style="background-color: #fff;">
+			<tiles:insertAttribute name="navbar" />
 				<!--/span-->
 				<div class="span8" style="width: 608px;">
 						<tiles:insertAttribute name="left" />
 				</div>
 				
-				<div class="span2" style="width: 288px;">
+				<div class="span2" style="width: 278px; float: left;">
 					   <tiles:insertAttribute name="right" />
 				</div>
 				<!--/span-->

@@ -58,10 +58,10 @@
 		$.post('<c:url value="/ajaxcomment" />', $("#"+id).serialize(), function(msg){
 			var d = new Date(msg.publishDate);
 			var date = formatDate(d);
-			 var  t = "<table width='98%' cellpadding='0' style='margin-bottom:10px'>";
+			 var  t = "<table width='96%' cellpadding='0' style='margin:10px 10px;' >";
 		     t+="<tr><td  align='left' valign= 'top'><img style='width:40px' src='/ccweb"+msg.user.photo_url+"  '  />&nbsp;&nbsp;<a href='/ccweb/id/"+msg.user.id+" '>"+msg.user.name+"</a>："+msg.context+"</td></tr>";
 		  //   t+="<tr  class='bb'><td  align='left' valign= 'top'><span class='date'>"+date+"</span>";
-		  //   t+="<tr  class='bb'><td  align='left' valign= 'top'><a href='javascript:void(0)' onclick='showReply("+msg.id+")'>回复</a></td></tr></table>";
+			  t+="<tr  class='bb'><td  align='left' valign= 'top'>&nbsp;</td></tr></table>";
 		     $("#"+showId).append(t); 
 		     $("#"+showId).css("display","block");
 		}, "json");
@@ -73,10 +73,9 @@
     	var replydiv =  index+"_reply_div";
     	var showId = trendid+"_ajax_comment_div";
 		$.post('<c:url value="/ajaxreply" />', $("#"+id).serialize(), function(msg){
-			 var  t = "<table width='98%' cellpadding='0' style='margin-bottom:10px'>";
-		     t+="<tr class='bb'><td  align='left' valign= 'top'><img src='/ccweb"+msg.user.photo_url+"  ' style='width:40px' />&nbsp;&nbsp;<a href='/ccweb/id/"+msg.user.id+" '>"+msg.user.name+"</a> 回复了 <a href='/ccweb/id/"+msg.host.id+" '>"+msg.host.name+"</a>："+msg.context+"</td></tr>";
-		  //   t+="<tr  class='bb'><td  align='left' valign= 'top'><span class='date'>"+date+"</span>";
-		    t+="</table>";
+			 var  t = "<table width='96%' cellpadding='0' style='margin:10px 10px' class='bb'>";
+		     t+="<tr ><td  align='left' valign= 'top'><img src='/ccweb"+msg.user.photo_url+"  ' style='width:40px' />&nbsp;&nbsp;<a href='/ccweb/id/"+msg.user.id+" '>"+msg.user.name+"</a> 回复了 <a href='/ccweb/id/"+msg.host.id+" '>"+msg.host.name+"</a>："+msg.context+"</td></tr>";
+		  	 t+="<tr  class='bb'><td  align='left' valign= 'top'>&nbsp;<td></tr></table>";
 		     $("#"+showId).append(t); 
 		     $("#"+showId).css("display","block");
 		}, "json");
@@ -126,10 +125,20 @@
 }
 .date{
 	font-size: 12px;
-	color: #999;
+		color: #859c34;
 }
 .border-ccc-all{
 	border: 1px solid #ccc;
+}
+.color_green{
+	color: #859c34;
+}
+.comment_button{
+	font-family:'Microsoft YaHei',Arial; 
+	background-color: #a6c575; 
+	color: #fff; font-weight: bold; 
+	font-size: 14px; 
+	width:40px;
 }
 </style>
 <!-- ${teacherInfo.id} -->
@@ -150,29 +159,33 @@
 					<tr class="bb">
 						<td aligh="left"><span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></td>
 						<td align="right" valign="top">
-							<c:if test="${sessionUserInfo == null }"><a href='<c:url value='/'></c:url>' >请登录后评论</a></c:if>
-							<c:if test="${sessionUserInfo != null }"><a href="javascript:void(0)" onclick="showCommentDiv(${trendBeans.trend.id})">评论(${trendBeans.commentCount})</a></c:if>
+							
+							<a href="javascript:void(0)" onclick="showCommentDiv(${trendBeans.trend.id})"><img src="<c:url value='/resources/img/default/commenttip.png'></c:url>" ></a>
 							<c:if test="${sessionUserInfo.id == trendBeans.trend.user.id }">
-							|	<a href="javascript:void(0)" onclick="deleteTrends(${trendBeans.trend.id} ,${trendBeans.trend.user.id} )">删除</a>
+							|	<a class="color_green" href="javascript:void(0)" onclick="deleteTrends(${trendBeans.trend.id} ,${trendBeans.trend.user.id} )">删除</a>
 							</c:if>
 						</td>
 					</tr>
 				</table>
 				<div id="${trendBeans.trend.id}_comment_div" style="display: none; " class="border-ccc-all">
+				<c:if test="${sessionUserInfo == null }"><br><a style="margin:0px 20px;" class="color_green" href='<c:url value='/'></c:url>' >请登录后评论>></a><br><br></c:if>
+				<c:if test="${sessionUserInfo != null }">
 					<form style="margin: 10px 15px " method="post" action='<c:url value="/front/comment"></c:url>' id="${trendBeans.trend.id}_comment_form">
 						<input type="hidden" name="trendId" value="${trendBeans.trend.id}">
-						<textarea rows="3" cols=""  style="width:100%; " name="contents"  ></textarea><br>
+						<textarea rows="4" cols="" style="width:100%; " name="contents" class="border-green-all" ></textarea><br>
 						<div class="offset10">
 							<!--<button class="btn btn-success " type="submit">发布</button> -->
-							<a href="javascript:void(0)" class="btn btn-success offset"  onclick="postCommentForm(${trendBeans.trend.id})">发布</a>  
+							<a href="javascript:void(0)" class="btn btn-success comment_button"  onclick="postCommentForm(${trendBeans.trend.id})">发布</a>  
 						</div>
 					</form>
+				</c:if>
+					<a style="margin: 10px 10px;" href='<c:url value="/trend/view/${trendBeans.trend.id}"></c:url>'><span class="color_green">共有 ${trendBeans.commentCount} 条评论，点击查看详细 >>></span></a><br><br>
 					<div id="${trendBeans.trend.id}_ajax_comment_div"  style="display: none; margin-bottom: 10px;">
 					
 					</div>
 					<c:forEach items="${trendBeans.commentList}" var="comment">
-						<table width='98%' cellpadding='0' style="margin: 10px 10px;">
-							<tr><td  align='left' valign= 'top'>
+						<table width='96%' cellpadding='0' style="margin: 10px 10px;">
+							<tr><td  align='left' valign= 'top' colspan="2">
 								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a>
 								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a>
 							<c:if test="${comment.host == null }">
@@ -181,20 +194,25 @@
 							<c:if test="${comment.host != null}">
 								回复了 <a href='<c:url value="/id/${comment.host.id }"></c:url>'>${comment.host.name}</a> ：${comment.context }<br>
 							</c:if>
-							<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
-									<a href="javascript:void(0)" onclick="showReply(${comment.id })">回复</a>
 							</td></tr>
-							<tr  class='bb'><td  align='right' valign= 'top'>
+							<tr>
+								<td align="left" valign="top">	<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></td>
+								<td align="right" valign="top">	<a class="color_green" href="javascript:void(0)" onclick="showReply(${comment.id })">回复 </a></td>
+							</tr>
+							<tr  class='bb'><td  align='right' valign= 'top' colspan="2">
 								<div style="display: none; margin: 10px 10px; " id="${comment.id }_reply_div">
+										<c:if test="${sessionUserInfo == null }"><br><a  class="color_green" href='<c:url value='/'></c:url>' >请登录后回复>></a><br><br></c:if>
+									<c:if test="${sessionUserInfo != null }">
 									<form  style=""  method="post" action='<c:url value="/reply"></c:url>'  id="${comment.id }_reply_form">
 										<input type="hidden" name="hostId" value="${comment.user.id }" >
 										<input type="hidden" name="trendId" value="${trendBeans.trend.id}" >
-										<textarea rows="3" cols="" style="width:100%; " name="contents"  ></textarea><br>
+										<textarea rows="4" cols="" style="width:100%; " name="contents" class="border-green-all" ></textarea><br>
 										<div class="offset10">
 											<!-- <button class="btn btn-success offset"  onclick="postReplyForm()">发布</button> -->
-											<a href="javascript:void(0)" class="btn btn-success offset"  onclick="postReplyForm(${comment.id} , ${trendBeans.trend.id})">发布</a>  
+											<a href="javascript:void(0)" class="btn btn-success comment_button"  onclick="postReplyForm(${comment.id} , ${trendBeans.trend.id})">发布</a>  
 										</div>
 									</form>
+									</c:if>
 								</div>
 							</td></tr>
 						</table>

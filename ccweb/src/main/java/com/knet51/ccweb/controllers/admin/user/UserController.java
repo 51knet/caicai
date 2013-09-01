@@ -248,7 +248,7 @@ public class UserController {
 	public String createFrontComment(@RequestParam("trendId") Long trend_id, HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
-			return "redirect:/admin/trend?role=";
+			return "redirect:/admin/all/all";
 		}else{
 		Trends trends = trendsService.findOneById(trend_id);
 		Comment comment = new Comment();
@@ -263,6 +263,17 @@ public class UserController {
 		}
 	}
 	
+	/**
+	 * create reply
+	 * @param host_id
+	 * @param trend_id
+	 * @param trendRole
+	 * @param session
+	 * @param trendsForm
+	 * @param validResult
+	 * @param redirectAttributes
+	 * @return
+	 */
 	@RequestMapping(value="/reply" ,method = RequestMethod.POST)
 	public String createReply(@RequestParam("hostId") Long host_id,@RequestParam("trendId") Long trend_id,@RequestParam("trendRole") String trendRole,
 			HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult,RedirectAttributes redirectAttributes){
@@ -349,7 +360,7 @@ public class UserController {
 		model.addAttribute("recommendTeacher", recommendTeacher);
 		model.addAttribute("recommendUser", recommendUser);
 		model.addAttribute("recommendCourse", recommendCourse);
-		
+		model.addAttribute("view", "view");
 		String role = userInfo.getRole();
 		
 		if(role != null && role.equals("user")){
@@ -393,5 +404,60 @@ public class UserController {
 		return "redirect:/admin";
 	}
 	
+	@RequestMapping(value="/user/{user_id}/trend/view/{trend_id}")
+	public String showDetailTrendInFrontPage(@PathVariable Long user_id,@PathVariable Long trend_id,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize,HttpSession session,Model model){
+		try {
+			User user = userService.findOne(user_id);
+			if (user.getRole().equals("user")) {
+				UserInfo sessionUserInfo = (UserInfo) session
+						.getAttribute(GlobalDefs.SESSION_USER_INFO);
+				// page
+				List<User> recommendTeacher = null;
+				List<User> recommendUser = null;
+				List<Course> recommendCourse = null;
+				if (sessionUserInfo != null) {
+					recommendTeacher = recommendService.getRecommendTeacher(sessionUserInfo.getId(), 3);
+					recommendUser = recommendService.getRecommendUser(sessionUserInfo.getId(), 3);
+					recommendCourse = recommendService.getRecommendCourses(sessionUserInfo.getId(), 3);
+
+				}else{
+					recommendTeacher = recommendService.getRandomUsers("teacher", 3);
+					recommendUser = recommendService.getRandomUsers("user", 3);
+					recommendCourse = recommendService.getRandomCourses(3);
+				}
+				
+				model.addAttribute("recommendTeacher", recommendTeacher);
+				model.addAttribute("recommendUser", recommendUser);
+				model.addAttribute("recommendCourse", recommendCourse);
+						
+				UserInfo userInfo = new UserInfo(user);
+
+				model.addAttribute("userInfo", userInfo);
+				model.addAttribute("user_id", user_id);
+
+				model.addAttribute("role", userInfo.getRole());
+
+				
+				
+				Trends trends = trendsService.findOneById(trend_id);
+				TrendsBeans trendsBeans = new TrendsBeans();
+				Page<Comment> comment = commentService.findAllByTrendId(trend_id, pageNumber, pageSize);
+				int commentCount = commentService.findAllByTrendId(trend_id).size();
+				trendsBeans.setCommentList(comment.getContent());
+				trendsBeans.setTrend(trends);
+				trendsBeans.setCommentCount((long)commentCount);
+				model.addAttribute("trendBeans", trendsBeans);
+				model.addAttribute("page", comment);
+				model.addAttribute("view", "view");
+				return userInfo.getRole()+".trend.view";
+			} else {
+				return "redirect:/id/" + user_id;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "404";
+		}
+	}
 	
 }
