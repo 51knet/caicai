@@ -91,13 +91,18 @@ font-weight: bold;
 		<!-- <a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }同学</a> | 
 		<a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }粉丝</a> | 
 		<a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }关注</a> -->
-		<div class="row-fluid border-green-right" style="width: 32%; float: left; "><img src="<c:url value='/resources/img/default/mates.png'></c:url>"><br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
-		<div class="row-fluid border-green-right"  style="width: 32%; float: left;  "><img src="<c:url value='/resources/img/default/fans.png'></c:url>"><br><a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }</a></div>
-		<div class="row-fluid"  style="width: 32%; float: left; "><img src="<c:url value='/resources/img/default/follows.png'></c:url>"><br><a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }</a></div>
+		<div class="row-fluid border-green-right" style="width: 32%; float: left; "><a href='<c:url value='/admin/mates/list'></c:url>' ><img src="<c:url value='/resources/img/default/mates.png'></c:url>"><br>${sessionScope.admin_matesCount }</a></div>
+		<div class="row-fluid border-green-right"  style="width: 32%; float: left;  "><a href='<c:url value='/admin/fans/list'></c:url>' ><img src="<c:url value='/resources/img/default/fans.png'></c:url>"><br>${sessionScope.admin_fansCount }</a></div>
+		<div class="row-fluid"  style="width: 32%; float: left; "><a href='<c:url value='/admin/host/list'></c:url>'><img src="<c:url value='/resources/img/default/follows.png'></c:url>"><br>${sessionScope.admin_hostCount }</a></div>
 	</div>
 </div>
 
 <div class="left-menu-container border-green-all" >
+	<br>
+	<ul class="nav nav-tabs nav-stacked">
+		<li><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><img src="<c:url value='/resources/img/default/home.png'></c:url>" style="margin-right: 10px;">首页</a></li>
+		<li><a href='<c:url value="/admin/message/list"></c:url>' ><img src="<c:url value='/resources/img/default/msg.png'></c:url>" style="margin-right: 10px;">站内信</a></li> 
+	</ul>
 	<div>
 		<div>分组</div>
 	</div>
@@ -106,7 +111,6 @@ font-weight: bold;
 		<li><a href='<c:url value="/admin/trend/teacher/all"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">教师动态</a></li>
 		<li><a href='<c:url value="/admin/trend/user/all"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">学生动态</a></li>
 		<!-- <li><a href='<c:url value="/admin/trend/all/all"></c:url>' >test</a></li> -->
-		<li><a href='<c:url value="/admin/message/list"></c:url>' ><img src="<c:url value='/resources/img/default/msg.png'></c:url>" style="margin-right: 10px;">站内信</a></li> 
 	</ul>
 	<div>
 		<div>应用</div>

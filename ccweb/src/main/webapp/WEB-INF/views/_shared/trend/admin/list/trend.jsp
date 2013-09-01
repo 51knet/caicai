@@ -177,7 +177,7 @@ text-decoration: none;
 				</tr>
 				<tr class="bb">
 					<td align="left" valign="top">
-						<span class="date"><a href='<c:url value="/admin/trend/view/${trendBeans.trend.id}"></c:url>'><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></a></span>
+						<a href='<c:url value="/admin/trend/view/${trendBeans.trend.id}"></c:url>'><span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></a>
 					</td>
 					<td align="right" valign="top">
 						<a style="margin-left: 250px;" href="javascript:void(0)" onclick="showCommentDiv(${trendBeans.trend.id})"><img src="<c:url value='/resources/img/default/commenttip.png'></c:url>" ></a>

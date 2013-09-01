@@ -91,7 +91,8 @@
 	<definition name="user-admin-layout" template="/WEB-INF/layouts/jsp/user-admin.jsp">
 		<put-attribute name="title" value="My Blog" />
 		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
+		<!-- <put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" /> -->
+		<put-attribute name="banner" value="" /> 
 		<put-attribute name="breadcrumbs" value="/WEB-INF/layouts/jsp/index/breadcrumbs.jsp" />
 		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/left.jsp" />
 		<put-attribute name="flash" value="/WEB-INF/layouts/jsp/admin-layout/flash.jsp" />
@@ -115,7 +116,8 @@
 	<definition name="user-frontPage-layout" template="/WEB-INF/layouts/jsp/user-front.jsp">
 		<put-attribute name="title" value="My Front Page" />
 		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
+		<!-- <put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" /> -->
+		<put-attribute name="banner" value="" /> 
 		<put-attribute name="breadcrumbs" value="/WEB-INF/layouts/jsp/index/breadcrumbs.jsp" />
 		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/teacher-front/navbar.jsp" />
 		<put-attribute name="left" value="" />

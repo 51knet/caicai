@@ -162,7 +162,7 @@ public class UserController {
 			RedirectAttributes redirectAttributes,@RequestParam("trendRole") String trendRole){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
-			return "redirect:/admin/trend/all/all";
+			return "redirect:/admin/trend/view/"+trend_id;
 		}else{
 		Comment comment = new Comment();
 		
@@ -176,7 +176,7 @@ public class UserController {
 		if(newComment != null){
 			redirectAttributes.addFlashAttribute("show",trend_id);
 		}
-		return "redirect:/admin/trend/all/all"; 
+		return "redirect:/admin/trend/view/"+trend_id;
 		}
 	}
 	/**
@@ -268,7 +268,7 @@ public class UserController {
 			HttpSession session,@Valid MyTrendsForm trendsForm,BindingResult validResult,RedirectAttributes redirectAttributes){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
-			return "redirect:/admin/trend/all/all";
+			return "redirect:/admin/trend/view/"+trend_id;
 		}else{
 		User host = userService.findOne(host_id);
 		Comment comment = new Comment();
@@ -281,7 +281,7 @@ public class UserController {
 		if(newComment != null){
 			redirectAttributes.addFlashAttribute("show",trend_id);
 		}
-		return "redirect:/admin/trend/all/all";
+		return "redirect:/admin/trend/view/"+trend_id;
 		}
 	}
 	

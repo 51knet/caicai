@@ -13,6 +13,9 @@
 		/*border-bottom: 1px solid #f2cc81;*/
 		border-bottom: 1px solid #ddd;
 	}
+	.color_green{
+	color: #859c34;
+}
 </style>
 <script type="text/javascript">
 
@@ -31,68 +34,70 @@
 </script>
 <div class="row-fluid border-white-all custom" style="background-color: #fff;">
 	<div class="content">	
-		
 			<table width="100%" cellpadding="5" >	
 				<tr>
 					  <td rowspan="3" align="left" valign="top" width="10%"><a href='<c:url value="/id/${trendBeans.trend.user.id }"></c:url>' >
 					  <img src=' <c:url value="${trendBeans.trend.user.photo_url }"></c:url>'  class="photo_width"></a></td>
 					   <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.user.id }"></c:url>' > ${trendBeans.trend.user.name}</a></td>
 				 </tr>
-			<c:if test="${trendBeans.trend.variety == '' }">
-				<tr  >
-					   <td align="left" valign="top">${trendBeans.trend.context }<br>
-			</c:if>
-			<c:if test="${trendBeans.trend.variety == 'course' }">
-				<tr  >
-				  <td align="left" valign="top">发布了 ${trendBeans.varietyDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a><br>
-				  	<img src=' <c:url value="${trendBeans.trend.coverUrl}"></c:url>'  class="coursecover_width"><br>					
-			</c:if>
-			<c:if test="${trendBeans.trend.variety != 'course' && trendBeans.trend.variety != null}">
-				<tr  >
-				  <td align="left" valign="top">发布了 ${trendBeans.varietyDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a>${trendBeans.trend.context }<br>						  						  
-			</c:if>
-				<span class="date"><a href="/admin/trend/view/${trendBeans.trend.id}"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></a></span></td>
-			</tr>
-			<tr class="bb">
-				<td align="right" valign="top"><a href="javascript:void(0)" onclick="showCommentDiv(${trendBeans.trend.id})">评论(${trendBeans.commentCount})</a>
-					<c:if test="${sessionUserInfo.id ==trendBeans.trend.user.id }">
-					|	<a href="javascript:void(0)" onclick="deleteTrends(${trendBeans.trend.id} ,${trendBeans.trend.user.id} )">删除</a>
+				 <tr  >
+					   <td align="left" valign="top" colspan="2">
+					<c:if test="${trendBeans.trend.variety == '' }">
+						${trendBeans.trend.context }<br>
 					</c:if>
-				</td>
-			</tr>		
+					<c:if test="${trendBeans.trend.variety == 'course' }">
+						发布了 ${trendBeans.varietyDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a><br>
+						  	<img src=' <c:url value="${trendBeans.trend.coverUrl}"></c:url>'  class="coursecover_width"><br>					
+					</c:if>
+					<c:if test="${trendBeans.trend.variety != 'course' && trendBeans.trend.variety != null}">
+						发布了 ${trendBeans.varietyDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a>${trendBeans.trend.context }<br>						  						  
+					</c:if>
+					</td>
+				</tr>
+				<tr class="bb">
+					<td align="left" valign="top">
+						<a href='<c:url value="/admin/trend/view/${trendBeans.trend.id}"></c:url>'><span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></a>
+					</td>
+					<td align="right" valign="top"><a href="javascript:void(0)" onclick="showCommentDiv(${trendBeans.trend.id})"><img src="<c:url value='/resources/img/default/commenttip.png'></c:url>" ></a>
+						<c:if test="${sessionUserInfo.id ==trendBeans.trend.user.id }">
+						|	<a class="color_green" href="javascript:void(0)" onclick="deleteTrends(${trendBeans.trend.id} ,${trendBeans.trend.user.id} )">删除</a>
+						</c:if>
+					</td>
+				</tr>		
 			</table>
 			<div id="${trendBeans.trend.id}_comment_div" style="display: block ; margin: 0px 10px; " class="border-ccc-all">
 				<form style="margin-top: 10px;" method="post" action='<c:url value="/comment"></c:url>'>
 					<input type="hidden" name="trendId" value="${trendBeans.trend.id}">
-					<textarea rows="2" cols=""  style="width:100%; " name="contents"  ></textarea><br>
+					<input type="hidden" name="trendRole" value="${trendRole }">
+					<textarea rows="4" cols=""  style="width:100%; " name="contents"  class="border-green-all"></textarea><br>
 					<div class="offset10">
 						<button class="btn btn-success " type="submit">发布</button>
 					</div>
 				</form>
-
+				<span class="color_green">共有 ${trendBeans.commentCount} 条评论>>><br><br>
 				<c:forEach items="${trendBeans.commentList}" var="comment">
-					<table width='98%' cellpadding='0' style="margin-bottom: 10px;">
-						<c:if test="${comment.host == null }">
-							<tr><td  align='left' valign= 'top'> <a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a>
-							<a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a>：${comment.context }<br>
-								<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
-								<a href="javascript:void(0)" onclick="showReply(${comment.id })">回复</a>
+					<table width='98%' cellpadding='0' style="margin-bottom: 10px; color:#444;">
+					<tr><td  align='left' valign= 'top' colspan="2">
+								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a>
+								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a>
+							<c:if test="${comment.host == null }">
+								：${comment.context }<br>
+							</c:if>
+							<c:if test="${comment.host != null}">
+								回复了 <a href='<c:url value="/id/${comment.host.id }"></c:url>'>${comment.host.name}</a> ：${comment.context }
+							</c:if>
 							</td></tr>
-						</c:if>
-						<c:if test="${comment.host != null}">
-							<tr ><td  align='left' valign= 'top'>
-								<a href='<c:url value="/id/${comment.user.id }"></c:url>'><img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a> <a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a> 回复了 
-								<a href='<c:url value="/id/${comment.host.id }"></c:url>'>${comment.host.name}</a> ：${comment.context }<br>
-								<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span>
-								<a href="javascript:void(0)" onclick="showReply(${comment.id })">回复</a>
-							</td></tr>
-						</c:if>
-						<tr  class='bb'><td  align='right' valign= 'top'>
+							<tr>
+								<td align="left" valign="top">	<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></td>
+								<td align="right" valign="top">	<a class="color_green" href="javascript:void(0)" onclick="showReply(${comment.id })">回复</a></td>
+							</tr>
+						<tr  class='bb'><td  align='right' valign= 'top'  colspan="2">
 							<div style="display: none; margin-top: 10px;" id="${comment.id }_reply_div">
 								<form  method="post" action='<c:url value="/reply"></c:url>'  >
 									<input type="hidden" name="hostId" value="${comment.user.id }" >
 									<input type="hidden" name="trendId" value="${trendBeans.trend.id}" >
-									<textarea rows="1" cols="" style="width:100%; " name="contents"  ></textarea><br>
+									<input type="hidden" name="trendRole" value="${trendRole }">
+									<textarea rows="4" cols="" style="width:100%; " name="contents"  class="border-green-all"></textarea><br>
 									<div class="offset10">
 										 <button class="btn btn-success offset"  onclick="postReplyForm()">发布</button>
 										<!--<a href="javascript:void(0)" class="btn btn-success offset"  onclick="postReplyForm()">发布</a>   -->

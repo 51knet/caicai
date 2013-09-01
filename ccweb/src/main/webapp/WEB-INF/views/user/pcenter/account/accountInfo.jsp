@@ -33,7 +33,7 @@
 			<ul class="nav nav-tabs">
 				<li <c:if test='${active == "photo"}'>class="active"</c:if>><a href="#photo_tab" data-toggle="tab">默认头像</a></li> 
 		    	<li <c:if test='${active == "avatar"}'>class="active"</c:if>><a href="#avatar_tab" data-toggle="tab">修改头像</a></li> 
-		    	<li <c:if test='${active == "banner"}'>class="active"</c:if>><a href="#banner_tab" data-toggle="tab">修改顶图</a></li> 
+		    	<!-- <li <c:if test='${active == "banner"}'>class="active"</c:if>><a href="#banner_tab" data-toggle="tab">修改顶图</a></li>  -->
 		    	<li <c:if test='${active == "psw"}'>class="active"</c:if>><a href="#security_tab" data-toggle="tab">账号安全</a></li>
 			</ul>
 			<div class="tab-content">
@@ -124,7 +124,7 @@
 						</div>
 					</form>
 				</div>
-				
+				<!-- 
 				<div class="tab-pane <c:if test='${active == "banner"}'>active</c:if>" id="banner_tab">
 					<form class="form-horizontal" action='<c:url value="/admin/banner"></c:url>' method="post" id="banner_form">
 						<div class="control-group" >
@@ -145,7 +145,7 @@
 						</div>
 					</form>
 				</div>
-				
+				 -->
 			</div>
 		</div>
 	</div>
