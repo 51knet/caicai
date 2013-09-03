@@ -13,12 +13,12 @@
 		<font color="#444444">沪ICP备20110827 CopyRight © 2011-2013</font><br>
 		<div style="display: none;"><script language="javascript" type="text/javascript" src="http://quote.51.la/?id=15757115&amp;mb=2"></script></div>
 	</div>
-	<!-- 
+
 		<div>
 			<div style="display:none">
 			<script language="javascript" type="text/javascript" src="http://js.users.51.la/15789894.js"></script>
 			<noscript><a href="http://www.51.la/?15789894" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/15789894.asp" style="border:none" /></a></noscript>
 			</div>
 		</div>
-	 -->
+
 </div>

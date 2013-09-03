@@ -201,7 +201,7 @@ text-decoration: none;
 					<div id="${trendBeans.trend.id}_ajax_comment_div"  style="display: none; margin-bottom: 10px;">
 					
 					</div>
-					<c:forEach items="${trendBeans.commentList}" var="comment">
+					<c:forEach items="${trendBeans.commentList}" var="comment" begin="0" end="6">
 						<table width='98%' cellpadding='0' style="margin-bottom: 10px;">
 							<tr><td  align='left' valign= 'top' colspan="2">
 								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a>

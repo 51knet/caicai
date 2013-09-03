@@ -75,7 +75,7 @@
 					</div>
 				</form>
 				<span class="color_green">共有 ${trendBeans.commentCount} 条评论>>><br><br>
-				<c:forEach items="${trendBeans.commentList}" var="comment">
+				<c:forEach items="${trendBeans.commentList}" var="comment" >
 					<table width='98%' cellpadding='0' style="margin-bottom: 10px; color:#444;">
 					<tr><td  align='left' valign= 'top' colspan="2">
 								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a>

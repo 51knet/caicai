@@ -89,6 +89,13 @@ public class FriendsRelatedPageController {
 		return "admin."+userInfo.getRole()+".host.list";
 	}
 	
+	@RequestMapping(value="/admin/mates/list")
+	public String showMatesList(HttpSession session,Model model){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		List<User> matesInfoList = relateService.getAllMatesInfo(userInfo.getId());
+		model.addAttribute("matesList", matesInfoList);
+		return "admin."+userInfo.getRole()+".mates.list";
+	}
 	
 	
 	/* teacher front page */
