@@ -7,7 +7,7 @@
 			
 			<table width="100%" border="0" cellspacing="0" cellpadding="5">
 			  <tr>
-			    <td rowspan="3" width="180"><a href='<c:url value='/user/${userInfo.id}'></c:url>'><img src="${avatar_url}" style="width:180px;"></a></td>
+			    <td rowspan="3" width="180"><a href='<c:url value='/user/${userInfo.id}'></c:url>'><img src="${avatar_url}" style="width:180px; height: 180px;"></a></td>
 			    <td>&nbsp;</td>
 			  </tr>
 			  <tr>
