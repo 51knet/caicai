@@ -65,7 +65,7 @@
 	}
 	
     function deleteTrends(trend_id, user_id){
-		alert(trend_id+"---"+user_id);
+		//alert(trend_id+"---"+user_id);
 	}
     
     function closeCommentDiv(index){

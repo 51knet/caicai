@@ -72,7 +72,7 @@
 						<button class="btn btn-success " type="submit">发布</button>
 					</div>
 				</form></c:if>
-				<span class="color_green">共有 ${trendBeans.commentCount} 条评论>>></span><br><br>
+				<span class="color_green">共有 ${trendBeans.commentCount} 条评论>></span><br><br>
 				<c:forEach items="${trendBeans.commentList}" var="comment">
 					<table width='98%' cellpadding='0' style="margin-bottom: 10px; color:#444;">
 					<tr><td  align='left' valign= 'top' colspan="2">
