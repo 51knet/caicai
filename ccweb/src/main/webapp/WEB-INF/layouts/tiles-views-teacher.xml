@@ -267,6 +267,12 @@
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/trend/list/list.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.teacher.trend.detail" extends="admin-layout">
+		<put-attribute name="title" value="好友动态" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/trend/view/view.jsp"></put-attribute>
+	</definition>
 
 
 	<!-- teacher front page -->

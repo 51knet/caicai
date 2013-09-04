@@ -21,13 +21,14 @@
 	color: #80b029;
 	/*border-bottom: solid #cccccc 1.5px;*/
 }
+
 .row-fluid .custom .row >h4{
 	padding: 10px 0px;
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
 .row-fluid.custom .content {
-	margin: 20px 40px;
+	margin: 0px 40px;
 }
 .border_ccc{
 	border: 1px solid #ccc;
@@ -84,7 +85,7 @@
 		<h4>好友动态</h4>
 	</div>
 	<div class="content">
-	<jsp:include page="/WEB-INF/views/_shared/trend/admin/list/trend.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/_shared/trend/admin/view/view.jsp"></jsp:include>
 	</div>
 </div>
 

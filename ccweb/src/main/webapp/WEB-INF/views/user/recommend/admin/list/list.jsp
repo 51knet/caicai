@@ -33,6 +33,8 @@
 
 .row-fluid.centralize.right .avator_width{
 	width: 50px;
+	height: 50px;
+	border: 1px solid #ccc; 
 }
 
 .row-fluid.centralize.right .courseCover{
@@ -57,11 +59,11 @@
 	</div>
 	<div class="row-fluid">
 		<c:forEach items="${recommendUser }" var="recommendUser">
-			<table width="70%"  cellpadding="5" style="margin: 5px 0px 5px 30px; ">			  
+			<table width="80%"  cellpadding="5" style="margin: 5px 0px 5px 20px; ">			  
 				   <tr>
-				    <td rowspan="2" width="33%"><a href='<c:url value="/id/${recommendUser.id }"></c:url>' ><img src=' <c:url value="${recommendUser.photo_url }"></c:url>'  class="avator_width"></a></td>
-				    <td  width="33%">${recommendUser.name }</td>
-				    <td  width="33%"><a href='<c:url value="/id/${recommendUser.id }"></c:url>' ><img src="<c:url value='/resources/img/default/focus.png'></c:url>" ></a></td>
+				    <td rowspan="2" width="30%"><a href='<c:url value="/id/${recommendUser.id }"></c:url>' ><img src=' <c:url value="${recommendUser.photo_url }"></c:url>'  class="avator_width"></a></td>
+				    <td  width="50%" align="left"><div style="width: 70px;" id="content">${recommendUser.name }</div></td>
+				    <td  ><a href='<c:url value="/id/${recommendUser.id }"></c:url>' ><img src="<c:url value='/resources/img/default/focus.png'></c:url>" ></a></td>
 				  </tr>
 				  <tr>
 				    <td ></td>
@@ -76,11 +78,11 @@
 	</div>
 	<div class="row-fluid">
 		<c:forEach items="${recommendTeacher }" var="recommendTeacher">
-			<table width="70%"  cellpadding="5" style="margin: 5px 0px 5px 30px; ">			  
+		<table width="80%"  cellpadding="5" style="margin: 5px 0px 5px 20px; ">			  
 				   <tr>
-				    <td rowspan="2" width="33%"><a href='<c:url value="/id/${recommendTeacher.id }"></c:url>' ><img src=' <c:url value="${recommendTeacher.photo_url }"></c:url>'  class="avator_width"></a></td>
-				    <td  width="33%">${recommendTeacher.name }</td>
-				    <td  width="33%"><a href='<c:url value="/id/${recommendTeacher.id }"></c:url>' ><img src="<c:url value='/resources/img/default/focus.png'></c:url>" ></a></td>
+				    <td rowspan="2" width="30%"><a href='<c:url value="/id/${recommendTeacherr.id }"></c:url>' ><img src=' <c:url value="${recommendTeacher.photo_url }"></c:url>'  class="avator_width"></a></td>
+				    <td  width="50%" align="left"><div style="width: 70px;" id="content">${recommendTeacher.name }</div></td>
+				    <td  ><a href='<c:url value="/id/${recommendTeacher.id }"></c:url>' ><img src="<c:url value='/resources/img/default/focus.png'></c:url>" ></a></td>
 				  </tr>
 				  <tr>
 				    <td ></td>

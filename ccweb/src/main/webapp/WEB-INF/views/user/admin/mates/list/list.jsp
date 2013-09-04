@@ -35,9 +35,10 @@
 	<div class="content">	
 			<c:forEach items="${matesList}" var="mates">
 				<div style="float: left; padding: 2px 8px;">
-					<a href='<c:url value="/teacher/${mates.id}"></c:url>' >
-					<img class="border_ccc" src='<c:url value="${mates.photo_url}"></c:url>' style="width: 80px;" /></a><br>
-					 <span class="offset5">${mates.name}</span>
+					 <table cellpadding="0" width="100">
+					 	<tr><td align="center"><a href='<c:url value="/id/${mates.id}"></c:url>' ><img class="border_ccc" src='<c:url value="${mates.photo_url}"></c:url>' style="width: 80px;" /></a></td></tr>
+					 	<tr><td align="center">${mates.name}</td></tr>
+					 </table>
 				</div>
 			</c:forEach>
 			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>

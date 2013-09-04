@@ -33,6 +33,7 @@
 
 .row-fluid.centralize.right .avator_width{
 	width: 60px;
+	height:60px;
 	border: 1px solid #ccc; 
 }
 
@@ -58,12 +59,12 @@
 	</div>
 	<div class="row-fluid">
 		<c:forEach items="${recommendUser }" var="recommendUser">
-			<table width="28%"  cellpadding="0" style="margin: 5px 10px 5px 3px; float: left;">			  
+			<table width="28%"  cellpadding="0" style="margin: 5px 5px 5px 7px; float: left;">			  
 				   <tr>
 				    <td><a href='<c:url value="/id/${recommendUser.id }"></c:url>' ><img src=' <c:url value="${recommendUser.photo_url }"></c:url>'  class="avator_width"></a></td>			
 				  </tr>
 				  <tr>
-				    <td >${recommendUser.name }</td>
+				    <td align="center"><div style="width: 70px;" id="content">${recommendUser.name }</div></td>
 				  </tr>
 				   <tr>
 				    <td ><a href='<c:url value="/id/${recommendUser.id }"></c:url>' ><img src="<c:url value='/resources/img/default/focus.png'></c:url>" ></a></td>
@@ -77,12 +78,12 @@
 	</div>
 	<div class="row-fluid">
 		<c:forEach items="${recommendTeacher }" var="recommendTeacher">
-				<table width="28%"  cellpadding="0" style="margin: 5px 10px 5px 3px; float: left;">			  
+			<table width="28%"  cellpadding="0" style="margin: 5px 5px 5px 7px; float: left;">			  
 				   <tr>
-				    <td><a href='<c:url value="/id/${recommendTeacherr.id }"></c:url>' ><img src=' <c:url value="${recommendTeacher.photo_url }"></c:url>'  class="avator_width"></a></td>			
+				    <td><a href='<c:url value="/id/${recommendTeacher.id }"></c:url>' ><img src=' <c:url value="${recommendTeacher.photo_url }"></c:url>'  class="avator_width"></a></td>			
 				  </tr>
 				  <tr>
-				    <td >${recommendTeacher.name }</td>
+				    <td align="center"><div style="width: 70px;" id="content">${recommendTeacher.name }</div></td>
 				  </tr>
 				   <tr>
 				    <td ><a href='<c:url value="/id/${recommendTeacher.id }"></c:url>' ><img src="<c:url value='/resources/img/default/focus.png'></c:url>" ></a></td>
