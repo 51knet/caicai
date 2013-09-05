@@ -60,7 +60,7 @@
 	<div class="row-fluid">
 		<c:forEach items="${recommendUser }" var="recommendUser">
 			<table width="28%"  cellpadding="0" style="margin: 5px 5px 5px 7px; float: left;">			  
-				   <tr>
+				  <tr>
 				    <td><a href='<c:url value="/id/${recommendUser.id }"></c:url>' ><img src=' <c:url value="${recommendUser.photo_url }"></c:url>'  class="avator_width"></a></td>			
 				  </tr>
 				  <tr>

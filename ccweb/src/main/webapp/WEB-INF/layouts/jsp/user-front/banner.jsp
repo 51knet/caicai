@@ -1,7 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="span12">
-	<div class="banner_front" style="position: relative; z-index: 1; height: 120px; background-color: #fff; margin-top: 100px;">
+<style>
+.navbars{
+	background-image: url("<c:url value='/resources/img/default/user-navbar-bg.png'></c:url>");
+	background-position: left top;
+	background-repeat: no-repeat;
+	height: 50px;
+	margin-bottom: 20px;
+	margin-top:10px;
+	text-align: left;
+	background-color: #fff
+}
+.navbars >div{
+	float: left;
+	margin: 12px 25px 0px 35px;
+	vertical-align: text-top;
+}
+</style>
+<div style="background-color: #fff;">
+	<div  style="position: relative; z-index: 1; height: 120px; background-color: #fff; margin-top: 100px;">
 		<div style="height: 210px; width: 900px; position: absolute; z-index: 999; margin-left: 30px; margin-top: -70px; border: 0px solid #ccc; color: #000;">
 			<c:url var="avatar_url" value="${userInfo.avatar}"></c:url>
 			
@@ -20,6 +37,12 @@
 		</div>
 	
 	</div>
-	<!--/.banner -->
+	<div class="navbars">
+	<div><a href='<c:url value='/user/${userInfo.id}'></c:url>'><img src="<c:url value='/resources/img/default/front-home.png'></c:url>" ></a></div>
+	<div><a href='<c:url value='/user/${userInfo.id}'></c:url>'><img src="<c:url value='/resources/img/default/front-resume.png'></c:url>" ></a></div>
+	<div><a href='<c:url value='/user/${userInfo.id}'></c:url>'><img src="<c:url value='/resources/img/default/front-friend.png'></c:url>" ></a></div>
 </div>
+</div>
+	<!--/.banner -->
+
 <!--/span-->

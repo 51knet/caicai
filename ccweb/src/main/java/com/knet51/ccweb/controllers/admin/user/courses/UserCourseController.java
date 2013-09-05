@@ -26,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Knowledge;
+import com.knet51.ccweb.jpa.entities.ReceiveMsg;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
@@ -34,6 +35,7 @@ import com.knet51.ccweb.jpa.services.CourseResourceService;
 import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.KnowledgeService;
 import com.knet51.ccweb.jpa.services.OrderService;
+import com.knet51.ccweb.jpa.services.ReceiveMsgService;
 import com.knet51.ccweb.jpa.services.UserCourseService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.beans.UserCourseBeans;
@@ -56,9 +58,10 @@ public class UserCourseController {
 	private CourseResourceService courseResourceService;
 	@Autowired
 	private OrderService orderService;
-	
 	@Autowired
 	private KnowledgeService knowledgeService;
+	@Autowired 
+	private ReceiveMsgService receiveMsgService;
 
 	/**
 	 * show user course list
@@ -85,6 +88,11 @@ public class UserCourseController {
 					.get(i).getTeachercourseid());
 			userCourseList.add(course);
 		}
+		
+		// judge unReaded msg  count 
+		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userInfo.getId());
+		
+		model.addAttribute("unReadCount", unReadMsgList.size());
 		model.addAttribute("courseList", userCourseList);
 		model.addAttribute("page", mycourse);
 		return "admin." + userInfo.getUser().getRole() + ".mycourse.list";

@@ -103,7 +103,9 @@ font-weight: bold;
 	<br>
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><img src="<c:url value='/resources/img/default/home.png'></c:url>" style="margin-right: 10px;">首页</a></li>
-		<li><a href='<c:url value="/admin/message/list"></c:url>' ><img src="<c:url value='/resources/img/default/msg.png'></c:url>" style="margin-right: 10px;">站内信</a></li> 
+		<li><a href='<c:url value="/admin/message/list"></c:url>' ><img src="<c:url value='/resources/img/default/msg.png'></c:url>" style="margin-right: 10px;">消息
+			<c:if test="${unReadCount > 0}"> new</c:if>
+		</a></li> 
 	</ul>
 	<div>
 		<div>分组</div>

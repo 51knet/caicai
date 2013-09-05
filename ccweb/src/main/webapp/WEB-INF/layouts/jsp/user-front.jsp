@@ -39,7 +39,7 @@
 				
 			<!--/row-->
 			<tiles:insertAttribute name="breadcrumbs" />
-			<div class="row-fluid content-panel" style="background-color: #fff;">
+			<div class="row-fluid content-panel" style="background-color: #fff; margin-top: -20px;">
 			<tiles:insertAttribute name="navbar" />
 				<!--/span-->
 				<div class="span8" style="width: 608px;">

@@ -35,6 +35,7 @@ public class SendMsgServiceImpl implements SendMsgService {
 		//user.setId(userId);
 		receiveMsg.setUser(user);
 		receiveMsg.setSendMsg(sendMsg);
+		receiveMsg.setTypes("message");
 		receiveMsgDao.add(receiveMsg);
 		
 	}

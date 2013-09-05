@@ -25,6 +25,7 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Comment;
 import com.knet51.ccweb.jpa.entities.Knowledge;
+import com.knet51.ccweb.jpa.entities.ReceiveMsg;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.timeline.Trends;
@@ -32,6 +33,7 @@ import com.knet51.ccweb.jpa.services.CommentService;
 import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.KnowledgeService;
+import com.knet51.ccweb.jpa.services.ReceiveMsgService;
 import com.knet51.ccweb.jpa.services.TrendsService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.promotion.UserRecommendService;
@@ -57,6 +59,8 @@ public class UserController {
 	private KnowledgeService knowledgeService;
 	@Autowired
 	private CourseService courseService;
+	@Autowired 
+	private ReceiveMsgService receiveMsgService;
 	
 	/**
 	 * big time line
@@ -69,6 +73,8 @@ public class UserController {
 	public String showAllTrends(HttpSession session, Model model,@PathVariable String trendRole, @PathVariable String variety){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		String role = userInfo.getRole();
+		
+		// show the recommend info at page of right
 		List<User> recommendTeacher = recommendService.getRecommendTeacher(userInfo.getId(), 3);
 		List<User> recommendUser = recommendService.getRecommendUser(userInfo.getId(), 3);
 		List<Course> recommendCourse = recommendService.getRecommendCourses(userInfo.getId(), 3);
@@ -77,6 +83,7 @@ public class UserController {
 		model.addAttribute("recommendUser", recommendUser);
 		model.addAttribute("recommendCourse", recommendCourse);
 		
+		// show the trends and its comments
 		List<TrendsBeans> trendsBeansList = new ArrayList<TrendsBeans>();
 		List<Trends> myTrends = null;
 		if(variety.equals("all")){
@@ -105,6 +112,11 @@ public class UserController {
 				trendsBeansList.add(trendsBeans);
 			}
 		}
+		
+		// judge unReaded msg  count 
+		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userInfo.getId());
+		
+		model.addAttribute("unReadCount", unReadMsgList.size());
 		model.addAttribute("trendRole", trendRole);
 		model.addAttribute("trendVariety", variety);
 		model.addAttribute("trend", trendsBeansList);
@@ -193,6 +205,7 @@ public class UserController {
 			@Valid MyTrendsForm trendsForm,BindingResult validResult){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Comment comment = new Comment();
+		ReceiveMsg receiveMsg = new ReceiveMsg();
 		if(validResult.hasErrors()){
 			return null;
 		}else{
@@ -203,7 +216,13 @@ public class UserController {
 		
 		comment.setPublishDate(new Date());
 		Comment newComment = commentService.createComment(comment);
-	
+		
+		receiveMsg.setCommenter(userInfo.getId());
+		receiveMsg.setCommentid(newComment.getId());
+		receiveMsg.setTypes("comment");
+		receiveMsg.setReaded(1);
+		receiveMsgService.add(receiveMsg);
+		
 		return newComment; 
 		}
 	}
@@ -394,6 +413,10 @@ public class UserController {
 				}
 			}
 			
+			// judge unReaded msg  count 
+			List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userInfo.getId());
+			
+			model.addAttribute("unReadCount", unReadMsgList.size());
 			model.addAttribute("courseList", courseList);
 			model.addAttribute("page",myKnowledgePage);
 			model.addAttribute("courseCount", courseList.size());
