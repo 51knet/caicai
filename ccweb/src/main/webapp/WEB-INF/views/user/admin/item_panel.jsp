@@ -90,9 +90,6 @@ font-weight: bold;
 		</c:choose>
 	</div>
 	<div class="row-fluid">
-		<!-- <a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }同学</a> | 
-		<a href='<c:url value='/admin/fans/list'></c:url>' >${sessionScope.admin_fansCount }粉丝</a> | 
-		<a href='<c:url value='/admin/host/list'></c:url>'>${sessionScope.admin_hostCount }关注</a> -->
 		<div class="row-fluid border-green-right" style="width: 32%; float: left; "><a href='<c:url value='/admin/mates/list'></c:url>' ><img src="<c:url value='/resources/img/default/mates.png'></c:url>"><br>${sessionScope.admin_matesCount }</a></div>
 		<div class="row-fluid border-green-right"  style="width: 32%; float: left;  "><a href='<c:url value='/admin/fans/list'></c:url>' ><img src="<c:url value='/resources/img/default/fans.png'></c:url>"><br>${sessionScope.admin_fansCount }</a></div>
 		<div class="row-fluid"  style="width: 32%; float: left; "><a href='<c:url value='/admin/host/list'></c:url>'><img src="<c:url value='/resources/img/default/follows.png'></c:url>"><br>${sessionScope.admin_hostCount }</a></div>
