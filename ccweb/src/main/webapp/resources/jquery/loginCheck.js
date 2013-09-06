@@ -137,7 +137,7 @@ function reginsterLogin(formID, actionName) {
 					dataType:"text",
 					success:function(number){
 						if(number == "1"){
-							$("#emailsError").html("<font color='#ff0000'>邮箱已存在</font>");
+							$("#passwordError").html("<font color='#ff0000'>邮箱已存在</font>");
 							return false;
 						}else{
 							$form.unbind('submit');
@@ -187,7 +187,7 @@ function thirdPartyRegister(formID, actionName) {
 					dataType:"text",
 					success:function(number){
 						if(number == "1"){
-							$("#emailsError").html("<font color='#ff0000'>邮箱已存在</font>");
+							$("#passwordError").html("<font color='#ff0000'>邮箱已存在</font>");
 							return false;
 						}else{
 							$form.unbind('submit');
