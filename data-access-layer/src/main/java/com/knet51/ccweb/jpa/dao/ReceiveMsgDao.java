@@ -14,4 +14,6 @@ public interface ReceiveMsgDao {
 	List<ReceiveMsg>  unReadList(Long userId);
 	List<ReceiveMsg> isReadList(Long userId);
 	List<ReceiveMsg> isDele(Long userId);
+	
+	List<ReceiveMsg> unReadMsgSenderList(Long userId);
 }

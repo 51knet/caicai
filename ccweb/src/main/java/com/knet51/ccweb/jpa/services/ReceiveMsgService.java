@@ -19,4 +19,5 @@ public interface ReceiveMsgService {
 	List<ReceiveMsg> isDele(Long userId);
 	
 	Page<ReceiveMsg> findIsReadMsgByUser(int pageNum, int pageSize, User user,Integer isRead);
+	List<ReceiveMsg> unReadMsgSenderList(Long userId); 
 }

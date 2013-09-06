@@ -1,5 +1,6 @@
 package com.knet51.ccweb.jpa.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -70,6 +71,13 @@ public class ReceiveMsgDaoImpl implements ReceiveMsgDao {
 	@Override
 	public List<ReceiveMsg> isDele(Long userId) {
 		return em.createQuery("from ReceiveMsg where readed=3 and user_id="+userId).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ReceiveMsg> unReadMsgSenderList(Long userId) {
+		List<ReceiveMsg> list = em.createQuery("from ReceiveMsg r where r.readed <3 and r.user.id="+userId+" and r.types = 'message' group by r.commenter order by r.id desc ").getResultList();
+		return list;
 	}
 
 }

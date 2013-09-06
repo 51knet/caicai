@@ -153,7 +153,7 @@ public class AdminController {
 					.getAttribute("authentication");
 			if (authentication != null
 					&& authentication.getStatus().equals("pass")) {
-				return "redirect:/admin/trend/all/all";
+				return "redirect:/admin/details?active=photo";
 			} else {
 				return "redirect:/admin/authentication/list";
 			}

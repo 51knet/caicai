@@ -2,22 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<script type="text/javascript">
-<!--
-	$(document).ready(function(){
-		$(".unReadMsg").mouseover(function(){
-			  $(this).css("background-color","#fafafa");
-		});
-		$(".unReadMsg").mouseout(function(){
-			  $(this).css("background-color","");
-		});
-	});
-//-->
-</script>
+
 <style>
 .row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
+	
 }
 .round {
 	border-radius: 5px;
@@ -32,12 +22,6 @@
 .row-fluid.custom .content {
 	margin: 20px 40px;
 }
-.bb{
-	border-bottom: solid #cccccc 1px;
-}
-a{
-	text-decoration: none;
-}
 </style>
 <div class="row-fluid custom round">
 	<div class="row">
@@ -50,19 +34,61 @@ a{
 			 	<a href='<c:url value="/admin/message/isDele"></c:url>'>回收站：${isDeleCount}件</a>
 		</div>
 		<div style="text-align: right;">
+			 <!-- <table class="yellow" id="mytab" cellpadding="7" width=100%  border=0>
+				 <thead><tr><th width="25%" align="center">标题</th><th width="20%" align="center">是否已读</th><th width="25%" align="center">发送时间</th><th width="20%" align="center">发件人</th></tr></thead>
+				 <tbody>
+			  		<c:forEach items="${page.content}" var = "page" >
+			  			<tr>
+			  				<td align="center"><a href='<c:url value="/admin/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>${page.sendMsg.title}</a> </td>
+			  				<td align="center">
+			  					<c:if test="${page.readed==1 }">
+			  						未读
+			  					</c:if>
+			  				</td>
+			  				<td align="center">${page.sendMsg.date}</td>
+			  				<td align="center">${page.sendMsg.user.name}</td>
+			  			<td align="center"><!-- 
+			  					<div class="btn-group"> 
+									<button class="btn">更多</button>  
+									<button class="btn dropdown-toggle" data-toggle="dropdown">   
+									<span class="caret"></span> </button>
+									<ul class="dropdown-menu">
+										<li>详细</li>
+										<li><a href='<c:url value="/admin/message/deleOne?mid=${page.sendMsg.id}"></c:url>'>删除</a> </li>
+									</ul>
+								 </div> 
+								 	  <a class="deleteMsgPostBtn" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">删除</a><input type="hidden"  value="${page.sendMsg.id}" > 
+			  				</td>
+			  			</tr>
+			  		</c:forEach>
+				  </tbody>
+			</table> -->
+			<br><br>
+			
 					<c:forEach items="${unReadListSender}" var = "unReadMsgList" >
-				
-						<table cellpadding="0" width=100%  border=0 style="" class="bb unReadMsg">
+						<table cellpadding="5" width=100%  border=1>
+				  			<!-- <tr>
+				  				<td align="center">
+				  					<a href='<c:url value="/admin/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>${page.sendMsg.title}</a> 
+				  				</td>
+				  				<td align="center">
+				  					<c:if test="${page.readed==1 }">
+				  						未读
+				  					</c:if>
+				  				</td>
+				  				<td align="center">${page.sendMsg.date}</td>
+				  				<td align="center">${page.sendMsg.user.name}</td>
+				  			</tr> -->
+				  			
 				  			  <tr>
-							    <td rowspan="2" align="left" width="10%" ><a href="#"><img src="<c:url value='${unReadMsgList.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></a></td>
-							    <td align="left" style="font-weight: bold; padding:10px 10px;">${unReadMsgList.sendMsg.user.name}</td>
-							    <td align="right"  width="20%"  style="color: #666; font-size: 13px;padding:10px 10px;"> ${unReadMsgList.sendMsg.date}</td>
+							    <td rowspan="2" align="left" width="10%"><img src="<c:url value='${unReadMsgList.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
+							    <td align="left">${unReadMsgList.sendMsg.user.name}</td>
+							    <td align="right"  width="20%"> ${unReadMsgList.sendMsg.date}</td>
 							  </tr>
 							  <tr>
-							    <td colspan="2" align="left" style="color: #666; font-size: 13px;padding:10px 10px;"><a href="#">${unReadMsgList.sendMsg.content}</a></td>
+							    <td colspan="2" align="left">${unReadMsgList.sendMsg.content}</td>
 							  </tr>
 				  		</table>
-				  
 			  		</c:forEach>
 			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 		</div>

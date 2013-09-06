@@ -78,4 +78,9 @@ public class ReceiveMsgServiceImpl implements ReceiveMsgService {
 		return onePage;
 	}
 
+	@Override
+	public List<ReceiveMsg> unReadMsgSenderList(Long userId) {
+		return receiveMsgDao.unReadMsgSenderList(userId);
+	}
+
 }

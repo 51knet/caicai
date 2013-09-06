@@ -75,7 +75,7 @@ public class SendMsgDetailInfoController {
 		
 		logger.info("#### Into SendMsgInfoPageControllerPage ####");
 		if(validResult.hasErrors()){
-			return "redirect:/teacher/" + receiverId;
+			return "redirect:/id/" + receiverId;
 		}else{
 			//System.out.println(userId);
 			SendMsg sendMsg = new SendMsg();

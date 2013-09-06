@@ -60,6 +60,11 @@ public class ReceiveMsgInfoPageController {
 			Integer isDeleCount = isDele.size();
 			int pageNum = MyUtil.getPageNumber(pageNumber, unReadCount ,pageSize);
 			Page<ReceiveMsg> page = receiveMsgService.findIsReadMsgByUser(pageNum, pageSize, user, 1 );
+			
+			List<ReceiveMsg> unReadListSenderList = receiveMsgService.unReadMsgSenderList(user_id);
+			logger.info("------unReadListSender="+unReadListSenderList.size());
+			model.addAttribute("unReadListSender",unReadListSenderList);
+			
 			model.addAttribute("unReadCount", unReadCount);
 			model.addAttribute("isReadCount", isReadCount);
 			model.addAttribute("msgCount", msgCount);
