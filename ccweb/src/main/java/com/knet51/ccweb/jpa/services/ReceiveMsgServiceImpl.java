@@ -71,16 +71,24 @@ public class ReceiveMsgServiceImpl implements ReceiveMsgService {
 	}
 
 	@Override
-	public Page<ReceiveMsg> findIsReadMsgByUser(int pageNum, int pageSize,
-			User user, Integer isRead) {
+	public Page<ReceiveMsg> findReceiveMsgByUserAndTypes(int pageNum, int pageSize,
+			User user, Integer isRead,String types) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
-		Page<ReceiveMsg> onePage = receiveMsgRepository.findReceiveMsgByUserAndReaded(user, isRead,  dateDesc);
+		Page<ReceiveMsg> onePage = receiveMsgRepository.findReceiveMsgByUserAndReadedAndTypes(user, isRead, types, dateDesc);
 		return onePage;
 	}
 
 	@Override
-	public List<ReceiveMsg> unReadMsgSenderList(Long userId) {
-		return receiveMsgDao.unReadMsgSenderList(userId);
+	public List<ReceiveMsg> unReadMsgSenderList(Long userId , String types) {
+		return receiveMsgDao.unReadMsgSenderList(userId, types);
 	}
+
+//	@Override
+//	public Page<ReceiveMsg> findReceiveMsgByUserAndReadedAndTypes(int pageNum,
+//			int pageSize, String types, Integer readed, Long userid) {
+//		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
+//		Page<ReceiveMsg> onePage = receiveMsgRepository.findReceiveMsgByUserAndReadedAndTypes(types, readed, userid, dateDesc);
+//		return onePage;
+//	}
 
 }

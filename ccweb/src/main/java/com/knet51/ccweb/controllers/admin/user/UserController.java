@@ -204,6 +204,8 @@ public class UserController {
 	public @ResponseBody Comment ajaxCreateComment(@RequestParam("trendId") Long trend_id, HttpSession session,HttpServletResponse response,
 			@Valid MyTrendsForm trendsForm,BindingResult validResult){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Trends t = new Trends(); 
+		t = trendsService.findOneById(trend_id);
 		Comment comment = new Comment();
 		ReceiveMsg receiveMsg = new ReceiveMsg();
 		if(validResult.hasErrors()){
@@ -219,8 +221,9 @@ public class UserController {
 		
 		receiveMsg.setCommenter(userInfo.getId());
 		receiveMsg.setCommentid(newComment.getId());
-		receiveMsg.setTypes("comment");
+		receiveMsg.setTypes(GlobalDefs.MSG_TYPES_COMMENT);
 		receiveMsg.setReaded(1);
+		receiveMsg.setUser(t.getUser());
 		receiveMsgService.add(receiveMsg);
 		
 		return newComment; 
@@ -240,6 +243,8 @@ public class UserController {
 	public @ResponseBody Comment ajaxCreateReply(@RequestParam("hostId") Long host_id,@RequestParam("trendId") Long trend_id, HttpSession session,HttpServletResponse response,
 			@Valid MyTrendsForm trendsForm,BindingResult validResult){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Trends t = new Trends(); 
+		t = trendsService.findOneById(trend_id);
 		if(validResult.hasErrors()){
 			return null;
 		}else{
@@ -251,6 +256,16 @@ public class UserController {
 			comment.setContext(trendsForm.getContents());
 			comment.setPublishDate(new Date());
 			Comment newComment =commentService.createComment(comment);
+			
+			ReceiveMsg receiveMsg = new ReceiveMsg();
+			receiveMsg.setCommenter(userInfo.getId());
+			receiveMsg.setCommentid(newComment.getId());
+			receiveMsg.setTypes(GlobalDefs.MSG_TYPES_COMMENT);
+			receiveMsg.setReaded(1);
+			if(host.getId().equals(t.getUser().getId())){
+				receiveMsg.setUser(host);
+			}
+			receiveMsgService.add(receiveMsg);
 			return newComment; 
 		}
 	}

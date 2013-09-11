@@ -33,6 +33,10 @@ public final class GlobalDefs {
 	public static final int ANNOUNCEMENT_PHOTO_WIDTH = 440;
 	public static final int ANNOUNCEMENT_PHOTO_HEIGHT = 220;
 	
+	// receive msg types
+	public static final String MSG_TYPES_COMMENT = "comment";
+	public static final String MSG_TYPES_MESSAGE = "message";
+	
 	//super admin's pwd
 	public static final String SUPER_ADMIN_PWD = "caicai6688";
 	

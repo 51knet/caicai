@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Repository;
 
 import com.knet51.ccweb.jpa.entities.ReceiveMsg;
@@ -75,9 +77,18 @@ public class ReceiveMsgDaoImpl implements ReceiveMsgDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ReceiveMsg> unReadMsgSenderList(Long userId) {
-		List<ReceiveMsg> list = em.createQuery("from ReceiveMsg r where r.readed <3 and r.user.id="+userId+" and r.types = 'message' group by r.commenter order by r.id desc ").getResultList();
+	public List<ReceiveMsg> unReadMsgSenderList(Long userId , String types) {
+		Sort sort = new Sort(Direction.DESC, "id"); 
+		List<ReceiveMsg> list = em.createQuery("from ReceiveMsg re where re.id in (select r.id from ReceiveMsg r where r.readed <3 and r.user.id="+userId+" and r.types = '"+types+"' group by r.commenter ) order by re.id desc").getResultList();
 		return list;
+	}
+
+
+	@Override
+	public List<ReceiveMsg> showMsgByUsers(Long user_id, Long sender_id,
+			String types) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

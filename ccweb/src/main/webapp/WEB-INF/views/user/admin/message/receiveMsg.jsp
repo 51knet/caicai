@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
 <!--
 	$(document).ready(function(){
@@ -41,20 +42,29 @@ a{
 </style>
 <div class="row-fluid custom round">
 	<div class="row">
-		<h4>站内信</h4>
+		<h4>站内消息</h4>
 	</div>
 	<div class="content">	
-		<div style="text-align: center; margin-bottom: 10px;">收到的站内信数量：${msgCount}件 &nbsp;&nbsp;&nbsp;：
-			 	<a href='<c:url value="/admin/message/list"></c:url>'>未读信件数量${unReadCount}件</a>&nbsp;&nbsp;&nbsp;
-			 	<a href='<c:url value="/admin/message/isRead"></c:url>'>已读信件数量：${isReadCount}件</a>&nbsp;&nbsp;&nbsp;
-			 	<a href='<c:url value="/admin/message/isDele"></c:url>'>回收站：${isDeleCount}件</a>
+		<div style="text-align: center; margin-bottom: 10px;">
+				<table cellpadding="10" width=100%  border=0 style="" class="bb unReadMsg">
+		  			  <tr>
+					    <td rowspan="2" align="left" width="10%" ><a href="#"><img src="<c:url value='/resources/img/default/comm-icon.png'></c:url>" style="width:60px; height: 60px;"></a></td>
+					    <td align="left" style="font-weight: bold; ">评论</td>
+					    <td align="right"  width="40%"  style="color: #666; font-size: 13px;"> <fmt:formatDate value="${newComment.publishDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+					  </tr>
+					  <tr>
+					    <td colspan="2" align="left" style="color: #666; font-size: 13px;">
+					   			<c:if test="${newComment == null }"> 暂无评论</c:if>
+					   			<c:if test="${newComment != null }"> ${newComment.user.name }：${newComment.context }</c:if>  
+					    </td>
+					  </tr>
+			  	</table>
 		</div>
 		<div style="text-align: right;">
 					<c:forEach items="${unReadListSender}" var = "unReadMsgList" >
-				
-						<table cellpadding="0" width=100%  border=0 style="" class="bb unReadMsg">
+						<table cellpadding="10" width=100%  border=0 style="" class="bb unReadMsg">
 				  			  <tr>
-							    <td rowspan="2" align="left" width="10%" ><a href="#"><img src="<c:url value='${unReadMsgList.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></a></td>
+							    <td rowspan="2" align="left" width="10%" ><a href='<c:url value="/admin/message/detail/${unReadMsgList.sendMsg.user.id}"></c:url>'><img src="<c:url value='${unReadMsgList.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></a></td>
 							    <td align="left" style="font-weight: bold; padding:10px 10px;">${unReadMsgList.sendMsg.user.name}</td>
 							    <td align="right"  width="20%"  style="color: #666; font-size: 13px;padding:10px 10px;"> ${unReadMsgList.sendMsg.date}</td>
 							  </tr>
@@ -64,7 +74,7 @@ a{
 				  		</table>
 				  
 			  		</c:forEach>
-			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+			<!-- <div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div> -->
 		</div>
 		
 	</div>

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.dao.ReceiveMsgDao;
 import com.knet51.ccweb.jpa.dao.SendMsgDao;
 import com.knet51.ccweb.jpa.entities.ReceiveMsg;
@@ -35,7 +37,7 @@ public class SendMsgServiceImpl implements SendMsgService {
 		//user.setId(userId);
 		receiveMsg.setUser(user);
 		receiveMsg.setSendMsg(sendMsg);
-		receiveMsg.setTypes("message");
+		receiveMsg.setTypes(GlobalDefs.MSG_TYPES_MESSAGE);
 		receiveMsgDao.add(receiveMsg);
 		
 	}

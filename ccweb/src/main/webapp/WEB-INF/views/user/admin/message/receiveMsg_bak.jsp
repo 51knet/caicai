@@ -34,7 +34,7 @@
 			 	<a href='<c:url value="/admin/message/isDele"></c:url>'>回收站：${isDeleCount}件</a>
 		</div>
 		<div style="text-align: right;">
-			 <!-- <table class="yellow" id="mytab" cellpadding="7" width=100%  border=0>
+			 <table class="yellow" id="mytab" cellpadding="7" width=100%  border=0>
 				 <thead><tr><th width="25%" align="center">标题</th><th width="20%" align="center">是否已读</th><th width="25%" align="center">发送时间</th><th width="20%" align="center">发件人</th></tr></thead>
 				 <tbody>
 			  		<c:forEach items="${page.content}" var = "page" >
@@ -47,7 +47,7 @@
 			  				</td>
 			  				<td align="center">${page.sendMsg.date}</td>
 			  				<td align="center">${page.sendMsg.user.name}</td>
-			  			<td align="center"><!-- 
+			  			<!--<td align="center"> 
 			  					<div class="btn-group"> 
 									<button class="btn">更多</button>  
 									<button class="btn dropdown-toggle" data-toggle="dropdown">   
@@ -58,39 +58,12 @@
 									</ul>
 								 </div> 
 								 	  <a class="deleteMsgPostBtn" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">删除</a><input type="hidden"  value="${page.sendMsg.id}" > 
-			  				</td>
+			  				</td>-->
 			  			</tr>
 			  		</c:forEach>
 				  </tbody>
-			</table> -->
-			<br><br>
-			
-					<c:forEach items="${unReadListSender}" var = "unReadMsgList" >
-						<table cellpadding="5" width=100%  border=1>
-				  			<!-- <tr>
-				  				<td align="center">
-				  					<a href='<c:url value="/admin/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>${page.sendMsg.title}</a> 
-				  				</td>
-				  				<td align="center">
-				  					<c:if test="${page.readed==1 }">
-				  						未读
-				  					</c:if>
-				  				</td>
-				  				<td align="center">${page.sendMsg.date}</td>
-				  				<td align="center">${page.sendMsg.user.name}</td>
-				  			</tr> -->
-				  			
-				  			  <tr>
-							    <td rowspan="2" align="left" width="10%"><img src="<c:url value='${unReadMsgList.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
-							    <td align="left">${unReadMsgList.sendMsg.user.name}</td>
-							    <td align="right"  width="20%"> ${unReadMsgList.sendMsg.date}</td>
-							  </tr>
-							  <tr>
-							    <td colspan="2" align="left">${unReadMsgList.sendMsg.content}</td>
-							  </tr>
-				  		</table>
-			  		</c:forEach>
-			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+			</table> 			
+		<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 		</div>
 		
 	</div>
