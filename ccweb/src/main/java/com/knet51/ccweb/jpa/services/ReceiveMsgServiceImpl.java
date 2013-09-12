@@ -83,12 +83,28 @@ public class ReceiveMsgServiceImpl implements ReceiveMsgService {
 		return receiveMsgDao.unReadMsgSenderList(userId, types);
 	}
 
-//	@Override
-//	public Page<ReceiveMsg> findReceiveMsgByUserAndReadedAndTypes(int pageNum,
-//			int pageSize, String types, Integer readed, Long userid) {
-//		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
-//		Page<ReceiveMsg> onePage = receiveMsgRepository.findReceiveMsgByUserAndReadedAndTypes(types, readed, userid, dateDesc);
-//		return onePage;
-//	}
+
+	@Override
+	public Page<ReceiveMsg> findReceiveMsgByUserAndReadedAndTypes(int pageNum,
+			int pageSize, String types, Integer readed, Long userid) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
+		Page<ReceiveMsg> onePage = receiveMsgRepository.findReceiveMsg(types, readed, userid, dateDesc);
+		return onePage;
+	}
+
+	@Override
+	public Page<ReceiveMsg> findMsgByUserAndCommenter(int pageNum,
+			int pageSize, Long user_id, String types, Long commenter_id) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
+		Page<ReceiveMsg> onePage = receiveMsgRepository.findMsgByUsers(user_id, commenter_id, types, dateDesc);
+		return onePage;
+	}
+
+	@Override
+	public List<ReceiveMsg> findMsgListByUserAndCommenter(Long user_id,
+			String types, Long commenter_id) {
+		// TODO Auto-generated method stub
+		return receiveMsgRepository.findMsgListByUsers(user_id, commenter_id, types);
+	}
 
 }

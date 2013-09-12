@@ -97,6 +97,12 @@
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/user/admin/message/receiveMsg.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.user.message.detail.list" extends="user-admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/message/list/list.jsp"></put-attribute>
+	</definition>
 
 	<definition name="admin.user.message.send" extends="user-admin-layout">
 		<put-attribute name="title" value="私信" />

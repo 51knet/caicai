@@ -27,7 +27,7 @@ public class SendMsgServiceImpl implements SendMsgService {
 	private UserService userService;
 
 	@Override
-	public void add(SendMsg sendMsg, Long userId) {
+	public void add(SendMsg sendMsg, Long userId ,Long senderid) {
 		sendMsgDao.add(sendMsg);
 		ReceiveMsg receiveMsg = new ReceiveMsg();
 		receiveMsg.setDeled(1);
@@ -38,6 +38,7 @@ public class SendMsgServiceImpl implements SendMsgService {
 		receiveMsg.setUser(user);
 		receiveMsg.setSendMsg(sendMsg);
 		receiveMsg.setTypes(GlobalDefs.MSG_TYPES_MESSAGE);
+		receiveMsg.setCommenter(senderid);
 		receiveMsgDao.add(receiveMsg);
 		
 	}

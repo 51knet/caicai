@@ -50,7 +50,7 @@ public class ReceiveMsgInfoPageController {
 	
 	@RequestMapping(value="/admin/message/list")
 	public String receiveMsgList(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="1") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		logger.info("####  Into ReceiveMsgList page  ####");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			try {
@@ -63,15 +63,16 @@ public class ReceiveMsgInfoPageController {
 				Integer isReadCount = isReadMsgList.size();
 				Integer msgCount = msgList.size();
 				Integer isDeleCount = isDele.size();
-				int pageNum = MyUtil.getPageNumber(pageNumber, unReadCount ,pageSize);
-				Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndTypes(pageNum, pageSize, userInfo.getUser(), 1, GlobalDefs.MSG_TYPES_MESSAGE);
-				//Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndReadedAndTypes(pageNum, pageSize, "message", 1, user_id);
-				List<ReceiveMsg> unReadListSenderList = receiveMsgService.unReadMsgSenderList(user_id, GlobalDefs.MSG_TYPES_MESSAGE);
 				List<ReceiveMsg> unReadCommentList = receiveMsgService.unReadMsgSenderList(user_id, GlobalDefs.MSG_TYPES_COMMENT);
 				Comment newComment = null;
 				if(unReadCommentList.size()>0){
 					newComment = commentService.findOneByCommentId(unReadCommentList.get(0).getCommentid());
 				}
+				int pageNum = MyUtil.getPageNumber(pageNumber, unReadCommentList.size() ,pageSize);
+				//Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndTypes(pageNum, pageSize, userInfo.getUser(), 1, GlobalDefs.MSG_TYPES_MESSAGE);
+				Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndReadedAndTypes(pageNum, pageSize, "message", 3, user_id);
+				List<ReceiveMsg> unReadListSenderList = receiveMsgService.unReadMsgSenderList(user_id, GlobalDefs.MSG_TYPES_MESSAGE);
+				
 				model.addAttribute("unReadListSender",unReadListSenderList);
 				model.addAttribute("newComment", newComment );
 				model.addAttribute("unReadCount", unReadCount);
@@ -83,16 +84,7 @@ public class ReceiveMsgInfoPageController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			if (userInfo.getUser().getRole().equals("teacher")) {
-				return "admin.teacher.message.detail";
-			} else if (userInfo.getUser().getRole().equals("enterprise")) {
-				return "admin.enterprise.message.detail";
-			} else if (userInfo.getUser().getRole().equals("user")) {
-				return "admin.user.message.detail";
-			}else {
-				return "404";
-			}
+			return "admin."+userInfo.getRole()+".message.detail";
 	}
 	
 	@Transactional
@@ -106,15 +98,7 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("sendMsg", sendMsg);
 		model.addAttribute("senderId", senderId);
 		model.addAttribute("urmId", urmId);
-		if (userInfo.getUser().getRole().equals("teacher")) {
-			return "admin.teacher.message.send";
-		} else if (userInfo.getUser().getRole().equals("enterprise")) {
-			return "admin.enterprise.message.send";
-		} else if (userInfo.getUser().getRole().equals("user")) {
-			return "admin.user.message.send";
-		}else {
-			return "404";
-		}
+		return "admin."+userInfo.getRole()+".message.send";
 	}
 	
 	@Transactional
@@ -123,7 +107,6 @@ public class ReceiveMsgInfoPageController {
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long user_id = userInfo.getId();
-		User user = userService.findOne(user_id);
 		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(user_id);
 		List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(user_id);
 		List<ReceiveMsg> isDele = receiveMsgService.isDele(user_id);
@@ -141,15 +124,7 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("isDeleCount",isDeleCount);
 		//model.addAttribute("isReadMsgList", isReadMsgList);
 		model.addAttribute("page", page);
-		if (userInfo.getUser().getRole().equals("teacher")) {
-			return "admin.teacher.message.isReadDetail";
-		} else if (userInfo.getUser().getRole().equals("enterprise")) {
-			return "admin.enterprise.message.isReadDetail";
-		} else if (userInfo.getUser().getRole().equals("user")) {
-			return "admin.user.message.isReadDetail";
-		}else {
-			return "404";
-		}
+		return "admin."+userInfo.getRole()+".message.isReadDetail";
 	}
 	
 	@Transactional
@@ -158,7 +133,6 @@ public class ReceiveMsgInfoPageController {
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long user_id = userInfo.getId();
-		User user = userService.findOne(user_id);
 		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(user_id);
 		List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(user_id);
 		List<ReceiveMsg> isDele = receiveMsgService.isDele(user_id);
@@ -176,20 +150,24 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("isDeleCount",isDeleCount);
 		//model.addAttribute("isReadMsgList", isReadMsgList);
 		model.addAttribute("page", page);
-		if (userInfo.getUser().getRole().equals("teacher")) {
-			return "admin.teacher.message.isDeleDetail";
-		} else if (userInfo.getUser().getRole().equals("enterprise")) {
-			return "admin.enterprise.message.isDeleDetail";
-		} else if (userInfo.getUser().getRole().equals("user")) {
-			return "admin.user.message.isDeleDetaill";
-		}else {
-			return "404";
-		}
+		return "admin."+userInfo.getRole()+".message.isDeleDetaill";
 	}
 	
-	@RequestMapping(value="/admin/message/detail/{sender_id}")
-	public String showMsgBySender(@PathVariable Long sender_id,HttpSession session,Model model){
-		return "";
+	@RequestMapping(value="/admin/message/detail/{commenter_id}")
+	public String showMsgBySender(@PathVariable Long commenter_id,HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userInfo.getId());
+		model.addAttribute("unReadCount", unReadMsgList.size());
+		for (int i = 0; i < unReadMsgList.size(); i++) {
+			receiveMsgService.isRead(unReadMsgList.get(i).getId());
+		}
+		
+		List<ReceiveMsg> userAndCommenterMsgList = receiveMsgService.findMsgListByUserAndCommenter(userInfo.getId(), GlobalDefs.MSG_TYPES_MESSAGE, commenter_id);
+		int pageNum = MyUtil.getPageNumber(pageNumber, userAndCommenterMsgList.size() ,pageSize);
+		Page<ReceiveMsg> page = receiveMsgService.findMsgByUserAndCommenter(pageNum, pageSize, userInfo.getId(), GlobalDefs.MSG_TYPES_MESSAGE, commenter_id);
+		model.addAttribute("page", page);
+		return "admin."+userInfo.getRole()+".message.detail.list";
 	}
 	
 	@Transactional

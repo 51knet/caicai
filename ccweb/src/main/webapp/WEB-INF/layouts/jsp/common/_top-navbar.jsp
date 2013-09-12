@@ -22,7 +22,7 @@
 						style="margin-top: -3px;height:15px;"></img>
 				</a>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-						<li><a href='<c:url value="/admin/trend"></c:url>'>后台管理</a></li>
+						<li><a href='<c:url value="/admin/trend/all/all"></c:url>'>后台管理</a></li>
 						<li class="divider"></li>
 						<li>
 							<c:if test="${sessionUserInfo.role != 'user'}">

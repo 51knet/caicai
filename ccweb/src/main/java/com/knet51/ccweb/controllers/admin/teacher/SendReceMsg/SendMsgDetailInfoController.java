@@ -61,7 +61,7 @@ public class SendMsgDetailInfoController {
 			sendMsg.setContent(content);
 			sendMsg.setDate(date);
 			sendMsg.setUser(sender);
-			sendMsgService.add(sendMsg, receiveId);
+			sendMsgService.add(sendMsg, receiveId, userInfo.getId());
 			return "redirect:/admin/message/isRead";
 		}	
 	}
@@ -90,7 +90,7 @@ public class SendMsgDetailInfoController {
 			sendMsg.setContent(content);
 			sendMsg.setDate(date);
 			sendMsg.setUser(user);
-			sendMsgService.add(sendMsg, receiverId);
+			sendMsgService.add(sendMsg, receiverId, userInfo.getId());
 			return "redirect:/id/" + receiverId;
 		}	
 	}
