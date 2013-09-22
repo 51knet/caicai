@@ -103,8 +103,13 @@ public class ReceiveMsgServiceImpl implements ReceiveMsgService {
 	@Override
 	public List<ReceiveMsg> findMsgListByUserAndCommenter(Long user_id,
 			String types, Long commenter_id) {
-		// TODO Auto-generated method stub
 		return receiveMsgRepository.findMsgListByUsers(user_id, commenter_id, types);
+	}
+
+	@Override
+	public List<ReceiveMsg> findCommenterMsgList(String types, Integer readed,
+			Long userid, Long commenterid) {
+		return receiveMsgRepository.findCommenterMsgList(types, readed, userid, commenterid);
 	}
 
 }

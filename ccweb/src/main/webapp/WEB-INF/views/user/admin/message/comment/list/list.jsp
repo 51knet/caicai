@@ -4,7 +4,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
-<!--
+/*
 	$(document).ready(function(){
 		$(".unReadMsg").mouseover(function(){
 			  $(this).css("background-color","#fafafa");
@@ -12,8 +12,8 @@
 		$(".unReadMsg").mouseout(function(){
 			  $(this).css("background-color","");
 		});
-	});
-//-->
+	});*/
+
 </script>
 <style>
 .row-fluid.custom {
@@ -36,41 +36,30 @@
 .bb{
 	border-bottom: solid #cccccc 1px;
 }
-a{
-	text-decoration: none;
-}
+
 </style>
 <div class="row-fluid custom round">
 	<div class="row">
 		<h4>站内消息</h4>
 	</div>
 	<div class="content">	
-		<div style="text-align: center; margin-bottom: 10px;">
-				<table cellpadding="10" width=100%  border=0 style="" class="bb unReadMsg">
-		  			  <tr>
-					    <td rowspan="2" align="left" width="10%" ><a href="<c:url value='/admin/message/comment/detail'></c:url>"><img src="<c:url value='/resources/img/default/comm-icon.png'></c:url>" style="width:60px; height: 60px;"></a></td>
-					    <td align="left" style="font-weight: bold; ">评论</td>
-					    <td align="right"  width="40%"  style="color: #666; font-size: 13px;"> <fmt:formatDate value="${newComment.publishDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-					  </tr>
-					  <tr>
-					    <td colspan="2" align="left" style="color: #666; font-size: 13px;">
-					   			<c:if test="${newComment == null }"> 暂无评论</c:if>
-					   			<c:if test="${newComment != null }"> ${newComment.user.name }：${newComment.context }</c:if>  
-					    </td>
-					  </tr>
-			  	</table>
-		</div>
-	
 		<div >
-			<c:forEach items="${page.content}" var = "page" >
-				<table cellpadding="10" width=100%  border=0 style="" class="bb unReadMsg">
-		  			  <tr>
-					    <td rowspan="2" align="left" width="10%" ><a href='<c:url value="/admin/message/detail/${page.sendMsg.user.id}"></c:url>'><img src="<c:url value='${page.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></a></td>
-					    <td align="left" style="font-weight: bold; padding:10px 10px;">${page.sendMsg.user.name}</td>
-					    <td align="right"  width="20%"  style="color: #666; font-size: 13px;padding:10px 10px;"> ${page.sendMsg.date}</td>
+			<c:forEach items="${commentBeansListList}" var = "commentBeansList" >
+				<table cellpadding="10" width=100%   style=" border: 1px solid #ccc; 	border: 1px solid #cae893; background-color:#fafafa; margin-bottom: 10px;" class="bb unReadMsg round">
+				  	  <tr>
+					    <td rowspan="3" align="left" width="10%" ><img src="<c:url value='${commentBeansList.comment.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
+					    <td align="left" style="font-weight: bold; padding:10px 10px;">${commentBeansList.comment.user.name}</td>
+					    <td align="right"  width="20%"  style="color: #666; font-size: 12px;padding:10px 10px;"> ${commentBeansList.comment.publishDate}</td>
 					  </tr>
 					  <tr>
-					    <td colspan="2" align="left" style="color: #666; font-size: 13px;padding:10px 10px;"><a href="#">${page.sendMsg.content}</a></td>
+					    <td colspan="2" align="left" style="color: #80b029; font-size: 14px;padding:10px 10px;">${commentBeansList.comment.context}</td>
+					  </tr>
+					  <tr>
+					    <td colspan="2" align="left" style="color: #80b029; font-size: 14px;padding:10px 10px;">
+					   		<c:if test="${commentBeansList.comment.host.id != sessionUserInfo.id }">
+					   			评论了我的动态：${commentBeansList.trends.context}
+					   		</c:if>	 
+					    </td>
 					  </tr>
 		  		</table>
 	  		</c:forEach>

@@ -150,7 +150,7 @@ public class UserController {
 	}
 	
 	/**
-	 * rturn trend comment ajax
+	 * return trend comment ajax
 	 * @param trend_id
 	 * @return
 	 * @throws Exception

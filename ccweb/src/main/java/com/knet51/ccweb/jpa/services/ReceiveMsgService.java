@@ -22,6 +22,7 @@ public interface ReceiveMsgService {
 	List<ReceiveMsg> unReadMsgSenderList(Long userId , String types); 
 	
 	Page<ReceiveMsg> findReceiveMsgByUserAndReadedAndTypes(int pageNum, int pageSize, String types, Integer readed, Long userid);
+	List<ReceiveMsg> findCommenterMsgList(String types, Integer readed, Long userid,Long commenterid);
 	
 	Page<ReceiveMsg> findMsgByUserAndCommenter(int pageNum, int pageSize ,Long user_id, String types,Long commenter_id);
 	List<ReceiveMsg> findMsgListByUserAndCommenter(Long user_id, String types,Long commenter_id);
