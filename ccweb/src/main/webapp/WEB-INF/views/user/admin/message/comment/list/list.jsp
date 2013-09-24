@@ -44,20 +44,23 @@
 	</div>
 	<div class="content">	
 		<div >
-			<c:forEach items="${commentBeansListList}" var = "commentBeansList" >
-				<table cellpadding="10" width=100%   style=" border: 1px solid #ccc; 	border: 1px solid #cae893; background-color:#fafafa; margin-bottom: 10px;" class="bb unReadMsg round">
+			<c:forEach items="${commentBeansList}" var = "commentBeansList" >
+				<table cellpadding="10" width=100%   style="	border: 1px solid #cae893; background-color:#fafafa; margin-bottom: 10px;" class="bb unReadMsg round">
 				  	  <tr>
-					    <td rowspan="3" align="left" width="10%" ><img src="<c:url value='${commentBeansList.comment.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
-					    <td align="left" style="font-weight: bold; padding:10px 10px;">${commentBeansList.comment.user.name}</td>
-					    <td align="right"  width="20%"  style="color: #666; font-size: 12px;padding:10px 10px;"> ${commentBeansList.comment.publishDate}</td>
+					    <td rowspan="3" align="left" valign="top" width="10%" ><img src="<c:url value='${commentBeansList.comment.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
+					    <td align="left" style="font-weight: bold;">${commentBeansList.comment.user.name}</td>
+					    <td align="right"  width="20%"  style="color: #666; font-size: 12px;">${commentBeansList.comment.publishDate}</td>
 					  </tr>
 					  <tr>
-					    <td colspan="2" align="left" style="color: #80b029; font-size: 14px;padding:10px 10px;">${commentBeansList.comment.context}</td>
+					    <td colspan="2" align="left" style="color: #80b029; font-size: 14px;">${commentBeansList.comment.context}</td>
 					  </tr>
 					  <tr>
-					    <td colspan="2" align="left" style="color: #80b029; font-size: 14px;padding:10px 10px;">
+					    <td colspan="2" align="left" style="color: #80b029; font-size: 14px;">
 					   		<c:if test="${commentBeansList.comment.host.id != sessionUserInfo.id }">
 					   			评论了我的动态：${commentBeansList.trends.context}
+					   		</c:if>	
+					   		<c:if test="${commentBeansList.comment.host.id != null }">
+					   			回复了我的评论
 					   		</c:if>	 
 					    </td>
 					  </tr>

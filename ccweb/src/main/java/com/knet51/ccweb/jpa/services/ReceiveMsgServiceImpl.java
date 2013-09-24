@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,23 +73,23 @@ public class ReceiveMsgServiceImpl implements ReceiveMsgService {
 
 	@Override
 	public Page<ReceiveMsg> findReceiveMsgByUserAndTypes(int pageNum, int pageSize,
-			User user, Integer isRead,String types) {
+			Long userId, Integer isRead,String types) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
-		Page<ReceiveMsg> onePage = receiveMsgRepository.findReceiveMsgByUserAndReadedAndTypes(user, isRead, types, dateDesc);
+		Page<ReceiveMsg> onePage = receiveMsgRepository.findReceiveMsgByUserAndReadedAndTypes(userId, isRead, types, dateDesc);
 		return onePage;
 	}
 
 	@Override
-	public List<ReceiveMsg> unReadMsgSenderList(Long userId , String types) {
-		return receiveMsgDao.unReadMsgSenderList(userId, types);
+	public List<ReceiveMsg> unReadMsgSenderListGroup(Long userId , String types) {
+		return receiveMsgDao.unReadMsgSenderListGroup(userId, types);
 	}
 
 
 	@Override
-	public Page<ReceiveMsg> findReceiveMsgByUserAndReadedAndTypes(int pageNum,
+	public Page<ReceiveMsg> findReceiveMsgByUserAndReadedAndTypesGroup(int pageNum,
 			int pageSize, String types, Integer readed, Long userid) {
 		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
-		Page<ReceiveMsg> onePage = receiveMsgRepository.findReceiveMsg(types, readed, userid, dateDesc);
+		Page<ReceiveMsg> onePage = receiveMsgRepository.findReceiveMsgGroup(types, readed, userid, dateDesc);
 		return onePage;
 	}
 
@@ -110,6 +111,12 @@ public class ReceiveMsgServiceImpl implements ReceiveMsgService {
 	public List<ReceiveMsg> findCommenterMsgList(String types, Integer readed,
 			Long userid, Long commenterid) {
 		return receiveMsgRepository.findCommenterMsgList(types, readed, userid, commenterid);
+	}
+
+	@Override
+	public List<ReceiveMsg> unReadMsgList(Long userId, String types, Integer readed) {
+		Sort sort = new Sort(Direction.DESC, "id"); 
+		return receiveMsgRepository.findUnReadMsgList(types, readed, userId,sort);
 	}
 
 }

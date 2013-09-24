@@ -54,7 +54,7 @@ a{
 					  </tr>
 					  <tr>
 					    <td colspan="2" align="left" style="color: #666; font-size: 13px;">
-					   			<c:if test="${newComment == null }"> 暂无评论</c:if>
+					   			<c:if test="${newComment == null }"> 暂无新评论</c:if>
 					   			<c:if test="${newComment != null }"> ${newComment.user.name }：${newComment.context }</c:if>  
 					    </td>
 					  </tr>

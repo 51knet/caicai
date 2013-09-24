@@ -77,7 +77,7 @@ public class ReceiveMsgDaoImpl implements ReceiveMsgDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ReceiveMsg> unReadMsgSenderList(Long userId , String types) {
+	public List<ReceiveMsg> unReadMsgSenderListGroup(Long userId , String types) {
 		Sort sort = new Sort(Direction.DESC, "id"); 
 		List<ReceiveMsg> list = em.createQuery("from ReceiveMsg re where re.id in (select r.id from ReceiveMsg r where r.readed <3 and r.user.id="+userId+" and r.types = '"+types+"' group by r.commenter ) order by re.id desc").getResultList();
 		return list;

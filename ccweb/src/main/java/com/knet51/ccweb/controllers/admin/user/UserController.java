@@ -97,7 +97,7 @@ public class UserController {
 			if(trendRole.equals("teacher") || trendRole .equals("user")){
 				myTrends = trendsService.showAllTrendsByUserIdAndRoleAndVariety(userInfo.getId(), trendRole, variety);
 			}else{
-				myTrends = trendsService.showAllTrendsBuyUserIdAndVariety(userInfo.getId(), variety);
+				myTrends = trendsService.showAllTrendsByUserIdAndVariety(userInfo.getId(), variety);
 			}
 		}
 		
@@ -262,9 +262,7 @@ public class UserController {
 			receiveMsg.setCommentid(newComment.getId());
 			receiveMsg.setTypes(GlobalDefs.MSG_TYPES_COMMENT);
 			receiveMsg.setReaded(1);
-			if(host.getId().equals(t.getUser().getId())){
-				receiveMsg.setUser(host);
-			}
+			receiveMsg.setUser(host);
 			receiveMsgService.add(receiveMsg);
 			return newComment; 
 		}

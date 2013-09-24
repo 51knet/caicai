@@ -15,7 +15,8 @@ public interface ReceiveMsgDao {
 	List<ReceiveMsg> isReadList(Long userId);
 	List<ReceiveMsg> isDele(Long userId);
 	
-	List<ReceiveMsg> unReadMsgSenderList(Long userId, String types);
+	List<ReceiveMsg> unReadMsgSenderListGroup(Long userId, String types);
+	
 	
 	List<ReceiveMsg> showMsgByUsers(Long user_id ,Long sender_id, String types);
 }

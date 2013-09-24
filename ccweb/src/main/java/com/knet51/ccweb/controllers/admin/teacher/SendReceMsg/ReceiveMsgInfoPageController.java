@@ -26,7 +26,6 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Comment;
 import com.knet51.ccweb.jpa.entities.ReceiveMsg;
 import com.knet51.ccweb.jpa.entities.SendMsg;
-import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.services.CommentService;
 import com.knet51.ccweb.jpa.services.ReceiveMsgService;
@@ -59,25 +58,32 @@ public class ReceiveMsgInfoPageController {
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			try {
 				Long user_id = userInfo.getId();
+				// count the total number of the unReadMsgList size
 				List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(user_id);
+				Integer unReadCount = unReadMsgList.size();
+				
 				List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(user_id);
 				List<ReceiveMsg> isDele = receiveMsgService.isDele(user_id);
 				List<ReceiveMsg> msgList = receiveMsgService.list(user_id);
-				Integer unReadCount = unReadMsgList.size();
+				
 				Integer isReadCount = isReadMsgList.size();
 				Integer msgCount = msgList.size();
 				Integer isDeleCount = isDele.size();
-				List<ReceiveMsg> unReadCommentList = receiveMsgService.unReadMsgSenderList(user_id, GlobalDefs.MSG_TYPES_COMMENT);
+				
+				
+				List<ReceiveMsg> unReadCommentList = receiveMsgService.unReadMsgList(user_id, GlobalDefs.MSG_TYPES_COMMENT, 2);
 				Comment newComment = null;
 				if(unReadCommentList.size()>0){
 					newComment = commentService.findOneByCommentId(unReadCommentList.get(0).getCommentid());
 				}
-				int pageNum = MyUtil.getPageNumber(pageNumber, unReadCommentList.size() ,pageSize);
-				//Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndTypes(pageNum, pageSize, userInfo.getUser(), 1, GlobalDefs.MSG_TYPES_MESSAGE);
-				Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndReadedAndTypes(pageNum, pageSize, "message", 3, user_id);
-				List<ReceiveMsg> unReadListSenderList = receiveMsgService.unReadMsgSenderList(user_id, GlobalDefs.MSG_TYPES_MESSAGE);
 				
-				model.addAttribute("unReadListSender",unReadListSenderList);
+				List<ReceiveMsg> unReadMessageListGroup = receiveMsgService.unReadMsgSenderListGroup(user_id, GlobalDefs.MSG_TYPES_MESSAGE);
+				int pageNum = MyUtil.getPageNumber(pageNumber, unReadMessageListGroup.size() ,pageSize);
+				//Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndTypes(pageNum, pageSize, userInfo.getUser(), 1, GlobalDefs.MSG_TYPES_MESSAGE);
+				Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndReadedAndTypesGroup(pageNum, pageSize, GlobalDefs.MSG_TYPES_MESSAGE, 3, user_id);
+				//List<ReceiveMsg> unReadListSenderList = receiveMsgService.unReadMsgSenderListGroup(user_id, GlobalDefs.MSG_TYPES_MESSAGE);
+				
+				//model.addAttribute("unReadListSender",unReadListSenderList);
 				model.addAttribute("newComment", newComment );
 				model.addAttribute("unReadCount", unReadCount);
 				model.addAttribute("isReadCount", isReadCount);
@@ -120,7 +126,7 @@ public class ReceiveMsgInfoPageController {
 		Integer msgCount = msgList.size();
 		Integer isDeleCount = isDele.size();
 		int pageNum = MyUtil.getPageNumber(pageNumber, isReadCount ,pageSize);
-		Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndTypes(pageNum, pageSize, userInfo.getUser(), 2, "message");
+		Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndTypes(pageNum, pageSize,userInfo.getId(), 2, GlobalDefs.MSG_TYPES_MESSAGE);
 		
 		model.addAttribute("unReadCount", unReadCount);
 		model.addAttribute("isReadCount", isReadCount);
@@ -146,7 +152,7 @@ public class ReceiveMsgInfoPageController {
 		Integer msgCount = msgList.size();
 		Integer isDeleCount = isDele.size();
 		int pageNum = MyUtil.getPageNumber(pageNumber, isDeleCount ,pageSize);
-		Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndTypes(pageNum, pageSize, userInfo.getUser(), 3, "message");
+		Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndTypes(pageNum, pageSize, userInfo.getId(), 3, GlobalDefs.MSG_TYPES_MESSAGE);
 
 		model.addAttribute("unReadCount", unReadCount);
 		model.addAttribute("isReadCount", isReadCount);
@@ -156,7 +162,15 @@ public class ReceiveMsgInfoPageController {
 		model.addAttribute("page", page);
 		return "admin."+userInfo.getRole()+".message.isDeleDetaill";
 	}
-	
+	/**
+	 * show All msg by sender and receiver
+	 * @param commenter_id
+	 * @param session
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
 	@RequestMapping(value="/admin/message/detail/{commenter_id}")
 	public String showMsgBySender(@PathVariable Long commenter_id,HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
@@ -174,35 +188,48 @@ public class ReceiveMsgInfoPageController {
 		return "admin."+userInfo.getRole()+".message.detail.list";
 	}
 	
-	//show unRead comment list in msg page
+	/**
+	 * show unRead comment list in msg 
+	 * @param session
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
 	@RequestMapping(value="/admin/message/comment/detail")
 	public String showCommentdetail(HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		List<ReceiveMsg> unReadCommentList = receiveMsgService.unReadMsgSenderList(userInfo.getId(), GlobalDefs.MSG_TYPES_COMMENT);
-		int pageNum = MyUtil.getPageNumber(pageNumber, unReadCommentList.size() ,pageSize);
-		Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndReadedAndTypes(pageNum, pageSize, GlobalDefs.MSG_TYPES_COMMENT, 1, userInfo.getId());
-		
-		List<CommentBeans> commentBeansList = new ArrayList<CommentBeans>();
-		for (int i = 0; i < page.getContent().size(); i++) {
-			CommentBeans commentBeans = new CommentBeans();
-			Comment comment = commentService.findOneByCommentId(unReadCommentList.get(i).getCommentid());
-			Trends  trends = trendsService.findOneById(comment.getTrendId());
-			commentBeans.setComment(comment);
-			commentBeans.setTrends(trends);
-			commentBeansList.add(commentBeans);
+		try {
+			
+			List<ReceiveMsg> unReadCommentList = receiveMsgService.unReadMsgList(userInfo.getId(), GlobalDefs.MSG_TYPES_COMMENT, 2);
+			int pageNum = MyUtil.getPageNumber(pageNumber, unReadCommentList.size() ,pageSize);
+			Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndTypes(pageNum, pageSize, userInfo.getId(),3,GlobalDefs.MSG_TYPES_COMMENT);
+			logger.info("---- into message comment detail list----");
+			List<CommentBeans> commentBeansList = new ArrayList<CommentBeans>();
+			for (int i = 0; i < page.getContent().size(); i++) {
+				CommentBeans commentBeans = new CommentBeans();
+				Comment comment = commentService.findOneByCommentId(page.getContent().get(i).getCommentid());
+				Trends  trends = trendsService.findOneById(comment.getTrendId());
+				commentBeans.setComment(comment);
+				commentBeans.setTrends(trends);
+				commentBeansList.add(commentBeans);
+			}
+			
+			// change the unReadComment to readed 
+			for (int i = 0; i < unReadCommentList.size(); i++) {
+				receiveMsgService.isRead(unReadCommentList.get(i).getId());
+			}
+			// count the total number of the unReadMsgList size
+			List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userInfo.getId());
+			
+			model.addAttribute("page", page);
+			model.addAttribute("commentBeansList", commentBeansList);
+			model.addAttribute("unReadCount", unReadMsgList.size());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		// change the unReadComment to readed 
-		for (int i = 0; i < unReadCommentList.size(); i++) {
-			receiveMsgService.isRead(unReadCommentList.get(i).getId());
-		}
-		// count the total number of the unReadMsgList size
-		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userInfo.getId());
-		
-		model.addAttribute("page", page);
-		model.addAttribute("commentBeansList", commentBeansList);
-		model.addAttribute("unReadCount", unReadMsgList.size());
 		return "admin."+userInfo.getRole()+".message.comment.detail.list";
 	}
 	

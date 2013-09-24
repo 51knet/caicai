@@ -18,10 +18,12 @@ public interface ReceiveMsgService {
 	List<ReceiveMsg> isReadList(Long userId);
 	List<ReceiveMsg> isDele(Long userId);
 	
-	Page<ReceiveMsg> findReceiveMsgByUserAndTypes(int pageNum, int pageSize, User user,Integer isRead, String types);
-	List<ReceiveMsg> unReadMsgSenderList(Long userId , String types); 
+	Page<ReceiveMsg> findReceiveMsgByUserAndTypes(int pageNum, int pageSize, Long userId,Integer isRead, String types);
+	List<ReceiveMsg> unReadMsgSenderListGroup(Long userId , String types); 
 	
-	Page<ReceiveMsg> findReceiveMsgByUserAndReadedAndTypes(int pageNum, int pageSize, String types, Integer readed, Long userid);
+	List<ReceiveMsg> unReadMsgList(Long userId , String types, Integer readed); 
+	
+	Page<ReceiveMsg> findReceiveMsgByUserAndReadedAndTypesGroup(int pageNum, int pageSize, String types, Integer readed, Long userid);
 	List<ReceiveMsg> findCommenterMsgList(String types, Integer readed, Long userid,Long commenterid);
 	
 	Page<ReceiveMsg> findMsgByUserAndCommenter(int pageNum, int pageSize ,Long user_id, String types,Long commenter_id);

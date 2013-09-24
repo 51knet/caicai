@@ -22,7 +22,7 @@ public interface TrendsService {
 	
 	List<Trends> showAllTrendsByUserIdAndRoleAndVariety(Long u_id,String role,String variety);
 	
-	List<Trends> showAllTrendsBuyUserIdAndVariety(Long u_id,String variety);
+	List<Trends> showAllTrendsByUserIdAndVariety(Long u_id,String variety);
 	
 	List<Trends> showAllTeacherTrendsByUserId(Long u_id);
 }

@@ -72,7 +72,7 @@ public class TrendsServiceImpl implements TrendsService {
 
 
 	@Override
-	public List<Trends> showAllTrendsBuyUserIdAndVariety(Long u_id,
+	public List<Trends> showAllTrendsByUserIdAndVariety(Long u_id,
 			String variety) {
 		return trendsRepository.findAllByUserAndVariety(u_id, variety);
 	}
