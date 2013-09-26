@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.FriendsRelated;
+import com.knet51.ccweb.jpa.entities.ReceiveMsg;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
+import com.knet51.ccweb.jpa.services.ReceiveMsgService;
 import com.knet51.ccweb.jpa.services.UserService;
 
 @Controller
@@ -22,9 +24,10 @@ public class FriendsRelatedDetailController {
 	
 	@Autowired
 	private UserService userService;
-	
 	@Autowired
 	private FriendsRelateService friendsRelateService; 
+	@Autowired 
+	private ReceiveMsgService receiveMsgService;
 	
 	@RequestMapping(value="/addrelation")
 	public String askFriendsRelated(@RequestParam("uid") Long host_id,HttpSession session){
@@ -38,7 +41,15 @@ public class FriendsRelatedDetailController {
 		friendsReiated.setFollow_id(user_id);
 		friendsReiated.setGroups(host.getRole());
 		friendsRelateService.save(friendsReiated);
-		return "redirect:/teacher/" + host_id;
+		
+		ReceiveMsg receiveMsg = new ReceiveMsg();
+		receiveMsg.setCommenter(userInfo.getId());
+		
+		receiveMsg.setTypes(GlobalDefs.MSG_TYPES_FOCUS);
+		receiveMsg.setReaded(1);
+		receiveMsg.setUser(host);
+		receiveMsgService.add(receiveMsg);
+		return "redirect:/id/" + host_id;
 	}
 	
 	@RequestMapping(value="/delerelation")
@@ -46,7 +57,7 @@ public class FriendsRelatedDetailController {
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		FriendsRelated related = friendsRelateService.findOneByHostIdAndFollowId(host_id, userInfo.getId());
 		friendsRelateService.deleteById(related.getId());
-		return "redirect:/teacher/" + host_id;
+		return "redirect:/id/" + host_id;
 	}
 	
 }

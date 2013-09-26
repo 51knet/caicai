@@ -36,6 +36,7 @@ public final class GlobalDefs {
 	// receive msg types
 	public static final String MSG_TYPES_COMMENT = "comment";
 	public static final String MSG_TYPES_MESSAGE = "message";
+	public static final String MSG_TYPES_FOCUS = "focus";
 	
 	//super admin's pwd
 	public static final String SUPER_ADMIN_PWD = "caicai6688";

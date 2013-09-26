@@ -50,12 +50,33 @@ a{
 		  			  <tr>
 					    <td rowspan="2" align="left" width="10%" ><a href="<c:url value='/admin/message/comment/detail'></c:url>"><img src="<c:url value='/resources/img/default/comm-icon.png'></c:url>" style="width:60px; height: 60px;"></a></td>
 					    <td align="left" style="font-weight: bold; ">评论</td>
-					    <td align="right"  width="40%"  style="color: #666; font-size: 13px;"> <fmt:formatDate value="${newComment.publishDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+					    <td align="right"   style="color: #666; font-size: 13px; width:40%;"> <fmt:formatDate value="${newComment.publishDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 					  </tr>
 					  <tr>
 					    <td colspan="2" align="left" style="color: #666; font-size: 13px;">
 					   			<c:if test="${newComment == null }"> 暂无新评论</c:if>
 					   			<c:if test="${newComment != null }"> ${newComment.user.name }：${newComment.context }</c:if>  
+					    </td>
+					  </tr>
+			  	</table>
+		</div>
+		
+		<div style="text-align: center; margin-bottom: 10px;">
+				<table cellpadding="10" width=100%  border=0 style="" class="bb unReadMsg">
+		  			  <tr>
+					    <td rowspan="2" align="left" width="10%" ><a href="<c:url value='/admin/message/focus/detail'></c:url>"><img src="<c:url value='/resources/img/default/focus-icon.png'></c:url>" style="width:60px; height: 60px;"></a></td>
+					    <td align="left" style="font-weight: bold; ">我的新粉丝</td>
+					    <td align="right" ></td>
+					  </tr>
+					  <tr>
+					    <td colspan="2" align="left" style="color: #666; font-size: 13px;">
+					   			<c:if test="${unReadFollowerCount <= 0 }"> 暂无新的粉丝</c:if>
+					   			<c:if test="${unReadFollowerCount > 0}">这些人刚成为我的粉丝：
+						   			<c:forEach items="${unReadFollower }" var="unReadFollower" begin="0" end="4">
+						   				<a href="<c:url value="/id/${unReadFollower.id }"></c:url>">${unReadFollower.name }、</a>
+						   			</c:forEach>  <a href="<c:url value='/admin/message/focus/detail'></c:url>" style="color: #80b029; font-size: 14px; margin-left: 10px;">查看详细 >></a>
+					   			</c:if>
+					   			
 					    </td>
 					  </tr>
 			  	</table>

@@ -109,6 +109,12 @@
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/user/admin/message/comment/list/list.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.user.message.focus.detail.list" extends="user-admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/message/focus/list/list.jsp"></put-attribute>
+	</definition>
 
 	<definition name="admin.user.message.send" extends="user-admin-layout">
 		<put-attribute name="title" value="私信" />
@@ -127,6 +133,7 @@
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/user/admin/message/isDeleMsg.jsp"></put-attribute>
 	</definition>
+	<!-- end msg -->
 	
 	<definition name="course.study.view" extends="usercourse-layout">
 		<put-attribute name="title" value="课程学习" />

@@ -26,6 +26,7 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Comment;
 import com.knet51.ccweb.jpa.entities.ReceiveMsg;
 import com.knet51.ccweb.jpa.entities.SendMsg;
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.services.CommentService;
 import com.knet51.ccweb.jpa.services.ReceiveMsgService;
@@ -62,19 +63,26 @@ public class ReceiveMsgInfoPageController {
 				List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(user_id);
 				Integer unReadCount = unReadMsgList.size();
 				
-				List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(user_id);
-				List<ReceiveMsg> isDele = receiveMsgService.isDele(user_id);
+				//List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(user_id);
+				//List<ReceiveMsg> isDele = receiveMsgService.isDele(user_id);
 				List<ReceiveMsg> msgList = receiveMsgService.list(user_id);
 				
-				Integer isReadCount = isReadMsgList.size();
+				//Integer isReadCount = isReadMsgList.size();
 				Integer msgCount = msgList.size();
-				Integer isDeleCount = isDele.size();
+				//Integer isDeleCount = isDele.size();
 				
 				
 				List<ReceiveMsg> unReadCommentList = receiveMsgService.unReadMsgList(user_id, GlobalDefs.MSG_TYPES_COMMENT, 2);
 				Comment newComment = null;
 				if(unReadCommentList.size()>0){
 					newComment = commentService.findOneByCommentId(unReadCommentList.get(0).getCommentid());
+				}
+				
+				List<ReceiveMsg> unReadFocusList = receiveMsgService.unReadMsgList(user_id, GlobalDefs.MSG_TYPES_FOCUS, 2);
+				List<User> unReadFollower = new ArrayList<User>();
+				for (int i = 0; i < unReadFocusList.size(); i++) {
+					User user = userService.findOne(unReadFocusList.get(i).getCommenter());
+					unReadFollower.add(user);
 				}
 				
 				List<ReceiveMsg> unReadMessageListGroup = receiveMsgService.unReadMsgSenderListGroup(user_id, GlobalDefs.MSG_TYPES_MESSAGE);
@@ -84,11 +92,13 @@ public class ReceiveMsgInfoPageController {
 				//List<ReceiveMsg> unReadListSenderList = receiveMsgService.unReadMsgSenderListGroup(user_id, GlobalDefs.MSG_TYPES_MESSAGE);
 				
 				//model.addAttribute("unReadListSender",unReadListSenderList);
+				model.addAttribute("unReadFollower", unReadFollower );
+				model.addAttribute("unReadFollowerCount", unReadFollower.size() );
 				model.addAttribute("newComment", newComment );
 				model.addAttribute("unReadCount", unReadCount);
-				model.addAttribute("isReadCount", isReadCount);
+				//model.addAttribute("isReadCount", isReadCount);
 				model.addAttribute("msgCount", msgCount);
-				model.addAttribute("isDeleCount",isDeleCount);
+				//model.addAttribute("isDeleCount",isDeleCount);
 				//model.addAttribute("unReadMsgList", unReadMsgList);
 				model.addAttribute("page", page);
 			} catch (Exception e) {
@@ -176,11 +186,14 @@ public class ReceiveMsgInfoPageController {
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<ReceiveMsg> unReadMsgList =  receiveMsgService.findCommenterMsgList(GlobalDefs.MSG_TYPES_MESSAGE, 2, userInfo.getId(), commenter_id);
-		model.addAttribute("unReadCount", unReadMsgList.size());
+		
 		for (int i = 0; i < unReadMsgList.size(); i++) {
 			receiveMsgService.isRead(unReadMsgList.get(i).getId());
 		}
 		
+		List<ReceiveMsg> unReadAllMsgList =  receiveMsgService.unReadList(userInfo.getId());
+		model.addAttribute("unReadCount", unReadAllMsgList.size());
+
 		List<ReceiveMsg> userAndCommenterMsgList = receiveMsgService.findMsgListByUserAndCommenter(userInfo.getId(), GlobalDefs.MSG_TYPES_MESSAGE, commenter_id);
 		int pageNum = MyUtil.getPageNumber(pageNumber, userAndCommenterMsgList.size() ,pageSize);
 		Page<ReceiveMsg> page = receiveMsgService.findMsgByUserAndCommenter(pageNum, pageSize, userInfo.getId(), GlobalDefs.MSG_TYPES_MESSAGE, commenter_id);
@@ -222,15 +235,43 @@ public class ReceiveMsgInfoPageController {
 			}
 			// count the total number of the unReadMsgList size
 			List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userInfo.getId());
+			model.addAttribute("unReadCount", unReadMsgList.size());
 			
 			model.addAttribute("page", page);
 			model.addAttribute("commentBeansList", commentBeansList);
-			model.addAttribute("unReadCount", unReadMsgList.size());
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "admin."+userInfo.getRole()+".message.comment.detail.list";
+	}
+	
+	/**
+	 * show unRead comment list in msg 
+	 * @param session
+	 * @param model
+	 * @param pageNumber
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value="/admin/message/focus/detail")
+	public String showNewFocusdetail(HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		List<ReceiveMsg> unReadFocusList = receiveMsgService.unReadMsgList(userInfo.getId(), GlobalDefs.MSG_TYPES_FOCUS, 2);
+		List<User> unReadFollower = new ArrayList<User>();
+		for (int i = 0; i < unReadFocusList.size(); i++) {
+			User user = userService.findOne(unReadFocusList.get(i).getCommenter());
+			unReadFollower.add(user);
+			receiveMsgService.isRead(unReadFocusList.get(i).getId());
+		}
+		model.addAttribute("unReadFollower", unReadFollower);
+		model.addAttribute("unReadFollowerCount", unReadFollower.size());
+		
+		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(userInfo.getId());
+		model.addAttribute("unReadCount", unReadMsgList.size());
+		return "admin."+userInfo.getRole()+".message.focus.detail.list";
 	}
 	
 	@Transactional

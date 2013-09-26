@@ -207,7 +207,7 @@ public class UserController {
 		Trends t = new Trends(); 
 		t = trendsService.findOneById(trend_id);
 		Comment comment = new Comment();
-		ReceiveMsg receiveMsg = new ReceiveMsg();
+		
 		if(validResult.hasErrors()){
 			return null;
 		}else{
@@ -219,6 +219,7 @@ public class UserController {
 		comment.setPublishDate(new Date());
 		Comment newComment = commentService.createComment(comment);
 		
+		ReceiveMsg receiveMsg = new ReceiveMsg();
 		receiveMsg.setCommenter(userInfo.getId());
 		receiveMsg.setCommentid(newComment.getId());
 		receiveMsg.setTypes(GlobalDefs.MSG_TYPES_COMMENT);
