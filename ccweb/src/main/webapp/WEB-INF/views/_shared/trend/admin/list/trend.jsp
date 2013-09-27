@@ -5,6 +5,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
+<script type="text/javascript">
+$(document).ready(function() {	
+	$('.deleteMsgPostBtn').on('click', function() {
+		var comment_id = $(this).next().val();
+		$('#deleteMsgPostModal #commentId').val(comment_id);	
+	});
+});
+
+</script>
 <style>
 <!--
 .bb{
@@ -215,7 +224,12 @@ text-decoration: none;
 							</td></tr>
 							<tr>
 								<td align="left" valign="top">	<span class="date"><fmt:formatDate value="${comment.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></td>
-								<td align="right" valign="top">	<a class="color_green" href="javascript:void(0)" onclick="showReply(${comment.id })">回复</a></td>
+								<td align="right" valign="top">	
+									<a class="color_green" href="javascript:void(0)" onclick="showReply(${comment.id })">回复</a>
+									<c:if test="${sessionUserInfo.id == comment.user.id }">
+									|	 <a class="deleteAnnoPostBtn color_green" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">删除</a><input type="hidden" value="${comment.id} ">
+									</c:if>
+								</td>
 							</tr>
 							<tr  class='bb'><td  align='right' valign= 'top' colspan="2">
 								<div style="display: none; margin-top: 10px;" id="${comment.id }_reply_div">
@@ -241,6 +255,26 @@ text-decoration: none;
 		</c:if>
 		<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 	</div>
+</div>
+
+<!-- delete msgForm -->
+<div class="modal hide fade" id="deleteMsgPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">请注意</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>你确定删除吗？</p>
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+	    <form action='<c:url value="/admin/message/comment/destory"></c:url>' method="post" style="display: inline-block;" >
+	    	<input id="commentId" type="hidden" name="commentId" />
+	    	<input  type="hidden" name="trendRole" value="${trendRole }" />
+	    	<input  type="hidden" name="trendVariety"  value="${trendVariety}"/>
+	    	<button class="btn btn-success">确定</button>
+	    </form>
+	  </div>
 </div>
 
 

@@ -104,4 +104,6 @@ public class SendMsgDetailInfoController {
 		return AjaxValidationEngine.process(result);
 	}
 	
+	
+
 }

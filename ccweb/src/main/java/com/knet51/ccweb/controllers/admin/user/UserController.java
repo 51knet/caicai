@@ -60,7 +60,7 @@ public class UserController {
 	@Autowired
 	private CourseService courseService;
 	@Autowired 
-	private ReceiveMsgService receiveMsgService;
+	private ReceiveMsgService receiveMsgService; 
 	
 	/**
 	 * big time line
@@ -495,6 +495,20 @@ public class UserController {
 			e.printStackTrace();
 			return "404";
 		}
+	}
+	
+	@RequestMapping(value="/admin/message/comment/destory" ,method = RequestMethod.POST)
+	public String destoryComment(HttpSession session,@RequestParam("trendRole") String trendRole,
+			@RequestParam("trendVariety") String trendVariety,@RequestParam("commentId") Long comment_id){
+		
+		try {
+			if(comment_id != null){
+				commentService.deleteComment(comment_id);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/admin/trend/"+trendRole+"/"+trendVariety;
 	}
 	
 }
