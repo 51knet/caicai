@@ -28,7 +28,7 @@ public class CommonController {
 			List<User> newUserList = new ArrayList<User>();
 			if(searchParam.trim() != null ){
 				for(int i=0;i<userList.size();i++){
-					if(userList.get(i).getForbidden() == null && userList.get(i).getName().contains(searchParam) ){
+					if(userList.get(i).getForbidden() == null && userList.get(i).getName()!=null && userList.get(i).getName().contains(searchParam) ){
 						System.out.println("---name="+userList.get(i).getName());
 						newUserList.add(userList.get(i));
 					}
