@@ -22,15 +22,27 @@ public class CommonController {
 	
 	@RequestMapping(value="/searchUser",method=RequestMethod.POST)
 	public String findUserByName(@RequestParam("searchParam") String searchParam,Model model){
-		List<User> userList = userService.findAllUsers();
-		List<User> newList = new ArrayList<User>();
-		for(int i=0;i<userList.size();i++){
-			if(userList.get(i).getName().contains(searchParam) && userList.get(i).getForbidden() == null){
-				newList.add(userList.get(i));
+		System.out.println("---- into search user controller ----");
+		try {
+			List<User> userList = userService.findAllUsers();
+			List<User> newUserList = new ArrayList<User>();
+			if(searchParam.trim() != null ){
+				for(int i=0;i<userList.size();i++){
+					if(userList.get(i).getForbidden() == null && userList.get(i).getName().contains(searchParam) ){
+						System.out.println("---name="+userList.get(i).getName());
+						newUserList.add(userList.get(i));
+					}
+				}
+				System.out.println("---new size="+newUserList.size());
+				model.addAttribute("userList", newUserList);
+			}else{
+				model.addAttribute("userList", userList);
 			}
+			
+			model.addAttribute("searchParam", searchParam);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		model.addAttribute("userList", newList);
-		model.addAttribute("searchParam", searchParam);
 		return "user.search.list";
 	}
 }
