@@ -36,6 +36,7 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 	// friends list, which get from the first time search, in that targetRole.
 	private List<User> getRandomUsersFriends(String friendRole,
 			String targetRole, Long id) {
+		User theUser = userService.findOne(id);
 		List<User> userList = new ArrayList<User>();
 		List<User> hostList = friendsService.getAllHostInfo(id, friendRole);
 		Set<User> userSet = new HashSet<User>();
@@ -45,7 +46,12 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 			userSet.addAll(friendsService.getAllFansInfo(user.getId(),
 					targetRole));
 		}
+		boolean hasme = userSet.remove(theUser);
+		System.out.println(hasme);
 		userList.addAll(userSet);
+		for (User user : userList) {
+			System.out.println(user.getId());
+		}
 		Collections.shuffle(userList);
 		return userList;
 	}
@@ -125,7 +131,7 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		Collections.shuffle(userList);
 		return userList;
 	}
-	
+
 	@Override
 	public List<User> getRandomUsers(String role, int count) {
 		if (count > 0) {
@@ -151,10 +157,9 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 				count);
 		return userList;
 	}
-	
+
 	private List<User> getRecommendUsersFromFriends(Long id, int count) {
-		List<User> userList = getRandomUsersFriends("user", "user", id,
-				count);
+		List<User> userList = getRandomUsersFriends("user", "user", id, count);
 		return userList;
 	}
 
@@ -163,6 +168,7 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		Collections.shuffle(courseList);
 		return courseList;
 	}
+
 	@Override
 	public List<Course> getRandomCourses(int count) {
 		if (count > 0) {
@@ -191,11 +197,7 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		Set<User> userSet = new HashSet<User>();
 		userSet.addAll(getRecommendTeachersFromMyTeacher(user_id, count));
 		userSet.addAll(getRecommendTeachersFromFriendsTeacher(user_id, count));
-		
-		for(User user : userSet){
-			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! "+user.getId());
-		}
-		
+
 		userList.addAll(userSet);
 		Collections.shuffle(userList);
 		if (userList != null && userList.size() >= count) {
@@ -229,8 +231,22 @@ public class UserRecommendServiceImpl implements UserRecommendService {
 		if (userList != null && userList.size() >= count) {
 			return userList.subList(0, count);
 		} else {
-			userList.addAll(getRandomUsers("user", count - userList.size()));
-			return userList;
+			User theUser = userService.findOne(user_id);
+			Set<User> userSet = new HashSet<User>();
+			List<User> randomList = getRandomUsers("user");
+			userSet.addAll(randomList);
+			for (User user : userList) {
+				userSet.remove(user);
+			}
+			userSet.remove(theUser);
+			randomList.clear();
+			randomList.addAll(userSet);
+			userList.addAll(randomList);
+			if (userList.size() >= count) {
+				return userList.subList(0, count);
+			} else {
+				return userList;
+			}
 		}
 	}
 
