@@ -80,7 +80,7 @@
 		<c:forEach items="${recommendTeacher }" var="recommendTeacher">
 		<table width="80%"  cellpadding="5" style="margin: 5px 0px 5px 20px; ">			  
 				   <tr>
-				    <td rowspan="2" width="30%"><a href='<c:url value="/id/${recommendTeacherr.id }"></c:url>' ><img src=' <c:url value="${recommendTeacher.photo_url }"></c:url>'  class="avator_width"></a></td>
+				    <td rowspan="2" width="30%"><a href='<c:url value="/id/${recommendTeacher.id }"></c:url>' ><img src=' <c:url value="${recommendTeacher.photo_url }"></c:url>'  class="avator_width"></a></td>
 				    <td  width="50%" align="left"><div style="width: 70px;" id="content">${recommendTeacher.name }</div></td>
 				    <td  ><a href='<c:url value="/id/${recommendTeacher.id }"></c:url>' ><img src="<c:url value='/resources/img/default/focus.png'></c:url>" ></a></td>
 				  </tr>
