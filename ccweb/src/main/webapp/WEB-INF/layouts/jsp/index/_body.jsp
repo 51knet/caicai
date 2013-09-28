@@ -178,9 +178,11 @@ function logout() {
 						<a id="fogotPswbtn" href="<c:url value='#'></c:url>"><font color="#444444">忘记密码？</font></a>
 					</h5>
 				</div>
+				<!--  
 				<div class="pull-right">
 					<wb:login-button type="3,2" onlogin="login" onlogout="logout" ></wb:login-button>
 				</div>
+				-->
 				<button class="btn btn-large btn-block btn-primary" type="submit" onclick="return checkEmailAndPwd();" style="font-family: 'Microsoft YaHei';">登录</button>
 			</form:form>
 			<div class="login-hr-bg"></div>
