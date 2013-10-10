@@ -39,7 +39,11 @@
 				 <tbody>
 			  		<c:forEach items="${page.content}" var = "page" >
 			  			<tr>
-			  				<td align="center"><a href='<c:url value="/admin/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>${page.sendMsg.title}</a> </td>
+			  				<td align="center"><a href='<c:url value="/admin/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>
+			  					<c:if test="${page.sendMsg.title == null}"><div style="width: 150px;" id="contentlimit">${page.sendMsg.content}</div></c:if>${page.sendMsg.title}
+			  					<c:if test="${page.types == 'focus'}"><a href='<c:url value="/id/${page.commenter }" ></c:url>'>点击查看新粉丝</a></c:if>
+			  					<c:if test="${page.types == 'comment'}"><a href='<c:url value="/id/${sessionUserInfo.id }" ></c:url>'>点击查看新回复</a></c:if>
+							</a></td>
 			  				<td align="center">
 			  					<c:if test="${page.readed==1 }">
 			  						未读

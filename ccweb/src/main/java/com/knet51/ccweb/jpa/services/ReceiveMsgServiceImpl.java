@@ -119,4 +119,12 @@ public class ReceiveMsgServiceImpl implements ReceiveMsgService {
 		return receiveMsgRepository.findUnReadMsgList(types, readed, userId,sort);
 	}
 
+	@Override
+	public Page<ReceiveMsg> findAllByUserAndReadedAndTypes(int pageNum, int pageSize,
+			User user, Integer isRead, String types) {
+		Pageable dateDesc = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
+		Page<ReceiveMsg> onePage = receiveMsgRepository.findAllByUserAndReaded(user, isRead, dateDesc);
+		return onePage;
+	}
+
 }

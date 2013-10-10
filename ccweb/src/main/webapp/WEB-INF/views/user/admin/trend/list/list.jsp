@@ -65,16 +65,28 @@
     	  $("#"+id).css("display","none");
     	 // $("#"+id+">table").empty();
     }
+    
+	 var maxLen=200;
+		function checkMaxInput(obj) {
+			 if(obj.value.length>maxLen) {  
+			 		obj.value=obj.value.substring(0,maxLen);
+			 		remLen.innerText="你输入的内容超出了字数限制";
+			 }
+			 else{  
+			 		remLen.innerText='还剩下'+(maxLen-obj.value.length)+'/'+maxLen+'字';
+			 }
+		}   
+
 </script>
 <div class="row-fluid custom round">
 	<div style="margin: 0 auto; width: 100%; text-align: center;">
 		<form method="post" action='<c:url value="/admin/trend/publish"></c:url>'>
 		<input type="hidden" name="trendRole" value="${trendRole }">
 		<input type="hidden" name="trendVariety" value="${trendVariety }">
-			<textarea  style="width: 100%; height: 100px;" class="border-green-all" name="contents"  ></textarea><br>
-			<div class="offset9">
-				<button class="btn btn-success trend_button"  type="submit">发 布</button> 
-			</div>
+			<textarea  style="width: 100%; height: 100px;" class="border-green-all" name="contents"  onKeyDown="checkMaxInput(this)" onKeyUp="checkMaxInput(this)"></textarea><br>
+
+			<font  id="remLen" class="pull-left"><b></b></font><button class="btn btn-success trend_button pull-right"  type="submit">发 布</button> <br>
+
 		</form>
 	</div>
 	<div class="row-fluid" >

@@ -37,7 +37,7 @@
 				<div style="float: left; padding: 2px 8px;">
 					 <table cellpadding="0" width="100">
 					 	<tr><td align="center"><a href='<c:url value="/id/${fans.id}"></c:url>' ><img class="border_ccc" src='<c:url value="${fans.photo_url}"></c:url>' style="width: 80px;" /></a></td></tr>
-					 	<tr><td align="center">${fans.name}</td></tr>
+					 	<tr><td align="center"><div  style="width: 90px;" id="content">${fans.name}</div></td></tr>
 					 </table>
 				</div>
 			</c:forEach>

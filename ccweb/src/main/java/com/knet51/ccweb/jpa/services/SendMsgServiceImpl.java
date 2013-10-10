@@ -12,6 +12,7 @@ import com.knet51.ccweb.jpa.dao.SendMsgDao;
 import com.knet51.ccweb.jpa.entities.ReceiveMsg;
 import com.knet51.ccweb.jpa.entities.SendMsg;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.repository.ReceiveMsgRepository;
 
 @Transactional
 @Service("sendMsgService")
@@ -25,9 +26,12 @@ public class SendMsgServiceImpl implements SendMsgService {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ReceiveMsgRepository receiveMsgRepository;
 
 	@Override
-	public void add(SendMsg sendMsg, Long userId ,Long senderid) {
+	public ReceiveMsg add(SendMsg sendMsg, Long userId ,Long senderid) {
 		sendMsgDao.add(sendMsg);
 		ReceiveMsg receiveMsg = new ReceiveMsg();
 		receiveMsg.setDeled(1);
@@ -39,7 +43,8 @@ public class SendMsgServiceImpl implements SendMsgService {
 		receiveMsg.setSendMsg(sendMsg);
 		receiveMsg.setTypes(GlobalDefs.MSG_TYPES_MESSAGE);
 		receiveMsg.setCommenter(senderid);
-		receiveMsgDao.add(receiveMsg);
+		//SendMsg newSendMsg = receiveMsgDao.add(receiveMsg);
+		return receiveMsgRepository.saveAndFlush(receiveMsg);
 		
 	}
 

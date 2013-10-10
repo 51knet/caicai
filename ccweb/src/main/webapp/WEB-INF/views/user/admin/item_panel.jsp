@@ -75,7 +75,7 @@ font-weight: bold;
 				    	<a href='<c:url value="/pcenter/details"><c:param name="active" value="photo" /></c:url>' >上传头像</a> 
 				    </div>
 			   </div>
-			  <a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>
+			<div style="width: 60px;" id="content"><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	</div>
 			</c:when>
 			<c:otherwise>
 				<table cellpadding="2" style="width: 130px;">
@@ -100,7 +100,7 @@ font-weight: bold;
 	<br>
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><img src="<c:url value='/resources/img/default/home.png'></c:url>" style="margin-right: 10px;">首页</a></li>
-		<li><a href='<c:url value="/admin/message/list"></c:url>' ><img src="<c:url value='/resources/img/default/msg.png'></c:url>" style="margin-right: 10px;">消息
+		<li><a href='<c:url value="/admin/user/message/list"></c:url>' ><img src="<c:url value='/resources/img/default/msg.png'></c:url>" style="margin-right: 10px;">消息
 			<c:if test="${unReadCount > 0}"> <img src="<c:url value='/resources/img/default/new-icon.gif'></c:url>"> </c:if>
 		</a></li> 
 	</ul>

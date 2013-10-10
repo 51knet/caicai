@@ -1,8 +1,11 @@
 package com.knet51.ccweb.controllers.admin.teacher.sendReceMsg;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.CommentBeans;
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.admin.user.MyTrendsForm;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Comment;
 import com.knet51.ccweb.jpa.entities.ReceiveMsg;
@@ -52,7 +56,7 @@ public class ReceiveMsgInfoPageController {
 	@Autowired
 	private TrendsService trendsService;
 	
-	@RequestMapping(value="/admin/message/list")
+	@RequestMapping(value="/admin/user/message/list")
 	public String receiveMsgList(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		logger.info("####  Into ReceiveMsgList page  ####");
@@ -107,6 +111,45 @@ public class ReceiveMsgInfoPageController {
 			return "admin."+userInfo.getRole()+".message.detail";
 	}
 	
+	@RequestMapping(value="/admin/message/list")
+	   public String receiveMsg(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0")
+       int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
+           logger.info("####  Into ReceiveMsgList page  ####");
+           UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+           Long user_id = userInfo.getId();
+           try {
+               List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(user_id);
+               List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(user_id);
+               List<ReceiveMsg> isDele = receiveMsgService.isDele(user_id);
+               List<ReceiveMsg> msgList = receiveMsgService.list(user_id);
+               Integer unReadCount = unReadMsgList.size();
+               Integer isReadCount = isReadMsgList.size();
+               Integer msgCount = msgList.size();
+               Integer isDeleCount = isDele.size();
+               int pageNum = MyUtil.getPageNumber(pageNumber, unReadCount ,pageSize);
+               Page<ReceiveMsg> page = receiveMsgService.findAllByUserAndReadedAndTypes(pageNum, pageSize, userInfo.getUser(),1,GlobalDefs.MSG_TYPES_MESSAGE);
+               model.addAttribute("unReadCount", unReadCount);
+               model.addAttribute("isReadCount", isReadCount);
+               model.addAttribute("msgCount", msgCount);
+               model.addAttribute("isDeleCount",isDeleCount);
+               //model.addAttribute("unReadMsgList", unReadMsgList);
+               model.addAttribute("page", page);
+               if (userInfo.getUser().getRole().equals("teacher")) {
+                   return "admin.teacher.message.detail";
+               } else if (userInfo.getUser().getRole().equals("enterprise")) {
+                   return "admin.enterprise.message.detail";
+               } else if (userInfo.getUser().getRole().equals("user")) {
+                   return "admin.user.message.detail";
+               }else {
+                   return "404";
+               }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+           return "";
+       }
+	
+	
 	@Transactional
 	@RequestMapping(value="/admin/message/detailOne")
 	public String receiveMsgDetailOne(@RequestParam("mid") Long mid, @RequestParam("urmid") Long urmId,Model model,HttpSession session){
@@ -136,7 +179,7 @@ public class ReceiveMsgInfoPageController {
 		Integer msgCount = msgList.size();
 		Integer isDeleCount = isDele.size();
 		int pageNum = MyUtil.getPageNumber(pageNumber, isReadCount ,pageSize);
-		Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndTypes(pageNum, pageSize,userInfo.getId(), 2, GlobalDefs.MSG_TYPES_MESSAGE);
+		Page<ReceiveMsg> page = receiveMsgService.findAllByUserAndReadedAndTypes(pageNum, pageSize,userInfo.getUser(), 2, GlobalDefs.MSG_TYPES_MESSAGE);
 		
 		model.addAttribute("unReadCount", unReadCount);
 		model.addAttribute("isReadCount", isReadCount);
@@ -153,39 +196,43 @@ public class ReceiveMsgInfoPageController {
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Long user_id = userInfo.getId();
-		List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(user_id);
-		List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(user_id);
-		List<ReceiveMsg> isDele = receiveMsgService.isDele(user_id);
-		List<ReceiveMsg> msgList = receiveMsgService.list(user_id);
-		Integer unReadCount = unReadMsgList.size();
-		Integer isReadCount = isReadMsgList.size();
-		Integer msgCount = msgList.size();
-		Integer isDeleCount = isDele.size();
-		int pageNum = MyUtil.getPageNumber(pageNumber, isDeleCount ,pageSize);
-		Page<ReceiveMsg> page = receiveMsgService.findReceiveMsgByUserAndTypes(pageNum, pageSize, userInfo.getId(), 3, GlobalDefs.MSG_TYPES_MESSAGE);
+		try {
+			List<ReceiveMsg> unReadMsgList =  receiveMsgService.unReadList(user_id);
+			List<ReceiveMsg> isReadMsgList = receiveMsgService.isReadList(user_id);
+			List<ReceiveMsg> isDele = receiveMsgService.isDele(user_id);
+			List<ReceiveMsg> msgList = receiveMsgService.list(user_id);
+			Integer unReadCount = unReadMsgList.size();
+			Integer isReadCount = isReadMsgList.size();
+			Integer msgCount = msgList.size();
+			Integer isDeleCount = isDele.size();
+			int pageNum = MyUtil.getPageNumber(pageNumber, isDeleCount ,pageSize);
+			Page<ReceiveMsg> page = receiveMsgService.findAllByUserAndReadedAndTypes(pageNum, pageSize, userInfo.getUser(), 3, GlobalDefs.MSG_TYPES_MESSAGE);
 
-		model.addAttribute("unReadCount", unReadCount);
-		model.addAttribute("isReadCount", isReadCount);
-		model.addAttribute("msgCount", msgCount);
-		model.addAttribute("isDeleCount",isDeleCount);
-		//model.addAttribute("isReadMsgList", isReadMsgList);
-		model.addAttribute("page", page);
+			model.addAttribute("unReadCount", unReadCount);
+			model.addAttribute("isReadCount", isReadCount);
+			model.addAttribute("msgCount", msgCount);
+			model.addAttribute("isDeleCount",isDeleCount);
+			//model.addAttribute("isReadMsgList", isReadMsgList);
+			model.addAttribute("page", page);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "admin."+userInfo.getRole()+".message.isDeleDetaill";
 	}
 	/**
 	 * show All msg by sender and receiver
-	 * @param commenter_id
+	 * @param sender_id
 	 * @param session
 	 * @param model
 	 * @param pageNumber
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value="/admin/message/detail/{commenter_id}")
-	public String showMsgBySender(@PathVariable Long commenter_id,HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	@RequestMapping(value="/admin/message/detail/{sender_id}")
+	public String showMsgBySender(@PathVariable Long sender_id,HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		List<ReceiveMsg> unReadMsgList =  receiveMsgService.findCommenterMsgList(GlobalDefs.MSG_TYPES_MESSAGE, 2, userInfo.getId(), commenter_id);
+		List<ReceiveMsg> unReadMsgList =  receiveMsgService.findCommenterMsgList(GlobalDefs.MSG_TYPES_MESSAGE, 2, userInfo.getId(), sender_id);
 		
 		for (int i = 0; i < unReadMsgList.size(); i++) {
 			receiveMsgService.isRead(unReadMsgList.get(i).getId());
@@ -194,11 +241,35 @@ public class ReceiveMsgInfoPageController {
 		List<ReceiveMsg> unReadAllMsgList =  receiveMsgService.unReadList(userInfo.getId());
 		model.addAttribute("unReadCount", unReadAllMsgList.size());
 
-		List<ReceiveMsg> userAndCommenterMsgList = receiveMsgService.findMsgListByUserAndCommenter(userInfo.getId(), GlobalDefs.MSG_TYPES_MESSAGE, commenter_id);
+		List<ReceiveMsg> userAndCommenterMsgList = receiveMsgService.findMsgListByUserAndCommenter(userInfo.getId(), GlobalDefs.MSG_TYPES_MESSAGE, sender_id);
 		int pageNum = MyUtil.getPageNumber(pageNumber, userAndCommenterMsgList.size() ,pageSize);
-		Page<ReceiveMsg> page = receiveMsgService.findMsgByUserAndCommenter(pageNum, pageSize, userInfo.getId(), GlobalDefs.MSG_TYPES_MESSAGE, commenter_id);
+		Page<ReceiveMsg> page = receiveMsgService.findMsgByUserAndCommenter(pageNum, pageSize, userInfo.getId(), GlobalDefs.MSG_TYPES_MESSAGE, sender_id);
 		model.addAttribute("page", page);
+		model.addAttribute("sender_id", sender_id);
 		return "admin."+userInfo.getRole()+".message.detail.list";
+	}
+	
+	@RequestMapping(value="/admin/message/detail/reply",method = RequestMethod.POST)
+	public @ResponseBody ReceiveMsg ajaxCreateComment(@RequestParam("senderId") Long sender_id, HttpSession session,HttpServletResponse response,
+			@Valid MyTrendsForm msgForm,BindingResult validResult){
+		logger.info("#### Into SendMsgInfoPageControllerPage ####");
+		if(validResult.hasErrors()){
+			return null;
+		}else{
+			SendMsg sendMsg = new SendMsg();
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			User user = userService.findOne(userInfo.getId());
+			String content = msgForm.getContents();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String date = format.format(new Date());
+			//sendMsg.setTitle(title);
+			sendMsg.setIsDelete(1);
+			sendMsg.setContent(content);
+			sendMsg.setDate(date);
+			sendMsg.setUser(user);
+			ReceiveMsg receiveMsg = sendMsgService.add(sendMsg, sender_id, userInfo.getId());
+			return receiveMsg;
+		}	
 	}
 	
 	/**
@@ -248,7 +319,7 @@ public class ReceiveMsgInfoPageController {
 	}
 	
 	/**
-	 * show unRead comment list in msg 
+	 * show  newfans list in msg 
 	 * @param session
 	 * @param model
 	 * @param pageNumber

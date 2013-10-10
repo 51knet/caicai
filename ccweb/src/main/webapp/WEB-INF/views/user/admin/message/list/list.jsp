@@ -14,6 +14,31 @@
 		});
 	});*/
 
+	 var maxLen=200;
+	function checkMaxInput(obj) {
+		 if(obj.value.length>maxLen) {  
+		 		obj.value=obj.value.substring(0,maxLen);
+		 		remLen.innerText="你输入的内容超出了字数限制";
+		 }
+		 else{  
+			 remLen.innerText='还剩下'+(maxLen-obj.value.length)+'/'+maxLen+'字';
+		 }
+	}   
+	
+	 function postReplyForm(){
+	    	var id =  "reply_form";	    	
+			$.post('<c:url value="/admin/message/detail/reply" />', $("#"+id).serialize(), function(msg){
+				alert(msg.sendMsg.user.name+"---"+msg.sendMsg.content);
+				 var  t = "<table cellpadding='10' width=100%   style='border: 1px solid #ccc;  margin-bottom: 10px;' class='bb unReadMsg round'>";
+			     t+="<tr ><td  rowspan='2' align='left' width='10%'><img src='/ccweb"+msg.sendMsg.user.photo_url+"  ' style='width:60px; height: 60px;' /></td><td align='left' style='font-weight: bold; padding:10px 10px;'>"+msg.sendMsg.user.name+"</td>";
+			  	 t+="<td align='right'  width='20%'  style='color: #666; font-size: 12px;padding:10px 10px;'>"+msg.sendMsg.date+"</td></tr>";
+			    t+="<tr> <td colspan='2' align='left' style='color: #80b029; font-size: 14px;padding:10px 10px;'>"+msg.sendMsg.content+"</td></tr></table>";
+			     $("#reply_div").append(t); 
+			     $("#reply_div").css("display","block");
+			}, "json");
+			$("#reply_form_textarea").html("");
+	    }
+
 </script>
 <style>
 .row-fluid.custom {
@@ -42,31 +67,42 @@
 	<div class="row">
 		<h4>站内消息</h4>
 	</div>
+	<div class="content">
+		<form  method="post"  id="reply_form">
+			<input type="hidden" name="senderId" value="${sender_id }" >
+			<textarea rows="3" cols="" style="width:100%; " class="border-green-all" name="contents"  onKeyDown="checkMaxInput(this)" onKeyUp="checkMaxInput(this)" id="reply_form_textarea" ></textarea><br>
+				 <font align="right" id="remLen"><b></b></font>
+				 <!-- <button class="btn btn-success  pull-right"  >发布</button>  --> 
+				<a href="javascript:void(0)" class="btn btn-success  pull-right"  onclick="postReplyForm()">发布</a><br>
+		</form>
+	</div>
+	<div id="reply_div"  style="display: none; margin-bottom: 10px;" class="content">
+	
+	</div>
 	<div class="content">	
-		<div >
-			<c:forEach items="${page.content}" var = "page" >
-				<table cellpadding="10" width=100%   style=" border: 1px solid #ccc; 	<c:if test='${page.sendMsg.user.id != sessionUserInfo.id}'> border: 1px solid #cae893; background-color:#fafafa;</c:if> margin-bottom: 10px;" class="bb unReadMsg round">
-					  <c:if test="${page.sendMsg.user.id == sessionUserInfo.id}">
-					  	  <tr>
-						    <td rowspan="2" align="left" width="10%" ><img src="<c:url value='${page.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
-						    <td align="left" style="font-weight: bold; padding:10px 10px;">${page.sendMsg.user.name}</td>
-						    <td align="right"  width="20%"  style="color: #666; font-size: 12px;padding:10px 10px;"> ${page.sendMsg.date}</td>
-						  </tr>
-					  </c:if>
-					  	<c:if test="${page.sendMsg.user.id != sessionUserInfo.id}">
-						   <tr>
-						    	<td align="left"  width="20%"  style="color: #666; font-size: 12px;padding:10px 10px;"> ${page.sendMsg.date}</td>
-							    <td  align="right" style="font-weight: bold; padding:10px 10px;">${page.sendMsg.user.name}</td>
-							    <td rowspan="2"  align="right" width="10%" ><img src="<c:url value='${page.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
-						  </tr>
-					  </c:if>
-					  <tr>
-					    <td colspan="2" align="left" style="color: #80b029; font-size: 14px;padding:10px 10px;">${page.sendMsg.content}</td>
+		<c:forEach items="${page.content}" var = "page" >
+			<table cellpadding="10" width=100%   style=" border: 1px solid #ccc; 	<c:if test='${page.sendMsg.user.id != sessionUserInfo.id}'> border: 1px solid #cae893; background-color:#fafafa;</c:if> margin-bottom: 10px;" class="bb unReadMsg round">
+				  <c:if test="${page.sendMsg.user.id == sessionUserInfo.id}">
+				  	  <tr>
+					    <td rowspan="2" align="left" width="10%" ><img src="<c:url value='${page.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
+					    <td align="left" style="font-weight: bold; padding:10px 10px;">${page.sendMsg.user.name}</td>
+					    <td align="right"  width="20%"  style="color: #666; font-size: 12px;padding:10px 10px;"> ${page.sendMsg.date}</td>
 					  </tr>
-		  		</table>
-	  		</c:forEach>
+				  </c:if>
+				  	<c:if test="${page.sendMsg.user.id != sessionUserInfo.id}">
+					   <tr>
+					    	<td align="left"  width="20%"  style="color: #666; font-size: 12px;padding:10px 10px;"> ${page.sendMsg.date}</td>
+						    <td  align="right" style="font-weight: bold; padding:10px 10px;">${page.sendMsg.user.name}</td>
+						    <td rowspan="2"  align="right" width="10%" ><img src="<c:url value='${page.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
+					  </tr>
+				  </c:if>
+				  <tr>
+				    <td colspan="2" align="left" style="color: #80b029; font-size: 14px;padding:10px 10px;">${page.sendMsg.content}</td>
+				  </tr>
+	  		</table>
+  		</c:forEach>
 		<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div> 
-		</div>
+		
 
 	</div>
 </div>

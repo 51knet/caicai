@@ -19,6 +19,9 @@ public interface ReceiveMsgService {
 	List<ReceiveMsg> isDele(Long userId);
 	
 	Page<ReceiveMsg> findReceiveMsgByUserAndTypes(int pageNum, int pageSize, Long userId,Integer isRead, String types);
+	// old for teacher and enterprise
+	Page<ReceiveMsg> findAllByUserAndReadedAndTypes(int pageNum, int pageSize, User user,Integer isRead, String types);
+	
 	List<ReceiveMsg> unReadMsgSenderListGroup(Long userId , String types); 
 	
 	List<ReceiveMsg> unReadMsgList(Long userId , String types, Integer readed); 

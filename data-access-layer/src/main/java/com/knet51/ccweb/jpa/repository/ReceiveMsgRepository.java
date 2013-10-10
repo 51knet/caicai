@@ -11,12 +11,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.ReceiveMsg;
+import com.knet51.ccweb.jpa.entities.User;
 
 @Transactional
 public interface ReceiveMsgRepository extends JpaRepository<ReceiveMsg, Long>, JpaSpecificationExecutor<ReceiveMsg>  {
 	
 	@Query("select r from ReceiveMsg r where r.user.id = ?1 and r.readed < ?2 and r.types = ?3 ")
 	Page<ReceiveMsg> findReceiveMsgByUserAndReadedAndTypes(Long  userId,Integer isRead, String types, Pageable pageable);
+	
+	Page<ReceiveMsg> findAllByUserAndReaded(User user ,Integer isRead, Pageable pageable);
 	
 	@Query("select g from ReceiveMsg g where g.id in (select max(r.id) from ReceiveMsg r where r.types = ?1 and r.readed < ?2 and r.user.id = ?3  group by r.commenter)")
 	Page<ReceiveMsg> findReceiveMsgGroup(String types, Integer readed, Long userid, Pageable pageable);

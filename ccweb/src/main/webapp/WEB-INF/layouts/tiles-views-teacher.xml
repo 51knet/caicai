@@ -237,7 +237,7 @@
 		<put-attribute name="right" value="/WEB-INF/views/admin/message/isReadMsg.jsp"></put-attribute>
 	</definition>
 
-	<definition name="admin.teacher.message.isDeleDetail" extends="admin-layout">
+	<definition name="admin.teacher.message.isDeleDetaill" extends="admin-layout">
 		<put-attribute name="title" value="私信" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/message/isDeleMsg.jsp"></put-attribute>
