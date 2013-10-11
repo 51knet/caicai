@@ -341,10 +341,8 @@ public class FrontController {
 	
 	@RequestMapping(value = "/user/{user_id}")
 	public String userFront(@PathVariable Long user_id, Model model,
-			HttpSession session, HttpServletResponse response)
-			throws IOException {
-		logger.info("#### Into user front page ####");
-		try {
+			HttpSession session, HttpServletResponse response)throws IOException {
+			logger.info("#### Into user front page ####");
 			User user = userService.findOne(user_id);
 			if (user.getRole().equals("user")) {
 				UserInfo sessionUserInfo = (UserInfo) session
@@ -354,10 +352,7 @@ public class FrontController {
 				List<User> recommendTeacher = null;
 				List<User> recommendUser = null;
 				List<Course> recommendCourse = null;
-				if (sessionUserInfo != null) { // this is only valid when user
-												// logged in and see 
-												// home
-												// page
+				if (sessionUserInfo != null) { 
 					recommendTeacher = recommendService.getRecommendTeacher(sessionUserInfo.getId(), 3);
 					recommendUser = recommendService.getRecommendUser(sessionUserInfo.getId(), 3);
 					recommendCourse = recommendService.getRecommendCourses(sessionUserInfo.getId(), 3);
@@ -408,10 +403,6 @@ public class FrontController {
 				return "user.basic";
 			} else {
 				return "redirect:/id/" + user_id;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "404";
-		}
+			}	
 	}
 }

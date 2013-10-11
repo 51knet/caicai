@@ -3,6 +3,7 @@ package com.knet51.ccweb.controllers.admin.user;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,18 +25,24 @@ import com.knet51.ccweb.beans.TrendsBeans;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Comment;
+import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Knowledge;
 import com.knet51.ccweb.jpa.entities.ReceiveMsg;
+import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.WorkExp;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.services.CommentService;
 import com.knet51.ccweb.jpa.services.CourseService;
+import com.knet51.ccweb.jpa.services.EduBackgroundService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.KnowledgeService;
 import com.knet51.ccweb.jpa.services.ReceiveMsgService;
+import com.knet51.ccweb.jpa.services.StudentService;
 import com.knet51.ccweb.jpa.services.TrendsService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.WorkExpService;
 import com.knet51.ccweb.jpa.services.promotion.UserRecommendService;
 
 
@@ -61,6 +68,12 @@ public class UserController {
 	private CourseService courseService;
 	@Autowired 
 	private ReceiveMsgService receiveMsgService; 
+	@Autowired
+	private EduBackgroundService eduBackgroundService;
+	@Autowired
+	private WorkExpService workExpService;
+	@Autowired
+	private StudentService studentService;
 	
 	/**
 	 * big time line
@@ -441,10 +454,35 @@ public class UserController {
 		return "redirect:/admin";
 	}
 	
+	@RequestMapping(value="/admin/message/comment/destory" ,method = RequestMethod.POST)
+	public String destoryComment(HttpSession session,@RequestParam("trendRole") String trendRole,
+			@RequestParam("trendVariety") String trendVariety,@RequestParam("commentId") Long comment_id){
+		
+		try {
+			if(comment_id != null){
+				commentService.deleteComment(comment_id);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/admin/trend/"+trendRole+"/"+trendVariety;
+	}
+	
+	/**
+	 * show detail trend info in user front page
+	 * @param user_id
+	 * @param trend_id
+	 * @param pageNumber
+	 * @param pageSize
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/user/{user_id}/trend/view/{trend_id}")
 	public String showDetailTrendInFrontPage(@PathVariable Long user_id,@PathVariable Long trend_id,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize,HttpSession session,Model model){
 		try {
+			// common model -start
 			User user = userService.findOne(user_id);
 			if (user.getRole().equals("user")) {
 				UserInfo sessionUserInfo = (UserInfo) session
@@ -474,7 +512,7 @@ public class UserController {
 				model.addAttribute("user_id", user_id);
 
 				model.addAttribute("role", userInfo.getRole());
-
+				// common model -end
 				
 				
 				Trends trends = trendsService.findOneById(trend_id);
@@ -497,18 +535,57 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value="/admin/message/comment/destory" ,method = RequestMethod.POST)
-	public String destoryComment(HttpSession session,@RequestParam("trendRole") String trendRole,
-			@RequestParam("trendVariety") String trendVariety,@RequestParam("commentId") Long comment_id){
-		
-		try {
-			if(comment_id != null){
-				commentService.deleteComment(comment_id);
+	@RequestMapping(value="/user/{user_id}/resume")
+	public String showUserResume(@PathVariable Long user_id,HttpSession session,Model model){
+		User user = userService.findOne(user_id);
+		if (user.getRole().equals("user")) {
+			UserInfo sessionUserInfo = (UserInfo) session
+					.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			// page
+			List<User> recommendTeacher = null;
+			List<User> recommendUser = null;
+			List<Course> recommendCourse = null;
+			if (sessionUserInfo != null) {
+				recommendTeacher = recommendService.getRecommendTeacher(sessionUserInfo.getId(), 3);
+				recommendUser = recommendService.getRecommendUser(sessionUserInfo.getId(), 3);
+				recommendCourse = recommendService.getRecommendCourses(sessionUserInfo.getId(), 3);
+	
+			}else{
+				recommendTeacher = recommendService.getRandomUsers("teacher", 3);
+				recommendUser = recommendService.getRandomUsers("user", 3);
+				recommendCourse = recommendService.getRandomCourses(3);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+			
+			model.addAttribute("recommendTeacher", recommendTeacher);
+			model.addAttribute("recommendUser", recommendUser);
+			model.addAttribute("recommendCourse", recommendCourse);
+					
+			UserInfo userInfo = new UserInfo(user);
+			Student student = studentService.findOne(user_id);
+			userInfo.setStudent(student);
+	
+			model.addAttribute("userInfo", userInfo);
+			model.addAttribute("user_id", user_id);
+			model.addAttribute("role", userInfo.getRole());
+			
+			Map<String,String> map = GlobalDefs.getUserEduExpMap();
+			model.addAttribute("levelmap", map);
+			List<EduBackground> eduInfo = eduBackgroundService
+					.findEduListByTeacherId(user_id);
+			model.addAttribute("eduInfo", eduInfo);
+			model.addAttribute("eduCount", eduInfo.size());
+
+			List<WorkExp> workInfo = workExpService.findWorkList(user_id);
+			model.addAttribute("workInfo", workInfo);
+			model.addAttribute("workCount", workInfo.size());
+
+			
+			
+			return userInfo.getRole()+".resume.view";
+		} else {
+			return "redirect:/id/" + user_id;
 		}
-		return "redirect:/admin/trend/"+trendRole+"/"+trendVariety;
 	}
+
 	
 }

@@ -89,8 +89,8 @@
 	</div>
 	<div class="navbars">
 	<div><a href='<c:url value='/user/${userInfo.id}'></c:url>'><img src="<c:url value='/resources/img/default/front-home.png'></c:url>" ></a></div>
-	<div><a href='<c:url value='/user/${userInfo.id}'></c:url>'><img src="<c:url value='/resources/img/default/front-resume.png'></c:url>" ></a></div>
-	<div><a href='<c:url value='/user/${userInfo.id}'></c:url>'><img src="<c:url value='/resources/img/default/front-friend.png'></c:url>" ></a></div>
+	<div><a href='<c:url value='/user/${userInfo.id}/resume'></c:url>'><img src="<c:url value='/resources/img/default/front-resume.png'></c:url>" ></a></div>
+	<div><a href='<c:url value='/user/${userInfo.id}/friends'></c:url>'><img src="<c:url value='/resources/img/default/front-friend.png'></c:url>" ></a></div>
 </div>
 </div>
 

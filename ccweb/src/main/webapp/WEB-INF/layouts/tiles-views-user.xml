@@ -170,7 +170,12 @@
 		<put-attribute name="title" value="个人主页" />
 		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/user-front/navbar.jsp" />
 		<put-attribute name="left" value="/WEB-INF/layouts/jsp/user-front/left.jsp" />
-		
+	</definition>
+	
+	<definition name="user.resume.view" extends="user-frontPage-layout">
+		<put-attribute name="title" value="个人资料" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/user-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/user/front/resume/list/list.jsp" />
 	</definition>
 	
 	<definition name="user.trend.view" extends="user-frontPage-layout">

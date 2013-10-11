@@ -28,7 +28,7 @@
 	 function postReplyForm(){
 	    	var id =  "reply_form";	    	
 			$.post('<c:url value="/admin/message/detail/reply" />', $("#"+id).serialize(), function(msg){
-				alert(msg.sendMsg.user.name+"---"+msg.sendMsg.content);
+				//alert(msg.sendMsg.user.name+"---"+msg.sendMsg.content);
 				 var  t = "<table cellpadding='10' width=100%   style='border: 1px solid #ccc;  margin-bottom: 10px;' class='bb unReadMsg round'>";
 			     t+="<tr ><td  rowspan='2' align='left' width='10%'><img src='/ccweb"+msg.sendMsg.user.photo_url+"  ' style='width:60px; height: 60px;' /></td><td align='left' style='font-weight: bold; padding:10px 10px;'>"+msg.sendMsg.user.name+"</td>";
 			  	 t+="<td align='right'  width='20%'  style='color: #666; font-size: 12px;padding:10px 10px;'>"+msg.sendMsg.date+"</td></tr>";

@@ -64,7 +64,7 @@
 				    <td><a href='<c:url value="/id/${recommendUser.id }"></c:url>' ><img src=' <c:url value="${recommendUser.photo_url }"></c:url>'  class="avator_width"></a></td>			
 				  </tr>
 				  <tr>
-				    <td align="center"><div style="width: 70px;" id="content">${recommendUser.name }</div></td>
+				    <td align="center"><div style="width: 70px;" id="content">${recommendUser.name }<c:if test="${recommendUser.name == null || recommendUser.name == '' }">未命名</c:if></div></td>
 				  </tr>
 				   <tr>
 				    <td ><a href='<c:url value="/id/${recommendUser.id }"></c:url>' ><img src="<c:url value='/resources/img/default/focus.png'></c:url>" ></a></td>

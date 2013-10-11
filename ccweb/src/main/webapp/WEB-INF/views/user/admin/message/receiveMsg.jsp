@@ -91,7 +91,7 @@ a{
 					    <td align="right"  width="20%"  style="color: #666; font-size: 13px;padding:10px 10px;"> ${page.sendMsg.date}</td>
 					  </tr>
 					  <tr>
-					    <td colspan="2" align="left" style="color: #666; font-size: 13px;padding:10px 10px;"><a href="#">${page.sendMsg.content}</a></td>
+					    <td colspan="2" align="left" style="color: #666; font-size: 13px;padding:10px 10px;"><a href='<c:url value="/admin/message/detail/${page.sendMsg.user.id}"></c:url>'>${page.sendMsg.content}</a></td>
 					  </tr>
 		  		</table>
 	  		</c:forEach>

@@ -96,7 +96,7 @@
 	margin: 20px 0px 0px 0px;
 }
 .row-fluid .custom .row {
-	margin: 0px 40px 10px 40px;
+	margin: 0px 30px 10px 30px;
 	color: #80b029;
 	/*border-bottom: solid #cccccc 1.5px;*/
 }
