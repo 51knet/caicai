@@ -74,6 +74,8 @@ public class UserController {
 	private WorkExpService workExpService;
 	@Autowired
 	private StudentService studentService;
+	@Autowired
+	private FriendsRelateService relateService;
 	
 	/**
 	 * big time line
@@ -582,6 +584,52 @@ public class UserController {
 			
 			
 			return userInfo.getRole()+".resume.view";
+		} else {
+			return "redirect:/id/" + user_id;
+		}
+	}
+	
+	@RequestMapping(value="/user/{user_id}/friends")
+	public String showUserFriends(@PathVariable Long user_id,Model model,HttpSession session){
+		User user = userService.findOne(user_id);
+		if (user.getRole().equals("user")) {
+			UserInfo sessionUserInfo = (UserInfo) session
+					.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			// page
+			List<User> recommendTeacher = null;
+			List<User> recommendUser = null;
+			List<Course> recommendCourse = null;
+			if (sessionUserInfo != null) {
+				recommendTeacher = recommendService.getRecommendTeacher(sessionUserInfo.getId(), 3);
+				recommendUser = recommendService.getRecommendUser(sessionUserInfo.getId(), 3);
+				recommendCourse = recommendService.getRecommendCourses(sessionUserInfo.getId(), 3);
+
+			}else{
+				recommendTeacher = recommendService.getRandomUsers("teacher", 3);
+				recommendUser = recommendService.getRandomUsers("user", 3);
+				recommendCourse = recommendService.getRandomCourses(3);
+			}
+			
+			model.addAttribute("recommendTeacher", recommendTeacher);
+			model.addAttribute("recommendUser", recommendUser);
+			model.addAttribute("recommendCourse", recommendCourse);
+					
+			UserInfo userInfo = new UserInfo(user);
+
+			model.addAttribute("userInfo", userInfo);
+			model.addAttribute("user_id", user_id);
+
+			model.addAttribute("role", userInfo.getRole());
+			// common model -end
+			
+			List<User> fansInfoList = relateService.getAllFansInfo(user_id);
+			model.addAttribute("fansList", fansInfoList);
+			List<User> hostsInfoList = relateService.getAllHostInfo(user_id);
+			model.addAttribute("hostList", hostsInfoList);
+			
+			
+			
+			return userInfo.getRole()+".friends.list";
 		} else {
 			return "redirect:/id/" + user_id;
 		}

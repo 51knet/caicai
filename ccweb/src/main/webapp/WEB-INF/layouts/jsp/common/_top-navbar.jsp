@@ -10,7 +10,11 @@
 		<ul class="nav pull-right">
 			<li>
 				<form class="navbar-form" style="margin-right:50px;" action="<c:url value="/searchUser"></c:url>"  method="post">
-		         <input type="text" name="searchParam" class="span6" placeholder="输入姓名搜索"  value="${searchParam }">
+				<select class="form-control" style="width: 100px;" name="types">
+					  <option value="all">全部</option>
+					  <option value="users">找人</option>
+					  <option value="courses">找课程</option>
+				</select> <input type="text" name="searchParam" class="span5" placeholder="输入姓名搜索"  value="${searchParam }">
 		         &nbsp;&nbsp;<button type="submit" class="btn" style="margin-top: 4px; font-family:Arial,'Microsoft YaHei'; color: #808080; ">搜 索</button>
 		       </form>
 			</li>
