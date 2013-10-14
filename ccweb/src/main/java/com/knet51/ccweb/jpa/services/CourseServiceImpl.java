@@ -168,7 +168,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public List<Course> findAllPublish() {
 		return courseRepository
-				.findAllByPublishGreaterThan(GlobalDefs.PUBLISH_NUM_ADMIN_FRONT);
+				.findAllByPublishGreaterThan(GlobalDefs.PUBLISH_NUM_ADMIN);
 	}
 
 }

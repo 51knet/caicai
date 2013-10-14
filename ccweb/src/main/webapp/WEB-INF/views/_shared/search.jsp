@@ -45,7 +45,7 @@
 	margin-right:10px;
 	margin-bottom:10px;
 	border:1px dotted #dadada;
-	width: 230px;
+	width: 200px;
 	padding:5px;
 	float: left;
 }
@@ -72,11 +72,11 @@
 		<c:if test="${types == 'courses' }">
 			<c:forEach items="${courseList}" var="course" >
 		    	<div class="course">
-					<div style="width: 230px; height: 155px; background-image: url('<c:url value="${course.courseCover }"></c:url>');  
+					<div style="width: 200px; height: 155px; background-image: url('<c:url value="${course.courseCover }"></c:url>');  
 							background-repeat:no-repeat;background-position:center;  ">
-						<a href='<c:url value="/admin/mycourse/view/${course.id }"></c:url>'><div style="height: 125px;"></div></a>
+					<a href='<c:url value="/${course.user.role}/${course.user.id }/course/list"></c:url>'><div style="height: 125px;"></div></a>
 	    				<div  style="height:24px;background-color:#000;  padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
-	    					<div  id="contentlimit" style="width: 240px;">
+	    					<div  id="contentlimit" style="width: 200px;">
 	    							${course.courseName } — ${course.cType.typeName }
 	    					</div>
 	   				 	</div>
@@ -85,6 +85,7 @@
 		    </c:forEach>
 		</c:if>
 		<c:if test="${types == 'all' }">
+		<div class="row-fluid">
 			<c:forEach items="${userList}" var="user">
 				<div style="float: left; padding: 2px 8px;">
 					 <table cellpadding="0" width="100">
@@ -93,20 +94,22 @@
 					 </table>
 				</div>
 			</c:forEach>
-			<hr>
+		</div>
+		<div class="row-fluid">
 			<c:forEach items="${courseList}" var="course" >
 		    	<div class="course">
-					<div style="width: 230px; height: 155px; background-image: url('<c:url value="${course.courseCover }"></c:url>');  
+					<div style="width: 200px; height: 155px; background-image: url('<c:url value="${course.courseCover }"></c:url>');  
 							background-repeat:no-repeat;background-position:center;  ">
-						<a href='<c:url value="/admin/mycourse/view/${course.id }"></c:url>'><div style="height: 125px;"></div></a>
+						<a href='<c:url value="/${course.user.role}/${course.user.id }/course/list"></c:url>'><div style="height: 125px;"></div></a>
 	    				<div  style="height:24px;background-color:#000;  padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
-	    					<div  id="contentlimit" style="width: 240px;">
+	    					<div  id="contentlimit" style="width: 200px;">
 	    							${course.courseName } — ${course.cType.typeName }
 	    					</div>
 	   				 	</div>
 					</div>
 		    	</div>
 		    </c:forEach>
+		   </div>
 		</c:if>
 		<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 	</div>
