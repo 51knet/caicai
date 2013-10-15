@@ -43,7 +43,7 @@
 		<h4>站内消息</h4>
 	</div>
 	<div class="content">	
-		<div >
+	
 			<c:forEach items="${commentBeansList}" var = "commentBeansList" >
 				<table cellpadding="10" width=100%   style="	border: 1px solid #cae893; background-color:#fafafa; margin-bottom: 10px;" class="bb unReadMsg round">
 				  	  <tr>
@@ -67,8 +67,6 @@
 		  		</table>
 	  		</c:forEach>
 		<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div> 
-		</div>
-
 	</div>
 </div>
 

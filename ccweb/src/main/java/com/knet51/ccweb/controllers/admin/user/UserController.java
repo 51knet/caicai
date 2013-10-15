@@ -457,9 +457,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/admin/message/comment/destory" ,method = RequestMethod.POST)
-	public String destoryComment(HttpSession session,@RequestParam("trendRole") String trendRole,
+	public String destoryComment(@RequestParam("trendRole") String trendRole,
 			@RequestParam("trendVariety") String trendVariety,@RequestParam("commentId") Long comment_id){
-		
 		try {
 			if(comment_id != null){
 				commentService.deleteComment(comment_id);
@@ -468,6 +467,20 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return "redirect:/admin/trend/"+trendRole+"/"+trendVariety;
+	}
+	
+	@RequestMapping(value="/ajaxCommentDestory",method = RequestMethod.POST)
+	public @ResponseBody String destoryComment(@RequestParam("commentId") Long comment_id){
+		String flag = "false";
+		try {
+			if(comment_id != null){
+				commentService.deleteComment(comment_id);
+			}
+			flag = "true";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
 	}
 	
 	/**

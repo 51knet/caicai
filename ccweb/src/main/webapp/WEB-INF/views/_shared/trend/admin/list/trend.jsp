@@ -5,15 +5,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
-<script type="text/javascript">
-$(document).ready(function() {	
-	$('.deleteMsgPostBtn').on('click', function() {
-		var comment_id = $(this).next().val();
-		$('#deleteMsgPostModal #commentId').val(comment_id);	
-	});
-});
-
-</script>
 <style>
 <!--
 .bb{
@@ -211,7 +202,7 @@ text-decoration: none;
 					
 					</div>
 					<c:forEach items="${trendBeans.commentList}" var="comment" begin="0" end="6">
-						<table width='98%' cellpadding='0' style="margin-bottom: 10px;">
+						<table width='98%' cellpadding='0' style="margin-bottom: 10px;" id="${comment.id }_comment">
 							<tr><td  align='left' valign= 'top' colspan="2">
 								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a>
 								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a>
@@ -227,7 +218,7 @@ text-decoration: none;
 								<td align="right" valign="top">	
 									<a class="color_green" href="javascript:void(0)" onclick="showReply(${comment.id })">回复</a>
 									<c:if test="${sessionUserInfo.id == comment.user.id }">
-									|	 <a class="deleteAnnoPostBtn color_green" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal">删除</a><input type="hidden" value="${comment.id} ">
+									|	 <a class="deleteMsgPostBtn" href="#deleteMsgPostModal" role="button" data-toggle="modal" data-target="#deleteMsgPostModal"><span class="color_green">删除</span></a><input type="hidden" value="${comment.id} ">
 									</c:if>
 								</td>
 							</tr>
@@ -269,12 +260,40 @@ text-decoration: none;
 	  <div class="modal-footer">
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 	    <form action='<c:url value="/admin/message/comment/destory"></c:url>' method="post" style="display: inline-block;" >
-	    	<input id="commentId" type="hidden" name="commentId" />
+	    	<!-- <input id="commentId" type="hidden" name="commentId" />
 	    	<input  type="hidden" name="trendRole" value="${trendRole }" />
 	    	<input  type="hidden" name="trendVariety"  value="${trendVariety}"/>
-	    	<button class="btn btn-success">确定</button>
+	    	<button class="btn btn-success">确定</button> --> 
+	    	<a href="javascript:void(0)" class="btn btn-success" id="deleCommentAjax"  data-dismiss="modal" aria-hidden="true">确定</a><input  type="hidden" id="commentId" name="commentId" /> 
 	    </form>
 	  </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {	
+	$('.deleteMsgPostBtn').on('click', function() {
+		var comment_id = $(this).next().val();
+		$('#deleteMsgPostModal #commentId').val(comment_id);	
+	});
+	
+	$("#deleCommentAjax").on("click" , function(){
+		var comment_id=$(this).next().val();
+		$.ajax({
+			   type: "POST",
+			   url: '<c:url value="/ajaxCommentDestory"></c:url>',
+			   data: "commentId="+comment_id,
+			   success: function(msg){
+			    // alert( "flag= " + msg );
+			    alert(comment_id);
+			    // var comment_table = comment_id+"_comment_table";
+			     //alert(comment_table);
+			   //  $(comment_table).remove();
+			     var comments = document.getElementById(comment_id+"_comment");
+			     alert(comments); // repost null...why????
+			     document.body.removeChild(comments);
+			   }
+			});
+	});
+});
 
+</script>
 

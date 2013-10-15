@@ -41,7 +41,7 @@
 				<tbody>
 			  		<c:forEach items="${page.content}" var = "page" >
 			  			<tr>
-			  				<td align="center"><a href='<c:url value="/admin/message/detailOne?mid=${page.sendMsg.id}&urmid=${page.id}"></c:url>'>${page.sendMsg.title}</a></td>
+			  				<td align="center"><a href='#'>${page.sendMsg.title}</a></td>
 			  				<td align="center">${page.sendMsg.date}</td>
 			  				<td align="center">${page.sendMsg.user.name}</td>
 			  				<td align="center">
