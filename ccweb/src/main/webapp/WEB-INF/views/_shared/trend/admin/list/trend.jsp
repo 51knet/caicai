@@ -269,6 +269,9 @@ text-decoration: none;
 	  </div>
 </div>
 <script type="text/javascript">
+String.prototype.trim=function(){
+    return this.replace(/(^\s*)|(\s*$)/g, "");
+}
 $(document).ready(function() {	
 	$('.deleteMsgPostBtn').on('click', function() {
 		var comment_id = $(this).next().val().trim();
@@ -282,14 +285,7 @@ $(document).ready(function() {
 			   url: '<c:url value="/ajaxCommentDestory"></c:url>',
 			   data: "commentId="+comment_id,
 			   success: function(msg){
-			    // alert( "flag= " + msg );
-			    // alert(comment_id);
-			    // var comment_table = comment_id+"_comment_table";
-			     //alert(comment_table);
-			   //  $(comment_table).remove();
 			     var comments = document.getElementById(comment_id+"_comment");
-			    // alert(comments); // repost null...why????
-			   //  document.body.removeChild(comments);
 			     $(comments).remove();
 			   }
 			});
