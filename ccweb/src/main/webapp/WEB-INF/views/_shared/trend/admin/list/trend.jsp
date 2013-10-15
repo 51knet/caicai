@@ -271,7 +271,7 @@ text-decoration: none;
 <script type="text/javascript">
 $(document).ready(function() {	
 	$('.deleteMsgPostBtn').on('click', function() {
-		var comment_id = $(this).next().val();
+		var comment_id = $(this).next().val().trim();
 		$('#deleteMsgPostModal #commentId').val(comment_id);	
 	});
 	
@@ -283,13 +283,14 @@ $(document).ready(function() {
 			   data: "commentId="+comment_id,
 			   success: function(msg){
 			    // alert( "flag= " + msg );
-			    alert(comment_id);
+			    // alert(comment_id);
 			    // var comment_table = comment_id+"_comment_table";
 			     //alert(comment_table);
 			   //  $(comment_table).remove();
 			     var comments = document.getElementById(comment_id+"_comment");
-			     alert(comments); // repost null...why????
-			     document.body.removeChild(comments);
+			    // alert(comments); // repost null...why????
+			   //  document.body.removeChild(comments);
+			     $(comments).remove();
 			   }
 			});
 	});
