@@ -34,5 +34,7 @@ public interface ReceiveMsgRepository extends JpaRepository<ReceiveMsg, Long>, J
 	Page<ReceiveMsg> findMsgByUsers(Long userid,Long commenterid,String types, Pageable pageable);
 	@Query("select r from ReceiveMsg r where r.commenter in (?1, ?2) and r.user.id in (?1, ?2) and r.types = ?3")
 	List<ReceiveMsg> findMsgListByUsers(Long userid,Long commenterid,String types);
+	
+	ReceiveMsg findMsgByCommentidAndTypes(Long commentId, String types);
 
 }

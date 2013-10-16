@@ -84,9 +84,7 @@
 		<input type="hidden" name="trendRole" value="${trendRole }">
 		<input type="hidden" name="trendVariety" value="${trendVariety }">
 			<textarea  style="width: 100%; height: 100px;" class="border-green-all" name="contents"  onKeyDown="checkMaxInput(this)" onKeyUp="checkMaxInput(this)"></textarea><br>
-
 			<font  id="remLen" class="pull-left"><b></b></font><button class="btn btn-success trend_button pull-right"  type="submit">发 布</button> <br>
-
 		</form>
 	</div>
 	<div class="row-fluid" >

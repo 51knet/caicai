@@ -127,4 +127,9 @@ public class ReceiveMsgServiceImpl implements ReceiveMsgService {
 		return onePage;
 	}
 
+	@Override
+	public ReceiveMsg findMsgByCommentidAndTypes(Long comment_id, String types) {
+		return receiveMsgRepository.findMsgByCommentidAndTypes(comment_id, types);
+	}
+
 }

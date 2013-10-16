@@ -154,12 +154,12 @@ text-decoration: none;
 <div class="row-fluid  border-white-all" style="background-color: #fff;">
 	<div class="row" style="color: #444;">	
 		<c:forEach items="${trend}" var="trendBeans">
-			<div style="margin: 10px 0px; " class="" >
+			<div style="margin: 10px 0px; "  >
 				<table width="100%" cellpadding="4" >	
 					<tr>
 						  <td rowspan="3" align="left" valign="top" width="10%"><a href='<c:url value="/id/${trendBeans.trend.user.id }"></c:url>' >
 						  <img src=' <c:url value="${trendBeans.trend.user.photo_url }"></c:url>'  class="photo_width"></a></td>
-						   <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.user.id }"></c:url>' > ${trendBeans.trend.user.name}</a></td>
+						  <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.user.id }"></c:url>' > ${trendBeans.trend.user.name}</a></td>
 					 </tr>
 				 	<tr  >
 					   <td align="left" valign="top" colspan="2">
@@ -202,7 +202,7 @@ text-decoration: none;
 					
 					</div>
 					<c:forEach items="${trendBeans.commentList}" var="comment" begin="0" end="6">
-						<table width='98%' cellpadding='0' style="margin-bottom: 10px;" id="${comment.id }_comment">
+						<table width='98%' cellpadding='0' style="margin-bottom: 10px;" id="${comment.id }_comment_table">
 							<tr><td  align='left' valign= 'top' colspan="2">
 								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a>
 								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a>
@@ -285,8 +285,10 @@ $(document).ready(function() {
 			   url: '<c:url value="/ajaxCommentDestory"></c:url>',
 			   data: "commentId="+comment_id,
 			   success: function(msg){
-			     var comments = document.getElementById(comment_id+"_comment");
-			     $(comments).remove();
+				   if(msg == 'true'){
+					   var comments = document.getElementById(comment_id+"_comment_table");
+					     $(comments).remove();
+				   }
 			   }
 			});
 	});

@@ -13,6 +13,7 @@ public interface ReceiveMsgService {
 	void destory(Long id);  
 	void isRead(Long id);
 	ReceiveMsg  detail(Long id);
+	ReceiveMsg findMsgByCommentidAndTypes(Long comment_id, String types);
 	List<ReceiveMsg>  list(Long userId);
 	List<ReceiveMsg>  unReadList(Long userId);
 	List<ReceiveMsg> isReadList(Long userId);

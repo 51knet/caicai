@@ -13,6 +13,25 @@
 			  $(this).css("background-color","");
 		});
 	});*/
+	
+    function showReply(index){
+   	 var id =  index+"_reply_div";
+	   	  if($("#"+id).css("display") == "block"){
+	   		  $("#"+id).css("display","none");
+	   	  }else{
+	   		  $("#"+id).css("display","block");
+	   	  }
+   }
+	function postReplyForm(index){
+    	var id =  index+"_reply_form";
+    	var replydiv =  index+"_reply_div";
+		$.post('<c:url value="/ajaxreply" />', $("#"+id).serialize(), function(msg){
+			if(msg != null){
+				alert("您的回复已提交");
+			}
+		}, "json");
+		$("#"+replydiv).css("display","none");
+    }
 
 </script>
 <style>
@@ -36,6 +55,17 @@
 .bb{
 	border-bottom: solid #cccccc 1px;
 }
+.color_green{
+color: #80b029; 
+font-size: 14px;
+}
+.border-green-all{
+		border: 1px solid #9db84d;
+}
+.date{
+	font-size: 12px;
+	color: #666;
+}
 
 </style>
 <div class="row-fluid custom round">
@@ -43,19 +73,18 @@
 		<h4>站内消息</h4>
 	</div>
 	<div class="content">	
-	
 			<c:forEach items="${commentBeansList}" var = "commentBeansList" >
-				<table cellpadding="10" width=100%   style="	border: 1px solid #cae893; background-color:#fafafa; margin-bottom: 10px;" class="bb unReadMsg round">
+				<table border="0" cellpadding="4" width=100%   style="background-color:#fafafa; margin-bottom: 10px;" class="border-green-all round" id="${commentBeansList.comment.id}_comment_table">
 				  	  <tr>
 					    <td rowspan="3" align="left" valign="top" width="10%" ><img src="<c:url value='${commentBeansList.comment.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
 					    <td align="left" style="font-weight: bold;">${commentBeansList.comment.user.name}</td>
-					    <td align="right"  width="20%"  style="color: #666; font-size: 12px;">${commentBeansList.comment.publishDate}</td>
+					    <td align="left" valign="top"  width="20%"  class="date">${commentBeansList.comment.publishDate}</td>
 					  </tr>
 					  <tr>
-					    <td colspan="2" align="left" style="color: #80b029; font-size: 14px;">${commentBeansList.comment.context}</td>
+					    <td colspan="2" align="left" valign="top" class="color_green">${commentBeansList.comment.context}</td>
 					  </tr>
 					  <tr>
-					    <td colspan="2" align="left" style="color: #80b029; font-size: 14px;">
+					    <td  align="left" valign="top" class="date">
 					   		<c:if test="${commentBeansList.comment.host.id != sessionUserInfo.id }">
 					   			评论了我的动态：${commentBeansList.trends.context}
 					   		</c:if>	
@@ -63,6 +92,24 @@
 					   			回复了我的评论
 					   		</c:if>	 
 					    </td>
+					    <td align="center" >
+					    	<a class="color_green" href="javascript:void(0)" onclick="showReply(${commentBeansList.comment.id  })">回复</a>
+					    </td>
+					  </tr>
+					  <tr>
+					  	<td colspan="3">
+				  			<div style="display: none; margin: 0 10px; " id="${commentBeansList.comment.id }_reply_div">
+								<form  method="post" action='<c:url value="/reply"></c:url>'  id="${commentBeansList.comment.id }_reply_form">
+									<input type="hidden" name="hostId" value="${commentBeansList.comment.user.id }" >
+									<input type="hidden" name="trendId" value="${commentBeansList.trends.id}" >
+									<textarea rows="3" cols="" style="width:100%; " class="border-green-all" name="contents"  ></textarea><br>
+									<div class="offset10">
+										<!-- <button class="btn btn-success offset"  onclick="postReplyForm()">发布</button> -->
+										<a href="javascript:void(0)" class="btn btn-success comment_button"  onclick="postReplyForm(${commentBeansList.comment.id })">回复</a>  
+									</div>
+								</form>
+							</div>
+					  	</td>
 					  </tr>
 		  		</table>
 	  		</c:forEach>
@@ -70,28 +117,3 @@
 	</div>
 </div>
 
-<!-- delete  msg Form -->
-<div class="modal hide fade" id="deleteMsgPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    <h3 id="myModalLabel">请注意</h3>
-	  </div>
-	  <div class="modal-body">
-	    <p>你确定将该信件放入回收站吗？</p>
-	  </div>
-	  <div class="modal-footer">
-	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-	    <form action='<c:url value="/admin/message/deleOne"></c:url>' method="post" style="display: inline-block;" >
-	    	<input id="meId" type="hidden" name="mId" />
-	    	<button class="btn btn-success">确定</button>
-	    </form>
-	  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function() {	
-	$('.deleteMsgPostBtn').on('click', function() {
-		var m_id =$(this).next().val();
-		$('#deleteMsgPostModal #meId').val(m_id);	
-	});
-});
-</script>		

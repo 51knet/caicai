@@ -52,7 +52,7 @@ font-weight: bold;
 </style>
 <c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url>
 <div class="row-fluid centralize left ">
-	<div class="row-fluid" style="border-bottom: 1.5px solid #9db84d;">
+	<div class="row-fluid " style="border-bottom: 1.5px solid #9db84d;">
 		<c:choose>
 			<c:when test='${sessionUserInfo.avatar == "/resources/img/avatar/avatar90.png" || sessionUserInfo.avatar == "/resources/img/avatar/avatar91.png" }'>
 				 <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;width:60px;margin:10px auto;">
@@ -64,9 +64,9 @@ font-weight: bold;
 			  <a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>
 			</c:when>
 			<c:otherwise>
-				<table cellpadding="2" style="width: 130px;">
+				<table cellpadding="2" style="width: 100%;" border="0">
 					<tr>
-						<td align="left" valign="top" width="50%"><img src="${avatar_url}" style="margin: 10px 10px; width: 60px; " ></td>
+						<td align="left" valign="top" width="50%"><img src="${avatar_url}" style="margin: 10px 5px; width: 60px; " ></td>
 						<td  align="left" valign="top" >
 							<div style="width: 60px;" id="content"><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	</div>	
 						</td>

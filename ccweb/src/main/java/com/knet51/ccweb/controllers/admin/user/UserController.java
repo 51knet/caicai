@@ -259,7 +259,7 @@ public class UserController {
 	public @ResponseBody Comment ajaxCreateReply(@RequestParam("hostId") Long host_id,@RequestParam("trendId") Long trend_id, HttpSession session,HttpServletResponse response,
 			@Valid MyTrendsForm trendsForm,BindingResult validResult){
 		UserInfo userInfo =  (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Trends t = new Trends(); 
+		Trends t ; 
 		t = trendsService.findOneById(trend_id);
 		if(validResult.hasErrors()){
 			return null;
@@ -462,6 +462,10 @@ public class UserController {
 		try {
 			if(comment_id != null){
 				commentService.deleteComment(comment_id);
+				ReceiveMsg msg = receiveMsgService.findMsgByCommentidAndTypes(comment_id, GlobalDefs.MSG_TYPES_COMMENT);
+				if(msg != null){
+					receiveMsgService.destory(msg.getId());
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -475,6 +479,10 @@ public class UserController {
 		try {
 			if(comment_id != null){
 				commentService.deleteComment(comment_id);
+				ReceiveMsg msg = receiveMsgService.findMsgByCommentidAndTypes(comment_id, GlobalDefs.MSG_TYPES_COMMENT);
+				if(msg != null){
+					receiveMsgService.destory(msg.getId());
+				}
 			}
 			flag = "true";
 		} catch (Exception e) {
