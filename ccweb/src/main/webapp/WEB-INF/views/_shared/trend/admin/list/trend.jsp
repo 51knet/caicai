@@ -66,29 +66,12 @@ text-decoration: none;
 
     function	showCommentDiv(index){
 		  var id =  index+"_comment_div";
-		 // $("#"+id+">table").empty();
-	
 		  if($("#"+id).css("display") == "block"){
 			  $("#"+id).css("display","none");
 		  }else{
 			  $("#"+id).css("display","block");
 		  }
-		 /* $.ajax({
-			   type: "POST",
-			   url: '<c:url value="/showTrendsComment"></c:url>',
-			   data: "trendId="+index,
-			   dataType:"json",
-			   success: function(msg){
-				//   alert(msg);
-			     var  t = "<table width='100%' cellpadding='5'>";
-			     for( var i=0;i<msg.length;i++){
-			    	 t+="<tr><td  align='left' valign= 'top'>  <img src='/ccweb"+msg[i].photo_url+"  ' style='width:40px' />&nbsp;&nbsp;"+msg[i].name+"</td></tr><tr  class='bb'><td  align='left' valign= 'top'>"+msg[i].context+"</td></tr>";
-			     }
-			     $("#"+id).append(t);
-			   }
-			});*/
 	}
-
     
     function showReply(index){
     	 var id =  index+"_reply_div";
@@ -106,7 +89,7 @@ text-decoration: none;
         var   hour=now.getHours();   
         var   minute=now.getMinutes();     
         return   year+"-"+month+"-"+date+"   "+hour+":"+minute;   
-      } 
+    } 
     
     function postReplyForm(){
     	//alert("form");
@@ -143,6 +126,19 @@ text-decoration: none;
 		$("#"+id +" textarea").html("");
 		$("#"+replydiv).css("display","none");
     }
+    
+	
+		function checkCommentTextMaxInput(obj) {
+			 var maxLen=20;
+			 var form_id = obj.parentNode.id+"_remLen";
+			 if(obj.value.length>maxLen) {  
+			 		obj.value=obj.value.substring(0,maxLen);
+			 		document.getElementById(form_id).innerHTML="你输入的内容超出了字数限制";
+			 }
+			 else{  
+				 	document.getElementById(form_id).innerHTML='还剩下'+(maxLen-obj.value.length)+'/'+maxLen+'字';
+			 }
+		}
 </script>
 <div class="row-fluid border-green-all" style="background-color:#ebf4df;">
 	<div class="row-fluid border-green-right variety_filter"  ><a href='<c:url value='/admin/trend/${trendRole }/all'></c:url>' >全部</a></div>
@@ -191,11 +187,10 @@ text-decoration: none;
 					<form style="margin-top: 10px;" method="post" action='<c:url value="/comment"  ></c:url>'  id="${trendBeans.trend.id}_comment_form">
 						<input type="hidden" name="trendId" value="${trendBeans.trend.id}">
 						<input type="hidden" name="trendRole" value="${trendRole }">
-						<textarea rows="4" class="border-green-all" style="width:100%; " name="contents"  ></textarea><br>
-						<div class="offset10">
-							<!--<button class="btn btn-success " type="submit">发布</button> -->
-							<a href="javascript:void(0)" class="btn btn-success comment_button"  onclick="postCommentForm(${trendBeans.trend.id})">发布</a>  
-						</div>
+						<textarea rows="4" class="border-green-all" style="width:100%; " name="contents"  onKeyDown="checkCommentTextMaxInput(this)" onKeyUp="checkCommentTextMaxInput(this)"></textarea><br>
+							<font  id="${trendBeans.trend.id}_comment_form_remLen" class="pull-left"><b></b></font>
+							<a href="javascript:void(0)" class="btn btn-success comment_button pull-right"  onclick="postCommentForm(${trendBeans.trend.id})">发布</a>  
+
 					</form>
 					<a href='<c:url value="/admin/trend/view/${trendBeans.trend.id}"></c:url>'><span class="color_green">共有 ${trendBeans.commentCount} 条评论，点击查看详细 >>></span></a><br><br>
 					<div id="${trendBeans.trend.id}_ajax_comment_div"  style="display: none; margin-bottom: 10px;">
@@ -228,11 +223,10 @@ text-decoration: none;
 										<input type="hidden" name="hostId" value="${comment.user.id }" >
 										<input type="hidden" name="trendId" value="${trendBeans.trend.id}" >
 										<input type="hidden" name="trendRole" value="${trendRole }">
-										<textarea rows="4" cols="" style="width:100%; " class="border-green-all" name="contents"  ></textarea><br>
-										<div class="offset10">
+										<textarea rows="4" cols="" style="width:100%; " class="border-green-all" name="contents"  onKeyDown="checkCommentTextMaxInput(this)" onKeyUp="checkCommentTextMaxInput(this)"></textarea><br>
 											<!-- <button class="btn btn-success offset"  onclick="postReplyForm()">发布</button> -->
-											<a href="javascript:void(0)" class="btn btn-success comment_button"  onclick="postReplyForm(${comment.id} , ${trendBeans.trend.id})">发布</a>  
-										</div>
+											<font  id="${comment.id}_reply_form_remLen" class="pull-left"><b></b></font>
+											<a href="javascript:void(0)" class="btn btn-success comment_button pull-right"  onclick="postReplyForm(${comment.id} , ${trendBeans.trend.id})">发布</a> <br> 
 									</form>
 								</div>
 							</td></tr>

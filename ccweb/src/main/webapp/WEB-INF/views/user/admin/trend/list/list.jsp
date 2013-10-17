@@ -70,16 +70,16 @@
 		function checkMaxInput(obj) {
 			 if(obj.value.length>maxLen) {  
 			 		obj.value=obj.value.substring(0,maxLen);
-			 		remLen.innerText="你输入的内容超出了字数限制";
+			 		remLen.innerHTML="你输入的内容超出了字数限制";
 			 }
 			 else{  
-			 		remLen.innerText='还剩下'+(maxLen-obj.value.length)+'/'+maxLen+'字';
+			 		remLen.innerHTML='还剩下'+(maxLen-obj.value.length)+'/'+maxLen+'字';
 			 }
 		}   
 
 </script>
 <div class="row-fluid custom round">
-	<div style="margin: 0 auto; width: 100%; text-align: center;">
+	<div style="margin: 0 auto; width: 100%; text-align: center;" id="divid">
 		<form method="post" action='<c:url value="/admin/trend/publish"></c:url>'>
 		<input type="hidden" name="trendRole" value="${trendRole }">
 		<input type="hidden" name="trendVariety" value="${trendVariety }">
