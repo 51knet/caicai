@@ -129,7 +129,7 @@ text-decoration: none;
     
 	
 		function checkCommentTextMaxInput(obj) {
-			 var maxLen=20;
+			 var maxLen=200;
 			 var form_id = obj.parentNode.id+"_remLen";
 			 if(obj.value.length>maxLen) {  
 			 		obj.value=obj.value.substring(0,maxLen);
@@ -254,10 +254,6 @@ text-decoration: none;
 	  <div class="modal-footer">
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 	    <form action='<c:url value="/admin/message/comment/destory"></c:url>' method="post" style="display: inline-block;" >
-	    	<!-- <input id="commentId" type="hidden" name="commentId" />
-	    	<input  type="hidden" name="trendRole" value="${trendRole }" />
-	    	<input  type="hidden" name="trendVariety"  value="${trendVariety}"/>
-	    	<button class="btn btn-success">确定</button> --> 
 	    	<a href="javascript:void(0)" class="btn btn-success" id="deleCommentAjax"  data-dismiss="modal" aria-hidden="true">确定</a><input  type="hidden" id="commentId" name="commentId" /> 
 	    </form>
 	  </div>
