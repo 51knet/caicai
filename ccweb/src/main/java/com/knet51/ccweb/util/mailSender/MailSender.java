@@ -2,6 +2,8 @@ package com.knet51.ccweb.util.mailSender;
 
 import java.util.Random;
 
+import com.knet51.ccweb.jpa.entities.User;
+
 public class MailSender {
 
 	private static MailSender instance = null;
@@ -67,6 +69,26 @@ public class MailSender {
 			generateRandStr.append(radStr.substring(randNum, randNum + 1));
 		}
 		return generateRandStr.toString();
+	}
+	
+	public boolean SendNotiyMail(User user, String title, String context) {
+		if(user == null){
+			return false;
+		}
+		String sendToAddress = user.getEmail();
+		MailSenderInfo mailInfo = new MailSenderInfo();
+		mailInfo.setMailServerHost("smtp.ym.163.com");
+		mailInfo.setMailServerPort("25");
+		mailInfo.setValidate(true);
+		mailInfo.setUserName("service@51knet.com");
+		mailInfo.setPassword("123456");
+		mailInfo.setFromAddress("service@51knet.com");
+		mailInfo.setToAddress(sendToAddress);
+		mailInfo.setSubject(title);
+		mailInfo.setContent(context);
+		mailInfo.setTimeout("10000");
+		SimpleMailSender sms = new SimpleMailSender();
+		return sms.sendHtmlMail(mailInfo);
 	}
 
 }
