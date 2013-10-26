@@ -56,7 +56,7 @@ public class ReceiveMsgInfoPageController {
 	@Autowired
 	private TrendsService trendsService;
 	
-	@RequestMapping(value="/admin/user/message/list")
+	@RequestMapping(value="/admin/message/list")
 	public String receiveMsgList(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
 		logger.info("####  Into ReceiveMsgList page  ####");
@@ -110,7 +110,7 @@ public class ReceiveMsgInfoPageController {
 			}
 			return "admin."+userInfo.getRole()+".message.detail";
 	}
-	
+	/*
 	@RequestMapping(value="/admin/message/list")
 	   public String receiveMsg(Model model,HttpSession session,@RequestParam(value="pageNumber",defaultValue="0")
        int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
@@ -148,7 +148,7 @@ public class ReceiveMsgInfoPageController {
 		}
            return "";
        }
-	
+	*/
 	
 	@Transactional
 	@RequestMapping(value="/admin/message/detailOne")
@@ -295,6 +295,7 @@ public class ReceiveMsgInfoPageController {
 				CommentBeans commentBeans = new CommentBeans();
 				Comment comment = commentService.findOneByCommentId(page.getContent().get(i).getCommentid());
 				Trends  trends = trendsService.findOneById(comment.getTrendId());
+				System.out.println("----trendid="+trends.getId());
 				commentBeans.setComment(comment);
 				commentBeans.setTrends(trends);
 				commentBeansList.add(commentBeans);

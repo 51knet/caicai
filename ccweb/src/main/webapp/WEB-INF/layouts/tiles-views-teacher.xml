@@ -224,7 +224,29 @@
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/message/receiveMsg.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.teacher.message.detail.list" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.teacher.message.comment.detail.list" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/comment/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.teacher.message.focus.detail.list" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/focus/list/list.jsp"></put-attribute>
+	</definition>
 
+	
+	
+	
+	
 	<definition name="admin.teacher.message.send" extends="admin-layout">
 		<put-attribute name="title" value="私信" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>

@@ -57,7 +57,7 @@
 		<li><a href='<c:url value="/admin/details"><c:param name="active" value="photo" /></c:url>' >账号信息</a></li>
 		<li><a href='<c:url value="/admin/account/list"></c:url>' >账户管理</a></li>
 		<!-- <li><a href='<c:url value="/admin/order/list"></c:url>' >订单管理</a></li> -->
-		<li><a href='<c:url value="/admin/message/list"></c:url>' >站内信</a></li>
+		<li><a href='<c:url value="/admin/message/list"></c:url>' >消息<c:if test="${unReadCount > 0}"> <img src="<c:url value='/resources/img/default/new-icon.gif'></c:url>"> </c:if></a></li>
 		<!-- 
 		<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.isEnterprise != null) }">
 		       <li><a href='<c:url value="/admin/downgradeRole"></c:url>' >升级成为教师用户</a></li>
