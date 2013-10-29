@@ -1,6 +1,7 @@
 package com.knet51.ccweb.controllers.admin.teacher.resource;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -41,6 +42,7 @@ import com.knet51.ccweb.jpa.services.ResourceTypeService;
 import com.knet51.ccweb.jpa.services.TrendsService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
+import com.knet51.ccweb.util.fileUpLoad.FTPUtil;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 
 @Controller
@@ -73,41 +75,52 @@ public class TeacherResouDetailInfoController {
 		logger.info("#####Into TeacherResouInfoAddPageController#####"+session.getId());
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<MultipartFile> files = request.getFiles("myFiles");
+
 		User user = userInfo.getUser();
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
+				logger.info("================================================= byte="+multipartFile.getBytes().length);
 				CourseResource resource = new CourseResource();
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
 				String fileName = files.get(i).getOriginalFilename();
 				String name = fileName.substring(0, fileName.indexOf("."));
 				ResourceType resourceType = resourceTypeService.findOneById(value); 
 				//String realPath = FileUtil.getPath("upload", userInfo.getId(), resourceType.getTypeName(),session);
-				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/upload/"+resourceType.getTypeName();
-				FileUtil.createRealPath(path, session);
-				File saveDest = new File(path + File.separator + fileName);
-				multipartFile.transferTo(saveDest);
-				resource.setResourceType(resourceType);
-				resource.setResourceDesc(desc);
-				resource.setFileName(name);
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-				String date = format.format(new Date());
-				resource.setDate(date);
-				resource.setSaveName(fileName);
-				String savePath = path+"/"+fileName;
-				resource.setSavePath(savePath);
-				resource.setStatus(GlobalDefs.STATUS_RESOURCE);
-				resource.setUser(user);
-				CourseResource newResource =  courseResourceService.createCourseResource(resource);
+				//String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/upload/"+resourceType.getTypeName();
+				String path = "/resources/attached/"+userInfo.getId()+"/upload/"+resourceType.getTypeName();
+				//FileUtil.createRealPath(path, session);
+				//File saveDest = new File(path + File.separator + fileName);
+				//FileInputStream fileInput = (FileInputStream) multipartFile.getInputStream();
 				
-				Trends trends = new Trends();
-				trends.setUser(userInfo.getUser());
+				boolean flag =  FTPUtil.getInstance().uploadFile(path, fileName, multipartFile.getInputStream());
 				
-				trends.setTitle(newResource.getFileName());
-				trends.setPublishDate(new Date());
-				trends.setItemId(newResource.getId());
-				trends.setVariety("resource");
-				trendsService.createTrends(trends);
+				if(flag){
+					//multipartFile.transferTo(saveDest);
+					resource.setResourceType(resourceType);
+					resource.setResourceDesc(desc);
+					resource.setFileName(name);
+					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+					String date = format.format(new Date());
+					resource.setDate(date);
+					resource.setSaveName(fileName);
+					String savePath = path+"/"+fileName;
+					resource.setSavePath(savePath);
+					resource.setStatus(GlobalDefs.STATUS_RESOURCE);
+					resource.setUser(user);
+					CourseResource newResource =  courseResourceService.createCourseResource(resource);
+					
+					Trends trends = new Trends();
+					trends.setUser(userInfo.getUser());
+					
+					trends.setTitle(newResource.getFileName());
+					trends.setPublishDate(new Date());
+					trends.setItemId(newResource.getId());
+					trends.setVariety("resource");
+					trendsService.createTrends(trends);
+				}
+				
+				
 			}
 		}
 		return "redirect:/admin/resource/list";
