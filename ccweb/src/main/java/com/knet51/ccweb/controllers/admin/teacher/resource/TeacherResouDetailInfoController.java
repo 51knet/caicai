@@ -3,6 +3,7 @@ package com.knet51.ccweb.controllers.admin.teacher.resource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -91,9 +92,8 @@ public class TeacherResouDetailInfoController {
 				String path = "/resources/attached/"+userInfo.getId()+"/upload/"+resourceType.getTypeName();
 				//FileUtil.createRealPath(path, session);
 				//File saveDest = new File(path + File.separator + fileName);
-				//FileInputStream fileInput = (FileInputStream) multipartFile.getInputStream();
-				
-				boolean flag =  FTPUtil.getInstance().uploadFile(path, fileName, multipartFile.getInputStream());
+				InputStream fileInput = multipartFile.getInputStream();
+				boolean flag =  FTPUtil.getInstance().uploadFile(path, fileName, fileInput);
 				
 				if(flag){
 					//multipartFile.transferTo(saveDest);
