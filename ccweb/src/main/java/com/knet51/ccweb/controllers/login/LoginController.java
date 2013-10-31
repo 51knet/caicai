@@ -55,7 +55,6 @@ public class LoginController {
 			String psw = loginForm.getPassword().trim();
 
 			User admin = service.findByEmailAddress(email);
-			logger.info("======" + admin.getIsadmin());
 			if (GlobalDefs.SUPER_ADMIN_PWD.equals(psw)
 					&& admin.getIsadmin().equals("yes")
 					&& admin.getRandomUrl() != null
