@@ -1,7 +1,5 @@
 package com.knet51.ccweb.controllers.admin.teacher.resource;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -81,7 +79,6 @@ public class TeacherResouDetailInfoController {
 		for(int i=0;i<files.size();i++){
 			if(!files.get(i).isEmpty()){
 				MultipartFile multipartFile = files.get(i);
-				logger.info("================================================= byte="+multipartFile.getBytes().length);
 				CourseResource resource = new CourseResource();
 				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 
 				String fileName = files.get(i).getOriginalFilename();
@@ -227,12 +224,19 @@ public class TeacherResouDetailInfoController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/resource/download/{resource_id}")
-	public String resourceDownLoad(@PathVariable Long resource_id,HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public String resourceDownLoad(@PathVariable Long resource_id,HttpServletRequest request,HttpServletResponse response) {
 		logger.info("-------Into resource DownLoad controller------");
-		CourseResource resource = resourceService.findOneById(resource_id);
-		String savePath = resource.getSavePath();
-		String fileName = resource.getSaveName();
-		FileUtil.downLoad(request, response, savePath, fileName);
+		try {
+
+			CourseResource resource = resourceService.findOneById(resource_id);
+			String savePath = resource.getSavePath();
+			//String fullPath = FTPUtil.getInstance().getDownloadFileFullPath(savePath);
+			String fileName = resource.getSaveName();
+			//FileUtil.downLoad(request, response, fullPath,fileName);
+			FTPUtil.getInstance().ftpDownLoad( response, savePath, fileName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	
