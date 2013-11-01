@@ -93,7 +93,6 @@ public class TeacherResouDetailInfoController {
 				boolean flag =  FTPUtil.getInstance().uploadFile(path, fileName, fileInput);
 				
 				if(flag){
-					//multipartFile.transferTo(saveDest);
 					resource.setResourceType(resourceType);
 					resource.setResourceDesc(desc);
 					resource.setFileName(name);

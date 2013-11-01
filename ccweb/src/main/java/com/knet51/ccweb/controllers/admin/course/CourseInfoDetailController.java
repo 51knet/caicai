@@ -1,6 +1,7 @@
 package com.knet51.ccweb.controllers.admin.course;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,6 +42,7 @@ import com.knet51.ccweb.jpa.services.CourseTypeService;
 import com.knet51.ccweb.jpa.services.ResourceTypeService;
 import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
+import com.knet51.ccweb.util.fileUpLoad.FTPUtil;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 
 
@@ -62,6 +64,8 @@ public class CourseInfoDetailController {
 	private ResourceTypeService resourceTypeService;
 	@Autowired
 	private CourseTypeService courseTypeService;
+	@Autowired
+	private CourseLessonService courseLessonService;
 	
 	/**
 	 * update the teacher's course basic information
@@ -176,21 +180,28 @@ public class CourseInfoDetailController {
 				String date = format.format(new Date());
 				resource.setDate(date);
 				Course course = courseService.findOneById(Long.valueOf(course_id));
-				String path = session.getServletContext().getRealPath("/")+"resources/attached/"+userInfo.getId()+"/course/"+course.getId()+"/"+lessonNum;
+				
+				//String path = session.getServletContext().getRealPath("/")+"resources/attached/"+userInfo.getId()+"/course/"+course.getId()+"/"+lessonNum;
 				String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+course.getId()+"/"+lessonNum;
-				FileUtil.createRealPath(path, session);
-				File saveDest = new File(path + File.separator + fileName);
-				multipartFile.transferTo(saveDest);
-				String savePath = path+"/"+fileName;
-				resource.setSavePath(savePath);
-				resource.setSaveName(fileName);
-				resource.setLessonNum(lessonNum);
-				resource.setCourse_id(Long.valueOf(course_id));
-				resource.setCourseLessonId(courseLessonId);
-				resource.setResourceType(resourceType);
-				resource.setRelativePath(relativePath+"/"+fileName);
-				resource.setStatus(GlobalDefs.STATUS_COURSE_RESOURCE);
-				courseResourceService.createCourseResource(resource);
+				String path = relativePath;
+				InputStream fileInput = multipartFile.getInputStream();
+				boolean flag =  FTPUtil.getInstance().uploadFile(path, fileName, fileInput);
+				//FileUtil.createRealPath(path, session);
+				//File saveDest = new File(path + File.separator + fileName);
+				//multipartFile.transferTo(saveDest);
+				if(flag){
+					String savePath = path+"/"+fileName;
+					resource.setSavePath(savePath);
+					resource.setSaveName(fileName);
+					resource.setLessonNum(lessonNum);
+					resource.setCourse_id(Long.valueOf(course_id));
+					resource.setCourseLessonId(courseLessonId);
+					resource.setResourceType(resourceType);
+					resource.setRelativePath(relativePath+"/"+fileName);
+					resource.setStatus(GlobalDefs.STATUS_COURSE_RESOURCE);
+					courseResourceService.createCourseResource(resource);
+				}
+				
 			}
 		}
 		return "redirect:/admin/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
@@ -222,25 +233,34 @@ public class CourseInfoDetailController {
 					redirectAttributes.addFlashAttribute("fileMaxError", "上传文件不得大于200M");
 					return "redirect:/admin/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 				}
-				File oldResource = new File(resource.getSavePath());
-				if(oldResource != null){
-					oldResource.delete();
+				boolean success = FTPUtil.getInstance().deleFtpFile(resource.getSavePath());
+				if(success){
+					logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 	
+					String fileName = multipartFile.getOriginalFilename();
+					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+					String date = format.format(new Date());
+					resource.setDate(date);
+					Course course = courseService.findOneById(resource.getCourse_id());
+					
+//					String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+course.getId()+File.separator+resource.getLessonNum();
+//					String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+course.getId()+"/"+resource.getLessonNum();
+//					FileUtil.createRealPath(path, session);
+//					File saveDest = new File(path + File.separator + fileName);
+//					multipartFile.transferTo(saveDest);
+					
+					String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+course.getId()+"/"+resource.getLessonNum();
+					String path = relativePath;
+					InputStream fileInput = multipartFile.getInputStream();
+					boolean flag =  FTPUtil.getInstance().uploadFile(path, fileName, fileInput);
+					if(flag){
+						String savePath = path+"/"+fileName;
+						resource.setSavePath(savePath);
+						resource.setSaveName(fileName);
+						resource.setRelativePath(relativePath+"/"+fileName);
+					}
+					
 				}
-				logger.info("Upload file name:"+files.get(i).getOriginalFilename()); 	
-				String fileName = multipartFile.getOriginalFilename();
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-				String date = format.format(new Date());
-				resource.setDate(date);
-				Course course = courseService.findOneById(resource.getCourse_id());
-				String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/course/"+course.getId()+File.separator+resource.getLessonNum();
-				String relativePath ="/resources/attached/"+userInfo.getId()+"/course/"+course.getId()+"/"+resource.getLessonNum();
-				FileUtil.createRealPath(path, session);
-				File saveDest = new File(path + File.separator + fileName);
-				multipartFile.transferTo(saveDest);
-				String savePath = path+File.separator+fileName;
-				resource.setSavePath(savePath);
-				resource.setSaveName(fileName);
-				resource.setRelativePath(relativePath+"/"+fileName);
+			
 			}
 			resource.setFileName(resourceName);
 			resource.setResourceType(resourceType);
@@ -261,11 +281,11 @@ public class CourseInfoDetailController {
 	public String destoryTeacherCourseResource(HttpSession session,Model model,
 			@RequestParam("resourceId") Long resource_id) throws  Exception{
 		CourseResource resource = courseResourceService.findOneById(resource_id); 
-		File oldResource = new File(resource.getSavePath());
-		if(oldResource != null){
-			oldResource.delete();
+		//File oldResource = new File(resource.getSavePath());
+		boolean success = FTPUtil.getInstance().deleFtpFile(resource.getSavePath());
+		if(success){
+			courseResourceService.deleCourseResource(resource_id);
 		}
-		courseResourceService.deleCourseResource(resource_id);
 		return "redirect:/admin/course/edit/"+resource.getCourse_id()+"/modifycourse";
 	}
 	
@@ -283,7 +303,8 @@ public class CourseInfoDetailController {
 		CourseResource resource = courseResourceService.findOneById(resource_id);
 		String savePath = resource.getSavePath();
 		String fileName = resource.getSaveName();
-		FileUtil.downLoad(request, response, savePath, fileName);
+		//FileUtil.downLoad(request, response, savePath, fileName);
+		FTPUtil.getInstance().ftpDownLoad( response, savePath, fileName);
 		return null;
 	}
 	
@@ -608,6 +629,53 @@ public class CourseInfoDetailController {
 			courseTypeService.destryCourseType(id);
 			return "redirect:/admin/course/type/list";
 		}
+	}
+	
+	/**
+	 * add the lesson number
+	 * @param course_id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/admin/course/edit/addlessonnum",method=RequestMethod.POST)
+	public String addNewLessonNum(@RequestParam("courseId") Long course_id,Model model){
+		List<CourseLesson> lessonList = courseLessonService.getMaxLessonNumByCourseId(Long.valueOf(course_id));
+		int lessonNum = 0;
+		if(lessonList.size()>0){
+			lessonNum = lessonList.get(0).getLessonNum();
+			lessonList.get(0).setStatus(null);
+			courseLessonService.createCourseLesson(lessonList.get(0));
+		}
+		int newLessonNum = 0;
+		newLessonNum = lessonNum+1;
+		CourseLesson courselesson = new CourseLesson();
+		courselesson.setLessonNum(newLessonNum);
+		courselesson.setCourseId(Long.valueOf(course_id));
+		courselesson.setStatus("max");
+		courseLessonService.createCourseLesson(courselesson);
+		return "redirect:/admin/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
+	}
+
+	/**
+	 * destory the lessonNum
+	 * @param lesson_id
+	 * @param course_id
+	 * @return
+	 */
+	@RequestMapping(value="/admin/course/edit/courselesson/destory",method=RequestMethod.POST)
+	public String deleteCoourseLesson(@RequestParam("lessonId") Long lesson_id,@RequestParam("courseId") Long course_id){
+		CourseLesson bigLesson = courseLessonService.findOne(lesson_id);
+		List<CourseLesson> courseLessonList = courseLessonService.findCourseLessonByCourseId(course_id);
+		if(bigLesson.getLessonNum()>=2 && courseLessonList.size()>=2){
+			int smallLessonNum = bigLesson.getLessonNum()-1;
+			List<CourseLesson> smallLessonList = courseLessonService.findCourseLessonByCourseIdAndLessonNum(course_id, smallLessonNum);
+			if(smallLessonList.size()>0){
+				smallLessonList.get(0).setStatus("max");
+				courseLessonService.createCourseLesson(smallLessonList.get(0));
+			}
+		}
+		courseLessonService.destory(Long.valueOf(lesson_id));
+		return "redirect:/admin/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
 	}
 	
 }

@@ -1,7 +1,5 @@
 package com.knet51.ccweb.util.fileUpLoad;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -45,9 +43,16 @@ public class FTPUtil {
 //			 e.printStackTrace();
 //		 }
 		 
-		 String path = "ftp://103.30.5.198/resources/attached/3/upload/asd/1122.JPG";
+		 String path = "/resources/attached/3/upload/论文/知识网修改20130916.doc";
 		 String dirPath = path.substring(0, path.lastIndexOf("/"));
 		 System.out.println(dirPath);
+		 
+		 try {
+			FTPUtil.getInstance().deleFtpFile(path);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	 }
 
 	public boolean uploadFile(String path, String fileName, InputStream input) {
@@ -132,15 +137,48 @@ public class FTPUtil {
 					output = response.getOutputStream();
 					success = ftp.retrieveFile(targerFile, output);
 				}
-				
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
+			ftp.logout();
 			if(output != null){
 				output.flush();
 				output.close();
 			}
+			if (ftp.isConnected()) {
+				try {
+					ftp.disconnect();
+				} catch (IOException ioe) {
+
+				}
+			}
+		}
+		return success;
+	}
+	
+	public boolean deleFtpFile(String path) throws Exception{
+		ftp = new FTPClient();
+		boolean success = false;
+	
+		String fullPath = new String(new String(path.getBytes(), "iso-8859-1"));
+		String dirPath = fullPath.substring(0, fullPath.lastIndexOf("/")); 
+		try {
+			int reply;
+			ftp.connect(hostname, port);
+			ftp.login(username, password);
+			reply = ftp.getReplyCode();
+			if (!FTPReply.isPositiveCompletion(reply)) {
+				ftp.disconnect();
+				return false;
+			}
+			ftp.changeWorkingDirectory(dirPath);
+			success = ftp.deleteFile(fullPath);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			ftp.logout();
 			if (ftp.isConnected()) {
 				try {
 					ftp.disconnect();

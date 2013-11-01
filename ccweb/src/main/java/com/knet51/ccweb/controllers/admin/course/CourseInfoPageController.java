@@ -483,52 +483,7 @@ public class CourseInfoPageController {
 		return "redirect:/admin/course/view/"+Long.valueOf(course_id);
 	}
 
-	/**
-	 * add the lesson number
-	 * @param course_id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value="/admin/course/edit/addlessonnum",method=RequestMethod.POST)
-	public String addNewLessonNum(@RequestParam("courseId") Long course_id,Model model){
-		List<CourseLesson> lessonList = courseLessonService.getMaxLessonNumByCourseId(Long.valueOf(course_id));
-		int lessonNum = 0;
-		if(lessonList.size()>0){
-			lessonNum = lessonList.get(0).getLessonNum();
-			lessonList.get(0).setStatus(null);
-			courseLessonService.createCourseLesson(lessonList.get(0));
-		}
-		int newLessonNum = 0;
-		newLessonNum = lessonNum+1;
-		CourseLesson courselesson = new CourseLesson();
-		courselesson.setLessonNum(newLessonNum);
-		courselesson.setCourseId(Long.valueOf(course_id));
-		courselesson.setStatus("max");
-		courseLessonService.createCourseLesson(courselesson);
-		return "redirect:/admin/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
-	}
-
-	/**
-	 * destory the lessonNum
-	 * @param lesson_id
-	 * @param course_id
-	 * @return
-	 */
-	@RequestMapping(value="/admin/course/edit/courselesson/destory",method=RequestMethod.POST)
-	public String deleteCoourseLesson(@RequestParam("lessonId") Long lesson_id,@RequestParam("courseId") Long course_id){
-		CourseLesson bigLesson = courseLessonService.findOne(lesson_id);
-		List<CourseLesson> courseLessonList = courseLessonService.findCourseLessonByCourseId(course_id);
-		if(bigLesson.getLessonNum()>=2 && courseLessonList.size()>=2){
-			int smallLessonNum = bigLesson.getLessonNum()-1;
-			List<CourseLesson> smallLessonList = courseLessonService.findCourseLessonByCourseIdAndLessonNum(course_id, smallLessonNum);
-			if(smallLessonList.size()>0){
-				smallLessonList.get(0).setStatus("max");
-				courseLessonService.createCourseLesson(smallLessonList.get(0));
-			}
-		}
-		courseLessonService.destory(Long.valueOf(lesson_id));
-		return "redirect:/admin/course/edit/"+Long.valueOf(course_id)+"/modifycourse";
-	}
+	
 	
 	/**
 	 * show all course type list
