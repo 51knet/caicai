@@ -276,8 +276,8 @@ $(document).ready(function() {
 			   data: "commentId="+comment_id,
 			   success: function(msg){
 				   if(msg == 'true'){
-					   var comments = document.getElementById(comment_id+"_comment_table");
-					     $(comments).remove();
+					   var comments = comment_id+"_comment_table";
+					     $("#"+comments).remove();
 				   }
 			   }
 			});
