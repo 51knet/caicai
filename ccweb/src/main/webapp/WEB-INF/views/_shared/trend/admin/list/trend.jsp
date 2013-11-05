@@ -60,6 +60,16 @@ text-decoration: none;
 	font-size: 14px; 
 	width:50px;
 }
+
+.limitTable{
+	width:100%; 
+	table-layout:fixed
+}
+
+ .limitTd{
+	word-wrap:break-word; word-break:break-all;
+}
+
 -->
 </style>
 <script type="text/javascript">
@@ -75,6 +85,7 @@ text-decoration: none;
     
     function showReply(index){
     	 var id =  index+"_reply_div";
+    	 alert(id);
 	   	  if($("#"+id).css("display") == "block"){
 	   		  $("#"+id).css("display","none");
 	   	  }else{
@@ -91,8 +102,8 @@ text-decoration: none;
         return   year+"-"+month+"-"+date+"   "+hour+":"+minute;   
     } 
     
-    function postReplyForm(){
-    	//alert("form");
+    function postReplyForm(id){
+    	alert(id);
     }
     
     function postCommentForm(index){
@@ -101,32 +112,31 @@ text-decoration: none;
 		$.post('<c:url value="/ajaxcomment" />', $("#"+id).serialize(), function(msg){
 			var d = new Date(msg.publishDate);
 			var date = formatDate(d);
-			 var  t = "<table width='98%' cellpadding='0' style='margin-bottom:10px'>";
-		     t+="<tr><td  align='left' valign= 'top'><img style='width:40px' src='/ccweb"+msg.user.photo_url+"  '  />&nbsp;&nbsp;<a href='/ccweb/id/"+msg.user.id+" '>"+msg.user.name+"</a>："+msg.context+"</td></tr>";
+			 var  t = "<table  class='limitTable' cellpadding='0' style='margin-bottom:10px'>";
+		     t+="<tr><td  align='left' valign= 'top' class='limitTd'><img style='width:40px' src='/ccweb"+msg.user.photo_url+"  '  />&nbsp;&nbsp;<a href='/ccweb/id/"+msg.user.id+" '>"+msg.user.name+"</a>："+msg.context+"</td></tr>";
 		  //   t+="<tr  class='bb'><td  align='left' valign= 'top'><span class='date'>"+date+"</span>";
-		  //   t+="<tr  class='bb'><td  align='left' valign= 'top'><a href='javascript:void(0)' onclick='showReply("+msg.id+")'>回复</a></td></tr></table>";
+		     t+="<tr  class='bb'><td  align='left' valign= 'top'><a href='javascript:void(0)' onclick=' return showReply( "+msg.id+" ) '>回复</a></td></tr></table>";
 		     $("#"+showId).append(t); 
 		     $("#"+showId).css("display","block");
 		}, "json");
 		$("#"+id +" textarea").html("");
     }
-    
+
     function postReplyForm(index , trendid){
     	var id =  index+"_reply_form";
     	var replydiv =  index+"_reply_div";
     	var showId = trendid+"_ajax_comment_div";
 		$.post('<c:url value="/ajaxreply" />', $("#"+id).serialize(), function(msg){
-			 var  t = "<table width='98%' cellpadding='0' style='margin-bottom:10px'>";
-		     t+="<tr class='bb'><td  align='left' valign= 'top'><img src='/ccweb"+msg.user.photo_url+"  ' style='width:40px' />&nbsp;&nbsp;<a href='/ccweb/id/"+msg.user.id+" '>"+msg.user.name+"</a> 回复了 <a href='/ccweb/id/"+msg.host.id+" '>"+msg.host.name+"</a>："+msg.context+"</td></tr>";
-		  //   t+="<tr  class='bb'><td  align='left' valign= 'top'><span class='date'>"+date+"</span>";
-		    t+="</table>";
+			var  t = "<table  class='limitTable' cellpadding='0' style='margin-bottom:10px'>";
+		    t+="<tr class='bb'><td  align='left' valign= 'top' class='limitTd'><img src='/ccweb"+msg.user.photo_url+"  ' style='width:40px' />&nbsp;&nbsp;<a href='/ccweb/id/"+msg.user.id+" '>"+msg.user.name+"</a> 回复了 <a href='/ccweb/id/"+msg.host.id+" '>"+msg.host.name+"</a>："+msg.context+"</td></tr>";
+		    t+="<tr  class='bb'><td  align='left' valign= 'top'><a href='javascript:void(0)' onclick=' return showReply( "+msg.id+" ) '>回复</a></td></tr></table>";
 		     $("#"+showId).append(t); 
 		     $("#"+showId).css("display","block");
 		}, "json");
 		$("#"+id +" textarea").html("");
 		$("#"+replydiv).css("display","none");
     }
-    
+
 	
 		function checkCommentTextMaxInput(obj) {
 			 var maxLen=200;
@@ -147,18 +157,19 @@ text-decoration: none;
 	<div class="row-fluid border-green-right variety_filter" ><a href='<c:url value='/admin/trend/${trendRole }/announcement'></c:url>'>公告</a></div>
 	<div class="row-fluid  border-green-right variety_filter" ><a href='<c:url value='/admin/trend/${trendRole }/shuoshuo'></c:url>'>说说</a></div>
 </div>
+
 <div class="row-fluid  border-white-all" style="background-color: #fff;">
+<br>
 	<div class="row" style="color: #444;">	
 		<c:forEach items="${trend}" var="trendBeans">
-			<div style="margin: 10px 0px; "  >
-				<table width="100%" cellpadding="4" >	
+				<table class="limitTable" cellpadding="4">	
 					<tr>
 						  <td rowspan="3" align="left" valign="top" width="10%"><a href='<c:url value="/id/${trendBeans.trend.user.id }"></c:url>' >
 						  <img src=' <c:url value="${trendBeans.trend.user.photo_url }"></c:url>'  class="photo_width"></a></td>
-						  <td align="left" valign="top" ><a href='<c:url value="/id/${trendBeans.trend.user.id }"></c:url>' > ${trendBeans.trend.user.name}</a></td>
+						  <td align="left" valign="top"  colspan="2"><a href='<c:url value="/id/${trendBeans.trend.user.id }"></c:url>' > ${trendBeans.trend.user.name}</a></td>
 					 </tr>
 				 	<tr  >
-					   <td align="left" valign="top" colspan="2">
+					   <td align="left" valign="top" colspan="2" class="limitTd">
 							<c:if test="${trendBeans.trend.variety == null }">
 								${trendBeans.trend.context }<br>
 							</c:if>
@@ -176,7 +187,7 @@ text-decoration: none;
 						<a href='<c:url value="/admin/trend/view/${trendBeans.trend.id}"></c:url>'><span class="date"><fmt:formatDate value="${trendBeans.trend.publishDate}" pattern="yyyy-MM-dd HH:mm"/></span></a>
 					</td>
 					<td align="right" valign="top">
-						<a style="margin-left: 250px;" href="javascript:void(0)" onclick="showCommentDiv(${trendBeans.trend.id})"><img src="<c:url value='/resources/img/default/commenttip.png'></c:url>" ></a>
+						<a  href="javascript:void(0)" onclick="showCommentDiv(${trendBeans.trend.id})"><img src="<c:url value='/resources/img/default/commenttip.png'></c:url>" ></a><span class="color_green">(${trendBeans.commentCount})</span>
 						<c:if test="${sessionUserInfo.id ==trendBeans.trend.user.id }">
 						|	<a class="color_green" href="javascript:void(0)" onclick="deleteTrends(${trendBeans.trend.id} ,${trendBeans.trend.user.id} )">删除</a>
 						</c:if>
@@ -186,19 +197,18 @@ text-decoration: none;
 				<div id="${trendBeans.trend.id}_comment_div" class="border-ccc-all"  style='display: <c:if test="${ show == trendBeans.trend.id }"> block</c:if><c:if test="${show != trendBeans.trend.id}"> none</c:if> ; padding: 0px 10px;'>
 					<form style="margin-top: 10px;" method="post" action='<c:url value="/comment"  ></c:url>'  id="${trendBeans.trend.id}_comment_form">
 						<input type="hidden" name="trendId" value="${trendBeans.trend.id}">
-						<input type="hidden" name="trendRole" value="${trendRole }">
 						<textarea rows="4" class="border-green-all" style="width:100%; " name="contents"  onKeyDown="checkCommentTextMaxInput(this)" onKeyUp="checkCommentTextMaxInput(this)"></textarea><br>
 							<font  id="${trendBeans.trend.id}_comment_form_remLen" class="pull-left"><b></b></font>
 							<a href="javascript:void(0)" class="btn btn-success comment_button pull-right"  onclick="postCommentForm(${trendBeans.trend.id})">发布</a>  
 
 					</form>
-					<a href='<c:url value="/admin/trend/view/${trendBeans.trend.id}"></c:url>'><span class="color_green">共有 ${trendBeans.commentCount} 条评论，点击查看详细 >>></span></a><br><br>
+					<a href='<c:url value="/admin/trend/view/${trendBeans.trend.id}"></c:url>'><span class="color_green">点击查看全部评论 >>></span></a><br><br>
 					<div id="${trendBeans.trend.id}_ajax_comment_div"  style="display: none; margin-bottom: 10px;">
 					
 					</div>
 					<c:forEach items="${trendBeans.commentList}" var="comment" begin="0" end="6">
-						<table width='98%' cellpadding='0' style="margin-bottom: 10px;" id="${comment.id }_comment_table">
-							<tr><td  align='left' valign= 'top' colspan="2">
+						<table class="limitTable" cellpadding='0' style="margin-bottom: 10px;" id="${comment.id }_comment_table">
+							<tr><td  align='left' valign= 'top' colspan="2" class="limitTd">
 								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a>
 								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a>
 							<c:if test="${comment.host == null }">
@@ -222,7 +232,6 @@ text-decoration: none;
 									<form  method="post" action='<c:url value="/reply"></c:url>'  id="${comment.id }_reply_form">
 										<input type="hidden" name="hostId" value="${comment.user.id }" >
 										<input type="hidden" name="trendId" value="${trendBeans.trend.id}" >
-										<input type="hidden" name="trendRole" value="${trendRole }">
 										<textarea rows="4" cols="" style="width:100%; " class="border-green-all" name="contents"  onKeyDown="checkCommentTextMaxInput(this)" onKeyUp="checkCommentTextMaxInput(this)"></textarea><br>
 											<!-- <button class="btn btn-success offset"  onclick="postReplyForm()">发布</button> -->
 											<font  id="${comment.id}_reply_form_remLen" class="pull-left"><b></b></font>
@@ -233,7 +242,6 @@ text-decoration: none;
 						</table>
 					</c:forEach>
 				</div>
-			</div>
 		</c:forEach>
 		<c:if test="${trendCount <= 0 }">
 			<h3>尚无该角色动态</h3>

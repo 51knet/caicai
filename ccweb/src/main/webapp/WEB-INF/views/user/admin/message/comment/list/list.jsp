@@ -66,6 +66,16 @@ font-size: 14px;
 	font-size: 12px;
 	color: #666;
 }
+.limitTable{
+	width:100%; 
+	table-layout:fixed
+	background-color:#fafafa; 
+	margin-bottom: 10px;
+}
+
+ .limitTd{
+	word-wrap:break-word; word-break:break-all;
+}
 
 </style>
 <div class="row-fluid custom round">
@@ -74,17 +84,17 @@ font-size: 14px;
 	</div>
 	<div class="content">	
 			<c:forEach items="${commentBeansList}" var = "commentBeansList" >
-				<table border="0" cellpadding="4" width=100%   style="background-color:#fafafa; margin-bottom: 10px;" class="border-green-all round" id="${commentBeansList.comment.id}_comment_table">
+				<table border="0" cellpadding="4"  class="limitTable border-green-all round" id="${commentBeansList.comment.id}_comment_table">
 				  	  <tr>
 					    <td rowspan="3" align="left" valign="top" width="10%" ><img src="<c:url value='${commentBeansList.comment.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
 					    <td align="left" style="font-weight: bold;">${commentBeansList.comment.user.name}</td>
 					    <td align="left" valign="top"  width="20%"  class="date">${commentBeansList.comment.publishDate}</td>
 					  </tr>
 					  <tr>
-					    <td colspan="2" align="left" valign="top" class="color_green">${commentBeansList.comment.context}</td>
+					    <td colspan="2" align="left" valign="top" class="color_green limitTd">${commentBeansList.comment.context}</td>
 					  </tr>
 					  <tr>
-					    <td  align="left" valign="top" class="date">
+					    <td  align="left" valign="top" class="date  limitTd">
 					   		<c:if test="${commentBeansList.comment.host.id != sessionUserInfo.id }">
 					   			评论了我的动态：${commentBeansList.trends.context}
 					   		</c:if>	
