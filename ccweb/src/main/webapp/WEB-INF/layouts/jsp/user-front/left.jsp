@@ -135,6 +135,17 @@
 	width:40px;
 }
 
+.limitTable{
+	width:100%; 
+	table-layout:fixed
+	margin-bottom: 10px;
+}
+
+ .limitTd{
+	word-wrap:break-word; word-break:break-all;
+	color: #666; font-size: 13px;
+}
+
 </style>
 <div class="row-fluid custom" >
 	<div class="row"  >
@@ -145,10 +156,10 @@
 	</div>
 	<div class="content">	
 		<c:forEach items="${trend}" var="trendBeans">
-			<div style="margin: 10px 0px;" >
-				<table width="100%" cellpadding="5">
+
+				<table class="limitTable" cellpadding="5">
 					<tr>
-						<td align="left" valign="top" colspan="2">${trendBeans.trend.context }</td>
+						<td align="left" valign="top" colspan="2" class="limitTd">${trendBeans.trend.context }</td>
 					</tr>
 					<tr class="bb">
 						<td aligh="left"><a style="margin: 10px 10px;" href='<c:url value="/user/${userInfo.id}/trend/view/${trendBeans.trend.id}"></c:url>'>
@@ -223,7 +234,7 @@
 						</table>
 					</c:forEach>
 				</div>
-			</div>
+
 		</c:forEach>
 		<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
 	</div>

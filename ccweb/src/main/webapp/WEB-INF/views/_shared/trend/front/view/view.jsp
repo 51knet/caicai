@@ -16,6 +16,18 @@
 	.color_green{
 	color: #859c34;
 }
+
+.limitTable{
+	width:100%; 
+	table-layout:fixed
+	background-color:#fafafa; 
+	margin-bottom: 10px;
+}
+
+ .limitTd{
+	word-wrap:break-word; word-break:break-all;
+	color: #666; font-size: 13px;
+}
 </style>
 <script type="text/javascript">
 
@@ -34,19 +46,19 @@
 </script>
 <div class="row-fluid border-white-all custom" style="background-color: #fff;">
 	<div class="content">	
-			<table width="100%" cellpadding="5" >	
+			<table cellpadding="5"  class="limitTable">	
 				 <tr  >
-					   <td align="left" valign="top" colspan="2">
-					<c:if test="${trendBeans.trend.variety == '' }">
-						${trendBeans.trend.context }<br>
-					</c:if>
-					<c:if test="${trendBeans.trend.variety == 'course' }">
-						发布了 ${trendBeans.varietyDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a><br>
-						  	<img src=' <c:url value="${trendBeans.trend.coverUrl}"></c:url>'  class="coursecover_width"><br>					
-					</c:if>
-					<c:if test="${trendBeans.trend.variety != 'course' && trendBeans.trend.variety != null}">
-						发布了 ${trendBeans.varietyDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a>${trendBeans.trend.context }<br>						  						  
-					</c:if>
+					 <td align="left" valign="top" colspan="2" class="limitTd">
+						<c:if test="${trendBeans.trend.variety == '' }">
+							${trendBeans.trend.context }<br>
+						</c:if>
+						<c:if test="${trendBeans.trend.variety == 'course' }">
+							发布了 ${trendBeans.varietyDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a><br>
+							  	<img src=' <c:url value="${trendBeans.trend.coverUrl}"></c:url>'  class="coursecover_width"><br>					
+						</c:if>
+						<c:if test="${trendBeans.trend.variety != 'course' && trendBeans.trend.variety != null}">
+							发布了 ${trendBeans.varietyDescription}：<a href='<c:url value="/trend/${trendBeans.trend.variety}/${trendBeans.trend.user.id}"></c:url>'>${trendBeans.trend.title}</a>${trendBeans.trend.context }<br>						  						  
+						</c:if>
 					</td>
 				</tr>
 				<tr class="bb">
@@ -74,7 +86,7 @@
 				</form></c:if>
 				<span class="color_green">共有 ${trendBeans.commentCount} 条评论>></span><br><br>
 				<c:forEach items="${trendBeans.commentList}" var="comment">
-					<table width='98%' cellpadding='0' style="margin-bottom: 10px; color:#444;">
+					<table  cellpadding='0' style="margin-bottom: 10px; color:#444;">
 					<tr><td  align='left' valign= 'top' colspan="2">
 								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> <img src='<c:url value="${comment.user.photo_url }"></c:url>'  style="width:40px;"></a>
 								<a href='<c:url value="/id/${comment.user.id }"></c:url>'> ${comment.user.name }</a>
