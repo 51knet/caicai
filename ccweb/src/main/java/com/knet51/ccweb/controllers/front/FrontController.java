@@ -113,7 +113,12 @@ public class FrontController {
 			HttpServletRequest request) {
 		UserInfo sessionUserInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-
+		List<User> teacherList = userService.findUserByRole("teacher");
+		List<User> userList = userService.findUserByRole("student");
+		List<User> enterpriseList = userService.findUserByRole("enterprise");
+		model.addAttribute("teacherCount", teacherList.size());
+		model.addAttribute("userCount", userList.size());
+		model.addAttribute("enterpriseCount", enterpriseList.size());
 		Cookie[] cookies = request.getCookies();
 		String email = null;
 		if (cookies != null) {

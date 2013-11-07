@@ -16,6 +16,7 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.ReceiveMsgService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.util.mailSender.MailSender;
 
 @Controller
 public class FriendsRelatedDetailController {	
@@ -44,11 +45,14 @@ public class FriendsRelatedDetailController {
 		
 		ReceiveMsg receiveMsg = new ReceiveMsg();
 		receiveMsg.setCommenter(userInfo.getId());
-		
 		receiveMsg.setTypes(GlobalDefs.MSG_TYPES_FOCUS);
 		receiveMsg.setReaded(1);
 		receiveMsg.setUser(host);
 		receiveMsgService.add(receiveMsg);
+		
+		MailSender.getInstance().SendFocusMail(host.getEmail(), 
+				"http://www.51knet.com/", host_id);
+		
 		return "redirect:/id/" + host_id;
 	}
 	
