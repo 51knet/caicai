@@ -51,7 +51,7 @@ public class FriendsRelatedDetailController {
 		receiveMsgService.add(receiveMsg);
 		
 		MailSender.getInstance().SendFocusMail(host.getEmail(), 
-				"http://www.51knet.com/", host_id);
+				"http://www.51knet.com", host_id);
 		
 		return "redirect:/id/" + host_id;
 	}

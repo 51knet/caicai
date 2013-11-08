@@ -65,7 +65,7 @@ public class MailSender {
 		MailSenderInfo mailInfo = new MailSenderInfo();
 		String context = "<div>亲爱的知识网注册用户，您好：</div><div>您有新的粉丝关注您了，" +
 				"请您点击下面链接来查看:</div>";
-		context += "<div><a href='" + url + "/id/'"+fansid+"' '>点击查看他/她的主页</a></div>";
+		context += "<div><a href='" + url + "/id/"+fansid+" '>点击查看他/她的主页</a></div>";
 		context += "<div>本邮件为自动发送，请勿回复。</div>";
 		mailInfo.setMailServerHost("smtp.ym.163.com");
 		mailInfo.setMailServerPort("25");
