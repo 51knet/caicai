@@ -155,35 +155,41 @@ public class TeacherAchieveDetailInfoController {
 	}
 	
 	@RequestMapping(value="/admin/patent/add",method = RequestMethod.POST)
-	public String addPatent(@Valid PatentForm patentForm, BindingResult validResult,HttpSession session,@RequestParam("patentType") Long type_id,
-			@RequestParam("patentField") Long field_id){
+	public String addPatent(@Valid PatentForm patentForm, BindingResult validResult,HttpSession session,
+			@RequestParam("patentField") Long field_id,Model model){
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
-			return "redirect:/admin/patent/list";
+			return "redirect:/admin/patent/new";
 		}else{
-			PatentField patentField = patentFieldService.findOne(field_id);
-			PatentType patentType = patentTypeService.findOne(type_id);
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			Patent patent = new Patent();
-			patent.setAddress(patentForm.getAddress());
-			patent.setAgency(patentForm.getAgency());
-			patent.setAgent(patentForm.getAgent());
-			patent.setApplicant(patentForm.getApplicant());
-			patent.setApplicationDate(patentForm.getApplicationDate());
-			patent.setClassNum(patentForm.getClassNum());
-			patent.setInventer(patentForm.getInventer());
-			patent.setMainClassNum(patentForm.getMainClassNum());
-			patent.setPatentName(patentForm.getPatentName());
-			patent.setPatentNum(patentForm.getPatentNum());
-			patent.setPublishDate(patentForm.getPublishDate());
-			patent.setPublishNum(patentForm.getPublishNum());
-			patent.setSummary(patentForm.getSummary());
-			
-			patent.setUser(userInfo.getUser());
-			patent.setPatentField(patentField);
-			patent.setPatentType(patentType);
-			userPatentService.create(patent);
-			return "redirect:/admin/patent/list";
+			try {
+				PatentField patentField = patentFieldService.findOne(field_id);
+				UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+				Patent patent = new Patent();
+				patent.setAddress(patentForm.getAddress());
+				patent.setAgency(patentForm.getAgency());
+				patent.setAgent(patentForm.getAgent());
+				patent.setApplicant(patentForm.getApplicant());
+				patent.setApplicationDate(patentForm.getApplicationDate());
+				patent.setClassNum(patentForm.getClassNum());
+				patent.setInventer(patentForm.getInventer());
+				patent.setMainClassNum(patentForm.getMainClassNum());
+				patent.setPatentName(patentForm.getPatentName());
+				patent.setPatentNum(patentForm.getPatentNum());
+				patent.setPublishDate(patentForm.getPublishDate());
+				patent.setPublishNum(patentForm.getPublishNum());
+				patent.setSummary(patentForm.getSummary());
+				patent.setStatus(GlobalDefs.PATENT_STORE);
+				patent.setPatentType(patentForm.getPatentType());
+				patent.setUser(userInfo.getUser());
+				patent.setPatentField(patentField);
+				
+				userPatentService.create(patent);
+				model.addAttribute("patent", patent);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return "admin.patent.view";
 		}
 	}
 }

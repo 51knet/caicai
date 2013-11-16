@@ -1,6 +1,5 @@
 package com.knet51.ccweb.jpa.entities.patent;
 
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -29,10 +28,11 @@ public class Patent {
 	
 	private Integer status;
 	
+	private String patentType;
+	
 	@ManyToOne
 	private User user;
-	@ManyToOne
-	private PatentType patentType;
+	
 	@ManyToOne
 	private PatentField patentField;
 	
@@ -102,12 +102,7 @@ public class Patent {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public PatentType getPatentType() {
-		return patentType;
-	}
-	public void setPatentType(PatentType patentType) {
-		this.patentType = patentType;
-	}
+
 	public PatentField getPatentField() {
 		return patentField;
 	}
@@ -139,7 +134,14 @@ public class Patent {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-
+	
+	
+	public String getPatentType() {
+		return patentType;
+	}
+	public void setPatentType(String patentType) {
+		this.patentType = patentType;
+	}
 	public Patent() {
 		super();
 	}

@@ -33,32 +33,26 @@
 <div class="row-fluid custom round">
 	
 	<div class="row">
-		<h4>文献资料</h4>
+		<h4>专利</h4>
 	</div>
 	<div class="row">
 		<table  style="width: 100%" cellpadding="5" >
-		<tr class="titlebg"><th align="left"><b>文件名称</b></th><th align="left"><b>描述</b></th><th align="left" width=10%><b>类型</b></th><th  align="left" width=20%><b>发布时间</b></th><th align="left" width=8%><b>下载</b></th></tr>
+		<tr class="titlebg"><th align="left"><b>专利号</b></th><th align="left"><b>专利名称</b></th><th align="left" width=10%><b>公开日期</b></th></tr>
 			<tbody>
 			<c:forEach items="${page.content}" var="page">
-				<tr class="bb"><td align="left"><div style="width: 120px;" id="content"><a href="<c:url value="/teacher/${teacherInfo.id}/resource/view/${page.id}"></c:url>">${page.fileName}</a></div></td>
+				<tr class="bb"><td width="20%"><a href="<c:url value="/teacher/${teacherInfo.id}/patent/view/${page.patentNum}"></c:url>">${page.patentNum}</a></td>
 				<td >
-					<c:choose>
-						<c:when test="${page.resourceDesc != null && page.resourceDesc !=''}">
-						<div style="width: 120px;" id="content">${page.resourceDesc}</div>
-						</c:when>
-						<c:otherwise>无描述</c:otherwise>
-					</c:choose>
+					${page.patentName}
 				</td>
-				<td >${page.resourceType.typeName}</td>
-				<td >${page.date}</td>
-				<td> <a href='<c:url value="/resource/download/${page.id }"></c:url>'>下载</a></td></tr>
+				<td  width="20%">${page.publishDate}</td>
+				</tr>
 			</c:forEach>
 			</tbody>
 			<tfoot>
-	    <tr><td colspan="5">
-	        <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
-	   		 </td></tr>
-		</tfoot>
+		    	<tr><td colspan="3">
+		        <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+		   		 </td></tr>
+			</tfoot>
 		</table>
 	</div>
 </div>

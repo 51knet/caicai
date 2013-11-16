@@ -80,7 +80,7 @@
 <!-- teacher resource -->
 <div class="row-fluid custom round">
 		<div class="row">
-			<h4>教学资源</h4>
+			<h4>文献资料</h4>
 		</div>
 		
 		<div class="row">

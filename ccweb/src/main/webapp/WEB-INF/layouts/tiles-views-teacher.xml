@@ -23,10 +23,10 @@
 		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/patent/new/create.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.patent.preview" extends="admin-layout">
-		<put-attribute name="title" value="专利预览" />
+	<definition name="admin.patent.view" extends="admin-layout">
+		<put-attribute name="title" value="专利展示" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/patent/preview/preview.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/patent/view/view.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.resume" extends="admin-layout">
@@ -331,6 +331,18 @@
 		<put-attribute name="title" value="资源" />
 		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/teacher/front/resource/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.patent.list" extends="frontPage-layout">
+		<put-attribute name="title" value="资源" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/front/patent/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.patent.detail" extends="frontPage-layout">
+		<put-attribute name="title" value="资源" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/front/patent/view/view.jsp"></put-attribute>
 	</definition>
 
 	<definition name="teacher.announcement.list" extends="frontPage-layout">

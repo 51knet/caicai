@@ -138,6 +138,6 @@ public class TeacherAchievePageController {
 	public String showPatentView(@PathVariable String patentNum,Model model){
 		Patent patent = userPatentService.findOne(patentNum);
 		model.addAttribute("patent", patent);
-		return "adimn.patent.view";
+		return "admin.patent.view";
 	}
 }
