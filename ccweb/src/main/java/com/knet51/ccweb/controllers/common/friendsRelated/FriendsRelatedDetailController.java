@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
@@ -62,6 +63,12 @@ public class FriendsRelatedDetailController {
 		FriendsRelated related = friendsRelateService.findOneByHostIdAndFollowId(host_id, userInfo.getId());
 		friendsRelateService.deleteById(related.getId());
 		return "redirect:/id/" + host_id;
+	}
+	
+	@RequestMapping(value="/addRelation")
+	public @ResponseBody String addRelation(@RequestParam("teacherid")Long teachre_id,@RequestParam("flag") String flag){
+		 
+		return flag;
 	}
 	
 }

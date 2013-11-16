@@ -41,6 +41,9 @@ public final class GlobalDefs {
 	//super admin's pwd
 	public static final String SUPER_ADMIN_PWD = "caicai6688";
 	
+	public static final Integer PATENT_STORE = 1;
+	public static final Integer PATENT_PUBLISH = 2;
+	
 	public static Map<String,String> getUserEduExpMap(){
 		Map<String,String> map = new HashMap<String, String>();
 		map.put("1", "幼儿园");

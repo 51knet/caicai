@@ -39,6 +39,16 @@
 a{
 	text-decoration: none;
 }
+
+.limitTable{
+	width:100%; 
+	table-layout:fixed
+}
+
+ .limitTd{
+	word-wrap:break-word; word-break:break-all;
+	color: #666; font-size: 13px;
+}
 </style>
 <div class="row-fluid custom round">
 	<div class="row">
@@ -46,14 +56,14 @@ a{
 	</div>
 	<div class="content">	
 		<div style="text-align: center; margin-bottom: 10px;">
-				<table cellpadding="10" width=100%  border=0 style="" class="bb unReadMsg">
+				<table cellpadding="10"   border=0 style="" class="bb unReadMsg limitTable">
 		  			  <tr>
-					    <td rowspan="2" align="left" width="10%" ><a href="<c:url value='/admin/message/comment/detail'></c:url>"><img src="<c:url value='/resources/img/default/comm-icon.png'></c:url>" style="width:60px; height: 60px;"></a></td>
+					    <td rowspan="2" align="left" width="12%" ><a href="<c:url value='/admin/message/comment/detail'></c:url>"><img src="<c:url value='/resources/img/default/comm-icon.png'></c:url>" style="width:60px; height: 60px;"></a></td>
 					    <td align="left" style="font-weight: bold; ">评论</td>
 					    <td align="right"   style="color: #666; font-size: 13px; width:40%;"> <fmt:formatDate value="${newComment.publishDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 					  </tr>
 					  <tr>
-					    <td colspan="2" align="left" style="color: #666; font-size: 13px;">
+					    <td colspan="2" align="left" style="limitTd">
 					   			<c:if test="${newComment == null }"> 暂无新评论</c:if>
 					   			<c:if test="${newComment != null }"> ${newComment.user.name }：${newComment.context }</c:if>  
 					    </td>
@@ -62,14 +72,14 @@ a{
 		</div>
 		
 		<div style="text-align: center; margin-bottom: 10px;">
-				<table cellpadding="10" width=100%  border=0 style="" class="bb unReadMsg">
+				<table cellpadding="10"   border=0 style="" class="bb unReadMsg limitTable">
 		  			  <tr>
-					    <td rowspan="2" align="left" width="10%" ><a href="<c:url value='/admin/message/focus/detail'></c:url>"><img src="<c:url value='/resources/img/default/focus-icon.png'></c:url>" style="width:60px; height: 60px;"></a></td>
+					    <td rowspan="2" align="left" width="12%" ><a href="<c:url value='/admin/message/focus/detail'></c:url>"><img src="<c:url value='/resources/img/default/focus-icon.png'></c:url>" style="width:60px; height: 60px;"></a></td>
 					    <td align="left" style="font-weight: bold; ">我的新粉丝</td>
 					    <td align="right" ></td>
 					  </tr>
 					  <tr>
-					    <td colspan="2" align="left" style="color: #666; font-size: 13px;">
+					    <td colspan="2" align="left" class="limitTd">
 					   			<c:if test="${unReadFollowerCount <= 0 }"> 暂无新的粉丝</c:if>
 					   			<c:if test="${unReadFollowerCount > 0}">这些人刚成为我的粉丝：
 						   			<c:forEach items="${unReadFollower }" var="unReadFollower" begin="0" end="4">
@@ -84,14 +94,14 @@ a{
 	
 		<div >
 			<c:forEach items="${page.content}" var = "page" >
-				<table cellpadding="10" width=100%  border=0 style="" class="bb unReadMsg">
+				<table cellpadding="10"   border=0 style="" class="bb unReadMsg limitTable">
 		  			  <tr>
-					    <td rowspan="2" align="left" width="10%" ><a href='<c:url value="/admin/message/detail/${page.sendMsg.user.id}"></c:url>'><img src="<c:url value='${page.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></a></td>
+					    <td rowspan="2" align="left" width="12%" ><a href='<c:url value="/admin/message/detail/${page.sendMsg.user.id}"></c:url>'><img src="<c:url value='${page.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></a></td>
 					    <td align="left" style="font-weight: bold; padding:10px 10px;">${page.sendMsg.user.name}</td>
 					    <td align="right"  width="30%"  style="color: #666; font-size: 13px;padding:10px 10px;"> ${page.sendMsg.date}</td>
 					  </tr>
 					  <tr>
-					    <td colspan="2" align="left" style="color: #666; font-size: 13px;padding:10px 10px;"><a href='<c:url value="/admin/message/detail/${page.sendMsg.user.id}"></c:url>'>${page.sendMsg.content}</a></td>
+					    <td colspan="2" align="left" style="padding:10px 10px;" class="limitTd"><a href='<c:url value="/admin/message/detail/${page.sendMsg.user.id}"></c:url>'>${page.sendMsg.content}</a></td>
 					  </tr>
 		  		</table>
 	  		</c:forEach>

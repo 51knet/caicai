@@ -47,6 +47,10 @@
 			$(".help-inline").html("");
 		});
 	});
+	
+	function addRelation(teacherid, flag){
+		
+	}
 	</script>
 <div class="row-fluid centralize round" >
 	<div class="round header">
@@ -64,10 +68,12 @@
 	<c:if test="${(sessionUserInfo!=null) && (sessionUserInfo.id != teacher_id) }">
 		<div class="row-fluid">
 			<c:if test="${! sessionScope.isFollower}">
-				<a href='<c:url value='/addrelation?uid=${teacherInfo.id}'></c:url>' id="attention" class="btn btn-success btn-small">+关注</a>
+				<a href='<c:url value='/addrelation?uid=${teacherInfo.id}'></c:url>' id="attention" class="btn btn-success btn-small">+关注</a> 
+				<!-- <a href="javascript:void(0)" id="attention" class="btn btn-success btn-small" onclick="addRelation(${teacherInfo.id}，add)">+关注</a>-->
 			</c:if>
 			<c:if test="${sessionScope.isFollower}">
-				<a href='<c:url value='/delerelation?uid=${teacherInfo.id}'></c:url>' id="attention" class="btn  btn-small">取消关注</a>
+				<a href='<c:url value='/delerelation?uid=${teacherInfo.id}'></c:url>' id="attention" class="btn  btn-small">取消关注</a> 
+				<!-- <a href="javascript:void(0)" id="attention" class="btn  btn-small" onclick="addRelation(${teacherInfo.id}，cancel)">取消关注</a>-->
 			</c:if>
 			<!-- <a href='<c:url value='/sendmessage?uid=${teacherInfo.id}'></c:url>' class="btn btn-small">发私信</a>  -->
 			<a href="#myModal" role="button" class="btn btn-small" data-toggle="modal">发私信</a>

@@ -61,7 +61,15 @@
 .bb{
 	border-bottom: solid #cccccc 1px;
 }
+.limitTable{
+	width:100%; 
+	table-layout:fixed
+}
 
+ .limitTd{
+	word-wrap:break-word; word-break:break-all;
+	color: #80b029; font-size: 13px;
+}
 </style>
 <div class="row-fluid custom round">
 	<div class="row">
@@ -81,10 +89,10 @@
 	</div>
 	<div class="content">	
 		<c:forEach items="${page.content}" var = "page" >
-			<table cellpadding="10" width=100%   style=" border: 1px solid #ccc; 	<c:if test='${page.sendMsg.user.id != sessionUserInfo.id}'> border: 1px solid #cae893; background-color:#fafafa;</c:if> margin-bottom: 10px;" class="bb unReadMsg round">
+			<table cellpadding="10"  style=" border: 1px solid #ccc; 	<c:if test='${page.sendMsg.user.id != sessionUserInfo.id}'> border: 1px solid #cae893; background-color:#fafafa;</c:if> margin-bottom: 10px;" class="bb unReadMsg limitTable">
 				  <c:if test="${page.sendMsg.user.id == sessionUserInfo.id}">
 				  	  <tr>
-					    <td rowspan="2" align="left" width="10%" ><img src="<c:url value='${page.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
+					    <td rowspan="2" align="left" width="12%" valign="top"><img src="<c:url value='${page.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
 					    <td align="left" style="font-weight: bold; padding:10px 10px;">${page.sendMsg.user.name}</td>
 					    <td align="right"  width="30%"  style="color: #666; font-size: 12px;padding:10px 10px;"> ${page.sendMsg.date}</td>
 					  </tr>
@@ -93,11 +101,11 @@
 					   <tr>
 					    	<td align="left"  width="30%"  style="color: #666; font-size: 12px;padding:10px 10px;"> ${page.sendMsg.date}</td>
 						    <td  align="right" style="font-weight: bold; padding:10px 10px;">${page.sendMsg.user.name}</td>
-						    <td rowspan="2"  align="right" width="10%" ><img src="<c:url value='${page.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
+						    <td rowspan="2"  align="right" width="12%" valign="top"><img src="<c:url value='${page.sendMsg.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
 					  </tr>
 				  </c:if>
 				  <tr>
-				    <td colspan="2" align="left" style="color: #80b029; font-size: 14px;padding:10px 10px;">${page.sendMsg.content}</td>
+				    <td colspan="2" align="left" style="padding:10px 10px;" class="limitTd">${page.sendMsg.content}</td>
 				  </tr>
 	  		</table>
   		</c:forEach>

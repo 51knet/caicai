@@ -11,10 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.patent.Patent;
+import com.knet51.ccweb.jpa.entities.patent.PatentField;
+import com.knet51.ccweb.jpa.entities.patent.PatentType;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
@@ -24,6 +29,9 @@ import com.knet51.ccweb.jpa.services.achievement.TeacherHonorService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherPatentService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherProjectService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherThesisService;
+import com.knet51.ccweb.jpa.services.patent.PatentFieldService;
+import com.knet51.ccweb.jpa.services.patent.PatentService;
+import com.knet51.ccweb.jpa.services.patent.PatentTypeService;
 
 @Controller
 public class TeacherAchieveDetailInfoController {
@@ -40,8 +48,14 @@ public class TeacherAchieveDetailInfoController {
 	private TeacherHonorService honorService;
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private PatentTypeService patentTypeService;
+	@Autowired
+	private PatentFieldService patentFieldService;
+	@Autowired
+	private PatentService userPatentService;
 	
-	@RequestMapping(value="/admin/achievement/thesis/new")
+	@RequestMapping(value="/admin/achievement/thesis/new" , method = RequestMethod.POST)
 	public String addThesis(@Valid TeacherThesisDetailInfoForm thesisDetailInfoForm, HttpSession session,
 			Model model, BindingResult validResult){
 		String content = thesisDetailInfoForm.getContent();
@@ -66,7 +80,7 @@ public class TeacherAchieveDetailInfoController {
 		return "redirect:/admin/achievement/list";
 	}
 	
-	@RequestMapping(value="/admin/achievement/project/new")
+	@RequestMapping(value="/admin/achievement/project/new",method = RequestMethod.POST)
 	public String addProject(@Valid TeacherProjectDetailInfoForm projectDetailForm, HttpSession session,
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherProjectAddController ####");
@@ -92,7 +106,7 @@ public class TeacherAchieveDetailInfoController {
 		return "redirect:/admin/achievement/list";
 	}
 	
-	@RequestMapping(value="/admin/achievement/patent/new")
+	@RequestMapping(value="/admin/achievement/patent/new",method = RequestMethod.POST)
 	public String addPatent(@Valid TeacherPatentDetailInfoForm patentDetailForm, HttpSession session,
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherPatentAddController ####");
@@ -118,7 +132,7 @@ public class TeacherAchieveDetailInfoController {
 		return "redirect:/admin/achievement/list";
 	}
 	
-	@RequestMapping(value="/admin/achievement/honor/new")
+	@RequestMapping(value="/admin/achievement/honor/new",method = RequestMethod.POST)
 	public String addHonor(@Valid TeacherHonorDetailInfoForm honorDetailForm, HttpSession session,
 			Model model,BindingResult validResult){
 		logger.info("#### Into teacherProjectAddController ####");
@@ -138,5 +152,38 @@ public class TeacherAchieveDetailInfoController {
 	public String deleHonor(@PathVariable Long honor_id){
 		honorService.deleteById(honor_id);
 		return "redirect:/admin/achievement/list";
+	}
+	
+	@RequestMapping(value="/admin/patent/add",method = RequestMethod.POST)
+	public String addPatent(@Valid PatentForm patentForm, BindingResult validResult,HttpSession session,@RequestParam("patentType") Long type_id,
+			@RequestParam("patentField") Long field_id){
+		if(validResult.hasErrors()){
+			logger.info("====="+validResult.toString());
+			return "redirect:/admin/patent/list";
+		}else{
+			PatentField patentField = patentFieldService.findOne(field_id);
+			PatentType patentType = patentTypeService.findOne(type_id);
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Patent patent = new Patent();
+			patent.setAddress(patentForm.getAddress());
+			patent.setAgency(patentForm.getAgency());
+			patent.setAgent(patentForm.getAgent());
+			patent.setApplicant(patentForm.getApplicant());
+			patent.setApplicationDate(patentForm.getApplicationDate());
+			patent.setClassNum(patentForm.getClassNum());
+			patent.setInventer(patentForm.getInventer());
+			patent.setMainClassNum(patentForm.getMainClassNum());
+			patent.setPatentName(patentForm.getPatentName());
+			patent.setPatentNum(patentForm.getPatentNum());
+			patent.setPublishDate(patentForm.getPublishDate());
+			patent.setPublishNum(patentForm.getPublishNum());
+			patent.setSummary(patentForm.getSummary());
+			
+			patent.setUser(userInfo.getUser());
+			patent.setPatentField(patentField);
+			patent.setPatentType(patentType);
+			userPatentService.create(patent);
+			return "redirect:/admin/patent/list";
+		}
 	}
 }

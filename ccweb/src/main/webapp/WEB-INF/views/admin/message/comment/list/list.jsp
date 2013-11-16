@@ -66,7 +66,14 @@ font-size: 14px;
 	font-size: 12px;
 	color: #666;
 }
+.limitTable{
+	width:100%; 
+	table-layout:fixed
+}
 
+ .limitTd{
+	word-wrap:break-word; word-break:break-all;
+}
 </style>
 <div class="row-fluid custom round">
 	<div class="row">
@@ -74,14 +81,14 @@ font-size: 14px;
 	</div>
 	<div class="content">	
 			<c:forEach items="${commentBeansList}" var = "commentBeansList" >
-				<table border="0" cellpadding="4" width=100%   style="background-color:#fafafa; margin-bottom: 10px;" class="border-green-all round" id="${commentBeansList.comment.id}_comment_table">
+				<table border="0" cellpadding="4"    style="background-color:#fafafa; margin-bottom: 10px;" class="border-green-all  limitTable" id="${commentBeansList.comment.id}_comment_table">
 				  	  <tr>
 					    <td rowspan="3" align="left" valign="top" width="10%" ><img src="<c:url value='${commentBeansList.comment.user.photo_url} '></c:url>" style="width:60px; height: 60px;"></td>
 					    <td align="left" style="font-weight: bold;">${commentBeansList.comment.user.name}</td>
 					    <td align="right" valign="top"  width="30%"  class="date">${commentBeansList.comment.publishDate}</td>
 					  </tr>
 					  <tr>
-					    <td colspan="2" align="left" valign="top" class="color_green">${commentBeansList.comment.context}</td>
+					    <td colspan="2" align="left" valign="top" class="color_green limitTd">${commentBeansList.comment.context}</td>
 					  </tr>
 					  <tr>
 					    <td  align="left" valign="top" class="date">

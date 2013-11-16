@@ -15,12 +15,14 @@
 		@import url("<c:url value="/resources/colorbox/colorbox.css"/>");
 		@import url("<c:url value="/resources/css/tableStyle/style.css"/>");
 	</style>
-	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.8.0.js" />"></script>
+	
+	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.8.0.js" />" ></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/colorbox/jquery.colorbox.js" />"></script>
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/kindeditor.js" />"></script>
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/lang/zh_CN.js" />"></script>
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/myutil.js" />"></script>
+	<script type="text/javascript"  src="<c:url value="/resources/js/date/WdatePicker.js" />" ></script>
     <link href="<c:url value="/resources/js/video-js/video-js.min.css" />" rel="stylesheet">
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/video-js/video.min.js" />"></script>
 	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=486428445" type="text/javascript" charset="utf-8"></script>

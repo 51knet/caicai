@@ -8,16 +8,22 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.patent.Patent;
+import com.knet51.ccweb.jpa.entities.patent.PatentField;
+import com.knet51.ccweb.jpa.entities.patent.PatentType;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
@@ -28,6 +34,9 @@ import com.knet51.ccweb.jpa.services.achievement.TeacherHonorService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherPatentService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherProjectService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherThesisService;
+import com.knet51.ccweb.jpa.services.patent.PatentFieldService;
+import com.knet51.ccweb.jpa.services.patent.PatentService;
+import com.knet51.ccweb.jpa.services.patent.PatentTypeService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 
@@ -36,21 +45,23 @@ public class TeacherAchievePageController {
 	private static final Logger logger = LoggerFactory.getLogger(TeacherAchievePageController.class);
 	@Autowired
 	private TeacherThesisService thesisService;
-	
 	@Autowired
 	private TeacherProjectService projectService;
-	
 	@Autowired
 	private TeacherPatentService patentService;
-	
 	@Autowired
 	private TeacherHonorService honorService;
-	
 	@Autowired
 	private UserService userService;
-	
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private PatentService userPatentService;
+	@Autowired
+	private PatentTypeService patentTypeService;
+	@Autowired
+	private PatentFieldService patentFieldService;
+	
 	
 	@RequestMapping(value="/admin/achievement/list")
 	public String teacherAchievement(HttpSession session,Model model){
@@ -88,4 +99,45 @@ public class TeacherAchievePageController {
 		return AjaxValidationEngine.process(result);
 	}
 	
+	@RequestMapping("/admin/patent/list")
+	public String showPatentList(HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
+	
+		
+		
+		try {
+			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			User user = userInfo.getUser();
+			List<Patent> patentList = userPatentService.findPatentListByUser(user);
+			Page<Patent> page = userPatentService.findPatentByUser(pageNumber, pageSize, user);
+			model.addAttribute("patent", patentList);
+			model.addAttribute("patentCount", patentList.size());
+			model.addAttribute("page", page);
+		} catch (Exception e) {
+			// TODO: hadle exception
+			e.printStackTrace();
+		}
+		return "admin.patent.list";
+	}
+	
+	@RequestMapping("/admin/patent/new")
+	public String addPatentList(HttpSession session,Model model){
+		List<PatentType> pTypeList = patentTypeService.findAllPatentType();
+		List<PatentField> pFieldList = patentFieldService.findAll();
+		model.addAttribute("pTypeList", pTypeList);
+		model.addAttribute("pFieldList", pFieldList);
+		return "admin.patent.new";
+	}
+	
+	@RequestMapping("/admin/patent/preview")
+	public String showPatentPreview(HttpSession session,Model model){
+
+		return "admin.patent.preview";
+	}
+	@RequestMapping("/admin/patent/view/{patentNum}")
+	public String showPatentView(@PathVariable String patentNum,Model model){
+		Patent patent = userPatentService.findOne(patentNum);
+		model.addAttribute("patent", patent);
+		return "adimn.patent.view";
+	}
 }
