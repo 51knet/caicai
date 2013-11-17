@@ -119,6 +119,7 @@ font-weight: bold;
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value="/admin/mycourse/list"></c:url>' ><img src="<c:url value='/resources/img/default/mycourse.png'></c:url>" style="margin-right: 10px;">我的学习</a></li>
 		<li><a href='<c:url value="/admin/myknowledge/list"></c:url>' ><img src="<c:url value='/resources/img/default/knowledge.png'></c:url>" style="margin-right: 10px;">知识库</a></li>
+		<li><a href='<c:url value="/admin/requirement/list"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">我的需求</a></li>
 	</ul>
 </div>
 

@@ -78,6 +78,12 @@
 		<put-attribute name="right" value="/WEB-INF/views/user/admin/knowledge/list/list.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="admin.user.requirement.list" extends="user-admin-layout">
+		<put-attribute name="title" value="我的需求" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/requirement/list/list.jsp"></put-attribute>
+	</definition>
+	
 	<definition name="admin.user.trend" extends="user-admin-trend-layout">
 		<put-attribute name="title" value="好友动态" />
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>

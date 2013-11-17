@@ -192,4 +192,10 @@ public class TeacherAchieveDetailInfoController {
 			return "admin.patent.view";
 		}
 	}
+	
+	@RequestMapping(value="/admin/patent/delete",method = RequestMethod.POST)
+	public String destoryPatent(@RequestParam("patentNum") String patentNum){
+		userPatentService.delete(patentNum);
+		return "redirect:/admin/patent/list";
+	}
 }

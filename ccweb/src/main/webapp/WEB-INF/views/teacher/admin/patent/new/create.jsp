@@ -33,15 +33,17 @@
 		<form action= '<c:url value="/admin/patent/add"></c:url>'  method="post" style="margin-left:50px;" >
 			<div class="control-group" id="patentNum">
 				<div class="controls">
-					<i class="icon-star"></i> 专利号码：<input type="text" name="patentNum"   placeholder="专利号码" required> <span class="help-inline"><form:errors path="patentNum" /></span>
+					<i class="icon-star"></i> 专利号码：<input type="text" name="patentNum"   placeholder="专利号码" required value="${patent.patentNum }"> <span class="help-inline"><form:errors path="patentNum" /></span>
 				</div>
 			</div>
 			<div class="control-group" id="patentType">
 				<i class="icon-star"></i>专利类型：
 					<select name="patentType" >
-						<option value="发明">发明</option>
-						<option value="实用新型">实用新型</option>
-						<option value="外观设计">外观设计</option>
+						<c:forEach items="${pTypeList }" var="typeList" >
+							<c:if test="${typeList.typeName == patent.patentType }">
+					  			<option value="${typeList.typeName }" selected>${typeList.typeName }</option>
+					  		</c:if>
+					  </c:forEach>
 					</select>
 			</div>
 			
@@ -49,20 +51,22 @@
 				<i class="icon-star"></i>适用领域：
 					<select name="patentField">
 					   <c:forEach items="${pFieldList }" var="fieldList" >
-					  	<option value="${fieldList.id }">${fieldList.fieldName}</option>
+					  		<c:if test="${fieldList.id == patent.patentField.id }">
+					  			<option value="${fieldList.id }" selected>${fieldList.fieldName }</option>
+					  		</c:if>
 					  </c:forEach>
 					</select>
 			</div>
 		
 			<div class="control-group" id="patentName">
 				<div class="controls">
-					<i class="icon-star"></i> 专利名称：<input type="text" name="patentName"   placeholder="专利名称"  required> <span class="help-inline"><form:errors path="patentName" /></span>
+					<i class="icon-star"></i> 专利名称：<input type="text" name="patentName"   placeholder="专利名称"  required value="${patent.patentName }"> <span class="help-inline"><form:errors path="patentName" /></span>
 				</div>
 			</div>
 			
 				<div class="control-group" id="mainClassNum">
 				<div class="controls">
-					<i class="icon-star"></i> 主分类号：<input type="text" name="mainClassNum"   placeholder="主分类号"  required> <span class="help-inline"><form:errors path="mainClassNum" /></span>
+					<i class="icon-star"></i> 主分类号：<input type="text" name="mainClassNum"   placeholder="主分类号"  required value="${patent.mainClassNum }"> <span class="help-inline"><form:errors path="mainClassNum" /></span>
 				</div>
 			</div>
 			

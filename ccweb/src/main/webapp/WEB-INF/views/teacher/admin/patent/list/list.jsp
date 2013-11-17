@@ -32,14 +32,16 @@
 		<a  style="float: right;" href='<c:url value="/admin/patent/new"></c:url>' class="btn">添加新专利</a><br><br>
 		<table class="blue" id="mytab" cellpadding="4" width=100%  border=0>
 			<thead>
-				<tr><th width="20%">申请号</th><th>名称</th><th  width="20%">申请日</th>
-				</tr>
+				<tr><th width="20%">申请号</th><th>名称</th><th  width="15%">申请日</th><th width="12%">操作</th></tr>
 			</thead>
 			<tbody>
-				<c:forEach  items="${page.content}" var="patent">
+				<c:forEach  items="${page.content}" var="page">
 					<tr>
-						<td ><a href='<c:url value="/admin/patent/view/${patent.patentNum }"></c:url>' >${patent.patentNum }</a></td><td >${patent.patentName }</td>
-						<td >${patent.applicationDate }</td>
+						<td ><a href='<c:url value="/admin/patent/view/${page.patentNum }"></c:url>' >${page.patentNum }</a></td><td >${page.patentName }</td>
+						<td >${page.applicationDate }</td>
+						<td align="center">
+							<a class="destoryPatentPostBtn" href="#destoryPatentPostModal" role="button" data-toggle="modal" data-target="#destoryPatentPostModal">删除</a><input type="hidden"  value="${page.patentNum}"> 
+									| <a href='<c:url value="/admin/patent/edit/${page.patentNum}"></c:url>'>修改</a>	</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -47,3 +49,29 @@
 		 <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
 	</div>
 </div>
+
+<div class="modal hide fade" id="destoryPatentPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">请注意</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>你确定删除该专利吗？</p>
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+	    <form action='<c:url value="/admin/patent/delete"></c:url>' method="post" style="display: inline-block;" >
+	    	<input id="p_delete_id" type="hidden" name="patentNum" />
+	    	<button class="btn btn-success">确定</button>
+	    </form>
+	  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.destoryPatentPostBtn').on('click', function() {
+		var p_id = $(this).next().val();
+		$('#p_delete_id').val(p_id);	
+	});
+});
+
+</script>

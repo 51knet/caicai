@@ -106,45 +106,14 @@
 							</c:if>
 							<c:if test="${page.publish ==2 ||page.publish ==3 }">
 								<!-- <a href='<c:url value="/admin/course/destory/${page.id}"></c:url>'>删除</a>  -->	
-									 <a class="destoryCoursePostBtn" href="#destoryCoursePostModal" role="button" data-toggle="modal" data-target="#destoryCoursePostModal">删除</a><input type="hidden"  value="${page.id}" id="courseId"> 
+									 <a class="destoryCoursePostBtn" href="#destoryCoursePostModal" role="button" data-toggle="modal" data-target="#destoryCoursePostModal">删除</a><input type="hidden"  value="${page.id}"> 
 									| <a href='<c:url value="/admin/course/edit/${page.id}/modifycourse"></c:url>'>修改</a>							
 							</c:if>
 						</td></tr>
 					</c:forEach>
 				</tbody>
-				<!-- <tfoot>
-					<tr><td colspan="4" align="right">
-			        	<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
-			   		 </td></tr>
-				</tfoot> -->
 			</table>
-			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
-				
-			<div id="myModal" style="text-align: left;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h3 id="myModalLabel">新课程添加</h3>
-				</div>
-				<form:form  action='new' method="post" id="course_info_form">
-					<div class="modal-body" id="courseName">
-						课程标题：<input type="text" id="names" name="courseName"  placeholder="课程标题">
-						<span class="help-inline"><form:errors path="courseName"></form:errors></span>
-					</div>
-					<div  class="modal-body" id="courseDesc">
-						课程描述：<textarea name="courseDesc" id="descs" placeholder="课程描述" cols="5" rows="8" style="width:380px;"></textarea>
-						<span class="help-inline"><form:errors path="courseDesc"></form:errors></span>
-						<!-- 
-							<button type="submit" class="btn btn-success">OK</button>&nbsp;&nbsp;
-							<button type="reset" class="btn" onclick="hidAnnoForm()">Cancel</button>
-						 -->
-					</div>
-					<div class="modal-footer">
-						<button class="btn btn-success" type="submit">保存</button>
-						<button class="btn" type="reset" data-dismiss="modal" aria-hidden="true">取消</button>
-						
-					</div>
-				</form:form>
-			</div>
+			<div class="content"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div> 
 		</div>
 	</div>
 </div>
@@ -203,12 +172,7 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#names").focus(function() {
-		$(".help-inline").html("");
-	});
-	$("#descs").focus(function() {
-		$(".help-inline").html("");
-	});
+
 	checkEmptyAjax("course_info_form","courseInfoAJAX");
 	$('.destoryCoursePostBtn').on('click', function() {
 		var course_id = $(this).next().val();

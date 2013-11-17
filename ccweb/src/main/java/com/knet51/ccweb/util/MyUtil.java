@@ -14,4 +14,9 @@ public class MyUtil {
 		}
 		return pageNum;
 	}
+	
+	public static String replaceTheSpace(String s){
+		String reg = "\\s+";
+		return s.trim().replaceAll(reg, "%");
+	}
 }
