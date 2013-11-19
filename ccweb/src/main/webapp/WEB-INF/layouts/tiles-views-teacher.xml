@@ -28,6 +28,12 @@
 		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/patent/view/view.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.patent.edit" extends="admin-layout">
+		<put-attribute name="title" value="专利展示" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/patent/edit/edit.jsp"></put-attribute>
+	</definition>
 
 	<definition name="admin.teacher.resume" extends="admin-layout">
 		<put-attribute name="title" value="完善简历" />

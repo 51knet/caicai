@@ -20,7 +20,7 @@ public class RequirementServiceImpl implements RequirementService {
 	
 	@Override
 	public Requirement create(Requirement requirement) {
-		return repository.saveAndFlush(requirement);
+		return repository.save(requirement);
 	}
 
 	@Override
@@ -55,6 +55,11 @@ public class RequirementServiceImpl implements RequirementService {
 	@Override
 	public List<Requirement> findRequiteListByRequireType(RequirType type) {
 		return repository.findRequirByRequirType(type);
+	}
+
+	@Override
+	public Requirement findOne(Long require_id) {
+		return repository.findOne(require_id);
 	}
 
 }

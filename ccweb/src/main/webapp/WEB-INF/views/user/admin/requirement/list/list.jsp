@@ -47,14 +47,15 @@
 						<tr>
 						<td >
 							<div style="width: 200px;" id="content">
-								<a href='<c:url value="/admin/requirement/view/${page.id }"></c:url>' >${page.title }</a>
+								<a href='<c:url value="/admin/requirement/edit/${page.id }"></c:url>' >${page.title }</a>
 							</div>
 						</td>
 						<td >	<div style="width: 305px;" id="content">${page.content}</div></td>
 						<td align="center">
 							<fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd HH:mm"/>
 						</td>
-						<td  align="center">修改 | 删除</td>
+						<td  align="center"><a href='<c:url value="/admin/requirement/edit/${page.id }"></c:url>' >修改</a> |
+						 <a class="destoryRequirePostBtn" href="#destoryRequirePostModal" role="button" data-toggle="modal" data-target="#destoryRequirePostModal">删除</a><input type="hidden"  value="${page.id}"> </td>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -62,3 +63,29 @@
 		</div>
 
 </div>
+<div class="modal hide fade" id="destoryRequirePostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">请注意</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>你确定删除该需求吗？</p>
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+	    <form action='<c:url value="/admin/requirement/delete"></c:url>' method="post" style="display: inline-block;" >
+	    	<input id="require_delete_id" type="hidden" name="require_id" />
+	    	
+	    	<button class="btn btn-success">确定</button>
+	    </form>
+	  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.destoryRequirePostBtn').on('click', function() {
+		var r_id = $(this).next().val();
+		$('#require_delete_id').val(r_id);	
+	});
+});
+
+</script>

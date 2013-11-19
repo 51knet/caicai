@@ -15,5 +15,9 @@ public class RequirTypeServiceImpl implements RequirTypeService{
 	@Override
 	public List<RequirType> findTypeList(){
 		return typeRepository.findAll();
+	}
+	@Override
+	public RequirType findOne(Long type_id) {
+		return typeRepository.findOne(type_id);
 	};
 }

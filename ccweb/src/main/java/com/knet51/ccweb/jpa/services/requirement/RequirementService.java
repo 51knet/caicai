@@ -10,6 +10,7 @@ import com.knet51.ccweb.jpa.entities.User;
 
 public interface RequirementService {
 	Requirement create(Requirement requirement);
+	Requirement findOne(Long require_id);
 	void delete(Long id);
 	void update(Requirement requirement);
 	Page<Requirement> findRequireByUser(int pageNum, int pageSize, User user );

@@ -25,12 +25,13 @@
 
 }
 </style>
+
 <div class="row-fluid custom round">
 	<div  class="row">
 		<h4>个人专利>添加专利</h4>
 	</div>
 	<div class="content">
-		<form action= '<c:url value="/admin/patent/add"></c:url>'  method="post" style="margin-left:50px;" >
+		<form action= '<c:url value="/admin/patent/add"></c:url>'  method="post" style="margin-left:50px;" id="patent_form">
 			<div class="control-group" id="patentNum">
 				<div class="controls">
 					<i class="icon-star"></i> 专利号码：<input type="text" name="patentNum"   placeholder="专利号码" required value="${patent.patentNum }"> <span class="help-inline"><form:errors path="patentNum" /></span>
@@ -43,6 +44,7 @@
 							<c:if test="${typeList.typeName == patent.patentType }">
 					  			<option value="${typeList.typeName }" selected>${typeList.typeName }</option>
 					  		</c:if>
+					  		<option value="${typeList.typeName }" >${typeList.typeName }</option>
 					  </c:forEach>
 					</select>
 			</div>
@@ -54,6 +56,7 @@
 					  		<c:if test="${fieldList.id == patent.patentField.id }">
 					  			<option value="${fieldList.id }" selected>${fieldList.fieldName }</option>
 					  		</c:if>
+					  		<option value="${fieldList.id }" >${fieldList.fieldName }</option>
 					  </c:forEach>
 					</select>
 			</div>
@@ -131,8 +134,13 @@
 			</div>
 
 			<label style="clear: right;"></label>
-			<button type="submit" class="btn btn-success">发布</button>&nbsp;&nbsp;
+			<button type="submit" class="btn btn-success"  onclick="return checkPatentFormEmptyAjax();">发布</button>&nbsp;&nbsp;
 			<button type="reset" class="btn">取消</button>
 		</form>
 	</div>
 </div>
+<script type="text/javascript">
+	function checkPatentFormEmptyAjax(){
+		return checkEmptyAjax("patent_form","patentInfoAJAX");
+	}; 
+</script>

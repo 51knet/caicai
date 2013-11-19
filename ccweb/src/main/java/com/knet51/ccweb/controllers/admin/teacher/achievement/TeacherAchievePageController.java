@@ -99,21 +99,26 @@ public class TeacherAchievePageController {
 		return AjaxValidationEngine.process(result);
 	}
 	
+	@RequestMapping(value = "/admin/patent/patentInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse patentInfoFormAjaxJson(@Valid PatentForm patentForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	
+	@RequestMapping(value = "/admin/patent/edit/new/patentInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse patentInfoFormUpdateAjaxJson(@Valid PatentForm patentForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	
 	@RequestMapping("/admin/patent/list")
 	public String showPatentList(HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
-		try {
-			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-			User user = userInfo.getUser();
-			List<Patent> patentList = userPatentService.findPatentListByUser(user);
-			Page<Patent> page = userPatentService.findPatentByUser(pageNumber, pageSize, user);
-			model.addAttribute("patent", patentList);
-			model.addAttribute("patentCount", patentList.size());
-			model.addAttribute("page", page);
-		} catch (Exception e) {
-			// TODO: hadle exception
-			e.printStackTrace();
-		}
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		User user = userInfo.getUser();
+		List<Patent> patentList = userPatentService.findPatentListByUser(user);
+		Page<Patent> page = userPatentService.findPatentByUser(pageNumber, pageSize, user);
+		model.addAttribute("patent", patentList);
+		model.addAttribute("patentCount", patentList.size());
+		model.addAttribute("page", page);
 		return "admin.patent.list";
 	}
 	
@@ -134,6 +139,11 @@ public class TeacherAchievePageController {
 		if(!userInfo.getId().equals(patent.getUser().getId())){
 			return "redirect:/admin";
 		}
+		List<PatentType> pTypeList = patentTypeService.findAllPatentType();
+		List<PatentField> pFieldList = patentFieldService.findAll();
+		model.addAttribute("pTypeList", pTypeList);
+		model.addAttribute("pFieldList", pFieldList);
+		model.addAttribute("patent", patent);
 		return "admin.patent.edit";
 	}
 	@RequestMapping("/admin/patent/view/{patentNum}")
