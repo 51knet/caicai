@@ -31,8 +31,7 @@ public class PatentForm {
 	@NotEmpty
 	private String summary;
 	
-	@NotEmpty
-	private String patentType;
+	private String patentField;
 	
 	public String getPatentNum() {
 		return patentNum;
@@ -115,12 +114,13 @@ public class PatentForm {
 	public PatentForm() {
 		super();
 	}
-	public String getPatentType() {
-		return patentType;
+	public String getPatentField() {
+		return patentField;
 	}
-	public void setPatentType(String patentType) {
-		this.patentType = patentType;
-	} 
+	public void setPatentField(String patentField) {
+		this.patentField = patentField;
+	}
+
 	
 	
 }

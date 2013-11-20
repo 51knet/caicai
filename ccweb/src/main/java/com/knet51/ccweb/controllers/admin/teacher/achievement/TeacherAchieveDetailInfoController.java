@@ -156,13 +156,13 @@ public class TeacherAchieveDetailInfoController {
 	
 	@RequestMapping(value="/admin/patent/add",method = RequestMethod.POST)
 	public String addPatent(@Valid PatentForm patentForm, BindingResult validResult,HttpSession session,
-			@RequestParam("patentField") Long field_id,Model model){
+			@RequestParam("patentType") Long type_id,Model model){
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/admin/patent/new";
 		}else{	
 			Patent patent = new Patent();
-			PatentField patentField = patentFieldService.findOne(field_id);
+			PatentType patentType = patentTypeService.findOne(type_id);
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			patent.setAddress(patentForm.getAddress());
 			patent.setAgency(patentForm.getAgency());
@@ -178,9 +178,9 @@ public class TeacherAchieveDetailInfoController {
 			patent.setPublishNum(patentForm.getPublishNum());
 			patent.setSummary(patentForm.getSummary());
 			patent.setStatus(GlobalDefs.PATENT_STORE);
-			patent.setPatentType(patentForm.getPatentType());
+			patent.setPatentType(patentType);
 			patent.setUser(userInfo.getUser());
-			patent.setPatentField(patentField);
+			patent.setPatentField(patentForm.getPatentField());
 			
 			
 			userPatentService.create(patent);
@@ -191,13 +191,13 @@ public class TeacherAchieveDetailInfoController {
 	
 	@RequestMapping(value="/admin/patent/edit/add",method = RequestMethod.POST)
 	public String editPatent(@Valid PatentForm patentForm, BindingResult validResult,HttpSession session,
-			@RequestParam("patentField") Long field_id,Model model){
+			@RequestParam("patentType") Long type_id,Model model){
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/admin/patent/edit/"+patentForm.getPatentNum();
 		}else{	
 			Patent patent = userPatentService.findOne(patentForm.getPatentNum());
-			PatentField patentField = patentFieldService.findOne(field_id);
+			PatentType patentType = patentTypeService.findOne(type_id);
 			UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 			patent.setAddress(patentForm.getAddress());
 			patent.setAgency(patentForm.getAgency());
@@ -213,9 +213,9 @@ public class TeacherAchieveDetailInfoController {
 			patent.setPublishNum(patentForm.getPublishNum());
 			patent.setSummary(patentForm.getSummary());
 			patent.setStatus(GlobalDefs.PATENT_STORE);
-			patent.setPatentType(patentForm.getPatentType());
+			patent.setPatentType(patentType);
 			patent.setUser(userInfo.getUser());
-			patent.setPatentField(patentField);
+			patent.setPatentField(patentForm.getPatentField());
 			
 			userPatentService.update(patent);
 			model.addAttribute("patent", patent);

@@ -28,13 +28,13 @@ public class Patent {
 	
 	private Integer status;
 	
-	private String patentType;
+	@ManyToOne
+	private PatentType patentType;
 	
 	@ManyToOne
 	private User user;
 	
-	@ManyToOne
-	private PatentField patentField;
+	private String patentField;
 	
 	public String getPatentName() {
 		return patentName;
@@ -103,12 +103,7 @@ public class Patent {
 		this.user = user;
 	}
 
-	public PatentField getPatentField() {
-		return patentField;
-	}
-	public void setPatentField(PatentField patentField) {
-		this.patentField = patentField;
-	}
+
 	public String getAddress() {
 		return address;
 	}
@@ -134,13 +129,18 @@ public class Patent {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	
-	
-	public String getPatentType() {
+
+	public PatentType getPatentType() {
 		return patentType;
 	}
-	public void setPatentType(String patentType) {
+	public void setPatentType(PatentType patentType) {
 		this.patentType = patentType;
+	}
+	public String getPatentField() {
+		return patentField;
+	}
+	public void setPatentField(String patentField) {
+		this.patentField = patentField;
 	}
 	public Patent() {
 		super();

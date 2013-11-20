@@ -42,9 +42,9 @@
 					<select name="patentType" >
 						<c:forEach items="${pTypeList }" var="typeList" >
 							<c:if test="${typeList.typeName == patent.patentType }">
-					  			<option value="${typeList.typeName }" selected>${typeList.typeName }</option>
+					  			<option value="${typeList.id }" selected>${typeList.typeName }</option>
 					  		</c:if>
-					  		<option value="${typeList.typeName }" >${typeList.typeName }</option>
+					  		<option value="${typeList.id }" >${typeList.typeName }</option>
 					  </c:forEach>
 					</select>
 			</div>
@@ -54,9 +54,9 @@
 					<select name="patentField">
 					   <c:forEach items="${pFieldList }" var="fieldList" >
 					  		<c:if test="${fieldList.id == patent.patentField.id }">
-					  			<option value="${fieldList.id }" selected>${fieldList.fieldName }</option>
+					  			<option value="${fieldList.fieldName }" selected>${fieldList.fieldName }</option>
 					  		</c:if>
-					  		<option value="${fieldList.id }" >${fieldList.fieldName }</option>
+					  		<option value="${fieldList.fieldName }" >${fieldList.fieldName }</option>
 					  </c:forEach>
 					</select>
 			</div>

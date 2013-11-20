@@ -42,9 +42,9 @@
 			  </tr>
 			  <tr>
 			    <td width="122" align="center" bgcolor="#f3f3f3">适用领域</td>
-			    <td width="190">${patent.patentField.fieldName}</td>
+			    <td width="190">${patent.patentField}</td>
 			    <td width="103" align="center" bgcolor="#f3f3f3">专利类型</td>
-			    <td width="169">${patent.patentType}</td>
+			    <td width="169">${patent.patentType.typeName}</td>
 			  </tr>
 			  <tr>
 			    <td align="center" bgcolor="#f3f3f3">专利名称</td>
