@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.knet51.ccweb.jpa.entities.patent.PatentField;
-import com.knet51.ccweb.jpa.repository.PatentFieldRepository;
+import com.knet51.ccweb.jpa.repository.patent.PatentFieldRepository;
 @Service("patentFieldService")
 public class PatentFieldServiceImpl implements PatentFieldService {
 

@@ -62,4 +62,9 @@ public class RequirementServiceImpl implements RequirementService {
 		return repository.findOne(require_id);
 	}
 
+	@Override
+	public List<Requirement> findAll() {
+		return repository.findAll();
+	}
+
 }

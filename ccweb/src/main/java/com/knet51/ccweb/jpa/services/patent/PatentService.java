@@ -14,4 +14,6 @@ public interface PatentService {
  	void update(Patent patent);
  	void delete(String patentNum);
  	Patent findOne(String patentNum);
+ 	
+ 	
 }

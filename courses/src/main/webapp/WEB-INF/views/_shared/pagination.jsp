@@ -12,7 +12,6 @@
 		<s:eval expression="page.hasNextPage()" var="hasNextPage"></s:eval>
 		<ul>
 			<c:choose>
-				
 				<c:when test="${hasPreviousPage}">
 					<li><a href='${current_url}?pageNumber=${prev}'>上一页</a></li>
 				</c:when>

@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.repository;
+package com.knet51.ccweb.jpa.repository.patent;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

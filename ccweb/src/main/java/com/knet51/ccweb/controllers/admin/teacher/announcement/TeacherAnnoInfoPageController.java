@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +23,9 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.patent.Patent;
 import com.knet51.ccweb.jpa.services.AnnouncementService;
+import com.knet51.ccweb.jpa.services.CourseLessonService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.util.MyUtil;
@@ -37,7 +40,8 @@ public class TeacherAnnoInfoPageController {
 	private AnnouncementService annoService;
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private CourseLessonService lessonService;
 	@Autowired
 	private TeacherService teacherService;
 	
@@ -47,6 +51,16 @@ public class TeacherAnnoInfoPageController {
 		logger.info("#### into TeacherAnno ####");
 			Long id = getUserId(session);
 			User user = userService.findOne(id);
+//			try {
+//				List<Patent> patentList = lessonService.findPatent("patentNum", "12");
+//				Page<Patent> patentPage = new PageImpl<Patent>(patentList);
+//				for (Patent patent : patentList) {
+//					logger.info("====================patent test"+patent.getPatentNum());
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+			
 			if(user.getRole().equals("user")){
 				return "redirect:/admin";
 			}else{

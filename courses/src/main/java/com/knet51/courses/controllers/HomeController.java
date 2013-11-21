@@ -12,23 +12,30 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.jpa.entities.Requirement;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
+import com.knet51.ccweb.jpa.entities.patent.Patent;
 import com.knet51.courses.beans.CourseBeans;
 import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 import com.knet51.courses.jpa.services.UserCourseService;
 import com.knet51.courses.jpa.services.UserService;
+import com.knet51.courses.jpa.services.patent.PatentService;
+import com.knet51.courses.jpa.services.requirement.RequirementService;
 
 /**
  * Handles requests for the application home page.
@@ -38,15 +45,16 @@ public class HomeController {
 
 	@Autowired
 	private TeacherCourseService courseService;
-
 	@Autowired
 	private TeacherService teacherService;
-
 	@Autowired
 	private UserCourseService userCourseService;
-
 	@Autowired
-	private UserService service;
+	private UserService userService;
+	@Autowired
+	private PatentService patentService;
+	@Autowired
+	private RequirementService requirementService;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
@@ -60,6 +68,9 @@ public class HomeController {
 		logger.info("###### into the HomeController ######");
 		List<CourseBeans> cBeans = courseService.getAllCourseBeans();
 		List<Teacher> teacherList = teacherService.findAllTeacher();
+		List<Patent> patentList = patentService.findPatentList();
+		List<Requirement> requirementList = requirementService.findAll();
+		
 		List<Teacher> teacherLists = new ArrayList<Teacher>();
 		List<Teacher> enterPriseList = new ArrayList<Teacher>();
 		String email;
@@ -71,7 +82,7 @@ public class HomeController {
 					email = new String(Base64.decode(c.getValue().getBytes()),
 							Charset.forName("US-ASCII"));
 					if(email != null && !email.equals("")){
-						User user = service.getValidEmail(email);
+						User user = userService.getValidEmail(email);
 						if (user != null) {
 							UserInfo userInfo = new UserInfo(user);
 							session.setAttribute(GlobalDefs.SESSION_USER_INFO,
@@ -94,18 +105,26 @@ public class HomeController {
 		}
 		model.addAttribute("courseList", cBeans);
 		model.addAttribute("courseCount", cBeans.size());
+		model.addAttribute("teacherCount", teacherLists.size());
+		model.addAttribute("patentCount", patentList.size());
+		model.addAttribute("requirementList", requirementList);
+		
 		UserInfo currentUser = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if (currentUser != null) {
 			List<UserCourse> userCourseList = userCourseService
 					.findUserCourseByUserid(currentUser.getId());
+		
 			List<Course> userCourse = new ArrayList<Course>();
-			for (int i = 0; i < userCourseList.size(); i++) {
-				Course course = courseService.findOneById(userCourseList.get(i)
-						.getTeachercourseid());
+			for (UserCourse userCourses : userCourseList) {
+				Course course = courseService.findOneById(userCourses.getTeachercourseid());
 				userCourse.add(course);
 			}
-
+//			for (int i = 0; i < userCourseList.size(); i++) {
+//				Course course = courseService.findOneById(userCourseList.get(i)
+//						.getTeachercourseid());
+//				userCourse.add(course);
+//			}
 			model.addAttribute("userCourse", userCourse);
 			model.addAttribute("userCourseCount", userCourse.size());
 		}

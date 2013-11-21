@@ -17,4 +17,6 @@ public interface RequirementService {
 	Page<Requirement> findRequireByRequireType(int pageNum, int pageSize, RequirType type);
 	List<Requirement> findRequireListByUser(User user);
 	List<Requirement> findRequiteListByRequireType(RequirType type);
+	
+	List<Requirement> findAll();
 }

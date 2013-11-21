@@ -10,8 +10,16 @@ import com.knet51.ccweb.jpa.entities.patent.Patent;
 public interface PatentService {
 	Page<Patent> findPatentByUser(int pageNum , int pageSize, User user);
 	List<Patent> findPatentListByUser(User user);
- 	void create(Patent patent);
- 	void update(Patent patent);
- 	void delete(String patentNum);
+	
+	Page<Patent> findPatentByPatentField(int pageNum , int pageSize,String patentField);
+	
+	List<Patent> findPatentList();
  	Patent findOne(String patentNum);
+ 	Page<Patent> findAll(int pageNum , int pageSize);
+ 	
+ 	Page<Patent> searchPatent(int pageNum , int pageSize,Long type, String search,String params);
+ 	Page<Patent> findPatentPage(int pageNum , int pageSize,String patentNum,String patentName,String inventer);
+ 	
+ 	Page<Patent> findPatentByPatentNumAndPatentNameAndInventer(int pageNum , int pageSize,String patentNum,String patentName,String inventer);
+ 	
 }

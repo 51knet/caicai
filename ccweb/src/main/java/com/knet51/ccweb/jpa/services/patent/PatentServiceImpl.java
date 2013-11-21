@@ -5,13 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.Patent;
-import com.knet51.ccweb.jpa.repository.UserPatentRepository;
+import com.knet51.ccweb.jpa.repository.patent.UserPatentRepository;
 @Service("patentService")
 public class PatentServiceImpl implements PatentService {
 	@Autowired
@@ -49,6 +50,7 @@ public class PatentServiceImpl implements PatentService {
 	public Patent findOne(String patentNum) {
 		return patentRespository.findOne(patentNum);
 	}
+
 
 
 }

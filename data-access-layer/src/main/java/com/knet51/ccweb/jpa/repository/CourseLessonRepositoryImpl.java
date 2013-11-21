@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.knet51.ccweb.jpa.entities.courses.CourseLesson;
+import com.knet51.ccweb.jpa.entities.patent.Patent;
 
 public class CourseLessonRepositoryImpl implements CourseLessonRepositoryCustom {
 	
@@ -18,5 +19,6 @@ public class CourseLessonRepositoryImpl implements CourseLessonRepositoryCustom 
 				"and c.lessonNum = (select max(cl.lessonNum) from CourseLesson cl where cl.courseId="+course_id+" )").getResultList();
 		return lessonList;
 	}
+
 
 }

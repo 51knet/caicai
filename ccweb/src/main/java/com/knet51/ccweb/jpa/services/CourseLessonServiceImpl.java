@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.courses.CourseLesson;
+import com.knet51.ccweb.jpa.entities.patent.Patent;
 import com.knet51.ccweb.jpa.repository.CourseLessonRepository;
 @Service("courseLessonService")
 @Transactional
@@ -55,5 +56,7 @@ public class CourseLessonServiceImpl implements CourseLessonService {
 		List<CourseLesson> lessonList = lessonRepository.findCourseLessonByCourseIdAndLessonNum(course_id, lessonNum);
 		return lessonList;
 	}
+
+	
 
 }
