@@ -25,4 +25,12 @@ public interface UserPatentRepository extends JpaRepository<Patent, String>,JpaS
 	
 	Page<Patent> findPatentByPatentNumLikeAndPatentNameLikeAndInventerLike(String patentNum,String patentName,String inventer,Pageable pageable);
 	
+	Page<Patent> findPatentByPatentNumLike(String patentNum, Pageable pageable);
+	List<Patent> findPatentByPatentNumLike(String patentNum);
+	
+	Page<Patent> findPatentByPatentNameLike(String patentName, Pageable pageable);
+	List<Patent> findPatentByPatentNameLike(String patentName);
+	
+	Page<Patent> findPatentByInventerLike(String inventer, Pageable pageable);
+	List<Patent> findPatentByInventerLike(String inventer);
 }

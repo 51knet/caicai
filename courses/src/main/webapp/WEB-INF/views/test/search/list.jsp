@@ -9,25 +9,8 @@
 	font-size: 14px;
 	width: 100%;
 }
-.container .user-course>table{
-	p
-}
 </style>
 <div class="selete_filter">
-	<select id="type" onchange="selectType()">
-		<option>全部类别</option>
-		<c:forEach items="${fieldList}" var="field">
-			<!--<c:choose>
-				<c:when test="${courseType == ct.typeName}">
-					<option  selected>${ct.typeName}</option>
-				</c:when>
-				<c:otherwise>
-					<option value="">${ct.typeName}</option>
-				</c:otherwise>
-			</c:choose>-->
-			<option value="${field.fieldName }">${field.fieldName }</option>
-		</c:forEach>
-	</select>
 </div>
 <div class="container title"  >
 	 	 <table >
@@ -38,30 +21,30 @@
 	 	 </table>
  </div>
  <div class="container user-course">
- <c:if test="${patentCount <=0}">
-  <br>
- 	<h4 style="margin-left: 70px;">未搜索到专利</h4>
- </c:if>
- <br>
+	 <c:if test="${patentCount <=0}">
+	  <br>
+	 	<h4 style="margin-left: 70px;">未搜索到专利</h4>
+	 </c:if>
+	 <br>
 
 	 <table  style="width: 90%; margin-left: 60px;" cellpadding="10" >
 		<tr class="titlebg"><th align="left"><b>专利号</b></th><th align="left"><b>专利名称</b></th><th align="left"><b>专利类别</b></th><th align="left"><b>应用领域</b></th><th align="left" width=10%><b>公开日期</b></th></tr>
 			<tbody>
-			<c:forEach items="${page.content}" var="page">
-				<tr class="bb">
-				<td width="20%"><a href="<c:url value="/patent/view/${ page.patentNum}"></c:url>">${page.patentNum}</a></td>
-				<td >
-					${page.patentName}
-				</td>
-				<td >
-					${page.patentType.typeName}
-				</td>
-				<td >
-					${page.patentField}
-				</td>
-				<td  width="20%">${page.publishDate}</td>
-				</tr>
-			</c:forEach>
+				<c:forEach items="${page.content}" var="page">
+					<tr class="bb">
+						<td width="20%"><a href="<c:url value="/patent/view/${ page.patentNum}"></c:url>">${page.patentNum}</a></td>
+						<td >
+							${page.patentName}
+						</td>
+						<td >
+							${page.patentType.typeName}
+						</td>
+						<td >
+							${page.patentField}
+						</td>
+						<td  width="20%">${page.publishDate}</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 			<tfoot>
 		    	<tr><td colspan="3">

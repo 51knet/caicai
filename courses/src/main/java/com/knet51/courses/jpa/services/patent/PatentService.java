@@ -18,8 +18,8 @@ public interface PatentService {
  	Page<Patent> findAll(int pageNum , int pageSize);
  	
  	Page<Patent> searchPatent(int pageNum , int pageSize,Long type, String search,String params);
- 	Page<Patent> findPatentPage(int pageNum , int pageSize,String patentNum,String patentName,String inventer);
+ 	List<Patent> searchPatentList(Long type,String search, String params);
  	
- 	Page<Patent> findPatentByPatentNumAndPatentNameAndInventer(int pageNum , int pageSize,String patentNum,String patentName,String inventer);
+ 	
  	
 }

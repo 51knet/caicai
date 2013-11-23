@@ -38,33 +38,6 @@ public class PatentServiceImpl implements PatentService {
 	}
 
 	@Override
-	public Page<Patent> searchPatent(int pageNum, int pageSize, Long type, String search,
-			String params) {
-		List<Patent> listAll = patentRespository.findPatentList(type,search, params);
-		List<Patent> list = patentRespository.findPatentPage(type,search, params, pageNum, pageSize);
-		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "patentNum");
-		Page<Patent> page = new PageImpl<Patent>(list, pageable, listAll.size());
-		return page;
-	}
-
-	@Override
-	public Page<Patent> findPatentPage(int pageNum, int pageSize,
-			String patentNum, String patentName, String inventer) {
-		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "patentNum");
-		Page<Patent> page = patentRespository.findPatentPage(patentNum, patentName, inventer, pageable);
-		return page;
-	}
-
-	@Override
-	public Page<Patent> findPatentByPatentNumAndPatentNameAndInventer(
-			int pageNum, int pageSize, String patentNum, String patentName,
-			String inventer) {
-		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "patentNum");
-		Page<Patent> page =patentRespository.findPatentByPatentNumLikeAndPatentNameLikeAndInventerLike(patentNum, patentName, inventer, pageable);
-		return page;
-	}
-
-	@Override
 	public List<Patent> findPatentList() {
 		return patentRespository.findAll();
 	}
@@ -82,6 +55,37 @@ public class PatentServiceImpl implements PatentService {
 		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "patentNum");
 		Page<Patent> page = patentRespository.findPatentByPatentField(patentField, pageable);
 		return page;
+	}
+	
+	@Override
+	public Page<Patent> searchPatent(int pageNum, int pageSize, Long type, String search,
+			String params) {
+		//List<Patent> listAll = patentRespository.findPatentList(type,search, params);
+		//List<Patent> list = patentRespository.findPatentPage(type,search, params, pageNum, pageSize);
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "patentNum");
+		//Page<Patent> page = new PageImpl<Patent>(list, pageable, listAll.size());
+		Page<Patent> page = null;
+		if("patentNum".equals(search)){
+			page = patentRespository.findPatentByPatentNumLike("%"+params+"%",pageable);
+		}else if("patentName".equals(search)){
+			page = patentRespository.findPatentByPatentNameLike("%"+params+"%",pageable);
+		}else if("inventer".equals(params)){
+			page = patentRespository.findPatentByInventerLike("%"+params+"%",pageable);
+		}
+		return page;
+	}
+	
+	@Override
+	public List<Patent> searchPatentList(Long type,String search, String params) {
+		List<Patent> patentList = null;
+		if("patentNum".equals(search)){
+			patentList = patentRespository.findPatentByPatentNumLike("%"+params+"%");
+		}else if("patentName".equals(search)){
+			patentList = patentRespository.findPatentByPatentNameLike("%"+params+"%");
+		}else if("inventer".equals(params)){
+			patentList = patentRespository.findPatentByInventerLike("%"+params+"%");
+		}
+		return patentList;
 	}
 
 
