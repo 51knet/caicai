@@ -80,12 +80,13 @@
 			    <td align="center" bgcolor="#f3f3f3">代理机构</td>
 			    <td>${patent.agent }</td>
 			  </tr>
+			   <tr>
+			    <td colspan="4" align="left" bgcolor="#f3f3f3">专利摘要</td>
+			  </tr>
+			  <tr>
+			  	   <td colspan="4" align="left" >${patent.summary }</td>
+			  </tr>
 			</table>
-			<br>
-			<div style="width: 100%; background-color: #f3f3f3;text-align: left;border:1px solid #b1cf75;"><span style="margin: 5px 5px;">专利摘要</span></div>
-			<div style="width: 100%; text-align: left; margin:5px 5px;">
-				${patent.summary }
-			</div>
 	</div>
 
 </div>

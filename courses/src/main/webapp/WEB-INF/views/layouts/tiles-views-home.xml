@@ -113,5 +113,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/test/search/list.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="patent.view" extends="index-layout">
+		<put-attribute name="title" value="test search" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/test/view/view.jsp"></put-attribute>
+	</definition>
 	
 </tiles-definitions>

@@ -1,4 +1,4 @@
-package com.knet51.courses.controllers;
+package com.knet51.courses.controllers.patent;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -79,5 +79,12 @@ public class PatentController {
 		model.addAttribute("fieldList", fieldList);
 		model.addAttribute("page", page);
 		return "patent.list";
+	}
+	
+	@RequestMapping(value="/patent/view/{patentNum}")
+	public String showPatentDetail(@PathVariable String patentNum,Model model){
+		Patent patent = patentService.findOne(patentNum);
+		model.addAttribute("patent", patent);
+		return "patent.view";
 	}
 }
