@@ -6,8 +6,17 @@
 	padding-right: 0px;
 	padding-left: 0px;
 }
-
+.container.search-bar {
+	background-image: url("/courses/resources/img/default/search_bg.png");
+	background-position:left top;
+	background-repeat: no-repeat;
+	height: 76px;
+	text-align: center;
+	margin: 40px 0px 0px 0px;
+	width: 1024px;
+}
 .container.search-bar .cont {
+	margin-top: 10px;
 }
 
 /* Carousel base class

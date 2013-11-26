@@ -12,6 +12,7 @@ public class Requirement extends AbstractEntity {
 	@Lob
 	private String content;
 	private Date date; 
+	private String endTime;
 	
 	@ManyToOne
 	private User user;
@@ -61,6 +62,14 @@ public class Requirement extends AbstractEntity {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 	
 	

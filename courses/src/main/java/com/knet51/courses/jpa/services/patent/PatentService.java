@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.Patent;
+import com.knet51.ccweb.jpa.entities.patent.PatentType;
 
 public interface PatentService {
 	Page<Patent> findPatentByUser(int pageNum , int pageSize, User user);
@@ -17,8 +18,8 @@ public interface PatentService {
  	Patent findOne(String patentNum);
  	Page<Patent> findAll(int pageNum , int pageSize);
  	
- 	Page<Patent> searchPatent(int pageNum , int pageSize,Long type, String search,String params);
- 	List<Patent> searchPatentList(Long type,String search, String params);
+ 	Page<Patent> searchPatent(int pageNum , int pageSize,PatentType patentType, String search,String params);
+ 	List<Patent> searchPatentList(PatentType patentType,String search, String params);
  	
  	
  	

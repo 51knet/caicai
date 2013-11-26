@@ -31,7 +31,7 @@
 		<h4>个人专利>专利修改</h4>
 	</div>
 	<div class="content">
-		<form action= '<c:url value="/admin/patent/edit/add"></c:url>'  method="post" style="margin-left:50px;" id="patent_form">
+		<form action= '<c:url value="/admin/patent/edit/add"></c:url>'  method="post" style="margin-left:50px;" id="patent_form" name="patent_post">
 			<div class="control-group" id="patentNum">
 				<div class="controls">
 					<i class="icon-star"></i> 专利号码：<input type="text" name="patentNum"   placeholder="专利号码" required value="${patent.patentNum }" readonly="readonly"> <span class="help-inline"><form:errors path="patentNum" /></span>
@@ -111,38 +111,40 @@
 				</div>
 			</div>
 			
-			<div class="control-group" id="agency">
-				<div class="controls">
-					<i class="icon-star"></i> 代理机构：<input type="text" name="agency"   placeholder="代理机构" required value="${patent.agency }"> <span class="help-inline"><form:errors path="agency" /></span>
-				</div>
-			</div>
-			
-			<div class="control-group" id="agent">
-				<div class="controls">
-					<i class="icon-star"></i> 代理人士：<input type="text" name="agent"   placeholder="代理人士" required value="${patent.agent }"> <span class="help-inline"><form:errors path="agent" /></span>
-				</div>
-			</div>
-			
 			<div class="control-group" id="applicationDate">
 				<div class="controls">
 					<i class="icon-star"></i> 申请日期：<input type="text" name="applicationDate"   placeholder="申请日期" class="Wdate" onClick="WdatePicker()" required value="${patent.applicationDate }"> <span class="help-inline"><form:errors path="applicationDate" /></span>
 				</div>
 			</div>
 			
+			<div class="control-group" id="agency">
+				<div class="controls">
+					代理机构：<input type="text" name="agency"   placeholder="代理机构" required value="${patent.agency }"> <span class="help-inline"><form:errors path="agency" /></span>
+				</div>
+			</div>
+			
+			<div class="control-group" id="agent">
+				<div class="controls">
+					 代理人士：<input type="text" name="agent"   placeholder="代理人士" required value="${patent.agent }"> <span class="help-inline"><form:errors path="agent" /></span>
+				</div>
+			</div>
+			
 			<div class="control-group" id="address">
 				<div class="controls">
-					<i class="icon-star"></i> 联系地址：<input type="text" name="address"   placeholder="申请地址" required value="${patent.address }" > <span class="help-inline"><form:errors path="address" /></span>
+					 联系地址：<input type="text" name="address"   placeholder="申请地址" required value="${patent.address }" > <span class="help-inline"><form:errors path="address" /></span>
 				</div>
 			</div>
 			
 			<div class="control-group" id="summary">
 				<div class="controls">
-					<i class="icon-star"></i> 专利摘要：<br><input  name="summary"   placeholder="专利摘要" style="height: 80px; width: 320px;" required value="${patent.summary }"> <span class="help-inline"><form:errors path="summary" /></span>
+				<i class="icon-star"></i> 专利摘要：<br>
+					<textarea  style="width:600px;height:300px;"  name="summary"  placeholder="专利摘要">${patent.summary }</textarea>
+					<span class="help-inline"><form:errors path="summary" /></span>
 				</div>
 			</div>
 
 			<label style="clear: right;"></label>
-			<button type="submit" class="btn btn-success"  onclick="return checkPatentFormEmptyAjax();">发布</button>&nbsp;&nbsp;
+			<button type="submit" class="btn btn-success"  >发布</button>&nbsp;&nbsp;
 			<button type="reset" class="btn">取消</button>
 		</form>
 	</div>
@@ -151,4 +153,36 @@
 	function checkPatentFormEmptyAjax(){
 		return checkEmptyAjax("patent_form","new/patentInfoAJAX");
 	}; 
+</script>
+
+<c:url var="uploadJson" value="/file_upload/${sessionUserInfo.id}"></c:url>
+<c:url var="fileManagerJson" value="/file_manager/${sessionUserInfo.id}"></c:url>
+<link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/themes/default/default.css"/>" />
+<link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>" />
+<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.js"/>"></script>
+<script type="text/javascript">
+		$(document).ready(function() {
+			var editor = KindEditor.create('textarea[name="summary"]',{
+				cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+				uploadJson : '${uploadJson}',
+				fileManagerJson : '${fileManagerJson}',
+				allowFileManager : true,
+				afterCreate : function() {
+					var self = this;
+					KindEditor.ctrl(document, 13, function() {
+						self.sync();
+						document.forms['patent_post'].submit();
+					});
+					KindEditor.ctrl(self.edit.doc, 13, function() {
+						self.sync();
+						document.forms['patent_post'].submit();
+					});
+				}
+			});
+			$("#patent_form").submit(function(){
+				editor.sync();
+				return checkEmptyAjax("patent_form","new/patentInfoAJAX");
+			});
+			prettyPrint();
+	    });
 </script>

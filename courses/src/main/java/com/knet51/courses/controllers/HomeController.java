@@ -28,13 +28,17 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.ccweb.jpa.entities.patent.Patent;
+import com.knet51.ccweb.jpa.entities.patent.PatentField;
+import com.knet51.ccweb.jpa.entities.patent.PatentType;
 import com.knet51.courses.beans.CourseBeans;
 import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 import com.knet51.courses.jpa.services.UserCourseService;
 import com.knet51.courses.jpa.services.UserService;
+import com.knet51.courses.jpa.services.patent.PatentFieldService;
 import com.knet51.courses.jpa.services.patent.PatentService;
+import com.knet51.courses.jpa.services.patent.PatentTypeService;
 import com.knet51.courses.jpa.services.requirement.RequirementService;
 
 /**
@@ -54,7 +58,11 @@ public class HomeController {
 	@Autowired
 	private PatentService patentService;
 	@Autowired
+	private PatentTypeService patentTypeService;
+	@Autowired
 	private RequirementService requirementService;
+	@Autowired
+	private PatentFieldService patentFieldService;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
@@ -70,6 +78,8 @@ public class HomeController {
 		List<Teacher> teacherList = teacherService.findAllTeacher();
 		List<Patent> patentList = patentService.findPatentList();
 		List<Requirement> requirementList = requirementService.findAll();
+		List<PatentType> patentTypeList = patentTypeService.findAllPatentType();
+		List<PatentField> patentFieldList = patentFieldService.findAll();
 		
 		List<Teacher> teacherLists = new ArrayList<Teacher>();
 		List<Teacher> enterPriseList = new ArrayList<Teacher>();
@@ -106,8 +116,13 @@ public class HomeController {
 		model.addAttribute("courseList", cBeans);
 		model.addAttribute("courseCount", cBeans.size());
 		model.addAttribute("teacherCount", teacherLists.size());
+		model.addAttribute("patentList", patentList);
 		model.addAttribute("patentCount", patentList.size());
+		model.addAttribute("patentFieldList", patentFieldList);
+		
 		model.addAttribute("requirementList", requirementList);
+		model.addAttribute("requirementCount", requirementList.size());
+		model.addAttribute("patentTypeList", patentTypeList);
 		
 		UserInfo currentUser = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
@@ -128,7 +143,7 @@ public class HomeController {
 			model.addAttribute("userCourse", userCourse);
 			model.addAttribute("userCourseCount", userCourse.size());
 		}
-
+		model.addAttribute("active", "patent");
 		return "home";
 	}
 

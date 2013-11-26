@@ -406,7 +406,7 @@ public class CourseController {
 	 */
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String searchCourseOrTeacher(
-			@RequestParam("searchParam") String searchParam, Model model)
+			@RequestParam("searchParam") String searchParam,@RequestParam("searchStyle") String searchStyle, Model model)
 			throws Exception {
 		List<Course> courseList = courseService.findAllCourses();
 		//List<String> courseTypeList = courseService.courseTypeList();
@@ -421,16 +421,16 @@ public class CourseController {
 				}
 				model.addAttribute("courseList", newCourseList);
 				model.addAttribute("courseCount", newCourseList.size());
-				model.addAttribute("searchParam", param);
-				model.addAttribute("courseTypeList", typeList);
 			}
 
 		} else {
 			model.addAttribute("courseList", courseList);
 			model.addAttribute("courseCount", courseList.size());
-			model.addAttribute("courseTypeList", typeList);
-			model.addAttribute("searchParam", param);
+			
 		}
+		model.addAttribute("courseTypeList", typeList);
+		model.addAttribute("searchParam", param);
+		model.addAttribute("active", searchStyle);
 		return "course.list";
 	}
 	/**

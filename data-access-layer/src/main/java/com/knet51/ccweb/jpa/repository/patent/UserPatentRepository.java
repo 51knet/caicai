@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.Patent;
+import com.knet51.ccweb.jpa.entities.patent.PatentType;
 
 public interface UserPatentRepository extends JpaRepository<Patent, String>,JpaSpecificationExecutor<Patent>, UserPatentRepositoryCustom,PagingAndSortingRepository<Patent,String> {
 	Page<Patent> findPatentByUser(User user, Pageable pageable);
@@ -20,17 +21,15 @@ public interface UserPatentRepository extends JpaRepository<Patent, String>,JpaS
 	Page<Patent> findPatentByPatentField(String patentField, Pageable pageable);
 	Page<Patent> findAll(Pageable pageable);
 	
-	@Query("select p from Patent p where p.patentNum like :patentNum  and p.patentName like  :patentName  and p.inventer like  :inventer ")
-	Page<Patent> findPatentPage(@Param("patentNum") String patentNum,@Param("patentName") String patentName, @Param("inventer") String inventer,Pageable pageable);
-	
 	Page<Patent> findPatentByPatentNumLikeAndPatentNameLikeAndInventerLike(String patentNum,String patentName,String inventer,Pageable pageable);
 	
-	Page<Patent> findPatentByPatentNumLike(String patentNum, Pageable pageable);
-	List<Patent> findPatentByPatentNumLike(String patentNum);
+	Page<Patent> findPatentByPatentTypeAndPatentNumLike(PatentType patentType,String patentNum, Pageable pageable);
+	List<Patent> findPatentByPatentTypeAndPatentNumLike(PatentType patentType,String patentNum);
 	
-	Page<Patent> findPatentByPatentNameLike(String patentName, Pageable pageable);
-	List<Patent> findPatentByPatentNameLike(String patentName);
+	Page<Patent> findPatentByPatentTypeAndPatentNameLike(PatentType patentType,String patentName, Pageable pageable);
+	List<Patent> findPatentByPatentTypeAndPatentNameLike(PatentType patentType,String patentName);
 	
-	Page<Patent> findPatentByInventerLike(String inventer, Pageable pageable);
-	List<Patent> findPatentByInventerLike(String inventer);
+	Page<Patent> findPatentByPatentTypeAndInventerLike(PatentType patentType,String inventer, Pageable pageable);
+	List<Patent> findPatentByPatentTypeAndInventerLike(PatentType patentType,String inventer);
+
 }

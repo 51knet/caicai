@@ -51,6 +51,7 @@ public class RequireDetailController {
 			requirement.setDate(new Date());
 			requirement.setRequirType(type);
 			requirement.setUser(user);
+			requirement.setEndTime(requireForm.getEndTime());
 			requirementService.create(requirement);
 			return "redirect:/admin/requirement/list";
 		}
@@ -70,6 +71,7 @@ public class RequireDetailController {
 			Requirement requirement = requirementService.findOne(require_id);
 			requirement.setTitle(requireForm.getTitle());
 			requirement.setContent(requireForm.getContent());
+			requirement.setEndTime(requireForm.getEndTime());
 			requirement.setDate(new Date());
 			requirement.setRequirType(type);
 			requirement.setUser(user);

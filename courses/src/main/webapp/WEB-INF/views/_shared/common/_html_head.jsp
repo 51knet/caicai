@@ -18,6 +18,7 @@
 		@import url("<c:url value="/resources/tableStyle/style.css"/>");
 		@import url("<c:url value="/resources/css/jquery.autoMailSuggest.css"/>");
 		@import url("<c:url value="${css}"/>");
+		@import url("<c:url value="/resources/css/mytab.css"/>");
 	</style>
 	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.8.0.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
@@ -26,3 +27,4 @@
     <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/jquery.autoMailSuggest.js"/>"></script>
     <link href="<c:url value="/resources/js/video-js/video-js.min.css" />" rel="stylesheet">
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/video-js/video.min.js" />"></script>
+	

@@ -1,0 +1,76 @@
+/*footer*/
+.footer-text {
+	text-align: center;
+}
+
+/*fonts*/
+body {
+	color:#555;
+	font-family:Arial,'Microsoft YaHei',Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
+	font-size:14px;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight:bold;
+	letter-spacing:0.05em;
+	font-family:'Microsoft YaHei',Arial;
+}
+
+.navbar .nav a {
+	font-family:'Microsoft YaHei',Arial;
+}
+textarea {
+	border:1px solid #A6A6A6;
+	padding:2px 1px;
+	font-size:12px;
+	font-family:'Microsoft YaHei',Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
+}
+
+/*navbar*/
+.navbar.custom {
+	height: 40px;
+	z-index: 2;
+	background: url(../img/default/navbar.png) center;
+}
+
+/*logo*/
+#logo {
+	width: 145px;
+	height: 36px;
+	text-indent: -999em;
+	background: url(../img/default/logo.png) no-repeat;
+	top: 4px;
+	box-shadow: none;
+}
+
+#contentlimit{
+	overflow: hidden; 
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.bb{
+	border-bottom: solid 1px #ccc;
+}
+table.blue{
+	border:1px solid #b1cf75;
+	color:#555;
+
+}
+table.blue th {
+	/*background-image: url(th_bg1.gif);
+	background-repeat:repeat-x;*/
+	background-color: #ccdfa8;
+	border:1px solid #b1cf75;
+	font-size: 14px;
+
+}
+table.blue tr.a1{
+	background-color:#b1cf75;
+
+}
+
+table.blue td{
+	border:1px dotted #b1cf75;
+	font-size: 13px;
+
+}
+

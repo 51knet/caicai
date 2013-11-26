@@ -1,6 +1,5 @@
 package com.knet51.courses.controllers.patent;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -16,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.jpa.entities.patent.Patent;
 import com.knet51.ccweb.jpa.entities.patent.PatentField;
+import com.knet51.ccweb.jpa.entities.patent.PatentType;
 import com.knet51.courses.jpa.services.patent.PatentFieldService;
 import com.knet51.courses.jpa.services.patent.PatentService;
+import com.knet51.courses.jpa.services.patent.PatentTypeService;
 
 @Controller
 public class PatentController {
@@ -25,15 +26,17 @@ public class PatentController {
 	private PatentService patentService;
 	@Autowired
 	private PatentFieldService patentFieldService;
+	@Autowired
+	private PatentTypeService patentTypeService;
 	
 	@RequestMapping(value="/test/search")
 	public String testSearch(){
 		return "test.search";
 	}
 	
-	@RequestMapping(value="/test/search/patent", method = RequestMethod.GET)
-	public String testSearchPatent(Model model,HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "2") int pageSize,@RequestParam("types") String types,@RequestParam("searchParam") String searchParam){
+	@RequestMapping(value="/search/{patent}", method = RequestMethod.GET)
+	public String testSearchPatent(@PathVariable String patent,Model model,HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "2") int pageSize,@RequestParam("patentType")Long patentType_id,@RequestParam("types") String types,@RequestParam("searchParam") String searchParam){
 		
 //		List<String> typeList = new ArrayList<String>();
 //		typeList.add("patentNum");
@@ -47,17 +50,20 @@ public class PatentController {
 //			}
 //			logger.info("=======type="+type);
 //		}
-		Page<Patent> page = patentService.searchPatent(pageNumber, pageSize, 1L, types, searchParam);
-		//Page<Patent> page= patentService.findPatentPage(pageNumber, pageSize, searchParam, searchParam, searchParam);
-		//Page<Patent> page = patentService.findPatentByPatentNumAndPatentNameAndInventer(pageNumber, pageSize, searchParam, searchParam, searchParam);
+		List<PatentType> patentTypeList = patentTypeService.findAllPatentType();
+		model.addAttribute("patentTypeList", patentTypeList);
+		PatentType patentType = patentTypeService.findOne(patentType_id);
+		Page<Patent> page = patentService.searchPatent(pageNumber, pageSize, patentType, types, searchParam);
+		System.out.println(types+"==="+searchParam);
 		model.addAttribute("page", page);
 		List<PatentField> fieldList = patentFieldService.findAll();
 		model.addAttribute("fieldList", fieldList);
 		model.addAttribute("searchParam", searchParam);
+		model.addAttribute("active", patent);
 		return "patent.search.list";
 	}
 	
-	@RequestMapping(value="/test/patent/list")
+	@RequestMapping(value="/atent/list")
 	public String patentList(Model model, HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "2") int pageSize){
 		List<Patent> patentList = patentService.findPatentList();

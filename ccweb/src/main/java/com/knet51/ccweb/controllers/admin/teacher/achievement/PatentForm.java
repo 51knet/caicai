@@ -20,13 +20,13 @@ public class PatentForm {
 	private String publishDate;
 	@NotEmpty
 	private String publishNum;
-	@NotEmpty
+	
 	private String agency;
-	@NotEmpty
+	
 	private String agent;
 	@NotEmpty
 	private String applicationDate;
-	@NotEmpty
+	
 	private String address;
 	@NotEmpty
 	private String summary;

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.Patent;
+import com.knet51.ccweb.jpa.entities.patent.PatentType;
 import com.knet51.ccweb.jpa.repository.patent.UserPatentRepository;
 @Service("patentService")
 public class PatentServiceImpl implements PatentService {
@@ -58,7 +59,7 @@ public class PatentServiceImpl implements PatentService {
 	}
 	
 	@Override
-	public Page<Patent> searchPatent(int pageNum, int pageSize, Long type, String search,
+	public Page<Patent> searchPatent(int pageNum, int pageSize, PatentType patentType, String search,
 			String params) {
 		//List<Patent> listAll = patentRespository.findPatentList(type,search, params);
 		//List<Patent> list = patentRespository.findPatentPage(type,search, params, pageNum, pageSize);
@@ -66,24 +67,26 @@ public class PatentServiceImpl implements PatentService {
 		//Page<Patent> page = new PageImpl<Patent>(list, pageable, listAll.size());
 		Page<Patent> page = null;
 		if("patentNum".equals(search)){
-			page = patentRespository.findPatentByPatentNumLike("%"+params+"%",pageable);
+			page = patentRespository.findPatentByPatentTypeAndPatentNumLike(patentType,"%"+params+"%",pageable);
 		}else if("patentName".equals(search)){
-			page = patentRespository.findPatentByPatentNameLike("%"+params+"%",pageable);
-		}else if("inventer".equals(params)){
-			page = patentRespository.findPatentByInventerLike("%"+params+"%",pageable);
+			page = patentRespository.findPatentByPatentTypeAndPatentNameLike(patentType,"%"+params+"%",pageable);
+		}else if("inventer".equals(search)){
+			page = patentRespository.findPatentByPatentTypeAndInventerLike(patentType,"%"+params+"%",pageable);
+		}else{
+			page = null;
 		}
 		return page;
 	}
 	
 	@Override
-	public List<Patent> searchPatentList(Long type,String search, String params) {
+	public List<Patent> searchPatentList(PatentType patentType,String search, String params) {
 		List<Patent> patentList = null;
 		if("patentNum".equals(search)){
-			patentList = patentRespository.findPatentByPatentNumLike("%"+params+"%");
+			patentList = patentRespository.findPatentByPatentTypeAndPatentNumLike(patentType,"%"+params+"%");
 		}else if("patentName".equals(search)){
-			patentList = patentRespository.findPatentByPatentNameLike("%"+params+"%");
+			patentList = patentRespository.findPatentByPatentTypeAndPatentNameLike(patentType,"%"+params+"%");
 		}else if("inventer".equals(params)){
-			patentList = patentRespository.findPatentByInventerLike("%"+params+"%");
+			patentList = patentRespository.findPatentByPatentTypeAndInventerLike(patentType,"%"+params+"%");
 		}
 		return patentList;
 	}

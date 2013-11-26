@@ -21,130 +21,64 @@
 		background-repeat: repeat;
 		background-image: url('<c:url value="/resources/img/default/index/white_bg.png"></c:url>');
 	}
-	
-	.container .title .leftTitle{
-		font-size:20px;
-		font-weight:bold;
-		margin-left: 70px;
-		width: 110px;
-		float: left;
-		color: #fffdfa;
-		line-height: 40px;
-	}
-	.container .title .rightTitle{
-		margin-left: 0px;
-		width: 90px;
-		float: left;
-		background-color: #5f7e20;
-		text-align: center;
-		color: #fffdfa;
-		font-size: 15px;
-		line-height: 40px;
-		font-weight: bold;
-	}
-	
-.container.marketing .row .contentLeft {
-	 width: 600px; 
-	 margin: 20px 0px 20px 70px;
-	  text-align: left;
-	  float: left;
-	  vertical-align: top;
-	  font-size: 15px;
-	  font-weight: bold;
-	}
-.container.marketing .row .contentRight {
-	 width: 280px; 
-	 margin: 20px 0px 20px 30px;
-	  text-align: left;
-	  float: left;
-	  vertical-align: top;
-	  height: 290px;
-	  background-color: #fff;
-	  border: 1px solid #ccc;
-	}
-	.rightTop{
-		width: 100%;
-		height: 38px;
-		background-image: url("<c:url value='/resources/img/default/activity_bg.png'></c:url>");
-		background-repeat: repeat-x;
-		line-height: 34px;
-		color: #fff;
-	}
-	
-	.rightTop .title{
-		margin-left: 20px; font-size: 17px; font-weight: bold;
-	}
-	.rightTop .more{
-		margin-left: 140px;  font-weight: bold;color: #fff;
-	}
-	.rigntBottom{
-		height: 250px;
-		line-height: 20px;
-		padding: 5px 20px;
-	}
-	
-	ul{
-		list-style-type: circle;
-	}
-	
-	a{
-		text-decoration: none;
-	}
-
 </style>
 <jsp:include page="/WEB-INF/views/_shared/index/_user_course.jsp"></jsp:include>
   	
 <div class="container marketing">
-  <div class="container title row-fluid">
-		<div class="leftTitle" >热门资源</div>
-		<div class="rightTitle dropdown" >
-			<div class="dropdown-toggle"  data-toggle="dropdown"><a href="#" style="text-decoration: none; color: #fff;">专利展示</a></div>
-			<div class="dropdown-menu" style="text-align: left; width: 450px; margin-left: -50px;" role="menu" aria-labelledby="dropdownMenu">
-					<table style="width:100%" cellpadding="0" >
-						<c:forEach items="${patentFieldList }" var="patentField"  varStatus="status">
-							<c:if test="${status.count eq 1 || (status.count-1) % 5 eq 0 }">
-								<tr >
-							</c:if>
-							<td>
-								<a href='#' style="text-decoration: none;"><span style="color:#80b029; margin: 0px 5px;">${patentField.fieldName}</span></a>
-							</td>
-							<c:if test="${status.count % 5 eq 0 || status.count eq 5}">
-								</tr>
-							</c:if>
-						</c:forEach>
-					</table>
-			</div>
-		</div>
+  <div class="container title">
+ 	 <table >
+ 	 	<tr>
+ 	 		<td width="16%" align="center"><h4>学习资源</h4></td>
+ 	 		<td align="right">
+ 	 			<span class="count">共${fn:length(courseList)}个课程</span>
+ 	 			<a  href='<c:url value="/course/list/type?detail=all"></c:url>' >全部课程</a></td>
+ 	 	</tr>
+ 	 </table>
   </div>
   <div class="row" >
-		<div class="contentLeft row-fluid" >
-			<div class="span6" >
-				<ul>
-					<c:forEach items="${patentList }" var="patentList" begin="0" step="2"  >
-						<li >${patentList.patentName }</li>
-					</c:forEach>
-				</ul>
-			</div>
-			<div  class="span6" >
-				<ul>
-				<c:forEach items="${patentList }" var="patentList" begin="1" step="2">
-					<li >${patentList.patentName }</li>
-				</c:forEach>
-				</ul>
-				<br>
-				<a style="text-decoration: none;" href="<c:url value="/patent/list"></c:url>" >查看全部>></a>
-			</div>
-		</div>
-		<div class="contentRight">
-			<div class="rightTop">
-				<span class="title">活动动态</span>
-				<a href="#" style="text-decoration: none;"><span class="more">更多</span></a>
-			</div>
-			<div class="rigntBottom">
-				暂无活动
-			</div>
-		</div>
-  </div>
+    <c:forEach items="${courseList}" var="c"  begin="0" end="5">
+    	<div class="span4">
+    		<div>
+   				<c:choose>
+					<c:when test="${c.teacherCourse.courseCover != null && c.teacherCourse.courseCover != ''}">
+						<div style="width: 250px; height: 189px; background-image: url('<c:url value="${url }${c.teacherCourse.courseCover }"></c:url>');  
+								background-repeat:no-repeat;background-position:center;  ">
+							<c:if test="${c.teacherCourse.user.role == 'teacher' }"><a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 160px;"></div></a></c:if>
+							<c:if test="${c.teacherCourse.user.role == 'enterprise' }"><a href='<c:url value="${url}/enterprise/${c.teacherCourse.user.id}/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 160px;"></div></a></c:if>
+		    				<div  style="height:24px;background-color:#000;  padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
+		    					<div  id="contentlimit" style="width: 240px;">${c.teacherCourse.courseName} </div>
+		   				 	</div>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div style="width: 250px; height: 187px; background-image: url('<c:url value="/resources/img/logo.png"></c:url>');  
+										background-repeat:no-repeat;background-position:center;">
+							<c:if test="${c.teacherCourse.user.role == 'teacher' }"><a href='<c:url value="/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 160px;"></div></a></c:if>
+							<c:if test="${c.teacherCourse.user.role == 'enterprise' }"><a href='<c:url value="${url}/enterprise/${c.teacherCourse.user.id}/course/view/${c.teacherCourse.id}"></c:url>'><div style="height: 160px;"></div></a></c:if>
+		    				<div style="height:25px;background-color:#000; padding:3px; color: #fff;  Opacity:0.70; Filter:alpha(opacity=70);">
+		    					${c.teacherCourse.courseName}
+		   				 	</div>
+						</div>
+					</c:otherwise>
+				</c:choose>
+    		</div>
+    		<div style="margin-top: 10px;width:200px;"id="contentlimit">
+    			<c:if test="${c.teacherCourse.user.role == 'teacher' }">教师名称：<a href='<c:url value="/teacher/${c.teacherCourse.user.id}"></c:url>'>${c.teacherCourse.user.name}</a></c:if>
+   				<c:if test="${c.teacherCourse.user.role == 'enterprise' }">企业名称：<a href='<c:url value="${url}/enterprise/${c.teacherCourse.user.id}"></c:url>'>${c.teacherCourse.user.name}</a></c:if>
+    			<br>
+    			学习人数：${c.userCount}人 课程评分：
+    			<c:choose>
+    				<c:when test="${c.courseMark !=null && c.courseMark>0 }">
+    					<fmt:formatNumber type="number" value="${c.courseMark }" maxFractionDigits="0" />分
+    				</c:when>
+    				<c:otherwise>
+    					0分
+    				</c:otherwise>
+    			</c:choose>
+    		</div>
+    	</div>
+    </c:forEach>
+  </div><!-- /.row -->
 </div>
 <div class="container teacher" >
 	  <div class="container title">

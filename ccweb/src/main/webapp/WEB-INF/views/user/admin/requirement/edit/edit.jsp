@@ -52,9 +52,14 @@
 					  </c:forEach>
 					</select>
 			</div>
+			<div class="control-group" id="title">
+				<div class="controls">
+						截止日期： <input type="text" name="endTime" placeholder="截止日期" class="Wdate" onClick="WdatePicker()" value="${requirement.endTime }"> <span class="help-inline"><form:errors path="title" /></span>
+				</div>
+			</div>
 			<div class="control-group" id="content">
 				<div class="controls">
-					<textarea  style="width:670px; height: 100px;"  name="content"  placeholder="公告内容">${requirement.content }</textarea>
+					<textarea  style="width:670px; height: 100px;"  name="content"  placeholder="需求内容">${requirement.content }</textarea>
 					<span class="help-inline"><form:errors path="content" /></span>
 				</div>
 			</div>
