@@ -2,6 +2,7 @@ window.onload = function ()
 {	
 	
 	mytab("tab","content");
+	mytab("tab_req","content_req");
 }
 
 function mytab(tab_id, content_id){

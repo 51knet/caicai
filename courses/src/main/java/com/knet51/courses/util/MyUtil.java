@@ -19,7 +19,7 @@ public class MyUtil {
 		return instance;
 	}
 	
-	public static String change(String src) {   
+	public  String change(String src) {   
         if (src != null) {   
             StringBuffer sb = new StringBuffer(src);   
             sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));   
@@ -29,7 +29,7 @@ public class MyUtil {
         }   
     }
 	
-	public static List findField(Object obj) throws Exception{
+	public  List findField(Object obj) throws Exception{
 		List<Object> list = new ArrayList<Object>();
 		Field[] f = obj.getClass().getDeclaredFields();
 		
@@ -42,6 +42,12 @@ public class MyUtil {
 			}
 		}
 		return list;
+	}
+	
+	
+	public String replaceSpace(String s){
+		String reg = "\\s+";
+		return s.replaceAll(reg, "%");
 	}
 	
 }

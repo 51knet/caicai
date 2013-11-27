@@ -44,9 +44,60 @@
 	float: left;
 }
 #content ul {
-	
 	display:none;
-
 	padding:0px 0;
-list-style-type:none;
+	list-style-type:none;
+}
+
+/* my requirement tab css  */
+
+#tab_req {
+	overflow:hidden;
+	zoom:1;
+	font-size:16px;
+		color: #3f5517;
+			line-height: 40px;
+		margin-left: 70px;
+		margin-top: 5px;
+}
+#tab_req li {
+	float:left;
+	color:3f5517;
+	cursor:pointer;
+
+	list-style-type:none;
+	padding:2px 15px;
+	margin-right:5px;
+	/*border:1px solid #ccc;*/
+	border-bottom-width:0;
+		
+
+}
+#tab_req li.current {
+	color:#3f5517;
+	background:#fff;
+}
+#content_req {
+	width:900px;
+	border:0px solid #ccc;
+	border-top-width:0;
+	text-align: left;
+	float: left;
+	margin: 20px 0px 20px 70px;
+	
+}
+
+ .centerline{
+	background-image: url("<c:url value='/resources/img/default/centerline.png'></c:url>");
+	background-position: center top;
+	background-repeat: repeat-y;
+}
+#content_req ul {
+	display:none;
+	padding:0px 0;
+	list-style-type:none;
+}
+
+.bLine_dash{
+	border-bottom: 1px dashed #ccc;	
 }

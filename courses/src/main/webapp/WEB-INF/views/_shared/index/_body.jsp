@@ -24,12 +24,14 @@
 	
 	.container .title .leftTitle{
 		font-size:20px;
+		color: #fffdfa;
+			line-height: 40px;
 		font-weight:bold;
 		margin-left: 70px;
 		width: 110px;
 		float: left;
-		color: #fffdfa;
-		line-height: 40px;
+		
+	
 	}
 	.container .title .rightTitle{
 		margin-left: 0px;
@@ -45,16 +47,16 @@
 	
 .container.marketing .row .contentLeft {
 	 width: 600px; 
-	 margin: 20px 0px 20px 70px;
+	 margin: 30px 0px 30px 70px;
 	  text-align: left;
 	  float: left;
 	  vertical-align: top;
 	  font-size: 15px;
-	  font-weight: bold;
+	 /* font-weight: bold;*/
 	}
 .container.marketing .row .contentRight {
 	 width: 280px; 
-	 margin: 20px 0px 20px 30px;
+	 margin: 30px 0px 30px 30px;
 	  text-align: left;
 	  float: left;
 	  vertical-align: top;
@@ -86,11 +88,14 @@
 	ul{
 		list-style-type: circle;
 	}
-	
-	a{
-		text-decoration: none;
+	li{
+		line-height:28px;
 	}
-
+	 .centerline{
+		background-image: url("<c:url value='/resources/img/default/centerline.png'></c:url>");
+		background-position: center top;
+		background-repeat: repeat-y;
+	}
 </style>
 <jsp:include page="/WEB-INF/views/_shared/index/_user_course.jsp"></jsp:include>
   	
@@ -106,7 +111,7 @@
 								<tr >
 							</c:if>
 							<td>
-								<a href='#' style="text-decoration: none;"><span style="color:#80b029; margin: 0px 5px;">${patentField.fieldName}</span></a>
+								<a href='<c:url value='/patent/${patentField.fieldName}/list' ></c:url> ' style="text-decoration: none;"><span style="color:#80b029; margin: 0px 5px;">${patentField.fieldName}</span></a>
 							</td>
 							<c:if test="${status.count % 5 eq 0 || status.count eq 5}">
 								</tr>
@@ -120,15 +125,15 @@
 		<div class="contentLeft row-fluid" >
 			<div class="span6" >
 				<ul>
-					<c:forEach items="${patentList }" var="patentList" begin="0" step="2"  >
-						<li >${patentList.patentName }</li>
+					<c:forEach items="${patentList }" var="patentList" begin="0" step="2" end="16"  >
+						<li ><div id="contentlimit" style="width:290px; float: left;">${patentList.patentName }</div></li>
 					</c:forEach>
 				</ul>
 			</div>
 			<div  class="span6" >
 				<ul>
-				<c:forEach items="${patentList }" var="patentList" begin="1" step="2">
-					<li >${patentList.patentName }</li>
+				<c:forEach items="${patentList }" var="patentList" begin="1" step="2" end="17">
+					<li   ><div id="contentlimit" style="width:290px; float: left;">${patentList.patentName }</div></li>
 				</c:forEach>
 				</ul>
 				<br>
@@ -146,11 +151,117 @@
 		</div>
   </div>
 </div>
+
+
+<div class="container teacher" >
+   <div class="container title">
+	 <ul id="tab_req">
+
+		        <li class="  current " ><b>专利需求</b></li>
+		        <li  ><b>技术需求</b></li>
+		</ul>
+  </div>
+	<div id="content_req">
+        <ul style="display:block;" >
+      	     	<div class="row-fluid centerline" >
+      	     		<div class="span6" style="border: 0px solid;">
+					<table  width="100%" cellpadding="3" border="0">
+						<thead>
+							<tr>
+								<th align="left">标题</th><th width="22%" align="left">发布人</th><th width="19%" align="left">发布日期</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${patentRequire }" var="patentRequire"  begin="0" step="2" end="16">
+								<tr>
+									<td><div id="contentlimit" style="width:250px; float: left;">${patentRequire.title }</div></td>
+									<td><div id="contentlimit" style="width:90px; float: left;">${patentRequire.user.name }</div></td>
+									<td><fmt:formatDate value="${patentRequire.date}" pattern="yyyy-MM-dd "/></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+      	     		</div>
+      	     		<div  class="span6"  style="border: 0px solid;">
+	     	     		<table  width="100%" cellpadding="3" border="0">
+							<thead>
+								<tr>
+									<th align="left">标题</th><th width="22%" align="left">发布人</th><th width="19%" align="left">发布日期</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${patentRequire }" var="patentRequire"  begin="1" step="2" end="17">
+									<tr>
+										<td><div id="contentlimit" style="width:250px; float: left;">${patentRequire.title }</div></td>
+										<td><div id="contentlimit" style="width:90px; float: left;">${patentRequire.user.name }</div></td>
+										<td><fmt:formatDate value="${patentRequire.date}" pattern="yyyy-MM-dd "/></td>
+									</tr>
+								</c:forEach>
+								<tr>
+									<td colspan="3" align="right">
+											<a style="text-decoration: none;" href="<c:url value="/patent/list"></c:url>" >查看全部>></a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					
+      	     		</div>
+      	     	</div>
+        </ul>
+        
+        <ul  >
+           <div class="row-fluid centerline" >
+     	     		<div class="span6" style="border: 0px solid;">
+						<table  width="100%" cellpadding="3" border="0">
+							<thead>
+								<tr>
+									<th align="left">标题</th><th width="22%" align="left">发布人</th><th width="19%" align="left">发布日期</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${technologyRequire}" var="technologyRequire"  begin="0" step="2" end="16">
+									<tr>
+										<td><div id="contentlimit" style="width:250px; float: left;">${technologyRequire.title }</div></td>
+										<td><div id="contentlimit" style="width:90px; float: left;">${technologyRequire.user.name }</div></td>
+										<td><fmt:formatDate value="${technologyRequire.date}" pattern="yyyy-MM-dd "/></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+     	     		</div>
+     	     		<div  class="span6"  style="border: 0px solid;">
+	    	     		<table  width="100%" cellpadding="3" border="0">
+						<thead>
+							<tr>
+								<th align="left">标题</th><th width="22%" align="left">发布人</th><th width="19%" align="left">发布日期</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${technologyRequire }" var="technologyRequire"  begin="1" step="2" end="17">
+								<tr>
+									<td><div id="contentlimit" style="width:250px; float: left;">${technologyRequire.title }</div></td>
+									<td><div id="contentlimit" style="width:90px; float: left;">${technologyRequire.user.name }</div></td>
+									<td><fmt:formatDate value="${technologyRequire.date}" pattern="yyyy-MM-dd "/></td>
+								</tr>
+							</c:forEach>
+								<tr>
+									<td colspan="3" align="right">
+											<a style="text-decoration: none;" href="<c:url value="/patent/list"></c:url>" >查看全部>></a>
+									</td>
+								</tr>
+						</tbody>
+						</table>
+     	     		</div>
+     	     	</div>
+        </ul>
+	</div>
+</div>
+
 <div class="container teacher" >
 	  <div class="container title">
 		 <table >
 		 	<tr>
-		 		<td width="16%" align="center"><h4>热门教师 </h4></td>
+		 		<td width="16%" align="center"><h4 style="color: #fff;">热门教师 </h4></td>
 		 		<td align="right"><span class="count">共${fn:length(teacherLists)}名教师</span>
 		 		 <a  href='<c:url value="/teacher/list"></c:url>'  >全部教师</a></td>
 		 	</tr>
@@ -163,7 +274,7 @@
 		       </div>
 	 	 </c:if>
 	      <div class="teacherInfo">
-			<c:forEach items="${teacherLists}" var="t" begin="0" end="13">
+			<c:forEach items="${teacherLists}" var="t" begin="0" end="6">
 				<div class="span2">
 					<c:choose>
 						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
@@ -183,40 +294,6 @@
 						</c:otherwise>
 						</c:choose>
 					</div>
-				</div>
-			</c:forEach>
-		</div>
-	</div>
-</div>
-
-<div class="container teacher" >
-   <div class="container title">
- 	 <table width="100%">
- 	 	<tr>
- 	 		<td width="16%" align="center"><h4>热门企业 </h4></td>
- 	 		<td align="right">
- 	 			<span class="count">共${fn:length(enterPriseList)}个企业</span>
- 	 		<a  href='<c:url value="/enterprise/list"></c:url>'   >全部企业</a></td>
- 	 	</tr>
- 	 </table>
-  </div>
-	  <div class="bgimg">
-		  <c:if test="${fn:length(enterPriseList)==0}">
-		      <div class="teacherInfo">
-		     	 <h3>暂无企业数据</h3>	
-		      </div>
-		  </c:if>
-	      <div class="teacherInfo">
-			<c:forEach items="${enterPriseList}" var="enter" begin="0" end="9">
-				<div class="span1" >
-					<c:choose>
-					<c:when test="${enter.user.photo_url!=null||enter.user.photo_url!=''}">
-						<a href='<c:url value="${url }/enterprise/${enter.id}"></c:url>'><img src='<c:url value="${url }${enter.user.photo_url }"></c:url>' style="width: 127px; height:83px;" /></a> 
-					</c:when>
-					<c:otherwise>
-						<a href='<c:url value="${url }/enterprise/${enter.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 127px; height:83px;" /></a> 
-					</c:otherwise>
-					</c:choose>
 				</div>
 			</c:forEach>
 		</div>

@@ -13,6 +13,7 @@ public interface PatentService {
 	List<Patent> findPatentListByUser(User user);
 	
 	Page<Patent> findPatentByPatentField(int pageNum , int pageSize,String patentField);
+	List<Patent> findPatentByPatentListField(String patentField);
 	
 	List<Patent> findPatentList();
  	Patent findOne(String patentNum);

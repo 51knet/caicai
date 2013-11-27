@@ -2,6 +2,7 @@ package com.knet51.courses.controllers;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -77,7 +78,21 @@ public class HomeController {
 		List<CourseBeans> cBeans = courseService.getAllCourseBeans();
 		List<Teacher> teacherList = teacherService.findAllTeacher();
 		List<Patent> patentList = patentService.findPatentList();
+		List<Requirement> patentRequire =  new ArrayList<Requirement>();
+		List<Requirement> technologyRequire =  new ArrayList<Requirement>();;
 		List<Requirement> requirementList = requirementService.findAll();
+		for (Iterator iterator = requirementList.iterator(); iterator.hasNext();) {
+			Requirement requirement = (Requirement) iterator.next();
+			if(requirement.getRequirType().getTypeName().equals("专利需求")){
+				patentRequire.add(requirement);
+			}else if(requirement.getRequirType().getTypeName().equals("技术需求")){
+				technologyRequire.add(requirement);
+			}
+			
+		}
+		model.addAttribute("patentRequire", patentRequire);
+		model.addAttribute("technologyRequire", technologyRequire);
+		
 		List<PatentType> patentTypeList = patentTypeService.findAllPatentType();
 		List<PatentField> patentFieldList = patentFieldService.findAll();
 		

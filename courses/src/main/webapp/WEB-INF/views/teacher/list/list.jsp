@@ -6,20 +6,6 @@
 <style>
 
 </style>
-
-<script type="text/javascript">
-!function ($) {
-  $(function(){
-    // carousel demo
-    $('#myCarousel').carousel();
-    $('#myUniversity').carousel();
-    $('#myTeacher').carousel();
-  });
-}(window.jQuery);
-
-
-</script>
-<jsp:include page="/WEB-INF/views/_shared/index/_user_course.jsp"></jsp:include>
 <div class="container teacher">
 		<div class="selete_filter">
 			<select >
@@ -44,7 +30,6 @@
 	</c:when>
 	<c:otherwise>
 	<div class="teacherInfo">
-	<br>
       	<c:forEach items="${page.content}" var="t">
 			<div class="span3" >
 				<c:choose>

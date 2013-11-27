@@ -91,6 +91,12 @@ public class PatentServiceImpl implements PatentService {
 		return patentList;
 	}
 
+	@Override
+	public List<Patent> findPatentByPatentListField(String patentField) {
+		
+		return patentRespository.findPatentByPatentField(patentField);
+	}
+
 
 
 }

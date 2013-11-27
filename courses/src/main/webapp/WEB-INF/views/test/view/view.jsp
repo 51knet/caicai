@@ -16,13 +16,12 @@
 }
 .container.course.detail.desc{
 	margin-left:70px;
-	padding: 20px;
+	padding: 0px;20px;
 	width:83.5%;
 }
 .container.course.title{
 	height: 240px;
 	width:1024px;
-	margin-bottom:15px;
 	background-image: url('<c:url value='/resources/img/default/courseInfo.png'></c:url>');
 	background-repeat: repeat-x;
 	margin-top: 41px;
@@ -66,9 +65,9 @@
 					</ul>
 					<div class="tab-content" >
 						<div class="tab-pane active " id="patent_info_tab">
-							<div class="title">
+							<!-- <div class="title">
 								<h4>专利详情</h4>
-							</div>
+							</div> -->
 							<div class="content">
 								<table width="100%" height="" border="1" cellpadding="5" cellspacing="0"  class="blue">
 									<tr>

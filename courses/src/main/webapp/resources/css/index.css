@@ -164,9 +164,7 @@ border-top-color: #EEE;*/
 .container.teacher .bgimg {
   background-image: url("/courses/resources/img/default/course_front_bg.png");
   background-position: top left;
-  background-repeat: repeat-x;
-  height: 340px;
-	
+  background-repeat: repeat-x;	
 }
 
 .container.teacher .teacherInfo{
@@ -191,8 +189,8 @@ border-top-color: #EEE;*/
   width: 131px;
   height: 89px;
   text-align: center;
-	padding: 2px;
-	border: 1px solid #ccc;
+  padding: 2px;
+  border: 1px solid #ccc;
 }
 .container.teacher .teacherInfo .span2{
   background-position: center;
