@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.jpa.entities.Activity;
 import com.knet51.ccweb.jpa.entities.Requirement;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
@@ -37,6 +38,7 @@ import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 import com.knet51.courses.jpa.services.UserCourseService;
 import com.knet51.courses.jpa.services.UserService;
+import com.knet51.courses.jpa.services.activity.ActivityService;
 import com.knet51.courses.jpa.services.patent.PatentFieldService;
 import com.knet51.courses.jpa.services.patent.PatentService;
 import com.knet51.courses.jpa.services.patent.PatentTypeService;
@@ -64,7 +66,8 @@ public class HomeController {
 	private RequirementService requirementService;
 	@Autowired
 	private PatentFieldService patentFieldService;
-
+	@Autowired
+	private ActivityService activityService;
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
 
@@ -81,6 +84,7 @@ public class HomeController {
 		List<Requirement> patentRequire =  new ArrayList<Requirement>();
 		List<Requirement> technologyRequire =  new ArrayList<Requirement>();;
 		List<Requirement> requirementList = requirementService.findAll();
+		List<Activity> activityList = activityService.findAllList();
 		for (Iterator iterator = requirementList.iterator(); iterator.hasNext();) {
 			Requirement requirement = (Requirement) iterator.next();
 			if(requirement.getRequirType().getTypeName().equals("专利需求")){
@@ -130,14 +134,19 @@ public class HomeController {
 		}
 		model.addAttribute("courseList", cBeans);
 		model.addAttribute("courseCount", cBeans.size());
-		model.addAttribute("teacherCount", teacherLists.size());
+		//model.addAttribute("teacherCount", );
+		session.setAttribute("teacherCount", teacherLists.size());
+		
 		model.addAttribute("patentList", patentList);
-		model.addAttribute("patentCount", patentList.size());
+		session.setAttribute("patentCount", patentList.size());
 		model.addAttribute("patentFieldList", patentFieldList);
+		model.addAttribute("patentTypeList", patentTypeList);
 		
 		model.addAttribute("requirementList", requirementList);
-		model.addAttribute("requirementCount", requirementList.size());
-		model.addAttribute("patentTypeList", patentTypeList);
+		session.setAttribute("requirementCount", requirementList.size());
+		
+		model.addAttribute("activityList", activityList);
+		
 		
 		UserInfo currentUser = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);

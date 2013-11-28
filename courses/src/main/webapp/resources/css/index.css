@@ -80,6 +80,16 @@
 	margin-left: 38px;
 }
 
+.container.title .innerLeftTitle{
+		font-size:16px;
+		color: #3f5517;
+		margin:5px 0px 0px 70px;
+		padding: 3px 10px;
+		background-color: #fff;
+		line-height: 25px;
+		float: left;
+}
+
 .container.title .count{
 	margin-right: 20px;
 	font-weight: bold;
@@ -239,4 +249,9 @@ border-top-color: #EEE;*/
 	padding: 5px 5px;
 	background: #EEE;
 	border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.a_color_green{
+	color: #3f5517;
+	text-decoration: none;
 }

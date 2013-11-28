@@ -62,7 +62,7 @@
 }
 #tab_req li {
 	float:left;
-	color:3f5517;
+	color:#3f5517;
 	cursor:pointer;
 
 	list-style-type:none;
@@ -100,4 +100,8 @@
 
 .bLine_dash{
 	border-bottom: 1px dashed #ccc;	
+}
+
+.tLine_dash{
+	border-top: 1px dashed #ccc;	
 }

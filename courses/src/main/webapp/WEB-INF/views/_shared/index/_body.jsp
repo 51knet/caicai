@@ -97,8 +97,6 @@
 		background-repeat: repeat-y;
 	}
 </style>
-<jsp:include page="/WEB-INF/views/_shared/index/_user_course.jsp"></jsp:include>
-  	
 <div class="container marketing">
   <div class="container title row-fluid">
 		<div class="leftTitle" >热门资源</div>
@@ -126,14 +124,18 @@
 			<div class="span6" >
 				<ul>
 					<c:forEach items="${patentList }" var="patentList" begin="0" step="2" end="16"  >
-						<li ><div id="contentlimit" style="width:290px; float: left;">${patentList.patentName }</div></li>
+						<li ><div id="contentlimit" style="width:290px; float: left;">
+						<a class="a_color_green"  href="<c:url value="/patent/view/${patentList.patentNum }"></c:url>">${patentList.patentName }</a>
+						</div></li>
 					</c:forEach>
 				</ul>
 			</div>
 			<div  class="span6" >
 				<ul>
 				<c:forEach items="${patentList }" var="patentList" begin="1" step="2" end="17">
-					<li   ><div id="contentlimit" style="width:290px; float: left;">${patentList.patentName }</div></li>
+					<li   ><div id="contentlimit" style="width:290px; float: left;">
+						<a class="a_color_green"  href="<c:url value="/patent/view/${patentList.patentNum }"></c:url>">${patentList.patentName }</a>
+					</div></li>
 				</c:forEach>
 				</ul>
 				<br>
@@ -143,10 +145,19 @@
 		<div class="contentRight">
 			<div class="rightTop">
 				<span class="title">活动动态</span>
-				<a href="#" style="text-decoration: none;"><span class="more">更多</span></a>
+				<a href="<c:url value="/activity/list"></c:url> " style="text-decoration: none;"><span class="more">更多</span></a>
 			</div>
 			<div class="rigntBottom">
-				暂无活动
+				<c:if test="${activityList == null }">
+					无内容
+				</c:if>
+				<ul>
+				<c:forEach items="${activityList }" var="activityList" begin="0"  end="6">
+					<li  ><div id="contentlimit" style="width:250px; float: left;">
+							<a class="a_color_green"  href="<c:url value="/activity/view/${ activityList.id}"></c:url>">${activityList.title }</a>
+					</div></li>
+				</c:forEach>
+				</ul>
 			</div>
 		</div>
   </div>
@@ -174,7 +185,7 @@
 						<tbody>
 							<c:forEach items="${patentRequire }" var="patentRequire"  begin="0" step="2" end="16">
 								<tr>
-									<td><div id="contentlimit" style="width:250px; float: left;">${patentRequire.title }</div></td>
+									<td><div id="contentlimit" style="width:250px; float: left;"><a class="a_color_green"  href="<c:url value="/requirement/view/${ patentRequire.id}"></c:url>">${patentRequire.title }</a></div></td>
 									<td><div id="contentlimit" style="width:90px; float: left;">${patentRequire.user.name }</div></td>
 									<td><fmt:formatDate value="${patentRequire.date}" pattern="yyyy-MM-dd "/></td>
 								</tr>
@@ -192,14 +203,14 @@
 							<tbody>
 								<c:forEach items="${patentRequire }" var="patentRequire"  begin="1" step="2" end="17">
 									<tr>
-										<td><div id="contentlimit" style="width:250px; float: left;">${patentRequire.title }</div></td>
+										<td><div id="contentlimit" style="width:250px; float: left;"><a class="a_color_green"  href="<c:url value="/requirement/view/${ patentRequire.id}"></c:url>">${patentRequire.title }</a></div></td>
 										<td><div id="contentlimit" style="width:90px; float: left;">${patentRequire.user.name }</div></td>
 										<td><fmt:formatDate value="${patentRequire.date}" pattern="yyyy-MM-dd "/></td>
 									</tr>
 								</c:forEach>
 								<tr>
 									<td colspan="3" align="right">
-											<a style="text-decoration: none;" href="<c:url value="/patent/list"></c:url>" >查看全部>></a>
+											<a style="text-decoration: none;" href="<c:url value="/requirement/patent/list"></c:url>" >查看全部>></a>
 									</td>
 								</tr>
 							</tbody>
@@ -221,7 +232,7 @@
 							<tbody>
 								<c:forEach items="${technologyRequire}" var="technologyRequire"  begin="0" step="2" end="16">
 									<tr>
-										<td><div id="contentlimit" style="width:250px; float: left;">${technologyRequire.title }</div></td>
+										<td><div id="contentlimit" style="width:250px; float: left;"><a class="a_color_green"  href="<c:url value="/requirement/view/${ technologyRequire.id}"></c:url>">${technologyRequire.title }</a></div></td>
 										<td><div id="contentlimit" style="width:90px; float: left;">${technologyRequire.user.name }</div></td>
 										<td><fmt:formatDate value="${technologyRequire.date}" pattern="yyyy-MM-dd "/></td>
 									</tr>
@@ -239,14 +250,14 @@
 						<tbody>
 							<c:forEach items="${technologyRequire }" var="technologyRequire"  begin="1" step="2" end="17">
 								<tr>
-									<td><div id="contentlimit" style="width:250px; float: left;">${technologyRequire.title }</div></td>
+									<td><div id="contentlimit" style="width:250px; float: left;"><a class="a_color_green"  href="<c:url value="/requirement/view/${ technologyRequire.id}"></c:url>">${technologyRequire.title }</a></div></td>
 									<td><div id="contentlimit" style="width:90px; float: left;">${technologyRequire.user.name }</div></td>
 									<td><fmt:formatDate value="${technologyRequire.date}" pattern="yyyy-MM-dd "/></td>
 								</tr>
 							</c:forEach>
 								<tr>
 									<td colspan="3" align="right">
-											<a style="text-decoration: none;" href="<c:url value="/patent/list"></c:url>" >查看全部>></a>
+											<a style="text-decoration: none;" href="<c:url value="/requirement/technology/list"></c:url>" >查看全部>></a>
 									</td>
 								</tr>
 						</tbody>

@@ -3,16 +3,8 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript">
-	function selectType() {
-		var sel = document.getElementById("type");
-		var opt = sel.options;
-		for ( var i = 0; i < opt.length; i++) {
-			if (opt[i].selected) {
-				var typeName = opt[i].value;
-				//alert(typeName);
-				window.location.href = '<c:url value="/patent/'+ typeName + '/list"></c:url>';
-			}
-		}
+	function sessionUserNull(){
+		alert("请登录后查看详细信息");
 	}
 </script>
 <style>
@@ -21,8 +13,19 @@
 	font-size: 14px;
 	width: 100%;
 }
+ .selete_filter{
+ 	margin-top:10px;
+	text-align: left;
+}
+.patent{
+	 width: 1024px;
+	 margin: 0px 55px;
+}
 </style>
-<div class="selete_filter">
+<div class="container title"  >
+		<div class="innerLeftTitle">专利数量（${searchpatentCount }）</div>
+ </div>
+  <div class="selete_filter">
 	<select id="type" onchange="selectType()">
 		<option value="all" >全部类别</option>
 		<c:forEach items="${fieldList}" var="field">
@@ -38,21 +41,13 @@
 		</c:forEach>
 	</select>
 </div>
-<div class="container title"  >
-	 	 <table >
-	 	 	<tr>
-	 	 		<td width="20%" align="center"><h4>所有专利（${patentCount}）</h4></td>
-	 	 		<td></td>
-	 	 	</tr>
-	 	 </table>
- </div>
- <div class="container user-course">
+ <div class="container patent">
 	<c:choose>
-		<c:when test="${patentCount <=0}">
-			<h4 style="margin-left: 70px;">未搜索到专利</h4>
+		<c:when test="${searchpatentCount <=0}">
+			<h4 style="margin-left:60px;">未搜索到专利</h4>
 		</c:when>
 		<c:otherwise>
-			 <table  style="width: 90%; margin-left: 60px;" cellpadding="8"  >
+			 <table  style="width: 90%; " cellpadding="8"  >
 				 <thead>
 					<tr class="titlebg">
 					<th  width="20%" align="left"><b>专利号</b></th>
@@ -64,8 +59,15 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
-						<tr class="bb">
-						<td><a href="<c:url value="/patent/view/${ page.patentNum}"></c:url>">${page.patentNum}</a></td>
+						<tr class="bLine_dash">
+						<td>
+							<c:if test="${sessionUserInfo == null }">
+								<a href="#" onclick="return sessionUserNull()" >${page.patentNum}</a>
+							</c:if>
+							<c:if test="${sessionUserInfo != null }">
+								<a href="<c:url value="/patent/view/${ page.patentNum}"></c:url>">${page.patentNum}</a>
+							</c:if>
+						</td>
 						<td>
 							${page.patentName}
 						</td>

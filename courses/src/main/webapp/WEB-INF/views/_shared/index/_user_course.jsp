@@ -13,11 +13,6 @@
 	.bb{
 		border-bottom: solid 1px #ccc;
 	}
-	.user-title{
-		margin-left: 50px; 
-		font-size: 18px;
-		 font-weight: bold;
-	}
 	
 	.carouselbg{
 		 background-image: url("<c:url value='/resources/img/default/maq_left.png'></c:url>");
@@ -47,9 +42,8 @@
 		<div class="span3 valign_center maq_left" style="width: 203px;">收录专利：${patentCount }</div>
 		<div class="span8 valign_center "  style="width:825px; margin-left: -7px;">
 			<marquee   id="mymarquee"   onmouseover="mymarquee.stop()"   onmouseout="mymarquee.start()"   scrollAmount="3"   scrollDelay="50"      behavior="scroll"   width="100%"   >   
-				<span class="maq_right_content">专利总数：${patentCount }</span><span class="maq_right_content">专利成交总数：1200</span>
-				<span class="maq_right_content">教师总数：${teacherCount }</span><span class="maq_right_content">课程总数：${courseCount }</span>
-				<span class="maq_right_content">需求总数：${courseCount }</span>
+				<span class="maq_right_content">专利总数：${patentCount }</span><span class="maq_right_content">专利成交总数：1200</span><span class="maq_right_content">需求总数：${requirementCount }</span>
+				<span class="maq_right_content">教师总数：${teacherCount }</span>
 			 </marquee>
   		</div>
 	</div>
