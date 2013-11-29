@@ -91,8 +91,5 @@
 		</c:otherwise>
 	</c:choose>
  </div>
-<c:forEach items="${formMap }" var="map">
-	${map.key }-----${map.value }<br>
-</c:forEach>
 
 
