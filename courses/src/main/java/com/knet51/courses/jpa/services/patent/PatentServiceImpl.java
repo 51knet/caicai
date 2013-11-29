@@ -97,6 +97,24 @@ public class PatentServiceImpl implements PatentService {
 		return patentRespository.findPatentByPatentField(patentField);
 	}
 
+	@Override
+	public Page<Patent> detailSearchPatent(int pageNum, int pageSize,PatentType patentType, String patentNum, String patentName,
+			String patentField, String mainClassNum, String classNum,String applicant, String inventer, String publishNum) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "patentNum");
+		Page<Patent> page = patentRespository.findPatentByPatentTypeAndPatentNumLikeAndPatentNameLikeAndPatentFieldLikeAndMainClassNumLikeAndClassNumLikeAndApplicantLikeAndInventerLikeAndPublishNumLike
+				(patentType, "%"+patentNum+"%", "%"+patentName+"%", "%"+patentField+"%", "%"+mainClassNum+"%", "%"+classNum+"%", "%"+applicant+"%", "%"+inventer+"%", "%"+publishNum+"%", pageable);
+		return page;
+	}
+
+	@Override
+	public List<Patent> detailSearchPatentList(PatentType patentType,String patentNum, String patentName, String patentField,
+			String mainClassNum, String classNum, String applicant,String inventer, String publishNum) {
+		List<Patent> list = patentRespository.findPatentByPatentTypeAndPatentNumLikeAndPatentNameLikeAndPatentFieldLikeAndMainClassNumLikeAndClassNumLikeAndApplicantLikeAndInventerLikeAndPublishNumLike
+				(patentType, "%"+patentNum+"%", "%"+patentName+"%", "%"+patentField+"%", "%"+mainClassNum+"%", "%"+classNum+"%", "%"+applicant+"%", "%"+inventer+"%", "%"+publishNum+"%");
+				
+		return list;
+	}
+
 
 
 }

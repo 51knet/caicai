@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.knet51.ccweb.jpa.entities.RequirType;
 import com.knet51.ccweb.jpa.entities.Requirement;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.repository.RequirementRepository;
+import com.knet51.ccweb.jpa.repository.requirement.RequirementRepository;
 @Service("requirementService")
 public class RequirementServiceImpl implements RequirementService {
 	@Autowired
@@ -49,12 +50,14 @@ public class RequirementServiceImpl implements RequirementService {
 
 	@Override
 	public List<Requirement> findRequireListByUser(User user) {
-		return repository.findRequirByUser(user);
+		Sort sort = new Sort(Direction.DESC, "id");
+		return repository.findRequirByUser(user,sort);
 	}
 
 	@Override
 	public List<Requirement> findRequiteListByRequireType(RequirType type) {
-		return repository.findRequirByRequirType(type);
+		Sort sort = new Sort(Direction.DESC, "id");
+		return repository.findRequirByRequirType(type,sort);
 	}
 
 	@Override
@@ -64,7 +67,8 @@ public class RequirementServiceImpl implements RequirementService {
 
 	@Override
 	public List<Requirement> findAll() {
-		return repository.findAll();
+		Sort sort = new Sort(Direction.DESC, "id");
+		return repository.findAll(sort);
 	}
 
 }

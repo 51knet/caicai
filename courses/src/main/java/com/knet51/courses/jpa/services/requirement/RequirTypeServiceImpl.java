@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.knet51.ccweb.jpa.entities.RequirType;
-import com.knet51.ccweb.jpa.repository.RequirTypeRepository;
+import com.knet51.ccweb.jpa.repository.requirement.RequirTypeRepository;
 
 @Service("requirTypeService")
 public class RequirTypeServiceImpl implements RequirTypeService{

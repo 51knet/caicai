@@ -44,9 +44,9 @@
  </div>
  <div class="container patent">
 	<div class="top ">${patent.patentName }</div>
-	<div class="bottom  bLine_dash tLine_dash">	
+	<div class="bottom   tLine_dash">	
 	<br>
-		<table width="95%" height="" border="1" cellpadding="5"  class="blue">
+		<table width="95%" height="" border="0" cellpadding="5"  class="blue">
 			<tr>
 			    <td width="122" align="center" bgcolor="#f3f3f3">专利号码</td>
 			    <td width="190">${patent.patentNum}</td>
@@ -94,8 +94,13 @@
 			<br>
 	</div>
 	<div class="top ">专利摘要</div>
-	<div class="bottom  bLine_dash tLine_dash">	
+	<div class="bottom   tLine_dash">	
 		${patent.summary }
+	</div>
+	
+	<div class="top ">评论</div>
+	<div class="bottom  tLine_dash">	
+		尚未有人发表评论
 	</div>
  </div>
 

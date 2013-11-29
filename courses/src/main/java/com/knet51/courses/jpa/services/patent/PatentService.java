@@ -22,6 +22,9 @@ public interface PatentService {
  	Page<Patent> searchPatent(int pageNum , int pageSize,PatentType patentType, String search,String params);
  	List<Patent> searchPatentList(PatentType patentType,String search, String params);
  	
- 	
+ 	Page<Patent> detailSearchPatent(int pageNum , int pageSize,PatentType patentType, String patentNum,String patentName,String patentField,
+ 			String mainClassNum,String classNum,String applicant,String inventer,String publishNum);
+ 	List<Patent> detailSearchPatentList(PatentType patentType, String patentNum,String patentName,String patentField,String mainClassNum,
+ 			String classNum,String applicant,String inventer,String publishNum);
  	
 }

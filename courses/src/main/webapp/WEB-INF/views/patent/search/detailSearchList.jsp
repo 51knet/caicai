@@ -84,15 +84,13 @@
 				</tbody>
 				<tfoot>
 			    	<tr><td colspan="5">
-			        <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+			        <jsp:include page="/WEB-INF/views/_shared/pagination_post.jsp"></jsp:include>
 			   		 </td></tr>
 				</tfoot>
 				</table>
 		</c:otherwise>
 	</c:choose>
  </div>
-<c:forEach items="${formMap }" var="map">
-	${map.key }-----${map.value }<br>
-</c:forEach>
+
 
 

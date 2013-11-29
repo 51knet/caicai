@@ -30,7 +30,7 @@
 		<h4>我的需求>添加需求</h4>
 	</div>
 	<div class="content">
-		<form action= '<c:url value="/admin/requirement/edit/edit"></c:url>'  method="post"  id="requirement_new_form"  >
+		<form action= '<c:url value="/admin/requirement/edit/edit"></c:url>'  method="post"  id="requirement_new_form" name="requirement_post" >
 			<input type="hidden" value="${requirement.id }" name="require_id" >
 			<div class="control-group" id="title">
 				<div class="controls">
@@ -52,6 +52,34 @@
 					  </c:forEach>
 					</select>
 			</div>
+			
+			<div class="control-group" id="money">
+				<div class="controls">
+					拟定资金： <input type="text" name="money" placeholder="拟定资金" value="${requirement.money }"> <span class="help-inline"><form:errors path="title" /></span>
+				</div>
+			</div>
+			<div class="control-group" id="company">
+				<div class="controls">
+					公司名称： <input type="text" name="company" placeholder="公司名称" value="${requirement.company }"> <span class="help-inline"><form:errors path="company" /></span>
+				</div>
+			</div>
+			<div class="control-group" id="name">
+				<div class="controls">
+						联系人士： <input type="text" name="name" placeholder="联系人士" value="${requirement.name }"> <span class="help-inline"><form:errors path="name" /></span>
+				</div>
+			</div>
+			
+			<div class="control-group" id="phone">
+				<div class="controls">
+						联系电话： <input type="text" name="phone" placeholder="联系电话" value="${requirement.phone }"> <span class="help-inline"><form:errors path="phone" /></span>
+				</div>
+			</div>
+			<div class="control-group" id="address">
+				<div class="controls">
+						联系地址： <input type="text" name="address" placeholder="联系地址" value="${requirement.address}"> <span class="help-inline"><form:errors path="address" /></span>
+				</div>
+			</div>
+			
 			<div class="control-group" id="title">
 				<div class="controls">
 						截止日期： <input type="text" name="endTime" placeholder="截止日期" class="Wdate" onClick="WdatePicker()" value="${requirement.endTime }"> <span class="help-inline"><form:errors path="title" /></span>
@@ -70,9 +98,29 @@
 	</div>
 </div>
 <script type="text/javascript">
+		
 		$(document).ready(function() {
+			var editor = KindEditor.create('textarea[name="content"]',{
+				cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+				uploadJson : '${uploadJson}',
+				fileManagerJson : '${fileManagerJson}',
+				allowFileManager : true,
+				afterCreate : function() {
+					var self = this;
+					KindEditor.ctrl(document, 13, function() {
+						self.sync();
+						document.forms['requirement_post'].submit();
+					});
+					KindEditor.ctrl(self.edit.doc, 13, function() {
+						self.sync();
+						document.forms['requirement_post'].submit();
+					});
+				}
+			});
 			$("#requirement_new_form").submit(function(){
+				editor.sync();
 				return checkEmptyAjax("requirement_new_form","updateRequirementAjax");
 			});
+			prettyPrint();
 	    });
 </script>

@@ -52,6 +52,13 @@ public class RequireDetailController {
 			requirement.setRequirType(type);
 			requirement.setUser(user);
 			requirement.setEndTime(requireForm.getEndTime());
+			
+			requirement.setAddress(requireForm.getAddress());
+			requirement.setCompany(requireForm.getCompany());
+			requirement.setMoney(requireForm.getMoney());
+			requirement.setPhone(requireForm.getPhone());
+			requirement.setName(requireForm.getName());
+			
 			requirementService.create(requirement);
 			return "redirect:/admin/requirement/list";
 		}

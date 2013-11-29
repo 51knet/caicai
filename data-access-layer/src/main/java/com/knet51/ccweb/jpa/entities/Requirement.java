@@ -13,6 +13,11 @@ public class Requirement extends AbstractEntity {
 	private String content;
 	private Date date; 
 	private String endTime;
+	private String name;
+	private String money;
+	private String address;
+	private String company;
+	private String phone;
 	
 	@ManyToOne
 	private User user;
@@ -71,6 +76,46 @@ public class Requirement extends AbstractEntity {
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setMoney(String money) {
+		this.money = money;
+	}
 	
+	public String getMoney() {
+		return money;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
 	
 }

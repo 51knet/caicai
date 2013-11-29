@@ -114,6 +114,18 @@
 		<put-attribute name="body" value="/WEB-INF/views/patent/search/list.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="patent.search.detail.list" extends="index-layout">
+		<put-attribute name="title" value="专利搜索" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/patent/search/detailSearchList.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="patent.search.detail" extends="index-layout">
+		<put-attribute name="title" value="专利搜索" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/patent/search/detailSearch.jsp"></put-attribute>
+	</definition>
+	
 	<definition name="patent.view" extends="index-layout">
 		<put-attribute name="title" value="专利预览" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>

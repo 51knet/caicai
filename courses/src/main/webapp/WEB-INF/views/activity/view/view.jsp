@@ -5,11 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
-.titlebg{
-	background-color:#ccdfa8; 
-	font-size: 14px;
-	width: 100%;
-}
+
 .patent{
 	 width: 1024px;
 	 margin: 10px 40px;

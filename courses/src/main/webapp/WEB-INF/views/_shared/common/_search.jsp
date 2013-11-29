@@ -45,7 +45,8 @@ ul, li {
 							  <option value="patentNum" selected="selected">专利号</option>
 							  <option value="patentName">专利名</option>
 							  <option value="inventer">发明人</option>
-						</select> <input type="text" name="searchParam" style="width: 380px;" placeholder="搜索"  value="${searchParam }"><button type="submit" class="btn btn_font" style=" ">搜 索</button>	<a href="#" class="btn btn-success  btn_font" style="color: #fff;">高级搜索</a>
+						</select> <input type="text" name="searchParam" style="width: 380px;" placeholder="搜索"  value="${searchParam }"><button type="submit" class="btn btn_font" style=" ">搜 索</button>	
+						<a href="<c:url value='/search/patent/detail'></c:url> " class="btn btn-success  btn_font" style="color: #fff;">高级搜索</a>
 							<div style="margin-left: 100px; margin-top: -5px;">
 							<!--<c:forEach items="${patentTypeList }" var="patentTypeList">
 								<label class="radio inline" >
