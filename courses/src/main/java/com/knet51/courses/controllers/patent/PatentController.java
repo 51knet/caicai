@@ -49,7 +49,7 @@ public class PatentController {
 	
 	@RequestMapping(value="/search/{patent}", method = RequestMethod.GET)
 	public String searchPatent(@PathVariable String patent,Model model,HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "10") int pageSize,@RequestParam("patentType")Long patentType_id,@RequestParam("types") String types,@RequestParam("searchParam") String searchParam){
+			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize,@RequestParam("patentType")Long patentType_id,@RequestParam("types") String types,@RequestParam("searchParam") String searchParam){
 		String newsearchParam = MyUtil.replaceSpace(searchParam);
 		List<PatentType> patentTypeList = patentTypeService.findAllPatentType();
 		model.addAttribute("patentTypeList", patentTypeList);
@@ -128,7 +128,7 @@ public class PatentController {
 	
 	@RequestMapping(value="/patent/list")
 	public String patentList(Model model, HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
+			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize){
 		List<Patent> patentList = patentService.findPatentList();
 		Page<Patent> page = patentService.findAll(pageNumber, pageSize);
 		List<PatentField> fieldList = patentFieldService.findAll();
@@ -140,7 +140,7 @@ public class PatentController {
 	
 	@RequestMapping(value="/patent/{patentField}/list")
 	public String patentTypeFilter(@PathVariable String patentField,Model model, HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "10") int pageSize) throws Exception{
+			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize) throws Exception{
 		patentField = new String(patentField.getBytes("iso-8859-1"), "utf-8").trim();
 		Page<Patent> page = null;
 		List<Patent> patentList = null;
@@ -161,8 +161,8 @@ public class PatentController {
 		return "patent.list";
 	}
 	
-	@RequestMapping(value="/patent/view/{patentNum}")
-	public String showPatentDetail(@PathVariable String patentNum,Model model,HttpSession session){
+	@RequestMapping(value="/patent/view")
+	public String showPatentDetail(Model model,HttpSession session, @RequestParam(value = "id") String patentNum){
 		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 //		if(userInfo == null){
 //			return "redirect:/patent/list";
@@ -174,7 +174,7 @@ public class PatentController {
 	
 	@RequestMapping(value="/requirement/{require_type}/list")
 	public String showRequirementList(@PathVariable String require_type,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "10") int pageSize,Model model){
+			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize,Model model){
 		RequirType requirType = null;
 		if(require_type.equals("patent")){
 			requirType = requirTypeService.findOne(1L);

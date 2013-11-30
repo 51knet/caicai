@@ -111,7 +111,7 @@ public class TeacherAchievePageController {
 	
 	@RequestMapping("/admin/patent/list")
 	public String showPatentList(HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
 		List<Patent> patentList = userPatentService.findPatentListByUser(user);
@@ -146,10 +146,11 @@ public class TeacherAchievePageController {
 		model.addAttribute("patent", patent);
 		return "admin.patent.edit";
 	}
-	@RequestMapping("/admin/patent/view/{patentNum}")
-	public String showPatentView(@PathVariable String patentNum,Model model){
+	@RequestMapping(value="/admin/patent/view")
+	public String showPatentDetail(Model model,HttpSession session, @RequestParam(value = "id") String patentNum){
 		Patent patent = userPatentService.findOne(patentNum);
 		model.addAttribute("patent", patent);
 		return "admin.patent.view";
 	}
+	
 }

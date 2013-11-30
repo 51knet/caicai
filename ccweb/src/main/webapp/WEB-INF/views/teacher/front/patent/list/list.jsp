@@ -40,7 +40,7 @@
 		<tr class="titlebg"><th align="left"><b>专利号</b></th><th align="left"><b>专利名称</b></th><th align="left" width=10%><b>公开日期</b></th></tr>
 			<tbody>
 			<c:forEach items="${page.content}" var="page">
-				<tr class="bb"><td width="20%"><a href="<c:url value="/teacher/${teacherInfo.id}/patent/view/${page.patentNum}"></c:url>">${page.patentNum}</a></td>
+				<tr class="bb"><td width="20%"><a href="<c:url value="/teacher/${teacherInfo.id}/patent/view?id=${page.patentNum}"></c:url>">${page.patentNum}</a></td>
 				<td >
 					${page.patentName}
 				</td>

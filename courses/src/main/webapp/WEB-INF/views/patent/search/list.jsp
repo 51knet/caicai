@@ -67,7 +67,7 @@
 							<c:if test="${sessionUserInfo != null }">
 								<a href="<c:url value="/patent/view/${ page.patentNum}"></c:url>">${page.patentNum}</a>
 							</c:if> -->
-							<a href="<c:url value="/patent/view/${ page.patentNum}"></c:url>">${page.patentNum}</a>
+							<a href="<c:url value="/patent/view?id=${ page.patentNum}"></c:url>">${page.patentNum}</a>
 						</td>
 						<td>
 							${page.patentName}

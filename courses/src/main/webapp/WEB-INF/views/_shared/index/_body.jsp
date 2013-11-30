@@ -86,7 +86,7 @@
 	}
 	
 	ul{
-		list-style-type: circle;
+		list-style-type: none;
 	}
 	li{
 		line-height:28px;
@@ -125,7 +125,7 @@
 				<ul>
 					<c:forEach items="${patentList }" var="patentList" begin="0" step="2" end="16"  >
 						<li ><div id="contentlimit" style="width:290px; float: left;">
-						<a class="a_color_green"  href="<c:url value="/patent/view/${patentList.patentNum }"></c:url>">${patentList.patentName }</a>
+						<a class="a_color_green"  href="<c:url value="/patent/view?id=${patentList.patentNum }"></c:url>">${patentList.patentName }</a>
 						</div></li>
 					</c:forEach>
 				</ul>
@@ -134,7 +134,7 @@
 				<ul>
 				<c:forEach items="${patentList }" var="patentList" begin="1" step="2" end="17">
 					<li   ><div id="contentlimit" style="width:290px; float: left;">
-						<a class="a_color_green"  href="<c:url value="/patent/view/${patentList.patentNum }"></c:url>">${patentList.patentName }</a>
+						<a class="a_color_green"  href="<c:url value="/patent/view?id=${patentList.patentNum }"></c:url>">${patentList.patentName }</a>
 					</div></li>
 				</c:forEach>
 				</ul>

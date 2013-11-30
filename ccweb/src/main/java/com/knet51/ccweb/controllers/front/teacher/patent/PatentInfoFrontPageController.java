@@ -42,8 +42,8 @@ public class PatentInfoFrontPageController {
 		return user.getRole()+".patent.list";
 	}
 	
-	@RequestMapping("/teacher/{teacher_id}/patent/view/{patentNum}")
-	public String showPatentDetailFrontPage(@PathVariable Long teacher_id,@PathVariable String patentNum,Model model){
+	@RequestMapping("/teacher/{teacher_id}/patent/view")
+	public String showPatentDetailFrontPage(@PathVariable Long teacher_id,@RequestParam(value = "id") String patentNum,Model model){
 		User user = userService.findOne(teacher_id);
 		UserInfo userInfo = new UserInfo(user);
 		Teacher teacher = teacherService.findOne(teacher_id);
