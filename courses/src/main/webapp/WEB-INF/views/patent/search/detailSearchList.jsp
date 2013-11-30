@@ -6,6 +6,18 @@
 	function sessionUserNull(){
 		alert("请登录后查看详细信息");
 	}
+	
+	 
+	function selectType(){
+		var sel = document.getElementById("type");
+		var opt = sel.options;
+		for(var i=0; i<opt.length;i++){
+			if(opt[i].selected){
+				var typeValue = opt[i].value;
+				window.location.href = '<c:url value="/patent/'+typeValue+ '/list"></c:url>'; 
+			}
+		}
+	}
 </script>
 <style>
 .titlebg{
