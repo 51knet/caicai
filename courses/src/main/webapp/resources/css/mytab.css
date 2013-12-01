@@ -1,6 +1,6 @@
 .outer {
-	width:700px;
-	margin:5px 250px;
+	width:800px;
+	margin:5px 0px 0px 250px;
 }
 #tab {
 	overflow:hidden;
@@ -8,7 +8,7 @@
 	border:0px solid #ccc;
 	border-bottom-width:0;
 		font:12px/1.5 Tahoma;
-		margin-left: 103px;
+		margin-left: 104px;
 		margin-bottom: -10px;
 }
 #tab li {
@@ -36,7 +36,7 @@
 	-moz-border-radius: 5px;
 }
 #content {
-	width:650px;
+	width:800px;
 	border:0px solid #ccc;
 	border-top-width:0;
 	font:12px/1.5 ;

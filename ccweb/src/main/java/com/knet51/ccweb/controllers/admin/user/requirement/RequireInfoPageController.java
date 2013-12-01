@@ -38,7 +38,7 @@ public class RequireInfoPageController {
 	
 	@RequestMapping("/admin/requirement/list")
 	public String showRequireList(HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="10") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
 		Page<Requirement> page = requirementService.findRequireByUser(pageNumber, pageSize, user);
@@ -52,6 +52,7 @@ public class RequireInfoPageController {
 		User user = userInfo.getUser();
 		List<RequirType> requirTypeList = requirTypeService.findTypeList();
 		model.addAttribute("requirTypeList", requirTypeList);
+		
 		return "admin."+user.getRole()+".requirement.new";
 	}
 	

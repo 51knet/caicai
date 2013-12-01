@@ -98,7 +98,7 @@
 	}
 </style>
 <div class="container marketing">
-  <div class="container title row-fluid">
+  <div class="container title">
 		<div class="leftTitle" >热门资源</div>
 		<div class="rightTitle dropdown" >
 			<div class="dropdown-toggle"  data-toggle="dropdown"><a href="#" style="text-decoration: none; color: #fff;">专利展示</a></div>
@@ -272,16 +272,16 @@
 	  <div class="container title">
 		 <table >
 		 	<tr>
-		 		<td width="16%" align="center"><h4 style="color: #fff;">热门教师 </h4></td>
-		 		<td align="right"><span class="count">共${fn:length(teacherLists)}名教师</span>
-		 		 <a  href='<c:url value="/teacher/list"></c:url>'  >全部教师</a></td>
+		 		<td width="16%" align="center"><h4 style="color: #fff;">推荐专家 </h4></td>
+		 		<td align="right"><span class="count">共${fn:length(teacherLists)}名专家</span>
+		 		 <a  href='<c:url value="/teacher/list"></c:url>'  >全部专家</a></td>
 		 	</tr>
 		 </table>
 	 </div>
   	<div class="bgimg">
 	    <c:if test="${fn:length(teacherLists)==0}">
 		       <div class="teacherInfo">
-		       	<h3>暂无教师数据</h3>
+		       	<h3>暂无数据</h3>
 		       </div>
 	 	 </c:if>
 	      <div class="teacherInfo">

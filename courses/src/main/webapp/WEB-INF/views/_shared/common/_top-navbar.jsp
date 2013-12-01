@@ -7,7 +7,7 @@
 		<ul class="nav pull-left">
 			<li ><div style="width: 100px;">&nbsp;</div></li>
 			<!-- <li class="active" style="width: 90px;"><a href="/courses">主页</a></li> -->
-			<li  ><a href="/courses"><img  src='<c:url value="/resources/img/default/logo_tiny.png"></c:url>'></a></li>
+			<li  ><a href="/"><img  src='<c:url value="/resources/img/default/logo_tiny.png"></c:url>'></a></li>
 		</ul>
 		<ul class="nav pull-right">
 			<c:if test="${sessionUserInfo != null}">

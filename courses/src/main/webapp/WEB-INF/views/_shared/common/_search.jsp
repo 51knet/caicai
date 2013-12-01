@@ -29,8 +29,7 @@ ul, li {
 
 <div class="container search-bar">
 		<div class="outer">
-		    <ul id="tab">
-		        <li class=" round  current" ><b>专利搜索</b></li>
+		    <ul id="tab"><li class=" current" ><b>专利搜索</b></li>
 		        <!-- 
 		        <li class=" round <c:if test='${active == "patent" }' > current</c:if> " ><b>专利</b></li>
 		        <li  class="round <c:if test='${active == "course"}' > current</c:if> "><b>课程</b></li>
@@ -40,7 +39,7 @@ ul, li {
 	        <ul style="display:block;" >
 	        	
 	            <li>
-	            <form class="navbar-form"  action="<c:url value="/search/patent"></c:url>"  method="get">
+	            <form class="navbar-form"  action="<c:url value="/search/patent"></c:url>"  method="get" >
 						<select class="form-control" style="width: 100px; background-color: #a7c676; border: 0px; color: #fff; font-family:Arial,'Microsoft YaHei';" name="types">
 							  <option value="patentNum" selected="selected">专利号</option>
 							  <option value="patentName">专利名</option>
@@ -54,7 +53,7 @@ ul, li {
 								</label>
 							</c:forEach>-->
 								<label class="radio inline" >
-									<input type="radio" name="patentType" value="1"   checked> 发明专利
+									<input type="radio" name="patentType" value="1"   checked="checked"> 发明专利
 								</label>
 								<label class="radio inline" >
 									<input type="radio" name="patentType" value="2" > 实用新型
@@ -88,6 +87,14 @@ ul, li {
 
 
 </div>
-<script>
-
+<script type="text/javascript">
+window.onload = function ()
+{	
+	var patentSearchType = "${searchTypes}";
+	$("select[name='types'] > option").each(function(){
+		if($(this).val() == patentSearchType){
+			$(this).attr("selected", "selected");
+		}
+	});
+}
 </script>

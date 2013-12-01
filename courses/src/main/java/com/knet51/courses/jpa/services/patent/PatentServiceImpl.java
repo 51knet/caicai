@@ -72,8 +72,6 @@ public class PatentServiceImpl implements PatentService {
 			page = patentRespository.findPatentByPatentTypeAndPatentNameLike(patentType,"%"+params+"%",pageable);
 		}else if("inventer".equals(search)){
 			page = patentRespository.findPatentByPatentTypeAndInventerLike(patentType,"%"+params+"%",pageable);
-		}else{
-			page = null;
 		}
 		return page;
 	}
@@ -85,7 +83,7 @@ public class PatentServiceImpl implements PatentService {
 			patentList = patentRespository.findPatentByPatentTypeAndPatentNumLike(patentType,"%"+params+"%");
 		}else if("patentName".equals(search)){
 			patentList = patentRespository.findPatentByPatentTypeAndPatentNameLike(patentType,"%"+params+"%");
-		}else if("inventer".equals(params)){
+		}else if("inventer".equals(search)){
 			patentList = patentRespository.findPatentByPatentTypeAndInventerLike(patentType,"%"+params+"%");
 		}
 		return patentList;

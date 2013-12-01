@@ -49,17 +49,20 @@ public class PatentController {
 	
 	@RequestMapping(value="/search/{patent}", method = RequestMethod.GET)
 	public String searchPatent(@PathVariable String patent,Model model,HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize,@RequestParam("patentType")Long patentType_id,@RequestParam("types") String types,@RequestParam("searchParam") String searchParam){
+			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize,@RequestParam("patentType")Long patentType_id,@RequestParam("types") String searchType,@RequestParam("searchParam") String searchParam) throws Exception{
+		searchParam = new String(searchParam.getBytes("iso-8859-1"), "utf-8").trim();
 		String newsearchParam = MyUtil.replaceSpace(searchParam);
+		System.out.println("patentType="+searchType+"====searchParam="+newsearchParam);
 		List<PatentType> patentTypeList = patentTypeService.findAllPatentType();
 		model.addAttribute("patentTypeList", patentTypeList);
 		PatentType patentType = patentTypeService.findOne(patentType_id);
-		Page<Patent> page = patentService.searchPatent(pageNumber, pageSize, patentType, types, newsearchParam);
-		List<Patent> list = patentService.searchPatentList(patentType, types, newsearchParam);
+		Page<Patent> page = patentService.searchPatent(pageNumber, pageSize, patentType, searchType, newsearchParam);
+		List<Patent> list = patentService.searchPatentList(patentType, searchType, newsearchParam);
 		model.addAttribute("page", page);
 		List<PatentField> fieldList = patentFieldService.findAll();
 		model.addAttribute("fieldList", fieldList);
 		model.addAttribute("searchParam", searchParam);
+		model.addAttribute("searchTypes", searchType);
 		model.addAttribute("searchpatentCount", list.size());
 		model.addAttribute("active", patent);
 		return "patent.search.list";
@@ -76,7 +79,7 @@ public class PatentController {
 	
 	@RequestMapping(value="/search/{patent}/detail/list", method = RequestMethod.POST)
 	public String searchPatentDetailList(@PathVariable String patent,Model model,HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "2") int pageSize,@Valid DetailSearchPatentForm searchPatentForm,@RequestParam("patentType") Long patentType_id) throws Exception{
+			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize,@Valid DetailSearchPatentForm searchPatentForm,@RequestParam("patentType") Long patentType_id) throws Exception{
 		
 		
 		String applicant = MyUtil.replaceSpace(searchPatentForm.getApplicant());
