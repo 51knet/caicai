@@ -1,11 +1,14 @@
 package com.knet51.courses.util;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 public class MyUtil {
 	
@@ -64,6 +67,24 @@ public class MyUtil {
 		}
 		
 	}
-
+	
+	public static String getPropertyValueByKey(String key,String path) throws Exception{
+		String value = null;
+		Properties p = new Properties();
+		FileInputStream in = new FileInputStream(path);
+		p.load(in);
+		value = p.getProperty(key);
+		return value;
+	}
+	
+	public static void main(String[] args) {
+		String path = "src/main/resources/knet_url.properties";
+		try {
+			System.out.println(getPropertyValueByKey("knet_url", path));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
+	}
 	
 }

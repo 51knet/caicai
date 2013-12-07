@@ -50,22 +50,13 @@ public class AuthorizationListener implements Filter {
 		String context = req.getContextPath();
 		String url = path.substring(context.length(), path.length());
 		HttpSession session = req.getSession();
-		String urlFilePath = "";
 		String k_url = "";
-		BufferedReader br;
-	//	urlFilePath = session.getServletContext().getRealPath("/");
-			urlFilePath += "resources\\url\\knet_url.property";
-		urlFilePath += "resources\\url\\localccweb_url.property";
+		String key = "knet_url";
 		try {
-			br = new BufferedReader(new InputStreamReader(new FileInputStream(
-					urlFilePath), "utf-8"));
-			String data = "";
-			while ((data = br.readLine()) != null) {
-				k_url = data;
-			}
-			br.close();
+			k_url = MyUtil.getPropertyValueByKey(key ,"src/main/resources/knet_url.properties");
+			
 		} catch (Exception e) {
-			k_url = "http://www.51knet.com";
+			k_url = "http://www.51knet.com/ccweb";
 		}
 		session.setAttribute("url", k_url);
 		logger.debug("->"+url);

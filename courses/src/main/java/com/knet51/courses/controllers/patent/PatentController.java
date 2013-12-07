@@ -190,10 +190,11 @@ public class PatentController {
 		return "requirement.list";
 	}
 	
-	@RequestMapping(value="/requirement/view/{require_id}")
-	public String showRequirementDetail(@PathVariable Long require_id,Model model){
+	@RequestMapping(value="/requirement/{require_type}/view/{require_id}")
+	public String showRequirementDetail(@PathVariable String require_type,@PathVariable Long require_id,Model model){
 		Requirement requirement = requirementService.findOne(require_id);
 		model.addAttribute("requirement", requirement);
+		model.addAttribute("active", require_type);
 		return "requirement.view";
 	}
 }

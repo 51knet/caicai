@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.ccweb.controllers.admin.teacher.announcement.TeacherAnnoDetailInfoForm;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.Activity;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.AuthenResource;
 import com.knet51.ccweb.jpa.entities.Authentication;
@@ -42,6 +44,7 @@ import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.WithdrawsApplyService;
+import com.knet51.ccweb.jpa.services.activity.ActivityService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 
@@ -75,6 +78,8 @@ public class CaiCaiPageController {
 	private RechargeHistoryService rechargeHistoryService;
 	@Autowired
 	private WithdrawsApplyService withdrawsApplyService;	
+	@Autowired
+	private ActivityService activityService;
 	
 	
 	
@@ -252,12 +257,58 @@ public class CaiCaiPageController {
 	 * @return
 	 */
 	@RequestMapping(value="/admin/caicai/withdraws/list")
-	public String showAllWithdrawsList(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="5") int pageSize){
+	public String showAllWithdrawsPage(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		logger.info("=== into withdraws page controller ===");
 		Page<WithdrawsApply> page = withdrawsApplyService.findAll(pageNumber, pageSize);
 		model.addAttribute("page", page);
 		return "admin.caicai.withdraws.list";
 	}
 	
+	@RequestMapping(value="/admin/caicai/activity/list")
+	public String showAllActivitiesPage(HttpSession session,Model model ,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		logger.info("=== into activity page controller ===");
+		Page<Activity> page = activityService.findAllPage(pageNumber, pageSize);
+		model.addAttribute("page", page);
+		return "admin.caicai.activity.list";
+	}
+	
+	@RequestMapping(value="/admin/caicai/activity/create")
+	public String createNewActivityPage(){
+		logger.info("====== into caicai create activity page controller =====");
+		
+		return "admin.caicai.activity.create";
+	}
+	
+	@RequestMapping(value = "/admin/caicai/activity/createActivityAjax", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse activityInfoFormAjaxJson(@Valid ActivityForm 
+			activityForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	
+	
+	@RequestMapping(value="/admin/caicai/activity/view/{id}")
+	public String showActivityDetailPage(@PathVariable Long id, Model model){
+		logger.info("====== into caicai activity detail page controller =====");
+		Activity activity = activityService.findOne(id);
+		model.addAttribute("activity", activity);
+		
+		return "admin.caicai.activity.view";
+	}
+	
+	@RequestMapping(value="/admin/caicai/activity/edit/{id}")
+	public String editActivityDetailPage(@PathVariable Long id, Model model){
+		logger.info("====== into caicai activity detail page controller =====");
+		Activity activity = activityService.findOne(id);
+		model.addAttribute("activity", activity);
+		
+		return "admin.caicai.activity.edit";
+	}
+	
+	@RequestMapping(value = "/admin/caicai/activity/edit/updateActivityAjax", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse editactivityInfoFormAjaxJson(@Valid ActivityForm 
+			activityForm, BindingResult result,@PathVariable Long id) {
+		return AjaxValidationEngine.process(result);
+	}
 }

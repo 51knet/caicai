@@ -10,13 +10,15 @@
 <body>
 	<tiles:insertAttribute name="top-navbar" />
 
-	<div class="container-fluid">
+	<div class="container-fluid" >
+	<div style="position: relative;">
 		<div class="row-fluid">
 			<tiles:insertAttribute name="search" />
 		</div>
 		<div class="row-fluid">
 			<tiles:insertAttribute name="userCourse" />
 		</div>
+	</div>
 		<div class="row-fluid">
 			<tiles:insertAttribute name="body" />
 		</div>

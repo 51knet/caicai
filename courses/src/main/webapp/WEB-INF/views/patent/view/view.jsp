@@ -39,11 +39,22 @@
 	font-weight: normal;
 }
 </style>
+ <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <a href="<c:url value='/patent/list'></c:url>" >专利列表</a> >> 专利详情 </div>
 <div class="container title"  >
 		<div class="innerLeftTitle">专利详情</div>
  </div>
  <div class="container patent">
-	<div class="top ">${patent.patentName }</div>
+	<div class="top ">${patent.patentName }
+		 <span style="float: right; margin-right: 60px;">	
+			<div class=" dropdown" style="font-size: 15px;">
+				<a href="#" style="text-decoration: none;" class="dropdown-toggle"  data-toggle="dropdown">点击咨询</a>
+				<div class="dropdown-menu" style="text-align: left;  width: 200px; height: 80px; padding:10px 15px; line-height: 30px;" role="menu" aria-labelledby="dropdownMenu">
+						联系电话：400-8567-4582<br>
+						QQ在线：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=826619119&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:826619119:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+				</div>
+			</div>
+		</span>
+	</div>
 	<div class="bottom   tLine_dash">	
 	<br>
 		<table width="95%" height="" border="0" cellpadding="5"  class="blue">
@@ -73,22 +84,6 @@
 			  <tr>
 			    <td align="center" bgcolor="#f3f3f3">分类号码</td>
 			    <td colspan="3">${patent.classNum }</td>
-			  </tr>
-			  <tr>
-			    <td align="center" bgcolor="#f3f3f3">申请人</td>
-			    <td>${patent.applicant }</td>
-			    <td align="center" bgcolor="#f3f3f3">发明人</td>
-			    <td>${patent.inventer }</td>
-			  </tr>
-			  <tr>
-			    <td align="center" bgcolor="#f3f3f3">联系地址</td>
-			    <td colspan="3">${patent.address }</td>
-			  </tr>
-			  <tr>
-			    <td align="center" bgcolor="#f3f3f3">代理人</td>
-			    <td>${patent.agency }</td>
-			    <td align="center" bgcolor="#f3f3f3">代理机构</td>
-			    <td>${patent.agent }</td>
 			  </tr>
 			</table>
 			<br>

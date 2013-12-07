@@ -92,5 +92,23 @@
 		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/caicai/withdraws/list/list.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="admin.caicai.activity.list" extends="admin-layout">
+		<put-attribute name="title" value="活动管理" />
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/activity/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.caicai.activity.create" extends="admin-layout">
+		<put-attribute name="title" value="活动管理" />
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/activity/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.caicai.activity.edit" extends="admin-layout">
+		<put-attribute name="title" value="活动管理" />
+		<put-attribute name="left" value="/WEB-INF/views/caicai/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/caicai/activity/edit/edit.jsp"></put-attribute>
+	</definition>
 
 </tiles-definitions>

@@ -24,34 +24,51 @@
 
 
 </style>
+ <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <c:if test='${active == "technology" }'>技术需求</c:if><c:if test='${active == "patent" }'>专利需求</c:if> </div>
 <div class="container title"  >
-		<div class="innerLeftTitle " style="<c:if test='${active != "patent" }' >background-color: #adcc75</c:if>"><a href="<c:url value="/requirement/patent/list"></c:url>" class="a_color_green">专利需求</a></div>
-		<div class="innerLeftTitle" style="margin-left: 10px; <c:if test='${active != "technology" }'>background-color: #adcc75</c:if>"><a href="<c:url value="/requirement/technology/list"></c:url>" class="a_color_green">技术需求</a></div>
+		<div class="innerLeftTitle " ><a href="<c:url value="/requirement/patent/list"></c:url>">专利需求</a></div>
+		<div class="innerLeftTitle" style="margin-left: 10px; "><a href="<c:url value="/requirement/technology/list"></c:url>" >技术需求</a></div>
+ </div>
+
+ <div class="container patent">
+		<div class="span6" style="width: 440px;">
+			 <table  style="width: 100%; " cellpadding="8"  border="0">
+				 <thead>
+				 	<tr class="bb">
+				 		<th align="left">需求标题</th>
+				 	</tr>
+				 </thead>
+					<tbody>
+						<c:forEach items="${page.content}" var="page" begin="0" step="2" varStatus="i">
+							<tr class="bLine_dash" >
+								<td >
+									<a  href="<c:url value="/requirement/${active}/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon.png'></c:url>" >  ${page.title}</a>
+								</td>
+							</tr>
+						</c:forEach>				
+					</tbody>
+				</table>
+		</div>
+		<div class="span6" style="width: 440px;">
+			<table  style="width: 100%; " cellpadding="8"  border="0">
+				 <thead>
+				 	<tr class="bb">
+				 		<th align="left">需求标题</th>
+				 	</tr>
+				 </thead>
+					<tbody>
+						<c:forEach items="${page.content}" var="page" begin="1" step="2" varStatus="i">
+							<tr class="bLine_dash" >
+							<td >
+								<a  href="<c:url value="/requirement/${active}/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon.png'></c:url>" >  ${page.title}</a>
+							</td>
+							</tr>
+						</c:forEach>				
+					</tbody>
+				</table>
+		</div>
+			
  </div>
  <div class="container patent">
-	 <table  style="width: 90%; " cellpadding="8"  border="0">
-	 <thead>
-	 	<tr class="bb">
-	 		<th align="left">需求标题</th><th align="left">发布人</th><th align="left">发布时间</th>
-	 	</tr>
-	 </thead>
-		<tbody>
-			<c:forEach items="${page.content}" var="page">
-				<tr class="bLine_dash" >
-				<td width="70%">
-					<a  href="<c:url value="/requirement/view/${ page.id}"></c:url>">${page.title}</a>
-				</td>
-				<td width="20%">
-					${page.user.name}
-				</td>
-				<td><fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd "/></td>
-				</tr>
-			</c:forEach>				
-		</tbody>
-		</table>
-		<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
-
- </div>
-
-
-
+	<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+</div>

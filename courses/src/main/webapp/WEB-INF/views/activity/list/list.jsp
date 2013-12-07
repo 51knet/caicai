@@ -16,9 +16,11 @@
 }
 .patent{
 	 width: 1024px;
-	 margin: 10px 55px;
+	 margin: 0px 55px;
 }
+
 </style>
+ <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> 活动列表 </div>
 <div class="container title"  >
 		<div class="innerLeftTitle">活动动态</div>
  </div>
@@ -29,13 +31,19 @@
 		</c:when>
 		<c:otherwise>
 			 <table  style="width: 90%; " cellpadding="8"  border="0">
+			 	 <thead>
+				 	<tr class="bb">
+				 		<th align="left" width="88%">活动标题</th>
+				 		<th align="left">发布时间</th>
+				 	</tr>
+				 </thead>
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr class="bLine_dash" >
-						<td width="88%">
-							<a  href="<c:url value="/activity/view/${ page.id}"></c:url>">${page.title}</a>
-						</td>
-						<td><fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd "/></td>
+							<td >
+								<a  href="<c:url value="/activity/view/${ page.id}"></c:url>">${page.title}</a>
+							</td>
+							<td><fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd "/></td>
 						</tr>
 					</c:forEach>				
 				</tbody>

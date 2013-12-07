@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
+import com.knet51.ccweb.jpa.entities.Activity;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.Authentication;
 import com.knet51.ccweb.jpa.entities.Recharge;
@@ -38,6 +41,7 @@ import com.knet51.ccweb.jpa.services.ResourceService;
 import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.activity.ActivityService;
 @Controller
 public class CaiCaiDetailController {
 	private static final Logger logger = LoggerFactory
@@ -61,6 +65,8 @@ public class CaiCaiDetailController {
 	private TeacherService teacherService;
 	@Autowired
 	private RechargeService rechargeService;
+	@Autowired
+	private ActivityService activityService;
 	
 	/*   operate user controller  detail controller */
 	
@@ -485,6 +491,52 @@ public class CaiCaiDetailController {
 		}else{
 			return "redirect:/admin/caicai/recharge/list";
 		}
+	}
+	
+	@RequestMapping(value="/admin/caicai/activity/new", method = RequestMethod.POST)
+	public String createActivity(@Valid ActivityForm activityForm, BindingResult result,HttpSession session){
+		logger.info("==== into create activity controller ====");
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(result.hasErrors()){
+			logger.info("activityForm Validation Failed " + result);
+			return "redirect:/admin/caicai/activity/create";
+		}else{
+			Activity activity = new Activity();
+			activity.setTitle(activityForm.getTitle());
+			activity.setContent(activityForm.getContent());
+			activity.setDate(new Date());
+			activity.setUser(userInfo.getUser());
+			activityService.create(activity);
+			return "redirect:/admin/caicai/activity/list";
+		}
+		
+	}
+	
+	@RequestMapping(value="/admin/caicai/activity/edit", method = RequestMethod.POST)
+	public String editActivity(HttpSession session,@Valid ActivityForm activityForm, BindingResult result,@RequestParam("activity_id") Long id){
+		logger.info("==== into create activity controller ====");
+		//UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(result.hasErrors()){
+			logger.info("activityForm Validation Failed " + result);
+			return "redirect:/admin/caicai/activity/create";
+		}else{
+			Activity activity = activityService.findOne(id);
+			activity.setTitle(activityForm.getTitle());
+			activity.setContent(activityForm.getContent());
+			activity.setDate(new Date()); 
+			activityService.update(activity);
+			return "redirect:/admin/caicai/activity/list";
+		}
+		
+	}
+	
+	@RequestMapping(value="/admin/caicai/activity/destory", method = RequestMethod.POST)
+	public String destoryActivity(HttpSession session,@RequestParam("activity_id") Long id){
+		logger.info("==== into destory activity controller ====");		
+			activityService.delete(id);
+			return "redirect:/admin/caicai/activity/list";
+
+		
 	}
 	
 	

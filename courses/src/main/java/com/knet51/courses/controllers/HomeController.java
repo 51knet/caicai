@@ -135,15 +135,16 @@ public class HomeController {
 		model.addAttribute("courseList", cBeans);
 		model.addAttribute("courseCount", cBeans.size());
 		//model.addAttribute("teacherCount", );
-		session.setAttribute("teacherCount", teacherLists.size());
+		session.setAttribute("teacherCount", GlobalDefs.HOME_TEACHER_COUNT);
 		
 		model.addAttribute("patentList", patentList);
-		session.setAttribute("patentCount", patentList.size());
+		session.setAttribute("patentCount", GlobalDefs.HOME_PATENT_COUNT);
 		model.addAttribute("patentFieldList", patentFieldList);
 		model.addAttribute("patentTypeList", patentTypeList);
 		
 		model.addAttribute("requirementList", requirementList);
-		session.setAttribute("requirementCount", requirementList.size());
+		session.setAttribute("requirementCount", GlobalDefs.HOME_PATENT_REQUIRE_COUNT);
+		session.setAttribute("patentTradeCount", GlobalDefs.HOME_PATENT_TRADE_COUNT);
 		
 		model.addAttribute("activityList", activityList);
 		

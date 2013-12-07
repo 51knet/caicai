@@ -44,6 +44,7 @@
 			<li><a href='<c:url value="/admin/caicai/course/list"></c:url>' >课程管理</a></li>
 			<li><a href='<c:url value="/admin/caicai/resource/list"></c:url>' >资源管理</a></li>
 			<li><a href='<c:url value="/admin/caicai/blog/list"></c:url>' >博文管理</a></li>
+			<li><a href='<c:url value="/admin/caicai/activity/list"></c:url>' >活动管理</a></li>
 			<li><a href='<c:url value="/admin/caicai/recharge/list"></c:url>' >充值卡管理</a></li>
 			<li><a href='<c:url value="/admin/caicai/withdraws/list"></c:url>' >提现申请</a></li>
 		</ul>

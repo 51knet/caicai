@@ -1,6 +1,8 @@
 .outer {
-	width:800px;
-	margin:5px 0px 0px 250px;
+	width:600px;
+	margin:5px 0px 0px 200px;
+	
+	float: left;
 }
 #tab {
 	overflow:hidden;

@@ -28,6 +28,7 @@
 	width: 90%;
 }
 </style>
+ <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <a href="<c:url value='/activity/list'></c:url>" >活动列表</a> >> 活动详情 </div>
 <div class="container title"  >
 		<div class="innerLeftTitle">活动详情</div>
  </div>

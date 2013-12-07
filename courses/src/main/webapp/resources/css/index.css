@@ -73,6 +73,9 @@
  	color: #353535;
  	font-family:Arial,'Microsoft YaHei';
   	width: 1024px;
+  	background-image: url("/courses//resources/img/default/secondTitleBg.png");
+  	background-position: left top;
+  	background-repeat: no-repeat;
 
 }
 .container.title >table{
@@ -82,12 +85,21 @@
 
 .container.title .innerLeftTitle{
 		font-size:16px;
-		color: #3f5517;
-		margin:5px 0px 0px 70px;
-		padding: 3px 10px;
-		background-color: #fff;
-		line-height: 25px;
+	/*	color: #3f5517;*/
+		color:#fff;
+		font-weight:bold;
+		letter-spacing:1px;
+		margin:0px 0px 0px 70px;
+		padding: 0px 10px;
+	/*	background-color: #fff;*/
+		line-height: 35px;
 		float: left;
+		height: 37px;
+}
+
+.container.title .innerLeftTitle a{
+	color: #fff;
+	text-decoration: none;
 }
 
 .container.title .count{
@@ -102,10 +114,11 @@
 
 .container.marketing .row {
   margin-left: 0px;
-  background-image: url("/courses/resources/img/default/course_bg.png");
+  /*background-image: url("/courses/resources/img/default/course_bg.png");*/
   background-position: top left;
   background-repeat: repeat-x;
   text-align: center;
+  background-color: #edf1e2;
 }
 .container.marketing .row .span4 {
  width: 250px; 
@@ -252,6 +265,50 @@ border-top-color: #EEE;*/
 }
 
 .a_color_green{
+	color: #86a23b;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.a_color_ccc{
+	color: #444;
+	text-decoration: none;
+}
+
+.title_color_green{
+	color: #3f5517;
+	text-decoration: none;
+	font-size: 16px;
+}
+
+.title_color_white{
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 16px;
+}
+
+.path_link{
+	margin: 10px 10px 10px 70px;
+	font-size: 14px;
+	color: #86a23b;
+}
+
+.path_link a {
+	font-size: 14px;
+	color: #86a23b;
+	text-decoration: none;
+}
+
+.path_link a:hover{
+	font-size: 14px;
 	color: #3f5517;
 	text-decoration: none;
 }
+
+ .centerline{
+	background-image: url("<c:url value='/resources/img/default/centerline.png'></c:url>");
+	background-position: center top;
+	background-repeat: repeat-y;
+}
+	

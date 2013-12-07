@@ -34,6 +34,7 @@
 	 margin: 0px 55px;
 }
 </style>
+  <jsp:include page="/WEB-INF/views/patent/path_link.jsp"></jsp:include>
 <div class="container title"  >
 		<div class="innerLeftTitle">专利数量（${searchpatentCount }）</div>
  </div>

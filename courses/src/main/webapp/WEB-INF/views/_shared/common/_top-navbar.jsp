@@ -7,7 +7,7 @@
 		<ul class="nav pull-left">
 			<li ><div style="width: 100px;">&nbsp;</div></li>
 			<!-- <li class="active" style="width: 90px;"><a href="/courses">主页</a></li> -->
-			<li  ><a href="/"><img  src='<c:url value="/resources/img/default/logo_tiny.png"></c:url>'></a></li>
+			<li  ><a href="<c:url value="/"></c:url>" ><img  src='<c:url value="/resources/img/default/logo_tiny.png"></c:url>'></a></li>
 		</ul>
 		<ul class="nav pull-right">
 			<c:if test="${sessionUserInfo != null}">
@@ -22,8 +22,8 @@
 					</ul></li>
 			</c:if>
 			<c:if test="${sessionUserInfo == null}">
-				<li style="margin-top: -10px;"><a href='<c:url value="http://www.51knet.com/"></c:url>'><h6>登录</h6></a><br></li>
-				<li style="margin-top: -10px;"><a href='<c:url value="http://www.51knet.com/"></c:url>'><h6>注册</h6></a><br></li>
+				<li style="margin-top: -10px;"><a href='<c:url value="http://www.51knet.com/ccweb"></c:url>'><h6>登录</h6></a><br></li>
+				<li style="margin-top: -10px;"><a href='<c:url value="http://www.51knet.com/ccweb"></c:url>'><h6>注册</h6></a><br></li>
 			</c:if>
 			<li ><div style="width: 90px;"></div></li>
 		</ul>

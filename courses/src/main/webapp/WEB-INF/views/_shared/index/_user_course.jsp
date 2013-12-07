@@ -39,10 +39,10 @@
 
 <div class="carouselbg" >
 	<div class="row-fluid">
-		<div class="span3 valign_center maq_left" style="width: 203px;">收录专利：${patentCount }</div>
+		<div class="span3 valign_center maq_left" style="width: 203px;">专利数：${patentCount }</div>
 		<div class="span8 valign_center "  style="width:820px; margin-left: -7px;">
 			<marquee   id="mymarquee"   onmouseover="mymarquee.stop()"   onmouseout="mymarquee.start()"   scrollAmount="3"   scrollDelay="50"      behavior="scroll"   width="100%"   >   
-				<span class="maq_right_content">专利总数：${patentCount }</span><span class="maq_right_content">专利成交总数：1200</span><span class="maq_right_content">需求总数：${requirementCount }</span>
+				<span class="maq_right_content">专利总数：${patentCount }</span><span class="maq_right_content">专利成交总数：${patentTradeCount }</span><span class="maq_right_content">需求总数：${requirementCount }</span>
 				<span class="maq_right_content">教师总数：${teacherCount }</span>
 			 </marquee>
   		</div>
