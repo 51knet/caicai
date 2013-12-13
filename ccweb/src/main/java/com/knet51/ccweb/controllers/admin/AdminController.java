@@ -30,12 +30,12 @@ import com.knet51.ccweb.jpa.entities.Enterprise;
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.services.AuthenticationService;
-import com.knet51.ccweb.jpa.services.EnterpriseService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
 import com.knet51.ccweb.jpa.services.StudentService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.authentication.AuthenticationService;
+import com.knet51.ccweb.jpa.services.enterprise.EnterpriseService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 
@@ -157,6 +157,33 @@ public class AdminController {
 			} else {
 				return "redirect:/admin/authentication/list";
 			}
+		} else {
+			return "home";
+		}
+
+	}
+	/**
+	 * test customer service
+	 * @param locale
+	 * @param model
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "/admin/cservice", method = RequestMethod.GET)
+	public String adminCservice(Locale locale, Model model,
+			HttpSession session) {
+		logger.info("Welcome home! the client locale is " + locale.toString());
+
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+
+		if (userInfo != null && userInfo.getRole().equals("user")) {
+			return "redirect:/admin/user";
+		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
+			return "redirect:/admin/teacher";
+		} else if (userInfo != null && userInfo.getRole().equals("cservice")) {
+			
+			return "admin.cservice.home";
 		} else {
 			return "home";
 		}

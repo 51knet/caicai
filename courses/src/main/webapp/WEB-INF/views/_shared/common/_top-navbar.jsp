@@ -18,7 +18,7 @@
 					<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
 						<li><a href='<c:url value="http://www.51knet.com/"></c:url>'>回到知识网首页</a></li>
 						<li class="divider"></li>
-						<li><a href='<c:url value="http://www.51knet.com/signout"></c:url>'>退出登录</a></li>
+						<li><a href='<c:url value="/signout"></c:url>'>退出登录</a></li>
 					</ul></li>
 			</c:if>
 			<c:if test="${sessionUserInfo == null}">

@@ -22,13 +22,13 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
 import com.knet51.ccweb.jpa.entities.courses.Course;
-import com.knet51.ccweb.jpa.services.CourseLessonService;
-import com.knet51.ccweb.jpa.services.CourseResourceService;
-import com.knet51.ccweb.jpa.services.CourseTypeService;
-import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserCourseService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.course.CourseLessonService;
+import com.knet51.ccweb.jpa.services.course.CourseResourceService;
+import com.knet51.ccweb.jpa.services.course.CourseService;
+import com.knet51.ccweb.jpa.services.course.CourseTypeService;
 
 @Controller
 public class TeacherCourseInfoFrontPageController {

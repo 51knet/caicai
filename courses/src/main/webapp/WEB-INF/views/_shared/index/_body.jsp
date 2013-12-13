@@ -65,7 +65,7 @@
 	
 	.marketing .rightContainer .rightContent {
 		float: left; width: 100%;
-	  height: 330px;border: 1px solid #e0e7c8;
+	  height: 358px;border: 1px solid #e0e7c8;
 	  border-top: 0px;
 	  
 	}
@@ -166,8 +166,9 @@
 	  		<div >
 		  		<div class="span6">
 		  			<ul>
+		  				<li class="bb">国内专利</li>
 						<c:forEach items="${patentList }" var="patentList" begin="0" step="2" end="18"  >
-							<li ><div id="contentlimit" style="width:290px; float: left;">
+							<li ><div id="contentlimit" style="width:310px; float: left;">
 							<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${patentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon.png'></c:url>" >  ${patentList.patentName }</a>
 							</div></li>
 						</c:forEach>
@@ -175,8 +176,9 @@
 		  		</div>
 		  		<div class="span6" >
 		  			<ul>
+		  			<li class="bb">国际专利</li>
 						<c:forEach items="${patentList }" var="patentList" begin="1" step="2" end="19">
-							<li   ><div id="contentlimit" style="width:290px; float: left;">
+							<li   ><div id="contentlimit" style="width:310px; float: left;">
 								<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${patentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon.png'></c:url>" >  ${patentList.patentName }</a>
 							</div></li>
 						</c:forEach>
@@ -253,7 +255,7 @@
 		 <table >
 		 	<tr>
 		 		<td width="15%" align="center"><h4 style="color: #fff;">推荐专家 </h4></td>
-		 		<td align="right"><span class="count">共${fn:length(teacherLists)}名专家</span>
+		 		<td align="right"><span class="count">共${teacherCount }名专家</span>
 		 		 <a  href='<c:url value="/teacher/list"></c:url>'  >全部专家</a></td>
 		 	</tr>
 		 </table>
@@ -264,33 +266,70 @@
 		       	<h3>暂无数据</h3>
 		       </div>
 	 	 </c:if>
-	      <div class="teacherInfo">
-			<c:forEach items="${teacherLists}" var="t" begin="0" end="6">
-				<div class="span2">
-					<c:choose>
-						<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' style="width: 90px; height:90px;" /></a>
-						</c:when>
-						<c:otherwise>
-							<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 90px; height:90px;" /></a>
-						</c:otherwise>
-					</c:choose>
-					<div style="margin-top: 3px; "> 
-						<c:choose>
-						<c:when test="${t.user.name==null||t.user.name==''}">
-						<span id="contentlimit" style="width:90px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>尚未添加</a></span>
-						</c:when>
-						<c:otherwise>
-						<span id="contentlimit" style="width:90px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a></span> 
-						</c:otherwise>
-						</c:choose>
-					</div>
+	 	 <div class="shell">
+	 	 	 <div class="teacherInfo core" id="myflash">
+	 	 	 	<div style="height: 130px;">
+	 	 	 		<c:forEach items="${teacherLists}" var="t" begin="0" end="6">
+						<div class="span2">
+							<c:choose>
+								<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
+									<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' style="width: 90px; height:90px;" /></a>
+								</c:when>
+								<c:otherwise>
+									<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 90px; height:90px;" /></a>
+								</c:otherwise>
+							</c:choose>
+							<div style="margin-top: 3px; "> 
+								<c:choose>
+								<c:when test="${t.user.name==null||t.user.name==''}">
+								<span id="contentlimit" style="width:90px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>尚未添加</a></span>
+								</c:when>
+								<c:otherwise>
+								<span id="contentlimit" style="width:90px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a></span> 
+								</c:otherwise>
+								</c:choose>
+							</div>
+						</div>
+					</c:forEach>
 				</div>
-			</c:forEach>
-		</div>
+				<div  style="height: 130px;">
+	 	 	 		 <c:forEach items="${teacherLists}" var="t" begin="7" end="13">
+						<div class="span2">
+							<c:choose>
+								<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
+									<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' style="width: 90px; height:90px;" /></a>
+								</c:when>
+								<c:otherwise>
+									<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 90px; height:90px;" /></a>
+								</c:otherwise>
+							</c:choose>
+							<div style="margin-top: 3px; "> 
+								<c:choose>
+								<c:when test="${t.user.name==null||t.user.name==''}">
+								<span id="contentlimit" style="width:90px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>尚未添加</a></span>
+								</c:when>
+								<c:otherwise>
+								<span id="contentlimit" style="width:90px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a></span> 
+								</c:otherwise>
+								</c:choose>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+	 	 </div>
 	</div>
 </div>
-
+<style>
+.shell{
+        width:1024px;
+       margin-top: 10px;
+}
+.core{
+        height:130px;
+        overflow:hidden;
+}
+</style>
 <script type="text/javascript">
 
 /*
@@ -321,4 +360,22 @@ function mytab(tab_id, content_id){
 		};	
 	}
 }*/
+window.onload = function (){
+	myFlash('myflash',2000,-1);
+};
+function myFlash(id,w,n){
+    var box=document.getElementById(id),can=true,w=w||1500,fq=fq||10,n=n==-1?-1:1;
+    box.innerHTML+=box.innerHTML;
+    box.onmouseover=function(){can=false};
+    box.onmouseout=function(){can=true};
+    var max=parseInt(box.scrollHeight/2);
+    new function (){
+            var stop=box.scrollTop%130==0&&!can;
+            if(!stop){
+                    var set=n>0?[max,0]:[0,max];
+                    box.scrollTop==set[0]?box.scrollTop=set[1]:box.scrollTop+=n;
+            };
+            setTimeout(arguments.callee,box.scrollTop%130?fq:w);
+    };
+};
 </script>

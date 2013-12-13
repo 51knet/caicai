@@ -145,6 +145,7 @@ public class HomeController {
 		model.addAttribute("requirementList", requirementList);
 		session.setAttribute("requirementCount", GlobalDefs.HOME_PATENT_REQUIRE_COUNT);
 		session.setAttribute("patentTradeCount", GlobalDefs.HOME_PATENT_TRADE_COUNT);
+		session.setAttribute("patentCNCount", GlobalDefs.HOME_PATENT_CN_COUNT);
 		
 		model.addAttribute("activityList", activityList);
 		

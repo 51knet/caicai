@@ -11,4 +11,5 @@ public interface UserService {
 	User getValidUser(String email, String psw);
 	User getValidEmail(String email);
 	List<User> findAllUser();
+	boolean login(String email, String password);
 }

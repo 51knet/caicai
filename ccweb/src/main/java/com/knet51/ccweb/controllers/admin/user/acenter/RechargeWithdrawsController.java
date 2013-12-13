@@ -24,9 +24,9 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Recharge;
 import com.knet51.ccweb.jpa.entities.RechargeHistory;
 import com.knet51.ccweb.jpa.entities.WithdrawsApply;
-import com.knet51.ccweb.jpa.services.RechargeHistoryService;
-import com.knet51.ccweb.jpa.services.RechargeService;
-import com.knet51.ccweb.jpa.services.WithdrawsApplyService;
+import com.knet51.ccweb.jpa.services.trade.RechargeHistoryService;
+import com.knet51.ccweb.jpa.services.trade.RechargeService;
+import com.knet51.ccweb.jpa.services.trade.WithdrawsApplyService;
 import com.knet51.ccweb.util.ajax.AjaxValidationEngine;
 import com.knet51.ccweb.util.ajax.ValidationResponse;
 @Controller

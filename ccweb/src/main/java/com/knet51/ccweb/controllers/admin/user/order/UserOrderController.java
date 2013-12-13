@@ -15,8 +15,8 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.UserOrder;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
-import com.knet51.ccweb.jpa.services.CourseService;
-import com.knet51.ccweb.jpa.services.OrderService;
+import com.knet51.ccweb.jpa.services.course.CourseService;
+import com.knet51.ccweb.jpa.services.trade.OrderService;
 
 
 @Controller

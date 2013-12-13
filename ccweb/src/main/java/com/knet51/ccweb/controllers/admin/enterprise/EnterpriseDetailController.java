@@ -20,11 +20,11 @@ import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Enterprise;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.services.EnterpriseService;
-import com.knet51.ccweb.jpa.services.RechargeHistoryService;
-import com.knet51.ccweb.jpa.services.RechargeService;
 import com.knet51.ccweb.jpa.services.UserService;
-import com.knet51.ccweb.jpa.services.WithdrawsApplyService;
+import com.knet51.ccweb.jpa.services.enterprise.EnterpriseService;
+import com.knet51.ccweb.jpa.services.trade.RechargeHistoryService;
+import com.knet51.ccweb.jpa.services.trade.RechargeService;
+import com.knet51.ccweb.jpa.services.trade.WithdrawsApplyService;
 
 @Controller
 public class EnterpriseDetailController {

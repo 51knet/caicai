@@ -3,17 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript">
-	function selectType(id) {
-		var sel = document.getElementById("type");
-		var opt = sel.options;
-		for ( var i = 0; i < opt.length; i++) {
-			if (opt[i].selected) {
-				var typeName = opt[i].innerHTML;
-				window.location.href = '<c:url value="/teacher/'+id+'/course/type?detail='
-						+ typeName + '"></c:url>';
-			}
-		}
-	}
+
 </script>
 <style>
 	.detail{
@@ -64,14 +54,14 @@
 <div class="container title"  >
  	 <table >
  	 	<tr>
- 	 		<td width="20%" align="center"><h4>所有课程（${courseCount}）</h4></td>
+ 	 		<td width="20%" align="center"><h4>所有成果（${courseCount}）</h4></td>
  	 		<td></td>
  	 	</tr>
  	 </table>
  </div>
 <div class="container user-course" >
 	<c:if test="${courseCount <= 0}">
-		<h4 style="margin-left: 70px;">尚未发布课程</h4>
+		<h4 style="margin-left: 70px;">尚未发布</h4>
 	</c:if>
  	<c:forEach items="${teacherCourseList}" var="course">
 			<table cellpadding="10" style="width: 430px;   margin-bottom: 10px;  float: left; margin-left: 50px;"  >

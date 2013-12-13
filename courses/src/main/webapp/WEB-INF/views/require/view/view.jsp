@@ -53,13 +53,8 @@
 			<span class="middle">公司名称：--- 保 密 ---</span><br>
 			<span class="middle" style="float: left;">联系方式：</span>
 				<div class=" dropdown" style="margin-top: 2px;">
-					<a href="#" style="text-decoration: none;" class="dropdown-toggle"  data-toggle="dropdown">点击查看</a>
-					<div class="dropdown-menu" style="text-align: left; margin-left:70px; width: 200px; height: 80px; padding:10px 15px; line-height: 30px;" role="menu" aria-labelledby="dropdownMenu">
-							联系电话：400-8567-4582<br>
-							QQ在线：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=826619119&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:826619119:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
-					</div>
+					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=826619119&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:826619119:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
 				</div>
-
 		</div>
 	</div>
 	<div class="top ">详情</div>

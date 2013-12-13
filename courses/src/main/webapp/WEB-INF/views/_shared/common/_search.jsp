@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<script type="text/javascript" src="<c:url value="/resources/js/mytab.js" />"></script>
+<!-- <script type="text/javascript" src="<c:url value="/resources/js/mytab.js" />"></script> -->
 <style>
 .container.search-bar {
 	background-image: url("/courses/resources/img/default/search_bg.png");
@@ -55,30 +55,31 @@ width: 385px; height: 100px; border: 1px solid #ccc; margin-top: -48px; margin-l
 	            <li><div style="position: relative;">
 	            <form class="navbar-form"  action="<c:url value="/search/patent"></c:url>"  method="get" name="search_post_form">
 						<select class="form-control" style="width: 100px; background-color: #a7c676; border: 0px; color: #fff; font-family:Arial,'Microsoft YaHei';" name="types">
-							  <option value="patentNum" selected="selected">专利号</option>
-							  <option value="patentName">专利名</option>
+							<option value="patentName" selected="selected">专利名</option>
+							  <option value="patentNum" >专利号</option>
 							  <option value="inventer">发明人</option>
 						</select> <input type="text" name="searchParam" id="searchInput" style="width: 380px;" placeholder="搜索"  value="${searchParam }" > <button type="submit" class="btn btn_font" style=" ">搜 索</button>	
-							<div style="margin-left: 100px; margin-top: -5px;">
-							<!--<c:forEach items="${patentTypeList }" var="patentTypeList">
-								<label class="radio inline" >
-									<input type="radio" name="patentType" value="${patentTypeList.id}"  <c:if test="${patentTypeList.id ==1 }"> checked</c:if>  > ${patentTypeList.typeName }
-								</label>
-							</c:forEach>-->
-								<label class="radio inline" >
-									<input type="radio" name="patentType" value="1"   checked="checked"> 发明专利
-								</label>
-								<label class="radio inline" >
-									<input type="radio" name="patentType" value="2" > 实用新型
-								</label>
-								<label class="radio inline" >
-									<input type="radio" name="patentType" value="3"  > 外观设计
-								</label>
-								<label class="radio inline" >
-									<input type="radio" name="patentType" value="4" > 发明授权
-								</label>
-								<a href="<c:url value='/search/patent/detail'></c:url> " class="btn btn-success btn-small  btn_font" style="color: #fff; height: 18px; font-size: 13px; margin-left: 36px; margin-top: 10px;">高级搜索</a>
+							<div style="margin-left: 100px; margin-top: -5px; float: left; text-align: left; width: 460px;">
+								<table width="100%" >
+										<tr><td align="left">
+											<label class="radio inline" >
+												<input type="radio" name="patentType" value="1"   checked="checked"> 发明专利
+											</label>
+											<label class="radio inline" >
+												<input type="radio" name="patentType" value="2" > 实用新型
+											</label>
+											<label class="radio inline" >
+												<input type="radio" name="patentType" value="3"  > 外观设计
+											</label>
+											<label class="radio inline" >
+												<input type="radio" name="patentType" value="4" > 发明授权
+											</label>
+										</td>
+										<td align="right">	<a href="<c:url value='/search/patent/detail'></c:url> " class="btn btn-success btn-small  btn_font" style="color: #fff; height: 18px; font-size: 13px; margin-top: 10px;">高级搜索</a></td>
+										</tr>
+								</table>		
 							</div>
+						
 	            </form>
 	            	</div> 
 	            </li>
@@ -100,11 +101,12 @@ width: 385px; height: 100px; border: 1px solid #ccc; margin-top: -48px; margin-l
 	    </div>
 	  
 	</div>
+	<!-- 
 	  <div style="width: 80px; height: 40px;  float: left; margin-top: 24px; margin-left: 20px;">
 		<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=826619119&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:826619119:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a><br>
 	
 		</div>
-
+ -->
 </div>
 <!-- 
 <div id="searchDropdown"  >

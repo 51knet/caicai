@@ -15,8 +15,8 @@ import com.knet51.ccweb.jpa.entities.FriendsRelated;
 import com.knet51.ccweb.jpa.entities.ReceiveMsg;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
-import com.knet51.ccweb.jpa.services.ReceiveMsgService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.msg.ReceiveMsgService;
 import com.knet51.ccweb.util.mailSender.MailSender;
 
 @Controller

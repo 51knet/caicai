@@ -21,15 +21,15 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
-import com.knet51.ccweb.jpa.services.AnnoPhotoService;
-import com.knet51.ccweb.jpa.services.AnnouncementService;
-import com.knet51.ccweb.jpa.services.CourseTypeService;
-import com.knet51.ccweb.jpa.services.EnterpriseTeacherService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
-import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherHonorService;
+import com.knet51.ccweb.jpa.services.announcement.AnnoPhotoService;
+import com.knet51.ccweb.jpa.services.announcement.AnnouncementService;
+import com.knet51.ccweb.jpa.services.course.CourseService;
+import com.knet51.ccweb.jpa.services.course.CourseTypeService;
+import com.knet51.ccweb.jpa.services.enterprise.EnterpriseTeacherService;
 
 @Controller
 public class EnterpriseTeacherInfoFrontPageController {

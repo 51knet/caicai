@@ -6,26 +6,23 @@
 <style>
 
 </style>
+ <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> 专家列表 </div>
 <div class="container teacher">
-		<div class="selete_filter">
+			<!-- <div class="selete_filter">
 			<select >
-				<option>全部教师</option>
+				<option>全部专家</option>
 			</select>
-			<!-- <span>大学</span><span>中学</span><span>小学</span><span>其他</span> -->
-		</div>
-		<div class="container title"  >
-		 	 <table  >
-		 	 	<tr>
-		 	 		<td width="18%" align="center"><h4>热门教师（${fn:length(teacherList)}）</h4></td>
-		 	 		<td></td>
-		 	 	</tr>
-		 	 </table>
-  		</div>
+		<span>大学</span><span>中学</span><span>小学</span><span>其他</span>
+		</div> -->
+
+	<div class="container title"  >
+		<div class="innerLeftTitle">热门专家（${fn:length(teacherList)}）</div>
+ 	</div>
   	<div class="bgimg">
 	<c:choose>
 	<c:when test="${fn:length(teacherList)==0}">
        <div class="teacherInfo">
-       	<h3>暂无教师数据</h3>
+       	<h3>暂无数据</h3>
        </div>
 	</c:when>
 	<c:otherwise>

@@ -19,11 +19,11 @@ import com.knet51.ccweb.jpa.entities.UserOrder;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
-import com.knet51.ccweb.jpa.services.CourseResourceService;
-import com.knet51.ccweb.jpa.services.CourseService;
-import com.knet51.ccweb.jpa.services.OrderService;
 import com.knet51.ccweb.jpa.services.UserCourseService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.course.CourseResourceService;
+import com.knet51.ccweb.jpa.services.course.CourseService;
+import com.knet51.ccweb.jpa.services.trade.OrderService;
 
 @Controller
 public class UserPayController {

@@ -5,13 +5,13 @@
 			<div class="row" style="text-align: center;margin-left: 0px;">
 				<div>
 					<p>
-						<a href='<c:url value="/about"></c:url>' >平台简介</a> | 
+						<a href='<c:url value="/about"></c:url>' >关于我们</a> | 
 						<a href='<c:url value="/contact"></c:url>' >联系我们</a> | 
 						<a href='<c:url value="#"></c:url>' >服务帮助</a> | 
 						<a href='<c:url value="#"></c:url>' >法律声明</a>
 					</p>
 				</div>
-				<div><p>知识网版权所有 沪ICP备20110827 CopyRight © 2011-2012</p></div>
+				<div><p>版权所有 沪ICP备20110827 CopyRight © 2006-2013</p></div>
 				<div>
 		 <div style="display:none">
 		<script language="javascript" type="text/javascript" src="http://js.users.51.la/15789894.js"></script>

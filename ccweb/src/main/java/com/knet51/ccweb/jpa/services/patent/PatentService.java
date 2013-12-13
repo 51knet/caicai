@@ -9,6 +9,7 @@ import com.knet51.ccweb.jpa.entities.patent.Patent;
 
 public interface PatentService {
 	Page<Patent> findPatentByUser(int pageNum , int pageSize, User user);
+	Page<Patent> findPatent(int pageNum, int pageSize);
 	List<Patent> findPatentListByUser(User user);
  	void create(Patent patent);
  	void update(Patent patent);

@@ -16,10 +16,10 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
-import com.knet51.ccweb.jpa.services.ResourceService;
-import com.knet51.ccweb.jpa.services.ResourceTypeService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.resources.ResourceService;
+import com.knet51.ccweb.jpa.services.resources.ResourceTypeService;
 
 @Controller
 public class TeacherResouInfoFrontPageController {

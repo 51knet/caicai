@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.EnterpriseTeacher;
-import com.knet51.ccweb.jpa.services.EnterpriseTeacherService;
+import com.knet51.ccweb.jpa.services.enterprise.EnterpriseTeacherService;
 import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 
 

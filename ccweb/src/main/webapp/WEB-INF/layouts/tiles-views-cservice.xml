@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="admin.cservice.home" extends="admin-layout">
+		<put-attribute name="title" value="账号信息" />
+		<put-attribute name="left" value="/WEB-INF/views/cservice/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/account/accountInfo.jsp"></put-attribute>
+	</definition>
+	
+	
+	
+</tiles-definitions>

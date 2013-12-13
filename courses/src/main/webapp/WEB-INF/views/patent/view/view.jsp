@@ -3,7 +3,15 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<script type="text/javascript" src="<c:url value='/resources/js/loginCheck.js'></c:url>"></script>
+<%
+	String queryUrl = new org.springframework.web.util.UrlPathHelper().getOriginatingQueryString(request);
+	String requestUrl = new org.springframework.web.util.UrlPathHelper().getOriginatingRequestUri(request);
+	if(queryUrl.contains("pageNumber")){
+		queryUrl =queryUrl.substring(0, queryUrl.lastIndexOf("&"));
+	}
+	String currentUrl = requestUrl+"?"+queryUrl;
+%>
 <style>
 .titlebg{
 	background-color:#ccdfa8; 
@@ -46,13 +54,7 @@
  <div class="container patent">
 	<div class="top ">${patent.patentName }
 		 <span style="float: right; margin-right: 60px;">	
-			<div class=" dropdown" style="font-size: 15px;">
-				<a href="#" style="text-decoration: none;" class="dropdown-toggle"  data-toggle="dropdown">点击咨询</a>
-				<div class="dropdown-menu" style="text-align: left;  width: 200px; height: 80px; padding:10px 15px; line-height: 30px;" role="menu" aria-labelledby="dropdownMenu">
-						联系电话：400-8567-4582<br>
-						QQ在线：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=826619119&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:826619119:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
-				</div>
-			</div>
+				<a href="#" style="text-decoration: none;" class="dropdown-toggle"  data-toggle="dropdown"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=826619119&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:826619119:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></a>
 		</span>
 	</div>
 	<div class="bottom   tLine_dash">	
@@ -77,6 +79,31 @@
 			    <td align="center" bgcolor="#f3f3f3">公开日期</td>
 			    <td>${patent.publishDate}</td>
 			  </tr>
+			   <tr>
+			    <td align="center" bgcolor="#f3f3f3">联系人</td>
+			    <td>
+			    	<c:choose>
+			    		<c:when test="${sessionUserInfo != null }">
+			    			张小姐
+			    		</c:when>
+			    		<c:otherwise>
+			    			<a class="loginPostBtn" href="#loginPostModal" role="button" data-toggle="modal" data-target="#loginPostModal">登录后显示</a>
+			    		</c:otherwise>
+			    	</c:choose>
+			    </td>
+			    <td align="center" bgcolor="#f3f3f3">联系电话</td>
+			    <td>
+			    	<c:choose>
+			    		<c:when test="${sessionUserInfo != null }">
+			    			021-68369338
+			    		</c:when>
+			    		<c:otherwise>
+			    			<a class="loginPostBtn" href="#loginPostModal" role="button" data-toggle="modal" data-target="#loginPostModal">登录后显示</a>
+			    		</c:otherwise>
+			    	</c:choose>
+			    </td>
+			  </tr>
+			  
 			  <tr>
 			    <td align="center" bgcolor="#f3f3f3">主分类号</td>
 			    <td colspan="3">${patent.mainClassNum}</td>
@@ -99,5 +126,42 @@
 	</div>
  </div>
 
-
-
+<!-- login  -->
+<div class="modal hide fade" id="loginPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h4 id="myModalLabel">登录</h4>
+	  </div>
+	   <div style="padding: 10px 20px;">
+			<form action="<c:url value='/signin'></c:url>" id="login_form"  method="post">
+				<input type="hidden" value="<%=currentUrl  %>" name="currentUrl">
+				<div class="control-group" id="email">
+					<label class="control-label" for="email">邮箱</label>
+					<div class="controls">
+						<input type="text" name="email" placeholder="邮箱"> <span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="control-group" id="password">
+					<label class="control-label" for="password">密码</label>
+					<div class="controls">
+						<input type="password" name="password" placeholder="密码"><span class="help-inline"  id="passwordErr"></span>
+					</div>
+				</div>
+				<div>
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit"  class="btn btn-success" onclick="return checkEmailAndPwd();">登录</button>
+							   <button type="reset" class="btn" >重置</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			
+		
+		</div>
+</div>
+<script type="text/javascript">
+function checkEmailAndPwd(){
+	return checkEmailAndPass("login_form",'checkEmailAndPassword');
+}
+</script>

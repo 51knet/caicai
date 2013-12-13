@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
-import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.course.CourseService;
 
 @Controller
 public class CommonController {

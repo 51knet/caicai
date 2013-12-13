@@ -18,10 +18,10 @@ import com.knet51.ccweb.controllers.common.defs.GlobalDefs;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.resource.ResourceType;
-import com.knet51.ccweb.jpa.services.ResourceService;
-import com.knet51.ccweb.jpa.services.ResourceTypeService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.resources.ResourceService;
+import com.knet51.ccweb.jpa.services.resources.ResourceTypeService;
 import com.knet51.ccweb.util.MyUtil;
 
 @Controller

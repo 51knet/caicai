@@ -17,6 +17,7 @@ import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.ccweb.jpa.repository.UserCourseRepository;
 import com.knet51.ccweb.jpa.repository.UserRepository;
+import com.knet51.ccweb.jpa.services.course.CourseService;
 @Transactional
 @Service("userCourseService")
 public class UserCourseServiceImpl implements UserCourseService {

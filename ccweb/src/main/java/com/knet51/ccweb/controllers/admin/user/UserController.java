@@ -34,16 +34,16 @@ import com.knet51.ccweb.jpa.entities.WorkExp;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.timeline.Trends;
 import com.knet51.ccweb.jpa.services.CommentService;
-import com.knet51.ccweb.jpa.services.CourseService;
-import com.knet51.ccweb.jpa.services.EduBackgroundService;
 import com.knet51.ccweb.jpa.services.FriendsRelateService;
-import com.knet51.ccweb.jpa.services.KnowledgeService;
-import com.knet51.ccweb.jpa.services.ReceiveMsgService;
 import com.knet51.ccweb.jpa.services.StudentService;
 import com.knet51.ccweb.jpa.services.TrendsService;
 import com.knet51.ccweb.jpa.services.UserService;
-import com.knet51.ccweb.jpa.services.WorkExpService;
+import com.knet51.ccweb.jpa.services.course.CourseService;
+import com.knet51.ccweb.jpa.services.msg.ReceiveMsgService;
 import com.knet51.ccweb.jpa.services.promotion.UserRecommendService;
+import com.knet51.ccweb.jpa.services.resume.EduBackgroundService;
+import com.knet51.ccweb.jpa.services.resume.KnowledgeService;
+import com.knet51.ccweb.jpa.services.resume.WorkExpService;
 
 
 /**

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.services.AnnouncementService;
 import com.knet51.ccweb.jpa.services.UserService;
+import com.knet51.ccweb.jpa.services.announcement.AnnouncementService;
 @Controller
 public class SendMsgInfoPageController {
 	

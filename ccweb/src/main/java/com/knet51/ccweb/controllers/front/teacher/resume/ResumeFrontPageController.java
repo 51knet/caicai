@@ -18,14 +18,14 @@ import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
-import com.knet51.ccweb.jpa.services.EduBackgroundService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
-import com.knet51.ccweb.jpa.services.WorkExpService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherHonorService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherPatentService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherProjectService;
 import com.knet51.ccweb.jpa.services.achievement.TeacherThesisService;
+import com.knet51.ccweb.jpa.services.resume.EduBackgroundService;
+import com.knet51.ccweb.jpa.services.resume.WorkExpService;
 
 /**
  * Handles requests for the application home page.

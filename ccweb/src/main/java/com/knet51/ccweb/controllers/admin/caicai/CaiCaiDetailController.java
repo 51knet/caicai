@@ -32,16 +32,16 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.entities.courses.Course;
-import com.knet51.ccweb.jpa.services.AnnouncementService;
-import com.knet51.ccweb.jpa.services.AuthenticationService;
 import com.knet51.ccweb.jpa.services.BlogService;
-import com.knet51.ccweb.jpa.services.CourseResourceService;
-import com.knet51.ccweb.jpa.services.RechargeService;
-import com.knet51.ccweb.jpa.services.ResourceService;
-import com.knet51.ccweb.jpa.services.CourseService;
 import com.knet51.ccweb.jpa.services.TeacherService;
 import com.knet51.ccweb.jpa.services.UserService;
 import com.knet51.ccweb.jpa.services.activity.ActivityService;
+import com.knet51.ccweb.jpa.services.announcement.AnnouncementService;
+import com.knet51.ccweb.jpa.services.authentication.AuthenticationService;
+import com.knet51.ccweb.jpa.services.course.CourseResourceService;
+import com.knet51.ccweb.jpa.services.course.CourseService;
+import com.knet51.ccweb.jpa.services.resources.ResourceService;
+import com.knet51.ccweb.jpa.services.trade.RechargeService;
 @Controller
 public class CaiCaiDetailController {
 	private static final Logger logger = LoggerFactory
