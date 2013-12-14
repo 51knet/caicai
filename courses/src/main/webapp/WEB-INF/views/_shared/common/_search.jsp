@@ -58,7 +58,7 @@ width: 385px; height: 100px; border: 1px solid #ccc; margin-top: -48px; margin-l
 							<option value="patentName" selected="selected">专利名</option>
 							  <option value="patentNum" >专利号</option>
 							  <option value="inventer">发明人</option>
-						</select> <input type="text" name="searchParam" id="searchInput" style="width: 380px;" placeholder="搜索"  value="${searchParam }" > <button type="submit" class="btn btn_font" style=" ">搜 索</button>	
+						</select> <input type="text" name="searchParam" id="searchInput" style="width: 357px;" placeholder="搜索"  value="${searchParam }" > <button type="submit" class="btn btn_font" style=" ">普通搜索</button>	
 							<div style="margin-left: 100px; margin-top: -5px; float: left; text-align: left; width: 460px;">
 								<table width="100%" >
 										<tr><td align="left">
@@ -75,7 +75,7 @@ width: 385px; height: 100px; border: 1px solid #ccc; margin-top: -48px; margin-l
 												<input type="radio" name="patentType" value="4" > 发明授权
 											</label>
 										</td>
-										<td align="right">	<a href="<c:url value='/search/patent/detail'></c:url> " class="btn btn-success btn-small  btn_font" style="color: #fff; height: 18px; font-size: 13px; margin-top: 10px;">高级搜索</a></td>
+										<td align="right">	<a href="<c:url value='/search/patent/detail'></c:url> " class="btn btn-success btn-small  btn_font" style="color: #fff; font-size: 13px; margin: 10px 0px 0px 2px; width: 60px;">高级搜索</a></td>
 										</tr>
 								</table>		
 							</div>

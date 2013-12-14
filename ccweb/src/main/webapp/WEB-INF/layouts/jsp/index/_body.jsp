@@ -221,8 +221,8 @@ function logout() {
 					<h5 style="text-align: left; line-height: 5px; margin-top: 10px;">角色选择</h5>
 					<div class="controls" style="text-align: left; margin-top: -5px;">
 						<label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 8pt; width: 20%;"> <input type="radio" name="userType" id="user" value="user" checked>普通用户</label>
-						<label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 8pt; width: 20%;"> <input type="radio" name="userType" id="teacher" value="teacher" >教师用户
-						</label> <label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 8pt; width: 20%;"> <input type="radio" name="userType" id="enterprise" value="enterprise">企业用户
+						<label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 8pt; width: 20%;"> <input type="radio" name="userType" id="teacher" value="teacher" >教师用户</label>
+						 <label class="radio inline" style="font-family: 'Microsoft YaHei'; font-size: 8pt; width: 20%;"> <input type="radio" name="userType" id="enterprise" value="enterprise">企业用户
 						</label>
 					</div>
 				</div>

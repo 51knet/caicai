@@ -65,7 +65,7 @@
 	
 	.marketing .rightContainer .rightContent {
 		float: left; width: 100%;
-	  height: 358px;border: 1px solid #e0e7c8;
+	  height: 329px;border: 1px solid #e0e7c8;
 	  border-top: 0px;
 	  
 	}
@@ -76,6 +76,7 @@
 	.require{
 		width: 1024px;
 		height: 300px;
+		margin: 0px 0px 15px 0px;
 	}
 	
 	.require  .top{
@@ -110,7 +111,7 @@
 	}
 	.require .centerDiv .centerContent{
 		margin-top:55px;
-		height: 220px;
+		height: 290px;
 		background-image: url("<c:url value='/resources/img/default/centerline.png'></c:url>");
 		background-position: center top;
 		background-repeat: repeat-y;
@@ -166,7 +167,7 @@
 	  		<div >
 		  		<div class="span6">
 		  			<ul>
-		  				<li class="bb">国内专利</li>
+		  			<!-- <li class="bb">国内专利</li> -->	
 						<c:forEach items="${patentList }" var="patentList" begin="0" step="2" end="18"  >
 							<li ><div id="contentlimit" style="width:310px; float: left;">
 							<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${patentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon.png'></c:url>" >  ${patentList.patentName }</a>
@@ -176,7 +177,7 @@
 		  		</div>
 		  		<div class="span6" >
 		  			<ul>
-		  			<li class="bb">国际专利</li>
+		  		<!-- <li class="bb">国际专利</li> -->	
 						<c:forEach items="${patentList }" var="patentList" begin="1" step="2" end="19">
 							<li   ><div id="contentlimit" style="width:310px; float: left;">
 								<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${patentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon.png'></c:url>" >  ${patentList.patentName }</a>
@@ -221,14 +222,15 @@
  		</div>
  		<div class="leftContent">
 			<ul>
-					<c:forEach items="${patentRequire }" var="patentRequire"  begin="0" step="1" end="6">
+					<c:forEach items="${patentRequire }" var="patentRequire"  begin="0" end="9">
 					<li ><div id="contentlimit" style="width:360px; float: left;" class="bLine_dash">
-					<img src="<c:url value='/resources/img/default/icon.png'></c:url>" >  <a class="a_color_ccc"  href="<c:url value="/requirement/view/${ patentRequire.id}"></c:url>">${patentRequire.title }</a>
+					<img src="<c:url value='/resources/img/default/icon.png'></c:url>" >  <a class="a_color_ccc"  href="<c:url value="/requirement/patent/view/${ patentRequire.id}"></c:url>">${patentRequire.title }</a>
 					</div></li>
 				</c:forEach>
 			</ul>
 			<br>
 			<a class="a_color_green"  style="text-decoration: none; float: right;" href="<c:url value="/requirement/patent/list"></c:url>" >更多>></a>
+			<br>
  		</div>
  	</div>
  	<div class="centerDiv"><div class="centerContent"></div></div>
@@ -238,19 +240,19 @@
  		</div>
 	 	<div class="rightContent">
  			<ul>
-				<c:forEach items="${technologyRequire}" var="technologyRequire"  begin="0" step="1" end="6">
+				<c:forEach items="${technologyRequire}" var="technologyRequire"  begin="0"  end="9">
 					<li ><div id="contentlimit" style="width:360px; float: left;" class="bLine_dash">
-					<a class="a_color_ccc"  href="<c:url value="/requirement/view/${ technologyRequire.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon.png'></c:url>" >  ${technologyRequire.title }</a>
+					<a class="a_color_ccc"  href="<c:url value="/requirement/technology/view/${ technologyRequire.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon.png'></c:url>" >  ${technologyRequire.title }</a>
 					</div></li>
 				</c:forEach>
 			</ul>
 			<br>
-			<a class="a_color_green"  style="text-decoration: none; float: right;" href="<c:url value="/requirement/technology/list"></c:url>" >更多>></a>
+			<a class="a_color_green"  style="text-decoration: none; float: right;" href="<c:url value="/requirement/technology/list"></c:url>" >更多>></a>	
 	 	</div>
  	</div>
 </div>
 
-<div class="container teacher" >
+<div class="container teacher" style="margin-top: 80px;">
 	  <div class="container title">
 		 <table >
 		 	<tr>

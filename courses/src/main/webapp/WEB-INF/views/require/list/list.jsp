@@ -19,15 +19,15 @@
 	 margin: 10px 55px;
 }
 .active{
-	background-color:#ccdfa8;
+	background-color:#5f7e20;
 }
 
 
 </style>
  <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <c:if test='${active == "technology" }'>技术需求</c:if><c:if test='${active == "patent" }'>专利需求</c:if> </div>
 <div class="container title"  >
-		<div class="innerLeftTitle " ><a href="<c:url value="/requirement/patent/list"></c:url>">专利需求</a></div>
-		<div class="innerLeftTitle" style="margin-left: 10px; "><a href="<c:url value="/requirement/technology/list"></c:url>" >技术需求</a></div>
+		<div class="innerLeftTitle <c:if test='${active == "patent" }'> active</c:if> " ><a href="<c:url value="/requirement/patent/list"></c:url>">专利需求</a></div>
+		<div class="innerLeftTitle <c:if test='${active == "technology" }'> active</c:if> " style="margin-left: 10px; "><a href="<c:url value="/requirement/technology/list"></c:url>" >技术需求</a></div>
  </div>
 
  <div class="container patent">

@@ -28,6 +28,7 @@
 	width: 90%;
 }
 </style>
+ <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> 高级搜索 </div>
 <div class="container title"  >
 		<div class="innerLeftTitle">详细搜索</div>
  </div>
@@ -96,7 +97,7 @@
 			</div>
  </div>
  <div class="container patent row-fluid offset4">
- 				<button type="submit" class="btn-large btn-success">搜索</button>&nbsp;&nbsp;
+ 				<button type="submit" class="btn btn-success">搜索</button>&nbsp;&nbsp;
 				<button type="reset" class="btn">重置</button>
  </div>
 				

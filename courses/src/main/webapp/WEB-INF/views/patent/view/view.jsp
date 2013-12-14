@@ -127,7 +127,7 @@
  </div>
 
 <!-- login  -->
-<div class="modal hide fade" id="loginPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal hide fade" id="loginPostModal" style="width: 500px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	    <h4 id="myModalLabel">登录</h4>
@@ -136,22 +136,22 @@
 			<form action="<c:url value='/signin'></c:url>" id="login_form"  method="post">
 				<input type="hidden" value="<%=currentUrl  %>" name="currentUrl">
 				<div class="control-group" id="email">
-					<label class="control-label" for="email">邮箱</label>
+				
 					<div class="controls">
-						<input type="text" name="email" placeholder="邮箱"> <span class="help-inline"></span>
+						邮箱：<input type="text" name="email" placeholder="邮箱"> <span class="help-inline"></span>
 					</div>
 				</div>
 				<div class="control-group" id="password">
-					<label class="control-label" for="password">密码</label>
+					
 					<div class="controls">
-						<input type="password" name="password" placeholder="密码"><span class="help-inline"  id="passwordErr"></span>
+						密码：<input type="password" name="password" placeholder="密码"><span class="help-inline"  id="passwordErr"></span>
 					</div>
 				</div>
 				<div>
 					<div class="control-group">
-						<div class="controls">
-							<button type="submit"  class="btn btn-success" onclick="return checkEmailAndPwd();">登录</button>
-							   <button type="reset" class="btn" >重置</button>
+						<div class="controls ">
+							<button style="margin-left: 42px;" type="submit"  class="btn btn-success " onclick="return checkEmailAndPwd();">登录</button>
+							 <a style="margin-left: 10px;"  class="btn"  href="<c:url value='${url }'></c:url>">注册</a> <a href="<c:url value='${url }'></c:url>"  style="margin-left: 20px;"> 忘记密码？</a>
 						</div>
 					</div>
 				</div>

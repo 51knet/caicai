@@ -70,19 +70,19 @@ public class LoginController {
 				if (forbidden != null && forbidden.equals("yes")) {
 					return "redirect:"+currentUrl;
 				}
-//				// confirmed users;
-//				// if (loginForm.getRemeberMe() == 1) {
-//				String encodedEmail = new String(
-//						Base64.encode(email.getBytes()),
-//						Charset.forName("US-ASCII"));
-//				logger.debug(encodedEmail);
-//				Cookie cookie = new Cookie(GlobalDefs.COOKIE_IDENTITY,
-//						encodedEmail);
-//				// cookie.setDomain("localhost");
-//				cookie.setPath("/");
-//				// cookie.setMaxAge(60 * 60 * 24 * 14);
-//				response.addCookie(cookie);
-//				// }
+				// confirmed users;
+				// if (loginForm.getRemeberMe() == 1) {
+				String encodedEmail = new String(
+						Base64.encode(email.getBytes()),
+						Charset.forName("US-ASCII"));
+				logger.debug(encodedEmail);
+				Cookie cookie = new Cookie(GlobalDefs.COOKIE_IDENTITY,
+						encodedEmail);
+				// cookie.setDomain("localhost");
+				cookie.setPath("/");
+				// cookie.setMaxAge(60 * 60 * 24 * 14);
+				response.addCookie(cookie);
+				// }
 				UserInfo userInfo = new UserInfo(user);
 				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 				logger.info(userInfo.getEmail() + " = " + userInfo.getId());
@@ -95,8 +95,14 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/signout", method = RequestMethod.GET)
-	public String signout(HttpSession session, HttpServletRequest request) {
+	public String signout(HttpSession session, HttpServletRequest request,HttpServletResponse response) {
 		session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
+		String killCookie = "";
+		Cookie cookie = new Cookie(GlobalDefs.COOKIE_IDENTITY, killCookie);
+		// cookie.setDomain("localhost");
+		cookie.setPath("/");
+		// cookie.setMaxAge(60 * 60 * 24 * 14);
+		response.addCookie(cookie);
 		return "redirect:/";
 	}
 	
