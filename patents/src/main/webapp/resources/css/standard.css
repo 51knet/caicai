@@ -1,0 +1,167 @@
+/*style for all pages with top level navbar*/
+body {
+	padding-top: 40px;
+	/*padding-bottom: 40px;*/ /*since by default we use white background, but now we use images*/
+	min-width: 1024px;
+	max-width: 1024px;
+	height: 700px;
+	width: 1024px;
+	margin: 0 auto;
+}
+/*top level navbar*/
+.navbar.custom {
+	height: 39px;
+	z-index: 2;
+	background: url(../img/default/navbar.png) center;
+}
+
+/*banner*/
+.banner {
+	background-color: #ECECF0;
+	height: 80px;
+}
+
+/*footer*/
+.footer-text {
+	text-align: center;
+}
+
+/*logo*/
+#logo {
+	width: 145px;
+	height: 36px;
+	position: absolute;
+	margin-left: 50px;
+	text-indent: -999em;
+	background: url(../img/default/logo.png)  no-repeat;
+	top: 6px;
+	box-shadow: none;
+}
+
+/*courselogo*/
+.courselogo {
+	width: 60px;
+	margin-top: -5px;
+}
+
+.goto {
+	width: 30px;
+	margin-top: -5px;
+}
+
+/*fonts*/
+body {
+	/*font-family:Arial,/*'Microsoft YaHei',Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;*/
+	font-family:'Microsoft YaHei',Arial;
+	font-size:13px;
+	/*background: url(../img/default/index/bg.png);*/
+	color: #444;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight:bold;
+	letter-spacing:-0.05em;
+	font-family:'Microsoft YaHei',Arial;
+}
+.navbar .nav a {
+	font-family:'Microsoft YaHei',Arial;
+}
+textarea {
+	border:1px solid #A6A6A6;
+	padding:2px 1px;
+	font-size:12px;
+	font-family:'Microsoft YaHei',Verdana,"BitStream vera Sans",Tahoma,Helvetica,Sans-serif;
+}
+
+#content{
+	overflow: hidden; 
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+/*banner_front*/
+.banner_front {
+	background-color: #ECECF0;
+	/*height: 224px;*/
+}
+.leftInfo{
+	background-color: #ccdfa8; 
+	margin-bottom: 20px; 
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+
+}
+.leftInfo .top{
+	/*border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;*/
+	height: 40px; 
+	text-align: center; 
+	padding-top:1px; 
+	background-color: #b1cf75;
+}
+.leftInfo .content{
+	text-align: left; 
+	margin-left: 40px; 
+	margin-right: 40px; 
+	margin-top: 10px; 
+	padding-bottom:10px;
+	line-height: 25px;
+}
+
+.eleftInfo{
+	margin-bottom: 20px; 
+	background: #fff5e0;
+	border: 1px solid #f77605;
+	/*border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;*/
+
+}
+.eleftInfo .top{
+	height: 40px; 
+	text-align: center; 
+	padding-top:1px; 
+	color: #f2e690;
+	background-color: #f77605;
+}
+.eleftInfo .content{
+	text-align: left; 
+	margin-left: 20px; 
+	margin-right: 20px; 
+	margin-top: 10px; 
+	padding-bottom:10px;
+	line-height: 25px;
+	color: #80b029;
+}
+
+/*START style-for-admin-pages*/
+body.admin {
+	max-width: 1680px;
+	width: 100%;
+	/*background-image: url(/ccweb/resources/img/default/front_bg.png);*/
+	/*background-color: #929294;*/
+	background-position: center top;
+	background-repeat: repeat-y;
+}
+.admin .container-fluid {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.admin .container-fluid.content-centered {
+	min-width: 1024px;
+	max-width: 1024px;
+	width: 1024px;
+	margin: 0 auto;
+	/*background-color: white;*/
+}
+.admin .left-panel {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	/*background-color: #ccdfa8;*/
+}
+
+/*END style-for-admin-pages*/

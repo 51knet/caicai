@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<!--  message -->
+	
+	<definition name="admin.sendmessage" extends="frontPage-layout">
+		<put-attribute name="title" value="个人主页" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/sendMessage.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.message.detail" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/receiveMsg.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.message.send" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/receiveMsgDetail.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.message.isReadDetail" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/isReadMsg.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.message.isDeleDetail" extends="admin-layout">
+		<put-attribute name="title" value="私信" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/message/isDeleMsg.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="course.pay.view" extends="homepage-layout">
+		<put-attribute name="title" value="支付页面" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pay/pay.jsp"></put-attribute>
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<definition name="course.cart.view" extends="homepage-layout">
+		<put-attribute name="title" value="支付页面" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pay/cart.jsp"></put-attribute>
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<definition name="admin.order.detail" extends="homepage-layout">
+		<put-attribute name="title" value="支付页面" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/order/orderDetail.jsp"></put-attribute>
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+</tiles-definitions>

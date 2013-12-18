@@ -10,6 +10,7 @@
 			scope="page"></c:set>
 		<s:eval expression="page.hasPreviousPage()" var="hasPreviousPage"></s:eval>
 		<s:eval expression="page.hasNextPage()" var="hasNextPage"></s:eval>
+		<s:eval expression="page.isFirstPage()" var="isFirstPage"></s:eval>
 		<ul>
 			<c:choose>
 				<c:when test="${hasPreviousPage}">
@@ -19,7 +20,7 @@
 					<li><a href="#" class="disabled">上一页</a></li>
 				</c:otherwise>
 			</c:choose>
-			<li><a href="#" class="active">${page.number+1}/${page.totalPages}</a></li>
+			<li><a href="#" class="active">${page.number+1}/${page.totalPages}</a></li> 
 			<c:choose>
 				<c:when test="${hasNextPage}">
 					<li><a href='${current_url}?pageNumber=${next}'>下一页</a></li>

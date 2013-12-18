@@ -51,9 +51,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<!-- The TheServletContextListener should be declared after ContextLoaderListener since we need DI for this listener -->
-	<listener>
-		<listener-class>com.knet51.patents.util.TheServletContextListener</listener-class>
-	</listener>
+
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
@@ -88,15 +86,7 @@
 	   <url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<filter>
-		<display-name>AuthorizationListener</display-name>
-		<filter-name>AuthorizationListener</filter-name>
-		<filter-class>com.knet51.patents.util.AuthorizationListener</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>AuthorizationListener</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+
 	
 	<error-page>
 		<error-code>404</error-code>
@@ -109,5 +99,5 @@
 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
 		<location>/WEB-INF/views/_single_jsp/global_error.jsp</location>
-  	</error-page>
+  	</error-page> 
 </web-app>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="admin.user.details" extends="user-admin-layout">
+		<put-attribute name="title" value="账号信息" />
+		<put-attribute name="left" value="/WEB-INF/views/user/pcenter/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/pcenter/account/accountInfo.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.resume" extends="user-admin-layout">
+		<put-attribute name="title" value="个人信息" />
+		<put-attribute name="left" value="/WEB-INF/views/user/pcenter/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/pcenter/resume/resumeEdit.jsp"></put-attribute>
+	</definition>
+
+	<definition name="admin.user.requirement.list" extends="user-admin-layout">
+		<put-attribute name="title" value="我的需求" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/requirement/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.requirement.new" extends="user-admin-layout">
+		<put-attribute name="title" value="我的需求" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/requirement/new/create.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.user.requirement.edit" extends="user-admin-layout">
+		<put-attribute name="title" value="我的需求" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/requirement/edit/edit.jsp"></put-attribute>
+	</definition>
+	
+
+	
+	
+	
+
+
+	
+
+
+	
+</tiles-definitions>

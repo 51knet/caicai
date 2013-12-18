@@ -15,7 +15,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	 
 	<jpa:repositories base-package="com.knet51.ccweb.jpa.repository" />
- 	
+
  	
 	<!-- JPA related -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
@@ -27,6 +27,8 @@
 	<beans:bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
+		<!-- <property name="packagesToScan" value="com.oreilly.springdata.jpa" 
+			/> -->
 		<beans:property name="jpaVendorAdapter">
 			<beans:bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<!-- <property name="database" value="HSQL" /> -->
@@ -59,22 +61,11 @@
 	
 	<!-- aop configuration -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-	
+
 	 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
-        <!-- one of the properties available; the maximum file size in bytes 200M --> 
-       <!-- <property name="resolveLazily" value="true"/> -->   
-        <property name="maxUploadSize" value="200000000" /> 
+      
     </bean>
      
-     <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
-        <property name="exceptionMappings">  
-            <props>  
-                <!-- 遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/jsp/error_fileupload.jsp页面 -->  
-                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">teacherResouAddErrorPage</prop>  
-                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">studentResouAddErrorPage</prop>  
-           </props>  
-        </property>  
-    </bean>  
 
 	
 </beans>

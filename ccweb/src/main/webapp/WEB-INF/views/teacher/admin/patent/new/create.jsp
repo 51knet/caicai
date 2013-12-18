@@ -40,28 +40,18 @@
 			<div class="control-group" id="patentType">
 				<i class="icon-star"></i>专利类型：
 					<select name="patentType" >
-					  	 		<c:choose>
-				  				<c:when test="${typeList.id == patent.patentType.id }">
-				  					<option value="${typeList.id }" selected>${typeList.typeName }</option>
-				  				</c:when>
-				  				<c:otherwise>
-				  					<option value="${typeList.id }" >${typeList.typeName }</option>
-				  				</c:otherwise>
-				  			</c:choose>
+				  			<c:forEach items="${pTypeList }" var="typeList">
+				  				<option value="${typeList.id }" >${typeList.typeName }</option>
+				  			</c:forEach>
 					</select>
 			</div>
 			
 			<div class="control-group" id="patentField">
 				<i class="icon-star"></i>适用领域：
 					<select name="patentField">
-				  			<c:choose>
-				  				<c:when test="${fieldList.fieldName  == patent.patentField}">
-				  					<option value="${fieldList.fieldName }" selected>${fieldList.fieldName }</option>
-				  				</c:when>
-				  				<c:otherwise>
-				  					<option value="${fieldList.fieldName }" >${fieldList.fieldName }</option>
-				  				</c:otherwise>
-				  			</c:choose>
+		  					<c:forEach items="${pFieldList }" var="fieldList">
+		  						<option value="${fieldList.fieldName }" >${fieldList.fieldName }</option>
+		  					</c:forEach>
 					</select>
 			</div>
 		
