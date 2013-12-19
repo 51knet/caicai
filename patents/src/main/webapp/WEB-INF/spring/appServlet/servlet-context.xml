@@ -38,8 +38,8 @@
 				<beans:value>WEB-INF/layouts/tiles-views-home.xml</beans:value>
 				<beans:value>WEB-INF/layouts/tiles-views-debug.xml</beans:value>
 				<beans:value>WEB-INF/layouts/tiles-views-teacher.xml</beans:value>
-				<beans:value>WEB-INF/layouts/tiles-views-blog.xml</beans:value>
 				<beans:value>WEB-INF/layouts/tiles-views-common.xml</beans:value>
+				<beans:value>WEB-INF/layouts/tiles-views-user.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

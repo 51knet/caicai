@@ -74,8 +74,17 @@
 					<i class="icon-star"></i> 专利名称：<input type="text" name="patentName"   placeholder="专利名称"  required value="${patent.patentName }"> <span class="help-inline"><form:errors path="patentName" /></span>
 				</div>
 			</div>
-			
-				<div class="control-group" id="mainClassNum">
+			<div class="control-group"  > 
+				<div class="controls">
+						<i class="icon-star"></i> 专利范围：	<label class="radio inline" >
+						<input type="radio" name="country" value="0" <c:if test="${patent.country ==0 }"> checked</c:if> >国内
+					</label>
+					<label class="radio inline" >
+						<input type="radio" name="country" value="1"  <c:if test="${patent.country ==1 }"> checked</c:if>>国外
+					</label>
+				</div>
+			</div>
+			<div class="control-group" id="mainClassNum">
 				<div class="controls">
 					<i class="icon-star"></i> 主分类号：<input type="text" name="mainClassNum"   placeholder="主分类号"  required value="${patent.mainClassNum }"> <span class="help-inline"><form:errors path="mainClassNum" /></span>
 				</div>

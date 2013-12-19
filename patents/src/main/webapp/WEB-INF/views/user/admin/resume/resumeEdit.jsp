@@ -107,8 +107,8 @@
 							<div class="control-group" id="graduateTime">
 								<label class="control-label" for="graduateTime">毕业年份</label>
 								<div class="controls">
-									<input type="text" name="graduateTime" value="${sessionUserInfo.student.graduateTime}" placeholder="毕业年份">
-									<span class="help-inline"><form:errors path="graduateTime"></form:errors></span><span style="font-size: 14px; color: red;">示例：2010-01-01</span>
+									<input type="text" name="graduateTime" value="${sessionUserInfo.student.graduateTime}" placeholder="毕业年份"  class="Wdate" onClick="WdatePicker()">
+									<span class="help-inline"><form:errors path="graduateTime"></form:errors></span>
 								</div>
 							</div>
 					
@@ -215,7 +215,7 @@
 							<div class="control-group" id="lowStartTime">
 								<label class="control-label" for="lowStartTime">入学时间</label>
 								<div class="controls">
-									<input type="text"  name="lowStartTime"  placeholder="入学时间"> <span class="help-inline"></span>
+									<input type="text"  name="lowStartTime"  placeholder="入学时间"  class="Wdate" onClick="WdatePicker()"> <span class="help-inline"></span>
 								</div>
 							</div>
 							<div class="control-group">
@@ -268,7 +268,7 @@
 							<div class="control-group" id="highStartTime">
 								<label class="control-label" for="highStartTime">入学时间</label>
 								<div class="controls">
-									<input type="text"  name="highStartTime"  placeholder="入学时间"> <span class="help-inline"></span>
+									<input type="text"  name="highStartTime"  placeholder="入学时间"  class="Wdate" onClick="WdatePicker()"> <span class="help-inline"></span>
 								</div>
 							</div>
 							<div class="control-group">
@@ -368,13 +368,13 @@
 							<div class="control-group" id="startTime">
 								<label class="control-label" for="startTime">入职时间</label>
 								<div class="controls">
-									<input type="text" name="startTime" placeholder="入职时间"> <span class="help-inline"><form:errors path="startTime" /></span>
+									<input type="text" name="startTime" placeholder="入职时间"  class="Wdate" onClick="WdatePicker()"> <span class="help-inline"><form:errors path="startTime" /></span>
 								</div>
 							</div>
 							<div class="control-group" id="endTime">
 								<label class="control-label" for="endTime">离职时间</label>
 								<div class="controls">
-									<input type="text" name="endTime" placeholder="离职时间"> <span class="help-inline"><form:errors path="endTime" /></span>
+									<input type="text" name="endTime" placeholder="离职时间"  class="Wdate" onClick="WdatePicker()"> <span class="help-inline"><form:errors path="endTime" /></span>
 								</div>
 							</div>
 							<div class="control-group">

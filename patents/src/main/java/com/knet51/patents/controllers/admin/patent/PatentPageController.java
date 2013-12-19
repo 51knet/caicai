@@ -48,11 +48,17 @@ public class PatentPageController {
 		logger.info("===== into patent list controller ====");
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
-		List<Patent> patentList = patentService.findPatentListByUser(user);
-		Page<Patent> page = patentService.findPatentByUser(pageNumber, pageSize, user);
-		model.addAttribute("patent", patentList);
-		model.addAttribute("patentCount", patentList.size());
-		model.addAttribute("page", page);
+	
+		
+		try {
+			List<Patent> patentList = patentService.findPatentListByUser(user);
+			Page<Patent> page = patentService.findPatentByUser(pageNumber, pageSize, user);
+			model.addAttribute("patent", patentList);
+			model.addAttribute("patentCount", patentList.size());
+			model.addAttribute("page", page);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "admin."+userInfo.getRole()+".patent.list";
 	}
 	

@@ -39,10 +39,19 @@ public final class GlobalDefs {
 	public static final String MSG_TYPES_FOCUS = "focus";
 	
 	//super admin's pwd
-	public static final String SUPER_ADMIN_PWD = "caicai6688";
+	public static final String KEFU_ADMIN_PWD = "caicai6688";
 	
+	// patent status
 	public static final Integer PATENT_STORE = 1;
 	public static final Integer PATENT_PUBLISH = 2;
+	
+	// the patent show status in home page
+	public static final Integer PATENT_HOME_FOCUS = 1;
+	public static final Integer PATENT_HOME_FOCUS_NOT = 0;
+	
+	// the patent belong to china or foreign
+	public static final Integer PATENT_CHINA = 0;
+	public static final Integer PATENT_FOREIGN = 1;
 	
 	public static Map<String,String> getUserEduExpMap(){
 		Map<String,String> map = new HashMap<String, String>();

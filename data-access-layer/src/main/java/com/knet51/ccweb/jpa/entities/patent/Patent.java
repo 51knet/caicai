@@ -26,7 +26,11 @@ public class Patent {
 	@Lob
 	private String summary;
 	
-	private Integer status;
+	private Integer status;// store or publish
+	
+	private Integer focus; // show it in home page or not
+	
+	private Integer country;// 1 foreign; 0 chinese;
 	
 	@ManyToOne
 	private PatentType patentType;
@@ -145,5 +149,18 @@ public class Patent {
 	public Patent() {
 		super();
 	}
+	public Integer getFocus() {
+		return focus;
+	}
+	public void setFocus(Integer focus) {
+		this.focus = focus;
+	}
+	public Integer getCountry() {
+		return country;
+	}
+	public void setCountry(Integer country) {
+		this.country = country;
+	}
+	
 	
 }

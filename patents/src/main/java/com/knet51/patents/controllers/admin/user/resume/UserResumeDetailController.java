@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.patents.beans.UserInfo;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
+import com.knet51.patents.jpa.services.StudentService;
 import com.knet51.patents.jpa.services.UserService;
 import com.knet51.patents.jpa.services.resume.EduBackgroundService;
 import com.knet51.patents.jpa.services.resume.WorkExpService;
@@ -42,6 +43,8 @@ public class UserResumeDetailController {
 	private EduBackgroundService eduBackgroundService;
 	@Autowired
 	private WorkExpService workExpService;
+	@Autowired
+	private StudentService studentService;
 
 	
 	/**
@@ -82,9 +85,16 @@ public class UserResumeDetailController {
 					user.setPhoto_url(photoUrl+photoName);
 				}
 			}
-			
+			Student student = new Student(user);
+			student.setCollege(personalInfoForm.getCollege());
+			student.setClassNum(personalInfoForm.getClassNum());
+			student.setGraduateTime(personalInfoForm.getGraduateTime());
+			student.setMajor(personalInfoForm.getMajor());
+			student.setTeacher(personalInfoForm.getTeacher());
+			student = studentService.createStudent(student);
 			User newUser = userService.updateUser(user);
 			userInfo.setUser(newUser);
+			userInfo.setStudent(student);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
 			
 			String message = "个人信息保存成功";

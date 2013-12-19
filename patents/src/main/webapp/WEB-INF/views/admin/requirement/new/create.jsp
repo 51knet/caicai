@@ -63,7 +63,7 @@
 			
 			<div class="control-group" id="phone">
 				<div class="controls">
-						联系电话： <input type="text" name="phone" placeholder="联系电话" > <span class="help-inline"><form:errors path="phone" /></span>
+						联系电话： <input type="text" name="phone" placeholder="联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>
 				</div>
 			</div>
 			<div class="control-group" id="address">

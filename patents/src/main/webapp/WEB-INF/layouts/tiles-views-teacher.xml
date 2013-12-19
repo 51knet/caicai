@@ -8,20 +8,20 @@
 
 	<definition name="admin.teacher.details" extends="admin-layout">
 		<put-attribute name="title" value="账号信息" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/account/accountInfo.jsp"></put-attribute>
 	</definition>
 
 	<definition name="admin.teacher.resume" extends="admin-layout">
 		<put-attribute name="title" value="完善简历" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/resume/resumeEdit.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/resume/resumeEdit.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
 
 	<definition name="admin.teacher" extends="admin-layout">
-		<put-attribute name="title" value="教师中心" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="title" value="专家中心" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/teacher/home/home.jsp"></put-attribute>
 	</definition>
 	
@@ -29,101 +29,58 @@
 
 	<definition name="admin.teacher.achievement.list" extends="admin-layout">
 		<put-attribute name="title" value="个人成果" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/achievement/list/list.jsp"></put-attribute>
 	</definition>
 
 	<!-- teacher selfurl -->
 	<definition name="admin.teacher.selfurl" extends="admin-layout">
 		<put-attribute name="title" value="账号信息" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/account/selfUrl.jsp"></put-attribute>
 	</definition>
 
-	
 
-	
-	<!-- teacher trend -->
-	
-	<definition name="admin.teacher.trend" extends="admin-layout">
-		<put-attribute name="title" value="好友动态" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/trend/list/list.jsp"></put-attribute>
-	</definition>
-	
-	<definition name="admin.teacher.trend.detail" extends="admin-layout">
-		<put-attribute name="title" value="好友动态" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/trend/view/view.jsp"></put-attribute>
-	</definition>
-
-
-	<!-- teacher front page -->
-	
-	<definition name="teacher.basic" extends="frontPage-layout">
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="title" value="教师主页" />
-	</definition>
-
-	<definition name="teacher.resume" extends="frontPage-layout">
-		<put-attribute name="title" value="简历" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/front/resume/resume.jsp"></put-attribute>
-	</definition>
-
-
-	<definition name="teacher.course.list" extends="frontPage-layout">
-		<put-attribute name="title" value="教师课程" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/front/course/list/list.jsp"></put-attribute>
-	</definition>
-
-	<definition name="teacher.course.view" extends="frontPage-layout">
-		<put-attribute name="title" value="教师课程" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/teacher/front/course/view/view.jsp"></put-attribute>
-	</definition>
-	
 	<!-- teacher patent  -->
 	<definition name="admin.teacher.patent.list" extends="admin-layout">
 		<put-attribute name="title" value="专利列表" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/patent/list/list.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/patent/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.teacher.patent.new" extends="admin-layout">
 		<put-attribute name="title" value="新建专利" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/patent/new/create.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/patent/new/create.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.teacher.patent.view" extends="admin-layout">
 		<put-attribute name="title" value="专利展示" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/patent/view/view.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/patent/view/view.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.teacher.patent.edit" extends="admin-layout">
 		<put-attribute name="title" value="专利展示" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/patent/edit/edit.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/patent/edit/edit.jsp"></put-attribute>
 	</definition>
 	
 	<!--teacher  requirement -->
 	<definition name="admin.teacher.requirement.list" extends="admin-layout">
 		<put-attribute name="title" value="我的需求" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/requirement/list/list.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/requirement/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.teacher.requirement.new" extends="admin-layout">
 		<put-attribute name="title" value="我的需求" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/requirement/new/create.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/requirement/new/create.jsp"></put-attribute>
 	</definition>
 	<definition name="admin.teacher.requirement.edit" extends="admin-layout">
 		<put-attribute name="title" value="我的需求" />
-		<put-attribute name="left" value="/WEB-INF/views/teacher/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/requirement/edit/edit.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/requirement/edit/edit.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

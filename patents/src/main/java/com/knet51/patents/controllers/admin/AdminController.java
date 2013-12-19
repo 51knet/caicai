@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.patents.beans.UserInfo;
+import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
+import com.knet51.patents.jpa.services.StudentService;
 import com.knet51.patents.jpa.services.TeacherService;
 import com.knet51.patents.jpa.services.UserService;
 import com.knet51.patents.util.ajax.AjaxValidationEngine;
@@ -41,6 +43,9 @@ public class AdminController {
 	private UserService userService;
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private StudentService studentService;
+
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model, HttpSession session) {
@@ -68,8 +73,10 @@ public class AdminController {
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 
 		if (userInfo != null && userInfo.getRole().equals("user")) {
+			Student student = studentService.findOne(userInfo.getId());
+			userInfo.setStudent(student);
 			session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-			return "redirect:/admin/trend/all/all";
+			return "redirect:/admin/details?active=photo";
 		} else if (userInfo != null && userInfo.getRole().equals("teacher")) {
 			return "redirect:/admin/teacher";
 		} else {
@@ -107,13 +114,14 @@ public class AdminController {
 		UserInfo userInfo;
 		userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		model.addAttribute("userInfoModel", userInfo);
+		//model.addAttribute("userInfoModel", userInfo);
 		String role = userInfo.getRole();
 		if (active == null || active.equals("")) {
 			active = "avatar";
 		}
 		model.addAttribute("active", active);
 		if (role.equals("user")) {
+			logger.info("-- into admin details user photo ---");
 			return "admin.user.details";
 		} else if (role.equals("teacher")) {
 			return "admin.teacher.details";

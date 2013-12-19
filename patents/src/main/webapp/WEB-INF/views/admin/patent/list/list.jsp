@@ -26,11 +26,11 @@
 
 <div class="row-fluid custom round">
 	<div class="row">
-		<h4>个人专利</h4>
+		<h4>我的专利</h4>
 	</div>
 	<div class="content">
 		<a  style="float: right;" href='<c:url value="/admin/patent/new"></c:url>' class="btn">添加新专利</a><br><br>
-		<table class="blue" id="mytab" cellpadding="4" width=100%  border=0>
+		<table class=" <c:if test="${sessionUserInfo.role == 'teacher'}">blue</c:if> <c:if test="${sessionUserInfo.role == 'user'}">yellow</c:if>" id="mytab" cellpadding="4" width=100%  border=0>
 			<thead>
 				<tr><th width="20%">申请号</th><th>名称</th><th  width="15%">申请日</th><th width="12%">操作</th></tr>
 			</thead>

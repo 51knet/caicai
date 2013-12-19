@@ -75,17 +75,11 @@ font-weight: bold;
 				    	<a href='<c:url value="/pcenter/details"><c:param name="active" value="photo" /></c:url>' >上传头像</a> 
 				    </div>
 			   </div>
-			<div style="width: 60px;" id="content"><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	</div>
+			<div style="width: 130px;" id="content"><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	</div>
 			</c:when>
 			<c:otherwise>
-				<table cellpadding="2" style="width: 100%;" border="0">
-					<tr>
-						<td align="left" valign="top" width="50%"><img src="${avatar_url}" style="margin: 10px 5px; width: 60px; " ></td>
-						<td  align="left" valign="top" >
-							<div style="width: 60px;" id="content"><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	</div>	
-						</td>
-					</tr>
-				</table>
+				<img src="${avatar_url}" style="margin: 5px 5px; width: 100px; " >
+				<div style="width: 150px; text-align: center;" id="content"><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	</div>	
 			</c:otherwise>
 		</c:choose>
 	</div>

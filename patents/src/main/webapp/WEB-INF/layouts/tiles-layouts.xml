@@ -21,7 +21,7 @@
 	</definition>
 	
 	<definition name="homepage-layout" template="/WEB-INF/layouts/jsp/index.jsp">
-		<put-attribute name="title" value="知识网" />
+		<put-attribute name="title" value="技术市场后台" />
 		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_index-top-navbar.jsp" />
 		<put-attribute name="body" value="/WEB-INF/layouts/jsp/index/_body.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />

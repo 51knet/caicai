@@ -34,7 +34,7 @@ public class PatentDetailController {
 	private PatentFieldService patentFieldService;
 	@RequestMapping(value="/admin/patent/add",method = RequestMethod.POST)
 	public String addPatent(@Valid PatentForm patentForm, BindingResult validResult,HttpSession session,
-			@RequestParam("patentType") Long type_id,Model model){
+			@RequestParam("patentType") Long type_id,@RequestParam("country") Integer country,Model model){
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/admin/patent/new";
@@ -58,6 +58,12 @@ public class PatentDetailController {
 			patent.setStatus(GlobalDefs.PATENT_STORE);
 			patent.setPatentType(patentType);
 			patent.setUser(userInfo.getUser());
+			patent.setFocus(GlobalDefs.PATENT_HOME_FOCUS_NOT);
+			if(country.equals(GlobalDefs.PATENT_FOREIGN)){
+				patent.setCountry(GlobalDefs.PATENT_FOREIGN);
+			}else{
+				patent.setCountry(GlobalDefs.PATENT_CHINA);
+			}
 			patent.setPatentField(patentForm.getPatentField());
 			
 			
@@ -69,7 +75,7 @@ public class PatentDetailController {
 	
 	@RequestMapping(value="/admin/patent/edit/add",method = RequestMethod.POST)
 	public String editPatent(@Valid PatentForm patentForm, BindingResult validResult,HttpSession session,
-			@RequestParam("patentType") Long type_id,Model model){
+			@RequestParam("patentType") Long type_id,Model model,@RequestParam("country") Integer country){
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/admin/patent/edit/"+patentForm.getPatentNum();
@@ -94,7 +100,11 @@ public class PatentDetailController {
 			patent.setPatentType(patentType);
 			patent.setUser(userInfo.getUser());
 			patent.setPatentField(patentForm.getPatentField());
-			
+			if(country.equals(GlobalDefs.PATENT_FOREIGN)){
+				patent.setCountry(GlobalDefs.PATENT_FOREIGN);
+			}else{
+				patent.setCountry(GlobalDefs.PATENT_CHINA);
+			}
 			patentService.update(patent);
 			model.addAttribute("patent", patent);
 			return "admin."+userInfo.getRole()+".patent.view";

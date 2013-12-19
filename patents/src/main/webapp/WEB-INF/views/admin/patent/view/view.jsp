@@ -33,7 +33,7 @@
 		<h4>专利详细</h4>
 	</div>
 	<div class="content">
-			<table width="100%" height="" border="1" cellpadding="5" cellspacing="0"  class="blue">
+			<table width="100%" height="" border="1" cellpadding="5" cellspacing="0"   class=" <c:if test="${sessionUserInfo.role == 'teacher'}">blue</c:if> <c:if test="${sessionUserInfo.role == 'user'}">yellow</c:if>"   >
 			<tr>
 			    <td width="122" align="center" bgcolor="#f3f3f3">专利号码</td>
 			    <td width="190">${patent.patentNum}</td>
@@ -62,7 +62,9 @@
 			  </tr>
 			  <tr>
 			    <td align="center" bgcolor="#f3f3f3">分类号码</td>
-			    <td colspan="3">${patent.classNum }</td>
+			    <td >${patent.classNum }</td>
+			    <td align="center" bgcolor="#f3f3f3">专利范围</td>
+			    <td ><c:if test="${patent.country == 1 }">国外</c:if><c:if test="${patent.country == 0 }">国内</c:if></td>
 			  </tr>
 			  <tr>
 			    <td align="center" bgcolor="#f3f3f3">申请人</td>

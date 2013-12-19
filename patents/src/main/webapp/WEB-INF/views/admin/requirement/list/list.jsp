@@ -33,7 +33,7 @@
 	<div class="content">	
 		<a  style="float: right;" href='<c:url value="/admin/requirement/new"></c:url>' class="btn">新需求</a><br><br>
 	
-			<table class="blue" id="mytab" cellpadding="7" width=100%  border=0>
+			<table class=" <c:if test="${sessionUserInfo.role == 'teacher'}">blue</c:if> <c:if test="${sessionUserInfo.role == 'user'}">yellow</c:if>"    id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
 					<tr>
 						<th width="25%">标题</th>
