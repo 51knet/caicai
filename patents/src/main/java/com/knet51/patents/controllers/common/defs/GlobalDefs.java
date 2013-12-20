@@ -42,8 +42,8 @@ public final class GlobalDefs {
 	public static final String KEFU_ADMIN_PWD = "caicai6688";
 	
 	// patent status
-	public static final Integer PATENT_STORE = 1;
-	public static final Integer PATENT_PUBLISH = 2;
+	public static final Integer PATENT_WAITE = 0;
+	public static final Integer PATENT_PASS = 1;
 	
 	// the patent show status in home page
 	public static final Integer PATENT_HOME_FOCUS = 1;
@@ -52,6 +52,11 @@ public final class GlobalDefs {
 	// the patent belong to china or foreign
 	public static final Integer PATENT_CHINA = 0;
 	public static final Integer PATENT_FOREIGN = 1;
+	
+	// activity photo's width and height
+	public static final int ACTIVITY_PHOTO_WIDTH = 440;
+	public static final int ACTIVITY_PHOTO_HEIGHT = 220;
+	
 	
 	public static Map<String,String> getUserEduExpMap(){
 		Map<String,String> map = new HashMap<String, String>();

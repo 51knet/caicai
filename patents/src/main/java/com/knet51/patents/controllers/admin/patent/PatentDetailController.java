@@ -55,7 +55,7 @@ public class PatentDetailController {
 			patent.setPublishDate(patentForm.getPublishDate());
 			patent.setPublishNum(patentForm.getPublishNum());
 			patent.setSummary(patentForm.getSummary());
-			patent.setStatus(GlobalDefs.PATENT_STORE);
+			patent.setStatus(GlobalDefs.PATENT_WAITE);
 			patent.setPatentType(patentType);
 			patent.setUser(userInfo.getUser());
 			patent.setFocus(GlobalDefs.PATENT_HOME_FOCUS_NOT);
@@ -96,7 +96,7 @@ public class PatentDetailController {
 			patent.setPublishDate(patentForm.getPublishDate());
 			patent.setPublishNum(patentForm.getPublishNum());
 			patent.setSummary(patentForm.getSummary());
-			patent.setStatus(GlobalDefs.PATENT_STORE);
+			patent.setStatus(GlobalDefs.PATENT_WAITE);
 			patent.setPatentType(patentType);
 			patent.setUser(userInfo.getUser());
 			patent.setPatentField(patentForm.getPatentField());

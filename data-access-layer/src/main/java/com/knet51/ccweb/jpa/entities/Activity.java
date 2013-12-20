@@ -12,6 +12,8 @@ public class Activity extends AbstractEntity {
 	@Lob
 	private String content;
 	
+	private String filePath;
+	
 	private Date date;
 	
 	@ManyToOne
@@ -43,6 +45,12 @@ public class Activity extends AbstractEntity {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 	
 }

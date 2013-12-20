@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="admin.kefu.activity.list" extends="admin-layout">
+		<put-attribute name="title" value="活动管理" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/activity/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.activity.create" extends="admin-layout">
+		<put-attribute name="title" value="活动管理" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/activity/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.activity.edit" extends="admin-layout">
+		<put-attribute name="title" value="活动管理" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/activity/edit/edit.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.patent.list" extends="admin-layout">
+		<put-attribute name="title" value="专利列表" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/patent/list/list.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.kefu.patent.view" extends="admin-layout">
+		<put-attribute name="title" value="专利详情" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/patent/view/view.jsp"></put-attribute>
+	</definition>
+
+</tiles-definitions>

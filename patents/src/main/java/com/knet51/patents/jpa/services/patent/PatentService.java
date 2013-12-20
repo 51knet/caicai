@@ -12,9 +12,14 @@ public interface PatentService {
 	Page<Patent> findPatent(int pageNum, int pageSize);
 	List<Patent> findPatentListByUser(User user);
  	void create(Patent patent);
- 	void update(Patent patent);
+ 	Patent update(Patent patent);
  	void delete(String patentNum);
  	Patent findOne(String patentNum);
  	
+ 	Page<Patent> findPatentByStatus(int pageNum , int pageSize,Integer status);
+ 	Page<Patent> findPatentByCountry(int pageNum , int pageSize,Integer country);
+	Page<Patent> findPatentByFocus(int pageNum , int pageSize,Integer focus);
+	Page<Patent> findPatentByPatentNumLike(int pageNum , int pageSize,String patentNum);
+	Page<Patent> findPatgentByPatentNameLike(int pageNum , int pageSize,String patentName);
  	
 }

@@ -20,7 +20,7 @@ public class PatentServiceImpl implements PatentService {
 	
 	@Override
 	public Page<Patent> findPatentByUser(int pageNum, int pageSize, User user) {
-		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "patentNum");
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "publishDate","patentNum");
 		Page<Patent> onePage = patentRespository.findPatentByUser(user, pageable);
 		return onePage;
 	}
@@ -36,8 +36,9 @@ public class PatentServiceImpl implements PatentService {
 	}
 
 	@Override
-	public void update(Patent patent) {
-		patentRespository.saveAndFlush(patent);
+	public Patent update(Patent patent) {
+		return patentRespository.saveAndFlush(patent);
+	
 	}
 
 	@Override
@@ -53,8 +54,48 @@ public class PatentServiceImpl implements PatentService {
 
 	@Override
 	public Page<Patent> findPatent(int pageNum, int pageSize) {
-		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "publishDate");
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "publishDate","patentNum","focus");
 		Page<Patent> page = patentRespository.findAll(pageable);
+		return page;
+	}
+
+	@Override
+	public Page<Patent> findPatentByCountry(int pageNum, int pageSize,
+			Integer country) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "publishDate","patentNum","focus");
+		Page<Patent> page = patentRespository.findPatentByCountry(country, pageable);
+		return page;
+	}
+
+	@Override
+	public Page<Patent> findPatentByFocus(int pageNum, int pageSize,
+			Integer focus) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "publishDate","patentNum","focus");
+		Page<Patent> page = patentRespository.findPatentByFocus(focus, pageable);
+		return page;
+	}
+
+	@Override
+	public Page<Patent> findPatentByPatentNumLike(int pageNum, int pageSize,
+			String patentNum) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "publishDate","patentNum","focus");
+		Page<Patent> page = patentRespository.findPatentByPatentNumLike(patentNum, pageable);
+		return page;
+	}
+
+	@Override
+	public Page<Patent> findPatgentByPatentNameLike(int pageNum, int pageSize,
+			String patentName) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "publishDate","patentNum","focus");
+		Page<Patent> page = patentRespository.findPatentByPatentNameLike(patentName, pageable);
+		return page;
+	}
+
+	@Override
+	public Page<Patent> findPatentByStatus(int pageNum, int pageSize,
+			Integer status) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "publishDate","patentNum");
+		Page<Patent> page = patentRespository.findPatentByStatus(status, pageable);
 		return page;
 	}
 

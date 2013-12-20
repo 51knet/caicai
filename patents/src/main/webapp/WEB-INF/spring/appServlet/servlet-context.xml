@@ -40,6 +40,7 @@
 				<beans:value>WEB-INF/layouts/tiles-views-teacher.xml</beans:value>
 				<beans:value>WEB-INF/layouts/tiles-views-common.xml</beans:value>
 				<beans:value>WEB-INF/layouts/tiles-views-user.xml</beans:value>
+				<beans:value>WEB-INF/layouts/tiles-views-kefu.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
