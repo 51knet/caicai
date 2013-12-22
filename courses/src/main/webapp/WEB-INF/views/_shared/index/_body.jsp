@@ -201,10 +201,12 @@
 				</c:if>
 				<ul>
 					<c:forEach items="${activityList }" var="activityList" begin="0"  end="9">
-						<li ><div id="contentlimit" style="width:200px; float: left;" class="bLine_dash">
-								<a class="a_color_ccc"  href="<c:url value="/activity/view/${ activityList.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon.png'></c:url>" >  ${activityList.title }</a>
-						</div></li>
-						
+						<li >
+							<div id="contentlimit" class=" bLine_dash activities_title"  style="width:200px; position: relative;">
+									<a class="a_color_ccc"  href="<c:url value="/activity/view/${ activityList.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon.png'></c:url>" >${activityList.title }</a>
+							</div>
+							<div style="position: absolute; z-index: 100; margin-top:-5px; padding:3px 3px; font-size:13px;  height: 20px; border: 1px solid #ccc; background-color: #fff; display: none;">${activityList.title }</div>
+						</li>
 					</c:forEach>
 				</ul>
 					<br>
@@ -363,6 +365,13 @@ function mytab(tab_id, content_id){
 	}
 }*/
 window.onload = function (){
+	$(".activities_title").mouseover(function (){
+		$(this).next().css("display","block");
+	});
+	$(".activities_title").mouseout(function (){
+		$(this).next().css("display","none");
+	});
+	var sc = new Scroll(document.getElementById("scroll"));  
 	myFlash('myflash',2000,-1);
 };
 function myFlash(id,w,n){

@@ -87,7 +87,7 @@
 			    			张小姐
 			    		</c:when>
 			    		<c:otherwise>
-			    			<a class="loginPostBtn" href="#loginPostModal" role="button" data-toggle="modal" data-target="#loginPostModal">登录后显示</a>
+			    			<a class="loginPostBtn" href="#loginPostModal" role="button" data-toggle="modal" data-target="#loginPostModal">查看</a>
 			    		</c:otherwise>
 			    	</c:choose>
 			    </td>
@@ -98,7 +98,7 @@
 			    			021-68369338
 			    		</c:when>
 			    		<c:otherwise>
-			    			<a class="loginPostBtn" href="#loginPostModal" role="button" data-toggle="modal" data-target="#loginPostModal">登录后显示</a>
+			    			<a class="loginPostBtn" href="#loginPostModal" role="button" data-toggle="modal" data-target="#loginPostModal">查看</a>
 			    		</c:otherwise>
 			    	</c:choose>
 			    </td>
