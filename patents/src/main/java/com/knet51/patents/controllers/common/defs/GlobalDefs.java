@@ -57,6 +57,10 @@ public final class GlobalDefs {
 	public static final int ACTIVITY_PHOTO_WIDTH = 440;
 	public static final int ACTIVITY_PHOTO_HEIGHT = 220;
 	
+	// requirement status
+	public static final Integer REQUIREMENT_WAITE = 0;
+	public static final Integer REQUIREMENT_PASS = 1;
+	
 	
 	public static Map<String,String> getUserEduExpMap(){
 		Map<String,String> map = new HashMap<String, String>();

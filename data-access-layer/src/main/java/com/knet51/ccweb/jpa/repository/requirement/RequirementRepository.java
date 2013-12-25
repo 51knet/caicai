@@ -17,4 +17,6 @@ public interface RequirementRepository extends JpaRepository<Requirement, Long>,
 	Page<Requirement> findReqireByRequirType(RequirType type, Pageable pageable);
 	List<Requirement> findRequirByUser(User user,Sort sort);
 	List<Requirement> findRequirByRequirType(RequirType type, Sort sort);
+	
+	Page<Requirement> findReqireByStatus(Integer status, Pageable pageable);
 }

@@ -12,9 +12,12 @@ public interface RequirementService {
 	Requirement create(Requirement requirement);
 	Requirement findOne(Long require_id);
 	void delete(Long id);
-	void update(Requirement requirement);
+	Requirement update(Requirement requirement);
 	Page<Requirement> findRequireByUser(int pageNum, int pageSize, User user );
 	Page<Requirement> findRequireByRequireType(int pageNum, int pageSize, RequirType type);
+	Page<Requirement> findRequireAll(int pageNum, int pageSize);
 	List<Requirement> findRequireListByUser(User user);
 	List<Requirement> findRequiteListByRequireType(RequirType type);
+	
+	Page<Requirement> findRequireByStatus(int pageNum, int pageSize, Integer status);
 }

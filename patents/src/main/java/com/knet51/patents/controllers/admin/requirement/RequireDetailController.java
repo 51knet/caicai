@@ -58,6 +58,7 @@ public class RequireDetailController {
 			requirement.setMoney(requireForm.getMoney());
 			requirement.setPhone(requireForm.getPhone());
 			requirement.setName(requireForm.getName());
+			requirement.setStatus(GlobalDefs.REQUIREMENT_WAITE);
 			
 			requirementService.create(requirement);
 			return "redirect:/admin/requirement/list";

@@ -18,6 +18,7 @@ public class Requirement extends AbstractEntity {
 	private String address;
 	private String company;
 	private String phone;
+	private Integer status; // 0:waite; 1:pass.
 	
 	@ManyToOne
 	private User user;
@@ -115,6 +116,16 @@ public class Requirement extends AbstractEntity {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+
 
 
 	

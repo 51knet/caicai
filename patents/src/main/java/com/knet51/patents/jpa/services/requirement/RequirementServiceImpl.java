@@ -9,11 +9,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.RequirType;
 import com.knet51.ccweb.jpa.entities.Requirement;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.repository.requirement.RequirementRepository;
+
+@Transactional
 @Service("requirementService")
 public class RequirementServiceImpl implements RequirementService {
 	@Autowired
@@ -30,8 +33,8 @@ public class RequirementServiceImpl implements RequirementService {
 	}
 
 	@Override
-	public void update(Requirement requirement) {
-		repository.saveAndFlush(requirement);
+	public Requirement update(Requirement requirement) {
+		return repository.saveAndFlush(requirement);
 	}
 
 	@Override
@@ -63,6 +66,19 @@ public class RequirementServiceImpl implements RequirementService {
 	@Override
 	public Requirement findOne(Long require_id) {
 		return repository.findOne(require_id);
+	}
+
+	@Override
+	public Page<Requirement> findRequireAll(int pageNum, int pageSize) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
+		return repository.findAll(pageable);
+	}
+
+	@Override
+	public Page<Requirement> findRequireByStatus(int pageNum, int pageSize,
+			Integer status) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
+		return repository.findReqireByStatus(status, pageable);
 	}
 
 }
