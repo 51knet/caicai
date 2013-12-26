@@ -35,9 +35,7 @@ public class KefuRequirementPageController {
 		model.addAttribute("page", page);
 		return "admin.kefu.requirement.list";
 	}
-	
 
-	
 
 	@RequestMapping(value="/admin/kefu/requirement/view/{require_id}")
 	public String showPatentDetail(Model model,HttpSession session, @PathVariable Long require_id){
@@ -48,7 +46,7 @@ public class KefuRequirementPageController {
 	
 	
 	@RequestMapping(value="/admin/kefu/requirement/status/change")
-	public @ResponseBody boolean changerequirementStatus(@RequestParam("require_id") Long require_id, @RequestParam("status") Integer status){
+	public @ResponseBody boolean changerequirementStatus(@RequestParam("id") Long require_id, @RequestParam("status") Integer status){
 		boolean flag = false;
 		Requirement requirement = requirementService.findOne(require_id);
 		if(requirement!= null && status!= null){
@@ -65,4 +63,5 @@ public class KefuRequirementPageController {
 		}
 		return flag;
 	}
+	
 }

@@ -20,4 +20,6 @@ public interface RequirementService {
 	List<Requirement> findRequiteListByRequireType(RequirType type);
 	
 	Page<Requirement> findRequireByStatus(int pageNum, int pageSize, Integer status);
+	
+	Page<Requirement> findRequireByTitleLike(int pageNum, int pageSize, String title);
 }

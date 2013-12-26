@@ -81,4 +81,11 @@ public class RequirementServiceImpl implements RequirementService {
 		return repository.findReqireByStatus(status, pageable);
 	}
 
+	@Override
+	public Page<Requirement> findRequireByTitleLike(int pageNum, int pageSize,
+			String title) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
+		return repository.findReqireByTitleLike(title, pageable);
+	}
+
 }

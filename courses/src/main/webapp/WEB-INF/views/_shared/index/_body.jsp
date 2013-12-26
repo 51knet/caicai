@@ -371,8 +371,9 @@ window.onload = function (){
 	$(".activities_title").mouseout(function (){
 		$(this).next().css("display","none");
 	});
-	var sc = new Scroll(document.getElementById("scroll"));  
 	myFlash('myflash',2000,-1);
+	var sc = new Scroll(document.getElementById("scroll"));  
+	
 };
 function myFlash(id,w,n){
     var box=document.getElementById(id),can=true,w=w||1500,fq=fq||10,n=n==-1?-1:1;
@@ -389,4 +390,13 @@ function myFlash(id,w,n){
             setTimeout(arguments.callee,box.scrollTop%130?fq:w);
     };
 };
+
+function scroll(obj) {
+	var tmp = (obj.scrollLeft)++;
+	//当滚动条到达右边顶端时
+	if (obj.scrollLeft==tmp) obj.innerHTML += obj.innerHTML;
+	//当滚动条滚动了初始内容的宽度时滚动条回到最左端
+	if (obj.scrollLeft>=obj.firstChild.offsetWidth) obj.scrollLeft=0;
+}
+setInterval("scroll(document.getElementById('scrollobj'))",30);
 </script>

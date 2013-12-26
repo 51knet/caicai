@@ -1,6 +1,8 @@
 package com.knet51.patents.controllers.admin.kefu.patent;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -11,15 +13,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.jpa.entities.patent.Patent;
+import com.knet51.ccweb.jpa.entities.patent.PatentField;
+import com.knet51.ccweb.jpa.entities.patent.PatentType;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.UserService;
 import com.knet51.patents.jpa.services.patent.PatentFieldService;
 import com.knet51.patents.jpa.services.patent.PatentService;
 import com.knet51.patents.jpa.services.patent.PatentTypeService;
+import com.knet51.patents.util.MyUtil;
 @Controller
 public class KefuPatentPageController {
 	private static final Logger logger = LoggerFactory.getLogger(KefuPatentPageController.class);
@@ -96,6 +102,18 @@ public class KefuPatentPageController {
 			flag = true;
 		}
 		return flag;
+	}
+	
+	@RequestMapping(value="/admin/kefu/search/patent", method = RequestMethod.GET)
+	public String searchPatent(Model model,HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize,@RequestParam("searchParam") String searchParam) throws Exception{
+		searchParam = new String(searchParam.getBytes("iso-8859-1"), "utf-8").trim();
+		String newsearchParam = MyUtil.replaceSpace(searchParam);
+		Page<Patent> page = patentService.findPatentByPatentNameLike(pageNumber, pageSize, newsearchParam);
+	
+		model.addAttribute("page", page);
+		model.addAttribute("searchParam", searchParam);
+		return "admin.kefu.patent.list";
 	}
 	
 

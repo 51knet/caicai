@@ -49,7 +49,7 @@
 	<ul class="nav nav-tabs nav-stacked">
 
 		<li><a href='<c:url value="/admin/kefu/patent/list/all"></c:url>' >专利列表</a></li>
-		<!-- <li><a href='<c:url value="/admin/kefu/requirement/list"></c:url>' >需求列表</a></li> -->
+		<li><a href='<c:url value="/admin/kefu/requirement/list/all"></c:url>' >需求列表</a></li> 
 		<li><a href='<c:url value="/admin/kefu/activity/list"></c:url>' >活动列表</a></li>
 	
 	</ul>

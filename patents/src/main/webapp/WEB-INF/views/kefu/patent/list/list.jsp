@@ -32,8 +32,16 @@
 	<div class="row">
 		<h4>专利列表</h4>
 	</div>
-	<div class="content">
-		<a class="margin_right"  href="<c:url value='/admin/kefu/patent/list/all'></c:url>" >全部 </a><a  class="margin_right" href="<c:url value='/admin/kefu/patent/list/pass'></c:url>">通过 </a><a class="margin_right"  href="<c:url value='/admin/kefu/patent/list/waite'></c:url>">审核中 </a><a class="margin_right"  href="<c:url value='/admin/kefu/patent/list/china'></c:url>">国内 </a><a  href="<c:url value='/admin/kefu/patent/list/foreign'></c:url>">国际</a>
+	<div class="content" >
+		<a class="margin_right"  href="<c:url value='/admin/kefu/patent/list/all'></c:url>" >全部 </a>
+		<a  class="margin_right" href="<c:url value='/admin/kefu/patent/list/pass'></c:url>">通过 </a>
+		<a class="margin_right"  href="<c:url value='/admin/kefu/patent/list/waite'></c:url>">审核中 </a>
+		<a class="margin_right"  href="<c:url value='/admin/kefu/patent/list/china'></c:url>">国内 </a>
+		<a  href="<c:url value='/admin/kefu/patent/list/foreign'></c:url>">国际</a>
+		  <form  class="navbar-form"  action="<c:url value="/admin/kefu/search/patent"></c:url>"  method="get" style="float: right; margin-bottom:10px;">
+				<input type="text" name="searchParam"   placeholder="搜索"  value="${searchParam }" > 
+				<button type="submit" class="btn btn_font" style=" ">搜索</button>				
+	     </form>
 		<br><br>
 		<table class="blue" id="mytab" cellpadding="4" width=100%  border=0>
 			<thead>
@@ -58,7 +66,15 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		 <jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+		<c:choose>
+			<c:when test="${searchParam != null }">
+				  <jsp:include page="/WEB-INF/views/_shared/pagination_query.jsp"></jsp:include>
+			</c:when>
+			<c:otherwise>
+			 	<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+			</c:otherwise>
+		</c:choose>
+		
 	</div>
 </div>
 

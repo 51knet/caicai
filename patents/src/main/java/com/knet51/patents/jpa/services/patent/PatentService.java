@@ -20,6 +20,6 @@ public interface PatentService {
  	Page<Patent> findPatentByCountry(int pageNum , int pageSize,Integer country);
 	Page<Patent> findPatentByFocus(int pageNum , int pageSize,Integer focus);
 	Page<Patent> findPatentByPatentNumLike(int pageNum , int pageSize,String patentNum);
-	Page<Patent> findPatgentByPatentNameLike(int pageNum , int pageSize,String patentName);
+	Page<Patent> findPatentByPatentNameLike(int pageNum , int pageSize,String patentName);
  	
 }

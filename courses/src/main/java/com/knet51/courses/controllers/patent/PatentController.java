@@ -42,17 +42,11 @@ public class PatentController {
 	@Autowired
 	private RequirTypeService requirTypeService;
 	
-	@RequestMapping(value="/test/search")
-	public String testSearch(){
-		return "test.search";
-	}
-	
 	@RequestMapping(value="/search/{patent}", method = RequestMethod.GET)
 	public String searchPatent(@PathVariable String patent,Model model,HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize,@RequestParam("patentType")Long patentType_id,@RequestParam("types") String searchType,@RequestParam("searchParam") String searchParam) throws Exception{
 		searchParam = new String(searchParam.getBytes("iso-8859-1"), "utf-8").trim();
 		String newsearchParam = MyUtil.replaceSpace(searchParam);
-		System.out.println("patentType="+searchType+"====searchParam="+newsearchParam);
 		List<PatentType> patentTypeList = patentTypeService.findAllPatentType();
 		model.addAttribute("patentTypeList", patentTypeList);
 		PatentType patentType = patentTypeService.findOne(patentType_id);

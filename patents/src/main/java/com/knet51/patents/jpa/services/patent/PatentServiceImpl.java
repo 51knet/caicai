@@ -82,13 +82,6 @@ public class PatentServiceImpl implements PatentService {
 		return page;
 	}
 
-	@Override
-	public Page<Patent> findPatgentByPatentNameLike(int pageNum, int pageSize,
-			String patentName) {
-		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "publishDate","patentNum","focus");
-		Page<Patent> page = patentRespository.findPatentByPatentNameLike(patentName, pageable);
-		return page;
-	}
 
 	@Override
 	public Page<Patent> findPatentByStatus(int pageNum, int pageSize,
@@ -97,6 +90,15 @@ public class PatentServiceImpl implements PatentService {
 		Page<Patent> page = patentRespository.findPatentByStatus(status, pageable);
 		return page;
 	}
+
+	@Override
+	public Page<Patent> findPatentByPatentNameLike(int pageNum, int pageSize,
+			String patentName) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "publishDate","patentNum");
+		Page<Patent> page = patentRespository.findPatentByPatentNameLike("%"+patentName+"%",pageable);
+		return page;
+	}
+
 
 
 

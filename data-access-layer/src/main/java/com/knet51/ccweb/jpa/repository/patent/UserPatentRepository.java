@@ -6,9 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.Patent;
@@ -44,5 +42,6 @@ public interface UserPatentRepository extends JpaRepository<Patent, String>,JpaS
 	Page<Patent> findPatentByFocus(Integer focus,Pageable pageable);
 	Page<Patent> findPatentByPatentNumLike(String patentNum,Pageable pageable);
 	Page<Patent> findPatentByPatentNameLike(String patentName,Pageable pageable);
+	
 
 }
