@@ -135,10 +135,14 @@
 	}
 
 	.fieldBg{
-	background-image: url("<c:url value='/resources/img/default/filedRightLine.png'></c:url>");
-	background-position: right center;
-	background-repeat: no-repeat;
-}
+		background-image: url("<c:url value='/resources/img/default/filedRightLine.png'></c:url>");
+		background-position: right center;
+		background-repeat: no-repeat;
+	}
+	
+	.actitle{
+		 line-height:20px; position: absolute; padding:3px 5px; z-index: 100; margin-top:-5px;  font-size:13px;   border: 1px solid #ccc; background-color: #fff; display: none; max-width: 300px; max-height: 60px;
+	}
 </style>
 <div class="container marketing">
 	  <div class="leftContainer" >
@@ -205,7 +209,7 @@
 							<div id="contentlimit" class=" bLine_dash activities_title"  style="width:200px; position: relative;">
 									<a class="a_color_ccc"  href="<c:url value="/activity/view/${ activityList.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon.png'></c:url>" >${activityList.title }</a>
 							</div>
-							<div style="position: absolute; z-index: 100; margin-top:-5px; padding:3px 3px; font-size:13px;  height: 20px; border: 1px solid #ccc; background-color: #fff; display: none;">${activityList.title }</div>
+							<div class="actitle">${activityList.title }</div>
 						</li>
 					</c:forEach>
 				</ul>
