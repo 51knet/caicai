@@ -36,7 +36,50 @@
 		font-weight: bold;
 	}
 </style>
+<script type="text/javascript">
 
+/*
+window.onload = function ()
+{	
+	
+	mytab("tab","content");
+	mytab("tab_req","content_req");
+	
+}
+
+function mytab(tab_id, content_id){
+	var oLi = document.getElementById(tab_id).getElementsByTagName("li");
+	var oUl = document.getElementById(content_id).getElementsByTagName("ul");
+	for(var i = 0; i < oLi.length; i++)
+	{
+		oLi[i].index = i;
+		oLi[i].onclick = function ()
+		{	
+			for(var n = 0; n < oLi.length; n++) {
+				oLi[n].className="";	
+			}
+			this.className = "current";
+			for(var n = 0; n < oUl.length; n++) {
+				oUl[n].style.display = "none";
+			}
+			oUl[this.index].style.display = "block";
+		};	
+	}
+}*/
+window.onload = function (){
+	var sc = new Scroll(document.getElementById("scroll"));  
+};
+
+
+function scroll(obj) {
+	var tmp = (obj.scrollLeft)++;
+	//当滚动条到达右边顶端时
+	if (obj.scrollLeft==tmp) obj.innerHTML += obj.innerHTML;
+	//当滚动条滚动了初始内容的宽度时滚动条回到最左端
+	if (obj.scrollLeft>=obj.firstChild.offsetWidth) obj.scrollLeft=0;
+}
+setInterval("scroll(document.getElementById('scrollobj'))",30);
+</script>
 <div class="carouselbg" >
 	<div class="row-fluid">
 		<div class="span3 valign_center maq_left" style="width: 203px;">专利数：${patentCount }</div>
@@ -45,11 +88,6 @@
 			 	<span class="maq_right_content">专利总数：${patentCount }</span><span class="maq_right_content">国内专利：${patentCNCount}</span><span class="maq_right_content">国外专利：${patentCount-patentCNCount}</span><span class="maq_right_content">专利成交总数：${patentTradeCount }</span><span class="maq_right_content">需求总数：${requirementCount }</span>
 				<span class="maq_right_content">专家总数：${teacherCount }</span>
 			 </DIV>
-			 <script language="javascript" type="text/javascript">
-				<!--
-				
-				//-->
-			</script>
   		</div>
 	</div>
 </div>

@@ -79,7 +79,7 @@ font-weight: bold;
 			</c:when>
 			<c:otherwise>
 				<img src="${avatar_url}" style="margin: 5px 5px; width: 100px; " >
-				<div style="width: 150px; text-align: center;" id="content"><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	</div>	
+				<div style="width: 150px; text-align: center;" id="content"><a href='#'><h4>${sessionUserInfo.name }</h4></a>	</div>	
 			</c:otherwise>
 		</c:choose>
 	</div>
