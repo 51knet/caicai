@@ -3,6 +3,7 @@
 	<name>ccweb</name>
 	<comment></comment>
 	<projects>
+		<project>data-access-layer</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
