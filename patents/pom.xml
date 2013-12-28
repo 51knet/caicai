@@ -302,7 +302,7 @@
 		</dependency>
   </dependencies>
   <build>
-    <finalName>tweb</finalName>
+    <finalName>patents</finalName>
     <plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
