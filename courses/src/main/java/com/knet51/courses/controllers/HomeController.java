@@ -80,7 +80,10 @@ public class HomeController {
 		logger.info("###### into the HomeController ######");
 		List<CourseBeans> cBeans = courseService.getAllCourseBeans();
 		List<Teacher> teacherList = teacherService.findAllTeacher();
-		List<Patent> patentList = patentService.findPatentList();
+		//List<Patent> patentList = patentService.findPatentList();
+		
+		List<Patent> chinaPatentList = patentService.findPatentByCountryAndFocus(GlobalDefs.PATENT_CHINA, GlobalDefs.PATENT_HOME_FOCUS);
+		List<Patent> foreignPatentList = patentService.findPatentByCountryAndFocus(GlobalDefs.PATENT_FOREIGN, GlobalDefs.PATENT_HOME_FOCUS);
 		List<Requirement> patentRequire =  new ArrayList<Requirement>();
 		List<Requirement> technologyRequire =  new ArrayList<Requirement>();;
 		List<Requirement> requirementList = requirementService.findAll();
@@ -137,7 +140,9 @@ public class HomeController {
 		//model.addAttribute("teacherCount", );
 		session.setAttribute("teacherCount", GlobalDefs.HOME_TEACHER_COUNT);
 		
-		model.addAttribute("patentList", patentList);
+		model.addAttribute("chinaPatentList", chinaPatentList);
+		model.addAttribute("foreignPatentList", foreignPatentList);
+		
 		session.setAttribute("patentCount", GlobalDefs.HOME_PATENT_COUNT);
 		model.addAttribute("patentFieldList", patentFieldList);
 		model.addAttribute("patentTypeList", patentTypeList);

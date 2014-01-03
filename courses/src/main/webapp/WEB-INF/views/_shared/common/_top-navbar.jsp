@@ -3,11 +3,11 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="navbar custom navbar-fixed-top">
-	<div class="container-fluid" style="text-align: center; height: 39px; width: 1024px; margin: 0 auto;">
+	<div class="container-fluid" >
 		<ul class="nav pull-left">
-			<li ><div style="width: 100px;">&nbsp;</div></li>
+			<li ><div style="width: 50px;">&nbsp;</div></li>
 			<!-- <li class="active" style="width: 90px;"><a href="/courses">主页</a></li> -->
-			<li  ><a href="<c:url value="/"></c:url>" ><img  src='<c:url value="/resources/img/default/logo_tiny.png"></c:url>'></a></li>
+			<li  ><a href="<c:url value="/"></c:url>" ><img  src='<c:url value="/resources/img/default/logo_new.png"></c:url>'></a></li>
 		</ul>
 		<ul class="nav pull-right">
 			<c:if test="${sessionUserInfo != null}">

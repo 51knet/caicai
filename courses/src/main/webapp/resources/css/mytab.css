@@ -1,6 +1,8 @@
 .outer {
-	width:600px;
-	margin:5px 0px 0px 280px;
+	/*width:600px;*/
+	width:500px;
+	/*margin:5px 0px 0px 280px;*/
+
 	
 	float: left;
 }
@@ -38,12 +40,12 @@
 	-moz-border-radius: 5px;
 }
 #content {
-	width:800px;
+	/*width:800px;*/
 	border:0px solid #ccc;
 	border-top-width:0;
-	font:12px/1.5 ;
 	text-align: left;
 	float: left;
+	
 }
 #content ul {
 	display:none;
@@ -56,7 +58,6 @@
 #tab_req {
 	overflow:hidden;
 	zoom:1;
-	font-size:16px;
 		color: #3f5517;
 			line-height: 40px;
 		margin-left: 70px;

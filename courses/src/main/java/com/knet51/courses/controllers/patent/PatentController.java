@@ -135,6 +135,19 @@ public class PatentController {
 		return "patent.list";
 	}
 	
+	@RequestMapping(value="/patent/list/{country}")
+	public String patentList(@PathVariable String country,Model model, HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize){
+		List<Patent> patentList = patentService.findPatentListByCountry(country);
+		Page<Patent> page = patentService.findPatentByCountry(pageNumber, pageSize, country);
+		
+		List<PatentField> fieldList = patentFieldService.findAll();
+		model.addAttribute("page", page);
+		model.addAttribute("searchpatentCount", patentList.size());
+		model.addAttribute("fieldList", fieldList);
+		return "patent.list";
+	}
+	
 	@RequestMapping(value="/patent/{patentField}/list")
 	public String patentTypeFilter(@PathVariable String patentField,Model model, HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize) throws Exception{
@@ -160,7 +173,7 @@ public class PatentController {
 	
 	@RequestMapping(value="/patent/view")
 	public String showPatentDetail(Model model,HttpSession session, @RequestParam(value = "id") String patentNum){
-		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+//		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 //		if(userInfo == null){
 //			return "redirect:/patent/list";
 //		}

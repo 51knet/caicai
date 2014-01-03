@@ -15,6 +15,7 @@ import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.Patent;
 import com.knet51.ccweb.jpa.entities.patent.PatentType;
 import com.knet51.ccweb.jpa.repository.patent.UserPatentRepository;
+import com.knet51.courses.controllers.defs.GlobalDefs;
 @Service("patentService")
 public class PatentServiceImpl implements PatentService {
 	@Autowired
@@ -110,6 +111,40 @@ public class PatentServiceImpl implements PatentService {
 		List<Patent> list = patentRespository.findPatentByPatentTypeAndPatentNumLikeAndPatentNameLikeAndPatentFieldLikeAndMainClassNumLikeAndClassNumLikeAndApplicantLikeAndInventerLikeAndPublishNumLike
 				(patentType, "%"+patentNum+"%", "%"+patentName+"%", "%"+patentField+"%", "%"+mainClassNum+"%", "%"+classNum+"%", "%"+applicant+"%", "%"+inventer+"%", "%"+publishNum+"%");
 				
+		return list;
+	}
+
+	@Override
+	public List<Patent> findPatentByCountryAndFocus(Integer country,Integer focus) {
+		
+		return patentRespository.findPatentByCountryAndFocus(country,focus);
+	}
+
+	@Override
+	public Page<Patent> findPatentByCountry(int pageNum, int pageSize,
+			String country) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "patentNum");
+		Page<Patent> page = null;
+		if(country.equals("china")){
+			page =  patentRespository.findPatentByCountry(GlobalDefs.PATENT_CHINA, pageable);
+		}else if(country.equals("foreign")){
+			page =  patentRespository.findPatentByCountry(GlobalDefs.PATENT_FOREIGN, pageable);
+		}else{
+			page = patentRespository.findAll(pageable);
+		}
+		return page;
+	}
+
+	@Override
+	public List<Patent> findPatentListByCountry(String country) {
+		List<Patent> list = null;
+		if(country.equals("china")){
+			list =  patentRespository.findPatentByCountry(GlobalDefs.PATENT_CHINA);
+		}else if(country.equals("foreign")){
+			list =  patentRespository.findPatentByCountry(GlobalDefs.PATENT_FOREIGN);
+		}else{
+			list = patentRespository.findAll();
+		}
 		return list;
 	}
 
