@@ -6,7 +6,7 @@
 	 text-align:left;
 	background-image: url(' <c:url value="/resources/img/default/footerbg.png" ></c:url> ' );
 	 background-repeat:no-repeat; 
-	 background-position: center top;
+	 background-position: right top;
 	 height:142px; 
 	 color: #fff;
 	 font-size: 12px;
@@ -37,9 +37,8 @@
 			CopyRight © 2006-2014</p></div>
 		</div>
 		<div class="span6" style=" width: 540px; text-align: right;">
-			<div><img src="<c:url value='/resources/img/default/footer1.png'></c:url> " /></div>
-			<div style="margin-top: 10px; padding-right: 10px;"> 
-			<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=826619119&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:826619119:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></div>
+			
+	
 		</div>
 	</div>
 	<div>

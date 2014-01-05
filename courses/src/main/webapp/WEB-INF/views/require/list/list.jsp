@@ -19,7 +19,7 @@
 	 margin: 10px 55px;
 }
 .active{
-	background-color:#5f7e20;
+	background-color:#526a88;
 }
 
 
@@ -33,16 +33,11 @@
  <div class="container patent">
 		<div class="span6" style="width: 440px;">
 			 <table  style="width: 100%; " cellpadding="8"  border="0">
-				 <thead>
-				 	<tr class="bb">
-				 		<th align="left">需求标题</th>
-				 	</tr>
-				 </thead>
 					<tbody>
 						<c:forEach items="${page.content}" var="page" begin="0" step="2" varStatus="i">
 							<tr class="bLine_dash" >
 								<td >
-									<a  href="<c:url value="/requirement/${active}/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon.png'></c:url>" >  ${page.title}</a>
+									<a  href="<c:url value="/requirement/${active}/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${page.title}</a>
 								</td>
 							</tr>
 						</c:forEach>				
@@ -51,16 +46,11 @@
 		</div>
 		<div class="span6" style="width: 440px;">
 			<table  style="width: 100%; " cellpadding="8"  border="0">
-				 <thead>
-				 	<tr class="bb">
-				 		<th align="left">需求标题</th>
-				 	</tr>
-				 </thead>
 					<tbody>
 						<c:forEach items="${page.content}" var="page" begin="1" step="2" varStatus="i">
 							<tr class="bLine_dash" >
 							<td >
-								<a  href="<c:url value="/requirement/${active}/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon.png'></c:url>" >  ${page.title}</a>
+								<a  href="<c:url value="/requirement/${active}/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${page.title}</a>
 							</td>
 							</tr>
 						</c:forEach>				

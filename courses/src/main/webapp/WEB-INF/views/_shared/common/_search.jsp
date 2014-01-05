@@ -33,6 +33,10 @@ ul, li {
 	 font-size: 14px;
 	 line-height: 25px;
 }
+
+.right_navbar_content>table{
+	margin:15px 0px 0px 25px;
+}
 .right_navbar_content a{
 	 color: #fff;
 	 font-weight: bold;
@@ -42,6 +46,7 @@ ul, li {
 	 color: #cdcdcd;
 	 font-weight: bold;
 	 text-decoration: none;
+	 
 }
 .right_navbar_content  .detail{
 	color: #fff;
@@ -110,7 +115,7 @@ ul, li {
 </div>
 	
 	<div class="span5 right_navbar_content" style=" width: 450px; ">
-		<table cellpadding="5" width="90%" border="0"  style="margin:15px 0px 0px 20px;" >
+		<table cellpadding="5" width="90%" border="0"  style="" >
 			<tr>
 				<td width="53%" height="140" valign="top"><a href="<c:url value="/activity/list"></c:url>">热门活动</a></td>
 				<td width="47%" valign="top">
@@ -120,8 +125,11 @@ ul, li {
 				</td>
 			</tr>
 			<tr>
-				<td height="120" valign="top"><a href="<c:url value="/requirement/technology/list"></c:url>">技术需求</a></td>
-				<td valign="top"><a href="<c:url value="/requirement/patent/list"></c:url>">专利需求</a></td>
+				<td height="120" valign="top"><a href="#">热门需求</a><br>
+					<img src="<c:url value='/resources/img/default/icon_new.png'></c:url> " /> <a href="<c:url value="/requirement/technology/list"></c:url>" class="detail">技术需求</a><br>
+					<img src="<c:url value='/resources/img/default/icon_new.png'></c:url> " /> <a href="<c:url value="/requirement/patent/list"></c:url>"  class="detail">专利需求</a>
+				</td>
+				<td valign="top"><a href="<c:url value="#"></c:url>">技术成果</a></td>
 			</tr>
 		</table>
 	</div>

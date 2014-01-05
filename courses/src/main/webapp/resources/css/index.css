@@ -69,13 +69,16 @@
 /* MARKETING CONTENT
 -------------------------------------------------- */
 .container.title{
-	background-color: #adcc75;
  	color: #353535;
  	font-family:Arial,'Microsoft YaHei';
   	width: 1024px;
-  	background-image: url("/courses//resources/img/default/secondTitleBg.png");
+ 
+  /*	background-color: #adcc75;
+   	background-image: url("/courses/resources/img/default/secondTitleBg.png");
   	background-position: left top;
   	background-repeat: no-repeat;
+  */
+  	background-color:#3d4f65;
 
 }
 .container.title >table{
@@ -89,7 +92,7 @@
 		color:#fff;
 		font-weight:bold;
 		letter-spacing:1px;
-		margin:0px 0px 0px 70px;
+		margin:0px 0px 0px 60px;
 		padding: 0px 10px;
 	/*	background-color: #fff;*/
 		line-height: 35px;
@@ -291,19 +294,18 @@ border-top-color: #EEE;*/
 
 .path_link{
 	margin: 10px 10px 10px 70px;
-	font-size: 14px;
-	color: #86a23b;
+	font-size: 13px;
+	color: #335183;
+	
 }
 
 .path_link a {
-	font-size: 14px;
-	color: #86a23b;
+	color: #335183;
 	text-decoration: none;
 }
 
 .path_link a:hover{
-	font-size: 14px;
-	color: #3f5517;
+	color: #4a77bb;
 	text-decoration: none;
 }
 

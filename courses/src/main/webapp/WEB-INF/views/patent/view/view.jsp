@@ -24,7 +24,7 @@
 }
 .patent .top{
 	font-size: 17px;
-	color: #3f5517;
+	color: #335183;
 	padding:10px 0px 8px 10px;
 	width: 85%;
 }

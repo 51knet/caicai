@@ -21,6 +21,7 @@
 	
 	.right_bottom_content{
 		padding: 10px 20px 10px 10px;
+		height: 90px;
 	}
 </style>
 <div class="container big_content padding_left" >
@@ -140,14 +141,11 @@
 			<a href="#"><img src="<c:url value='/resources/img/default/rt2.png'></c:url> " /> </a>
 			<div class="right_bottom_content">
 				<ul>
-					<c:forEach items="${activityList }" var="activityList" begin="0"  end="2">
+				
 						<li >
-							<div id="contentlimit" class=" activities_title"  style="width:400px; position: relative;">
-									<a class="a_color_ccc"  href="<c:url value="/activity/view/${ activityList.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${activityList.title }</a>
-							</div>
-							<div class="actitle">${activityList.title }</div>
+							尚未添加内容
 						</li>
-					</c:forEach>
+
 				</ul>
 				<a   style="float: right;" href="<c:url value="/activity/list"></c:url>" >
 					<img src="<c:url value='/resources/img/default/read_all.png'></c:url> " />
@@ -159,19 +157,14 @@
 		
 		<div class="row-fluid">
 			<a href="#"><img src="<c:url value='/resources/img/default/rt3.png'></c:url> " /> </a>
-			<c:if test="${activityList == null }">
-				无内容
-			</c:if>
+
 			<div  class="right_bottom_content">
 				<ul>
-					<c:forEach items="${activityList }" var="activityList" begin="0"  end="2">
+					
 						<li >
-							<div id="contentlimit" class=" activities_title"  style="width:400px; position: relative;">
-									<a class="a_color_ccc"  href="<c:url value="/activity/view/${ activityList.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${activityList.title }</a>
-							</div>
-							<div class="actitle">${activityList.title }</div>
+							尚未添加内容
 						</li>
-					</c:forEach>
+				
 				</ul>
 				<a   style=" float: right;" href="<c:url value="/activity/list"></c:url>" >
 					<img src="<c:url value='/resources/img/default/read_all.png'></c:url> " />

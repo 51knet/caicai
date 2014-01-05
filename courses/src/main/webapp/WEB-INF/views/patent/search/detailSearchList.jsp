@@ -21,9 +21,17 @@
 </script>
 <style>
 .titlebg{
-	background-color:#ccdfa8; 
+	background-color:#3d4f65; 
 	font-size: 14px;
 	width: 100%;
+	color: #fff;
+	font-weight: bold;
+}
+
+.td_right_line{
+	background-image: url(' <c:url value="/resources/img/default/blueline.png" ></c:url> ' );
+	background-position: right center;
+	background-repeat: no-repeat;
 }
  .selete_filter{
  	margin-top:10px;
@@ -35,9 +43,9 @@
 }
 </style>
   <jsp:include page="/WEB-INF/views/patent/path_link.jsp"></jsp:include>
-<div class="container title"  >
+<!-- <div class="container title"  >
 		<div class="innerLeftTitle">专利数量（${searchpatentCount }）</div>
- </div>
+ </div> -->
   <div class="selete_filter">
 	<select id="type" onchange="selectType()">
 		<option value="all" >全部类别</option>
@@ -55,21 +63,21 @@
 	</select>
 </div>
  <div class="container patent">
+  <table  style="width: 90%; " cellpadding="8"  >
+			 <thead>
+					<tr class="titlebg">
+					<th  width="20%" align="left" class="td_right_line">专利号</th>
+					<th   align="left" class="td_right_line">专利名称</th>
+					<th  width="10%" align="left" class="td_right_line">专利类别</th>
+					<th  width="10%"  align="left" class="td_right_line">应用领域</th>
+					<th  width='10%' align="left" class="td_right_line">公开日期</th>
+					</tr>
+				</thead>
 	<c:choose>
 		<c:when test="${searchpatentCount <=0}">
-			<h4 style="margin-left:60px;">未搜索到专利</h4>
+			<tr><td colspan="5"><h4 style="margin-left:60px;">未搜索到专利</h4></td></tr>
 		</c:when>
 		<c:otherwise>
-			 <table  style="width: 90%; " cellpadding="8"  >
-				 <thead>
-					<tr class="titlebg">
-					<th  width="20%" align="left"><b>专利号</b></th>
-					<th   align="left"><b>专利名称</b></th>
-					<th  width="10%" align="left"><b>专利类别</b></th>
-					<th  width="12%"  align="left"><b>应用领域</b></th>
-					<th  width='10%' align="left"><b>公开日期</b>
-					</th></tr>
-				</thead>
 				<tbody>
 					<c:forEach items="${page.content}" var="page">
 						<tr class="bLine_dash">
@@ -80,7 +88,7 @@
 							<c:if test="${sessionUserInfo != null }">
 								<a href="<c:url value="/patent/view/${ page.patentNum}"></c:url>">${page.patentNum}</a>
 							</c:if> -->
-							<a href="<c:url value="/patent/view?id=${ page.patentNum}"></c:url>">${page.patentNum}</a>
+							<a href="<c:url value="/patent/view?id=${ page.patentNum}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${page.patentNum}</a>
 						</td>
 						<td>
 							${page.patentName}
@@ -100,9 +108,10 @@
 			        <jsp:include page="/WEB-INF/views/_shared/pagination_post.jsp"></jsp:include>
 			   		 </td></tr>
 				</tfoot>
-				</table>
+				
 		</c:otherwise>
 	</c:choose>
+	</table>
  </div>
 
 

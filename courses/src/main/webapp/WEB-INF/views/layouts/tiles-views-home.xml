@@ -12,28 +12,28 @@
 
 	<definition name="404" extends="index-layout">
 		<put-attribute name="title" value="404 Error" />
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/controllers/home/404.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 	
 	<definition name="signin" extends="index-layout">
 		<put-attribute name="title" value="注册登录" />
-		<put-attribute name="search" value="" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/controllers/login/login.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 	
 	<definition name="signup" extends="index-layout">
 		<put-attribute name="title" value="注册登录" />
-		<put-attribute name="search" value="" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/controllers/signup/signup.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 	
 	<definition name="course.list" extends="index-layout">
 		<put-attribute name="title" value="课程列表" />
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/course/list/list.jsp"></put-attribute>
 	</definition>
 	
@@ -49,20 +49,24 @@
 	
 	<definition name="enterprise.list" extends="index-layout">
 		<put-attribute name="title" value="专家详细" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/teacher/list/enterpriselist.jsp" />
 	</definition>
 	
 	<definition name="user.courses.list" extends="index-layout">
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="title" value="我的课程" />
 		<put-attribute name="body" value="/WEB-INF/views/course/usercourse/list/courses.jsp" />
 	</definition>
 	
 	<definition name="teacher.list" extends="index-layout">
+	<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="title" value="专家详细" />
 		<put-attribute name="body" value="/WEB-INF/views/teacher/list/list.jsp" />
 	</definition>
 	<definition name="teacher.teacherInfo" extends="index-layout">
 		<put-attribute name="title" value="专家课程" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/teacher/teacherShop/courses.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
@@ -92,72 +96,72 @@
 	
 	<definition name="course.pay.view" extends="index-layout">
 		<put-attribute name="title" value="课程列表" />
-		<put-attribute name="search" value="" />
+			<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/course/pay/view.jsp"></put-attribute>
 		<put-attribute name="footer" value="" />
 	</definition>
 	<definition name="test.search" extends="index-layout">
 		<put-attribute name="title" value="test search" />
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/patent/search/search.jsp"></put-attribute>
 	</definition>
 	<definition name="patent.list" extends="index-layout">
 		<put-attribute name="title" value="专利列表" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/patent/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="patent.search.list" extends="index-layout">
 		<put-attribute name="title" value="专利搜索" />
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
-		<put-attribute name="body" value="/WEB-INF/views/patent/search/list.jsp"></put-attribute>
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/patent/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="patent.search.detail.list" extends="index-layout">
 		<put-attribute name="title" value="专利搜索" />
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/patent/search/detailSearchList.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="patent.search.detail" extends="index-layout">
 		<put-attribute name="title" value="专利搜索" />
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/patent/search/detailSearch.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="patent.view" extends="index-layout">
 		<put-attribute name="title" value="专利预览" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/patent/view/view.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="activity.list" extends="index-layout">
 		<put-attribute name="title" value="活动列表" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/activity/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="activity.view" extends="index-layout">
 		<put-attribute name="title" value="活动详细" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/activity/view/view.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="requirement.list" extends="index-layout">
 		<put-attribute name="title" value="需求列表" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/require/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="requirement.view" extends="index-layout">
 		<put-attribute name="title" value="需求列表" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/require/view/view.jsp"></put-attribute>
 	</definition>
 	

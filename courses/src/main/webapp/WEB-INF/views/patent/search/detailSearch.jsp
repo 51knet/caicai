@@ -7,34 +7,28 @@
 <style>
 
 .patent{
-	 width: 1024px;
-	 margin: 10px 40px;
-}
-.patent .top{
-	font-weight: bold;
-	font-size: 17px;
-	color: #3f5517;
-	padding:10px 0px 8px 10px;
-	width: 90%;
-}
+	 width: 100%;
 
+	 background-color: #e4e7ec;
+}
+.searchForm{
+	padding: 0px 150px;
+}
 .date{
 	margin-left: 40px; font-size: 12px; color: #666;
 	font-weight: normal;
 }
 
-.patent .bottom{
-	padding:10px 10px;
-	width: 90%;
-}
 </style>
  <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> 高级搜索 </div>
+
 <div class="container title"  >
-		<div class="innerLeftTitle">详细搜索</div>
- </div>
+		<div class="innerLeftTitle">高级搜索</div>
+ </div> 
+ <div class="patent">
  <br>
- 	<form action= '<c:url value="/search/patent/detail/list"></c:url>'  method="post" style="margin-left:50px;" id="patent_form" name="patent_post">
- <div class="container patent row-fluid">
+ 	<form action= '<c:url value="/search/patent/detail/list"></c:url>'  method="post" class="searchForm" id="patent_form" name="patent_post">
+	 <div class="container  row-fluid">
 			<div class="span5">
 				<div class="control-group" id="patentNum">
 					<div class="controls">
@@ -96,9 +90,10 @@
 				</div>
 			</div>
  </div>
- <div class="container patent row-fluid offset4">
+ <div class="container  row-fluid offset4">
  				<button type="submit" class="btn btn-success">搜索</button>&nbsp;&nbsp;
 				<button type="reset" class="btn">重置</button>
  </div>
-				
 </form>
+<br>
+</div>
