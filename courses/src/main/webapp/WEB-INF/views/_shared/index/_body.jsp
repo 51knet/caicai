@@ -183,10 +183,10 @@
 							<div class="span2">
 								<c:choose>
 									<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-										<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' style="width: 55; height:55;" class="img-circle" /></a>
+										<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' class="img-circle" style="width: 55px; height:55px;"  /></a>
 									</c:when>
 									<c:otherwise>
-										<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width:55; height:55;" class="img-circle" /></a>
+										<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' class="img-circle" style="width:55px; height:55px;"  /></a>
 									</c:otherwise>
 								</c:choose>
 								<div style="margin-top: 3px; text-align: center; "> 
@@ -204,14 +204,14 @@
 						</div>
 						
 						<div  style="height: 90px;">
-			 	 	 		 <c:forEach items="${teacherLists}" var="t" begin="6" end="12">
+			 	 	 		 <c:forEach items="${teacherLists}" var="t" begin="6" end="11">
 								<div class="span2">
 									<c:choose>
 										<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-											<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' style="width: 55; height:55;" class="img-circle" /></a>
+											<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' style="width: 55px; height:55px;" class="img-circle" /></a>
 										</c:when>
 										<c:otherwise>
-											<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 55; height:55;" class="img-circle" /></a>
+											<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 55px; height:55px;" class="img-circle" /></a>
 										</c:otherwise>
 									</c:choose>
 									<div style="margin-top: 3px; text-align: center; "> 
