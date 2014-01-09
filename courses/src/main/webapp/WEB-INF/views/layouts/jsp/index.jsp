@@ -7,22 +7,26 @@
 <head>
 	<jsp:include page="/WEB-INF/views/_shared/common/_html_head.jsp"></jsp:include>
 </head>
+<style>
+	.bg_white{
+		background-color: #fff;
+	}
+</style>
 <body>
 	<tiles:insertAttribute name="top-navbar" />
 
 	<div class="container-fluid" >
-	<div style="position: relative;">
-		<div class="row-fluid">
-			<tiles:insertAttribute name="search" />
+		<div style="position: relative;">
+			<div class="row-fluid bg_white">
+				<tiles:insertAttribute name="search" />
+			</div>
+			<div class="row-fluid bg_white">
+				<tiles:insertAttribute name="userCourse" />
+			</div>
 		</div>
-		<div class="row-fluid">
-			<tiles:insertAttribute name="userCourse" />
-		</div>
-	</div>
-		<div class="row-fluid">
+		<div class="row-fluid bg_white">
 			<tiles:insertAttribute name="body" />
 		</div>
-		<br>
 		<footer>
 			<tiles:insertAttribute name="footer" />
 		</footer>

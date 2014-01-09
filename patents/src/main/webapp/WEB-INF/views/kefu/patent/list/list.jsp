@@ -60,8 +60,8 @@
 						<td >${page.applicationDate }</td>
 						<!-- <td align="center"><a href='<c:url value="/admin/patent/edit/${page.patentNum}"></c:url>'>修改</a> | 
 						<a class="destoryPatentPostBtn" href="#destoryPatentPostModal" role="button" data-toggle="modal" data-target="#destoryPatentPostModal">删除</a><input type="hidden"  value="${page.patentNum}"> </td> -->
-						<td  align="center"><input type="checkbox" <c:if test="${page.focus ==1 }">checked </c:if> onchange="changeFocus(${page.patentNum },${page.focus})" ></td>
-						<td  align="center"><input type="checkbox" <c:if test="${page.status ==1 }">checked </c:if>  onchange="changeStatus( ${page.patentNum }, ${page.status } )" ></td>
+						<td  align="center"><input type="checkbox" <c:if test="${page.focus ==1 }">checked </c:if> onchange="changeFocus(${page.patentNum } , ${page.focus})" ></td>
+						<td  align="center"><input type="checkbox" <c:if test="${page.status ==1 }">checked </c:if>  onchange="changeStatus( ${page.patentNum } , ${page.status } )" ></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -95,42 +95,34 @@
 	  </div>
 </div>
 <script type="text/javascript">
-/*
-$(document).ready(function() {
-	$('.destoryPatentPostBtn').on('click', function() {
-		var p_id = $(this).next().val();
-		$('#p_delete_id').val(p_id);	
-	});
-});*/
-
-function changeFocus(id,focus){
+function changeFocus(patentNum,focus){
+	
 	$.ajax({
-		   type: "POST",
+		   type: "GET",
 		   url: "<c:url value='/admin/kefu/patent/focus/change'></c:url>",
-		   data: "patentNum="+id+"&focus="+focus,
+		   data: "patentNum="+patentNum+"&focus="+focus,
 		   success: function(flag){
 			   if(flag == true){
 				   alert( "首页展示修改成功");
 			   }else{
 				   alert("服务器正忙，请稍后再试");
 			   }
-		   
-		   }
+		    }
 		});
 }
 
-function changeStatus(id,status){
+function changeStatus(patentNum , status){
+	
 	$.ajax({
-		   type: "POST",
+		   type: "GET",
 		   url: "<c:url value='/admin/kefu/patent/status/change'></c:url>",
-		   data: "patentNum="+id+"&status="+status,
+		   data: "patentNum="+patentNum+"&status="+status,
 		   success: function(flag){
 			   if(flag == true){
 				   alert( "审核修改成功");
 			   }else{
 				   alert("服务器正忙，请稍后再试");
 			   }
-		   
 		   }
 		});
 }

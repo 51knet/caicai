@@ -5,6 +5,7 @@
 	margin: 0 auto;
 	padding-right: 0px;
 	padding-left: 0px;
+	
 }
 
 .container.search-bar .cont {
@@ -232,16 +233,21 @@ border-top-color: #EEE;*/
 }
 
 .container.teacher .teacherInfo .span3{
-   margin:30px 30px;
-  width:130px;
-  height: 130px;
+   margin:30px 10px;
+  width:120px;
+  height: 120px;
 	text-align: center;
 	padding: 3px;
 	background-color: #fff;
 	border: 1px solid #ccc;
-	line-height: 25px;
+	line-height: 20px;
 
 }
+.container.teacher .teacherInfo .span3 .photos{
+   width: 113px; height:113px
+}
+
+
 
  .selete_filter{
  	margin-top:20px;
@@ -272,12 +278,19 @@ border-top-color: #EEE;*/
 	color: #86a23b;
 	text-decoration: none;
 	font-weight: bold;
-	font-size: 13px;
+	font-size: 12px;
 }
 
 .a_color_ccc{
 	color: #444;
 	text-decoration: none;
+}
+
+.a_color_blue{
+	color: #4a77bb;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 11px;
 }
 
 .title_color_green{

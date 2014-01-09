@@ -9,8 +9,8 @@
 	<jsp:include page="/WEB-INF/views/_shared/common/_html_head.jsp"></jsp:include>
 	<style>
 	body {
-		width: 920px;
-		background-image: url(/ccweb/resources/img/default/faqbg.png);
+		width: 1024px;
+		background-image: url(/courses/resources/img/default/faqbg.png);
 		background-position: center top;
 		background-repeat: repeat-y;
 		background-color: #e8e8e8;
@@ -26,10 +26,11 @@
 	
 	}
 	.container-fluid.custom {
-		min-width: 920px;
-		max-width: 920px;
-		width: 920px;
 		margin: 0 auto;
+	}
+	
+		.bg_white{
+		background-color: #fff;
 	}
 	</style>
 </head>
@@ -37,7 +38,7 @@
 	<tiles:insertAttribute name="top-navbar" />
 	<br><br>
 	<div class="container-fluid wrapper">
-		<div class="container-fluid custom">
+		<div class="container-fluid custom ">
 			<div class="row-fluid" style="padding-top: 20px;">
 				<tiles:insertAttribute name="banner" />
 				<tiles:insertAttribute name="navbar" />

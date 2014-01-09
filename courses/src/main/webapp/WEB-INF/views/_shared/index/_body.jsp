@@ -16,7 +16,11 @@
 		margin-top: 10px;
 	}
 	.actitle{
-		 line-height:20px; position: absolute; padding:3px 5px; z-index: 100; margin-top:-5px;  font-size:13px;   border: 1px solid #ccc; background-color: #fff; display: none; max-width: 300px; max-height: 60px;
+		 line-height:20px; position: absolute; 
+		 padding:3px 5px; z-index: 100; 
+		 margin-top:-5px;  font-size:13px;   
+		 border: 1px solid #ccc; background-color: #fff; 
+		 display: none; max-width: 300px; max-height: 60px;
 	}
 	
 	.right_bottom_content{
@@ -29,7 +33,9 @@
 		<div class="row-fluid">
 	  		<div class="span6">
 	  			<ul>
-	  			<li class="bLine_dash"><img src="<c:url value='/resources/img/default/chinesepatent.png'></c:url> " /></li> 
+	  			<li class="bLine_dash">
+	  				<a href="<c:url value="/patent/list/china"></c:url>" ><img src="<c:url value='/resources/img/default/chinesepatent.png'></c:url> " /></a>
+	  				<a class="a_color_blue"  style="text-decoration: none; float: right;" href="<c:url value="/patent/list/china"></c:url>" >更多>></a></li> 
 					<c:forEach items="${chinaPatentList }" var="chinaPatentList" begin="0"  end="9"  >
 						<li ><div id="contentlimit" style="width:240px; float: left;">
 						<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${chinaPatentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${chinaPatentList.patentName }</a>
@@ -39,7 +45,9 @@
 	  		</div>
 	  		<div class="span6" >
 	  			<ul>
-	  			<li class="bLine_dash"><img src="<c:url value='/resources/img/default/foreignpatent.png'></c:url> " /> </li> 
+	  			<li class="bLine_dash">
+	  				<a href="<c:url value="/patent/list/foreign"></c:url>" ><img src="<c:url value='/resources/img/default/foreignpatent.png'></c:url> " /></a>
+	  				<a class="a_color_blue"  style="text-decoration: none; float: right;" href="<c:url value="/patent/list/foreign"></c:url>" >更多>></a> </li> 
 					<c:forEach items="${foreignPatentList }" var="foreignPatentList" begin="0" end="9">
 						<li   ><div id="contentlimit" style="width:240px; float: left;">
 							<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${foreignPatentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${foreignPatentList.patentName }</a>
@@ -47,13 +55,15 @@
 					</c:forEach>
 				</ul>
 	
-				<!-- <a class="a_color_green"  style="text-decoration: none; float: right;" href="<c:url value="/patent/list"></c:url>" >更多>></a> -->
+				 
 	  		</div>
   		</div>
   		<br>
 	  	<div class="row-fluid">
 			<ul>
-  			<li class="bLine_dash"><img src="<c:url value='/resources/img/default/patentrequire.png'></c:url> " /> </li> 
+  			<li class="bLine_dash"><img src="<c:url value='/resources/img/default/patentrequire.png'></c:url> " /> 
+  				 <a class="a_color_blue"  style="text-decoration: none; float: right;"  href="<c:url value="/requirement/patent/list"></c:url>" >更多>></a>
+  			</li> 
 			<li >
 				<table width="100%" style="margin-top: 10px;">
 					<tbody>
@@ -78,10 +88,13 @@
 				</li> 
 			</ul>  	
 	  	</div>
-	  
+	  <br>
 	  	  <div class="row-fluid">
 			<ul>
-  			<li class="bLine_dash"><img src="<c:url value='/resources/img/default/techrequire.png'></c:url> " /> </li> 
+  			<li class="bLine_dash">
+  				<img src="<c:url value='/resources/img/default/techrequire.png'></c:url> " /> 
+  				 <a class="a_color_blue"  style="text-decoration: none; float: right;"  href="<c:url value="/requirement/technology/list"></c:url>" >更多>></a>
+  			</li> 
 			<li >
 					<table width="100%" style="margin-top: 10px;">
 					<tbody>
@@ -90,7 +103,7 @@
 								<ul>
 								<c:forEach items="${technologyRequire}" var="technologyRequire"  begin="0"  end="6">
 									<li ><div id="contentlimit" style="width:350px; float: left;">
-									<a class="a_color_ccc"  href="<c:url value="/requirement/technology/view/${ technologyRequire.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${technologyRequire.title }</a>
+									<a class="a_color_ccc"   href="<c:url value="/requirement/technology/view/${ technologyRequire.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${technologyRequire.title }</a>
 									</div></li>
 								</c:forEach>
 								</ul>
@@ -176,7 +189,7 @@
 		
 		<div class="row-fluid scrollbg">
 			<div class="shell">
-			<div style="color:#fff; font-weight: bold; font-size: 15px; margin: 5px 0px; ">专利专家</div>
+			<div style="margin: 5px 0px; "><a href="<c:url value='/teacher/list'></c:url>" style="color:#fff; font-weight: bold; font-size: 15px; ">热门专家</a></div>
 	 	 		 <div class="teacherInfo core" id="myflash">
 		 	 	 	<div style="height: 90px;">
 		 	 	 		<c:forEach items="${teacherLists}" var="t" begin="0" end="5">
