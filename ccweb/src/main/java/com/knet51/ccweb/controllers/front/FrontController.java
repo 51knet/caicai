@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.ServletException;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -105,6 +107,13 @@ public class FrontController {
 	@Autowired
 	private UserRecommendService recommendService;
 
+	@RequestMapping(value="/courses")
+	public void jumpToCourses(ServletResponse response) throws ServletException, IOException{
+		HttpServletResponse resp = ((HttpServletResponse)response);
+		resp.sendRedirect("/courses");
+		return;
+	}
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
