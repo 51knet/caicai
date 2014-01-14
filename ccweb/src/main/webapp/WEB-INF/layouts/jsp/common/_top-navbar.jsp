@@ -5,7 +5,7 @@
 <div class="navbar custom navbar-fixed-top">
 	<div class="container-fluid" style="text-align: center; height: 39px; width: 1024px; margin: 0 auto;">
 		<ul class="nav pull-left">
-			<li><a id="logo" href='<c:url value="/"></c:url>'></a></li>
+			<li><a id="logo" href='<c:url value="/courses"></c:url>'></a></li>
 		</ul>
 		<ul class="nav pull-right">
 			<li>
@@ -18,7 +18,7 @@
 		         &nbsp;&nbsp;<button type="submit" class="btn" style="margin-top: 4px; font-family:Arial,'Microsoft YaHei'; color: #808080; ">搜 索</button>
 		       </form>
 			</li>
-			<li><a href="http://www.51knet.com/courses"><img class="courselogo" src="<c:url value='/resources/img/default/courselogo.png'></c:url>"> <img class="goto"
+			<li><a href='<c:url value="/courses"></c:url>'><img class="courselogo" src="<c:url value='/resources/img/default/courselogo.png'></c:url>"> <img class="goto"
 					src="<c:url value='/resources/img/default/index/goto.png'></c:url>"></a></li>
 			<c:if test="${sessionUserInfo != null}">
 				<li style="margin-right: -12px;"><a href='<c:url value="/admin"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
@@ -39,7 +39,7 @@
 						<li class="divider"></li>
 						<li><a href='<c:url value="/acenter"></c:url>'>账户中心</a></li>
 						<li class="divider"></li>
-						<li><a href='<c:url value="http://www.51knet.com/courses"></c:url>'>发现知识</a></li>
+						<li><a href='<c:url value="/courses"></c:url>'>发现知识</a></li>
 						<li class="divider"></li>
 						<li><a href='<c:url value="/signout"></c:url>'>退出登录</a></li>
 					</ul></li>

@@ -1,8 +1,12 @@
 package com.knet51.courses.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -104,9 +108,10 @@ public class TeacherController {
 	 * @param teacher_id
 	 * @param model
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping(value="/teacher/{teacher_id}")
-	public String showTeacherInfoById(@PathVariable Long teacher_id,Model model){
+	public void showTeacherInfoById(@PathVariable Long teacher_id,Model model,ServletResponse response) throws ServletException, IOException{
 		/*UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if (userInfo == null) {
 			return "redirect:/signin";
@@ -118,7 +123,10 @@ public class TeacherController {
 		model.addAttribute("teacher", teacher);
 		model.addAttribute("courseCount", teacherCourseList.size());
 		model.addAttribute("courseTypeList", courseTypeList);
-		return "teacher.teacherInfo";
+//		return "teacher.teacherInfo";
+		HttpServletResponse resp = ((HttpServletResponse)response);
+		resp.sendRedirect("/ccweb/teacher/"+teacher_id);
+		return;
 	}
 	
 	
