@@ -56,12 +56,13 @@
 			<tbody>
 				<c:forEach  items="${page.content}" var="page">
 					<tr>
-						<td ><a href='<c:url value="/admin/kefu/patent/view?id=${page.patentNum }"></c:url>' >${page.patentNum }</a></td><td >${page.patentName }</td>
+						<td ><a href='<c:url value="/admin/kefu/patent/view?id=${page.patentNum }"></c:url>' >${page.patentNum }</a></td>
+						<td >${page.patentName }</td>
 						<td >${page.applicationDate }</td>
 						<!-- <td align="center"><a href='<c:url value="/admin/patent/edit/${page.patentNum}"></c:url>'>修改</a> | 
 						<a class="destoryPatentPostBtn" href="#destoryPatentPostModal" role="button" data-toggle="modal" data-target="#destoryPatentPostModal">删除</a><input type="hidden"  value="${page.patentNum}"> </td> -->
-						<td  align="center"><input type="checkbox" <c:if test="${page.focus ==1 }">checked </c:if> onchange="changeFocus(${page.patentNum } , ${page.focus})" ></td>
-						<td  align="center"><input type="checkbox" <c:if test="${page.status ==1 }">checked </c:if>  onchange="changeStatus( ${page.patentNum } , ${page.status } )" ></td>
+						<td  align="center"><input class="changeFocus" type="checkbox" <c:if test="${page.focus ==1 }">checked </c:if> ><input type="hidden" value="${page.patentNum }" /></td>
+						<td  align="center"><input  class="changeStatus"  type="checkbox" <c:if test="${page.status ==1 }">checked </c:if>><input type="hidden" value="${page.patentNum }" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -96,7 +97,7 @@
 </div>
 <script type="text/javascript">
 function changeFocus(patentNum,focus){
-	
+	alert("----"+patentNum);
 	$.ajax({
 		   type: "GET",
 		   url: "<c:url value='/admin/kefu/patent/focus/change'></c:url>",
@@ -126,5 +127,41 @@ function changeStatus(patentNum , status){
 		   }
 		});
 }
+
+$(document).ready(function() {
+	$('.changeFocus').on('change', function() {
+		var patentNum = $(this).next().val();
+		$.ajax({
+			   type: "POST",
+			   url: "<c:url value='/admin/kefu/patent/focus/change'></c:url>",
+			   data: "patentNum="+patentNum,
+			   success: function(flag){
+				   if(flag == true){
+					   alert( "首页展示修改成功");
+				   }else{
+					   alert("服务器正忙，请稍后再试");
+				   }
+			    }
+			});
+	});
+	
+	$('.changeStatus').on('change', function() {
+		var patentNum = $(this).next().val();
+		$.ajax({
+			   type: "POST",
+			   url: "<c:url value='/admin/kefu/patent/status/change'></c:url>",
+			   data: "patentNum="+patentNum,
+			   success: function(flag){
+				   if(flag == true){
+					   alert( "审核修改成功");
+				   }else{
+					   alert("服务器正忙，请稍后再试");
+				   }
+			   }
+			});
+	});
+
+});
+
 
 </script>

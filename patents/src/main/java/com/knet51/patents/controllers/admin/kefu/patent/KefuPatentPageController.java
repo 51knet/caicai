@@ -67,12 +67,12 @@ public class KefuPatentPageController {
 		return "admin.kefu.patent.view";
 	}
 	
-	@RequestMapping(value="/admin/kefu/patent/focus/change")
-	public @ResponseBody boolean changePatentFocus(@RequestParam("patentNum") String patentNum, @RequestParam("focus") Integer focus){
+	@RequestMapping(value="/admin/kefu/patent/focus/change" ,method=RequestMethod.POST)
+	public @ResponseBody boolean changePatentFocus(@RequestParam("patentNum") String patentNum){
 		boolean flag = false;
 		Patent patent = patentService.findOne(patentNum);
-		if(patent!= null && focus!= null){
-			if(focus.equals(GlobalDefs.PATENT_HOME_FOCUS)){
+		if(patent!= null ){
+			if(patent.getFocus().equals(GlobalDefs.PATENT_HOME_FOCUS)){
 				patent.setFocus(GlobalDefs.PATENT_HOME_FOCUS_NOT);
 			}else{
 				patent.setFocus(GlobalDefs.PATENT_HOME_FOCUS);
@@ -85,12 +85,12 @@ public class KefuPatentPageController {
 		return flag;
 	}
 	
-	@RequestMapping(value="/admin/kefu/patent/status/change")
-	public @ResponseBody boolean changePatentStatus(@RequestParam("patentNum") String patentNum, @RequestParam("status") Integer status){
+	@RequestMapping(value="/admin/kefu/patent/status/change",method=RequestMethod.POST)
+	public @ResponseBody boolean changePatentStatus(@RequestParam("patentNum") String patentNum){
 		boolean flag = false;
 		Patent patent = patentService.findOne(patentNum);
-		if(patent!= null && status!= null){
-			if(status.equals(GlobalDefs.PATENT_PASS)){
+		if(patent!= null ){
+			if(patent.getStatus().equals(GlobalDefs.PATENT_PASS)){
 				patent.setStatus(GlobalDefs.PATENT_WAITE);
 			}else{
 				patent.setStatus(GlobalDefs.PATENT_PASS);
