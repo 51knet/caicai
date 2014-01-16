@@ -14,9 +14,9 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.blog.BlogCategory;
 import com.knet51.ccweb.jpa.entities.blog.BlogComment;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
-import com.knet51.ccweb.jpa.repository.BlogCategoryRepository;
-import com.knet51.ccweb.jpa.repository.BlogCommentRepository;
-import com.knet51.ccweb.jpa.repository.BlogPostRepository;
+import com.knet51.ccweb.jpa.repository.blog.BlogCategoryRepository;
+import com.knet51.ccweb.jpa.repository.blog.BlogCommentRepository;
+import com.knet51.ccweb.jpa.repository.blog.BlogPostRepository;
 
 @Service
 @Transactional

@@ -1,7 +1,6 @@
 package com.knet51.patents.controllers.admin.kefu.patent;
 
 
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.jpa.entities.patent.Patent;
-import com.knet51.ccweb.jpa.entities.patent.PatentField;
-import com.knet51.ccweb.jpa.entities.patent.PatentType;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.UserService;
 import com.knet51.patents.jpa.services.patent.PatentFieldService;

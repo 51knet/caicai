@@ -27,37 +27,57 @@
 </style>
 <div class="row-fluid custom round">
 	<div  class="row">
-		<h4>我的需求>添加需求</h4>
+		<h4>专利需求>添加需求</h4>
 	</div>
 	<div class="content">
-		<form action= '<c:url value="/admin/requirement/add"></c:url>'  method="post"  id="requirement_new_form" name="requirement_post" >
-			<div class="control-group" id="title">
+		<form action= '<c:url value="/admin/patentRequirement/add"></c:url>'  method="post"  id="requirement_new_form" name="requirement_post" >
+			项目基本信息
+			<hr>
+			<div class="control-group" id="requirementName">
 				<div class="controls">
-						需求标题： <input type="text" name="title" placeholder="标题"> <span class="help-inline"><form:errors path="title" /></span>
+						需求名称： <input type="text" name="requirementName" placeholder="需求名称"> <span class="help-inline"><form:errors path="requirementName" /></span>
 				</div>
-			</div>
-			<div class="control-group" id="requirType">
-				需求类别：
-					<select name="requirType" >
-						<c:forEach items="${requirTypeList }" var="typeList" >
-					  		<option value="${typeList.id }" selected="selected">${typeList.typeName }</option>
-					  </c:forEach>
+			</div>	
+			<div class="control-group" id="requirementField">
+				<div class="controls">
+						所属领域： <input type="text" name="requirementField" placeholder="所属领域"> <span class="help-inline"><form:errors path="requirementField" /></span>
+				</div>
+			</div>	
+			<div class="control-group" id="patentType">
+				专利类型：
+					<select name="patentType" >
+				  			<c:forEach items="${pTypeList }" var="typeList">
+				  				<option value="${typeList.id }" >${typeList.typeName }</option>
+				  			</c:forEach>
 					</select>
 			</div>
-			
+			<div class="control-group" id="cooperation">
+				<div class="controls">
+						合作方式： <input type="text" name="cooperation" placeholder="合作方式"> <span class="help-inline"><form:errors path="cooperation" /></span>
+				</div>
+			</div>	
 			<div class="control-group" id="money">
 				<div class="controls">
-					拟定资金： <input type="text" name="money" placeholder="拟定资金"> <span class="help-inline"><form:errors path="title" /></span>
+					拟定资金： <input type="text" name="money" placeholder="拟定资金"> <span class="help-inline"><form:errors path="money" /></span>
 				</div>
 			</div>
+			<div class="control-group" id="content">
+				<div class="controls">
+					需求简介：<br>
+					<textarea  style="width:600px;height:300px;"  name="content"  placeholder="需求简介"></textarea>
+					<span class="help-inline"><form:errors path="content" /></span>
+				</div>
+			</div>
+			<br>
+			联系信息<hr>
 			<div class="control-group" id="company">
 				<div class="controls">
 					公司名称： <input type="text" name="company" placeholder="公司名称"> <span class="help-inline"><form:errors path="company" /></span>
 				</div>
 			</div>
-			<div class="control-group" id="name">
+			<div class="control-group" id="contact">
 				<div class="controls">
-						联系人士： <input type="text" name="name" placeholder="联系人士"> <span class="help-inline"><form:errors path="name" /></span>
+						联系人士： <input type="text" name="contact" placeholder="联系人士"> <span class="help-inline"><form:errors path="contact" /></span>
 				</div>
 			</div>
 			
@@ -66,26 +86,17 @@
 						联系电话： <input type="text" name="phone" placeholder="联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>
 				</div>
 			</div>
-			<div class="control-group" id="address">
+			<div class="control-group" id="fax">
 				<div class="controls">
-						联系地址： <input type="text" name="address" placeholder="联系地址"> <span class="help-inline"><form:errors path="address" /></span>
+						联系传真： <input type="text" name="fax" placeholder="联系传真" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="fax" /></span>
 				</div>
 			</div>
-			
-		
-			
-			<div class="control-group" id="title">
+			<div class="control-group" id="email">
 				<div class="controls">
-						截止日期： <input type="text" name="endTime" placeholder="截止日期" class="Wdate" onClick="WdatePicker()"> <span class="help-inline"><form:errors path="title" /></span>
+						联系邮箱： <input type="text" name="email" placeholder="联系邮箱" > <span class="help-inline"><form:errors path="email" /></span>
 				</div>
 			</div>
-			
-			<div class="control-group" id="content">
-				<div class="controls">
-					<textarea  style="width:670px; height: 100px;"  name="content"  placeholder="需求内容"></textarea>
-					<span class="help-inline"><form:errors path="content" /></span>
-				</div>
-			</div>
+
 			<label style="clear: right;"></label>
 			<button type="submit" class="btn btn-success">保存</button>&nbsp;&nbsp;
 			<button type="reset" class="btn">取消</button>
@@ -105,21 +116,12 @@
 				fileManagerJson : '${fileManagerJson}',
 				allowFileManager : true,
 				afterCreate : function() {
-					var self = this;
-					KindEditor.ctrl(document, 13, function() {
-						self.sync();
-						document.forms['requirement_post'].submit();
-					});
-					KindEditor.ctrl(self.edit.doc, 13, function() {
-						self.sync();
-						document.forms['requirement_post'].submit();
-					});
 				}
 			});
-			$("#requirement_new_form").submit(function(){
-				editor.sync();
-				return checkEmptyAjax("requirement_new_form","new/createRequirementAjax");
-			});
 			prettyPrint();
+			
+			$("#requirement_new_form").submit(function(){
+				return checkEmptyAjax("requirement_new_form","new/createPatentRequirementAjax");
+			});
 	    });
 </script>

@@ -23,7 +23,7 @@ public class RequireForm {
 	@NotEmpty
 	@Size(min=7,max=11)
 	private String phone;
-	@NotEmpty
+	
 	private String content;
 	
 	public String getTitle() {

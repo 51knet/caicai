@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.courses.CourseLesson;
 import com.knet51.ccweb.jpa.entities.patent.Patent;
-import com.knet51.ccweb.jpa.repository.CourseLessonRepository;
+import com.knet51.ccweb.jpa.repository.course.CourseLessonRepository;
 @Service("courseLessonService")
 @Transactional
 public class CourseLessonServiceImpl implements CourseLessonService {

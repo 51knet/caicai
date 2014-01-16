@@ -90,7 +90,8 @@ font-weight: bold;
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">个人信息</a></li>
 		<li><a href='<c:url value="/admin/details"><c:param name="active" value="photo" /></c:url>'><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">账号信息</a></li>
-		<li><a href='<c:url value="/admin/requirement/list"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">我的需求</a></li>
+		<li><a href='<c:url value="/admin/requirement/list"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">技术需求</a></li>
+		<li><a href='<c:url value="/admin/patentRequirement/list"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">专利需求</a></li>
 		<li><a href='<c:url value="/admin/patent/list"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">我的专利</a></li>
 	</ul>
 </div>

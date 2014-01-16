@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.knet51.ccweb.jpa.dao.teacherAchievement.TeacherProjectDao;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
-import com.knet51.ccweb.jpa.repository.teacherAchievement.ProjectRepository;
+import com.knet51.ccweb.jpa.repository.achievement.ProjectRepository;
 @Transactional
 @Service("teacherProjectService")
 

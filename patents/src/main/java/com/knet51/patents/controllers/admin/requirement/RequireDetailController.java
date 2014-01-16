@@ -18,11 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.knet51.patents.beans.UserInfo;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.UserService;
+import com.knet51.patents.jpa.services.patent.PatentTypeService;
+import com.knet51.patents.jpa.services.requirement.PatentRequirementService;
 import com.knet51.patents.jpa.services.requirement.RequirTypeService;
 import com.knet51.patents.jpa.services.requirement.RequirementService;
+import com.knet51.ccweb.jpa.entities.PatentRequirement;
 import com.knet51.ccweb.jpa.entities.RequirType;
 import com.knet51.ccweb.jpa.entities.Requirement;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.patent.PatentType;
 
 @Controller
 public class RequireDetailController {
@@ -34,6 +38,10 @@ public class RequireDetailController {
 	private RequirTypeService requirTypeService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private PatentRequirementService patentRequirementService;
+	@Autowired
+	private PatentTypeService patentTypeService;
 	
 	@RequestMapping(value="/admin/requirement/add",method = RequestMethod.POST)
 	public String createrequirement(@Valid RequireForm requireForm,BindingResult validResult,HttpSession session,
@@ -93,5 +101,83 @@ public class RequireDetailController {
 	public String deleteRequirement(@RequestParam("require_id") Long require_id){
 		requirementService.delete(require_id);
 		return "redirect:/admin/requirement/list";
+	}
+	
+	@RequestMapping(value="/admin/patentRequirement/add",method = RequestMethod.POST)
+	public String createPatentRequirement(@Valid PatentRequirementForm requireForm,BindingResult validResult,HttpSession session,
+			@RequestParam("patentType") Long type_id,Model model){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		User user = userInfo.getUser();
+		if(validResult.hasErrors()){
+			logger.info("====="+validResult.toString());
+			return "redirect:/admin/patentRequirement/new";
+		}else{
+			PatentType type = patentTypeService.findOne(type_id);
+			
+			PatentRequirement requirement = new PatentRequirement();
+			requirement.setRequirementName(requireForm.getRequirementName());
+			requirement.setRequirementField(requireForm.getRequirementField());
+			requirement.setPatentType(type);
+			requirement.setContent(requireForm.getContent());
+			requirement.setDate(new Date());
+			requirement.setMoney(requireForm.getMoney());
+			requirement.setCooperation(requireForm.getCooperation());
+			
+			requirement.setCompany(requireForm.getCompany());
+			requirement.setContact(requireForm.getContact());
+			requirement.setPhone(requireForm.getPhone());
+			requirement.setFax(requireForm.getFax());
+			requirement.setEmail(requireForm.getEmail());
+			requirement.setUser(user);
+			requirement.setStatus(GlobalDefs.REQUIREMENT_WAITE);
+			patentRequirementService.create(requirement);
+			
+			return "redirect:/admin/patentRequirement/list";
+		}
+		
+	}
+	
+	@RequestMapping(value="/admin/patentRequirement/edit/edit",method = RequestMethod.POST)
+	public String updatePatentRequirement(@Valid  PatentRequirementForm requireForm,BindingResult validResult,HttpSession session,
+			@RequestParam("patentType") Long type_id,@RequestParam("require_id") Long require_id,Model model){
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		User user = userInfo.getUser();
+		if(validResult.hasErrors()){
+			logger.info("====="+validResult.toString());
+			return "redirect:/admin/requirement/edit/"+require_id;
+		}else{
+			PatentType type = patentTypeService.findOne(type_id);
+			PatentRequirement requirement = patentRequirementService.findOne(require_id);
+			requirement.setRequirementName(requireForm.getRequirementName());
+			requirement.setRequirementField(requireForm.getRequirementField());
+			requirement.setPatentType(type);
+			requirement.setContent(requireForm.getContent());
+			requirement.setDate(new Date());
+			requirement.setMoney(requireForm.getMoney());
+			requirement.setCooperation(requireForm.getCooperation());
+			
+			requirement.setCompany(requireForm.getCompany());
+			requirement.setContact(requireForm.getContact());
+			requirement.setPhone(requireForm.getPhone());
+			requirement.setFax(requireForm.getFax());
+			requirement.setEmail(requireForm.getEmail());
+			requirement.setUser(user);
+			patentRequirementService.update(requirement);
+			return "redirect:/admin/patentRequirement/list";
+		}
+		
+	}
+	
+	@RequestMapping(value="/admin/patentRequirement/delete",method = RequestMethod.POST)
+	public String deletePatentRequirement(@RequestParam("require_id") Long require_id){
+		try {
+			patentRequirementService.delete(require_id);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/patentRequirement/list";
+		
 	}
 }

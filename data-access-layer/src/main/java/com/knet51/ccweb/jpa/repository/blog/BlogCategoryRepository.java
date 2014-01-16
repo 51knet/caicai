@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.repository;
+package com.knet51.ccweb.jpa.repository.blog;
 
 import java.util.List;
 

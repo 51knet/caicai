@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
-import com.knet51.ccweb.jpa.repository.CourseTypeRepository;
+import com.knet51.ccweb.jpa.repository.course.CourseTypeRepository;
 @Transactional
 @Service("couseTypeService")
 public class CourseTypeServiceImpl implements CourseTypeService {

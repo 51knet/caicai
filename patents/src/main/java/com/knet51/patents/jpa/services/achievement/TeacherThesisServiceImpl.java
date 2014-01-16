@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.knet51.ccweb.jpa.dao.teacherAchievement.TeacherThesisDao;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
-import com.knet51.ccweb.jpa.repository.teacherAchievement.ThesisRepository;
+import com.knet51.ccweb.jpa.repository.achievement.ThesisRepository;
 @Transactional
 @Service("teacherThesisService")
 

@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.knet51.ccweb.jpa.dao.teacherAchievement.TeacherHonorDao;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
-import com.knet51.ccweb.jpa.repository.teacherAchievement.HonorRepository;
+import com.knet51.ccweb.jpa.repository.achievement.HonorRepository;
 @Transactional
 @Service("teacherHonorService")
 

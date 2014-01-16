@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.repository;
+package com.knet51.ccweb.jpa.repository.announcement;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.AnnoPhoto;
-import com.knet51.ccweb.jpa.repository.AnnoPhotoRepository;
+import com.knet51.ccweb.jpa.repository.announcement.AnnoPhotoRepository;
 @Transactional
 @Service("annoPhotoService")
 public class AnnoPhotoServiceImpl implements AnnoPhotoService {

@@ -15,7 +15,7 @@ import com.knet51.ccweb.jpa.dao.ResourceDao;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
 import com.knet51.ccweb.jpa.repository.ResourceRepository;
-import com.knet51.ccweb.jpa.repository.CourseResourceRepository;
+import com.knet51.ccweb.jpa.repository.course.CourseResourceRepository;
 
 @Transactional
 @Service("resourceService")

@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.repository.teacherAchievement;
+package com.knet51.ccweb.jpa.repository.achievement;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

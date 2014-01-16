@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.repository;
+package com.knet51.ccweb.jpa.repository.blog;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.courses.CourseResource;
-import com.knet51.ccweb.jpa.repository.CourseResourceRepository;
+import com.knet51.ccweb.jpa.repository.course.CourseResourceRepository;
 
 @Transactional
 @Service("courseResourceService")

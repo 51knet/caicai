@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.knet51.ccweb.jpa.dao.teacherAchievement.TeacherPatentDao;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.teacher.TeacherPatent;
-import com.knet51.ccweb.jpa.repository.teacherAchievement.PatentRespository;
+import com.knet51.ccweb.jpa.repository.achievement.PatentRespository;
 @Transactional
 @Service("teacherPatentService")
 

@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.knet51.ccweb.jpa.dao.AnnouncementDao;
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.repository.AnnouncementRepository;
+import com.knet51.ccweb.jpa.repository.announcement.AnnouncementRepository;
 
 @Transactional
 @Service("announcementService")

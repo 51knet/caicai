@@ -66,8 +66,8 @@ public class PatentPageController {
 	public String addPatentList(HttpSession session,Model model){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		List<PatentType> pTypeList = patentTypeService.findAllPatentType();
-		List<PatentField> pFieldList = patentFieldService.findAll();
 		model.addAttribute("pTypeList", pTypeList);
+		List<PatentField> pFieldList = patentFieldService.findAll();
 		model.addAttribute("pFieldList", pFieldList);
 		return "admin."+userInfo.getRole()+".patent.new";
 	}

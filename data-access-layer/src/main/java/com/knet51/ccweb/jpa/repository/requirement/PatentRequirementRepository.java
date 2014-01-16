@@ -14,7 +14,7 @@ public interface PatentRequirementRepository extends JpaRepository<PatentRequire
 	Page<PatentRequirement> findAll(Pageable pageable);
 	
 	Page<PatentRequirement> findAllByUser(User user, Pageable pageable);
-	List<PatentRequirement> findAllListByUser(User user, Pageable pageable);
+	List<PatentRequirement> findAllListByUser(User user);
 	
 	Page<PatentRequirement> findAllByStatus(Integer status, Pageable pageable );
 	List<PatentRequirement> findAllListByStatus(Integer status, Pageable pageable);
