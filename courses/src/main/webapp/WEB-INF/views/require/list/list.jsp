@@ -15,23 +15,22 @@
 	text-align: left;
 }
 .patent{
-	 width: 1024px;
-	 margin: 10px 55px;
+	 width: 100%;
 }
 .active{
 	background-color:#526a88;
 }
-
-
 </style>
- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <c:if test='${active == "technology" }'>技术需求</c:if><c:if test='${active == "patent" }'>专利需求</c:if> </div>
+ <!-- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <c:if test='${active == "technology" }'>技术需求</c:if><c:if test='${active == "patent" }'>专利需求</c:if> </div> -->
 <div class="container title"  >
-		<div class="innerLeftTitle <c:if test='${active == "patent" }'> active</c:if> " ><a href="<c:url value="/requirement/patent/list"></c:url>">专利需求</a></div>
-		<div class="innerLeftTitle <c:if test='${active == "technology" }'> active</c:if> " style="margin-left: 10px; "><a href="<c:url value="/requirement/technology/list"></c:url>" >技术需求</a></div>
+		<div class="innerLeftTitle " >
+			<c:if test='${active == "patent" }'>  <a href="<c:url value="/requirement/patent/list"></c:url>">专利需求</a></c:if>
+			 <c:if test='${active == "technology" }'><a href="<c:url value="/requirement/technology/list"></c:url>" >技术需求</a></c:if>
+		</div>
  </div>
 
  <div class="container patent">
-		<div class="span6" style="width: 440px;">
+		<div class="span4" style="width: 350px;">
 			 <table  style="width: 100%; " cellpadding="8"  border="0">
 					<tbody>
 						<c:forEach items="${page.content}" var="page" begin="0" step="2" varStatus="i">
@@ -44,7 +43,7 @@
 					</tbody>
 				</table>
 		</div>
-		<div class="span6" style="width: 440px;">
+		<div class="span4" style="width: 350px;">
 			<table  style="width: 100%; " cellpadding="8"  border="0">
 					<tbody>
 						<c:forEach items="${page.content}" var="page" begin="1" step="2" varStatus="i">

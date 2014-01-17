@@ -144,7 +144,7 @@ public class HomeController {
 		model.addAttribute("foreignPatentList", foreignPatentList);
 		
 		session.setAttribute("patentCount", GlobalDefs.HOME_PATENT_COUNT);
-		model.addAttribute("patentFieldList", patentFieldList);
+		session.setAttribute("patentFieldList", patentFieldList);
 		model.addAttribute("patentTypeList", patentTypeList);
 		
 		model.addAttribute("requirementList", requirementList);

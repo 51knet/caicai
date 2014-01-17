@@ -1,4 +1,4 @@
-package com.knet51.patents.jpa.services.requirement;
+package com.knet51.patents.jpa.services.technology;
 
 import java.util.List;
 
@@ -11,66 +11,66 @@ import org.springframework.stereotype.Service;
 
 import com.knet51.ccweb.jpa.entities.PatentRequirement;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.repository.requirement.PatentRequirementRepository;
-@Service("patentRequirementService")
-public class PatentRequirementServiceImpl implements PatentRequirementService {
-	
+import com.knet51.ccweb.jpa.entities.technology.Technology;
+import com.knet51.ccweb.jpa.repository.technology.TechnologyRepository;
+@Service("technologyService")
+public class TechnologyServiceImpl implements TechnologyService {
 	@Autowired
-	private PatentRequirementRepository repository;
-	
+	private TechnologyRepository repository;
 	@Override
-	public PatentRequirement create(PatentRequirement patentRequirement) {
-		return repository.saveAndFlush(patentRequirement);
+	public Technology create(Technology technology) {
+		return repository.saveAndFlush(technology);
 	}
 
 	@Override
 	public void delete(Long id) {
 		repository.delete(id);
-
 	}
 
 	@Override
-	public PatentRequirement update(PatentRequirement patentRequirement) {
-		return repository.saveAndFlush(patentRequirement);
+	public Technology update(Technology technology) {
+		return repository.saveAndFlush(technology);
 	}
 
 	@Override
-	public Page<PatentRequirement> findAllByUser(User user, int pageNumber,
+	public Technology findOne(Long id) {
+		return repository.findOne(id);
+	}
+
+	@Override
+	public Page<Technology> findAllByUser(User user, int pageNumber,
 			int pageSize) {
 		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id","date");
 		return repository.findAllByUser(user, pageable);
 	}
 
 	@Override
-	public List<PatentRequirement> findListByUser(User user) {
+	public List<Technology> findListByUser(User user) {
+		
 		return repository.findAllListByUser(user);
 	}
 
 	@Override
-	public Page<PatentRequirement> findAll(int pageNumber, int pageSize) {
+	public Page<Technology> findAll(int pageNumber, int pageSize) {
 		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id","date");
 		return repository.findAll(pageable);
 	}
 
 	@Override
-	public List<PatentRequirement> findAllList() {
+	public List<Technology> findAllList() {
 		return repository.findAll();
 	}
 
 	@Override
-	public PatentRequirement findOne(Long id) {
-		return repository.findOne(id);
-	}
-
-	@Override
-	public Page<PatentRequirement> findAllByStatus(int pageNumber,
+	public Page<Technology> findAllByStatus(int pageNumber,
 			int pageSize, Integer status) {
 		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id","date");
 		return repository.findAllByStatus(status, pageable);
 	}
 
 	@Override
-	public List<PatentRequirement> findAllListByStatus(Integer status) {
+	public List<Technology> findAllListByStatus(Integer status) {
+		
 		return repository.findAllListByStatus(status);
 	}
 

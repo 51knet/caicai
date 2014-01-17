@@ -38,14 +38,14 @@
 	text-align: left;
 }
 .patent{
-	 width: 1024px;
-	 margin: 0px 55px;
+	 width: 100%;
+
 }
-</style>
+</style><!--
   <jsp:include page="/WEB-INF/views/patent/path_link.jsp"></jsp:include>
-<!-- <div class="container title"  >
+ <div class="container title"  >
 		<div class="innerLeftTitle">专利数量（${searchpatentCount }）</div>
- </div> -->
+ </div> 
   <div class="selete_filter">
 	<select id="type" onchange="selectType()">
 		<option value="all" >全部类别</option>
@@ -61,9 +61,9 @@
 			
 		</c:forEach>
 	</select>
-</div>
+</div>-->
  <div class="container patent">
-  <table  style="width: 90%; " cellpadding="8"  >
+  <table  style="width: 100%; " cellpadding="8"  >
 			 <thead>
 					<tr class="titlebg">
 					<th  width="20%" align="left" class="td_right_line">专利号</th>

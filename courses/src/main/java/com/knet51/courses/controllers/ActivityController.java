@@ -21,7 +21,7 @@ public class ActivityController {
 	
 	@RequestMapping(value="/activity/list")
 	public String showActivity(Model model,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
+			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize){
 		Page<Activity> page = activityService.findAllPage(pageNumber, pageSize);
 		List<Activity> activityList = activityService.findAllList();
 		model.addAttribute("page", page);

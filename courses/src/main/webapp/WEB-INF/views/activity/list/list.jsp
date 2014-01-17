@@ -6,33 +6,35 @@
 
 <style>
 .titlebg{
-	background-color:#ccdfa8; 
+	background-color:#3d4f65; 
 	font-size: 14px;
 	width: 100%;
+	color: #fff;
+	font-weight: bold;
 }
  .selete_filter{
  	margin-top:10px;
 	text-align: left;
 }
 .patent{
-	 width: 1024px;
-	 margin: 0px 55px;
+	 width: 100%;
+
 }
 
 </style>
- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> 活动列表 </div>
+ <!-- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> 活动列表 </div> 
 <div class="container title"  >
 		<div class="innerLeftTitle">活动动态</div>
- </div>
+ </div>-->
  <div class="container patent">
 	<c:choose>
 		<c:when test="${activityCount <=0}">
 			<h4 style="margin-left: 20px;">尚未添加内容</h4>
 		</c:when>
 		<c:otherwise>
-			 <table  style="width: 90%; " cellpadding="8"  border="0">
+			 <table  style="width: 100%; " cellpadding="8"  border="0">
 			 	 <thead>
-				 	<tr class="bb">
+				 	<tr class="titlebg">
 				 		<th align="left" width="88%">活动标题</th>
 				 		<th align="left">发布时间</th>
 				 	</tr>

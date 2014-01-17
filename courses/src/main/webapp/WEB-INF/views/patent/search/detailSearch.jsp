@@ -10,9 +10,11 @@
 	 width: 100%;
 
 	 background-color: #e4e7ec;
+	 margin-bottomx auto;
+	 text-align: center;
 }
 .searchForm{
-	padding: 0px 150px;
+	padding: 0px 20px 0px 0px;
 }
 .date{
 	margin-left: 40px; font-size: 12px; color: #666;
@@ -20,7 +22,7 @@
 }
 
 </style>
- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> 高级搜索 </div>
+<!--  <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> 高级搜索 </div> -->
 
 <div class="container title"  >
 		<div class="innerLeftTitle">高级搜索</div>
@@ -29,7 +31,7 @@
  <br>
  	<form action= '<c:url value="/search/patent/detail/list"></c:url>'  method="post" class="searchForm" id="patent_form" name="patent_post">
 	 <div class="container  row-fluid">
-			<div class="span5">
+			<div class="span6" >
 				<div class="control-group" id="patentNum">
 					<div class="controls">
 						专利号码：<input type="text" name="patentNum"   placeholder="专利号码"  > 
@@ -64,7 +66,7 @@
 				</div>
 			</div>
 			
-			<div class="span5">
+			<div class="span6"  >
 				<div class="control-group" id="classNum">
 					<div class="controls">
 						 分类号码：<input type="text" name="classNum"   placeholder="分类号码"  > 

@@ -19,4 +19,7 @@ public interface PatentRequirementService {
 	
 	Page<PatentRequirement> findAll(int pageNumber, int pageSize);
 	List<PatentRequirement> findAllList();
+	
+	Page<PatentRequirement> findAllByStatus(int pageNumber, int pageSize,Integer status);
+	List<PatentRequirement> findAllListByStatus(Integer status);
 }

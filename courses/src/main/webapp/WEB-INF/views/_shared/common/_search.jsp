@@ -120,8 +120,8 @@ ul, li {
 				<td width="53%" height="140" valign="top"><a href="<c:url value="/activity/list"></c:url>">热门活动</a></td>
 				<td width="47%" valign="top">
 					<a href="<c:url value="/patent/list"></c:url>">专利展示</a><br>
-					<img src="<c:url value='/resources/img/default/icon_new.png'></c:url> " /> <a href="<c:url value="/patent/list/china"></c:url>" class="detail">国内专利</a><br>
-					<img src="<c:url value='/resources/img/default/icon_new.png'></c:url> " /> <a href="<c:url value="/patent/list/foreign"></c:url>"  class="detail">国际专利</a>
+					<img src="<c:url value='/resources/img/default/icon_new.png'></c:url> " /> <a href="<c:url value="/patent/china/list"></c:url>" class="detail">国内专利</a><br>
+					<img src="<c:url value='/resources/img/default/icon_new.png'></c:url> " /> <a href="<c:url value="/patent/foreign/list"></c:url>"  class="detail">国际专利</a>
 				</td>
 			</tr>
 			<tr>

@@ -138,13 +138,19 @@ public class PatentController {
 	@RequestMapping(value="/patent/list/{country}")
 	public String patentList(@PathVariable String country,Model model, HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize){
-		List<Patent> patentList = patentService.findPatentListByCountry(country);
-		Page<Patent> page = patentService.findPatentByCountry(pageNumber, pageSize, country);
+	
 		
-		List<PatentField> fieldList = patentFieldService.findAll();
-		model.addAttribute("page", page);
-		model.addAttribute("searchpatentCount", patentList.size());
-		model.addAttribute("fieldList", fieldList);
+		try {
+			List<Patent> patentList = patentService.findPatentListByCountry(country);
+			Page<Patent> page = patentService.findPatentByCountry(pageNumber, pageSize, country);
+			
+			List<PatentField> fieldList = patentFieldService.findAll();
+			model.addAttribute("page", page);
+			model.addAttribute("searchpatentCount", patentList.size());
+			model.addAttribute("fieldList", fieldList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "patent.list";
 	}
 	
