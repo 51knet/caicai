@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Activity;
+import com.knet51.ccweb.jpa.entities.PatentRequirement;
 import com.knet51.ccweb.jpa.entities.Requirement;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
@@ -42,6 +43,7 @@ import com.knet51.courses.jpa.services.activity.ActivityService;
 import com.knet51.courses.jpa.services.patent.PatentFieldService;
 import com.knet51.courses.jpa.services.patent.PatentService;
 import com.knet51.courses.jpa.services.patent.PatentTypeService;
+import com.knet51.courses.jpa.services.requirement.PatentRequirementService;
 import com.knet51.courses.jpa.services.requirement.RequirementService;
 
 /**
@@ -68,6 +70,9 @@ public class HomeController {
 	private PatentFieldService patentFieldService;
 	@Autowired
 	private ActivityService activityService;
+	@Autowired
+	private PatentRequirementService patentRequirementService;
+	
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
 
@@ -78,14 +83,17 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpSession session,
 			HttpServletRequest request) {
 		logger.info("###### into the HomeController ######");
-		List<CourseBeans> cBeans = courseService.getAllCourseBeans();
+		//List<CourseBeans> cBeans = courseService.getAllCourseBeans();
 		List<Teacher> teacherList = teacherService.findAllTeacher();
-		//List<Patent> patentList = patentService.findPatentList();
+		List<Patent> patentList = patentService.findPatentList();
+		model.addAttribute("patentList", patentList);
 		
 		List<Patent> chinaPatentList = patentService.findPatentByCountryAndFocus(GlobalDefs.PATENT_CHINA, GlobalDefs.PATENT_HOME_FOCUS);
 		List<Patent> foreignPatentList = patentService.findPatentByCountryAndFocus(GlobalDefs.PATENT_FOREIGN, GlobalDefs.PATENT_HOME_FOCUS);
+		//List<PatentRequirement> patentRequirements = patentRequirementService.findAllListByStatus(GlobalDefs.REQUIREMENT_PASS);
+		
 		List<Requirement> patentRequire =  new ArrayList<Requirement>();
-		List<Requirement> technologyRequire =  new ArrayList<Requirement>();;
+		List<Requirement> technologyRequire =  new ArrayList<Requirement>();
 		List<Requirement> requirementList = requirementService.findAll();
 		List<Activity> activityList = activityService.findAllList();
 		for (Iterator iterator = requirementList.iterator(); iterator.hasNext();) {
@@ -135,8 +143,8 @@ public class HomeController {
 				model.addAttribute("teacherLists", teacherLists);
 			}
 		}
-		model.addAttribute("courseList", cBeans);
-		model.addAttribute("courseCount", cBeans.size());
+//		model.addAttribute("courseList", cBeans);
+//		model.addAttribute("courseCount", cBeans.size());
 		//model.addAttribute("teacherCount", );
 		session.setAttribute("teacherCount", GlobalDefs.HOME_TEACHER_COUNT);
 		

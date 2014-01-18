@@ -183,7 +183,11 @@ public class PatentController {
 //		if(userInfo == null){
 //			return "redirect:/patent/list";
 //		}
+		Long count = (long) 0;
+		count = count+1;
 		Patent patent = patentService.findOne(patentNum);
+		patent.setCount(count);
+		patentService.update(patent);
 		model.addAttribute("patent", patent);
 		return "patent.view";
 	}

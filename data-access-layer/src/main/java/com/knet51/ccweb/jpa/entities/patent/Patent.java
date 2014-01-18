@@ -23,6 +23,13 @@ public class Patent {
 	private String agent;
 	private String applicationDate;
 	private String address;
+	private Long count;
+	public Long getCount() {
+		return count;
+	}
+	public void setCount(Long count) {
+		this.count = count;
+	}
 	@Lob
 	private String summary;
 	

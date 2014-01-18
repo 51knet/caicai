@@ -38,7 +38,7 @@
 	}
 	
 	.typecss{
-	text-align: left; width: 420px; 
+	text-align: left; width: 480px; 
 	background-color: #718495; 
 	margin-left:50px;
 	}
@@ -72,13 +72,13 @@ setInterval("scroll(document.getElementById('scrollobj'))",30);
 				<div class="dropdown-menu typecss" style=" " role="menu" aria-labelledby="dropdownMenu">
 						<table style="width:100%; " cellpadding="5" border="0">
 							<c:forEach items="${patentFieldList }" var="patentField"  varStatus="status">
-								<c:if test="${status.count eq 1 || (status.count-1) % 5 eq 0 }">
+								<c:if test="${status.count eq 1 || (status.count-1) % 6 eq 0 }">
 									<tr >
 								</c:if>
-									<td align="center" <c:if test='${ (status.index+1) % 5 != 0}'>  class="fieldBg" </c:if> >
+									<td align="center" <c:if test='${ (status.index+1) % 6 != 0}'>  class="fieldBg" </c:if> >
 										<a href='<c:url value='/patent/${patentField.fieldName}/list' ></c:url> ' style="text-decoration: none;"><span style="color:#fff;">${patentField.fieldName}</span></a>
 									</td>
-								<c:if test="${status.count % 5 eq 0 || status.count eq 5}">
+								<c:if test="${status.count % 6 eq 0 || status.count eq 6}">
 									</tr>
 								</c:if>
 							</c:forEach>

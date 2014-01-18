@@ -153,14 +153,14 @@
 		<div class="row-fluid">
 			<a href="#"><img src="<c:url value='/resources/img/default/rt2.png'></c:url> " /> </a>
 			<div class="right_bottom_content">
-				<ul>
-				
-						<li >
-							尚未添加内容
-						</li>
-
+					<ul>
+				<c:forEach items="${patentList }" var="patentList" begin="20"  end="22"  >
+						<li ><div id="contentlimit" style="width:240px; float: left;">
+						<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${patentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${patentList.patentName }</a>
+						</div></li>
+					</c:forEach>
 				</ul>
-				<a   style="float: right;" href="<c:url value="/activity/list"></c:url>" >
+				<a   style="float: right;" href="<c:url value="/patent/list"></c:url>" >
 					<img src="<c:url value='/resources/img/default/read_all.png'></c:url> " />
 				</a>
 			</div>
@@ -174,9 +174,11 @@
 			<div  class="right_bottom_content">
 				<ul>
 					
-						<li >
-							尚未添加内容
-						</li>
+						<c:forEach items="${patentList }" var="patentList" begin="23"  end="25"  >
+						<li ><div id="contentlimit" style="width:240px; float: left;">
+						<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${patentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${patentList.patentName }</a>
+						</div></li>
+					</c:forEach>
 				
 				</ul>
 				<a   style=" float: right;" href="<c:url value="/activity/list"></c:url>" >

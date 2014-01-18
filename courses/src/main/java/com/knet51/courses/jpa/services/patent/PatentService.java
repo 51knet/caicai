@@ -32,4 +32,6 @@ public interface PatentService {
  	List<Patent> detailSearchPatentList(PatentType patentType, String patentNum,String patentName,String patentField,String mainClassNum,
  			String classNum,String applicant,String inventer,String publishNum);
  	
+ 	void update(Patent patent);
+ 	
 }
