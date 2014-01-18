@@ -21,23 +21,21 @@
 			<li><a href='<c:url value="/courses"></c:url>'><img class="courselogo" src="<c:url value='/resources/img/default/courselogo.png'></c:url>"> <img class="goto"
 					src="<c:url value='/resources/img/default/index/goto.png'></c:url>"></a></li>
 			<c:if test="${sessionUserInfo != null}">
-				<li style="margin-right: -12px;"><a href='<c:url value="/admin"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
+				<li style="margin-right: -12px;"><a href='<c:url value="/patentAdmin"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
 				<li id="fat-menu" class="dropdown" style="margin-right: -10px"><a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"> <img src="<c:url value='/resources/img/default/gear.png'></c:url>"
 						style="margin-top: -3px;height:15px;"></img>
 				</a>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-						<li><a href='<c:url value="/admin"></c:url>'>后台管理</a></li>
+						<li><a href='<c:url value="/patentAdmin"></c:url>'>后台管理</a></li>
 						<li class="divider"></li>
 						<li>
 							<c:if test="${sessionUserInfo.role != 'user'}">
-								<a href='<c:url value="/admin/details?active=photo"></c:url>'>个人中心</a>
+								<a href='<c:url value="/patentAdmin/details?active=photo"></c:url>'>个人中心</a>
 							</c:if>
 							<c:if test="${sessionUserInfo.role == 'user'}">
-								<a href='<c:url value="/pcenter/details?active=photo"></c:url>'>个人中心</a>
+								<a href='<c:url value="/patentAdmin/details?active=photo"></c:url>'>个人中心</a>
 							</c:if>
 						</li>
-						<li class="divider"></li>
-						<li><a href='<c:url value="/acenter"></c:url>'>账户中心</a></li>
 						<li class="divider"></li>
 						<li><a href='<c:url value="/courses"></c:url>'>发现知识</a></li>
 						<li class="divider"></li>

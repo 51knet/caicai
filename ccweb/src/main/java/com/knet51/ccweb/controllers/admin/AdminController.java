@@ -1,9 +1,12 @@
 package com.knet51.ccweb.controllers.admin;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.ServletException;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -58,6 +61,13 @@ public class AdminController {
 	@Autowired
 	private FriendsRelateService friendsRelateService;
 
+	@RequestMapping(value = "/patentAdmin", method = RequestMethod.GET)
+	public void jumpToPatentAdmin(ServletResponse response) throws ServletException, IOException {
+		HttpServletResponse resp = ((HttpServletResponse)response);
+		resp.sendRedirect("/patents/admin");
+		return;
+	}
+	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model, HttpSession session) {
 		UserInfo userInfo = (UserInfo) session
