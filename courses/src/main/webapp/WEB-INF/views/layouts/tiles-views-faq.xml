@@ -6,23 +6,35 @@
 
 <tiles-definitions>
 
-	<definition name="faq.about" extends="faq-layout">
+	<definition name="faq.about" extends="index-sec-layout">
 		<put-attribute name="title" value="平台简介" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/faq/banner/banner.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/faq/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/faq/intro/intro.jsp"></put-attribute>
 	</definition>
 
-	<definition name="faq.contact" extends="faq-layout">
+	<definition name="faq.contact" extends="index-sec-layout">
 		<put-attribute name="title" value="联系我们" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/faq/banner/banner.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/faq/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/faq/contact/contact.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="faq.legal" extends="faq-layout">
+	<definition name="faq.legal" extends="index-sec-layout">
 		<put-attribute name="title" value="法律声明" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/faq/banner/banner.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/faq/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/faq/legal/legal.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="faq.help" extends="faq-layout">
+	<definition name="faq.help" extends="index-sec-layout">
 		<put-attribute name="title" value="服务帮助" />
+			<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/faq/banner/banner.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/faq/item_panel.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/faq/help/help.jsp"></put-attribute>
 	</definition>
 	

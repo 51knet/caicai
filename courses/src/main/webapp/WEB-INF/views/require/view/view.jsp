@@ -11,8 +11,8 @@
 	width: 100%;
 }
 .patent{
-	 width: 1024px;
-	 margin: 10px 60px;
+	 width: 100%;
+	 margin: 10px 30px;
 }
 .patent .top{
 	font-size: 17px;
@@ -35,8 +35,8 @@
 	font-weight: normal;
 }
 </style>
- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <c:if test='${active == "technology" }'><a href="<c:url value='/requirement/technology/list'></c:url>" >技术需求</a></c:if>
- 									 <c:if test='${active == "patent" }'><a href="<c:url value='/requirement/patent/list'></c:url>" >专利需求</a></c:if> >> 需求详情</div>
+ <!-- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <c:if test='${active == "technology" }'><a href="<c:url value='/requirement/technology/list'></c:url>" >技术需求</a></c:if>
+ 									 <c:if test='${active == "patent" }'><a href="<c:url value='/requirement/patent/list'></c:url>" >专利需求</a></c:if> >> 需求详情</div>-->
 <div class="container title"  >
 		<div class="innerLeftTitle">需求详情</div>
  </div>

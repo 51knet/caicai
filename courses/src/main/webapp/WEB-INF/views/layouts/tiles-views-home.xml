@@ -130,7 +130,7 @@
 		<put-attribute name="title" value="专利预览" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
 		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
-		<put-attribute name="body" value="/WEB-INF/views/patent/view/view.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/patent/view/view.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="activity.list" extends="index-sec-layout">

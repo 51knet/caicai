@@ -3,36 +3,60 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
-.nav-tabs.nav-stacked > li > a {
-border: 1px solid #DDD;
--webkit-border-radius: 0;
--moz-border-radius: 0;
-border-radius: 0;
-text-align: center;
-font-size: medium;
-font-family: 'Microsoft YaHei',Arial;
-padding: 16px 0px;
-}
-.nav-tabs > li > a:hover {
-color: #FFF;
-text-decoration: none;
-background-color: #80B029;
-}
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
-color: #FFF;
-cursor: default;
-text-decoration: none;
-background-color: #80B029;
-border: 1px solid #DDD;
-border-bottom-color: transparent;
-}
-
 .left-menu-container {
 background-color: #ccdfa8;
-width: 90%;
+width: 172px;
+height:450px;
+margin-left: 25px;
+background-image: url("<c:url value='/resources/img/default/item_bg.png'></c:url>");
+background-position: top left;
+background-repeat: repeat-y;
+margin-bottom: 10px;
 }
-.left-menu-container a{
-color: #666;
+
+.nav-tabs {
+	width: 168px;
+}
+.nav-tabs  > li{
+	border-bottom: 0px solid #6d7b88;
+	width: 166px;
+	background-image: url("<c:url value='/resources/img/default/item_second_bLing.png'></c:url>");
+	background-position: bottom left;
+	background-repeat: repeat-x;
+}
+.nav-tabs.nav-stacked > li > a {
+border: 0px solid #DDD;
+/*-webkit-border-radius: 0;
+-moz-border-radius: 0;
+border-radius: 0;*/
+text-align: left;
+padding:8px 20px;
+font-size: 15px;
+font-family: 'Microsoft YaHei',Arial;
+color: #FFF;
+font-weight: bold;
+}
+
+.nav-tabs.nav-stacked > li >a>span{
+	padding-left: 10px;
+	font-size: 13px;
+	font-weight: normal;
+}
+.nav-tabs  > li > a:hover {
+
+color: #3d4f67;
+text-decoration: none;
+/*background-color: #80B029;*/
+background-color:#b1b6ba;
+}
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
+color: #3d4f67;
+cursor: default;
+text-decoration: none;
+/*background-color: #80B029;*/
+background-color:#b1b6ba;
+border: 0px solid #DDD;
+border-bottom-color: transparent;
 }
 </style>
 <div class="left-menu-container">
@@ -57,3 +81,5 @@ $(document).ready(function() {
 });
 </script>
 </html>
+
+

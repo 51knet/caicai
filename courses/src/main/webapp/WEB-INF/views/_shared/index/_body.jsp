@@ -35,24 +35,27 @@
 	  			<ul>
 	  			<li class="bLine_dash">
 	  				<a href="<c:url value="/patent/list/china"></c:url>" ><img src="<c:url value='/resources/img/default/chinesepatent.png'></c:url> " /></a>
-	  				<a class="a_color_blue"  style="text-decoration: none; float: right;" href="<c:url value="/patent/list/china"></c:url>" >更多>></a></li> 
-					<c:forEach items="${chinaPatentList }" var="chinaPatentList" begin="0"  end="9"  >
-						<li ><div id="contentlimit" style="width:240px; float: left;">
+	  				<a class="a_color_blue"  style="text-decoration: none; float: right;" href="<c:url value="/patent/list/china"></c:url>" >更多>></a>
+	  			</li> 
+				<c:forEach items="${chinaPatentList }" var="chinaPatentList" begin="0"  end="9"  >
+					<li ><div id="contentlimit" style="width:240px; float: left;">
 						<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${chinaPatentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${chinaPatentList.patentName }</a>
-						</div></li>
-					</c:forEach>
+						</div>
+					</li>
+				</c:forEach>
 				</ul>
 	  		</div>
 	  		<div class="span6" >
 	  			<ul>
 	  			<li class="bLine_dash">
 	  				<a href="<c:url value="/patent/list/foreign"></c:url>" ><img src="<c:url value='/resources/img/default/foreignpatent.png'></c:url> " /></a>
-	  				<a class="a_color_blue"  style="text-decoration: none; float: right;" href="<c:url value="/patent/list/foreign"></c:url>" >更多>></a> </li> 
-					<c:forEach items="${foreignPatentList }" var="foreignPatentList" begin="0" end="9">
+	  				<a class="a_color_blue"  style="text-decoration: none; float: right;" href="<c:url value="/patent/list/foreign"></c:url>" >更多>></a> 
+	  			</li> 
+				<c:forEach items="${foreignPatentList }" var="foreignPatentList" begin="0" end="9">
 						<li   ><div id="contentlimit" style="width:240px; float: left;">
 							<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${foreignPatentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${foreignPatentList.patentName }</a>
 						</div></li>
-					</c:forEach>
+				</c:forEach>
 				</ul>
 	
 				 

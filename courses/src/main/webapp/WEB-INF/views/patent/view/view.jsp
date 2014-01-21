@@ -15,8 +15,8 @@
 <style>
 
 .patent{
-	 width: 1024px;
-	 margin: 10px 60px;
+	 width: 100%;
+	padding:10px 30px;
 }
 .patent .top{
 	font-size: 17px;
@@ -42,38 +42,47 @@
 	margin-left: 40px; font-size: 12px; color: #666;
 	font-weight: normal;
 }
+
+.patent .bottom .limitTable{
+	width:630px; 
+	table-layout:fixed;
+}
+
+.patent .bottom .limitTable .limitTd{
+	word-wrap:break-word; word-break:break-all;
+}
 </style>
- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <a href="<c:url value='/patent/list'></c:url>" >专利列表</a> >> 专利详情 </div>
+ <!-- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <a href="<c:url value='/patent/list'></c:url>" >专利列表</a> >> 专利详情 </div> -->
 <div class="container title"  >
 		<div class="innerLeftTitle">专利详情</div>
  </div>
  <div class="container patent">
 	<div class="top ">${patent.patentName }
 		 <span style="float: right; margin-right: 60px;">	
-				<a href="#" style="text-decoration: none;" class="dropdown-toggle"  data-toggle="dropdown"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=826619119&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:826619119:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></a>
+				<a href="#" style="text-decoration: none; " class="dropdown-toggle"  data-toggle="dropdown"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=826619119&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:826619119:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></a>
 		</span>
 	</div>
 	<div class="bottom   tLine_dash">	
 	<br>
-		<table width="95%" height="" border="0" cellpadding="5"  class="blue">
+		<table width="95%" height="" border="0" cellpadding="5"  class="blue limitTable" >
 			<tr>
-			    <td width="122" align="center" bgcolor="#f3f3f3">专利号码</td>
-			    <td width="190">${patent.patentNum}</td>
-			    <td width="103" align="center" bgcolor="#f3f3f3">申请日期</td>
-			    <td width="169">${patent.applicationDate}</td>
+			    <td width="122" align="center" bgcolor="#f3f3f3" >专利号码</td>
+			    <td width="190" class="limitTd">${patent.patentNum}</td>
+			    <td width="103" align="center" bgcolor="#f3f3f3" >申请日期</td>
+			    <td width="169" class="limitTd">${patent.applicationDate}</td>
 			  </tr>
 			  <tr>
 			    <td width="122" align="center" bgcolor="#f3f3f3">适用领域</td>
-			    <td width="190">${patent.patentField}</td>
+			    <td width="190" class="limitTd">${patent.patentField}</td>
 			    <td width="103" align="center" bgcolor="#f3f3f3">专利类型</td>
-			    <td width="169">${patent.patentType.typeName}</td>
+			    <td width="169" class="limitTd">${patent.patentType.typeName}</td>
 			  </tr>
 		
 			  <tr>
-			    <td align="center" bgcolor="#f3f3f3">公开号码</td>
-			    <td>${patent.publishNum}</td>
-			    <td align="center" bgcolor="#f3f3f3">公开日期</td>
-			    <td>${patent.publishDate}</td>
+			    <td align="center" bgcolor="#f3f3f3" >公开号码</td>
+			    <td class="limitTd">${patent.publishNum}</td>
+			    <td align="center" bgcolor="#f3f3f3" >公开日期</td>
+			    <td class="limitTd">${patent.publishDate}</td>
 			  </tr>
 			   <tr>
 			    <td align="center" bgcolor="#f3f3f3">联系人</td>
@@ -87,7 +96,7 @@
 			    		</c:otherwise>
 			    	</c:choose>
 			    </td>
-			    <td align="center" bgcolor="#f3f3f3">联系电话</td>
+			    <td align="center" bgcolor="#f3f3f3" >联系电话</td>
 			    <td>
 			    	<c:choose>
 			    		<c:when test="${sessionUserInfo != null }">
@@ -102,11 +111,11 @@
 			  
 			  <tr>
 			    <td align="center" bgcolor="#f3f3f3">主分类号</td>
-			    <td colspan="3">${patent.mainClassNum}</td>
+			    <td colspan="3"  class="limitTd">${patent.mainClassNum}</td>
 			  </tr>
 			  <tr>
 			    <td align="center" bgcolor="#f3f3f3">分类号码</td>
-			    <td colspan="3">${patent.classNum }</td>
+			    <td colspan="3"  class="limitTd">${patent.classNum }</td>
 			  </tr>
 			</table>
 			<br>

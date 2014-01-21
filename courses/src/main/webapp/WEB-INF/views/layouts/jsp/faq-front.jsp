@@ -21,14 +21,7 @@
 		padding-right: 0px;
 		padding-left: 0px;
 	}
-	
-	.container-fluid.wrapper {
-	
-	}
-	.container-fluid.custom {
-		margin: 0 auto;
-	}
-	
+
 		.bg_white{
 		background-color: #fff;
 	}
@@ -37,18 +30,18 @@
 <body>
 	<tiles:insertAttribute name="top-navbar" />
 	<br><br>
-	<div class="container-fluid wrapper">
+	<div class="container-fluid wrapper bg_white">
 		<div class="container-fluid custom ">
 			<div class="row-fluid" style="padding-top: 20px;">
 				<tiles:insertAttribute name="banner" />
 				<tiles:insertAttribute name="navbar" />
 			</div>
 			<div class="row-fluid content-panel" style="padding-top: 25px;" >
-				<div class="span3"  style="width: 185px; margin-top: 8px;">
+				<div class="span3 margin_top_10"  style="width: 190px;  ">
 					<tiles:insertAttribute name="left" />
 				</div>
-				<!--/span-->
-				<div class="span9" >
+				
+				<div class="span9 margin_top_10" style="width: 780px;" >
 					<tiles:insertAttribute name="right" />
 				</div>
 				<!--/span-->

@@ -11,7 +11,6 @@ import com.knet51.ccweb.jpa.entities.User;
 public class Patent {
 	@Id
 	private String patentNum; 
-	
 	private String patentName;
 	private String mainClassNum;
 	private String classNum;

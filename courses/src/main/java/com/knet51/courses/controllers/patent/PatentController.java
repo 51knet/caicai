@@ -177,18 +177,20 @@ public class PatentController {
 		return "patent.list";
 	}
 	
-	@RequestMapping(value="/patent/view")
+	@RequestMapping(value="/patent/view", method=RequestMethod.GET)
 	public String showPatentDetail(Model model,HttpSession session, @RequestParam(value = "id") String patentNum){
 //		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 //		if(userInfo == null){
 //			return "redirect:/patent/list";
 //		}
-		Long count = (long) 0;
-		count = count+1;
+//		Long count = (long) 0;
+//		count = count+1; 
+		
 		Patent patent = patentService.findOne(patentNum);
-		patent.setCount(count);
-		patentService.update(patent);
+			//patent.setCount(count);
+			//patentService.update(patent);
 		model.addAttribute("patent", patent);
+		
 		return "patent.view";
 	}
 	

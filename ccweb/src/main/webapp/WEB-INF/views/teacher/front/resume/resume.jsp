@@ -37,7 +37,7 @@
 	table-layout:fixed
 }
 
-.row-fluid.custom .content .limittable ..limitTd{
+.row-fluid.custom .content .limittable .limitTd{
 	word-wrap:break-word; word-break:break-all;
 }
 
