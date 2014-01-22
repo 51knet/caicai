@@ -1,5 +1,6 @@
 package com.knet51.courses.controllers;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,6 +9,7 @@ import java.util.Locale;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -198,5 +200,12 @@ public class HomeController {
 			return "redirect:/signin";
 		}
 
+	}
+	
+	@RequestMapping(value="/patent/admin", method = RequestMethod.GET)
+	public void jumpToPatents(HttpServletResponse response) throws IOException{
+		response.sendRedirect("/patents");
+		return ;
+		
 	}
 }

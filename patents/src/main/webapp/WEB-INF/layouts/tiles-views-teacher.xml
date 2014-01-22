@@ -66,6 +66,32 @@
 		<put-attribute name="right" value="/WEB-INF/views/admin/patent/edit/edit.jsp"></put-attribute>
 	</definition>
 	
+	<!-- teacher technology  -->
+	
+	<definition name="admin.teacher.technology.list" extends="admin-layout">
+		<put-attribute name="title" value="专利列表" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/technology/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.teacher.technology.new" extends="admin-layout">
+		<put-attribute name="title" value="新建专利" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/technology/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.teacher.technology.view" extends="admin-layout">
+		<put-attribute name="title" value="专利展示" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/technology/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.teacher.technology.edit" extends="admin-layout">
+		<put-attribute name="title" value="专利展示" />
+		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/technology/edit/edit.jsp"></put-attribute>
+	</definition>
+	
 	<!--teacher  requirement -->
 	<definition name="admin.teacher.requirement.list" extends="admin-layout">
 		<put-attribute name="title" value="我的需求" />

@@ -63,10 +63,9 @@ border-bottom-color: transparent;
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value="/about"></c:url>' >平台简介</a></li>
 		<li><a href='<c:url value="/contact"></c:url>' >联系我们</a></li>
-		<!-- <li><a href='<c:url value="/help"></c:url>' >服务帮助</a></li>
-		<li><a href='<c:url value="/legal"></c:url>' >法律声明</a></li> -->
-		<li><a href='#' >服务帮助</a></li>
-		<li><a href='#' >法律声明</a></li>
+		<!-- <li><a href='<c:url value="/help"></c:url>' >服务帮助</a></li>-->
+		<li><a href='<c:url value="/legal"></c:url>' >法律声明</a></li> 
+		<li><a href='legal' >服务帮助</a></li>
 	</ul>
 </div>
 

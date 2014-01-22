@@ -45,19 +45,17 @@ public class RequireDetailController {
 	
 	@RequestMapping(value="/admin/requirement/add",method = RequestMethod.POST)
 	public String createrequirement(@Valid RequireForm requireForm,BindingResult validResult,HttpSession session,
-			@RequestParam("requirType") Long type_id,Model model){
+			Model model){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/admin/requirement/new";
 		}else{
-			RequirType type = requirTypeService.findOne(type_id);
 			Requirement requirement = new Requirement();
 			requirement.setTitle(requireForm.getTitle());
 			requirement.setContent(requireForm.getContent());
 			requirement.setDate(new Date());
-			requirement.setRequirType(type);
 			requirement.setUser(user);
 			requirement.setEndTime(requireForm.getEndTime());
 			

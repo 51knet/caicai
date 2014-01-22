@@ -1,5 +1,7 @@
 package com.knet51.ccweb.jpa.entities.technology;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -9,14 +11,15 @@ import com.knet51.ccweb.jpa.entities.User;
 
 @Entity
 public class Technology extends AbstractEntity {
-	private String techName;
-	private String techField;
+	private String techName;// xiang mu ming cheng
+	private String techField;//ying yong ling yu
 	private String department;// fa ming dan wei
 	private String inventer;// yong you zhe
 	private String phone;
-	private String techType;//xiang mu lei xing "863"
+	private String techType;//xiang mu lei xing:"863"
 	@Lob
-	private String content;// jian jie
+	private String contents;// jian jie
+	@Lob
 	private String advantage;// you shi
 	private String maturity;// cheng shu du
 	private String progress;// jin zhan, jin du
@@ -24,7 +27,9 @@ public class Technology extends AbstractEntity {
 	private String achievement;// zhuan li cheng guo
 	private String applyArea;// ying yong ling yu
 	private String cooperation;// he zuo fang shi
-	private String demand;
+	private String demand; //dui qi ye yao qiu
+	
+	private Date date;
 	private Integer status;
 	@ManyToOne
 	private User user;
@@ -90,12 +95,12 @@ public class Technology extends AbstractEntity {
 		this.techType = techType;
 	}
 
-	public String getContent() {
-		return content;
+	public String getContents() {
+		return contents;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 
 	public String getAdvantage() {
@@ -152,6 +157,14 @@ public class Technology extends AbstractEntity {
 
 	public void setDemand(String demand) {
 		this.demand = demand;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public Technology() {

@@ -36,14 +36,6 @@
 						需求标题： <input type="text" name="title" placeholder="标题"> <span class="help-inline"><form:errors path="title" /></span>
 				</div>
 			</div>
-			<div class="control-group" id="requirType">
-				需求类别：
-					<select name="requirType" >
-						<c:forEach items="${requirTypeList }" var="typeList" >
-					  		<option value="${typeList.id }" selected="selected">${typeList.typeName }</option>
-					  </c:forEach>
-					</select>
-			</div>
 			
 			<div class="control-group" id="money">
 				<div class="controls">

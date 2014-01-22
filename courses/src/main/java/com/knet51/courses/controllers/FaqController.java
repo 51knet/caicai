@@ -12,22 +12,18 @@ public class FaqController {
 	
 	@RequestMapping(value="/about")
 	public String showAboutUsInfo(){
-		logger.info("====== into AboutUs page controller =====");
 		return "faq.about";
 	}
 	@RequestMapping(value="/contact")
 	public String showContactInfo(){
-		logger.info("====== into contact page controller =====");
 		return "faq.contact";
 	}
 	@RequestMapping(value="/legal")
 	public String showLegalInfo(){
-		logger.info("====== into Legal page controller =====");
 		return "faq.legal";
 	}
 	@RequestMapping(value="/help")
 	public String showHelpInfo(){
-		logger.info("====== into Help page controller =====");
 		return "faq.help";
 	}
 }

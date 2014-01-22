@@ -28,10 +28,11 @@
 
 <div class="row-fluid custom round">
 	<div  class="row">
-		<h4>个人专利>专利修改</h4>
+		<h4>我的专利>专利修改</h4>
 	</div>
-	<div class="content">
-		<form action= '<c:url value="/admin/patent/edit/add"></c:url>'  method="post" style="margin-left:50px;" id="patent_form" name="patent_post">
+	<div class="content row-fluid">
+		<form action= '<c:url value="/admin/patent/edit/add"></c:url>'  method="post"  id="patent_form" name="patent_post">
+		<div class="span5" style="width: 340px;">
 			<div class="control-group" id="patentNum">
 				<div class="controls">
 					<i class="icon-star"></i> 专利号码：<input type="text" name="patentNum"   placeholder="专利号码" required value="${patent.patentNum }" readonly="readonly"> <span class="help-inline"><form:errors path="patentNum" /></span>
@@ -76,10 +77,11 @@
 			</div>
 			<div class="control-group"  > 
 				<div class="controls">
-						<i class="icon-star"></i> 专利范围：	<label class="radio inline" >
+						<i class="icon-star"></i> 专利范围：
+					<label class="radio inline" style="margin-top: -8px;">
 						<input type="radio" name="country" value="0" <c:if test="${patent.country ==0 }"> checked</c:if> >国内
 					</label>
-					<label class="radio inline" >
+					<label class="radio inline" style="margin-top: -8px;">
 						<input type="radio" name="country" value="1"  <c:if test="${patent.country ==1 }"> checked</c:if>>国外
 					</label>
 				</div>
@@ -101,7 +103,8 @@
 					<i class="icon-star"></i> 申请人士：<input type="text" name="applicant"   placeholder="申请人士"  required value="${patent.applicant }"> <span class="help-inline"><form:errors path="applicant" /></span>
 				</div>
 			</div>
-			
+		</div>
+		<div class="span5" style="width: 340px;">
 			<div class="control-group" id="inventer">
 				<div class="controls">
 					<i class="icon-star"></i> 发明人士：<input type="text" name="inventer"   placeholder="发明人士" required value="${patent.inventer }"> <span class="help-inline"><form:errors path="inventer" /></span>
@@ -128,33 +131,35 @@
 			
 			<div class="control-group" id="agency">
 				<div class="controls">
-					代理机构：<input type="text" name="agency"   placeholder="代理机构" required value="${patent.agency }"> <span class="help-inline"><form:errors path="agency" /></span>
+					代 理 机 构 ： <input type="text" name="agency"   placeholder="代理机构" required value="${patent.agency }"> <span class="help-inline"><form:errors path="agency" /></span>
 				</div>
 			</div>
 			
 			<div class="control-group" id="agent">
 				<div class="controls">
-					 代理人士：<input type="text" name="agent"   placeholder="代理人士" required value="${patent.agent }"> <span class="help-inline"><form:errors path="agent" /></span>
+					 代 理 人 士 ： <input type="text" name="agent"   placeholder="代理人士" required value="${patent.agent }"> <span class="help-inline"><form:errors path="agent" /></span>
 				</div>
 			</div>
 			
 			<div class="control-group" id="address">
 				<div class="controls">
-					 联系地址：<input type="text" name="address"   placeholder="申请地址" required value="${patent.address }" > <span class="help-inline"><form:errors path="address" /></span>
+					 联 系 地 址 ： <input type="text" name="address"   placeholder="申请地址" required value="${patent.address }" > <span class="help-inline"><form:errors path="address" /></span>
 				</div>
 			</div>
-			
-			<div class="control-group" id="summary">
-				<div class="controls">
+		</div>
+	
+		<div class="control-group" id="summary">
+			<div class="controls span11 " >
 				<i class="icon-star"></i> 专利摘要：<br>
-					<textarea  style="width:600px;height:300px;"  name="summary"  placeholder="专利摘要">${patent.summary }</textarea>
-					<span class="help-inline"><form:errors path="summary" /></span>
-				</div>
+				<textarea  style="width:670px;height:300px;"  name="summary"  placeholder="专利摘要">${patent.summary }</textarea>
+				<span class="help-inline"><form:errors path="summary" /></span>
 			</div>
-
-			<label style="clear: right;"></label>
-			<button type="submit" class="btn btn-success"  >发布</button>&nbsp;&nbsp;
+		</div>
+		
+		<div class="span9">
+		 	<button type="submit" class="btn btn-success ">保存</button>&nbsp;&nbsp;
 			<button type="reset" class="btn">取消</button>
+		</div>	
 		</form>
 	</div>
 </div>

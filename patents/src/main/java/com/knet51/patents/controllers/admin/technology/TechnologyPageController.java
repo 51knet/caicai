@@ -1,6 +1,7 @@
 package com.knet51.patents.controllers.admin.technology;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -35,7 +36,7 @@ public class TechnologyPageController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/admin/technology/list")
+	@RequestMapping(value="/admin/technology/list" ,method = RequestMethod.GET)
 	public String showTechnologyList(HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		logger.info("===== into technology list controller ====");
@@ -52,16 +53,19 @@ public class TechnologyPageController {
 		return "admin."+userInfo.getRole()+".technology.list";
 	}
 	
-	@RequestMapping(value="/admin/technology/new")
-	public String showTechnologyAddPage(HttpSession session){
+	@RequestMapping(value="/admin/technology/new",method = RequestMethod.GET)
+	public String showTechnologyAddPage(HttpSession session, Model model){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Map<String, String> techField = GlobalDefs.getTechField();
+		model.addAttribute("techField", techField);
 		return "admin."+userInfo.getRole()+".technology.new";
 	}
 	
-	@RequestMapping(value="/admin/technology/edit/{tech_id}")
+	@RequestMapping(value="/admin/technology/edit/{tech_id}",method = RequestMethod.GET)
 	public String technologyUpdatePage(@PathVariable Long tech_id,HttpSession session,Model model){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		
+		Map<String, String> techField = GlobalDefs.getTechField();
+		model.addAttribute("techField", techField);
 		Technology technology = technologyService.findOne(tech_id);
 		if(!userInfo.getId().equals(technology.getUser().getId())){
 			return "redirect:/admin";
@@ -70,7 +74,7 @@ public class TechnologyPageController {
 		return "admin."+userInfo.getRole()+".technology.edit";
 	}
 	
-	@RequestMapping(value="/admin/technology/view/{tech_id}")
+	@RequestMapping(value="/admin/technology/view/{tech_id}",method = RequestMethod.GET)
 	public String technologyView(@PathVariable Long tech_id,HttpSession session,Model model){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Technology technology = technologyService.findOne(tech_id);

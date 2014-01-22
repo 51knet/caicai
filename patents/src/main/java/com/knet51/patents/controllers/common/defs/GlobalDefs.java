@@ -76,4 +76,20 @@ public final class GlobalDefs {
 		map.put("6", "研究生");
 		return map;
 	}
+	
+	public static Map<String,String> getTechField(){
+		Map<String,String> map = new HashMap<String, String>();
+		map.put("1", "电子信息");
+		map.put("2", "先进能源");
+		map.put("3", "先进制造");
+		map.put("4", "生物医药");
+		map.put("5", "新材料");
+		map.put("6", "现代交通");
+		map.put("7", "资源环境");
+		map.put("8", "现代农业");
+		map.put("9", "海洋技术");
+		map.put("10", "经济管理");
+		map.put("11", "其他领域");
+		return map;
+	}
 }

@@ -9,7 +9,7 @@ public class TechnologyForm {
 	private String techName;
 	@NotEmpty
 	private String techField;
-	
+	@NotEmpty
 	private String department;// fa ming dan wei
 	@NotEmpty
 	private String inventer;// yong you zhe
@@ -17,8 +17,9 @@ public class TechnologyForm {
 	@Size(min=7,max=11)
 	private String phone;
 	private String techType;//xiang mu lei xing "863"
-	
-	private String content;// jian jie
+	@NotEmpty
+	private String contents;// jian jie
+	@NotEmpty
 	private String advantage;// you shi
 	
 	private String maturity;// cheng shu du
@@ -66,11 +67,11 @@ public class TechnologyForm {
 	public void setTechType(String techType) {
 		this.techType = techType;
 	}
-	public String getContent() {
-		return content;
+	public String getContents() {
+		return contents;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 	public String getAdvantage() {
 		return advantage;

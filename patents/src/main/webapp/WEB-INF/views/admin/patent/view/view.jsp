@@ -30,7 +30,7 @@
 </script>
 <div class="row-fluid custom round">
 	<div class="row">
-		<h4>专利详细</h4>
+		<h4>我的专利>>专利详细</h4>
 	</div>
 	<div class="content">
 			<table width="100%" height="" border="1" cellpadding="5" cellspacing="0"   class=" <c:if test="${sessionUserInfo.role == 'teacher'}">blue</c:if> <c:if test="${sessionUserInfo.role == 'user'}">yellow</c:if>"   >

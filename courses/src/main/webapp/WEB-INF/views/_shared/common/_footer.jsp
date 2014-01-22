@@ -30,8 +30,8 @@
 		<div class="span5" >
 			<a href='<c:url value="/about"></c:url>' >关于我们</a> | 
 			<a href='<c:url value="/contact"></c:url>' >联系我们</a> | 
-			<a href='<c:url value="#"></c:url>' >服务帮助</a> | 
-			<a href='<c:url value="#"></c:url>' >法律声明</a>	
+			<a href='<c:url value="/#"></c:url>' >服务帮助</a> | 
+			<a href='<c:url value="/legal"></c:url>' >法律声明</a>	
 			<br><br>
 			<div><p>版权所有 沪ICP备20110827 <br>
 			CopyRight © 2006-2014</p></div>

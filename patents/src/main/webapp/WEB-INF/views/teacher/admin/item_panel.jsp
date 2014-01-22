@@ -49,7 +49,7 @@
 	<ul class="nav nav-tabs nav-stacked">
 		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' >我的简历</a></li>
 		<li><a href='<c:url value="/admin/details"><c:param name="active" value="photo" /></c:url>' >账号信息</a></li>
-
+		<li><a href='<c:url value="/admin/technology/list"></c:url>' >技术发布</a></li>
 		<li><a href='<c:url value="/admin/patent/list"></c:url>' >专利发布</a></li>
 		<li><a href='<c:url value="/admin/requirement/list"></c:url>' >技术需求</a></li>
 		<li><a href='<c:url value="/admin/patentRequirement/list"></c:url>' >专利需求</a></li>
