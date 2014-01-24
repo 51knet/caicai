@@ -53,6 +53,7 @@ public class TechnologyDetailController {
 				technology.setTechType(techForm.getTechType());
 				technology.setUser(userInfo.getUser());
 				technology.setStatus(GlobalDefs.TECH_WAITE);
+				technology.setFocus(GlobalDefs.TECH_HOME_FOCUS_NOT);
 				
 				technologyService.create(technology);
 			}

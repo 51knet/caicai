@@ -71,6 +71,7 @@ border-bottom-color: transparent;
 		<li><a href='<c:url value="#"></c:url>'>需求列表</a></li>
 		<li><a href='<c:url value="/requirement/patent/list"></c:url>' ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 专利需求</span></a></li>
 		<li><a href='<c:url value="/requirement/technology/list"></c:url>'  ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 技术需求</span></a></li>
+		<li><a href='<c:url value="/teacher/list"></c:url>'>专家列表</a></li>
 		<li><a href='<c:url value="/search/patent/detail"></c:url>'>高级搜索</a></li>
 	</ul>
 </div>

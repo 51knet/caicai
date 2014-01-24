@@ -93,7 +93,6 @@
 		color:#fff;
 		font-weight:bold;
 		letter-spacing:1px;
-		margin:0px 0px 0px 0px;
 		padding: 0px 10px;
 	/*	background-color: #fff;*/
 		line-height: 35px;
@@ -185,17 +184,13 @@ border-top-color: #EEE;*/
 }
 
 .container.teacher {
-  width: 1024px;
+  width: 100%;
 }
 
-.container.teacher .bgimg {
 
-  background-position: top left;
-  background-repeat: repeat-x;	
-}
 
 .container.teacher .teacherInfo{
- margin-left:70px;
+margin:0px auto;
   width: 95%;
 }
 .container.teacher .teacherInfo .span1{

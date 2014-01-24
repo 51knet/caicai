@@ -65,6 +65,9 @@ public final class GlobalDefs {
 	public static final Integer TECH_WAITE = 0;
 	public static final Integer TECH_PASS = 1;
 	
+	// the technology show status in home page
+	public static final Integer TECH_HOME_FOCUS = 1;
+	public static final Integer TECH_HOME_FOCUS_NOT = 0;
 	
 	public static Map<String,String> getUserEduExpMap(){
 		Map<String,String> map = new HashMap<String, String>();

@@ -25,21 +25,26 @@
 .row-fluid.custom .content {
 	margin: 20px 40px;
 }
+.margin_right{
+	margin-right: 15px;
+	font-size: 14px;
+}
 </style>
 <div class="row-fluid custom round">
 	<div class="row" >
-		<h4>技术需求</h4>
+		<h4>专利需求</h4>
 	</div>
 	<div class="content">	
-		<a  style="float: right;" href='<c:url value="/admin/requirement/new"></c:url>' class="btn">新需求</a><br><br>
-	
+		<a class="margin_right"  href="<c:url value='/admin/kefu/patentrequirement/list/all'></c:url>" >全部 </a>
+		<a  class="margin_right" href="<c:url value='/admin/kefu/patentrequirement/list/pass'></c:url>">通过 </a>
+		<a class="margin_right"  href="<c:url value='/admin/kefu/patentrequirement/list/waite'></c:url>">审核中 </a><br><br>
 			<table class=" <c:if test="${sessionUserInfo.role == 'teacher'}">blue</c:if> <c:if test="${sessionUserInfo.role == 'user'}">yellow</c:if>"    id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
 					<tr>
 						<th width="25%">标题</th>
 						
 						<th width="10%">发布时间</th>
-						<th width="10%">操作</th>
+						<th width="10%">通过审核</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -47,14 +52,15 @@
 						<tr>
 						<td >
 							<div style="width: 300px;" id="content">
-								<a href='<c:url value="/admin/requirement/edit/${page.id }"></c:url>' >${page.title }</a>
+								<a href='<c:url value="/admin/kefu/patentrequirement/view/${page.id }"></c:url>' >${page.requirementName }</a>
 							</div>
 						</td>
+					
 						<td align="center">
 							<fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd HH:mm"/>
 						</td>
-						<td  align="center"><a href='<c:url value="/admin/requirement/edit/${page.id }"></c:url>' >修改</a> |
-						 <a class="destoryRequirePostBtn" href="#destoryRequirePostModal" role="button" data-toggle="modal" data-target="#destoryRequirePostModal">删除</a><input type="hidden"  value="${page.id}"> </td>
+						<td  align="center"><input  class="changeStatus"  type="checkbox" <c:if test="${page.status ==1 }">checked </c:if>><input type="hidden" value="${page.id}" /></td>
+						 </tr>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -62,29 +68,42 @@
 		</div>
 
 </div>
-<div class="modal hide fade" id="destoryRequirePostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    <h3 id="myModalLabel">请注意</h3>
-	  </div>
-	  <div class="modal-body">
-	    <p>你确定删除该需求吗？</p>
-	  </div>
-	  <div class="modal-footer">
-	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-	    <form action='<c:url value="/admin/requirement/delete"></c:url>' method="post" style="display: inline-block;" >
-	    	<input id="require_delete_id" type="hidden" name="require_id" />
-	    	
-	    	<button class="btn btn-success">确定</button>
-	    </form>
-	  </div>
-</div>
+
 <script type="text/javascript">
 $(document).ready(function() {
-	$('.destoryRequirePostBtn').on('click', function() {
-		var r_id = $(this).next().val();
-		$('#require_delete_id').val(r_id);	
+	/*$('.changeFocus').on('change', function() {
+		var patentNum = $(this).next().val();
+		$.ajax({
+			   type: "POST",
+			   url: "<c:url value='/admin/kefu/patentRequirement/focus/change'></c:url>",
+			   data: "patentNum="+patentNum,
+			   success: function(flag){
+				   if(flag == true){
+					   alert( "首页展示修改成功");
+				   }else{
+					   alert("服务器正忙，请稍后再试");
+				   }
+			    }
+			});
+	});*/
+	
+	$('.changeStatus').on('change', function() {
+		var pre_id = $(this).next().val();
+		$.ajax({
+			   type: "POST",
+			   url: "<c:url value='/admin/kefu/patentrequirement/status/change'></c:url>",
+			   data: "pre_id="+pre_id,
+			   success: function(flag){
+				   if(flag == true){
+					   alert( "审核修改成功");
+				   }else{
+					   alert("服务器正忙，请稍后再试");
+				   }
+			   }
+			});
 	});
+
 });
+
 
 </script>

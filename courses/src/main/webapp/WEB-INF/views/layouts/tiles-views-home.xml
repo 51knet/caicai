@@ -59,10 +59,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/course/usercourse/list/courses.jsp" />
 	</definition>
 	
-	<definition name="teacher.list" extends="index-layout">
+	<definition name="teacher.list" extends="index-sec-layout">
 	<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="title" value="专家详细" />
-		<put-attribute name="body" value="/WEB-INF/views/teacher/list/list.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/list/list.jsp" />
 	</definition>
 	<definition name="teacher.teacherInfo" extends="index-layout">
 		<put-attribute name="title" value="专家课程" />

@@ -1,44 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
-.row-fluid.custom {
-	margin-bottom: 20px;
-	padding: 0px 0px 10px;
-}
 
-.row-fluid.custom .row > h3 {
-	color: #000;
-	border-bottom: solid #cccccc 0px;
-	padding-bottom: 4px;
-	margin: 0px 0px 0px 0px;
-	background-image: url('<c:url value="/resources/img/default/faqline.png"></c:url>');
-	background-position: left bottom;
-	background-repeat: no-repeat;
-}
-
-
-.row-fluid.custom .row {
-	margin: 0px 40px 0px 40px;
-}
-
-.row-fluid.custom .row .content {
+.patent{
+	 width:100%;
 	line-height:25px;
-	margin: 10px 10px;
 }
 
+.date{
+	font-size: 12px; color: #666;
+	font-weight: normal;
+}
 
+.patent .content{
+	padding:10px 20px;
+	width: 96%;
+}
 </style>
-
-<div class="row-fluid custom round">
-	<div class="row">
-		<h3>联系我们</h3>
-	</div>
-	<div class="row ">
-	<br>
+<div class="container title"  >
+		<div class="innerLeftTitle">联系我们</div>
+ </div>
+ <div class="container patent">
 		<div class="content">
 			<h5>客户服务</h5>
 			联系人：张小姐<br>
@@ -50,5 +36,7 @@
 			电话：021-55520056-802<br>
 			Email：service@51knet.com <br><br>
 		</div>
-	</div>
-</div>
+ </div>
+
+
+

@@ -32,13 +32,13 @@
 		<a  style="float: right;" href='<c:url value="/admin/technology/new"></c:url>' class="btn">添加新技术</a><br><br>
 		<table class=" <c:if test="${sessionUserInfo.role == 'teacher'}">blue</c:if> <c:if test="${sessionUserInfo.role == 'user'}">yellow</c:if>" id="mytab" cellpadding="4" width=100%  border=0>
 			<thead>
-				<tr><th width="50%">技术名称</th><th>应用领域</th><th width="12%">操作</th></tr>
+				<tr><th width="70%">技术名称</th><th>应用领域</th><th width="15%">操作</th></tr>
 			</thead>
 			<tbody>
 				<c:forEach  items="${page.content}" var="page">
 					<tr>
 						<td ><a href='<c:url value="/admin/technology/edit/${page.id }"></c:url>' >${page.techName }</a></td>
-						<td >${page.techField}</td>
+						<td align="center">${page.techField}</td>
 						<td align="center"><a href='<c:url value="/admin/technology/edit/${page.id}"></c:url>'>修改</a> | 
 						<a class="destoryTechnologyPostBtn" href="#destoryTechnologyPostModal" role="button" data-toggle="modal" data-target="#destoryTechnologyPostModal">删除</a><input type="hidden"  value="${page.id}"> </td>
 					</tr>

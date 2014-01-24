@@ -6,9 +6,9 @@
 <style>
 
 </style>
- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> 专家列表 </div>
+ <!-- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> 专家列表 </div>（${fn:length(teacherList)}） -->
  <div class="container title"  >
-		<div class="innerLeftTitle">热门专家（${fn:length(teacherList)}）</div>
+		<div class="innerLeftTitle">热门专家</div>
  	</div>
 <div class="container teacher">
 			<!-- <div class="selete_filter">
@@ -18,7 +18,7 @@
 		<span>大学</span><span>中学</span><span>小学</span><span>其他</span>
 		</div> -->
 
-  	<div class="bgimg">
+  	<div >
 	<c:choose>
 	<c:when test="${fn:length(teacherList)==0}">
        <div class="teacherInfo">
@@ -60,6 +60,7 @@
 	</div>
 	</c:otherwise>
 	</c:choose>
-	<div  class="teacherInfo" style="float: left; margin-left: 80px;  margin-top: 10px;"><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>
+	
 	</div>
 </div>
+<div  class="teacher" style="margin-left: 30px;" ><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>

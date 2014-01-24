@@ -37,9 +37,10 @@
 		<a  class="margin_right" href="<c:url value='/admin/kefu/patent/list/pass'></c:url>">通过 </a>
 		<a class="margin_right"  href="<c:url value='/admin/kefu/patent/list/waite'></c:url>">审核中 </a>
 		<a class="margin_right"  href="<c:url value='/admin/kefu/patent/list/china'></c:url>">国内 </a>
-		<a  href="<c:url value='/admin/kefu/patent/list/foreign'></c:url>">国际</a>
+		<a class="margin_right"  href="<c:url value='/admin/kefu/patent/list/foreign'></c:url>">国际</a>
+		<a  href="<c:url value='/admin/kefu/patent/list/focus'></c:url>">首页展示</a>
 		  <form  class="navbar-form"  action="<c:url value="/admin/kefu/search/patent"></c:url>"  method="get" style="float: right; margin-bottom:10px;">
-				<input type="text" name="searchParam"   placeholder="搜索"  value="${searchParam }" > 
+				<input type="text" name="searchParam"   placeholder="输入专利名"  value="${searchParam }" > 
 				<button type="submit" class="btn btn_font" style=" ">搜索</button>				
 	     </form>
 		<br><br>
@@ -96,38 +97,6 @@
 	  </div>
 </div>
 <script type="text/javascript">
-function changeFocus(patentNum,focus){
-	alert("----"+patentNum);
-	$.ajax({
-		   type: "GET",
-		   url: "<c:url value='/admin/kefu/patent/focus/change'></c:url>",
-		   data: "patentNum="+patentNum+"&focus="+focus,
-		   success: function(flag){
-			   if(flag == true){
-				   alert( "首页展示修改成功");
-			   }else{
-				   alert("服务器正忙，请稍后再试");
-			   }
-		    }
-		});
-}
-
-function changeStatus(patentNum , status){
-	
-	$.ajax({
-		   type: "GET",
-		   url: "<c:url value='/admin/kefu/patent/status/change'></c:url>",
-		   data: "patentNum="+patentNum+"&status="+status,
-		   success: function(flag){
-			   if(flag == true){
-				   alert( "审核修改成功");
-			   }else{
-				   alert("服务器正忙，请稍后再试");
-			   }
-		   }
-		});
-}
-
 $(document).ready(function() {
 	$('.changeFocus').on('change', function() {
 		var patentNum = $(this).next().val();

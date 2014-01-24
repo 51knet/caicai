@@ -15,17 +15,18 @@
 	font-size: 17px;
 	color: #3f5517;
 	padding:10px 0px 8px 10px;
-	width: 90%;
+	width: 96%;
+	text-align: center;
 }
 
 .date{
-	margin-left: 40px; font-size: 12px; color: #666;
+	font-size: 12px; color: #666;
 	font-weight: normal;
 }
 
 .patent .bottom{
 	padding:10px 10px;
-	width: 90%;
+	width: 96%;
 }
 </style>
  <!--  <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <a href="<c:url value='/activity/list'></c:url>" >活动列表</a> >> 活动详情 </div>-->
@@ -33,7 +34,7 @@
 		<div class="innerLeftTitle">活动详情</div>
  </div>
  <div class="container patent">
-	<div class="top ">${activity.title }<span class="date">发布于：<fmt:formatDate value="${activity.date}" pattern="yyyy-MM-dd "/></span></div>
+	<div class="top ">${activity.title }<br><span class="date">发布于：<fmt:formatDate value="${activity.date}" pattern="yyyy-MM-dd "/></span></div>
 	<div class="bottom  bLine_dash tLine_dash">	${activity.content }</div>
  </div>
 

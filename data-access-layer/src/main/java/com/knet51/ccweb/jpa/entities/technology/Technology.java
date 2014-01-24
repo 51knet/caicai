@@ -31,6 +31,7 @@ public class Technology extends AbstractEntity {
 	
 	private Date date;
 	private Integer status;
+	private Integer focus;
 	@ManyToOne
 	private User user;
 	public User getUser() {
@@ -169,6 +170,14 @@ public class Technology extends AbstractEntity {
 
 	public Technology() {
 		super();
+	}
+
+	public Integer getFocus() {
+		return focus;
+	}
+
+	public void setFocus(Integer focus) {
+		this.focus = focus;
 	}
 	
 	

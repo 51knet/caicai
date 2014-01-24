@@ -1,46 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
-.row-fluid.custom {
-	margin-bottom: 20px;
-	padding: 0px 0px 10px;
-}
 
-.row-fluid.custom .row > h3 {
-	color: #000;
-	border-bottom: solid #cccccc 0px;
-	padding-bottom: 4px;
-	margin: 0px 0px 0px 0px;
-	background-image: url('<c:url value="/resources/img/default/faqline.png"></c:url>');
-	background-position: left bottom;
-	background-repeat: no-repeat;
-}
-
-
-.row-fluid.custom .row {
-	margin: 0px 40px 0px 40px;
-}
-
-.row-fluid.custom .row .content {
+.patent{
+	 width:100%;
 	line-height:25px;
-	margin: 10px 10px;
 }
 
+.date{
+	font-size: 12px; color: #666;
+	font-weight: normal;
+}
 
+.patent .content{
+	padding:10px 20px;
+	width: 96%;
+}
 </style>
-
-<div class="row-fluid custom round">
-	<div class="row">
-		<h3>法律声明</h3>
-	</div>
-	<div class="row ">
-	<br>
+<div class="container title"  >
+	<div class="innerLeftTitle">法律声明</div>
+ </div>
+ <div class="container patent">
 		<div class="content">
-<p>本网站是关于技术转移与融资的平台，若访问和使用本网站，您的使用行为将被视为同意并不加修改地完全接受了本声明所包含的条款、条件和本网站不时刊登的通告，并且遵守与互联网和本网站相关的法律、法规、国家政策与规则。如果不同意本声明所包含的条款、条件及本网站不时刊登的通告，您可以立即放弃访问和使用本网站平台。</p>
+			<p>本网站是关于技术转移与融资的平台，若访问和使用本网站，您的使用行为将被视为同意并不加修改地完全接受了本声明所包含的条款、条件和本网站不时刊登的通告，并且遵守与互联网和本网站相关的法律、法规、国家政策与规则。如果不同意本声明所包含的条款、条件及本网站不时刊登的通告，您可以立即放弃访问和使用本网站平台。</p>
 
 <p><b>（一）网站使用原则</b></p>
 
@@ -108,7 +94,8 @@
 <p><b>（六）声明修改 </b></p>
 
 本网站将可能不时的修改本声明的有关条款，一旦条款内容发生变动，本网站将会在相关的页面提示修改内容。如果不同意本公司对本声明所做的修改，用户有权停止使用网络服务。如果用户继续使用网络服务，则视为用户接受服务条款的变动。<br>
-
 		</div>
-	</div>
-</div>
+ </div>
+
+
+

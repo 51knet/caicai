@@ -49,6 +49,8 @@ public class KefuPatentPageController {
 			page = patentService.findPatentByStatus(pageNumber, pageSize, GlobalDefs.PATENT_PASS);
 		}else if(status.equals("waite")){
 			page = patentService.findPatentByStatus(pageNumber, pageSize, GlobalDefs.PATENT_WAITE);
+		}else if(status.equals("focus")){
+			page = patentService.findPatentByFocus(pageNumber, pageSize, GlobalDefs.PATENT_HOME_FOCUS);
 		}
 		model.addAttribute("page", page);
 		return "admin.kefu.patent.list";

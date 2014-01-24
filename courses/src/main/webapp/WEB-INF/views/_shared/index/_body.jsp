@@ -20,7 +20,7 @@
 		 padding:3px 5px; z-index: 100; 
 		 margin-top:-5px;  font-size:13px;   
 		 border: 1px solid #ccc; background-color: #fff; 
-		 display: none; max-width: 300px; max-height: 60px;
+		 display: none; max-width: 400px; max-height: 60px;
 	}
 	
 	.right_bottom_content{
@@ -37,6 +37,7 @@
 	  				<a href="<c:url value="/patent/list/china"></c:url>" ><img src="<c:url value='/resources/img/default/chinesepatent.png'></c:url> " /></a>
 	  				<a class="a_color_blue"  style="text-decoration: none; float: right;" href="<c:url value="/patent/list/china"></c:url>" >更多>></a>
 	  			</li> 
+				<li style="margin-top: 10px;"> </li>
 				<c:forEach items="${chinaPatentList }" var="chinaPatentList" begin="0"  end="9"  >
 					<li ><div id="contentlimit" style="width:240px; float: left;">
 						<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${chinaPatentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${chinaPatentList.patentName }</a>
@@ -51,6 +52,7 @@
 	  				<a href="<c:url value="/patent/list/foreign"></c:url>" ><img src="<c:url value='/resources/img/default/foreignpatent.png'></c:url> " /></a>
 	  				<a class="a_color_blue"  style="text-decoration: none; float: right;" href="<c:url value="/patent/list/foreign"></c:url>" >更多>></a> 
 	  			</li> 
+	  			<li  style="margin-top: 10px;"> </li>
 				<c:forEach items="${foreignPatentList }" var="foreignPatentList" begin="0" end="9">
 						<li   ><div id="contentlimit" style="width:240px; float: left;">
 							<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${foreignPatentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${foreignPatentList.patentName }</a>
@@ -82,8 +84,8 @@
 								<br>
 							</td>
 							<td valign="top">
-									<img src="<c:url value='/resources/img/default/patentrequirepic.png'></c:url>" >
-									<img style="margin-top: 10px;" src="<c:url value='/resources/img/default/patentrequirepic.png'></c:url>" >
+									<img src="<c:url value='/resources/img/default/prpic1.png'></c:url>" >
+									<img style="margin-top: 10px;" src="<c:url value='/resources/img/default/prpic2.png'></c:url>" >
 							</td>
 						</tr>
 						</tbody>
@@ -113,8 +115,8 @@
 								<br>
 							</td>
 							<td valign="top">
-									<img src="<c:url value='/resources/img/default/techrequirepic.png'></c:url>" >
-									<img style="margin-top: 10px;" src="<c:url value='/resources/img/default/techrequirepic.png'></c:url>" >
+									<img src="<c:url value='/resources/img/default/trpic1.png'></c:url>" >
+									<img style="margin-top: 10px;" src="<c:url value='/resources/img/default/trpic2.png'></c:url>" >
 							</td>
 						</tr>
 						</tbody>
@@ -127,7 +129,10 @@
 	
 	<div class="span5 " style=" width: 440px;  ">
 		<div class="row-fluid">
-			<a href="#"><img src="<c:url value='/resources/img/default/upload.png'></c:url> " /> </a>
+			<!-- <a class="destoryPatentPostBtn" href="#destoryPatentPostModal" role="button" data-toggle="modal" data-target="#destoryPatentPostModal"> -->
+			<a href="#">
+				<img src="<c:url value='/resources/img/default/upload.png'></c:url> " /> 
+			</a>
 		</div><br>
 		
 		<div class="row-fluid bLine_dash"></div><br>
@@ -158,7 +163,7 @@
 			<div class="right_bottom_content">
 					<ul>
 				<c:forEach items="${patentList }" var="patentList" begin="20"  end="22"  >
-						<li ><div id="contentlimit" style="width:240px; float: left;">
+						<li ><div id="contentlimit" style="width:400px; float: left;">
 						<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${patentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${patentList.patentName }</a>
 						</div></li>
 					</c:forEach>
@@ -178,7 +183,7 @@
 				<ul>
 					
 						<c:forEach items="${patentList }" var="patentList" begin="23"  end="25"  >
-						<li ><div id="contentlimit" style="width:240px; float: left;">
+						<li ><div id="contentlimit" style="width:400px; float: left;">
 						<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${patentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${patentList.patentName }</a>
 						</div></li>
 					</c:forEach>
@@ -251,7 +256,209 @@
 	</div>
 </div>
 
-
+<div class="modal hide fade" id="destoryPatentPostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h4 id="myModalLabel">快速上传</h4>
+	  </div>
+	  <div class="modal-body"> 
+	    <div class="tabbable">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#patent_tab" data-toggle="tab">你的专利</a></li> 
+		    	<li ><a href="#tech_tab" data-toggle="tab">你的技术</a></li>
+		    	<li ><a href="#patent_require_tab" data-toggle="tab">专利需求</a></li> 
+		    	<li ><a href="#tech_require_tab" data-toggle="tab">技术需求</a></li> 
+		    	<li ><a href="#tech_require_tab" data-toggle="tab">资金需求</a></li> 
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="patent_tab">
+					<div class="content row-fluid">
+						<form action= '<c:url value="/admin/patent/add"></c:url>'  method="post" style="" id="patent_form" name="patent_post">
+						<div class="span6" >
+							<div class="control-group" id="patentNum">
+								<div class="controls">
+									<i class="icon-star"></i> 专利号码：<input type="text" name="patentNum"   placeholder="专利号码" required value="${patent.patentNum }"> <span class="help-inline"><form:errors path="patentNum" /></span>
+								</div>
+							</div>
+							<div class="control-group" id="patentType">
+								<i class="icon-star"></i>专利类型：
+									<select name="patentType" >
+								  			<c:forEach items="${pTypeList }" var="typeList">
+								  				<option value="${typeList.id }" >${typeList.typeName }</option>
+								  			</c:forEach>
+									</select>
+							</div>
+							
+							<div class="control-group" id="patentField">
+								<i class="icon-star"></i>适用领域：
+									<select name="patentField">
+						  					<c:forEach items="${pFieldList }" var="fieldList">
+						  						<option value="${fieldList.fieldName }" >${fieldList.fieldName }</option>
+						  					</c:forEach>
+									</select>
+							</div>
+						
+							<div class="control-group" id="patentName">
+								<div class="controls">
+									<i class="icon-star"></i> 专利名称：<input type="text" name="patentName"   placeholder="专利名称"  required value="${patent.patentName }"> <span class="help-inline"><form:errors path="patentName" /></span>
+								</div>
+							</div>
+							<div class="control-group"  > 
+								<div class="controls" >
+								<label><i class="icon-star"></i> 专利范围：</label>	
+									<label class="radio inline" >
+										<input type="radio" name="country" value="0" checked="checked" >国内
+									</label>
+									<label class="radio inline"  >
+										<input type="radio" name="country" value="1" >国外
+									</label>
+								</div>
+							</div>
+							<div class="control-group" id="mainClassNum">
+								<div class="controls">
+									<i class="icon-star"></i> 主分类号：<input type="text" name="mainClassNum"   placeholder="主分类号"  required value="${patent.mainClassNum }"> <span class="help-inline"><form:errors path="mainClassNum" /></span>
+								</div>
+							</div>
+							
+							<div class="control-group" id="classNum">
+								<div class="controls">
+									<i class="icon-star"></i> 分类号码：<input type="text" name="classNum"   placeholder="分类号码"  required> <span class="help-inline"><form:errors path="classNum" /></span>
+								</div>
+							</div>
+							
+							<div class="control-group" id="applicant">
+								<div class="controls">
+									<i class="icon-star"></i> 申请人士：<input type="text" name="applicant"   placeholder="申请人士"  required> <span class="help-inline"><form:errors path="applicant" /></span>
+								</div>
+							</div>
+						
+						</div>
+						<div class="span6"   >
+						
+							<div class="control-group" id="inventer">
+								<div class="controls">
+									<i class="icon-star"></i> 发明人士：<input type="text" name="inventer"   placeholder="发明人士" required> <span class="help-inline"><form:errors path="inventer" /></span>
+								</div>
+							</div>
+							
+							<div class="control-group" id="publishDate">
+								<div class="controls">
+									<i class="icon-star"></i> 公开日期：<input type="text" name="publishDate"   placeholder="公开日期" class="Wdate" onClick="WdatePicker()" required> <span class="help-inline"><form:errors path="publishDate" /></span>
+								</div>
+							</div>
+							
+							<div class="control-group" id="publishNum">
+								<div class="controls">
+									<i class="icon-star"></i> 公开号码：<input type="text" name="publishNum"   placeholder="公开号码" required> <span class="help-inline"><form:errors path="publishNum" /></span>
+								</div>
+							</div>
+							
+							<div class="control-group" id="applicationDate">
+								<div class="controls">
+									<i class="icon-star"></i> 申请日期：<input type="text" name="applicationDate"   placeholder="申请日期" class="Wdate" onClick="WdatePicker()" required> <span class="help-inline"><form:errors path="applicationDate" /></span>
+								</div>
+							</div>
+							
+							<div class="control-group" id="agency">
+								<div  class="controls">
+									<i class="icon-star"></i> 上传人名 ： <input type="text" name="agency"   placeholder="上传人" > <span class="help-inline"><form:errors path="agency" /></span>
+								</div>
+							</div>
+							
+							<div class="control-group" id="agent">
+								<div class="controls">
+									<i class="icon-star"></i> 联系电话： <input type="text" name="agent"   placeholder="联系电话" > <span class="help-inline"><form:errors path="agent" /></span>
+								</div>
+							</div>
+							
+							<div class="control-group" id="address">
+								<div class="controls">
+									<i class="icon-star"></i> 联系地址： <input type="text" name="address"   placeholder="联系地址" required > <span class="help-inline"><form:errors path="address" /></span>
+								</div>
+							</div>
+						</div>
+					
+						<div class="control-group" id="summary">
+							<div class="controls span11 " >
+								<i class="icon-star"></i> 专利摘要：<br>
+								<textarea  style="width:480px;height:80px;"  name="summary"  placeholder="专利摘要"></textarea>
+								<span class="help-inline"><form:errors path="summary" /></span>
+							</div>
+						</div>
+						<div class="control-group">
+						 	<div class="controls span11">
+								<button type="submit"  class="btn  btn-success">添加</button> <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+							</div>
+						</div>	
+						<br>
+						</form>
+					</div>
+				</div>
+				
+				<div class="tab-pane " id="tech_tab">
+					上传技术
+					<form   method="post" id="photo_form">
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit"  class="btn  btn-success">添加</button>
+								  <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				
+				<div class="tab-pane " id="patent_require_tab">
+					专利需求
+					<form class="form-horizontal" action="banner" method="post" id="banner_form">
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit"  class="btn  btn-success">添加</button>
+								  <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				
+				<div class="tab-pane row-fluid" id="tech_require_tab">
+					<form   method="post" id="chanePsw_info_form" >
+						<div class="span6" >
+							<div class="control-group" id="title">
+									<i class="icon-star"></i> 需求标题：<input type="text" name="title" placeholder="标题"> <span class="help-inline"><form:errors path="title" /></span>
+							</div>
+							<div class="control-group" id="money">
+									<i class="icon-star"></i> 拟定资金： <input type="text" name="money" placeholder="拟定资金"> <span class="help-inline"><form:errors path="title" /></span>
+							</div>
+							<div class="control-group" id="company">
+									<i class="icon-star"></i> 公司名称： <input type="text" name="company" placeholder="公司名称"> <span class="help-inline"><form:errors path="company" /></span>
+							</div>
+						</div>
+						<div class="span6" >
+							<div class="control-group" id="name">
+									<i class="icon-star"></i> 联系人士： <input type="text" name="name" placeholder="联系人士"> <span class="help-inline"><form:errors path="name" /></span>
+							</div>
+							<div class="control-group" id="phone">
+									<i class="icon-star"></i> 联系电话： <input type="text" name="phone" placeholder="联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>
+							</div>
+							<div class="control-group" id="address">
+									<i class="icon-star"></i> 联系地址： <input type="text" name="address" placeholder="联系地址"> <span class="help-inline"><form:errors path="address" /></span>
+							</div>
+						</div>
+						<div class="span11">			
+								<textarea  style="width:470px; height: 80px;"  name="content"  placeholder="需求内容"></textarea><span class="help-inline"><form:errors path="content" /></span>	
+						</div>
+						<div class="span11">
+							<div class="controls">
+								<button type="submit"  class="btn  btn-success">添加</button> <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	    
+	  </div>
+</div>
+<br>
 <style>
 .shell{
         width:400px;
@@ -307,12 +514,12 @@ function mytab(tab_id, content_id){
 	}
 }*/
 window.onload = function (){
-	$(".activities_title").mouseover(function (){
+	/*$(".activities_title").mouseover(function (){
 		$(this).next().css("display","block");
 	});
 	$(".activities_title").mouseout(function (){
 		$(this).next().css("display","none");
-	});
+	});*/
 	myFlash('myflash',2000,-1);
 	var sc = new Scroll(document.getElementById("scroll"));  
 	

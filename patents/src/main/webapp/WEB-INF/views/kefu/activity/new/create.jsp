@@ -32,9 +32,8 @@
 	<div class="content">
 		<form action= "<c:url value='/admin/kefu/activity/new'></c:url>" enctype="multipart/form-data"  method="post" name="activity_post" id="activity_new_form"  onsubmit="return checkPicture(this)" >
 			<div class="control-group" id="title">
-				<label class="control-label" for="title">活动标题</label>
 				<div class="controls">
-					<input type="text" name="title" placeholder="活动标签"> <span class="help-inline"></span>
+					活动标题：<input type="text" name="title" placeholder="活动标题"> <span class="help-inline"></span>
 				</div>
 			</div>
 			<div class="control-group" id="content">
@@ -45,7 +44,7 @@
 			</div>
 				<div class="control-group" >
 					<div class="controls">
-						轮换图片：<input type="file" name="coverFile" /><span style="font-size: 13px; color: red;">${errorMsg }</span>
+						活动图片：<input type="file" name="coverFile" /><span style="font-size: 13px; color: red;">${errorMsg }</span>
 										<br><span style="color: red;  margin-left: 70px;">只支持jpg、gif、bmp、png格式，建议封面宽度440px，高度220px</span>
 						<span class="help-inline"></span><br>
 					</div>

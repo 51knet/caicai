@@ -22,4 +22,6 @@ public interface TechnologyService {
 	
 	Page<Technology> findAllByStatus(int pageNumber, int pageSize,Integer status);
 	List<Technology> findAllListByStatus(Integer status);
+	
+	Page<Technology> findAllByFocus(int pageNumber, int pageSize,Integer focus);
 }
