@@ -1,12 +1,9 @@
 package com.knet51.courses.util;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -78,9 +75,9 @@ public class MyUtil {
 	}
 	
 	public static void main(String[] args) {
-		String path = "src/main/resources/knet_url.properties";
+		String path = "src/main/resources/home_count.properties";
 		try {
-			System.out.println(getPropertyValueByKey("knet_url", path));
+			System.out.println(getPropertyValueByKey("HOME_PATENT_REQUIRE_COUNT", path));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

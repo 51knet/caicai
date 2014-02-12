@@ -117,19 +117,23 @@ ul, li {
 	<div class="span5 right_navbar_content" style=" width: 450px; ">
 		<table cellpadding="5" width="90%" border="0"  style="" >
 			<tr>
-				<td width="53%" height="140" valign="top"><a href="<c:url value="/activity/list"></c:url>">热门活动</a></td>
+				<td width="53%" height="140" valign="top"><a href="<c:url value="/activity/list"></c:url>">融资
+					<br><span class="detail">技术与资金的完美结合，解决<br>您的融资困境</span></a>
+				</td>
 				<td width="47%" valign="top">
-					<a href="<c:url value="/patent/list"></c:url>">专利展示</a><br>
+					<a href="<c:url value="/patent/list"></c:url>">专利<br><!-- 
 					<img src="<c:url value='/resources/img/default/icon_new.png'></c:url> " /> <a href="<c:url value="/patent/china/list"></c:url>" class="detail">国内专利</a><br>
-					<img src="<c:url value='/resources/img/default/icon_new.png'></c:url> " /> <a href="<c:url value="/patent/foreign/list"></c:url>"  class="detail">国际专利</a>
+					<img src="<c:url value='/resources/img/default/icon_new.png'></c:url> " /> <a href="<c:url value="/patent/foreign/list"></c:url>"  class="detail">国际专利</a> -->
+					<span class="detail">汇集最全、最新全球专利大数据资源，提供技术转移和专利购买服务</span></a>
 				</td>
 			</tr>
 			<tr>
-				<td height="120" valign="top"><a href="#">热门需求</a><br>
-					<img src="<c:url value='/resources/img/default/icon_new.png'></c:url> " /> <a href="<c:url value="/requirement/technology/list"></c:url>" class="detail">技术需求</a><br>
-					<img src="<c:url value='/resources/img/default/icon_new.png'></c:url> " /> <a href="<c:url value="/requirement/patent/list"></c:url>"  class="detail">专利需求</a>
+				<td height="120" valign="top"><a href="<c:url value="/requirement/technology/list"></c:url>">需求<br>
+					<span class="detail"> 解决技术难题、汇集专利需求</span></a>
 				</td>
-				<td valign="top"><a href="<c:url value="#"></c:url>">技术成果</a></td>
+				<td valign="top"><a href="<c:url value="#"></c:url>">技术成果
+					<br><span class="detail">发布科技成果的供需信息，实现高校、企业、政府的技术转移</span></a>
+				</td>
 			</tr>
 		</table>
 	</div>

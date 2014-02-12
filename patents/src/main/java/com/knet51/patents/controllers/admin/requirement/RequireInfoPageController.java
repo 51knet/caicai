@@ -26,11 +26,11 @@ import com.knet51.patents.jpa.services.requirement.RequirementService;
 import com.knet51.patents.util.ajax.AjaxValidationEngine;
 import com.knet51.patents.util.ajax.ValidationResponse;
 
-import com.knet51.ccweb.jpa.entities.PatentRequirement;
 import com.knet51.ccweb.jpa.entities.RequirType;
-import com.knet51.ccweb.jpa.entities.Requirement;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.PatentType;
+import com.knet51.ccweb.jpa.entities.requirement.PatentRequirement;
+import com.knet51.ccweb.jpa.entities.requirement.Requirement;
 
 
 @Controller

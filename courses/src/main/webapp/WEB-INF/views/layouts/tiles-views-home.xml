@@ -155,10 +155,17 @@
 	</definition>
 	
 	<definition name="requirement.view" extends="index-sec-layout">
-		<put-attribute name="title" value="需求列表" />
+		<put-attribute name="title" value="需求详情" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
 		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/require/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="patentrequirement.view" extends="index-sec-layout">
+		<put-attribute name="title" value="需求详情" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/require/patentView/view.jsp"></put-attribute>
 	</definition>
 	
 </tiles-definitions>

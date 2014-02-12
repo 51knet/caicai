@@ -41,10 +41,10 @@
 			<table class=" <c:if test="${sessionUserInfo.role == 'teacher'}">blue</c:if> <c:if test="${sessionUserInfo.role == 'user'}">yellow</c:if>"    id="mytab" cellpadding="7" width=100%  border=0>
 				<thead>
 					<tr>
-						<th width="25%">标题</th>
+						<th >标题</th>
 						
-						<th width="10%">发布时间</th>
-						<th width="10%">通过审核</th>
+						<th width="20%">发布时间</th>
+						<th width="13%">通过审核</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,7 +52,7 @@
 						<tr>
 						<td >
 							<div style="width: 300px;" id="content">
-								<a href='<c:url value="/admin/kefu/patentrequirement/view/${page.id }"></c:url>' >${page.requirementName }</a>
+								<a href='<c:url value="/admin/kefu/patentrequirement/view/${page.id }"></c:url>' >${page.title }</a>
 							</div>
 						</td>
 					

@@ -20,7 +20,7 @@
 		 padding:3px 5px; z-index: 100; 
 		 margin-top:-5px;  font-size:13px;   
 		 border: 1px solid #ccc; background-color: #fff; 
-		 display: none; max-width: 400px; max-height: 60px;
+		 display: none; max-width: 500px; max-height: 60px;
 	}
 	
 	.right_bottom_content{
@@ -77,7 +77,7 @@
 								<ul>
 									<c:forEach items="${patentRequire }" var="patentRequire"  begin="0" end="6">
 										<li ><div id="contentlimit" style="width:350px; float: left;" >
-										<img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  <a class="a_color_ccc"  href="<c:url value="/requirement/patent/view/${ patentRequire.id}"></c:url>">${patentRequire.title }</a>
+										<img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  <a class="a_color_ccc"  href="<c:url value="/requirement/patent/view/${ patentRequire.id}"></c:url>">${patentRequire.title}</a>
 										</div></li>
 									</c:forEach>
 								</ul>
@@ -108,7 +108,7 @@
 								<ul>
 								<c:forEach items="${technologyRequire}" var="technologyRequire"  begin="0"  end="6">
 									<li ><div id="contentlimit" style="width:350px; float: left;">
-									<a class="a_color_ccc"   href="<c:url value="/requirement/technology/view/${ technologyRequire.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${technologyRequire.title }</a>
+									<a class="a_color_ccc"   href="<c:url value="/requirement/technology/view/${technologyRequire.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${technologyRequire.title }</a>
 									</div></li>
 								</c:forEach>
 								</ul>
@@ -181,13 +181,11 @@
 
 			<div  class="right_bottom_content">
 				<ul>
-					
-						<c:forEach items="${patentList }" var="patentList" begin="23"  end="25"  >
+					<c:forEach items="${patentList }" var="patentList" begin="23"  end="25"  >
 						<li ><div id="contentlimit" style="width:400px; float: left;">
 						<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${patentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${patentList.patentName }</a>
 						</div></li>
 					</c:forEach>
-				
 				</ul>
 				<a   style=" float: right;" href="<c:url value="/activity/list"></c:url>" >
 					<img src="<c:url value='/resources/img/default/read_all.png'></c:url> " />
@@ -514,12 +512,12 @@ function mytab(tab_id, content_id){
 	}
 }*/
 window.onload = function (){
-	/*$(".activities_title").mouseover(function (){
+	$(".activities_title").mouseover(function (){
 		$(this).next().css("display","block");
 	});
 	$(".activities_title").mouseout(function (){
 		$(this).next().css("display","none");
-	});*/
+	});
 	myFlash('myflash',2000,-1);
 	var sc = new Scroll(document.getElementById("scroll"));  
 	

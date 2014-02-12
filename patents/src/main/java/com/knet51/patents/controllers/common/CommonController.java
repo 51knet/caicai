@@ -4,6 +4,8 @@ package com.knet51.patents.controllers.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,5 +49,11 @@ public class CommonController {
 			model.addAttribute("types", types);
 		
 		return "user.search.list";
+	}
+	
+	@RequestMapping(value="/jumpToCourses")
+	public void showHelp(HttpServletResponse response) throws Exception{
+		response.sendRedirect("/courses");
+		return ;
 	}
 }

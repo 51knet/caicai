@@ -6,38 +6,32 @@
 .row-fluid.centralize.left {
 	text-align: center;
 	margin-bottom: 20px;
- 	background-image:url('<c:url value='/resources/img/default/item-lefttop-bg.png'></c:url>');
- /*	background-color:#ebf4df; */
+ /*	background-image:url('<c:url value='/resources/img/default/item-lefttop-bg.png'></c:url>');*/
+ 	background-color:#718495; 
  	background-position:top center;
  	background-repeat:repeat;
 	vertical-align: middle;
-	height: 148px;
+	height: 160px;
 }
 .left-menu-container {
-background-color: #ebf4df;
+background-color: #718495;
+
+height:350px;
+background-image: url("<c:url value='/resources/img/default/item_bg.png'></c:url>");
+background-position: top right;
+background-repeat: repeat-y;
+margin-bottom: 10px;
 
 }
-
-.left-menu-container >div{
-	background-image: url("<c:url value='/resources/img/default/blackline.png'></c:url>");
-	background-position: center center;
+.nav-stacked  > li{
+	border-bottom: 0px solid #6d7b88;
+	width: 183px;
+	background-image: url("<c:url value='/resources/img/default/item_second_bLing.png'></c:url>");
+	background-position: bottom left;
 	background-repeat: repeat-x;
-	height: 20px;
-	width: 100%;
-	margin: 10px 1px ;
-	text-align: center;
-}
-.left-menu-container >div >div{
-	color: #666;
-	font-weight: bold;
-	font-size: 16px;
-	width: 50px;
-	height:100%;
-	background-color: #ebf4df;
-	margin-left: 20px;
 }
 
-.nav-tabs.nav-stacked > li > a {
+/*.nav-stacked > li > a {
 text-align: left;
 font-size: 15px;
 color: #adc877;
@@ -45,20 +39,37 @@ font-weight: bold;
 border:0px;
 padding:13px 25px;
 text-decoration: none;
+} */
+
+.nav-stacked > li > a {
+border: 0px solid #DDD;
+/*-webkit-border-radius: 0;
+-moz-border-radius: 0;
+border-radius: 0;*/
+text-align: left;
+padding:8px 30px;
+font-size: 15px;
+font-family: 'Microsoft YaHei',Arial;
+color: #FFF;
+font-weight: bold;
 }
-.nav-tabs > li > a:hover {
-color: #8aa942;
+
+.nav-stacked > li > a:hover {
+color: #3d4f67;
 text-decoration: none;
-background-color: #cee0ca;
+/*background-color: #80B029;*/
+background-color:#b1b6ba;
 font-weight: bold;
 
 }
-.nav-tabs > .active > a , .nav-tabs > .active > a:hover {
-color: #8aa942;
-
+.nav-stacked > .active > a , .nav-tabs > .active > a:hover {
+color: #3d4f67;
+cursor: default;
 text-decoration: none;
-background-color: #cee0ca;
-font-weight: bold;
+/*background-color: #80B029;*/
+background-color:#b1b6ba;
+border: 0px solid #DDD;
+border-bottom-color: transparent;
 }
 
 
@@ -66,33 +77,34 @@ font-weight: bold;
 </style>
 <c:url var="avatar_url" value="${sessionUserInfo.avatar}"></c:url>
 <div class="row-fluid centralize left ">
-	<div class="row-fluid " style="border-bottom: 1.5px solid #9db84d;">
+	<div class="row-fluid " >
 		<c:choose>
 			<c:when test='${sessionUserInfo.avatar == "/resources/img/avatar/avatar90.png" || sessionUserInfo.avatar == "/resources/img/avatar/avatar91.png" }'>
 				 <div style="background-image:url(${avatar_url}); background-repeat:no-repeat;background-position:center;width:60px;margin:10px auto;">
 				    <div style="height: 35px;"></div>
-				    <div style="height: 20px;background-color:gray;  padding:5px 5px;">
+				    <div style="height: 20px;background-color:gray;  padding:10px 10px;">
 				    	<a href='<c:url value="/pcenter/details"><c:param name="active" value="photo" /></c:url>' >上传头像</a> 
 				    </div>
 			   </div>
-			<div style="width: 130px;" id="content"><a href='<c:url value='/id/${sessionUserInfo.id}'></c:url>'><h4>${sessionUserInfo.name }</h4></a>	</div>
+			<div style="width: 180px;  color: #fff;" id="content"><h4>${sessionUserInfo.name }</h4>	</div>
 			</c:when>
 			<c:otherwise>
-				<img src="${avatar_url}" style="margin: 5px 5px; width: 100px; " >
-				<div style="width: 150px; text-align: center;" id="content"><a href='#'><h4>${sessionUserInfo.name }</h4></a>	</div>	
+				<img src="${avatar_url}" style="margin: 10px 10px; width: 100px; " >
+				<div style="width: 180px; text-align: center; color: #fff;" id="content"><h4>${sessionUserInfo.name }</h4>	</div>	
 			</c:otherwise>
 		</c:choose>
 	</div>
 </div>
 
-<div class="left-menu-container border-green-all" >
-	<br>
-	<ul class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">个人信息</a></li>
-		<li><a href='<c:url value="/admin/details"><c:param name="active" value="photo" /></c:url>'><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">账号信息</a></li>
-		<li><a href='<c:url value="/admin/requirement/list"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">技术需求</a></li>
-		<li><a href='<c:url value="/admin/patentRequirement/list"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">专利需求</a></li>
-		<li><a href='<c:url value="/admin/patent/list"></c:url>' ><img src="<c:url value='/resources/img/default/tip.png'></c:url>" style="margin-right: 10px;">我的专利</a></li>
+<div class="left-menu-container ">
+
+	<ul class="nav  nav-stacked">
+		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' >个人信息</a></li>
+		<li><a href='<c:url value="/admin/details"><c:param name="active" value="photo" /></c:url>'>账号信息</a></li>
+		<li><a href='<c:url value="/admin/requirement/list"></c:url>' >技术需求</a></li>
+		<li><a href='<c:url value="/admin/patentRequirement/list"></c:url>' >专利需求</a></li>
+		<li><a href='<c:url value="/admin/patent/list"></c:url>' >我的专利</a></li>
+		<li><a href='<c:url value="/admin/technology/list"></c:url>' >我的技术</a></li>
 	</ul>
 </div>
 

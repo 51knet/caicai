@@ -30,7 +30,7 @@
 	</div>
 	<div class="content">
 		<a  style="float: right;" href='<c:url value="/admin/technology/new"></c:url>' class="btn">添加新技术</a><br><br>
-		<table class=" <c:if test="${sessionUserInfo.role == 'teacher'}">blue</c:if> <c:if test="${sessionUserInfo.role == 'user'}">yellow</c:if>" id="mytab" cellpadding="4" width=100%  border=0>
+		<table class=" <c:if test="${sessionUserInfo.role == 'teacher'}">green</c:if> <c:if test="${sessionUserInfo.role == 'user'}">blue</c:if>" id="mytab" cellpadding="4" width=100%  border=0>
 			<thead>
 				<tr><th width="70%">技术名称</th><th>应用领域</th><th width="15%">操作</th></tr>
 			</thead>

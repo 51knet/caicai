@@ -34,9 +34,9 @@
 			<input type="hidden" value="${requirement.id }" name="require_id" >
 				项目基本信息
 			<hr>
-			<div class="control-group" id="requirementName">
+			<div class="control-group" id="title">
 				<div class="controls">
-						需求名称： <input type="text" name="requirementName" placeholder="需求名称" value="${requirement.requirementName }"> <span class="help-inline"><form:errors path="requirementName" /></span>
+						需求名称： <input type="text" name="title" placeholder="需求名称" value="${requirement.title }"> <span class="help-inline"><form:errors path="title" /></span>
 				</div>
 			</div>	
 			<div class="control-group" id="requirementField">

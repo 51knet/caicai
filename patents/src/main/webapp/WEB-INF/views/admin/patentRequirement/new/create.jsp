@@ -33,9 +33,9 @@
 		<form action= '<c:url value="/admin/patentRequirement/add"></c:url>'  method="post"  id="requirement_new_form" name="requirement_post" >
 			项目基本信息
 			<hr>
-			<div class="control-group" id="requirementName">
+			<div class="control-group" id="title">
 				<div class="controls">
-						需求名称： <input type="text" name="requirementName" placeholder="需求名称"> <span class="help-inline"><form:errors path="requirementName" /></span>
+						需求名称： <input type="text" name="title" placeholder="需求名称"> <span class="help-inline"><form:errors path="title" /></span>
 				</div>
 			</div>	
 			<div class="control-group" id="requirementField">

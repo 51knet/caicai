@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.knet51.ccweb.jpa.entities.PatentRequirement;
-import com.knet51.ccweb.jpa.entities.Requirement;
+import com.knet51.ccweb.jpa.entities.requirement.PatentRequirement;
+import com.knet51.ccweb.jpa.entities.requirement.Requirement;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.requirement.PatentRequirementService;
 import com.knet51.patents.jpa.services.requirement.RequirementService;

@@ -36,7 +36,9 @@
 						<c:forEach items="${page.content}" var="page" begin="0" step="2" varStatus="i">
 							<tr class="bLine_dash" >
 								<td >
-									<a  href="<c:url value="/requirement/${active}/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${page.title}</a>
+									<a  href="<c:url value="/requirement/${active}/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >   
+									${page.title}
+									</a>
 								</td>
 							</tr>
 						</c:forEach>				
@@ -49,7 +51,9 @@
 						<c:forEach items="${page.content}" var="page" begin="1" step="2" varStatus="i">
 							<tr class="bLine_dash" >
 							<td >
-								<a  href="<c:url value="/requirement/${active}/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${page.title}</a>
+								<a  href="<c:url value="/requirement/${active}/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  
+									${page.title}
+								</a>
 							</td>
 							</tr>
 						</c:forEach>				

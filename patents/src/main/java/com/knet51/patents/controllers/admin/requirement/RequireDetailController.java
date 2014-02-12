@@ -22,11 +22,11 @@ import com.knet51.patents.jpa.services.patent.PatentTypeService;
 import com.knet51.patents.jpa.services.requirement.PatentRequirementService;
 import com.knet51.patents.jpa.services.requirement.RequirTypeService;
 import com.knet51.patents.jpa.services.requirement.RequirementService;
-import com.knet51.ccweb.jpa.entities.PatentRequirement;
 import com.knet51.ccweb.jpa.entities.RequirType;
-import com.knet51.ccweb.jpa.entities.Requirement;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.PatentType;
+import com.knet51.ccweb.jpa.entities.requirement.PatentRequirement;
+import com.knet51.ccweb.jpa.entities.requirement.Requirement;
 
 @Controller
 public class RequireDetailController {
@@ -113,7 +113,7 @@ public class RequireDetailController {
 			PatentType type = patentTypeService.findOne(type_id);
 			
 			PatentRequirement requirement = new PatentRequirement();
-			requirement.setRequirementName(requireForm.getRequirementName());
+			requirement.setTitle(requireForm.getTitle());
 			requirement.setRequirementField(requireForm.getRequirementField());
 			requirement.setPatentType(type);
 			requirement.setContent(requireForm.getContent());
@@ -146,7 +146,7 @@ public class RequireDetailController {
 		}else{
 			PatentType type = patentTypeService.findOne(type_id);
 			PatentRequirement requirement = patentRequirementService.findOne(require_id);
-			requirement.setRequirementName(requireForm.getRequirementName());
+			requirement.setTitle(requireForm.getTitle());
 			requirement.setRequirementField(requireForm.getRequirementField());
 			requirement.setPatentType(type);
 			requirement.setContent(requireForm.getContent());

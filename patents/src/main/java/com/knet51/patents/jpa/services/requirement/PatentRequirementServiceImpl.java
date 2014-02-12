@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.knet51.ccweb.jpa.entities.PatentRequirement;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.requirement.PatentRequirement;
 import com.knet51.ccweb.jpa.repository.requirement.PatentRequirementRepository;
 @Service("patentRequirementService")
 public class PatentRequirementServiceImpl implements PatentRequirementService {
@@ -43,7 +44,8 @@ public class PatentRequirementServiceImpl implements PatentRequirementService {
 
 	@Override
 	public List<PatentRequirement> findListByUser(User user) {
-		return repository.findAllListByUser(user);
+		Sort sort = new Sort(Direction.DESC,"id");
+		return repository.findAllListByUser(user, sort);
 	}
 
 	@Override
@@ -71,7 +73,8 @@ public class PatentRequirementServiceImpl implements PatentRequirementService {
 
 	@Override
 	public List<PatentRequirement> findAllListByStatus(Integer status) {
-		return repository.findAllListByStatus(status);
+		Sort sort = new Sort(Direction.DESC,"id");
+		return repository.findAllListByStatus(status,sort);
 	}
 
 }

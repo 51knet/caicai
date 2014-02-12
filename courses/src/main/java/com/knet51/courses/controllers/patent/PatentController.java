@@ -1,6 +1,5 @@
 package com.knet51.courses.controllers.patent;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -16,17 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.knet51.ccweb.beans.UserInfo;
-import com.knet51.ccweb.jpa.entities.RequirType;
-import com.knet51.ccweb.jpa.entities.Requirement;
 import com.knet51.ccweb.jpa.entities.patent.Patent;
 import com.knet51.ccweb.jpa.entities.patent.PatentField;
 import com.knet51.ccweb.jpa.entities.patent.PatentType;
 import com.knet51.courses.jpa.services.patent.PatentFieldService;
 import com.knet51.courses.jpa.services.patent.PatentService;
 import com.knet51.courses.jpa.services.patent.PatentTypeService;
-import com.knet51.courses.jpa.services.requirement.RequirTypeService;
-import com.knet51.courses.jpa.services.requirement.RequirementService;
 import com.knet51.courses.util.MyUtil;
 
 @Controller
@@ -37,10 +31,7 @@ public class PatentController {
 	private PatentFieldService patentFieldService;
 	@Autowired
 	private PatentTypeService patentTypeService;
-	@Autowired
-	private RequirementService requirementService;
-	@Autowired
-	private RequirTypeService requirTypeService;
+	
 	
 	@RequestMapping(value="/search/{patent}", method = RequestMethod.GET)
 	public String searchPatent(@PathVariable String patent,Model model,HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
@@ -194,26 +185,5 @@ public class PatentController {
 		return "patent.view";
 	}
 	
-	@RequestMapping(value="/requirement/{require_type}/list")
-	public String showRequirementList(@PathVariable String require_type,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize,Model model){
-		RequirType requirType = null;
-		if(require_type.equals("patent")){
-			requirType = requirTypeService.findOne(1L);
-		}else if(require_type.equals("technology")){
-			requirType = requirTypeService.findOne(2L);
-		}
-		Page<Requirement> page = requirementService.findRequireByRequireType(pageNumber, pageSize, requirType);
-		model.addAttribute("page", page);
-		model.addAttribute("active", require_type);
-		return "requirement.list";
-	}
-	
-	@RequestMapping(value="/requirement/{require_type}/view/{require_id}")
-	public String showRequirementDetail(@PathVariable String require_type,@PathVariable Long require_id,Model model){
-		Requirement requirement = requirementService.findOne(require_id);
-		model.addAttribute("requirement", requirement);
-		model.addAttribute("active", require_type);
-		return "requirement.view";
-	}
+
 }

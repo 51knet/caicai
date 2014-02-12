@@ -33,7 +33,7 @@
 			<table width="100%" height="" border="1" cellpadding="5" cellspacing="0"   class=" <c:if test="${sessionUserInfo.role == 'teacher'}">blue</c:if> <c:if test="${sessionUserInfo.role == 'user'}">yellow</c:if>"   >
 			  <tr>
 			    <td align="center" bgcolor="#f3f3f3">需求名称</td>
-			    <td colspan="3">${patentRequirement.requirementName }</td>
+			    <td colspan="3">${patentRequirement.title }</td>
 			  </tr>
 			  <tr>
 			    <td align="center" bgcolor="#f3f3f3">所属领域</td>

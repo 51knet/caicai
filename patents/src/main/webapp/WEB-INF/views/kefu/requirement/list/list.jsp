@@ -41,7 +41,7 @@
 			<thead>
 				<tr>
 					<th >需求标题</th>
-					<th width="15%">需求类别</th>
+					
 					<th  width="15%">发布日期</th>
 					<th  align="center" width="10%">通过审核</th>
 				</tr>
@@ -50,7 +50,7 @@
 				<c:forEach  items="${page.content}" var="page">
 					<tr>
 						<td ><a href='<c:url value="/admin/kefu/requirement/view/${page.id}"></c:url>' >${page.title }</a></td>
-						<td align="center" >${page.requirType.typeName}</td>
+						
 						<td align="center" ><fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd "/></td>
 						<td  align="center"><input type="checkbox" <c:if test="${page.status ==1 }">checked </c:if>  onchange="changeStatus( ${page.id}, ${page.status } )" ></td>
 					</tr>

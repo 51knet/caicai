@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
-import com.knet51.ccweb.jpa.entities.PatentRequirement;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.requirement.PatentRequirement;
 
 public interface PatentRequirementService {
 	
@@ -22,4 +22,6 @@ public interface PatentRequirementService {
 	
 	Page<PatentRequirement> findAllByStatus(int pageNumber, int pageSize,Integer status);
 	List<PatentRequirement> findAllListByStatus(Integer status);
+	
+	List<PatentRequirement> findPatentRequirementByStatusAndFocus(Integer status,Integer focus);
 }

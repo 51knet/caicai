@@ -26,8 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Activity;
-import com.knet51.ccweb.jpa.entities.PatentRequirement;
-import com.knet51.ccweb.jpa.entities.Requirement;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
@@ -35,6 +33,8 @@ import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 import com.knet51.ccweb.jpa.entities.patent.Patent;
 import com.knet51.ccweb.jpa.entities.patent.PatentField;
 import com.knet51.ccweb.jpa.entities.patent.PatentType;
+import com.knet51.ccweb.jpa.entities.requirement.PatentRequirement;
+import com.knet51.ccweb.jpa.entities.requirement.Requirement;
 import com.knet51.courses.beans.CourseBeans;
 import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.TeacherCourseService;
@@ -94,19 +94,19 @@ public class HomeController {
 		List<Patent> foreignPatentList = patentService.findPatentByCountryAndFocus(GlobalDefs.PATENT_FOREIGN, GlobalDefs.PATENT_HOME_FOCUS);
 		//List<PatentRequirement> patentRequirements = patentRequirementService.findAllListByStatus(GlobalDefs.REQUIREMENT_PASS);
 		
-		List<Requirement> patentRequire =  new ArrayList<Requirement>();
-		List<Requirement> technologyRequire =  new ArrayList<Requirement>();
-		List<Requirement> requirementList = requirementService.findAll();
+		List<PatentRequirement> patentRequire =  patentRequirementService.findAllListByStatus(GlobalDefs.REQUIREMENT_PASS);
+		List<Requirement> technologyRequire = requirementService.findRequireListByStatus(GlobalDefs.REQUIREMENT_PASS);
+//		List<Requirement> requirementList = requirementService.findAll();
 		List<Activity> activityList = activityService.findAllList();
-		for (Iterator iterator = requirementList.iterator(); iterator.hasNext();) {
-			Requirement requirement = (Requirement) iterator.next();
-			if(requirement.getRequirType().getTypeName().equals("专利需求")){
-				patentRequire.add(requirement);
-			}else if(requirement.getRequirType().getTypeName().equals("技术需求")){
-				technologyRequire.add(requirement);
-			}
-			
-		}
+//		for (Iterator iterator = requirementList.iterator(); iterator.hasNext();) {
+//			Requirement requirement = (Requirement) iterator.next();
+//			if(requirement.getRequirType().getTypeName().equals("专利需求")){
+//				patentRequire.add(requirement);
+//			}else if(requirement.getRequirType().getTypeName().equals("技术需求")){
+//				technologyRequire.add(requirement);
+//			}
+//			
+//		}
 		model.addAttribute("patentRequire", patentRequire);
 		model.addAttribute("technologyRequire", technologyRequire);
 		
@@ -157,7 +157,6 @@ public class HomeController {
 		session.setAttribute("patentFieldList", patentFieldList);
 		model.addAttribute("patentTypeList", patentTypeList);
 		
-		model.addAttribute("requirementList", requirementList);
 		session.setAttribute("requirementCount", GlobalDefs.HOME_PATENT_REQUIRE_COUNT);
 		session.setAttribute("patentTradeCount", GlobalDefs.HOME_PATENT_TRADE_COUNT);
 		session.setAttribute("patentCNCount", GlobalDefs.HOME_PATENT_CN_COUNT);

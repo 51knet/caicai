@@ -21,7 +21,7 @@
 		<put-attribute name="top-navbar" value="/WEB-INF/views/_shared/common/_top-navbar.jsp" />
 		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_search.jsp" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
-		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel_second.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />
 		<put-attribute name="right" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>

@@ -1,9 +1,6 @@
 package com.knet51.courses.util;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -59,6 +56,7 @@ public class AuthorizationListener implements Filter {
 			k_url = "http://www.51knet.com/ccweb";
 		}
 		session.setAttribute("url", k_url);
+		
 		logger.debug("->"+url);
 		if (url.startsWith("/admin")) { // ok, for now we only protect admin stuff
 			if (! isLoggin(req)) { // not logged in

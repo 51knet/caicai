@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.knet51.ccweb.jpa.entities.RequirType;
-import com.knet51.ccweb.jpa.entities.Requirement;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.requirement.Requirement;
 
 public interface RequirementRepository extends JpaRepository<Requirement, Long>,JpaSpecificationExecutor<Requirement> {
 	Page<Requirement> findRequireByUser(User user , Pageable pageable);
@@ -18,7 +18,9 @@ public interface RequirementRepository extends JpaRepository<Requirement, Long>,
 	List<Requirement> findRequirByUser(User user,Sort sort);
 	List<Requirement> findRequirByRequirType(RequirType type, Sort sort);
 	
-	Page<Requirement> findReqireByStatus(Integer status, Pageable pageable);
+	Page<Requirement> findRequireByStatus(Integer status, Pageable pageable);
+	List<Requirement> findRequireListByStatus(Integer status);
 	
 	Page<Requirement> findReqireByTitleLike(String title,Pageable pageable);
+	
 }

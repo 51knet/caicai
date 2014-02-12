@@ -1,6 +1,5 @@
 package com.knet51.patents.controllers.admin.requirement;
 
-import java.util.Date;
 
 import javax.validation.constraints.Size;
 
@@ -10,7 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class PatentRequirementForm {
 	@NotEmpty
-	private String requirementName;
+	private String title;
 	@NotEmpty
 	@Email
 	private String email;
@@ -46,12 +45,14 @@ public class PatentRequirementForm {
 		super();
 	}
 
-	public String getRequirementName() {
-		return requirementName;
+
+
+	public String getTitle() {
+		return title;
 	}
 
-	public void setRequirementName(String requirementName) {
-		this.requirementName = requirementName;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getCooperation() {

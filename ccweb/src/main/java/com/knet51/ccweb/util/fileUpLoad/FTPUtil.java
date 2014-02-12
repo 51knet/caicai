@@ -133,7 +133,6 @@ public class FTPUtil {
 					response.setContentType("application/x-msdownload;");
 					response.setHeader("Content-Disposition", "attachement; filename="+new String(fileName.getBytes("GBK"),"ISO8859-1"));
 					response.setHeader("Content-Length", String.valueOf(ftpFile.getSize()));
-					System.out.println("------FTPFILESName = "+ftpFile.getName()+"byte----"+ftpFile.getSize());
 					output = response.getOutputStream();
 					success = ftp.retrieveFile(targerFile, output);
 				}

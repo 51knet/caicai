@@ -1,4 +1,4 @@
-package com.knet51.ccweb.jpa.entities;
+package com.knet51.ccweb.jpa.entities.requirement;
 
 import java.util.Date;
 
@@ -6,11 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import com.knet51.ccweb.jpa.entities.AbstractEntity;
+import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.PatentType;
 
 @Entity
 public class PatentRequirement extends AbstractEntity {
-	private String requirementName;
+	private String title;
 	private String cooperation;
 	private String money;
 	private Date date; 
@@ -30,11 +32,13 @@ public class PatentRequirement extends AbstractEntity {
 	private User user;
 	@ManyToOne
 	private PatentType patentType;
-	public String getRequirementName() {
-		return requirementName;
+
+	
+	public String getTitle() {
+		return title;
 	}
-	public void setRequirementName(String requirementName) {
-		this.requirementName = requirementName;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public String getCooperation() {
 		return cooperation;

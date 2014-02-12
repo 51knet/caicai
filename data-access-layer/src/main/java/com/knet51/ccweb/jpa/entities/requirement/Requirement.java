@@ -1,10 +1,14 @@
-package com.knet51.ccweb.jpa.entities;
+package com.knet51.ccweb.jpa.entities.requirement;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+
+import com.knet51.ccweb.jpa.entities.AbstractEntity;
+import com.knet51.ccweb.jpa.entities.RequirType;
+import com.knet51.ccweb.jpa.entities.User;
 
 @Entity
 public class Requirement extends AbstractEntity {

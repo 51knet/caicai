@@ -14,11 +14,11 @@ public final class GlobalDefs {
 	public static final Integer STATUS_COURSE_RESOURCE = 1;// show the resource in course
 	public static final Integer STATUS_RESOURCE = 2; //show the resource in teacher resource
 	
-	public static final Integer HOME_PATENT_COUNT = 2381427;
-	public static final Integer HOME_TEACHER_COUNT = 8230;
-	public static final Integer HOME_PATENT_TRADE_COUNT = 15482;
-	public static final Integer HOME_PATENT_REQUIRE_COUNT = 23647; 
-	public static final Integer HOME_PATENT_CN_COUNT = 2163574; 
+	public static final Integer HOME_PATENT_COUNT = 2381435;
+	public static final Integer HOME_TEACHER_COUNT = 8235;
+	public static final Integer HOME_PATENT_TRADE_COUNT = 15487;
+	public static final Integer HOME_PATENT_REQUIRE_COUNT = 23652; 
+	public static final Integer HOME_PATENT_CN_COUNT = 2163580; 
 	
 	// the patent show status in home page
 	public static final Integer PATENT_HOME_FOCUS = 1;

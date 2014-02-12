@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.RequirType;
-import com.knet51.ccweb.jpa.entities.Requirement;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.requirement.Requirement;
 import com.knet51.ccweb.jpa.repository.requirement.RequirementRepository;
 
 @Transactional
@@ -44,12 +44,12 @@ public class RequirementServiceImpl implements RequirementService {
 		return repository.findRequireByUser(user, pageable);
 	}
 
-	@Override
-	public Page<Requirement> findRequireByRequireType(int pageNum,
-			int pageSize, RequirType type) {
-		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
-		return repository.findReqireByRequirType(type, pageable);
-	}
+//	@Override
+//	public Page<Requirement> findRequireByRequireType(int pageNum,
+//			int pageSize, RequirType type) {
+//		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
+//		return repository.findReqireByRequirType(type, pageable);
+//	}
 
 	@Override
 	public List<Requirement> findRequireListByUser(User user) {
@@ -57,11 +57,11 @@ public class RequirementServiceImpl implements RequirementService {
 		return repository.findRequirByUser(user, sort);
 	}
 
-	@Override
-	public List<Requirement> findRequiteListByRequireType(RequirType type) {
-		Sort sort = new Sort(Direction.DESC, "id");
-		return repository.findRequirByRequirType(type,sort);
-	}
+//	@Override
+//	public List<Requirement> findRequiteListByRequireType(RequirType type) {
+//		Sort sort = new Sort(Direction.DESC, "id");
+//		return repository.findRequirByRequirType(type,sort);
+//	}
 
 	@Override
 	public Requirement findOne(Long require_id) {
@@ -78,7 +78,7 @@ public class RequirementServiceImpl implements RequirementService {
 	public Page<Requirement> findRequireByStatus(int pageNum, int pageSize,
 			Integer status) {
 		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "id");
-		return repository.findReqireByStatus(status, pageable);
+		return repository.findRequireByStatus(status, pageable);
 	}
 
 	@Override
