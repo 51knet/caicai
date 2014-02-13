@@ -53,13 +53,13 @@ public class AuthorizationListener implements Filter {
 				resp.sendRedirect("/"); // alternative: redirect to a url with flush message...
 				return;
 			}
-			if(url.startsWith("/admin/kefu")){
-				UserInfo userInfo = (UserInfo) req.getSession().getAttribute(GlobalDefs.SESSION_USER_INFO);
-				String permission = userInfo.getUser().getIsadmin();
-				if(permission == null || !permission.equals("yes")){
-					resp.sendRedirect(context); // alternative: redirect to a url with flush message...
-					return;
-				}
+		}
+		if(url.startsWith("/admin/kefu")){
+			UserInfo userInfo = (UserInfo) req.getSession().getAttribute(GlobalDefs.SESSION_USER_INFO);
+			String permission = userInfo.getUser().getIsadmin();
+			if(permission == null || !permission.equals("yes")){
+				resp.sendRedirect(context); // alternative: redirect to a url with flush message...
+				return;
 			}
 		}
 		// pass the request along the filter chain

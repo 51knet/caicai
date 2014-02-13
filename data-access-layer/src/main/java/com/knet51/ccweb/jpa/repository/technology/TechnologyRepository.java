@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -18,7 +19,8 @@ public interface TechnologyRepository extends JpaRepository<Technology, Long>, J
 	
 	Page<Technology> findAllByStatus(Integer status, Pageable pageable );
 	List<Technology> findAllListByStatus(Integer status);
+
 	
-	Page<Technology> findAllByFocus(Integer focus, Pageable pageable );
-	List<Technology> findAllListByFocus(Integer focus);
+	Page<Technology> findAllByFocusAndStatus(Integer focus,Integer status, Pageable pageable );
+	List<Technology> findAllListByFocusAndStatus(Integer focus,Integer status, Sort sort);
 }

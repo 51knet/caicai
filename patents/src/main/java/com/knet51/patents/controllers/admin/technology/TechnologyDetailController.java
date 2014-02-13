@@ -1,5 +1,7 @@
 package com.knet51.patents.controllers.admin.technology;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -54,7 +56,7 @@ public class TechnologyDetailController {
 				technology.setUser(userInfo.getUser());
 				technology.setStatus(GlobalDefs.TECH_WAITE);
 				technology.setFocus(GlobalDefs.TECH_HOME_FOCUS_NOT);
-				
+				technology.setDate(new Date());
 				technologyService.create(technology);
 			}
 		} catch (Exception e) {
@@ -101,7 +103,7 @@ public class TechnologyDetailController {
 				technology.setTechType(techForm.getTechType());
 				technology.setUser(userInfo.getUser());
 				technology.setStatus(GlobalDefs.TECH_WAITE);
-				
+				technology.setDate(new Date());
 				technologyService.update(technology);
 			}
 		} catch (Exception e) {

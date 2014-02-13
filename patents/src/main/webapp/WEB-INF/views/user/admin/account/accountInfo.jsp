@@ -16,13 +16,18 @@
 }
 .row-fluid .custom .row {
 	margin: 10px 40px;
-	color: #80b029;
+	/*color: #80b029;*/
+	color: #3d4f67;
 	border-bottom: solid #cccccc 1.5px;
 }
 .row-fluid.custom .content {
 	margin: 20px 40px;
 
 }
+.nav-tabs >li >a:hover{
+	background-color:#b1b6ba;
+}
+
 </style>
 <div  class="row-fluid custom round">
 	<div class="row">

@@ -26,10 +26,10 @@ public class RequirementController {
 			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize,Model model){
 		
 		if(require_type.equals("patent")){
-			Page<PatentRequirement> page = patentRequirementService.findAllByStatus(pageNumber, pageSize, GlobalDefs.REQUIREMENT_PASS);
+			Page<PatentRequirement> page = patentRequirementService.findAllByStatus(pageNumber, pageSize, GlobalDefs.PASS);
 			model.addAttribute("page", page);
 		}else if(require_type.equals("technology")){
-			Page<Requirement> page = requirementService.findRequireByStatus(pageNumber, pageSize, GlobalDefs.REQUIREMENT_PASS);
+			Page<Requirement> page = requirementService.findRequireByStatus(pageNumber, pageSize, GlobalDefs.PASS);
 			model.addAttribute("page", page);
 		}
 		

@@ -1,5 +1,8 @@
 package com.knet51.patents.controllers.admin.patent;
 
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -35,6 +38,7 @@ public class PatentDetailController {
 	@RequestMapping(value="/admin/patent/add",method = RequestMethod.POST)
 	public String addPatent(@Valid PatentForm patentForm, BindingResult validResult,HttpSession session,
 			@RequestParam("patentType") Long type_id,@RequestParam("country") Integer country,Model model){
+			
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/admin/patent/new";

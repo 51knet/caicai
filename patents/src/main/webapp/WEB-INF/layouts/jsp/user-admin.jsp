@@ -19,7 +19,7 @@
 		}
 		.border{
 			/*border: 1.5px solid #eed593;*/
-			border: 1.5px solid #9db84d;
+			border: 1.5px solid #718495;
 		}
 		.border-green-all{
 			border: 1.5px solid #9db84d;
@@ -57,7 +57,7 @@
 
 			<!--/row-->
 
-			<hr>
+			<br>
 
 			<footer><tiles:insertAttribute name="footer" /></footer>
 

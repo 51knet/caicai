@@ -17,11 +17,16 @@
 }
 .row-fluid .custom .row {
 	margin: 10px 40px;
-	color: #80b029;
+	/*color: #80b029;*/
+		/*color: #80b029;*/
+	color: #3d4f67;
 	border-bottom: solid #cccccc 1.5px;
 }
 .row-fluid.custom .content {
 	margin: 20px 40px;
+}
+.nav-tabs >li >a:hover{
+	background-color:#b1b6ba;
 }
 </style>
 <script type="text/javascript">
@@ -283,7 +288,7 @@
 					<div id="usereduList" style="display: block">
 						<c:choose>
 							<c:when test="${eduCount>0 }">
-								<table class="yellow" width="100%" cellpadding="5">
+								<table class="blue" width="100%" cellpadding="5">
 									<thead>
 										<tr>
 											<th>教育程度</th>
@@ -389,7 +394,7 @@
 					<div id="userworkList" style="display: block">
 						<c:choose>
 							<c:when test="${(workCount >0)}">
-								<table class="yellow" width="100%" cellpadding="5">
+								<table class="blue" width="100%" cellpadding="5">
 									<thead>
 										<tr>
 											<th>公司名称</th>

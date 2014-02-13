@@ -62,7 +62,7 @@ background-color:#b1b6ba;
 font-weight: bold;
 
 }
-.nav-stacked > .active > a , .nav-tabs > .active > a:hover {
+.nav-stacked > .active > a , .nav-stacked > .active > a:hover {
 color: #3d4f67;
 cursor: default;
 text-decoration: none;

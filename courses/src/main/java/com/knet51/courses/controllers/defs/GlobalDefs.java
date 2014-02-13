@@ -21,14 +21,14 @@ public final class GlobalDefs {
 	public static final Integer HOME_PATENT_CN_COUNT = 2163580; 
 	
 	// the patent show status in home page
-	public static final Integer PATENT_HOME_FOCUS = 1;
-	public static final Integer PATENT_HOME_FOCUS_NOT = 0;
+	public static final Integer HOME_FOCUS = 1;
+	public static final Integer HOME_FOCUS_NOT = 0;
 		
 	// the patent belong to china or foreign
 	public static final Integer PATENT_CHINA = 0;
 	public static final Integer PATENT_FOREIGN = 1;
 	
 	// requirement status
-	public static final Integer REQUIREMENT_WAITE = 0;
-	public static final Integer REQUIREMENT_PASS = 1;
+	public static final Integer WAITE = 0;
+	public static final Integer PASS = 1;
 }

@@ -19,13 +19,19 @@
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
 }
+.row-fluid .custom .user-row {
+	
+	color: #3d4f67;
+
+}
+
 .row-fluid.custom .content {
 	margin: 20px 40px;
 }
 </style>
 
 <div class="row-fluid custom round">
-	<div class="row">
+	<div  class=" row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
 		<h4>我的技术</h4>
 	</div>
 	<div class="content">
