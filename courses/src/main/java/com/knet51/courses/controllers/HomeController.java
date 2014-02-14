@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -191,6 +192,15 @@ public class HomeController {
 	public void jumpToPatents(HttpServletResponse response) throws IOException{
 		response.sendRedirect("/patents");
 		return ;
+	}
+	
+	@RequestMapping(value="/fastupload", method = RequestMethod.GET)
+	public String showFastUploadPage(Model model){
+		List<PatentType> patentTypeList = patentTypeService.findAllPatentType();
+		model.addAttribute("patentTypeList", patentTypeList);
 		
+		Map<String, String> techField = GlobalDefs.getTechField();
+		model.addAttribute("techField", techField);
+		return "fastupload";
 	}
 }

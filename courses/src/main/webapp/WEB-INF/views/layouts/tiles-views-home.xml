@@ -13,6 +13,15 @@
 	<definition name="404" extends="index-layout">
 		<put-attribute name="title" value="404 Error" />
 		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="userCourse" value=""></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/controllers/home/404.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
+	</definition>
+	
+	<definition name="error" extends="index-layout">
+		<put-attribute name="title" value="404 Error" />
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="userCourse" value=""></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/controllers/home/404.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
@@ -100,7 +109,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/course/pay/view.jsp"></put-attribute>
 		<put-attribute name="footer" value="" />
 	</definition>
-
+	<!-- patent -->
 	<definition name="patent.list" extends="index-sec-layout">
 		<put-attribute name="title" value="专利列表" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
@@ -127,12 +136,28 @@
 	</definition>
 	
 	<definition name="patent.view" extends="index-sec-layout">
-		<put-attribute name="title" value="专利预览" />
+		<put-attribute name="title" value="专利详情" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
 		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/patent/view/view.jsp"></put-attribute>
 	</definition>
 	
+	<!-- technology -->
+	<definition name="technology.list" extends="index-sec-layout">
+		<put-attribute name="title" value="技术列表" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/technology/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="technology.view" extends="index-sec-layout">
+		<put-attribute name="title" value="技术详情" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/technology/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<!-- activity -->
 	<definition name="activity.list" extends="index-sec-layout">
 		<put-attribute name="title" value="活动列表" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
@@ -147,6 +172,7 @@
 		<put-attribute name="right" value="/WEB-INF/views/activity/view/view.jsp"></put-attribute>
 	</definition>
 	
+	<!-- requirement -->
 	<definition name="requirement.list" extends="index-sec-layout">
 		<put-attribute name="title" value="需求列表" />
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
@@ -166,6 +192,14 @@
 		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
 		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/require/patentView/view.jsp"></put-attribute>
+	</definition>
+	
+	<!-- fast upload -->
+	<definition name="fastupload" extends="index-sec-layout">
+		<put-attribute name="title" value="快速上传" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/fastupload/fastupload.jsp"></put-attribute>
 	</definition>
 	
 </tiles-definitions>

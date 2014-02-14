@@ -130,7 +130,7 @@
 	<div class="span5 " style=" width: 440px;  ">
 		<div class="row-fluid">
 			<!-- <a class="destoryPatentPostBtn" href="#destoryPatentPostModal" role="button" data-toggle="modal" data-target="#destoryPatentPostModal"> -->
-			<a href="#">
+			<a href="<c:url value='/fastupload'></c:url>">
 				<img src="<c:url value='/resources/img/default/upload.png'></c:url> " /> 
 			</a>
 		</div><br>
@@ -359,7 +359,7 @@
 							
 							<div class="control-group" id="agency">
 								<div  class="controls">
-									<i class="icon-star"></i> 上传人名 ： <input type="text" name="agency"   placeholder="上传人" > <span class="help-inline"><form:errors path="agency" /></span>
+									<i class="icon-star"></i> 上传人名 ：<input type="text" name="agency"   placeholder="上传人" > <span class="help-inline"><form:errors path="agency" /></span>
 								</div>
 							</div>
 							

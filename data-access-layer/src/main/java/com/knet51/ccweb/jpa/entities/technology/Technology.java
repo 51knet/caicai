@@ -12,26 +12,31 @@ import com.knet51.ccweb.jpa.entities.User;
 @Entity
 public class Technology extends AbstractEntity {
 	private String techName;// xiang mu ming cheng
-	private String techField;//ying yong ling yu
-	private String department;// fa ming dan wei
-	private String inventer;// yong you zhe
-	private String phone;
+	private String techField;//suo shu ling yu
 	private String techType;//xiang mu lei xing:"863"
-	@Lob
-	private String contents;// jian jie
-	@Lob
-	private String advantage;// you shi
+	
 	private String maturity;// cheng shu du
 	private String progress;// jin zhan, jin du
-	@Lob
-	private String achievement;// zhuan li cheng guo
+	
 	private String applyArea;// ying yong ling yu
 	private String cooperation;// he zuo fang shi
 	private String demand; //dui qi ye yao qiu
 	
+	@Lob
+	private String achievement;// zhuan li cheng guo
+	@Lob
+	private String contents;// jian jie
+	@Lob
+	private String advantage;// you shi
+	
+	private String department;// fa ming dan wei
+	private String inventer;// yong you zhe
+	private String phone;
+	
 	private Date date;
 	private Integer status;
 	private Integer focus;
+
 	@ManyToOne
 	private User user;
 	public User getUser() {

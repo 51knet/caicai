@@ -5,12 +5,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="<c:url value='/resources/js/loginCheck.js'></c:url>"></script>
 <%
-	String queryUrl = new org.springframework.web.util.UrlPathHelper().getOriginatingQueryString(request);
+	
 	String requestUrl = new org.springframework.web.util.UrlPathHelper().getOriginatingRequestUri(request);
-	if(queryUrl.contains("pageNumber")){
-		queryUrl =queryUrl.substring(0, queryUrl.lastIndexOf("&"));
-	}
-	String currentUrl = requestUrl+"?"+queryUrl;
+	
+	String currentUrl = requestUrl;
 %>
 <style>
 
@@ -52,12 +50,11 @@
 	word-wrap:break-word; word-break:break-all;
 }
 </style>
- <!-- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <a href="<c:url value='/patent/list'></c:url>" >专利列表</a> >> 专利详情 </div> -->
 <div class="container title"  >
-		<div class="innerLeftTitle">专利详情</div>
+		<div class="innerLeftTitle">技术详情</div>
  </div>
  <div class="container patent">
-	<div class="top ">${patent.patentName }
+	<div class="top ">${technology.techName}
 		 <span style="float: right; margin-right: 60px;">	
 				<a href="#" style="text-decoration: none; " class="dropdown-toggle"  data-toggle="dropdown"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=826619119&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:826619119:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></a>
 		</span>
@@ -66,23 +63,16 @@
 	<br>
 		<table width="95%" height="" border="0" cellpadding="5"  class="blue limitTable" >
 			<tr>
-			    <td width="122" align="center" bgcolor="#f3f3f3" >专利号码</td>
-			    <td width="190" class="limitTd">${patent.patentNum}</td>
-			    <td width="103" align="center" bgcolor="#f3f3f3" >申请日期</td>
-			    <td width="169" class="limitTd">${patent.applicationDate}</td>
+			    <td width="122" align="center" bgcolor="#f3f3f3" >所属领域</td>
+			    <td width="190" class="limitTd">${technology.techField}</td>
+			    <td width="103" align="center" bgcolor="#f3f3f3" >项目类型</td>
+			    <td width="169" class="limitTd">${technology.techType}</td>
 			  </tr>
 			  <tr>
-			    <td width="122" align="center" bgcolor="#f3f3f3">适用领域</td>
-			    <td width="190" class="limitTd">${patent.patentField}</td>
-			    <td width="103" align="center" bgcolor="#f3f3f3">专利类型</td>
-			    <td width="169" class="limitTd">${patent.patentType.typeName}</td>
-			  </tr>
-		
-			  <tr>
-			    <td align="center" bgcolor="#f3f3f3" >公开号码</td>
-			    <td class="limitTd">${patent.publishNum}</td>
-			    <td align="center" bgcolor="#f3f3f3" >公开日期</td>
-			    <td class="limitTd">${patent.publishDate}</td>
+			    <td width="122" align="center" bgcolor="#f3f3f3">成熟度</td>
+			    <td width="190" class="limitTd">${technology.maturity}</td>
+			    <td width="103" align="center" bgcolor="#f3f3f3">项目进度</td>
+			    <td width="169" class="limitTd">${technology.progress}</td>
 			  </tr>
 			   <tr>
 			    <td align="center" bgcolor="#f3f3f3">联系人</td>
@@ -110,25 +100,33 @@
 			  </tr>
 			  
 			  <tr>
-			    <td align="center" bgcolor="#f3f3f3">主分类号</td>
-			    <td colspan="3"  class="limitTd">${patent.mainClassNum}</td>
-			  </tr>
-			  <tr>
-			    <td align="center" bgcolor="#f3f3f3">分类号码</td>
-			    <td colspan="3"  class="limitTd">${patent.classNum }</td>
+			    <td align="center" bgcolor="#f3f3f3">应用领域</td>
+			    <td colspan="3"  class="limitTd">${technology.applyArea}</td>
+			  </tr>	  
+			   <tr>
+			    <td align="center" bgcolor="#f3f3f3" >合作方式</td>
+			    <td class="limitTd">${technology.cooperation}</td>
+			    <td align="center" bgcolor="#f3f3f3" >对企业要求</td>
+			    <td class="limitTd">${technology.demand}</td>
 			  </tr>
 			</table>
 			<br>
 	</div>
-	<div class="top ">专利摘要</div>
+	<div class="top ">专利成果</div>
 	<div class="bottom   tLine_dash">	
-		${patent.summary }
+		${technology.achievement }
 	</div>
 	
-	<div class="top ">评论</div>
-	<div class="bottom  tLine_dash">	
-		尚未有人发表评论
+	<div class="top ">技术简介</div>
+	<div class="bottom   tLine_dash">	
+		${technology.contents }
 	</div>
+	
+	<div class="top ">技术优势</div>
+	<div class="bottom   tLine_dash">	
+		${technology.advantage}
+	</div>
+	
  </div>
 
 <!-- login  -->
@@ -156,7 +154,7 @@
 					<div class="control-group">
 						<div class="controls ">
 							<button style="margin-left: 42px;" type="submit"  class="btn btn-success " onclick="return checkEmailAndPwd();">登录</button>
-							 <a style="margin-left: 10px;"  class="btn"  href="<c:url value='${url }'></c:url>">注册</a> <a href="<c:url value='${url }'></c:url>"  style="margin-left: 20px;"> 忘记密码？</a>
+							 <a style="margin-left: 10px;"  class="btn"  href="<c:url value='/patents/admin'></c:url>">注册</a> <a href="<c:url value='/patents/admin'></c:url>"  style="margin-left: 20px;"> 忘记密码？</a>
 						</div>
 					</div>
 				</div>
@@ -167,6 +165,6 @@
 </div>
 <script type="text/javascript">
 function checkEmailAndPwd(){
-	return checkEmailAndPass("login_form",'checkEmailAndPassword');
+	return checkEmailAndPass("login_form",'<c:url value="/patent/checkEmailAndPassword"></c:url>');
 }
 </script>

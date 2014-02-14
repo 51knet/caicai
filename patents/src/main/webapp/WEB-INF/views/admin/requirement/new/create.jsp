@@ -33,48 +33,47 @@
 		<form action= '<c:url value="/admin/requirement/add"></c:url>'  method="post"  id="requirement_new_form" name="requirement_post" >
 			<div class="control-group" id="title">
 				<div class="controls">
-						需求标题： <input type="text" name="title" placeholder="标题"> <span class="help-inline"><form:errors path="title" /></span>
+						<i class="icon-star"></i> 需求标题： <input type="text" name="title" placeholder="标题"   required> <span class="help-inline"><form:errors path="title" /></span>
 				</div>
 			</div>
 			
 			<div class="control-group" id="money">
 				<div class="controls">
-					拟定资金： <input type="text" name="money" placeholder="拟定资金"> <span class="help-inline"><form:errors path="title" /></span>
+					<i class="icon-star"></i> 拟定资金： <input type="text" name="money" placeholder="拟定资金"   required> <span class="help-inline"><form:errors path="title" /></span>
 				</div>
 			</div>
 			<div class="control-group" id="company">
 				<div class="controls">
-					公司名称： <input type="text" name="company" placeholder="公司名称"> <span class="help-inline"><form:errors path="company" /></span>
+					<i class="icon-star"></i> 公司名称： <input type="text" name="company" placeholder="公司名称"  required> <span class="help-inline"><form:errors path="company" /></span>
 				</div>
 			</div>
 			<div class="control-group" id="name">
 				<div class="controls">
-						联系人士： <input type="text" name="name" placeholder="联系人士"> <span class="help-inline"><form:errors path="name" /></span>
+						<i class="icon-star"></i> 联系人士： <input type="text" name="name" placeholder="联系人士"  required> <span class="help-inline"><form:errors path="name" /></span>
 				</div>
 			</div>
 			
 			<div class="control-group" id="phone">
 				<div class="controls">
-						联系电话： <input type="text" name="phone" placeholder="联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>
+						<i class="icon-star"></i> 联系电话： <input type="text"  required name="phone" placeholder="联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>
 				</div>
 			</div>
 			<div class="control-group" id="address">
 				<div class="controls">
-						联系地址： <input type="text" name="address" placeholder="联系地址"> <span class="help-inline"><form:errors path="address" /></span>
+						<i class="icon-star"></i> 联系地址： <input type="text"  required name="address" placeholder="联系地址"> <span class="help-inline"><form:errors path="address" /></span>
 				</div>
 			</div>
 			
-		
-			
 			<div class="control-group" id="title">
 				<div class="controls">
-						截止日期： <input type="text" name="endTime" placeholder="截止日期" class="Wdate" onClick="WdatePicker()"> <span class="help-inline"><form:errors path="title" /></span>
+						<i class="icon-star"></i> 截止日期： <input type="text"  required name="endTime" placeholder="截止日期" class="Wdate" onClick="WdatePicker()"> <span class="help-inline"><form:errors path="title" /></span>
 				</div>
 			</div>
 			
 			<div class="control-group" id="content">
 				<div class="controls">
-					<textarea  style="width:670px; height: 100px;"  name="content"  placeholder="需求内容"></textarea>
+				<i class="icon-star"></i> 需求简介：<br>
+					<textarea  style="width:670px; height: 100px;"  name="content"  placeholder="需求简介"></textarea>
 					<span class="help-inline"><form:errors path="content" /></span>
 				</div>
 			</div>

@@ -24,8 +24,8 @@
  <!-- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <c:if test='${active == "technology" }'>技术需求</c:if><c:if test='${active == "patent" }'>专利需求</c:if> </div> -->
 <div class="container title"  >
 		<div class="innerLeftTitle " >
-			<c:if test='${active == "patent" }'>  <a href="<c:url value="/requirement/patent/list"></c:url>">专利需求</a></c:if>
-			 <c:if test='${active == "technology" }'><a href="<c:url value="/requirement/technology/list"></c:url>" >技术需求</a></c:if>
+			<c:if test='${active == "patent" }'>  <a href="#">专利需求</a></c:if>
+			 <c:if test='${active == "technology" }'><a href="#" >技术需求</a></c:if>
 		</div>
  </div>
 

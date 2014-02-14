@@ -19,11 +19,18 @@
  	
 	<!-- JPA related -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
-
 	<beans:bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<beans:property name="entityManagerFactory" ref="entityManagerFactory" />
 	</beans:bean>
-
+	
+	<beans:bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<beans:property name="location">
+			<beans:value>
+				classpath:jdbc.properties
+			</beans:value>
+		</beans:property>
+	</beans:bean>
+	
 	<beans:bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
@@ -42,10 +49,10 @@
 	<!-- <jdbc:embedded-database id="dataSource" type="HSQL" /> -->
 	<beans:bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<beans:property name="username" value="root" />
-		<beans:property name="password" value="coe283yrd" />
-		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<beans:property name="url" value="jdbc:mysql://localhost/caicaidb" />
+		<beans:property name="username" value="${username}" />
+		<beans:property name="password" value="${password}" />
+		<beans:property name="driverClassName" value="${driverClassName}" />
+		<beans:property name="url" value="${url}" />
 	</beans:bean>
 	
 	

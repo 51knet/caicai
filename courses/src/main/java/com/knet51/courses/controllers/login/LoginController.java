@@ -85,7 +85,6 @@ public class LoginController {
 				// }
 				UserInfo userInfo = new UserInfo(user);
 				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-				logger.info(userInfo.getEmail() + " = " + userInfo.getId());
 				return "redirect:"+currentUrl;
 			} else {
 				return "redirect:"+currentUrl;

@@ -117,7 +117,7 @@ ul, li {
 	<div class="span5 right_navbar_content" style=" width: 450px; ">
 		<table cellpadding="5" width="90%" border="0"  style="" >
 			<tr>
-				<td width="53%" height="140" valign="top"><a href="<c:url value="/activity/list"></c:url>">融资
+				<td width="53%" height="140" valign="top"><a href="<c:url value="#"></c:url>">融资
 					<br><span class="detail">技术与资金的完美结合，解决<br>您的融资困境</span></a>
 				</td>
 				<td width="47%" valign="top">
@@ -131,7 +131,7 @@ ul, li {
 				<td height="120" valign="top"><a href="<c:url value="/requirement/technology/list"></c:url>">需求<br>
 					<span class="detail"> 解决技术难题、汇集专利需求</span></a>
 				</td>
-				<td valign="top"><a href="<c:url value="#"></c:url>">技术成果
+				<td valign="top"><a href="<c:url value="/technology/list"></c:url>">技术成果
 					<br><span class="detail">发布科技成果的供需信息，实现高校、企业、政府的技术转移</span></a>
 				</td>
 			</tr>

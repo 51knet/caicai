@@ -10,7 +10,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.entities.requirement.PatentRequirement;
 import com.knet51.ccweb.jpa.entities.technology.Technology;
 import com.knet51.ccweb.jpa.repository.technology.TechnologyRepository;
 @Service("technologyService")

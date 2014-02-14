@@ -23,4 +23,6 @@ public interface TechnologyRepository extends JpaRepository<Technology, Long>, J
 	
 	Page<Technology> findAllByFocusAndStatus(Integer focus,Integer status, Pageable pageable );
 	List<Technology> findAllListByFocusAndStatus(Integer focus,Integer status, Sort sort);
+	
+	Page<Technology> findAllByFocus(Integer focus, Pageable pageable );
 }

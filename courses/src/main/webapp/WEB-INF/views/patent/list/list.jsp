@@ -75,7 +75,7 @@
 					<th   align="left" class="td_right_line">专利名称</th>
 					<th  width="10%" align="left" class="td_right_line">专利类别</th>
 					<th  width="10%"  align="left" class="td_right_line">应用领域</th>
-					<th  width='10%' align="left" class="td_right_line">公开日期</th>
+					<th  width='12%' align="left" class="td_right_line">公开日期</th>
 					</tr>
 				</thead>
 				<tbody>
