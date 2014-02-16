@@ -1,8 +1,5 @@
 package com.knet51.patents.controllers.admin.patent;
 
-import java.util.Enumeration;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 

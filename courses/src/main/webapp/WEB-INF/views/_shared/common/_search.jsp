@@ -51,7 +51,7 @@ ul, li {
 .right_navbar_content  .detail{
 	color: #fff;
 	 font-weight: bold;
-	 font-size: 13px;
+	 font-size: 12px;
 }
 .padding_left{
 	padding-left: 30px;
@@ -60,6 +60,16 @@ ul, li {
 	padding-right: 30px;
 }
 
+.select_style{
+width: 80px; background-color: #3d5b8d; color: #fff; 
+}
+
+.search_type_style{
+ margin-top: -5px; float: left; text-align: left; width: 494px;
+}
+.highsearch_button{
+	color: #fff;  margin: 10px 0px 0px 2px; width: 60px;
+}
 </style>
 
 <div class="container search-bar" >
@@ -69,13 +79,13 @@ ul, li {
 	        <ul style="display:block;" >      	
 	            <li><div style="position: relative;">
 	            <form class="navbar-form"  action="<c:url value="/search/patent"></c:url>"  method="get" name="search_post_form" >
-						<select class="form-control" style="width: 80px; background-color: #3d5b8d; color: #fff; " name="types">
+						<select class="form-control select_style"  name="types">
 							<option value="patentName" selected="selected">专利名</option>
 							  <option value="patentNum" >专利号</option>
 							  <option value="inventer">发明人</option>
 						</select> 
 						<input type="text" name="searchParam" id="searchInput" style="width: 310px;" placeholder="搜索"  value="${searchParam }" > <button type="submit" class="btn  btn_font" style=" ">普通搜索</button>	
-						<div style=" margin-top: -5px; float: left; text-align: left; width: 494px; ">
+						<div class="search_type_style">
 							<table width="100%" >
 									<tr><td align="left">
 										<label class="radio inline" >
@@ -91,7 +101,7 @@ ul, li {
 											<input type="radio" name="patentType" value="4" > 发明授权
 										</label>
 									</td>
-									<td align="right">	<a href="<c:url value='/search/patent/detail'></c:url> " class="btn btn-primary btn-small  btn_font" style="color: #fff;  margin: 10px 0px 0px 2px; width: 60px;">高级搜索</a></td>
+									<td align="right">	<a href="<c:url value='/search/patent/detail'></c:url> " class="btn btn-primary btn-small  highsearch_button" >高级搜索</a></td>
 									</tr>
 							</table>		
 						</div>					
@@ -118,21 +128,29 @@ ul, li {
 		<table cellpadding="5" width="90%" border="0"  style="" >
 			<tr>
 				<td width="53%" height="140" valign="top"><a href="<c:url value="#"></c:url>">融资
-					<br><span class="detail">技术与资金的完美结合，解决<br>您的融资困境</span></a>
+					<br><span class="detail">技术与资金的完美结合，解决<br>您的融资困境</span>
+						<img src="<c:url value="/resources/img/default/featured-arrow.png"></c:url>" >
+					</a>
 				</td>
 				<td width="47%" valign="top">
 					<a href="<c:url value="/patent/list"></c:url>">专利<br><!-- 
 					<img src="<c:url value='/resources/img/default/icon_new.png'></c:url> " /> <a href="<c:url value="/patent/china/list"></c:url>" class="detail">国内专利</a><br>
 					<img src="<c:url value='/resources/img/default/icon_new.png'></c:url> " /> <a href="<c:url value="/patent/foreign/list"></c:url>"  class="detail">国际专利</a> -->
-					<span class="detail">汇集最全、最新全球专利大数据资源，提供技术转移和专利购买服务</span></a>
+					<span class="detail">汇集最全、最新全球专利大数据资源，提供技术转移和专利购买服务</span>
+					<img src="<c:url value="/resources/img/default/featured-arrow.png"></c:url>" >
+					</a>
 				</td>
 			</tr>
 			<tr>
 				<td height="120" valign="top"><a href="<c:url value="/requirement/technology/list"></c:url>">需求<br>
-					<span class="detail"> 解决技术难题、汇集专利需求</span></a>
+					<span class="detail"> 解决技术难题、汇集专利需求</span>
+					<img src="<c:url value="/resources/img/default/featured-arrow.png"></c:url>" >
+					</a>
 				</td>
-				<td valign="top"><a href="<c:url value="/technology/list"></c:url>">技术成果
-					<br><span class="detail">发布科技成果的供需信息，实现高校、企业、政府的技术转移</span></a>
+				<td valign="top"><a href="<c:url value="/technology/list"></c:url>">成果
+					<br><span class="detail">发布科技成果的供需信息，实现高校、企业、政府的技术转移</span>
+					<img src="<c:url value="/resources/img/default/featured-arrow.png"></c:url>" >
+					</a>
 				</td>
 			</tr>
 		</table>

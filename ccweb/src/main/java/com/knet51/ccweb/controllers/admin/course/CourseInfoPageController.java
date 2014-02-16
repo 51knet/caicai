@@ -59,7 +59,7 @@ import com.knet51.ccweb.util.fileUpLoad.FileUtil;
 public class CourseInfoPageController {
 	private static final Logger logger = 
 			LoggerFactory.getLogger(CourseInfoPageController.class);
-	public static final long MAX_FILE_SIZE_2M = 2*1024*1024;
+	private static final long MAX_FILE_SIZE_2M = 2*1024*1024;
 	@Autowired
 	private  CourseService courseService;
 	@Autowired
