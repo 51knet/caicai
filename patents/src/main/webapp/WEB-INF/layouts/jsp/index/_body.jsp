@@ -222,7 +222,7 @@ function logout() {
 				<div style="height: 10px"></div>
 				<div class="controls" id="forgotemail">
 					<h5 style="text-align: left;" class="title-index">您的注册邮箱地址</h5>
-					<div class="controls" style="text-align: left;">
+					<div class="controls" style="text-align: right;">
 						<input type="text" id="emailForPsw" name="forgotemail" placeholder="请输入您已注册的邮箱地址" style="width: 96.17%;">
 						<span class="help-inline" id="emailError"><form:errors path="emailForPsw"></form:errors></span>
 					</div>
