@@ -24,9 +24,12 @@
 	margin: 20px 40px;
 
 }
+.row-fluid .custom .user-row {
+	color: #3d4f67;
+}
 </style>
 <div class="row-fluid custom round">
-	<div  class="row">
+	<div  class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
 		<h4>技术需求>添加需求</h4>
 	</div>
 	<div class="content">

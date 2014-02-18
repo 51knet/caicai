@@ -74,21 +74,27 @@ public class RequireDetailController {
 	
 	@RequestMapping(value="/admin/requirement/edit/edit",method = RequestMethod.POST)
 	public String updateRequirement(@Valid RequireForm requireForm,BindingResult validResult,HttpSession session,
-			@RequestParam("requirType") Long type_id,@RequestParam("require_id") Long require_id,Model model){
+			@RequestParam("require_id") Long require_id,Model model){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/admin/requirement/new";
 		}else{
-			RequirType type = requirTypeService.findOne(type_id);
+			
 			Requirement requirement = requirementService.findOne(require_id);
 			requirement.setTitle(requireForm.getTitle());
 			requirement.setContent(requireForm.getContent());
-			requirement.setEndTime(requireForm.getEndTime());
 			requirement.setDate(new Date());
-			requirement.setRequirType(type);
 			requirement.setUser(user);
+			requirement.setEndTime(requireForm.getEndTime());
+			
+			requirement.setAddress(requireForm.getAddress());
+			requirement.setCompany(requireForm.getCompany());
+			requirement.setMoney(requireForm.getMoney());
+			requirement.setPhone(requireForm.getPhone());
+			requirement.setName(requireForm.getName());
+			requirement.setStatus(GlobalDefs.REQUIREMENT_WAITE);
 			requirementService.update(requirement);
 			return "redirect:/admin/requirement/list";
 		}

@@ -4,7 +4,40 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/img.js" />"></script>
+<style type="text/css">
+#preview{}
+#showimg {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
+
+</style>
+<script type="text/javascript">
+function previewImages(file){
+	document.getElementById("logoCover").style.display="none";
+	previewImage(file);
+}
+
+function checkLogo(obj){
+	var flag = false;
+	var fileValue = obj.coverFile.value;
+	var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length).toLowerCase();
+	if(fileValue==null || fileValue==""){
+		alert("请添加课程封面");
+		flag=false;
+	}else{
+		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp || ".png" == temp){
+			flag=true;
+		}else{
+			alert("只支持gif、jpg、bmp、png格式的图片！！");
+			flag=false;
+		}
+	}
+	return flag;
+}
+</script>
 <style>
+.preview_show{
+	margin: -25px 0px 10px 90px;
+}
 .row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
@@ -24,44 +57,46 @@
 	margin: 20px 40px;
 
 }
+.row-fluid .custom .user-row {
+	color: #3d4f67;
+}
+.span5.custom{
+	width: 350px;
+}
 </style>
 
 <div class="row-fluid custom round">
-	<div  class="row">
-		<h4>我的专利>添加专利</h4>
+	<div  class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
+		<h4>我的项目>>添加项目</h4>
 	</div>
 	<div class="content row-fluid">
-		<form action= '<c:url value="/admin/patent/add"></c:url>'  method="post" style="" id="patent_form" name="patent_post">
-		<div class="span5" style="width: 340px;">
-			<div class="control-group" id="patentNum">
+		项目信息<hr>
+			<span style="margin-left: 14px;">LOGO预览：</span> 
+			<div id="preview" class="preview_show">
+				<img name="showimg" id="showimg"  style="display: none;" />
+			</div>
+			<div id="logoCover" class="preview_show">
+				<span> <img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width:100px; height:100px;" />
+				</span>
+			</div>
+		<form action= '<c:url value="/admin/projects/add"></c:url>'  method="post" enctype="multipart/form-data"  id="projects_form" name="projects_post" >
+			<!--  --><div class="control-group"> 
+			<div class="controls">
+				<i class="icon-star"></i> 上传LOGO：<input type="file" name="logoPath"  onChange="previewImages(this);"/> <span style="font-size: 13px; color: red;">${errorMsg }</span>
+				<br><span style="color: red;  margin-left: 70px;">只支持jpg、gif、bmp、png格式，建议封面宽度100px，高度100px</span></div>
+			</div>
+			<div class="control-group" id="projectName">
 				<div class="controls">
-					<i class="icon-star"></i> 专利号码：<input type="text" name="patentNum"   placeholder="专利号码" required value="${patent.patentNum }"> <span class="help-inline"><form:errors path="patentNum" /></span>
+					<i class="icon-star"></i> 项目名称：<input type="text" name="projectName"   placeholder="项目名称" required "> <span class="help-inline"><form:errors path="projectName" /></span>
 				</div>
-			</div>
-			<div class="control-group" id="patentType">
-				<i class="icon-star"></i>专利类型：
-					<select name="patentType" >
-				  			<c:forEach items="${pTypeList }" var="typeList">
-				  				<option value="${typeList.id }" >${typeList.typeName }</option>
-				  			</c:forEach>
-					</select>
-			</div>
-			
-			<div class="control-group" id="patentField">
-				<i class="icon-star"></i>适用领域：
-					<select name="patentField">
-		  					<c:forEach items="${pFieldList }" var="fieldList">
-		  						<option value="${fieldList.fieldName }" >${fieldList.fieldName }</option>
-		  					</c:forEach>
-					</select>
 			</div>
 		
-			<div class="control-group" id="patentName">
+			<div class="control-group" id="industry">
 				<div class="controls">
-					<i class="icon-star"></i> 专利名称：<input type="text" name="patentName"   placeholder="专利名称"  required value="${patent.patentName }"> <span class="help-inline"><form:errors path="patentName" /></span>
+					<i class="icon-star"></i> 所属行业：<input type="text" name="industry"   placeholder="所属行业"  required > <span class="help-inline"><form:errors path="industry" /></span>
 				</div>
 			</div>
-			<div class="control-group"  > 
+			<!-- <div class="control-group"  > 
 				<div class="controls" >
 				<i class="icon-star"></i> 专利范围：
 					<label class="radio inline" style="margin-top: -8px;">
@@ -71,83 +106,60 @@
 						<input type="radio" name="country" value="1" >国外
 					</label>
 				</div>
-			</div>
-			<div class="control-group" id="mainClassNum">
+			</div> -->
+			<div class="control-group" id="progess">
 				<div class="controls">
-					<i class="icon-star"></i> 主分类号：<input type="text" name="mainClassNum"   placeholder="主分类号"  required value="${patent.mainClassNum }"> <span class="help-inline"><form:errors path="mainClassNum" /></span>
+					<i class="icon-star"></i> 项目进度：<input type="text" name="progess"   placeholder="项目进度"  required > <span class="help-inline"><form:errors path="progess" /></span>
 				</div>
 			</div>
 			
-			<div class="control-group" id="classNum">
+			<div class="control-group" id="totalMoney">
 				<div class="controls">
-					<i class="icon-star"></i> 分类号码：<input type="text" name="classNum"   placeholder="分类号码"  required> <span class="help-inline"><form:errors path="classNum" /></span>
+					<i class="icon-star"></i> 融资金额：<input type="text" name="totalMoney"   placeholder="融资金额"  required onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="totalMoney" /></span>
+				</div>
+			</div>
+			<div class="control-group" id="content">
+				<div class="controls " >
+					<i class="icon-star"></i> 项目简介：<br>
+					<textarea  style="width:670px;height:150px;"  name="content"  placeholder="项目简介"></textarea>
+					<span class="help-inline"><form:errors path="content" /></span>
+				</div>
+			</div>
+			公司信息<hr>
+			<div class="control-group" id="companyName">
+				<div class="controls">
+					<i class="icon-star"></i> 公司名称：<input type="text" name="companyName"   placeholder="公司名称"  required> <span class="help-inline"><form:errors path="companyName" /></span>
 				</div>
 			</div>
 			
-			<div class="control-group" id="applicant">
+			<div class="control-group" id="empNumber">
 				<div class="controls">
-					<i class="icon-star"></i> 申请人士：<input type="text" name="applicant"   placeholder="申请人士"  required> <span class="help-inline"><form:errors path="applicant" /></span>
-				</div>
-			</div>
-		
-		</div>
-		<div class="span5"   style="width: 350px;">
-		
-			<div class="control-group" id="inventer">
-				<div class="controls">
-					<i class="icon-star"></i> 发明人士：<input type="text" name="inventer"   placeholder="发明人士" required> <span class="help-inline"><form:errors path="inventer" /></span>
+					<i class="icon-star"></i> 员工人数：<input type="text" name="empNumber"   placeholder="申请人士"  required> <span class="help-inline"><form:errors path="applicant" /></span>
 				</div>
 			</div>
 			
-			<div class="control-group" id="publishDate">
+			<div class="control-group" id="location">
 				<div class="controls">
-					<i class="icon-star"></i> 公开日期：<input type="text" name="publishDate"   placeholder="公开日期" class="Wdate" onClick="WdatePicker()" required> <span class="help-inline"><form:errors path="publishDate" /></span>
+					<i class="icon-star"></i> 公司地址：<input type="text" name="location"   placeholder="公司地址"  required> <span class="help-inline"><form:errors path="location" /></span>
 				</div>
 			</div>
 			
-			<div class="control-group" id="publishNum">
+			<div class="control-group" id="boss">
 				<div class="controls">
-					<i class="icon-star"></i> 公开号码：<input type="text" name="publishNum"   placeholder="公开号码" required> <span class="help-inline"><form:errors path="publishNum" /></span>
+					<i class="icon-star"></i> 企业法人：<input type="text" name="boss"   placeholder="企业法人"  required> <span class="help-inline"><form:errors path="boss" /></span>
 				</div>
 			</div>
 			
-			<div class="control-group" id="applicationDate">
+			<div class="control-group" id="phone">
 				<div class="controls">
-					<i class="icon-star"></i> 申请日期：<input type="text" name="applicationDate"   placeholder="申请日期" class="Wdate" onClick="WdatePicker()" required> <span class="help-inline"><form:errors path="applicationDate" /></span>
+					<i class="icon-star"></i> 联系电话：<input type="text" name="phone"   placeholder="联系电话"  required onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>
 				</div>
 			</div>
 			
-			<div class="control-group" id="agency">
-				<div class="controls">
-					 代 理 机 构： <input type="text" name="agency"   placeholder="代理机构" > <span class="help-inline"><form:errors path="agency" /></span>
-				</div>
-			</div>
-			
-			<div class="control-group" id="agent">
-				<div class="controls">
-					  代 理 人 士： <input type="text" name="agent"   placeholder="代理人士" > <span class="help-inline"><form:errors path="agent" /></span>
-				</div>
-			</div>
-			
-			<div class="control-group" id="address">
-				<div class="controls">
-					 联 系 地 址： <input type="text" name="address"   placeholder="联系地址" required > <span class="help-inline"><form:errors path="address" /></span>
-				</div>
-			</div>
-		</div>
-	
-		<div class="control-group" id="summary">
-			<div class="controls span11 " >
-				<i class="icon-star"></i> 专利摘要：<br>
-				<textarea  style="width:670px;height:300px;"  name="summary"  placeholder="专利摘要"></textarea>
-				<span class="help-inline"><form:errors path="summary" /></span>
-			</div>
-		</div>
-		
-		<div class="span9">
-		 	<button type="submit" class="btn btn-success ">保存</button>&nbsp;&nbsp;
-			<button type="reset" class="btn">取消</button>
-		</div>	
+			<div class="span9">
+			 	<button type="submit" class="btn btn-success ">保存</button>&nbsp;&nbsp;
+				<button type="reset" class="btn">取消</button>
+			</div>	
 
 			
 		</form>
@@ -160,7 +172,7 @@
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.js"/>"></script>
 <script type="text/javascript">
 		$(document).ready(function() {
-			var editor = KindEditor.create('textarea[name="summary"]',{
+			var editor = KindEditor.create('textarea[name="content"]',{
 				cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
 				uploadJson : '${uploadJson}',
 				fileManagerJson : '${fileManagerJson}',
@@ -169,17 +181,17 @@
 					var self = this;
 					KindEditor.ctrl(document, 13, function() {
 						self.sync();
-						document.forms['patent_post'].submit();
+						document.forms['projects_post'].submit();
 					});
 					KindEditor.ctrl(self.edit.doc, 13, function() {
 						self.sync();
-						document.forms['patent_post'].submit();
+						document.forms['projects_post'].submit();
 					});
 				}
 			});
-			$("#patent_form").submit(function(){
+			$("#projects_form").submit(function(){
 				editor.sync();
-				return checkEmptyAjax("patent_form","patentInfoAJAX");
+				return checkEmptyAjax("projects_form","projectsInfoAJAX");
 			});
 			prettyPrint();
 	    });

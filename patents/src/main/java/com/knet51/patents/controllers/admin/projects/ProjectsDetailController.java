@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.patents.beans.UserInfo;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
@@ -29,8 +30,8 @@ import com.knet51.patents.util.fileUpLoad.FileUtil;
 public class ProjectsDetailController {
 	private static final Logger logger = LoggerFactory.getLogger(ProjectsDetailController.class);
 	private static final long MAX_FILE_SIZE_2M = 2*1024*1024;
-	private static final Integer LOGO_WIDTH = 150;
-	private static final Integer LOGO_HEIGHT = 150;
+	private static final Integer LOGO_WIDTH = 100;
+	private static final Integer LOGO_HEIGHT = 100;
 	@Autowired
 	private ProjectsService projectsService;
 	@Autowired
@@ -40,6 +41,7 @@ public class ProjectsDetailController {
 	public String addProjects(@Valid ProjectsForm projectsForm, BindingResult validResult,
 			HttpSession session,MultipartHttpServletRequest request,RedirectAttributes redirectAttributes) throws Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		logger.info("===== into projects=====");
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/admin/projects/new";
@@ -47,18 +49,21 @@ public class ProjectsDetailController {
 			Projects projects = new Projects();
 			projects.setCompanyName(projectsForm.getCompanyName());
 			projects.setContent(projectsForm.getContent());
-			projects.setDate(new Date());
 			projects.setEmpNumber(projectsForm.getEmpNumber());
 			projects.setIndustry(projectsForm.getIndustry());
 			projects.setLocation(projectsForm.getLocation());
 			projects.setProgess(projectsForm.getProgess());
 			projects.setProjectName(projectsForm.getProjectName());
+			projects.setTotalMoney(Long.parseLong(projectsForm.getTotalMoney()));
+			projects.setBoss(projectsForm.getBoss());
+			projects.setPhone(projectsForm.getPhone());
+			
+			projects.setDate(new Date());
 			projects.setStatus(GlobalDefs.WAITE);
-			projects.setTotalMoney(projectsForm.getTotalMoney());
 			projects.setUser(userInfo.getUser());
 			Projects newProjects = projectsService.create(projects);
 			
-			List<MultipartFile> files = request.getFiles("coverFile");
+			List<MultipartFile> files = request.getFiles("logoPath");
 			for (int i = 0; i < files.size(); i++) {
 				MultipartFile multipartFile = files.get(i);
 				if(!multipartFile.isEmpty()){
@@ -97,16 +102,19 @@ public class ProjectsDetailController {
 			Projects projects = projectsService.findOne(projects_id);
 			projects.setCompanyName(projectsForm.getCompanyName());
 			projects.setContent(projectsForm.getContent());
-			projects.setDate(new Date());
 			projects.setEmpNumber(projectsForm.getEmpNumber());
 			projects.setIndustry(projectsForm.getIndustry());
 			projects.setLocation(projectsForm.getLocation());
 			projects.setProgess(projectsForm.getProgess());
 			projects.setProjectName(projectsForm.getProjectName());
+			projects.setTotalMoney(Long.parseLong(projectsForm.getTotalMoney()));
+			projects.setBoss(projectsForm.getBoss());
+			projects.setPhone(projectsForm.getPhone());
+			
+			projects.setDate(new Date());
 			projects.setStatus(GlobalDefs.WAITE);
-			projects.setTotalMoney(projectsForm.getTotalMoney());
 			projects.setUser(userInfo.getUser());
-			Projects newProjects = projectsService.create(projects);
+			
 			
 			List<MultipartFile> files = request.getFiles("coverFile");
 			for (int i = 0; i < files.size(); i++) {
@@ -119,19 +127,19 @@ public class ProjectsDetailController {
 						logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
 						String fileName = multipartFile.getOriginalFilename();
 						String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
-						String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/projects/"+newProjects.getId();
+						String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/projects/"+projects.getId();
 						logger.debug("Upload Path:"+path); 
 						FileUtil.createRealPath(path, session);
 						String previewFile = path+File.separator+"small"+"."+fileExtension;
 						File saveDest = new File(path + File.separator + fileName);
 						multipartFile.transferTo(saveDest);
 						FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension,LOGO_WIDTH,LOGO_HEIGHT);
-						String savePath = FileUtil.getSavePath("projects", userInfo.getId(), newProjects.getId()+"", request)+"/small"+"."+fileExtension;
-						newProjects.setLogoPath(savePath);
+						String savePath = FileUtil.getSavePath("projects", userInfo.getId(), projects.getId()+"", request)+"/small"+"."+fileExtension;
+						projects.setLogoPath(savePath);
 					}
 				}
 			}
-			projectsService.update(newProjects);
+			projectsService.update(projects);
 		}
 		return "redirect:/admin/projects/list";
 	}

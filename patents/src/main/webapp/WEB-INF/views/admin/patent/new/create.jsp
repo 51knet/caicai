@@ -24,15 +24,21 @@
 	margin: 20px 40px;
 
 }
+.span5.custom{
+	width: 350px;
+}
+.row-fluid .custom .user-row {
+	color: #3d4f67;
+}
 </style>
 
 <div class="row-fluid custom round">
-	<div  class="row">
+	<div  class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
 		<h4>我的专利>添加专利</h4>
 	</div>
 	<div class="content row-fluid">
 		<form action= '<c:url value="/admin/patent/add"></c:url>'  method="post" style="" id="patent_form" name="patent_post">
-		<div class="span5" style="width: 340px;">
+		<div class="span5 custom">
 			<div class="control-group" id="patentNum">
 				<div class="controls">
 					<i class="icon-star"></i> 专利号码：<input type="text" name="patentNum"   placeholder="专利号码" required value="${patent.patentNum }"> <span class="help-inline"><form:errors path="patentNum" /></span>
@@ -91,7 +97,7 @@
 			</div>
 		
 		</div>
-		<div class="span5"   style="width: 350px;">
+		<div class="span5 custom"   >
 		
 			<div class="control-group" id="inventer">
 				<div class="controls">

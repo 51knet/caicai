@@ -9,74 +9,134 @@ public class ProjectsForm {
 	@Size(min=1, max=200)
 	private String projectName;
 	@NotEmpty
-	private String industry;//hang ye
+	@Size(min=1, max=200)
+	private String industry;
 	@NotEmpty
 	@Size(min=1, max=200)
-	private String progess;//jin du
+	private String progess;
 	@NotEmpty
 	@Size(min=1, max=200)
-	private String companyName; 
-	private String empNumber; // yuan gong ren shu
+	private String totalMoney;
+	@NotEmpty
+	private String content;
+	@NotEmpty
+	@Size(min=1, max=200)
+	private String companyName;
+	@NotEmpty
+	@Size(min=1, max=200)
+	private String empNumber;
 	@NotEmpty
 	@Size(min=1, max=200)
 	private String location;
+	@NotEmpty
+	@Size(min=1, max=200)
+	private String boss;
+	@NotEmpty
+	@Size(min=1, max=200)
+	private String phone;
 	
-	@NotEmpty
-	private String totalMoney;// zong jin e
-	@NotEmpty
-	private String content; // qi ye jian jie
 	
 	public String getProjectName() {
 		return projectName;
 	}
+
+
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
+
+
 	public String getIndustry() {
 		return industry;
 	}
+
+
 	public void setIndustry(String industry) {
 		this.industry = industry;
 	}
+
+
 	public String getProgess() {
 		return progess;
 	}
+
+
 	public void setProgess(String progess) {
 		this.progess = progess;
 	}
-	public String getCompanyName() {
-		return companyName;
-	}
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-	public String getEmpNumber() {
-		return empNumber;
-	}
-	public void setEmpNumber(String empNumber) {
-		this.empNumber = empNumber;
-	}
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
+
+
 	public String getTotalMoney() {
 		return totalMoney;
 	}
+
+
 	public void setTotalMoney(String totalMoney) {
 		this.totalMoney = totalMoney;
 	}
-	
+
+
 	public String getContent() {
 		return content;
 	}
+
+
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	protected ProjectsForm() {
+
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+
+	public String getEmpNumber() {
+		return empNumber;
+	}
+
+
+	public void setEmpNumber(String empNumber) {
+		this.empNumber = empNumber;
+	}
+
+
+	public String getLocation() {
+		return location;
+	}
+
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+
+	public String getBoss() {
+		return boss;
+	}
+
+
+	public void setBoss(String boss) {
+		this.boss = boss;
+	}
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+	public ProjectsForm() {
 		super();
 	}
 	

@@ -80,7 +80,7 @@ public class ProjectsPageController {
 		return AjaxValidationEngine.process(result);
 	}
 	
-	@RequestMapping(value = "/admin/projects/edit/new/projectsInfoAJAX", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/projects/edit/edit/projectsInfoAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse projectsInfoFormUpdateAjaxJson(@Valid ProjectsForm projectsForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}

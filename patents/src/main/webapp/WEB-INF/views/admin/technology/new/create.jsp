@@ -24,16 +24,22 @@
 	margin: 20px 40px;
 
 }
+.span5.custom{
+	width: 350px;
+}
+.row-fluid .custom .user-row {
+	color: #3d4f67;
+}
 </style>
 
 <div class="row-fluid custom round">
-	<div  class="row">
+	<div  class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
 		<h4>我的技术>>添加技术</h4>
 	</div>
 	<div class="content row-fluid">
 		<form action= '<c:url value="/admin/technology/new/add"></c:url>'  method="post" id="tech_form" name="tech_post">
 		<input type="hidden" value="${technology.id }" name="tech_id">
-		<div class="span5" style="width: 340px;">
+		<div class="span5 custom" >
 			<div class="control-group" id="techName">
 				<div class="controls">
 					<i class="icon-star"></i> 项目名称：<input type="text" name="techName"   placeholder="项目名称" required value="${technology.techName }"> <span class="help-inline"><form:errors path="techName" /></span>
@@ -80,7 +86,7 @@
 			</div>
 		</div>
 		
-		<div class="span5"   style="width: 350px;">
+		<div class="span5 custom"  >
 		
 			
 			<div class="control-group" id="maturity">

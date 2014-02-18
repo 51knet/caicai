@@ -80,7 +80,7 @@
 	</definition>	
 	
 	
-		
+	<!-- user technology  -->
 	<definition name="admin.user.technology.list" extends="user-admin-layout">
 		<put-attribute name="title" value="技术列表" />
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
@@ -99,10 +99,10 @@
 		<put-attribute name="right" value="/WEB-INF/views/admin/technology/view/view.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.user.projects.edit" extends="user-admin-layout">
-		<put-attribute name="title" value="技术编辑" />
+	<definition name="admin.user.technology.edit" extends="user-admin-layout">
+		<put-attribute name="title" value="技术修改" />
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/projects/edit/edit.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/technology/edit/edit.jsp"></put-attribute>
 	</definition>
 	
 	<!-- projects  -->

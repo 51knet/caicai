@@ -22,75 +22,78 @@
 .row-fluid.custom .content {
 	margin: 20px 40px;
 }
-
+.row-fluid .custom .user-row {
+	color: #3d4f67;
+}
 
 </style>
 <script type="text/javascript">
 
 </script>
 <div class="row-fluid custom round">
-	<div class="row">
-		<h4>专利详细</h4>
+	<div class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
+		<h4>我的技术>>技术详情</h4>
 	</div>
 	<div class="content">
-			<table width="100%" height="" border="1" cellpadding="5" cellspacing="0"   class=" <c:if test="${sessionUserInfo.role == 'teacher'}">blue</c:if> <c:if test="${sessionUserInfo.role == 'user'}">yellow</c:if>"   >
+			<table width="100%" height="" border="1" cellpadding="5" cellspacing="0"   class=" <c:if test="${sessionUserInfo.role == 'teacher'}">green</c:if> <c:if test="${sessionUserInfo.role == 'user'}">blue</c:if>"   >
 			<tr>
-			    <td width="122" align="center" bgcolor="#f3f3f3">专利号码</td>
-			    <td width="190">${patent.patentNum}</td>
-			    <td width="103" align="center" bgcolor="#f3f3f3">申请日期</td>
-			    <td width="169">${patent.applicationDate}</td>
+			    <td width="122" align="center" bgcolor="#f3f3f3">项目名称</td>
+			    <td width="190">${technology.techName }</td>
+			    <td width="103" align="center" bgcolor="#f3f3f3">所属领域</td>
+			    <td width="169">${techField.value }</td>
 			  </tr>
 			  <tr>
-			    <td width="122" align="center" bgcolor="#f3f3f3">适用领域</td>
-			    <td width="190">${patent.patentField}</td>
-			    <td width="103" align="center" bgcolor="#f3f3f3">专利类型</td>
-			    <td width="169">${patent.patentType.typeName}</td>
+			    <td width="122" align="center" bgcolor="#f3f3f3">完成单位</td>
+			    <td width="190">${technology.department }</td>
+			    <td width="103" align="center" bgcolor="#f3f3f3"> 所 有 人</td>
+			    <td width="169">${technology.inventer}</td>
+			  </tr>
+			  
+			  <tr>
+			    <td align="center" bgcolor="#f3f3f3"> 联系电话</td>
+			    <td>${technology.phone }</td>
+			    <td align="center" bgcolor="#f3f3f3">项目类型</td>
+			    <td>${technology.techType }</td>
+			  </tr>
+
+			  <tr>
+			    <td align="center" bgcolor="#f3f3f3">成熟程度</td>
+			    <td >${technology.maturity }</td>
+			    <td align="center" bgcolor="#f3f3f3">进展程度</td>
+			    <td >${technology.progress }</td>
 			  </tr>
 			  <tr>
-			    <td align="center" bgcolor="#f3f3f3">专利名称</td>
-			    <td colspan="3">${patent.patentName }</td>
+			    <td align="center" bgcolor="#f3f3f3">应用前景</td>
+			    <td>${technology.applyArea }</td>
+			    <td align="center" bgcolor="#f3f3f3">合作方式</td>
+			    <td>${technology.cooperation }"</td>
 			  </tr>
 			  <tr>
-			    <td align="center" bgcolor="#f3f3f3">公开号码</td>
-			    <td>${patent.publishNum}</td>
-			    <td align="center" bgcolor="#f3f3f3">公开日期</td>
-			    <td>${patent.publishDate}</td>
+			    <td align="center" bgcolor="#f3f3f3"> 合作要求</td>
+			    <td colspan="3">${technology.demand }</td>
 			  </tr>
-			  <tr>
-			    <td align="center" bgcolor="#f3f3f3">主分类号</td>
-			    <td colspan="3">${patent.mainClassNum}</td>
-			  </tr>
-			  <tr>
-			    <td align="center" bgcolor="#f3f3f3">分类号码</td>
-			    <td >${patent.classNum }</td>
-			    <td align="center" bgcolor="#f3f3f3">专利范围</td>
-			    <td ><c:if test="${patent.country == 1 }">国外</c:if><c:if test="${patent.country == 0 }">国内</c:if></td>
-			  </tr>
-			  <tr>
-			    <td align="center" bgcolor="#f3f3f3">申请人</td>
-			    <td>${patent.applicant }</td>
-			    <td align="center" bgcolor="#f3f3f3">发明人</td>
-			    <td>${patent.inventer }</td>
-			  </tr>
-			  <tr>
-			    <td align="center" bgcolor="#f3f3f3">联系地址</td>
-			    <td colspan="3">${patent.address }</td>
-			  </tr>
-			  <tr>
-			    <td align="center" bgcolor="#f3f3f3">代理人</td>
-			    <td>${patent.agency }</td>
-			    <td align="center" bgcolor="#f3f3f3">代理机构</td>
-			    <td>${patent.agent }</td>
-			  </tr>
+			     
 			     <tr>
-				    <td colspan="4" align="left" bgcolor="#f3f3f3">专利摘要</td>
+				    <td colspan="4" align="left" bgcolor="#f3f3f3">项目简介</td>
 				  </tr>
 				  <tr>
-				  	   <td colspan="4" align="left" >${patent.summary }</td>
+				  	   <td colspan="4" align="left" >${technology.contents }</td>
 				  </tr>
+				 	     <tr>
+				    <td colspan="4" align="left" bgcolor="#f3f3f3">产品优点</td>
+				  </tr>
+				  <tr>
+				  	   <td colspan="4" align="left" >${technology.advantage }</td>
+				  </tr>
+				  	     <tr>
+				    <td colspan="4" align="left" bgcolor="#f3f3f3">获奖情况</td>
+				  </tr>
+				  <tr>
+				  	   <td colspan="4" align="left" >${technology.achievement }</td>
+				  </tr> 
 			</table>
 	</div>
 	<div class="content" >
-		<a href='<c:url value="/admin/patent/list"></c:url>'  class="btn btn-success">返回</a>&nbsp;&nbsp;
+		<a href='<c:url value="/admin/technology/list"></c:url>'  class="btn btn-success">返回</a>
 	</div>
 </div>

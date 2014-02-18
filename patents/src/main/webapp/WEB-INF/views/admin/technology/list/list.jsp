@@ -20,9 +20,7 @@
 	border-bottom: solid #cccccc 1.5px;
 }
 .row-fluid .custom .user-row {
-	
 	color: #3d4f67;
-
 }
 
 .row-fluid.custom .content {
@@ -43,7 +41,7 @@
 			<tbody>
 				<c:forEach  items="${page.content}" var="page">
 					<tr>
-						<td ><a href='<c:url value="/admin/technology/edit/${page.id }"></c:url>' >${page.techName }</a></td>
+						<td ><a href='<c:url value="/admin/technology/view/${page.id }"></c:url>' >${page.techName }</a></td>
 						<td align="center">${page.techField}</td>
 						<td align="center"><a href='<c:url value="/admin/technology/edit/${page.id}"></c:url>'>修改</a> | 
 						<a class="destoryTechnologyPostBtn" href="#destoryTechnologyPostModal" role="button" data-toggle="modal" data-target="#destoryTechnologyPostModal">删除</a><input type="hidden"  value="${page.id}"> </td>

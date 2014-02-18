@@ -22,18 +22,20 @@
 .row-fluid.custom .content {
 	margin: 20px 40px;
 }
-
+.row-fluid .custom .user-row {
+	color: #3d4f67;
+}
 
 </style>
 <script type="text/javascript">
 
 </script>
 <div class="row-fluid custom round">
-	<div class="row">
+	<div class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
 		<h4>我的专利>>专利详细</h4>
 	</div>
 	<div class="content">
-			<table width="100%" height="" border="1" cellpadding="5" cellspacing="0"   class=" <c:if test="${sessionUserInfo.role == 'teacher'}">blue</c:if> <c:if test="${sessionUserInfo.role == 'user'}">yellow</c:if>"   >
+			<table width="100%" height="" border="1" cellpadding="5" cellspacing="0"   class=" <c:if test="${sessionUserInfo.role == 'teacher'}">green</c:if> <c:if test="${sessionUserInfo.role == 'user'}">blue</c:if>"   >
 			<tr>
 			    <td width="122" align="center" bgcolor="#f3f3f3">专利号码</td>
 			    <td width="190">${patent.patentNum}</td>

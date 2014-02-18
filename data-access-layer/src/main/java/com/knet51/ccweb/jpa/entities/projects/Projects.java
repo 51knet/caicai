@@ -17,8 +17,10 @@ public class Projects extends AbstractEntity {
 	private String companyName; 
 	private String empNumber; // yuan gong ren shu
 	private String location;
-	private String totalMoney;// zong jin e
-	private String currentMoney; // xian you jin e
+	private String boss;
+	private String phone;
+	private Long totalMoney;// zong jin e
+	private Long currentMoney; // xian you jin e
 	
 	@Lob
 	private String content; // xiang mu jian jie
@@ -26,6 +28,7 @@ public class Projects extends AbstractEntity {
 	private Date date;
 	
 	private Integer status; // pass:1; waite:0;
+	
 	
 	@ManyToOne
 	private User user;
@@ -36,6 +39,14 @@ public class Projects extends AbstractEntity {
 
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getIndustry() {
@@ -78,19 +89,21 @@ public class Projects extends AbstractEntity {
 		this.location = location;
 	}
 
-	public String getTotalMoney() {
+
+
+	public Long getTotalMoney() {
 		return totalMoney;
 	}
 
-	public void setTotalMoney(String totalMoney) {
+	public void setTotalMoney(Long totalMoney) {
 		this.totalMoney = totalMoney;
 	}
 
-	public String getCurrentMoney() {
+	public Long getCurrentMoney() {
 		return currentMoney;
 	}
 
-	public void setCurrentMoney(String currentMoney) {
+	public void setCurrentMoney(Long currentMoney) {
 		this.currentMoney = currentMoney;
 	}
 
@@ -136,6 +149,14 @@ public class Projects extends AbstractEntity {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getBoss() {
+		return boss;
+	}
+
+	public void setBoss(String boss) {
+		this.boss = boss;
 	}
 	
 	

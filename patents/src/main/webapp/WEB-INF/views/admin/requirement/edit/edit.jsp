@@ -24,9 +24,12 @@
 	margin: 20px 40px;
 
 }
+.row-fluid .custom .user-row {
+	color: #3d4f67;
+}
 </style>
 <div class="row-fluid custom round">
-	<div  class="row">
+	<div  class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
 		<h4>技术需求>添加需求</h4>
 	</div>
 	<div class="content">
@@ -34,60 +37,45 @@
 			<input type="hidden" value="${requirement.id }" name="require_id" >
 			<div class="control-group" id="title">
 				<div class="controls">
-						需求标题： <input type="text" name="title" placeholder="标题" value="${requirement.title }"> <span class="help-inline"><form:errors path="title" /></span>
+						<i class="icon-star"></i> 需求标题： <input type="text" name="title" placeholder="标题" value="${requirement.title }"> <span class="help-inline"><form:errors path="title" /></span>
 				</div>
-			</div>
-			<div class="control-group" id="requirType">
-			需求类别：
-					<select name="requirType" >
-						<c:forEach items="${requirTypeList }" var="typeList" >			  	
-				  			<c:choose>
-				  				<c:when test="${typeList.id == requirement.requirType.id }">
-				  					<option value="${typeList.id }" selected>${typeList.typeName }</option>
-				  				</c:when>
-				  				<c:otherwise>
-				  					<option value="${typeList.id }" >${typeList.typeName }</option>
-				  				</c:otherwise>
-				  			</c:choose>
-					  </c:forEach>
-					</select>
-			</div>
-			
+			</div>		
 			<div class="control-group" id="money">
 				<div class="controls">
-					拟定资金： <input type="text" name="money" placeholder="拟定资金" value="${requirement.money }"> <span class="help-inline"><form:errors path="title" /></span>
+					<i class="icon-star"></i> 拟定资金： <input type="text" name="money" placeholder="拟定资金" value="${requirement.money }"> <span class="help-inline"><form:errors path="title" /></span>
 				</div>
 			</div>
 			<div class="control-group" id="company">
 				<div class="controls">
-					公司名称： <input type="text" name="company" placeholder="公司名称" value="${requirement.company }"> <span class="help-inline"><form:errors path="company" /></span>
+					<i class="icon-star"></i> 公司名称： <input type="text" name="company" placeholder="公司名称" value="${requirement.company }"> <span class="help-inline"><form:errors path="company" /></span>
 				</div>
 			</div>
 			<div class="control-group" id="name">
 				<div class="controls">
-						联系人士： <input type="text" name="name" placeholder="联系人士" value="${requirement.name }"> <span class="help-inline"><form:errors path="name" /></span>
+						<i class="icon-star"></i> 联系人士： <input type="text" name="name" placeholder="联系人士" value="${requirement.name }"> <span class="help-inline"><form:errors path="name" /></span>
 				</div>
 			</div>
 			
 			<div class="control-group" id="phone">
 				<div class="controls">
-						联系电话： <input type="text" name="phone" placeholder="联系电话" value="${requirement.phone }"> <span class="help-inline"><form:errors path="phone" /></span>
+						<i class="icon-star"></i> 联系电话： <input type="text" name="phone" placeholder="联系电话" value="${requirement.phone }"> <span class="help-inline"><form:errors path="phone" /></span>
 				</div>
 			</div>
 			<div class="control-group" id="address">
 				<div class="controls">
-						联系地址： <input type="text" name="address" placeholder="联系地址" value="${requirement.address}"> <span class="help-inline"><form:errors path="address" /></span>
+						<i class="icon-star"></i> 联系地址： <input type="text" name="address" placeholder="联系地址" value="${requirement.address}"> <span class="help-inline"><form:errors path="address" /></span>
 				</div>
 			</div>
 			
 			<div class="control-group" id="title">
 				<div class="controls">
-						截止日期： <input type="text" name="endTime" placeholder="截止日期" class="Wdate" onClick="WdatePicker()" value="${requirement.endTime }"> <span class="help-inline"><form:errors path="title" /></span>
+						<i class="icon-star"></i> 截止日期： <input type="text" name="endTime" placeholder="截止日期" class="Wdate" onClick="WdatePicker()" value="${requirement.endTime }"> <span class="help-inline"><form:errors path="title" /></span>
 				</div>
 			</div>
 			<div class="control-group" id="content">
 				<div class="controls">
-					<textarea  style="width:670px; height: 100px;"  name="content"  placeholder="需求内容">${requirement.content }</textarea>
+				<i class="icon-star"></i> 需求简介：<br>
+					<textarea  style="width:670px; height: 100px;"  name="content"  placeholder="需求简介">${requirement.content }</textarea>
 					<span class="help-inline"><form:errors path="content" /></span>
 				</div>
 			</div>
