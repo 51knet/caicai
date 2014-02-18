@@ -99,10 +99,35 @@
 		<put-attribute name="right" value="/WEB-INF/views/admin/technology/view/view.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="admin.user.technology.edit" extends="user-admin-layout">
+	<definition name="admin.user.projects.edit" extends="user-admin-layout">
 		<put-attribute name="title" value="技术编辑" />
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/admin/technology/edit/edit.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/projects/edit/edit.jsp"></put-attribute>
+	</definition>
+	
+	<!-- projects  -->
+	<definition name="admin.user.projects.list" extends="user-admin-layout">
+		<put-attribute name="title" value="项目列表" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/projects/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.projects.new" extends="user-admin-layout">
+		<put-attribute name="title" value="新建项目" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/projects/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.projects.view" extends="user-admin-layout">
+		<put-attribute name="title" value="项目展示" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/projects/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.projects.edit" extends="user-admin-layout">
+		<put-attribute name="title" value="项目编辑" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/projects/edit/edit.jsp"></put-attribute>
 	</definition>
 	
 </tiles-definitions>
