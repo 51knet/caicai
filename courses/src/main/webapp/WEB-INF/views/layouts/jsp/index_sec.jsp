@@ -28,11 +28,11 @@
 			</div>
 		</div>
 		<div class="row-fluid bg_white">
-				<div class="span3 margin_top_10"  style="width: 190px;  ">
+				<div class="span3 margin_top_10"  style="width: 230px; margin-left: 20px;">
 					<tiles:insertAttribute name="left" />
 				</div>
 				
-				<div class="span9 margin_top_10" style="width: 780px;" >
+				<div class="span9 margin_top_10" style="width: 730px; " >
 					<tiles:insertAttribute name="right" />
 				</div>
 				

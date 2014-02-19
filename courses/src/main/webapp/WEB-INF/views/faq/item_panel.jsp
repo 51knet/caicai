@@ -4,22 +4,22 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
 .left-menu-container {
-background-color: #ccdfa8;
-width: 172px;
+background-color: #718495;
+width: 230px;
 height:450px;
-margin-left: 25px;
+
 background-image: url("<c:url value='/resources/img/default/item_bg.png'></c:url>");
-background-position: top left;
+background-position: top right;
 background-repeat: repeat-y;
 margin-bottom: 10px;
 }
 
 .nav-tabs {
-	width: 168px;
+	width: 225px;
 }
 .nav-tabs  > li{
 	border-bottom: 0px solid #6d7b88;
-	width: 166px;
+	width: 223px;
 	background-image: url("<c:url value='/resources/img/default/item_second_bLing.png'></c:url>");
 	background-position: bottom left;
 	background-repeat: repeat-x;

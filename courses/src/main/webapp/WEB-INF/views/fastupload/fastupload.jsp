@@ -48,7 +48,7 @@
 			<div class="tab-content">
 				<div class="tab-pane active" id="patent_tab">
 					<div class="content row-fluid">
-						<form onsubmit="return NoPost();" onsubmit="return NoPost();" action= '<c:url value="/patent/add"></c:url>'  method="post" style="" id="patent_form" name="patent_post">
+						<form onsubmit="return NoPost();"  action= '<c:url value="/patent/add"></c:url>'  method="post" style="" id="patent_form" name="patent_post">
 						<div class="span6" >
 							<div class="control-group" id="patentNum">
 								<div class="controls">

@@ -70,20 +70,19 @@ function checkLogo(obj){
 		<h4>我的项目>>添加项目</h4>
 	</div>
 	<div class="content row-fluid">
-		项目信息<hr>
 			<span style="margin-left: 14px;">LOGO预览：</span> 
 			<div id="preview" class="preview_show">
 				<img name="showimg" id="showimg"  style="display: none;" />
 			</div>
 			<div id="logoCover" class="preview_show">
-				<span> <img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width:100px; height:100px;" />
+				<span> <img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width:260px; height:190px;" />
 				</span>
 			</div>
 		<form action= '<c:url value="/admin/projects/add"></c:url>'  method="post" enctype="multipart/form-data"  id="projects_form" name="projects_post" >
 			<!--  --><div class="control-group"> 
 			<div class="controls">
 				<i class="icon-star"></i> 上传LOGO：<input type="file" name="logoPath"  onChange="previewImages(this);"/> <span style="font-size: 13px; color: red;">${errorMsg }</span>
-				<br><span style="color: red;  margin-left: 70px;">只支持jpg、gif、bmp、png格式，建议封面宽度100px，高度100px</span></div>
+				<br><span style="color: red;  margin-left: 70px;">只支持jpg、gif、bmp、png格式，建议封面宽度260px，高度190px</span></div>
 			</div>
 			<div class="control-group" id="projectName">
 				<div class="controls">
@@ -125,7 +124,7 @@ function checkLogo(obj){
 					<span class="help-inline"><form:errors path="content" /></span>
 				</div>
 			</div>
-			公司信息<hr>
+			<br><br>
 			<div class="control-group" id="companyName">
 				<div class="controls">
 					<i class="icon-star"></i> 公司名称：<input type="text" name="companyName"   placeholder="公司名称"  required> <span class="help-inline"><form:errors path="companyName" /></span>

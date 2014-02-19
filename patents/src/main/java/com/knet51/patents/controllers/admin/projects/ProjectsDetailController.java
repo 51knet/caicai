@@ -30,8 +30,8 @@ import com.knet51.patents.util.fileUpLoad.FileUtil;
 public class ProjectsDetailController {
 	private static final Logger logger = LoggerFactory.getLogger(ProjectsDetailController.class);
 	private static final long MAX_FILE_SIZE_2M = 2*1024*1024;
-	private static final Integer LOGO_WIDTH = 100;
-	private static final Integer LOGO_HEIGHT = 100;
+	private static final Integer LOGO_WIDTH = 260;
+	private static final Integer LOGO_HEIGHT = 190;
 	@Autowired
 	private ProjectsService projectsService;
 	@Autowired

@@ -229,8 +229,8 @@ margin:0px auto;
 
 .container.teacher .teacherInfo .span3{
    margin:30px 10px;
-  width:120px;
-  height: 120px;
+  width:110px;
+  height: 110px;
 	text-align: center;
 	padding: 3px;
 	background-color: #fff;
@@ -239,7 +239,7 @@ margin:0px auto;
 
 }
 .container.teacher .teacherInfo .span3 .photos{
-   width: 113px; height:113px
+   width: 108px; height:108px
 }
 
 
