@@ -1,5 +1,7 @@
 package com.knet51.courses.controllers.projects;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -20,15 +22,27 @@ public class ProjectsPageController {
 	@Autowired
 	private ProjectsService projectsService;
 	
-	@RequestMapping("/projects/list")
-	public String showprojectsList(Model model,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
-		try {
-			Page<Projects> page = projectsService.findProjectsByStatus(GlobalDefs.PASS, pageNumber, pageSize);
-			model.addAttribute("page", page);
-		} catch (Exception e) {
-			e.printStackTrace();
+	@RequestMapping("/projects/list/{status}")
+	public String showprojectsPage(Model model,@PathVariable String status,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "9") int pageSize){
+		Page<Projects> page ;
+		if(status.equals("complete") ){
+			page = projectsService.findProjectsByCompleteAndStatus(pageNumber, pageSize, GlobalDefs.COMPLETE, GlobalDefs.PASS);
+		}else if(status.equals("uncomplete") ){
+			page = projectsService.findProjectsByCompleteAndStatus(pageNumber, pageSize, GlobalDefs.UN_COMPLETE, GlobalDefs.PASS);
+		}else{
+			page = projectsService.findProjectsByStatus(pageNumber, pageSize, GlobalDefs.PASS);
 		}
+		model.addAttribute("page", page);
+		return "projects.secondlist"; 
+	}
+	
+	@RequestMapping("/projects/list")
+	public String showprojectsList(Model model,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "9") int pageSize){
+		Page<Projects> page = projectsService.findProjectsByStatus(pageNumber, pageSize, GlobalDefs.PASS);
+
+		model.addAttribute("page", page);
 		return "projects.list"; 
 	}
 	

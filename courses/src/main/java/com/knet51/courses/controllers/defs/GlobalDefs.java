@@ -31,9 +31,13 @@ public final class GlobalDefs {
 	public static final Integer PATENT_CHINA = 0;
 	public static final Integer PATENT_FOREIGN = 1;
 	
-	// requirement status
+	// pass or waite status
 	public static final Integer WAITE = 0;
 	public static final Integer PASS = 1;
+	
+	// complete or uncomplete
+	public static final Integer COMPLETE = 1;
+	public static final Integer UN_COMPLETE = 0;
 	
 	
 	public static Map<String,String> getTechField(){

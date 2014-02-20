@@ -205,10 +205,18 @@
 	<!-- projects  -->
 	<definition name="projects.list" extends="index-sec-layout">
 		<put-attribute name="title" value="融资项目" />
-		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
-		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/carousel/carousel.jsp"></put-attribute>
+		<put-attribute name="search" value="" />
 		<put-attribute name="left" value="/WEB-INF/views/projects/item_panel.jsp" />
-		<put-attribute name="right" value="/WEB-INF/views/fastupload/fastupload.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/projects/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="projects.secondlist" extends="index-sec-layout">
+		<put-attribute name="title" value="融资项目" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/carousel/carousel.jsp"></put-attribute>
+		<put-attribute name="search" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/projects/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/projects/secondlist/list.jsp"></put-attribute>
 	</definition>
 	
 	

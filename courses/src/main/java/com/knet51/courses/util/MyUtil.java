@@ -1,11 +1,14 @@
 package com.knet51.courses.util;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class MyUtil {
 	
@@ -65,23 +68,21 @@ public class MyUtil {
 		
 	}
 	
-	public static String getPropertyValueByKey(String key,String path) throws Exception{
+	public static String getPropertyValueByKey(String key,String path,HttpServletRequest request) throws Exception{
 		String value = null;
 		Properties p = new Properties();
-		FileInputStream in = new FileInputStream(path);
+		String contextPath = getContextPath(request);
+		FileInputStream in = new FileInputStream(contextPath+path);
 		p.load(in);
 		value = p.getProperty(key);
 		return value;
 	}
 	
+	private static String getContextPath(HttpServletRequest request){
+		return request.getSession().getServletContext().getRealPath("/");
+	}
+	
 	public static void main(String[] args) {
-		String path = "src/main/resources/home_count.properties";
-		try {
-			System.out.println(getPropertyValueByKey("HOME_PATENT_REQUIRE_COUNT", path));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		};
 	}
 	
 }

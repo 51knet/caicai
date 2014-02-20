@@ -58,7 +58,7 @@ $(document).ready(function() {
 						<tr>
 							<td align="left" ><img src="<c:url value='${page.filePath}'></c:url>" style="width: 140px;"></td>
 							<td align="left" >${page.title}</td>
-							<td align="center"><fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd hh:ss"/></td>
+							<td align="center"><fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd HH:mm"/></td>
 							<td align="center">
 								 <a class="deleteActivityPostBtn" href="#deleteActivityPostModal" role="button" data-toggle="modal" data-target="#deleteActivityPostModal">删除</a><input type="hidden" value="${page.id} ">  | 
 								 <a href='<c:url value="/admin/kefu/activity/edit/${page.id}"></c:url>'>修改</a>	

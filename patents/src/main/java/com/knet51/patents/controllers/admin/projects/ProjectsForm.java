@@ -8,9 +8,7 @@ public class ProjectsForm {
 	@NotEmpty
 	@Size(min=1, max=200)
 	private String projectName;
-	@NotEmpty
-	@Size(min=1, max=200)
-	private String industry;
+
 	@NotEmpty
 	@Size(min=1, max=200)
 	private String progess;
@@ -46,14 +44,7 @@ public class ProjectsForm {
 	}
 
 
-	public String getIndustry() {
-		return industry;
-	}
 
-
-	public void setIndustry(String industry) {
-		this.industry = industry;
-	}
 
 
 	public String getProgess() {

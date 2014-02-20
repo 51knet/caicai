@@ -1,5 +1,7 @@
 package com.knet51.patents.controllers.admin.projects;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -51,7 +53,8 @@ public class ProjectsPageController {
 	@RequestMapping("/admin/projects/new")
 	public String addprojectsList(HttpSession session,Model model){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		
+		Map<String,String> projectsField = GlobalDefs.getProjectsField();
+		model.addAttribute("projectsField", projectsField);
 		return "admin."+userInfo.getRole()+".projects.new";
 	}
 	
@@ -59,12 +62,14 @@ public class ProjectsPageController {
 	public String showprojectsPreview(HttpSession session,Model model,@PathVariable Long project_id){
 		Projects projects = projectsService.findOne(project_id);
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		
 		if(!userInfo.getId().equals(projects.getUser().getId())){
 			return "redirect:/admin";
 		}
 		
 		model.addAttribute("projects", projects);
+		
+		Map<String,String> projectsField = GlobalDefs.getProjectsField();
+		model.addAttribute("projectsField", projectsField);
 		return "admin."+userInfo.getRole()+".projects.edit";
 	}
 	@RequestMapping(value="/admin/projects/view/{project_id}")

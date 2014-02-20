@@ -48,15 +48,18 @@ public class AuthorizationListener implements Filter {
 		String url = path.substring(context.length(), path.length());
 		HttpSession session = req.getSession();
 		String k_url = "";
+		String p_url = "";
 		String key = "knet_url";
+		String p_key = "Local_patent_url";
 		try {
-			k_url = MyUtil.getPropertyValueByKey(key ,"src/main/resources/knet_url.properties");
+			k_url = MyUtil.getPropertyValueByKey(key ,"resources\\url\\knet_url.properties",req);
+			p_url = MyUtil.getPropertyValueByKey(p_key, "resources\\url\\knet_url.properties",req);
 			
 		} catch (Exception e) {
-			k_url = "http://www.51knet.com/ccweb";
+			e.printStackTrace(); 
 		}
 		session.setAttribute("url", k_url);
-		
+		session.setAttribute("p_url", p_url);
 		logger.debug("->"+url);
 		if (url.startsWith("/admin")) { // ok, for now we only protect admin stuff
 			if (! isLoggin(req)) { // not logged in

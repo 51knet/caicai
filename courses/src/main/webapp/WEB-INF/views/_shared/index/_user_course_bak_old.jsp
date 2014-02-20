@@ -2,6 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script type="text/javascript">
+!function ($) {
+	  $(function(){
+	    // carousel demo
+	    $('#myCarousel').carousel();
+	   // $('#myUniversity').carousel();
+	   // $('#myTeacher').carousel();
+	  });
+	}(window.jQuery);
+</script>
 <style>
 	.container .user-course{
 		 background-image: url("<c:url value='/resources/img/default/carousel_bg.png'></c:url>");
@@ -19,6 +29,7 @@
 		 font-weight: bold;
 	}
 </style>
+
 <c:choose>
 	<c:when test="${sessionScope.sessionUserInfo!= null}">
 		<div class="carouselbg" style="text-align: left; margin-bottom: 8px;">

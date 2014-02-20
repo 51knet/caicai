@@ -38,7 +38,7 @@ public class ProjectsDetailController {
 	private UserService userService;
 	
 	@RequestMapping(value="/admin/projects/add", method = RequestMethod.POST)
-	public String addProjects(@Valid ProjectsForm projectsForm, BindingResult validResult,
+	public String addProjects(@Valid ProjectsForm projectsForm, BindingResult validResult,@RequestParam("industry") String industry,
 			HttpSession session,MultipartHttpServletRequest request,RedirectAttributes redirectAttributes) throws Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		logger.info("===== into projects=====");
@@ -50,13 +50,14 @@ public class ProjectsDetailController {
 			projects.setCompanyName(projectsForm.getCompanyName());
 			projects.setContent(projectsForm.getContent());
 			projects.setEmpNumber(projectsForm.getEmpNumber());
-			projects.setIndustry(projectsForm.getIndustry());
+			projects.setIndustry(industry);
 			projects.setLocation(projectsForm.getLocation());
 			projects.setProgess(projectsForm.getProgess());
 			projects.setProjectName(projectsForm.getProjectName());
 			projects.setTotalMoney(Long.parseLong(projectsForm.getTotalMoney()));
 			projects.setBoss(projectsForm.getBoss());
 			projects.setPhone(projectsForm.getPhone());
+			projects.setComplete(GlobalDefs.WAITE);
 			
 			projects.setDate(new Date());
 			projects.setStatus(GlobalDefs.WAITE);
@@ -93,7 +94,7 @@ public class ProjectsDetailController {
 	
 	@RequestMapping(value="/admin/projects/edit/edit", method = RequestMethod.POST)
 	public String editProjects(@Valid ProjectsForm projectsForm, BindingResult validResult,@RequestParam("projects_id") Long projects_id,
-			HttpSession session,MultipartHttpServletRequest request,RedirectAttributes redirectAttributes) throws Exception{
+			@RequestParam("industry") String industry,HttpSession session,MultipartHttpServletRequest request,RedirectAttributes redirectAttributes) throws Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
@@ -103,7 +104,7 @@ public class ProjectsDetailController {
 			projects.setCompanyName(projectsForm.getCompanyName());
 			projects.setContent(projectsForm.getContent());
 			projects.setEmpNumber(projectsForm.getEmpNumber());
-			projects.setIndustry(projectsForm.getIndustry());
+			projects.setIndustry(industry);
 			projects.setLocation(projectsForm.getLocation());
 			projects.setProgess(projectsForm.getProgess());
 			projects.setProjectName(projectsForm.getProjectName());
@@ -116,7 +117,7 @@ public class ProjectsDetailController {
 			projects.setUser(userInfo.getUser());
 			
 			
-			List<MultipartFile> files = request.getFiles("coverFile");
+			List<MultipartFile> files = request.getFiles("logoPath");
 			for (int i = 0; i < files.size(); i++) {
 				MultipartFile multipartFile = files.get(i);
 				if(!multipartFile.isEmpty()){

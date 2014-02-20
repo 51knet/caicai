@@ -27,6 +27,7 @@ public class Projects extends AbstractEntity {
 	private String logoPath; // logo picture's save path
 	private Date date;
 	
+	private Integer complete ;// complete:1; none:0;
 	private Integer status; // pass:1; waite:0;
 	
 	
@@ -157,6 +158,14 @@ public class Projects extends AbstractEntity {
 
 	public void setBoss(String boss) {
 		this.boss = boss;
+	}
+
+	public Integer getComplete() {
+		return complete;
+	}
+
+	public void setComplete(Integer complete) {
+		this.complete = complete;
 	}
 	
 	

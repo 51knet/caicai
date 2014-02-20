@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
 .row-fluid.custom {
 	margin-bottom: 20px;
@@ -43,7 +44,7 @@
 					<tr>
 						<td align="center"><img src="<c:url value='${page.logoPath}'></c:url>" ></td>
 						<td ><a href='<c:url value="/admin/projects/edit/${page.id }"></c:url>' >${page.projectName }</a></td>
-						<td >${page.date }</td>
+						<td  align="center"><fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd HH:mm"/></td>
 						<td align="center"><a href='<c:url value="/admin/projects/edit/${page.id}"></c:url>'>修改</a> | 
 						<a class="destoryProjectsPostBtn" href="#destoryProjectsPostModal" role="button" data-toggle="modal" data-target="#destoryProjectsPostModal">删除</a><input type="hidden"  value="${page.id}"> </td>
 					</tr>

@@ -21,7 +21,7 @@ function checkLogo(obj){
 	var fileValue = obj.coverFile.value;
 	var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length).toLowerCase();
 	if(fileValue==null || fileValue==""){
-		alert("请添加课程封面");
+		alert("请添加logo封");
 		flag=false;
 	}else{
 		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp || ".png" == temp){
@@ -92,20 +92,20 @@ function checkLogo(obj){
 		
 			<div class="control-group" id="industry">
 				<div class="controls">
-					<i class="icon-star"></i> 所属行业：<input type="text" name="industry"   placeholder="所属行业"  required > <span class="help-inline"><form:errors path="industry" /></span>
+					<i class="icon-star"></i> 所属行业：<select name="industry" >		  		
+				  		<c:forEach items="${projectsField }" var="projectsField" >
+					  		<c:choose>
+				  				<c:when test="${projectsField.value == projects.industry }">
+				  					<option value="${projectsField.value }" selected>${projectsField.value }</option>
+				  				</c:when>
+				  				<c:otherwise>
+				  					<option value="${projectsField.value}" >${projectsField.value }</option>
+				  				</c:otherwise>
+				  			</c:choose>
+					  </c:forEach>
+					</select>
 				</div>
 			</div>
-			<!-- <div class="control-group"  > 
-				<div class="controls" >
-				<i class="icon-star"></i> 专利范围：
-					<label class="radio inline" style="margin-top: -8px;">
-						<input type="radio" name="country" value="0" checked="checked" >国内
-					</label>
-					<label class="radio inline"  style="margin-top: -8px;">
-						<input type="radio" name="country" value="1" >国外
-					</label>
-				</div>
-			</div> -->
 			<div class="control-group" id="progess">
 				<div class="controls">
 					<i class="icon-star"></i> 项目进度：<input type="text" name="progess"   placeholder="项目进度"  required > <span class="help-inline"><form:errors path="progess" /></span>
@@ -114,7 +114,7 @@ function checkLogo(obj){
 			
 			<div class="control-group" id="totalMoney">
 				<div class="controls">
-					<i class="icon-star"></i> 融资金额：<input type="text" name="totalMoney"   placeholder="融资金额"  required onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="totalMoney" /></span>
+					<i class="icon-star"></i> 融资金额：<input type="text" name="totalMoney"   placeholder="融资金额"  required onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> 万 <span class="help-inline"><form:errors path="totalMoney" /></span>
 				</div>
 			</div>
 			<div class="control-group" id="content">

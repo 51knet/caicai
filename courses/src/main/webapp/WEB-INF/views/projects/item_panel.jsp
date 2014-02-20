@@ -61,25 +61,50 @@ border-bottom-color: transparent;
 }
 
 .search_input{
-	width: 110px;
+	width: 120px;
 }
 </style>
 <div class="left-menu-container">
 	<ul  class="nav  nav-stacked" >
 		<li>
-			<a href='<c:url value="/"></c:url>'>搜索</a>
-			<div style="padding: 2px 20px;">
+			<div style="padding: 10px 10px 0px 20px;">
+					<img src="<c:url value='/resources/img/default/sstitle.png'></c:url>" >
+			</div>
+			<div style="padding: 10px 10px 1px 20px;">
 			<form class="form-search" style="margin">
 				<input type="text" name="searchProjects"  class="input-small search_input" placeholder="项目搜索"> <button class="btn">搜索</button>
 			</form>
 			</div>
-			
-		
 		</li>
-		<li><a href='<c:url value="/patent/list"></c:url>'>专利列表</a></li>
-		<!-- <li><a href='<c:url value="/patent/list/china"></c:url>' ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 国内专利</span></a></li>
-		<li><a href='<c:url value="/patent/list/foreign"></c:url>'  ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 国外专利</span></a></li> -->
-		<li><a href='<c:url value="/technology/list"></c:url>'>技术成果</a></li>
-		<li><a href='<c:url value="/activity/list"></c:url>'>活动列表</a></li>
+		
+		<li>
+			<div style="padding: 10px 10px 0px 20px;">
+					<img src="<c:url value='/resources/img/default/rzxmtitle.png'></c:url>" >
+			</div>
+			<div style="padding: 10px 10px 1px 20px;">
+			
+			</div>
+		</li>
+		<li><a href='<c:url value="/projects/list/all"></c:url>' ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 所有项目</span></a></li>
+		<li><a href='<c:url value="/projects/list/uncomplete"></c:url>'  ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 未完成项目</span></a></li>
+		<li><a href='<c:url value="/projects/list/complete"></c:url>'  ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 已完成项目</span></a></li>
+		<li>
+			<div style="padding: 10px 10px 0px 20px;">
+					<img src="<c:url value='/resources/img/default/rzjgtitle.png'></c:url>" >
+			</div>
+			<div style="padding: 10px 10px 1px 20px;">
+			&nbsp;
+			</div>
+		</li>
+		
+		<li>
+			<div style="padding: 10px 10px 0px 20px;">
+					<img src="<c:url value='/resources/img/default/fhytitle.png'></c:url>" >
+			</div>
+			<div style="padding: 10px 10px 1px 20px;">
+			&nbsp;
+			</div>
+		</li>
+		
 	</ul>
 </div>

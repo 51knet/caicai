@@ -112,22 +112,23 @@ width: 80px; background-color: #3d5b8d; color: #fff;
 	    </div>  
 	</div>
 	
-	<div title="flash">
-		<div id="Layer1" style="position:absolute;margin-top:75px; width:500; height:250; z-index:1"> 
+	<div style="margin-top: 75px;">
+		<!-- <div id="Layer1" style="position:absolute;margin-top:75px; width:500; height:250; z-index:1"> 
 			<div align="center"> 
 			<embed src="<c:url value='/resources/img/default/home.swf'></c:url> " width="500" height="250" wmode="transparent"> 
 			</div>
 		</div> 
 		<div id="Layer2" style="position:absolute;margin-top:75px;width:500; height:250; z-index:2">
 			
-		</div>
+		</div> -->
+		<img src="<c:url value='/resources/img/default/home_pic.jpg'></c:url>"  >
 	</div>
 </div>
 	
 	<div class="span5 right_navbar_content" style=" width: 450px; ">
 		<table cellpadding="5" width="90%" border="0"  style="" >
 			<tr>
-				<td width="53%" height="140" valign="top"><a href="<c:url value="#"></c:url>">融资
+				<td width="53%" height="140" valign="top"><a href="<c:url value="/projects/list"></c:url>">融资
 					<br><span class="detail">技术与资金的完美结合，解决<br>您的融资困境</span>
 						<img src="<c:url value="/resources/img/default/featured-arrow.png"></c:url>" >
 					</a>

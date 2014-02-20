@@ -35,7 +35,7 @@ public final class GlobalDefs {
 	public static final Integer TECH_PASS = 1;
 	
 	public static final Integer WAITE = 0;
-	public static final Integer PASS = 0;
+	public static final Integer PASS = 1;
 	
 	// the technology show status in home page
 	public static final Integer TECH_HOME_FOCUS = 1;
@@ -65,6 +65,21 @@ public final class GlobalDefs {
 		map.put("9", "海洋技术");
 		map.put("10", "经济管理");
 		map.put("11", "其他领域");
+		return map;
+	}
+	
+	public static Map<String, String> getProjectsField(){
+		Map<String,String> map = new HashMap<String, String>();
+		map.put("1", "互联网");
+		map.put("2", "IT软件/硬件");
+		map.put("3", "服务行业");
+		map.put("4", "文化创意");
+		map.put("5", "节能环保");
+		map.put("6", "资源环境");
+		map.put("7", "现代农业");
+		map.put("8", "生物医药");
+		map.put("9", "经济管理");
+		map.put("10", "其他领域");
 		return map;
 	}
 }
