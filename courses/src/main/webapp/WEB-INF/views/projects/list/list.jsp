@@ -55,6 +55,8 @@ $(document).ready(function(){
 }
 .process_in{
 	height: 10px; background-color: #319bff;
+	max-width: 191px;
+	overflow: hidden;
 }
 </style>
 <div class="container title"  >
@@ -68,8 +70,8 @@ $(document).ready(function(){
  <div class="container projects">
  	<c:forEach items="${page.content}" var="page"  >
  			<div class="detail projectsbgcolor">
-					<a href="#"><img src="<c:url value='${p_url}${page.logoPath }'></c:url> " class="_logo"></a>
-					<div style="width: 195px" id="contentlimit"><a href="#" class="pName">${page.projectName }</a><br>
+					<a href="<c:url value='/projects/view/${page.id }'></c:url>"><img src="<c:url value='${p_url}${page.logoPath }'></c:url> " class="_logo"></a>
+					<div style="width: 195px" id="contentlimit"><a href="<c:url value='/projects/view/${page.id }'></c:url>" class="pName">${page.projectName }</a><br>
 					${page.industry }
 					<div class="process_out">
 						<div class="process_in" style="width: ${page.currentMoney/page.totalMoney*100}%; "></div>

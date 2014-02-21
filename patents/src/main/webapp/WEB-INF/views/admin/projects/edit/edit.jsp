@@ -109,9 +109,9 @@ function checkLogo(obj){
 				</div>
 			</div>
 
-			<div class="control-group" id="progess">
+			<div class="control-group" id="progress">
 				<div class="controls">
-					<i class="icon-star"></i> 项目进度：<input type="text" name="progess"   placeholder="项目进度"  required value="${projects.progess } "> <span class="help-inline"><form:errors path="progess" /></span>
+					<i class="icon-star"></i> 项目进度：<input type="text" name="progress"   placeholder="项目进度"  required value="${projects.progress } "> <span class="help-inline"><form:errors path="progress" /></span>
 				</div>
 			</div>
 			

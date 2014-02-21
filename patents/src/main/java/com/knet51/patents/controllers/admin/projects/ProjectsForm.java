@@ -11,7 +11,7 @@ public class ProjectsForm {
 
 	@NotEmpty
 	@Size(min=1, max=200)
-	private String progess;
+	private String progress;
 	@NotEmpty
 	@Size(min=1, max=200)
 	private String totalMoney;
@@ -47,13 +47,13 @@ public class ProjectsForm {
 
 
 
-	public String getProgess() {
-		return progess;
+	public String getProgress() {
+		return progress;
 	}
 
 
-	public void setProgess(String progess) {
-		this.progess = progess;
+	public void setProgress(String progress) {
+		this.progress = progress;
 	}
 
 

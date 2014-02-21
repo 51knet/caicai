@@ -13,7 +13,7 @@ public class Projects extends AbstractEntity {
 	
 	private String projectName;
 	private String industry;//hang ye
-	private String progess;//jin du
+	private String progress;//jin du
 	private String companyName; 
 	private String empNumber; // yuan gong ren shu
 	private String location;
@@ -58,12 +58,12 @@ public class Projects extends AbstractEntity {
 		this.industry = industry;
 	}
 
-	public String getProgess() {
-		return progess;
+	public String getProgress() {
+		return progress;
 	}
 
-	public void setProgess(String progess) {
-		this.progess = progess;
+	public void setProgress(String progress) {
+		this.progress = progress;
 	}
 
 	public String getCompanyName() {

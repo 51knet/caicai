@@ -15,7 +15,8 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	 
 	<jpa:repositories base-package="com.knet51.ccweb.jpa.repository" />
-
+	
+	
  	
 	<!-- JPA related -->
 	<tx:annotation-driven transaction-manager="transactionManager" />

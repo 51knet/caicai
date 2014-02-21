@@ -43,14 +43,14 @@ public class ProjectsPageController {
 		Page<Projects> page = projectsService.findProjectsByStatus(pageNumber, pageSize, GlobalDefs.PASS);
 
 		model.addAttribute("page", page);
-		return "projects.list"; 
+		return "projects.list";
 	}
 	
 	@RequestMapping(value="/projects/view/{project_id}")
 	public String showprojectsDetail(Model model,@PathVariable Long project_id){
 		Projects projects = projectsService.findOne(project_id);
 		model.addAttribute("projects", projects);
-		return "projects.view";
+		return "projects.view"; 
 	}
 	
 }

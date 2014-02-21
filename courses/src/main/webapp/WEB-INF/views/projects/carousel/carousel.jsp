@@ -25,10 +25,10 @@
 		    <div class="item active" style='width:1024px; height:500px; background-image: url("<c:url value='/resources/img/advertise/banner1_bak.jpg'></c:url> "); background-repeat: no-repeat;'>
 		    
 		    </div>
-		     <div class="item" style='width:1024px; height:500px; background-image: url("<c:url value='/resources/img/advertise/banner1_bak.jpg'></c:url> ");  background-repeat: no-repeat;'  >
+		     <div class="item" style='width:1024px; height:500px; background-image: url("<c:url value='/resources/img/advertise/banner2_bak.jpg'></c:url> ");  background-repeat: no-repeat;'  >
 		     
 		    </div>
-		    <div class="item" style='width:1024px; height:500px; background-image: url("<c:url value='/resources/img/advertise/banner1_bak.jpg'></c:url> "); background-repeat: no-repeat;'>
+		    <div class="item" style='width:1024px; height:500px; background-image: url("<c:url value='/resources/img/advertise/banner3_bak.jpg'></c:url> "); background-repeat: no-repeat;'>
 		      	
 		    </div>
 	  </div>

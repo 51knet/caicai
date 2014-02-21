@@ -4,7 +4,7 @@
 <!-- <script type="text/javascript" src="<c:url value="/resources/js/mytab.js" />"></script> -->
 <style>
 .margin_top{
-	margin-top: 70px;
+	margin-top: 60px;
 }
 </style>
 

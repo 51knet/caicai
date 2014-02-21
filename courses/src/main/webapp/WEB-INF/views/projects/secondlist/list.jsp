@@ -40,43 +40,56 @@ $(document).ready(function(){
 	float: left; padding:5px 5px;  
 	border-bottom: 1px solid #ccc; text-align:left;
 }
+.projects .detail .logo_div{
+	float: left; border: 1px solid #ccc; padding: 2px 2px;
+}
 
-.pName{
-	font-size:14px;
-	font-weight: bold;
-	text-decoration: none;
+.projects .detail .info_div{
+	float: left; margin-left: 20px; 
+	max-width: 440px; overflow: hidden;
 }
-a{
-	text-decoration: none;
+
+.projects .detail .content_div{
+ clear: both; width: 100%; max-width: 680px; 
+ max-height: 60px; overflow: hidden;
 }
-.limitTable{
+
+/*.limitTable{
 	width:100%; 
 	table-layout:fixed;
 	margin-bottom: 10px;
 }
-.right_line{
-	/*background-image: url(' <c:url value="/resources/img/default/blueline.png" ></c:url> ' );
-	background-position: right center;
-	background-repeat: no-repeat;*/
-	margin-left: 400px;
-	margin-right: 20px;
-}
  .limitTd{
 	word-wrap:break-word; word-break:break-all;
 	color: #666; font-size: 13px;
-}
+}*/
+
 ._logo{
 	width: 200px; height: 139px;
 }
 .process_out{
-	width: 190px; height: 10px; margin-top:5px; 
+	width: 349px; height: 10px; margin-top:5px; 
 	background-color: #c0defa; border: 1px solid #319bff;
 }
 .process_in{
 	height: 10px; background-color: #319bff;
+	max-width: 350px;
+	overflow: hidden;
 }
 .process_tab{
-	width: 190px;;  font-weight: bold;
+	width: 350px;;  font-weight: bold;
+	text-align: left;
+	color: #6497ce
+}
+.date{
+	font-size: 12px;
+	font-weight: normal;
+}
+.points{
+	font-size: 14px;
+}
+.myblock{
+	padding: 3px 3px; background-color: #6597c8; color: #fff; font-size: 14px; font-weight: bold;
 }
 </style>
 <div class="container title"  >
@@ -90,27 +103,53 @@ a{
  <div class="container projects">
  	<c:forEach items="${page.content}" var="page"  >
  			<div class="detail projectsbgcolor">
-				<div style="float: left;"><a href="#"><img src="<c:url value='${p_url}${page.logoPath }'></c:url> " class="_logo"></a></div>
-				<div  style="float: left; margin-left: 20px;">
-					<a href="#" class="pName">${page.projectName }</a><br>${page.industry }
-					<div class="process_out">
-						<div class="process_in" style="width: ${page.currentMoney/page.totalMoney*100}%; "></div>
-					</div>
-						<table class="process_tab" cellpadding="2">
-							<tr><td >已融资</td><td>完成率</td><td>融资总额</td></tr>
-							<tr><td>${page.currentMoney }万</td>
-							<td><fmt:formatNumber type="number" value="${page.currentMoney/page.totalMoney*100}" maxFractionDigits="0"/>%</td>
-							<td>${page.totalMoney }万</td></tr>
+				<div class="logo_div"><a href="<c:url value='/projects/view/${page.id }'></c:url>"><img src="<c:url value='${p_url}${page.logoPath }'></c:url> " class="_logo"></a></div>
+				<div  class="info_div">
+					<a href="<c:url value='/projects/view/${page.id }'></c:url>"><h4>${page.projectName }</h4></a>
+						<table class="process_tab" cellpadding="2" >
+						<tbody>
+							<tr>
+								<td><span class="points">地区：${page.location }</span></td>
+								<td><span class="points">行业：${page.industry }</span></td>
+								<td><span class="points">进度：${page.progress}</span></td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<div class="process_out">
+										<div class="process_in" style="width: ${page.currentMoney/page.totalMoney*100}%; "></div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td >已融资：<span class="myblock">${page.currentMoney }</span> 万</td>
+								<td>完成率：<span class="myblock"><fmt:formatNumber type="number" value="${page.currentMoney/page.totalMoney*100}" maxFractionDigits="0"/> %</span></td>
+								<td>融资总额：<span class="myblock">${page.totalMoney } 万</span></td>
+							</tr>
+							<tr>
+								<td colspan="2" class="date">发布时间：<fmt:formatDate value="${page.date}" pattern="yyyy-MM-dd HH:mm"/></td>
+								<td></td>
+
+							</tr>
+						</tbody>
 						</table>
 				</div>
-				<div style="clear: both; width: 100%; ">
+				<div class="content_div">
 				<br>
-					酒咔嚓、酒可查！” “酒咔嚓” 是国内首创的基于图像识别与搜索技术，以 “可视化”的葡萄酒数据库为核心的垂直于进口葡萄.
+					${page.content }最大的新媒体影视平台，专业提供众筹融资及营销发行服务！最大的新媒体影视平台，专业提供众筹融资及营销发行服务！最大的新媒体影视平台，专业提供众筹融资及营销发行服务！
 				</div>
 			</div>
 	</c:forEach>
  </div>
-
+ <div style="margin-left: 20px;">
+ <c:choose>
+	<c:when test="${searchParam != null }">
+		  <jsp:include page="/WEB-INF/views/_shared/pagination_query.jsp"></jsp:include>
+	</c:when>
+	<c:otherwise>
+	 	<jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include>
+	</c:otherwise>
+</c:choose>
+</div>
 
 
 

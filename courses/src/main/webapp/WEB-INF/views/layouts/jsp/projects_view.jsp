@@ -11,30 +11,21 @@
 	.bg_white{
 		background-color: #fff;
 	}
-	.margin_top_10{
-		margin-top: 10px;
+	.margin_top{
+		margin-top: 50px;
 	}
-	
 
 </style>
 <body>
 	<tiles:insertAttribute name="top-navbar" />
 
 	<div class="container-fluid" >
-		<div style="position: relative;">
-			<div class="row-fluid bg_white">
-				<tiles:insertAttribute name="search" />
-			</div>
-			<div class="row-fluid bg_white">
-				<tiles:insertAttribute name="userCourse" />
-			</div>
-		</div>
-		<div class="row-fluid bg_white">
-				<div class="span3 margin_top_10"  style="width: 230px; margin-left: 20px;">
+		<div class="row-fluid bg_white margin_top">
+				<div class="span3"  style="width: 730px;margin-left: 20px;">
 					<tiles:insertAttribute name="left" />
 				</div>
 				
-				<div class="span9 margin_top_10 " style="width: 730px; " >
+				<div class="span9" style=" width: 230px; " >
 					<tiles:insertAttribute name="right" />
 				</div>
 				

@@ -18,13 +18,14 @@ margin-bottom: 10px;
 .nav-stacked {
 	width: 225px;
 }
-.nav-stacked  > li{
+.bottom_line{
 	border-bottom: 0px solid #6d7b88;
 	width: 223px;
 	background-image: url("<c:url value='/resources/img/default/item_second_bLing.png'></c:url>");
 	background-position: bottom left;
 	background-repeat: repeat-x;
 }
+
 .nav-stacked.nav-stacked > li > a {
 border: 0px solid #DDD;
 /*-webkit-border-radius: 0;
@@ -66,7 +67,7 @@ border-bottom-color: transparent;
 </style>
 <div class="left-menu-container">
 	<ul  class="nav  nav-stacked" >
-		<li>
+		<li class="bottom_line">
 			<div style="padding: 10px 10px 0px 20px;">
 					<img src="<c:url value='/resources/img/default/sstitle.png'></c:url>" >
 			</div>
@@ -77,7 +78,7 @@ border-bottom-color: transparent;
 			</div>
 		</li>
 		
-		<li>
+		<li  class="bottom_line">
 			<div style="padding: 10px 10px 0px 20px;">
 					<img src="<c:url value='/resources/img/default/rzxmtitle.png'></c:url>" >
 			</div>
@@ -85,10 +86,10 @@ border-bottom-color: transparent;
 			
 			</div>
 		</li>
-		<li><a href='<c:url value="/projects/list/all"></c:url>' ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 所有项目</span></a></li>
-		<li><a href='<c:url value="/projects/list/uncomplete"></c:url>'  ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 未完成项目</span></a></li>
-		<li><a href='<c:url value="/projects/list/complete"></c:url>'  ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 已完成项目</span></a></li>
-		<li>
+		<li ><a href='<c:url value="/projects/list/all"></c:url>' ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 所有项目</span></a></li>
+		<li ><a href='<c:url value="/projects/list/uncomplete"></c:url>'  ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 未完成项目</span></a></li>
+		<li class="bottom_line"><a href='<c:url value="/projects/list/complete"></c:url>'  ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 已完成项目</span></a></li>
+		<li  class="bottom_line">
 			<div style="padding: 10px 10px 0px 20px;">
 					<img src="<c:url value='/resources/img/default/rzjgtitle.png'></c:url>" >
 			</div>
@@ -97,7 +98,7 @@ border-bottom-color: transparent;
 			</div>
 		</li>
 		
-		<li>
+		<li  class="bottom_line">
 			<div style="padding: 10px 10px 0px 20px;">
 					<img src="<c:url value='/resources/img/default/fhytitle.png'></c:url>" >
 			</div>

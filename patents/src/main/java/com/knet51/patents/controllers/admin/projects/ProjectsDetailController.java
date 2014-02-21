@@ -52,13 +52,13 @@ public class ProjectsDetailController {
 			projects.setEmpNumber(projectsForm.getEmpNumber());
 			projects.setIndustry(industry);
 			projects.setLocation(projectsForm.getLocation());
-			projects.setProgess(projectsForm.getProgess());
+			projects.setProgress(projectsForm.getProgress());
 			projects.setProjectName(projectsForm.getProjectName());
 			projects.setTotalMoney(Long.parseLong(projectsForm.getTotalMoney()));
 			projects.setBoss(projectsForm.getBoss());
 			projects.setPhone(projectsForm.getPhone());
 			projects.setComplete(GlobalDefs.WAITE);
-			
+			projects.setCurrentMoney(0L);
 			projects.setDate(new Date());
 			projects.setStatus(GlobalDefs.WAITE);
 			projects.setUser(userInfo.getUser());
@@ -106,7 +106,7 @@ public class ProjectsDetailController {
 			projects.setEmpNumber(projectsForm.getEmpNumber());
 			projects.setIndustry(industry);
 			projects.setLocation(projectsForm.getLocation());
-			projects.setProgess(projectsForm.getProgess());
+			projects.setProgress(projectsForm.getProgress());
 			projects.setProjectName(projectsForm.getProjectName());
 			projects.setTotalMoney(Long.parseLong(projectsForm.getTotalMoney()));
 			projects.setBoss(projectsForm.getBoss());

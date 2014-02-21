@@ -26,6 +26,16 @@
 		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
 	</definition>
 	
+	<definition name="projects-view-layout" template="/WEB-INF/views/layouts/jsp/projects_view.jsp">
+		<put-attribute name="title" value="中国技术转移平台" />
+		<put-attribute name="css" value="/resources/css/index.css" />
+		<put-attribute name="top-navbar" value="/WEB-INF/views/_shared/common/_top-navbar.jsp" />
+		<put-attribute name="link_path" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/_shared/common/item_panel.jsp" />
+		<put-attribute name="right" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/_shared/common/_footer.jsp" />
+	</definition>
+	
 	<definition name="admin-layout" template="/WEB-INF/views/layouts/jsp/admin.jsp">
 		<put-attribute name="title" value="中国技术转移平台" />
 		<put-attribute name="css" value="" />
