@@ -138,7 +138,7 @@
 		<div class="row-fluid bLine_dash"></div><br>
 		
 		<div class="row-fluid">
-			<a href="#"><img src="<c:url value='/resources/img/default/rt1.png'></c:url> " /> </a>
+			<a href="<c:url value="/activity/list"></c:url>" ><img src="<c:url value='/resources/img/default/rt1.png'></c:url> " /> </a>
 			<div class="right_bottom_content">
 				<ul>
 					<c:forEach items="${activityList }" var="activityList" begin="0"  end="2">
@@ -159,7 +159,7 @@
 		<div class="row-fluid bLine_dash"></div><br>
 		
 		<div class="row-fluid">
-			<a href="#"><img src="<c:url value='/resources/img/default/rt2.png'></c:url> " /> </a>
+			<a href="<c:url value="/technology/list"></c:url>"><img src="<c:url value='/resources/img/default/rt2.png'></c:url> " /> </a>
 			<div class="right_bottom_content">
 					<ul>
 				<c:forEach items="${technologys}" var="technologys" begin="0"  end="2"  >
@@ -177,7 +177,7 @@
 		<div class="row-fluid bLine_dash"></div><br>
 		
 		<div class="row-fluid">
-			<a href="#"><img src="<c:url value='/resources/img/default/rt3.png'></c:url> " /> </a>
+			<a href="<c:url value="/patent/list"></c:url>"><img src="<c:url value='/resources/img/default/rt3.png'></c:url> " /> </a>
 
 			<div  class="right_bottom_content">
 				<ul>
@@ -187,7 +187,7 @@
 						</div></li>
 					</c:forEach>
 				</ul>
-				<a   style=" float: right;" href="<c:url value="/activity/list"></c:url>" >
+				<a   style=" float: right;" href="<c:url value="/patent/list"></c:url>" >
 					<img src="<c:url value='/resources/img/default/read_all.png'></c:url> " />
 				</a>
 			</div>

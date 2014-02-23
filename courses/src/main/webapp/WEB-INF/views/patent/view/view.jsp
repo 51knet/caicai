@@ -156,7 +156,7 @@
 					<div class="control-group">
 						<div class="controls ">
 							<button style="margin-left: 42px;" type="submit"  class="btn btn-success " onclick="return checkEmailAndPwd();">登录</button>
-							 <a style="margin-left: 10px;"  class="btn"  href="<c:url value='${url }'></c:url>">注册</a> <a href="<c:url value='${url }'></c:url>"  style="margin-left: 20px;"> 忘记密码？</a>
+							 <a style="margin-left: 10px;"  class="btn"  href="<c:url value='/jumpToPatents'></c:url>">注册</a> <a href="<c:url value='/jumpToPatents'></c:url>"  style="margin-left: 20px;"> 忘记密码？</a>
 						</div>
 					</div>
 				</div>

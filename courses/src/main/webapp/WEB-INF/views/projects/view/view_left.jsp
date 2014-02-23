@@ -38,18 +38,18 @@ font-weight: bold;
 }
 .projects_left .middle>table .td_titles{
 	height:35px;
-	width: 60px;
+	width: 51px;
 }
 .projects_left .middle>table .td_cont{
-	width: 100px;
+	width: 80px;
 }
 
 .projects_left .bottom{
 	padding:10px 10px;
 }
 
- .logo{
-	width: 200px; height: 139px;
+ ._logo{
+	width: 180px; ;
 }
 .bottom_line_dash{
 	height: 5px;
@@ -88,7 +88,7 @@ font-weight: bold;
 	<div class="middle">
 		<table   cellpadding="5" border="0"  align="center">
 				<tr>
-					<td rowspan="4"  style="width: 220px;" align="center"><img src="<c:url value='${p_url}${page.logoPath }'></c:url> " class="_logo"></td>
+					<td rowspan="4"  style="width: 200px;" align="right"><img src="<c:url value='${p_url}${projects.logoPath }'></c:url> " class="_logo"></td>
 					<td  class="td_titles points" >所属行业：</td>
 					<td  class="td_cont">${projects.industry }</td>
 					<td  class="td_titles points" >员工人数：</td>

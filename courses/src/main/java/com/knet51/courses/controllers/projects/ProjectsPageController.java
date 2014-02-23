@@ -38,11 +38,11 @@ public class ProjectsPageController {
 	}
 	
 	@RequestMapping("/projects/list")
-	public String showprojectsList(Model model,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
-			@RequestParam(value = "pageSize", defaultValue = "9") int pageSize){
-		Page<Projects> page = projectsService.findProjectsByStatus(pageNumber, pageSize, GlobalDefs.PASS);
-
-		model.addAttribute("page", page);
+	public String showprojectsList(Model model){
+		List<Projects> cpList = projectsService.findProjectsListByCompleteAndStatus(GlobalDefs.PASS, GlobalDefs.COMPLETE);
+		List<Projects> upList = projectsService.findProjectsListByCompleteAndStatus(GlobalDefs.PASS, GlobalDefs.UN_COMPLETE);
+		model.addAttribute("cpList", cpList);
+		model.addAttribute("upList", upList);
 		return "projects.list";
 	}
 	

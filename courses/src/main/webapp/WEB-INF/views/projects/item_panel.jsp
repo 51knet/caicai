@@ -109,3 +109,12 @@ border-bottom-color: transparent;
 		
 	</ul>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('ul > li > a').each(function(index){
+		if ($(this).attr('href') == (window.location.pathname+window.location.search) ||$(this).attr('href') == (window.location.pathname) ) {
+			$(this).parent().addClass('active');
+		}
+	});
+});
+</script>

@@ -73,7 +73,6 @@
  	color: #353535;
  	font-family:Arial,'Microsoft YaHei';
   	width: 100%;
- 
   /*	background-color: #adcc75;
    	background-image: url("/courses/resources/img/default/secondTitleBg.png");
   	background-position: left top;
@@ -98,6 +97,19 @@
 		line-height: 35px;
 		float: left;
 		height: 37px;
+}
+
+.container.title .innerRightTitle a{
+		font-size:12px;
+		color:#fff;
+		letter-spacing:1px;
+		padding: 0px 10px;
+		float: right;
+		height: 37px;
+		text-decoration: none;
+}
+.container.title .innerRightTitle a:hover{
+		color:#7a8d9e;
 }
 
 .container.title .innerLeftTitle a{

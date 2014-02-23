@@ -28,12 +28,12 @@
 		<div class="content">
 			<h5>客户服务</h5>
 			联系人：张小姐<br>
-			电话：021-55520056-801<br>
+			电话：021-68369338-801<br>
 			Email：service@51knet.com<br>
 			<br>
 			<h5>商务合作</h5>
 			联系人：张经理<br>
-			电话：021-55520056-802<br>
+			电话：021-68369338-802<br>
 			Email：service@51knet.com <br><br>
 		</div>
  </div>

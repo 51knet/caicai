@@ -188,7 +188,7 @@ public class HomeController {
 
 	}
 	
-	@RequestMapping(value="/patent/admin", method = RequestMethod.GET)
+	@RequestMapping(value="/jumpToPatents", method = RequestMethod.GET)
 	public void jumpToPatents(HttpServletResponse response) throws IOException{
 		response.sendRedirect("/patents");
 		return ;

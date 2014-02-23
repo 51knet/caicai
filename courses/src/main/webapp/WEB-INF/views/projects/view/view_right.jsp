@@ -46,7 +46,7 @@ margin: 10px 10px;float: left;
  <div class="container projects">
  	<div class="user_info_div">
  		<div style="margin: 20px 0px 0px 10px; float: left;">
- 			<span class="points" ><h4>创业者</h4></span>
+ 			<span class="points" ><h4>项目发起人</h4></span>
  		</div>
  	 	<div class="bottom_line_solid"></div>
  	 	

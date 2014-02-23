@@ -40,7 +40,7 @@
 		<beans:property name="jpaVendorAdapter">
 			<beans:bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<!-- <property name="database" value="HSQL" /> -->
-				<beans:property name="showSql" value="true" />
+				<beans:property name="showSql" value="false" />
 				<beans:property name="database" value="MYSQL" />
 				<beans:property name="generateDdl" value="true" />
 			</beans:bean>

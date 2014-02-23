@@ -39,19 +39,20 @@ ul, li {
 }
 .right_navbar_content a{
 	 color: #fff;
-	 font-weight: bold;
-	 font-size: 15px;
+	 font-size: 16px;
 }
 .right_navbar_content a:hover{
 	 color: #cdcdcd;
-	 font-weight: bold;
 	 text-decoration: none;
 	 
 }
 .right_navbar_content  .detail{
 	color: #fff;
-	 font-weight: bold;
 	 font-size: 12px;
+}
+
+.right_navbar_content a:hover .detail{
+	color: #cdcdcd;
 }
 .padding_left{
 	padding-left: 30px;

@@ -63,6 +63,7 @@ border-bottom-color: transparent;
 <div class="left-menu-container">
 	<ul  class="nav  nav-stacked" >
 		<li><a href='<c:url value="/"></c:url>'>首页</a></li>
+		<li><a href='<c:url value="/projects/list"></c:url>'>融资项目</a></li>
 		<li><a href='<c:url value="/patent/list"></c:url>'>专利列表</a></li>
 		<li><a href='<c:url value="/patent/list/china"></c:url>' ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 国内专利</span></a></li>
 		<li><a href='<c:url value="/patent/list/foreign"></c:url>'  ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 国外专利</span></a></li>
@@ -76,3 +77,12 @@ border-bottom-color: transparent;
 		<li><a href='<c:url value="/fastupload"></c:url>'>快速上传</a></li>
 	</ul>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('ul > li > a').each(function(index){
+		if ($(this).attr('href') == (window.location.pathname+window.location.search) ||$(this).attr('href') == (window.location.pathname) ) {
+			$(this).parent().addClass('active');
+		}
+	});
+});
+</script>

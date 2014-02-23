@@ -11,7 +11,7 @@
 		</ul>
 		<ul class="nav pull-right">
 			<c:if test="${sessionUserInfo != null}">
-				<li style="margin-right: -12px;"><a href='<c:url value="/patent/admin"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
+				<li style="margin-right: -12px;"><a href='<c:url value="/jumpToPatents"></c:url>' class="navbar-link">${sessionUserInfo.user.email }</a></li>
 				<li id="fat-menu" class="dropdown" style="margin-right: -10px"><a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"> <img src="<c:url value='/resources/img/default/gear.png'></c:url>"
 						style="margin-top: -3px;height:15px;"></img>
 				</a>
@@ -22,8 +22,8 @@
 					</ul></li>
 			</c:if>
 			<c:if test="${sessionUserInfo == null}">
-				<li style="margin-top: -10px;"><a href='<c:url value="/patent/admin"></c:url>'><h6>登录</h6></a><br></li>
-				<li style="margin-top: -10px;"><a href='<c:url value="/patent/admin"></c:url>'><h6>注册</h6></a><br></li>
+				<li style="margin-top: -10px;"><a href='<c:url value="/jumpToPatents"></c:url>'><h6>登录</h6></a><br></li>
+				<li style="margin-top: -10px;"><a href='<c:url value="/jumpToPatents"></c:url>'><h6>注册</h6></a><br></li>
 			</c:if>
 			<li ><div style="width: 90px;"></div></li>
 		</ul>

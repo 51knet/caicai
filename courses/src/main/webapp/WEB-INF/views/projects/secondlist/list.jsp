@@ -25,7 +25,7 @@ $(document).ready(function(){
 	/*background-image: url(' <c:url value="/resources/img/default/blueline.png" ></c:url> ' );
 	background-position: right center;
 	background-repeat: no-repeat;*/
-	margin-left: 400px;
+	margin-left: 330px;
 	margin-right: 20px;
 }
 
