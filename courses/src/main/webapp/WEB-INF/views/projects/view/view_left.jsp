@@ -74,6 +74,21 @@ font-weight: bold;
 	color: #6597c8;
 	font-weight: bold;
 }
+.tabbable .tab-content .tab-pane .title{
+	padding:0px 20px 0px 20px;
+}
+.tabbable .tab-content .tab-pane .content{
+	padding:0px 20px 0px 20px;
+	text-align: left;
+	margin:10px 10px;
+}
+.tabbable .tab-content .tab-pane .title >h4{
+	color: #6597c8;
+	padding: 0px 0px 4px 10px;
+	text-align: left;
+	font-size: 15px;
+	letter-spacing: 0px;
+}
 </style>
 	
  <div class="container projects_left">
@@ -112,6 +127,77 @@ font-weight: bold;
 	<div class="bottom_line_dash"></div>
 	<div class="bottom">
 		${projects.content }
+	</div>
+	<div class="bottom_line_dash"></div>
+	<div class="row" style="margin: 20px 0;">
+		<div class="tabbable">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#biz_model_tab" data-toggle="tab">商业模式</a></li>
+				<li><a href="#team_tab" data-toggle="tab">创业团队</a></li>
+				<li><a href="#plan_tab" data-toggle="tab">未来计划</a></li>
+				<li><a href="#file_tab" data-toggle="tab">项目附件</a></li>
+				<li><a href="#news_tab" data-toggle="tab">项目动态</a></li>
+				<li><a href="#comment_tab" data-toggle="tab">项目评论</a></li>
+			</ul>
+			<div class="tab-content" >
+				<div class="tab-pane active " id="biz_model_tab">
+					<div class="title">
+						<h4>目标用户或客户群体定位</h4>
+					</div>
+					<div class="content">暂无内容</div>
+					<div class="title">
+						<h4>目标用户或客户群体目前困扰或需求定位</h4>
+					</div>
+					<div class="content">暂无内容</div>
+					<div class="title">
+						<h4>满足目标用户或客户需求的产品或服务模式说明</h4>
+					</div>
+					<div class="content">暂无内容</div>
+					<div class="title">
+						<h4>项目赢利模式说明</h4>
+					</div>
+					<div class="content">暂无内容</div>
+					<div class="title">
+						<h4>市场主要同行或竞争对手概述</h4>
+					</div>
+					<div class="content">暂无内容</div>
+					<div class="title">
+						<h4>项目主要核心竞争力说明</h4>
+					</div>
+					<div class="content">暂无内容</div>
+				</div>
+				<div class="tab-pane " id="team_tab">
+					<div class="title">
+						<h4>股东团队说明</h4>
+					</div>
+					<div class="content">暂无内容</div>
+					<div class="title">
+						<h4>非股东管理团队</h4>
+					</div>
+					<div class="content">暂无内容</div>
+				</div>
+				<div class="tab-pane " id="plan_tab">
+					<div class="content">您需要登录才可以查看项目详细信息！</div>
+				</div>
+				<div class="tab-pane " id="file_tab">
+					<div class="content">您需要登录才可以查看项目详细信息！</div>
+				</div>
+				<div class="tab-pane " id="news_tab">
+					<div class="content">您需要登录才可以查看项目详细信息！</div>
+				</div>
+				<div class="tab-pane" id="comment_tab">
+					<form action="#" method="post" style="width : 720px;">
+						<div id="commentDesc" style="margin-top: 15px;">
+							<textarea name="commentDesc" placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width: 720px; height: 160px;"></textarea>
+							<span class="help-inline"></span>
+						</div>
+						<div class="pull-right" style="padding-bottom: 20px;">
+							<button type="submit" class="btn btn-primary">发表评论</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
  </div>
 
