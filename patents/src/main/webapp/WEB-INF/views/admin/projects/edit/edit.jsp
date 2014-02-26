@@ -21,7 +21,7 @@ function checkLogo(obj){
 	var fileValue = obj.coverFile.value;
 	var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length).toLowerCase();
 	if(fileValue==null || fileValue==""){
-		alert("请添加课程封面");
+		alert("请添加项目封面");
 		flag=false;
 	}else{
 		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp || ".png" == temp){
@@ -52,6 +52,7 @@ function checkLogo(obj){
 	margin: 10px 40px;
 	color: #80b029;
 	border-bottom: solid #cccccc 1.5px;
+	
 }
 .row-fluid.custom .content{
 	margin: 20px 40px;
@@ -142,7 +143,7 @@ function checkLogo(obj){
 			
 			<div class="control-group" id="location">
 				<div class="controls">
-					<i class="icon-star"></i> 公司地址：<input type="text" name="location"   placeholder="公司地址"  required value="${projects.location }"> <span class="help-inline"><form:errors path="location" /></span>
+					<i class="icon-star"></i> 所在城市：<input type="text" name="location"   placeholder="所在城市"  required value="${projects.location }"> <span class="help-inline"><form:errors path="location" /></span>
 				</div>
 			</div>
 			

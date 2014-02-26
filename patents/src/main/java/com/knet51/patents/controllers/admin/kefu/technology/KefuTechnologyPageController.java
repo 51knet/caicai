@@ -31,11 +31,11 @@ public class KefuTechnologyPageController {
 		if(status.equals("all")){
 			page = technologyService.findAll(pageNumber, pageSize);
 		}else if(status.equals("pass")){
-			page = technologyService.findAllByStatus(pageNumber, pageSize, GlobalDefs.TECH_PASS);
+			page = technologyService.findAllByStatus(pageNumber, pageSize, GlobalDefs.PASS);
 		}else if(status.equals("waite")){
-			page = technologyService.findAllByStatus(pageNumber, pageSize, GlobalDefs.TECH_WAITE);
+			page = technologyService.findAllByStatus(pageNumber, pageSize, GlobalDefs.WAITE);
 		}else if(status.equals("focus")){
-			page = technologyService.findAllByFocus(pageNumber, pageSize, GlobalDefs.PATENT_HOME_FOCUS);
+			page = technologyService.findAllByFocus(pageNumber, pageSize, GlobalDefs.HOME_FOCUS);
 		}
 		model.addAttribute("page", page);
 		return "admin.kefu.technology.list";
@@ -57,10 +57,10 @@ public class KefuTechnologyPageController {
 		boolean flag = false;
 		Technology technology = technologyService.findOne(tech_id);
 		if(technology!= null ){
-			if(technology.getFocus().equals(GlobalDefs.TECH_HOME_FOCUS)){
-				technology.setFocus(GlobalDefs.TECH_HOME_FOCUS_NOT);
+			if(technology.getFocus().equals(GlobalDefs.HOME_FOCUS)){
+				technology.setFocus(GlobalDefs.HOME_FOCUS_NOT);
 			}else{
-				technology.setFocus(GlobalDefs.TECH_HOME_FOCUS);
+				technology.setFocus(GlobalDefs.HOME_FOCUS);
 			}
 		}
 		Technology newtechnology = technologyService.update(technology);
@@ -75,10 +75,10 @@ public class KefuTechnologyPageController {
 		boolean flag = false;
 		Technology technology = technologyService.findOne(tech_id);
 		if(technology!= null ){
-			if(technology.getStatus().equals(GlobalDefs.TECH_PASS)){
-				technology.setStatus(GlobalDefs.TECH_WAITE);
+			if(technology.getStatus().equals(GlobalDefs.PASS)){
+				technology.setStatus(GlobalDefs.WAITE);
 			}else{
-				technology.setStatus(GlobalDefs.TECH_PASS);
+				technology.setStatus(GlobalDefs.PASS);
 			}
 		}
 		Technology newtechnology = technologyService.update(technology);

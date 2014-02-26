@@ -2,6 +2,8 @@ package com.knet51.courses.controllers.projects;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -11,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.jpa.entities.projects.Projects;
+import com.knet51.ccweb.jpa.entities.projects.Rzfh;
 import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.UserService;
 import com.knet51.courses.jpa.services.projects.ProjectsService;
+import com.knet51.courses.jpa.services.projects.RzfhService;
+
 
 @Controller
 public class ProjectsPageController {
@@ -21,6 +26,8 @@ public class ProjectsPageController {
 	private UserService userService;
 	@Autowired
 	private ProjectsService projectsService;
+	@Autowired
+	private RzfhService rzfhService;
 	
 	@RequestMapping("/projects/list/{status}")
 	public String showprojectsPage(Model model,@PathVariable String status,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
@@ -53,4 +60,18 @@ public class ProjectsPageController {
 		return "projects.view"; 
 	}
 	
+	@RequestMapping(value="/rzfh/list/{types}")
+	public String showAllRzfh(@PathVariable String types,Model model, HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		Page<Rzfh> page = null;
+		if(types.equals("rzjg")){
+			page = rzfhService.findRzfhByStatusAndTypes(pageNumber, pageSize, GlobalDefs.PASS, GlobalDefs.RZJG);
+		}else if(types.equals("fhyq")){
+			page = rzfhService.findRzfhByStatusAndTypes(pageNumber, pageSize, GlobalDefs.PASS, GlobalDefs.FHYQ);
+		}else{
+			page = rzfhService.findAll(pageNumber, pageSize);
+		}
+		model.addAttribute("page", page);
+		return "rzfh.list";
+	}
 }

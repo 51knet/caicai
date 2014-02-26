@@ -64,7 +64,7 @@ public class RequireDetailController {
 			requirement.setMoney(requireForm.getMoney());
 			requirement.setPhone(requireForm.getPhone());
 			requirement.setName(requireForm.getName());
-			requirement.setStatus(GlobalDefs.REQUIREMENT_WAITE);
+			requirement.setStatus(GlobalDefs.WAITE);
 			
 			requirementService.create(requirement);
 			return "redirect:/admin/requirement/list";
@@ -94,7 +94,7 @@ public class RequireDetailController {
 			requirement.setMoney(requireForm.getMoney());
 			requirement.setPhone(requireForm.getPhone());
 			requirement.setName(requireForm.getName());
-			requirement.setStatus(GlobalDefs.REQUIREMENT_WAITE);
+			requirement.setStatus(GlobalDefs.WAITE);
 			requirementService.update(requirement);
 			return "redirect:/admin/requirement/list";
 		}
@@ -133,7 +133,7 @@ public class RequireDetailController {
 			requirement.setFax(requireForm.getFax());
 			requirement.setEmail(requireForm.getEmail());
 			requirement.setUser(user);
-			requirement.setStatus(GlobalDefs.REQUIREMENT_WAITE);
+			requirement.setStatus(GlobalDefs.WAITE);
 			patentRequirementService.create(requirement);
 			
 			return "redirect:/admin/patentRequirement/list";
@@ -166,6 +166,7 @@ public class RequireDetailController {
 			requirement.setFax(requireForm.getFax());
 			requirement.setEmail(requireForm.getEmail());
 			requirement.setUser(user);
+			requirement.setStatus(GlobalDefs.WAITE);
 			patentRequirementService.update(requirement);
 			return "redirect:/admin/patentRequirement/list";
 		}

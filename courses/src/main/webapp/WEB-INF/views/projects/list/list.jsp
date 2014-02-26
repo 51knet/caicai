@@ -20,6 +20,9 @@ $(document).ready(function(){
 //-->
 </script>
 <style>
+  .grayscale{
+          -webkit-filter:grayscale(1);
+      }    
 .right_line{
 	/*background-image: url(' <c:url value="/resources/img/default/blueline.png" ></c:url> ' );
 	background-position: right center;

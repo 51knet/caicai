@@ -12,7 +12,7 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.blog.BlogPost;
 
 @Transactional
-public interface BlogPostRepository extends JpaRepository<BlogPost, Long>, JpaSpecificationExecutor<BlogPost>, BlogPostRepositoryCustom {
+public interface BlogPostRepository extends JpaRepository<BlogPost, Long>, JpaSpecificationExecutor<BlogPost> {
 	Page<BlogPost> findByAuthorAndForbiddenIsNull(Teacher author, Pageable pageable);
 	Page<BlogPost> findByAuthorAndGarbageAndForbiddenIsNull(Teacher author, boolean garbage, Pageable pageable);
 	Page<BlogPost> findByAuthorAndDraftAndForbiddenIsNull(Teacher teacher, boolean b, Pageable dateDesc);

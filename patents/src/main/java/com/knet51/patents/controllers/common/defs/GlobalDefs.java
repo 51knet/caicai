@@ -9,37 +9,26 @@ public final class GlobalDefs {
 	
 	//super admin's pwd
 	public static final String KEFU_ADMIN_PWD = "caicai6688";
-	
-	// patent status
-	public static final Integer PATENT_WAITE = 0;
-	public static final Integer PATENT_PASS = 1;
-	
-	// the patent show status in home page
-	public static final Integer PATENT_HOME_FOCUS = 1;
-	public static final Integer PATENT_HOME_FOCUS_NOT = 0;
+		
+	// the  show status in home page
+	public static final Integer HOME_FOCUS = 1;
+	public static final Integer HOME_FOCUS_NOT = 0;
 	
 	// the patent belong to china or foreign
-	public static final Integer PATENT_CHINA = 0;
-	public static final Integer PATENT_FOREIGN = 1;
+	public static final Integer CHINA = 0;
+	public static final Integer FOREIGN = 1;
 	
 	// activity photo's width and height
 	public static final int ACTIVITY_PHOTO_WIDTH = 440;
 	public static final int ACTIVITY_PHOTO_HEIGHT = 220;
 	
-	// requirement status
-	public static final Integer REQUIREMENT_WAITE = 0;
-	public static final Integer REQUIREMENT_PASS = 1;
-	
-	// technology status
-	public static final Integer TECH_WAITE = 0;
-	public static final Integer TECH_PASS = 1;
 	
 	public static final Integer WAITE = 0;
 	public static final Integer PASS = 1;
 	
-	// the technology show status in home page
-	public static final Integer TECH_HOME_FOCUS = 1;
-	public static final Integer TECH_HOME_FOCUS_NOT = 0;
+	public static final String RZJG = "融资机构";
+	public static final String FHYQ ="孵化园区";
+	
 	
 	public static Map<String,String> getUserEduExpMap(){
 		Map<String,String> map = new HashMap<String, String>();

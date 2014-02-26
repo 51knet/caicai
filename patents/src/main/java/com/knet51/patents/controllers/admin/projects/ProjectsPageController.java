@@ -32,17 +32,14 @@ public class ProjectsPageController {
 	@Autowired
 	private ProjectsService projectsService;
 	
+	
 	@RequestMapping("/admin/projects/list")
 	public String showprojectsList(HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
-	
-		
 		try {
-			
 			Page<Projects> page = projectsService.findProjectsByUser(user, pageNumber, pageSize);
-
 			model.addAttribute("page", page);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -89,4 +86,5 @@ public class ProjectsPageController {
 	public @ResponseBody ValidationResponse projectsInfoFormUpdateAjaxJson(@Valid ProjectsForm projectsForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
+	
 }

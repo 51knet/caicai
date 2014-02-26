@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.ccweb.jpa.repository.projects.ProjectsRepository;
-@Transactional
+
 @Service("projectsService")
 public class ProjectsServiceImpl implements ProjectsService {
 	@Autowired

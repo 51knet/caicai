@@ -91,7 +91,7 @@ border-bottom-color: transparent;
 		<li class="bottom_line"><a href='<c:url value="/projects/list/complete"></c:url>'  ><span ><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 已完成项目</span></a></li>
 		<li  class="bottom_line">
 			<div style="padding: 10px 10px 0px 20px;">
-					<img src="<c:url value='/resources/img/default/rzjgtitle.png'></c:url>" >
+					<a href='<c:url value="/rzfh/list/rzjg"></c:url>' ><img src="<c:url value='/resources/img/default/rzjgtitle.png'></c:url>" ></a>
 			</div>
 			<div style="padding: 10px 10px 1px 20px;">
 			&nbsp;
@@ -100,7 +100,7 @@ border-bottom-color: transparent;
 		
 		<li  class="bottom_line">
 			<div style="padding: 10px 10px 0px 20px;">
-					<img src="<c:url value='/resources/img/default/fhytitle.png'></c:url>" >
+					<a href='<c:url value="/rzfh/list/fhyq"></c:url>' ><img src="<c:url value='/resources/img/default/fhytitle.png'></c:url>" ></a>
 			</div>
 			<div style="padding: 10px 10px 1px 20px;">
 			&nbsp;

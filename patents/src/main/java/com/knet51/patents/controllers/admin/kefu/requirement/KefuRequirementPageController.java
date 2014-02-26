@@ -30,9 +30,9 @@ public class KefuRequirementPageController {
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		Page<Requirement> page = null;
 		if(status.equals("pass")){
-			page = requirementService.findRequireByStatus(pageNumber, pageSize, GlobalDefs.PATENT_PASS);
+			page = requirementService.findRequireByStatus(pageNumber, pageSize, GlobalDefs.PASS);
 		}else if(status.equals("waite")){
-			page = requirementService.findRequireByStatus(pageNumber, pageSize, GlobalDefs.PATENT_WAITE);
+			page = requirementService.findRequireByStatus(pageNumber, pageSize, GlobalDefs.WAITE);
 		}else{
 			page = requirementService.findRequireAll(pageNumber, pageSize);
 		}
@@ -54,10 +54,10 @@ public class KefuRequirementPageController {
 		boolean flag = false;
 		Requirement requirement = requirementService.findOne(require_id);
 		if(requirement!= null && status!= null){
-			if(status.equals(GlobalDefs.PATENT_PASS)){
-				requirement.setStatus(GlobalDefs.REQUIREMENT_WAITE);
+			if(status.equals(GlobalDefs.PASS)){
+				requirement.setStatus(GlobalDefs.WAITE);
 			}else{
-				requirement.setStatus(GlobalDefs.REQUIREMENT_PASS);
+				requirement.setStatus(GlobalDefs.PASS);
 			}
 		}
 		Requirement newRequirement = requirementService.update(requirement);
@@ -73,9 +73,9 @@ public class KefuRequirementPageController {
 	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		Page<PatentRequirement> page = null;
 		if(status.equals("pass")){
-			page = patentRequirementService.findAllByStatus(pageNumber, pageSize, GlobalDefs.REQUIREMENT_PASS);
+			page = patentRequirementService.findAllByStatus(pageNumber, pageSize, GlobalDefs.PASS);
 		}else if(status.equals("waite")){
-			page = patentRequirementService.findAllByStatus(pageNumber, pageSize, GlobalDefs.REQUIREMENT_WAITE);
+			page = patentRequirementService.findAllByStatus(pageNumber, pageSize, GlobalDefs.WAITE);
 		}else{
 			page = patentRequirementService.findAll(pageNumber, pageSize);
 		}
@@ -97,10 +97,10 @@ public class KefuRequirementPageController {
 		boolean flag = false;
 		PatentRequirement patentRequirement = patentRequirementService.findOne(require_id);
 		if(patentRequirement!= null ){
-			if(patentRequirement.getStatus().equals(GlobalDefs.PATENT_PASS)){
-				patentRequirement.setStatus(GlobalDefs.PATENT_WAITE);
+			if(patentRequirement.getStatus().equals(GlobalDefs.PASS)){
+				patentRequirement.setStatus(GlobalDefs.WAITE);
 			}else{
-				patentRequirement.setStatus(GlobalDefs.PATENT_PASS);
+				patentRequirement.setStatus(GlobalDefs.PASS);
 			}
 		}
 		PatentRequirement newRequirement = patentRequirementService.update(patentRequirement);

@@ -56,14 +56,14 @@ public class PatentDetailController {
 			patent.setPublishDate(patentForm.getPublishDate());
 			patent.setPublishNum(patentForm.getPublishNum());
 			patent.setSummary(patentForm.getSummary());
-			patent.setStatus(GlobalDefs.PATENT_WAITE);
+			patent.setStatus(GlobalDefs.WAITE);
 			patent.setPatentType(patentType);
 			patent.setUser(userInfo.getUser());
-			patent.setFocus(GlobalDefs.PATENT_HOME_FOCUS_NOT);
-			if(country.equals(GlobalDefs.PATENT_FOREIGN)){
-				patent.setCountry(GlobalDefs.PATENT_FOREIGN);
+			patent.setFocus(GlobalDefs.HOME_FOCUS_NOT);
+			if(country.equals(GlobalDefs.FOREIGN)){
+				patent.setCountry(GlobalDefs.FOREIGN);
 			}else{
-				patent.setCountry(GlobalDefs.PATENT_CHINA);
+				patent.setCountry(GlobalDefs.CHINA);
 			}
 			patent.setPatentField(patentForm.getPatentField());
 			
@@ -97,14 +97,14 @@ public class PatentDetailController {
 			patent.setPublishDate(patentForm.getPublishDate());
 			patent.setPublishNum(patentForm.getPublishNum());
 			patent.setSummary(patentForm.getSummary());
-			patent.setStatus(GlobalDefs.PATENT_WAITE);
+			patent.setStatus(GlobalDefs.WAITE);
 			patent.setPatentType(patentType);
 			patent.setUser(userInfo.getUser());
 			patent.setPatentField(patentForm.getPatentField());
-			if(country.equals(GlobalDefs.PATENT_FOREIGN)){
-				patent.setCountry(GlobalDefs.PATENT_FOREIGN);
+			if(country.equals(GlobalDefs.FOREIGN)){
+				patent.setCountry(GlobalDefs.FOREIGN);
 			}else{
-				patent.setCountry(GlobalDefs.PATENT_CHINA);
+				patent.setCountry(GlobalDefs.CHINA);
 			}
 			patentService.update(patent);
 			model.addAttribute("patent", patent);

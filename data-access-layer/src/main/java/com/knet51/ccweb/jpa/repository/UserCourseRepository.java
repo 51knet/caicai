@@ -14,7 +14,7 @@ import com.knet51.ccweb.jpa.entities.courses.UserCourse;
 
 @Transactional
 @SuppressWarnings("unchecked")
-public interface UserCourseRepository extends JpaRepository<UserCourse, Long>, JpaSpecificationExecutor<UserCourse>,UserCourseRepositoryCustom{
+public interface UserCourseRepository extends JpaRepository<UserCourse, Long>, JpaSpecificationExecutor<UserCourse>, UserCourseRepositoryCustom{
 	
 	Page<UserCourse> findUserCourseByTeachercourseid(Long teachercourseid ,Pageable pageable);
 	
@@ -29,5 +29,6 @@ public interface UserCourseRepository extends JpaRepository<UserCourse, Long>, J
 	UserCourse findByTeachercourseidAndUserid(@Param("teachercourseid") Long teachercourseid, @Param("userid") Long userid);
 	
 	Page<UserCourse> findByUserid(Long user_id ,Pageable pageable);
+	
 	
 }

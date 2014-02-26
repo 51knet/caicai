@@ -42,15 +42,15 @@ public class KefuPatentPageController {
 		if(status.equals("all")){
 			page = patentService.findPatent(pageNumber, pageSize);
 		}else if(status.equals("china")){
-			page = patentService.findPatentByCountry(pageNumber, pageSize, GlobalDefs.PATENT_CHINA);
+			page = patentService.findPatentByCountry(pageNumber, pageSize, GlobalDefs.CHINA);
 		}else if(status.equals("foreign")){
-			page = patentService.findPatentByCountry(pageNumber, pageSize, GlobalDefs.PATENT_FOREIGN);
+			page = patentService.findPatentByCountry(pageNumber, pageSize, GlobalDefs.FOREIGN);
 		}else if(status.equals("pass")){
-			page = patentService.findPatentByStatus(pageNumber, pageSize, GlobalDefs.PATENT_PASS);
+			page = patentService.findPatentByStatus(pageNumber, pageSize, GlobalDefs.PASS);
 		}else if(status.equals("waite")){
-			page = patentService.findPatentByStatus(pageNumber, pageSize, GlobalDefs.PATENT_WAITE);
+			page = patentService.findPatentByStatus(pageNumber, pageSize, GlobalDefs.WAITE);
 		}else if(status.equals("focus")){
-			page = patentService.findPatentByFocus(pageNumber, pageSize, GlobalDefs.PATENT_HOME_FOCUS);
+			page = patentService.findPatentByFocus(pageNumber, pageSize, GlobalDefs.HOME_FOCUS);
 		}
 		model.addAttribute("page", page);
 		return "admin.kefu.patent.list";
@@ -71,10 +71,10 @@ public class KefuPatentPageController {
 		boolean flag = false;
 		Patent patent = patentService.findOne(patentNum);
 		if(patent!= null ){
-			if(patent.getFocus().equals(GlobalDefs.PATENT_HOME_FOCUS)){
-				patent.setFocus(GlobalDefs.PATENT_HOME_FOCUS_NOT);
+			if(patent.getFocus().equals(GlobalDefs.HOME_FOCUS)){
+				patent.setFocus(GlobalDefs.HOME_FOCUS_NOT);
 			}else{
-				patent.setFocus(GlobalDefs.PATENT_HOME_FOCUS);
+				patent.setFocus(GlobalDefs.HOME_FOCUS);
 			}
 		}
 		Patent newPatent = patentService.update(patent);
@@ -89,10 +89,10 @@ public class KefuPatentPageController {
 		boolean flag = false;
 		Patent patent = patentService.findOne(patentNum);
 		if(patent!= null ){
-			if(patent.getStatus().equals(GlobalDefs.PATENT_PASS)){
-				patent.setStatus(GlobalDefs.PATENT_WAITE);
+			if(patent.getStatus().equals(GlobalDefs.PASS)){
+				patent.setStatus(GlobalDefs.WAITE);
 			}else{
-				patent.setStatus(GlobalDefs.PATENT_PASS);
+				patent.setStatus(GlobalDefs.PASS);
 			}
 		}
 		Patent newPatent = patentService.update(patent);

@@ -224,5 +224,13 @@
 		<put-attribute name="right" value="/WEB-INF/views/projects/view/view_right.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="rzfh.list" extends="index-sec-layout">
+		<put-attribute name="title" value="融资机构/孵化园区" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/projects/banner/banner.jsp"></put-attribute>
+		<put-attribute name="search" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/projects/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/projects/rzfh/list.jsp"></put-attribute>
+	</definition>
+	
 	
 </tiles-definitions>

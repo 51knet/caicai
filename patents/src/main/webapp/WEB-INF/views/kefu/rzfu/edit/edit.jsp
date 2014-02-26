@@ -67,7 +67,7 @@ function checkLogo(obj){
 
 <div class="row-fluid custom round">
 	<div  class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
-		<h4>我的项目>>添加项目</h4>
+		<h4>孵化园区/融资机构>>修改</h4>
 	</div>
 	<div class="content row-fluid">
 			<span style="margin-left: 14px;">LOGO预览：</span> 
@@ -75,83 +75,42 @@ function checkLogo(obj){
 				<img name="showimg" id="showimg"  style="display: none;" />
 			</div>
 			<div id="logoCover" class="preview_show">
-				<span> <img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width:260px; height:190px;" />
+				<span> <img src="<c:url value='${rzfh.logoPath}'></c:url>"  style="width:260px; height:190px;" />
 				</span>
 			</div>
-		<form action= '<c:url value="/admin/projects/add"></c:url>'  method="post" enctype="multipart/form-data"  id="projects_form" name="projects_post" >
+		<form action= '<c:url value="/admin/kefu/rzfh/edit/edit"></c:url>'  method="post" enctype="multipart/form-data"  id="rzfh_form" name="rzfh_post" >
+		<input type="hidden" name="rzfh_id" value="${rzfh.id }">
 			<!--  --><div class="control-group"> 
 			<div class="controls">
 				<i class="icon-star"></i> 上传LOGO：<input type="file" name="logoPath"  onChange="previewImages(this);"/> <span style="font-size: 13px; color: red;">${errorMsg }</span>
 				<br><span style="color: red;  margin-left: 70px;">只支持jpg、gif、bmp、png格式，建议封面宽度260px，高度190px</span></div>
 			</div>
-			<div class="control-group" id="projectName">
+			<div class="control-group" id="name">
 				<div class="controls">
-					<i class="icon-star"></i> 项目名称：<input type="text" name="projectName"   placeholder="项目名称" required "> <span class="help-inline"><form:errors path="projectName" /></span>
+					<i class="icon-star"></i> 公司名称：<input type="text" name="name"   placeholder="公司名称" required " value="${rzfh.name }"> <span class="help-inline"><form:errors path="name" /></span>
 				</div>
 			</div>
 		
-			<div class="control-group" id="industry">
+			<div class="control-group" id="types">
 				<div class="controls">
-					<i class="icon-star"></i> 所属行业：<select name="industry" >		  		
-				  		<c:forEach items="${projectsField }" var="projectsField" >
-					  		<c:choose>
-				  				<c:when test="${projectsField.value == projects.industry }">
-				  					<option value="${projectsField.value }" selected>${projectsField.value }</option>
-				  				</c:when>
-				  				<c:otherwise>
-				  					<option value="${projectsField.value}" >${projectsField.value }</option>
-				  				</c:otherwise>
-				  			</c:choose>
-					  </c:forEach>
+					<i class="icon-star"></i> 所属类别：
+					<select name="types" >		  		<option value="融资机构" >请选择</option>
+				  			<option value="融资机构" >融资机构</option>
+				  			<option value="孵化园区" >孵化园区</option>
 					</select>
 				</div>
 			</div>
-			<div class="control-group" id="progress">
+			<div class="control-group" id="webUrl">
 				<div class="controls">
-					<i class="icon-star"></i> 项目进度：<input type="text" name="progress"   placeholder="项目进度"  required > <span class="help-inline"><form:errors path="progress" /></span>
+					<i class="icon-star"></i> 网站地址：<input type="text" name="webUrl"  value="${rzfh.webUrl }"   placeholder="网站地址"  required > <span class="help-inline"><form:errors path="webUrl" /></span>
 				</div>
 			</div>
 			
-			<div class="control-group" id="totalMoney">
-				<div class="controls">
-					<i class="icon-star"></i> 融资金额：<input type="text" name="totalMoney"   placeholder="融资金额"  required onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> 万 <span class="help-inline"><form:errors path="totalMoney" /></span>
-				</div>
-			</div>
 			<div class="control-group" id="content">
 				<div class="controls " >
-					<i class="icon-star"></i> 项目简介：<br>
-					<textarea  style="width:670px;height:150px;"  name="content"  placeholder="项目简介"></textarea>
+					<i class="icon-star"></i> 公司简介：<br>
+					<textarea  style="width:670px;height:150px;"  name="content"  placeholder="公司简介">${rzfh.content }</textarea>
 					<span class="help-inline"><form:errors path="content" /></span>
-				</div>
-			</div>
-			<br><br>
-			<div class="control-group" id="companyName">
-				<div class="controls">
-					<i class="icon-star"></i> 公司名称：<input type="text" name="companyName"   placeholder="公司名称"  required> <span class="help-inline"><form:errors path="companyName" /></span>
-				</div>
-			</div>
-			
-			<div class="control-group" id="empNumber">
-				<div class="controls">
-					<i class="icon-star"></i> 员工人数：<input type="text" name="empNumber"   placeholder="申请人士"  required> <span class="help-inline"><form:errors path="applicant" /></span>
-				</div>
-			</div>
-			
-			<div class="control-group" id="location">
-				<div class="controls">
-					<i class="icon-star"></i> 所在城市：<input type="text" name="location"   placeholder="所在城市"  required> <span class="help-inline"><form:errors path="location" /></span>
-				</div>
-			</div>
-			
-			<div class="control-group" id="boss">
-				<div class="controls">
-					<i class="icon-star"></i> 企业法人：<input type="text" name="boss"   placeholder="企业法人"  required> <span class="help-inline"><form:errors path="boss" /></span>
-				</div>
-			</div>
-			
-			<div class="control-group" id="phone">
-				<div class="controls">
-					<i class="icon-star"></i> 联系电话：<input type="text" name="phone"   placeholder="联系电话"  required onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>
 				</div>
 			</div>
 			
@@ -177,20 +136,11 @@ function checkLogo(obj){
 				fileManagerJson : '${fileManagerJson}',
 				allowFileManager : true,
 				afterCreate : function() {
-					var self = this;
-					KindEditor.ctrl(document, 13, function() {
-						self.sync();
-						document.forms['projects_post'].submit();
-					});
-					KindEditor.ctrl(self.edit.doc, 13, function() {
-						self.sync();
-						document.forms['projects_post'].submit();
-					});
 				}
 			});
-			$("#projects_form").submit(function(){
+			$("#rzfh_form").submit(function(){
 				editor.sync();
-				return checkEmptyAjax("projects_form","projectsInfoAJAX");
+				return checkEmptyAjax("rzfh_form","updaterzfhAjax");
 			});
 			prettyPrint();
 	    });

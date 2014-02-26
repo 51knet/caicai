@@ -53,7 +53,7 @@
 		<li><a href='<c:url value="/admin/kefu/patentrequirement/list/all"></c:url>' >专利需求</a></li> 
 		<li><a href='<c:url value="/admin/kefu/requirement/list/all"></c:url>' >技术需求</a></li>
 		<li><a href='<c:url value="/admin/kefu/activity/list"></c:url>' >活动列表</a></li>
-	
+		<li><a href='<c:url value="/admin/kefu/rzfh/list/all"></c:url>' >融资/孵化区</a></li>
 	</ul>
 </div>
 

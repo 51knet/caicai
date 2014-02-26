@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.EduBackground;
 @Transactional
-public interface EduBackgroundRepository extends JpaRepository<EduBackground, Long>, JpaSpecificationExecutor<EduBackground>,EduBackgroundRepositoryCustom {
+public interface EduBackgroundRepository extends JpaRepository<EduBackground, Long>, JpaSpecificationExecutor<EduBackground>{
 	Page<EduBackground> findEduBackgroundByTeacheridAndForbiddenIsNull(Long teacher_id, Pageable pageable);
 	List<EduBackground> findEduBackgroundByTeacheridAndForbiddenIsNull(Long teacher_id ,Sort sort);
 	

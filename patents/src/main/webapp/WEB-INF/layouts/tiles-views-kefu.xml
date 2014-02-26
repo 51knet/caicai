@@ -83,7 +83,27 @@
 		<put-attribute name="right" value="/WEB-INF/views/kefu/patentRequirement/view/view.jsp"></put-attribute>
 	</definition>
 	
-
+	<!-- kefu rzfh  -->
+	<definition name="admin.kefu.rzfh.list" extends="admin-layout">
+		<put-attribute name="title" value="融资/孵化" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/rzfu/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.rzfh.create" extends="admin-layout">
+		<put-attribute name="title" value="融资/孵化" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/rzfu/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.rzfh.edit" extends="admin-layout">
+		<put-attribute name="title" value="融资/孵化" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/rzfu/edit/edit.jsp"></put-attribute>
+	</definition>
 	
 
 </tiles-definitions>

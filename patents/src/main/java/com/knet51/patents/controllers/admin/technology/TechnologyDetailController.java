@@ -54,8 +54,8 @@ public class TechnologyDetailController {
 				technology.setTechName(techForm.getTechName());
 				technology.setTechType(techForm.getTechType());
 				technology.setUser(userInfo.getUser());
-				technology.setStatus(GlobalDefs.TECH_WAITE);
-				technology.setFocus(GlobalDefs.TECH_HOME_FOCUS_NOT);
+				technology.setStatus(GlobalDefs.WAITE);
+				technology.setFocus(GlobalDefs.HOME_FOCUS_NOT);
 				technology.setDate(new Date());
 				technologyService.create(technology);
 			}
@@ -102,7 +102,7 @@ public class TechnologyDetailController {
 				technology.setTechName(techForm.getTechName());
 				technology.setTechType(techForm.getTechType());
 				technology.setUser(userInfo.getUser());
-				technology.setStatus(GlobalDefs.TECH_WAITE);
+				technology.setStatus(GlobalDefs.WAITE);
 				technology.setDate(new Date());
 				technologyService.update(technology);
 			}
