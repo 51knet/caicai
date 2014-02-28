@@ -8,9 +8,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.projects.Rzfh;
 import com.knet51.ccweb.jpa.repository.projects.RzfhRepository;
 

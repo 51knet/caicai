@@ -12,12 +12,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.knet51.ccweb.jpa.entities.projects.BizModul;
+import com.knet51.ccweb.jpa.entities.projects.PlanInfo;
 import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.ccweb.jpa.entities.projects.Rzfh;
+import com.knet51.ccweb.jpa.entities.projects.TeamInfo;
 import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.UserService;
+import com.knet51.courses.jpa.services.projects.BizModulService;
+import com.knet51.courses.jpa.services.projects.PlanInfoService;
 import com.knet51.courses.jpa.services.projects.ProjectsService;
 import com.knet51.courses.jpa.services.projects.RzfhService;
+import com.knet51.courses.jpa.services.projects.TeamInfoService;
 
 
 @Controller
@@ -28,6 +34,12 @@ public class ProjectsPageController {
 	private ProjectsService projectsService;
 	@Autowired
 	private RzfhService rzfhService;
+	@Autowired
+	private BizModulService bizModulService;
+	@Autowired
+	private TeamInfoService teamInfoService;
+	@Autowired
+	private PlanInfoService planInfoService;
 	
 	@RequestMapping("/projects/list/{status}")
 	public String showprojectsPage(Model model,@PathVariable String status,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
@@ -56,7 +68,13 @@ public class ProjectsPageController {
 	@RequestMapping(value="/projects/view/{project_id}")
 	public String showprojectsDetail(Model model,@PathVariable Long project_id){
 		Projects projects = projectsService.findOne(project_id);
+		BizModul bizModul = bizModulService.findByProjects(projects);
+		TeamInfo teamInfo = teamInfoService.findByProjects(projects);
+		PlanInfo planInfo = planInfoService.findByProjects(projects);
 		model.addAttribute("projects", projects);
+		model.addAttribute("bizModul", bizModul);
+		model.addAttribute("teamInfo", teamInfo);
+		model.addAttribute("planInfo", planInfo);
 		return "projects.view"; 
 	}
 	

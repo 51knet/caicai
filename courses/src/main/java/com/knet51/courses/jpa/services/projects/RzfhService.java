@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
-import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.projects.Rzfh;
 
 public interface RzfhService {

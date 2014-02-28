@@ -3,11 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script type="text/javascript">
-<!--
-
-//-->
-</script>
+<script type="text/javascript" src="<c:url value='/resources/js/loginCheck.js'></c:url>"></script>
 <style>
 .margin_right{
 	margin-right: 20px;
@@ -135,72 +131,108 @@ font-weight: bold;
 				<li class="active"><a href="#biz_model_tab" data-toggle="tab">商业模式</a></li>
 				<li><a href="#team_tab" data-toggle="tab">创业团队</a></li>
 				<li><a href="#plan_tab" data-toggle="tab">未来计划</a></li>
-				<li><a href="#file_tab" data-toggle="tab">项目附件</a></li>
-				<li><a href="#news_tab" data-toggle="tab">项目动态</a></li>
 				<li><a href="#comment_tab" data-toggle="tab">项目评论</a></li>
 			</ul>
-			<div class="tab-content" >
-				<div class="tab-pane active " id="biz_model_tab">
-					<div class="title">
-						<h4>目标用户或客户群体定位</h4>
-					</div>
-					<div class="content">暂无内容</div>
-					<div class="title">
-						<h4>目标用户或客户群体目前困扰或需求定位</h4>
-					</div>
-					<div class="content">暂无内容</div>
-					<div class="title">
-						<h4>满足目标用户或客户需求的产品或服务模式说明</h4>
-					</div>
-					<div class="content">暂无内容</div>
-					<div class="title">
-						<h4>项目赢利模式说明</h4>
-					</div>
-					<div class="content">暂无内容</div>
-					<div class="title">
-						<h4>市场主要同行或竞争对手概述</h4>
-					</div>
-					<div class="content">暂无内容</div>
-					<div class="title">
-						<h4>项目主要核心竞争力说明</h4>
-					</div>
-					<div class="content">暂无内容</div>
-				</div>
-				<div class="tab-pane " id="team_tab">
-					<div class="title">
-						<h4>股东团队说明</h4>
-					</div>
-					<div class="content">暂无内容</div>
-					<div class="title">
-						<h4>非股东管理团队</h4>
-					</div>
-					<div class="content">暂无内容</div>
-				</div>
-				<div class="tab-pane " id="plan_tab">
-					<div class="content">您需要登录才可以查看项目详细信息！</div>
-				</div>
-				<div class="tab-pane " id="file_tab">
-					<div class="content">您需要登录才可以查看项目详细信息！</div>
-				</div>
-				<div class="tab-pane " id="news_tab">
-					<div class="content">您需要登录才可以查看项目详细信息！</div>
-				</div>
-				<div class="tab-pane" id="comment_tab">
-					<form action="#" method="post" style="width : 720px;">
-						<div id="commentDesc" style="margin-top: 15px;">
-							<textarea name="commentDesc" placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width: 720px; height: 160px;"></textarea>
-							<span class="help-inline"></span>
+			<c:choose>
+				<c:when test="${sessionUserInfo != null }">
+					<div class="tab-content">
+						<div class="tab-pane active " id="biz_model_tab">
+							<div class="title">
+								<h4>目标用户或客户群体定位</h4>
+							</div>
+							<div class="content">${bizModul.targetUser }</div>
+							<div class="title">
+								<h4>目标用户或客户群体目前困扰或需求定位</h4>
+							</div>
+							<div class="content">${bizModul.targetReq }</div>
+							<div class="title">
+								<h4>满足目标用户或客户需求的产品或服务模式说明</h4>
+							</div>
+							<div class="content">${bizModul.modulIntro }</div>
+							<div class="title">
+								<h4>项目赢利模式说明</h4>
+							</div>
+							<div class="content">${bizModul.profitModul }</div>
+							<div class="title">
+								<h4>市场主要同行或竞争对手概述</h4>
+							</div>
+							<div class="content">${bizModul.competitorIntro }</div>
+							<div class="title">
+								<h4>项目主要核心竞争力说明</h4>
+							</div>
+							<div class="content">${bizModul.coreValueIntro }</div>
 						</div>
-						<div class="pull-right" style="padding-bottom: 20px;">
-							<button type="submit" class="btn btn-primary">发表评论</button>
+						<div class="tab-pane " id="team_tab">
+							<div class="title">
+								<h4>股东团队说明</h4>
+							</div>
+							<div class="content">${teamInfo.shareholderIntro }</div>
+							<div class="title">
+								<h4>非股东管理团队</h4>
+							</div>
+							<div class="content">${teamInfo.unShareholderIntro }</div>
 						</div>
-					</form>
-				</div>
-			</div>
+						<div class="tab-pane " id="plan_tab">
+							<div class="content">${planInfo.context }</div>
+						</div>
+						<div class="tab-pane" id="comment_tab">
+							<form action="#" method="post" style="width: 720px;">
+								<div id="commentDesc" style="margin-top: 15px;">
+									<textarea name="commentDesc" placeholder="请输入评论内容" id="c" cols="5" rows="8" style="width: 720px; height: 160px;"></textarea>
+									<span class="help-inline"></span>
+								</div>
+								<div class="pull-right" style="padding-bottom: 20px;">
+									<button type="submit" class="btn btn-primary">发表评论</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="content">
+						您尚未登录，请<a class="loginPostBtn" href="#loginPostModal" role="button" data-toggle="modal" data-target="#loginPostModal">登录</a>后查看。
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
  </div>
-
+ <!-- login  -->
+<div class="modal hide fade" id="loginPostModal" style="width: 500px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h4 id="myModalLabel">登录</h4>
+	  </div>
+	   <div style="padding: 10px 20px;">
+			<form action="<c:url value='/signin'></c:url>" id="login_form"  method="post">
+				<div class="control-group" id="email">
+				
+					<div class="controls">
+						邮箱：<input type="text" name="email" placeholder="邮箱"> <span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="control-group" id="password">
+					
+					<div class="controls">
+						密码：<input type="password" name="password" placeholder="密码"><span class="help-inline"  id="passwordErr"></span>
+					</div>
+				</div>
+				<div>
+					<div class="control-group">
+						<div class="controls ">
+							<button style="margin-left: 42px;" type="submit"  class="btn btn-success " onclick="return checkEmailAndPwd();">登录</button>
+							 <a style="margin-left: 10px;"  class="btn"  href="<c:url value='/jumpToPatents'></c:url>">注册</a> <a href="<c:url value='/jumpToPatents'></c:url>"  style="margin-left: 20px;"> 忘记密码？</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+</div>
+<script type="text/javascript">
+function checkEmailAndPwd(){
+	return checkEmailAndPass("login_form",'checkEmailAndPassword');
+}
+</script>
 
 
 

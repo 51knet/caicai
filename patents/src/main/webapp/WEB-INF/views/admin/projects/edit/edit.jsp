@@ -159,6 +159,12 @@ function checkLogo(obj){
 				</div>
 			</div>
 			
+			<div class="control-group" id="targetUser">
+				<div class="controls">
+					 目标用户或客户群体定位：<textarea  style="width:670px;height:150px;"  name="targetUser">${bizModul.targetUser } </textarea>
+				</div>
+			</div>
+			
 			<div class="span9">
 			 	<button type="submit" class="btn btn-success ">保存</button>&nbsp;&nbsp;
 				<button type="reset" class="btn">取消</button>

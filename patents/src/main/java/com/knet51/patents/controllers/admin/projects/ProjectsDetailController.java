@@ -19,10 +19,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.knet51.ccweb.jpa.entities.projects.BizModul;
 import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.patents.beans.UserInfo;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.UserService;
+import com.knet51.patents.jpa.services.projects.BizModulService;
 import com.knet51.patents.jpa.services.projects.ProjectsService;
 import com.knet51.patents.util.fileUpLoad.FileUtil;
 
@@ -36,6 +38,8 @@ public class ProjectsDetailController {
 	private ProjectsService projectsService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private BizModulService bizModulService;
 	
 	@RequestMapping(value="/admin/projects/add", method = RequestMethod.POST)
 	public String addProjects(@Valid ProjectsForm projectsForm, BindingResult validResult,@RequestParam("industry") String industry,
@@ -88,6 +92,10 @@ public class ProjectsDetailController {
 				}
 			}
 			projectsService.update(newProjects);
+			
+			BizModul bizModul = new BizModul(newProjects);
+			bizModul.setTargetUser(projectsForm.getTargetUser());
+			bizModulService.create(bizModul);
 		}
 		return "redirect:/admin/projects/list";
 	}
@@ -116,7 +124,6 @@ public class ProjectsDetailController {
 			projects.setStatus(GlobalDefs.WAITE);
 			projects.setUser(userInfo.getUser());
 			
-			
 			List<MultipartFile> files = request.getFiles("logoPath");
 			for (int i = 0; i < files.size(); i++) {
 				MultipartFile multipartFile = files.get(i);
@@ -141,6 +148,10 @@ public class ProjectsDetailController {
 				}
 			}
 			projectsService.update(projects);
+
+			BizModul bizModul = bizModulService.findByProjects(projects);
+			bizModul.setTargetUser(projectsForm.getTargetUser());
+			bizModulService.update(bizModul);
 		}
 		return "redirect:/admin/projects/list";
 	}

@@ -33,6 +33,8 @@ public class ProjectsForm {
 	@Size(min=7, max=11)
 	private String phone;
 	
+	private String targetUser;
+	
 	
 	public String getProjectName() {
 		return projectName;
@@ -124,6 +126,15 @@ public class ProjectsForm {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getTargetUser() {
+		return targetUser;
+	}
+
+
+	public void setTargetUser(String targetUser) {
+		this.targetUser = targetUser;
 	}
 
 
