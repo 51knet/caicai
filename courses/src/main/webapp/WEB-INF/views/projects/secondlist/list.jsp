@@ -53,17 +53,6 @@ $(document).ready(function(){
  clear: both; width: 100%; max-width: 680px; 
  max-height: 60px; overflow: hidden;
 }
-
-/*.limitTable{
-	width:100%; 
-	table-layout:fixed;
-	margin-bottom: 10px;
-}
- .limitTd{
-	word-wrap:break-word; word-break:break-all;
-	color: #666; font-size: 13px;
-}*/
-
 ._logo{
 	width: 200px; height: 139px;
 }
@@ -135,7 +124,7 @@ $(document).ready(function(){
 				</div>
 				<div class="content_div">
 				<br>
-					${page.content }最大的新媒体影视平台，专业提供众筹融资及营销发行服务！最大的新媒体影视平台，专业提供众筹融资及营销发行服务！最大的新媒体影视平台，专业提供众筹融资及营销发行服务！
+					${page.content }
 				</div>
 			</div>
 	</c:forEach>

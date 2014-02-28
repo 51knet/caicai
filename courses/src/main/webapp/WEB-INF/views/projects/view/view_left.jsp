@@ -93,7 +93,7 @@ font-weight: bold;
 	<div class="top">
 		<span class="pName margin_right" >${projects.projectName }</span>
 		<span class="myblock"><fmt:formatNumber type="number" value="${projects.currentMoney/projects.totalMoney*100}" maxFractionDigits="0"/>%</span><br>
-		<span class="date">发布时间：<fmt:formatDate value="${projects.date}" pattern="yyyy-MM-dd HH:mm"/></span>
+		<span class="date">发布时间：<fmt:formatDate value="${projects.date}" pattern="yyyy-MM-dd HH:mm"/></span> <a href="<c:url value='/projects/cart/view/${projects.id }'></c:url>"> 点击参股</a>
 	</div>
 	<div class="bottom_line_dash"></div>
 	<div class="middle">

@@ -48,4 +48,11 @@ public class ProjectsServiceImpl implements ProjectsService {
 		return repository.findProjectsListByCompleteAndStatus(complete, status);
 	}
 
+	@Override
+	public Page<Projects> findProjectsByStatusAndProjectNameLike(
+			Integer status, String projectName,int pageNumber,int pageSize) {
+		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id","date");
+		return repository.findProjectsByStatusAndProjectNameLike(status, "%"+projectName+"%", pageable);
+	}
+
 }

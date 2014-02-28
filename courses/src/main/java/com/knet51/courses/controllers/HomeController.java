@@ -21,16 +21,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.knet51.ccweb.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Activity;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.Patent;
 import com.knet51.ccweb.jpa.entities.patent.PatentField;
 import com.knet51.ccweb.jpa.entities.patent.PatentType;
+import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.ccweb.jpa.entities.requirement.PatentRequirement;
 import com.knet51.ccweb.jpa.entities.requirement.Requirement;
 import com.knet51.ccweb.jpa.entities.technology.Technology;
+import com.knet51.courses.beans.UserInfo;
 import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
@@ -40,6 +41,7 @@ import com.knet51.courses.jpa.services.activity.ActivityService;
 import com.knet51.courses.jpa.services.patent.PatentFieldService;
 import com.knet51.courses.jpa.services.patent.PatentService;
 import com.knet51.courses.jpa.services.patent.PatentTypeService;
+import com.knet51.courses.jpa.services.projects.ProjectsService;
 import com.knet51.courses.jpa.services.requirement.PatentRequirementService;
 import com.knet51.courses.jpa.services.requirement.RequirementService;
 import com.knet51.courses.jpa.services.technology.TechnologyService;
@@ -72,6 +74,8 @@ public class HomeController {
 	private PatentRequirementService patentRequirementService;
 	@Autowired
 	private TechnologyService technologyService;
+	@Autowired
+	private ProjectsService projectsService;
 	
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
@@ -171,6 +175,9 @@ public class HomeController {
 //			model.addAttribute("userCourseCount", userCourse.size());
 //		}
 		model.addAttribute("active", "patent");
+		
+		List<Projects> cpList = projectsService.findProjectsListByCompleteAndStatus(GlobalDefs.PASS, GlobalDefs.COMPLETE);
+		model.addAttribute("cpList", cpList);
 		return "home";
 	}
 

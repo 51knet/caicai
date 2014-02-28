@@ -1,5 +1,6 @@
 package com.knet51.courses.controllers.projects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.jpa.entities.projects.BizModul;
@@ -24,6 +26,7 @@ import com.knet51.courses.jpa.services.projects.PlanInfoService;
 import com.knet51.courses.jpa.services.projects.ProjectsService;
 import com.knet51.courses.jpa.services.projects.RzfhService;
 import com.knet51.courses.jpa.services.projects.TeamInfoService;
+import com.knet51.courses.util.MyUtil;
 
 
 @Controller
@@ -58,10 +61,21 @@ public class ProjectsPageController {
 	
 	@RequestMapping("/projects/list")
 	public String showprojectsList(Model model){
-		List<Projects> cpList = projectsService.findProjectsListByCompleteAndStatus(GlobalDefs.PASS, GlobalDefs.COMPLETE);
 		List<Projects> upList = projectsService.findProjectsListByCompleteAndStatus(GlobalDefs.PASS, GlobalDefs.UN_COMPLETE);
-		model.addAttribute("cpList", cpList);
+		List<Projects> npList = new ArrayList<Projects>();
+		for (Projects projects : upList) {
+			if(projects.getCurrentMoney().equals(0L)){
+				System.out.println("==========proname="+projects.getProjectName());
+				npList.add(projects);
+			}
+		}
+		model.addAttribute("npList", npList);
 		model.addAttribute("upList", upList);
+		
+		List<Rzfh> rzList = rzfhService.findRzfhListByStatusAndTypes(GlobalDefs.PASS, GlobalDefs.RZJG);
+		List<Rzfh> fhList = rzfhService.findRzfhListByStatusAndTypes(GlobalDefs.PASS, GlobalDefs.FHYQ);
+		model.addAttribute("rzList", rzList);
+		model.addAttribute("fhList", fhList);
 		return "projects.list";
 	}
 	
@@ -77,6 +91,18 @@ public class ProjectsPageController {
 		model.addAttribute("planInfo", planInfo);
 		return "projects.view"; 
 	}
+	
+	@RequestMapping(value="/projects/search", method = RequestMethod.GET)
+	public String searchProjects(Model model,HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "9") int pageSize,@RequestParam("searchParam") String searchParam) throws Exception{
+		searchParam = new String(searchParam.getBytes("iso-8859-1"), "utf-8").trim();
+		String newsearchParam = MyUtil.replaceSpace(searchParam);
+		Page<Projects> page = projectsService.findProjectsByStatusAndProjectNameLike(GlobalDefs.PASS,newsearchParam, pageNumber, pageSize);
+		model.addAttribute("page", page);
+		model.addAttribute("searchParam", searchParam);
+		return "projects.secondlist";
+	}
+	
 	
 	@RequestMapping(value="/rzfh/list/{types}")
 	public String showAllRzfh(@PathVariable String types,Model model, HttpSession session,@RequestParam(value="pageNumber",defaultValue="0") 

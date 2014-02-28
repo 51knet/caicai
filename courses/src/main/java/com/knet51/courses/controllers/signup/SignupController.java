@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.courses.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.UserService;

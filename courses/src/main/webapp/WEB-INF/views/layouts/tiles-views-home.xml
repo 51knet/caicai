@@ -232,5 +232,22 @@
 		<put-attribute name="right" value="/WEB-INF/views/projects/rzfh/list.jsp"></put-attribute>
 	</definition>
 	
+	<!-- projects trade  -->
+	
+	<definition name="projects.pay.view" extends="index-layout">
+		<put-attribute name="title" value="支付页面" />
+		<put-attribute name="body" value="/WEB-INF/views/pay/pay.jsp"></put-attribute>
+		<put-attribute name="search" value="" />
+		<put-attribute name="userCourse" value=""></put-attribute>
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<definition name="projects.cart.view" extends="index-layout">
+		<put-attribute name="title" value="支付页面" />
+		<put-attribute name="search" value="" />
+		<put-attribute name="userCourse" value=""></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/pay/cart.jsp"></put-attribute>
+		<put-attribute name="footer" value="" />
+	</definition>
 	
 </tiles-definitions>

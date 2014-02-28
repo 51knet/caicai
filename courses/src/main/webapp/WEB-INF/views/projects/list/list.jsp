@@ -20,122 +20,245 @@ $(document).ready(function(){
 //-->
 </script>
 <style>
-  .grayscale{
-          -webkit-filter:grayscale(1);
-      }    
+.round{
+	border-radius: 5px ;
+}
+.top_divs{
+	width: 50%; float: left;padding: 10px 0px; height: 220px;
+}
+.top_divs>table{
+	width: 100%; height:100%;  text-align: left;
+}
 .right_line{
-	/*background-image: url(' <c:url value="/resources/img/default/blueline.png" ></c:url> ' );
-	background-position: right center;
-	background-repeat: no-repeat;*/
-	margin-left: 400px;
-	margin-right: 20px;
+	margin-left: 400px;margin-right: 20px;
 }
 .projects{
-	margin: 10px 20px;
+	margin: 0px 20px 30px 20px;;
 	max-width: 96%;
-	text-align: cemter;
+	text-align: center;float: left;
 }
 .projects .detail{
-	width: 170px;
-	margin:10px 15px 0px 1px;
-	float: left; padding:5px 4px;  
-	border: 1px solid #ccc; text-align: center;
+	width: 290px; float:left; 
+	margin: 20px 10px 0px 20px;
+}
+.projects .detail .info_div{
+	 width:100%;  float: left;
+	  background-color: #eeeeee; 
+	  border: 1px solid #ccc; text-align: left;
+}
+.projects .detail .info_div .logopic{
+	width: 30%; margin: 15px 10px 15px 15px;  float: left; 
+}
+.projects .detail .info_div .content_div{
+	width: 60%; margin: 15px 0px 5px 0px; float: left; text-align: left;
+}
+.projects .detail .info_div .content_div .contlimit{
+	max-width: 170px; max-height: 80px; margin-top:10px; overflow: hidden;
+}
+.projects .detail>a{
+	width:100%;margin-top: 10px; border: 1px solid; font-size:15px; 
+	float: left; clear: both; background-color: #486ca0;color: #fff;font-weight: bold; 
+	padding: 7px 0px; text-decoration: none;
+}
+.projects .detail>a:hover{
+	background-color: #6e8bb3;
+}
+.points{
+	color: #6497ce;
+	font-weight: bold;
 }
 
-.pName{
-	font-size:14px;
-	font-weight: bold;
-	text-decoration: none;
+.date{
+	font-size: 12px;
+	font-weight: normal;
 }
 ._logo{
-	width: 170px; 
+	width: 100px; 
+
 }
-.process_out{
-	width: 163px; height: 10px; margin-top:5px; 
-	background-color: #c0defa; border: 1px solid #319bff;
-}
-.process_in{
-	height: 10px; background-color: #319bff;
-	max-width: 164px;
-	overflow: hidden;
-}
+
 .container.title.custom{
-	margin: 0px 20px;
-	max-width: 96%;
-	background-image: url("<c:url value='/resources/img/default/maq_left.png'></c:url>");
-	background-position: left bottom;
+	margin: 40px 20px 0px 20px;
+	max-width: 95%;
 	background-repeat: no-repeat;
-	border-bottom: 2px solid #335183;
+	padding-bottom:12px;
+	border-bottom: 1.5px solid #ccc;
 	background-color: #fff;
 }
-.container.title .innerLeftTitle.custom{
-	line-height: 45px;
-	height: 30px;
-}
+
+
 .container.title .innerRightTitle a{
-	line-height: 45px;
-	color: #335183;
-	font-weight: bold;
+	float: right;
+	margin-top: 20px;
+	margin-bottom: -20px;
 }
+
+.container.rzfh{
+	width: 100%;
+	text-align: left;float: left;
+	height: 340px;
+}
+.rzfh_logo{
+width: 130px; border: 1px solid #ddd; 
+padding: 2px 2px; margin: 10px 5px 10px 0px;
+}
+
 </style>
 <br>
-<div class="container title custom"  >
-		<div class="innerLeftTitle custom" >
-			 <img  src="<c:url value='/resources/img/default/rztitle2.png'></c:url> ">
+<div class="container projects" style="border-bottom: 1.5px solid #ccc; padding-bottom: 20px;">
+		<div  class="projectsbgcolor top_divs">
+			<table style="" cellpadding="5">
+				<tbody>
+					<tr>
+						<td valign="middle" style="width: 180px; " align="center"> <img  src="<c:url value='/resources/img/default/rzjs.png'></c:url> "></td>
+						<td valign="top" ><img  src="<c:url value='/resources/img/default/rzjs-1.png'></c:url> "><br>
+						
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div   class="projectsbgcolor top_divs">
+			<table  cellpadding="5" >
+				<tbody>
+					<tr>
+						<td valign="middle" style= "width: 180px;" align="center"> <img  src="<c:url value='/resources/img/default/xszd.png'></c:url> "></td>
+						<td valign="top"  ><img  src="<c:url value='/resources/img/default/xszd-1.png'></c:url> "><br>
+						
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</div>
+
+<div class="container projects"  >
+		<div class="projectsbgcolor top_divs" >
+			<table  cellpadding="5">
+				<tbody>
+					<tr>
+						<td valign="middle" style="width: 180px;" align="center"> <img  src="<c:url value='/resources/img/default/rzgz.png'></c:url> "></td>
+						<td valign="top" ><img  src="<c:url value='/resources/img/default/rzgz-1.png'></c:url> "><br>
+						
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div   class="projectsbgcolor top_divs">
+			<table  cellpadding="5" >
+				<tbody>
+					<tr>
+						<td valign="middle" style="width: 180px;" align="center"> <img  src="<c:url value='/resources/img/default/ksfb.png'></c:url> "></td>
+						<td valign="top" ><img  src="<c:url value='/resources/img/default/ksfb-1.png'></c:url> "><br>
+						
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</div>
+
+<div class="container title custom"   >
+		<div class="innerLeftTitle" >
+			 <img  src="<c:url value='/resources/img/default/jjht.png'></c:url> ">
 		</div>
 		<div class="innerRightTitle " >
-			<a href="<c:url value='/projects/list/uncomplete'></c:url>"> 查看更多></a>
+			<a href="<c:url value='/projects/list/uncomplete'></c:url>">  <img  src="<c:url value='/resources/img/default/more_blue.png'></c:url> "></a>
 		</div>
  </div>
- 	
+ 
+ <div class="container projects" >
+ 	<c:forEach items="${upList}" var="upList"  begin="0" end="2">
+ 			<div class="detail" >
+ 				<div  class="round info_div">
+ 					<div class=" logopic" >
+ 						<a href="<c:url value='/projects/view/${upList.id }'></c:url>"><img src="<c:url value='${p_url}${upList.logoPath }'></c:url> " class="_logo"></a>
+ 					</div>
+ 					<div class="content_div">
+ 						<div style="width: 170px;" id="contentlimit" ><a href="<c:url value='/projects/view/${upList.id }'></c:url>"><h4>${upList.projectName }</h4></a></div>
+ 						<div  class="date contlimit">
+								${upList.content }
+							</div>
+ 					</div>
+					<div style="width: 90%; margin:10px 10px;  float: left;" class="points">
+						<h4>${upList.location }<span style="margin-left: 20px;">${upList.industry }</span></h4>
+					</div>
+ 				</div>
+ 				<a href="<c:url value='/projects/view/${upList.id }'></c:url>">
+ 					继 续 查 看 > >
+ 				</a>
+ 			</div>
+	</c:forEach>
+ </div>
+
+
+ <div class="container title custom"  >
+ <br>
+		<div class="innerLeftTitle" >
+			 <img  src="<c:url value='/resources/img/default/zxjr.png'></c:url> ">
+		</div>
+		<div class="innerRightTitle " >
+			<a href="<c:url value='/projects/list/uncomplete' ></c:url>" >  <img  src="<c:url value='/resources/img/default/more_blue.png'></c:url> "></a>
+		</div>
+ </div>
+
  <div class="container projects">
- 	<c:forEach items="${upList}" var="upList"  begin="0" end="4">
- 			<div class="detail projectsbgcolor">
-					<a href="<c:url value='/projects/view/${upList.id }'></c:url>"><img src="<c:url value='${p_url}${upList.logoPath }'></c:url> " class="_logo"></a>
-					<div style="width: 165px" id="contentlimit"><a href="<c:url value='/projects/view/${upList.id }'></c:url>" class="pName">${upList.projectName }</a><br>
-					${upList.industry }
-					<div class="process_out">
-						<div class="process_in" style="width: ${upList.currentMoney/upList.totalMoney*100}%; "></div>
+ 	<c:forEach items="${npList}" var="npList"  begin="0" end="2">
+ 			<div class="detail" >
+ 				<div  class="round info_div">
+ 					<div class=" logopic" >
+ 						<a href="<c:url value='/projects/view/${npList.id }'></c:url>"><img src="<c:url value='${p_url}${npList.logoPath }'></c:url> " class="_logo"></a>
+ 					</div>
+ 					<div class="content_div">
+ 						<div style="width: 190px;" id="contentlimit" ><a href="<c:url value='/projects/view/${npList.id }'></c:url>"><h4>${npList.projectName }</h4></a></div>
+ 						<div  class="date contlimit">
+								${npList.content }
+							</div>
+ 					</div>
+					<div style="width: 90%; margin:10px 10px ; float: left;" class="points pName">
+						<h4>${npList.location }<span style="margin-left: 20px;">${npList.industry }</h4>
 					</div>
-						<table style="width: 100%; text-align: center; font-weight: bold;" cellpadding="0">
-							<tr><td >已融资</td><td>完成率</td><td>融资总额</td></tr>
-							<tr><td>${upList.currentMoney }万</td>
-							<td><fmt:formatNumber type="number" value="${upList.currentMoney/upList.totalMoney*100}" maxFractionDigits="0"/>%</td>
-							<td>${upList.totalMoney }万</td></tr>
-						</table>
-					</div>
-			</div>
+ 				</div>
+ 				<a href="<c:url value='/projects/view/${npList.id }'></c:url>">
+ 					继 续 查 看 > >
+ 				</a>
+ 			</div>
 	</c:forEach>
  </div>
  
- <div class="container title custom"  >
-		<div class="innerLeftTitle custom" >
-			 <img  src="<c:url value='/resources/img/default/rztitle3.png'></c:url> ">
-		</div>
-		<div class="innerRightTitle " >
-			<a href="<c:url value='/projects/list/complete'></c:url>"> 查看更多></a>
-		</div>
+ <div class="container  rzfh" style="background-color: #bcc5ce;">
+ 	<div style="margin: 10px 20px; " >
+ 	  	<div class="span6" style="background-image: url('<c:url value="/resources/img/default/rzjg.png"> </c:url> ');  background-position: top center; background-repeat: no-repeat;"> 
+ 	  		<div style="width: 100%; height: 70px;" class="span6"><br>
+ 	  			<a style="float: right; line-height: 40px;" href='<c:url value="/rzfh/list/rzjg"></c:url>' ><img  src="<c:url value='/resources/img/default/more_white.png'></c:url> "></a>
+ 	  		</div>
+ 	  		<div class="span11" style="margin-left: 30px;">
+ 	  			<c:forEach items="${rzList}" var="rzList"  begin="0" end="5">
+ 	  		
+ 	  				<img alt="${rzList.name }"  src="<c:url value="${p_url}${rzList.logoPath }"></c:url>" class="rzfh_logo">
+ 	  			
+ 	  			</c:forEach>
+ 	  		</div>
+ 	  	</div>
+ 	  	<div  class="span6"  style=" background-image: url('<c:url value="/resources/img/default/fhyq.png"> </c:url> ');  background-position: top center; background-repeat: no-repeat;">
+ 	  		<div style="width: 100%; height: 70px;" class="span6"><br>
+ 	  			<a style="float: right; line-height: 40px;" href='<c:url value="/rzfh/list/fhyq"></c:url>' ><img  src="<c:url value='/resources/img/default/more_white.png'></c:url> "></a>
+ 	  		</div>
+ 	  		<div class="span11" style="margin-left: 30px;">
+ 	  			<c:forEach items="${fhList}" var="fhList"  begin="0" end="5">
+ 	  			
+ 	  				<img alt="${fhList.name }"  src="<c:url value="${p_url }${fhList.logoPath }"></c:url>" class="rzfh_logo">
+ 	  			
+ 	  			</c:forEach>
+ 	  		</div>
+ 	  	</div>
+ 	</div>
  </div>
 
- <div class="container projects">
- 	<c:forEach items="${cpList}" var="cpList"  >
- 			<div class="detail projectsbgcolor">
-					<a href="<c:url value='/projects/view/${cpList.id }'></c:url>"><img src="<c:url value='${p_url}${cpList.logoPath }'></c:url> " class="_logo"></a>
-					<div style="width: 165px" id="contentlimit"><a href="<c:url value='/projects/view/${cpList.id }'></c:url>" class="pName">${cpList.projectName }</a><br>
-					${cpList.industry }
-					<div class="process_out">
-						<div class="process_in" style="width: ${cpList.currentMoney/cpList.totalMoney*100}%; "></div>
-					</div>
-						<table style="width: 100%; text-align: center; font-weight: bold;" cellpadding="0">
-							<tr><td >已融资</td><td>完成率</td><td>融资总额</td></tr>
-							<tr><td>${cpList.currentMoney }万</td>
-							<td><fmt:formatNumber type="number" value="${cpList.currentMoney/cpList.totalMoney*100}" maxFractionDigits="0"/>%</td>
-							<td>${cpList.totalMoney }万</td></tr>
-						</table>
-					</div>
-			</div>
-	</c:forEach>
- </div>
+ <div class="container">
+	<img src="<c:url value='/resources/img/default/hbpic.png'></c:url>  ">
+ </div> 
 
 
 

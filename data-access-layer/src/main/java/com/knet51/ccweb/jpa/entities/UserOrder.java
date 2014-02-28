@@ -16,6 +16,8 @@ public class UserOrder extends AbstractEntity{
 	private User user;
 	
 	private String courseId;
+	private Long projects_id;
+	private Integer count;
 	
 	private Date startTime;
 	private Date endTime;
@@ -62,6 +64,20 @@ public class UserOrder extends AbstractEntity{
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+	public Long getProjects_id() {
+		return projects_id;
+	}
+	public void setProjects_id(Long projects_id) {
+		this.projects_id = projects_id;
 	}
 	public UserOrder() {
 		super();

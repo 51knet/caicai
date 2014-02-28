@@ -16,7 +16,7 @@
 .projects{
 	 width: 100%;
 	 background-color: #6797c8;
-	 height: 500px;
+	 height: 600px;
 	margin: 36px 0px 20px 0px;
 }
 
@@ -24,7 +24,7 @@
 	width: 97%;
 	float: right;
 	background-color: #e4e7ec;
-	height: 500px;
+	height: 600px;
 }
 .user_img{
 	width: 80px;
@@ -61,7 +61,7 @@ margin: 10px 10px;float: left;
  	 	<div class="user_info points">
  			<div style="width: 80px; float: left; margin: 10px 10px">
  				<table  cellpadding="5">
- 					<tr style="background-color: #6797c8; color: #fff; font-weight: bold;"><td align="center">融资金额</td></tr>
+ 					<tr style="background-color: #6797c8; color: #fff; font-weight: bold;"><td align="center">当前融资</td></tr>
  					<tr style="background-color: #fff; color: #6797c8; font-weight: bold;">
  					<td align="center"><span><fmt:formatNumber type="number" value="${projects.currentMoney/projects.totalMoney*100}" maxFractionDigits="0"/> %</span></td></tr>
  				</table>
