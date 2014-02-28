@@ -1,6 +1,5 @@
 package com.knet51.courses.controllers.login;
 
-import java.io.PrintWriter;
 import java.nio.charset.Charset;
 
 import javax.servlet.http.Cookie;
@@ -20,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.knet51.ccweb.beans.UserInfo;
+import com.knet51.courses.beans.UserInfo;
 import com.knet51.courses.controllers.login.LoginForm;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.courses.util.ajax.AjaxValidationEngine;

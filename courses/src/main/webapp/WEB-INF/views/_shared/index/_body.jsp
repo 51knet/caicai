@@ -181,13 +181,13 @@
 
 			<div  class="right_bottom_content">
 				<ul>
-					<c:forEach items="${patentList }" var="patentList" begin="23"  end="25"  >
+					<c:forEach items="${cpList }" var="cpList" begin="0"  end="2"  >
 						<li ><div id="contentlimit" style="width:400px; float: left;">
-						<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${patentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${patentList.patentName }</a>
+						<a class="a_color_ccc"  href="<c:url value="/projects/view/${cpList.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${cpList.projectName }</a>
 						</div></li>
 					</c:forEach>
 				</ul>
-				<a   style=" float: right;" href="<c:url value="/patent/list"></c:url>" >
+				<a   style=" float: right;" href="<c:url value="/projects/list/complete"></c:url>" >
 					<img src="<c:url value='/resources/img/default/read_all.png'></c:url> " />
 				</a>
 			</div>

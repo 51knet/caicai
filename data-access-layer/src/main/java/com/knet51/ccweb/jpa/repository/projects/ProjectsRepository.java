@@ -20,6 +20,6 @@ public interface ProjectsRepository extends JpaRepository<Projects, Long>, JpaSp
 	Page<Projects> findProjectsByUser(User user, Pageable pageable);
 	List<Projects> findProjectsListByUser(User user);
 	
-	Page<Projects> findProjectsByProjectNameLike(String projectName, Pageable pageable);
+	Page<Projects> findProjectsByStatusAndProjectNameLike(Integer status,String projectName, Pageable pageable);
 	List<Projects> findProjectsListByProjectNameLike(String projectName);
 }
