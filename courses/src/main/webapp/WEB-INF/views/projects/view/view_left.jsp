@@ -7,6 +7,9 @@
 <%
 	String queryUrl = new org.springframework.web.util.UrlPathHelper().getOriginatingQueryString(request);
 	String requestUrl = new org.springframework.web.util.UrlPathHelper().getOriginatingRequestUri(request);
+	if(queryUrl!=null && queryUrl.contains("pageNumber")){
+		queryUrl =queryUrl.substring(0, queryUrl.lastIndexOf("&"));
+	}
 	String currentUrl = requestUrl+"?"+queryUrl;
 %>
 <style>
