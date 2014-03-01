@@ -34,7 +34,14 @@ public class ProjectsForm {
 	private String phone;
 	
 	private String targetUser;
-	
+	private String targetReq;
+	private String modulIntro;
+	private String profitModul;
+	private String competitorIntro;
+	private String coreValueIntro;
+	private String shareholderIntro;
+	private String unShareholderIntro;
+	private String planContext;
 	
 	public String getProjectName() {
 		return projectName;
@@ -44,10 +51,6 @@ public class ProjectsForm {
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
-
-
-
-
 
 	public String getProgress() {
 		return progress;
@@ -135,6 +138,85 @@ public class ProjectsForm {
 
 	public void setTargetUser(String targetUser) {
 		this.targetUser = targetUser;
+	}
+
+	public String getTargetReq() {
+		return targetReq;
+	}
+
+
+	public void setTargetReq(String targetReq) {
+		this.targetReq = targetReq;
+	}
+
+
+	public String getModulIntro() {
+		return modulIntro;
+	}
+
+
+	public void setModulIntro(String modulIntro) {
+		this.modulIntro = modulIntro;
+	}
+
+
+	public String getProfitModul() {
+		return profitModul;
+	}
+
+
+	public void setProfitModul(String profitModul) {
+		this.profitModul = profitModul;
+	}
+
+
+	public String getCompetitorIntro() {
+		return competitorIntro;
+	}
+
+
+	public void setCompetitorIntro(String competitorIntro) {
+		this.competitorIntro = competitorIntro;
+	}
+
+
+	public String getCoreValueIntro() {
+		return coreValueIntro;
+	}
+
+
+	public void setCoreValueIntro(String coreValueIntro) {
+		this.coreValueIntro = coreValueIntro;
+	}
+
+
+	public String getShareholderIntro() {
+		return shareholderIntro;
+	}
+
+
+	public void setShareholderIntro(String shareholderIntro) {
+		this.shareholderIntro = shareholderIntro;
+	}
+
+
+	public String getUnShareholderIntro() {
+		return unShareholderIntro;
+	}
+
+
+	public void setUnShareholderIntro(String unShareholderIntro) {
+		this.unShareholderIntro = unShareholderIntro;
+	}
+
+
+	public String getPlanContext() {
+		return planContext;
+	}
+
+
+	public void setPlanContext(String planContext) {
+		this.planContext = planContext;
 	}
 
 

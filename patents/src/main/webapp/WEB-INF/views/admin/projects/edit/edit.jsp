@@ -164,6 +164,46 @@ function checkLogo(obj){
 					 目标用户或客户群体定位：<textarea  style="width:670px;height:150px;"  name="targetUser">${bizModul.targetUser } </textarea>
 				</div>
 			</div>
+			<div class="control-group" id="targetReq">
+				<div class="controls">
+					 目标用户或客户群体目前困扰或需求定位：<textarea  style="width:670px;height:150px;"  name="targetReq">${bizModul.targetReq } </textarea>
+				</div>
+			</div>
+			<div class="control-group" id="modulIntro">
+				<div class="controls">
+					 满足目标用户或客户需求的产品或服务模式说明：<textarea  style="width:670px;height:150px;"  name="modulIntro">${bizModul.modulIntro } </textarea>
+				</div>
+			</div>
+			<div class="control-group" id="profitModul">
+				<div class="controls">
+					 项目赢利模式说明：<textarea  style="width:670px;height:150px;"  name="profitModul">${bizModul.profitModul } </textarea>
+				</div>
+			</div>
+			<div class="control-group" id="competitorIntro">
+				<div class="controls">
+					 市场主要同行或竞争对手概述：<textarea  style="width:670px;height:150px;"  name="competitorIntro">${bizModul.competitorIntro } </textarea>
+				</div>
+			</div>
+			<div class="control-group" id="coreValueIntro">
+				<div class="controls">
+					 项目主要核心竞争力说明：<textarea  style="width:670px;height:150px;"  name="coreValueIntro">${bizModul.coreValueIntro } </textarea>
+				</div>
+			</div>
+			<div class="control-group" id="shareholderIntro">
+				<div class="controls">
+					 股东团队说明：<textarea  style="width:670px;height:150px;"  name="shareholderIntro">${teamInfo.shareholderIntro } </textarea>
+				</div>
+			</div>
+			<div class="control-group" id="unShareholderIntro">
+				<div class="controls">
+					 非股东团队说明：<textarea  style="width:670px;height:150px;"  name="unShareholderIntro">${teamInfo.unShareholderIntro } </textarea>
+				</div>
+			</div>
+			<div class="control-group" id="planContext">
+				<div class="controls">
+					 未来计划说明：<textarea  style="width:670px;height:150px;"  name="planContext">${planInfo.context } </textarea>
+				</div>
+			</div>
 			
 			<div class="span9">
 			 	<button type="submit" class="btn btn-success ">保存</button>&nbsp;&nbsp;

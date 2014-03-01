@@ -20,12 +20,16 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.knet51.ccweb.jpa.entities.projects.BizModul;
+import com.knet51.ccweb.jpa.entities.projects.PlanInfo;
 import com.knet51.ccweb.jpa.entities.projects.Projects;
+import com.knet51.ccweb.jpa.entities.projects.TeamInfo;
 import com.knet51.patents.beans.UserInfo;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.UserService;
 import com.knet51.patents.jpa.services.projects.BizModulService;
+import com.knet51.patents.jpa.services.projects.PlanInfoService;
 import com.knet51.patents.jpa.services.projects.ProjectsService;
+import com.knet51.patents.jpa.services.projects.TeamInfoService;
 import com.knet51.patents.util.fileUpLoad.FileUtil;
 
 @Controller
@@ -40,6 +44,10 @@ public class ProjectsDetailController {
 	private UserService userService;
 	@Autowired
 	private BizModulService bizModulService;
+	@Autowired
+	private TeamInfoService teamInfoService;
+	@Autowired
+	private PlanInfoService planInfoService;
 	
 	@RequestMapping(value="/admin/projects/add", method = RequestMethod.POST)
 	public String addProjects(@Valid ProjectsForm projectsForm, BindingResult validResult,@RequestParam("industry") String industry,
@@ -95,7 +103,21 @@ public class ProjectsDetailController {
 			
 			BizModul bizModul = new BizModul(newProjects);
 			bizModul.setTargetUser(projectsForm.getTargetUser());
+			bizModul.setCompetitorIntro(projectsForm.getCompetitorIntro());
+			bizModul.setCoreValueIntro(projectsForm.getCoreValueIntro());
+			bizModul.setProfitModul(projectsForm.getProfitModul());
+			bizModul.setModulIntro(projectsForm.getModulIntro());
+			bizModul.setTargetReq(projectsForm.getTargetReq());
 			bizModulService.create(bizModul);
+			
+			TeamInfo teamInfo = teamInfoService.findByProjects(projects);
+			teamInfo.setShareholderIntro(projectsForm.getShareholderIntro());
+			teamInfo.setUnShareholderIntro(projectsForm.getUnShareholderIntro());
+			teamInfoService.create(teamInfo);
+			
+			PlanInfo planInfo = planInfoService.findByProjects(projects);
+			planInfo.setContext(projectsForm.getPlanContext());
+			planInfoService.create(planInfo);
 		}
 		return "redirect:/admin/projects/list";
 	}
@@ -151,7 +173,21 @@ public class ProjectsDetailController {
 
 			BizModul bizModul = bizModulService.findByProjects(projects);
 			bizModul.setTargetUser(projectsForm.getTargetUser());
+			bizModul.setCompetitorIntro(projectsForm.getCompetitorIntro());
+			bizModul.setCoreValueIntro(projectsForm.getCoreValueIntro());
+			bizModul.setProfitModul(projectsForm.getProfitModul());
+			bizModul.setModulIntro(projectsForm.getModulIntro());
+			bizModul.setTargetReq(projectsForm.getTargetReq());
 			bizModulService.update(bizModul);
+			
+			TeamInfo teamInfo = teamInfoService.findByProjects(projects);
+			teamInfo.setShareholderIntro(projectsForm.getShareholderIntro());
+			teamInfo.setUnShareholderIntro(projectsForm.getUnShareholderIntro());
+			teamInfoService.update(teamInfo);
+			
+			PlanInfo planInfo = planInfoService.findByProjects(projects);
+			planInfo.setContext(projectsForm.getPlanContext());
+			planInfoService.update(planInfo);
 		}
 		return "redirect:/admin/projects/list";
 	}

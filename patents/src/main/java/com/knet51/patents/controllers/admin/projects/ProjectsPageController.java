@@ -18,12 +18,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.projects.BizModul;
+import com.knet51.ccweb.jpa.entities.projects.PlanInfo;
 import com.knet51.ccweb.jpa.entities.projects.Projects;
+import com.knet51.ccweb.jpa.entities.projects.TeamInfo;
 import com.knet51.patents.beans.UserInfo;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.UserService;
 import com.knet51.patents.jpa.services.projects.BizModulService;
+import com.knet51.patents.jpa.services.projects.PlanInfoService;
 import com.knet51.patents.jpa.services.projects.ProjectsService;
+import com.knet51.patents.jpa.services.projects.TeamInfoService;
 import com.knet51.patents.util.ajax.AjaxValidationEngine;
 import com.knet51.patents.util.ajax.ValidationResponse;
 
@@ -35,6 +39,10 @@ public class ProjectsPageController {
 	private ProjectsService projectsService;
 	@Autowired
 	private BizModulService bizModulService;
+	@Autowired
+	private TeamInfoService teamInfoService;
+	@Autowired
+	private PlanInfoService planInfoService;
 	
 	@RequestMapping("/admin/projects/list")
 	public String showprojectsList(HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
@@ -66,8 +74,12 @@ public class ProjectsPageController {
 			return "redirect:/admin";
 		}
 		BizModul bizModul = bizModulService.findByProjects(projects);
+		TeamInfo teamInfo = teamInfoService.findByProjects(projects);
+		PlanInfo planInfo = planInfoService.findByProjects(projects);
 		model.addAttribute("projects", projects);
 		model.addAttribute("bizModul", bizModul);
+		model.addAttribute("teamInfo", teamInfo);
+		model.addAttribute("planInfo", planInfo);
 		Map<String,String> projectsField = GlobalDefs.getProjectsField();
 		model.addAttribute("projectsField", projectsField);
 		return "admin."+userInfo.getRole()+".projects.edit";
@@ -77,8 +89,12 @@ public class ProjectsPageController {
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		Projects projects = projectsService.findOne(project_id);
 		BizModul bizModul = bizModulService.findByProjects(projects);
+		TeamInfo teamInfo = teamInfoService.findByProjects(projects);
+		PlanInfo planInfo = planInfoService.findByProjects(projects);
 		model.addAttribute("projects", projects);
 		model.addAttribute("bizModul", bizModul);
+		model.addAttribute("teamInfo", teamInfo);
+		model.addAttribute("planInfo", planInfo);
 		return "admin."+userInfo.getRole()+".projects.view";
 	}
 	
