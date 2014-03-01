@@ -157,5 +157,33 @@ public class LoginController {
 		String number = num.toString();
 		return number;
 	}
+	
+	@RequestMapping(value = "/projects/view/checkEmailAndPassword", method = RequestMethod.POST)
+	public @ResponseBody
+	ValidationResponse processProjectDetailFormAjaxJson(@Valid LoginForm loginForm,
+			BindingResult result, HttpSession session) {
+		return AjaxValidationEngine.process(result);
+	}
+	
+	@RequestMapping(value = "/projects/view/checkLogin", method = RequestMethod.POST)
+	public @ResponseBody String loginProjectDetail(HttpServletResponse response,
+			LoginForm loginForm) throws Exception {
+		String email = loginForm.getEmail();
+		String pwd = loginForm.getPassword();
+
+		User user = null;
+		boolean value = false;
+		value = service.login(email, pwd);
+		user = service.getValidUser(email, pwd);
+		Integer num = 1;
+		if (value == false) {
+			num = 0;
+		}
+		if (user != null && user.getForbidden().equals("yes")) {
+			num = 0;
+		}
+		String number = num.toString();
+		return number;
+	}
 
 }

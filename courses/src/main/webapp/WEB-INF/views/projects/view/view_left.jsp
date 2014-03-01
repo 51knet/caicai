@@ -4,6 +4,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="<c:url value='/resources/js/loginCheck.js'></c:url>"></script>
+<%
+	String queryUrl = new org.springframework.web.util.UrlPathHelper().getOriginatingQueryString(request);
+	String requestUrl = new org.springframework.web.util.UrlPathHelper().getOriginatingRequestUri(request);
+	String currentUrl = requestUrl+"?"+queryUrl;
+%>
 <style>
 .margin_right{
 	margin-right: 20px;
@@ -205,6 +210,7 @@ font-weight: bold;
 	  </div>
 	   <div style="padding: 10px 20px;">
 			<form action="<c:url value='/signin'></c:url>" id="login_form"  method="post">
+				<input type="hidden" value="<%=currentUrl  %>" name="currentUrl">
 				<div class="control-group" id="email">
 				
 					<div class="controls">
