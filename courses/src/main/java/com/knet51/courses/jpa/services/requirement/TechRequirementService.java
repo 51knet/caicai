@@ -8,7 +8,7 @@ import com.knet51.ccweb.jpa.entities.RequirType;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.requirement.Requirement;
 
-public interface RequirementService {
+public interface TechRequirementService {
 	Requirement create(Requirement requirement);
 	Requirement findOne(Long require_id);
 	void delete(Long id);

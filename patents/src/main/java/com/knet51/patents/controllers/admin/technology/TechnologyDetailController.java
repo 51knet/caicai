@@ -33,12 +33,11 @@ public class TechnologyDetailController {
 		
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		try {
-			Technology technology = new Technology();
-
 			if(validResult.hasErrors()){
 				logger.info("====="+validResult.toString());
 				return "redirect:/admin/technology/new";
 			}else{
+				Technology technology = new Technology();
 				technology.setAchievement(techForm.getAchievement());
 				technology.setAdvantage(techForm.getAdvantage());
 				technology.setApplyArea(techForm.getApplyArea());

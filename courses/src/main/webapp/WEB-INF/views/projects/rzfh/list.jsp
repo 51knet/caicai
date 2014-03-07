@@ -15,19 +15,9 @@ $(document).ready(function(){
 	});
 });
 
- function  NoPost(){
- 	return false;
- }
 //-->
 </script>
 <style>
-.right_line{
-	/*background-image: url(' <c:url value="/resources/img/default/blueline.png" ></c:url> ' );
-	background-position: right center;
-	background-repeat: no-repeat;*/
-	margin-left: 330px;
-	margin-right: 20px;
-}
 
 .projects{
 	 width: 100%;
@@ -48,53 +38,15 @@ $(document).ready(function(){
 	float: left; margin-left: 20px; 
 	max-width: 440px; overflow: hidden;
 }
-
-.projects .detai .info_div  .content_div{
- clear: both; width: 100%; max-width: 680px; 
- max-height: 60px; overflow: hidden;
-}
-
-/*.limitTable{
-	width:100%; 
-	table-layout:fixed;
-	margin-bottom: 10px;
-}
- .limitTd{
-	word-wrap:break-word; word-break:break-all;
-	color: #666; font-size: 13px;
-}*/
-
 ._logo{
 	width: 200px; height: 139px;
 }
-.process_out{
-	width: 349px; height: 10px; margin-top:5px; 
-	background-color: #c0defa; border: 1px solid #319bff;
-}
-.process_in{
-	height: 10px; background-color: #319bff;
-	max-width: 350px;
-	overflow: hidden;
-}
-.process_tab{
-	width: 350px;;  font-weight: bold;
-	text-align: left;
-	color: #6497ce
-}
-.date{
-	font-size: 12px;
-	font-weight: normal;
-}
-.points{
-	font-size: 14px;
-}
-.myblock{
-	padding: 3px 3px; background-color: #6597c8; color: #fff; font-size: 14px; font-weight: bold;
-}
+
 </style>
 <div class="container title"  >
 		<div class="innerLeftTitle " >
-			 <img  src="<c:url value='/resources/img/default/rztitle1.png'></c:url> ">
+		<c:if test="${types=='rzjg' }"> <img  src="<c:url value='/resources/img/default/rzjgtitle1.png'></c:url> "></c:if>
+		<c:if test="${types=='fhyq' }"> <img  src="<c:url value='/resources/img/default/fhytitle1.png'></c:url> "></c:if>
 		</div>
  </div>
  	

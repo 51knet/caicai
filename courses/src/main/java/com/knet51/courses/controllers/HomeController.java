@@ -43,7 +43,7 @@ import com.knet51.courses.jpa.services.patent.PatentService;
 import com.knet51.courses.jpa.services.patent.PatentTypeService;
 import com.knet51.courses.jpa.services.projects.ProjectsService;
 import com.knet51.courses.jpa.services.requirement.PatentRequirementService;
-import com.knet51.courses.jpa.services.requirement.RequirementService;
+import com.knet51.courses.jpa.services.requirement.TechRequirementService;
 import com.knet51.courses.jpa.services.technology.TechnologyService;
 
 /**
@@ -65,7 +65,7 @@ public class HomeController {
 	@Autowired
 	private PatentTypeService patentTypeService;
 	@Autowired
-	private RequirementService requirementService;
+	private TechRequirementService techRequirementService;
 	@Autowired
 	private PatentFieldService patentFieldService;
 	@Autowired
@@ -98,7 +98,7 @@ public class HomeController {
 		model.addAttribute("foreignPatentList", foreignPatentList);
 		
 		List<PatentRequirement> patentRequire =  patentRequirementService.findAllListByStatus(GlobalDefs.PASS);
-		List<Requirement> technologyRequire = requirementService.findRequireListByStatus(GlobalDefs.PASS);
+		List<Requirement> technologyRequire = techRequirementService.findRequireListByStatus(GlobalDefs.PASS);
 		model.addAttribute("patentRequire", patentRequire);
 		model.addAttribute("technologyRequire", technologyRequire);
 		
@@ -201,13 +201,4 @@ public class HomeController {
 		return ;
 	}
 	
-	@RequestMapping(value="/fastupload", method = RequestMethod.GET)
-	public String showFastUploadPage(Model model){
-		List<PatentType> patentTypeList = patentTypeService.findAllPatentType();
-		model.addAttribute("patentTypeList", patentTypeList);
-		
-		Map<String, String> techField = GlobalDefs.getTechField();
-		model.addAttribute("techField", techField);
-		return "fastupload";
-	}
 }

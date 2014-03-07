@@ -153,6 +153,11 @@ public class PatentServiceImpl implements PatentService {
 		patentRespository.saveAndFlush(patent);
 	}
 
+	@Override
+	public Patent create(Patent patent) {
+		return patentRespository.save(patent);
+	}
+
 
 
 }

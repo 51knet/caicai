@@ -3,6 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script type="text/javascript" src="<c:url value="/resources/js/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
 <!--
  function  NoPost(){
@@ -48,7 +49,7 @@
 			<div class="tab-content">
 				<div class="tab-pane active" id="patent_tab">
 					<div class="content row-fluid">
-						<form onsubmit="return NoPost();"  action= '<c:url value="/patent/add"></c:url>'  method="post" style="" id="patent_form" name="patent_post">
+						<form   action= '<c:url value="/patent/add"></c:url>'  method="post" style="" id="patent_form" name="patent_post">
 						<div class="span6" >
 							<div class="control-group" id="patentNum">
 								<div class="controls">
@@ -106,9 +107,9 @@
 						</div>
 						<div class="span6"   >
 						
-							<div class="control-group" id="inventer">
+							<div class="control-group" id="patentInventer">
 								<div class="controls">
-									<i class="icon-star"></i> 发明人士：<input type="text" name="inventer"   placeholder="发明人士" required> <span class="help-inline"><form:errors path="inventer" /></span>
+									<i class="icon-star"></i> 发明人士：<input type="text" name="patentInventer"   placeholder="发明人士" required> <span class="help-inline"><form:errors path="patentInventer" /></span>
 								</div>
 							</div>
 							
@@ -132,21 +133,26 @@
 							
 							<div class="control-group" id="agency">
 								<div  class="controls">
-									<i class="icon-star"></i> 上传人名：<input type="text" name="agency"   placeholder="上传人"  required  > <span class="help-inline"><form:errors path="agency" /></span>
+									代 理 机 构：<input type="text" name="agency"   placeholder="代理机构"  required  > <span class="help-inline"><form:errors path="agency" /></span>
 								</div>
 							</div>
 							
 							<div class="control-group" id="agent">
 								<div class="controls">
-									<i class="icon-star"></i> 联系电话：<input type="text" name="agent"   placeholder="联系电话"  required > <span class="help-inline"><form:errors path="agent" /></span>
+									代 理 人 名：<input type="text" name="agent"   placeholder="代理人名"  required > <span class="help-inline"><form:errors path="agent" /></span>
+								</div>
+							</div>
+							<div class="control-group" id="patentAddress">
+								<div class="controls">
+									<i class="icon-star"></i> 联系地址：<input type="text" name="patentAddress"   placeholder="联系地址" required > <span class="help-inline"><form:errors path="patentAddress" /></span>
 								</div>
 							</div>
 							
-							<div class="control-group" id="address">
-								<div class="controls">
-									<i class="icon-star"></i> 联系地址：<input type="text" name="address"   placeholder="联系地址" required > <span class="help-inline"><form:errors path="address" /></span>
-								</div>
+						<div class="control-group" id="patentPhone">
+							<div class="controls">
+									<i class="icon-star"></i> 联系电话： <input type="text"  required name="patentPhone" placeholder="联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="patentPhone" /></span>
 							</div>
+						</div>
 						</div>
 					
 						<div class="control-group" id="summary">
@@ -168,11 +174,11 @@
 				
 				<div class="tab-pane " id="tech_tab">
 					<div class="content row-fluid">
-						<form onsubmit="return NoPost();" action= '<c:url value="/technology/add"></c:url>'  method="post"  id="technology_form" name="technology_post">
+						<form  action= '<c:url value="/technology/add"></c:url>'  method="post"  id="tech_form" name="technology_post">
 						<div class="span6" >
-							<div class="control-group" id="techNum">
+							<div class="control-group" id="techName">
 								<div class="controls">
-									<i class="icon-star"></i> 项目名称：<input type="text" name="techName"   placeholder="项目名称" required "> <span class="help-inline"><form:errors path="techName" /></span>
+									<i class="icon-star"></i> 技术名称：<input type="text" name="techName"   placeholder="技术名称" required "> <span class="help-inline"><form:errors path="techName" /></span>
 								</div>
 							</div>
 							<div class="control-group"  > 
@@ -191,15 +197,15 @@
 							</div>
 						</div>
 						
-						<div class="control-group" id="department">
+						<div class="control-group" id="techInventer">
 							<div class="controls">
-								<i class="icon-star"></i> 所 有 人 ：<input type="text" name="inventer"   placeholder="所有人" required > <span class="help-inline"><form:errors path="inventer" /></span>
+								<i class="icon-star"></i> 所 有 人 ：<input type="text" name="techInventer"   placeholder="所有人" required > <span class="help-inline"><form:errors path="techInventer" /></span>
 							</div>
 						</div>
 					
-						<div class="control-group" id="phone">
+						<div class="control-group" id="techPhone">
 							<div class="controls">
-								<i class="icon-star"></i> 联系电话：<input type="text" name="phone"   placeholder="联系电话"  required " onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>
+								<i class="icon-star"></i> 联系电话：<input type="text" name="techPhone"   placeholder="联系电话"  required  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="techPhone" /></span>
 							</div>
 						</div>
 							
@@ -239,11 +245,11 @@
 
 						</div>
 					
-						<div class="control-group" id="contents">
+						<div class="control-group" id="techContents">
 							<div class="controls span11 " >
 								<i class="icon-star"></i> 项目简介：<br>
-								<textarea  style="width:680px;height:80px;"  name="contents"  placeholder="项目简介"></textarea>
-								<span class="help-inline"><form:errors path="content" /></span>
+								<textarea  style="width:680px;height:80px;"  name="techContents"  placeholder="项目简介"></textarea>
+								<span class="help-inline"><form:errors path="techContents" /></span>
 							</div>
 						</div>
 						
@@ -275,16 +281,16 @@
 				
 				<div class="tab-pane " id="patent_require_tab">
 					<div class="content row-fluid">
-						<form onsubmit="return NoPost();" action= '<c:url value="/admin/patent/add"></c:url>'  method="post" style="" id="patent_form" name="patent_post">
+						<form  action= '<c:url value="/patentrequire/add"></c:url>'  method="post" style="" id="patent_require_form" name="patent_require_post">
 						<div class="span6" >
-						<div class="control-group" id="title">
+						<div class="control-group" id="patentReqTitle">
 							<div class="controls">
-									<i class="icon-star"></i> 需求名称： <input type="text" name="title" placeholder="需求名称"  required > <span class="help-inline"><form:errors path="title" /></span>
+									<i class="icon-star"></i> 需求名称： <input type="text" name="patentReqTitle" placeholder="需求名称"  required > <span class="help-inline"><form:errors path="patentReqTitle" /></span>
 							</div>
 						</div>	
-						<div class="control-group" id="requirementField">
+						<div class="control-group" id="patentReqField">
 							<div class="controls">
-									<i class="icon-star"></i> 所属领域： <input type="text" name="requirementField" placeholder="所属领域"  required > <span class="help-inline"><form:errors path="requirementField" /></span>
+									<i class="icon-star"></i> 所属领域： <input type="text" name="patentReqField" placeholder="所属领域"  required > <span class="help-inline"><form:errors path="patentReqField" /></span>
 							</div>
 						</div>	
 						<div class="control-group" id="patentType">
@@ -295,50 +301,50 @@
 							  			</c:forEach>
 								</select>
 						</div>
-						<div class="control-group" id="cooperation">
+						<div class="control-group" id="patentReqCooperation">
 							<div class="controls">
-									<i class="icon-star"></i> 合作方式： <input type="text" name="cooperation" placeholder="合作方式"  required> <span class="help-inline"><form:errors path="cooperation" /></span>
+									<i class="icon-star"></i> 合作方式： <input type="text" name="patentReqCooperation" placeholder="合作方式"  required> <span class="help-inline"><form:errors path="patentReqCooperation" /></span>
 							</div>
 						</div>	
-						<div class="control-group" id="money">
+						<div class="control-group" id="patentReqMoney">
 							<div class="controls">
-								<i class="icon-star"></i> 拟定资金： <input type="text" name="money" placeholder="拟定资金"  required> <span class="help-inline"><form:errors path="money" /></span>
+								<i class="icon-star"></i> 拟定资金： <input type="text" name="patentReqMoney" placeholder="拟定资金"  required> <span class="help-inline"><form:errors path="patentReqMoney" /></span>
 							</div>
 						</div>
 						</div>
 						<div class="span6" >
-						<div class="control-group" id="company">
+						<div class="control-group" id="patentReqCompany">
 							<div class="controls">
-								<i class="icon-star"></i> 公司名称： <input type="text" name="company" placeholder="公司名称"  required> <span class="help-inline"><form:errors path="company" /></span>
+								<i class="icon-star"></i> 公司名称： <input type="text" name="patentReqCompany" placeholder="公司名称"  required> <span class="help-inline"><form:errors path="patentReqCompany" /></span>
 							</div>
 						</div>
-						<div class="control-group" id="contact">
+						<div class="control-group" id="patentReqContact">
 							<div class="controls">
-									<i class="icon-star"></i> 联系人士： <input type="text" name="contact" placeholder="联系人士"  required> <span class="help-inline"><form:errors path="contact" /></span>
+									<i class="icon-star"></i> 联系人士： <input type="text" name="patentReqContact" placeholder="联系人士"  required> <span class="help-inline"><form:errors path="patentReqContact" /></span>
 							</div>
 						</div>
 						
-						<div class="control-group" id="phone">
+						<div class="control-group" id="patentReqPhone">
 							<div class="controls">
-									<i class="icon-star"></i> 联系电话： <input type="text"  required name="phone" placeholder="联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>
+									<i class="icon-star"></i> 联系电话： <input type="text"  required name="patentReqPhone" placeholder="联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="patentReqPhone" /></span>
 							</div>
 						</div>
-						<div class="control-group" id="fax">
+						<div class="control-group" id="patentReqFax">
 							<div class="controls">
-									<i class="icon-star"></i> 联系传真： <input type="text"  required name="fax" placeholder="联系传真" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="fax" /></span>
+									<i class="icon-star"></i> 联系传真： <input type="text"  required name="patentReqFax" placeholder="联系传真" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="patentReqFax" /></span>
 							</div>
 						</div>
-						<div class="control-group" id="email">
+						<div class="control-group" id="patentReqEmail">
 							<div class="controls">
-									<i class="icon-star"></i> 联系邮箱： <input type="text"  required name="email" placeholder="联系邮箱" > <span class="help-inline"><form:errors path="email" /></span>
+									<i class="icon-star"></i> 联系邮箱： <input type="text"  required name="patentReqEmail" placeholder="联系邮箱" > <span class="help-inline"><form:errors path="patentReqEmail" /></span>
 							</div>
 						</div>
 						</div>
-						<div class="control-group" id="content">
+						<div class="control-group" id="patentReqContent">
 							<div class="controls span11">
 								<i class="icon-star"></i>需求简介：<br>
-								<textarea  style="width:680px;height:80px;"  name="content"  placeholder="需求简介"></textarea>
-								<span class="help-inline"><form:errors path="content" /></span>
+								<textarea  style="width:680px;height:80px;"  name="patentReqContent"  placeholder="需求简介"></textarea>
+								<span class="help-inline"><form:errors path="patentReqContent" /></span>
 							</div>
 						</div>
 						<div class="control-group">
@@ -353,57 +359,57 @@
 				
 				<div class="tab-pane row-fluid" id="tech_require_tab">
 					<div class="content row-fluid">
-						<form onsubmit="return NoPost();" action= '<c:url value="/admin/requirement/add"></c:url>'  method="post"  id="requirement_new_form" name="requirement_post" >
+						<form  action= '<c:url value="/techrequire/add"></c:url>'  method="post"  id="tech_require_form" name="requirement_post" >
 						<div class="span6" >
-								<div class="control-group" id="title">
+								<div class="control-group" id="techReqTitle">
 									<div class="controls">
-											<i class="icon-star"></i> 需求标题： <input type="text" name="title" placeholder="标题"   required> <span class="help-inline"><form:errors path="title" /></span>
+											<i class="icon-star"></i> 需求标题： <input type="text" name="techReqTitle" placeholder="需求标题"   required> <span class="help-inline"><form:errors path="techReqTitle" /></span>
 									</div>
 								</div>
 								
-								<div class="control-group" id="money">
+								<div class="control-group" id="techReqMoney">
 									<div class="controls">
-										<i class="icon-star"></i> 拟定资金： <input type="text" name="money" placeholder="拟定资金"   required> <span class="help-inline"><form:errors path="title" /></span>
+										<i class="icon-star"></i> 拟定资金： <input type="text" name="techReqMoney" placeholder="拟定资金"   required> <span class="help-inline"><form:errors path="techReqMoney" /></span>
 									</div>
 								</div>
 								
-								<div class="control-group" id="title">
+								<div class="control-group" id="techReqEndTime">
 									<div class="controls">
-											<i class="icon-star"></i> 截止日期： <input type="text"  required name="endTime" placeholder="截止日期" class="Wdate" onClick="WdatePicker()"> <span class="help-inline"><form:errors path="title" /></span>
+											<i class="icon-star"></i> 截止日期： <input type="text"  required name="techReqEndTime" placeholder="截止日期" class="Wdate" onClick="WdatePicker()"> <span class="help-inline"><form:errors path="techReqEndTime" /></span>
 									</div>
 								</div>
 								
-							<div class="control-group" id="company">
+							<div class="control-group" id="techReqCompany">
 								<div class="controls">
-									<i class="icon-star"></i> 公司名称： <input type="text" name="company" placeholder="公司名称"  required> <span class="help-inline"><form:errors path="company" /></span>
+									<i class="icon-star"></i> 公司名称： <input type="text" name="techReqCompany" placeholder="公司名称"  required> <span class="help-inline"><form:errors path="techReqCompany" /></span>
 								</div>
 							</div>
 						
 						</div>
 						<div class="span6"   >
-							<div class="control-group" id="name">
+							<div class="control-group" id="techReqName">
 								<div class="controls">
-										<i class="icon-star"></i> 联系人士： <input type="text" name="name" placeholder="联系人士"  required> <span class="help-inline"><form:errors path="name" /></span>
+										<i class="icon-star"></i> 联系人士： <input type="text" name="techReqName" placeholder="联系人士"  required> <span class="help-inline"><form:errors path="techReqName" /></span>
 								</div>
 							</div>
 							
-							<div class="control-group" id="phone">
+							<div class="control-group" id="techReqPhone">
 								<div class="controls">
-										<i class="icon-star"></i> 联系电话： <input type="text"  required name="phone" placeholder="联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>
+										<i class="icon-star"></i> 联系电话： <input type="text"  required name="techReqPhone" placeholder="联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="techReqPhone" /></span>
 								</div>
 							</div>
-							<div class="control-group" id="address">
+							<div class="control-group" id="techReqAddress">
 								<div class="controls">
-										<i class="icon-star"></i> 联系地址： <input type="text"  required name="address" placeholder="联系地址"> <span class="help-inline"><form:errors path="address" /></span>
+										<i class="icon-star"></i> 联系地址： <input type="text"  required name="techReqAddress" placeholder="联系地址"> <span class="help-inline"><form:errors path="techReqAddress" /></span>
 								</div>
 							</div>
 						</div>
 					
-						<div class="control-group" id="content">
+						<div class="control-group" id="techReqContent">
 							<div class="controls span11 " >
 								<i class="icon-star"></i> 需求简介：<br>
-								<textarea  style="width:680px;height:80px;"  name="content"  placeholder="需求简介"></textarea>
-								<span class="help-inline"><form:errors path="content" /></span>
+								<textarea  style="width:680px;height:80px;"  name="techReqContent"  placeholder="需求简介"></textarea>
+								<span class="help-inline"><form:errors path="techReqContent" /></span>
 							</div>
 						</div>
 						<div class="control-group">
@@ -419,6 +425,23 @@
 		</div>
 		<br>
  </div>
+<script type="text/javascript">
+		$(document).ready(function() {
+			$("#patent_form").submit(function(){
+				return checkEmptyAjax("patent_form","fastupload/patentInfoAJAX");
+			});
+			$("#tech_form").submit(function(){
+				return checkEmptyAjax("tech_form","fastupload/techInfoAJAX");
+			});
+			$("#patent_require_form").submit(function(){
+				return checkEmptyAjax("patent_require_form","fastupload/patentRequireAJAX");
+			});
+			$("#tech_require_form").submit(function(){
+				return checkEmptyAjax("tech_require_form","fastupload/techRequireAJAX");
+			});
 
+	    });
+	
+</script>
 
 

@@ -34,4 +34,6 @@ public interface PatentService {
  	
  	void update(Patent patent);
  	
+ 	Patent create(Patent patent);
+ 	
 }

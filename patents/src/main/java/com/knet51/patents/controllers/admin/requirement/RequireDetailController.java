@@ -22,7 +22,6 @@ import com.knet51.patents.jpa.services.patent.PatentTypeService;
 import com.knet51.patents.jpa.services.requirement.PatentRequirementService;
 import com.knet51.patents.jpa.services.requirement.RequirTypeService;
 import com.knet51.patents.jpa.services.requirement.RequirementService;
-import com.knet51.ccweb.jpa.entities.RequirType;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.PatentType;
 import com.knet51.ccweb.jpa.entities.requirement.PatentRequirement;

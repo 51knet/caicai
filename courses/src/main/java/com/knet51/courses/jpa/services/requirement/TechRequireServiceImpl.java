@@ -14,8 +14,8 @@ import com.knet51.ccweb.jpa.entities.RequirType;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.requirement.Requirement;
 import com.knet51.ccweb.jpa.repository.requirement.RequirementRepository;
-@Service("requirementService")
-public class RequirementServiceImpl implements RequirementService {
+@Service("techRequireService")
+public class TechRequireServiceImpl implements TechRequirementService {
 	@Autowired
 	private RequirementRepository repository;
 	

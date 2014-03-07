@@ -3,6 +3,7 @@ package com.knet51.ccweb.jpa.entities.projects;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 

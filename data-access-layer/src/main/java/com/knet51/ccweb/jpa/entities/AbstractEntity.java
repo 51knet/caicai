@@ -1,5 +1,7 @@
 package com.knet51.ccweb.jpa.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,7 +15,7 @@ import com.google.gson.annotations.Expose;
  * @author 
  */
 @MappedSuperclass
-public class AbstractEntity {
+public class AbstractEntity implements Serializable {
 	@Expose
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -65,7 +65,6 @@ public class ProjectsPageController {
 		List<Projects> npList = new ArrayList<Projects>();
 		for (Projects projects : upList) {
 			if(projects.getCurrentMoney().equals(0L)){
-				System.out.println("==========proname="+projects.getProjectName());
 				npList.add(projects);
 			}
 		}
@@ -115,6 +114,7 @@ public class ProjectsPageController {
 		}else{
 			page = rzfhService.findAll(pageNumber, pageSize);
 		}
+		model.addAttribute("types", types);
 		model.addAttribute("page", page);
 		return "rzfh.list";
 	}

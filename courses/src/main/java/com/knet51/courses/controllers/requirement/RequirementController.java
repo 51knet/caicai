@@ -12,11 +12,11 @@ import com.knet51.ccweb.jpa.entities.requirement.PatentRequirement;
 import com.knet51.ccweb.jpa.entities.requirement.Requirement;
 import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.requirement.PatentRequirementService;
-import com.knet51.courses.jpa.services.requirement.RequirementService;
+import com.knet51.courses.jpa.services.requirement.TechRequirementService;
 @Controller
 public class RequirementController {
 	@Autowired
-	private RequirementService requirementService;
+	private TechRequirementService techRequirementService;
 	@Autowired
 	private PatentRequirementService patentRequirementService;
 
@@ -29,7 +29,7 @@ public class RequirementController {
 			Page<PatentRequirement> page = patentRequirementService.findAllByStatus(pageNumber, pageSize, GlobalDefs.PASS);
 			model.addAttribute("page", page);
 		}else if(require_type.equals("technology")){
-			Page<Requirement> page = requirementService.findRequireByStatus(pageNumber, pageSize, GlobalDefs.PASS);
+			Page<Requirement> page = techRequirementService.findRequireByStatus(pageNumber, pageSize, GlobalDefs.PASS);
 			model.addAttribute("page", page);
 		}
 		
@@ -47,7 +47,7 @@ public class RequirementController {
 			model.addAttribute("active", require_type);
 			return "patentrequirement.view";
 		}else if(require_type.equals("technology")){
-			Requirement requirement = requirementService.findOne(require_id);
+			Requirement requirement = techRequirementService.findOne(require_id);
 			model.addAttribute("requirement", requirement);
 			model.addAttribute("active", require_type);
 			return "requirement.view";

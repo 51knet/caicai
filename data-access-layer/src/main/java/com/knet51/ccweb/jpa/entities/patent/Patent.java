@@ -22,6 +22,13 @@ public class Patent {
 	private String agent;
 	private String applicationDate;
 	private String address;
+	private String phone;
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	private Long count;
 	public Long getCount() {
 		return count;
