@@ -2,11 +2,12 @@ package com.knet51.patents.jpa.services.projects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.projects.TeamInfo;
 import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.ccweb.jpa.repository.projects.TeamInfoRepository;
-
+@Transactional
 @Service("teamInfoServices")
 public class TeamInfoServicesImpl implements TeamInfoService {
 
