@@ -202,6 +202,13 @@
 		<put-attribute name="right" value="/WEB-INF/views/fastupload/fastupload.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="fastupload.success" extends="index-sec-layout">
+		<put-attribute name="title" value="快速上传" />
+		<put-attribute name="userCourse" value="/WEB-INF/views/_shared/index/_user_course.jsp"></put-attribute>
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/fastupload/success.jsp"></put-attribute>
+	</definition>
+	
 	<!-- projects  -->
 	<definition name="projects.list" extends="index-layout">
 		<put-attribute name="title" value="融资项目" />

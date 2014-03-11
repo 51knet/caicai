@@ -38,9 +38,11 @@
 	  				<a class="a_color_blue"  style="text-decoration: none; float: right;" href="<c:url value="/patent/list/china"></c:url>" >更多>></a>
 	  			</li> 
 				<li style="margin-top: 10px;"> </li>
-				<c:forEach items="${chinaPatentList }" var="chinaPatentList" begin="0"  end="9"  >
+				<c:forEach items="${chinaPatentList }" var="chinaPatentList" begin="0"  end="9"  varStatus="i">
 					<li ><div id="contentlimit" style="width:240px; float: left;">
-						<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${chinaPatentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${chinaPatentList.patentName }</a>
+						<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${chinaPatentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 
+						${chinaPatentList.patentName } <c:if test="${i.index<3 }">...<img src="<c:url value='/resources/img/default/new-icon.gif'></c:url>" > </c:if>
+						</a>
 						</div>
 					</li>
 				</c:forEach>
@@ -53,9 +55,10 @@
 	  				<a class="a_color_blue"  style="text-decoration: none; float: right;" href="<c:url value="/patent/list/foreign"></c:url>" >更多>></a> 
 	  			</li> 
 	  			<li  style="margin-top: 10px;"> </li>
-				<c:forEach items="${foreignPatentList }" var="foreignPatentList" begin="0" end="9">
+				<c:forEach items="${foreignPatentList }" var="foreignPatentList" begin="0" end="9" varStatus="i">
 						<li   ><div id="contentlimit" style="width:240px; float: left;">
-							<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${foreignPatentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${foreignPatentList.patentName }</a>
+							<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${foreignPatentList.patentNum }"></c:url>">
+							<img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${foreignPatentList.patentName } <c:if test="${i.index<3 }">...<img src="<c:url value='/resources/img/default/new-icon.gif'></c:url>" > </c:if></a>
 						</div></li>
 				</c:forEach>
 				</ul>
@@ -75,9 +78,11 @@
 						<tr>
 							<td valign="top">
 								<ul>
-									<c:forEach items="${patentRequire }" var="patentRequire"  begin="0" end="6">
+									<c:forEach items="${patentRequire }" var="patentRequire"  begin="0" end="6" varStatus="i">
 										<li ><div id="contentlimit" style="width:350px; float: left;" >
-										<img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  <a class="a_color_ccc"  href="<c:url value="/requirement/patent/view/${ patentRequire.id}"></c:url>">${patentRequire.title}</a>
+										<img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  <a class="a_color_ccc"  href="<c:url value="/requirement/patent/view/${ patentRequire.id}"></c:url>">${patentRequire.title} 
+										<c:if test="${i.index<3 }">...<img src="<c:url value='/resources/img/default/new-icon.gif'></c:url>" > </c:if>
+										</a>
 										</div></li>
 									</c:forEach>
 								</ul>
@@ -106,9 +111,10 @@
 						<tr>
 							<td valign="top">
 								<ul>
-								<c:forEach items="${technologyRequire}" var="technologyRequire"  begin="0"  end="6">
+								<c:forEach items="${technologyRequire}" var="technologyRequire"  begin="0"  end="6" varStatus="i">
 									<li ><div id="contentlimit" style="width:350px; float: left;">
-									<a class="a_color_ccc"   href="<c:url value="/requirement/technology/view/${technologyRequire.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${technologyRequire.title }</a>
+									<a class="a_color_ccc"   href="<c:url value="/requirement/technology/view/${technologyRequire.id}"></c:url>">
+									<img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${technologyRequire.title } <c:if test="${i.index<3 }">...<img src="<c:url value='/resources/img/default/new-icon.gif'></c:url>" > </c:if></a>
 									</div></li>
 								</c:forEach>
 								</ul>

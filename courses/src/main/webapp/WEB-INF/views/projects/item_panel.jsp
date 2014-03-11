@@ -71,6 +71,15 @@ padding: 10px 10px 0px 20px;
 </style>
 <div class="left-menu-container">
 	<ul  class="nav  nav-stacked" >
+		<li  class="bottom_line">
+			<div  class="pic_title">
+					<a href='<c:url value="/projects/list"></c:url>' ><img src="<c:url value='/resources/img/default/rzhometitle.png'></c:url>" ></a>
+			</div>
+			<div class="pic_btm">
+			&nbsp;
+			</div>
+		</li>
+	
 		<li class="bottom_line">
 			<div  class="pic_title">
 					<img src="<c:url value='/resources/img/default/sstitle.png'></c:url>" >
@@ -105,6 +114,15 @@ padding: 10px 10px 0px 20px;
 		<li  class="bottom_line">
 			<div  class="pic_title">
 					<a href='<c:url value="/rzfh/list/fhyq"></c:url>' ><img src="<c:url value='/resources/img/default/fhytitle.png'></c:url>" ></a>
+			</div>
+			<div class="pic_btm">
+			&nbsp;
+			</div>
+		</li>
+		
+		<li  class="bottom_line">
+			<div  class="pic_title">
+					<a href='<c:url value="/"></c:url>' ><img src="<c:url value='/resources/img/default/hometitle.png'></c:url>" ></a>
 			</div>
 			<div class="pic_btm">
 			&nbsp;

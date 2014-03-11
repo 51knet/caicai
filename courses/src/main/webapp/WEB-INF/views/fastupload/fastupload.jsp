@@ -150,7 +150,7 @@
 							
 						<div class="control-group" id="patentPhone">
 							<div class="controls">
-									<i class="icon-star"></i> 联系电话： <input type="text"  required name="patentPhone" placeholder="联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="patentPhone" /></span>
+									<i class="icon-star"></i> 联系电话：<input type="text"  required name="patentPhone" placeholder="联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="patentPhone" /></span>
 							</div>
 						</div>
 						</div>
@@ -240,6 +240,12 @@
 						<div class="control-group" id="cooperation">
 							<div class="controls">
 							<i class="icon-star"></i> 合作方式：<input type="text" name="cooperation"   placeholder="合作方式" required "> <span class="help-inline"><form:errors path="cooperation" /></span>
+							</div>
+						</div>
+						
+						<div class="control-group" id="demand">
+							<div class="controls">
+							<i class="icon-star"></i> 合作要求：<input type="text" name="demand"   placeholder="合作要求" required "> <span class="help-inline"><form:errors path="demand" /></span>
 							</div>
 						</div>
 

@@ -91,6 +91,7 @@ public class FastUploadController {
 			patent.setStatus(GlobalDefs.WAITE);
 			patent.setPatentType(patentType);
 			patent.setUser(user);
+			patent.setPhone(patentForm.getPatentPhone());
 			patent.setFocus(GlobalDefs.HOME_FOCUS_NOT);
 			if(country.equals(GlobalDefs.PATENT_FOREIGN)){
 				patent.setCountry(GlobalDefs.PATENT_FOREIGN);
@@ -145,7 +146,7 @@ public class FastUploadController {
 		User user = userService.getValidEmail("tim@apple.com");
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
-			return "redirect:/admin/patentRequirement/new";
+			return "redirect:/fastupload";
 		}else{
 			PatentType type = patentTypeService.findOne(type_id);
 			
@@ -167,7 +168,7 @@ public class FastUploadController {
 			requirement.setStatus(GlobalDefs.WAITE);
 			patentRequireService.create(requirement);
 			
-			return "redirect:/admin/patentRequirement/list";
+			return "redirect:/fastupload/success";
 		}
 		
 	}
@@ -178,7 +179,7 @@ public class FastUploadController {
 		User user = userService.getValidEmail("tim@apple.com");
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
-			return "redirect:/admin/requirement/new";
+			return "redirect:/fastupload";
 		}else{
 			Requirement requirement = new Requirement();
 			requirement.setTitle(requireForm.getTechReqTitle());
@@ -195,9 +196,14 @@ public class FastUploadController {
 			requirement.setStatus(GlobalDefs.WAITE);
 			
 			techRequireService.create(requirement);
-			return "redirect:/admin/requirement/list";
+			return "redirect:/fastupload/success";
 		}
 		
+	}
+	
+	@RequestMapping(value="/fastupload/success", method=RequestMethod.GET)
+	public String FastUploadSuccess(){
+		return "fastupload.success";
 	}
 	
 	@RequestMapping(value = "/fastupload/patentInfoAJAX", method = RequestMethod.POST)
