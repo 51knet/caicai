@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.UserOrder;
@@ -42,15 +43,8 @@ public class PayInfoController {
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		try {
 			if (userInfo != null) {
-				UserOrder userOrder = new UserOrder();
-				userOrder.setUser(userInfo.getUser());
-				userOrder.setStatus("未支付");
-				userOrder.setStartTime(new Date());
-				userOrder.setProjects_id(projects_id);
-				userOrder = orderService.createOrder(userOrder);
 				model.addAttribute("projects", projects);
 				model.addAttribute("seller", seller);
-				model.addAttribute("orderId", userOrder.getId().toString());
 				return "projects.cart.view";
 			}else{
 				return "redirect:/";
@@ -61,12 +55,18 @@ public class PayInfoController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/projects/pay/view/{order_id}", method = RequestMethod.POST)
-	public String payPage(@PathVariable Long order_id, Model model,
-			HttpSession session, HttpServletRequest request) {
+	@RequestMapping(value = "/projects/pay/view", method = RequestMethod.POST)
+	public String payPage( Model model,HttpSession session, 
+			HttpServletRequest request,@RequestParam("projects_id") Long projects_id) {
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		boolean paySuccessful = false;
-		UserOrder userOrder = orderService.findOne(order_id);
-		Long projects_id = userOrder.getProjects_id();
+		UserOrder userOrder = new UserOrder();
+		userOrder.setUser(userInfo.getUser());
+		userOrder.setStatus("未支付");
+		userOrder.setStartTime(new Date());
+		userOrder.setProjects_id(projects_id);
+		userOrder = orderService.createOrder(userOrder);
 		Projects projects = projectsService.findOne(projects_id);
 		User seller = projects.getUser();
 		model.addAttribute("projects", projects);
@@ -74,8 +74,6 @@ public class PayInfoController {
 		String password = "";
 		String enterPassword = request.getParameter("password");
 		model.addAttribute("projects_id", projects_id);
-		UserInfo userInfo = (UserInfo) session
-				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		if (userInfo != null) {
 			password = userInfo.getUser().getPassword();
 			if (password.equals(enterPassword)) {

@@ -68,11 +68,12 @@ body {
 		<c:if test="${ !paySuccessful }">
 			<form class="form-inline"  method="post">
 				<input type="password" id="password" name="password" /> 
+				<input type= "hidden" name="projects_id" value="${projects.id }" />
 				<input type="submit" class="btn btn-primary" value="提交" />
 			</form>
 		</c:if>
 		<c:if test="${paySuccessful }">
-			<a href='<c:url value="/projects/list/all"></c:url>' > 购买成功，点击返回</a>
+			<a href='<c:url value="/projects/list/all"></c:url>' > 参股成功，点击返回</a>
 		</c:if>
 	</div>
 

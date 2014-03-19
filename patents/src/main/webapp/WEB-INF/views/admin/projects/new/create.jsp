@@ -16,23 +16,40 @@ function previewImages(file){
 	previewImage(file);
 }
 
-function checkLogo(obj){
-	var flag = false;
-	var fileValue = obj.coverFile.value;
-	var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length).toLowerCase();
-	if(fileValue==null || fileValue==""){
-		alert("请添加logo封面");
-		flag=false;
+
+function checkResources(obj){
+	var imgFlag = false;
+	var tempFlag = false;
+	var investFlag = false;
+	var fileValue = obj.logoPath.value;
+	var investNum = obj.maxInvestNum.value;
+	var temp = fileValue.substr(fileValue.length-3).toLowerCase();
+		
+	if(fileValue=="" || fileValue == null){
+		$("#myFilesError").html("上传文件不能为空");
+		tempFlag =  false;
 	}else{
-		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp || ".png" == temp){
-			flag=true;
-		}else{
-			alert("只支持gif、jpg、bmp、png格式的图片！！");
-			flag=false;
-		}
+		tempFlag =  true;
 	}
-	return flag;
+		
+	if("gif"==temp || "jpg"==temp || "bmp"==temp || "png" == temp){
+		imgFlag=true;
+	}else{
+		$("#myFilesError").html("支持gif、jpg、bmp、png格式的图片！！");
+		imgFlag=false;
+	}
+	
+	if(investNum >0 && investNum <=20){
+		investFlag = true;
+	}else{
+		$(".maxInvestNumError").html("最多为20人");
+		investFlag = false;
+	}
+	
+	alert("inves="+investFlag+" temp="+tempFlag+" img="+imgFlag);
+	return imgFlag && tempFlag&&investFlag;
 }
+	
 </script>
 <style>
 .preview_show{
@@ -78,15 +95,15 @@ function checkLogo(obj){
 				<span> <img src='<c:url value="/resources/img/teacher_front_bg.jpg"></c:url>' style="width:260px; height:190px;" />
 				</span>
 			</div>
-		<form action= '<c:url value="/admin/projects/add"></c:url>'  method="post" enctype="multipart/form-data"  id="projects_form" name="projects_post" >
+		<form action= '<c:url value="/admin/projects/add"></c:url>'  method="post" enctype="multipart/form-data"  id="projects_form" name="projects_post" onsubmit="return checkResources(this)">
 			<!--  --><div class="control-group"> 
 			<div class="controls">
-				<i class="icon-star"></i> 上传LOGO：<input type="file" name="logoPath"  onChange="previewImages(this);"/> <span style="font-size: 13px; color: red;">${errorMsg }</span>
-				<br><span style="color: red;  margin-left: 70px;">只支持jpg、gif、bmp、png格式，建议封面宽度260px，高度190px</span></div>
+				<i class="icon-star"></i> 上传LOGO：<input  type="file" name="logoPath"  onChange="previewImages(this);"/> <span style="font-size: 13px; color: red;">${errorMsg }</span>
+				<br><span style="color: red;  margin-left: 70px;" id="myFilesError">( 只支持jpg、gif、bmp、png格式，建议封面宽度260px，高度190px )</span></div>
 			</div>
 			<div class="control-group" id="projectName">
 				<div class="controls">
-					<i class="icon-star"></i> 项目名称：<input type="text" name="projectName"   placeholder="项目名称" required "> <span class="help-inline"><form:errors path="projectName" /></span>
+					<i class="icon-star"></i> 项目名称：<input required type="text" name="projectName"   placeholder="项目名称" > <span class="help-inline"><form:errors path="projectName" /></span>
 				</div>
 			</div>
 		
@@ -108,14 +125,27 @@ function checkLogo(obj){
 			</div>
 			<div class="control-group" id="progress">
 				<div class="controls">
-					<i class="icon-star"></i> 项目进度：<input type="text" name="progress"   placeholder="项目进度"  required > <span class="help-inline"><form:errors path="progress" /></span>
+					<i class="icon-star"></i> 项目进度：<input required type="text" name="progress"   placeholder="项目进度"  > <span class="help-inline"><form:errors path="progress" /></span>
 				</div>
 			</div>
 			
 			<div class="control-group" id="totalMoney">
 				<div class="controls">
-					<i class="icon-star"></i> 融资金额：<input type="text" name="totalMoney"   placeholder="融资金额"  required onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> 万 <span class="help-inline"><form:errors path="totalMoney" /></span>
+					<i class="icon-star"></i> 融资金额：<input required type="text" name="totalMoney"   placeholder="融资金额"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> 万 <span class="help-inline"><form:errors path="totalMoney" /></span>
 				</div>
+			</div>
+	
+			<div class="control-group" id="minMoney">
+				<div class="controls">
+					<i class="icon-star"></i> 单次最小投资：<input required type="text" name="minMoney"   placeholder="最小投资额" value="1"    onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> 万 <span class="help-inline"><form:errors path="minMoney" /></span>
+				</div>
+			</div>
+			
+			<div class="control-group" id="maxInvestNum">
+				<div class="controls">
+					<i class="icon-star"></i> 最大投资人数：<input required type="text" name="maxInvestNum"   placeholder="最大投资人数"  value="1"    onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> 人
+					 <span class="help-inline"><span class="maxInvestNumError" style="color: red;">( 最多20人 )</span></span>
+				</div> 
 			</div>
 			<div class="control-group" id="content">
 				<div class="controls " >
@@ -127,31 +157,31 @@ function checkLogo(obj){
 			<br><br>
 			<div class="control-group" id="companyName">
 				<div class="controls">
-					<i class="icon-star"></i> 公司名称：<input type="text" name="companyName"   placeholder="公司名称"  required> <span class="help-inline"><form:errors path="companyName" /></span>
+					<i class="icon-star"></i> 公司名称：<input required type="text" name="companyName"   placeholder="公司名称"  > <span class="help-inline"><form:errors path="companyName" /></span>
 				</div>
 			</div>
 			
 			<div class="control-group" id="empNumber">
 				<div class="controls">
-					<i class="icon-star"></i> 员工人数：<input type="text" name="empNumber"   placeholder="申请人士"  required> <span class="help-inline"><form:errors path="applicant" /></span>
+					<i class="icon-star"></i> 员工人数：<input required type="text" name="empNumber"   placeholder="申请人士"  > <span class="help-inline"><form:errors path="applicant" /></span>
 				</div>
 			</div>
 			
 			<div class="control-group" id="location">
 				<div class="controls">
-					<i class="icon-star"></i> 所在城市：<input type="text" name="location"   placeholder="所在城市"  required> <span class="help-inline"><form:errors path="location" /></span>
+					<i class="icon-star"></i> 所在城市：<input required type="text" name="location"   placeholder="所在城市"  > <span class="help-inline"><form:errors path="location" /></span>
 				</div>
 			</div>
 			
 			<div class="control-group" id="boss">
 				<div class="controls">
-					<i class="icon-star"></i> 企业法人：<input type="text" name="boss"   placeholder="企业法人"  required> <span class="help-inline"><form:errors path="boss" /></span>
+					<i class="icon-star"></i> 企业法人：<input required type="text" name="boss"   placeholder="企业法人"  > <span class="help-inline"><form:errors path="boss" /></span>
 				</div>
 			</div>
 			
 			<div class="control-group" id="phone">
 				<div class="controls">
-					<i class="icon-star"></i> 联系电话：<input type="text" name="phone"   placeholder="联系电话"  required onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>
+					<i class="icon-star"></i> 联系电话：<input required type="text" name="phone"   placeholder="联系电话"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>
 				</div>
 			</div>
 			
@@ -216,28 +246,22 @@ function checkLogo(obj){
 <link rel="stylesheet" href="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>" />
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.js"/>"></script>
 <script type="text/javascript">
-		$(document).ready(function() {
-			var editor = KindEditor.create('textarea[name="content"]',{
-				cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
-				uploadJson : '${uploadJson}',
-				fileManagerJson : '${fileManagerJson}',
-				allowFileManager : true,
-				afterCreate : function() {
-					var self = this;
-					KindEditor.ctrl(document, 13, function() {
-						self.sync();
-						document.forms['projects_post'].submit();
-					});
-					KindEditor.ctrl(self.edit.doc, 13, function() {
-						self.sync();
-						document.forms['projects_post'].submit();
-					});
-				}
-			});
-			$("#projects_form").submit(function(){
-				editor.sync();
-				return checkEmptyAjax("projects_form","projectsInfoAJAX");
-			});
-			prettyPrint();
-	    });
+	$(document).ready(function() {
+		var editor = KindEditor.create('textarea[name="content"]',{
+			cssPath : '<c:url value="/resources/kindeditor-4.1.3/plugins/code/prettify.css"/>',
+			uploadJson : '${uploadJson}',
+			fileManagerJson : '${fileManagerJson}',
+			allowFileManager : true,
+			afterCreate : function() {
+				var self = this;
+	
+			}
+		});
+	
+		$("#projects_form").submit(function(){
+			editor.sync();
+			return checkEmptyAjax("projects_form","projectsInfoAJAX");
+		});
+		prettyPrint();
+    });
 </script>

@@ -28,12 +28,31 @@ public class Projects extends AbstractEntity {
 	private String logoPath; // logo picture's save path
 	private Date date;
 	
-	private Integer complete ;// complete:1; none:0;
 	private Integer status; // pass:1; waite:0;
+	private Integer maxInvestNum;
+	private Integer minMoney;
+	
 	
 	
 	@ManyToOne
 	private User user;
+	
+	private Integer complete ;// complete:1; none:0;
+	public Integer getMaxInvestNum() {
+		return maxInvestNum;
+	}
+
+	public void setMaxInvestNum(Integer maxInvestNum) {
+		this.maxInvestNum = maxInvestNum;
+	}
+
+	public Integer getMinMoney() {
+		return minMoney;
+	}
+
+	public void setMinMoney(Integer minMoney) {
+		this.minMoney = minMoney;
+	}
 
 	public String getProjectName() {
 		return projectName;

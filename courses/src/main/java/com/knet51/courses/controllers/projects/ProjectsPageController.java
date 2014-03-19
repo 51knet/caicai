@@ -118,4 +118,21 @@ public class ProjectsPageController {
 		model.addAttribute("page", page);
 		return "rzfh.list";
 	}
+	
+	// projects faq page controller
+	
+	@RequestMapping(value="/projects/about")
+	public String showProjectsAbout(){
+		return "projects.about";
+	}
+	
+	@RequestMapping(value="/projects/guide")
+	public String showProjectsGuide(){
+		return "projects.guide";
+	}
+	
+	@RequestMapping(value="/projects/rules")
+	public String showProjectsRules(){
+		return "projects.rules";
+	}
 }

@@ -16,22 +16,37 @@ function previewImages(file){
 	previewImage(file);
 }
 
-function checkLogo(obj){
-	var flag = false;
-	var fileValue = obj.coverFile.value;
-	var temp = fileValue.substr(fileValue.indexOf('.'),fileValue.length).toLowerCase();
-	if(fileValue==null || fileValue==""){
-		alert("请添加项目封面");
-		flag=false;
+function checkResources(obj){
+	var imgFlag = false;
+	var tempFlag = false;
+	var investFlag = false;
+	var fileValue = obj.logoPath.value;
+	var investNum = obj.maxInvestNum.value;
+	var temp = fileValue.substr(fileValue.length-3).toLowerCase();
+		
+	if(fileValue=="" || fileValue == null){
+		$("#myFilesError").html("上传文件不能为空");
+		tempFlag =  false;
 	}else{
-		if(".gif"==temp || ".jpg"==temp || ".bmp"==temp || ".png" == temp){
-			flag=true;
-		}else{
-			alert("只支持gif、jpg、bmp、png格式的图片！！");
-			flag=false;
-		}
+		tempFlag =  true;
 	}
-	return flag;
+		
+	if("gif"==temp || "jpg"==temp || "bmp"==temp || "png" == temp){
+		imgFlag=true;
+	}else{
+		$("#myFilesError").html("支持gif、jpg、bmp、png格式的图片！！");
+		imgFlag=false;
+	}
+	
+	if(investNum >0 && investNum <=20){
+		investFlag = true;
+	}else{
+		$(".maxInvestNumError").html("最多为20人");
+		investFlag = false;
+	}
+	
+	alert("inves="+investFlag+" temp="+tempFlag+" img="+imgFlag);
+	return imgFlag && tempFlag&&investFlag;
 }
 </script>
 <style>
@@ -80,7 +95,7 @@ function checkLogo(obj){
 				<span> <img src="<c:url value='${projects.logoPath}'></c:url>"  style="width:260px; height:190px;" />
 				</span>
 			</div>
-		<form action= '<c:url value="/admin/projects/edit/edit"></c:url>'  method="post" enctype="multipart/form-data"  id="projects_form" name="projects_post" >
+		<form action= '<c:url value="/admin/projects/edit/edit"></c:url>'  method="post" enctype="multipart/form-data"  id="projects_form" name="projects_post" onsubmit="return checkResources(this)">
 		<input type="hidden" value="${projects.id }" name="projects_id" >
 			<!--  --><div class="control-group"> 
 			<div class="controls">
@@ -119,6 +134,19 @@ function checkLogo(obj){
 			<div class="control-group" id="totalMoney">
 				<div class="controls">
 					<i class="icon-star"></i> 融资金额：<input type="text" name="totalMoney"   placeholder="融资金额"  required value="${projects.totalMoney }" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="totalMoney" /></span>
+				</div>
+			</div>
+			
+			<div class="control-group" id="minMoney">
+				<div class="controls">
+					<i class="icon-star"></i> 单次最小投资：<input type="text" name="minMoney" value="${projects.minMoney }"   placeholder="最小投资额" value="1"  required onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> 万 <span class="help-inline"><form:errors path="minMoney" /></span>
+				</div>
+			</div>
+			
+			<div class="control-group" id="maxInvestNum">
+				<div class="controls">
+					<i class="icon-star"></i> 最大投资人数：<input type="text" name="maxInvestNum" value="${projects.maxInvestNum}"    placeholder="最大投资人数" value="1"  required onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> 人 <span class="help-inline"><form:errors path="maxInvestNum" /></span>
+					 <span class="help-inline"><span class="maxInvestNumError" style="color: red;">( 最多20人 )</span></span>
 				</div>
 			</div>
 			<div class="control-group" id="content">

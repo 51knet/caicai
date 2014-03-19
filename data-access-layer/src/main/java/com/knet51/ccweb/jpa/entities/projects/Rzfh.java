@@ -1,8 +1,10 @@
 package com.knet51.ccweb.jpa.entities.projects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
@@ -19,7 +21,7 @@ public class Rzfh extends AbstractEntity {
 	private String webUrl;
 	private Integer status;
 	
-	@ManyToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 	
 	

@@ -4,10 +4,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
 .left-menu-container {
-background-color: #718495;
+background-color: #3c4f65;
 width: 230px;
 height:450px;
-
 background-image: url("<c:url value='/resources/img/default/item_bg.png'></c:url>");
 background-position: top right;
 background-repeat: repeat-y;
@@ -26,11 +25,8 @@ margin-bottom: 10px;
 }
 .nav-tabs.nav-stacked > li > a {
 border: 0px solid #DDD;
-/*-webkit-border-radius: 0;
--moz-border-radius: 0;
-border-radius: 0;*/
 text-align: left;
-padding:8px 20px;
+padding:12px 20px;
 font-size: 15px;
 font-family: 'Microsoft YaHei',Arial;
 color: #FFF;
@@ -47,14 +43,14 @@ font-weight: bold;
 color: #3d4f67;
 text-decoration: none;
 /*background-color: #80B029;*/
-background-color:#b1b6ba;
+background-color:#a1a6ac;
 }
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover {
 color: #3d4f67;
 cursor: default;
 text-decoration: none;
 /*background-color: #80B029;*/
-background-color:#b1b6ba;
+background-color:#a1a6ac;
 border: 0px solid #DDD;
 border-bottom-color: transparent;
 }

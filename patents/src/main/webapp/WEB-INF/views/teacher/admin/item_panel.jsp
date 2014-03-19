@@ -51,7 +51,7 @@
 		<li><a href='<c:url value="/admin/details"><c:param name="active" value="photo" /></c:url>' >账号信息</a></li>
 		<li><a href='<c:url value="/admin/patent/list"></c:url>' >我的专利</a></li>
 		<li><a href='<c:url value="/admin/technology/list"></c:url>' >我的技术</a></li>
-		<li><a href='<c:url value="/admin/projects/list"></c:url>' >我的项目</a></li>
+		<li><a href='<c:url value="/admin/projects/list"></c:url>' >融资项目</a></li>
 		<li><a href='<c:url value="/admin/requirement/list"></c:url>' >技术需求</a></li>
 		<li><a href='<c:url value="/admin/patentRequirement/list"></c:url>' >专利需求</a></li>
 	

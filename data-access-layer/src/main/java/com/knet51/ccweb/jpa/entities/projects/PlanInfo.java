@@ -1,5 +1,6 @@
 package com.knet51.ccweb.jpa.entities.projects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;

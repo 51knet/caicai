@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,6 +50,7 @@ public class ProjectsDetailController {
 	@Autowired
 	private PlanInfoService planInfoService;
 	
+	@Transactional
 	@RequestMapping(value="/admin/projects/add", method = RequestMethod.POST)
 	public String addProjects(@Valid ProjectsForm projectsForm, BindingResult validResult,@RequestParam("industry") String industry,
 			HttpSession session,MultipartHttpServletRequest request,RedirectAttributes redirectAttributes) throws Exception{
@@ -71,10 +73,12 @@ public class ProjectsDetailController {
 			projects.setPhone(projectsForm.getPhone());
 			projects.setComplete(GlobalDefs.WAITE);
 			projects.setCurrentMoney(0L);
+			projects.setMaxInvestNum(Integer.parseInt(projectsForm.getMaxInvestNum()));
+			projects.setMinMoney(Integer.parseInt(projectsForm.getMinMoney()));
 			projects.setDate(new Date());
 			projects.setStatus(GlobalDefs.WAITE);
 			projects.setUser(userInfo.getUser());
-			Projects newProjects = projectsService.create(projects);
+			projects = projectsService.create(projects);
 			
 			List<MultipartFile> files = request.getFiles("logoPath");
 			for (int i = 0; i < files.size(); i++) {
@@ -87,21 +91,21 @@ public class ProjectsDetailController {
 						logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
 						String fileName = multipartFile.getOriginalFilename();
 						String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
-						String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/projects/"+newProjects.getId();
+						String path = session.getServletContext().getRealPath("/")+"/resources/attached/"+userInfo.getId()+"/projects/"+projects.getId();
 						logger.debug("Upload Path:"+path); 
 						FileUtil.createRealPath(path, session);
 						String previewFile = path+File.separator+"small"+"."+fileExtension;
 						File saveDest = new File(path + File.separator + fileName);
 						multipartFile.transferTo(saveDest);
 						FileUtil.getPreviewImage(saveDest, new File(previewFile), fileExtension,LOGO_WIDTH,LOGO_HEIGHT);
-						String savePath = FileUtil.getSavePath("projects", userInfo.getId(), newProjects.getId()+"", request)+"/small"+"."+fileExtension;
-						newProjects.setLogoPath(savePath);
+						String savePath = FileUtil.getSavePath("projects", userInfo.getId(), projects.getId()+"", request)+"/small"+"."+fileExtension;
+						projects.setLogoPath(savePath);
 					}
 				}
 			}
-			projectsService.update(newProjects);
+			projectsService.update(projects);
 			
-			BizModul bizModul = new BizModul(newProjects);
+			BizModul bizModul = new BizModul(projects);
 			bizModul.setTargetUser(projectsForm.getTargetUser());
 			bizModul.setCompetitorIntro(projectsForm.getCompetitorIntro());
 			bizModul.setCoreValueIntro(projectsForm.getCoreValueIntro());
@@ -122,6 +126,7 @@ public class ProjectsDetailController {
 		return "redirect:/admin/projects/list";
 	}
 	
+	@Transactional
 	@RequestMapping(value="/admin/projects/edit/edit", method = RequestMethod.POST)
 	public String editProjects(@Valid ProjectsForm projectsForm, BindingResult validResult,@RequestParam("projects_id") Long projects_id,
 			@RequestParam("industry") String industry,HttpSession session,MultipartHttpServletRequest request,RedirectAttributes redirectAttributes) throws Exception{
@@ -141,7 +146,8 @@ public class ProjectsDetailController {
 			projects.setTotalMoney(Long.parseLong(projectsForm.getTotalMoney()));
 			projects.setBoss(projectsForm.getBoss());
 			projects.setPhone(projectsForm.getPhone());
-			
+			projects.setMaxInvestNum(Integer.parseInt(projectsForm.getMaxInvestNum()));
+			projects.setMinMoney(Integer.parseInt(projectsForm.getMinMoney()));
 			projects.setDate(new Date());
 			projects.setStatus(GlobalDefs.WAITE);
 			projects.setUser(userInfo.getUser());

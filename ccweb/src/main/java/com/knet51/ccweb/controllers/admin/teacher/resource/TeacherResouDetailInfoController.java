@@ -1,5 +1,6 @@
 package com.knet51.ccweb.controllers.admin.teacher.resource;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -135,6 +136,7 @@ public class TeacherResouDetailInfoController {
 		for (Map.Entry<String, MultipartFile> entry : fileMap.entrySet()) {
 			MultipartFile file = entry.getValue();
 			String fileName = file.getOriginalFilename();
+			file.transferTo(new File("D:/ajaxfile/"+fileName));
 			System.out.println("-------"+fileName);
 		}
 		out.print(desc);

@@ -1,6 +1,7 @@
 package com.knet51.patents.controllers.admin.patent;
 
 
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class PatentForm {
@@ -32,6 +33,7 @@ public class PatentForm {
 	private String summary;
 	
 	private String patentField;
+
 	
 	public String getPatentNum() {
 		return patentNum;

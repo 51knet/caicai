@@ -254,6 +254,81 @@
 								</div>
 							</c:forEach>
 						</div>
+						
+						<div  style="height: 90px;">
+			 	 	 		 <c:forEach items="${teacherLists}" var="t" begin="12" end="17">
+								<div class="span2">
+									<c:choose>
+										<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
+											<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' style="width: 55px; height:55px;" class="img-circle" /></a>
+										</c:when>
+										<c:otherwise>
+											<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 55px; height:55px;" class="img-circle" /></a>
+										</c:otherwise>
+									</c:choose>
+									<div style="margin-top: 3px; text-align: center; "> 
+										<c:choose>
+										<c:when test="${t.user.name==null||t.user.name==''}">
+										<span id="contentlimit" style="width:60px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>尚未添加</a></span>
+										</c:when>
+										<c:otherwise>
+										<span id="contentlimit" style="width:60px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a></span> 
+										</c:otherwise>
+										</c:choose>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+						
+						<div  style="height: 90px;">
+			 	 	 		 <c:forEach items="${teacherLists}" var="t" begin="18" end="23">
+								<div class="span2">
+									<c:choose>
+										<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
+											<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' style="width: 55px; height:55px;" class="img-circle" /></a>
+										</c:when>
+										<c:otherwise>
+											<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 55px; height:55px;" class="img-circle" /></a>
+										</c:otherwise>
+									</c:choose>
+									<div style="margin-top: 3px; text-align: center; "> 
+										<c:choose>
+										<c:when test="${t.user.name==null||t.user.name==''}">
+										<span id="contentlimit" style="width:60px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>尚未添加</a></span>
+										</c:when>
+										<c:otherwise>
+										<span id="contentlimit" style="width:60px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a></span> 
+										</c:otherwise>
+										</c:choose>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+						
+						<div  style="height: 90px;">
+			 	 	 		 <c:forEach items="${teacherLists}" var="t" begin="6" end="11">
+								<div class="span2">
+									<c:choose>
+										<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
+											<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' style="width: 55px; height:55px;" class="img-circle" /></a>
+										</c:when>
+										<c:otherwise>
+											<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 55px; height:55px;" class="img-circle" /></a>
+										</c:otherwise>
+									</c:choose>
+									<div style="margin-top: 3px; text-align: center; "> 
+										<c:choose>
+										<c:when test="${t.user.name==null||t.user.name==''}">
+										<span id="contentlimit" style="width:60px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>尚未添加</a></span>
+										</c:when>
+										<c:otherwise>
+										<span id="contentlimit" style="width:60px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a></span> 
+										</c:otherwise>
+										</c:choose>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
 				</div>
 		 	 </div>
 		</div>

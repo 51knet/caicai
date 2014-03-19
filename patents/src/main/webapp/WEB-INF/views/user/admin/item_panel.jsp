@@ -104,7 +104,7 @@ border-bottom-color: transparent;
 		<li><a href='<c:url value="/admin/patentRequirement/list"></c:url>' >专利需求</a></li>
 		<li><a href='<c:url value="/admin/patent/list"></c:url>' >我的专利</a></li>
 		<li><a href='<c:url value="/admin/technology/list"></c:url>' >我的技术</a></li>
-		<li><a href='<c:url value="/admin/projects/list"></c:url>' >我的项目</a></li>
+		<li><a href='<c:url value="/admin/projects/list"></c:url>' >融资项目</a></li>
 	</ul>
 </div>
 

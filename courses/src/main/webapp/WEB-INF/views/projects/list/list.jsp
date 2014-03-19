@@ -96,7 +96,12 @@ $(document).ready(function(){
 .container.rzfh{
 	width: 100%;
 	text-align: left;float: left;
-	height: 340px;
+
+}
+.container.rzfh>div{
+	margin: 20px 20px;
+	background-image: url('<c:url value="/resources/img/default/fhyq.png"> </c:url> ');  
+	background-position: top left; background-repeat: repeat-x;
 }
 .rzfh_logo{
 width: 130px; border: 1px solid #ddd; 
@@ -110,7 +115,7 @@ padding: 2px 2px; margin: 10px 5px 10px 0px;
 			<table style="" cellpadding="5">
 				<tbody>
 					<tr>
-						<td valign="middle" style="width: 180px; " align="center"> <img  src="<c:url value='/resources/img/default/rzjs.png'></c:url> "></td>
+						<td valign="middle" style="width: 180px; " align="center"><a href='<c:url value="/projects/about"></c:url>'><img  src="<c:url value='/resources/img/default/rzjs.png'></c:url> "></a></td>
 						<td valign="top" ><img  src="<c:url value='/resources/img/default/rzjs-1.png'></c:url> "><br>
 						
 						</td>
@@ -122,7 +127,7 @@ padding: 2px 2px; margin: 10px 5px 10px 0px;
 			<table  cellpadding="5" >
 				<tbody>
 					<tr>
-						<td valign="middle" style= "width: 180px;" align="center"> <img  src="<c:url value='/resources/img/default/xszd.png'></c:url> "></td>
+						<td valign="middle" style= "width: 180px;" align="center"><a href='<c:url value="/projects/guide"></c:url>'><img  src="<c:url value='/resources/img/default/xszd.png'></c:url> "></a></td>
 						<td valign="top"  ><img  src="<c:url value='/resources/img/default/xszd-1.png'></c:url> "><br>
 						
 						</td>
@@ -137,7 +142,7 @@ padding: 2px 2px; margin: 10px 5px 10px 0px;
 			<table  cellpadding="5">
 				<tbody>
 					<tr>
-						<td valign="middle" style="width: 180px;" align="center"> <img  src="<c:url value='/resources/img/default/rzgz.png'></c:url> "></td>
+						<td valign="middle" style="width: 180px;" align="center"><a href='<c:url value="/projects/rules"></c:url>'><img  src="<c:url value='/resources/img/default/rzgz.png'></c:url> "></a></td>
 						<td valign="top" ><img  src="<c:url value='/resources/img/default/rzgz-1.png'></c:url> "><br>
 						
 						</td>
@@ -149,7 +154,7 @@ padding: 2px 2px; margin: 10px 5px 10px 0px;
 			<table  cellpadding="5" >
 				<tbody>
 					<tr>
-						<td valign="middle" style="width: 180px;" align="center"> <img  src="<c:url value='/resources/img/default/ksfb.png'></c:url> "></td>
+						<td valign="middle" style="width: 180px;" align="center"> <a href="<c:url value='/fastupload'></c:url>"><img  src="<c:url value='/resources/img/default/ksfb.png'></c:url> "></a></td>
 						<td valign="top" ><img  src="<c:url value='/resources/img/default/ksfb-1.png'></c:url> "><br>
 						
 						</td>
@@ -217,7 +222,7 @@ padding: 2px 2px; margin: 10px 5px 10px 0px;
 							</div>
  					</div>
 					<div style="width: 90%; margin:10px 10px ; float: left;" class="points pName">
-						<h4>${npList.location }<span style="margin-left: 20px;">${npList.industry }</h4>
+						<h4>${npList.location }<span style="margin-left: 20px;">${npList.industry }</span></h4>
 					</div>
  				</div>
  				<a href="<c:url value='/projects/view/${npList.id }'></c:url>">
@@ -228,24 +233,11 @@ padding: 2px 2px; margin: 10px 5px 10px 0px;
  </div>
  
  <div class="container  rzfh" style="background-color: #bcc5ce;">
- 	<div style="margin: 10px 20px; " >
- 	  	<div class="span6" style="background-image: url('<c:url value="/resources/img/default/rzjg.png"> </c:url> ');  background-position: top center; background-repeat: no-repeat;"> 
- 	  		<div style="width: 100%; height: 70px;" class="span6"><br>
- 	  			<a style="float: right; line-height: 40px;" href='<c:url value="/rzfh/list/rzjg"></c:url>' ><img  src="<c:url value='/resources/img/default/more_white.png'></c:url> "></a>
- 	  		</div>
- 	  		<div class="span11" style="margin-left: 30px;">
- 	  			<c:forEach items="${rzList}" var="rzList"  begin="0" end="5">
- 	  		
- 	  				<img alt="${rzList.name }"  src="<c:url value="${p_url}${rzList.logoPath }"></c:url>" class="rzfh_logo">
- 	  			
- 	  			</c:forEach>
- 	  		</div>
- 	  	</div>
- 	  	<div  class="span6"  style=" background-image: url('<c:url value="/resources/img/default/fhyq.png"> </c:url> ');  background-position: top center; background-repeat: no-repeat;">
- 	  		<div style="width: 100%; height: 70px;" class="span6"><br>
+ 	  	<div  >
+ 	  		<div style="width: 100%; height: 70px;" class="span11"><br>
  	  			<a style="float: right; line-height: 40px;" href='<c:url value="/rzfh/list/fhyq"></c:url>' ><img  src="<c:url value='/resources/img/default/more_white.png'></c:url> "></a>
  	  		</div>
- 	  		<div class="span11" style="margin-left: 30px;">
+ 	  		<div style="margin-left: 30px;">
  	  			<c:forEach items="${fhList}" var="fhList"  begin="0" end="5">
  	  			
  	  				<img alt="${fhList.name }"  src="<c:url value="${p_url }${fhList.logoPath }"></c:url>" class="rzfh_logo">
@@ -253,7 +245,7 @@ padding: 2px 2px; margin: 10px 5px 10px 0px;
  	  			</c:forEach>
  	  		</div>
  	  	</div>
- 	</div>
+
  </div>
 
  <div class="container">

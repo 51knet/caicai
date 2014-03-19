@@ -5,7 +5,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <link href="<c:url value="/resources/js/uploadify3.2/uploadify.css" />" rel="stylesheet" type="text/css" />
-
+<%
+	String sessionid =  pageContext.getSession().getId();
+%>
+<c:set var="pageSessionid" value="<%=sessionid %>"></c:set>
 <script type="text/javascript">
 var processInterval=null;
  function addFile(){
@@ -103,7 +106,7 @@ $(document).ready(function() {
 </style>
 <div class="row-fluid custom round">
 	<div class="row" >
-		<h4>资源管理>添加资源</h4>
+		<h4>资源管理>添加资源>${pageSessionid }</h4>
 	</div>
 	<div class="content">
 		<div style="text-align:center;">
@@ -156,7 +159,7 @@ $(document).ready(function() {
 		
  
 	 <!-- test uploadify 3.2 -->
-<!-- 
+ 
 <script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/uploadify3.2/jquery.uploadify.min.js" />"></script>
 		<script type="text/javascript">
 			$(function() {
@@ -164,7 +167,7 @@ $(document).ready(function() {
 			    	'auto'     : false,//关闭自动上传
 			    	'removeTimeout' : 1,//文件队列上传完成1秒后删除
 			        'swf'      : '<c:url value="/resources/js/uploadify3.2/uploadify.swf" />',
-			        'uploader' : '<c:url value="/admin/resource/new/new;jsessionid=${sessionScope.sessionUserInfo.id}" />',
+			        'uploader' : '<c:url value="/admin/resource/new/new;jsessionid=${pageSessionid }" />',
 			      
 			        'method'   : 'post',//方法，服务端可以用$_POST数组获取数据
 					'buttonText' : '选择图片',//设置按钮文本
@@ -185,14 +188,12 @@ $(document).ready(function() {
 			});
 			</script>
 
-	<input type="hidden"  name="sessionid" id="sessionid" value="${sessionScope.sessionUserInfo.id}">
+	<input type="hidden"  name="sessionid" id="sessionid" value="${pageSessionid }">
 	<input type="file" name="file_upload" id="file_upload" />
-
 	<p><a href="javascript:$('#file_upload').uploadify('settings', 'formData', {'rdesc':$('#id_file').val() , 'sessionid': $('#sessionid').val() }) ;$('#file_upload').uploadify('upload','*')">上传</a>
 	<a href="javascript:$('#file_upload').uploadify('cancel','*')">重置上传队列</a>
 	</p>
 	<input type="text"  name="rdesc" id="id_file">
- -->
-	 
+	
 	</div>	
 </div>

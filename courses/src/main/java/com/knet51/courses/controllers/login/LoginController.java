@@ -38,7 +38,7 @@ public class LoginController {
 	@Autowired
 	private UserService service;
 
-	@RequestMapping(value = "/signin")
+	@RequestMapping(value = "/signin" , method = RequestMethod.POST)
 	public String signin(@Valid LoginForm loginForm, BindingResult result,HttpSession session, 
 			@RequestParam("currentUrl") String currentUrl,HttpServletRequest request,HttpServletResponse response) {
 		

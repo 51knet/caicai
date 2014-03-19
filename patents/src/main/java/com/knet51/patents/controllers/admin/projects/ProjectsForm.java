@@ -33,6 +33,14 @@ public class ProjectsForm {
 	@Size(min=7, max=11)
 	private String phone;
 	
+	@NotEmpty
+	@Size(min=1, max=2)
+	private String maxInvestNum;
+	
+	@NotEmpty
+	@Size(min=1)
+	private String minMoney;
+	
 	private String targetUser;
 	private String targetReq;
 	private String modulIntro;
@@ -45,6 +53,26 @@ public class ProjectsForm {
 	
 	public String getProjectName() {
 		return projectName;
+	}
+
+
+	public String getMaxInvestNum() {
+		return maxInvestNum;
+	}
+
+
+	public void setMaxInvestNum(String maxInvestNum) {
+		this.maxInvestNum = maxInvestNum;
+	}
+
+
+	public String getMinMoney() {
+		return minMoney;
+	}
+
+
+	public void setMinMoney(String minMoney) {
+		this.minMoney = minMoney;
 	}
 
 

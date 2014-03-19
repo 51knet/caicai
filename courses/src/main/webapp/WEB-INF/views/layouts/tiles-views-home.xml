@@ -257,4 +257,29 @@
 		<put-attribute name="footer" value="" />
 	</definition>
 	
+	<!-- projects faq -->
+	<definition name="projects.about" extends="index-sec-layout">
+		<put-attribute name="title" value="融资介绍" />
+		<put-attribute name="userCourse" value=""></put-attribute>
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/projects/about/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/projects/about/about.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="projects.guide" extends="index-sec-layout">
+		<put-attribute name="title" value="新手指导" />
+		<put-attribute name="userCourse" value=""></put-attribute>
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/projects/about/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/projects/about/guid.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="projects.rules" extends="index-sec-layout">
+		<put-attribute name="title" value="融资规则" />
+		<put-attribute name="userCourse" value=""></put-attribute>
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/projects/about/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/projects/about/rules.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>
