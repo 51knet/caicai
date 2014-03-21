@@ -45,7 +45,6 @@ function checkResources(obj){
 		investFlag = false;
 	}
 	
-	alert("inves="+investFlag+" temp="+tempFlag+" img="+imgFlag);
 	return imgFlag && tempFlag&&investFlag;
 }
 </script>

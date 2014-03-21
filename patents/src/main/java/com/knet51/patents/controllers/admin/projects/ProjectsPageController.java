@@ -51,16 +51,9 @@ public class ProjectsPageController {
 	
 	@RequestMapping("/admin/projects/list")
 	public String showprojectsList(HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize,HttpServletRequest request){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		User user = userInfo.getUser();
-
-		String contextPath = request.getContextPath();
-		String url = request.getHeader("referer");
-		logger.info("--- contextPath="+contextPath+"----- referer url="+url);
-		String new_url = url.substring(url.lastIndexOf(contextPath)+contextPath.length(), url.length());
-		logger.info("===== new_url="+new_url);
-		
+		User user = userInfo.getUser();		
 		try {
 			Page<Projects> page = projectsService.findProjectsByUser(user, pageNumber, pageSize);
 			model.addAttribute("page", page);

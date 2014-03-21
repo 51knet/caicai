@@ -58,4 +58,17 @@
 		<put-attribute name="footer" value="" />
 	</definition>
 	
+	<!-- upload   -->
+	<definition name="upload.success" extends="homepage-layout">
+		<put-attribute name="title" value="上传成功" />
+		<put-attribute name="body" value="/WEB-INF/views/_shared/upload_success.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	
+	<definition name="upload.falied" extends="homepage-layout">
+		<put-attribute name="title" value="上传成功" />
+		<put-attribute name="body" value="/WEB-INF/views/_shared/upload_failed.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	
 </tiles-definitions>

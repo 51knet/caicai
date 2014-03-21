@@ -7,7 +7,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
-import com.knet51.ccweb.jpa.entities.RequirType;
 import com.knet51.ccweb.jpa.entities.User;
 
 @Entity
@@ -27,8 +26,7 @@ public class Requirement extends AbstractEntity {
 	@ManyToOne
 	private User user;
 	
-	@ManyToOne
-	private RequirType requirType;
+
 
 	public String getTitle() {
 		return title;
@@ -58,13 +56,6 @@ public class Requirement extends AbstractEntity {
 		super();
 	}
 
-	public RequirType getRequirType() {
-		return requirType;
-	}
-
-	public void setRequirType(RequirType requirType) {
-		this.requirType = requirType;
-	}
 
 	public Date getDate() {
 		return date;

@@ -105,6 +105,7 @@ border-bottom-color: transparent;
 		<li><a href='<c:url value="/admin/patent/list"></c:url>' >我的专利</a></li>
 		<li><a href='<c:url value="/admin/technology/list"></c:url>' >我的技术</a></li>
 		<li><a href='<c:url value="/admin/projects/list"></c:url>' >融资项目</a></li>
+		<li><a href='<c:url value="/admin/investvalid/new"></c:url>' >投资人申请</a></li>
 	</ul>
 </div>
 

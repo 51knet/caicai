@@ -15,7 +15,7 @@ public class InvestValidForm {
 	@Size(min=1,max=200)
 	private String email;
 	@NotEmpty
-	@Size(min=1,max=200)
+	@Size(min=7,max=11)
 	private String phone;
 	private String content;
 	public String getName() {
