@@ -2,9 +2,12 @@ package com.knet51.patents.controllers.admin.projects;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,7 @@ import com.knet51.ccweb.jpa.entities.projects.PlanInfo;
 import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.ccweb.jpa.entities.projects.TeamInfo;
 import com.knet51.patents.beans.UserInfo;
+import com.knet51.patents.controllers.admin.user.invest.InvestValidController;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.UserService;
 import com.knet51.patents.jpa.services.projects.BizModulService;
@@ -33,6 +37,7 @@ import com.knet51.patents.util.ajax.ValidationResponse;
 
 @Controller
 public class ProjectsPageController {
+	private static final Logger logger = LoggerFactory.getLogger(ProjectsPageController.class);
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -46,9 +51,16 @@ public class ProjectsPageController {
 	
 	@RequestMapping("/admin/projects/list")
 	public String showprojectsList(HttpSession session,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
-	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize,HttpServletRequest request){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
+
+		String contextPath = request.getContextPath();
+		String url = request.getHeader("referer");
+		logger.info("--- contextPath="+contextPath+"----- referer url="+url);
+		String new_url = url.substring(url.lastIndexOf(contextPath)+contextPath.length(), url.length());
+		logger.info("===== new_url="+new_url);
+		
 		try {
 			Page<Projects> page = projectsService.findProjectsByUser(user, pageNumber, pageSize);
 			model.addAttribute("page", page);

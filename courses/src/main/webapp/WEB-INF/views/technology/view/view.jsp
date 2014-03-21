@@ -137,7 +137,6 @@
 	  </div>
 	   <div style="padding: 10px 20px;">
 			<form action="<c:url value='/signin'></c:url>" id="login_form"  method="post">
-				<input type="hidden" value="<%=currentUrl  %>" name="currentUrl">
 				<div class="control-group" id="email">
 				
 					<div class="controls">

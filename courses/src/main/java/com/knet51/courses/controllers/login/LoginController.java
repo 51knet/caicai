@@ -40,9 +40,12 @@ public class LoginController {
 
 	@RequestMapping(value = "/signin" , method = RequestMethod.POST)
 	public String signin(@Valid LoginForm loginForm, BindingResult result,HttpSession session, 
-			@RequestParam("currentUrl") String currentUrl,HttpServletRequest request,HttpServletResponse response) {
-		
-		currentUrl = currentUrl.replaceAll("/courses", "");
+				HttpServletRequest request,HttpServletResponse response) {
+		String contextPath = request.getContextPath();
+		String url = request.getHeader("referer");
+		String currentUrl = url.substring(url.lastIndexOf(contextPath)+contextPath.length(), url.length());
+		logger.info("===== currentUrl="+currentUrl);
+		//currentUrl = currentUrl.replaceAll("/courses", "");
 		if (result.hasErrors()) {
 			logger.info("LoginForm Validation Failed " + result);
 			return "redirect:"+currentUrl;

@@ -21,12 +21,10 @@ import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.UserService;
 import com.knet51.patents.jpa.services.patent.PatentTypeService;
 import com.knet51.patents.jpa.services.requirement.PatentRequirementService;
-import com.knet51.patents.jpa.services.requirement.RequirTypeService;
 import com.knet51.patents.jpa.services.requirement.RequirementService;
 import com.knet51.patents.util.ajax.AjaxValidationEngine;
 import com.knet51.patents.util.ajax.ValidationResponse;
 
-import com.knet51.ccweb.jpa.entities.RequirType;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.PatentType;
 import com.knet51.ccweb.jpa.entities.requirement.PatentRequirement;
@@ -37,8 +35,6 @@ import com.knet51.ccweb.jpa.entities.requirement.Requirement;
 public class RequireInfoPageController {
 	@Autowired
 	private RequirementService requirementService;
-	@Autowired
-	private RequirTypeService requirTypeService;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -70,8 +66,6 @@ public class RequireInfoPageController {
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		User user = userInfo.getUser();
 		Requirement requirement = requirementService.findOne(require_id);
-		List<RequirType> requirTypeList = requirTypeService.findTypeList();
-		model.addAttribute("requirTypeList", requirTypeList);
 		if(!requirement.getUser().getId().equals(user.getId())){
 			return "redirect:/admin/requirement/list";
 		}

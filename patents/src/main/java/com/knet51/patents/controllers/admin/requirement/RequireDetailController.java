@@ -20,7 +20,6 @@ import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.UserService;
 import com.knet51.patents.jpa.services.patent.PatentTypeService;
 import com.knet51.patents.jpa.services.requirement.PatentRequirementService;
-import com.knet51.patents.jpa.services.requirement.RequirTypeService;
 import com.knet51.patents.jpa.services.requirement.RequirementService;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.PatentType;
@@ -33,8 +32,7 @@ public class RequireDetailController {
 			LoggerFactory.getLogger(RequireDetailController.class);
 	@Autowired
 	private RequirementService requirementService;
-	@Autowired
-	private RequirTypeService requirTypeService;
+	
 	@Autowired
 	private UserService userService;
 	@Autowired
