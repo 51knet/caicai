@@ -88,7 +88,7 @@ font-weight: bold;
 </style>
 	
  <div class="container projects_left">
- 	<span class="link_">所在位置：<a  href="<c:url value='/'> </c:url>">首页1 </a> >><a href="<c:url value='/projects/list'> </c:url>"> 项目列表 </a> >>  <a  href="#">项目详情</a></span>
+ 	<span class="link_">所在位置：<a  href="<c:url value='/'> </c:url>">首页</a> >><a href="<c:url value='/projects/list'> </c:url>"> 项目列表 </a> >>  <a  href="#">项目详情</a></span>
  	<div class="bottom_line_dash"></div>
 	<div class="top">
 		<span class="pName margin_right" >${projects.projectName }</span>

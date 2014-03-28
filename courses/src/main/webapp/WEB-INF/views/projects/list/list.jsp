@@ -76,7 +76,6 @@ $(document).ready(function(){
 	width: 100px; 
 
 }
-
 .container.title.custom{
 	margin: 40px 20px 0px 20px;
 	max-width: 95%;
@@ -94,14 +93,19 @@ $(document).ready(function(){
 }
 
 .container.rzfh{
-	width: 100%;
-	text-align: left;float: left;
-
+width: 100%; height:100px;text-align: left;float: left;
+background-color: #bcc5ce; height: 400px;
 }
-.container.rzfh>div{
-	margin: 20px 20px;
-	background-image: url('<c:url value="/resources/img/default/fhyq.png"> </c:url> ');  
-	background-position: top left; background-repeat: repeat-x;
+.rzfh_btm{
+	padding-left: 40px;
+}
+.rzjg_top{
+	background: url("<c:url value='/resources/img/default/rzjg.png'></c:url>") no-repeat top left;
+	padding: 20px 20px 22px 0px; text-align: right;margin-top: 10px;
+}
+.fhyq_top{
+	background: url("<c:url value='/resources/img/default/fhyq.png'></c:url>") no-repeat top left;
+	padding: 20px 20px 22px 0px;; text-align: right; margin-top: 10px;
 }
 .rzfh_logo{
 width: 130px; border: 1px solid #ddd; 
@@ -232,20 +236,29 @@ padding: 2px 2px; margin: 10px 5px 10px 0px;
 	</c:forEach>
  </div>
  
- <div class="container  rzfh" style="background-color: #bcc5ce;">
- 	  	<div  >
- 	  		<div style="width: 100%; height: 70px;" class="span11"><br>
- 	  			<a style="float: right; line-height: 40px;" href='<c:url value="/rzfh/list/fhyq"></c:url>' ><img  src="<c:url value='/resources/img/default/more_white.png'></c:url> "></a>
- 	  		</div>
- 	  		<div style="margin-left: 30px;">
- 	  			<c:forEach items="${fhList}" var="fhList"  begin="0" end="5">
- 	  			
+ <div class="container  rzfh" >
+	<div class="span6" >
+		<div class="rzjg_top">
+				<a  href='<c:url value="/rzfh/list/rzjg"></c:url>' ><img  src="<c:url value='/resources/img/default/more_white.png'></c:url> "  class=" rzfh_more"></a>
+		</div>
+		<div class="rzfh_btm">
+			<c:forEach items="${rzList}" var="rzList"  begin="0" end="5">
+ 	  				<img alt="${rzList.name }"  src="<c:url value="${p_url }${rzList.logoPath }"></c:url>" class="rzfh_logo">
+ 	  		</c:forEach>
+		</div>
+	</div>
+	
+	<div class="span6">
+		<div class="fhyq_top">
+				<a  href='<c:url value="/rzfh/list/fhyq"></c:url>' ><img  src="<c:url value='/resources/img/default/more_white.png'></c:url> " class=" rzfh_more"></a>
+		</div>
+		<div class="rzfh_btm">
+			<c:forEach items="${fhList}" var="fhList"  begin="0" end="5">
  	  				<img alt="${fhList.name }"  src="<c:url value="${p_url }${fhList.logoPath }"></c:url>" class="rzfh_logo">
- 	  			
- 	  			</c:forEach>
- 	  		</div>
- 	  	</div>
-
+ 	  		</c:forEach>
+		</div>
+	</div>
+	
  </div>
 
  <div class="container">
