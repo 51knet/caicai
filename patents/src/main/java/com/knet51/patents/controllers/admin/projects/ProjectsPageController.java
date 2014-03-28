@@ -25,7 +25,7 @@ import com.knet51.ccweb.jpa.entities.projects.PlanInfo;
 import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.ccweb.jpa.entities.projects.TeamInfo;
 import com.knet51.patents.beans.UserInfo;
-import com.knet51.patents.controllers.admin.user.invest.InvestValidController;
+import com.knet51.patents.controllers.admin.rolevalid.RoleValidController;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.UserService;
 import com.knet51.patents.jpa.services.projects.BizModulService;

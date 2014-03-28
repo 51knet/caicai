@@ -48,11 +48,29 @@ function checkResources(obj){
 
 <div class="row-fluid custom round">
 	<div  class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
-		<h4>领投人认证</h4>
+		<h4>权限申请</h4>
 		<i>请认真填写下列表格</i>
 	</div>
 	<div class="content row-fluid">
-		<form action= '<c:url value="/admin/investvalid/add"></c:url>'  method="post" enctype="multipart/form-data"  id="valid_form" name="valid_post" onsubmit="return checkResources(this)">
+		<form action= '<c:url value="/admin/rolevalid/add"></c:url>'  method="post" enctype="multipart/form-data"  id="valid_form" name="valid_post" onsubmit="return checkResources(this)">
+		
+			<div class="control-group" >
+				<div class="controls">
+					<label class="checkbox inline">
+					  <input type="checkbox" checked="checked" value="investor" name="investor"> 投资人
+					</label>
+					<label class="checkbox inline">
+					  <input type="checkbox"  value="ledinvestor" name="ledinvestor"> 领投人
+					</label>
+					<label class="checkbox inline">
+					  <input type="checkbox" value="investcompany"> 投资机构
+					</label>
+					<label class="checkbox inline">
+					  <input type="checkbox" value="Incubation" name="Incubation"> 孵化园
+					</label>
+				</div>
+			</div>
+		
 			<div class="control-group" id="name">
 				<div class="controls">
 					<i class="icon-star"></i> 真实姓名：<input  type="text" name="name"   placeholder="真实姓名" > <span class="help-inline"><form:errors path="name" /></span>
@@ -120,7 +138,7 @@ function checkResources(obj){
     
     $(document).ready(function() {
     	$("#valid_form").submit(function(){
-			return checkEmptyAjax("valid_form","<c:url value='/admin/investvalid/validInfoAJAX'></c:url>");
+			return checkEmptyAjax("valid_form","<c:url value='/admin/rolevalid/validInfoAJAX'></c:url>");
 		});	
     });
 </script>

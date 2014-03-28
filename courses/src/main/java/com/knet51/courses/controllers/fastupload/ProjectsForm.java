@@ -2,24 +2,24 @@ package com.knet51.courses.controllers.fastupload;
 
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class ProjectsForm {
 	@NotEmpty
 	@Size(min=1, max=200)
-	private String projectName;
-
+	private String projectsName;
 	@NotEmpty
 	@Size(min=1, max=200)
-	private String progress;
+	private String projectsProgress;
 	@NotEmpty
 	@Size(min=1, max=200)
 	private String totalMoney;
 	@NotEmpty
-	private String content;
+	private String projectsContent;
 	@NotEmpty
 	@Size(min=1, max=200)
-	private String companyName;
+	private String projectsCompany;
 	@NotEmpty
 	@Size(min=1, max=200)
 	private String empNumber;
@@ -28,196 +28,130 @@ public class ProjectsForm {
 	private String location;
 	@NotEmpty
 	@Size(min=1, max=200)
-	private String boss;
+	private String projectsBoss;
 	@NotEmpty
 	@Size(min=7, max=11)
-	private String phone;
+	private String projectsPhone;
+	@NotEmpty
+	@Size(min=1, max=2)
+	private String maxInvestNum;
 	
-	private String targetUser;
-	private String targetReq;
-	private String modulIntro;
-	private String profitModul;
-	private String competitorIntro;
-	private String coreValueIntro;
-	private String shareholderIntro;
-	private String unShareholderIntro;
-	private String planContext;
+	@NotEmpty
+	@Size(min=1)
+	private String minMoney;
 	
-	public String getProjectName() {
-		return projectName;
+	@NotEmpty
+	@Email
+	private String projectsEmail;
+
+	
+
+	public String getProjectsEmail() {
+		return projectsEmail;
 	}
 
-
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
+	public void setProjectsEmail(String projectsEmail) {
+		this.projectsEmail = projectsEmail;
 	}
 
-	public String getProgress() {
-		return progress;
+	public String getMaxInvestNum() {
+		return maxInvestNum;
 	}
 
-
-	public void setProgress(String progress) {
-		this.progress = progress;
+	public void setMaxInvestNum(String maxInvestNum) {
+		this.maxInvestNum = maxInvestNum;
 	}
 
+	public String getMinMoney() {
+		return minMoney;
+	}
+
+	public void setMinMoney(String minMoney) {
+		this.minMoney = minMoney;
+	}
+
+	public String getProjectsName() {
+		return projectsName;
+	}
+
+	public void setProjectsName(String projectsName) {
+		this.projectsName = projectsName;
+	}
+
+	public String getProjectsProgress() {
+		return projectsProgress;
+	}
+
+	public void setProjectsProgress(String projectsProgress) {
+		this.projectsProgress = projectsProgress;
+	}
 
 	public String getTotalMoney() {
 		return totalMoney;
 	}
 
-
 	public void setTotalMoney(String totalMoney) {
 		this.totalMoney = totalMoney;
 	}
 
-
-	public String getContent() {
-		return content;
+	public String getProjectsContent() {
+		return projectsContent;
 	}
 
-
-	public void setContent(String content) {
-		this.content = content;
+	public void setProjectsContent(String projectsContent) {
+		this.projectsContent = projectsContent;
 	}
 
-
-	public String getCompanyName() {
-		return companyName;
+	public String getProjectsCompany() {
+		return projectsCompany;
 	}
 
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setProjectsCompany(String projectsCompany) {
+		this.projectsCompany = projectsCompany;
 	}
-
 
 	public String getEmpNumber() {
 		return empNumber;
 	}
 
-
 	public void setEmpNumber(String empNumber) {
 		this.empNumber = empNumber;
 	}
-
 
 	public String getLocation() {
 		return location;
 	}
 
-
 	public void setLocation(String location) {
 		this.location = location;
 	}
 
-
-	public String getBoss() {
-		return boss;
+	public String getProjectsBoss() {
+		return projectsBoss;
 	}
 
 
-	public void setBoss(String boss) {
-		this.boss = boss;
+
+
+	public void setProjectsBoss(String projectsBoss) {
+		this.projectsBoss = projectsBoss;
 	}
 
 
-	public String getPhone() {
-		return phone;
+
+
+	public String getProjectsPhone() {
+		return projectsPhone;
 	}
 
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getTargetUser() {
-		return targetUser;
-	}
 
 
-	public void setTargetUser(String targetUser) {
-		this.targetUser = targetUser;
-	}
-
-	public String getTargetReq() {
-		return targetReq;
+	public void setProjectsPhone(String projectsPhone) {
+		this.projectsPhone = projectsPhone;
 	}
 
 
-	public void setTargetReq(String targetReq) {
-		this.targetReq = targetReq;
-	}
-
-
-	public String getModulIntro() {
-		return modulIntro;
-	}
-
-
-	public void setModulIntro(String modulIntro) {
-		this.modulIntro = modulIntro;
-	}
-
-
-	public String getProfitModul() {
-		return profitModul;
-	}
-
-
-	public void setProfitModul(String profitModul) {
-		this.profitModul = profitModul;
-	}
-
-
-	public String getCompetitorIntro() {
-		return competitorIntro;
-	}
-
-
-	public void setCompetitorIntro(String competitorIntro) {
-		this.competitorIntro = competitorIntro;
-	}
-
-
-	public String getCoreValueIntro() {
-		return coreValueIntro;
-	}
-
-
-	public void setCoreValueIntro(String coreValueIntro) {
-		this.coreValueIntro = coreValueIntro;
-	}
-
-
-	public String getShareholderIntro() {
-		return shareholderIntro;
-	}
-
-
-	public void setShareholderIntro(String shareholderIntro) {
-		this.shareholderIntro = shareholderIntro;
-	}
-
-
-	public String getUnShareholderIntro() {
-		return unShareholderIntro;
-	}
-
-
-	public void setUnShareholderIntro(String unShareholderIntro) {
-		this.unShareholderIntro = unShareholderIntro;
-	}
-
-
-	public String getPlanContext() {
-		return planContext;
-	}
-
-
-	public void setPlanContext(String planContext) {
-		this.planContext = planContext;
-	}
 
 
 	public ProjectsForm() {

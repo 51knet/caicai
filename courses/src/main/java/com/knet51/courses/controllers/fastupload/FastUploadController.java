@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.patent.Patent;
 import com.knet51.ccweb.jpa.entities.patent.PatentType;
+import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.ccweb.jpa.entities.requirement.PatentRequirement;
 import com.knet51.ccweb.jpa.entities.requirement.Requirement;
 import com.knet51.ccweb.jpa.entities.technology.Technology;
@@ -28,11 +29,13 @@ import com.knet51.courses.controllers.defs.GlobalDefs;
 import com.knet51.courses.jpa.services.UserService;
 import com.knet51.courses.jpa.services.patent.PatentService;
 import com.knet51.courses.jpa.services.patent.PatentTypeService;
+import com.knet51.courses.jpa.services.projects.ProjectsService;
 import com.knet51.courses.jpa.services.requirement.PatentRequirementService;
 import com.knet51.courses.jpa.services.requirement.TechRequirementService;
 import com.knet51.courses.jpa.services.technology.TechnologyService;
 import com.knet51.courses.util.ajax.AjaxValidationEngine;
 import com.knet51.courses.util.ajax.ValidationResponse;
+import com.knet51.courses.util.mailSender.MailSender;
 
 
 @Controller
@@ -52,6 +55,8 @@ public class FastUploadController {
 	private PatentRequirementService patentRequireService;
 	@Autowired
 	private TechRequirementService techRequireService;
+	@Autowired
+	private ProjectsService projectsService;
 	
 	
 	@RequestMapping(value="/fastupload", method = RequestMethod.GET)
@@ -62,17 +67,21 @@ public class FastUploadController {
 		Map<String, String> techField = GlobalDefs.getTechField();
 		model.addAttribute("techField", techField);
 		
+		Map<String,String> projectsField = GlobalDefs.getProjectsField();
+		model.addAttribute("projectsField", projectsField);
+		
 		return "fastupload";
 	}
 	
 	@RequestMapping(value="/patent/add",method = RequestMethod.POST)
 	public String createPatent(@Valid PatentForm patentForm,BindingResult validResult,HttpSession session,
 			Model model,@RequestParam("patentType") Long type_id,@RequestParam("country") Integer country){
-		User user = userService.getValidEmail("tim@apple.com");
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/fastupload";
 		}else{
+			String fastEmail = patentForm.getPatentEmail();
+			User user = validUser(fastEmail);
 			Patent patent = new Patent();
 			PatentType patentType = patentTypeService.findOne(type_id);
 			patent.setAddress(patentForm.getPatentAddress());
@@ -110,31 +119,37 @@ public class FastUploadController {
 	@RequestMapping(value="/technology/add",method = RequestMethod.POST)
 	public String createTech(@Valid TechnologyForm techForm,BindingResult validResult,HttpSession session,
 			Model model){
-		User user = userService.getValidEmail("tim@apple.com");
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/fastupload";
 		}else{
-			Technology technology = new Technology();
-			technology.setAchievement(techForm.getAchievement());
-			technology.setAdvantage(techForm.getAdvantage());
-			technology.setApplyArea(techForm.getApplyArea());
-			technology.setContents(techForm.getTechContents());
-			technology.setCooperation(techForm.getCooperation());
-			technology.setDemand(techForm.getDemand());
-			technology.setDepartment(techForm.getDepartment());
-			technology.setInventer(techForm.getTechInventer());
-			technology.setMaturity(techForm.getMaturity());
-			technology.setPhone(techForm.getTechPhone());
-			technology.setProgress(techForm.getProgress());
-			technology.setTechField(techForm.getTechField());
-			technology.setTechName(techForm.getTechName());
-			technology.setTechType(techForm.getTechType());
-			technology.setUser(user);
-			technology.setStatus(GlobalDefs.WAITE);
-			technology.setFocus(GlobalDefs.HOME_FOCUS_NOT);
-			technology.setDate(new Date());
-			techService.create(technology);
+			
+			try {
+				String fastEmail = techForm.getTechEmail();
+				User user = validUser(fastEmail);
+				Technology technology = new Technology();
+				technology.setAchievement(techForm.getAchievement());
+				technology.setAdvantage(techForm.getAdvantage());
+				technology.setApplyArea(techForm.getApplyArea());
+				technology.setContents(techForm.getTechContents());
+				technology.setCooperation(techForm.getCooperation());
+				technology.setDemand(techForm.getDemand());
+				technology.setDepartment(techForm.getDepartment());
+				technology.setInventer(techForm.getTechInventer());
+				technology.setMaturity(techForm.getMaturity());
+				technology.setPhone(techForm.getTechPhone());
+				technology.setProgress(techForm.getProgress());
+				technology.setTechField(techForm.getTechField());
+				technology.setTechName(techForm.getTechName());
+				technology.setTechType(techForm.getTechType());
+				technology.setUser(user);
+				technology.setStatus(GlobalDefs.WAITE);
+				technology.setFocus(GlobalDefs.HOME_FOCUS_NOT);
+				technology.setDate(new Date());
+				techService.create(technology);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return "redirect:/fastupload/success";
 		}
 		
@@ -143,11 +158,13 @@ public class FastUploadController {
 	@RequestMapping(value="/patentrequire/add",method = RequestMethod.POST)
 	public String createPatentRequire(@Valid PatentRequireForm requireForm,BindingResult validResult,HttpSession session,
 			Model model,@RequestParam("patentType") Long type_id){
-		User user = userService.getValidEmail("tim@apple.com");
+		
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/fastupload";
 		}else{
+			String fastEmail = requireForm.getPatentReqEmail();
+			User user = validUser(fastEmail);
 			PatentType type = patentTypeService.findOne(type_id);
 			
 			PatentRequirement requirement = new PatentRequirement();
@@ -176,11 +193,13 @@ public class FastUploadController {
 	@RequestMapping(value="/techrequire/add",method = RequestMethod.POST)
 	public String createrequirement(@Valid TechRequireForm requireForm,BindingResult validResult,HttpSession session,
 			Model model){
-		User user = userService.getValidEmail("tim@apple.com");
+		
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/fastupload";
 		}else{
+			String fastEmail = requireForm.getTechReqEmail();
+			User user = validUser(fastEmail);
 			Requirement requirement = new Requirement();
 			requirement.setTitle(requireForm.getTechReqTitle());
 			requirement.setContent(requireForm.getTechReqContent());
@@ -196,6 +215,44 @@ public class FastUploadController {
 			requirement.setStatus(GlobalDefs.WAITE);
 			
 			techRequireService.create(requirement);
+			return "redirect:/fastupload/success";
+		}
+		
+	}
+	
+	@RequestMapping(value="/projects/add",method = RequestMethod.POST)
+	public String createProjects(@Valid ProjectsForm projectsForm,@RequestParam("industry") String industry,
+			BindingResult validResult,HttpSession session,Model model){
+		if(validResult.hasErrors()){
+			logger.info("====="+validResult.toString());
+			return "redirect:/fastupload";
+		}else{
+			String fastEmail = projectsForm.getProjectsEmail();
+			User user = validUser(fastEmail);
+			Projects projects = new Projects();
+			projects.setCompanyName(projectsForm.getProjectsCompany());
+			projects.setContent(projectsForm.getProjectsContent());
+			projects.setEmpNumber(projectsForm.getEmpNumber());
+			projects.setIndustry(industry);
+			projects.setLocation(projectsForm.getLocation());
+			projects.setProgress(projectsForm.getProjectsProgress());
+			projects.setProjectName(projectsForm.getProjectsName());
+			projects.setTotalMoney(Long.parseLong(projectsForm.getTotalMoney()));
+			projects.setBoss(projectsForm.getProjectsBoss());
+			projects.setPhone(projectsForm.getProjectsPhone());
+			projects.setComplete(GlobalDefs.WAITE);
+			projects.setCurrentMoney(0L);
+			projects.setUser(user);
+			Integer maxInvest = Integer.parseInt(projectsForm.getMaxInvestNum());
+			maxInvest = maxInvest>=20?20:maxInvest;
+			projects.setMaxInvestNum(maxInvest);
+			Integer minMoney = Integer.parseInt(projectsForm.getMinMoney());
+			minMoney = minMoney<0?1:minMoney;
+			projects.setMinMoney(minMoney);
+			projects.setDate(new Date());
+			projects.setStatus(GlobalDefs.WAITE);
+			projects = projectsService.create(projects);
+			
 			return "redirect:/fastupload/success";
 		}
 		
@@ -224,6 +281,33 @@ public class FastUploadController {
 	@RequestMapping(value = "/fastupload/techRequireAJAX", method = RequestMethod.POST)
 	public @ResponseBody ValidationResponse techReqFormAjaxJson(@Valid TechRequireForm techRequireForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
+	}
+	
+	@RequestMapping(value = "/fastupload/projectsAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse projectsFormAjaxJson(@Valid ProjectsForm projectsForm, BindingResult result) {
+		logger.info(" valid result="+result.toString());
+		return AjaxValidationEngine.process(result);
+	}
+	
+	private User validUser(String fastEmail){
+		User user = userService.getValidEmail(fastEmail);
+
+		if(user == null){
+			user = new User();
+			user.setEmail(fastEmail);
+			user.setPassword(GlobalDefs.DEFAULT_PWD);
+			user.setName(fastEmail);
+			user.setPhoto_url(GlobalDefs.DEFAULT_PHOTO_URL);
+			user.setRole(GlobalDefs.USER_ROLE);
+			user.setRandomUrl("pass");
+			user = userService.createUser(user);
+			MailSender.getInstance().SendFastUploadMail(fastEmail);
+			logger.info("==== user not exist "+user.getName());
+		}else{
+			logger.info("==== user is exist "+user.getName());
+		}
+
+		return user;
 	}
 	
 }

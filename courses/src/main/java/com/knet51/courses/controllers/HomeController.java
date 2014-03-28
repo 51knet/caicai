@@ -87,10 +87,7 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpSession session,
 			HttpServletRequest request) {
 		logger.info("###### into the HomeController ######");
-		//List<CourseBeans> cBeans = courseService.getAllCourseBeans();
 		List<Teacher> teacherList = teacherService.findAllTeacher();
-		List<Patent> patentList = patentService.findPatentList();
-		model.addAttribute("patentList", patentList);
 		
 		List<Patent> chinaPatentList = patentService.findPatentByCountryAndFocus(GlobalDefs.PATENT_CHINA, GlobalDefs.HOME_FOCUS);
 		List<Patent> foreignPatentList = patentService.findPatentByCountryAndFocus(GlobalDefs.PATENT_FOREIGN, GlobalDefs.HOME_FOCUS);

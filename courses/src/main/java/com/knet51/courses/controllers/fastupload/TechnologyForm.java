@@ -2,6 +2,7 @@ package com.knet51.courses.controllers.fastupload;
 
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TechnologyForm {
@@ -18,6 +19,10 @@ public class TechnologyForm {
 	private String techPhone;
 	
 	private String techType;//xiang mu lei xing "863"
+	
+	@NotEmpty
+	@Email
+	private String techEmail;
 	
 	@NotEmpty
 	private String techContents;// jian jie
@@ -119,6 +124,14 @@ public class TechnologyForm {
 	}
 	public void setDemand(String demand) {
 		this.demand = demand;
+	}
+	
+	
+	public String getTechEmail() {
+		return techEmail;
+	}
+	public void setTechEmail(String techEmail) {
+		this.techEmail = techEmail;
 	}
 	protected TechnologyForm() {
 		super();

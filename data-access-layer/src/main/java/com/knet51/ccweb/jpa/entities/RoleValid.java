@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 @Entity
-public class InvestValid extends AbstractEntity {
+public class RoleValid extends AbstractEntity {
 	private String name;
 	private String email;
 	private String phone;
@@ -12,7 +12,10 @@ public class InvestValid extends AbstractEntity {
 	private String content;
 	private String savePath;
 	private Integer status;
-	
+	private String investor;
+	private String ledinvestor;
+	private String investcompany;
+	private String Incubation;
 	@ManyToOne
 	private User user;
 	
@@ -23,6 +26,38 @@ public class InvestValid extends AbstractEntity {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public String getInvestor() {
+		return investor;
+	}
+
+	public void setInvestor(String investor) {
+		this.investor = investor;
+	}
+
+	public String getLedinvestor() {
+		return ledinvestor;
+	}
+
+	public void setLedinvestor(String ledinvestor) {
+		this.ledinvestor = ledinvestor;
+	}
+
+	public String getInvestcompany() {
+		return investcompany;
+	}
+
+	public void setInvestcompany(String investcompany) {
+		this.investcompany = investcompany;
+	}
+
+	public String getIncubation() {
+		return Incubation;
+	}
+
+	public void setIncubation(String incubation) {
+		Incubation = incubation;
 	}
 
 	public String getName() {
@@ -73,7 +108,7 @@ public class InvestValid extends AbstractEntity {
 		this.user = user;
 	}
 
-	public InvestValid() {
+	public RoleValid() {
 		super();
 	}
 	

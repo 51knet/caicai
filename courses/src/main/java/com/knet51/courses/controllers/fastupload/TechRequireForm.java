@@ -2,6 +2,7 @@ package com.knet51.courses.controllers.fastupload;
 
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TechRequireForm {
@@ -27,6 +28,18 @@ public class TechRequireForm {
 	@NotEmpty
 	private String techReqContent;
 	
+	@NotEmpty
+	@Email
+	private String techReqEmail;
+	
+	
+	
+	public String getTechReqEmail() {
+		return techReqEmail;
+	}
+	public void setTechReqEmail(String techReqEmail) {
+		this.techReqEmail = techReqEmail;
+	}
 	public String getTechReqContent() {
 		return techReqContent;
 	}

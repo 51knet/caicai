@@ -1,4 +1,4 @@
-package com.knet51.patents.controllers.admin.user.invest;
+package com.knet51.patents.controllers.admin.rolevalid;
 
 import javax.validation.constraints.Size;
 
@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
-public class InvestValidForm {
+public class RoleValidForm {
 	@NotEmpty
 	@Size(min=1,max=200)
 	private String name;
@@ -18,6 +18,37 @@ public class InvestValidForm {
 	@Size(min=7,max=11)
 	private String phone;
 	private String content;
+	
+	private String investor;
+	private String ledinvestor;
+	private String investcompany;
+	private String Incubation;
+	
+	
+	public String getInvestor() {
+		return investor;
+	}
+	public void setInvestor(String investor) {
+		this.investor = investor;
+	}
+	public String getLedinvestor() {
+		return ledinvestor;
+	}
+	public void setLedinvestor(String ledinvestor) {
+		this.ledinvestor = ledinvestor;
+	}
+	public String getInvestcompany() {
+		return investcompany;
+	}
+	public void setInvestcompany(String investcompany) {
+		this.investcompany = investcompany;
+	}
+	public String getIncubation() {
+		return Incubation;
+	}
+	public void setIncubation(String incubation) {
+		Incubation = incubation;
+	}
 	public String getName() {
 		return name;
 	}
@@ -42,7 +73,7 @@ public class InvestValidForm {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public InvestValidForm() {
+	public RoleValidForm() {
 		super();
 	}
 	

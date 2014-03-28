@@ -62,13 +62,13 @@ public class ProjectsPageController {
 	@RequestMapping("/projects/list")
 	public String showprojectsList(Model model){
 		List<Projects> upList = projectsService.findProjectsListByCompleteAndStatus(GlobalDefs.PASS, GlobalDefs.UN_COMPLETE);
-		List<Projects> npList = new ArrayList<Projects>();
+		List<Projects> newpList = new ArrayList<Projects>();
 		for (Projects projects : upList) {
 			if(projects.getCurrentMoney().equals(0L)){
-				npList.add(projects);
+				newpList.add(projects);
 			}
 		}
-		model.addAttribute("npList", npList);
+		model.addAttribute("npList", newpList);
 		model.addAttribute("upList", upList);
 		
 		List<Rzfh> rzList = rzfhService.findRzfhListByStatusAndTypes(GlobalDefs.PASS, GlobalDefs.RZJG);

@@ -55,4 +55,9 @@ public class ProjectsServiceImpl implements ProjectsService {
 		return repository.findProjectsByStatusAndProjectNameLike(status, "%"+projectName+"%", pageable);
 	}
 
+	@Override
+	public Projects create(Projects projects) {
+		return repository.save(projects);
+	}
+
 }

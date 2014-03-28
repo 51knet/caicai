@@ -52,11 +52,12 @@ body {
 	<div id="errordiv1">
 		<div class="erroeraddress">
 			<input style="margin-bottom: 300px;" type="image" />
-		  <h4>上传成功！！</h4>
+		  <h4>上传成功！！<a href='<c:url value="/"></c:url>'> 
+		  点击返回首页 </a></h4>
 		</div>
 		<div id="errordiv2">
 			<div>
-				<a href='<c:url value="/"></c:url>'> 返回首页 </a>
+				
 			</div>
 		</div>
 	</div>

@@ -200,13 +200,14 @@ function logout() {
 						<span class="help-inline" id="passwordError"><form:errors path="psw"></form:errors></span>
 					</div>
 				</div>
+				<!-- 
 				<div class="control" style="margin-top: -20px;">
 					<h5 style="text-align: left; line-height: 5px; margin-top: 10px;" class="title-index">角色选择</h5>
 					<div class="controls" style="text-align: left; margin-top: -5px;">
 						<label class="radio inline title-index" style="font-family: 'Microsoft YaHei'; font-size: 8pt; width: 20%;"> <input type="radio" name="userType" id="user" value="user" checked>普通用户</label>
 						<label class="radio inline title-index" style="font-family: 'Microsoft YaHei'; font-size: 8pt; width: 20%;"> <input type="radio" name="userType" id="teacher" value="teacher" >专家用户</label>
 					</div>
-				</div>
+				</div> -->
 				<button type="submit" class="btn btn-large btn-block btn-primary" onclick="return registerOnclick();" style="font-family: 'Microsoft YaHei'; margin-top: 10px;">确认注册</button>
 			</form:form>
 			<div class="register-hr-bg"></div>

@@ -14,6 +14,6 @@ public interface ProjectsService {
 	List<Projects> findProjectsListByCompleteAndStatus(Integer status,Integer complete);
 	
 	Projects findOne(Long id);
-	
+	Projects create(Projects projects);
 	Page<Projects> findProjectsByStatusAndProjectNameLike(Integer status, String projectName,int pageNumber, int pageSize);
 }

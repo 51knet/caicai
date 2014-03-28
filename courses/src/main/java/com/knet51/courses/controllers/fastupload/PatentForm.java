@@ -3,6 +3,7 @@ package com.knet51.courses.controllers.fastupload;
 
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class PatentForm {
@@ -39,9 +40,17 @@ public class PatentForm {
 	@NotEmpty
 	private String patentField;
 	
+	@Email
+	@NotEmpty
+	private String patentEmail;
 	
-	
-	
+		
+	public String getPatentEmail() {
+		return patentEmail;
+	}
+	public void setPatentEmail(String patentEmail) {
+		this.patentEmail = patentEmail;
+	}
 	public String getPatentField() {
 		return patentField;
 	}

@@ -7,19 +7,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.knet51.ccweb.jpa.entities.InvestValid;
-import com.knet51.ccweb.jpa.repository.InvestValidRepository;
-@Service("investValidService")
-public class InvestValidServiceImpl implements InvestValidService {
+import com.knet51.ccweb.jpa.entities.RoleValid;
+import com.knet51.ccweb.jpa.repository.RoleValidRepository;
+@Service("roleValidService")
+public class RoleValidServiceImpl implements RoleValidService {
 	@Autowired
-	private InvestValidRepository validRepository;
+	private RoleValidRepository validRepository;
 	@Override
-	public InvestValid create(InvestValid investValid) {
+	public RoleValid create(RoleValid investValid) {
 		return validRepository.save(investValid);
 	}
 
 	@Override
-	public InvestValid update(InvestValid investValid) {
+	public RoleValid update(RoleValid investValid) {
 		return validRepository.saveAndFlush(investValid);
 	}
 
@@ -30,12 +30,12 @@ public class InvestValidServiceImpl implements InvestValidService {
 	}
 
 	@Override
-	public InvestValid find(Long id) {
+	public RoleValid find(Long id) {
 		return validRepository.findOne(id);
 	}
 
 	@Override
-	public Page<InvestValid> findInvestValidPage(int pageNumber, int pageSize) {
+	public Page<RoleValid> findInvestValidPage(int pageNumber, int pageSize) {
 		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id");
 		return validRepository.findAll(pageable);
 	}

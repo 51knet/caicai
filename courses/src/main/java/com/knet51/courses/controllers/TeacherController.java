@@ -1,7 +1,6 @@
 package com.knet51.courses.controllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -63,18 +62,18 @@ public class TeacherController {
 		//List<Teacher> teacher = teacherPage.getContent();
 		model.addAttribute("page", teacherPage);
 		model.addAttribute("teacherList", teacherList);
-		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		if(currentUser != null){
-			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
-			List<Course> userCourse = new ArrayList<Course>();
-			for (int i = 0; i < userCourseList.size(); i++) {
-				Course course = courseService.findOneById(userCourseList.get(i).getTeachercourseid());
-				userCourse.add(course);
-			}
-			
-			model.addAttribute("userCourse", userCourse);
-			model.addAttribute("userCourseCount", userCourse.size());
-		}
+//		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+//		if(currentUser != null){
+//			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
+//			List<Course> userCourse = new ArrayList<Course>();
+//			for (int i = 0; i < userCourseList.size(); i++) {
+//				Course course = courseService.findOneById(userCourseList.get(i).getTeachercourseid());
+//				userCourse.add(course);
+//			}
+//			
+//			model.addAttribute("userCourse", userCourse);
+//			model.addAttribute("userCourseCount", userCourse.size());
+//		}
 		return "teacher.list";
 	}
 	
@@ -89,18 +88,18 @@ public class TeacherController {
 
 		model.addAttribute("page", enterprisePage);
 		model.addAttribute("enterpriseList", enterpriseList);
-		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		if(currentUser != null){
-			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
-			List<Course> userCourse = new ArrayList<Course>();
-			for (int i = 0; i < userCourseList.size(); i++) {
-				Course course = courseService.findOneById(userCourseList.get(i).getTeachercourseid());
-				userCourse.add(course);
-			}
-			
-			model.addAttribute("userCourse", userCourse);
-			model.addAttribute("userCourseCount", userCourse.size());
-		}
+//		UserInfo currentUser = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+//		if(currentUser != null){
+//			List<UserCourse> userCourseList = userCourseService.findUserCourseByUserid(currentUser.getId());
+//			List<Course> userCourse = new ArrayList<Course>();
+//			for (int i = 0; i < userCourseList.size(); i++) {
+//				Course course = courseService.findOneById(userCourseList.get(i).getTeachercourseid());
+//				userCourse.add(course);
+//			}
+//			
+//			model.addAttribute("userCourse", userCourse);
+//			model.addAttribute("userCourseCount", userCourse.size());
+//		}
 		return "enterprise.list";
 	}
 	/**
@@ -117,12 +116,12 @@ public class TeacherController {
 			return "redirect:/signin";
 		} */
 		Teacher teacher=teacherService.findOne(teacher_id);
-		List<String> courseTypeList = courseService.getCourseTypeByTeacherId(teacher_id);
-		List<Course> teacherCourseList=courseService.getAllCourseByTeacherId(teacher_id);
-		model.addAttribute("teacherCourseList", teacherCourseList);
-		model.addAttribute("teacher", teacher);
-		model.addAttribute("courseCount", teacherCourseList.size());
-		model.addAttribute("courseTypeList", courseTypeList);
+//		List<String> courseTypeList = courseService.getCourseTypeByTeacherId(teacher_id);
+//		List<Course> teacherCourseList=courseService.getAllCourseByTeacherId(teacher_id);
+//		model.addAttribute("teacherCourseList", teacherCourseList);
+//		model.addAttribute("teacher", teacher);
+//		model.addAttribute("courseCount", teacherCourseList.size());
+//		model.addAttribute("courseTypeList", courseTypeList);
 //		return "teacher.teacherInfo";
 		HttpServletResponse resp = ((HttpServletResponse)response);
 		resp.sendRedirect("/ccweb/teacher/"+teacher_id);
@@ -142,30 +141,30 @@ public class TeacherController {
 	@RequestMapping(value = "/teacher/{teacher_id}/course/type")
 	public String showCourseByType(@RequestParam("detail") String courseType,
 			Model model,@PathVariable Long teacher_id) throws Exception {
-		courseType = new String(courseType.getBytes("iso-8859-1"), "utf-8");
-		Teacher teacher=teacherService.findOne(teacher_id);
-		//List<String> courseTypeList = courseService.getCourseTypeByTeacherId(teacher_id);
-		List<Course> courseList=courseService.getAllCourseByTeacherId(teacher_id);
-		List<CourseType> typeList = courseTypeService.findAll();
-		List<Course> newCourseList = new ArrayList<Course>();
-		if (courseType.trim() != null && !courseType.trim().equals("全部课程")) {
-			for (Course c : courseList) {
-				if (courseType.equals(c.getCourseType())) {
-					newCourseList.add(c);
-				}
-			}
-			model.addAttribute("courseType", courseType);
-			model.addAttribute("teacherCourseList", newCourseList);
-			model.addAttribute("courseCount", newCourseList.size());
-			model.addAttribute("courseTypeList", typeList);
-			model.addAttribute("teacher", teacher);
-		} else {
-			model.addAttribute("teacherCourseList", courseList);
-			model.addAttribute("courseType", courseType);
-			model.addAttribute("courseCount", courseList.size());
-			model.addAttribute("courseTypeList", typeList);
-			model.addAttribute("teacher", teacher);
-		}
+//		courseType = new String(courseType.getBytes("iso-8859-1"), "utf-8");
+//		Teacher teacher=teacherService.findOne(teacher_id);
+//		//List<String> courseTypeList = courseService.getCourseTypeByTeacherId(teacher_id);
+//		List<Course> courseList=courseService.getAllCourseByTeacherId(teacher_id);
+//		List<CourseType> typeList = courseTypeService.findAll();
+//		List<Course> newCourseList = new ArrayList<Course>();
+//		if (courseType.trim() != null && !courseType.trim().equals("全部课程")) {
+//			for (Course c : courseList) {
+//				if (courseType.equals(c.getCourseType())) {
+//					newCourseList.add(c);
+//				}
+//			}
+//			model.addAttribute("courseType", courseType);
+//			model.addAttribute("teacherCourseList", newCourseList);
+//			model.addAttribute("courseCount", newCourseList.size());
+//			model.addAttribute("courseTypeList", typeList);
+//			model.addAttribute("teacher", teacher);
+//		} else {
+//			model.addAttribute("teacherCourseList", courseList);
+//			model.addAttribute("courseType", courseType);
+//			model.addAttribute("courseCount", courseList.size());
+//			model.addAttribute("courseTypeList", typeList);
+//			model.addAttribute("teacher", teacher);
+//		}
 		return "teacher.teacherInfo";
 	}
 }

@@ -73,8 +73,12 @@ public class ProjectsDetailController {
 			projects.setPhone(projectsForm.getPhone());
 			projects.setComplete(GlobalDefs.WAITE);
 			projects.setCurrentMoney(0L);
-			projects.setMaxInvestNum(Integer.parseInt(projectsForm.getMaxInvestNum()));
-			projects.setMinMoney(Integer.parseInt(projectsForm.getMinMoney()));
+			Integer maxInvest = Integer.parseInt(projectsForm.getMaxInvestNum());
+			maxInvest = maxInvest>=20?20:maxInvest;
+			projects.setMaxInvestNum(maxInvest);
+			Integer minMoney = Integer.parseInt(projectsForm.getMinMoney());
+			minMoney = minMoney<0?1:minMoney;
+			projects.setMinMoney(minMoney);
 			projects.setDate(new Date());
 			projects.setStatus(GlobalDefs.WAITE);
 			projects.setUser(userInfo.getUser());

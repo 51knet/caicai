@@ -1,4 +1,4 @@
-package com.knet51.patents.controllers.admin.user.invest;
+package com.knet51.patents.controllers.admin.rolevalid;
 
 import java.io.InputStream;
 import java.util.List;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.knet51.ccweb.jpa.entities.InvestValid;
+import com.knet51.ccweb.jpa.entities.RoleValid;
 import com.knet51.patents.beans.UserInfo;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
-import com.knet51.patents.jpa.services.InvestValidService;
+import com.knet51.patents.jpa.services.RoleValidService;
 import com.knet51.patents.jpa.services.UserService;
 import com.knet51.patents.util.ajax.AjaxValidationEngine;
 import com.knet51.patents.util.ajax.ValidationResponse;
@@ -29,51 +29,55 @@ import com.knet51.patents.util.fileUpLoad.FTPUtil;
 import com.knet51.patents.util.fileUpLoad.FileUtil;
 
 @Controller
-public class InvestValidController {
-	private static final Logger logger = LoggerFactory.getLogger(InvestValidController.class);
+public class RoleValidController {
+	private static final Logger logger = LoggerFactory.getLogger(RoleValidController.class);
 	@Autowired
-	private InvestValidService validService;
+	private RoleValidService validService;
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/admin/investvalid/new")
+	@RequestMapping(value="/admin/rolevalid/new")
 	public String showAddinvestValidPage(HttpSession session){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		return "admin."+userInfo.getRole()+".investvalid.add";
 	}
 	
-	@RequestMapping(value="/admin/investvalid/add", method = RequestMethod.POST)
-	public String addInvestValid(@Valid InvestValidForm investValidForm, BindingResult validResult,HttpSession session
+	@RequestMapping(value="/admin/rolevalid/add", method = RequestMethod.POST)
+	public String addInvestValid(@Valid RoleValidForm roleValidForm, BindingResult validResult,HttpSession session
 			,MultipartHttpServletRequest request) throws Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		boolean flag = false;
 		logger.info("===== into invest valid controller=====");
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
-			return "redirect:/admin/invest/valid/add";
+			return "redirect:/admin/rolevalid/new";
 		}else{
-			InvestValid investValid = new InvestValid();
-			investValid.setContent(investValidForm.getContent());
-			investValid.setEmail(investValidForm.getEmail());
-			investValid.setName(investValidForm.getName());
-			investValid.setPhone(investValidForm.getPhone());
-			investValid.setUser(userInfo.getUser());
-			investValid = validService.create(investValid);
+			RoleValid roleValid = new RoleValid();
+			roleValid.setContent(roleValidForm.getContent());
+			roleValid.setEmail(roleValidForm.getEmail());
+			roleValid.setName(roleValidForm.getName());
+			roleValid.setPhone(roleValidForm.getPhone());
+			roleValid.setUser(userInfo.getUser());
+			roleValid.setIncubation(roleValidForm.getIncubation());
+			roleValid.setLedinvestor(roleValidForm.getLedinvestor());
+			roleValid.setInvestcompany(roleValidForm.getInvestcompany());
+			roleValid.setInvestor(roleValidForm.getInvestor());
+			roleValid = validService.create(roleValid);
 			
 			MultipartFile multipartFile = request.getFile("myfiles");
 			if(!multipartFile.isEmpty()){
 				logger.info("Upload file name:"+multipartFile.getOriginalFilename()); 
 				String fileName = multipartFile.getOriginalFilename();
-				String path ="/resources/attached/"+userInfo.getId()+"/investvalid";
+				String path ="/resources/attached/"+userInfo.getId()+"/rolevalid";
 				InputStream fileInput = multipartFile.getInputStream();
 				flag =  FTPUtil.getInstance().uploadFile(path, fileName, fileInput);
 				logger.debug("Upload Path:"+path); 
 				FileUtil.createRealPath(path, session);
 				if(flag){
 					String savePath = path+"/"+fileName;
-					investValid.setSavePath(savePath);
-					investValid.setStatus(GlobalDefs.WAITE);
-					validService.update(investValid);
+					roleValid.setSavePath(savePath);
+					roleValid.setStatus(GlobalDefs.WAITE);
+					validService.update(roleValid);
 					return "redirect:/upload/success";
 				}else{
 					return "redirect:/upload/failed";
@@ -84,8 +88,8 @@ public class InvestValidController {
 		}
 	}
 	
-	@RequestMapping(value = "/admin/investvalid/validInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse patentInfoFormAjaxJson(@Valid InvestValidForm investValidForm, BindingResult result) {
+	@RequestMapping(value = "/admin/rolevalid/validInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse patentInfoFormAjaxJson(@Valid RoleValidForm roleValidForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
 	
