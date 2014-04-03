@@ -71,4 +71,14 @@ public final class GlobalDefs {
 		map.put("10", "其他领域");
 		return map;
 	}
+	
+	public static Map<String, String> getApplyPermitMap(){
+		Map<String,String> map = new HashMap<String, String>();
+		map.put("investor", "投资人");
+		map.put("ledinvestor", "领投人");
+		map.put("investcompany", "投资机构");
+		map.put("incubator", "孵化园");
+
+		return map;
+	}
 }

@@ -35,9 +35,16 @@ public class RoleValidServiceImpl implements RoleValidService {
 	}
 
 	@Override
-	public Page<RoleValid> findInvestValidPage(int pageNumber, int pageSize) {
+	public Page<RoleValid> findRoleValidPage(int pageNumber, int pageSize) {
 		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id");
 		return validRepository.findAll(pageable);
+	}
+
+	@Override
+	public Page<RoleValid> findRoleValidByStatusAndApplypermit(Integer status,
+			String applypermit, int pageNumber, int pageSize) {
+		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id");
+		return validRepository.findRoleValidByStatusAndApplypermit(status, applypermit, pageable);
 	}
 
 }

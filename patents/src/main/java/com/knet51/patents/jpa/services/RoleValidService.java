@@ -10,5 +10,7 @@ public interface RoleValidService {
 	void delete(Long id);
 	RoleValid find(Long id);
 	
-	Page<RoleValid> findInvestValidPage(int pageNumber,int pageSize);
+	Page<RoleValid> findRoleValidPage(int pageNumber,int pageSize);
+	
+	Page<RoleValid> findRoleValidByStatusAndApplypermit(Integer status,String applypermit, int pageNumber, int pageSize);
 }

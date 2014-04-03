@@ -1,25 +1,53 @@
 package com.knet51.ccweb.jpa.entities;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 @Entity
 public class RoleValid extends AbstractEntity {
 	private String name;
-	private String email;
 	private String phone;
 	@Lob
 	private String content;
 	private String savePath;
 	private Integer status;
-	private String investor;
-	private String ledinvestor;
-	private String investcompany;
-	private String Incubation;
+	private String applypermit;
+	private Date date;
+	@Version
+	private Integer version;
+
 	@ManyToOne
 	private User user;
 	
 	
+	
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getApplypermit() {
+		return applypermit;
+	}
+
+	public void setApplypermit(String applypermit) {
+		this.applypermit = applypermit;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
 	public Integer getStatus() {
 		return status;
 	}
@@ -28,37 +56,8 @@ public class RoleValid extends AbstractEntity {
 		this.status = status;
 	}
 
-	public String getInvestor() {
-		return investor;
-	}
+	
 
-	public void setInvestor(String investor) {
-		this.investor = investor;
-	}
-
-	public String getLedinvestor() {
-		return ledinvestor;
-	}
-
-	public void setLedinvestor(String ledinvestor) {
-		this.ledinvestor = ledinvestor;
-	}
-
-	public String getInvestcompany() {
-		return investcompany;
-	}
-
-	public void setInvestcompany(String investcompany) {
-		this.investcompany = investcompany;
-	}
-
-	public String getIncubation() {
-		return Incubation;
-	}
-
-	public void setIncubation(String incubation) {
-		Incubation = incubation;
-	}
 
 	public String getName() {
 		return name;
@@ -68,13 +67,6 @@ public class RoleValid extends AbstractEntity {
 		this.name = name;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public String getPhone() {
 		return phone;

@@ -41,6 +41,35 @@
 		<put-attribute name="right" value="/WEB-INF/views/kefu/patent/view/view.jsp"></put-attribute>
 	</definition>
 	
+		
+	<!-- kefu projects -->
+	<definition name="admin.kefu.projects.list" extends="admin-layout">
+		<put-attribute name="title" value="融资项目" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/projects/list/list.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.kefu.projects.view" extends="admin-layout">
+		<put-attribute name="title" value="融资项目" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/projects/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<!-- kefu applypermit -->
+	<definition name="admin.kefu.applypermit.list" extends="admin-layout">
+		<put-attribute name="title" value="融资项目" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/applypermit/list/list.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.kefu.applypermit.view" extends="admin-layout">
+		<put-attribute name="title" value="融资项目" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/applypermit/view/view.jsp"></put-attribute>
+	</definition>
+	
 		<!-- kefu technology  -->
 	<definition name="admin.kefu.technology.list" extends="admin-layout">
 		<put-attribute name="title" value="技术列表" />

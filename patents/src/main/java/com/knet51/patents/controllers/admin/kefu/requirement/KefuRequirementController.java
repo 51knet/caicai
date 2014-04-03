@@ -18,7 +18,7 @@ import com.knet51.patents.jpa.services.requirement.PatentRequirementService;
 import com.knet51.patents.jpa.services.requirement.RequirementService;
 
 @Controller
-public class KefuRequirementPageController {
+public class KefuRequirementController {
 	
 	@Autowired
 	private RequirementService requirementService;

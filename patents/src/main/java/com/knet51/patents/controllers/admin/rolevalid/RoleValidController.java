@@ -1,6 +1,7 @@
 package com.knet51.patents.controllers.admin.rolevalid;
 
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -54,14 +55,11 @@ public class RoleValidController {
 		}else{
 			RoleValid roleValid = new RoleValid();
 			roleValid.setContent(roleValidForm.getContent());
-			roleValid.setEmail(roleValidForm.getEmail());
 			roleValid.setName(roleValidForm.getName());
 			roleValid.setPhone(roleValidForm.getPhone());
+			roleValid.setDate(new Date());
 			roleValid.setUser(userInfo.getUser());
-			roleValid.setIncubation(roleValidForm.getIncubation());
-			roleValid.setLedinvestor(roleValidForm.getLedinvestor());
-			roleValid.setInvestcompany(roleValidForm.getInvestcompany());
-			roleValid.setInvestor(roleValidForm.getInvestor());
+			roleValid.setApplypermit(roleValidForm.getApplypermit());
 			roleValid = validService.create(roleValid);
 			
 			MultipartFile multipartFile = request.getFile("myfiles");

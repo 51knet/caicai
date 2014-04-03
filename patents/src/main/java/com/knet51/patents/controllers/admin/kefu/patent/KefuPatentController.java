@@ -24,8 +24,8 @@ import com.knet51.patents.jpa.services.patent.PatentService;
 import com.knet51.patents.jpa.services.patent.PatentTypeService;
 import com.knet51.patents.util.MyUtil;
 @Controller
-public class KefuPatentPageController {
-	private static final Logger logger = LoggerFactory.getLogger(KefuPatentPageController.class);
+public class KefuPatentController {
+	private static final Logger logger = LoggerFactory.getLogger(KefuPatentController.class);
 	@Autowired
 	private UserService userService;
 	@Autowired

@@ -56,17 +56,17 @@ function checkResources(obj){
 		
 			<div class="control-group" >
 				<div class="controls">
-					<label class="checkbox inline">
-					  <input type="checkbox" checked="checked" value="investor" name="investor"> 投资人
+					<label class="radio inline">
+					  <input type="radio" checked="checked"  name="applypermit" value="investor"> 投资人
 					</label>
-					<label class="checkbox inline">
-					  <input type="checkbox"  value="ledinvestor" name="ledinvestor"> 领投人
+					<label class="radio inline">
+					  <input type="radio"     name="applypermit" value="ledinvestor"> 领投人
 					</label>
-					<label class="checkbox inline">
-					  <input type="checkbox" value="investcompany"> 投资机构
+					<label class="radio inline">
+					  <input type="radio"  name="applypermit" value="investcompany"> 投资机构
 					</label>
-					<label class="checkbox inline">
-					  <input type="checkbox" value="Incubation" name="Incubation"> 孵化园
+					<label class="radio inline">
+					  <input type="radio"   name="applypermit" value="incubator"> 孵化园
 					</label>
 				</div>
 			</div>
@@ -77,11 +77,6 @@ function checkResources(obj){
 				</div>
 			</div>
 		
-			<div class="control-group" id="email">
-				<div class="controls">
-					<i class="icon-star"></i> 我的邮箱：<input  type="text" name="email"   placeholder="我的邮箱"  > <span class="help-inline"><form:errors path="email" /></span>
-				</div>
-			</div>
 			<div class="control-group" id="phone">
 				<div class="controls">
 					<i class="icon-star"></i> 联系电话：<input  type="text" name="phone"   placeholder="联系电话"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>

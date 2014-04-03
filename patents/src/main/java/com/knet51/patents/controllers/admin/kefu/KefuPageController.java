@@ -20,6 +20,6 @@ public class KefuPageController {
 		return "redirect:/admin/kefu/patent/list/all";
 	}
 	
-	
+
 	
 }

@@ -19,7 +19,7 @@ import com.knet51.patents.jpa.services.technology.TechnologyService;
 
 
 @Controller
-public class KefuTechnologyPageController {
+public class KefuTechnologyController {
 	
 	@Autowired
 	private TechnologyService technologyService;

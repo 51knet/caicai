@@ -93,4 +93,10 @@ public class ProjectsServicesImpl implements ProjectsService {
 		return repository.findProjectsListByUser(user);
 	}
 
+	@Override
+	public Page<Projects> findProjectsPage(int pageNumber, int pageSize) {
+		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id");
+		return repository.findAll(pageable);
+	}
+
 }

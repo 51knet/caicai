@@ -11,55 +11,25 @@ public class RoleValidForm {
 	@Size(min=1,max=200)
 	private String name;
 	@NotEmpty
-	@Email
-	@Size(min=1,max=200)
-	private String email;
-	@NotEmpty
 	@Size(min=7,max=11)
 	private String phone;
 	private String content;
 	
-	private String investor;
-	private String ledinvestor;
-	private String investcompany;
-	private String Incubation;
+	private String applypermit;
 	
 	
-	public String getInvestor() {
-		return investor;
+	
+	public String getApplypermit() {
+		return applypermit;
 	}
-	public void setInvestor(String investor) {
-		this.investor = investor;
-	}
-	public String getLedinvestor() {
-		return ledinvestor;
-	}
-	public void setLedinvestor(String ledinvestor) {
-		this.ledinvestor = ledinvestor;
-	}
-	public String getInvestcompany() {
-		return investcompany;
-	}
-	public void setInvestcompany(String investcompany) {
-		this.investcompany = investcompany;
-	}
-	public String getIncubation() {
-		return Incubation;
-	}
-	public void setIncubation(String incubation) {
-		Incubation = incubation;
+	public void setApplypermit(String applypermit) {
+		this.applypermit = applypermit;
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getPhone() {
 		return phone;

@@ -12,6 +12,7 @@ public interface ProjectsService {
 	Projects update(Projects projects);
 	void dele(Long id);
 	
+	Page<Projects> findProjectsPage(int pageNumber, int pageSize);
 	Page<Projects> findProjectsByStatus(int pageNumber, int pageSize,Integer status);
 	List<Projects> findProjectsListByStatus(Integer status);
 	
