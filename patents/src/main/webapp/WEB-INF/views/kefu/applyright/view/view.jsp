@@ -38,34 +38,34 @@
 				<tbody>
 					<tr>
 						<td>申请人姓名：</td>
-						<td>${rolevalid.name }</td>
+						<td>${applyright.name }</td>
 						<td>申请人邮箱：</td>
-						<td>${rolevalid.user.email }</td>
+						<td>${applyright.user.email }</td>
 					</tr>
 					<tr>
 						<td>申请权限：</td>
-						<td><c:forEach items="${permitMap }" var="map">
-								<c:if test="${map.key == rolevalid.applypermit }"> ${map.value }</c:if>
+						<td><c:forEach items="${rightMap }" var="map">
+								<c:if test="${map.key == applyright.applypermit }"> ${map.value }</c:if>
 							</c:forEach></td>
 						<td>申请人电话：</td>
-						<td>${rolevalid.phone }</td>
+						<td>${applyright.phone }</td>
 					</tr>
 					<tr>
 						<td>申请日期：</td>
-						<td><fmt:formatDate value="${rolevalid.date }" pattern="yyyy-MM-dd hh:mm" /></td>
+						<td><fmt:formatDate value="${applyright.date }" pattern="yyyy-MM-dd hh:mm" /></td>
 						<td>资料下载：</td>
-						<td><a href="<c:url value='/admin/kefu/applypermit/download/${rolevalid.id }'></c:url>">点击下载</a></td>
+						<td><a href="<c:url value='/admin/kefu/applyright/download/${applyright.id }'></c:url>">点击下载</a></td>
 					</tr>
 					<tr>
 						<td colspan="4">申请简介</td>
 					</tr>
 					<tr>
-						<td colspan="4">${rolevalid.content }</td>
+						<td colspan="4">${applyright.content }</td>
 					</tr>
 				</tbody>
 			</table>
 	</div>
 	<div class="content" >
-		<a href='<c:url value="/admin/kefu/applypermit/list/all"></c:url>'  class="btn btn-success">返回</a>&nbsp;&nbsp;
+		<a href='<c:url value="/admin/kefu/applyright/list/all"></c:url>'  class="btn btn-success">返回</a>&nbsp;&nbsp;
 	</div>
 </div>

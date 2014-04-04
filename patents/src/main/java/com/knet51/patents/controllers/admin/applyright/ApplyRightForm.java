@@ -1,4 +1,4 @@
-package com.knet51.patents.controllers.admin.rolevalid;
+package com.knet51.patents.controllers.admin.applyright;
 
 import javax.validation.constraints.Size;
 
@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
-public class RoleValidForm {
+public class ApplyRightForm {
 	@NotEmpty
 	@Size(min=1,max=200)
 	private String name;
@@ -43,7 +43,7 @@ public class RoleValidForm {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public RoleValidForm() {
+	public ApplyRightForm() {
 		super();
 	}
 	

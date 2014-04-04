@@ -52,7 +52,7 @@ function checkResources(obj){
 		<i>请认真填写下列表格</i>
 	</div>
 	<div class="content row-fluid">
-		<form action= '<c:url value="/admin/rolevalid/add"></c:url>'  method="post" enctype="multipart/form-data"  id="valid_form" name="valid_post" onsubmit="return checkResources(this)">
+		<form action= '<c:url value="/admin/applyright/add"></c:url>'  method="post" enctype="multipart/form-data"  id="valid_form" name="valid_post" onsubmit="return checkResources(this)">
 		
 			<div class="control-group" >
 				<div class="controls">
@@ -133,7 +133,7 @@ function checkResources(obj){
     
     $(document).ready(function() {
     	$("#valid_form").submit(function(){
-			return checkEmptyAjax("valid_form","<c:url value='/admin/rolevalid/validInfoAJAX'></c:url>");
+			return checkEmptyAjax("valid_form","<c:url value='/admin/applyright/validInfoAJAX'></c:url>");
 		});	
     });
 </script>

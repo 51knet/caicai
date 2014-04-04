@@ -7,7 +7,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 @Entity
-public class RoleValid extends AbstractEntity {
+public class ApplyRight extends AbstractEntity {
 	private String name;
 	private String phone;
 	@Lob
@@ -100,7 +100,7 @@ public class RoleValid extends AbstractEntity {
 		this.user = user;
 	}
 
-	public RoleValid() {
+	public ApplyRight() {
 		super();
 	}
 	

@@ -72,7 +72,7 @@ public final class GlobalDefs {
 		return map;
 	}
 	
-	public static Map<String, String> getApplyPermitMap(){
+	public static Map<String, String> getApplyRightMap(){
 		Map<String,String> map = new HashMap<String, String>();
 		map.put("investor", "投资人");
 		map.put("ledinvestor", "领投人");

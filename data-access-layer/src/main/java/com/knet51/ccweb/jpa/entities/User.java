@@ -1,8 +1,11 @@
 package com.knet51.ccweb.jpa.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -53,6 +56,8 @@ public class User extends AbstractEntity {
 	private String thirdPartyName;
 	
 	private String photo_url;
+	
+	
 	public User(String email, String password,
 			String role, Integer level) {
 		this.email = email;
@@ -291,4 +296,9 @@ public class User extends AbstractEntity {
 	public void setThirdPartyName(String thirdPartyName) {
 		this.thirdPartyName = thirdPartyName;
 	}
+
+
+
+	
+	
 }

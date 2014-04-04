@@ -34,9 +34,9 @@
 		<h4>审核列表</h4>
 	</div>
 	<div class="content" >
-		<a class="margin_right"  href="<c:url value='/admin/kefu/applypermit/list/all'></c:url>" >全部 </a>
-		<a  class="margin_right" href="<c:url value='/admin/kefu/applypermit/list/pass'></c:url>">通过 </a>
-		<a class="margin_right"  href="<c:url value='/admin/kefu/applypermit/list/waite'></c:url>">审核中 </a>
+		<a class="margin_right"  href="<c:url value='/admin/kefu/applyright/list/all'></c:url>" >全部 </a>
+		<a  class="margin_right" href="<c:url value='/admin/kefu/applyright/list/pass'></c:url>">通过 </a>
+		<a class="margin_right"  href="<c:url value='/admin/kefu/applyright/list/waite'></c:url>">审核中 </a>
 
 
 
@@ -55,16 +55,16 @@
 			<tbody>
 				<c:forEach  items="${page.content}" var="page">
 					<tr>
-						<td ><a href='<c:url value="/admin/kefu/applypermit/view/${page.id }"></c:url>' >${page.name }</a></td>
+						<td ><a href='<c:url value="/admin/kefu/applyright/view/${page.id }"></c:url>' >${page.name }</a></td>
 						<td >${page.phone}</td>
 						<td >${page.user.email}</td>
 						<td ><fmt:formatDate value="${page.date }" pattern="yyyy-MM-dd hh:mm" /></td>
 						<td align="center" >
-							<c:forEach items="${permitMap }" var="map">
+							<c:forEach items="${rightMap }" var="map">
 								<c:if test="${map.key == page.applypermit }"> ${map.value }</c:if>
 							</c:forEach>
 						</td>
-						<td align="center"><a href="<c:url value='/admin/kefu/applypermit/download/${page.id }'></c:url>">点击下载</a></td>
+						<td align="center"><a href="<c:url value='/admin/kefu/applyright/download/${page.id }'></c:url>">点击下载</a></td>
 						<td  align="center"><input  class="changeStatus"  type="checkbox" <c:if test="${page.status ==1 }">checked </c:if>><input type="hidden" value="${page.id}" /></td>
 					</tr>
 				</c:forEach>
@@ -90,7 +90,7 @@ $(document).ready(function() {
 		var id = $(this).next().val();
 		$.ajax({
 			   type: "POST",
-			   url: "<c:url value='/admin/kefu/applypermit/status/change'></c:url>",
+			   url: "<c:url value='/admin/kefu/applyright/status/change'></c:url>",
 			   data: "id="+id,
 			   success: function(flag){
 				   if(flag == true){
