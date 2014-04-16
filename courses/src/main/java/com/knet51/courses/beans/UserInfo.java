@@ -1,9 +1,12 @@
 package com.knet51.courses.beans;
 
+import java.util.List;
+
 import com.knet51.ccweb.jpa.entities.Enterprise;
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.UserRight;
 
 public class UserInfo {
 
@@ -12,6 +15,7 @@ public class UserInfo {
 	private Student student;
 	private Enterprise enterprise;
 	//private Announcement announcement;
+	private List<UserRight> userRight;
 
 	public UserInfo(User user) {
 		this.user = user;
@@ -20,6 +24,17 @@ public class UserInfo {
 		this.enterprise = null;
 		//this.announcement = null;
 	}
+
+	
+	public List<UserRight> getUserRight() {
+		return userRight;
+	}
+
+
+	public void setUserRight(List<UserRight> userRight) {
+		this.userRight = userRight;
+	}
+
 
 	public Long getId() {
 		return this.user.getId();

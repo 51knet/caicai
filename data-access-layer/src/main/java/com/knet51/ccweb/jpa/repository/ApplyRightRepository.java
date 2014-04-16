@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import com.knet51.ccweb.jpa.entities.ApplyRight;
 
 public interface ApplyRightRepository extends JpaRepository<ApplyRight, Long>,JpaSpecificationExecutor<ApplyRight> {
-	Page<ApplyRight> findApplyRightByStatusAndApplypermit(Integer status,
-			String applyright, Pageable pageable);
+	Page<ApplyRight> findApplyRightByStatusAndApplypermit(Integer status,String applyright, Pageable pageable);
+	Page<ApplyRight> findApplyRightByStatus(Integer status, Pageable pageable);
 }

@@ -72,4 +72,11 @@ public class ApplyRightServiceImpl implements ApplyRightService {
 		return flag;
 	}
 
+	@Override
+	public Page<ApplyRight> findApplyRightByStatus(Integer status,
+			int pageNumber, int pageSize) {
+		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id");
+		return applyRightRepository.findApplyRightByStatus(status, pageable);
+	}
+
 }

@@ -36,9 +36,9 @@ public class kefuApplyRightController {
 		
 		Page<ApplyRight> page = null;
 		if(status.equals("pass")){
-			page = applyService.findApplyRightByStatusAndApplypermit(GlobalDefs.PASS, type, pageNumber, pageSize);
+			page = applyService.findApplyRightByStatus(GlobalDefs.PASS, pageNumber, pageSize);
 		}else if(status.equals("waite")){
-			page = applyService.findApplyRightByStatusAndApplypermit(GlobalDefs.WAITE, type, pageNumber, pageSize);
+			page = applyService.findApplyRightByStatus(GlobalDefs.WAITE,pageNumber, pageSize);
 		}else{
 			page = applyService.findApplyRightPage(pageNumber, pageSize);
 		}

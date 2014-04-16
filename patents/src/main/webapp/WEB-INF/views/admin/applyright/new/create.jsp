@@ -76,7 +76,13 @@ function checkResources(obj){
 					<i class="icon-star"></i> 真实姓名：<input  type="text" name="name"   placeholder="真实姓名" > <span class="help-inline"><form:errors path="name" /></span>
 				</div>
 			</div>
-		
+			
+			<div class="control-group" id="idNum">
+				<div class="controls">
+					<i class="icon-star"></i> 身份证号：<input  type="text" name="idNum"   placeholder="身份证号"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="idNum" /></span>
+				</div>
+			</div>
+			
 			<div class="control-group" id="phone">
 				<div class="controls">
 					<i class="icon-star"></i> 联系电话：<input  type="text" name="phone"   placeholder="联系电话"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>

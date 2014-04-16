@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
 import com.knet51.ccweb.jpa.entities.User;
@@ -32,6 +33,8 @@ public class Projects extends AbstractEntity {
 	private Integer maxInvestNum;
 	private Integer minMoney;
 	
+	@Version
+	private Integer version; 
 	
 	
 	@ManyToOne

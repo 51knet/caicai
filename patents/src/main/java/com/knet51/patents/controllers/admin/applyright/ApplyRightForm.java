@@ -14,6 +14,9 @@ public class ApplyRightForm {
 	@Size(min=7,max=11)
 	private String phone;
 	private String content;
+	@NotEmpty
+	@Size(min=18, max=18)
+	private String idNum;
 	
 	private String applypermit;
 	
@@ -45,6 +48,12 @@ public class ApplyRightForm {
 	}
 	public ApplyRightForm() {
 		super();
+	}
+	public String getIdNum() {
+		return idNum;
+	}
+	public void setIdNum(String idNum) {
+		this.idNum = idNum;
 	}
 	
 	

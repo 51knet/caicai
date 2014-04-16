@@ -2,6 +2,7 @@ package com.knet51.ccweb.jpa.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -16,14 +17,21 @@ public class ApplyRight extends AbstractEntity {
 	private Integer status;
 	private String applypermit;
 	private Date date;
-	@Version
-	private Integer version;
+	@Column(name="ID_NUM")
+	private String idNum;
 
 	@ManyToOne
 	private User user;
 	
-	
-	
+
+	public String getIdNum() {
+		return idNum;
+	}
+
+	public void setIdNum(String idNum) {
+		this.idNum = idNum;
+	}
+
 	public Date getDate() {
 		return date;
 	}
@@ -40,14 +48,6 @@ public class ApplyRight extends AbstractEntity {
 		this.applypermit = applypermit;
 	}
 
-	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
-
 	public Integer getStatus() {
 		return status;
 	}
@@ -55,8 +55,6 @@ public class ApplyRight extends AbstractEntity {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-
-	
 
 
 	public String getName() {

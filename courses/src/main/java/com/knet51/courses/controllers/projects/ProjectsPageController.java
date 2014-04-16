@@ -10,16 +10,21 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.knet51.ccweb.jpa.entities.UserRight;
 import com.knet51.ccweb.jpa.entities.projects.BizModul;
 import com.knet51.ccweb.jpa.entities.projects.PlanInfo;
 import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.ccweb.jpa.entities.projects.Rzfh;
 import com.knet51.ccweb.jpa.entities.projects.TeamInfo;
+import com.knet51.courses.beans.UserInfo;
 import com.knet51.courses.controllers.defs.GlobalDefs;
+import com.knet51.courses.jpa.services.UserRightService;
 import com.knet51.courses.jpa.services.UserService;
 import com.knet51.courses.jpa.services.projects.BizModulService;
 import com.knet51.courses.jpa.services.projects.PlanInfoService;
@@ -43,6 +48,8 @@ public class ProjectsPageController {
 	private TeamInfoService teamInfoService;
 	@Autowired
 	private PlanInfoService planInfoService;
+	@Autowired
+	private UserRightService userRightService;
 	
 	@RequestMapping("/projects/list/{status}")
 	public String showprojectsPage(Model model,@PathVariable String status,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
@@ -79,16 +86,43 @@ public class ProjectsPageController {
 	}
 	
 	@RequestMapping(value="/projects/view/{project_id}")
-	public String showprojectsDetail(Model model,@PathVariable Long project_id){
-		Projects projects = projectsService.findOne(project_id);
-		BizModul bizModul = bizModulService.findByProjects(projects);
-		TeamInfo teamInfo = teamInfoService.findByProjects(projects);
-		PlanInfo planInfo = planInfoService.findByProjects(projects);
-		model.addAttribute("projects", projects);
-		model.addAttribute("bizModul", bizModul);
-		model.addAttribute("teamInfo", teamInfo);
-		model.addAttribute("planInfo", planInfo);
+	public String showprojectsDetail(Model model,@PathVariable Long project_id,HttpSession session){
+//		UserInfo userInfo = (UserInfo) session
+//				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+//		if(userInfo != null){
+//			List<UserRight> userRightList = userRightService.findUserRightListByUser(userInfo.getUser());
+//			model.addAttribute("userRightList", userRightList);
+//		}
+		try {
+			Projects projects = projectsService.findOne(project_id);
+//			BizModul bizModul = bizModulService.findByProjects(projects);
+//			TeamInfo teamInfo = teamInfoService.findByProjects(projects);
+//			PlanInfo planInfo = planInfoService.findByProjects(projects);
+			model.addAttribute("projects", projects);
+//			model.addAttribute("bizModul", bizModul);
+//			model.addAttribute("teamInfo", teamInfo);
+//			model.addAttribute("planInfo", planInfo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "projects.view"; 
+	}
+	
+	@RequestMapping(value="/checkUserRight", method = RequestMethod.POST)
+	public @ResponseBody boolean checkUserRight(HttpSession session){
+		boolean flag = false;
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		if(userInfo != null){
+			List<UserRight> userRightList = userRightService.findUserRightListByUser(userInfo.getUser());
+			for (UserRight userRight : userRightList) {
+				if(userRight.getUserRight().equals("investor") || userRight.getUserRight().equals("ledinvestor")){
+					flag = true;
+				}
+			}
+		}
+		
+		return flag;
 	}
 	
 	@RequestMapping(value="/projects/search", method = RequestMethod.GET)

@@ -1,6 +1,7 @@
 package com.knet51.courses.controllers.login;
 
 import java.nio.charset.Charset;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +23,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.knet51.courses.beans.UserInfo;
 import com.knet51.courses.controllers.login.LoginForm;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.UserRight;
 import com.knet51.courses.util.ajax.AjaxValidationEngine;
 import com.knet51.courses.util.ajax.ValidationResponse;
 import com.knet51.courses.controllers.defs.GlobalDefs;
+import com.knet51.courses.jpa.services.UserRightService;
 import com.knet51.courses.jpa.services.UserService;
 
 /**
@@ -37,6 +40,7 @@ public class LoginController {
 			.getLogger(LoginController.class);
 	@Autowired
 	private UserService service;
+	
 
 	@RequestMapping(value = "/signin" , method = RequestMethod.POST)
 	public String signin(@Valid LoginForm loginForm, BindingResult result,HttpSession session, 

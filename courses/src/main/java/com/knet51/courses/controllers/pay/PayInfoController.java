@@ -1,6 +1,7 @@
 package com.knet51.courses.controllers.pay;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.UserOrder;
+import com.knet51.ccweb.jpa.entities.UserRight;
 import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.courses.beans.UserInfo;
 import com.knet51.courses.controllers.defs.GlobalDefs;
+import com.knet51.courses.jpa.services.UserRightService;
 import com.knet51.courses.jpa.services.UserService;
 import com.knet51.courses.jpa.services.projects.ProjectsService;
 import com.knet51.courses.jpa.services.trade.OrderService;
@@ -31,28 +34,40 @@ public class PayInfoController {
 	private OrderService orderService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserRightService userRightService;
 	
 	@RequestMapping(value = "/projects/cart/view/{projects_id}")
 	public String cartPage(@PathVariable Long projects_id, Model model,
 			HttpSession session, HttpServletRequest request) {
-		
+		boolean pass = false; 
 		model.addAttribute("projects_id", projects_id);
 		Projects projects = projectsService.findOne(projects_id);
 		User seller = projects.getUser();
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		try {
-			if (userInfo != null) {
+		if(userInfo != null){
+			//验证当前用户是否有投资权限
+			List<UserRight> rightList = userRightService.findUserRightListByUser(userInfo.getUser());
+			for (UserRight userRight : rightList) {
+				if(userRight.getUserRight().equals("investor") || userRight.getUserRight().equals("ledinvestor")){
+					pass = true;
+				}
+			}
+			if(pass){
 				model.addAttribute("projects", projects);
 				model.addAttribute("seller", seller);
 				return "projects.cart.view";
 			}else{
-				return "redirect:/";
+				return "redirect:/" ;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+				
+		}else{
+			return "redirect:/" ;
 		}
-		return "redirect:/";
+		
+
+
 	}
 	
 	@RequestMapping(value = "/projects/pay/view", method = RequestMethod.POST)

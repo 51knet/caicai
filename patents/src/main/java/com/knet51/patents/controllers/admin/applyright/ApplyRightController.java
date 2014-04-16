@@ -60,6 +60,7 @@ public class ApplyRightController {
 			applyright.setDate(new Date());
 			applyright.setUser(userInfo.getUser());
 			applyright.setApplypermit(applyrightForm.getApplypermit());
+			applyright.setIdNum(applyrightForm.getIdNum());
 			applyright = validService.create(applyright);
 			
 			MultipartFile multipartFile = request.getFile("myfiles");

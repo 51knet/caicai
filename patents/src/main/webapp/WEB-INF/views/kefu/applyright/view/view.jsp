@@ -57,6 +57,10 @@
 						<td><a href="<c:url value='/admin/kefu/applyright/download/${applyright.id }'></c:url>">点击下载</a></td>
 					</tr>
 					<tr>
+						<td colspan="2">身份证号：</td>
+						<td colspan="2">${applyright.idNum }</td>
+					</tr>
+					<tr>
 						<td colspan="4">申请简介</td>
 					</tr>
 					<tr>

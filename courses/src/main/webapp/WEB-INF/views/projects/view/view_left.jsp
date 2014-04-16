@@ -93,7 +93,14 @@ font-weight: bold;
 	<div class="top">
 		<span class="pName margin_right" >${projects.projectName }</span>
 		<span class="myblock"><fmt:formatNumber type="number" value="${projects.currentMoney/projects.totalMoney*100}" maxFractionDigits="0"/>%</span><br>
-		<span class="date">发布时间：<fmt:formatDate value="${projects.date}" pattern="yyyy-MM-dd HH:mm"/></span> <a href="<c:url value='/projects/cart/view/${projects.id }'></c:url>"> 点击参股</a>
+		<span class="date">发布时间：<fmt:formatDate value="${projects.date}" pattern="yyyy-MM-dd HH:mm"/></span> 
+		<!-- <a  href="<c:url value='/projects/cart/view/${projects.id }'></c:url>"> 点击参股</a> -->
+		<a href="javascript:void(0)" onclick="checkUserRight(${projects.id })">点击参股</a>
+		<c:forEach items="${userRightList }" var="userRight">
+			<c:if test="${userRight.userRight == 'investor' || userRight.userRight == 'ledinvestor' }">
+				 hehe
+			</c:if>
+		</c:forEach>
 	</div>
 	<div class="bottom_line_dash"></div>
 	<div class="middle">
@@ -232,6 +239,27 @@ font-weight: bold;
 function checkEmailAndPwd(){
 	return checkEmailAndPass("login_form",'checkEmailAndPassword');
 }
+
+function checkUserRight(p_id){
+	$.ajax({
+		   url:"<c:url value='/checkUserRight'></c:url>",
+		   type: "POST",
+		   async: false,
+		   beforeSend:function(){alert("正在验证您是否有投资资格，请稍等。。。")}, //添加loading信息
+		   success:function(flag){
+			   if(flag == true){
+				   alert(flag+"====恭喜，您拥有投资资格");
+				   window.location.href="<c:url value='/projects/cart/view/${projects.id }'></c:url>";
+			   }else{
+				   alert("对不起，您没有投资认证，请去后台申请。");
+			   }
+	
+		   }   
+		});
+	
+	
+}
+
 </script>
 
 
