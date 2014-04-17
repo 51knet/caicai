@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.ccweb.jpa.entities.ApplyRight;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
-import com.knet51.patents.jpa.services.ApplyRightService;
+import com.knet51.patents.jpa.services.applyright.ApplyRightService;
 import com.knet51.patents.util.fileUpLoad.FTPUtil;
 import com.knet51.patents.util.fileUpLoad.FileUtil;
 

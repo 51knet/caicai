@@ -1,4 +1,4 @@
-package com.knet51.patents.jpa.services;
+package com.knet51.patents.jpa.services.applyright;
 
 import java.util.List;
 

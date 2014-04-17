@@ -70,7 +70,29 @@
 		<put-attribute name="right" value="/WEB-INF/views/kefu/applyright/view/view.jsp"></put-attribute>
 	</definition>
 	
-		<!-- kefu technology  -->
+	<!-- kefu check order -->
+	<definition name="admin.kefu.order.list" extends="admin-layout">
+		<put-attribute name="title" value="订单查看" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/order/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.order.view" extends="admin-layout">
+		<put-attribute name="title" value="订单详情" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/order/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.user.order.list" extends="admin-layout">
+		<put-attribute name="title" value="用户订单" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/order/user/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<!-- kefu technology  -->
 	<definition name="admin.kefu.technology.list" extends="admin-layout">
 		<put-attribute name="title" value="技术列表" />
 		<put-attribute name="banner" value="" />

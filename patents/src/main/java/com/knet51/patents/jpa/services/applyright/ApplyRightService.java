@@ -1,4 +1,4 @@
-package com.knet51.patents.jpa.services;
+package com.knet51.patents.jpa.services.applyright;
 
 import org.springframework.data.domain.Page;
 
