@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.UserOrder;
+import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.patents.jpa.services.UserService;
+import com.knet51.patents.jpa.services.projects.ProjectsService;
 import com.knet51.patents.jpa.services.trade.OrderService;
 
 @Controller
@@ -19,6 +21,8 @@ public class KefuOrderPageController {
 	private OrderService orderService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ProjectsService projectsService;
 	
 	@RequestMapping(value="/admin/kefu/order/list")
 	public String showUserOrderPage(Model model,@RequestParam(value="pageNumber", defaultValue="0") int pageNumber, 
@@ -34,14 +38,16 @@ public class KefuOrderPageController {
 		User user = userService.findOne(u_id);
 		Page<UserOrder> page = orderService.findOrderByUser(pageNumber, pageSize, user);
 		model.addAttribute("page", page);
-		model.addAttribute("buyer", user);
+		model.addAttribute("buyer", user); 
 		return "admin.kefu.user.order.list";
 	}
 	
 	@RequestMapping(value="/admin/kefu/order/view/{id}")
 	public String showOrderDetail(Model model,@PathVariable Long id){
 		UserOrder order = orderService.findOne(id);
+		Projects project = order.getProjects();
 		model.addAttribute("order", order);
-		return "admin.kefu.order.detail";
+		model.addAttribute("projects", project);
+		return "admin.kefu.order.view";
 	}
 }

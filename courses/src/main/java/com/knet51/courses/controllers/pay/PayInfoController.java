@@ -75,14 +75,14 @@ public class PayInfoController {
 			HttpServletRequest request,@RequestParam("projects_id") Long projects_id) {
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		Projects projects = projectsService.findOne(projects_id);
 		boolean paySuccessful = false;
 		UserOrder userOrder = new UserOrder();
 		userOrder.setUser(userInfo.getUser());
 		userOrder.setStatus("未支付");
 		userOrder.setStartTime(new Date());
-		userOrder.setProjects_id(projects_id);
+		userOrder.setProjects(projects);
 		userOrder = orderService.createOrder(userOrder);
-		Projects projects = projectsService.findOne(projects_id);
 		User seller = projects.getUser();
 		model.addAttribute("projects", projects);
 		model.addAttribute("seller", seller);

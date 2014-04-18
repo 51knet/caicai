@@ -3,9 +3,12 @@ package com.knet51.ccweb.jpa.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.knet51.ccweb.jpa.entities.projects.Projects;
 
 @Entity
 @Table(name = "userOrder")
@@ -15,8 +18,10 @@ public class UserOrder extends AbstractEntity{
 //	@JoinColumn(name="user_id")
 	private User user;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Projects projects;
+	
 	private String courseId;
-	private Long projects_id;
 	private Integer count;
 	
 	private Date startTime;
@@ -73,14 +78,15 @@ public class UserOrder extends AbstractEntity{
 	public void setCount(Integer count) {
 		this.count = count;
 	}
-	public Long getProjects_id() {
-		return projects_id;
-	}
-	public void setProjects_id(Long projects_id) {
-		this.projects_id = projects_id;
-	}
+
 	public UserOrder() {
 		super();
+	}
+	public Projects getProjects() {
+		return projects;
+	}
+	public void setProjects(Projects projects) {
+		this.projects = projects;
 	}
 	
 	

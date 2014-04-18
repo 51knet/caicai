@@ -1,5 +1,7 @@
 package com.knet51.patents.jpa.services.trade;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +22,9 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public UserOrder findOne(Long id) {
-		return orderRepository.findOne(id);
+		UserOrder order =  orderRepository.findOne(id);
+		order.getProjects().getId();
+		return order;
 	}
 
 	@Override
@@ -39,6 +43,10 @@ public class OrderServiceImpl implements OrderService {
 	public Page<UserOrder> findAll(int pageNumber, int pageSize) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
 		Page<UserOrder> onePage = orderRepository.findAll(dateDesc);
+		List<UserOrder> orderList = onePage.getContent();
+		for (UserOrder userOrder : orderList) {
+			userOrder.getProjects().getId();
+		}
 		return onePage;
 	}
 
@@ -46,6 +54,10 @@ public class OrderServiceImpl implements OrderService {
 	public Page<UserOrder> findOrderByUser(int pageNumber, int pageSize, User user) {
 		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
 		Page<UserOrder> onePage = orderRepository.findOrderByUser(user, pageable);
+		List<UserOrder> orderList = onePage.getContent();
+		for (UserOrder userOrder : orderList) {
+			userOrder.getProjects().getId();
+		}
 		return onePage;
 	}
 	
