@@ -99,6 +99,14 @@ public class PatentServiceImpl implements PatentService {
 		return page;
 	}
 
+	@Override
+	public Page<Patent> findPatentByUserAndStatus(int pageNum, int pageSize,
+			User user, Integer status) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "publishDate","patentNum");
+		Page<Patent> page = patentRespository.findPatentByUserAndStatus(user, status, pageable);
+		return page;
+	}
+
 
 
 

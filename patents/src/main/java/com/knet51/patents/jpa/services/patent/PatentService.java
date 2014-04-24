@@ -15,7 +15,7 @@ public interface PatentService {
  	Patent update(Patent patent);
  	void delete(String patentNum);
  	Patent findOne(String patentNum);
- 	
+ 	Page<Patent> findPatentByUserAndStatus(int pageNum , int pageSize, User user, Integer status);
  	Page<Patent> findPatentByStatus(int pageNum , int pageSize,Integer status);
  	Page<Patent> findPatentByCountry(int pageNum , int pageSize,Integer country);
 	Page<Patent> findPatentByFocus(int pageNum , int pageSize,Integer focus);
