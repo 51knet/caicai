@@ -56,7 +56,7 @@ public class CommonRegisterController {
 		} else {
 			String email = commonRegisterForm.getEmails();
 			String psw = commonRegisterForm.getPsw();
-			String type = commonRegisterForm.getUserType();
+			String type = "user";
 			User findUser = userService.findByEmailAddress(email);
 			if (findUser == null) {
 				User user = new User(email, psw);

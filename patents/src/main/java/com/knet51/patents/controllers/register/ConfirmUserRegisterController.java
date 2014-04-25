@@ -85,7 +85,7 @@ public class ConfirmUserRegisterController {
 			randomUrl += "/";
 			randomUrl += user.getId();
 			mailSuccess = MailSender.getInstance().SendMail(email,
-					"http://www.51knet.com/patents/mail/" + randomUrl);
+					"http://www.chinattp.com/patents/mail/" + randomUrl);
 			if (mailSuccess) {
 				String hrefString = email;
 				hrefString = hrefString.substring(hrefString.indexOf("@") + 1);
