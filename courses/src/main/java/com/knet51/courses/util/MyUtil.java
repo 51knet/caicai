@@ -28,15 +28,6 @@ public class MyUtil {
 //		
 //	}
 	
-	public static  String change(String src) {   
-        if (src != null) {   
-            StringBuffer sb = new StringBuffer(src);   
-            sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));   
-            return sb.toString();   
-        } else {   
-            return null;   
-        }   
-    }
 	
 	public static  Map<String,String> findPostUnnullInput(Object obj) throws Exception{
 		Map<String,String> map = new HashMap<String, String>();
@@ -52,7 +43,15 @@ public class MyUtil {
 		}
 		return map;
 	}
-	
+	public static  String change(String src) {   
+        if (src != null) {   
+            StringBuffer sb = new StringBuffer(src);   
+            sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));   
+            return sb.toString();   
+        } else {   
+            return null;   
+        }   
+    }
 	
 	public static String replaceSpace(String s){
 		String reg = "\\s+";
@@ -71,10 +70,10 @@ public class MyUtil {
 	public static String getPropertyValueByKey(String key,String path,HttpServletRequest request) throws Exception{
 		String value = null;
 		Properties p = new Properties();
-		String contextPath = getContextPath(request);
-		FileInputStream in = new FileInputStream(contextPath+path);
+		FileInputStream in = new FileInputStream(getContextPath(request)+path);
 		p.load(in);
 		value = p.getProperty(key);
+		in.close();
 		return value;
 	}
 	

@@ -200,7 +200,6 @@
 		</div>
 		<br>
 		<div class="row-fluid bLine_dash"></div><br>
-		
 		<div class="row-fluid scrollbg">
 			<div class="shell">
 			<div style="margin: 5px 0px; "><a href="<c:url value='/teacher/list'></c:url>" style="color:#fff; font-weight: bold; font-size: 15px; ">热门专家</a></div>

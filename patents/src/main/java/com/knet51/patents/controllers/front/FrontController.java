@@ -186,7 +186,6 @@ public class FrontController {
 				UserInfo userInfo = new UserInfo(user);
 				model.addAttribute("userInfo", userInfo);
 				model.addAttribute("user_id", user_id);
-
 				model.addAttribute("role", userInfo.getRole());
 				session.setAttribute("isFollower", isFollower);
 							

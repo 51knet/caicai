@@ -124,7 +124,7 @@ public class TeacherController {
 //		model.addAttribute("courseTypeList", courseTypeList);
 //		return "teacher.teacherInfo";
 		HttpServletResponse resp = ((HttpServletResponse)response);
-		resp.sendRedirect("/ccweb/teacher/"+teacher_id);
+		resp.sendRedirect("/patents/teacher/"+teacher_id);
 		return;
 	}
 	

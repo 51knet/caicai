@@ -43,6 +43,7 @@ public class ApplyRightController {
 		return "admin."+userInfo.getRole()+".applyright.add";
 	}
 	
+	
 	@RequestMapping(value="/admin/applyright/add", method = RequestMethod.POST)
 	public String addapplyright(@Valid ApplyRightForm applyrightForm, BindingResult validResult,HttpSession session
 			,MultipartHttpServletRequest request) throws Exception{
@@ -53,6 +54,7 @@ public class ApplyRightController {
 			logger.info("====="+validResult.toString());
 			return "redirect:/admin/applyright/new";
 		}else{
+			new TestForm().showFormInfo(applyrightForm);
 			ApplyRight applyright = new ApplyRight();
 			applyright.setContent(applyrightForm.getContent());
 			applyright.setName(applyrightForm.getName());
@@ -69,9 +71,9 @@ public class ApplyRightController {
 				String fileName = multipartFile.getOriginalFilename();
 				String path ="/resources/attached/"+userInfo.getId()+"/applyright";
 				InputStream fileInput = multipartFile.getInputStream();
-				flag =  FTPUtil.getInstance().uploadFile(path, fileName, fileInput);
+				//flag =  FTPUtil.getInstance().uploadFile(path, fileName, fileInput);
+				
 				logger.debug("Upload Path:"+path); 
-				FileUtil.createRealPath(path, session);
 				if(flag){
 					String savePath = path+"/"+fileName;
 					applyright.setSavePath(savePath);
