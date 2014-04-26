@@ -42,6 +42,7 @@
 		<put-attribute name="title" value="Register" />
 		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_index-top-navbar.jsp" />
 		<put-attribute name="body" value="/WEB-INF/layouts/jsp/register/_body.jsp"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/layouts/jsp/register/_body.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
 	<definition name="frontPage-layout" template="/WEB-INF/layouts/jsp/teacher-front.jsp">

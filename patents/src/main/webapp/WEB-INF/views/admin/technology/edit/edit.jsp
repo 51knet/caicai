@@ -31,7 +31,7 @@
 
 <div class="row-fluid custom round">
 	<div  class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
-		<h4>我的技术>>添加技术</h4>
+		<h4>我的成果>>修改成果</h4>
 	</div>
 	<div class="content row-fluid">
 		<form action= '<c:url value="/admin/technology/edit/edit"></c:url>'  method="post" id="tech_form" name="tech_post">

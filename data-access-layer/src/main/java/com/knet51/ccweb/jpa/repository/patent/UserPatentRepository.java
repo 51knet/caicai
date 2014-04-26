@@ -16,6 +16,9 @@ public interface UserPatentRepository extends JpaRepository<Patent, String>,JpaS
 	Page<Patent> findPatentByUser(User user, Pageable pageable);
 	List<Patent> findPatentByUser(User user);
 	
+	Page<Patent> findPatentByUserAndStatus(User user,Integer status, Pageable pageable);
+	List<Patent> findPatentByUserAndStatus(User user,Integer status);
+	
 	Page<Patent> findPatentByPatentField(String patentField, Pageable pageable);
 	List<Patent> findPatentByPatentField(String patentField);
 	

@@ -30,13 +30,13 @@
 
 <div class="row-fluid custom round">
 	<div  class=" row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
-		<h4>我的技术</h4>
+		<h4>我的成果</h4>
 	</div>
 	<div class="content">
-		<a  style="float: right;" href='<c:url value="/admin/technology/new"></c:url>' class="btn">添加新技术</a><br><br>
+		<a  style="float: right;" href='<c:url value="/admin/technology/new"></c:url>' class="btn">添加新成果</a><br><br>
 		<table class=" <c:if test="${sessionUserInfo.role == 'teacher'}">green</c:if> <c:if test="${sessionUserInfo.role == 'user'}">blue</c:if>" id="mytab" cellpadding="4" width=100%  border=0>
 			<thead>
-				<tr><th width="70%">技术名称</th><th>应用领域</th><th width="15%">操作</th></tr>
+				<tr><th width="70%">成果名称</th><th>应用领域</th><th width="15%">操作</th></tr>
 			</thead>
 			<tbody>
 				<c:forEach  items="${page.content}" var="page">
@@ -59,7 +59,7 @@
 	    <h3 id="myModalLabel">请注意</h3>
 	  </div>
 	  <div class="modal-body">
-	    <p>你确定删除该专利吗？</p>
+	    <p>你确定删除该成果吗？</p>
 	  </div>
 	  <div class="modal-footer">
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
