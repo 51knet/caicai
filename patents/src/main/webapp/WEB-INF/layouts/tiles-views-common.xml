@@ -65,7 +65,7 @@
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
 	</definition>
 	
-	<definition name="upload.falied" extends="homepage-layout">
+	<definition name="upload.failed" extends="homepage-layout">
 		<put-attribute name="title" value="上传成功" />
 		<put-attribute name="body" value="/WEB-INF/views/_shared/upload_failed.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.WorkExp;
-import com.knet51.ccweb.jpa.repository.WorkExpRepository;
+import com.knet51.ccweb.jpa.repository.workexp.WorkExpRepository;
 @Transactional
 @Service
 public class WorkExpServiceImpl implements WorkExpService {

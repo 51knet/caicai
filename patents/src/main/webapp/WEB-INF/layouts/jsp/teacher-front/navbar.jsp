@@ -13,12 +13,9 @@
 <div class="navbar">
 	<div class="navbar-inner">
 		<ul class="nav">
-			<li><a href='<c:url value='/teacher/${teacherInfo.id}'></c:url>'>主页</a></li>
-			<li><a href='<c:url value='/teacher/${teacherInfo.id}/resume'></c:url>'>简历</a></li>
-			<li><a href='<c:url value='/teacher/${teacherInfo.id}/announcement/list'></c:url>'>公告</a></li>
-			<li><a href='<c:url value='/teacher/${teacherInfo.id}/resource/list'></c:url>'>文献资料</a></li>
-			<li><a href='<c:url value='/teacher/${teacherInfo.id}/patent/list'></c:url>'>专利</a></li>
-			<li><a href='<c:url value='/teacher/${teacherInfo.id}/blog/list'></c:url>'>博文</a></li>
+			<li><a href='<c:url value='/incubator/${incubatUserInfo.id}'></c:url>'>主页</a></li>
+			<li><a href='<c:url value='/incubator/${incubatUserInfo.id}/about'></c:url>'>关于我们</a></li>
+			<li><a href='<c:url value='/incubator/${incubatUserInfo.id}/announcement/list'></c:url>'>新闻动态</a></li>
 		</ul>
 	</div>
 </div>

@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.dao.UserDao;
 import com.knet51.ccweb.jpa.entities.User;
-import com.knet51.ccweb.jpa.repository.UserRepository;
+import com.knet51.ccweb.jpa.repository.user.UserRepository;
 
 @Transactional
 @Service("userService")

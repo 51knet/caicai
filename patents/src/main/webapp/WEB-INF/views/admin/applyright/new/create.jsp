@@ -56,11 +56,11 @@ function checkResources(obj){
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
 		    	<li <c:if test='${active == "invest"}'>class="active"</c:if>><a href="#invest_tab" data-toggle="tab">个人申请</a></li> 
-		    	<li <c:if test='${active == "psw"}'>class="active"</c:if>><a href="#incubator_tab" data-toggle="tab">机构公司申请</a></li> 
+		    	<li <c:if test='${active == "company"}'>class="active"</c:if>><a href="#company_tab" data-toggle="tab">机构公司申请</a></li> 
 			</ul>
 			<div class="tab-content">				
 				<div class="tab-pane <c:if test='${active == "invest"}'>active</c:if>" id="invest_tab">
-					<form action= '<c:url value="/admin/applyright/add"></c:url>'  method="post" enctype="multipart/form-data"  id="valid_form" name="valid_post" onsubmit="return checkResources(this)">
+					<form action= '<c:url value="/admin/applyright/person/add"></c:url>'  method="post" enctype="multipart/form-data"  id="valid_form" name="valid_post" onsubmit="return checkResources(this)">
 					<div class="control-group" >
 						<div class="controls">
 							<label class="radio inline">
@@ -109,48 +109,48 @@ function checkResources(obj){
 				</form>
 				</div>
 				
-				<div class="tab-pane <c:if test='${active == "incubator"}'>active</c:if>" id="incubator_tab">
+				<div class="tab-pane <c:if test='${active == "company"}'>active</c:if>" id="company_tab">
 					<form action= '<c:url value="/admin/applyright/company/add"></c:url>'  method="post" enctype="multipart/form-data"  id="valid_form" name="valid_post" onsubmit="return checkResources(this)">
 						<div class="control-group" >
 							<div class="controls">
 								<label class="radio inline">
-								  <input type="radio"  name="applypermit" value="investcompany" checked="checked" > 投资机构
+								  <input type="radio"  name="comApplypermit" value="investcompany" checked="checked" > 投资机构
 								</label>
 								<label class="radio inline">
-								  <input type="radio"  name="applypermit" value="incubator"> 孵化基地
+								  <input type="radio"  name="comApplypermit" value="incubator"> 孵化基地
 								</label>
 							</div>
 						</div>
-						<div class="control-group" id="name">
+						<div class="control-group" id="boss">
 							<div class="controls">
-								<i class="icon-star"></i> 法人姓名：<input  type="text" name="name"   placeholder="真实姓名" > <span class="help-inline"><form:errors path="name" /></span>
+								<i class="icon-star"></i> 法人姓名：<input  type="text" name="boss"   placeholder="法人姓名" > <span class="help-inline"><form:errors path="boss" /></span>
 							</div>
 						</div>
-						<div class="control-group" id="idNum">
+						<div class="control-group" id="bossId">
 							<div class="controls">
-								<i class="icon-star"></i> 身份证号：<input  type="text" name="idNum"   placeholder="身份证号"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="idNum" /></span>
+								<i class="icon-star"></i> 身份证号：<input  type="text" name="bossId"   placeholder="身份证号"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="bossId" /></span>
 							</div>
 						</div>
-						<div class="control-group" id="phone">
+						<div class="control-group" id="bossPhone">
 							<div class="controls">
-								<i class="icon-star"></i> 联系电话：<input  type="text" name="phone"   placeholder="联系电话"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="phone" /></span>
+								<i class="icon-star"></i> 联系电话：<input  type="text" name="bossPhone"   placeholder="联系电话"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="bossPhone" /></span>
 							</div>
 						</div>
-						<div class="control-group" id="myfile">
+						<div class="control-group" id="bizLic">
 							<div class="controls">
-								<i class="icon-star"></i> 营业执照复印件：<input  type="file" name="myfiles"><span id="myFilesError" class="error"></span>
+								<i class="icon-star"></i> 营业执照复印件：<input  type="file" name="bizLic"><span id="bizLicError" class="error"></span>
 							</div>
 						</div>
-						<div class="control-group" id="myfile">
+						<div class="control-group" id="orgCode">
 							<div class="controls">
-								<i class="icon-star"></i> 组织机构代码证：<input  type="file" name="myfiles"><span id="myFilesError" class="error"></span>
+								<i class="icon-star"></i> 组织机构代码证：<input  type="file" name="orgCode"><span id="orgCodeError" class="error"></span>
 							</div>
 						</div>
-						<div class="control-group" id="content">
+						<div class="control-group" id="comContent">
 							<div class="controls " >
-								我的简介：<br>
-								<textarea  style="width:670px;height:120px;"  name="content"  placeholder="我的简介"></textarea>
-								<span class="help-inline"><form:errors path="content" /></span>
+								简介：<br>
+								<textarea  style="width:670px;height:120px;"  name="comContent"  placeholder="简介"></textarea>
+								<span class="help-inline"><form:errors path="comContent" /></span>
 							</div>
 						</div>
 						

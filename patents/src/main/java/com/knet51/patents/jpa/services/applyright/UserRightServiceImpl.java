@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.UserRight;
-import com.knet51.ccweb.jpa.repository.UserRightRepository;
+import com.knet51.ccweb.jpa.repository.user.UserRightRepository;
 
 @Service("userRightService")
 public class UserRightServiceImpl implements UserRightService {

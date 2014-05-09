@@ -143,4 +143,167 @@
 		<put-attribute name="right" value="/WEB-INF/views/admin/applyright/new/create.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="admin.user.applyright.add" extends="user-admin-layout">
+		<put-attribute name="title" value="投资人申请" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/applyright/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<!--  invest company  -->
+	<!--  admin -->
+	<definition name="admin.investcompany.about" extends="user-admin-layout">
+		<put-attribute name="title" value="机构相关" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/investcompany/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/investcompany/about/about.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.investcompany.announcement.list" extends="user-admin-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/investcompany/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/investcompany/announcement/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.investcompany.announcement.add" extends="user-admin-layout">
+		<put-attribute name="title" value="添加动态" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/investcompany/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/investcompany/announcement/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.investcompany.announcement.edit" extends="user-admin-layout">
+		<put-attribute name="title" value="动态修改" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/investcompany/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/investcompany/announcement/edit/edit.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.investcompany.case.list" extends="user-admin-layout">
+		<put-attribute name="title" value="成功案例" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/investcompany/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/investcompany/successcase/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.investcompany.case.add" extends="user-admin-layout">
+		<put-attribute name="title" value="添加案例" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/investcompany/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/investcompany/successcase/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.investcompany.case.edit" extends="user-admin-layout">
+		<put-attribute name="title" value="案例修改" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/investcompany/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/investcompany/successcase/edit/edit.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.investcompany.projects.list" extends="user-admin-layout">
+		<put-attribute name="title" value="本站项目" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/investcompany/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/investcompany/projects/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.investcompany.projects.view" extends="user-admin-layout">
+		<put-attribute name="title" value="本站项目" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/investcompany/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/investcompany/projects/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.investcompany.success.add" extends="user-admin-layout">
+		<put-attribute name="title" value="添加案例" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/investcompany/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/investcompany/successcase/new/create.jsp" />
+	</definition>
+	
+	<!-- front -->
+	<definition name="investcompany.basic" extends="frontPage-layout">
+		<put-attribute name="title" value="企业主页" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/invest-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/invest-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/invest-front/right.jsp" />
+	</definition>
+	
+	<definition name="investcompany.about" extends="frontPage-layout">
+		<put-attribute name="title" value="企业主页" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/invest-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/invest-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/front/investcompany/about/about.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="investcompany.announcement.list" extends="frontPage-layout">
+		<put-attribute name="title" value="企业主页" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/invest-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/invest-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/front/investcompany/announcement/list/list.jsp" />
+	</definition>
+	
+	<definition name="investcompany.announcement.view" extends="frontPage-layout">
+		<put-attribute name="title" value="企业主页" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/invest-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/invest-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/front/investcompany/announcement/view/view.jsp" />
+	</definition>
+	
+	<definition name="investcompany.successcase.list" extends="frontPage-layout">
+		<put-attribute name="title" value="企业主页" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/invest-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/invest-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/front/investcompany/successcase/list/list.jsp" />
+	</definition>
+	
+	<definition name="investcompany.successcase.view" extends="frontPage-layout">
+		<put-attribute name="title" value="企业主页" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/invest-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/invest-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/front/investcompany/successcase/view/view.jsp" />
+	</definition>
+	
+	
+	<!-- incubator  -->
+		<!--  admin -->
+	<definition name="admin.incubator.about" extends="user-admin-layout">
+		<put-attribute name="title" value="添加案例" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/incubator/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/incubator/about/about.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.incubator.announcement.list" extends="user-admin-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/incubator/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/incubator/announcement/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.incubator.announcement.add" extends="user-admin-layout">
+		<put-attribute name="title" value="添加动态" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/incubator/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/incubator/announcement/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.incubator.announcement.edit" extends="user-admin-layout">
+		<put-attribute name="title" value="动态修改" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/incubator/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/incubator/announcement/edit/edit.jsp"></put-attribute>
+	</definition>
+	
+		<!-- front -->
+		
+	<definition name="incubator.basic" extends="frontPage-layout">
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
+		<put-attribute name="title" value="孵化园主页" />
+	</definition>
+	
+	<definition name="incubator.about" extends="frontPage-layout">
+		<put-attribute name="title" value="孵化园介绍" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/front/incubator/about/about.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="incubator.announcement.list" extends="frontPage-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
+			<put-attribute name="right" value="/WEB-INF/views/user/front/incubator/announcement/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="incubator.announcement.view" extends="frontPage-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/front/incubator/announcement/view/view.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>

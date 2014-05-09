@@ -22,9 +22,9 @@
 		<h5></h5>
 	</div>
 	<div class="row-fluid">
-	<c:url var="avatar_url" value="${teacherInfo.avatar}"></c:url>
-	<img width="199px" height="199px" src="${avatar_url}" style="margin-top: 10px;"><a href='<c:url value='/teacher/${teacherInfo.id}'></c:url>'>
-		<h4>${teacherInfo.name }</h4></a>
+	<c:url var="avatar_url" value="${incubatUserInfo.avatar}"></c:url>
+	<img width="199px" height="199px" src="${avatar_url}" style="margin-top: 10px;"><a href='<c:url value='/incubator/${incubatUserInfo.id}'></c:url>'>
+		<h4>${incubatUserInfo.name }</h4></a>
 	</div>
 </div>
 <div class="leftInfo">
@@ -33,27 +33,7 @@
 	</div>
 	<div>
 		<address  class="content">
-			<abbr>姓名:</abbr> ${teacherInfo.name} <br>
-			<c:if test="${teacherInfo.teacher.isEnterprise == null}">
-				 <c:choose>
-					 <c:when test="${teacherInfo.gender==null||teacherInfo.gender==''}"></c:when>
-					 <c:otherwise>
-					 <abbr>性别:</abbr> ${teacherInfo.gender} <br> 
-					 </c:otherwise>
-					 </c:choose>
-					 <c:choose>
-					 <c:when test="${teacherInfo.college==null||teacherInfo.college==''}"></c:when>
-					 <c:otherwise>
-					<abbr>院校:</abbr> ${teacherInfo.college} <br> 
-					 </c:otherwise>
-					 </c:choose>
-					 <c:choose>
-					 <c:when test="${teacherInfo.school==null||teacherInfo.school==''}"></c:when>
-					 <c:otherwise>
-					  <abbr>院系:</abbr> ${teacherInfo.school}
-					 </c:otherwise>
-				 </c:choose>
-			</c:if>
+			<abbr>名称:</abbr> ${incubatUserInfo.name} <br>
 		</address>
 	</div>
 </div>
@@ -65,27 +45,27 @@
 	<div>
 		<address  class="content">
 			<c:choose>
-				<c:when test="${teacherInfo.address==null||teacherInfo.address=='' }"></c:when>
+				<c:when test="${incubatUserInfo.address==null||incubatUserInfo.address=='' }"></c:when>
 				<c:otherwise>
-				<abbr title="地址"><i class="icon-home"></i>:</abbr> ${teacherInfo.address} <br>
+				<abbr title="地址"><i class="icon-home"></i>:</abbr> ${incubatUserInfo.address} <br>
 				</c:otherwise>
 				</c:choose>
 				<c:choose>
-				<c:when test="${teacherInfo.fax==null||teacherInfo.fax=='' }"></c:when>
+				<c:when test="${incubatUserInfo.fax==null||incubatUserInfo.fax=='' }"></c:when>
 				<c:otherwise>
-				<abbr title="传真"><i class="icon-print"></i>:</abbr> ${teacherInfo.fax} <br> 
+				<abbr title="传真"><i class="icon-print"></i>:</abbr> ${incubatUserInfo.fax} <br> 
 				</c:otherwise>
 				</c:choose>
 				<c:choose>
-				<c:when test="${teacherInfo.phone==null||teacherInfo.phone=='' }"></c:when>
+				<c:when test="${incubatUserInfo.phone==null||incubatUserInfo.phone=='' }"></c:when>
 				<c:otherwise>
-				<abbr title="电话"><i class="icon-headphones"></i>:</abbr> ${teacherInfo.phone} <br> 
+				<abbr title="电话"><i class="icon-headphones"></i>:</abbr> ${incubatUserInfo.phone} <br> 
 				</c:otherwise>
 				</c:choose>
 				<c:choose>
-				<c:when test="${teacherInfo.email==null||teacherInfo.email=='' }"></c:when>
+				<c:when test="${incubatUserInfo.email==null||incubatUserInfo.email=='' }"></c:when>
 				<c:otherwise>
-				<abbr title="电邮"><i class="icon-envelope"></i>:</abbr><a href="mailto:#">${teacherInfo.email}</a>
+				<abbr title="电邮"><i class="icon-envelope"></i>:</abbr><a href="mailto:#">${incubatUserInfo.email}</a>
 				</c:otherwise>
 			</c:choose>
 		</address>

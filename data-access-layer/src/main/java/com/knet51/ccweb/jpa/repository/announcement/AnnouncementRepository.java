@@ -17,4 +17,6 @@ public interface AnnouncementRepository  extends JpaRepository<Announcement, Lon
 	List<Announcement> findAnnoByUserAndIdAndForbiddenIsNull(User user, Long id);
 	
 	Page<Announcement> findAll(Pageable pageable);
+	
+	Page<Announcement> findAnnoByUserAndCode(User user, Integer code, Pageable pageable);
 }

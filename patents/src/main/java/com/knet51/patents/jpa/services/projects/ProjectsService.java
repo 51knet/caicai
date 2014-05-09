@@ -18,4 +18,6 @@ public interface ProjectsService {
 	
 	Page<Projects> findProjectsByUser(User user, int pageNumber, int pageSize);
 	List<Projects> findProjectsListByUser(User user);
+	
+	Page<Projects> findOrderProjectsByUser(Long userid, int pageNumber,int pageSize);
 }

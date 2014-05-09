@@ -3,7 +3,12 @@ package com.knet51.patents.controllers.admin.applyright;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import com.knet51.ccweb.jpa.entities.ApplyRight;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.knet51.ccweb.jpa.dao.BaseDao;
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.applyright.ApplyRight;
 
 public class TestForm {
 	public void showFormInfo(Object o) {
@@ -53,14 +58,26 @@ public class TestForm {
     }
 	
 	public static void main(String[] args) {
-		ApplyRightForm form = new ApplyRightForm();
-		form.setContent("ApplyRightFormApplyRightForm");
-		form.setIdNum("1");
-		form.setName("ApplyRightForm");
-		form.setPhone("123");
+//		PersonApplyRightForm form = new PersonApplyRightForm();
+//		form.setContent("ApplyRightFormApplyRightForm");
+//		form.setIdNum("1");
+//		form.setName("ApplyRightForm");
+//		form.setPhone("123");
+//		
+//		ApplyRight applyRight = new ApplyRight();
+//		new TestForm().createTest(form, applyRight);
+//		System.out.println(applyRight.getContent());
 		
-		ApplyRight applyRight = new ApplyRight();
-		new TestForm().createTest(form, applyRight);
-		System.out.println(applyRight.getContent());
+//		try {
+//			ApplicationContext context = new ClassPathXmlApplicationContext("root-context.xml"); 
+//			BaseDao<User> dao = (BaseDao) context.getBean("baseDao");
+//			User user = new User();
+//			user.setName("testbasedao");
+//			user.setEmail("testbasedao");
+//			dao.create(user);
+//			System.out.println("------------ fish");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 }

@@ -8,11 +8,11 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.knet51.ccweb.jpa.entities.ApplyRight;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.UserRight;
-import com.knet51.ccweb.jpa.repository.ApplyRightRepository;
-import com.knet51.ccweb.jpa.repository.UserRightRepository;
+import com.knet51.ccweb.jpa.entities.applyright.ApplyRight;
+import com.knet51.ccweb.jpa.repository.applyright.ApplyRightRepository;
+import com.knet51.ccweb.jpa.repository.user.UserRightRepository;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 @Service("applyRightService")
 public class ApplyRightServiceImpl implements ApplyRightService {

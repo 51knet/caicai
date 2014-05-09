@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.projects.Projects;
@@ -22,4 +24,7 @@ public interface ProjectsRepository extends JpaRepository<Projects, Long>, JpaSp
 	
 	Page<Projects> findProjectsByStatusAndProjectNameLike(Integer status,String projectName, Pageable pageable);
 	List<Projects> findProjectsListByProjectNameLike(String projectName);
+	@Query("select p from Projects p where exists (select o.projects.id from UserOrder o where o.user.id = :userid and o.projects.id =p.id)")
+	Page<Projects> findOrderProjectsByUser(@Param("userid") Long userid, Pageable pageable);
+//	select * from projects p where exists (select o.projects_id from userorder o where o.user_id= 3 and o.projects_id = p.id)
 }

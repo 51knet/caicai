@@ -2,8 +2,8 @@ package com.knet51.patents.jpa.services.applyright;
 
 import org.springframework.data.domain.Page;
 
-import com.knet51.ccweb.jpa.entities.ApplyRight;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.applyright.ApplyRight;
 
 public interface ApplyRightService {
 	ApplyRight create(ApplyRight applyRight);

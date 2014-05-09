@@ -28,7 +28,7 @@ public class PatentRequirementForm {
 	@NotEmpty
 	private String contact;
 	@NotEmpty
-	@Size(max=11, min=7)
+	@Size(max=12, min=7)
 	private String phone;
 	
 	private String fax;

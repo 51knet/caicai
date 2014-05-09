@@ -82,6 +82,38 @@ public class MyUtil {
 		String reg = "\\s+";
 		return s.trim().replaceAll(reg, "%");
 	}
+	
+	
+	public static void copyValidBeanToDestBean(Object orgin, Object dest){
+		Field[] orginFields = orgin.getClass().getDeclaredFields();
+		try {
+			Field[] destFields = dest.getClass().getDeclaredFields();	
+			for (Field orgField : orginFields) {
+				for (Field destField : destFields) {
+					if(destField.getName().equals(orgField.getName())){
+						//System.out.println("---->destfieldname="+destField.getName()+"----- orginfieldname="+orgField.getName());
+						Method destSetMethod = dest.getClass().getMethod("set"+changeFieldNameFirstUpper(destField.getName()), destField.getType());
+						Method orginGetMethod = orgin.getClass().getMethod("get"+changeFieldNameFirstUpper(destField.getName()));
+						destSetMethod.invoke(dest, orginGetMethod.invoke(orgin));
+					}
+				}
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	public static  String changeFieldNameFirstUpper(String src) {   
+        if (src != null) {
+            StringBuffer sb = new StringBuffer(src);   
+            sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));   
+            return sb.toString();   
+        } else {   
+            return null;   
+        }   
+    }
 
 	
 }

@@ -30,7 +30,7 @@ public class ProjectsForm {
 	@Size(min=1, max=200)
 	private String boss;
 	@NotEmpty
-	@Size(min=7, max=11)
+	@Size(min=7, max=12)
 	private String phone;
 	
 	@NotEmpty

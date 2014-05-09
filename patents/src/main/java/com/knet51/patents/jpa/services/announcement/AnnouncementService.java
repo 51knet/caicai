@@ -29,4 +29,6 @@ public interface AnnouncementService {
 	
 	Page<Announcement> findAllAnnoForSuperAdmin(int pageNum, int pageSize);
 	List<Announcement> findAllForSuperAdmin();
+	
+	Page<Announcement> findAnnoByUserAndCode(int pageNumber,int pageSize, User user, Integer code);
 }

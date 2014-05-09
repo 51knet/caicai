@@ -16,7 +16,7 @@
 .left-menu-container {
 background-color: #718495;
 
-height:350px;
+height:370px;
 background-image: url("<c:url value='/resources/img/default/item_bg.png'></c:url>");
 background-position: top right;
 background-repeat: repeat-y;
@@ -106,6 +106,8 @@ border-bottom-color: transparent;
 		<li><a href='<c:url value="/admin/technology/list"></c:url>' >我的成果</a></li>
 		<li><a href='<c:url value="/admin/projects/list"></c:url>' >融资项目</a></li>
 		<li><a href='<c:url value="/admin/applyright/new"></c:url>' >权限申请</a></li>
+		<li><a href='<c:url value="/admin/investcompany/about"></c:url>' >机构相关</a></li>
+		<li><a href='<c:url value="/admin/incubator/about"></c:url>' >孵化园介绍</a></li>
 	</ul>
 </div>
 

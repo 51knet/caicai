@@ -44,6 +44,9 @@ public final class GlobalDefs {
 	public static final String RZJG = "融资机构";
 	public static final String FHYQ ="孵化园区";
 	
+	public static final Integer investcompany = 0;
+	public static final Integer incubator = 1;
+	
 	
 	public static Map<String,String> getUserEduExpMap(){
 		Map<String,String> map = new HashMap<String, String>();

@@ -81,4 +81,12 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 		return annoRepository.findAll();
 	}
 
+	@Override
+	public Page<Announcement> findAnnoByUserAndCode(int pageNumber,
+			int pageSize, User user, Integer code) {
+		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id");
+		Page<Announcement> page = annoRepository.findAnnoByUserAndCode(user, code, dateDesc);
+		return page;
+	}
+
 }

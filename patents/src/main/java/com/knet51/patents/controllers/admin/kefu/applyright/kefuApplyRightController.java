@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.knet51.ccweb.jpa.entities.ApplyRight;
+import com.knet51.ccweb.jpa.entities.applyright.ApplyRight;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.applyright.ApplyRightService;
 import com.knet51.patents.util.fileUpLoad.FTPUtil;

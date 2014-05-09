@@ -15,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.Course;
 import com.knet51.ccweb.jpa.entities.courses.UserCourse;
-import com.knet51.ccweb.jpa.repository.UserCourseRepository;
-import com.knet51.ccweb.jpa.repository.UserRepository;
+import com.knet51.ccweb.jpa.repository.user.UserCourseRepository;
+import com.knet51.ccweb.jpa.repository.user.UserRepository;
 import com.knet51.ccweb.jpa.services.course.CourseService;
 @Transactional
 @Service("userCourseService")

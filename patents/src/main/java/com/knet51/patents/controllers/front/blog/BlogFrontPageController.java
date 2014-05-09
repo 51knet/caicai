@@ -33,88 +33,88 @@ import com.knet51.patents.jpa.services.blog.BlogService;
  */
 @Controller
 public class BlogFrontPageController {
-
-	private static final Logger logger = LoggerFactory.getLogger(BlogFrontPageController.class);
-
-	@Autowired
-	private TeacherService teacherService;
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private BlogService blogService;
-
-	@RequestMapping(value= "/teacher/{teacher_id}/blog/list", method=RequestMethod.GET)
-	public String list(@PathVariable Long teacher_id, @RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize, Model model) {
-		try {
-			User user = userService.findOne(teacher_id);
-			Teacher teacher = teacherService.findOne(teacher_id);
-			UserInfo userInfo = new UserInfo(user);
-			userInfo.setTeacher(teacher);
-			logger.debug(userInfo.toString());
-			model.addAttribute("teacherInfo", userInfo);
-			model.addAttribute("teacher_id", teacher_id);
-			
-			//Page<BlogPost> page = blogService.findAllBlogs(pageNumber, pageSize, teacher);
-			Page<BlogPost> page = blogService.findAllBlogsNotGarbageAndNotDraft(pageNumber, pageSize, teacher);
-			model.addAttribute("page", page);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "teacher.blog.list";
-	}
-	@RequestMapping(value= "/teacher/{teacher_id}/blog/view/{blog_post_id}", method=RequestMethod.GET)
-	public String view(@PathVariable Long teacher_id, @PathVariable Long blog_post_id, Model model) {
-		User user = userService.findOne(teacher_id);
-		Teacher teacher = teacherService.findOne(teacher_id);
-		UserInfo userInfo = new UserInfo(user);
-		userInfo.setTeacher(teacher);
-		logger.debug(userInfo.toString());
-		model.addAttribute("teacherInfo", userInfo);
-		model.addAttribute("teacher_id", teacher_id);
-		
-		BlogPost blogPost = blogService.findOne(blog_post_id);
-		List<BlogComment> blogCommentList=(List<BlogComment>) blogPost.getBlogComments();
-		model.addAttribute("blogPost", blogPost);
-		model.addAttribute("blogCommentList", blogCommentList);
-		model.addAttribute("sumComment", blogPost.getBlogComments().size());
-		
-		return "teacher.blog.view";
-	}
-	//@ModelAttribute("blogPosts")
-	public List<BlogPost> populateBlogPostList(HttpSession session) {
-		Long id = getUserId(session);
-		List<BlogPost> blogPosts = blogService.findBlogPosts(id);
-		logger.debug(blogPosts.toString());
-		return blogPosts;
-	}
-	//@ModelAttribute("blogCategories")
-	public List<BlogCategory> populateBlogCategoryList(HttpSession session) {
-		Long id = getUserId(session);
-		Teacher teacher = teacherService.findOne(id);
-		List<BlogCategory> blogCategories = blogService.findBlogCategories(teacher);
-		logger.debug(blogCategories.toString());
-		return blogCategories;
-	}
-	private Long getUserId(HttpSession session) {
-		UserInfo userInfo = (UserInfo)session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Long id = userInfo.getId();
-		return id;
-	}
-	@RequestMapping(value= "/teacher/{teacher_id}/blog/comment", method=RequestMethod.POST)
-	public String view(@PathVariable Long teacher_id, @Valid BlogComment blogComment, BindingResult result, @RequestParam("blogpost_id") Long blogpost_id, Model model, HttpSession session) {
-		BlogPost blogPost = blogService.findOne(blogpost_id);
-		if (result.hasErrors()) {
-			logger.info("Validation Failed " + result);
-			model.addAttribute("blogPost", blogPost);
-			return "teacher.blog.view";
-		}
-		
-		Teacher teacher = teacherService.findOne(getUserId(session));
-		blogComment.setAuthor(teacher);
-		blogComment.setBlogPost(blogPost);
-		blogService.createBlogComment(blogComment);
-		
-		return "redirect:/teacher/"+teacher_id+"/blog/view/"+blogpost_id;
-		
-	}
+//
+//	private static final Logger logger = LoggerFactory.getLogger(BlogFrontPageController.class);
+//
+//	@Autowired
+//	private TeacherService teacherService;
+//	@Autowired
+//	private UserService userService;
+//	@Autowired
+//	private BlogService blogService;
+//
+//	@RequestMapping(value= "/teacher/{teacher_id}/blog/list", method=RequestMethod.GET)
+//	public String list(@PathVariable Long teacher_id, @RequestParam(value="pageNumber",defaultValue="0") int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize, Model model) {
+//		try {
+//			User user = userService.findOne(teacher_id);
+//			Teacher teacher = teacherService.findOne(teacher_id);
+//			UserInfo userInfo = new UserInfo(user);
+//			userInfo.setTeacher(teacher);
+//			logger.debug(userInfo.toString());
+//			model.addAttribute("teacherInfo", userInfo);
+//			model.addAttribute("teacher_id", teacher_id);
+//			
+//			//Page<BlogPost> page = blogService.findAllBlogs(pageNumber, pageSize, teacher);
+//			Page<BlogPost> page = blogService.findAllBlogsNotGarbageAndNotDraft(pageNumber, pageSize, teacher);
+//			model.addAttribute("page", page);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return "teacher.blog.list";
+//	}
+//	@RequestMapping(value= "/teacher/{teacher_id}/blog/view/{blog_post_id}", method=RequestMethod.GET)
+//	public String view(@PathVariable Long teacher_id, @PathVariable Long blog_post_id, Model model) {
+//		User user = userService.findOne(teacher_id);
+//		Teacher teacher = teacherService.findOne(teacher_id);
+//		UserInfo userInfo = new UserInfo(user);
+//		userInfo.setTeacher(teacher);
+//		logger.debug(userInfo.toString());
+//		model.addAttribute("teacherInfo", userInfo);
+//		model.addAttribute("teacher_id", teacher_id);
+//		
+//		BlogPost blogPost = blogService.findOne(blog_post_id);
+//		List<BlogComment> blogCommentList=(List<BlogComment>) blogPost.getBlogComments();
+//		model.addAttribute("blogPost", blogPost);
+//		model.addAttribute("blogCommentList", blogCommentList);
+//		model.addAttribute("sumComment", blogPost.getBlogComments().size());
+//		
+//		return "teacher.blog.view";
+//	}
+//	//@ModelAttribute("blogPosts")
+//	public List<BlogPost> populateBlogPostList(HttpSession session) {
+//		Long id = getUserId(session);
+//		List<BlogPost> blogPosts = blogService.findBlogPosts(id);
+//		logger.debug(blogPosts.toString());
+//		return blogPosts;
+//	}
+//	//@ModelAttribute("blogCategories")
+//	public List<BlogCategory> populateBlogCategoryList(HttpSession session) {
+//		Long id = getUserId(session);
+//		Teacher teacher = teacherService.findOne(id);
+//		List<BlogCategory> blogCategories = blogService.findBlogCategories(teacher);
+//		logger.debug(blogCategories.toString());
+//		return blogCategories;
+//	}
+//	private Long getUserId(HttpSession session) {
+//		UserInfo userInfo = (UserInfo)session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+//		Long id = userInfo.getId();
+//		return id;
+//	}
+//	@RequestMapping(value= "/teacher/{teacher_id}/blog/comment", method=RequestMethod.POST)
+//	public String view(@PathVariable Long teacher_id, @Valid BlogComment blogComment, BindingResult result, @RequestParam("blogpost_id") Long blogpost_id, Model model, HttpSession session) {
+//		BlogPost blogPost = blogService.findOne(blogpost_id);
+//		if (result.hasErrors()) {
+//			logger.info("Validation Failed " + result);
+//			model.addAttribute("blogPost", blogPost);
+//			return "teacher.blog.view";
+//		}
+//		
+//		Teacher teacher = teacherService.findOne(getUserId(session));
+//		blogComment.setAuthor(teacher);
+//		blogComment.setBlogPost(blogPost);
+//		blogService.createBlogComment(blogComment);
+//		
+//		return "redirect:/teacher/"+teacher_id+"/blog/view/"+blogpost_id;
+//		
+//	}
 }

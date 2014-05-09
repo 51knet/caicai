@@ -14,7 +14,7 @@ public class TechnologyForm {
 	@NotEmpty
 	private String inventer;// yong you zhe
 	@NotEmpty
-	@Size(min=7,max=11)
+	@Size(min=7,max=12)
 	private String phone;
 	private String techType;//xiang mu lei xing "863"
 	@NotEmpty

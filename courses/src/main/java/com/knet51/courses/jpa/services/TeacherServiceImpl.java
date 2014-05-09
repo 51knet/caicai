@@ -11,7 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.knet51.ccweb.jpa.entities.Teacher;
-import com.knet51.ccweb.jpa.repository.TeacherRepository;
+import com.knet51.ccweb.jpa.repository.teacher.TeacherRepository;
 
 @Transactional
 @Service("teacherService")

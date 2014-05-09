@@ -15,9 +15,9 @@ import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.courses.CourseType;
 import com.knet51.ccweb.jpa.entities.courses.Course;
-import com.knet51.ccweb.jpa.repository.TeacherRepository;
-import com.knet51.ccweb.jpa.repository.UserRepository;
 import com.knet51.ccweb.jpa.repository.course.CourseRepository;
+import com.knet51.ccweb.jpa.repository.teacher.TeacherRepository;
+import com.knet51.ccweb.jpa.repository.user.UserRepository;
 
 @Transactional
 @Service("courseService")

@@ -61,7 +61,7 @@
 	    <h3 id="myModalLabel">请注意</h3>
 	  </div>
 	  <div class="modal-body">
-	    <p>你确定删除该专利吗？</p>
+	    <p>你确定删除该项目吗？</p>
 	  </div>
 	  <div class="modal-footer">
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
