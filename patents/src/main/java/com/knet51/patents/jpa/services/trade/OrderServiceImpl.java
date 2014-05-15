@@ -23,7 +23,6 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public UserOrder findOne(Long id) {
 		UserOrder order =  orderRepository.findOne(id);
-		order.getProjects().getId();
 		return order;
 	}
 
@@ -43,10 +42,6 @@ public class OrderServiceImpl implements OrderService {
 	public Page<UserOrder> findAll(int pageNumber, int pageSize) {
 		Pageable dateDesc = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
 		Page<UserOrder> onePage = orderRepository.findAll(dateDesc);
-		List<UserOrder> orderList = onePage.getContent();
-		for (UserOrder userOrder : orderList) {
-			userOrder.getProjects().getId();
-		}
 		return onePage;
 	}
 
@@ -54,10 +49,6 @@ public class OrderServiceImpl implements OrderService {
 	public Page<UserOrder> findOrderByUser(int pageNumber, int pageSize, User user) {
 		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
 		Page<UserOrder> onePage = orderRepository.findOrderByUser(user, pageable);
-		List<UserOrder> orderList = onePage.getContent();
-		for (UserOrder userOrder : orderList) {
-			userOrder.getProjects().getId();
-		}
 		return onePage;
 	}
 	

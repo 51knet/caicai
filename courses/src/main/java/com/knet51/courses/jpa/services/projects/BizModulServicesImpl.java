@@ -31,10 +31,6 @@ public class BizModulServicesImpl implements BizModulService {
 	@Override
 	public BizModul findByProjects(Projects projects) {
 		BizModul bizModul = repository.findBizModulByProjects(projects);
-		if(bizModul == null){
-			bizModul = new BizModul(projects);
-			repository.save(bizModul);
-		}
 		return bizModul;
 	}
 

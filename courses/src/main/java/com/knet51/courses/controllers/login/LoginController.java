@@ -102,6 +102,7 @@ public class LoginController {
 	@RequestMapping(value = "/signout", method = RequestMethod.GET)
 	public String signout(HttpSession session, HttpServletRequest request,HttpServletResponse response) {
 		session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
+		session.invalidate();
 		String killCookie = "";
 		Cookie cookie = new Cookie(GlobalDefs.COOKIE_IDENTITY, killCookie);
 		// cookie.setDomain("localhost");

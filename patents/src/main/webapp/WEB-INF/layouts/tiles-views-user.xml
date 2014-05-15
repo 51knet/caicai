@@ -150,7 +150,7 @@
 	</definition>
 	
 	<!--  invest company  -->
-	<!--  admin -->
+		<!--  admin -->
 	<definition name="admin.investcompany.about" extends="user-admin-layout">
 		<put-attribute name="title" value="机构相关" />
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/investcompany/item_panel.jsp"></put-attribute>

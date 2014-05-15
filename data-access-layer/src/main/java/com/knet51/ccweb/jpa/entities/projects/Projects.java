@@ -31,6 +31,7 @@ public class Projects extends AbstractEntity {
 	
 	private Integer status; // pass:1; waite:0;
 	private Integer maxInvestNum;
+	private Integer currentInvestNum;
 	private Integer minMoney;
 	
 	@Version
@@ -40,6 +41,16 @@ public class Projects extends AbstractEntity {
 	@ManyToOne
 	private User user;
 	
+	
+	
+	public Integer getCurrentInvestNum() {
+		return currentInvestNum;
+	}
+
+	public void setCurrentInvestNum(Integer currentInvestNum) {
+		this.currentInvestNum = currentInvestNum;
+	}
+
 	private Integer complete ;// complete:1; none:0;
 	public Integer getMaxInvestNum() {
 		return maxInvestNum;

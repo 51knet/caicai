@@ -106,8 +106,12 @@ border-bottom-color: transparent;
 		<li><a href='<c:url value="/admin/technology/list"></c:url>' >我的成果</a></li>
 		<li><a href='<c:url value="/admin/projects/list"></c:url>' >融资项目</a></li>
 		<li><a href='<c:url value="/admin/applyright/new"></c:url>' >权限申请</a></li>
-		<li><a href='<c:url value="/admin/investcompany/about"></c:url>' >机构相关</a></li>
-		<li><a href='<c:url value="/admin/incubator/about"></c:url>' >孵化园介绍</a></li>
+		<c:if test="${investcompany != null }">
+			<li><a href='<c:url value="/admin/investcompany/about"></c:url>' >投资机构介绍</a></li>
+		</c:if>
+		<c:if test="${incubator != null }">
+			<li><a href='<c:url value="/admin/incubator/about"></c:url>' >孵化园介绍</a></li>
+		</c:if>
 	</ul>
 </div>
 

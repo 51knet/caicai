@@ -7,4 +7,5 @@ import com.knet51.ccweb.jpa.entities.UserRight;
 
 public interface UserRightService {
 	List<UserRight> findUserRightListByUser(User user);
+	
 }

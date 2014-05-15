@@ -26,6 +26,9 @@
 	background-color: #e4e7ec;
 	height: 600px;
 }
+.projects .user_info_div .titles{
+	margin: 10px 0px 0px 20px; float: left; 
+}
 .user_img{
 	width: 80px;
 	margin: 10px 20px;float: left;
@@ -50,16 +53,16 @@ width: 80px; float: left; margin: 10px 10px;
 
  <div class="container projects">
  	<div class="user_info_div">
- 		<div style="margin: 20px 0px 0px 10px; float: left;">
+ 		<div class="titles">
  			<span class="points" ><h4>项目发起人</h4></span>
  		</div>
  	 	<div class="bottom_line_solid"></div>
- 	 	
+ 
  	 	<div>
  	 		<div class="user_img"><img src='<c:url value="${url}${projects.user.photo_url }"></c:url>' /></div>
  	 		<div class="points user_info"> <h4>${projects.user.name}</h4></div>
  	 	</div>
- 	 	<div style="margin: 10px 0px 0px 10px; float: left; ">
+ 	 	<div class="titles">
  			<span class="points" ><h4>融资金额及进度</h4></span>
  		</div>
  	 	<div class="bottom_line_solid"></div>
@@ -78,6 +81,16 @@ width: 80px; float: left; margin: 10px 10px;
  					<tr class="white_btm"><td align="center"><span>${projects.currentMoney } 万</span></td></tr>
  				</table>
  			</div>
+ 	 	</div>
+ 	 	
+ 	 
+ 	 	<div class="titles">
+ 			<span class="points" ><h4>领投人</h4></span>
+ 		</div>
+ 		<div class="bottom_line_solid"></div>
+ 	 	<div>
+ 	 		<div class="user_img"><img src='<c:url value="${url}${ledinvestor.photo_url }"></c:url>' /></div>
+ 	 		<div class="points user_info"> <h4>${ledinvestor.name}</h4></div>
  	 	</div>
  	</div>
  </div>

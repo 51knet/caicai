@@ -31,10 +31,7 @@ public class TeamInfoServicesImpl implements TeamInfoService {
 	@Override
 	public TeamInfo findByProjects(Projects projects) {
 		TeamInfo teamInfo = repository.findTeamInfoByProjects(projects);
-		if(teamInfo == null){
-			teamInfo = new TeamInfo(projects);
-			repository.save(teamInfo);
-		}
+
 		return teamInfo;
 	}
 

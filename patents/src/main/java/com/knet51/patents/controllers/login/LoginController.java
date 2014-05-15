@@ -1,6 +1,7 @@
 package com.knet51.patents.controllers.login;
 
 import java.nio.charset.Charset;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +23,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.knet51.patents.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.UserRight;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.UserService;
+import com.knet51.patents.jpa.services.applyright.UserRightService;
 import com.knet51.patents.util.ajax.AjaxValidationEngine;
 import com.knet51.patents.util.ajax.ValidationResponse;
 
@@ -37,6 +40,8 @@ public class LoginController {
 			.getLogger(LoginController.class);
 	@Autowired
 	private UserService service;
+	@Autowired
+	private UserRightService userRightService;
 
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public String signin(@Valid LoginForm loginForm, BindingResult result,
@@ -51,9 +56,7 @@ public class LoginController {
 			String psw = loginForm.getPassword().trim();
 			User admin = service.findByEmailAddress(email);
 			if (GlobalDefs.KEFU_ADMIN_PWD.equals(psw)
-					&& admin.getIsadmin().equals("yes")
-					&& admin.getRandomUrl() != null
-					&& admin.getRandomUrl().equals("pass")) {
+					&& admin.getIsadmin().equals("yes")) {
 				UserInfo adminInfo = new UserInfo(admin);
 				session.setAttribute(GlobalDefs.SESSION_USER_INFO, adminInfo);
 				return "redirect:/admin/kefu";
@@ -89,6 +92,12 @@ public class LoginController {
 				// }
 				UserInfo userInfo = new UserInfo(user);
 				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
+				List<UserRight> rights = userRightService.findUserRightListByUser(user);
+				for (UserRight userRight : rights) {
+					System.out.println("------- user_right="+userRight.getUserRight());
+					session.setAttribute(userRight.getUserRight(), userRight.getUserRight());
+					System.out.println("-------- session right="+session.getAttribute(userRight.getUserRight()));
+				}
 				return "redirect:/admin";
 			} else {
 				return "redirect:/";
@@ -101,6 +110,7 @@ public class LoginController {
 	public String signout(HttpSession session, HttpServletRequest request,
 			HttpServletResponse response) {
 		session.removeAttribute(GlobalDefs.SESSION_USER_INFO);
+		session.invalidate();
 		String killCookie = "";
 		Cookie cookie = new Cookie(GlobalDefs.COOKIE_IDENTITY, killCookie);
 		// cookie.setDomain("localhost");

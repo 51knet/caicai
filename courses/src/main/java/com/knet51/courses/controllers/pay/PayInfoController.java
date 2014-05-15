@@ -37,69 +37,80 @@ public class PayInfoController {
 	@Autowired
 	private UserRightService userRightService;
 	
-	@RequestMapping(value = "/projects/cart/view/{projects_id}")
-	public String cartPage(@PathVariable Long projects_id, Model model,
+	@RequestMapping(value = "/projects/cart/view/{p_id}")
+	public String cartPage(@PathVariable Long p_id, Model model,
 			HttpSession session, HttpServletRequest request) {
-		boolean pass = false; 
-		model.addAttribute("projects_id", projects_id);
-		Projects projects = projectsService.findOne(projects_id);
-		User seller = projects.getUser();
-		UserInfo userInfo = (UserInfo) session
-				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		if(userInfo != null){
-			//验证当前用户是否有投资权限
-			List<UserRight> rightList = userRightService.findUserRightListByUser(userInfo.getUser());
-			for (UserRight userRight : rightList) {
-				if(userRight.getUserRight().equals("investor") || userRight.getUserRight().equals("ledinvestor")){
-					pass = true;
+		try {
+			boolean pass = false; 
+			model.addAttribute("projects_id", p_id);
+			Projects projects = projectsService.findOne(p_id);
+			User seller = projects.getUser();
+			UserInfo userInfo = (UserInfo) session
+					.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			if(userInfo != null){
+				List<UserRight> rightList = userRightService.findUserRightListByUser(userInfo.getUser());
+				for (UserRight userRight : rightList) {
+					if((userRight.getUserRight().equals("investor") || userRight.getUserRight().equals("ledinvestor"))
+							&& (!projects.getMaxInvestNum().equals(projects.getCurrentInvestNum()) || !projects.getCurrentMoney().equals(projects.getTotalMoney()))){
+						pass = true;
+					}
 				}
-			}
-			if(pass){
-				model.addAttribute("projects", projects);
-				model.addAttribute("seller", seller);
-				return "projects.cart.view";
+				if(pass){
+					model.addAttribute("projects", projects);
+					model.addAttribute("seller", seller);
+					return "projects.cart.view";
+				}else{
+					return "redirect:/" ;
+				}
+					
 			}else{
 				return "redirect:/" ;
 			}
-				
-		}else{
-			return "redirect:/" ;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-
+		return "redirect:/";
 
 	}
 	
 	@RequestMapping(value = "/projects/pay/view", method = RequestMethod.POST)
 	public String payPage( Model model,HttpSession session, 
 			HttpServletRequest request,@RequestParam("projects_id") Long projects_id) {
-		UserInfo userInfo = (UserInfo) session
-				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		Projects projects = projectsService.findOne(projects_id);
-		boolean paySuccessful = false;
-		UserOrder userOrder = new UserOrder();
-		userOrder.setUser(userInfo.getUser());
-		userOrder.setStatus("未支付");
-		userOrder.setStartTime(new Date());
-		userOrder.setProjects(projects);
-		userOrder = orderService.createOrder(userOrder);
-		User seller = projects.getUser();
-		model.addAttribute("projects", projects);
-		model.addAttribute("seller", seller);
-		String password = "";
-		String enterPassword = request.getParameter("password");
-		model.addAttribute("projects_id", projects_id);
-		if (userInfo != null) {
-			password = userInfo.getUser().getPassword();
-			if (password.equals(enterPassword)) {
-				userOrder.setStatus("完成");
-				userOrder.setEndTime(new Date());
-				userOrder = orderService.updateOrder(userOrder);
-				paySuccessful = true;
+		try {
+			UserInfo userInfo = (UserInfo) session
+					.getAttribute(GlobalDefs.SESSION_USER_INFO);
+			Projects projects = projectsService.findOne(projects_id);
+			User seller = projects.getUser();
+			model.addAttribute("projects", projects);
+			model.addAttribute("seller", seller);
+			
+			boolean paySuccessful = false;
+			UserOrder userOrder = new UserOrder();
+			userOrder.setUser(userInfo.getUser());
+			userOrder.setStatus("未支付");
+			userOrder.setStartTime(new Date());
+			userOrder.setProject(projects);
+			userOrder = orderService.createOrder(userOrder);
+			String password = "";
+			String enterPassword = request.getParameter("password");
+			model.addAttribute("projects_id", projects_id);
+			if (userInfo != null) {
+				password = userInfo.getUser().getPassword();
+				if (password.equals(enterPassword)) {
+					userOrder.setStatus("完成");
+					userOrder.setEndTime(new Date());
+					userOrder = orderService.updateOrder(userOrder);
+					paySuccessful = true;
+				}
 			}
+			model.addAttribute("paySuccessful", paySuccessful);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
-		model.addAttribute("paySuccessful", paySuccessful);
 		return "projects.pay.view";
 	}
+	
+	
 
 }

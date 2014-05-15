@@ -69,8 +69,8 @@ public class SystemArchitecture {
 		  logger.info("ARRIVED HERE");
 	  }
 	  @Before("dataAccessOperation()") 
-	  public void beforeDataAccessOperation() {
-		  logger.info("beforeDataAccessOperation");
+	  public void beforeDataAccessOperation(JoinPoint jp) {
+		  logger.info("beforeDataAccessOperation method="+jp.getSignature().getName());
 	  }
 	  
 	  @AfterThrowing(pointcut="com.knet51.patents.util.aop.SystemArchitecture.dataAccessOperation()",

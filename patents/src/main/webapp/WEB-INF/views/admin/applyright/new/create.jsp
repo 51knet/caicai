@@ -56,20 +56,24 @@ function checkResources(obj){
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
 		    	<li <c:if test='${active == "invest"}'>class="active"</c:if>><a href="#invest_tab" data-toggle="tab">个人申请</a></li> 
-		    	<li <c:if test='${active == "company"}'>class="active"</c:if>><a href="#company_tab" data-toggle="tab">机构公司申请</a></li> 
+		    	<li ><a href="#company_tab" data-toggle="tab">机构公司申请</a></li>
 			</ul>
-			<div class="tab-content">				
+			<div class="tab-content">
+						
 				<div class="tab-pane <c:if test='${active == "invest"}'>active</c:if>" id="invest_tab">
 					<form action= '<c:url value="/admin/applyright/person/add"></c:url>'  method="post" enctype="multipart/form-data"  id="valid_form" name="valid_post" onsubmit="return checkResources(this)">
 					<div class="control-group" >
 						<div class="controls">
+						<c:if test="${investor == null }">
 							<label class="radio inline">
 							  <input type="radio" checked="checked"  name="applypermit" value="investor"> 投资人
 							</label>
+						</c:if>
+						<c:if test="${ledinvestor == null }">
 							<label class="radio inline">
 							  <input type="radio"     name="applypermit" value="ledinvestor"> 领投人
 							</label>
-
+						</c:if>
 						</div>
 					</div>
 					<div class="control-group" id="name">
@@ -113,12 +117,16 @@ function checkResources(obj){
 					<form action= '<c:url value="/admin/applyright/company/add"></c:url>'  method="post" enctype="multipart/form-data"  id="valid_form" name="valid_post" onsubmit="return checkResources(this)">
 						<div class="control-group" >
 							<div class="controls">
+							<c:if test="${investcompany == null }">
 								<label class="radio inline">
 								  <input type="radio"  name="comApplypermit" value="investcompany" checked="checked" > 投资机构
 								</label>
+							</c:if>
+							<c:if test="${incubator == null }">
 								<label class="radio inline">
 								  <input type="radio"  name="comApplypermit" value="incubator"> 孵化基地
 								</label>
+							</c:if>
 							</div>
 						</div>
 						<div class="control-group" id="boss">

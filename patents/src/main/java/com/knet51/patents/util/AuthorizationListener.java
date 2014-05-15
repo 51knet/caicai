@@ -1,6 +1,7 @@
 package com.knet51.patents.util;
 
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -70,7 +71,22 @@ public class AuthorizationListener implements Filter {
 			}
 		}
 		
+		if(url.startsWith("/admin/investcompany") && isInvestCompany(req)){
+			resp.sendRedirect(context);
+			return;
+		}
 		
+		if(url.startsWith("/admin/incubator") && isIncubator(req)){
+			resp.sendRedirect(context);
+			return;
+		}
+		
+//		StringTokenizer st = new StringTokenizer(url, "/");
+//		String[] a = new String[2]; 
+//		for (int i = 0; i < st.countTokens(); i++) {
+//			System.out.println(a[i]=(String) st.nextElement());
+//		}
+//		System.out.println(a[0]+"---"+a[1]);
 		
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
@@ -82,6 +98,16 @@ public class AuthorizationListener implements Filter {
 			req.getSession().invalidate();
 		}
 		return req.getSession().getAttribute(GlobalDefs.SESSION_USER_INFO) != null;
+	}
+	
+	private boolean isInvestCompany(HttpServletRequest req){
+		String investCompany = (String) req.getSession().getAttribute("investcompany");
+		return investCompany == null? true : false;
+	}
+	
+	private boolean isIncubator(HttpServletRequest req){
+		String incubator = (String) req.getSession().getAttribute("incubator");
+		return incubator == null? true : false;
 	}
 
 	/**

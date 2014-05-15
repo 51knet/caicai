@@ -51,7 +51,7 @@ public class ProjectsServicesImpl implements ProjectsService {
 	@Override
 	public void dele(Long id) {
 		Projects projects = repository.findOne(id);
-		PlanInfo planInfo = planRepository.findPlanInfoByProjects(projects);
+		PlanInfo planInfo = planRepository.findPlanInfoByProject(projects);
 		BizModul bizModul = bizRepository.findBizModulByProjects(projects);
 		TeamInfo teamInfo = teamRepository.findTeamInfoByProjects(projects);
 		try {

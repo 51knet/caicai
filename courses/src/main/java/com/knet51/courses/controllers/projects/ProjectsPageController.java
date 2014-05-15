@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.UserOrder;
 import com.knet51.ccweb.jpa.entities.UserRight;
 import com.knet51.ccweb.jpa.entities.projects.BizModul;
 import com.knet51.ccweb.jpa.entities.projects.PlanInfo;
@@ -31,6 +33,7 @@ import com.knet51.courses.jpa.services.projects.PlanInfoService;
 import com.knet51.courses.jpa.services.projects.ProjectsService;
 import com.knet51.courses.jpa.services.projects.RzfhService;
 import com.knet51.courses.jpa.services.projects.TeamInfoService;
+import com.knet51.courses.jpa.services.trade.OrderService;
 import com.knet51.courses.util.MyUtil;
 
 
@@ -40,6 +43,8 @@ public class ProjectsPageController {
 	private UserService userService;
 	@Autowired
 	private ProjectsService projectsService;
+	@Autowired
+	private OrderService orderService;
 	@Autowired
 	private RzfhService rzfhService;
 	@Autowired
@@ -87,18 +92,31 @@ public class ProjectsPageController {
 	
 	@RequestMapping(value="/projects/view/{project_id}")
 	public String showprojectsDetail(Model model,@PathVariable Long project_id,HttpSession session){
-//		UserInfo userInfo = (UserInfo) session
-//				.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		UserInfo userInfo = (UserInfo) session
+				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 //		if(userInfo != null){
 //			List<UserRight> userRightList = userRightService.findUserRightListByUser(userInfo.getUser());
 //			model.addAttribute("userRightList", userRightList);
 //		}
+		Projects project = projectsService.findOne(project_id);
 		try {
-			Projects projects = projectsService.findOne(project_id);
+			
+
+			List<UserOrder> order = orderService.findOrderByStatusAndProject("完成",project);
+//			for (UserOrder userOrder : order) {
+//				User user = userOrder.getUser();
+//				List<UserRight> userRights = userRightService.findUserRightListByUser(user);
+//				for (UserRight userRight : userRights) {
+//					if(userRight.getUserRight().equals("ledinvestor")){
+//						model.addAttribute("ledinvestor", user);
+//					}
+//				}
+//			}
+			model.addAttribute("projects", project);
 //			BizModul bizModul = bizModulService.findByProjects(projects);
 //			TeamInfo teamInfo = teamInfoService.findByProjects(projects);
-//			PlanInfo planInfo = planInfoService.findByProjects(projects);
-			model.addAttribute("projects", projects);
+//			PlanInfo planInfo = planInfoService.findByProjects(projectsService.findOne(project_id));
+			
 //			model.addAttribute("bizModul", bizModul);
 //			model.addAttribute("teamInfo", teamInfo);
 //			model.addAttribute("planInfo", planInfo);
@@ -107,22 +125,42 @@ public class ProjectsPageController {
 		}
 		return "projects.view"; 
 	}
-	
+	/**
+	 * check the project has ledinvestor and session user has investor right or ledinvestor right. but if there has been a ledinvestor
+	 * or projects belong to the session user whose right is ledinvestor, warn the ledinvestor false
+	 * @param session
+	 * @param p_id
+	 * @return
+	 */
 	@RequestMapping(value="/checkUserRight", method = RequestMethod.POST)
-	public @ResponseBody boolean checkUserRight(HttpSession session){
-		boolean flag = false;
+	public @ResponseBody int checkUserRight(HttpSession session,@RequestParam("project_id") Long p_id){
+		int flag = 0;
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		if(userInfo != null){
+		boolean hasLed = projectsService.hasLedInvestorInProjects(p_id);
+		Projects projects = projectsService.findOne(p_id);
+
+		// current money or investor number has been max
+		if(investorNumOrMoneyIsFull(projects)){
+			flag = 0;
+		}else{
 			List<UserRight> userRightList = userRightService.findUserRightListByUser(userInfo.getUser());
 			for (UserRight userRight : userRightList) {
-				if(userRight.getUserRight().equals("investor") || userRight.getUserRight().equals("ledinvestor")){
-					flag = true;
+				if(userRight.getUserRight().equals("investor") ){
+					flag = 2;
 				}
+				
+				
 			}
 		}
-		
+	
 		return flag;
+		
+	}
+	
+	private boolean investorNumOrMoneyIsFull(Projects project){
+		return (project.getMaxInvestNum().equals(project.getCurrentInvestNum())
+				|| project.getCurrentMoney().equals(project.getTotalMoney())) ==true?true:false;
 	}
 	
 	@RequestMapping(value="/projects/search", method = RequestMethod.GET)

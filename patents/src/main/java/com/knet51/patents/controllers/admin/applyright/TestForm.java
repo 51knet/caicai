@@ -6,7 +6,6 @@ import java.lang.reflect.Method;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.knet51.ccweb.jpa.dao.BaseDao;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.applyright.ApplyRight;
 

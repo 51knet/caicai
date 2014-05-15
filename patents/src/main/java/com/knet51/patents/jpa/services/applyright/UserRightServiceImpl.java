@@ -39,7 +39,7 @@ public class UserRightServiceImpl implements UserRightService {
 	@Override
 	public List<UserRight> findUserRightListByUser(User user) {
 		
-		return findUserRightListByUser(user);
+		return rightRepository.findUserRightListByUser(user);
 	}
 
 

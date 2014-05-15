@@ -52,8 +52,7 @@ font-weight: bold;
 	border-bottom:  1px dashed #ccc;
 	width: 100%;
 }
-
-.link_{
+.links{
 	color: #7a8d9e;
 	font-weight: bold;
 }
@@ -88,19 +87,18 @@ font-weight: bold;
 </style>
 	
  <div class="container projects_left">
- 	<span class="link_">所在位置：<a  href="<c:url value='/'> </c:url>">首页</a> >><a href="<c:url value='/projects/list'> </c:url>"> 项目列表 </a> >>  <a  href="#">项目详情</a></span>
+ 	<span class="links">所在位置：<a  href="<c:url value='/'> </c:url>"> 首页</a> >> <a href="<c:url value='/projects/list'> </c:url>"> 项目列表 </a> >>  <a  href="#">项目详情</a></span>
  	<div class="bottom_line_dash"></div>
 	<div class="top">
 		<span class="pName margin_right" >${projects.projectName }</span>
 		<span class="myblock"><fmt:formatNumber type="number" value="${projects.currentMoney/projects.totalMoney*100}" maxFractionDigits="0"/>%</span><br>
 		<span class="date">发布时间：<fmt:formatDate value="${projects.date}" pattern="yyyy-MM-dd HH:mm"/></span> 
-		<!-- <a  href="<c:url value='/projects/cart/view/${projects.id }'></c:url>"> 点击参股</a> -->
-		<a href="javascript:void(0)" onclick="checkUserRight(${projects.id })">点击参股</a>
-		<c:forEach items="${userRightList }" var="userRight">
-			<c:if test="${userRight.userRight == 'investor' || userRight.userRight == 'ledinvestor' }">
-				 hehe
-			</c:if>
-		</c:forEach>
+		<c:if test="${sessionUserInfo == null }" >
+			<a href='<c:url value="/jumpToPatents"></c:url>'> 投资请先登录</a>
+		</c:if>
+		<c:if test="${sessionUserInfo != null }" >
+			<br><a href="javascript:void(0)" onclick="checkUserRight(${projects.id })">点击投资（自身已有领投人权限的无法领投自己的项目）</a>
+		</c:if>
 	</div>
 	<div class="bottom_line_dash"></div>
 	<div class="middle">
@@ -241,22 +239,27 @@ function checkEmailAndPwd(){
 }
 
 function checkUserRight(p_id){
+	/*alert(p_id);
 	$.ajax({
 		   url:"<c:url value='/checkUserRight'></c:url>",
 		   type: "POST",
 		   async: false,
+		   data: "project_id="+p_id,
 		   beforeSend:function(){alert("正在验证您是否有投资资格，请稍等。。。")}, //添加loading信息
 		   success:function(flag){
-			   if(flag == true){
-				   alert(flag+"====恭喜，您拥有投资资格");
+			   alert(flag);
+			   if(flag == 4){
+				   alert(flag+"==恭喜，您拥有投资资格==");
 				   window.location.href="<c:url value='/projects/cart/view/${projects.id }'></c:url>";
-			   }else{
-				   alert("对不起，您没有投资认证，请去后台申请。");
+			   }else if(flag == 1){
+				   alert("该项目投资人数或者融资金额已满");
+			   }else if(flag == 0){
+				   alert("暂无领投者，您可申请成为领投者");
 			   }
 	
 		   }   
-		});
-	
+		});*/
+	 window.location.href="<c:url value='/projects/cart/view/${projects.id }'></c:url>";
 	
 }
 

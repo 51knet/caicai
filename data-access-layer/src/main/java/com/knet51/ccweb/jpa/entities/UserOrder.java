@@ -2,6 +2,7 @@ package com.knet51.ccweb.jpa.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
@@ -13,13 +14,6 @@ import com.knet51.ccweb.jpa.entities.projects.Projects;
 @Entity
 @Table(name = "userOrder")
 public class UserOrder extends AbstractEntity{
-
-	@ManyToOne
-//	@JoinColumn(name="user_id")
-	private User user;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Projects projects;
 	
 	private String courseId;
 	private Integer count;
@@ -29,6 +23,12 @@ public class UserOrder extends AbstractEntity{
 	private String status;
 	@Lob
 	private String description;
+	@ManyToOne
+//	@JoinColumn(name="user_id")
+	private User user;
+
+	@ManyToOne
+	private Projects project;
 	
 	public UserOrder(User user, String courseId) {
 		this.user = user;
@@ -82,12 +82,15 @@ public class UserOrder extends AbstractEntity{
 	public UserOrder() {
 		super();
 	}
-	public Projects getProjects() {
-		return projects;
+	public Projects getProject() {
+		return project;
 	}
-	public void setProjects(Projects projects) {
-		this.projects = projects;
+	public void setProject(Projects project) {
+		this.project = project;
 	}
+	
+	
+
 	
 	
 }

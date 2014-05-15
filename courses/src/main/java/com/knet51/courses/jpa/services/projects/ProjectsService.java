@@ -16,4 +16,6 @@ public interface ProjectsService {
 	Projects findOne(Long id);
 	Projects create(Projects projects);
 	Page<Projects> findProjectsByStatusAndProjectNameLike(Integer status, String projectName,int pageNumber, int pageSize);
+	
+	boolean hasLedInvestorInProjects(Long project_id);
 }

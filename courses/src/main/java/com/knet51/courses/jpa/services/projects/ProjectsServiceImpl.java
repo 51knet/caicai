@@ -8,14 +8,25 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.UserOrder;
+import com.knet51.ccweb.jpa.entities.UserRight;
 import com.knet51.ccweb.jpa.entities.projects.Projects;
+import com.knet51.ccweb.jpa.repository.OrderRepository;
 import com.knet51.ccweb.jpa.repository.projects.ProjectsRepository;
+import com.knet51.ccweb.jpa.repository.user.UserRightRepository;
+import com.knet51.courses.controllers.defs.GlobalDefs;
 
 @Service("projectsService")
 public class ProjectsServiceImpl implements ProjectsService {
 	@Autowired
 	private ProjectsRepository repository;
+	@Autowired
+	private OrderRepository orderRepository;
+	@Autowired
+	private UserRightRepository rightRepository;
 
 	@Override
 	public Page<Projects> findProjectsByStatus(int pageNumber, int pageSize,
@@ -58,6 +69,23 @@ public class ProjectsServiceImpl implements ProjectsService {
 	@Override
 	public Projects create(Projects projects) {
 		return repository.save(projects);
+	}
+	
+	@Override
+	public boolean hasLedInvestorInProjects(Long project_id) {
+		boolean flag = false;
+//		Projects projects = repository.findOne(project_id);
+//		List<UserOrder> order = orderRepository.findOrderByStatusAndProjectid("完成",project_id);
+//		for (UserOrder userOrder : order) {
+//			User user = userOrder.getUser();
+//			List<UserRight> userRights = rightRepository.findUserRightListByUser(user);
+//			for (UserRight userRight : userRights) {
+//				if(userRight.getUserRight().equals("ledinvestor") && !user.getId().equals(projects.getUser().getId())){
+//					flag = true;
+//				}
+//			}
+//		}
+		return flag;
 	}
 
 }

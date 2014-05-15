@@ -1,5 +1,7 @@
 package com.knet51.courses.jpa.services.trade;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.knet51.ccweb.jpa.entities.UserOrder;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.ccweb.jpa.repository.OrderRepository;
 
 @Transactional
@@ -26,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public UserOrder createOrder(UserOrder order) {
 		// TODO Auto-generated method stub
-		return orderRepository.save(order);
+		return orderRepository.saveAndFlush(order);
 	}
 
 	@Override
@@ -47,6 +50,12 @@ public class OrderServiceImpl implements OrderService {
 		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id"); 
 		Page<UserOrder> onePage = orderRepository.findOrderByUser(user, pageable);
 		return onePage;
+	}
+
+	@Override
+	public List<UserOrder> findOrderByStatusAndProject(String status,Projects project) {
+		
+		return orderRepository.findOrderByStatusAndProject(status, project);
 	}
 	
 }
