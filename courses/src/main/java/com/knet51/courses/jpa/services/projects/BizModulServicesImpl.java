@@ -30,7 +30,7 @@ public class BizModulServicesImpl implements BizModulService {
 
 	@Override
 	public BizModul findByProjects(Projects projects) {
-		BizModul bizModul = repository.findBizModulByProjects(projects);
+		BizModul bizModul = repository.findBizModulByProjectsId(projects.getId());
 		return bizModul;
 	}
 

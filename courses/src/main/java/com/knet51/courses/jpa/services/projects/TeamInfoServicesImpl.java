@@ -30,7 +30,7 @@ public class TeamInfoServicesImpl implements TeamInfoService {
 
 	@Override
 	public TeamInfo findByProjects(Projects projects) {
-		TeamInfo teamInfo = repository.findTeamInfoByProjects(projects);
+		TeamInfo teamInfo = repository.findTeamInfoByProjectsId(projects.getId());
 
 		return teamInfo;
 	}

@@ -29,8 +29,8 @@ public class PlanInfoServicesImpl implements PlanInfoService {
 	}
 
 	@Override
-	public PlanInfo findByProjects(Projects project) {
-		PlanInfo planInfo = repository.findPlanInfoByProject(project);
+	public PlanInfo findByProjects(Projects projects) {
+		PlanInfo planInfo = repository.findPlanInfoByProjectsId(projects.getId());
 
 		return planInfo;
 	}

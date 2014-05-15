@@ -7,5 +7,5 @@ import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.ccweb.jpa.entities.projects.PlanInfo;
 
 public interface PlanInfoRepository extends JpaRepository<PlanInfo, Long>, JpaSpecificationExecutor<PlanInfo> {
-	PlanInfo findPlanInfoByProject(Projects project);
+	PlanInfo findPlanInfoByProjectsId(Long id);
 }

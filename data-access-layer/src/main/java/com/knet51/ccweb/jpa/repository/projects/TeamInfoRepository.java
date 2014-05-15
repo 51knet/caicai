@@ -7,5 +7,5 @@ import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.ccweb.jpa.entities.projects.TeamInfo;
 
 public interface TeamInfoRepository extends JpaRepository<TeamInfo, Long>, JpaSpecificationExecutor<TeamInfo> {
-	TeamInfo findTeamInfoByProjects(Projects project);
+	TeamInfo findTeamInfoByProjectsId(Long id);
 }

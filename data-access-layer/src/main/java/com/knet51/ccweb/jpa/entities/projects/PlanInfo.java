@@ -13,14 +13,14 @@ public class PlanInfo extends AbstractEntity {
 	private String context;
 	
 	@OneToOne
-	private Projects project;
+	private Projects projects;
 
 	public PlanInfo(){
 		
 	}
 	
-	public PlanInfo(Projects project){
-		this.project = project;
+	public PlanInfo(Projects projects){
+		this.projects = projects;
 	}
 	
 	public String getContext() {
@@ -31,12 +31,12 @@ public class PlanInfo extends AbstractEntity {
 		this.context = context;
 	}
 
-	public Projects getProject() {
-		return project;
+	public Projects getProjects() {
+		return projects;
 	}
 
-	public void setProject(Projects project) {
-		this.project = project;
+	public void setProjects(Projects projects) {
+		this.projects = projects;
 	}
 
 }
