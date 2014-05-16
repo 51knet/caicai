@@ -33,11 +33,7 @@ public class Projects extends AbstractEntity {
 	private Integer maxInvestNum;
 	private Integer currentInvestNum;
 	private Integer minMoney;
-	
-	@Version
-	private Integer version; 
-	
-	
+		
 	@ManyToOne
 	private User user;
 	

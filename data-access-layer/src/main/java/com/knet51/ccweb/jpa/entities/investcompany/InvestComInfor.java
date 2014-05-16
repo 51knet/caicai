@@ -15,7 +15,7 @@ public class InvestComInfor extends AbstractEntity {
 	@Lob
 	private String companyinfo;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	private User user;
 
 	public String getInvestRange() {

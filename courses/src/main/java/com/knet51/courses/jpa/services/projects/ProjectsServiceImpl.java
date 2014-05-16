@@ -2,6 +2,8 @@ package com.knet51.courses.jpa.services.projects;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +19,7 @@ import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.ccweb.jpa.repository.OrderRepository;
 import com.knet51.ccweb.jpa.repository.projects.ProjectsRepository;
 import com.knet51.ccweb.jpa.repository.user.UserRightRepository;
+import com.knet51.courses.beans.UserInfo;
 import com.knet51.courses.controllers.defs.GlobalDefs;
 
 @Service("projectsService")
@@ -72,19 +75,18 @@ public class ProjectsServiceImpl implements ProjectsService {
 	}
 	
 	@Override
-	public boolean hasLedInvestorInProjects(Long project_id) {
+	public boolean hasLedInvestorInProjects(Long project_id, HttpSession session) {
 		boolean flag = false;
-//		Projects projects = repository.findOne(project_id);
-//		List<UserOrder> order = orderRepository.findOrderByStatusAndProjectid("完成",project_id);
-//		for (UserOrder userOrder : order) {
-//			User user = userOrder.getUser();
-//			List<UserRight> userRights = rightRepository.findUserRightListByUser(user);
-//			for (UserRight userRight : userRights) {
-//				if(userRight.getUserRight().equals("ledinvestor") && !user.getId().equals(projects.getUser().getId())){
-//					flag = true;
-//				}
-//			}
-//		}
+		List<UserOrder> order = orderRepository.findOrderByStatusAndProjectsId("完成",project_id);
+		for (UserOrder userOrder : order) {
+			User user = userOrder.getUser();
+			List<UserRight> userRights = rightRepository.findUserRightListByUser(user);
+			for (UserRight userRight : userRights) {
+				if(userRight.getUserRight().equals("ledinvestor")){
+					flag = true;
+				}
+			}
+		}
 		return flag;
 	}
 

@@ -26,10 +26,12 @@ import com.knet51.patents.beans.UserInfo;
 import com.knet51.ccweb.jpa.entities.Student;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.UserRight;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.StudentService;
 import com.knet51.patents.jpa.services.TeacherService;
 import com.knet51.patents.jpa.services.UserService;
+import com.knet51.patents.jpa.services.applyright.UserRightService;
 import com.knet51.patents.util.ajax.AjaxValidationEngine;
 import com.knet51.patents.util.ajax.ValidationResponse;
 
@@ -45,6 +47,8 @@ public class AdminController {
 	private TeacherService teacherService;
 	@Autowired
 	private StudentService studentService;
+	@Autowired
+	private UserRightService userRightService;
 
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -53,6 +57,10 @@ public class AdminController {
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		
 		if(userInfo != null){
+			List<UserRight> rights = userRightService.findUserRightListByUser(userInfo.getUser());
+			for (UserRight userRight : rights) {
+				session.setAttribute(userRight.getUserRight(), userRight.getUserRight());
+			}
 			if (userInfo.getRole().equals("user")) {
 				return "redirect:/admin/user";
 			} else if (userInfo.getRole().equals("teacher")) {

@@ -10,6 +10,7 @@
 	margin-left: 15px;
 }
 </style>
+<!-- 
 <div class="navbar">
 	<div class="navbar-inner">
 		<ul class="nav">
@@ -19,4 +20,5 @@
 			<li><a href='<c:url value='/investcompany/${investComUserInfo.id}/successcase/list'></c:url>'>成功案例</a></li>
 		</ul>
 	</div>
-</div>
+</div> -->
+<div style="margin-top: 20px;"></div>

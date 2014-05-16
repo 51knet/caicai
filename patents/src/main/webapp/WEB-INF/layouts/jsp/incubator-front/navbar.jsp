@@ -9,7 +9,7 @@
 .navbar .navbar-inner .nav >li{
 	margin-left: 15px;
 }
-</style>
+</style><!-- 
 <div class="navbar">
 	<div class="navbar-inner">
 		<ul class="nav">
@@ -19,3 +19,5 @@
 		</ul>
 	</div>
 </div>
+ -->
+<div style="margin-top: 20px;"></div>

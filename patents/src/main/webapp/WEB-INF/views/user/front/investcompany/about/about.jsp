@@ -44,6 +44,7 @@
 </style>
 <div class="row-fluid custom round">
 	<div class="content ">
+	<a href='<c:url value='/investcompany/${investComUserInfo.id}'></c:url>'>首页</a>>> 关于我们<hr>
 		<table width="100%">
 			<tr>
 				<td align="left" width="25%">

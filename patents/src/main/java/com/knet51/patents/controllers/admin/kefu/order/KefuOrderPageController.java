@@ -45,7 +45,7 @@ public class KefuOrderPageController {
 	@RequestMapping(value="/admin/kefu/order/view/{id}")
 	public String showOrderDetail(Model model,@PathVariable Long id){
 		UserOrder order = orderService.findOne(id);
-		Projects project = projectsService.findOne(order.getProject().getId());
+		Projects project = projectsService.findOne(order.getProjects().getId());
 		model.addAttribute("order", order);
 		model.addAttribute("projects", project);
 		return "admin.kefu.order.view";

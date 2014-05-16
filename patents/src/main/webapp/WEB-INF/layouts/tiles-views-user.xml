@@ -284,25 +284,34 @@
 		<!-- front -->
 		
 	<definition name="incubator.basic" extends="frontPage-layout">
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/incubator-front/banner.jsp" />
 		<put-attribute name="title" value="孵化园主页" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/incubator-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/incubator-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/incubator-front/right.jsp" />
 	</definition>
 	
 	<definition name="incubator.about" extends="frontPage-layout">
 		<put-attribute name="title" value="孵化园介绍" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/incubator-front/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/incubator-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/incubator-front/left.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/user/front/incubator/about/about.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="incubator.announcement.list" extends="frontPage-layout">
 		<put-attribute name="title" value="新闻动态" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/incubator-front/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/incubator-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/incubator-front/left.jsp" />
 			<put-attribute name="right" value="/WEB-INF/views/user/front/incubator/announcement/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="incubator.announcement.view" extends="frontPage-layout">
 		<put-attribute name="title" value="新闻动态" />
-		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/teacher-front/banner.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/incubator-front/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/incubator-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/incubator-front/left.jsp" />
 		<put-attribute name="right" value="/WEB-INF/views/user/front/incubator/announcement/view/view.jsp"></put-attribute>
 	</definition>
 	

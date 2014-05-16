@@ -34,6 +34,7 @@
 
 <div class="row-fluid custom round">
 	<div class="row">
+	<a href='<c:url value='/investcompany/${investComUserInfo.id}'></c:url>'>首页</a>>> 成功案例
 		<h4>成功案例</h4>
 	</div>
 	<div class="row">

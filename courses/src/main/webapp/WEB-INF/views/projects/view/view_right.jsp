@@ -89,8 +89,15 @@ width: 80px; float: left; margin: 10px 10px;
  		</div>
  		<div class="bottom_line_solid"></div>
  	 	<div>
- 	 		<div class="user_img"><img src='<c:url value="${url}${ledinvestor.photo_url }"></c:url>' /></div>
- 	 		<div class="points user_info"> <h4>${ledinvestor.name}</h4></div>
+ 	 		<c:choose>
+ 	 			<c:when test="${ledinvestor != null}">
+ 	 				<div class="user_img"><img src='<c:url value="${url}${ledinvestor.photo_url }"></c:url>' /></div>
+ 	 				<div class="points user_info"> <h4>${ledinvestor.name}</h4></div>
+ 	 			</c:when>
+ 	 			<c:otherwise>
+ 	 				<div class="points user_info"> 暂无领投人</div>
+ 	 			</c:otherwise>
+ 	 		</c:choose>
  	 	</div>
  	</div>
  </div>

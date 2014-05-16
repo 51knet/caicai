@@ -55,7 +55,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<UserOrder> findOrderByStatusAndProject(String status,Projects project) {
 		
-		return orderRepository.findOrderByStatusAndProject(status, project);
+		return orderRepository.findOrderByStatusAndProjectsId(status, project.getId());
 	}
 	
 }

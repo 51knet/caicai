@@ -51,7 +51,8 @@ public class PayInfoController {
 				List<UserRight> rightList = userRightService.findUserRightListByUser(userInfo.getUser());
 				for (UserRight userRight : rightList) {
 					if((userRight.getUserRight().equals("investor") || userRight.getUserRight().equals("ledinvestor"))
-							&& (!projects.getMaxInvestNum().equals(projects.getCurrentInvestNum()) || !projects.getCurrentMoney().equals(projects.getTotalMoney()))){
+							&& (!projects.getMaxInvestNum().equals(projects.getCurrentInvestNum()) || !projects.getCurrentMoney().equals(projects.getTotalMoney())) 
+							&& !userInfo.getId().equals(seller.getId())){
 						pass = true;
 					}
 				}
@@ -89,7 +90,7 @@ public class PayInfoController {
 			userOrder.setUser(userInfo.getUser());
 			userOrder.setStatus("未支付");
 			userOrder.setStartTime(new Date());
-			userOrder.setProject(projects);
+			userOrder.setProjects(projects);
 			userOrder = orderService.createOrder(userOrder);
 			String password = "";
 			String enterPassword = request.getParameter("password");

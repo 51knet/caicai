@@ -103,23 +103,23 @@ public class ProjectsPageController {
 			
 
 			List<UserOrder> order = orderService.findOrderByStatusAndProject("完成",project);
-//			for (UserOrder userOrder : order) {
-//				User user = userOrder.getUser();
-//				List<UserRight> userRights = userRightService.findUserRightListByUser(user);
-//				for (UserRight userRight : userRights) {
-//					if(userRight.getUserRight().equals("ledinvestor")){
-//						model.addAttribute("ledinvestor", user);
-//					}
-//				}
-//			}
+			for (UserOrder userOrder : order) {
+				User user = userOrder.getUser();
+				List<UserRight> userRights = userRightService.findUserRightListByUser(user);
+				for (UserRight userRight : userRights) {
+					if(userRight.getUserRight().equals("ledinvestor")){
+						model.addAttribute("ledinvestor", user);
+					}
+				}
+			}
 			model.addAttribute("projects", project);
-//			BizModul bizModul = bizModulService.findByProjects(projects);
-//			TeamInfo teamInfo = teamInfoService.findByProjects(projects);
-//			PlanInfo planInfo = planInfoService.findByProjects(projectsService.findOne(project_id));
+			BizModul bizModul = bizModulService.findByProjects(project);
+			TeamInfo teamInfo = teamInfoService.findByProjects(project);
+			PlanInfo planInfo = planInfoService.findByProjects(project);
 			
-//			model.addAttribute("bizModul", bizModul);
-//			model.addAttribute("teamInfo", teamInfo);
-//			model.addAttribute("planInfo", planInfo);
+			model.addAttribute("bizModul", bizModul);
+			model.addAttribute("teamInfo", teamInfo);
+			model.addAttribute("planInfo", planInfo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -134,33 +134,40 @@ public class ProjectsPageController {
 	 */
 	@RequestMapping(value="/checkUserRight", method = RequestMethod.POST)
 	public @ResponseBody int checkUserRight(HttpSession session,@RequestParam("project_id") Long p_id){
-		int flag = 0;
 		UserInfo userInfo = (UserInfo) session
 				.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		boolean hasLed = projectsService.hasLedInvestorInProjects(p_id);
+		boolean hasLed = projectsService.hasLedInvestorInProjects(p_id,session);
 		Projects projects = projectsService.findOne(p_id);
 
 		// current money or investor number has been max
 		if(investorNumOrMoneyIsFull(projects)){
-			flag = 0;
+			return 0;
 		}else{
+			int flag = 4;
 			List<UserRight> userRightList = userRightService.findUserRightListByUser(userInfo.getUser());
 			for (UserRight userRight : userRightList) {
-				if(userRight.getUserRight().equals("investor") ){
-					flag = 2;
+				//当前有领投者,有投资权限的人都可以进入
+				if((userRight.getUserRight().equals("investor")||userRight.getUserRight().equals("ledinvestor")) && hasLed){
+					flag =  2;
+				}else 
+				//当前无领投者，只有有领投权限的可以进入
+				if((userRight.getUserRight().equals("ledinvestor")) && !hasLed && !userInfo.getId().equals(projects.getUser().getId())){
+					flag =  1;
 				}
-				
-				
 			}
+			return flag;
 		}
 	
-		return flag;
+		
+		
 		
 	}
 	
 	private boolean investorNumOrMoneyIsFull(Projects project){
-		return (project.getMaxInvestNum().equals(project.getCurrentInvestNum())
-				|| project.getCurrentMoney().equals(project.getTotalMoney())) ==true?true:false;
+		boolean investNumFlag = project.getMaxInvestNum().equals(project.getCurrentInvestNum());
+		boolean moneyFlag = project.getCurrentMoney().equals(project.getTotalMoney());
+		boolean flag = investNumFlag || moneyFlag;
+		return flag;
 	}
 	
 	@RequestMapping(value="/projects/search", method = RequestMethod.GET)

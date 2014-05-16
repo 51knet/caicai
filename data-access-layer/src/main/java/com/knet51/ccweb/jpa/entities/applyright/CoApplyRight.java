@@ -25,7 +25,7 @@ public class CoApplyRight extends AbstractEntity {
 	@Column(name="Boss_ID")
 	private String bossId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private User user;
 
 	public String getBoss() {

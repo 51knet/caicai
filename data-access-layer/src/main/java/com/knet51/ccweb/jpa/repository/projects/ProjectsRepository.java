@@ -24,6 +24,6 @@ public interface ProjectsRepository extends JpaRepository<Projects, Long>, JpaSp
 	
 	Page<Projects> findProjectsByStatusAndProjectNameLike(Integer status,String projectName, Pageable pageable);
 	List<Projects> findProjectsListByProjectNameLike(String projectName);
-	@Query("select p from Projects p where exists (select o.project.id from UserOrder o where o.user.id = :userid and o.project.id =p.id)")
+	@Query("select p from Projects p where exists (select o.projects.id from UserOrder o where o.user.id = :userid and o.projects.id =p.id)")
 	Page<Projects> findOrderProjectsByUser(@Param("userid") Long userid, Pageable pageable);
 }

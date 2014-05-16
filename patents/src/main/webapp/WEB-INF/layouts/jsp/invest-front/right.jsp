@@ -30,8 +30,20 @@
 	margin-top: 10px;
 }
 </style>
-<!-- ${investComUserInfo.id} -->
+
+<!-- investcompany resource -->
 <div class="row-fluid custom round">
+		<div class="row">
+			<h4>投资机构介绍</h4>
+		</div>
+		<div class="row">
+			<div class="infor-block">
+				${investComInfo.companyinfo}
+			</div>
+			<div style="text-align: right;"><br><a href="<c:url value="/investcompany/${investComUserInfo.id}/about"></c:url>"> 查看全部>></a></div>
+		</div>
+
+
 	<div class="row"><h4>新闻动态 </h4></div>
 	
 	<div class="row">
@@ -52,9 +64,9 @@
 			<br><a href="<c:url value="/investcompany/${investComUserInfo.id}/announcement/list"></c:url>"> 查看全部>></a>
 		</div>
 	</div>
-</div>
 
-<div class="row-fluid custom round">
+
+
 	<div class="row"><h4>成功案例 </h4></div>
 	
 	<div class="row">
@@ -75,17 +87,4 @@
 			<br><a href="<c:url value="/investcompany/${investComUserInfo.id}/successcase/list"></c:url>"> 查看全部>></a>
 		</div>
 	</div>
-</div>
-
-<!-- investcompany resource -->
-<div class="row-fluid custom round">
-		<div class="row">
-			<h4>投资机构介绍</h4>
-		</div>
-		<div class="row">
-			<div class="infor-block">
-				${investComInfo.companyinfo}
-			</div>
-			<div style="text-align: right;"><br><a href="<c:url value="/investcompany/${investComUserInfo.id}/about"></c:url>"> 查看全部>></a></div>
-		</div>
 </div>

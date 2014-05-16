@@ -30,14 +30,17 @@
 
 <div class="row-fluid custom round">
 	<div class="row">
-		<h4>新闻详细</h4>
+	<a href='<c:url value='/investcompany/${investComUserInfo.id}'></c:url>'>首页</a>>> <a href='<c:url value='/investcompany/${investComUserInfo.id}/successcase/list'></c:url>'>成功案例</a> >> 案例详情
+		<h4>案例详细</h4>
 	</div>
 	<div class="row">
 		<div >
-			<label><h4>${announcement.title}</h4></label>
-			<label>发表于：${announcement.date}</label> 
+			<label><h4>${successCase.name}</h4></label>
+			<label>投资时间：${successCase.date}</label> 
+			<label>投资额度：${successCase.money}</label> 
+			<label>投资领域：${successCase.field}</label> 
 		</div>
-		<div  class="content">${announcement.content}</div>
+		<div  class="content">${successCase.content}</div>
 		<hr>
 	</div>
 

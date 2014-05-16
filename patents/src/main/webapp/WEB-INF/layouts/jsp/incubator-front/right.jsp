@@ -32,6 +32,15 @@
 </style>
 <!-- ${incubatUserInfo.id} -->
 <div class="row-fluid custom round">
+	<div class="row">
+			<h4>孵化园介绍</h4>
+		</div>
+		<div class="row">
+			<div class="infor-block">
+				${incubator.incubatInfor}
+			</div>
+			<div style="text-align: right;"><br><a href="<c:url value="/incubator/${incubatUserInfo.id}/about"></c:url>"> 查看全部>></a></div>
+		</div>
 	<div class="row"><h4>新闻动态 </h4></div>
 	
 	<div class="row">
@@ -52,17 +61,4 @@
 			<br><a href="<c:url value="/incubator/${incubatUserInfo.id}/announcement/list"></c:url>"> 查看全部>></a>
 		</div>
 	</div>
-</div>
-
-<!-- incubator resource -->
-<div class="row-fluid custom round">
-		<div class="row">
-			<h4>孵化园介绍</h4>
-		</div>
-		<div class="row">
-			<div class="infor-block">
-				${incubator.incubatInfor}
-			</div>
-			<div style="text-align: right;"><br><a href="<c:url value="/incubator/${incubatUserInfo.id}/about"></c:url>"> 查看全部>></a></div>
-		</div>
 </div>

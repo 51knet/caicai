@@ -24,7 +24,7 @@ public class ApplyRight extends AbstractEntity {
 	@Column(name="ID_NUM")
 	private String idNum;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private User user;
 	
 

@@ -23,12 +23,12 @@ public class UserOrder extends AbstractEntity{
 	private String status;
 	@Lob
 	private String description;
+	
 	@ManyToOne
-//	@JoinColumn(name="user_id")
 	private User user;
 
 	@ManyToOne
-	private Projects project;
+	private Projects projects;
 	
 	public UserOrder(User user, String courseId) {
 		this.user = user;
@@ -82,12 +82,13 @@ public class UserOrder extends AbstractEntity{
 	public UserOrder() {
 		super();
 	}
-	public Projects getProject() {
-		return project;
+	public Projects getProjects() {
+		return projects;
 	}
-	public void setProject(Projects project) {
-		this.project = project;
+	public void setProjects(Projects projects) {
+		this.projects = projects;
 	}
+
 	
 	
 

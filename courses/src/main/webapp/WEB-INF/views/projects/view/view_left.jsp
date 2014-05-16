@@ -239,7 +239,6 @@ function checkEmailAndPwd(){
 }
 
 function checkUserRight(p_id){
-	/*alert(p_id);
 	$.ajax({
 		   url:"<c:url value='/checkUserRight'></c:url>",
 		   type: "POST",
@@ -247,19 +246,19 @@ function checkUserRight(p_id){
 		   data: "project_id="+p_id,
 		   beforeSend:function(){alert("正在验证您是否有投资资格，请稍等。。。")}, //添加loading信息
 		   success:function(flag){
-			   alert(flag);
-			   if(flag == 4){
-				   alert(flag+"==恭喜，您拥有投资资格==");
+			   if(flag == 2){
+				   alert("==恭喜，您拥有投资资格==");
 				   window.location.href="<c:url value='/projects/cart/view/${projects.id }'></c:url>";
-			   }else if(flag == 1){
-				   alert("该项目投资人数或者融资金额已满");
 			   }else if(flag == 0){
-				   alert("暂无领投者，您可申请成为领投者");
+				   alert("该项目投资人数或者融资金额已满");
+			   }else if(flag == 1){
+				   alert("==恭喜，您是首投人==");
+				   window.location.href="<c:url value='/projects/cart/view/${projects.id }'></c:url>";
+			   }else{
+				   alert("您没有投资资格");
 			   }
-	
-		   }   
-		});*/
-	 window.location.href="<c:url value='/projects/cart/view/${projects.id }'></c:url>";
+		   }
+		});
 	
 }
 

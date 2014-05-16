@@ -30,6 +30,7 @@
 
 <div class="row-fluid custom round">
 	<div class="row">
+	<a href='<c:url value='/investcompany/${investComUserInfo.id}'></c:url>'>首页</a>>> <a href='<c:url value='/investcompany/${investComUserInfo.id}/announcement/list'></c:url>'>新闻动态</a>>> 新闻详细
 		<h4>新闻详细</h4>
 	</div>
 	<div class="row">

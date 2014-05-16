@@ -40,8 +40,7 @@ public class LoginController {
 			.getLogger(LoginController.class);
 	@Autowired
 	private UserService service;
-	@Autowired
-	private UserRightService userRightService;
+	
 
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public String signin(@Valid LoginForm loginForm, BindingResult result,
@@ -92,12 +91,7 @@ public class LoginController {
 				// }
 				UserInfo userInfo = new UserInfo(user);
 				session.setAttribute(GlobalDefs.SESSION_USER_INFO, userInfo);
-				List<UserRight> rights = userRightService.findUserRightListByUser(user);
-				for (UserRight userRight : rights) {
-					System.out.println("------- user_right="+userRight.getUserRight());
-					session.setAttribute(userRight.getUserRight(), userRight.getUserRight());
-					System.out.println("-------- session right="+session.getAttribute(userRight.getUserRight()));
-				}
+				
 				return "redirect:/admin";
 			} else {
 				return "redirect:/";
