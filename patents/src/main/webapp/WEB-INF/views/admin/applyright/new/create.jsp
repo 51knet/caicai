@@ -5,9 +5,9 @@
 <script type="text/javascript" src="<c:url value="/resources/jquery/emptyCheck-ajax.js" />"></script>
 <script type="text/javascript">
 
-function checkResources(obj){
+function checkPersonResources(obj){
 	var tempFlag = false;
-	var fileValue = obj.myfiles.value;		
+	var fileValue = obj.myfiles.value;
 	if(fileValue=="" || fileValue == null){
 		$("#myFilesError").html("上传文件不能为空");
 		tempFlag =  false;
@@ -15,6 +15,21 @@ function checkResources(obj){
 		tempFlag =  true;
 	}
 	return  tempFlag;
+}
+
+function checkComResources(obj){
+	var tempFlag = false;
+	var bizLic = obj.bizLic.value;
+	var orgCode = obj.orgCode.value;
+	if((bizLic ==""||bizLic == null) && (orgCode=="" || orgCode==null)){
+		$("#bizLicError").html("营业执照复印件不能为空");
+		$("#orgCodeError").html("组织机构代码不能为空");
+		tempFlag = false;
+	}else{
+		tempFlag = true;
+	}
+	return tempFlag;
+
 }
 	
 </script>
@@ -61,19 +76,15 @@ function checkResources(obj){
 			<div class="tab-content">
 						
 				<div class="tab-pane <c:if test='${active == "invest"}'>active</c:if>" id="invest_tab">
-					<form action= '<c:url value="/admin/applyright/person/add"></c:url>'  method="post" enctype="multipart/form-data"  id="valid_form" name="valid_post" onsubmit="return checkResources(this)">
+					<form action= '<c:url value="/admin/applyright/person/add"></c:url>'  method="post" enctype="multipart/form-data"  id="valid_form" name="valid_post" onsubmit="return checkPersonResources(this)">
 					<div class="control-group" >
 						<div class="controls">
-						<c:if test="${investor == null }">
 							<label class="radio inline">
 							  <input type="radio" checked="checked"  name="applypermit" value="investor"> 投资人
 							</label>
-						</c:if>
-						<c:if test="${ledinvestor == null }">
 							<label class="radio inline">
 							  <input type="radio"     name="applypermit" value="ledinvestor"> 领投人
 							</label>
-						</c:if>
 						</div>
 					</div>
 					<div class="control-group" id="name">
@@ -114,19 +125,18 @@ function checkResources(obj){
 				</div>
 				
 				<div class="tab-pane <c:if test='${active == "company"}'>active</c:if>" id="company_tab">
-					<form action= '<c:url value="/admin/applyright/company/add"></c:url>'  method="post" enctype="multipart/form-data"  id="valid_form" name="valid_post" onsubmit="return checkResources(this)">
+					<form action= '<c:url value="/admin/applyright/company/add"></c:url>'  method="post" enctype="multipart/form-data"  id="co_valid_form" name="co_valid_post" onsubmit="return checkComResources(this)">
 						<div class="control-group" >
 							<div class="controls">
-							<c:if test="${investcompany == null }">
+
 								<label class="radio inline">
 								  <input type="radio"  name="comApplypermit" value="investcompany" checked="checked" > 投资机构
 								</label>
-							</c:if>
-							<c:if test="${incubator == null }">
+	
 								<label class="radio inline">
 								  <input type="radio"  name="comApplypermit" value="incubator"> 孵化基地
 								</label>
-							</c:if>
+				
 							</div>
 						</div>
 						<div class="control-group" id="boss">
@@ -137,6 +147,11 @@ function checkResources(obj){
 						<div class="control-group" id="bossId">
 							<div class="controls">
 								<i class="icon-star"></i> 身份证号：<input  type="text" name="bossId"   placeholder="身份证号"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> <span class="help-inline"><form:errors path="bossId" /></span>
+							</div>
+						</div>
+						<div class="control-group" id="comName">
+							<div class="controls">
+								<i class="icon-star"></i> 公司名称：<input  type="text" name="comName"   placeholder="公司名称" > <span class="help-inline"><form:errors path="comName" /></span>
 							</div>
 						</div>
 						<div class="control-group" id="bossPhone">
@@ -181,6 +196,10 @@ function checkResources(obj){
     $(document).ready(function() {
     	$("#valid_form").submit(function(){
 			return checkEmptyAjax("valid_form","<c:url value='/admin/applyright/validInfoAJAX'></c:url>");
+		});	
+    	
+    	$("#co_valid_form").submit(function(){
+			return checkEmptyAjax("co_valid_form","<c:url value='/admin/applyright/coValidInfoAJAX'></c:url>");
 		});	
     });
 </script>

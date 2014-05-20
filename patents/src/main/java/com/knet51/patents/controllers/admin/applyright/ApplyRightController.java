@@ -21,10 +21,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.knet51.ccweb.jpa.entities.applyright.ApplyRight;
+import com.knet51.ccweb.jpa.entities.applyright.CoApplyRight;
 import com.knet51.patents.beans.UserInfo;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.UserService;
 import com.knet51.patents.jpa.services.applyright.ApplyRightService;
+import com.knet51.patents.jpa.services.applyright.CoApplyRightService;
 import com.knet51.patents.util.MyUtil;
 import com.knet51.patents.util.ajax.AjaxValidationEngine;
 import com.knet51.patents.util.ajax.ValidationResponse;
@@ -38,6 +40,8 @@ public class ApplyRightController {
 	private ApplyRightService validService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private CoApplyRightService coApplyRightService;
 	
 	@RequestMapping(value="/admin/applyright/new")
 	public String showAddapplyrightPage(HttpSession session, Model model){
@@ -66,7 +70,7 @@ public class ApplyRightController {
 			MultipartFile multipartFile = request.getFile("myfiles");
 			if(!multipartFile.isEmpty()){
 				String fileName = multipartFile.getOriginalFilename();
-				String path ="/resources/attached/"+userInfo.getId()+"/applyright";
+				String path ="/resources/attached/"+userInfo.getId()+"/applyright/person";
 				InputStream fileInput = multipartFile.getInputStream();
 				flag =  FTPUtil.getInstance().uploadFile(path, fileName, fileInput);			
 				logger.debug("Upload Path:"+path); 
@@ -85,32 +89,41 @@ public class ApplyRightController {
 	}
 	
 	@RequestMapping(value="/admin/applyright/company/add", method = RequestMethod.POST)
-	public String addCompanyApplyRight(@Valid PersonApplyRightForm applyrightForm, BindingResult validResult,HttpSession session
+	public String addCompanyApplyRight(@Valid CompanyApplyRightForm applyrightForm, BindingResult validResult,HttpSession session
 			,MultipartHttpServletRequest request) throws Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
-		boolean flag = false;
+		boolean bizLicFlag = false;
+		boolean orgCodeFlag = false;
 		logger.info("===== into invest valid controller=====");
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/admin/applyright/new";
 		}else{
-			ApplyRight applyright = new ApplyRight();
-			MyUtil.copyValidBeanToDestBean(applyrightForm, applyright);
-			applyright.setDate(new Date());
-			applyright.setUser(userInfo.getUser());
-			applyright = validService.create(applyright);		
-			MultipartFile multipartFile = request.getFile("myfiles");
-			if(!multipartFile.isEmpty()){
-				String fileName = multipartFile.getOriginalFilename();
-				String path ="/resources/attached/"+userInfo.getId()+"/applyright";
-				InputStream fileInput = multipartFile.getInputStream();
-				flag =  FTPUtil.getInstance().uploadFile(path, fileName, fileInput);			
-				logger.debug("Upload Path:"+path); 
-				if(flag){
-					String savePath = path+"/"+fileName;
-					applyright.setSavePath(savePath);
-					applyright.setStatus(GlobalDefs.WAITE);
-					validService.update(applyright);
+			CoApplyRight coApplyRight = new CoApplyRight();
+			MyUtil.copyValidBeanToDestBean(applyrightForm, coApplyRight);
+			coApplyRight.setDate(new Date());
+			coApplyRight.setUser(userInfo.getUser());
+			coApplyRight.setStatus(GlobalDefs.WAITE);
+			coApplyRight.setContent(applyrightForm.getComContent());
+			coApplyRight = coApplyRightService.create(coApplyRight);		
+			MultipartFile bizLicFile = request.getFile("bizLic");
+			MultipartFile orgCodeFile = request.getFile("orgCode");
+			if(!bizLicFile.isEmpty() && !orgCodeFile.isEmpty()){
+				String bizLicFileName = bizLicFile.getOriginalFilename();
+				String bizLicPath ="/resources/attached/"+userInfo.getId()+"/applyright/bizlic";
+				InputStream bizLicFileInput = bizLicFile.getInputStream();
+				bizLicFlag =  FTPUtil.getInstance().uploadFile(bizLicPath, bizLicFileName, bizLicFileInput);
+				
+				String orgCodeFileName = orgCodeFile.getOriginalFilename();
+				String orgCodePath ="/resources/attached/"+userInfo.getId()+"/applyright/orgcode";
+				InputStream orgCodeFileInput = orgCodeFile.getInputStream();
+				orgCodeFlag = FTPUtil.getInstance().uploadFile(orgCodePath, orgCodeFileName, orgCodeFileInput);
+				if(bizLicFlag && orgCodeFlag){
+					String bizLicSavePath = bizLicPath+"/"+bizLicFileName;
+					String orgCodeSavePath = orgCodePath+"/"+orgCodeFileName;
+					coApplyRight.setBizLicPath(bizLicSavePath);
+					coApplyRight.setOrgCodePath(orgCodeSavePath);
+					coApplyRightService.update(coApplyRight);
 					return "redirect:/upload/success";
 				}else{
 					return "redirect:/upload/failed";
@@ -123,7 +136,12 @@ public class ApplyRightController {
 	
 	
 	@RequestMapping(value = "/admin/applyright/validInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse patentInfoFormAjaxJson(@Valid PersonApplyRightForm applyrightForm, BindingResult result) {
+	public @ResponseBody ValidationResponse validFormAjaxJson(@Valid PersonApplyRightForm applyrightForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	
+	@RequestMapping(value = "/admin/applyright/coValidInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse coValidFormAjaxJson(@Valid CompanyApplyRightForm applyrightForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
 	

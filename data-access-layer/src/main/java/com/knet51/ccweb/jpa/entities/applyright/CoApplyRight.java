@@ -15,6 +15,7 @@ import com.knet51.ccweb.jpa.entities.User;
 public class CoApplyRight extends AbstractEntity {
 	private String boss;
 	private String bossPhone;
+	private String comName;
 	@Lob
 	private String content;
 	private String orgCodePath;
@@ -111,6 +112,16 @@ public class CoApplyRight extends AbstractEntity {
 	public CoApplyRight() {
 		super();
 	}
+
+	public String getComName() {
+		return comName;
+	}
+
+	public void setComName(String comName) {
+		this.comName = comName;
+	}
+
+
 	
 	
 }

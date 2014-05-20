@@ -14,9 +14,12 @@ public class CompanyApplyRightForm {
 	private String bossPhone;
 	
 	@NotEmpty
-	@Size(min=18, max=18)
+	@Size(min=17, max=20)
 	private String bossId;
 	private String comContent;
+	
+	@NotEmpty
+	private String comName;
 	
 	@NotEmpty
 	private String comApplypermit;
@@ -63,6 +66,14 @@ public class CompanyApplyRightForm {
 
 	public CompanyApplyRightForm() {
 		super();
+	}
+
+	public String getComName() {
+		return comName;
+	}
+
+	public void setComName(String comName) {
+		this.comName = comName;
 	}
 	
 	
