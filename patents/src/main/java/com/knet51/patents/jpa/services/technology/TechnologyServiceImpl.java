@@ -80,4 +80,11 @@ public class TechnologyServiceImpl implements TechnologyService {
 		return repository.findAllByFocus(focus, pageable);
 	}
 
+	@Override
+	public Page<Technology> findAllByUserAndStatus(User user, int status,
+			int pageNumber, int pageSize) {
+		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id","date");
+		return repository.findAllByUserAndStatus(user, status, pageable);
+	}
+
 }

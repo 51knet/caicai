@@ -14,6 +14,7 @@ import com.knet51.ccweb.jpa.entities.projects.Projects;
 
 public interface ProjectsRepository extends JpaRepository<Projects, Long>, JpaSpecificationExecutor<Projects> {
 	Page<Projects> findProjectsByStatus(Integer status, Pageable pageable);
+	Page<Projects> findProjectsByUserAndStatus(User user,Integer status, Pageable pageable);
 	List<Projects> findProjectsListByStatus(Integer status);
 	
 	Page<Projects> findProjectsByCompleteAndStatus(Integer complete,Integer status, Pageable pageable);

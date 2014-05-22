@@ -15,6 +15,7 @@ public interface TechnologyRepository extends JpaRepository<Technology, Long>, J
 	Page<Technology> findAll(Pageable pageable);
 	
 	Page<Technology> findAllByUser(User user, Pageable pageable);
+	Page<Technology> findAllByUserAndStatus(User user,Integer status, Pageable pageable);
 	List<Technology> findAllListByUser(User user);
 	
 	Page<Technology> findAllByStatus(Integer status, Pageable pageable );
