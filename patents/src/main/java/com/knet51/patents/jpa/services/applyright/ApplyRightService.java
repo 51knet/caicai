@@ -17,5 +17,5 @@ public interface ApplyRightService {
 	
 	Page<ApplyRight> findApplyRightByStatus(Integer status,int pageNumber, int pageSize);
 	
-	boolean empower4User(Long apply_id, User user);
+	boolean empower4User(Long apply_id, User user, String types);
 }

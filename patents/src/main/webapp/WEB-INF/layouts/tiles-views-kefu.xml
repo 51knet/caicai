@@ -57,17 +57,30 @@
 	</definition>
 	
 	<!-- kefu applyright -->
-	<definition name="admin.kefu.applyright.list" extends="admin-layout">
+	<definition name="admin.kefu.applyright.person.list" extends="admin-layout">
 		<put-attribute name="title" value="权限审核" />
 		<put-attribute name="banner" value="" />
-		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/kefu/applyright/list/list.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/kefu/applyright/person/list/list.jsp" />
 	</definition>
-	<definition name="admin.kefu.applyright.view" extends="admin-layout">
+	<definition name="admin.kefu.applyright.person.view" extends="admin-layout">
 		<put-attribute name="title" value="权限审核" />
 		<put-attribute name="banner" value="" />
-		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
-		<put-attribute name="right" value="/WEB-INF/views/kefu/applyright/view/view.jsp"></put-attribute>
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/kefu/applyright/person/view/view.jsp" />
+	</definition>
+	
+	<definition name="admin.kefu.applyright.company.list" extends="admin-layout">
+		<put-attribute name="title" value="权限审核" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/kefu/applyright/company/list/list.jsp" />
+	</definition>
+	<definition name="admin.kefu.applyright.company.view" extends="admin-layout">
+		<put-attribute name="title" value="权限审核" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/kefu/applyright/company/view/view.jsp" />
 	</definition>
 	
 	<!-- kefu check order -->

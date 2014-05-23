@@ -28,7 +28,8 @@
 		<li><a href='<c:url value="/admin/kefu/activity/list"></c:url>' >活动列表</a></li>
 		<li><a href='<c:url value="/admin/kefu/projects/list/all"></c:url>' >融资项目</a></li>
 		<li><a href='<c:url value="/admin/kefu/rzfh/list/all"></c:url>' >融资/孵化区</a></li>
-		<li><a href='<c:url value="/admin/kefu/applyright/all/all"></c:url>' >权限审核</a></li>
+		<li><a href='<c:url value="/admin/kefu/applyright/all/all"></c:url>' >个人权限审核</a></li>
+		<li><a href='<c:url value="/admin/kefu/coapplyright/all/all"></c:url>' >机构权限审核</a></li>
 		<li><a href='<c:url value="/admin/kefu/order/list"></c:url>' >订单审核</a></li>
 	</ul>
 </div>

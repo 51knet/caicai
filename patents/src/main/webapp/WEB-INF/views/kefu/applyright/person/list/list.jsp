@@ -91,7 +91,7 @@ $(document).ready(function() {
 		$.ajax({
 			   type: "POST",
 			   url: "<c:url value='/admin/kefu/applyright/status/change'></c:url>",
-			   data: "id="+id,
+			   data: "id="+id+"&types=person",
 			   success: function(flag){
 				   if(flag == true){
 					   alert( "审核修改成功");

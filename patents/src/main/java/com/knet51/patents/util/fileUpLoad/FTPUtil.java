@@ -115,7 +115,7 @@ public class FTPUtil {
 	
 		String fullPath = new String(new String(savePath.getBytes(), "iso-8859-1"));
 		String dirPath = fullPath.substring(0, fullPath.lastIndexOf("/")); 
-		String targerFile = new String(fileName.getBytes(), "iso-8859-1");
+		String targetFile = new String(fileName.getBytes(), "iso-8859-1");
 		try {
 			int reply;
 			ftp.connect(hostname, port);
@@ -129,12 +129,12 @@ public class FTPUtil {
 			
 			FTPFile[] files =  ftp.listFiles(fullPath);
 			for (FTPFile ftpFile : files) {
-				if(targerFile.equalsIgnoreCase(ftpFile.getName())){
+				if(targetFile.equalsIgnoreCase(ftpFile.getName())){
 					response.setContentType("application/x-msdownload;");
 					response.setHeader("Content-Disposition", "attachement; filename="+new String(fileName.getBytes("GBK"),"ISO8859-1"));
 					response.setHeader("Content-Length", String.valueOf(ftpFile.getSize()));
 					output = response.getOutputStream();
-					success = ftp.retrieveFile(targerFile, output);
+					success = ftp.retrieveFile(targetFile, output);
 				}
 			}
 			

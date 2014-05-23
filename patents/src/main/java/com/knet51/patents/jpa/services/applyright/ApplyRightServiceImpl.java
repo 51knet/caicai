@@ -11,7 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.knet51.ccweb.jpa.entities.User;
 import com.knet51.ccweb.jpa.entities.UserRight;
 import com.knet51.ccweb.jpa.entities.applyright.ApplyRight;
+import com.knet51.ccweb.jpa.entities.applyright.CoApplyRight;
 import com.knet51.ccweb.jpa.repository.applyright.ApplyRightRepository;
+import com.knet51.ccweb.jpa.repository.applyright.CoApplyRightRepository;
 import com.knet51.ccweb.jpa.repository.user.UserRightRepository;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 @Service("applyRightService")
@@ -20,6 +22,8 @@ public class ApplyRightServiceImpl implements ApplyRightService {
 	private ApplyRightRepository applyRightRepository;
 	@Autowired
 	private UserRightRepository userRightRepository;
+	@Autowired
+	private CoApplyRightRepository coApplyRightRepository;
 	
 	@Override
 	public ApplyRight create(ApplyRight applyRight) {
@@ -56,21 +60,36 @@ public class ApplyRightServiceImpl implements ApplyRightService {
 	}
 	@Transactional
 	@Override
-	public boolean empower4User(Long apply_id, User user) {
+	public boolean empower4User(Long apply_id, User user,String types) {
 		boolean flag = false;
-		ApplyRight applyRight = applyRightRepository.findOne(apply_id);
-		if(applyRight != null && applyRight.getUser().getId().equals(user.getId())){
-			UserRight userRight = new UserRight();
-			userRight.setUser(user);
-			userRight.setUserRight(applyRight.getApplypermit());
-			userRight = userRightRepository.saveAndFlush(userRight);
-			if(userRight!= null){
-				flag = true;
+		if(types.equals("person")){
+			ApplyRight applyRight = applyRightRepository.findOne(apply_id);
+			if(applyRight != null && applyRight.getUser().getId().equals(user.getId())){
+				UserRight userRight = new UserRight();
+				userRight.setUser(user);
+				userRight.setUserRight(applyRight.getApplypermit());
+				userRight = userRightRepository.saveAndFlush(userRight);
+				if(userRight.getUserRight().equals(applyRight.getApplypermit())){
+					flag = true;
+				}
+			}
+		}else if(types.equals("company")){
+			CoApplyRight coApplyRight = coApplyRightRepository.findOne(apply_id);
+			if(coApplyRight != null && coApplyRight.getUser().getId().equals(user.getId())){
+				UserRight userRight = new UserRight();
+				userRight.setUser(user);
+				userRight.setUserRight(coApplyRight.getComApplypermit());
+				userRight = userRightRepository.saveAndFlush(userRight);
+				if(userRight.getUserRight().equals(coApplyRight.getComApplypermit())){
+					flag = true;
+				}
 			}
 		}
+		
 	
 		return flag;
 	}
+	
 
 	@Override
 	public Page<ApplyRight> findApplyRightByStatus(Integer status,
