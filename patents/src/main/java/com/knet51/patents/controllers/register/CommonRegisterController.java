@@ -70,7 +70,7 @@ public class CommonRegisterController {
 				randomUrl += "/";
 				randomUrl += findUser.getId();
 				mailSuccess = MailSender.getInstance().SendMail(email,
-						"http://www.chinattp.com/mail/" + randomUrl);
+						"http://www.chinattp.com/patents/mail/" + randomUrl);
 				if (mailSuccess) {
 					String hrefString = email;
 					hrefString = hrefString
