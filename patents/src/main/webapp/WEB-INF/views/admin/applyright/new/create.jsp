@@ -72,6 +72,7 @@ function checkComResources(obj){
 			<ul class="nav nav-tabs">
 		    	<li <c:if test='${active == "invest"}'>class="active"</c:if>><a href="#invest_tab" data-toggle="tab">个人申请</a></li> 
 		    	<li ><a href="#company_tab" data-toggle="tab">机构公司申请</a></li>
+		    	<li ><a href="#expert_tab" data-toggle="tab">专家申请</a></li>
 			</ul>
 			<div class="tab-content">
 						
@@ -128,15 +129,12 @@ function checkComResources(obj){
 					<form action= '<c:url value="/admin/applyright/company/add"></c:url>'  method="post" enctype="multipart/form-data"  id="co_valid_form" name="co_valid_post" onsubmit="return checkComResources(this)">
 						<div class="control-group" >
 							<div class="controls">
-
 								<label class="radio inline">
 								  <input type="radio"  name="comApplypermit" value="investcompany" checked="checked" > 投资机构
 								</label>
-	
 								<label class="radio inline">
 								  <input type="radio"  name="comApplypermit" value="incubator"> 孵化基地
 								</label>
-				
 							</div>
 						</div>
 						<div class="control-group" id="boss">
@@ -175,8 +173,52 @@ function checkComResources(obj){
 								<textarea  style="width:670px;height:120px;"  name="comContent"  placeholder="简介"></textarea>
 								<span class="help-inline"><form:errors path="comContent" /></span>
 							</div>
+						</div>					
+						<div class="span9">
+						 	<button type="submit" class="btn btn-success ">保存</button>&nbsp;&nbsp;
+							<button type="reset" class="btn">取消</button>
+						</div>	
+					</form>
+				</div>
+				
+				<div class="tab-pane <c:if test='${active == "expert"}'>active</c:if>" id="expert_tab">
+					<form action= '<c:url value="/admin/applyright/expert/add"></c:url>'  method="post"   id="expert_form" >
+						<div class="control-group" id="expname">
+							<div class="controls">
+								<i class="icon-star"></i> 真实姓名：<input  type="text" name="expname"   placeholder="真实姓名" > <span class="help-inline"><form:errors path="expname" /></span>
+							</div>
 						</div>
-						
+						<div class="control-group" >
+							<div class="controls">
+								<label class="radio inline">
+								  <input type="radio"  name="expgender" value="男" checked="checked" > 男
+								</label>
+								<label class="radio inline">
+								  <input type="radio"  name="expgender" value="女"> 女
+								</label>
+							</div>
+						</div>
+						<div class="control-group" id="expcollege">
+							<div class="controls">
+								<i class="icon-star"></i> 所属高校：<input  type="text" name="expcollege"   placeholder="所属高校"  style="margin: 0 auto;" data-provide="typeahead" data-items="8"
+									data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'> <span class="help-inline"><form:errors path="expcollege" /></span>
+							</div>
+						</div>					
+						<div class="control-group" id="expschool">
+							<div class="controls">
+								<i class="icon-star"></i> 所属院系：<input  type="text" name="expschool"   placeholder="所属院系" > <span class="help-inline"><form:errors path="expschool" /></span>
+							</div>
+						</div>					
+						<div class="control-group" id="expresearch">
+							<div class="controls">
+								<i class="icon-star"></i> 研究方向：<input  type="text" name="expresearch"   placeholder="研究方向" > <span class="help-inline"><form:errors path="expresearch" /></span>
+							</div>
+						</div>
+						<div class="control-group" id="exptitle">
+							<div class="controls">
+								<i class="icon-star"></i> 职称职务：<input  type="text" name="exptitle"   placeholder="职称/职务" > <span class="help-inline"><form:errors path="exptitle" /></span>
+							</div>
+						</div>
 						<div class="span9">
 						 	<button type="submit" class="btn btn-success ">保存</button>&nbsp;&nbsp;
 							<button type="reset" class="btn">取消</button>
@@ -200,6 +242,11 @@ function checkComResources(obj){
     	
     	$("#co_valid_form").submit(function(){
 			return checkEmptyAjax("co_valid_form","<c:url value='/admin/applyright/coValidInfoAJAX'></c:url>");
-		});	
+		});
+    	
+    	$("#expert_form").submit(function(){
+			return checkEmptyAjax("expert_form","<c:url value='/admin/applyright/expValidInfoAJAX'></c:url>");
+		});
+    	
     });
 </script>

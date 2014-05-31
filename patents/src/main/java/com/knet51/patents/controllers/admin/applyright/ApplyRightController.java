@@ -1,6 +1,12 @@
 package com.knet51.patents.controllers.admin.applyright;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,11 +28,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.knet51.ccweb.jpa.entities.applyright.ApplyRight;
 import com.knet51.ccweb.jpa.entities.applyright.CoApplyRight;
+import com.knet51.ccweb.jpa.entities.applyright.ExpApplyRight;
 import com.knet51.patents.beans.UserInfo;
 import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.UserService;
 import com.knet51.patents.jpa.services.applyright.ApplyRightService;
 import com.knet51.patents.jpa.services.applyright.CoApplyRightService;
+import com.knet51.patents.jpa.services.applyright.ExpApplyRightService;
 import com.knet51.patents.util.MyUtil;
 import com.knet51.patents.util.ajax.AjaxValidationEngine;
 import com.knet51.patents.util.ajax.ValidationResponse;
@@ -42,21 +50,43 @@ public class ApplyRightController {
 	private UserService userService;
 	@Autowired
 	private CoApplyRightService coApplyRightService;
+	@Autowired
+	private ExpApplyRightService expApplyRightService;
 	
 	@RequestMapping(value="/admin/applyright/new")
 	public String showAddapplyrightPage(HttpSession session, Model model){
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		model.addAttribute("active", "invest");
+		List<String> universityList = new ArrayList<String>();
+		String universityFilePath = "";
+		BufferedReader br;
+		universityFilePath = session.getServletContext().getRealPath("/");
+		universityFilePath += "resources\\university\\universities.property";
+		try {
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(
+					universityFilePath), "utf-8"));
+			String data = ""; 
+			while ((data = br.readLine()) != null) {
+				universityList.add(data);
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			universityList.add(" ");
+		} catch (IOException e) {
+			universityList.add(" ");
+		}
+		model.addAttribute("universityList", universityList);
 		return "admin."+userInfo.getRole()+".applyright.add";
 	}
 	
+	/* person applyright */
 	
 	@RequestMapping(value="/admin/applyright/person/add", method = RequestMethod.POST)
 	public String addPersonApplyRight(@Valid PersonApplyRightForm applyrightForm, BindingResult validResult,HttpSession session
 			,MultipartHttpServletRequest request) throws Exception{
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		boolean flag = false;
-		logger.info("===== into invest valid controller=====");
+		logger.info("===== into person valid controller=====");
 		if(validResult.hasErrors()){
 			logger.info("====="+validResult.toString());
 			return "redirect:/admin/applyright/new";
@@ -88,6 +118,12 @@ public class ApplyRightController {
 		}
 	}
 	
+	@RequestMapping(value = "/admin/applyright/validInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse validFormAjaxJson(@Valid PersonApplyRightForm applyrightForm, BindingResult result) {
+		return AjaxValidationEngine.process(result);
+	}
+	
+	/* company applyright */
 	@RequestMapping(value="/admin/applyright/company/add", method = RequestMethod.POST)
 	public String addCompanyApplyRight(@Valid CompanyApplyRightForm applyrightForm, BindingResult validResult,HttpSession session
 			,MultipartHttpServletRequest request) throws Exception{
@@ -133,15 +169,32 @@ public class ApplyRightController {
 			}
 		}
 	}
+	/* expert applyright */	
 	
-	
-	@RequestMapping(value = "/admin/applyright/validInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse validFormAjaxJson(@Valid PersonApplyRightForm applyrightForm, BindingResult result) {
-		return AjaxValidationEngine.process(result);
+	@RequestMapping(value="/admin/applyright/expert/add", method = RequestMethod.POST)
+	public String addExpertApplyRight(@Valid ExpApplyRightForm applyrightForm, BindingResult validResult,HttpSession session) throws Exception{
+		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+		logger.info("===== into expert valid controller=====");
+		if(validResult.hasErrors()){
+			logger.info("====="+validResult.toString());
+			return "redirect:/admin/applyright/new";
+		}else{
+			ExpApplyRight applyright = new ExpApplyRight();
+			MyUtil.copyValidBeanToDestBean(applyrightForm, applyright);
+			applyright.setDate(new Date());
+			applyright.setUser(userInfo.getUser());
+			applyright.setStatus(GlobalDefs.WAITE);
+			applyright = expApplyRightService.create(applyright);
+			if(applyright!= null){			
+				return "redirect:/upload/success";
+			}else{
+				return "redirect:/upload/failed";
+			}
+		}
 	}
 	
-	@RequestMapping(value = "/admin/applyright/coValidInfoAJAX", method = RequestMethod.POST)
-	public @ResponseBody ValidationResponse coValidFormAjaxJson(@Valid CompanyApplyRightForm applyrightForm, BindingResult result) {
+	@RequestMapping(value = "/admin/applyright/expValidInfoAJAX", method = RequestMethod.POST)
+	public @ResponseBody ValidationResponse coValidFormAjaxJson(@Valid ExpApplyRightForm applyrightForm, BindingResult result) {
 		return AjaxValidationEngine.process(result);
 	}
 	

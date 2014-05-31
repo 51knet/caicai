@@ -2,7 +2,6 @@ package com.knet51.patents.controllers.admin.kefu.applyright;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +21,6 @@ import com.knet51.patents.controllers.common.defs.GlobalDefs;
 import com.knet51.patents.jpa.services.applyright.ApplyRightService;
 import com.knet51.patents.jpa.services.applyright.CoApplyRightService;
 import com.knet51.patents.util.fileUpLoad.FTPUtil;
-import com.knet51.patents.util.fileUpLoad.FileUtil;
 
 @Controller
 public class kefuApplyRightController {
@@ -49,8 +47,6 @@ public class kefuApplyRightController {
 		model.addAttribute("page", page);
 		return "admin.kefu.applyright.person.list";
 	}
-	
-
 	
 
 	@RequestMapping(value="/admin/kefu/applyright/view/{id}")

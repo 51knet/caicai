@@ -29,6 +29,11 @@
 	width:100%;
 	 
 }
+.limit_block{
+	max-width: 418px;
+	max-height: 20px;
+	overflow: hidden;
+}
 </style>
  <div class="container patent">
 	<c:choose>
@@ -48,13 +53,13 @@
 					<c:forEach items="${page.content}" var="page">
 						<tr class="bLine_dash">
 						<td>
-							<a href="<c:url value="/technology/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${page.techName}</a>
+							<div class="limit_block"><a href="<c:url value="/technology/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${page.techName}</a></div>
 						</td>
 						<td>
 							${page.techField}
 						</td>
 						<td>
-							${page.cooperation}
+							<div class="limit_block">${page.cooperation}</div>
 						</td>
 						</tr>
 					</c:forEach>

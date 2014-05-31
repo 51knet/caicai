@@ -102,15 +102,6 @@
 									<input type="text" name="school"   placeholder="所属院系" value="${sessionUserInfo.teacher.school}" style="margin: 0 auto;" data-provide="typeahead" data-items="4"
 										data-source='["计算机学院","财金学院","女子学院"]'> <span class="help-inline"><form:errors path="school" /></span>
 								</div>
-								<!--  
-								<div class="controls">
-									<select class="span3" name="college">
-										<option>计算机学院</option>
-										<option>财金学院</option>
-										<option>女子学院</option>
-									</select>
-								</div>
-								-->
 							</div>
 							<div class="control-group" id="major">
 								<label class="control-label" for="major">研究方向</label>

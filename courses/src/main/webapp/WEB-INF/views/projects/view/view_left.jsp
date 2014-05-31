@@ -244,7 +244,7 @@ function checkUserRight(p_id){
 		   type: "POST",
 		   async: false,
 		   data: "project_id="+p_id,
-		   beforeSend:function(){alert("正在验证您是否有投资资格，请稍等。。。")}, //添加loading信息
+		   beforeSend://添加loading信息
 		   success:function(flag){
 			   if(flag == 2){
 				   alert("==恭喜，您拥有投资资格==");

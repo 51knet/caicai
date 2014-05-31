@@ -20,6 +20,11 @@
 .active{
 	background-color:#526a88;
 }
+.limit_block{
+	max-width: 325px;
+	max-height: 20px;
+	overflow: hidden;
+}
 </style>
  <!-- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <c:if test='${active == "technology" }'>技术需求</c:if><c:if test='${active == "patent" }'>专利需求</c:if> </div> -->
 <div class="container title"  >
@@ -36,9 +41,9 @@
 						<c:forEach items="${page.content}" var="page" begin="0" step="2" varStatus="i">
 							<tr class="bLine_dash" >
 								<td >
-									<a  href="<c:url value="/requirement/${active}/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >   
+									<div class="limit_block"><a  href="<c:url value="/requirement/${active}/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >   
 									${page.title}
-									</a>
+									</a></div>
 								</td>
 							</tr>
 						</c:forEach>				
@@ -50,10 +55,10 @@
 					<tbody>
 						<c:forEach items="${page.content}" var="page" begin="1" step="2" varStatus="i">
 							<tr class="bLine_dash" >
-							<td >
+							<td ><div class="limit_block">
 								<a  href="<c:url value="/requirement/${active}/view/${ page.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  
 									${page.title}
-								</a>
+								</a></div>
 							</td>
 							</tr>
 						</c:forEach>				

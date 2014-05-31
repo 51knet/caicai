@@ -38,8 +38,12 @@
 	text-align: left;
 }
 .patent{
-	width:100%;
-	 
+	width:100%; 
+}
+.limit_block{
+	max-width: 335px;
+	max-height: 20px;
+	overflow: hidden;
 }
 </style>
   
@@ -91,7 +95,7 @@
 							<a href="<c:url value="/patent/view?id=${ page.patentNum}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${page.patentNum}</a>
 						</td>
 						<td>
-							${page.patentName}
+							<div class="limit_block">${page.patentName}</div>
 						</td>
 						<td>
 							${page.patentType.typeName}
