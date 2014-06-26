@@ -5,10 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 
 import com.knet51.ccweb.jpa.entities.User;
@@ -158,6 +156,9 @@ public class PatentServiceImpl implements PatentService {
 		return patentRespository.save(patent);
 	}
 
-
+	@Override
+	public Long getPatentSum() {
+		return patentRespository.count();
+	}
 
 }

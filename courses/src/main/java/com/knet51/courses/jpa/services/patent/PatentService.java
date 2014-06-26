@@ -36,4 +36,6 @@ public interface PatentService {
  	
  	Patent create(Patent patent);
  	
+ 	Long getPatentSum();
+ 	
 }

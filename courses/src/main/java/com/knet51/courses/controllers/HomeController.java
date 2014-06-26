@@ -3,6 +3,7 @@ package com.knet51.courses.controllers;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -88,12 +89,13 @@ public class HomeController {
 			HttpServletRequest request) {
 		logger.info("###### into the HomeController ######");
 		List<Teacher> teacherList = teacherService.findAllTeacher();
-		
+		System.out.println("1===================="+new Date());
 		List<Patent> chinaPatentList = patentService.findPatentByCountryAndFocus(GlobalDefs.PATENT_CHINA, GlobalDefs.HOME_FOCUS);
 		List<Patent> foreignPatentList = patentService.findPatentByCountryAndFocus(GlobalDefs.PATENT_FOREIGN, GlobalDefs.HOME_FOCUS);
 		model.addAttribute("chinaPatentList", chinaPatentList);
 		model.addAttribute("foreignPatentList", foreignPatentList);
 		
+		System.out.println("2===================="+new Date());
 		List<PatentRequirement> patentRequire =  patentRequirementService.findAllListByStatus(GlobalDefs.PASS);
 		List<Requirement> technologyRequire = techRequirementService.findRequireListByStatus(GlobalDefs.PASS);
 		model.addAttribute("patentRequire", patentRequire);
@@ -101,12 +103,12 @@ public class HomeController {
 		
 		List<Activity> activityList = activityService.findAllList();
 		model.addAttribute("activityList", activityList);
-		
+		System.out.println("3===================="+new Date());
 		List<PatentType> patentTypeList = patentTypeService.findAllPatentType();
 		List<PatentField> patentFieldList = patentFieldService.findAll();
 		session.setAttribute("patentFieldList", patentFieldList);
 		model.addAttribute("patentTypeList", patentTypeList);
-		
+		System.out.println("4===================="+new Date());
 		List<Teacher> teacherLists = new ArrayList<Teacher>();
 		List<Teacher> enterPriseList = new ArrayList<Teacher>();
 		for (Teacher teacher : teacherList) {

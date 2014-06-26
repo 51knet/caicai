@@ -118,11 +118,12 @@ public class PatentController {
 	@RequestMapping(value="/patent/list")
 	public String patentList(Model model, HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize){
-		List<Patent> patentList = patentService.findPatentList();
+//		List<Patent> patentList = patentService.findPatentList();
+		Long patentSum = patentService.getPatentSum();
 		Page<Patent> page = patentService.findAll(pageNumber, pageSize);
 		List<PatentField> fieldList = patentFieldService.findAll();
 		model.addAttribute("page", page);
-		model.addAttribute("searchpatentCount", patentList.size());
+		model.addAttribute("searchpatentCount", patentSum);
 		model.addAttribute("fieldList", fieldList);
 		return "patent.list";
 	}
