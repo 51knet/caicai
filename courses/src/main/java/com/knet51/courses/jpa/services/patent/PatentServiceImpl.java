@@ -158,6 +158,13 @@ public class PatentServiceImpl implements PatentService {
 		return patentRespository.save(patent);
 	}
 
+	@Override
+	public Page<Patent> findPatentPageByCountryAndFocus(Integer country,
+			Integer focus, int pageNum, int pageSize) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "patentNum");
+		return patentRespository.findPatentByCountryAndFocus(country, focus, pageable);
+	}
+
 
 
 }

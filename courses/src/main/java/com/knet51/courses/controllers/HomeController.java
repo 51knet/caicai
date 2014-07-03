@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -89,18 +90,21 @@ public class HomeController {
 		logger.info("###### into the HomeController ######");
 		List<Teacher> teacherList = teacherService.findAllTeacher();
 		
-		List<Patent> chinaPatentList = patentService.findPatentByCountryAndFocus(GlobalDefs.PATENT_CHINA, GlobalDefs.HOME_FOCUS);
-		List<Patent> foreignPatentList = patentService.findPatentByCountryAndFocus(GlobalDefs.PATENT_FOREIGN, GlobalDefs.HOME_FOCUS);
+		
+		Page<Patent> chinaPatentPage = patentService.findPatentPageByCountryAndFocus(GlobalDefs.PATENT_CHINA, GlobalDefs.HOME_FOCUS, 0, 8);
+		List<Patent> chinaPatentList = chinaPatentPage.getContent();	
+		Page<Patent> foreignPatentPage = patentService.findPatentPageByCountryAndFocus(GlobalDefs.PATENT_FOREIGN, GlobalDefs.HOME_FOCUS, 0, 8);
+		List<Patent> foreignPatentList = foreignPatentPage.getContent();
 		model.addAttribute("chinaPatentList", chinaPatentList);
 		model.addAttribute("foreignPatentList", foreignPatentList);
 		
-		List<PatentRequirement> patentRequire =  patentRequirementService.findAllListByStatus(GlobalDefs.PASS);
-		List<Requirement> technologyRequire = techRequirementService.findRequireListByStatus(GlobalDefs.PASS);
-		model.addAttribute("patentRequire", patentRequire);
-		model.addAttribute("technologyRequire", technologyRequire);
+		Page<PatentRequirement> patentRequire =  patentRequirementService.findAllByStatus(0, 8, GlobalDefs.PASS);
+		Page<Requirement> technologyRequire = techRequirementService.findRequireByStatus(0, 8,GlobalDefs.PASS);
+		model.addAttribute("patentRequire", patentRequire.getContent());
+		model.addAttribute("technologyRequire", technologyRequire.getContent());
 		
-		List<Activity> activityList = activityService.findAllList();
-		model.addAttribute("activityList", activityList);
+		Page<Activity> activityList = activityService.findAllPage(0, 8);
+		model.addAttribute("activityList", activityList.getContent());
 		
 		List<PatentType> patentTypeList = patentTypeService.findAllPatentType();
 		List<PatentField> patentFieldList = patentFieldService.findAll();
@@ -119,7 +123,7 @@ public class HomeController {
 			}
 		}
 		
-		List<Technology> technologies = technologyService.findListByFocusAndStatus(GlobalDefs.HOME_FOCUS, GlobalDefs.PASS);
+		Page<Technology> technologies = technologyService.findAllByFocusAndStatus(0, 9, GlobalDefs.HOME_FOCUS, GlobalDefs.PASS);
 		model.addAttribute("technologys", technologies);
 		
 		String email;

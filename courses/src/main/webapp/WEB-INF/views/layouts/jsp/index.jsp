@@ -16,7 +16,7 @@
 	<tiles:insertAttribute name="top-navbar" />
 
 	<div class="container-fluid" >
-		<div style="position: relative;">
+		<div >
 			<div class="row-fluid bg_white">
 				<tiles:insertAttribute name="search" />
 			</div>

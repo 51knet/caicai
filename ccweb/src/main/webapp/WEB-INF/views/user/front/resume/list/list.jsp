@@ -75,7 +75,6 @@
 	</div>
 	<div class="content ">
 		<address style="line-height: 30px;">
-				<address>
 			<c:choose>
 			<c:when test="${userInfo.address == null||userInfo.address == '' }">
 			</c:when>
@@ -108,7 +107,7 @@
 			</c:otherwise>
 			</c:choose>
 		</address>
-		</address>
+
 	</div>
 	
 	<div class="row">

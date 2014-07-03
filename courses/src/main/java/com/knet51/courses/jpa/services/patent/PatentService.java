@@ -18,6 +18,8 @@ public interface PatentService {
 	List<Patent> findPatentList();
 	List<Patent> findPatentByCountryAndFocus(Integer country,Integer focus);
 	
+	Page<Patent> findPatentPageByCountryAndFocus(Integer country,Integer focus,int pageNum , int pageSize);
+	
 	Page<Patent> findPatentByCountry(int pageNum , int pageSize,String country);
 	List<Patent> findPatentListByCountry(String country);
 	

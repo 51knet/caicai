@@ -45,7 +45,8 @@ public interface UserPatentRepository extends JpaRepository<Patent, String>,JpaS
 	Page<Patent> findPatentByCountry(Integer country, Pageable pageable);
 	List<Patent> findPatentByCountry(Integer country);
 	
-	List<Patent> findPatentByCountryAndFocus(Integer country,Integer Focus);
+	List<Patent> findPatentByCountryAndFocus(Integer country,Integer focus);
+	Page<Patent> findPatentByCountryAndFocus(Integer country,Integer focus,Pageable pageable);
 	
 	Page<Patent> findPatentByFocus(Integer focus,Pageable pageable);
 	Page<Patent> findPatentByPatentNumLike(String patentNum,Pageable pageable);

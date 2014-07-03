@@ -118,11 +118,11 @@ public class PatentController {
 	@RequestMapping(value="/patent/list")
 	public String patentList(Model model, HttpSession session,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize){
-		List<Patent> patentList = patentService.findPatentList();
+		
 		Page<Patent> page = patentService.findAll(pageNumber, pageSize);
 		List<PatentField> fieldList = patentFieldService.findAll();
 		model.addAttribute("page", page);
-		model.addAttribute("searchpatentCount", patentList.size());
+		
 		model.addAttribute("fieldList", fieldList);
 		return "patent.list";
 	}
@@ -133,12 +133,12 @@ public class PatentController {
 	
 		
 		try {
-			List<Patent> patentList = patentService.findPatentListByCountry(country);
+			
 			Page<Patent> page = patentService.findPatentByCountry(pageNumber, pageSize, country);
 			
 			List<PatentField> fieldList = patentFieldService.findAll();
 			model.addAttribute("page", page);
-			model.addAttribute("searchpatentCount", patentList.size());
+			
 			model.addAttribute("fieldList", fieldList);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -151,20 +151,20 @@ public class PatentController {
 			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize) throws Exception{
 		patentField = new String(patentField.getBytes("iso-8859-1"), "utf-8").trim();
 		Page<Patent> page = null;
-		List<Patent> patentList = null;
+		
 		if(patentField.equals("all")){
 			page = patentService.findAll(pageNumber, pageSize);
-			patentList = patentService.findPatentList();
+			
 		}else{
 			page = patentService.findPatentByPatentField(pageNumber, pageSize, patentField);
-			patentList = patentService.findPatentByPatentListField(patentField);
+			
 		}
 		 
 		List<PatentField> fieldList = patentFieldService.findAll();
 		 
 		model.addAttribute("fieldList", fieldList);
 		model.addAttribute("page", page);
-		model.addAttribute("searchpatentCount", patentList.size());
+		
 		model.addAttribute("patentField", patentField);
 		return "patent.list";
 	}
