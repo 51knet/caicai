@@ -100,7 +100,7 @@ public class ApplyRightController {
 			MultipartFile multipartFile = request.getFile("myfiles");
 			if(!multipartFile.isEmpty()){
 				String fileName = multipartFile.getOriginalFilename();
-				String path ="/resources/attached/"+userInfo.getId()+"/applyright/allies";
+				String path ="/resources/attached/"+userInfo.getId()+"/applyright/person";
 				InputStream fileInput = multipartFile.getInputStream();
 				flag =  FTPUtil.getInstance().uploadFile(path, fileName, fileInput);			
 				logger.debug("Upload Path:"+path); 
