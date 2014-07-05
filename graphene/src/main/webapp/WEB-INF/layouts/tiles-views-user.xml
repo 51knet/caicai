@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="admin.user.details" extends="user-admin-layout">
+		<put-attribute name="title" value="账号信息" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/account/accountInfo.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.resume" extends="user-admin-layout">
+		<put-attribute name="title" value="个人信息" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/resume/resumeEdit.jsp"></put-attribute>
+	</definition>
+	
+	<!-- user requirement -->
+	<definition name="admin.user.requirement.list" extends="user-admin-layout">
+		<put-attribute name="title" value="我的需求" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/requirement/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.requirement.new" extends="user-admin-layout">
+		<put-attribute name="title" value="我的需求" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/requirement/new/create.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.user.requirement.edit" extends="user-admin-layout">
+		<put-attribute name="title" value="我的需求" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/requirement/edit/edit.jsp"></put-attribute>
+	</definition>
+	
+	<!-- user patent  -->
+	<definition name="admin.user.patent.list" extends="user-admin-layout">
+		<put-attribute name="title" value="专利列表" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/patent/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.patent.new" extends="user-admin-layout">
+		<put-attribute name="title" value="新建专利" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/patent/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.patent.view" extends="user-admin-layout">
+		<put-attribute name="title" value="专利展示" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/patent/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.patent.edit" extends="user-admin-layout">
+		<put-attribute name="title" value="专利展示" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/patent/edit/edit.jsp"></put-attribute>
+	</definition>	
+	
+	
+	<!-- user technology  -->
+	<definition name="admin.user.technology.list" extends="user-admin-layout">
+		<put-attribute name="title" value="技术列表" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/technology/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.technology.new" extends="user-admin-layout">
+		<put-attribute name="title" value="新建技术" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/technology/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.technology.view" extends="user-admin-layout">
+		<put-attribute name="title" value="技术展示" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/technology/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.technology.edit" extends="user-admin-layout">
+		<put-attribute name="title" value="技术修改" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/technology/edit/edit.jsp"></put-attribute>
+	</definition>
+	
+	<!-- projects  -->
+	<definition name="admin.user.projects.list" extends="user-admin-layout">
+		<put-attribute name="title" value="项目列表" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/projects/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.projects.new" extends="user-admin-layout">
+		<put-attribute name="title" value="新建项目" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/projects/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.projects.view" extends="user-admin-layout">
+		<put-attribute name="title" value="项目展示" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/projects/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.projects.edit" extends="user-admin-layout">
+		<put-attribute name="title" value="项目编辑" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/projects/edit/edit.jsp"></put-attribute>
+	</definition>
+	
+	<!-- applyright  -->
+	<definition name="admin.user.applyright.add" extends="user-admin-layout">
+		<put-attribute name="title" value="投资人申请" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/applyright/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.applyright.add" extends="user-admin-layout">
+		<put-attribute name="title" value="投资人申请" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/applyright/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.applyright.add" extends="user-admin-layout">
+		<put-attribute name="title" value="投资人申请" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/admin/applyright/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<!--  allies  -->
+		<!--  admin -->
+	<definition name="admin.allies.about" extends="user-admin-layout">
+		<put-attribute name="title" value="机构相关" />
+	<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/allies/about/about.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.allies.announcement.list" extends="user-admin-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/allies/announcement/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.allies.announcement.add" extends="user-admin-layout">
+		<put-attribute name="title" value="添加动态" />
+	<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/allies/announcement/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.allies.announcement.edit" extends="user-admin-layout">
+		<put-attribute name="title" value="动态修改" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/allies/announcement/edit/edit.jsp"></put-attribute>
+	</definition>
+	
+	
+	
+	
+	<!-- park  -->
+		<!--  admin -->
+	<definition name="admin.park.about" extends="user-admin-layout">
+		<put-attribute name="title" value="添加案例" />
+	<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/park/about/about.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.park.announcement.list" extends="user-admin-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/park/announcement/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.park.announcement.add" extends="user-admin-layout">
+		<put-attribute name="title" value="添加动态" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/park/announcement/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.park.announcement.edit" extends="user-admin-layout">
+		<put-attribute name="title" value="动态修改" />
+	<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/park/announcement/edit/edit.jsp"></put-attribute>
+	</definition>
+	
+		<!-- front -->
+		
+	<definition name="park.basic" extends="frontPage-layout">
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/park-front/banner.jsp" />
+		<put-attribute name="title" value="孵化园主页" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/park-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/park-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/park-front/right.jsp" />
+	</definition>
+	
+	<definition name="park.about" extends="frontPage-layout">
+		<put-attribute name="title" value="孵化园介绍" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/park-front/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/park-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/park-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/front/park/about/about.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="park.announcement.list" extends="frontPage-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/park-front/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/park-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/park-front/left.jsp" />
+			<put-attribute name="right" value="/WEB-INF/views/user/front/park/announcement/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="park.announcement.view" extends="frontPage-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/park-front/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/park-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/park-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/front/park/announcement/view/view.jsp"></put-attribute>
+	</definition>
+	
+</tiles-definitions>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<!-- kefu activity  -->
+	<definition name="admin.kefu.activity.list" extends="admin-layout">
+		<put-attribute name="title" value="活动管理" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/activity/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.activity.create" extends="admin-layout">
+		<put-attribute name="title" value="活动管理" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/activity/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.activity.edit" extends="admin-layout">
+		<put-attribute name="title" value="活动管理" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/activity/edit/edit.jsp"></put-attribute>
+	</definition>
+	
+	<!-- kefu announcement  -->
+	<definition name="admin.kefu.announcement.list" extends="admin-layout">
+		<put-attribute name="title" value="活动管理" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/announcement/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.announcement.add" extends="admin-layout">
+		<put-attribute name="title" value="活动管理" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/announcement/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.announcement.edit" extends="admin-layout">
+		<put-attribute name="title" value="活动管理" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/announcement/edit/edit.jsp"></put-attribute>
+	</definition>
+
+	
+	<!-- kefu patent  -->
+	<definition name="admin.kefu.patent.list" extends="admin-layout">
+		<put-attribute name="title" value="专利列表" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/patent/list/list.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.kefu.patent.view" extends="admin-layout">
+		<put-attribute name="title" value="专利详情" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/patent/view/view.jsp"></put-attribute>
+	</definition>
+	
+		
+	<!-- kefu projects -->
+	<definition name="admin.kefu.projects.list" extends="admin-layout">
+		<put-attribute name="title" value="融资项目" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/projects/list/list.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.kefu.projects.view" extends="admin-layout">
+		<put-attribute name="title" value="融资项目" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/projects/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<!-- kefu applyright -->
+	<definition name="admin.kefu.applyright.allies.list" extends="admin-layout">
+		<put-attribute name="title" value="联盟成员权限审核" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/kefu/applyright/allies/list/list.jsp" />
+	</definition>
+	<definition name="admin.kefu.applyright.allies.view" extends="admin-layout">
+		<put-attribute name="title" value="联盟成员权限审核" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/kefu/applyright/allies/view/view.jsp" />
+	</definition>
+	
+	<definition name="admin.kefu.applyright.park.list" extends="admin-layout">
+		<put-attribute name="title" value="权限审核" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/kefu/applyright/company/list/list.jsp" />
+	</definition>
+	<definition name="admin.kefu.applyright.park.view" extends="admin-layout">
+		<put-attribute name="title" value="权限审核" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/kefu/applyright/company/view/view.jsp" />
+	</definition>
+	
+	<!-- kefu check order -->
+	<definition name="admin.kefu.order.list" extends="admin-layout">
+		<put-attribute name="title" value="订单查看" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/order/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.order.view" extends="admin-layout">
+		<put-attribute name="title" value="订单详情" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/order/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.user.order.list" extends="admin-layout">
+		<put-attribute name="title" value="用户订单" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/order/user/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<!-- kefu technology  -->
+	<definition name="admin.kefu.technology.list" extends="admin-layout">
+		<put-attribute name="title" value="技术列表" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/technology/list/list.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.kefu.technology.view" extends="admin-layout">
+		<put-attribute name="title" value="技术详情" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/technology/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<!-- kefu requirement  -->
+	<definition name="admin.kefu.requirement.list" extends="admin-layout">
+		<put-attribute name="title" value="专利列表" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/requirement/list/list.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.kefu.requirement.view" extends="admin-layout">
+		<put-attribute name="title" value="专利详情" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/requirement/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<!-- kefu patent requirement  -->
+	<definition name="admin.kefu.patentRequirement.list" extends="admin-layout">
+		<put-attribute name="title" value="专利列表" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/patentRequirement/list/list.jsp"></put-attribute>
+	</definition>
+	<definition name="admin.kefu.patentRequirement.view" extends="admin-layout">
+		<put-attribute name="title" value="专利详情" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/patentRequirement/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<!-- kefu rzfh  -->
+	<definition name="admin.kefu.rzfh.list" extends="admin-layout">
+		<put-attribute name="title" value="融资/孵化" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/rzfu/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.rzfh.create" extends="admin-layout">
+		<put-attribute name="title" value="融资/孵化" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/rzfu/new/create.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.kefu.rzfh.edit" extends="admin-layout">
+		<put-attribute name="title" value="融资/孵化" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/kefu/rzfu/edit/edit.jsp"></put-attribute>
+	</definition>
+	
+
+</tiles-definitions>

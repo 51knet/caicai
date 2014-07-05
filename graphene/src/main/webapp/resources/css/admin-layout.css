@@ -1,0 +1,52 @@
+/*
+FOR ADMIN LEFT SIDE MENU STYLE
+*/
+.nav-tabs.nav-stacked > li > a {
+border: 1px solid #DDD;
+/*-webkit-border-radius: 0;
+-moz-border-radius: 0;
+border-radius: 0;*/
+text-align: center;
+font-size: medium;
+font-family: 'Microsoft YaHei',Arial;
+}
+.nav-tabs > li > a:hover {
+color: #FFF;
+text-decoration: none;
+background-color: #80B029;
+}
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
+color: #FFF;
+cursor: default;
+text-decoration: none;
+background-color: #80B029;
+border: 1px solid #DDD;
+border-bottom-color: transparent;
+}
+
+.left-menu-container {
+background-color: #ccdfa8;
+}
+.left-menu-container a{
+color: #666;
+}
+.left-menu-container .submenu.nav{
+margin: 0px 1px;
+list-style: none;
+}
+.left-menu-container .submenu.nav > li > a {
+text-align: center;
+color: #80B029;
+background: #fff;
+border-bottom: 1px solid #DDD;
+border-right: 6px solid #80B029;
+}
+
+.left-menu-container .submenu.nav > li > a:hover {
+color: #666;
+}
+/*
+END ADMIN LEFT SIDE MENU STYLE
+*/
+
+

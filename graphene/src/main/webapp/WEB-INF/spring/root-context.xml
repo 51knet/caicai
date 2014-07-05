@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<jpa:repositories base-package="com.graphene.web.jpa.repository"></jpa:repositories>
+	
+	<beans:bean id="propertyConfigure" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<beans:property name="location">
+			<beans:value>
+				classpath:jdbc.properties
+			</beans:value>
+		</beans:property>
+	</beans:bean>
+	
+	
+	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+	
+	<tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager" />	
+	<beans:bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<beans:property name="entityManagerFactory" ref="entityManagerFactory"></beans:property>
+	</beans:bean>	
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* com.graphene.web.services.*.*(..))" id="targetMethod"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="targetMethod"/>
+	</aop:config>	
+	
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="create*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<beans:bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+		<beans:property name="persistenceUnitName" value="graphene-persistence-unit"></beans:property>
+		<beans:property name="jpaVendorAdapter">
+			<beans:bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<beans:property name="showSql" value="false" />
+				<beans:property name="database" value="MYSQL" />
+				<beans:property name="generateDdl" value="true" />
+			</beans:bean>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<beans:property name="username" value="${username}" />
+		<beans:property name="password" value="${password}" />
+		<beans:property name="driverClassName" value="${driverClassName}" />
+		<beans:property name="url" value="${url}" />
+		<beans:property name="maxIdle" value="10" />
+		<beans:property name="maxActive" value="15"></beans:property>
+		<beans:property name="removeAbandoned" value="true"></beans:property>
+		<beans:property name="removeAbandonedTimeout" value="300"></beans:property>
+		<beans:property name="maxWait" value="3000"></beans:property>
+		<beans:property name="validationQuery" value="select 1"></beans:property>
+	</beans:bean>
+	
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  </bean>	
+</beans>

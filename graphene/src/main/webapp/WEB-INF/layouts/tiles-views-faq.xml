@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="faq.about" extends="faq-layout">
+		<put-attribute name="title" value="平台简介" />
+		<put-attribute name="right" value="/WEB-INF/views/faq/intro/intro.jsp"></put-attribute>
+	</definition>
+
+	<definition name="faq.contact" extends="faq-layout">
+		<put-attribute name="title" value="联系我们" />
+		<put-attribute name="right" value="/WEB-INF/views/faq/contact/contact.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="faq.legal" extends="faq-layout">
+		<put-attribute name="title" value="法律声明" />
+		<put-attribute name="right" value="/WEB-INF/views/faq/legal/legal.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="faq.help" extends="faq-layout">
+		<put-attribute name="title" value="服务帮助" />
+		<put-attribute name="right" value="/WEB-INF/views/faq/help/help.jsp"></put-attribute>
+	</definition>
+	
+</tiles-definitions>

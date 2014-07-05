@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="course.pay.view" extends="homepage-layout">
+		<put-attribute name="title" value="支付页面" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pay/pay.jsp"></put-attribute>
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<definition name="course.cart.view" extends="homepage-layout">
+		<put-attribute name="title" value="支付页面" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/pay/cart.jsp"></put-attribute>
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<definition name="admin.order.detail" extends="homepage-layout">
+		<put-attribute name="title" value="支付页面" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/order/orderDetail.jsp"></put-attribute>
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<!-- upload   -->
+	<definition name="upload.success" extends="homepage-layout">
+		<put-attribute name="title" value="上传成功" />
+		<put-attribute name="body" value="/WEB-INF/views/_shared/upload_success.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	
+	<definition name="upload.failed" extends="homepage-layout">
+		<put-attribute name="title" value="上传成功" />
+		<put-attribute name="body" value="/WEB-INF/views/_shared/upload_failed.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	
+</tiles-definitions>

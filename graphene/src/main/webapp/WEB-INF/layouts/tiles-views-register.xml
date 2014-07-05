@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+<!-- 
+	<definition name="register" extends="registerStandard-layout">
+		<put-attribute name="title" value="欢迎注册" />
+		<put-attribute name="body" value="/WEB-INF/views/register/register.jsp"></put-attribute>
+	</definition> -->
+
+	<definition name="register.successful" extends="registerStandard-layout">
+		<put-attribute name="title" value="欢迎注册" />
+		<put-attribute name="body" value="/WEB-INF/views/register/registerSuccessful.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="fogotPsw.successful" extends="registerStandard-layout">
+		<put-attribute name="title" value="密码找回" />
+		<put-attribute name="body" value="/WEB-INF/views/forgotPsw/fogotPswSuccessful.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="fogotPsw.update" extends="registerStandard-layout">
+		<put-attribute name="title" value="密码找回" />
+		<put-attribute name="body" value="/WEB-INF/views/forgotPsw/forgotPsw.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="user.dispatcher" extends="registerStandard-layout">
+		<put-attribute name="title" value="欢迎注册" />
+		<put-attribute name="body" value="/WEB-INF/views/register/userTypePage.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="mail.send" extends="registerStandard-layout">
+		<put-attribute name="title" value="欢迎注册" />
+		<put-attribute name="body" value="/WEB-INF/views/register/sendMail.jsp"></put-attribute>
+	</definition>
+
+</tiles-definitions>

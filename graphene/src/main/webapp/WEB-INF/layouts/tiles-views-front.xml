@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="front.home" extends="front-layout">
+		<put-attribute name="title" value="首页" />
+		
+	</definition>
+	
+	<definition name="front.announcement.list" extends="front-second-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="left" value="/WEB-INF/views/front/announcement/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/announcement/list/list.jsp"/>
+	</definition>
+	
+	<definition name="front.announcement.view" extends="front-second-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="left" value="/WEB-INF/views/front/announcement/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/announcement/view/view.jsp"/>
+	</definition>
+	
+	<definition name="front.patent.list" extends="front-second-layout">
+		<put-attribute name="title" value="专利列表" />
+		<put-attribute name="left" value="/WEB-INF/views/front/patent/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/patent/list/list.jsp"/>
+	</definition>
+	
+	<definition name="front.patent.view" extends="front-second-layout">
+		<put-attribute name="title" value="专利详情" />
+		<put-attribute name="left" value="/WEB-INF/views/front/patent/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/patent/view/view.jsp"/>
+	</definition>
+	
+	<definition name="front.technology.list" extends="front-second-layout">
+		<put-attribute name="title" value="成果列表" />
+		<put-attribute name="left" value="/WEB-INF/views/front/technology/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/technology/list/list.jsp"/>
+	</definition>
+	
+	<definition name="front.technology.view" extends="front-second-layout">
+		<put-attribute name="title" value="成果详情" />
+		<put-attribute name="left" value="/WEB-INF/views/front/technology/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/technology/view/view.jsp"/>
+	</definition>
+	
+	<definition name="front.requirement.list" extends="front-second-layout">
+		<put-attribute name="title" value="需求列表" />
+		<put-attribute name="left" value="/WEB-INF/views/front/techrequire/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/techrequire/list/list.jsp"/>
+	</definition>
+	
+	<definition name="front.requirement.view" extends="front-second-layout">
+		<put-attribute name="title" value="需求详情" />
+		<put-attribute name="left" value="/WEB-INF/views/front/techrequire/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/techrequire/view/view.jsp"/>
+	</definition>
+	
+	<definition name="front.experts.list" extends="front-second-layout">
+		<put-attribute name="title" value="专家列表" />
+		<put-attribute name="left" value="/WEB-INF/views/front/experts/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/experts/list/list.jsp"/>
+	</definition>
+	
+	<definition name="front.allies.list" extends="front-second-layout">
+		<put-attribute name="title" value="联盟成员" />
+		<put-attribute name="left" value="/WEB-INF/views/front/allies/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/allies/list/list.jsp"/>
+	</definition>
+	
+	<definition name="front.parks.list" extends="front-second-layout">
+		<put-attribute name="title" value="园区信息" />
+		<put-attribute name="left" value="/WEB-INF/views/front/parks/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/parks/list/list.jsp"/>
+	</definition>
+	
+	<!--  allies -->
+	<definition name="front.allies.announcement.list" extends="front-second-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="left" value="/WEB-INF/views/front/allies/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/allies/announcement/list/list.jsp"/>
+	</definition>
+	<definition name="front.allies.announcement.view" extends="front-second-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="left" value="/WEB-INF/views/front/allies/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/announcement/view/view.jsp"/>
+	</definition>
+	
+	<definition name="allies.basic" extends="front-second-layout">
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/teacher-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/front/allies/view/item_panel.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/front/allies/view/resume.jsp" />
+		<put-attribute name="title" value="专家主页" />
+	</definition>
+	<definition name="allies.user.announcement.list" extends="front-second-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="left" value="/WEB-INF/views/front/allies/view/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/allies/view/announcement/list/list.jsp"/>
+	</definition>
+	
+	<definition name="allies.user.announcement.view" extends="front-second-layout">
+		<put-attribute name="title" value="新闻动态" />
+		<put-attribute name="left" value="/WEB-INF/views/front/allies/view/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/announcement/view/view.jsp"/>
+	</definition>
+	
+	<!--  fast upload  -->
+	<definition name="front.fastupload" extends="front-second-layout">
+		<put-attribute name="title" value="快速上传" />
+		<put-attribute name="left" value="/WEB-INF/views/front/fastupload/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/fastupload/fastupload.jsp"/>
+	</definition>
+	
+	<definition name="fastupload.success" extends="front-second-layout">
+		<put-attribute name="title" value="快速上传" />
+		<put-attribute name="left" value="/WEB-INF/views/front/fastupload/item_panel.jsp" />
+		<put-attribute name="right"  value="/WEB-INF/views/front/fastupload/success.jsp"/>
+	</definition>
+	
+</tiles-definitions>
