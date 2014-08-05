@@ -89,40 +89,26 @@ public class HomeController {
 	public String home(Locale locale, Model model, HttpSession session,
 			HttpServletRequest request) {
 		logger.info("###### into the HomeController ######");
-		List<Teacher> teacherList = teacherService.findAllTeacher();
-		
+		Page<Teacher> teacherPage = teacherService.findAllTeacher(0, 23);
+		model.addAttribute("teacherPage", teacherPage);
 		
 		Page<Patent> chinaPatentPage = patentService.findPatentPageByCountryAndFocus(GlobalDefs.PATENT_CHINA, GlobalDefs.HOME_FOCUS, 0, 8);
-		List<Patent> chinaPatentList = chinaPatentPage.getContent();	
 		Page<Patent> foreignPatentPage = patentService.findPatentPageByCountryAndFocus(GlobalDefs.PATENT_FOREIGN, GlobalDefs.HOME_FOCUS, 0, 8);
-		List<Patent> foreignPatentList = foreignPatentPage.getContent();
-		model.addAttribute("chinaPatentList", chinaPatentList);
-		model.addAttribute("foreignPatentList", foreignPatentList);
+		model.addAttribute("chinaPatentPage", chinaPatentPage);
+		model.addAttribute("foreignPatentPage", foreignPatentPage);
 		
 		Page<PatentRequirement> patentRequire =  patentRequirementService.findAllByStatus(0, 8, GlobalDefs.PASS);
 		Page<Requirement> technologyRequire = techRequirementService.findRequireByStatus(0, 8,GlobalDefs.PASS);
-		model.addAttribute("patentRequire", patentRequire.getContent());
-		model.addAttribute("technologyRequire", technologyRequire.getContent());
+		model.addAttribute("patentRequire", patentRequire);
+		model.addAttribute("technologyRequire", technologyRequire);
 		
-		Page<Activity> activityList = activityService.findAllPage(0, 8);
-		model.addAttribute("activityList", activityList.getContent());
+		Page<Activity> activitys = activityService.findAllPage(0, 8);
+		model.addAttribute("activitys", activitys);
 		
 		List<PatentType> patentTypeList = patentTypeService.findAllPatentType();
 		List<PatentField> patentFieldList = patentFieldService.findAll();
 		session.setAttribute("patentFieldList", patentFieldList);
 		model.addAttribute("patentTypeList", patentTypeList);
-		
-		List<Teacher> teacherLists = new ArrayList<Teacher>();
-		List<Teacher> enterPriseList = new ArrayList<Teacher>();
-		for (Teacher teacher : teacherList) {
-			if (teacher.getIsEnterprise() != null) {
-				enterPriseList.add(teacher);
-				model.addAttribute("enterPriseList", enterPriseList);
-			} else {
-				teacherLists.add(teacher);
-				model.addAttribute("teacherLists", teacherLists);
-			}
-		}
 		
 		Page<Technology> technologies = technologyService.findAllByFocusAndStatus(0, 9, GlobalDefs.HOME_FOCUS, GlobalDefs.PASS);
 		model.addAttribute("technologys", technologies);
@@ -157,8 +143,6 @@ public class HomeController {
 		session.setAttribute("patentTradeCount", GlobalDefs.HOME_PATENT_TRADE_COUNT);
 		session.setAttribute("patentCNCount", GlobalDefs.HOME_PATENT_CN_COUNT);
 		
-		UserInfo currentUser = (UserInfo) session
-				.getAttribute(GlobalDefs.SESSION_USER_INFO);
 //		if (currentUser != null) {
 //			List<UserCourse> userCourseList = userCourseService
 //					.findUserCourseByUserid(currentUser.getId());
@@ -178,7 +162,7 @@ public class HomeController {
 //		}
 		model.addAttribute("active", "patent");
 		
-		List<Projects> cpList = projectsService.findProjectsListByCompleteAndStatus(GlobalDefs.PASS, GlobalDefs.COMPLETE);
+		Page<Projects> cpList = projectsService.findProjectsByCompleteAndStatus(0,3,GlobalDefs.PASS, GlobalDefs.COMPLETE);
 		model.addAttribute("cpList", cpList);
 		return "home";
 	}

@@ -38,7 +38,7 @@
 	  				<a class="a_color_blue"  style="text-decoration: none; float: right;" href="<c:url value="/patent/list/china"></c:url>" >更多>></a>
 	  			</li> 
 				<li style="margin-top: 10px;"> </li>
-				<c:forEach items="${chinaPatentList }" var="chinaPatentList" begin="0"  end="9"  varStatus="i">
+				<c:forEach items="${chinaPatentPage.content }" var="chinaPatentList" begin="0"  end="9"  varStatus="i">
 					<li ><div id="contentlimit" style="width:240px; float: left;">
 						<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${chinaPatentList.patentNum }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > 
 						${chinaPatentList.patentName } <c:if test="${i.index<3 }">...<img src="<c:url value='/resources/img/default/new-icon.gif'></c:url>" > </c:if>
@@ -55,7 +55,7 @@
 	  				<a class="a_color_blue"  style="text-decoration: none; float: right;" href="<c:url value="/patent/list/foreign"></c:url>" >更多>></a> 
 	  			</li> 
 	  			<li  style="margin-top: 10px;"> </li>
-				<c:forEach items="${foreignPatentList }" var="foreignPatentList" begin="0" end="9" varStatus="i">
+				<c:forEach items="${foreignPatentPage.content }" var="foreignPatentList" begin="0" end="9" varStatus="i">
 						<li   ><div id="contentlimit" style="width:240px; float: left;">
 							<a class="a_color_ccc"  href="<c:url value="/patent/view?id=${foreignPatentList.patentNum }"></c:url>">
 							<img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${foreignPatentList.patentName } <c:if test="${i.index<3 }">...<img src="<c:url value='/resources/img/default/new-icon.gif'></c:url>" > </c:if></a>
@@ -78,7 +78,7 @@
 						<tr>
 							<td valign="top">
 								<ul>
-									<c:forEach items="${patentRequire }" var="patentRequire"  begin="0" end="6" varStatus="i">
+									<c:forEach items="${patentRequire.content }" var="patentRequire"  begin="0" end="6" varStatus="i">
 										<li ><div id="contentlimit" style="width:350px; float: left;" >
 										<img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  <a class="a_color_ccc"  href="<c:url value="/requirement/patent/view/${ patentRequire.id}"></c:url>">${patentRequire.title} 
 										<c:if test="${i.index<3 }">...<img src="<c:url value='/resources/img/default/new-icon.gif'></c:url>" > </c:if>
@@ -111,7 +111,7 @@
 						<tr>
 							<td valign="top">
 								<ul>
-								<c:forEach items="${technologyRequire}" var="technologyRequire"  begin="0"  end="6" varStatus="i">
+								<c:forEach items="${technologyRequire.content}" var="technologyRequire"  begin="0"  end="6" varStatus="i">
 									<li ><div id="contentlimit" style="width:350px; float: left;">
 									<a class="a_color_ccc"   href="<c:url value="/requirement/technology/view/${technologyRequire.id}"></c:url>">
 									<img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" >  ${technologyRequire.title } <c:if test="${i.index<3 }">...<img src="<c:url value='/resources/img/default/new-icon.gif'></c:url>" > </c:if></a>
@@ -147,7 +147,7 @@
 			<a href="<c:url value="/activity/list"></c:url>" ><img src="<c:url value='/resources/img/default/rt1.png'></c:url> " /> </a>
 			<div class="right_bottom_content">
 				<ul>
-					<c:forEach items="${activityList }" var="activityList" begin="0"  end="2">
+					<c:forEach items="${activitys.content }" var="activityList" begin="0"  end="2">
 						<li >
 							<div id="contentlimit" class=" activities_title"  style="width:400px; position: relative;">
 									<a class="a_color_ccc"  href="<c:url value="/activity/view/${ activityList.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${activityList.title }</a>
@@ -168,7 +168,7 @@
 			<a href="<c:url value="/technology/list"></c:url>"><img src="<c:url value='/resources/img/default/rt2.png'></c:url> " /> </a>
 			<div class="right_bottom_content">
 					<ul>
-				<c:forEach items="${technologys}" var="technologys" begin="0"  end="2"  >
+				<c:forEach items="${technologys.content}" var="technologys" begin="0"  end="2"  >
 						<li ><div id="contentlimit" style="width:400px; float: left;">
 						<a class="a_color_ccc"  href="<c:url value="/technology/view/${technologys.id }"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${technologys.techName }</a>
 						</div></li>
@@ -187,7 +187,7 @@
 
 			<div  class="right_bottom_content">
 				<ul>
-					<c:forEach items="${cpList }" var="cpList" begin="0"  end="2"  >
+					<c:forEach items="${cpList.content }" var="cpList" begin="0"  end="2"  >
 						<li ><div id="contentlimit" style="width:400px; float: left;">
 						<a class="a_color_ccc"  href="<c:url value="/projects/view/${cpList.id}"></c:url>"><img src="<c:url value='/resources/img/default/icon_new.png'></c:url>" > ${cpList.projectName }</a>
 						</div></li>
@@ -205,7 +205,7 @@
 			<div style="margin: 5px 0px; "><a href="<c:url value='/teacher/list'></c:url>" style="color:#fff; font-weight: bold; font-size: 15px; ">热门专家</a></div>
 	 	 		 <div class="teacherInfo core" id="myflash">
 		 	 	 	<div style="height: 90px;">
-		 	 	 		<c:forEach items="${teacherLists}" var="t" begin="0" end="5">
+		 	 	 		<c:forEach items="${teacherPage.content}" var="t" begin="0" end="5">
 							<div class="span2">
 								<c:choose>
 									<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
@@ -230,7 +230,7 @@
 						</div>
 						
 						<div  style="height: 90px;">
-			 	 	 		 <c:forEach items="${teacherLists}" var="t" begin="6" end="11">
+			 	 	 		 <c:forEach items="${teacherPage.content}" var="t" begin="6" end="11">
 								<div class="span2">
 									<c:choose>
 										<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
@@ -255,7 +255,7 @@
 						</div>
 						
 						<div  style="height: 90px;">
-			 	 	 		 <c:forEach items="${teacherLists}" var="t" begin="12" end="17">
+			 	 	 		 <c:forEach items="${teacherPage.content}" var="t" begin="12" end="17">
 								<div class="span2">
 									<c:choose>
 										<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
@@ -280,32 +280,7 @@
 						</div>
 						
 						<div  style="height: 90px;">
-			 	 	 		 <c:forEach items="${teacherLists}" var="t" begin="18" end="23">
-								<div class="span2">
-									<c:choose>
-										<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-											<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' style="width: 55px; height:55px;" class="img-circle" /></a>
-										</c:when>
-										<c:otherwise>
-											<a href='<c:url value="/teacher/${t.id}"></c:url>'><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>' style="width: 55px; height:55px;" class="img-circle" /></a>
-										</c:otherwise>
-									</c:choose>
-									<div style="margin-top: 3px; text-align: center; "> 
-										<c:choose>
-										<c:when test="${t.user.name==null||t.user.name==''}">
-										<span id="contentlimit" style="width:60px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>尚未添加</a></span>
-										</c:when>
-										<c:otherwise>
-										<span id="contentlimit" style="width:60px; " ><a href='<c:url value="${url}/teacher/${t.id}"></c:url>'>${t.user.name }</a></span> 
-										</c:otherwise>
-										</c:choose>
-									</div>
-								</div>
-							</c:forEach>
-						</div>
-						
-						<div  style="height: 90px;">
-			 	 	 		 <c:forEach items="${teacherLists}" var="t" begin="6" end="11">
+			 	 	 		 <c:forEach items="${teacherPage.content}" var="t" begin="18" end="23">
 								<div class="span2">
 									<c:choose>
 										<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
@@ -350,7 +325,7 @@
 	text-decoration: none;
 }
 .scrollbg{
-	     background-image: url(' <c:url value="/resources/img/default/teacher_scroll.png" ></c:url> ' );
+	 background-image: url(' <c:url value="/resources/img/default/teacher_scroll.png" ></c:url> ' );
 	 background-repeat:no-repeat; 
 	 background-position: center top;
 	 height: 120px;
