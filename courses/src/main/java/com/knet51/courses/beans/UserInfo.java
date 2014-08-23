@@ -13,7 +13,6 @@ public class UserInfo {
 	private User user;
 	private Teacher teacher;
 	private Student student;
-	private Enterprise enterprise;
 	//private Announcement announcement;
 	private List<UserRight> userRight;
 
@@ -21,8 +20,6 @@ public class UserInfo {
 		this.user = user;
 		this.teacher = null;
 		this.student = null;
-		this.enterprise = null;
-		//this.announcement = null;
 	}
 
 	
@@ -52,10 +49,6 @@ public class UserInfo {
 		return this.user.getPhoto_url();
 	}
 
-//	public String getAnnouncementContext() {
-//		return this.announcement == null ? "暂无公告" : this.announcement
-//				.getContent();
-//	}
 
 	public User getUser() {
 		return user;
@@ -89,13 +82,6 @@ public class UserInfo {
 //		this.announcement = announcement;
 //	}
 	
-	public Enterprise getEnterprise() {
-		return enterprise;
-	}
-
-	public void setEnterprise(Enterprise enterprise) {
-		this.enterprise = enterprise;
-	}
 
 	public String getName(){
 		return this.user.getName();
@@ -106,9 +92,6 @@ public class UserInfo {
 	}
 	public String getTeacherRole(){
 		return this.teacher.getRole();
-	}
-	public String getStudentRole(){
-		return this.student.getRole();
 	}
 
 	public UserInfo() {

@@ -1,6 +1,7 @@
 package com.knet51.courses.util.aop;
 
 
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -11,11 +12,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
+
 @Component
 @Aspect
 public class SystemArchitecture {
 	private static final Logger logger = LoggerFactory
 			.getLogger(SystemArchitecture.class);
+//	@Autowired
+//	private UserService userService;
+//	@Autowired
+//	HttpServletRequest request;
 	/**
 	   * A join point is in the web layer if the method is defined
 	   * in a type in the com.xyz.someapp.web package or any sub-package
@@ -62,13 +68,19 @@ public class SystemArchitecture {
 	   * dao interface. This definition assumes that interfaces are placed in the
 	   * "dao" package, and that implementation types are in sub-packages.
 	   */
-	  @Pointcut("execution(* com.knet51.courses.jpa.dao.*.*(..))")
+	  @Pointcut("execution(* com.knet51.courses.jpa.repository.*.*(..))")
 	  public void dataAccessOperation() {
 		  logger.info("ARRIVED HERE");
 	  }
-	  @Before("dataAccessOperation()") 
-	  public void beforeDataAccessOperation() {
-		  logger.info("beforeDataAccessOperation");
+	  @Before("dataAccessOperation() || inWebLayer()") 
+	  public void beforeDataAccessOperation(JoinPoint jp) {
+//		  HttpSession session = request.getSession();
+//		  UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
+//		  String email ="";
+//		  if(userInfo != null){
+//			  email = userInfo.getEmail();
+//		  }
+//		  logger.info("beforeDataAccessOperation session id="+session.getId()+"; user_email="+email);
 	  }
 	  
 	  @AfterThrowing(pointcut="com.knet51.courses.util.aop.SystemArchitecture.dataAccessOperation()",

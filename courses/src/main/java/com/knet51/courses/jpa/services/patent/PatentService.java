@@ -40,4 +40,6 @@ public interface PatentService {
  	
  	Long getPatentSum();
  	
+ 	Page<Patent> findPatentByUserAndStatus(int pageNum , int pageSize, User user, Integer status);
+ 	
 }

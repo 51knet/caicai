@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	
+	<!-- teacher front page -->
+	
+	<definition name="teacher.basic" extends="teacherfront-layout">
+		
+		<put-attribute name="title" value="教师主页" />
+	</definition>
+
+	<definition name="teacher.resource.list" extends="teacherfront-layout">
+		<put-attribute name="title" value="资源" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/detail/resource/list/list.jsp"></put-attribute>
+	</definition>
+
+	<definition name="teacher.resource.detail" extends="teacherfront-layout">
+		<put-attribute name="title" value="资源" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/detail/resource/view/view.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.patent.list" extends="teacherfront-layout">
+		<put-attribute name="title" value="资源" />
+		
+		<put-attribute name="right" value="/WEB-INF/views/teacher/detail/patent/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.patent.detail" extends="teacherfront-layout">
+		<put-attribute name="title" value="资源" />
+		
+		<put-attribute name="right" value="/WEB-INF/views/teacher/detail/patent/view/view.jsp"></put-attribute>
+	</definition>
+
+	<definition name="teacher.announcement.list" extends="teacherfront-layout">
+		<put-attribute name="title" value="公告" />
+		
+		<put-attribute name="right" value="/WEB-INF/views/teacher/detail/announcement/list/list.jsp"></put-attribute>
+	</definition>
+
+	<definition name="teacher.announcement.detail" extends="teacherfront-layout">
+		<put-attribute name="title" value="公告" />
+		
+		<put-attribute name="right" value="/WEB-INF/views/teacher/detail/announcement/view/view.jsp"></put-attribute>
+	</definition>
+
+
+	<definition name="teacher.resume" extends="teacherfront-layout">
+		<put-attribute name="title" value="简历" />
+		
+		<put-attribute name="right" value="/WEB-INF/views/teacher/detail/resume/resume.jsp"></put-attribute>
+	</definition>
+
+	<definition name="teacher.project.list" extends="teacherfront-layout">
+		<put-attribute name="title" value="教师项目" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/achievement/project/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.consult" extends="teacherfront-layout">
+		<put-attribute name="title" value="专家咨询" />
+		<put-attribute name="right" value="/WEB-INF/views/teacher/detail/consult/consult.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="teacher.consult.cart" extends="index-layout">
+		<put-attribute name="title" value="专家咨询" />
+		<put-attribute name="css" value="/resources/css/index.css" />
+		<put-attribute name="top-navbar" value="/WEB-INF/views/_shared/common/_top-navbar.jsp" />
+		<put-attribute name="search" value="" />
+		<put-attribute name="userCourse" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/teacher/detail/pay/cart.jsp" />
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+		<definition name="teacher.consult.pay" extends="index-layout">
+		<put-attribute name="title" value="专家咨询" />
+		<put-attribute name="css" value="/resources/css/index.css" />
+		<put-attribute name="top-navbar" value="/WEB-INF/views/_shared/common/_top-navbar.jsp" />
+		<put-attribute name="search" value="" />
+		<put-attribute name="userCourse" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/teacher/detail/pay/pay.jsp" />
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+</tiles-definitions>

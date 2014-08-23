@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 
 import com.knet51.ccweb.jpa.entities.User;
@@ -39,6 +41,7 @@ public class PatentServiceImpl implements PatentService {
 
 	@Override
 	public List<Patent> findPatentList() {
+		
 		return patentRespository.findAll();
 	}
 
@@ -168,6 +171,14 @@ public class PatentServiceImpl implements PatentService {
 
 	public Long getPatentSum() {
 		return patentRespository.count();
+	}
+
+	@Override
+	public Page<Patent> findPatentByUserAndStatus(int pageNum, int pageSize,
+			User user, Integer status) {
+		Pageable pageable = new PageRequest(pageNum, pageSize, Direction.DESC, "publishDate","patentNum");
+		Page<Patent> page = patentRespository.findPatentByUserAndStatus(user, status, pageable);
+		return page;
 	}
 
 

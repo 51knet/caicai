@@ -106,3 +106,63 @@ table.green td{
 .myerror{
 	color:#b94a48;
 }
+
+.leftInfo{
+	background-color: #ccdfa8; 
+	margin-bottom: 20px; 
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+
+}
+.leftInfo .top{
+	/*border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;*/
+	height: 40px; 
+	text-align: center; 
+	padding-top:1px; 
+	background-color: #b1cf75;
+}
+.leftInfo .content{
+	text-align: left; 
+	margin-left: 40px; 
+	margin-right: 40px; 
+	margin-top: 10px; 
+	padding-bottom:10px;
+	line-height: 25px;
+}
+
+.eleftInfo{
+	margin-bottom: 20px; 
+	background: #fff5e0;
+	border: 1px solid #f77605;
+	/*border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;*/
+
+}
+.eleftInfo .top{
+	height: 40px; 
+	text-align: center; 
+	padding-top:1px; 
+	color: #f2e690;
+	background-color: #f77605;
+}
+.eleftInfo .content{
+	text-align: left; 
+	margin-left: 20px; 
+	margin-right: 20px; 
+	margin-top: 10px; 
+	padding-bottom:10px;
+	line-height: 25px;
+	color: #80b029;
+}
+.ccc_border{
+	border: 1px solid #ccc;
+}
+.round {
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}

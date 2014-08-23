@@ -18,14 +18,6 @@
 		<span>大学</span><span>中学</span><span>小学</span><span>其他</span>
 		</div> -->
 
-  	<div >
-	<c:choose>
-	<c:when test="${fn:length(teacherList)==0}">
-       <div class="teacherInfo">
-       	<h3>暂无数据</h3>
-       </div>
-	</c:when>
-	<c:otherwise>
 	<div class="teacherInfo">
       	<c:forEach items="${page.content}" var="t">
 			<div class="span3" >
@@ -57,10 +49,6 @@
 				</c:choose>
 			</div>
 		</c:forEach>
-	</div>
-	</c:otherwise>
-	</c:choose>
-	
 	</div>
 </div>
 <div  class="teacher" style="margin-left: 30px;" ><jsp:include page="/WEB-INF/views/_shared/pagination.jsp"></jsp:include></div>

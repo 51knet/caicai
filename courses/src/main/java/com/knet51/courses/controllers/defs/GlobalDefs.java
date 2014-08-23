@@ -32,6 +32,13 @@ public final class GlobalDefs {
 	public static final Integer PATENT_CHINA = 0;
 	public static final Integer PATENT_FOREIGN = 1;
 	
+	public static final Integer STATUS_COURSE_RESOURCE = 1;// show the resource in course
+	public static final Integer STATUS_RESOURCE = 2; //show the resource in teacher resource
+	public static final Integer STATUS_RESOURCE_DESTORY = 3; //the resource has been deleted;
+	
+	public static final String STATUS_RESOURCETYPE = "rt";// just show the type in resource page
+	public static final String STATUS_COURSE_RESOURCETYPE ="crt"; // just show the type in course resource page
+	
 	// pass or waite status
 	public static final Integer WAITE = 0;
 	public static final Integer PASS = 1;

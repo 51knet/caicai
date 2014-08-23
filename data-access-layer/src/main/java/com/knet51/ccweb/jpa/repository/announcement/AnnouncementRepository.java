@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.knet51.ccweb.jpa.entities.Announcement;
 import com.knet51.ccweb.jpa.entities.User;
-@Transactional
 public interface AnnouncementRepository  extends JpaRepository<Announcement, Long>, JpaSpecificationExecutor<Announcement>{
 	
 	Page<Announcement> findAnnoByUserAndForbiddenIsNull(User user, Pageable pageable);
