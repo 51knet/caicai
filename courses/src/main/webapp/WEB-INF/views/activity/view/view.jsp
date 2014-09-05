@@ -29,7 +29,7 @@
 	width: 96%;
 }
 </style>
-<c:set scope="page" value="http://localhost:8080/patents" var="url"></c:set>
+
  <!-- 
  <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> <a href="<c:url value='/activity/list'></c:url>" >活动列表</a> >> 活动详情 </div>-->
 <div class="container title"  >

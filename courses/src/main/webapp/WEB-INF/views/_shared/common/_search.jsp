@@ -73,7 +73,7 @@ width: 80px; background-color: #3d5b8d; color: #fff;
 	color: #fff;  margin: 10px 0px 0px 2px; width: 60px;
 }
 </style>
-<c:set scope="page" value="http://localhost:8080/patents" var="url"></c:set>
+
 <div class="container search-bar" >
 	<div class="span7 padding_left"  style="width: 520px;">
 	<div class="outer" >
