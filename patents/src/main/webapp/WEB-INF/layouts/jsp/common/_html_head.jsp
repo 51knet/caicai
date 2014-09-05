@@ -25,5 +25,5 @@
 	<script type="text/javascript"  src="<c:url value="/resources/js/date/WdatePicker.js" />" ></script>
     <link href="<c:url value="/resources/js/video-js/video-js.min.css" />" rel="stylesheet">
 	<script type="text/javascript" charset="utf-8" src="<c:url value="/resources/js/video-js/video.min.js" />"></script>
-	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=486428445" type="text/javascript" charset="utf-8"></script>
+	<!-- <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=486428445" type="text/javascript" charset="utf-8"></script> -->
 	

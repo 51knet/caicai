@@ -72,8 +72,8 @@ public class PatentPageController {
 		return "admin."+userInfo.getRole()+".patent.new";
 	}
 	
-	@RequestMapping("/admin/patent/edit/{patentNum}")
-	public String showPatentPreview(HttpSession session,Model model,@PathVariable String patentNum){
+	@RequestMapping("/admin/patent/edit")
+	public String showPatentPreview(HttpSession session,Model model,@RequestParam(value = "id") String patentNum){
 		Patent patent = patentService.findOne(patentNum);
 		UserInfo userInfo = (UserInfo) session.getAttribute(GlobalDefs.SESSION_USER_INFO);
 		

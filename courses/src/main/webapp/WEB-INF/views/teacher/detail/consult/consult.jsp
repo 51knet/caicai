@@ -4,36 +4,30 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <script type="text/javascript">
+
 var teacher_id = "${teacher_id}";
 $(document).ready(function(){
-	
-	  $("#consult_comment").ajaxStart(function(){
-	    $(this).html("<img src='<c:url value='/resources/img/default/loading.gif'></c:url>' >");
-	  });
+
 	   $("#consult_comment").load("<c:url value='/teacher/"+ teacher_id+"/consult/comment/list'></c:url>",{"pageNumber": "0"} , function(data){
 		   $("#consult_comment").html(data);
 	   });
 	   
-	   $("#consult_order").ajaxStart(function(){
-		    $(this).html("<img src='<c:url value='/resources/img/default/loading.gif'></c:url>' >");
-	  });
 	   $("#consult_order").load("<c:url value='/teacher/"+ teacher_id+"/consult/order/list'></c:url>",{"pageNumber": "0"} , function(data){
 		   $("#consult_order").html(data);
 	   });
-});
-function ajaxPage( pageNumber){
-	$.post("<c:url value='/teacher/"+ teacher_id+"/consult/comment/list'></c:url>",{"pageNumber": pageNumber} , function(data){
-		   $("#consult_comment").html(data);
+}); 
+function ajaxPage( pageNumber, type){
+	$.post("<c:url value='/teacher/"+ teacher_id+"/consult/"+type+"/list'></c:url>",{"pageNumber": pageNumber} , function(data){
+		   $("#consult_"+type).html(data);
 	  });
 
 }
-
 </script>
 <style>
 .row-fluid.custom {
 	margin-bottom: 20px;
 	padding: 0px 0px 10px;
-	background: #FAFAFB;
+	
 }
 
 .row-fluid.custom .row {
@@ -46,7 +40,7 @@ function ajaxPage( pageNumber){
 	margin: 20px 40px;
 	width:675px;
 	max-width:675px;
-	word-wrap:break-word;	
+	word-wrap:break-word;
 }
 
 .row-fluid.custom .content .bb{

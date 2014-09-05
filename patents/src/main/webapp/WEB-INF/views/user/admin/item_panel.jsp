@@ -106,6 +106,7 @@ border-bottom-color: transparent;
 		<li><a href='<c:url value="/admin/technology/list"></c:url>' >我的成果</a></li>
 		<li><a href='<c:url value="/admin/projects/list"></c:url>' >融资项目</a></li>
 		<li><a href='<c:url value="/admin/applyright/new"></c:url>' >权限申请</a></li>
+		<li><a href='<c:url value="/admin/consult/order/list"></c:url>' >咨询订单</a></li>
 		<c:if test="${investcompany != null }">
 			<li><a href='<c:url value="/admin/investcompany/about"></c:url>' >投资机构介绍</a></li>
 		</c:if>

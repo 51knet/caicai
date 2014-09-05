@@ -10,4 +10,5 @@ import com.knet51.ccweb.jpa.entities.User;
 
 public interface ActivityRepository extends JpaRepository<Activity, Long>,JpaSpecificationExecutor<Activity> {
 	Page<Activity> findActivityByUser(User user ,Pageable pageable);
+	Page<Activity> findActivityByFilePathIsNotNull(Pageable pageable);
 }

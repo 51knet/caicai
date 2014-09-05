@@ -36,6 +36,8 @@
 	
 	<div class="fwlc">
 		<h4>订单提交</h4>
+		<h5><i class="icon-star"></i><i>必须填写项</i></h5>
+ 		<h5><i class="icon-star"></i><i>填写的邮箱为登录账号，请牢记。密码会自动发至邮箱</i></h5>
 		<hr>
 		<form action="<c:url value='/teacher/${teacher_id}/consult/pay'></c:url>" method="post" id="cart_form">
 		<div class="row-fluid">

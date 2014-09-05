@@ -1,12 +1,15 @@
-package com.knet51.ccweb.jpa.entities.teacher;
+package com.knet51.ccweb.jpa.entities.consult;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
 import com.knet51.ccweb.jpa.entities.AbstractEntity;
+import com.knet51.ccweb.jpa.entities.Teacher;
+import com.knet51.ccweb.jpa.entities.User;
 
 @Entity
-public class ConsultCart extends AbstractEntity {
+public class ConsultOrder extends AbstractEntity {
 	private String phone;
 	private String email;
 	private String title;
@@ -14,6 +17,22 @@ public class ConsultCart extends AbstractEntity {
 	private String content;
 	
 	private String username;
+	private String date;
+	
+	
+	@ManyToOne
+	private User teacher;
+	
+	@ManyToOne
+	private User consulter;
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 
 	public String getPhone() {
 		return phone;
@@ -55,7 +74,24 @@ public class ConsultCart extends AbstractEntity {
 		this.username = username;
 	}
 
-	public ConsultCart() {
+	public User getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(User teacher) {
+		this.teacher = teacher;
+	}
+
+	public User getConsulter() {
+		return consulter;
+	}
+
+	public void setConsulter(User consulter) {
+		this.consulter = consulter;
+	}
+
+
+	public ConsultOrder() {
 		super();
 	}
 	

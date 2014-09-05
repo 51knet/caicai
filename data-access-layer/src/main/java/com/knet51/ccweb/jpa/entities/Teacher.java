@@ -29,6 +29,7 @@ public class Teacher {
 	private String major;
 	private String isEnterprise;
 	private String forbidden;
+	private String infor;
 	public Long getId() {
 		return id;
 	}
@@ -117,6 +118,14 @@ public class Teacher {
 
 	public void setIsEnterprise(String isEnterprise) {
 		this.isEnterprise = isEnterprise;
+	}
+
+	public String getInfor() {
+		return infor;
+	}
+
+	public void setInfor(String infor) {
+		this.infor = infor;
 	}
 
 	@Override

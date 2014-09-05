@@ -110,6 +110,7 @@ public class ResumeDetailController {
 			teacher.setTitle(personalInfoForm.getTitle().trim());
 			teacher.setMajor(personalInfoForm.getMajor().trim());
 			teacher.setRole(personalInfoForm.getRole().trim());
+			teacher.setInfor(personalInfoForm.getInfor().trim());
 			teacher = teacherService.updateTeacher(teacher);
 			userInfo.setUser(newUser);
 			userInfo.setTeacher(teacher);

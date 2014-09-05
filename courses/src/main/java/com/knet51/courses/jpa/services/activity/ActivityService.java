@@ -10,4 +10,5 @@ public interface ActivityService {
 	Page<Activity> findAllPage(int pageNumber,int pageSize);
 	List<Activity> findAllList();
 	Activity findOne(Long id);
+	Page<Activity> findAllByFilePathIsNotNull(int pageNumber, int pageSize);
 }

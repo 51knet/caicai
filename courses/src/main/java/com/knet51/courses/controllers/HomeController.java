@@ -102,8 +102,9 @@ public class HomeController {
 		model.addAttribute("patentRequire", patentRequire);
 		model.addAttribute("technologyRequire", technologyRequire);
 		
-		Page<Activity> activitys = activityService.findAllPage(0, 8);
+		Page<Activity> activitys = activityService.findAllByFilePathIsNotNull(0, 8);
 		model.addAttribute("activitys", activitys);
+		model.addAttribute("activityCount", activitys.getContent().size());
 		
 		List<PatentType> patentTypeList = patentTypeService.findAllPatentType();
 		List<PatentField> patentFieldList = patentFieldService.findAll();

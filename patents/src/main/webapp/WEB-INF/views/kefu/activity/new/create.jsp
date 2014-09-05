@@ -45,7 +45,7 @@
 				<div class="control-group" >
 					<div class="controls">
 						活动图片：<input type="file" name="coverFile" /><span style="font-size: 13px; color: red;">${errorMsg }</span>
-										<br><span style="color: red;  margin-left: 70px;">只支持jpg、gif、bmp、png格式，建议封面宽度440px，高度220px</span>
+										<br><span style="color: red;  margin-left: 70px;">只支持jpg、gif、bmp、png格式，建议封面宽度500px，高度238px</span>
 						<span class="help-inline"></span><br>
 					</div>
 				</div>

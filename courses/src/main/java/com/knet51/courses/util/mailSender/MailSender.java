@@ -57,6 +57,24 @@ public class MailSender {
 		SimpleMailSender sms = new SimpleMailSender();
 		return sms.sendHtmlMail(mailInfo);
 	}
+	public boolean SendConsultUploadMail(String sendToAddress,String sendInfo) {
+		MailSenderInfo mailInfo = new MailSenderInfo();
+		
+		String context = sendInfo;
+		context += "<div>本邮件为自动发送，请勿回复。</div>";
+		mailInfo.setMailServerHost("smtp.163.com");
+		mailInfo.setMailServerPort("25");
+		mailInfo.setValidate(true);
+		mailInfo.setUserName("caicaiadmin@163.com");
+		mailInfo.setPassword("123qweasd");
+		mailInfo.setFromAddress("caicaiadmin@163.com");
+		mailInfo.setToAddress(sendToAddress);
+		mailInfo.setSubject("感谢您的关注。");
+		mailInfo.setContent(context);
+		mailInfo.setTimeout("10000");
+		SimpleMailSender sms = new SimpleMailSender();
+		return sms.sendHtmlMail(mailInfo);
+	}
 
 	public String produceRandomString() {
 		String radStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";

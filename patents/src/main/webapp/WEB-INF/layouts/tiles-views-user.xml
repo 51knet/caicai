@@ -129,6 +129,18 @@
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/projects/edit/edit.jsp"></put-attribute>
 	</definition>
+	<!-- consult  -->
+	<definition name="admin.user.consult.order.list" extends="user-admin-layout">
+		<put-attribute name="title" value="咨询订单" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/consult/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="admin.user.consult.order.view" extends="user-admin-layout">
+		<put-attribute name="title" value="咨询订单" />
+		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
+		<put-attribute name="right" value="/WEB-INF/views/user/admin/consult/view/view.jsp"></put-attribute>
+	</definition>
 	
 	<!-- applyright  -->
 	<definition name="admin.user.applyright.add" extends="user-admin-layout">

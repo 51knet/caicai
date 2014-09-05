@@ -38,4 +38,12 @@ public class ActivityServiceImpl implements ActivityService {
 		return activityRepository.findOne(id);
 	}
 
+	@Override
+	public Page<Activity> findAllByFilePathIsNotNull(int pageNumber,
+			int pageSize) {
+		Pageable pageable = new PageRequest(pageNumber, pageSize, Direction.DESC, "id");
+		Page<Activity> page = activityRepository.findActivityByFilePathIsNotNull(pageable);
+		return page;
+	}
+
 }

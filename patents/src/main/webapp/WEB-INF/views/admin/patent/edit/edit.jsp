@@ -198,7 +198,7 @@
 			});
 			$("#patent_form").submit(function(){
 				editor.sync();
-				return checkEmptyAjax("patent_form","new/patentInfoAJAX");
+				return checkEmptyAjax("patent_form","<c:url value='/admin/patent/edit/new/patentInfoAJAX'></c:url>");
 			});
 			prettyPrint();
 	    });

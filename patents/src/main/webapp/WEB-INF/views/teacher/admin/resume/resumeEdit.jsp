@@ -58,18 +58,15 @@
 		<div class="tabbable">
 			<ul class="nav nav-tabs">
 				<li <c:if test='${active == "personal"}'>class="active"</c:if>><a href="#personal_info_tab" data-toggle="tab">个人信息</a></li>
-				<li <c:if test='${active == "contact"}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>
-				<c:if test="${sessionScope.sessionUserInfo.teacher.isEnterprise == null}">
-					<li <c:if test='${active == "edu"}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
-					<li <c:if test='${active == "work"}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
-					<li <c:if test='${active == "thesis"}'>class="active"</c:if>><a href="#thesis_tab" data-toggle="tab">论文</a></li>
-					<li <c:if test='${active == "project"}'>class="active"</c:if>><a href="#project_tab" data-toggle="tab">项目</a></li>
-				</c:if>
+				<li <c:if test='${active == "contact"}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>	
+				<li <c:if test='${active == "edu"}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
+				<li <c:if test='${active == "work"}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
+				<li <c:if test='${active == "thesis"}'>class="active"</c:if>><a href="#thesis_tab" data-toggle="tab">论文</a></li>
+				<li <c:if test='${active == "project"}'>class="active"</c:if>><a href="#project_tab" data-toggle="tab">项目</a></li>
 				<li <c:if test='${active == "honor"}'>class="active"</c:if>><a href="#honor_tab" data-toggle="tab">荣誉</a></li>
 			</ul>
 			<div class="tab-content">
 				<div class="tab-pane <c:if test='${active == "personal"}'>active</c:if>" id="personal_info_tab">
-					<c:if test="${sessionUserInfo.teacher.isEnterprise == null}">
 						<form id="personal_info_form" action="personalInfo" class="form-horizontal" method="post">
 							<div id="message" style="margin-left: 155px;"><h4 style="color: #adcc75">${message}</h4></div>
 							<div class="control-group" id="name">
@@ -124,29 +121,19 @@
 									<span class="help-inline"><form:errors path="role"></form:errors></span>
 								</div>
 							</div>
+							<div class="control-group" id="infor">
+								<label class="control-label" for="infor"><i class="icon-star"></i> 导师简介</label>
+								<div class="controls">
+									<textarea style="width:80%;" name="infor">${sessionUserInfo.teacher.infor}</textarea>
+									<span class="help-inline"><form:errors path="infor"></form:errors></span>
+								</div>
+							</div>
 						<div class="control-group">
 							<div class="controls">
 								<button type="submit" onclick="return personalOnclick();" class="btn  btn-success">保 存</button>
 							</div>
 						</div>
 					</form>
-					</c:if>
-					<c:if  test="${sessionUserInfo.teacher.isEnterprise != null}">
-						<form id="enterprise_info_form" action="enterprisepersonalInfo" class="form-horizontal" method="post">
-							<div id="messages"  style="margin-left: 155px;"><h4 style="color: #adcc75">${message}</h4></div>
-							<div class="control-group" id="name">
-								<label class="control-label" for="name"><i class="icon-star"></i> 姓名</label>
-								<div class="controls">
-									<input type="text" name="name" placeholder="姓名" value="${sessionUserInfo.name}"> <span class="help-inline"><form:errors path="name"></form:errors></span>
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls">
-									<button type="submit" onclick="return personalOnclick();" class="btn  btn-success">保 存</button>
-								</div>
-							</div>
-						</form>
-					</c:if>
 				</div>
 				<div class="tab-pane <c:if test='${active == "contact"}'>active</c:if>" id="contact_info_tab">
 					<form class="form-horizontal" action="contactInfo" method="post" id="teacher_contact_from">

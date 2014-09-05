@@ -1,9 +1,10 @@
 package com.knet51.courses.util;
 
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -79,6 +80,43 @@ public class MyUtil {
 	
 	private static String getContextPath(HttpServletRequest request){
 		return request.getSession().getServletContext().getRealPath("/");
+	}
+	
+	
+	public static void copyValidBeanToDestBean(Object orgin, Object dest){
+		Field[] orginFields = orgin.getClass().getDeclaredFields();
+		try {
+			Field[] destFields = dest.getClass().getDeclaredFields();	
+			for (Field orgField : orginFields) {
+				for (Field destField : destFields) {
+					if(destField.getName().equals(orgField.getName())){
+						//System.out.println("---->destfieldname="+destField.getName()+"----- orginfieldname="+orgField.getName());
+						Method destSetMethod = dest.getClass().getMethod("set"+changeFieldNameFirstUpper(destField.getName()), destField.getType());
+						Method orginGetMethod = orgin.getClass().getMethod("get"+changeFieldNameFirstUpper(destField.getName()));
+						destSetMethod.invoke(dest, orginGetMethod.invoke(orgin));
+					}
+				}
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public static  String changeFieldNameFirstUpper(String src) {   
+        if (src != null) {
+            StringBuffer sb = new StringBuffer(src);   
+            sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));   
+            return sb.toString();   
+        } else {   
+            return null;   
+        }   
+    }
+	
+	public static String chengeDateToString(Date date){
+		String dates = null;
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		dates = format.format(date);
+		return dates;
 	}
 	
 	public static void main(String[] args) {

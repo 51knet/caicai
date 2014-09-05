@@ -43,7 +43,7 @@
 					<tr>
 						<td ><a href='<c:url value="/admin/patent/view?id=${page.patentNum }"></c:url>' >${page.patentNum }</a></td><td >${page.patentName }</td>
 						<td >${page.applicationDate }</td>
-						<td align="center"><a href='<c:url value="/admin/patent/edit/${page.patentNum}"></c:url>'>修改</a> | 
+						<td align="center"><a href='<c:url value="/admin/patent/edit?id=${page.patentNum}"></c:url>'>修改</a> | 
 						<a class="destoryPatentPostBtn" href="#destoryPatentPostModal" role="button" data-toggle="modal" data-target="#destoryPatentPostModal">删除</a><input type="hidden"  value="${page.patentNum}"> </td>
 					</tr>
 				</c:forEach>

@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<!-- <script type="text/javascript" src="<c:url value="/resources/js/mytab.js" />"></script> -->
+<link href="<c:url value='/resources/js/jquerysolid/css/jquery.slideBox.css'></c:url>" rel="stylesheet" type="text/css" />
+ <script type="text/javascript" src="<c:url value="/resources/js/jquerysolid/js/jquery.slideBox.min.js" />"></script> 
 <style>
 .container.search-bar {
 	height: 330px;
@@ -72,7 +73,7 @@ width: 80px; background-color: #3d5b8d; color: #fff;
 	color: #fff;  margin: 10px 0px 0px 2px; width: 60px;
 }
 </style>
-
+<c:set scope="page" value="http://localhost:8080/patents" var="url"></c:set>
 <div class="container search-bar" >
 	<div class="span7 padding_left"  style="width: 520px;">
 	<div class="outer" >
@@ -114,15 +115,23 @@ width: 80px; background-color: #3d5b8d; color: #fff;
 	</div>
 	
 	<div style="margin-top: 75px;">
-		<!-- <div id="Layer1" style="position:absolute;margin-top:75px; width:500; height:250; z-index:1"> 
-			<div align="center"> 
-			<embed src="<c:url value='/resources/img/default/home.swf'></c:url> " width="500" height="250" wmode="transparent"> 
-			</div>
-		</div> 
-		<div id="Layer2" style="position:absolute;margin-top:75px;width:500; height:250; z-index:2">
-			
-		</div> -->
-		<img src="<c:url value='/resources/img/default/home_pic.jpg'></c:url>"  >
+		<div id="demo1" class="slideBox">
+		  <ul class="items">
+		    <c:choose>
+		    	<c:when test="${activityCount <= 0 }">
+		    		<li><a href="#" ><img src="<c:url value='/resources/img/default/home_pic.jpg'></c:url>"  ></a></li>
+				    <li><a href="#" ><img src="<c:url value='/resources/img/default/home_pic1.jpg'></c:url>"  ></a></li>
+				    <li><a href="#" ><img src="<c:url value='/resources/img/default/home_pic2.jpg'></c:url>"  ></a></li>
+				    <li><a href="#" ><img src="<c:url value='/resources/img/default/home_pic3.jpg'></c:url>"  ></a></li>
+		    	</c:when>
+		    	<c:otherwise>
+			    	<c:forEach items="${activitys.content }" var="activity" begin="0" end="4">
+		    			<li><a href="#" ><img src="<c:url value='${url}/${activity.filePath }'></c:url>"  ></a></li>
+		    		</c:forEach>
+		    	</c:otherwise>
+		    </c:choose>
+		  </ul>
+		</div>
 	</div>
 </div>
 	
@@ -168,5 +177,12 @@ width: 80px; background-color: #3d5b8d; color: #fff;
 		}
 	});	
 })(jQuery);
+
+jQuery(function($){
+	$('#demo1').slideBox({
+		hideClickBar : false
+	});
+});
+
 
 </script>

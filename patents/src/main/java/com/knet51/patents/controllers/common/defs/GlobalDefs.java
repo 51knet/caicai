@@ -34,8 +34,8 @@ public final class GlobalDefs {
 	public static final Integer FOREIGN = 1;
 	
 	// activity photo's width and height
-	public static final int ACTIVITY_PHOTO_WIDTH = 440;
-	public static final int ACTIVITY_PHOTO_HEIGHT = 220;
+	public static final int ACTIVITY_PHOTO_WIDTH = 500;
+	public static final int ACTIVITY_PHOTO_HEIGHT = 238;
 	
 	
 	public static final Integer WAITE = 0;
