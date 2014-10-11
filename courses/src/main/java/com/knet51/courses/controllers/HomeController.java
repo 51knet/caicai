@@ -20,18 +20,26 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.knet51.ccweb.jpa.entities.Activity;
+import com.knet51.ccweb.jpa.entities.Announcement;
+import com.knet51.ccweb.jpa.entities.EduBackground;
 import com.knet51.ccweb.jpa.entities.Teacher;
 import com.knet51.ccweb.jpa.entities.User;
+import com.knet51.ccweb.jpa.entities.WorkExp;
 import com.knet51.ccweb.jpa.entities.patent.Patent;
 import com.knet51.ccweb.jpa.entities.patent.PatentField;
 import com.knet51.ccweb.jpa.entities.patent.PatentType;
 import com.knet51.ccweb.jpa.entities.projects.Projects;
 import com.knet51.ccweb.jpa.entities.requirement.PatentRequirement;
 import com.knet51.ccweb.jpa.entities.requirement.Requirement;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherHonor;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherProject;
+import com.knet51.ccweb.jpa.entities.teacher.TeacherThesis;
 import com.knet51.ccweb.jpa.entities.technology.Technology;
 import com.knet51.courses.beans.UserInfo;
 import com.knet51.courses.controllers.defs.GlobalDefs;
@@ -39,7 +47,14 @@ import com.knet51.courses.jpa.services.TeacherCourseService;
 import com.knet51.courses.jpa.services.TeacherService;
 import com.knet51.courses.jpa.services.UserCourseService;
 import com.knet51.courses.jpa.services.UserService;
+import com.knet51.courses.jpa.services.achievement.EduBackgroundService;
+import com.knet51.courses.jpa.services.achievement.TeacherHonorService;
+import com.knet51.courses.jpa.services.achievement.TeacherPatentService;
+import com.knet51.courses.jpa.services.achievement.TeacherProjectService;
+import com.knet51.courses.jpa.services.achievement.TeacherThesisService;
+import com.knet51.courses.jpa.services.achievement.WorkExpService;
 import com.knet51.courses.jpa.services.activity.ActivityService;
+import com.knet51.courses.jpa.services.annoncement.AnnouncementService;
 import com.knet51.courses.jpa.services.patent.PatentFieldService;
 import com.knet51.courses.jpa.services.patent.PatentService;
 import com.knet51.courses.jpa.services.patent.PatentTypeService;
@@ -78,6 +93,22 @@ public class HomeController {
 	private TechnologyService technologyService;
 	@Autowired
 	private ProjectsService projectsService;
+	
+	@Autowired
+	private EduBackgroundService eduBackgroundService;
+	@Autowired
+	private WorkExpService workExpService;
+	@Autowired
+	private TeacherThesisService thesisService;
+	@Autowired
+	private TeacherProjectService projectService;
+	@Autowired
+	private TeacherPatentService teacherPatentService;
+	@Autowired
+	private TeacherHonorService honorService;
+	@Autowired
+	private AnnouncementService annoService;
+	
 	
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
@@ -135,32 +166,13 @@ public class HomeController {
 				}
 			}
 		}
-//		model.addAttribute("courseList", cBeans);
-//		model.addAttribute("courseCount", cBeans.size());
-		//model.addAttribute("teacherCount", );
+
 		session.setAttribute("teacherCount", GlobalDefs.HOME_TEACHER_COUNT);
 		session.setAttribute("patentCount", GlobalDefs.HOME_PATENT_COUNT);
 		session.setAttribute("requirementCount", GlobalDefs.HOME_PATENT_REQUIRE_COUNT);
 		session.setAttribute("patentTradeCount", GlobalDefs.HOME_PATENT_TRADE_COUNT);
 		session.setAttribute("patentCNCount", GlobalDefs.HOME_PATENT_CN_COUNT);
 		
-//		if (currentUser != null) {
-//			List<UserCourse> userCourseList = userCourseService
-//					.findUserCourseByUserid(currentUser.getId());
-//		
-//			List<Course> userCourse = new ArrayList<Course>();
-//			for (UserCourse userCourses : userCourseList) {
-//				Course course = courseService.findOneById(userCourses.getTeachercourseid());
-//				userCourse.add(course);
-//			}
-////			for (int i = 0; i < userCourseList.size(); i++) {
-////				Course course = courseService.findOneById(userCourseList.get(i)
-////						.getTeachercourseid());
-////				userCourse.add(course);
-////			}
-//			model.addAttribute("userCourse", userCourse);
-//			model.addAttribute("userCourseCount", userCourse.size());
-//		}
 		model.addAttribute("active", "patent");
 		
 		Page<Projects> cpList = projectsService.findProjectsByCompleteAndStatus(0,3,GlobalDefs.PASS, GlobalDefs.COMPLETE);
@@ -188,4 +200,124 @@ public class HomeController {
 		return ;
 	}
 	
+	// diplomat
+	@RequestMapping(value="/diplomat") 
+	public String showDiplomat(Model model,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "20") int pageSize){
+		Page<Teacher> page = teacherService.findAllEnterpriseByisEnterprise(pageNumber, pageSize, "diplomat");
+		model.addAttribute("page", page);
+		return "diplomat.list";
+	}
+	@RequestMapping(value="/diplomat/{id}")
+	public String showDiplomat(Model model, @PathVariable Long id){
+		User user = userService.findOne(id);
+		Teacher teacher=teacherService.findOne(id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+
+		model.addAttribute("teacher_id", id);
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("role", userInfo.getTeacherRole());
+		model.addAttribute("teacher", teacher);
+		return "diplomat.basic";
+	}
+	
+	@RequestMapping(value="/diplomat/{teacher_id}/resume")
+	public String showDiplomatResume(Model model, @PathVariable Long teacher_id){
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
+		
+		List<EduBackground> eduInfo = eduBackgroundService.findEduListByTeacherId(teacher_id);
+		model.addAttribute("eduInfo", eduInfo);
+		model.addAttribute("eduCount", eduInfo.size());
+
+		List<WorkExp> workInfo = workExpService.findWorkList(teacher_id);
+		model.addAttribute("workInfo", workInfo);
+		model.addAttribute("workCount", workInfo.size());
+
+
+		List<TeacherThesis> thesisList = thesisService.getAllThesisById(teacher_id);
+		model.addAttribute("thesisList", thesisList);
+		model.addAttribute("thesisCount", thesisList.size());
+
+		List<TeacherProject> projectList = projectService
+				.getAllProjectById(teacher_id);
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("projectCount", projectList.size());
+
+		List<TeacherHonor> honorList = honorService.getAllHonorById(teacher_id);
+		model.addAttribute("honorList", honorList);
+		model.addAttribute("honorCount", honorList.size());
+		return "diplomat.resume";
+	}
+	
+	/* diplomat front page */
+	@RequestMapping(value="/diplomat/{teacher_id}/announcement/list")
+	public String annoList(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
+		Page<Announcement> page = annoService.findAllAnnoByUser(pageNumber, pageSize, user);
+		model.addAttribute("page", page);
+		return "diplomat.announcement.list";
+	}
+	
+	@RequestMapping(value="/diplomat/{teacher_id}/announcement/view/{anno_id}")
+	public String detailAnno(@PathVariable Long teacher_id,@PathVariable Long anno_id ,Model model){
+		
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
+		Announcement announcement = annoService.findOneById(anno_id);
+		model.addAttribute("announcement", announcement);
+		return "diplomat.announcement.detail";
+	}
+	
+	@RequestMapping(value="/diplomat/{teacher_id}/project/list")
+	public String projectList(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
+		Page<Announcement> page = annoService.findAllAnnoByUser(pageNumber, pageSize, user);
+		model.addAttribute("page", page);
+		return "diplomat.project.list";
+	}
+	
+	@RequestMapping(value="/diplomat/{teacher_id}/requirement/list")
+	public String requirementList(@PathVariable Long teacher_id,Model model,@RequestParam(value="pageNumber",defaultValue="0") 
+	int pageNumber, @RequestParam(value="pageSize", defaultValue="20") int pageSize){
+		
+		User user = userService.findOne(teacher_id);
+		Teacher teacher = teacherService.findOne(teacher_id);
+		UserInfo userInfo = new UserInfo(user);
+		userInfo.setTeacher(teacher);
+		logger.debug(userInfo.toString());
+		model.addAttribute("teacherInfo", userInfo);
+		model.addAttribute("teacher_id", teacher_id);
+		Page<Announcement> page = annoService.findAllAnnoByUser(pageNumber, pageSize, user);
+		model.addAttribute("page", page);
+		return "diplomat.requirement.list";
+	}
+	
+
 }

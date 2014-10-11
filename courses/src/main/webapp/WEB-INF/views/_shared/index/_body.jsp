@@ -135,11 +135,11 @@
 	<div class="span5 " style=" width: 440px;  ">
 		<div class="row-fluid">
 			<!-- <a class="destoryPatentPostBtn" href="#destoryPatentPostModal" role="button" data-toggle="modal" data-target="#destoryPatentPostModal"> -->
-			<a href="<c:url value='/fastupload'></c:url>">
-				<img src="<c:url value='/resources/img/default/upload.png'></c:url> " /> 
-			</a>
-		</div><br>
+			<!-- <a href="<c:url value='/fastupload'></c:url>"><img src="<c:url value='/resources/img/default/upload.png'></c:url> " /> </a> -->
+			 <a href="<c:url value='/diplomat'></c:url>"><img src="<c:url value='/resources/img/default/dip.png'></c:url> " /> </a>
+		</div>
 		
+		<br>
 		<div class="row-fluid bLine_dash"></div><br>
 		
 		<div class="row-fluid">

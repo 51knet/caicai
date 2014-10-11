@@ -8,7 +8,7 @@
 </style>
  <!-- <div class="path_link"><a href="<c:url value='/'></c:url>" >首页 </a> >> 专家列表 </div>（${fn:length(teacherList)}） -->
  <div class="container title"  >
-		<div class="innerLeftTitle">热门专家</div>
+		<div class="innerLeftTitle">外交官</div>
  	</div>
 <div class="container teacher">
 			<!-- <div class="selete_filter">
@@ -23,30 +23,22 @@
 			<div class="span3" >
 				<c:choose>
 					<c:when test="${t.user.photo_url!=null||t.user.photo_url!=''}">
-						<a href="/courses/teacher/${t.id }"><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' class="photos" /></a>
+						<a href="/courses/diplomat/${t.id }"><img src='<c:url value="${url}${t.user.photo_url }"></c:url>' class="photos" /></a>
 					</c:when>
 					<c:otherwise>
-						<a href="/courses/teacher/${t.id }"><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>'  class="photos"/></a>
+						<a href="/courses/diplomat/${t.id }"><img src='<c:url value="/resources/img/avatar/avatar40.png"></c:url>'  class="photos"/></a>
 					</c:otherwise>
 				</c:choose>
 				
 				<c:choose>
 					<c:when test="${t.user.name==null||t.user.name==''}">
-						<div id="contentlimite" style="width: 100px;"><a href='<c:url value="/courses/teacher/${t.id}"></c:url>'>尚未添加</a></div>
+						<div id="contentlimite" style="width: 100px;"><a href='<c:url value="/diplomat/${t.id}"></c:url>'>尚未添加</a></div>
 					</c:when>
 					<c:otherwise>
-						<div id="contentlimite" style="width: 100px;"><a href='<c:url value="/courses/teacher/${t.id}"></c:url>'>${t.user.name }</a></div>
+						<div id="contentlimite" style="width: 100px;"><a href='<c:url value="/diplomat/${t.id}"></c:url>'>${t.user.name }</a></div>
 					</c:otherwise>
 				</c:choose>
 		
-				<c:choose>
-					<c:when test="${t.college==null||t.college==''}">
-						<div id="contentlimite" style="width: 100px;">尚未添加</div>
-					</c:when>
-					<c:otherwise>
-						<div id="contentlimite" style="width: 100px;">${t.college}</div>
-					</c:otherwise>
-				</c:choose>
 			</div>
 		</c:forEach>
 	</div>

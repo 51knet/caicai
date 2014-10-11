@@ -47,8 +47,7 @@ public class TeacherResumeFrontPageController {
 	private TeacherThesisService thesisService;
 	@Autowired
 	private TeacherProjectService projectService;
-	@Autowired
-	private TeacherPatentService patentService;
+
 	@Autowired
 	private TeacherHonorService honorService;
 

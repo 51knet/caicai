@@ -282,4 +282,57 @@
 		<put-attribute name="right" value="/WEB-INF/views/projects/about/rules.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="diplomat.list" extends="index-sec-layout">
+		<put-attribute name="search" value="/WEB-INF/views/_shared/common/_margintop.jsp" />
+		<put-attribute name="title" value="外交官列表" />
+		<put-attribute name="right" value="/WEB-INF/views/diplomat/list/list.jsp" />
+	</definition>
+	
+	<definition name="diplomat.basic" extends="teacherfront-layout">
+		<put-attribute name="title" value="外交官主页" />
+		<put-attribute name="banner" value="/WEB-INF/views/diplomat/detail/index/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/views/diplomat/detail/index/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/diplomat/detail/index/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/diplomat/detail/index/right.jsp" />
+	</definition>
+	<definition name="diplomat.resume" extends="teacherfront-layout">
+		<put-attribute name="title" value="简历" />
+		<put-attribute name="banner" value="/WEB-INF/views/diplomat/detail/index/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/views/diplomat/detail/index/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/diplomat/detail/index/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/diplomat/detail/resume/resume.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="diplomat.announcement.list" extends="teacherfront-layout">
+		<put-attribute name="title" value="外交动态" />
+		<put-attribute name="banner" value="/WEB-INF/views/diplomat/detail/index/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/views/diplomat/detail/index/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/diplomat/detail/index/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/diplomat/detail/announcement/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="diplomat.project.list" extends="teacherfront-layout">
+		<put-attribute name="title" value="推荐项目" />
+		<put-attribute name="banner" value="/WEB-INF/views/diplomat/detail/index/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/views/diplomat/detail/index/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/diplomat/detail/index/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/diplomat/detail/project/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="diplomat.requirement.list" extends="teacherfront-layout">
+		<put-attribute name="title" value="技贸需求" />
+		<put-attribute name="banner" value="/WEB-INF/views/diplomat/detail/index/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/views/diplomat/detail/index/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/diplomat/detail/index/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/diplomat/detail/requirement/list/list.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="diplomat.announcement.list" extends="teacherfront-layout">
+		<put-attribute name="title" value="外交动态" />
+		<put-attribute name="banner" value="/WEB-INF/views/diplomat/detail/index/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/views/diplomat/detail/index/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/diplomat/detail/index/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/diplomat/detail/announcement/list/list.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>
