@@ -29,13 +29,13 @@
 	
 	<!-- kefu patent  -->
 	<definition name="admin.kefu.patent.list" extends="admin-layout">
-		<put-attribute name="title" value="专利列表" />
+		<put-attribute name="title" value="外交动态" />
 		<put-attribute name="banner" value="" />
 		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/kefu/patent/list/list.jsp"></put-attribute>
 	</definition>
 	<definition name="admin.kefu.patent.view" extends="admin-layout">
-		<put-attribute name="title" value="专利详情" />
+		<put-attribute name="title" value="动态详情" />
 		<put-attribute name="banner" value="" />
 		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/kefu/patent/view/view.jsp"></put-attribute>
@@ -121,13 +121,13 @@
 	
 	<!-- kefu requirement  -->
 	<definition name="admin.kefu.requirement.list" extends="admin-layout">
-		<put-attribute name="title" value="专利列表" />
+		<put-attribute name="title" value="外交动态" />
 		<put-attribute name="banner" value="" />
 		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/kefu/requirement/list/list.jsp"></put-attribute>
 	</definition>
 	<definition name="admin.kefu.requirement.view" extends="admin-layout">
-		<put-attribute name="title" value="专利详情" />
+		<put-attribute name="title" value="动态详情" />
 		<put-attribute name="banner" value="" />
 		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/kefu/requirement/view/view.jsp"></put-attribute>
@@ -135,13 +135,13 @@
 	
 	<!-- kefu patent requirement  -->
 	<definition name="admin.kefu.patentRequirement.list" extends="admin-layout">
-		<put-attribute name="title" value="专利列表" />
+		<put-attribute name="title" value="外交动态" />
 		<put-attribute name="banner" value="" />
 		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/kefu/patentRequirement/list/list.jsp"></put-attribute>
 	</definition>
 	<definition name="admin.kefu.patentRequirement.view" extends="admin-layout">
-		<put-attribute name="title" value="专利详情" />
+		<put-attribute name="title" value="动态详情" />
 		<put-attribute name="banner" value="" />
 		<put-attribute name="left" value="/WEB-INF/views/kefu/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/kefu/patentRequirement/view/view.jsp"></put-attribute>

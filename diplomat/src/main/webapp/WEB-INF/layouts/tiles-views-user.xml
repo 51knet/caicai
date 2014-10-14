@@ -56,25 +56,25 @@
 	
 	<!-- user patent  -->
 	<definition name="admin.user.patent.list" extends="user-admin-layout">
-		<put-attribute name="title" value="专利列表" />
+		<put-attribute name="title" value="外交动态" />
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/patent/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.user.patent.new" extends="user-admin-layout">
-		<put-attribute name="title" value="新建专利" />
+		<put-attribute name="title" value="新建动态" />
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/patent/new/create.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.user.patent.view" extends="user-admin-layout">
-		<put-attribute name="title" value="专利展示" />
+		<put-attribute name="title" value="动态展示" />
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/patent/view/view.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.user.patent.edit" extends="user-admin-layout">
-		<put-attribute name="title" value="专利展示" />
+		<put-attribute name="title" value="动态展示" />
 		<put-attribute name="left" value="/WEB-INF/views/user/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/patent/edit/edit.jsp"></put-attribute>
 	</definition>	
