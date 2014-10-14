@@ -83,7 +83,7 @@ function checkResources(obj){
 
 <div class="row-fluid custom round">
 	<div  class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
-		<h4>我的项目>>添加项目</h4>
+		<h4>推荐项目>>添加项目</h4>
 	</div>
 	<div class="content row-fluid">
 			<span style="margin-left: 14px;">LOGO预览：</span> 

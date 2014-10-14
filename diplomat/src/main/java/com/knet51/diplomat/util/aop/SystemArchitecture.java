@@ -23,7 +23,7 @@ public class SystemArchitecture {
 	   * in a type in the com.xyz.someapp.web package or any sub-package
 	   * under that.
 	   */
-	  @Pointcut("within(com.knet51.patents.controllers..*)")
+	  @Pointcut("within(com.knet51.diplomat.controllers..*)")
 	  public void inWebLayer() {}
 
 	  /**
@@ -31,7 +31,7 @@ public class SystemArchitecture {
 	   * in a type in the com.xyz.someapp.service package or any sub-package
 	   * under that.
 	   */
-	  @Pointcut("within(com.knet51.patents.jpa.service..*)")
+	  @Pointcut("within(com.knet51.diplomat.jpa.service..*)")
 	  public void inServiceLayer() {}
 
 	  /**
@@ -56,7 +56,7 @@ public class SystemArchitecture {
 	   * PCD, like so "bean(*Service)". (This assumes that you have
 	   * named your Spring service beans in a consistent fashion.)
 	   */
-	  @Pointcut("execution(* com.knet51.patents.jpa.services.*.*(..))")
+	  @Pointcut("execution(* com.knet51.diplomat.jpa.services.*.*(..))")
 	  public void businessService() {}
 	  
 	  /**
@@ -73,7 +73,7 @@ public class SystemArchitecture {
 		  logger.info("beforeDataAccessOperation method="+jp.getSignature().getName());
 	  }
 	  
-	  @AfterThrowing(pointcut="com.knet51.patents.util.aop.SystemArchitecture.dataAccessOperation()",
+	  @AfterThrowing(pointcut="com.knet51.diplomat.util.aop.SystemArchitecture.dataAccessOperation()",
 			  throwing="ex")
 	  public void doRecoveryActions(JoinPoint jp, DataAccessException ex) {
 	    logger.info(jp.toString()+"\n"+ex.toString());

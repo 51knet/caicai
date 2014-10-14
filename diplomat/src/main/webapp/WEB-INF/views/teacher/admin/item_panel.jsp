@@ -47,13 +47,11 @@
 </c:choose>
 <div class="left-menu-container">
 	<ul class="nav nav-tabs nav-stacked">
-		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' >我的简历</a></li>
+		<li><a href='<c:url value="/admin/resume"><c:param name="active" value="personal" /></c:url>' >我的简介</a></li>
 		<li><a href='<c:url value="/admin/details"><c:param name="active" value="photo" /></c:url>' >账号信息</a></li>
-		<li><a href='<c:url value="/admin/patent/list"></c:url>' >我的专利</a></li>
-		<li><a href='<c:url value="/admin/technology/list"></c:url>' >我的成果</a></li>
-		<li><a href='<c:url value="/admin/projects/list"></c:url>' >融资项目</a></li>
-		<li><a href='<c:url value="/admin/requirement/list"></c:url>' >技术需求</a></li>
-		<li><a href='<c:url value="/admin/patentRequirement/list"></c:url>' >专利需求</a></li>
+		<li><a href='<c:url value="/admin/technology/list"></c:url>' >外交动态</a></li>
+		<li><a href='<c:url value="/admin/projects/list"></c:url>' >推荐项目</a></li>
+		<li><a href='<c:url value="/admin/requirement/list"></c:url>' >技贸需求</a></li>
 	
 
 		

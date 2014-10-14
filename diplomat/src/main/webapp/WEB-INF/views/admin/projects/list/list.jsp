@@ -31,7 +31,7 @@
 
 <div class="row-fluid custom round">
 	<div  class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
-		<h4>我的项目</h4>
+		<h4>推荐项目</h4>
 	</div>
 	<div class="content">
 		<a  style="float: right;" href='<c:url value="/admin/projects/new"></c:url>' class="btn">添加新项目</a><br><br>

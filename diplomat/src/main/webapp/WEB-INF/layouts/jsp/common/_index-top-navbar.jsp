@@ -8,8 +8,6 @@
 			<li><a id="logo" href='<c:url value="/"></c:url>'></a></li>
 		</ul>
 		<ul class="nav pull-right">
-			<li><a href="<c:url value='/jumpToCourses'></c:url> "><img class="courselogo" src="<c:url value='/resources/img/default/courselogo.png'></c:url>">
-			<img class="goto" src="<c:url value='/resources/img/default/index/goto.png'></c:url>"></a></li>
 			<li ><div style="width: 30px;"></div></li>
 		</ul>
 	</div>

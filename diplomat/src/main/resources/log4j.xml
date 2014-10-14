@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.knet51.patents">
+	<logger name="com.knet51.diplomat">
 		<level value="debug" />
 	</logger>
 	

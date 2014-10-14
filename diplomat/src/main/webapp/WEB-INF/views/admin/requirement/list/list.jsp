@@ -35,7 +35,7 @@
 </style>
 <div class="row-fluid custom round">
 	<div  class=" row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>" >
-		<h4>技术需求</h4>
+		<h4>技贸需求</h4>
 	</div>
 	<div class="content">	
 		<a  style="float: right;" href='<c:url value="/admin/requirement/new"></c:url>' class="btn">新需求</a><br><br>

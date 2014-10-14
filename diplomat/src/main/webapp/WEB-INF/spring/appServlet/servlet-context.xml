@@ -84,7 +84,7 @@
 	</beans:bean>
 
 	
-	<context:component-scan base-package="com.knet51.patents.*" />
+	<context:component-scan base-package="com.knet51.diplomat.*" />
 	<context:component-scan base-package="com.knet51.ccweb.jpa.dao" />
   
 </beans:beans>

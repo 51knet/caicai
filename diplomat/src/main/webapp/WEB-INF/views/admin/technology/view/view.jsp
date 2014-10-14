@@ -32,7 +32,7 @@
 </script>
 <div class="row-fluid custom round">
 	<div class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
-		<h4>我的成果>>成果详情</h4>
+		<h4>外交动态>>动态详情</h4>
 	</div>
 	<div class="content">
 			<table width="100%" height="" border="1" cellpadding="5" cellspacing="0"   class=" <c:if test="${sessionUserInfo.role == 'teacher'}">green</c:if> <c:if test="${sessionUserInfo.role == 'user'}">blue</c:if>"   >

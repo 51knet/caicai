@@ -76,7 +76,7 @@
 	<filter>
 		<display-name>AuthorizationListener</display-name>
 		<filter-name>AuthorizationListener</filter-name>
-		<filter-class>com.knet51.patents.util.AuthorizationListener</filter-class>
+		<filter-class>com.knet51.diplomat.util.AuthorizationListener</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>AuthorizationListener</filter-name>

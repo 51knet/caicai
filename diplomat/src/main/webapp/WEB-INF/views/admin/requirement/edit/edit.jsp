@@ -30,7 +30,7 @@
 </style>
 <div class="row-fluid custom round">
 	<div  class="row <c:if test="${sessionUserInfo.role == 'user'}">user-row</c:if>">
-		<h4>技术需求>添加需求</h4>
+		<h4>技贸需求>添加需求</h4>
 	</div>
 	<div class="content">
 		<form action= '<c:url value="/admin/requirement/edit/edit"></c:url>'  method="post"  id="requirement_new_form" name="requirement_post" >
