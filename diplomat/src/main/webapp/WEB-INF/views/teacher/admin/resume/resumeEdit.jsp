@@ -50,7 +50,7 @@
 
 <div class="row-fluid custom round">
 	<div class="row">
-		<h4>完善简历</h4>
+		<h4>完善简介</h4>
 		<i class="icon-star"></i>
 		<i>必须填写项</i>
 	</div>
@@ -61,7 +61,6 @@
 				<li <c:if test='${active == "contact"}'>class="active"</c:if>><a href="#contact_info_tab" data-toggle="tab">联系方式</a></li>	
 				<li <c:if test='${active == "edu"}'>class="active"</c:if>><a href="#edu_bg_tab" data-toggle="tab">教育背景</a></li>
 				<li <c:if test='${active == "work"}'>class="active"</c:if>><a href="#work_exp_tab" data-toggle="tab">工作经历</a></li>
-				<li <c:if test='${active == "thesis"}'>class="active"</c:if>><a href="#thesis_tab" data-toggle="tab">论文</a></li>
 				<li <c:if test='${active == "project"}'>class="active"</c:if>><a href="#project_tab" data-toggle="tab">项目</a></li>
 				<li <c:if test='${active == "honor"}'>class="active"</c:if>><a href="#honor_tab" data-toggle="tab">荣誉</a></li>
 			</ul>
@@ -87,42 +86,19 @@
 								</div>
 							</div>
 							<div class="control-group" id="college">
-								<label class="control-label" for="college"><i class="icon-star"></i> 所属高校</label>
+								<label class="control-label" for="college"><i class="icon-star"></i> 就职国家</label>
 								<div class="controls">
-									<input type="text" name="college"   placeholder="所属高校" value="${sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead" data-items="8"
-										data-source='[<c:forEach items="${universityList}" var="university">"${university}",</c:forEach>"N/A"]'> <span class="help-inline"><form:errors path="college" /></span>
+									<input type="text" name="college"   placeholder="所属高校" value="${sessionUserInfo.teacher.college}" style="margin: 0 auto;" data-provide="typeahead"> <span class="help-inline"><form:errors path="college" /></span>
 								</div>
 							</div>
 							<div class="control-group" id="school">
-								<label class="control-label" for="school"><i class="icon-star"></i> 所属院系</label>
+								<label class="control-label" for="school"><i class="icon-star"></i> 职务</label>
 								<div class="controls">
-									<input type="text" name="school"   placeholder="所属院系" value="${sessionUserInfo.teacher.school}" style="margin: 0 auto;" data-provide="typeahead" data-items="4"
-										data-source='["计算机学院","财金学院","女子学院"]'> <span class="help-inline"><form:errors path="school" /></span>
-								</div>
-							</div>
-							<div class="control-group" id="major">
-								<label class="control-label" for="major">研究方向</label>
-								<div class="controls">
-									<input type="text" name="major" value="${sessionUserInfo.teacher.major}" placeholder="研究方向">
-									<span class="help-inline"><form:errors path="major"></form:errors></span>
-								</div>
-							</div>
-							<div class="control-group" id="title">
-								<label class="control-label" for="title">职称/职务</label>
-								<div class="controls">
-									<input type="text" name="title" value="${sessionUserInfo.teacher.title}" placeholder="职称/职务">
-									<span class="help-inline"><form:errors path="title"></form:errors></span>
-								</div>
-							</div>
-							<div class="control-group" id="role">
-								<label class="control-label" for="role">导师类别</label>
-								<div class="controls">
-									<input type="text" name="role" value="${sessionUserInfo.teacher.role}" placeholder="导师类别">
-									<span class="help-inline"><form:errors path="role"></form:errors></span>
+									<input type="text" name="school"   placeholder="所属院系" value="${sessionUserInfo.teacher.school}" style="margin: 0 auto;" data-provide="typeahead"> <span class="help-inline"><form:errors path="school" /></span>
 								</div>
 							</div>
 							<div class="control-group" id="infor">
-								<label class="control-label" for="infor"><i class="icon-star"></i> 导师简介</label>
+								<label class="control-label" for="infor"><i class="icon-star"></i> 个人简介</label>
 								<div class="controls">
 									<textarea style="width:80%;" name="infor">${sessionUserInfo.teacher.infor}</textarea>
 									<span class="help-inline"><form:errors path="infor"></form:errors></span>

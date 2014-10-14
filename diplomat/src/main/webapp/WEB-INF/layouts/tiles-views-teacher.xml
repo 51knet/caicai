@@ -13,7 +13,7 @@
 	</definition>
 
 	<definition name="admin.teacher.resume" extends="admin-layout">
-		<put-attribute name="title" value="完善简历" />
+		<put-attribute name="title" value="完善简介" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/teacher/admin/resume/resumeEdit.jsp"></put-attribute>
 		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
@@ -94,36 +94,36 @@
 	
 	<!--teacher  requirement -->
 	<definition name="admin.teacher.requirement.list" extends="admin-layout">
-		<put-attribute name="title" value="我的需求" />
+		<put-attribute name="title" value="技贸需求" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/requirement/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.teacher.requirement.new" extends="admin-layout">
-		<put-attribute name="title" value="我的需求" />
+		<put-attribute name="title" value="技贸需求" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/requirement/new/create.jsp"></put-attribute>
 	</definition>
 	<definition name="admin.teacher.requirement.edit" extends="admin-layout">
-		<put-attribute name="title" value="我的需求" />
+		<put-attribute name="title" value="技贸需求" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/requirement/edit/edit.jsp"></put-attribute>
 	</definition>
 	
 	<!-- teacher patent requirement -->
 	<definition name="admin.teacher.patentRequirement.list" extends="admin-layout">
-		<put-attribute name="title" value="我的需求" />
+		<put-attribute name="title" value="技贸需求" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/patentRequirement/list/list.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="admin.teacher.patentRequirement.new" extends="admin-layout">
-		<put-attribute name="title" value="我的需求" />
+		<put-attribute name="title" value="技贸需求" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/patentRequirement/new/create.jsp"></put-attribute>
 	</definition>
 	<definition name="admin.teacher.patentRequirement.edit" extends="admin-layout">
-		<put-attribute name="title" value="我的需求" />
+		<put-attribute name="title" value="技贸需求" />
 		<put-attribute name="left" value="/WEB-INF/views/teacher/admin/item_panel.jsp"></put-attribute>
 		<put-attribute name="right" value="/WEB-INF/views/admin/patentRequirement/edit/edit.jsp"></put-attribute>
 	</definition>

@@ -58,7 +58,7 @@
 						<c:when test="${teacherInfo.teacher.college == null||teacherInfo.teacher.college == '' }">
 						</c:when>
 						<c:otherwise>
-						<abbr title="所属高校">所属高校：</abbr> ${teacherInfo.teacher.college} 
+						<abbr title="就职国家">就职国家：</abbr> ${teacherInfo.teacher.college} 
 						<br>
 						</c:otherwise>
 						</c:choose>
@@ -66,23 +66,8 @@
 						<c:when test="${teacherInfo.teacher.school == null||teacherInfo.teacher.school == '' }">
 						</c:when>
 						<c:otherwise>
-						<abbr title="所属院系">所属院系：</abbr> ${teacherInfo.teacher.school}
+						<abbr title="职务">职务：</abbr> ${teacherInfo.teacher.school}
 						<br>
-						</c:otherwise>
-						</c:choose>
-						<c:choose>
-						<c:when test="${teacherInfo.teacher.major == null||teacherInfo.teacher.major== '' }">
-						</c:when>
-						<c:otherwise>
-						<abbr title="研究方向">研究方向：</abbr> ${teacherInfo.teacher.major} 
-						<br>
-						</c:otherwise>
-						</c:choose>
-						<c:choose>
-						<c:when test="${teacherInfo.teacher.title == null||teacherInfo.teacher.title == '' }">
-						</c:when>
-						<c:otherwise>
-						<abbr title="职称职务">职称/职务：</abbr>${teacherInfo.teacher.title}
 						</c:otherwise>
 						</c:choose>
 					</address>
@@ -179,31 +164,7 @@
 	</div>
 	
 	<div class="row">
-		<h4>发表论文</h4>
-	</div>
-	<div class="content">
-		<table  cellpadding="4"  class="limitTable">
-			<tbody>
-			<c:choose>
-				<c:when test="${thesisCount >0}">
-					<c:forEach var="thesis" items="${thesisList}">
-						<tr>
-							<td class="limitTd">
-								${thesis.content }
-							</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr><td >无内容</td></tr>
-				</c:otherwise>
-			</c:choose>
-			</tbody>
-		</table>
-	</div>
-	
-	<div class="row">
-		<h4>研究项目</h4>
+		<h4>参与项目</h4>
 	</div>
 	<div class="content">
 		<table   cellpadding="4" class="limitTable">
