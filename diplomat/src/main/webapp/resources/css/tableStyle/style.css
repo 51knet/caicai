@@ -1,0 +1,108 @@
+table.blue{
+	border:1px solid #4a77bb;
+	color:#555;
+
+}
+table.blue th {
+	/*background-image: url(th_bg1.gif);
+	background-repeat:repeat-x;*/
+	background-color: #335183;
+	border:0px solid #4a77bb;
+	font-size: 14px;
+	color: #fff;
+
+}
+table.blue tr.a1{
+	background-color:#4a77bb;
+
+}
+
+table.blue td{
+	border:1px dotted #335183;
+	font-size: 13px;
+
+}
+
+
+
+table.green{
+	border:1px solid #b1cf75;
+	color:#555;
+
+}
+table.green th {
+	/*background-image: url(th_bg1.gif);
+	background-repeat:repeat-x;*/
+	background-color: #ccdfa8;
+	border:1px solid #b1cf75;
+	font-size: 14px;
+
+}
+table.green tr.a1{
+	background-color:#b1cf75;
+
+}
+
+table.green td{
+	border:1px dotted #b1cf75;
+	font-size: 13px;
+
+}
+
+
+.btline{
+	border-bottom:1px solid #cccccc;
+	width: 100%;
+}
+
+
+
+table.yellow{
+	border:1px solid #f2cc81;
+	color:#666;
+	font-size: 13px;
+}
+table.yellow th {
+	/*background-image: url(th_bg2.gif);
+	background-repeat::repeat-x;*/
+	color:#fff;
+	border:1px solid #f2cc81;
+	background-color: #f2cc81;
+
+}
+table.yellow td{
+	border:1px dotted #f2cc81;
+}
+
+table.yellow tr.a1{
+	background-color:#e8f3fd;
+	font-size: 13px;
+}
+
+
+
+
+table.t3{
+	border:1px solid #feb8d9;
+	color:#720337;
+	font-size: 13px;
+}
+table.t3 th {
+	background-image: url(th_bg3.gif);
+	background-repeat::repeat-x;
+	color:#35031b;
+	height: 20px;
+}
+table.t3 td{
+	border:1px dashed #feb8d9;
+	height: 20px;
+
+}
+table.t3 th{
+	border:1px solid #feb8d9;
+	
+}
+table.t3 tr.a1{
+	background-color:#fbd8e8;
+}
+/*for now please avoid adding css into this file*/

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="debug-layout" template="/WEB-INF/layouts/jsp/debug.jsp">
+
+	</definition>
+	<definition name="index-layout" template="/WEB-INF/layouts/jsp/admin.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="top-navbar" value="" />
+		<put-attribute name="banner" value="" />
+		<put-attribute name="navbar" value="" />
+		<put-attribute name="left" value="" />
+		<put-attribute name="flash" value="" />
+		<put-attribute name="right" value="" />
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<definition name="homepage-layout" template="/WEB-INF/layouts/jsp/index.jsp">
+		<put-attribute name="title" value="技术市场后台" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_index-top-navbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/layouts/jsp/index/_body.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	
+	<!-- admin-layout was 2 columns layout structure -->
+	<definition name="admin-layout" template="/WEB-INF/layouts/jsp/admin.jsp">
+		<put-attribute name="title" value="My Blog" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
+		<put-attribute name="breadcrumbs" value="/WEB-INF/layouts/jsp/index/breadcrumbs.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/left.jsp" />
+		<put-attribute name="flash" value="/WEB-INF/layouts/jsp/admin-layout/flash.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/admin-layout/right.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	<definition name="registerStandard-layout" template="/WEB-INF/layouts/jsp/registerStandard.jsp">
+		<put-attribute name="title" value="Register" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_index-top-navbar.jsp" />
+		<put-attribute name="body" value="/WEB-INF/layouts/jsp/register/_body.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	<definition name="frontPage-layout" template="/WEB-INF/layouts/jsp/teacher-front.jsp">
+		<put-attribute name="title" value="My Front Page" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/teacher-front/navbar.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/teacher-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/teacher-front/right.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+
+	<definition name="enterprise-frontPage-layout" template="/WEB-INF/layouts/jsp/enterprise-front.jsp">
+		<put-attribute name="title" value="My Front Page" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/enterprise-front/banner.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/enterprise-front/navbar.jsp" />
+		<!-- 
+		<put-attribute name="ctype" value="" />
+		<put-attribute name="detailinfo" value="" /> -->
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/enterprise-front/left.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/enterprise-front/right.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	
+	<definition name="faq-layout" template="/WEB-INF/layouts/jsp/faq-front.jsp">
+		<put-attribute name="title" value="My Front Page" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/faq/banner/banner.jsp" />
+		<put-attribute name="navbar" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/faq/item_panel.jsp" />
+		<put-attribute name="right" value="" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	
+	<definition name="usercourse-layout" template="/WEB-INF/layouts/jsp/user-course.jsp">
+		<put-attribute name="title" value="我的课程" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="banner" value="" /> 
+		<put-attribute name="breadcrumbs" value="" />
+		<put-attribute name="left" value="/WEB-INF/views/user/course/study/item_panel.jsp" />
+		<put-attribute name="right" value="" />
+		<put-attribute name="right_bottom" value="" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	
+	<definition name="user-admin-layout" template="/WEB-INF/layouts/jsp/user-admin.jsp">
+		<put-attribute name="title" value="My Blog" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" /> 
+		<put-attribute name="breadcrumbs" value="/WEB-INF/layouts/jsp/index/breadcrumbs.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/left.jsp" />
+		<put-attribute name="flash" value="/WEB-INF/layouts/jsp/admin-layout/flash.jsp" />
+		<put-attribute name="right" value="/WEB-INF/layouts/jsp/admin-layout/right.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/user/footer/_footer.jsp" />
+	</definition>
+	
+	<definition name="user-admin-trend-layout" template="/WEB-INF/layouts/jsp/user-admin-trend.jsp">
+		<put-attribute name="title" value="My Blog" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		 <put-attribute name="banner" value="/WEB-INF/layouts/jsp/index/banner.jsp" /> 
+		<put-attribute name="breadcrumbs" value="/WEB-INF/layouts/jsp/index/breadcrumbs.jsp" />
+		<put-attribute name="left" value="/WEB-INF/layouts/jsp/admin-layout/left.jsp" />
+		<put-attribute name="flash" value="/WEB-INF/layouts/jsp/admin-layout/flash.jsp" />
+		<put-attribute name="mid" value="/WEB-INF/layouts/jsp/admin-layout/right.jsp" />
+		<put-attribute name="right" value="/WEB-INF/views/user/recommend/admin/list/list.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+	
+	<definition name="user-frontPage-layout" template="/WEB-INF/layouts/jsp/user-front.jsp">
+		<put-attribute name="title" value="My Front Page" />
+		<put-attribute name="top-navbar" value="/WEB-INF/layouts/jsp/common/_top-navbar.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/layouts/jsp/user-front/banner.jsp" /> 
+
+		<put-attribute name="breadcrumbs" value="/WEB-INF/layouts/jsp/index/breadcrumbs.jsp" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/jsp/teacher-front/navbar.jsp" />
+		<put-attribute name="left" value="" />
+		<put-attribute name="right" value="/WEB-INF/views/user/recommend/front/list/list.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/jsp/common/_footer.jsp" />
+	</definition>
+
+</tiles-definitions>

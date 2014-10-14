@@ -27,8 +27,9 @@
 			<c:if test="${sessionUserInfo == null}">
 				<li class="top_margin"><a href='<c:url value="/jumpToPatents"></c:url>'><h6>登录</h6></a><br></li>
 				<li class="top_margin"><a href='<c:url value="/jumpToPatents"></c:url>'><h6>注册</h6></a><br></li>
+				<li class="top_margin"><a href='<c:url value="/jumpToDiplomat"></c:url>'><h5>外交官入口</h5></a><br></li>
 			</c:if>
-			<li ><div style="width: 90px;"></div></li>
+			<li ><div style="width: 10px;"></div></li>
 		</ul>
 		<br>
 	</div>

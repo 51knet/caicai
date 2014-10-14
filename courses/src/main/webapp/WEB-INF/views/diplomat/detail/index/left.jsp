@@ -43,13 +43,13 @@
 					 <c:choose>
 					 <c:when test="${teacherInfo.college==null||teacherInfo.college==''}"></c:when>
 					 <c:otherwise>
-					<abbr>院校:</abbr> ${teacherInfo.college} <br> 
+					<abbr>就职国家:</abbr> ${teacherInfo.college} <br> 
 					 </c:otherwise>
 					 </c:choose>
 					 <c:choose>
 					 <c:when test="${teacherInfo.school==null||teacherInfo.school==''}"></c:when>
 					 <c:otherwise>
-					  <abbr>院系:</abbr> ${teacherInfo.school}
+					  <abbr>职务:</abbr> ${teacherInfo.school}
 					 </c:otherwise>
 				 </c:choose>
 		</address>

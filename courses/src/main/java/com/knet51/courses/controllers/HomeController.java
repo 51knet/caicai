@@ -200,6 +200,12 @@ public class HomeController {
 		return ;
 	}
 	
+	@RequestMapping(value="/jumpToDiplomat", method = RequestMethod.GET)
+	public void jumpToDiplomat(HttpServletResponse response) throws IOException{
+		response.sendRedirect("/dip");
+		return ;
+	}
+	
 	// diplomat
 	@RequestMapping(value="/diplomat") 
 	public String showDiplomat(Model model,@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
